@@ -46,10 +46,21 @@
                             <i class="fa fa-thermometer-half"/>
                             <span>IOT Status</span>
                         </button>
+                        <button name="%(farm_mobile.action_farm_sync_queue)d" type="action" class="btn btn-secondary btn-mobile-large">
+                            <i class="fa fa-refresh"/>
+                            <span>Sync Queue</span>
+                        </button>
                     </div>
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <record id="action_farm_sync_queue" model="ir.actions.act_window">
+        <field name="name">Offline Sync Queue</field>
+        <field name="res_model">farm.sync.queue</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_pending': 1}</field>
     </record>
 
     <record id="action_farm_mobile_workbench" model="ir.actions.act_window">
