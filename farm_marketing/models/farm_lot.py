@@ -46,6 +46,15 @@ class FarmLotMarketing(models.Model):
     _inherit = 'stock.lot'
 
     traceability_url = fields.Char("Traceability URL", compute='_compute_traceability_url')
+    
+    # Marketing Content [US-25]
+    story_title = fields.Char("Growth Story Title")
+    story_content = fields.Html("Growth Story Content")
+    marketing_image_ids = fields.Many2many('ir.attachment', string="Marketing Photos")
+    
+    # 溯源面板显示的指标快照
+    avg_temp = fields.Float("Average Growth Temperature (℃)")
+    water_purity = fields.Char("Water Purity Grade")
 
     def _compute_traceability_url(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
