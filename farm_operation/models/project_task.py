@@ -13,6 +13,9 @@ class ProjectTask(models.Model):
     land_parcel_id = fields.Many2one('stock.location', string="Land Parcel/Pond", domain=[('is_land_parcel', '=', True)])
     biological_lot_id = fields.Many2one('stock.lot', string="Biological Asset/Lot", domain="[('is_animal', '=', True)]")
 
+    # 需求驱动关联 [US-28]
+    sale_order_id = fields.Many2one('sale.order', string="Source Sale Order")
+
     intervention_ids = fields.One2many(
         'mrp.production', 
         'agri_task_id', 

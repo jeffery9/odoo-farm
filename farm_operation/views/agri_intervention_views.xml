@@ -5,6 +5,11 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_start_work" string="Start Work" type="object" class="btn-success" invisible="is_working or state in ['done', 'cancel']"/>
+                <button name="action_stop_work" string="Stop Work" type="object" class="btn-warning" invisible="not is_working"/>
+                <field name="is_working" invisible="1"/>
+            </xpath>
             <xpath expr="//field[@name='user_id']" position="after">
                 <field name="agri_task_id" readonly="state != 'draft'"/>
                 <field name="intervention_type"/>
