@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- 移动端快速入口：我的任务 -->
+    <record id="action_mobile_my_tasks" model="ir.actions.act_window">
+        <field name="name">My Tasks Today</field>
+        <field name="res_model">project.task</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="domain">[('user_ids', 'in', [uid]), ('is_closed', '=', False)]</field>
+        <field name="context">{'search_default_my_tasks': 1}</field>
+    </record>
+
+    <!-- 移动端快速入口：扫码喂养 -->
+    <record id="action_mobile_scan_feeding" model="ir.actions.act_window">
+        <field name="name">Quick Feeding</field>
+        <field name="res_model">mrp.production</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_intervention_type': 'feeding'}</field>
+    </record>
+
+    <!-- 移动端仪表板 (使用一个简单的静态视图或表单来模拟) -->
+    <record id="view_farm_mobile_workbench_form" model="ir.ui.view">
+        <field name="name">farm.mobile.workbench.form</field>
+        <field name="model">res.users</field> <!-- 使用用户模型作为载体 -->
+        <field name="arch" type="xml">
+            <form string="Mobile Workbench" create="false" edit="false" delete="false">
+                <sheet class="o_farm_mobile_dashboard">
+                    <div class="text-center mb-4">
+                        <h2 class="text-success">Field Workbench</h2>
+                        <p class="text-muted">Welcome, <field name="name" readonly="1"/></p>
+                    </div>
+                    <div class="o_action_buttons">
+                        <button name="%(action_mobile_my_tasks)d" type="action" class="btn btn-primary btn-mobile-large">
+                            <i class="fa fa-tasks"/>
+                            <span>My Tasks</span>
+                        </button>
+                        <button name="%(action_mobile_scan_feeding)d" type="action" class="btn btn-warning btn-mobile-large">
+                            <i class="fa fa-cutlery"/>
+                            <span>Quick Feeding</span>
+                        </button>
+                        <button name="%(farm_quality.action_farm_quality_check)d" type="action" class="btn btn-info btn-mobile-large">
+                            <i class="fa fa-check-square-o"/>
+                            <span>QC Checks</span>
+                        </button>
+                        <button name="%(farm_iot.action_farm_telemetry)d" type="action" class="btn btn-danger btn-mobile-large">
+                            <i class="fa fa-thermometer-half"/>
+                            <span>IOT Status</span>
+                        </button>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_mobile_workbench" model="ir.actions.act_window">
+        <field name="name">Field Mobile Workbench</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">form</field>
+        <field name="target">main</field>
+        <field name="res_id" eval="ref('base.user_admin')"/> <!-- 默认显示当前，实际需动态 -->
+    </record>
+</odoo>

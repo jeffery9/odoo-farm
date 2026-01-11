@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_farm_mobile_root" 
+              name="Mobile Workbench" 
+              action="action_farm_mobile_workbench" 
+              web_icon="farm_mobile,static/description/icon.png" 
+              sequence="1"/>
+</odoo>
