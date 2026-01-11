@@ -5,8 +5,13 @@
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_tmpl_id']" position="after">
+                <field name="agri_activity_type" widget="radio" options="{'horizontal': true}"/>
+                <field name="application_stage" invisible="not agri_activity_type"/>
+            </xpath>
             <xpath expr="//field[@name='bom_line_ids']//list//field[@name='product_qty']" position="after">
                 <field name="dilution_ratio" optional="show"/>
+                <field name="feeding_ratio" optional="show"/>
             </xpath>
         </field>
     </record>
