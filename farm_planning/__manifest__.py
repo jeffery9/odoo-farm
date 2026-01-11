@@ -3,7 +3,6 @@
     'version': '1.0',
     'category': 'Industries/Agriculture',
     'summary': 'Advanced Production Planning, Technical Routes and Scenarios (Inspired by Ekylibre)',
-    'icon': '/farm_planning/static/description/icon.svg',
     'description': """
         Strategic and tactical planning for Odoo 19 Farm Management.
         - Technical Routes (Sequences of intervention templates)
@@ -15,15 +14,11 @@
     'depends': ['farm_operation', 'farm_hr'],
     'data': [
         'security/ir.model.access.csv',
-        'data/agri_templates_data.xml',
         'views/intervention_template_views.xml',
         'views/technical_route_views.xml',
         'views/scenario_views.xml',
     ],
-    'demo': [
-        'data/farm_planning_demo.xml',
-    ],
     'installable': True,
     'application': True,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }

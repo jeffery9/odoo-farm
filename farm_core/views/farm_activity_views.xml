@@ -33,6 +33,7 @@
                     <group>
                         <group>
                             <field name="activity_family" widget="radio" options="{'horizontal': true}"/>
+                            <field name="task_sequence_id" groups="base.group_no_one"/>
                         </group>
                     </group>
                 </page>

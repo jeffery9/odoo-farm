@@ -30,13 +30,22 @@ class MrpProduction(models.Model):
             mo.is_balanced = abs(mo.total_output_qty - raw_qty) < (raw_qty * 0.001) if raw_qty > 0 else True
 
     def button_mark_done(self):
-        """ 强制平衡校验 """
+        """ 强制平衡校验并建立批次溯源 [US-46] """
         for mo in self:
             if not mo.is_balanced:
                 from odoo.exceptions import UserError
                 raise UserError(_("MASS BALANCE ERROR: Total input (%s) does not match total output + loss (%s). Please adjust.") % (
                     sum(mo.move_raw_ids.mapped('product_uom_qty')), mo.total_output_qty
                 ))
+            
+            # 建立溯源关联：将成品的批次关联到主要原料的批次
+            raw_lots = mo.move_raw_ids.mapped('lot_ids')
+            if raw_lots:
+                main_raw_lot = raw_lots[0]
+                for finished_move in mo.move_finished_ids:
+                    for finished_lot in finished_move.lot_ids:
+                        finished_lot.parent_lot_id = main_raw_lot.id
+                        
         return super().button_mark_done()
 
 class StockLot(models.Model):

@@ -1,4 +1,5 @@
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 class FarmQualityPoint(models.Model):
     _name = 'farm.quality.point'
@@ -107,6 +108,22 @@ class FarmQualityAlert(models.Model):
         self.message_post(body=_("Alert closed: Asset marked for scrapping."))
         self.write({'state': 'closed'})
         # 此处可进一步调用 stock.scrap 逻辑
+
+class StockPicking(models.Model):
+    _inherit = 'stock.picking'
+
+    def button_validate(self):
+        """ 质量拦截逻辑 [US-51] """
+        for picking in self:
+            # 仅针对出库或内部调拨进行检查
+            if picking.picking_type_code in ['outgoing', 'internal']:
+                for move in picking.move_ids:
+                    for lot in move.lot_ids:
+                        if lot.quality_status == 'failed':
+                            raise UserError(_("QUALITY ALERT: Lot %s has failed quality inspection and is locked for sale/transfer.") % lot.name)
+                        elif lot.quality_status == 'none' and move.product_id.is_agri_input: # 示例：对投入品也进行强制检查
+                             raise UserError(_("QUALITY PENDING: Lot %s must pass quality inspection before transfer.") % lot.name)
+        return super().button_validate()
 
 class FarmLotQuality(models.Model):
     _inherit = 'stock.lot'

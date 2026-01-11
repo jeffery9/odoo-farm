@@ -4,6 +4,17 @@ from odoo.exceptions import UserError
 class FarmLot(models.Model):
     _inherit = 'stock.lot'
 
+    animal_count = fields.Integer("Animal Count", default=1)
+    average_weight = fields.Float("Average Weight (kg)", help="Current average weight of individuals in this lot.")
+    
+    # 生物阶段 [US-12]
+    biological_stage = fields.Selection([
+        ('born', 'Born/Started'),
+        ('growing', 'Growing'),
+        ('finished', 'Finished'),
+        ('harvested', 'Harvested')
+    ], string="Biological Stage", default='born')
+
     def action_record_death(self, qty, reason, notes=False):
         """ 记录减员并发布审计消息 """
         self.ensure_one()

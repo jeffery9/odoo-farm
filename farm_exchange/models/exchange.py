@@ -15,8 +15,8 @@ class FarmDataExchanger(models.Model):
     ], string="Data Format", default='daplos', required=True)
     
     exchange_type = fields.Selection([
-        ('export', 'Export'),
-        ('import', 'Import')
+        ('export', 'Export (导出)'),
+        ('import', 'Import (导入)')
     ], default='export', required=True)
     
     date = fields.Datetime("Exchange Date", default=fields.Datetime.now)
@@ -32,64 +32,43 @@ class FarmDataExchanger(models.Model):
     ], default='draft', tracking=True)
 
     def action_perform_exchange(self):
-        """ 
-        US-20-02: 执行标准化数据交换
-        根据协议类型调用具体的 Parser
-        """
+        """ 执行数据交换逻辑 [DAPLOS/TELEPAC] """
         self.ensure_one()
-        if self.exchange_type == 'export':
-            if self.format_type == 'daplos':
-                return self._export_daplos_xml()
-            elif self.format_type == 'telepac':
-                return self._export_telepac_csv()
-        return True
-
-    def _export_daplos_xml(self):
-        """ 
-        DAPLOS (ISO 11783-10) 导出：生成符合标准的农业作业 XML
-        """
-        import lxml.etree as ET
-        root = ET.Element("ISO11783_TaskData")
+        if self.format_type == 'daplos':
+            return self._perform_daplos_export()
+        elif self.format_type == 'telepac':
+            return self._perform_telepac_export()
         
-        # 1. 节点：地块信息
+    def _perform_daplos_export(self):
+        """ 模拟 DAPLOS 导出逻辑 """
+        # 获取最新的产季和地块数据
         plots = self.env['stock.location'].search([('is_land_parcel', '=', True)])
-        for p in plots:
-            p_node = ET.SubElement(root, "PFD", C=p.name, D=str(getattr(p, 'land_area', 0)))
-            if p.gps_lat:
-                ET.SubElement(p_node, "GRD", LAT=str(p.gps_lat), LON=str(p.gps_lng))
+        data = {
+            'header': {'protocol': 'DAPLOS', 'version': '1.0'},
+            'plots': [{'id': p.id, 'name': p.name, 'area': getattr(p, 'land_area', 0)} for p in plots]
+        }
         
-        xml_content = ET.tostring(root, encoding='utf-8', xml_declaration=True, pretty_print=True)
+        # 转为 JSON (实际 DAPLOS 可能是复杂的 XML)
+        json_data = json.dumps(data, indent=4)
         self.write({
-            'data_file': base64.b64encode(xml_content),
-            'file_name': f'task_data_{self.name}.xml',
+            'data_file': base64.b64encode(json_data.encode()),
+            'file_name': 'export_daplos_%s.json' % self.id,
             'state': 'done'
         })
         return True
 
-    def _export_telepac_csv(self):
-        """
-        TELEPAC 导出：国际合规标准的 CSV 台账
-        """
-        import io
-        import csv
-        output = io.StringIO()
-        writer = csv.writer(output, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        
-        # 表头
-        writer.writerow(['ParcelName', 'Area', 'CertLevel', 'LastInspection'])
-        
-        certs = self.env['stock.location'].search([('is_land_parcel', '=', True)])
-        for c in certs:
-            writer.writerow([
-                c.name, 
-                getattr(c, 'land_area', 0), 
-                getattr(c, 'certification_level', 'none'),
-                fields.Date.today()
-            ])
-            
+    def _perform_telepac_export(self):
+        """ 模拟 TELEPAC 导出逻辑 """
+        # 获取合规性数据（有机认证等）
+        certs = self.env['stock.location'].search([('certification_level', '!=', 'conventional')])
+        data = {
+            'compliance': 'TELEPAC',
+            'records': [{'plot': c.name, 'level': c.certification_level} for c in certs]
+        }
+        json_data = json.dumps(data, indent=4)
         self.write({
-            'data_file': base64.b64encode(output.getvalue().encode()),
-            'file_name': f'telepac_report_{self.name}.csv',
+            'data_file': base64.b64encode(json_data.encode()),
+            'file_name': 'export_telepac_%s.json' % self.id,
             'state': 'done'
         })
         return True
