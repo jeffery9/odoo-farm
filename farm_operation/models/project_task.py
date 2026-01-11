@@ -11,6 +11,8 @@ class ProjectTask(models.Model):
     
     # 继承 farm_core 中的地块/资产逻辑
     land_parcel_id = fields.Many2one('stock.location', string="Land Parcel/Pond", domain=[('is_land_parcel', '=', True)])
+    gps_lat = fields.Float(related='land_parcel_id.gps_lat', store=True)
+    gps_lng = fields.Float(related='land_parcel_id.gps_lng', store=True)
     biological_lot_id = fields.Many2one('stock.lot', string="Biological Asset/Lot", domain="[('is_animal', '=', True)]")
 
     # 需求驱动关联 [US-28]
