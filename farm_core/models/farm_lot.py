@@ -39,8 +39,15 @@ class FarmLot(models.Model):
     state = fields.Selection([
         ('healthy', 'Healthy (正常)'),
         ('quarantine', 'Quarantined (隔离)'),
-        ('disposed', 'Disposed (已处置)')
+        ('disposed', 'Disposed (已处置)'),
+        ('locked', 'Quality Locked (质量锁定)')
     ], string="Health State", default='healthy', tracking=True)
+
+    @api.depends('quality_status')
+    def _onchange_quality_status(self):
+        for lot in self:
+            if lot.quality_status == 'failed':
+                lot.state = 'locked'
 
     @api.depends('withdrawal_end_datetime')
     def _compute_is_safe(self):
