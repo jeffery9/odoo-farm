@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="traceability_portal_template" name="Product Traceability Portal">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty bg-light">
+                <section class="s_text_block pb32 pt32" data-snippet="s_text_block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2">
+                                <!-- 品牌头部 -->
+                                <div class="card shadow-sm mb-4 border-0">
+                                    <div class="card-body text-center bg-success text-white rounded-top">
+                                        <h2 t-field="lot.product_id.name"/>
+                                        <p class="mb-0">Batch ID: <span t-field="lot.name"/></p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row text-center">
+                                            <div class="col-6 border-end">
+                                                <h6>Origin (产地)</h6>
+                                                <p t-field="lot.location_id.name"/>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6>Status (状态)</h6>
+                                                <span class="badge rounded-pill bg-info" t-field="lot.biological_stage"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 生产节点 (Timeline) -->
+                                <h4 class="mb-3"><i class="fa fa-history text-success me-2"/>Life Cycle (生命档案)</h4>
+                                <div class="list-group mb-4 shadow-sm">
+                                    <div class="list-group-item">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">Birth/Planting Date</h6>
+                                            <small t-field="lot.create_date" t-options='{"widget": "date"}'/>
+                                        </div>
+                                    </div>
+                                    <t t-if="task">
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Cultivation Season</h6>
+                                                <p class="mb-1" t-field="task.campaign_id.name"/>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+
+                                <!-- 质检报告 -->
+                                <h4 class="mb-3"><i class="fa fa-certificate text-warning me-2"/>Quality Trust (质量认证)</h4>
+                                <div class="card shadow-sm mb-4">
+                                    <div class="card-body">
+                                        <t t-if="qc_checks">
+                                            <div t-foreach="qc_checks" t-as="qc" class="d-flex align-items-center mb-2">
+                                                <i class="fa fa-check-circle text-success me-2"/>
+                                                <span t-field="qc.point_id.name"/>: 
+                                                <strong class="ms-1" t-field="qc.quality_state"/>
+                                            </div>
+                                        </t>
+                                        <t t-else="">
+                                            <p class="text-muted">Standard factory inspection completed.</p>
+                                        </t>
+                                    </div>
+                                </div>
+
+                                <!-- 农场故事 -->
+                                <h4 class="mb-3"><i class="fa fa-leaf text-success me-2"/>Our Story</h4>
+                                <div class="card shadow-sm border-0 bg-white p-3 mb-5">
+                                    <p class="mb-0 text-italic" t-out="farm_story"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>
