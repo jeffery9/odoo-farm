@@ -4,7 +4,7 @@ class TestCampaignPlanning(TransactionCase):
 
     def setUp(self):
         super(TestCampaignPlanning, self).setUp()
-        self.Campaign = self.env['farm.agricultural.campaign']
+        self.Campaign = self.env['agricultural.campaign']
         self.Task = self.env['project.task']
         self.Project = self.env['project.project']
         
@@ -15,7 +15,7 @@ class TestCampaignPlanning(TransactionCase):
         })
 
     def test_01_create_campaign(self):
-        """ 测试创建生产季 [US-01-02] """
+        """ 测试创建生产季 [US-05] """
         campaign = self.Campaign.create({
             'name': '2026 Spring Season',
             'date_start': '2026-03-01',
@@ -24,7 +24,7 @@ class TestCampaignPlanning(TransactionCase):
         self.assertEqual(campaign.name, '2026 Spring Season')
 
     def test_02_task_link_to_campaign(self):
-        """ 测试生产任务关联生产季 [US-01-02] """
+        """ 测试生产任务关联生产季 [US-05] """
         campaign = self.Campaign.create({'name': '2026 Summer'})
         task = self.Task.create({
             'name': 'Wheat Production Task - Plot 01',

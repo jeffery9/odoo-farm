@@ -1,11 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_agricultural_campaign_manager,agricultural.campaign.manager,model_agricultural_campaign,farm_core.group_farm_manager,1,1,1,1
-access_agricultural_campaign_user,agricultural.campaign.user,model_agricultural_campaign,farm_core.group_farm_user,1,1,1,0
-access_agri_intervention_manager,agri.intervention.manager,model_mrp_production,farm_core.group_farm_manager,1,1,1,1
-access_agri_intervention_user,agri.intervention.user,model_mrp_production,farm_core.group_farm_user,1,1,1,0
-access_agri_bom_manager,agri.bom.manager,model_mrp_bom,farm_core.group_farm_manager,1,1,1,1
-access_agri_bom_user,agri.bom.user,model_mrp_bom,farm_core.group_farm_user,1,1,1,0
-access_agri_bom_line_manager,agri.bom.line.manager,model_mrp_bom_line,farm_core.group_farm_manager,1,1,1,1
-access_agri_bom_line_user,agri.bom.line.user,model_mrp_bom_line,farm_core.group_farm_user,1,1,1,0
-access_stock_move_agri_manager,stock.move.agri.manager,model_stock_move,farm_core.group_farm_manager,1,1,1,1
-access_stock_move_agri_user,stock.move.agri.user,model_stock_move,farm_core.group_farm_user,1,1,1,0
+access_agri_campaign,agri.campaign,model_agricultural_campaign,base.group_user,1,1,1,1
