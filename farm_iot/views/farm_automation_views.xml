@@ -22,6 +22,6 @@
     </record>
 
     <menuitem id="menu_farm_iot_root" name="Farm IOT" parent="farm_breeding.menu_breeding_root" sequence="50"/>
-    <menuitem id="menu_farm_automation" name="Automation Rules" parent="menu_farm_iot_root" action="action_farm_automation_rule" sequence="20"/>
+    <menuitem id="menu_farm_automation" name="Automation Rules" parent="menu_farm_iot_root" action="action_farm_automation_rule" sequence="20" groups="farm_core.group_farm_specialist"/>
     <menuitem id="menu_farm_telemetry_history" name="Telemetry History" parent="menu_farm_iot_root" action="action_farm_telemetry" sequence="10"/>
 </odoo>

@@ -47,6 +47,6 @@
         <field name="view_mode">pivot,list</field>
     </record>
 
-    <menuitem id="menu_breeding_analysis" name="Analytics" parent="menu_breeding_root" sequence="100"/>
+    <menuitem id="menu_breeding_analysis" name="Analytics" parent="menu_breeding_root" sequence="100" groups="farm_core.group_farm_specialist"/>
     <menuitem id="menu_trait_comparison" name="Trait Comparison" parent="menu_breeding_analysis" action="action_farm_trait_comparison" sequence="10"/>
 </odoo>
