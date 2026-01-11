@@ -17,7 +17,25 @@
     <record id="action_farm_sustainability_dashboard" model="ir.actions.act_window">
         <field name="name">Sustainability Dashboard</field>
         <field name="res_model">agricultural.campaign</field>
-        <field name="view_mode">graph,pivot,list</field>
+        <field name="view_mode">list,graph,pivot</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Compare nutrient usage across seasons to track your ecological footprint.
+            </p>
+        </field>
+    </record>
+
+    <!-- 生产季列表页增加减量化展示 -->
+    <record id="agricultural_campaign_view_tree_sustainability" model="ir.ui.view">
+        <field name="name">agricultural.campaign.list.sustainability</field>
+        <field name="model">agricultural.campaign</field>
+        <field name="inherit_id" ref="farm_operation.agricultural_campaign_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_active']" position="after">
+                <field name="total_n" sum="Total N" optional="show"/>
+                <field name="n_reduction_rate" widget="percentage" decoration-success="n_reduction_rate > 0" decoration-danger="n_reduction_rate &lt; 0" string="N Reduction"/>
+            </xpath>
+        </field>
     </record>
 
     <!-- 生态活动视图 -->
@@ -43,4 +61,27 @@
     <menuitem id="menu_sustainability_root" name="Sustainability" sequence="90" groups="farm_core.group_farm_manager"/>
     <menuitem id="menu_sustainability_dashboard" name="Impact Dashboard" parent="menu_sustainability_root" action="action_farm_sustainability_dashboard" sequence="10"/>
     <menuitem id="menu_ecological_activity" name="Ecological Records" parent="menu_sustainability_root" action="action_farm_ecological_activity" sequence="20"/>
+    <record id="agricultural_campaign_view_form_sustainability" model="ir.ui.view">
+        <field name="name">agricultural.campaign.form.sustainability</field>
+        <field name="model">agricultural.campaign</field>
+        <field name="inherit_id" ref="farm_operation.agricultural_campaign_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Sustainability Impact" name="sustainability">
+                    <group>
+                        <group string="Total Nutrients (Actual)">
+                            <field name="total_n"/>
+                            <field name="total_p"/>
+                            <field name="total_k"/>
+                        </group>
+                        <group string="Reduction Trends vs Previous">
+                            <field name="n_reduction_rate" widget="progressbar" string="Nitrogen Reduction %"/>
+                            <field name="p_reduction_rate" widget="progressbar" string="Phosphorus Reduction %"/>
+                            <field name="k_reduction_rate" widget="progressbar" string="Potassium Reduction %"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
 </odoo>
