@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="farm_soil_analysis_view_tree" model="ir.ui.view">
+        <field name="name">farm.soil.analysis.list</field>
+        <field name="model">farm.soil.analysis</field>
+        <field name="arch" type="xml">
+            <list string="Soil Analysis Reports">
+                <field name="analysis_date"/>
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="ph_level"/>
+                <field name="organic_matter"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="farm_soil_analysis_view_form" model="ir.ui.view">
+        <field name="name">farm.soil.analysis.form</field>
+        <field name="model">farm.soil.analysis</field>
+        <field name="arch" type="xml">
+            <form string="Soil Analysis Report">
+                <header>
+                    <button name="action_validate" string="Validate" type="object" class="btn-primary" invisible="state == 'done'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Basic Info">
+                            <field name="location_id"/>
+                            <field name="analysis_date"/>
+                            <field name="laboratory_id"/>
+                        </group>
+                        <group string="Nutrient Profile">
+                            <field name="ph_level"/>
+                            <field name="organic_matter"/>
+                            <field name="nitrogen_content"/>
+                            <field name="phosphorus_content"/>
+                            <field name="potassium_content"/>
+                        </group>
+                    </group>
+                    <group string="Micronutrients &amp; Others">
+                        <group>
+                            <field name="magnesium"/>
+                            <field name="calcium"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Recommendations" name="recommendations">
+                            <field name="recommendation" placeholder="e.g. Add 200kg of organic fertilizer..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_soil_analysis" model="ir.actions.act_window">
+        <field name="name">Soil Analysis</field>
+        <field name="res_model">farm.soil.analysis</field>
+        <field name="view_mode">list,form,graph</field>
+    </record>
+
+    <menuitem id="menu_farm_soil_analysis" name="Soil Analysis" parent="farm_core.menu_farm_gis_root" action="action_farm_soil_analysis" sequence="20"/>
+</odoo>
