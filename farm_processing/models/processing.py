@@ -11,14 +11,33 @@ class MrpProduction(models.Model):
     # 质量控制扩展
     moisture_content = fields.Float("Moisture Content (%)", help="Final moisture content for dried products")
     process_temperature = fields.Float("Process Temperature (℃)")
+    
+    # 损耗与平衡校验 [US-44]
+    scrap_qty = fields.Float("Process Loss (kg)", help="Quantity lost during cleaning/sorting/processing")
+    total_output_qty = fields.Float("Total Output Qty", compute='_compute_total_output_qty')
+    is_balanced = fields.Boolean("Mass Balanced", compute='_compute_total_output_qty')
 
-    @api.depends('energy_meter_start', 'energy_meter_end')
-    def _compute_energy_consumption(self):
+    @api.depends('move_finished_ids.product_uom_qty', 'scrap_qty', 'move_raw_ids.product_uom_qty')
+    def _compute_total_output_qty(self):
         for mo in self:
-            if mo.energy_meter_end > mo.energy_meter_start:
-                mo.energy_consumption = mo.energy_meter_end - mo.energy_meter_start
-            else:
-                mo.energy_consumption = 0.0
+            # 产出总量 = 成品 + 副产品 + 损耗
+            finished_qty = sum(mo.move_finished_ids.mapped('product_uom_qty'))
+            mo.total_output_qty = finished_qty + mo.scrap_qty
+            
+            # 投入总量
+            raw_qty = sum(mo.move_raw_ids.mapped('product_uom_qty'))
+            # 允许 0.1% 的微小舍入误差
+            mo.is_balanced = abs(mo.total_output_qty - raw_qty) < (raw_qty * 0.001) if raw_qty > 0 else True
+
+    def button_mark_done(self):
+        """ 强制平衡校验 """
+        for mo in self:
+            if not mo.is_balanced:
+                from odoo.exceptions import UserError
+                raise UserError(_("MASS BALANCE ERROR: Total input (%s) does not match total output + loss (%s). Please adjust.") % (
+                    sum(mo.move_raw_ids.mapped('product_uom_qty')), mo.total_output_qty
+                ))
+        return super().button_mark_done()
 
 class StockLot(models.Model):
     _inherit = 'stock.lot'
