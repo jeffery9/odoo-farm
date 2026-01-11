@@ -46,6 +46,18 @@
                                     </t>
                                 </div>
 
+                                <!-- 实况监控 [US-52] -->
+                                <t t-if="video_url">
+                                    <h4 class="mb-3"><i class="fa fa-video-camera text-danger me-2"/>Live View (实况监控)</h4>
+                                    <div class="card shadow-sm mb-4 border-0 bg-dark overflow-hidden" style="aspect-ratio: 16/9;">
+                                        <iframe t-att-src="video_url" 
+                                                class="w-100 h-100 border-0" 
+                                                allow="autoplay; encrypted-media" 
+                                                allowfullscreen="True">
+                                        </iframe>
+                                    </div>
+                                </t>
+
                                 <!-- 质检报告 -->
                                 <h4 class="mb-3"><i class="fa fa-certificate text-warning me-2"/>Quality Trust (质量认证)</h4>
                                 <div class="card shadow-sm mb-4">

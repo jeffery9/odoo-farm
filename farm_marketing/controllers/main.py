@@ -18,10 +18,14 @@ class FarmTraceabilityController(http.Controller):
         # 获取质检通过记录
         qc_checks = lot.quality_check_ids.filtered(lambda c: c.quality_state == 'pass')
         
+        # 获取直播流地址 [US-52]
+        video_url = lot.location_id.camera_device_id.live_stream_url if lot.location_id.camera_device_id else False
+
         values = {
             'lot': lot,
             'task': production_task,
             'qc_checks': qc_checks,
+            'video_url': video_url,
             'farm_story': lot.product_id.product_tmpl_id.description_sale or "Grown with care at our sustainable farm."
         }
         return request.render('farm_marketing.traceability_portal_template', values)
