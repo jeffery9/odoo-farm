@@ -11,7 +11,7 @@
         - Biological Asset Management (US-04)
     """,
     'author': 'Jeffery',
-    'depends': ['project', 'stock'],
+    'depends': ['project', 'stock', 'uom'],
     'data': [
         'security/farm_security.xml',
         'security/ir.model.access.csv',

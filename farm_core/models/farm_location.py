@@ -5,6 +5,7 @@ class FarmLocation(models.Model):
 
     is_land_parcel = fields.Boolean("Is Land Parcel", default=False)
     land_area = fields.Float("Area (sqm/mu)", digits=(16, 2), help="Surface area of the parcel.")
+    land_area_uom_id = fields.Many2one('uom.uom', string="Area Unit", domain="[('category_id.measure_type', '=', 'area')]")
     
     # GIS Core Fields [US-03]
     gps_lat = fields.Float("Latitude", digits=(10, 7))
