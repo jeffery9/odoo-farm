@@ -54,6 +54,24 @@ class FarmBooking(models.Model):
     
     notes = fields.Text("Notes")
 
+    # QR Code for Check-in [US-15]
+    booking_qr_code = fields.Char("Booking QR Code", compute='_compute_qr_code', store=True)
+
+    @api.depends('name')
+    def _compute_qr_code(self):
+        for booking in self:
+            # 模拟生成 QR 码链接
+            base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
+            booking.booking_qr_code = f"{base_url}/farm/checkin/{booking.name}"
+
+    def action_checkin(self):
+        """ 游客入园核销 """
+        self.ensure_one()
+        if self.state != 'confirmed':
+            raise ValidationError(_("Check-in failed: Booking is not confirmed."))
+        self.write({'state': 'done'})
+        self.message_post(body=_("CHECK-IN: Visitor has arrived and booking is validated."))
+
     @api.constrains('resource_id', 'date_start', 'date_stop')
     def _check_booking_overlap(self):
         """ 检查同一资源的预约时间冲突 [US-17] """
