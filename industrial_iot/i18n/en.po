@@ -1,0 +1,329 @@
+# English translation for Industrial IoT module
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en_US\n"
+
+# Models
+msgid "Industrial IoT Device Profile"
+msgstr "Industrial IoT Device Profile"
+
+msgid "Industrial IoT Telemetry Rule"
+msgstr "Industrial IoT Telemetry Rule"
+
+msgid "Industrial IoT Device"
+msgstr "Industrial IoT Device"
+
+msgid "Industrial IoT Firmware"
+msgstr "Industrial IoT Firmware"
+
+msgid "Industrial IoT Update"
+msgstr "Industrial IoT Update"
+
+# Fields in iiot.device.profile
+msgid "Device Profile"
+msgstr "Device Profile"
+
+msgid "Code"
+msgstr "Code"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Telemetry Topic Template"
+msgstr "Telemetry Topic Template"
+
+msgid "Command Topic Template"
+msgstr "Command Topic Template"
+
+msgid "OTA Notify Topic Template"
+msgstr "OTA Notify Topic Template"
+
+msgid "OTA Status Topic Template"
+msgstr "OTA Status Topic Template"
+
+msgid "Command Template"
+msgstr "Command Template"
+
+# Fields in iiot.telemetry.rule
+msgid "Telemetry Rule"
+msgstr "Telemetry Rule"
+
+msgid "Profile"
+msgstr "Profile"
+
+msgid "JSON Path"
+msgstr "JSON Path"
+
+msgid "Target Model"
+msgstr "Target Model"
+
+msgid "Target Domain"
+msgstr "Target Domain"
+
+msgid "Target Field"
+msgstr "Target Field"
+
+msgid "Sequence"
+msgstr "Sequence"
+
+msgid "Active"
+msgstr "Active"
+
+# Fields in iiot.device
+msgid "Device"
+msgstr "Device"
+
+msgid "Serial Number"
+msgstr "Serial Number"
+
+msgid "Device ID"
+msgstr "Device ID"
+
+msgid "Business Reference"
+msgstr "Business Reference"
+
+msgid "Config Token"
+msgstr "Config Token"
+
+msgid "Is Active"
+msgstr "Is Active"
+
+msgid "Connection Status"
+msgstr "Connection Status"
+
+msgid "Last Telemetry"
+msgstr "Last Telemetry"
+
+msgid "Last Command"
+msgstr "Last Command"
+
+msgid "Firmware Version"
+msgstr "Firmware Version"
+
+msgid "Topic Map"
+msgstr "Topic Map"
+
+# Fields in iiot.firmware
+msgid "Firmware"
+msgstr "Firmware"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Profile Code"
+msgstr "Profile Code"
+
+msgid "File URL"
+msgstr "File URL"
+
+msgid "File Size"
+msgstr "File Size"
+
+msgid "Checksum"
+msgstr "Checksum"
+
+msgid "Description"
+msgstr "Description"
+
+# Fields in iiot.update
+msgid "Update"
+msgstr "Update"
+
+msgid "Device"
+msgstr "Device"
+
+msgid "Firmware"
+msgstr "Firmware"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Progress"
+msgstr "Progress"
+
+msgid "Date Started"
+msgstr "Date Started"
+
+msgid "Date Completed"
+msgstr "Date Completed"
+
+msgid "Error Message"
+msgstr "Error Message"
+
+# Status values
+msgid "Draft"
+msgstr "Draft"
+
+msgid "Pending"
+msgstr "Pending"
+
+msgid "In Progress"
+msgstr "In Progress"
+
+msgid "Success"
+msgstr "Success"
+
+msgid "Failed"
+msgstr "Failed"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Offline"
+msgstr "Offline"
+
+# Button labels and actions
+msgid "Generate Config Token"
+msgstr "Generate Config Token"
+
+msgid "Send Command"
+msgstr "Send Command"
+
+msgid "OTA Update"
+msgstr "OTA Update"
+
+msgid "Send Reset Command"
+msgstr "Send Reset Command"
+
+msgid "Re-generate Token"
+msgstr "Re-generate Token"
+
+# Views and Menus
+msgid "Industrial IoT"
+msgstr "Industrial IoT"
+
+msgid "Device Management"
+msgstr "Device Management"
+
+msgid "Device Configuration Templates"
+msgstr "Device Configuration Templates"
+
+msgid "IIoT Devices"
+msgstr "IIoT Devices"
+
+msgid "Telemetry Management"
+msgstr "Telemetry Management"
+
+msgid "Telemetry Rules"
+msgstr "Telemetry Rules"
+
+msgid "OTA Management"
+msgstr "OTA Management"
+
+msgid "Firmware Versions"
+msgstr "Firmware Versions"
+
+msgid "OTA Update Records"
+msgstr "OTA Update Records"
+
+msgid "Business Association"
+msgstr "Business Association"
+
+msgid "Status Information"
+msgstr "Status Information"
+
+msgid "Config Token"
+msgstr "Config Token"
+
+msgid "Topic Configuration"
+msgstr "Topic Configuration"
+
+msgid "Target Configuration"
+msgstr "Target Configuration"
+
+msgid "Command Templates"
+msgstr "Command Templates"
+
+msgid "Telemetry Rules"
+msgstr "Telemetry Rules"
+
+msgid "Device Update Records"
+msgstr "Device Update Records"
+
+msgid "OTA Update Status"
+msgstr "OTA Update Status"
+
+# Error messages
+msgid "Device ID cannot be empty"
+msgstr "Device ID cannot be empty"
+
+msgid "Device ID must be alphanumeric and can contain hyphens and underscores"
+msgstr "Device ID must be alphanumeric and can contain hyphens and underscores"
+
+msgid "Topic template must contain {device} placeholder"
+msgstr "Topic template must contain {device} placeholder"
+
+msgid "Invalid JSON Path expression: %s"
+msgstr "Invalid JSON Path expression: %s"
+
+msgid "Invalid domain expression: %s"
+msgstr "Invalid domain expression: %s"
+
+msgid "Serial number already exists"
+msgstr "Serial number already exists"
+
+msgid "Device with this serial number already exists"
+msgstr "Device with this serial number already exists"
+
+msgid "Invalid checksum format"
+msgstr "Invalid checksum format"
+
+msgid "Firmware file size must be positive"
+msgstr "Firmware file size must be positive"
+
+# Help texts
+msgid "Unique identifier for the device in the IIoT system"
+msgstr "Unique identifier for the device in the IIoT system"
+
+msgid "Templates for MQTT topics used by devices of this profile"
+msgstr "Templates for MQTT topics used by devices of this profile"
+
+msgid "Jinja2 template for command messages"
+msgstr "Jinja2 template for command messages"
+
+msgid "JSONPath expression to extract value from telemetry payload"
+msgstr "JSONPath expression to extract value from telemetry payload"
+
+msgid "Odoo model to update with telemetry data"
+msgstr "Odoo model to update with telemetry data"
+
+msgid "Domain to identify specific records in target model"
+msgstr "Domain to identify specific records in target model"
+
+msgid "Field in target model to update with telemetry value"
+msgstr "Field in target model to update with telemetry value"
+
+msgid "Business object that this device is associated with"
+msgstr "Business object that this device is associated with"
+
+msgid "Current connection status of the device"
+msgstr "Current connection status of the device"
+
+msgid "Firmware version currently installed on the device"
+msgstr "Firmware version currently installed on the device"
+
+msgid "Configuration token for secure device onboarding"
+msgstr "Configuration token for secure device onboarding"
+
+msgid "URL to download firmware file from"
+msgstr "URL to download firmware file from"
+
+msgid "OTA update record for this device and firmware"
+msgstr "OTA update record for this device and firmware"
+
+# Model descriptions
+msgid "Device profiles define communication templates for different types of IIoT devices"
+msgstr "Device profiles define communication templates for different types of IIoT devices"
+
+msgid "Telemetry rules define how to map incoming telemetry data to business objects"
+msgstr "Telemetry rules define how to map incoming telemetry data to business objects"
+
+msgid "IIoT devices represent physical devices in the system"
+msgstr "IIoT devices represent physical devices in the system"
+
+msgid "Firmware versions available for OTA updates"
+msgstr "Firmware versions available for OTA updates"
+
+msgid "OTA update records track the status of firmware updates"
+msgstr "OTA update records track the status of firmware updates"

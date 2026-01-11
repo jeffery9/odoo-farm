@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main IIoT Menu -->
+    <menuitem id="menu_iiot_root" name="工业物联网" sequence="5"/>
+
+    <!-- Device Management Menu -->
+    <menuitem id="menu_iiot_device_management" name="设备管理" parent="menu_iiot_root" sequence="10"/>
+
+    <menuitem id="menu_iiot_device_profile" name="设备配置模板"
+              action="action_iiot_device_profile"
+              parent="menu_iiot_device_management" sequence="10"/>
+
+    <menuitem id="menu_iiot_device" name="IIoT设备"
+              action="action_iiot_device"
+              parent="menu_iiot_device_management" sequence="20"/>
+
+    <!-- Telemetry Management Menu -->
+    <menuitem id="menu_iiot_telemetry" name="遥测管理" parent="menu_iiot_root" sequence="20"/>
+
+    <menuitem id="menu_iiot_telemetry_rule" name="遥测规则"
+              action="action_iiot_telemetry_rule"
+              parent="menu_iiot_telemetry" sequence="10"/>
+
+    <!-- OTA Management Menu -->
+    <menuitem id="menu_iiot_ota" name="OTA管理" parent="menu_iiot_root" sequence="30"/>
+
+    <menuitem id="menu_iiot_firmware" name="固件版本"
+              action="action_iiot_firmware"
+              parent="menu_iiot_ota" sequence="10"/>
+
+    <menuitem id="menu_iiot_update" name="OTA更新记录"
+              action="action_iiot_update"
+              parent="menu_iiot_ota" sequence="20"/>
+</odoo>

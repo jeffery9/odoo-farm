@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Firmware Tree View -->
+    <record id="view_iiot_firmware_tree" model="ir.ui.view">
+        <field name="name">iiot.firmware.tree</field>
+        <field name="model">iiot.firmware</field>
+        <field name="arch" type="xml">
+            <list string="固件版本">
+                <field name="name"/>
+                <field name="version"/>
+                <field name="profile_code"/>
+                <field name="file_size"/>
+                <field name="checksum"/>
+                <field name="is_active"/>
+                <field name="create_date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Firmware Form View -->
+    <record id="view_iiot_firmware_form" model="ir.ui.view">
+        <field name="name">iiot.firmware.form</field>
+        <field name="model">iiot.firmware</field>
+        <field name="arch" type="xml">
+            <form string="固件版本">
+                <header>
+                    <button name="action_upload_firmware" string="上传固件" type="object" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="version"/>
+                            <field name="profile_code"/>
+                        </group>
+                        <group>
+                            <field name="file_url"/>
+                            <field name="file_size"/>
+                            <field name="checksum"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                        <field name="is_active"/>
+                    </group>
+                    <notebook>
+                        <page string="设备更新记录" name="updates">
+                            <field name="update_ids" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Firmware Action -->
+    <record id="action_iiot_firmware" model="ir.actions.act_window">
+        <field name="name">固件版本</field>
+        <field name="res_model">iiot.firmware</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Device Tree View -->
+    <record id="view_iiot_device_tree" model="ir.ui.view">
+        <field name="name">iiot.device.tree</field>
+        <field name="model">iiot.device</field>
+        <field name="arch" type="xml">
+            <list string="IIoT设备">
+                <field name="name"/>
+                <field name="serial_number"/>
+                <field name="device_id"/>
+                <field name="profile_id"/>
+                <field name="connection_status"/>
+                <field name="firmware_version"/>
+                <field name="is_active"/>
+                <field name="last_telemetry"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Device Form View -->
+    <record id="view_iiot_device_form" model="ir.ui.view">
+        <field name="name">iiot.device.form</field>
+        <field name="model">iiot.device</field>
+        <field name="arch" type="xml">
+            <form string="IIoT设备">
+                <header>
+                    <button name="action_generate_config_token" string="生成配置令牌" type="object" class="btn-primary"/>
+                    <field name="connection_status" widget="statusbar" statusbar_visible="online"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="send_command" icon="fa-play">
+                            <div>发送重置指令</div>
+                        </button>
+                        <button class="oe_stat_button" type="action" name="%(action_iiot_update)d" context="{'default_device_id': active_id}" icon="fa-upload">
+                            <div>OTA升级</div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="serial_number"/>
+                            <field name="device_id"/>
+                            <field name="profile_id"/>
+                        </group>
+                        <group>
+                            <field name="is_active"/>
+                            <field name="firmware_version"/>
+                        </group>
+                    </group>
+                    <group string="业务关联">
+                        <field name="business_ref"/>
+                    </group>
+                    <group string="状态信息">
+                        <field name="connection_status"/>
+                        <field name="last_telemetry"/>
+                        <field name="last_command"/>
+                    </group>
+                    <notebook>
+                        <page string="配置令牌" name="config_token">
+                            <group>
+                                <field name="config_token" readonly="1"/>
+                                <div>
+                                    <button name="action_generate_config_token" string="重新生成令牌" type="object" class="btn-secondary"/>
+                                </div>
+                            </group>
+                        </page>
+                        <page string="Topic配置" name="topics">
+                            <group>
+                                <field name="topic_map" widget="json" readonly="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Device Action -->
+    <record id="action_iiot_device" model="ir.actions.act_window">
+        <field name="name">IIoT设备</field>
+        <field name="res_model">iiot.device</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

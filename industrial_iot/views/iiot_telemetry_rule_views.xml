@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Telemetry Rule Tree View -->
+    <record id="view_iiot_telemetry_rule_tree" model="ir.ui.view">
+        <field name="name">iiot.telemetry.rule.tree</field>
+        <field name="model">iiot.telemetry.rule</field>
+        <field name="arch" type="xml">
+            <list string="遥测规则">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="profile_id"/>
+                <field name="json_path"/>
+                <field name="target_model"/>
+                <field name="target_field"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Telemetry Rule Form View -->
+    <record id="view_iiot_telemetry_rule_form" model="ir.ui.view">
+        <field name="name">iiot.telemetry.rule.form</field>
+        <field name="model">iiot.telemetry.rule</field>
+        <field name="arch" type="xml">
+            <form string="遥测规则">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="profile_id"/>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="json_path" placeholder="$.temperature"/>
+                        </group>
+                    </group>
+                    <group string="目标配置">
+                        <field name="target_model" placeholder="maintenance.equipment"/>
+                        <field name="target_domain" placeholder="[('iot_device_id', '=', '{{ device_id }}')]"/>
+                        <field name="target_field" placeholder="x_temperature"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Telemetry Rule Action -->
+    <record id="action_iiot_telemetry_rule" model="ir.actions.act_window">
+        <field name="name">遥测规则</field>
+        <field name="res_model">iiot.telemetry.rule</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

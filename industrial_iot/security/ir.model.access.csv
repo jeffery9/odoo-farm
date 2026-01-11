@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_iiot_device_profile_user,iiot.device.profile.user,model_iiot_device_profile,group_iiot_user,1,0,0,0
+access_iiot_device_profile_admin,iiot.device.profile.admin,model_iiot_device_profile,group_iiot_admin,1,1,1,1
+access_iiot_telemetry_rule_user,iiot.telemetry.rule.user,model_iiot_telemetry_rule,group_iiot_user,1,0,0,0
+access_iiot_telemetry_rule_admin,iiot.telemetry.rule.admin,model_iiot_telemetry_rule,group_iiot_admin,1,1,1,1
+access_iiot_device_user,iiot.device.user,model_iiot_device,group_iiot_user,1,1,1,1
+access_iiot_device_admin,iiot.device.admin,model_iiot_device,group_iiot_admin,1,1,1,1
+access_iiot_firmware_user,iiot.firmware.user,model_iiot_firmware,group_iiot_user,1,0,0,0
+access_iiot_firmware_admin,iiot.firmware.admin,model_iiot_firmware,group_iiot_admin,1,1,1,1
+access_iiot_update_user,iiot.update.user,model_iiot_update,group_iiot_user,1,1,1,1
+access_iiot_update_admin,iiot.update.admin,model_iiot_update,group_iiot_admin,1,1,1,1

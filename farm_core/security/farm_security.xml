@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_farm_management" model="ir.module.category">
+        <field name="name">Farm Management (农场管理)</field>
+        <field name="description">Helps you manage farm assets, operations, and quality.</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <!-- 角色 1: 农场作业员 (Field Technician) -->
+    <record id="group_farm_worker" model="res.groups">
+        <field name="name">Field Technician (作业员)</field>
+        <field name="category_id" ref="module_category_farm_management"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <!-- 角色 2: 质量/技术专家 (Specialist) -->
+    <record id="group_farm_specialist" model="res.groups">
+        <field name="name">Agri Specialist (专家/质检员)</field>
+        <field name="category_id" ref="module_category_farm_management"/>
+        <field name="implied_ids" eval="[(4, ref('group_farm_worker'))]"/>
+    </record>
+
+    <!-- 角色 3: 农场经理 (Farm Manager) -->
+    <record id="group_farm_manager" model="res.groups">
+        <field name="name">Farm Manager (农场经理)</field>
+        <field name="category_id" ref="module_category_farm_management"/>
+        <field name="implied_ids" eval="[(4, ref('group_farm_specialist'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+</odoo>
