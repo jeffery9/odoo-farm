@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_vehicle,farm.vehicle,model_farm_vehicle,farm_core.group_farm_worker,1,1,1,1
+access_farm_transport_temperature,farm.transport.temperature,model_farm_transport_temperature,farm_core.group_farm_worker,1,1,1,1
