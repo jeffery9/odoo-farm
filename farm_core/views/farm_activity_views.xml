@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Kanban View Extension -->
+    <record id="view_project_kanban_inherit_farm" model="ir.ui.view">
+        <field name="name">project.project.kanban.farm</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_kanban_record_headings')]" position="after">
+                <div class="mt-2" invisible="not is_agri_activity">
+                    <span class="badge rounded-pill text-bg-success">
+                        <field name="activity_family"/>
+                    </span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Form View Extension -->
+    <record id="edit_project_inherit_farm" model="ir.ui.view">
+        <field name="name">project.project.form.farm</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <div class="oe_title">
+                    <label for="is_agri_activity" class="oe_edit_only"/>
+                    <h1><field name="is_agri_activity"/></h1>
+                </div>
+            </xpath>
+            <xpath expr="//page[@name='settings']" position="after">
+                <page string="Agricultural Info" invisible="not is_agri_activity">
+                    <group>
+                        <group>
+                            <field name="activity_family" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
