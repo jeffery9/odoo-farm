@@ -5,7 +5,7 @@ class TestSustainability(TransactionCase):
     def setUp(self):
         super(TestSustainability, self).setUp()
         self.Task = self.env['project.task']
-        self.Campaign = self.env['farm.agricultural.campaign']
+        self.Campaign = self.env['agricultural.campaign']
         
         # 创建两个不同的生产季进行对比
         self.season_2025 = self.Campaign.create({'name': '2025 Season'})
@@ -22,7 +22,7 @@ class TestSustainability(TransactionCase):
             'total_k': 50.0
         })
         
-        # 2026 季任务
+        # 2026 季任务 (减量化)
         self.Task.create({
             'name': '2026 Task',
             'campaign_id': self.season_2026.id,
@@ -31,6 +31,6 @@ class TestSustainability(TransactionCase):
             'total_k': 40.0
         })
         
-        # 验证汇总
+        # 验证汇总（通过视图进行）
         # 这里验证数据基础字段是否存在
         self.assertTrue(hasattr(self.season_2026, 'total_n'))
