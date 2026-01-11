@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="farm_booking_view_tree" model="ir.ui.view">
+        <field name="name">farm.booking.list</field>
+        <field name="model">farm.booking</field>
+        <field name="arch" type="xml">
+            <list string="Farm Bookings">
+                <field name="booking_date"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="booking_type"/>
+                <field name="land_parcel_id"/>
+                <field name="state" widget="badge" decoration-info="state == 'confirmed'" decoration-success="state == 'done'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="farm_booking_view_form" model="ir.ui.view">
+        <field name="name">farm.booking.form</field>
+        <field name="model">farm.booking</field>
+        <field name="arch" type="xml">
+            <form string="Farm Booking">
+                <header>
+                    <button name="action_confirm" string="Confirm" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Tomato Picking Weekend"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="booking_date"/>
+                            <field name="booking_type"/>
+                        </group>
+                        <group>
+                            <field name="land_parcel_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_booking" model="ir.actions.act_window">
+        <field name="name">Agritourism Bookings</field>
+        <field name="res_model">farm.booking</field>
+        <field name="view_mode">list,form,calendar</field>
+    </record>
+
+    <menuitem id="menu_agritourism_root" name="Agritourism" sequence="50"/>
+    <menuitem id="menu_farm_booking" name="Activity Bookings" parent="menu_agritourism_root" action="action_farm_booking" sequence="10"/>
+</odoo>
