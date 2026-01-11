@@ -1,5 +1,23 @@
 from odoo import models, fields, api
 
+class MrpBom(models.Model):
+    _inherit = 'mrp.bom'
+
+    # Ekylibre Mapping: Recipe Classification [US-Mapping]
+    agri_activity_type = fields.Selection([
+        ('feed', 'Feed Formula (饲料配方)'),
+        ('fertilizer', 'Fertilizer Mix (肥料配方)'),
+        ('planting', 'Planting Scheme (种植方案)'),
+        ('protection', 'Protection Mix (植保配方)')
+    ], string="Agri activity Type", help="Classify BOM as an agricultural recipe.")
+
+    application_stage = fields.Selection([
+        ('seedling', 'Seedling/Nursery (育苗期)'),
+        ('growing', 'Growing (生长期)'),
+        ('harvest', 'Harvest (收获期)'),
+        ('finishing', 'Finishing (育肥期)')
+    ], string="Application Stage")
+
 class MrpBomLine(models.Model):
     _inherit = 'mrp.bom.line'
 

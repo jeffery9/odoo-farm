@@ -35,6 +35,10 @@ class ProjectTask(models.Model):
 
     biological_lot_id = fields.Many2one('stock.lot', string="Biological Asset/Lot", domain="[('is_animal', '=', True)]")
 
+    # Ekylibre Mapping: ActivityProduction [US-Mapping]
+    support_id = fields.Many2one('product.product', string="Support Object", help="The land parcel, animal or group this task is performed on.")
+    size_value = fields.Float("Production Size", help="Area in sqm/mu or quantity of individuals.")
+
     # 需求驱动关联 [US-28]
     sale_order_id = fields.Many2one('sale.order', string="Source Sale Order")
 
@@ -48,6 +52,37 @@ class ProjectTask(models.Model):
     total_n = fields.Float("Total Nitrogen (kg)", compute='_compute_nutrients', store=True)
     total_p = fields.Float("Total Phosphorus (kg)", compute='_compute_nutrients', store=True)
     total_k = fields.Float("Total Potassium (kg)", compute='_compute_nutrients', store=True)
+
+    # 养分密度 (kg/mu) [US-07 Algorithm]
+    n_density = fields.Float("N Density (kg/mu)", compute='_compute_agri_math')
+    p_density = fields.Float("P Density (kg/mu)", compute='_compute_agri_math')
+    k_density = fields.Float("K Density (kg/mu)", compute='_compute_agri_math')
+
+    # 安全收获检查 [US-35 Algorithm]
+    is_safe_to_harvest = fields.Boolean("Safe to Harvest", compute='_compute_agri_math')
+    days_to_safety = fields.Integer("Days to Safety", compute='_compute_agri_math')
+
+    def _compute_agri_math(self):
+        for task in self:
+            # 1. 养分密度计算
+            area = task.size_value or task.land_parcel_id.land_area or 1.0
+            task.n_density = task.total_n / area
+            task.p_density = task.total_p / area
+            task.k_density = task.total_k / area
+            
+            # 2. 安全检查
+            today = fields.Datetime.now()
+            lot = task.biological_lot_id
+            if lot and hasattr(lot, 'withdrawal_end_datetime') and lot.withdrawal_end_datetime:
+                if lot.withdrawal_end_datetime > today:
+                    task.is_safe_to_harvest = False
+                    task.days_to_safety = (lot.withdrawal_end_datetime - today).days + 1
+                else:
+                    task.is_safe_to_harvest = True
+                    task.days_to_safety = 0
+            else:
+                task.is_safe_to_harvest = True
+                task.days_to_safety = 0
 
     def action_view_telemetry(self):
         """ 跳转至该任务关联的遥测趋势图 [US-11] """
@@ -79,3 +114,36 @@ class ProjectTask(models.Model):
     def _update_nutrient_balance(self):
         """ 手动触发更新的方法，供测试或特定流程调用 """
         self._compute_nutrients()
+
+    @api.model
+    def cron_generate_feeding_proposals(self):
+        """ 每日定时任务：为畜牧/水产生成建议的饲喂干预 [US-09 Algorithm] """
+        # 寻找活跃的养殖任务
+        tasks = self.search([
+            ('project_id.activity_family', 'in', ['livestock', 'aquaculture']),
+            ('state', '=', 'inprogress'), # 假定状态
+            ('biological_lot_id', '!=', False)
+        ])
+        
+        for task in tasks:
+            lot = task.biological_lot_id
+            product = lot.product_id
+            
+            # 计算年龄
+            if lot.born_at:
+                age = (fields.Datetime.now() - lot.born_at).days
+                # 从生长曲线获取预期体重和饲喂率
+                expected_weight = product.get_expected_weight(age)
+                # 寻找匹配的生长曲线行以获取喂养率
+                curve_line = product.growth_curve_ids.filtered(lambda c: c.age_days <= age).sorted('age_days', reverse=True)
+                feed_rate = curve_line[0].daily_feed_rate if curve_line else 0.0
+                
+                if feed_rate > 0:
+                    # 计算建议投喂量 = 估算生物总量 * 喂养率
+                    estimated_biomass = lot.animal_count * expected_weight
+                    suggested_feed_qty = estimated_biomass * (feed_rate / 100.0)
+                    
+                    # 发送建议消息或创建草稿 MO
+                    task.message_post(body=_("DAILY FEED PROPOSAL: Age %s days. Estimated Biomass: %s kg. Suggested Feed: %s kg.") % (
+                        age, estimated_biomass, suggested_feed_qty
+                    ))
