@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!-- Booking Calendar View [US-17] -->
+    <record id="farm_booking_view_calendar" model="ir.ui.view">
+        <field name="name">farm.booking.calendar</field>
+        <field name="model">farm.booking</field>
+        <field name="arch" type="xml">
+            <calendar string="Farm Bookings" date_start="date_start" date_stop="date_stop" color="resource_id" mode="week">
+                <field name="partner_id"/>
+                <field name="resource_id"/>
+                <field name="booking_type"/>
+            </calendar>
+        </field>
+    </record>
+
     <record id="farm_booking_view_tree" model="ir.ui.view">
         <field name="name">farm.booking.list</field>
         <field name="model">farm.booking</field>
         <field name="arch" type="xml">
             <list string="Farm Bookings">
-                <field name="booking_date"/>
+                <field name="date_start"/>
                 <field name="name"/>
                 <field name="partner_id"/>
-                <field name="booking_type"/>
-                <field name="land_parcel_id"/>
-                <field name="state" widget="badge" decoration-info="state == 'confirmed'" decoration-success="state == 'done'"/>
+                <field name="resource_id"/>
+                <field name="state" widget="badge"/>
             </list>
         </field>
     </record>
@@ -26,40 +38,51 @@
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <label for="name"/>
-                        <h1><field name="name" placeholder="e.g. Tomato Picking Weekend"/></h1>
+                        <h1><field name="name" placeholder="Booking Ref..."/></h1>
                     </div>
                     <group>
                         <group>
                             <field name="partner_id"/>
-                            <field name="booking_date"/>
                             <field name="booking_type"/>
+                            <field name="resource_id" invisible="booking_type != 'resource'"/>
                         </group>
                         <group>
-                            <field name="land_parcel_id"/>
+                            <field name="date_start"/>
+                            <field name="date_stop"/>
+                            <field name="land_parcel_id" invisible="booking_type == 'resource'"/>
                         </group>
                     </group>
-                    <notebook>
-                        <page string="Description">
-                            <field name="notes"/>
-                        </page>
-                    </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
-                </div>
             </form>
         </field>
     </record>
 
+    <!-- Resource Views -->
+    <record id="farm_resource_view_tree" model="ir.ui.view">
+        <field name="name">farm.resource.list</field>
+        <field name="model">farm.resource</field>
+        <field name="arch" type="xml">
+            <list string="Farm Resources" editable="bottom">
+                <field name="name"/>
+                <field name="resource_type"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
     <record id="action_farm_booking" model="ir.actions.act_window">
-        <field name="name">Agritourism Bookings</field>
+        <field name="name">Activity Bookings</field>
         <field name="res_model">farm.booking</field>
-        <field name="view_mode">list,form,calendar</field>
+        <field name="view_mode">calendar,list,form</field>
+    </record>
+
+    <record id="action_farm_resource" model="ir.actions.act_window">
+        <field name="name">Farm Resources</field>
+        <field name="res_model">farm.resource</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_agritourism_root" name="Agritourism" sequence="50"/>
     <menuitem id="menu_farm_booking" name="Activity Bookings" parent="menu_agritourism_root" action="action_farm_booking" sequence="10"/>
+    <menuitem id="menu_farm_resource" name="Resources" parent="menu_agritourism_root" action="action_farm_resource" sequence="20" groups="farm_core.group_farm_manager"/>
 </odoo>
