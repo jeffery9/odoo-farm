@@ -16,6 +16,7 @@
         'views/agricultural_campaign_views.xml',
         'views/farm_production_task_views.xml',
         'views/agri_intervention_views.xml',
+        'views/agri_bom_views.xml',
     ],
     'installable': True,
     'application': False,
