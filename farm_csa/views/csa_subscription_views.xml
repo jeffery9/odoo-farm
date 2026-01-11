@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="farm_csa_subscription_view_tree" model="ir.ui.view">
+        <field name="name">farm.csa.subscription.list</field>
+        <field name="model">farm.csa.subscription</field>
+        <field name="arch" type="xml">
+            <list string="CSA Subscriptions" decoration-success="state == 'active'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="plan_id"/>
+                <field name="next_delivery_date"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="farm_csa_subscription_view_form" model="ir.ui.view">
+        <field name="name">farm.csa.subscription.form</field>
+        <field name="model">farm.csa.subscription</field>
+        <field name="arch" type="xml">
+            <form string="CSA Subscription">
+                <header>
+                    <button name="action_activate" string="Activate" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <h1><field name="name"/></h1>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="plan_id"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="next_delivery_date"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_csa_subscription" model="ir.actions.act_window">
+        <field name="name">CSA Subscriptions</field>
+        <field name="res_model">farm.csa.subscription</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_farm_marketing_csa" name="CSA Subscriptions" parent="farm_marketing.menu_agritourism_root" action="action_farm_csa_subscription" sequence="20"/>
+</odoo>
