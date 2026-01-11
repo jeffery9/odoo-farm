@@ -15,6 +15,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/certification_views.xml',
+        'views/certification_report.xml',
     ],
     'installable': True,
     'application': False,

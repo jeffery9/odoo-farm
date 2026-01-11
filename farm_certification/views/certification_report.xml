@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_report_plot_compliance" model="ir.actions.report">
+        <field name="name">Compliance Audit Report</field>
+        <field name="model">stock.location</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">farm_certification.report_plot_compliance_template</field>
+        <field name="report_file">farm_certification.report_plot_compliance_template</field>
+        <field name="print_report_name">'Compliance_Audit_%s' % (object.name)</field>
+        <field name="binding_model_id" ref="stock.model_stock_location"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_plot_compliance_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <h2 class="text-center">Compliance Audit Report</h2>
+                        <h3 class="text-center"><t t-esc="o.name"/></h3>
+                        
+                        <div class="row mt32 mb32">
+                            <div class="col-6">
+                                <strong>Certification Level:</strong> <span t-field="o.certification_level"/><br/>
+                                <strong>Certificate No:</strong> <span t-field="o.certificate_number"/><br/>
+                                <strong>Expiry Date:</strong> <span t-field="o.certificate_expiry"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Conversion Progress:</strong> <span t-field="o.conversion_progress"/>%<br/>
+                                <strong>Start Date:</strong> <span t-field="o.conversion_start_date"/>
+                            </div>
+                        </div>
+
+                        <h4>Recent Interventions &amp; Inputs</h4>
+                        <table class="table table-sm o_main_table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Activity</th>
+                                    <th>Input Used</th>
+                                    <th>Quantity</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="tasks" t-value="request.env['project.task'].search([('land_parcel_id', '=', o.id)], limit=20)"/>
+                                <tr t-foreach="tasks" t-as="task">
+                                    <td t-field="task.create_date" t-options='{"widget": "date"}'/>
+                                    <td t-field="task.name"/>
+                                    <td>
+                                        <t t-foreach="task.intervention_ids.move_raw_ids" t-as="move">
+                                            <span t-field="move.product_id.name"/> (<span t-field="move.product_uom_qty"/> <span t-field="move.product_uom.name"/>)<br/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <span t-field="task.total_harvested_qty"/>
+                                    </td>
+                                    <td>
+                                        <span class="badge rounded-pill bg-info" t-field="task.state"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="oe_structure"/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_production_lot_form_inherit_farm_safety" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.farm.safety</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="after">
+                <label for="withdrawal_days_left" invisible="withdrawal_days_left == 0"/>
+                <div class="o_row" invisible="withdrawal_days_left == 0">
+                    <field name="withdrawal_days_left" class="text-danger fw-bold"/>
+                    <span class="text-danger">Days until safe harvest</span>
+                </div>
+                <field name="withdrawal_end_datetime" invisible="not withdrawal_end_datetime" decoration-danger="not is_safe_to_harvest" decoration-success="is_safe_to_harvest"/>
+                <field name="state" widget="badge" decoration-success="state == 'healthy'" decoration-warning="state == 'quarantine'" decoration-danger="state == 'disposed'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
