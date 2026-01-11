@@ -27,6 +27,18 @@ class ProjectTask(models.Model):
     total_p = fields.Float("Total Phosphorus (kg)", compute='_compute_nutrients', store=True)
     total_k = fields.Float("Total Potassium (kg)", compute='_compute_nutrients', store=True)
 
+    def action_view_telemetry(self):
+        """ 跳转至该任务关联的遥测趋势图 [US-11] """
+        self.ensure_one()
+        action = self.env["ir.actions.actions"]._for_xml_id("farm_iot.action_farm_telemetry")
+        action['domain'] = [('production_id', '=', self.id)]
+        action['context'] = {
+            'default_production_id': self.id,
+            'default_land_parcel_id': self.land_parcel_id.id,
+            'group_by': 'timestamp:hour'
+        }
+        return action
+
     @fields.depends('intervention_ids.state', 'intervention_ids.move_raw_ids.product_uom_qty')
     def _compute_nutrients(self):
         for task in self:

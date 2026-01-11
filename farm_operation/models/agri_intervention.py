@@ -60,7 +60,7 @@ class AgriIntervention(models.Model):
         self.message_post(body=_("Labor: Work stopped and recorded at %s") % now)
 
     def action_confirm(self):
-        """ 扩展确认逻辑，进行安全拦截 [US-36] """
+        """ 扩展确认逻辑，进行安全拦截 [US-36] 并传递任务 ID 到供应端 [US-29] """
         for mo in self:
             # 1. 检查有机拦截
             if mo.agri_task_id.land_parcel_id.certification_level in ['organic', 'organic_transition']:
@@ -68,11 +68,20 @@ class AgriIntervention(models.Model):
                     if move.product_id.is_agri_input and not move.product_id.is_safety_approved:
                         raise UserError(_("COMPLIANCE ERROR: Product %s is not approved for organic production!") % move.product_id.name)
             
-            # 2. 触发休药期更新 (调用 farm_safety 注入的方法)
+            # 2. 传递 agri_task_id 到采购逻辑 (通过 procurement_group)
+            if mo.agri_task_id and mo.procurement_group_id:
+                mo.procurement_group_id.agri_task_id = mo.agri_task_id.id
+
+            # 3. 触发休药期更新 (调用 farm_safety 注入的方法)
             if hasattr(mo.agri_task_id, 'action_confirm_intervention_safety'):
                 mo.agri_task_id.action_confirm_intervention_safety(mo.move_raw_ids.mapped('product_id').ids)
                 
         return super(AgriIntervention, self).action_confirm()
+
+class ProcurementGroup(models.Model):
+    _inherit = 'procurement.group'
+
+    agri_task_id = fields.Many2one('project.task', string="Agri Task")
 
     def button_mark_done(self):
         """ 扩展完成逻辑，触发质量检查 [US-49] """

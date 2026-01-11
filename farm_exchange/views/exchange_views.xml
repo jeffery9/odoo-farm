@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="farm_data_exchanger_view_tree" model="ir.ui.view">
+        <field name="name">farm.data.exchanger.list</field>
+        <field name="model">farm.data.exchanger</field>
+        <field name="arch" type="xml">
+            <list string="Data Exchanges">
+                <field name="date"/>
+                <field name="name"/>
+                <field name="format_type"/>
+                <field name="exchange_type"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="farm_data_exchanger_view_form" model="ir.ui.view">
+        <field name="name">farm.data.exchanger.form</field>
+        <field name="model">farm.data.exchanger</field>
+        <field name="arch" type="xml">
+            <form string="Data Exchange">
+                <header>
+                    <button name="action_perform_exchange" string="Run Exchange" type="object" class="btn-primary" invisible="state == 'done'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. 2026 Annual Report"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="format_type"/>
+                            <field name="exchange_type"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="file_name" invisible="1"/>
+                            <field name="data_file" filename="file_name"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_data_exchanger" model="ir.actions.act_window">
+        <field name="name">Data Exchange (DAPLOS/TELEPAC)</field>
+        <field name="res_model">farm.data.exchanger</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_farm_exchange_root" name="Data Exchange" parent="farm_operation.menu_agri_campaign" sequence="100" groups="farm_core.group_farm_manager"/>
+    <menuitem id="menu_farm_data_exchanger" name="Exchange Tasks" parent="menu_farm_exchange_root" action="action_farm_data_exchanger" sequence="10"/>
+</odoo>
