@@ -18,7 +18,7 @@ class AgriScenario(models.Model):
         for scenario in self:
             total_labor = 0.0
             for line in scenario.route_id.line_ids:
-                total_labor += (line.template_id.labor_hours_per_unit * scenario.planned_area)
+                total_labor += (line.template_id.estimated_labor_hours * scenario.planned_area)
             scenario.total_labor_forecast = total_labor
 
     def action_run_simulation(self):
@@ -30,7 +30,7 @@ class AgriScenario(models.Model):
             for input_line in line.template_id.input_ids:
                 forecasts.append((0, 0, {
                     'product_id': input_line.product_id.id,
-                    'quantity': input_line.qty_per_unit * self.planned_area
+                    'quantity': input_line.quantity * self.planned_area
                 }))
         self.write({'input_forecast_ids': forecasts})
         return True
