@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- 1. Product/Lot Label Template (Small) -->
+    <template id="report_agri_lot_label">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="lot">
+                    <div style="width: 100mm; height: 50mm; border: 1px solid black; padding: 5mm; margin-bottom: 5mm; page-break-inside: avoid;">
+                        <div class="row">
+                            <div class="col-8">
+                                <h3 t-field="lot.product_id.name" style="margin-top: 0;"/>
+                                <div><strong>Lot:</strong> <span t-field="lot.name"/></div>
+                                <div><strong>Grade:</strong> <span t-field="lot.quality_grade"/></div>
+                                <div><strong>Date:</strong> <span t-field="lot.create_date" t-options='{"widget": "date"}'/></div>
+                                <div t-if="lot.expiration_date"><strong>Expiry:</strong> <span t-field="lot.expiration_date" t-options='{"widget": "date"}'/></div>
+                            </div>
+                            <div class="col-4 text-center">
+                                <img t-if="lot.traceability_url" t-att-src="'/report/barcode/?barcode_type=QR&amp;value=%s&amp;width=120&amp;height=120' % lot.get_qr_quoted_traceability_url()" style="width:30mm;height:30mm;"/>
+                                <div style="font-size: 8px;">Scan for Story</div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <!-- 2. Land Parcel / Location Sign (Large) -->
+    <template id="report_land_parcel_sign">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="loc">
+                    <div style="width: 150mm; height: 100mm; border: 2px solid green; padding: 10mm; margin-bottom: 10mm; page-break-inside: avoid; border-radius: 5mm;">
+                        <div class="text-center">
+                            <h1 style="color: green;" t-field="loc.name"/>
+                            <hr/>
+                        </div>
+                        <div class="row">
+                            <div class="col-7">
+                                <h4>Parcel Details</h4>
+                                <p><strong>Area:</strong> <span t-field="loc.land_area"/> <span t-field="loc.land_area_uom_id"/></p>
+                                <p><strong>Soil:</strong> <span t-field="loc.soil_type"/></p>
+                                <p><strong>Latest pH:</strong> <span t-field="loc.latest_ph"/></p>
+                                <p><strong>Coordinates:</strong> <span t-field="loc.gps_lat"/>, <span t-field="loc.gps_lng"/></p>
+                            </div>
+                            <div class="col-5 text-center">
+                                <img t-att-src="'/report/barcode/?barcode_type=QR&amp;value=%s&amp;width=200&amp;height=200' % loc.get_qr_quoted_name()" style="width:40mm;height:40mm;"/>
+                                <div>Location ID</div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+    <!-- 3. Animal Ear Tag (Micro) -->
+    <template id="report_animal_tag">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="lot">
+                    <div style="width: 40mm; height: 30mm; border: 1px solid #ccc; padding: 2mm; text-align: center; border-radius: 3mm; display: inline-block; margin: 2mm;">
+                        <div style="font-weight: bold; font-size: 14px;" t-field="lot.identification_number or lot.name"/>
+                        <div style="font-size: 10px;" t-field="lot.product_id.agri_variety"/>
+                        <div style="margin-top: 2mm;">
+                            <img t-att-src="'/report/barcode/?barcode_type=Code128&amp;value=%s&amp;width=120&amp;height=30' % lot.name" style="width:35mm;height:10mm;"/>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>

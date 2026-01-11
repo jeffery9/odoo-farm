@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Lot Label Report -->
+    <record id="action_report_agri_lot_label" model="ir.actions.report">
+        <field name="name">Product/Lot Labels</field>
+        <field name="model">stock.lot</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">farm_label.report_agri_lot_label</field>
+        <field name="report_file">farm_label.report_agri_lot_label</field>
+        <field name="binding_model_id" ref="stock.model_stock_lot"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Land Parcel Sign Report -->
+    <record id="action_report_land_parcel_sign" model="ir.actions.report">
+        <field name="name">Land Parcel Signage</field>
+        <field name="model">stock.location</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">farm_label.report_land_parcel_sign</field>
+        <field name="report_file">farm_label.report_land_parcel_sign</field>
+        <field name="binding_model_id" ref="stock.model_stock_location"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Animal Ear Tag Report -->
+    <record id="action_report_animal_tag" model="ir.actions.report">
+        <field name="name">Animal Ear Tags</field>
+        <field name="model">stock.lot</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">farm_label.report_animal_tag</field>
+        <field name="report_file">farm_label.report_animal_tag</field>
+        <field name="binding_model_id" ref="stock.model_stock_lot"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
