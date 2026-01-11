@@ -39,3 +39,25 @@ class FarmSyncQueue(models.Model):
                 record.write({'status': 'done', 'error_message': False})
             except Exception as e:
                 record.write({'status': 'failed', 'error_message': str(e)})
+
+    def action_get_asset_redirect(self, barcode):
+        """ 根据条码返回资产跳转信息 [US-22] """
+        # 搜索批次
+        lot = self.env['stock.lot'].search([('name', '=', barcode)], limit=1)
+        if lot:
+            return {
+                'type': 'ir.actions.act_window',
+                'res_model': 'stock.lot',
+                'res_id': lot.id,
+                'view_mode': 'form',
+            }
+        # 搜索地块
+        loc = self.env['stock.location'].search([('name', '=', barcode), ('is_land_parcel', '=', True)], limit=1)
+        if loc:
+            return {
+                'type': 'ir.actions.act_window',
+                'res_model': 'stock.location',
+                'res_id': loc.id,
+                'view_mode': 'form',
+            }
+        return False
