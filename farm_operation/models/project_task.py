@@ -18,3 +18,27 @@ class ProjectTask(models.Model):
         'agri_task_id', 
         string="Agri Interventions"
     )
+
+    # 养分汇总 [US-07]
+    total_n = fields.Float("Total Nitrogen (kg)", compute='_compute_nutrients', store=True)
+    total_p = fields.Float("Total Phosphorus (kg)", compute='_compute_nutrients', store=True)
+    total_k = fields.Float("Total Potassium (kg)", compute='_compute_nutrients', store=True)
+
+    @fields.depends('intervention_ids.state', 'intervention_ids.move_raw_ids.product_uom_qty')
+    def _compute_nutrients(self):
+        for task in self:
+            n = p = k = 0.0
+            # 仅统计已完成或确认的施肥类型干预
+            fertilizing_ops = task.intervention_ids.filtered(lambda i: i.intervention_type == 'fertilizing' and i.state != 'cancel')
+            for op in fertilizing_ops:
+                for move in op.move_raw_ids:
+                    n += (move.product_uom_qty * (move.product_id.n_content / 100.0))
+                    p += (move.product_uom_qty * (move.product_id.p_content / 100.0))
+                    k += (move.product_uom_qty * (move.product_id.k_content / 100.0))
+            task.total_n = n
+            task.total_p = p
+            task.total_k = k
+
+    def _update_nutrient_balance(self):
+        """ 手动触发更新的方法，供测试或特定流程调用 """
+        self._compute_nutrients()

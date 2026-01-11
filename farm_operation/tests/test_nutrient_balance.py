@@ -31,7 +31,7 @@ class TestNutrientBalance(TransactionCase):
         })
 
     def test_01_nutrient_accumulation(self):
-        """ 测试施肥后养分自动累加 [US-01-03] """
+        """ 测试施肥后养分自动累加 [US-07] """
         # 创建一个施肥干预任务，投入 50kg 化肥
         intervention = self.Intervention.create({
             'product_id': self.Product.create({'name': 'Dummy'}).id,
@@ -47,7 +47,7 @@ class TestNutrientBalance(TransactionCase):
             })]
         })
         
-        # 模拟 MO 完成逻辑
+        # 模拟 MO 完成逻辑（此处需调用触发计算的方法）
         self.task._update_nutrient_balance()
         
         # 预期结果: 
