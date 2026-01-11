@@ -15,3 +15,10 @@ class FarmLocation(models.Model):
     
     # 针对水产
     water_depth = fields.Float("Water Depth (m)")
+
+    # 动态属性 [US-02]
+    location_properties_definition = fields.PropertiesDefinition('Location Properties Definition')
+    location_properties = fields.Properties(
+        'Properties',
+        definition='location_properties_definition'
+    )
