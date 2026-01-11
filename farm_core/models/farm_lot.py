@@ -22,3 +22,9 @@ class FarmLot(models.Model):
         ('mature', 'Mature/Adult (成年)'),
         ('harvested', 'Harvested/Culled (已收获/淘汰)')
     ], string="Biological Stage", default='newborn')
+
+    # 动态属性 [US-02]
+    lot_properties = fields.Properties(
+        'Properties',
+        definition='product_id.lot_properties_definition'
+    )
