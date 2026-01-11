@@ -17,6 +17,7 @@
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'views/farm_activity_views.xml',
+        'views/farm_location_views.xml',
     ],
     'installable': True,
     'application': False,

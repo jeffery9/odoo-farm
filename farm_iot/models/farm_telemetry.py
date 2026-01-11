@@ -35,6 +35,10 @@ class FarmTelemetry(models.Model):
     
     # 关联地块（可选）
     land_parcel_id = fields.Many2one('stock.location', string="Land Parcel/Pond")
+    
+    # GIS Snapshot [US-19]
+    gps_lat = fields.Float("Latitude", digits=(10, 7))
+    gps_lng = fields.Float("Longitude", digits=(10, 7))
 
     @api.model_create_multi
     def create(self, vals_list):

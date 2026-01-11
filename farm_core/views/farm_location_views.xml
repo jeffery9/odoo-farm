@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Land Parcel GIS Form View -->
+    <record id="view_location_form_inherit_farm_gis" model="ir.ui.view">
+        <field name="name">stock.location.form.farm.gis</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='main_group']" position="after">
+                <group string="Agricultural &amp; GIS Info" invisible="not is_land_parcel">
+                    <group>
+                        <field name="is_land_parcel"/>
+                        <field name="land_area"/>
+                        <field name="soil_type"/>
+                    </group>
+                    <group string="Geographic Coordinates">
+                        <field name="gps_lat"/>
+                        <field name="gps_lng"/>
+                        <field name="gis_map_url" widget="url" text="View on Map" invisible="not gis_map_url"/>
+                    </group>
+                </group>
+                <group string="Boundary Data (GeoJSON)" invisible="not is_land_parcel">
+                    <field name="gps_coordinates" nolabel="1" placeholder='{"type": "Polygon", "coordinates": [[...]]}'/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Map Action for Land Parcels -->
+    <record id="action_farm_location_gis" model="ir.actions.act_window">
+        <field name="name">Land Parcels (GIS)</field>
+        <field name="res_model">stock.location</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_land_parcel', '=', True)]</field>
+        <field name="context">{'default_is_land_parcel': True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Define your first land parcel and its GIS coordinates.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_farm_gis_root" name="GIS &amp; Mapping" parent="farm_core.menu_farm_root" sequence="50"/>
+    <menuitem id="menu_farm_land_parcels" name="Land Parcels" parent="menu_farm_gis_root" action="action_farm_location_gis" sequence="10"/>
+</odoo>
