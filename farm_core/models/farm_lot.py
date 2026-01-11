@@ -23,6 +23,13 @@ class FarmLot(models.Model):
         ('harvested', 'Harvested/Culled (已收获/淘汰)')
     ], string="Biological Stage", default='newborn')
 
+    # 质量等级 [US-08]
+    quality_grade = fields.Selection([
+        ('grade_a', 'Grade A (特级/优等)'),
+        ('grade_b', 'Grade B (一级/合格)'),
+        ('grade_c', 'Grade C (二级/次品)'),
+    ], string="Quality Grade")
+
     # 动态属性 [US-02]
     lot_properties = fields.Properties(
         'Properties',
