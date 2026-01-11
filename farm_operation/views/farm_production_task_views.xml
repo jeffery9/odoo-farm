@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='user_ids']" position="after">
                 <field name="campaign_id" options="{'no_create': True}"/>
+                <field name="required_skill_id" options="{'no_create': True}"/>
                 <field name="land_parcel_id"/>
                 <field name="biological_lot_id"/>
             </xpath>
