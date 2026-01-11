@@ -56,6 +56,59 @@ class FarmLotMarketing(models.Model):
     avg_temp = fields.Float("Average Growth Temperature (℃)")
     water_purity = fields.Char("Water Purity Grade")
 
+    def get_full_traceability_data(self):
+        """ 
+        核心溯源算法：聚合该批次从种子到餐桌的全生命周期数据 [US-14, US-25]
+        """
+        self.ensure_one()
+        
+        # 1. 寻找生产来源 (Harvest MO)
+        production = self.env['mrp.production'].search([('lot_producing_id', '=', self.id)], limit=1)
+        task = production.agri_task_id
+        
+        data = {
+            'lot_name': self.name,
+            'product': self.product_id.display_name,
+            'harvest_date': self.create_date,
+            'plot': task.land_parcel_id.name if task else _('Unknown'),
+            'gis': {'lat': task.gps_lat, 'lng': task.gps_lng} if task else False,
+            'interventions': [],
+            'inputs': [],
+            'processing_history': []
+        }
+
+        if task:
+            # 2. 聚合该地块/任务下的所有农事干预
+            for op in task.intervention_ids.sorted('date_finished'):
+                data['interventions'].append({
+                    'type': op.intervention_type,
+                    'date': op.date_finished,
+                    'worker': ", ".join(op.doer_ids.mapped('name')),
+                    'procedure': op.procedure_name or op.name
+                })
+                # 3. 聚合投入品
+                for move in op.move_raw_ids:
+                    data['inputs'].append({
+                        'product': move.product_id.name,
+                        'qty': move.product_uom_qty,
+                        'uom': move.product_uom.name,
+                        'is_organic': move.product_id.is_safety_approved
+                    })
+
+        # 4. 追溯加工环节 (递归向上)
+        current_lot = self
+        while current_lot.parent_lot_id:
+            parent = current_lot.parent_lot_id
+            proc_mo = self.env['mrp.production'].search([('lot_producing_id', '=', current_lot.id)], limit=1)
+            data['processing_history'].append({
+                'stage': _('Processing from %s') % parent.name,
+                'mo': proc_mo.name if proc_mo else 'Manual',
+                'date': current_lot.create_date
+            })
+            current_lot = parent
+
+        return data
+
     def _compute_traceability_url(self):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         for lot in self:
