@@ -36,7 +36,19 @@ class FarmDeviceCommand(models.TransientModel):
 
         # 调用底层 industrial_iot 的发送能力
         try:
+            import time
+            start_ts = time.time()
             self.device_id.send_command(action_name, **params)
+            latency = int((time.time() - start_ts) * 1000)
+            
+            # 记录审计日志 [US-21]
+            self.env['farm.command.log'].create({
+                'device_id': self.device_id.id,
+                'command': action_name,
+                'params': str(params),
+                'status': 'success',
+                'execution_time_ms': latency
+            })
             return {
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',
