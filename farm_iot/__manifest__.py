@@ -5,22 +5,16 @@
     'summary': 'IIOT Telemetry Data and Device Management',
     'description': """
         IOT module for Odoo 19 Farm Management System.
-        - Telemetry Data Collection (Temperature, PH, DO, etc.) [US-11-03, US-02-02]
-        - Threshold Alerts [US-06-02]
-        - Storage Environment Monitoring and Alerts [US-14-06]
+        - Telemetry Data Collection (Temperature, PH, DO, etc.) [US-11, US-19]
+        - Threshold Alerts [US-20]
     """,
     'author': 'Jeffery',
     'depends': ['farm_core', 'project', 'industrial_iot'],
     'data': [
         'security/ir.model.access.csv',
-        'data/iot_cron_data.xml',
-        'views/iot_mapping_views.xml',
         'views/farm_telemetry_views.xml',
-        'views/farm_automation_views.xml',
-        'views/storage_env_views.xml',
-        'views/iiot_device_views.xml',
     ],
     'installable': True,
     'application': False,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }
