@@ -12,3 +12,9 @@ class ProjectTask(models.Model):
     # 继承 farm_core 中的地块/资产逻辑
     land_parcel_id = fields.Many2one('stock.location', string="Land Parcel/Pond", domain=[('is_land_parcel', '=', True)])
     biological_lot_id = fields.Many2one('stock.lot', string="Biological Asset/Lot", domain="[('is_animal', '=', True)]")
+
+    intervention_ids = fields.One2many(
+        'mrp.production', 
+        'agri_task_id', 
+        string="Agri Interventions"
+    )
