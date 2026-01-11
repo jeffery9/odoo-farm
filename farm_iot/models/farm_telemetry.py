@@ -1,5 +1,15 @@
 from odoo import models, fields, api
 
+class FarmLocation(models.Model):
+    _inherit = 'stock.location'
+
+    camera_device_id = fields.Many2one(
+        'iiot.device', 
+        string="Field Camera", 
+        domain=[('is_camera', '=', True)],
+        help="The camera assigned to monitor this specific plot or pond."
+    )
+
 class FarmTelemetry(models.Model):
     _name = 'farm.telemetry'
     _description = 'Agricultural Telemetry Data'
