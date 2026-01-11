@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='category_ids']" position="after">
                 <field name="is_seasonal"/>
+                <field name="agri_skill_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Farm Performance" name="farm_performance" groups="farm_core.group_farm_manager">
