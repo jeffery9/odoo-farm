@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_production_lot_form_inherit_breeding" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.breeding</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Breeding &amp; Traits" name="breeding">
+                    <group>
+                        <group string="Pedigree (系谱)">
+                            <field name="father_id" options="{'no_create': True}"/>
+                            <field name="mother_id" options="{'no_create': True}"/>
+                        </group>
+                        <group string="Evaluation (评估)">
+                            <field name="trait_score_avg" widget="priority"/>
+                        </group>
+                    </group>
+                    <field name="trait_value_ids">
+                        <list editable="bottom">
+                            <field name="name"/>
+                            <field name="value"/>
+                            <field name="score" widget="handle"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <!-- 为品种增加透视图，方便性状对比 -->
+    <record id="farm_trait_value_view_pivot" model="ir.ui.view">
+        <field name="name">farm.trait.value.pivot</field>
+        <field name="model">farm.trait.value</field>
+        <field name="arch" type="xml">
+            <pivot string="Trait Comparison">
+                <field name="lot_id" type="row"/>
+                <field name="name" type="col"/>
+                <field name="score" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_farm_trait_comparison" model="ir.actions.act_window">
+        <field name="name">Trait Comparison</field>
+        <field name="res_model">farm.trait.value</field>
+        <field name="view_mode">pivot,list</field>
+    </record>
+
+    <menuitem id="menu_breeding_analysis" name="Analytics" parent="menu_breeding_root" sequence="100"/>
+    <menuitem id="menu_trait_comparison" name="Trait Comparison" parent="menu_breeding_analysis" action="action_farm_trait_comparison" sequence="10"/>
+</odoo>

@@ -13,6 +13,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/nursery_batch_views.xml',
+        'views/breeding_views.xml',
     ],
     'installable': True,
     'application': False,
