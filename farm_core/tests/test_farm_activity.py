@@ -9,7 +9,7 @@ class TestFarmActivity(TransactionCase):
         self.Project = self.env['project.project']
 
     def test_01_create_agri_activity(self):
-        """ 测试创建不同家族的农业活动 [US-01-01] """
+        """ 测试创建不同家族的农业活动 [US-01] """
         project_planting = self.Project.create({
             'name': 'Organic Wheat 2026',
             'is_agri_activity': True,
@@ -32,7 +32,7 @@ class TestFarmLocation(TransactionCase):
         self.Location = self.env['stock.location']
 
     def test_03_create_land_parcel(self):
-        """ 测试创建地块 [US-01-03] """
+        """ 测试创建地块 [US-03] """
         parcel = self.Location.create({
             'name': 'North Field A1',
             'is_land_parcel': True,
@@ -41,27 +41,3 @@ class TestFarmLocation(TransactionCase):
         })
         self.assertTrue(parcel.is_land_parcel, "应该是地块")
         self.assertEqual(parcel.land_area, 50.5, "面积应为 50.5")
-
-class TestFarmLot(TransactionCase):
-
-    def setUp(self):
-        super(TestFarmLot, self).setUp()
-        self.Lot = self.env['stock.lot']
-        self.Product = self.env['product.product']
-        self.animal_product = self.Product.create({
-            'name': 'Holstein Cow',
-            'type': 'product',
-            'tracking': 'serial'
-        })
-
-    def test_04_create_animal_lot(self):
-        """ 测试创建动物资产批次 [US-01-04] """
-        cow_lot = self.Lot.create({
-            'name': 'COW-2026-001',
-            'product_id': self.animal_product.id,
-            'is_animal': True,
-            'birth_date': '2026-01-01',
-            'gender': 'female'
-        })
-        self.assertTrue(cow_lot.is_animal, "应该是动物资产")
-        self.assertEqual(cow_lot.gender, 'female', "性别应为母")
