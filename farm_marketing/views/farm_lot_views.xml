@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_production_lot_form_inherit_farm_trace" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.farm.trace</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object" name="action_view_traceability" icon="fa-road">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Agri-Trace</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Consumer Story" name="marketing_story">
+                    <group>
+                        <group string="Content">
+                            <field name="story_title"/>
+                            <field name="story_content"/>
+                        </group>
+                        <group string="Traceability Public Link">
+                            <field name="traceability_url" widget="url"/>
+                        </group>
+                    </group>
+                    <group string="Photo Gallery">
+                        <field name="marketing_image_ids" widget="many2many_binary"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
