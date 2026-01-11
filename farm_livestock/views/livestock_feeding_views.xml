@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_livestock_feeding" model="ir.actions.act_window">
+        <field name="name">Feeding Operations</field>
+        <field name="res_model">mrp.production</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="domain">[('intervention_type', '=', 'feeding')]</field>
+        <field name="context">{'default_intervention_type': 'feeding'}</field>
+    </record>
+
+    <menuitem id="menu_livestock_root" name="Livestock" sequence="20" web_icon="farm_livestock,static/description/icon.png"/>
+    <menuitem id="menu_livestock_ops" name="Operations" parent="menu_livestock_root" sequence="10"/>
+    <menuitem id="menu_livestock_feeding" name="Feeding" parent="menu_livestock_ops" action="action_livestock_feeding" sequence="10"/>
+</odoo>
