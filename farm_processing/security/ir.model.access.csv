@@ -1,1 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_bom_grade_distribution,farm.bom.grade.distribution,model_farm_bom_grade_distribution,farm_core.group_farm_manager,1,1,1,1
