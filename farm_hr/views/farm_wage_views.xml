@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Wage Rule View -->
+    <record id="farm_wage_rule_view_tree" model="ir.ui.view">
+        <field name="name">farm.wage.rule.list</field>
+        <field name="model">farm.wage.rule</field>
+        <field name="arch" type="xml">
+            <list string="Wage Rules" editable="bottom">
+                <field name="work_type"/>
+                <field name="price_per_unit"/>
+                <field name="currency_id" groups="base.group_multi_currency"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_farm_wage_rule" model="ir.actions.act_window">
+        <field name="name">Wage Rules</field>
+        <field name="res_model">farm.wage.rule</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!-- Labor Payment View -->
+    <record id="farm_labor_payment_view_tree" model="ir.ui.view">
+        <field name="name">farm.labor.payment.list</field>
+        <field name="model">farm.labor.payment</field>
+        <field name="arch" type="xml">
+            <list string="Labor Payments">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="total_amount"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="farm_labor_payment_view_form" model="ir.ui.view">
+        <field name="name">farm.labor.payment.form</field>
+        <field name="model">farm.labor.payment</field>
+        <field name="arch" type="xml">
+            <form string="Labor Payment">
+                <header>
+                    <button name="action_compute_sheet" string="Compute Sheet" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                        </group>
+                        <group>
+                            <label for="date_from" string="Period"/>
+                            <div class="o_row">
+                                <field name="date_from" widget="daterange" options="{'related_end_date': 'date_to'}"/>
+                                <field name="date_to" widget="daterange" options="{'related_start_date': 'date_from'}"/>
+                            </div>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Payment Lines">
+                            <field name="line_ids">
+                                <list>
+                                    <field name="worklog_id"/>
+                                    <field name="quantity"/>
+                                    <field name="price_unit"/>
+                                    <field name="subtotal"/>
+                                </list>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="total_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_labor_payment" model="ir.actions.act_window">
+        <field name="name">Labor Payments</field>
+        <field name="res_model">farm.labor.payment</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_farm_wage_config" name="Configuration" parent="menu_farm_hr_root" sequence="100" groups="farm_core.group_farm_manager"/>
+    <menuitem id="menu_farm_wage_rule" name="Wage Rules" parent="menu_farm_wage_config" action="action_farm_wage_rule" sequence="10"/>
+    <menuitem id="menu_farm_labor_payment" name="Labor Payments" parent="menu_farm_hr_root" action="action_farm_labor_payment" sequence="20" groups="farm_core.group_farm_manager"/>
+</odoo>

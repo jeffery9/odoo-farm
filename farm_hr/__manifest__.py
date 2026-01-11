@@ -10,11 +10,12 @@
         - Automated labor cost attribution to farm tasks
     """,
     'author': 'Jeffery',
-    'depends': ['farm_operation', 'hr', 'hr_attendance', 'hr_payroll'],
+    'depends': ['farm_operation', 'hr', 'hr_attendance'],
     'data': [
         'security/ir.model.access.csv',
         'views/farm_employee_views.xml',
         'views/farm_worklog_views.xml',
+        'views/farm_wage_views.xml',
     ],
     'installable': True,
     'application': False,
