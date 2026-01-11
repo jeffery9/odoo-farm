@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_project_project_farm,project.project.farm,project.model_project_project,base.group_user,1,1,1,1
+access_farm_activity_manager,farm.activity.manager,model_farm_activity,group_farm_manager,1,1,1,1
+access_farm_activity_worker,farm.activity.worker,model_farm_activity,group_farm_worker,1,0,0,0
+access_farm_lot_worker,farm.lot.worker,model_stock_lot,group_farm_worker,1,1,1,0
+access_farm_location_worker,farm.location.worker,model_stock_location,group_farm_worker,1,1,1,0

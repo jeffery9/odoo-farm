@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_farm_nursery_batch,farm.nursery.batch,model_farm_nursery_batch,base.group_user,1,1,1,1
-access_farm_trait_value,farm.trait.value,model_farm_trait_value,base.group_user,1,1,1,1
+access_nursery_batch_worker,nursery.batch.worker,model_farm_nursery_batch,group_farm_worker,1,1,1,0
+access_farm_trait_value_spec,trait.value.spec,model_farm_trait_value,group_farm_specialist,1,1,1,1

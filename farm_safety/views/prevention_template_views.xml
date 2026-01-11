@@ -49,5 +49,5 @@
     </record>
 
     <menuitem id="menu_safety_root" name="Safety &amp; Health" sequence="40"/>
-    <menuitem id="menu_prevention_template" name="Prevention Plans" parent="menu_safety_root" action="action_farm_prevention_template" sequence="10"/>
+    <menuitem id="menu_prevention_template" name="Prevention Plans" parent="menu_safety_root" action="action_farm_prevention_template" sequence="10" groups="farm_core.group_farm_specialist"/>
 </odoo>
