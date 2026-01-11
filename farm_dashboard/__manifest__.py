@@ -2,8 +2,7 @@
     'name': 'Farm Dashboard & Cockpit',
     'version': '1.0',
     'category': 'Industries/Agriculture',
-    'summary': 'Unified Management Dashboard for Odoo Farm',
-    'icon': '/farm_dashboard/static/description/icon.svg',
+    'summary': 'Unified Dashboard for Farm Operations and Metrics',
     'description': """
         Dashboard module for Odoo 19 Farm Management System.
         - Integrated view of production, inventory and weather
@@ -17,5 +16,5 @@
     ],
     'installable': True,
     'application': True,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }
