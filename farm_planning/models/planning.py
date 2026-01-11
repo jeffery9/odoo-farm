@@ -52,3 +52,32 @@ class AgriTechnicalRouteLine(models.Model):
     
     # 相对于产季开始的偏移天数 (Ekylibre 风格)
     delay_days = fields.Integer("Delay from Start (Days)", default=0)
+
+class AgriTechnicalRoute(models.Model):
+    _inherit = 'agri.technical.route'
+
+    def action_apply_to_project(self, project_id, start_date, land_parcel_id=False):
+        """ 
+        根据技术路线生成一系列预定的农事任务。
+        """
+        self.ensure_one()
+        from datetime import timedelta
+        task_obj = self.env['project.task']
+        
+        for line in self.line_ids:
+            planned_date = fields.Date.from_string(start_date) + timedelta(days=line.delay_days)
+            task_vals = {
+                'name': _('[%s] %s') % (self.name, line.template_id.name),
+                'project_id': project_id,
+                'planned_date_begin': planned_date,
+                'date_deadline': planned_date + timedelta(days=1), # 默认1天
+                'land_parcel_id': land_parcel_id,
+                'description': _('Generated from Route: %s\nOperation: %s') % (self.name, line.template_id.name),
+                # 预估工时
+                'allocated_hours': line.template_id.estimated_labor_hours,
+            }
+            task = task_obj.create(task_vals)
+            
+            # 未来可进一步在此处创建草稿干预单 (MO) 并填入预估投入品
+        
+        return True
