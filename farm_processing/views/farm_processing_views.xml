@@ -7,12 +7,29 @@
         <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_qty']" position="after">
+                <field name="industry_type"/>
                 <field name="expected_yield_rate" widget="percentage"/>
+            </xpath>
+            <xpath expr="//field[@name='bom_line_ids']/list/field[@name='product_id']" position="after">
+                <field name="ingredient_role"/>
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Agri-Process Recipe" name="agri_recipe">
                     <group>
                         <field name="process_description" placeholder="Describe the steps, e.g. Wash -> Peel -> Juice..."/>
+                    </group>
+                    <group string="Target Parameters" invisible="industry_type == 'standard'">
+                        <group>
+                            <field name="target_temp" invisible="industry_type not in ['baking', 'food_processing']"/>
+                            <field name="target_proofing_time" invisible="industry_type != 'baking'"/>
+                        </group>
+                        <group>
+                            <field name="target_brix" invisible="industry_type != 'winemaking'"/>
+                            <field name="target_ph" invisible="industry_type != 'winemaking'"/>
+                        </group>
+                    </group>
+                    <group string="HACCP Instructions" invisible="industry_type != 'food_processing'">
+                        <field name="haccp_instructions" nolabel="1"/>
                     </group>
                     <group string="Expected Grade Distribution">
                         <field name="grade_distribution_ids" nolabel="1">
@@ -76,6 +93,35 @@
                             <field name="is_balanced" widget="boolean_toggle" readonly="1" decoration-success="is_balanced" decoration-danger="not is_balanced"/>
                         </group>
                     </group>
+                    <group string="Industry Mode">
+                        <field name="process_mode" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+                    <notebook>
+                        <page string="Winemaking" invisible="process_mode != 'fermentation'">
+                            <group>
+                                <group>
+                                    <field name="vintage_year"/>
+                                    <field name="alcohol_content"/>
+                                </group>
+                                <group>
+                                    <field name="brix_level"/>
+                                    <field name="ph_level"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Baking" invisible="process_mode != 'baking'">
+                            <group>
+                                <field name="baking_temp"/>
+                                <field name="proofing_time"/>
+                            </group>
+                        </page>
+                        <page string="Food Safety" invisible="process_mode != 'sterilization'">
+                            <group>
+                                <field name="is_haccp_compliant"/>
+                                <field name="additive_lot_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                    </notebook>
                 </page>
             </xpath>
         </field>

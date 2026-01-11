@@ -4,11 +4,35 @@ class MrpBom(models.Model):
     _inherit = 'mrp.bom'
 
     # 农业加工配方扩展 [US-45]
+    industry_type = fields.Selection([
+        ('standard', 'Standard'),
+        ('baking', 'Baking (烘焙)'),
+        ('winemaking', 'Winemaking (酿酒)'),
+        ('food_processing', 'Food Processing (食品加工)')
+    ], string="Industry Type", default='standard')
+
     expected_yield_rate = fields.Float("Expected Yield Rate (%)", default=100.0)
     process_description = fields.Text("Recipe/Process Description")
     
-    # 预期等级分布 (如：产出中 A 级占 60%, B 级占 30%)
+    # 预期等级分布
     grade_distribution_ids = fields.One2many('farm.bom.grade.distribution', 'bom_id', string="Expected Grade Distribution")
+
+    # 行业目标参数 [Industry Targets]
+    target_temp = fields.Float("Target Temperature (℃)")
+    target_ph = fields.Float("Target pH")
+    target_brix = fields.Float("Target Brix")
+    target_proofing_time = fields.Float("Target Proofing Time (Min)")
+    haccp_instructions = fields.Html("HACCP Critical Instructions")
+
+class MrpBomLine(models.Model):
+    _inherit = 'mrp.bom.line'
+
+    ingredient_role = fields.Selection([
+        ('main', 'Main Material (主料)'),
+        ('additive', 'Additive (添加剂)'),
+        ('yeast', 'Fermentation Agent (发酵剂/菌种)'),
+        ('packaging', 'Packaging (包材)')
+    ], string="Ingredient Role", default='main')
 
 class FarmBomGradeDistribution(models.Model):
     _name = 'farm.bom.grade.distribution'
@@ -45,6 +69,42 @@ class MrpProduction(models.Model):
 
     # 汇总能耗成本 [US-47]
     total_energy_cost = fields.Float("Total Energy Cost", compute='_compute_total_energy_cost', store=True)
+
+    @api.onchange('bom_id')
+    def _onchange_bom_industry_targets(self):
+        """ 从配方继承行业目标参数 """
+        if self.bom_id:
+            self.process_mode = self.bom_id.industry_type
+            if self.bom_id.industry_type == 'baking':
+                self.baking_temp = self.bom_id.target_temp
+                self.proofing_time = self.bom_id.target_proofing_time
+            elif self.bom_id.industry_type == 'winemaking':
+                self.brix_level = self.bom_id.target_brix
+                self.ph_level = self.bom_id.target_ph
+            elif self.bom_id.industry_type == 'food_processing':
+                self.process_temperature = self.bom_id.target_temp
+
+    # 行业化参数 [Industry Specifics]
+    process_mode = fields.Selection([
+        ('standard', 'Standard'),
+        ('baking', 'Baking (烘焙)'),
+        ('fermentation', 'Fermentation (发酵/酿造)'),
+        ('sterilization', 'Sterilization (杀菌/灌装)')
+    ], string="Process Mode", default='standard')
+
+    # 酿酒/酿造参数
+    vintage_year = fields.Integer("Vintage (年份)")
+    alcohol_content = fields.Float("Alcohol %")
+    brix_level = fields.Float("Brix (糖度)")
+    ph_level = fields.Float("pH Level")
+    
+    # 烘培参数
+    baking_temp = fields.Float("Baking Temp (℃)")
+    proofing_time = fields.Float("Proofing Duration (Min)")
+    
+    # 食品加工安全
+    is_haccp_compliant = fields.Boolean("HACCP Checked", default=False)
+    additive_lot_ids = fields.Many2many('stock.lot', string="Additives/Ingredients Lots")
 
     @api.depends('workorder_ids.actual_energy_consumption')
     def _compute_total_energy_cost(self):
