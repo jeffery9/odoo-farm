@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agri_intervention_template,agri.intervention.template,model_agri_intervention_template,farm_core.group_farm_worker,1,1,1,1
+access_agri_intervention_template_input,agri.intervention.template.input,model_agri_intervention_template_input,farm_core.group_farm_worker,1,1,1,1
+access_agri_technical_route,agri.technical.route,model_agri_technical_route,farm_core.group_farm_worker,1,1,1,1
+access_agri_technical_route_line,agri.technical.route.line,model_agri_technical_route_line,farm_core.group_farm_worker,1,1,1,1
+access_agri_scenario,agri.scenario,model_agri_scenario,farm_core.group_farm_manager,1,1,1,1

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="agri_scenario_view_tree" model="ir.ui.view">
+        <field name="name">agri.scenario.list</field>
+        <field name="model">agri.scenario</field>
+        <field name="arch" type="xml">
+            <list string="Planning Scenarios">
+                <field name="name"/>
+                <field name="route_id"/>
+                <field name="planned_area"/>
+                <field name="total_labor_forecast" widget="float_time"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="agri_scenario_view_form" model="ir.ui.view">
+        <field name="name">agri.scenario.form</field>
+        <field name="model">agri.scenario</field>
+        <field name="arch" type="xml">
+            <form string="Planning Scenario">
+                <header>
+                    <button name="action_run_simulation" string="Run Simulation" type="object" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. High Yield Scenario 2026"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="route_id"/>
+                            <field name="planned_area"/>
+                        </group>
+                        <group>
+                            <field name="total_labor_forecast" widget="float_time"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Input Forecasts" name="inputs">
+                            <field name="input_forecast_ids">
+                                <list readonly="1">
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_agri_scenario" model="ir.actions.act_window">
+        <field name="name">Planning Scenarios</field>
+        <field name="res_model">agri.scenario</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_agri_scenario" name="Scenarios" parent="menu_farm_planning_root" action="action_agri_scenario" sequence="20"/>
+</odoo>
