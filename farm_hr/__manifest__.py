@@ -13,6 +13,8 @@
     'depends': ['farm_operation', 'hr', 'hr_attendance', 'account'],
     'data': [
         'security/ir.model.access.csv',
+        'data/farm_hr_data.xml',
+        'data/farm_wage_rules_data.xml',
         'views/farm_employee_views.xml',
         'views/farm_worklog_views.xml',
         'views/farm_wage_views.xml',

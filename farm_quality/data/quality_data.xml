@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Common Quality Control Points -->
+        <record id="qcp_pesticide_residue" model="farm.quality.point">
+            <name>Pesticide Residue Test (农残检测)</name>
+            <test_type>measure</test_type>
+            <norm>0.01</norm>
+            <tolerance_min>0.0</tolerance_min>
+            <tolerance_max>0.05</tolerance_max>
+        </record>
+
+        <record id="qcp_sugar_content" model="farm.quality.point">
+            <name>Brix/Sugar Content (糖度检测)</name>
+            <test_type>measure</test_type>
+            <norm>12.0</norm>
+            <tolerance_min>10.0</tolerance_min>
+            <tolerance_max>25.0</tolerance_max>
+        </record>
+
+        <record id="qcp_moisture_level" model="farm.quality.point">
+            <name>Moisture Level (水分检测)</name>
+            <test_type>measure</test_type>
+            <norm>14.0</norm>
+            <tolerance_min>12.0</tolerance_min>
+            <tolerance_max>16.0</tolerance_max>
+        </record>
+
+        <record id="qcp_visual_inspection" model="farm.quality.point">
+            <name>Visual Appearance Check (外观感官检查)</name>
+            <test_type>pass_fail</test_type>
+        </record>
+    </data>
+</odoo>

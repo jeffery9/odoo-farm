@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Default Analytic Plan for Agricultural Projects -->
+        <record id="analytic_plan_agri" model="account.analytic.plan">
+            <name>Agri-Projects (农业项目核算)</name>
+            <description>Used for tracking costs and revenues per production task/parcel.</description>
+        </record>
+    </data>
+</odoo>

@@ -13,6 +13,7 @@
     'depends': ['farm_operation', 'account', 'analytic'],
     'data': [
         'security/ir.model.access.csv',
+        'data/analytic_data.xml',
         'views/farm_cost_analysis_views.xml',
     ],
     'installable': True,
