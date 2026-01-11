@@ -10,6 +10,15 @@
                 <field name="land_parcel_id"/>
                 <field name="biological_lot_id"/>
             </xpath>
+            <xpath expr="//group" position="after">
+                <group string="Nutrient Balance (N/P/K)" invisible="total_n == 0 and total_p == 0 and total_k == 0">
+                    <group>
+                        <field name="total_n"/>
+                        <field name="total_p"/>
+                        <field name="total_k"/>
+                    </group>
+                </group>
+            </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Agri Interventions" name="agri_interventions">
                     <field name="intervention_ids" context="{'default_agri_task_id': active_id}">
