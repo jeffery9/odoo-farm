@@ -14,6 +14,9 @@ class FarmActivity(models.Model):
         ('livestock', 'Livestock (畜牧)'),
         ('aquaculture', 'Aquaculture (养鱼/水产)'),
         ('agritourism', 'Agritourism (观光农业)'),
+        ('baking', 'Baking (烘焙)'),
+        ('winemaking', 'Winemaking (酿酒)'),
+        ('food_processing', 'Food Processing (食品加工)'),
     ], string="Activity Family", help="Specify the agricultural sector.")
 
     task_sequence_id = fields.Many2one(
