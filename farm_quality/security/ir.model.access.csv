@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_quality_point,farm.quality.point,model_farm_quality_point,base.group_user,1,1,1,1
 access_quality_check,farm.quality.check,model_farm_quality_check,base.group_user,1,1,1,1
+access_quality_alert,farm.quality.alert,model_farm_quality_alert,base.group_user,1,1,1,1
