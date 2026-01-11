@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Sample Biological Assets (Lots) -->
+        <record id="lot_cow_01" model="stock.lot">
+            <field name="name">COW-2026-001</field>
+            <field name="product_id" ref="farm_core.product_variety_cow"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="born_at" eval="(datetime.now() - relativedelta(years=2)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="animal_count">1</field>
+            <field name="average_weight">550.0</field>
+            <field name="biological_stage">growing</field>
+            <field name="gender">female</field>
+        </record>
+
+        <record id="lot_cow_02" model="stock.lot">
+            <field name="name">COW-2026-002</field>
+            <field name="product_id" ref="farm_core.product_variety_cow"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="born_at" eval="(datetime.now() - relativedelta(years=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="animal_count">1</field>
+            <field name="average_weight">380.0</field>
+            <field name="biological_stage">growing</field>
+            <field name="gender">female</field>
+        </record>
+    </data>
+</odoo>

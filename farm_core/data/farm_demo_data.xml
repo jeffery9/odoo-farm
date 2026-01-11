@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Sample Land Parcels -->
+        <record id="location_parcel_north_01" model="stock.location">
+            <field name="name">North Field 01 (北区1号地)</field>
+            <field name="location_id" ref="stock.stock_location_locations"/>
+            <field name="usage">internal</field>
+            <field name="is_land_parcel">True</field>
+            <field name="land_area">50.0</field>
+            <field name="land_area_uom_id" ref="uom.product_uom_acre"/>
+            <field name="soil_type">loam</field>
+            <field name="gps_lat">31.2304</field>
+            <field name="gps_lng">121.4737</field>
+            <field name="gps_coordinates">{"type": "Polygon", "coordinates": [[[121.47, 31.23], [121.48, 31.23], [121.48, 31.24], [121.47, 31.24], [121.47, 31.23]]]}</field>
+        </record>
+
+        <record id="location_pond_south_01" model="stock.location">
+            <field name="name">South Fish Pond 01 (南区1号鱼塘)</field>
+            <field name="location_id" ref="stock.stock_location_locations"/>
+            <field name="usage">internal</field>
+            <field name="is_land_parcel">True</field>
+            <field name="water_depth">2.5</field>
+            <field name="gps_lat">31.2200</field>
+            <field name="gps_lng">121.4600</field>
+        </record>
+
+        <!-- Sample Varieties -->
+        <record id="product_variety_wheat" model="product.product">
+            <field name="name">Winter Wheat Variety A (冬小麦品种A)</field>
+            <field name="is_variety">True</field>
+            <field name="agricultural_type">input</field>
+            <field name="categ_id" ref="farm_core.category_seeds"/>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="list_price">12.0</field>
+            <field name="standard_price">8.0</field>
+            <field name="growth_cycle_days">180</field>
+        </record>
+
+        <record id="product_variety_cow" model="product.product">
+            <field name="name">Holstein Dairy Cow (荷斯坦奶牛)</field>
+            <field name="is_variety">True</field>
+            <field name="agricultural_type">animal</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+        </record>
+
+        <!-- Sample Growth Curve for Cows -->
+        <record id="curve_cow_01" model="farm.growth.curve">
+            <field name="product_id" ref="product_variety_cow"/>
+            <field name="age_days">0</field>
+            <field name="target_weight">40.0</field>
+            <field name="daily_feed_rate">5.0</field>
+        </record>
+        <record id="curve_cow_02" model="farm.growth.curve">
+            <field name="product_id" ref="product_variety_cow"/>
+            <field name="age_days">30</field>
+            <field name="target_weight">65.0</field>
+            <field name="daily_feed_rate">4.5</field>
+        </record>
+    </data>
+</odoo>

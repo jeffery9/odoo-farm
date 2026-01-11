@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Sample Technical Route for Wheat -->
+        <record id="route_wheat_standard" model="agri.technical.route">
+            <field name="name">Standard Winter Wheat Route</field>
+            <field name="activity_family">planting</field>
+        </record>
+
+        <record id="route_line_1" model="agri.technical.route.line">
+            <field name="route_id" ref="route_wheat_standard"/>
+            <field name="sequence">10</field>
+            <field name="template_id" ref="farm_planning.template_tillage_standard"/>
+            <field name="delay_days">0</field>
+        </record>
+
+        <record id="route_line_2" model="agri.technical.route.line">
+            <field name="route_id" ref="route_wheat_standard"/>
+            <field name="sequence">20</field>
+            <field name="template_id" ref="farm_planning.template_sowing_standard"/>
+            <field name="delay_days">5</field>
+        </record>
+
+        <record id="route_line_3" model="agri.technical.route.line">
+            <field name="route_id" ref="route_wheat_standard"/>
+            <field name="sequence">30</field>
+            <field name="template_id" ref="farm_planning.template_fertilizing_base"/>
+            <field name="delay_days">30</field>
+        </record>
+    </data>
+</odoo>

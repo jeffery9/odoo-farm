@@ -15,6 +15,9 @@
         'security/ir.model.access.csv',
         'views/livestock_feeding_views.xml',
     ],
+    'demo': [
+        'data/farm_livestock_demo.xml',
+    ],
     'installable': True,
     'application': False,
     'license': 'LGPL-3',
