@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- 养分投入趋势图 [US-39] -->
+    <record id="agricultural_campaign_view_graph_sustainability" model="ir.ui.view">
+        <field name="name">agricultural.campaign.graph.sustainability</field>
+        <field name="model">agricultural.campaign</field>
+        <field name="arch" type="xml">
+            <graph string="Nutrient Reduction Trends" type="bar">
+                <field name="name" type="row"/>
+                <field name="total_n" type="measure"/>
+                <field name="total_p" type="measure"/>
+                <field name="total_k" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_farm_sustainability_dashboard" model="ir.actions.act_window">
+        <field name="name">Sustainability Dashboard</field>
+        <field name="res_model">agricultural.campaign</field>
+        <field name="view_mode">graph,pivot,list</field>
+    </record>
+
+    <!-- 生态活动视图 -->
+    <record id="farm_ecological_activity_view_tree" model="ir.ui.view">
+        <field name="name">farm.ecological.activity.list</field>
+        <field name="model">farm.ecological.activity</field>
+        <field name="arch" type="xml">
+            <list string="Ecological Activities">
+                <field name="date"/>
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="impact_category"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_farm_ecological_activity" model="ir.actions.act_window">
+        <field name="name">Ecological Maintenance</field>
+        <field name="res_model">farm.ecological.activity</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_sustainability_root" name="Sustainability" sequence="90" groups="farm_core.group_farm_manager"/>
+    <menuitem id="menu_sustainability_dashboard" name="Impact Dashboard" parent="menu_sustainability_root" action="action_farm_sustainability_dashboard" sequence="10"/>
+    <menuitem id="menu_ecological_activity" name="Ecological Records" parent="menu_sustainability_root" action="action_farm_ecological_activity" sequence="20"/>
+</odoo>
