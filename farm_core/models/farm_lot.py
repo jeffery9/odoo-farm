@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class FarmLot(models.Model):
     _inherit = 'stock.lot'
@@ -33,6 +33,7 @@ class FarmLot(models.Model):
     # 安全合规 [US-35]
     withdrawal_end_datetime = fields.Datetime("Safe to Harvest After", help="Withdrawal period end date.")
     is_safe_to_harvest = fields.Boolean("Is Safe to Harvest", compute='_compute_is_safe')
+    withdrawal_days_left = fields.Integer("Withdrawal Countdown", compute='_compute_withdrawal_days')
     
     # 隔离管理 [US-34]
     state = fields.Selection([
@@ -46,6 +47,16 @@ class FarmLot(models.Model):
         now = fields.Datetime.now()
         for lot in self:
             lot.is_safe_to_harvest = not lot.withdrawal_end_datetime or lot.withdrawal_end_datetime <= now
+
+    @api.depends('withdrawal_end_datetime')
+    def _compute_withdrawal_days(self):
+        now = fields.Datetime.now()
+        for lot in self:
+            if lot.withdrawal_end_datetime and lot.withdrawal_end_datetime > now:
+                delta = lot.withdrawal_end_datetime - now
+                lot.withdrawal_days_left = delta.days + 1
+            else:
+                lot.withdrawal_days_left = 0
 
     # 动态属性 [US-02]
     lot_properties = fields.Properties(

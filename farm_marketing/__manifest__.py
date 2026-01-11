@@ -15,6 +15,8 @@
         'security/ir.model.access.csv',
         'views/traceability_templates.xml',
         'views/product_template_views.xml',
+        'views/partner_views.xml',
+        'views/sale_order_views.xml',
     ],
     'installable': True,
     'application': False,
