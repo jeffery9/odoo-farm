@@ -65,6 +65,49 @@ class FarmQualityCheck(models.Model):
         else:
             self.action_pass()
 
+    def action_open_quality_alert(self):
+        """ 创建并返回质量告警记录 """
+        self.ensure_one()
+        alert = self.env['farm.quality.alert'].create({
+            'name': _('Alert for %s') % self.lot_id.name,
+            'check_id': self.id,
+            'lot_id': self.lot_id.id,
+            'product_id': self.lot_id.product_id.id,
+        })
+        return alert
+
+class FarmQualityAlert(models.Model):
+    _name = 'farm.quality.alert'
+    _description = 'Quality Alert'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
+    name = fields.Char("Title", required=True)
+    check_id = fields.Many2one('farm.quality.check', string="Source Check")
+    lot_id = fields.Many2one('stock.lot', string="Lot/Batch", required=True)
+    product_id = fields.Many2one('product.product', string="Product")
+    
+    user_id = fields.Many2one('res.users', string="Responsible", default=lambda self: self.env.user)
+    priority = fields.Selection([('0', 'Low'), ('1', 'Normal'), ('2', 'High')], default='1')
+    
+    description = fields.Text("Description")
+    cause = fields.Text("Root Cause")
+    action_taken = fields.Text("Action Taken")
+    
+    state = fields.Selection([
+        ('new', 'New'),
+        ('confirmed', 'Confirmed'),
+        ('action_proposed', 'Action Proposed'),
+        ('closed', 'Closed'),
+    ], string="Status", default='new', tracking=True)
+
+    def action_confirm(self):
+        self.write({'state': 'confirmed'})
+
+    def action_close_scrapped(self):
+        self.message_post(body=_("Alert closed: Asset marked for scrapping."))
+        self.write({'state': 'closed'})
+        # 此处可进一步调用 stock.scrap 逻辑
+
 class FarmLotQuality(models.Model):
     _inherit = 'stock.lot'
 

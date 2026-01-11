@@ -15,6 +15,7 @@
         'security/ir.model.access.csv',
         'views/quality_point_views.xml',
         'views/quality_check_views.xml',
+        'views/quality_alert_views.xml',
     ],
     'installable': True,
     'application': False,
