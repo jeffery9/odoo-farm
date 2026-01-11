@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Location View Inheritance -->
+    <record id="view_location_form_inherit_cert" model="ir.ui.view">
+        <field name="name">stock.location.form.inherit.cert</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <group string="Certification &amp; Compliance" name="certification" invisible="not is_land_parcel">
+                    <group>
+                        <field name="certification_level" widget="radio" options="{'horizontal': true}"/>
+                        <field name="certificate_number"/>
+                        <field name="certificate_expiry" decoration-danger="certificate_expiry &lt; today"/>
+                    </group>
+                    <group invisible="certification_level != 'organic_transition'">
+                        <field name="conversion_start_date"/>
+                        <field name="conversion_target_days"/>
+                        <label for="conversion_progress"/>
+                        <div class="o_row">
+                            <field name="conversion_progress" widget="progressbar"/>
+                        </div>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Lot View Inheritance -->
+    <record id="view_production_lot_form_inherit_cert" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.cert</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="certification_level" widget="badge" 
+                       decoration-success="certification_level == 'organic'" 
+                       decoration-info="certification_level == 'green'"
+                       decoration-warning="certification_level == 'organic_transition'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="menu_farm_certification" name="Certifications" parent="farm_quality.menu_quality_root" sequence="40"/>
+</odoo>
