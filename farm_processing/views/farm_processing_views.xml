@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="mrp_production_form_view_inherit_farm_proc" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.farm.proc</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='miscellaneous']" position="before">
+                <page string="Agri-Processing Details" name="agri_processing">
+                    <group>
+                        <group string="Energy Monitoring">
+                            <field name="energy_meter_start"/>
+                            <field name="energy_meter_end"/>
+                            <field name="energy_consumption" readonly="1"/>
+                        </group>
+                        <group string="Process Quality">
+                            <field name="process_temperature"/>
+                            <field name="moisture_content"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- 扩展批次视图显示溯源 -->
+    <record id="view_production_lot_form_inherit_farm_proc" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.farm.proc</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="parent_lot_id" options="{'no_create': True}"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Traceability Tree" name="traceability">
+                    <field name="child_lot_ids" readonly="1">
+                        <list>
+                            <field name="name"/>
+                            <field name="product_id"/>
+                            <field name="create_date"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="menu_farm_processing_root" name="Processing" parent="farm_operation.menu_agri_campaign" sequence="40"/>
+    <menuitem id="menu_farm_processing_mo" name="Processing Orders" parent="menu_farm_processing_root" action="mrp.mrp_production_action" sequence="10"/>
+</odoo>
