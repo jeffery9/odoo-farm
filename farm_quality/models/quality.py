@@ -1,5 +1,4 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
 
 class FarmQualityPoint(models.Model):
     _name = 'farm.quality.point'
@@ -8,8 +7,8 @@ class FarmQualityPoint(models.Model):
     name = fields.Char("Title", required=True)
     product_id = fields.Many2one('product.product', string="Product/Variety")
     test_type = fields.Selection([
-        ('pass_fail', 'Pass - Fail'),
-        ('measure', 'Measure')
+        ('pass_fail', 'Pass - Fail (通过/失败)'),
+        ('measure', 'Measure (数值测量)')
     ], string="Test Type", default='pass_fail', required=True)
     
     # 测量标准
@@ -27,50 +26,18 @@ class FarmQualityCheck(models.Model):
     name = fields.Char("Reference", required=True, default=lambda self: _('New'))
     point_id = fields.Many2one('farm.quality.point', string="Control Point")
     lot_id = fields.Many2one('stock.lot', string="Lot/Batch", required=True)
-    sample_id = fields.Many2one('farm.quality.sample', string="Linked Sample",
-                               help="The physical sample used for this check.")
     task_id = fields.Many2one('project.task', string="Production Task")
-
+    
     test_type = fields.Selection(related='point_id.test_type', store=True)
     measure = fields.Float("Actual Measure")
-
+    
     quality_state = fields.Selection([
         ('none', 'To do'),
         ('pass', 'Passed'),
         ('fail', 'Failed')
     ], string="Status", default='none', tracking=True)
-
+    
     user_id = fields.Many2one('res.users', string="Responsible", default=lambda self: self.env.user)
-
-    # 盲样相关字段 [US-15-06] - 用于测试人员界面控制
-    is_blind_view = fields.Boolean("Blind View", compute='_compute_blind_view', help="Whether the current user should see masked information")
-
-    def _compute_blind_view(self):
-        """ 计算当前用户是否应以盲样视图查看 [US-15-06] """
-        for record in self:
-            # 如果关联了盲样测试，且当前用户是盲样测试人员，则显示盲样视图
-            if (record.sample_id and record.sample_id.is_blind_test and
-                record.sample_id.blind_tester_id and
-                record.sample_id.blind_tester_id.id == self.env.uid):
-                record.is_blind_view = True
-            else:
-                record.is_blind_view = False
-
-    @property
-    def display_lot_name(self):
-        """ 返回应显示的批次名称，盲样时隐藏真实信息 [US-15-06] """
-        if self.is_blind_view and self.sample_id:
-            info = self.sample_id.get_blind_sample_info()
-            return info['lot_display']
-        return self.lot_id.name
-
-    @property
-    def display_product_name(self):
-        """ 返回应显示的产品名称，盲样时隐藏真实信息 [US-15-06] """
-        if self.is_blind_view and self.sample_id:
-            info = self.sample_id.get_blind_sample_info()
-            return info['product_display']
-        return self.lot_id.product_id.name if self.lot_id.product_id else _("Unknown Product")
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -98,68 +65,6 @@ class FarmQualityCheck(models.Model):
         else:
             self.action_pass()
 
-    def action_open_quality_alert(self):
-        """ 创建并返回质量告警记录 """
-        self.ensure_one()
-        alert = self.env['farm.quality.alert'].create({
-            'name': _('Alert for %s') % self.lot_id.name,
-            'check_id': self.id,
-            'lot_id': self.lot_id.id,
-            'product_id': self.lot_id.product_id.id,
-        })
-        return alert
-
-class FarmQualityAlert(models.Model):
-    _name = 'farm.quality.alert'
-    _description = 'Quality Alert'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
-
-    name = fields.Char("Title", required=True)
-    check_id = fields.Many2one('farm.quality.check', string="Source Check")
-    lot_id = fields.Many2one('stock.lot', string="Lot/Batch", required=True)
-    product_id = fields.Many2one('product.product', string="Product")
-    
-    user_id = fields.Many2one('res.users', string="Responsible", default=lambda self: self.env.user)
-    priority = fields.Selection([('0', 'Low'), ('1', 'Normal'), ('2', 'High')], default='1')
-    
-    description = fields.Text("Description")
-    cause = fields.Text("Root Cause")
-    action_taken = fields.Text("Action Taken")
-    
-    state = fields.Selection([
-        ('new', 'New'),
-        ('confirmed', 'Confirmed'),
-        ('action_proposed', 'Action Proposed'),
-        ('closed', 'Closed'),
-    ], string="Status", default='new', tracking=True)
-
-    def action_confirm(self):
-        self.write({'state': 'confirmed'})
-
-    def action_close_scrapped(self):
-        self.message_post(body=_("Alert closed: Asset marked for scrapping."))
-        self.write({'state': 'closed'})
-        # 此处可进一步调用 stock.scrap 逻辑
-
-class StockPicking(models.Model):
-    _inherit = 'stock.picking'
-
-    def button_validate(self):
-        """ 质量与放行拦截逻辑 [US-05-04, US-15-05] """
-        for picking in self:
-            if picking.picking_type_code in ['outgoing', 'internal']:
-                for move in picking.move_ids:
-                    for lot in move.lot_ids:
-                        # 1. 检查质量状态
-                        if lot.quality_status == 'failed':
-                            raise UserError(_("QUALITY ALERT: Lot %s has failed quality inspection.") % lot.name)
-                        
-                        # 2. 检查放行状态 [US-15-05]
-                        if lot.qc_release_state == 'locked':
-                            raise UserError(_("QC LOCKED: Lot %s is pending release and cannot be moved.") % lot.name)
-                            
-        return super().button_validate()
-
 class FarmLotQuality(models.Model):
     _inherit = 'stock.lot'
 
@@ -169,23 +74,4 @@ class FarmLotQuality(models.Model):
         ('failed', 'Failed')
     ], string="Quality Status", default='none', tracking=True)
     
-    # US-15-05: 默认锁定与释放
-    qc_release_state = fields.Selection([
-        ('locked', 'Locked'),
-        ('released', 'Released'),
-    ], string="QC Release Status", default='locked', tracking=True)
-
     quality_check_ids = fields.One2many('farm.quality.check', 'lot_id', string="Quality Checks")
-
-    def action_qc_release(self):
-        """ 手动放行批次 """
-        self.ensure_one()
-        # 权限校验通常在视图中通过 groups 属性处理，这里仅做逻辑切换
-        self.write({'qc_release_state': 'released'})
-        self.message_post(body=_("QC RELEASE: Lot has been manually released for sale/transfer."))
-
-    def action_lock(self):
-        """ 手动锁定批次 [US-15-05] """
-        self.ensure_one()
-        self.write({'qc_release_state': 'locked'})
-        self.message_post(body=_("QC LOCK: Lot has been manually locked due to quality suspicion."))
