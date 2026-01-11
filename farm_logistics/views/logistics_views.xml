@@ -1,60 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <record id="action_farm_picking" model="ir.actions.act_window">
-        <field name="name">Farm Movements</field>
-        <field name="res_model">stock.picking</field>
-        <field name="view_mode">list,kanban,form</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Manage all farm inputs, harvest collections and transfers.
-            </p>
-        </field>
-    </record>
-
-    <menuitem id="menu_farm_movements" name="Movements" parent="menu_farm_logistics_root" action="action_farm_picking" sequence="10"/>
-
     <record id="view_picking_form_inherit_farm_logistics" model="ir.ui.view">
         <field name="name">stock.picking.form.inherit.farm.logistics</field>
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//sheet/div/h1" position="before">
-                <div class="badge rounded-pill text-bg-secondary mb-2" invisible="picking_type_code != 'internal'">Internal Transfer</div>
-                <div class="badge rounded-pill text-bg-warning mb-2" invisible="picking_type_code != 'outgoing'">Delivery / Shipment</div>
-                <div class="badge rounded-pill text-bg-success mb-2" invisible="picking_type_code != 'incoming'">Receipt / Harvest</div>
-            </xpath>
             <xpath expr="//field[@name='origin']" position="after">
-                <field name="is_cold_chain" invisible="1"/>
+                <field name="is_cold_chain" invisible="not is_cold_chain"/>
+                <field name="actual_transport_temp" invisible="not is_cold_chain"/>
                 <field name="packaging_level"/>
-                <field name="vehicle_id"/>
-                <field name="driver_id"/>
-            </xpath>
-            <xpath expr="//notebook" position="inside">
-                <page string="Cold Chain &amp; Logs" invisible="not is_cold_chain">
-                    <group>
-                        <field name="actual_transport_temp"/>
-                    </group>
-                    <field name="temperature_log_ids">
-                        <list editable="bottom">
-                            <field name="timestamp"/>
-                            <field name="temperature"/>
-                            <field name="location_name"/>
-                        </list>
-                    </field>
-                </page>
             </xpath>
         </field>
     </record>
-
-    <!-- Vehicle Action & Menu -->
-    <record id="action_farm_vehicle" model="ir.actions.act_window">
-        <field name="name">Vehicles</field>
-        <field name="res_model">farm.vehicle</field>
-        <field name="view_mode">list,form</field>
-    </record>
-
-    <menuitem id="menu_farm_logistics_root" name="Logistics" parent="farm_core.menu_farm_root" sequence="60"/>
-    <menuitem id="menu_farm_vehicle" name="Vehicles" parent="menu_farm_logistics_root" action="action_farm_vehicle" sequence="20"/>
 
     <!-- 产品模板增加温控设置 -->
     <record id="product_template_form_view_inherit_farm_logistics" model="ir.ui.view">

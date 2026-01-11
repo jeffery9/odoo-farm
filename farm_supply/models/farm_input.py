@@ -19,6 +19,15 @@ class ProductTemplate(models.Model):
     # 休药期/安全间隔期 [US-35]
     withdrawal_period_days = fields.Integer("Withdrawal Period (Days)", default=0, help="Days to wait before harvest/slaughter after using this input.")
 
+class PurchaseOrder(models.Model):
+    _inherit = 'purchase.order'
+
+    agri_task_id = fields.Many2one(
+        'project.task', 
+        string="Origin Agri Task",
+        help="The specific production task that triggered this procurement."
+    )
+
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
