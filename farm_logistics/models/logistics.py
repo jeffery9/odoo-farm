@@ -13,13 +13,43 @@ class StockPicking(models.Model):
     is_cold_chain = fields.Boolean("Is Cold Chain Transport", compute='_compute_is_cold_chain', store=True)
     actual_transport_temp = fields.Float("Actual Transport Temp (℃)")
     
+    # Transport Details [US-30]
+    vehicle_id = fields.Many2one('farm.vehicle', string="Vehicle")
+    driver_id = fields.Many2one('res.partner', string="Driver", domain="[('is_company', '=', False)]")
+    
     packaging_level = fields.Selection([
         ('box', 'Box/Carton'),
         ('crate', 'Crate'),
         ('pallet', 'Pallet')
     ], string="Primary Packaging")
 
+    temperature_log_ids = fields.One2many('farm.transport.temperature', 'picking_id', string="Temperature History")
+
     @api.depends('move_ids.product_id')
     def _compute_is_cold_chain(self):
         for picking in self:
             picking.is_cold_chain = any(picking.move_ids.mapped('product_id.requires_cold_chain'))
+
+class FarmVehicle(models.Model):
+    _name = 'farm.vehicle'
+    _description = 'Farm Transport Vehicle'
+
+    name = fields.Char("License Plate", required=True)
+    model = fields.Char("Model")
+    vehicle_type = fields.Selection([
+        ('refrigerated', 'Refrigerated Truck (冷藏车)'),
+        ('tractor', 'Tractor (拖拉机)'),
+        ('van', 'Van (厢式货车)'),
+        ('other', 'Other')
+    ], string="Type", default='refrigerated')
+    capacity_weight = fields.Float("Max Payload (kg)")
+
+class FarmTransportTemperature(models.Model):
+    _name = 'farm.transport.temperature'
+    _description = 'Transport Temperature Log'
+    _order = 'timestamp desc'
+
+    picking_id = fields.Many2one('stock.picking', ondelete='cascade')
+    timestamp = fields.Datetime("Timestamp", default=fields.Datetime.now)
+    temperature = fields.Float("Temperature (℃)", required=True)
+    location_name = fields.Char("Location/Milestone")

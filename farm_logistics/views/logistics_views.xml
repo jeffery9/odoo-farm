@@ -6,12 +6,37 @@
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='origin']" position="after">
-                <field name="is_cold_chain" invisible="not is_cold_chain"/>
-                <field name="actual_transport_temp" invisible="not is_cold_chain"/>
+                <field name="is_cold_chain" invisible="1"/>
                 <field name="packaging_level"/>
+                <field name="vehicle_id"/>
+                <field name="driver_id"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Cold Chain &amp; Logs" invisible="not is_cold_chain">
+                    <group>
+                        <field name="actual_transport_temp"/>
+                    </group>
+                    <field name="temperature_log_ids">
+                        <list editable="bottom">
+                            <field name="timestamp"/>
+                            <field name="temperature"/>
+                            <field name="location_name"/>
+                        </list>
+                    </field>
+                </page>
             </xpath>
         </field>
     </record>
+
+    <!-- Vehicle Action & Menu -->
+    <record id="action_farm_vehicle" model="ir.actions.act_window">
+        <field name="name">Vehicles</field>
+        <field name="res_model">farm.vehicle</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_farm_logistics_root" name="Logistics" parent="farm_core.menu_farm_root" sequence="60"/>
+    <menuitem id="menu_farm_vehicle" name="Vehicles" parent="menu_farm_logistics_root" action="action_farm_vehicle" sequence="20"/>
 
     <!-- 产品模板增加温控设置 -->
     <record id="product_template_form_view_inherit_farm_logistics" model="ir.ui.view">
