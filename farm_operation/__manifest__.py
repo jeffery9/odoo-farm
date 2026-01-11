@@ -18,6 +18,9 @@
         'views/agri_intervention_views.xml',
         'views/agri_bom_views.xml',
     ],
+    'demo': [
+        'data/farm_operation_demo.xml',
+    ],
     'installable': True,
     'application': False,
     'license': 'LGPL-3',

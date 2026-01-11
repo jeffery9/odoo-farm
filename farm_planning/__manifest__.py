@@ -19,6 +19,9 @@
         'views/technical_route_views.xml',
         'views/scenario_views.xml',
     ],
+    'demo': [
+        'data/farm_planning_demo.xml',
+    ],
     'installable': True,
     'application': True,
     'license': 'LGPL-3',

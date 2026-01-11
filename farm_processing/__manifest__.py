@@ -17,6 +17,9 @@
         'data/processing_data.xml',
         'views/farm_processing_views.xml',
     ],
+    'demo': [
+        'data/farm_processing_demo.xml',
+    ],
     'installable': True,
     'application': False,
     'license': 'LGPL-3',

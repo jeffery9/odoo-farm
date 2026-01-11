@@ -21,6 +21,9 @@
         'views/farm_location_views.xml',
         'views/soil_analysis_views.xml',
     ],
+    'demo': [
+        'data/farm_demo_data.xml',
+    ],
     'installable': True,
     'application': False,
     'license': 'LGPL-3',

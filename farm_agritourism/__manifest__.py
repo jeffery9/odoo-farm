@@ -14,6 +14,10 @@
     'data': [
         'security/ir.model.access.csv',
         'views/farm_booking_views.xml',
+        'views/sale_order_views.xml',
+    ],
+    'demo': [
+        'data/farm_agritourism_demo.xml',
     ],
     'installable': True,
     'application': False,
