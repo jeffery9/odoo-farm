@@ -9,12 +9,11 @@
         - Agricultural Activity Classification (US-01-01)
         - Sector-specific attributes (US-01-02)
         - Land Parcel Management (US-01-03)
-        - Biological Asset Management (US-01-04)
         - Industry Configuration Management
-        - Biological Asset Valuation and Depreciation (US-01-07)
         - One-Click Industry Data Package Initialization (US-01-08)
     """,
-    'author': 'Jeffery',
+    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
+    "website": "http://www.geninit.cn",
     'depends': ['project', 'stock', 'uom', 'base_setup'],
     'data': [
         'security/farm_security.xml',
@@ -22,7 +21,6 @@
         'data/ir_sequence_data.xml',
         'data/product_category_data.xml',
         'data/ir_cron_data.xml',
-        'views/biological_asset_management_views.xml',
         'views/land_location_management_views.xml',
         'views/activity_operation_management_views.xml',
         'views/geofencing_management_views.xml',
