@@ -19,6 +19,25 @@
                         <field name="gis_map_url" widget="url" text="View on Map" invisible="not gis_map_url"/>
                     </group>
                 </group>
+                <group string="Latest Soil Health" invisible="not is_land_parcel">
+                    <group>
+                        <field name="latest_ph"/>
+                        <field name="latest_organic_matter"/>
+                    </group>
+                </group>
+                <notebook invisible="not is_land_parcel">
+                    <page string="Soil Analysis History" name="soil_history">
+                        <field name="soil_analysis_ids" readonly="1">
+                            <list>
+                                <field name="analysis_date"/>
+                                <field name="ph_level"/>
+                                <field name="organic_matter"/>
+                                <field name="nitrogen_content"/>
+                                <field name="state" widget="badge"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
                 <group string="Boundary Data (GeoJSON)" invisible="not is_land_parcel">
                     <field name="gps_coordinates" nolabel="1" placeholder='{"type": "Polygon", "coordinates": [[...]]}'/>
                 </group>

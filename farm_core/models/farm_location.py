@@ -29,6 +29,20 @@ class FarmLocation(models.Model):
             else:
                 loc.gis_map_url = False
 
+    soil_analysis_ids = fields.One2many('farm.soil.analysis', 'location_id', string="Soil Analyses")
+    latest_ph = fields.Float("Latest pH", compute='_compute_latest_soil_stats', store=True)
+    latest_organic_matter = fields.Float("Organic Matter (%)", compute='_compute_latest_soil_stats', store=True)
+
+    @api.depends('soil_analysis_ids.state', 'soil_analysis_ids.ph_level')
+    def _compute_latest_soil_stats(self):
+        for loc in self:
+            latest = self.env['farm.soil.analysis'].search([
+                ('location_id', '=', loc.id),
+                ('state', '=', 'done')
+            ], order='analysis_date desc', limit=1)
+            loc.latest_ph = latest.ph_level if latest else 0.0
+            loc.latest_organic_matter = latest.organic_matter if latest else 0.0
+
     # 针对水产 [US-02]
     water_depth = fields.Float("Water Depth (m)")
     water_depth_dm = fields.Float("Water Depth (dm)", compute='_compute_water_depth_dm', inverse='_inverse_water_depth_dm')

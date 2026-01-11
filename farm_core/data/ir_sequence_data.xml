@@ -36,5 +36,14 @@
             <padding>5</padding>
             <company_id eval="False"/>
         </record>
+
+        <!-- Soil Analysis Sequence -->
+        <record id="seq_farm_soil_analysis" model="ir.sequence">
+            <name>Soil Analysis Report</name>
+            <code>farm.soil.analysis</code>
+            <prefix>SOIL/</prefix>
+            <padding>5</padding>
+            <company_id eval="False"/>
+        </record>
     </data>
 </odoo>

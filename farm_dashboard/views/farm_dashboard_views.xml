@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Combined View for Farm Cockpit -->
+    <record id="action_farm_cockpit" model="ir.actions.act_window">
+        <field name="name">Farm Cockpit (控制塔)</field>
+        <field name="res_model">project.task</field>
+        <field name="view_mode">kanban,list,graph,pivot</field>
+        <field name="domain">[('is_agri_activity', '=', True)]</field>
+        <field name="context">{'search_default_my_tasks': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Welcome to the Farm control center.
+            </p>
+        </field>
+    </record>
+
+    <!-- Unified Menu -->
+    <menuitem id="menu_farm_dashboard_root" name="Dashboards" parent="farm_core.menu_farm_root" sequence="5"/>
+    <menuitem id="menu_farm_cockpit" name="Operational Cockpit" parent="menu_farm_dashboard_root" action="action_farm_cockpit" sequence="10"/>
+
+    <!-- Industry Specific Dashboards (Shortcuts) -->
+    <record id="action_winemaking_dashboard" model="ir.actions.act_window">
+        <field name="name">Winemaking Dashboard</field>
+        <field name="res_model">mrp.production</field>
+        <field name="view_mode">list,graph,pivot</field>
+        <field name="domain">[('process_mode', '=', 'fermentation')]</field>
+    </record>
+
+    <menuitem id="menu_wine_dashboard" name="Winemaking Analysis" parent="menu_farm_dashboard_root" action="action_winemaking_dashboard" sequence="20"/>
+
+</odoo>
