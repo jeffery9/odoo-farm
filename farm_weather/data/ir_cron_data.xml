@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="ir_cron_fetch_weather" model="ir.cron">
+            <name>Farm: Fetch Weather Forecast</name>
+            <model_id ref="model_farm_weather_forecast"/>
+            <state>code</state>
+            <code>model.action_fetch_weather_all_locations()</code>
+            <interval_number>6</interval_number>
+            <interval_type>hours</interval_type>
+            <numbercall>-1</numbercall>
+            <doall eval="False"/>
+        </record>
+    </data>
+</odoo>
