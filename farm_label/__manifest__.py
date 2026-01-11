@@ -15,6 +15,7 @@
     'data': [
         'report/farm_label_templates.xml',
         'report/farm_label_reports.xml',
+        'views/res_config_settings_views.xml',
     ],
     'installable': True,
     'application': False,
