@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_task_form2_inherit_farm_financial" model="ir.ui.view">
+        <field name="name">project.task.form.farm.financial</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object" name="action_view_analytic_lines" icon="fa-money" invisible="not analytic_account_id">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="total_production_costs" widget="monetary"/>
+                        </span>
+                        <span class="o_stat_text">Total Costs</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='user_ids']" position="after">
+                <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- 增加跳转到明细的方法 -->
+    <record id="project_task_action_view_analytic" model="ir.actions.act_window">
+        <field name="name">Analytic Lines</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_mode">list,form,graph,pivot</field>
+    </record>
+</odoo>
