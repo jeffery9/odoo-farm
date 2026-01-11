@@ -17,6 +17,11 @@
                             <field name="process_temperature"/>
                             <field name="moisture_content"/>
                         </group>
+                        <group string="Mass Balance (US-44)">
+                            <field name="scrap_qty" string="Cleaning/Process Loss"/>
+                            <field name="total_output_qty"/>
+                            <field name="is_balanced" widget="boolean_toggle" readonly="1" decoration-success="is_balanced" decoration-danger="not is_balanced"/>
+                        </group>
                     </group>
                 </page>
             </xpath>
