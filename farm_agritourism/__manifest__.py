@@ -1,34 +1,21 @@
 {
     'name': 'Farm Agritourism',
-    'version': '1.1',
+    'version': '1.0',
     'category': 'Industries/Agriculture',
-    'summary': 'Agritourism Management - Resource Booking, Activity Management, Membership Services, Experience Project Tracking',
+    'summary': 'Agritourism, Picking Activities and Plot Adoption',
     'description': """
-        Agritourism Management Module for Odoo 19 Farm Management System.
-
-        Features:
-        - Resource booking and reservation management
-        - Activity and experience project management
-        - Membership services and loyalty programs
-        - Picking & Family Activity Booking [US-02-01]
+        Agritourism module for Odoo 19 Farm Management System.
+        - Picking & Family Activity Booking [US-51]
         - Plot Adoption/Rental Management
         - Integration with Farm Activities
-        - Visitor count tracking and management
-        - Experience type categorization
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'sale', 'project'],
+    'depends': ['farm_core', 'sale'],
     'data': [
         'security/ir.model.access.csv',
         'views/farm_booking_views.xml',
-        'views/sale_order_views.xml',
-        'views/agritourism_operation_views.xml',
-        'views/menu.xml',
-    ],
-    'demo': [
-        'data/farm_agritourism_demo.xml',
     ],
     'installable': True,
     'application': False,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }
