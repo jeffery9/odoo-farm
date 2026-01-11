@@ -10,9 +10,10 @@
         - Integration with Agritourism & CRM
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'farm_quality', 'website'],
+    'depends': ['farm_core', 'farm_quality', 'farm_operation', 'website'],
     'data': [
         'security/ir.model.access.csv',
+        'views/farm_lot_views.xml',
         'views/traceability_templates.xml',
         'views/product_template_views.xml',
         'views/partner_views.xml',
