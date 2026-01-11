@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Planting Sequence -->
+        <record id="seq_farm_task_planting" model="ir.sequence">
+            <name>Farm Task: Planting</name>
+            <code>farm.task.planting</code>
+            <prefix>P-</prefix>
+            <padding>5</padding>
+            <company_id eval="False"/>
+        </record>
+
+        <!-- Livestock Sequence -->
+        <record id="seq_farm_task_livestock" model="ir.sequence">
+            <name>Farm Task: Livestock</name>
+            <code>farm.task.livestock</code>
+            <prefix>L-</prefix>
+            <padding>5</padding>
+            <company_id eval="False"/>
+        </record>
+
+        <!-- Aquaculture Sequence -->
+        <record id="seq_farm_task_aquaculture" model="ir.sequence">
+            <name>Farm Task: Aquaculture</name>
+            <code>farm.task.aquaculture</code>
+            <prefix>A-</prefix>
+            <padding>5</padding>
+            <company_id eval="False"/>
+        </record>
+
+        <!-- Agritourism Sequence -->
+        <record id="seq_farm_task_agritourism" model="ir.sequence">
+            <name>Farm Task: Agritourism</name>
+            <code>farm.task.agritourism</code>
+            <prefix>T-</prefix>
+            <padding>5</padding>
+            <company_id eval="False"/>
+        </record>
+    </data>
+</odoo>

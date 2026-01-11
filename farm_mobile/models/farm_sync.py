@@ -8,7 +8,8 @@ class FarmSyncQueue(models.Model):
     operation_type = fields.Selection([
         ('worklog', 'Field Worklog'),
         ('feeding', 'Feeding record'),
-        ('harvest', 'Harvest record')
+        ('harvest', 'Harvest record'),
+        ('delivery', 'Mobile Delivery (扫码出库)')
     ], required=True)
     
     payload = fields.Text("Data Payload (JSON)", required=True)
@@ -29,6 +30,11 @@ class FarmSyncQueue(models.Model):
                 data = json.loads(record.payload)
                 if record.operation_type == 'worklog':
                     self.env['farm.worklog'].create(data)
+                elif record.operation_type == 'delivery':
+                    # data 预期包含 picking_id 或 barcode
+                    picking = self.env['stock.picking'].browse(data.get('picking_id'))
+                    if picking and picking.state not in ['done', 'cancel']:
+                        picking.button_validate()
                 
                 record.write({'status': 'done', 'error_message': False})
             except Exception as e:

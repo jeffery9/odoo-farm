@@ -62,7 +62,7 @@ class FarmBooking(models.Model):
                 continue
             overlap = self.search([
                 ('id', '!=', booking.id),
-                ('resource_id', '=', booking.id),
+                ('resource_id', '=', booking.resource_id.id),
                 ('state', '!=', 'cancel'),
                 ('date_start', '<', booking.date_stop),
                 ('date_stop', '>', booking.date_start),

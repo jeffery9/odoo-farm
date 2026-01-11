@@ -23,6 +23,26 @@ class FarmWorklog(models.Model):
     
     notes = fields.Text("Notes")
 
+    def action_approve(self):
+        """ 审批并分摊成本 [US-43] """
+        for log in self:
+            # 获取员工时薪（示例：从员工档案获取或固定值）
+            hourly_rate = getattr(log.employee_id, 'hourly_cost', 50.0) 
+            amount = log.quantity * hourly_rate
+            
+            # 找到任务关联的核算账户
+            analytic_account = log.task_id.analytic_account_id
+            if analytic_account:
+                self.env['account.analytic.line'].create({
+                    'name': _('Labor: %s on %s') % (log.employee_id.name, log.task_id.name),
+                    'account_id': analytic_account.id,
+                    'amount': -amount, # 支出为负
+                    'unit_amount': log.quantity,
+                    'product_id': False, 
+                    'employee_id': log.employee_id.id,
+                })
+        return True
+
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
@@ -60,6 +80,7 @@ class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     is_seasonal = fields.Boolean("Seasonal Laborer", default=False, help="Identify external or seasonal workers.")
+    hourly_cost = fields.Float("Hourly Cost", default=0.0)
     agri_skill_ids = fields.Many2many('farm.agri.skill', string="Agricultural Skills")
     piece_rate_total = fields.Float("Total Piece-rate Performance", compute='_compute_piece_rate')
 
