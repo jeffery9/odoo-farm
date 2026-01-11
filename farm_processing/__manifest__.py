@@ -14,6 +14,7 @@
     'depends': ['farm_operation', 'mrp'],
     'data': [
         'security/ir.model.access.csv',
+        'data/processing_data.xml',
         'views/farm_processing_views.xml',
     ],
     'installable': True,
