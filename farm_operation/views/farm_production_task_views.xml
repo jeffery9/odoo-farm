@@ -5,18 +5,38 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_telemetry" type="object" class="oe_stat_button" icon="fa-line-chart" invisible="not land_parcel_id">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Environment</span>
+                    </div>
+                </button>
+            </xpath>
             <xpath expr="//field[@name='user_ids']" position="after">
                 <field name="campaign_id" options="{'no_create': True}"/>
                 <field name="required_skill_id" options="{'no_create': True}"/>
                 <field name="land_parcel_id"/>
                 <field name="biological_lot_id"/>
+                <field name="support_id" groups="base.group_no_one"/>
+                <field name="size_value"/>
             </xpath>
             <xpath expr="//group" position="after">
-                <group string="Nutrient Balance (N/P/K)" invisible="total_n == 0 and total_p == 0 and total_k == 0">
-                    <group>
+                <group string="Nutrient Stats" invisible="total_n == 0 and total_p == 0 and total_k == 0">
+                    <group string="Totals (kg)">
                         <field name="total_n"/>
                         <field name="total_p"/>
                         <field name="total_k"/>
+                    </group>
+                    <group string="Density (kg/unit)">
+                        <field name="n_density"/>
+                        <field name="p_density"/>
+                        <field name="k_density"/>
+                    </group>
+                </group>
+                <group string="Safety &amp; Compliance" invisible="not biological_lot_id">
+                    <group>
+                        <field name="is_safe_to_harvest" widget="boolean_toggle"/>
+                        <field name="days_to_safety" invisible="is_safe_to_harvest"/>
                     </group>
                 </group>
             </xpath>
