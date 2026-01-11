@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Update Tree View -->
+    <record id="view_iiot_update_tree" model="ir.ui.view">
+        <field name="name">iiot.update.tree</field>
+        <field name="model">iiot.update</field>
+        <field name="arch" type="xml">
+            <list string="OTA更新记录">
+                <field name="name"/>
+                <field name="device_id"/>
+                <field name="firmware_id"/>
+                <field name="status"/>
+                <field name="progress"/>
+                <field name="create_date"/>
+                <field name="date_started"/>
+                <field name="date_completed"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Update Form View -->
+    <record id="view_iiot_update_form" model="ir.ui.view">
+        <field name="name">iiot.update.form</field>
+        <field name="model">iiot.update</field>
+        <field name="arch" type="xml">
+            <form string="OTA更新记录">
+                <header>
+                    <button name="action_send_update_command" string="发送更新指令" type="object" class="btn-primary" invisible="status != 'draft'"/>
+                    <button name="action_cancel_update" string="取消更新" type="object" invisible="status not in ('draft', 'pending')"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,pending,in_progress,success,failed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="device_id"/>
+                            <field name="firmware_id"/>
+                        </group>
+                        <group>
+                            <field name="status"/>
+                            <field name="progress"/>
+                        </group>
+                    </group>
+                    <group string="时间信息">
+                        <field name="date_started"/>
+                        <field name="date_completed"/>
+                        <field name="create_date"/>
+                    </group>
+                    <group string="错误信息" invisible="status != 'failed'">
+                        <field name="error_message"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Update Action -->
+    <record id="action_iiot_update" model="ir.actions.act_window">
+        <field name="name">OTA更新记录</field>
+        <field name="res_model">iiot.update</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

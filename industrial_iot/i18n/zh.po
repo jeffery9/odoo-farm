@@ -1,0 +1,329 @@
+# Chinese translation for Industrial IoT module
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: zh_CN\n"
+
+# Models
+msgid "Industrial IoT Device Profile"
+msgstr "工业物联网设备配置模板"
+
+msgid "Industrial IoT Telemetry Rule"
+msgstr "工业物联网遥测规则"
+
+msgid "Industrial IoT Device"
+msgstr "工业物联网设备"
+
+msgid "Industrial IoT Firmware"
+msgstr "工业物联网固件"
+
+msgid "Industrial IoT Update"
+msgstr "工业物联网更新"
+
+# Fields in iiot.device.profile
+msgid "Device Profile"
+msgstr "设备配置模板"
+
+msgid "Code"
+msgstr "代码"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Telemetry Topic Template"
+msgstr "遥测主题模板"
+
+msgid "Command Topic Template"
+msgstr "命令主题模板"
+
+msgid "OTA Notify Topic Template"
+msgstr "OTA通知主题模板"
+
+msgid "OTA Status Topic Template"
+msgstr "OTA状态主题模板"
+
+msgid "Command Template"
+msgstr "命令模板"
+
+# Fields in iiot.telemetry.rule
+msgid "Telemetry Rule"
+msgstr "遥测规则"
+
+msgid "Profile"
+msgstr "配置模板"
+
+msgid "JSON Path"
+msgstr "JSON路径"
+
+msgid "Target Model"
+msgstr "目标模型"
+
+msgid "Target Domain"
+msgstr "目标域"
+
+msgid "Target Field"
+msgstr "目标字段"
+
+msgid "Sequence"
+msgstr "序列"
+
+msgid "Active"
+msgstr "激活"
+
+# Fields in iiot.device
+msgid "Device"
+msgstr "设备"
+
+msgid "Serial Number"
+msgstr "序列号"
+
+msgid "Device ID"
+msgstr "设备ID"
+
+msgid "Business Reference"
+msgstr "业务关联"
+
+msgid "Config Token"
+msgstr "配置令牌"
+
+msgid "Is Active"
+msgstr "是否激活"
+
+msgid "Connection Status"
+msgstr "连接状态"
+
+msgid "Last Telemetry"
+msgstr "最后遥测"
+
+msgid "Last Command"
+msgstr "最后命令"
+
+msgid "Firmware Version"
+msgstr "固件版本"
+
+msgid "Topic Map"
+msgstr "主题映射"
+
+# Fields in iiot.firmware
+msgid "Firmware"
+msgstr "固件"
+
+msgid "Version"
+msgstr "版本"
+
+msgid "Profile Code"
+msgstr "配置代码"
+
+msgid "File URL"
+msgstr "文件URL"
+
+msgid "File Size"
+msgstr "文件大小"
+
+msgid "Checksum"
+msgstr "校验和"
+
+msgid "Description"
+msgstr "描述"
+
+# Fields in iiot.update
+msgid "Update"
+msgstr "更新"
+
+msgid "Device"
+msgstr "设备"
+
+msgid "Firmware"
+msgstr "固件"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Progress"
+msgstr "进度"
+
+msgid "Date Started"
+msgstr "开始日期"
+
+msgid "Date Completed"
+msgstr "完成日期"
+
+msgid "Error Message"
+msgstr "错误信息"
+
+# Status values
+msgid "Draft"
+msgstr "草稿"
+
+msgid "Pending"
+msgstr "待处理"
+
+msgid "In Progress"
+msgstr "进行中"
+
+msgid "Success"
+msgstr "成功"
+
+msgid "Failed"
+msgstr "失败"
+
+msgid "Online"
+msgstr "在线"
+
+msgid "Offline"
+msgstr "离线"
+
+# Button labels and actions
+msgid "Generate Config Token"
+msgstr "生成配置令牌"
+
+msgid "Send Command"
+msgstr "发送命令"
+
+msgid "OTA Update"
+msgstr "OTA升级"
+
+msgid "Send Reset Command"
+msgstr "发送重置指令"
+
+msgid "Re-generate Token"
+msgstr "重新生成令牌"
+
+# Views and Menus
+msgid "Industrial IoT"
+msgstr "工业物联网"
+
+msgid "Device Management"
+msgstr "设备管理"
+
+msgid "Device Configuration Templates"
+msgstr "设备配置模板"
+
+msgid "IIoT Devices"
+msgstr "IIoT设备"
+
+msgid "Telemetry Management"
+msgstr "遥测管理"
+
+msgid "Telemetry Rules"
+msgstr "遥测规则"
+
+msgid "OTA Management"
+msgstr "OTA管理"
+
+msgid "Firmware Versions"
+msgstr "固件版本"
+
+msgid "OTA Update Records"
+msgstr "OTA更新记录"
+
+msgid "Business Association"
+msgstr "业务关联"
+
+msgid "Status Information"
+msgstr "状态信息"
+
+msgid "Config Token"
+msgstr "配置令牌"
+
+msgid "Topic Configuration"
+msgstr "Topic配置"
+
+msgid "Target Configuration"
+msgstr "目标配置"
+
+msgid "Command Templates"
+msgstr "命令模板"
+
+msgid "Telemetry Rules"
+msgstr "遥测规则"
+
+msgid "Device Update Records"
+msgstr "设备更新记录"
+
+msgid "OTA Update Status"
+msgstr "OTA更新状态"
+
+# Error messages
+msgid "Device ID cannot be empty"
+msgstr "设备ID不能为空"
+
+msgid "Device ID must be alphanumeric and can contain hyphens and underscores"
+msgstr "设备ID必须为字母数字，可包含连字符和下划线"
+
+msgid "Topic template must contain {device} placeholder"
+msgstr "主题模板必须包含{device}占位符"
+
+msgid "Invalid JSON Path expression: %s"
+msgstr "无效的JSON路径表达式: %s"
+
+msgid "Invalid domain expression: %s"
+msgstr "无效的域表达式: %s"
+
+msgid "Serial number already exists"
+msgstr "序列号已存在"
+
+msgid "Device with this serial number already exists"
+msgstr "具有此序列号的设备已存在"
+
+msgid "Invalid checksum format"
+msgstr "无效的校验和格式"
+
+msgid "Firmware file size must be positive"
+msgstr "固件文件大小必须为正数"
+
+# Help texts
+msgid "Unique identifier for the device in the IIoT system"
+msgstr "设备在IIoT系统中的唯一标识符"
+
+msgid "Templates for MQTT topics used by devices of this profile"
+msgstr "此配置文件设备使用的MQTT主题模板"
+
+msgid "Jinja2 template for command messages"
+msgstr "命令消息的Jinja2模板"
+
+msgid "JSONPath expression to extract value from telemetry payload"
+msgstr "从遥测负载中提取值的JSONPath表达式"
+
+msgid "Odoo model to update with telemetry data"
+msgstr "使用遥测数据更新的Odoo模型"
+
+msgid "Domain to identify specific records in target model"
+msgstr "在目标模型中识别特定记录的域"
+
+msgid "Field in target model to update with telemetry value"
+msgstr "目标模型中使用遥测值更新的字段"
+
+msgid "Business object that this device is associated with"
+msgstr "此设备关联的业务对象"
+
+msgid "Current connection status of the device"
+msgstr "设备的当前连接状态"
+
+msgid "Firmware version currently installed on the device"
+msgstr "设备上当前安装的固件版本"
+
+msgid "Configuration token for secure device onboarding"
+msgstr "安全设备入网的配置令牌"
+
+msgid "URL to download firmware file from"
+msgstr "下载固件文件的URL"
+
+msgid "OTA update record for this device and firmware"
+msgstr "此设备和固件的OTA更新记录"
+
+# Model descriptions
+msgid "Device profiles define communication templates for different types of IIoT devices"
+msgstr "设备配置模板定义不同类型IIoT设备的通信模板"
+
+msgid "Telemetry rules define how to map incoming telemetry data to business objects"
+msgstr "遥测规则定义如何将传入的遥测数据映射到业务对象"
+
+msgid "IIoT devices represent physical devices in the system"
+msgstr "IIoT设备表示系统中的物理设备"
+
+msgid "Firmware versions available for OTA updates"
+msgstr "可用于OTA更新的固件版本"
+
+msgid "OTA update records track the status of firmware updates"
+msgstr "OTA更新记录跟踪固件更新的状态"

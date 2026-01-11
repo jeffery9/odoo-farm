@@ -6,7 +6,9 @@
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button class="oe_stat_button" type="object" name="action_view_analytic_lines" icon="fa-money" invisible="not analytic_account_id">
+                <button class="oe_stat_button" type="object" name="action_view_analytic_lines" 
+                        icon="fa-money" invisible="not analytic_account_id"
+                        groups="farm_core.group_farm_manager">
                     <div class="o_stat_info">
                         <span class="o_stat_value">
                             <field name="total_production_costs" widget="monetary"/>

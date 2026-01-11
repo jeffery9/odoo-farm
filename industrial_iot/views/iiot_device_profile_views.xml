@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Device Profile Tree View -->
+    <record id="view_iiot_device_profile_tree" model="ir.ui.view">
+        <field name="name">iiot.device.profile.tree</field>
+        <field name="model">iiot.device.profile</field>
+        <field name="arch" type="xml">
+            <list string="设备配置模板">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="telemetry_topic_template"/>
+                <field name="command_topic_template"/>
+                <field name="ota_notify_topic_template"/>
+                <field name="ota_status_topic_template"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Device Profile Form View -->
+    <record id="view_iiot_device_profile_form" model="ir.ui.view">
+        <field name="name">iiot.device.profile.form</field>
+        <field name="model">iiot.device.profile</field>
+        <field name="arch" type="xml">
+            <form string="设备配置模板">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="telemetry_topic_template"/>
+                            <field name="command_topic_template"/>
+                        </group>
+                    </group>
+                    <group string="OTA Topic 配置">
+                        <field name="ota_notify_topic_template"/>
+                        <field name="ota_status_topic_template"/>
+                    </group>
+                    <group string="命令模板">
+                        <field name="command_template" widget="ace" options="{'mode': 'json'}"/>
+                    </group>
+                    <group string="遥测规则">
+                        <field name="iiot_telemetry_rule_ids" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Device Profile Action -->
+    <record id="action_iiot_device_profile" model="ir.actions.act_window">
+        <field name="name">设备配置模板</field>
+        <field name="res_model">iiot.device.profile</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
