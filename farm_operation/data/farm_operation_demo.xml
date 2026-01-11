@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="campaign_2026_spring" model="agricultural.campaign">
+            <field name="name">2026 Spring Growing Season (2026春季产季)</field>
+            <field name="date_start" eval="(datetime.now() + relativedelta(months=1)).strftime('%Y-%m-01')"/>
+            <field name="date_end" eval="(datetime.now() + relativedelta(months=6)).strftime('%Y-%m-30')"/>
+            <field name="description">Major growing season for wheat and corn.</field>
+        </record>
+
+        <record id="agri_project_wheat" model="project.project">
+            <field name="name">Wheat Cultivation 2026</field>
+            <field name="is_agri_activity">True</field>
+            <field name="activity_family">planting</field>
+        </record>
+    </data>
+</odoo>
