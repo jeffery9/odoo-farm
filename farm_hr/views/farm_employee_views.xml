@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_employee_form_inherit_farm" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.farm</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_ids']" position="after">
+                <field name="is_seasonal"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Farm Performance" name="farm_performance" groups="farm_core.group_farm_manager">
+                    <group>
+                        <field name="piece_rate_total" readonly="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
