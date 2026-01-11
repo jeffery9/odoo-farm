@@ -24,6 +24,13 @@
                                                 <span class="badge rounded-pill bg-info" t-field="lot.biological_stage"/>
                                             </div>
                                         </div>
+                                        <t t-if="lot.certification_level and lot.certification_level != 'conventional'">
+                                            <div class="mt-3 text-center">
+                                                <span class="badge bg-warning text-dark p-2 w-100" style="font-size: 1rem;">
+                                                    <i class="fa fa-certificate me-2"/>Certified: <span t-field="lot.certification_level"/>
+                                                </span>
+                                            </div>
+                                        </t>
                                     </div>
                                 </div>
 
