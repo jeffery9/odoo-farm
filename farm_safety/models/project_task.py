@@ -10,6 +10,25 @@ class ProjectTask(models.Model):
         help="Select a template to auto-generate prevention tasks."
     )
 
+    def action_confirm_intervention_safety(self, product_ids):
+        """ 
+        当干预任务涉及药物时，更新关联批次的休药期截止日。
+        供 farm_operation 或 mrp 调用。
+        """
+        self.ensure_one()
+        if not self.biological_lot_id:
+            return
+            
+        products = self.env['product.product'].browse(product_ids)
+        max_period = max(products.mapped('withdrawal_period_days') or [0])
+        
+        if max_period > 0:
+            new_expiry = fields.Datetime.now() + timedelta(days=max_period)
+            # 更新批次上的截止时间
+            if not self.biological_lot_id.withdrawal_end_datetime or new_expiry > self.biological_lot_id.withdrawal_end_datetime:
+                self.biological_lot_id.write({'withdrawal_end_datetime': new_expiry})
+                self.message_post(body=_("SAFETY: Withdrawal period updated to %s due to medication.") % new_expiry)
+
     def action_apply_prevention_template(self):
         """ 根据模板生成子任务 """
         self.ensure_one()

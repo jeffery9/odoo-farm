@@ -30,6 +30,23 @@ class FarmLot(models.Model):
         ('grade_c', 'Grade C (二级/次品)'),
     ], string="Quality Grade")
 
+    # 安全合规 [US-35]
+    withdrawal_end_datetime = fields.Datetime("Safe to Harvest After", help="Withdrawal period end date.")
+    is_safe_to_harvest = fields.Boolean("Is Safe to Harvest", compute='_compute_is_safe')
+    
+    # 隔离管理 [US-34]
+    state = fields.Selection([
+        ('healthy', 'Healthy (正常)'),
+        ('quarantine', 'Quarantined (隔离)'),
+        ('disposed', 'Disposed (已处置)')
+    ], string="Health State", default='healthy', tracking=True)
+
+    @api.depends('withdrawal_end_datetime')
+    def _compute_is_safe(self):
+        now = fields.Datetime.now()
+        for lot in self:
+            lot.is_safe_to_harvest = not lot.withdrawal_end_datetime or lot.withdrawal_end_datetime <= now
+
     # 动态属性 [US-02]
     lot_properties = fields.Properties(
         'Properties',
