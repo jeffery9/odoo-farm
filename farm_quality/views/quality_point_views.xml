@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="farm_quality_point_view_tree" model="ir.ui.view">
+        <field name="name">farm.quality.point.list</field>
+        <field name="model">farm.quality.point</field>
+        <field name="arch" type="xml">
+            <list string="Quality Control Points">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="test_type"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_farm_quality_point" model="ir.actions.act_window">
+        <field name="name">Quality Points</field>
+        <field name="res_model">farm.quality.point</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_quality_root" name="Quality Control" sequence="60"/>
+    <menuitem id="menu_quality_point" name="Control Points" parent="menu_quality_root" action="action_farm_quality_point" sequence="10"/>
+</odoo>

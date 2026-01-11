@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="farm_quality_check_view_tree" model="ir.ui.view">
+        <field name="name">farm.quality.check.list</field>
+        <field name="model">farm.quality.check</field>
+        <field name="arch" type="xml">
+            <list string="Quality Checks">
+                <field name="name"/>
+                <field name="lot_id"/>
+                <field name="point_id"/>
+                <field name="quality_state" widget="badge" decoration-success="quality_state == 'pass'" decoration-danger="quality_state == 'fail'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="farm_quality_check_view_form" model="ir.ui.view">
+        <field name="name">farm.quality.check.form</field>
+        <field name="model">farm.quality.check</field>
+        <field name="arch" type="xml">
+            <form string="Quality Check">
+                <header>
+                    <button name="action_pass" string="Pass" type="object" class="btn-success" invisible="quality_state != 'none' or test_type == 'measure'"/>
+                    <button name="action_fail" string="Fail" type="object" class="btn-danger" invisible="quality_state != 'none' or test_type == 'measure'"/>
+                    <button name="action_done" string="Validate" type="object" class="btn-primary" invisible="quality_state != 'none' or test_type != 'measure'"/>
+                    <field name="quality_state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="point_id"/>
+                            <field name="lot_id"/>
+                            <field name="test_type" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="measure" invisible="test_type != 'measure'"/>
+                            <field name="user_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_quality_check" model="ir.actions.act_window">
+        <field name="name">Quality Checks</field>
+        <field name="res_model">farm.quality.check</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_quality_check" name="Quality Checks" parent="menu_quality_root" action="action_farm_quality_check" sequence="20"/>
+</odoo>
