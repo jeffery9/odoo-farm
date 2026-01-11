@@ -19,6 +19,11 @@ class FarmActivity(models.Model):
         ('food_processing', 'Food Processing (食品加工)'),
     ], string="Activity Family", help="Specify the agricultural sector.")
 
+    production_cycle = fields.Selection([
+        ('annual', 'Annual (年度)'),
+        ('perennial', 'Perennial (多年生)'),
+    ], string="Production Cycle", default='annual')
+
     task_sequence_id = fields.Many2one(
         'ir.sequence', 
         string="Task Sequence",

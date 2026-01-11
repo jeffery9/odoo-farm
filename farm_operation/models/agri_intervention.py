@@ -22,6 +22,35 @@ class AgriIntervention(models.Model):
         ('medical', 'Medical/Prevention (医疗/防疫)'),
     ], string="Intervention Type")
 
+    # Ekylibre Mapping: Intervention Parameters [US-Mapping]
+    doer_ids = fields.Many2many('hr.employee', string="Doers/Workers")
+    tool_ids = fields.Many2many('maintenance.equipment', string="Tools/Machinery")
+    
+    procedure_name = fields.Char("Procedure/Method", help="e.g. Mechanical sowing, manual weeding")
+
+    # Ekylibre Mapping: Costing [US-Mapping]
+    input_cost = fields.Float("Input Cost", compute='_compute_agri_costs', store=True)
+    tool_cost = fields.Float("Tool/Machinery Cost", compute='_compute_agri_costs', store=True)
+    doer_cost = fields.Float("Labor Cost", compute='_compute_agri_costs', store=True)
+    total_agri_cost = fields.Float("Total Intervention Cost", compute='_compute_agri_costs', store=True)
+
+    @api.depends('move_raw_ids.state', 'move_raw_ids.product_uom_qty', 'workorder_ids.duration')
+    def _compute_agri_costs(self):
+        for mo in self:
+            # 1. 投入品成本
+            inputs = sum(mo.move_raw_ids.mapped(lambda m: m.product_uom_qty * m.product_id.standard_price))
+            
+            # 2. 劳动力成本 (基于工单或工时)
+            labor = sum(mo.workorder_ids.mapped('duration')) / 60.0 * 50.0 # 假设 50/小时
+            
+            # 3. 工具成本 (示例：基于工单中的工作中心费率)
+            tools = sum(mo.workorder_ids.mapped(lambda w: w.duration / 60.0 * w.workcenter_id.costs_hour))
+            
+            mo.input_cost = inputs
+            mo.doer_cost = labor
+            mo.tool_cost = tools
+            mo.total_agri_cost = inputs + labor + tools
+
     # 工时追踪 [US-42]
     work_start_datetime = fields.Datetime("Work Start")
     is_working = fields.Boolean("In Progress", default=False)
