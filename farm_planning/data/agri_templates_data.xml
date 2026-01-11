@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Common Intervention Templates -->
+        <record id="template_tillage_standard" model="agri.intervention.template">
+            <name>Standard Tillage (标准耕作)</name>
+            <intervention_type>tillage</intervention_type>
+            <estimated_labor_hours>2.0</estimated_labor_hours>
+        </record>
+
+        <record id="template_sowing_standard" model="agri.intervention.template">
+            <name>Standard Sowing (标准播种)</name>
+            <intervention_type>sowing</intervention_type>
+            <estimated_labor_hours>3.0</estimated_labor_hours>
+        </record>
+
+        <record id="template_fertilizing_base" model="agri.intervention.template">
+            <name>Basal Fertilization (基肥施用)</name>
+            <intervention_type>fertilizing</intervention_type>
+            <estimated_labor_hours>1.5</estimated_labor_hours>
+        </record>
+
+        <record id="template_protection_standard" model="agri.intervention.template">
+            <name>Crop Protection Spray (标准植保喷洒)</name>
+            <intervention_type>protection</intervention_type>
+            <estimated_labor_hours>1.0</estimated_labor_hours>
+        </record>
+
+        <record id="template_harvesting_manual" model="agri.intervention.template">
+            <name>Manual Harvesting (人工采收)</name>
+            <intervention_type>harvesting</intervention_type>
+            <estimated_labor_hours>8.0</estimated_labor_hours>
+        </record>
+
+        <record id="template_harvesting_machine" model="agri.intervention.template">
+            <name>Machine Harvesting (机械采收)</name>
+            <intervention_type>harvesting</intervention_type>
+            <estimated_labor_hours>1.5</estimated_labor_hours>
+        </record>
+    </data>
+</odoo>

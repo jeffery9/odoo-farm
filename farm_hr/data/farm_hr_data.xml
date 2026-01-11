@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Standard Agricultural Skills -->
+        <record id="skill_harvester_operator" model="farm.agri.skill">
+            <name>Harvester Operator (收割机手)</name>
+            <description>Certified to operate heavy harvesting machinery.</description>
+        </record>
+
+        <record id="skill_veterinarian" model="farm.agri.skill">
+            <name>Veterinarian (兽医)</name>
+            <description>Qualified for animal health checks and vaccinations.</description>
+        </record>
+
+        <record id="skill_pesticide_applier" model="farm.agri.skill">
+            <name>Pesticide Applier (植保员)</name>
+            <description>Trained in safe handling and application of crop protection products.</description>
+        </record>
+
+        <record id="skill_irrigation_tech" model="farm.agri.skill">
+            <name>Irrigation Technician (灌溉技工)</name>
+            <description>Management of automated irrigation and fertigation systems.</description>
+        </record>
+
+        <record id="skill_nursery_expert" model="farm.agri.skill">
+            <name>Nursery Expert (育苗专家)</name>
+            <description>Expertise in seed germination and seedling management.</description>
+        </record>
+    </data>
+</odoo>

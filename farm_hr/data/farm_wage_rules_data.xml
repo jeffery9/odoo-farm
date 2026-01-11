@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Default Piece-rate Wage Rules -->
+        <record id="wage_rule_tillage" model="farm.wage.rule">
+            <work_type>tillage</work_type>
+            <price_per_unit>150.0</price_per_unit> <!-- per hectare/day -->
+        </record>
+
+        <record id="wage_rule_harvesting" model="farm.wage.rule">
+            <work_type>harvesting</work_type>
+            <price_per_unit>0.5</price_per_unit> <!-- per kg -->
+        </record>
+
+        <record id="wage_rule_sowing" model="farm.wage.rule">
+            <work_type>sowing</work_type>
+            <price_per_unit>100.0</price_per_unit>
+        </record>
+
+        <record id="wage_rule_packaging" model="farm.wage.rule">
+            <work_type>packaging</work_type>
+            <price_per_unit>0.1</price_per_unit> <!-- per box/unit -->
+        </record>
+    </data>
+</odoo>

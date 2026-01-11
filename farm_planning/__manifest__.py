@@ -14,6 +14,7 @@
     'depends': ['farm_operation', 'farm_hr'],
     'data': [
         'security/ir.model.access.csv',
+        'data/agri_templates_data.xml',
         'views/intervention_template_views.xml',
         'views/technical_route_views.xml',
         'views/scenario_views.xml',
