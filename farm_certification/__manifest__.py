@@ -11,13 +11,12 @@
         - Automatic Certification Inheritance for Harvested Lots
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'farm_operation', 'purchase'],
+    'depends': ['farm_core', 'farm_operation'],
     'data': [
         'security/ir.model.access.csv',
         'views/certification_views.xml',
-        'views/certification_report.xml',
     ],
     'installable': True,
     'application': False,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }
