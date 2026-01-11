@@ -13,6 +13,7 @@
     'author': 'Jeffery',
     'depends': ['project', 'stock'],
     'data': [
+        'security/farm_security.xml',
         'security/ir.model.access.csv',
         'views/farm_activity_views.xml',
     ],

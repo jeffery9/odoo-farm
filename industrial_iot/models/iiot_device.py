@@ -31,10 +31,6 @@ class IiotDevice(models.Model):
     config_token = fields.Char('Config Token', copy=False, help='One-time configuration download token')
     firmware_version = fields.Char('Firmware Version', help='Current firmware version')
 
-    # 视频流集成 [US-16-01]
-    is_camera = fields.Boolean("Is Camera", default=False)
-    live_stream_url = fields.Char("Live Stream URL", help="HLS/HTTP/RTSP stream URL for the camera")
-
     # Status fields
     is_active = fields.Boolean('Active', default=True)
     last_telemetry = fields.Datetime('Last Telemetry')
@@ -94,35 +90,30 @@ class IiotDevice(models.Model):
         }
 
     def get_topic_map(self):
-        """
-        Generate complete Topic list with SaaS isolation [company_id prefix]
-        """
+        """Generate complete Topic list"""
         self.ensure_one()
         if not self.profile_id:
             return {}
 
         profile = self.profile_id
         device_id = self.device_id
-        # 强制增加公司前缀，确保 SaaS 多租户隔离
-        prefix = f"company_{self.env.company.id}/"
 
         return {
-            'telemetry': prefix + profile.telemetry_topic_template.format(device=device_id),
-            'command': prefix + profile.command_topic_template.format(device=device_id),
-            'ota_notify': prefix + profile.ota_notify_topic_template.format(device=device_id),
-            'ota_status': prefix + profile.ota_status_topic_template.format(device=device_id),
+            'telemetry': profile.telemetry_topic_template.format(device=device_id),
+            'command': profile.command_topic_template.format(device=device_id),
+            'ota_notify': profile.ota_notify_topic_template.format(device=device_id),
+            'ota_status': profile.ota_status_topic_template.format(device=device_id),
         }
 
     def send_command(self, action, **params):
-        """Send command with SaaS isolation"""
+        """Send command"""
         self.ensure_one()
 
         if not self.profile_id:
             raise UserError(_("Device not associated with communication profile"))
 
-        # Get command topic with prefix
-        prefix = f"company_{self.env.company.id}/"
-        command_topic = prefix + self.profile_id.command_topic_template.format(device=self.device_id)
+        # Get command topic
+        command_topic = self.profile_id.command_topic_template.format(device=self.device_id)
 
         # Render command message using Jinja2 template
         try:
@@ -151,31 +142,10 @@ class IiotDevice(models.Model):
             )
             if response.status_code == 200:
                 self.last_command = fields.Datetime.now()
-                # Log the command in farm.command.log
-                self.env['farm.command.log'].create({
-                    'device_id': self.id,
-                    'command': action,
-                    'params': json.dumps(params),
-                    'status': 'success',
-                })
                 return True
             else:
-                # Log failed command
-                self.env['farm.command.log'].create({
-                    'device_id': self.id,
-                    'command': action,
-                    'params': json.dumps(params),
-                    'status': 'failed',
-                })
                 raise UserError(_("Failed to send command: %s") % response.text)
         except Exception as e:
-            # Log error command
-            self.env['farm.command.log'].create({
-                'device_id': self.id,
-                'command': action,
-                'params': json.dumps(params),
-                'status': 'failed',
-            })
             raise UserError(_("Error occurred while sending command: %s") % str(e))
 
     def process_telemetry_data(self, telemetry_data):

@@ -25,45 +25,47 @@
         <field name="arch" type="xml">
             <form string="IIoT设备">
                 <header>
-                    <button name="action_generate_config_token" string="Generate Config Token" type="object" class="btn-primary"/>
+                    <button name="action_generate_config_token" string="生成配置令牌" type="object" class="btn-primary"/>
                     <field name="connection_status" widget="statusbar" statusbar_visible="online"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="send_command" icon="fa-play">
+                            <div>发送重置指令</div>
+                        </button>
                         <button class="oe_stat_button" type="action" name="%(action_iiot_update)d" context="{'default_device_id': active_id}" icon="fa-upload">
                             <div>OTA升级</div>
                         </button>
                     </div>
                     <group>
-                        <group string="Device Info">
+                        <group>
                             <field name="serial_number"/>
                             <field name="device_id"/>
                             <field name="profile_id"/>
                         </group>
-                        <group string="Status &amp; Control">
+                        <group>
                             <field name="is_active"/>
-                            <field name="is_camera"/>
                             <field name="firmware_version"/>
-                            <field name="connection_status" widget="badge" decoration-success="connection_status == 'online'" decoration-danger="connection_status == 'error'" decoration-info="connection_status == 'offline'"/>
-                            <field name="last_telemetry"/>
-                            <field name="last_command"/>
                         </group>
                     </group>
-                    <group string="Remote Control" name="remote_control">
-                        <button name="send_command" string="Power On" type="object" context="{'action': 'power', 'params': {'state': 'on'}}" class="oe_highlight"/>
-                        <button name="send_command" string="Power Off" type="object" context="{'action': 'power', 'params': {'state': 'off'}}" class="oe_highlight"/>
-                        <button name="send_command" string="Reset" type="object" context="{'action': 'reset'}" class="oe_highlight"/>
-                        <field name="live_stream_url" widget="url" invisible="not is_camera"/>
+                    <group string="业务关联">
+                        <field name="business_ref"/>
+                    </group>
+                    <group string="状态信息">
+                        <field name="connection_status"/>
+                        <field name="last_telemetry"/>
+                        <field name="last_command"/>
                     </group>
                     <notebook>
-                        <page string="Business Ref" name="business_ref_page">
-                            <group><field name="business_ref"/></group>
-                        </page>
-                        <page string="Config &amp; Topics" name="config_topics">
+                        <page string="配置令牌" name="config_token">
                             <group>
                                 <field name="config_token" readonly="1"/>
-                                <button name="action_generate_config_token" string="Regenerate Token" type="object" class="btn-secondary"/>
+                                <div>
+                                    <button name="action_generate_config_token" string="重新生成令牌" type="object" class="btn-secondary"/>
+                                </div>
                             </group>
+                        </page>
+                        <page string="Topic配置" name="topics">
                             <group>
                                 <field name="topic_map" widget="json" readonly="1"/>
                             </group>

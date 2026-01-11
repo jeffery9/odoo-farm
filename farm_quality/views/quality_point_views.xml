@@ -18,6 +18,6 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_quality_root" name="Quality Control" sequence="60"/>
+    <menuitem id="menu_quality_root" name="Quality Control" sequence="60" groups="farm_core.group_farm_specialist"/>
     <menuitem id="menu_quality_point" name="Control Points" parent="menu_quality_root" action="action_farm_quality_point" sequence="10"/>
 </odoo>
