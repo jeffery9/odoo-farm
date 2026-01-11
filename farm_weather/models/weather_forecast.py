@@ -23,10 +23,10 @@ class FarmWeatherForecast(models.Model):
     
     is_warning = fields.Boolean("Weather Warning", compute='_compute_warning', store=True)
     warning_type = fields.Selection([
-        ('frost', 'Frost Risk'),
-        ('storm', 'Heavy Rain/Storm'),
-        ('heat', 'Extreme Heat'),
-        ('wind', 'Strong Wind')
+        ('frost', 'Frost Risk (霜冻)'),
+        ('storm', 'Heavy Rain/Storm (大雨/暴雨)'),
+        ('heat', 'Extreme Heat (高温)'),
+        ('wind', 'Strong Wind (大风)')
     ], string="Warning Type")
 
     @api.depends('temp_min', 'precipitation', 'temp_max', 'wind_speed')
@@ -60,51 +60,6 @@ class FarmWeatherForecast(models.Model):
         ])
         for loc in locations:
             self._fetch_weather_for_location(loc)
-
-    def _trigger_disaster_alert(self):
-        """ 触发灾害预警 [US-17-10] """
-        if self.is_warning and self.warning_type in ['storm', 'frost', 'heat']:
-            # 1. 查找是否已有活跃的预警
-            existing_activity = self.env['mail.activity'].search([
-                ('res_model', '=', 'stock.location'),
-                ('res_id', '=', self.location_id.id),
-                ('summary', 'like', 'Weather Alert'),
-                ('date_deadline', '>=', fields.Date.today())
-            ], limit=1)
-            
-            # 查找是否已有对应的灾害事件草稿
-            existing_incident = self.env['farm.disaster.incident'].search([
-                ('disaster_type', '=', self.warning_type),
-                ('date_start', '=', self.date),
-                ('affected_location_ids', 'in', self.location_id.id)
-            ], limit=1)
-
-            if not existing_activity:
-                # 2. 创建预警活动 (Mail Activity)
-                self.env['mail.activity'].create({
-                    'res_model': 'stock.location',
-                    'res_id': self.location_id.id,
-                    'activity_type_id': self.env.ref('mail.mail_activity_data_warning').id,
-                    'summary': _('Weather Alert: %s predicted on %s') % (self.warning_type, self.date),
-                    'note': _('Please check the parcel and activate protection measures if necessary.'),
-                    'user_id': self.env.user.id, 
-                })
-            
-            if not existing_incident:
-                # 3. 自动生成灾害事件草稿 (Farm Disaster Incident)
-                disaster_type_map = {
-                    'storm': 'gale', # 暴风
-                    'frost': 'frost',
-                    'heat': 'high_temp'
-                }
-                self.env['farm.disaster.incident'].create({
-                    'name': _('Weather Disaster: %s on %s for %s') % (self.warning_type, self.date, self.location_id.name),
-                    'disaster_type': disaster_type_map.get(self.warning_type, 'other'),
-                    'date_start': self.date,
-                    'affected_location_ids': [(4, self.location_id.id)],
-                    'description': _('Auto-generated from weather forecast: %s predicted.') % self.warning_type,
-                    'intensity': 'moderate', # 默认中度，可后续人工调整
-                })
 
     def _fetch_weather_for_location(self, location):
         """ 
@@ -147,72 +102,10 @@ class FarmWeatherForecast(models.Model):
                     existing = self.search([('date', '=', dt), ('location_id', '=', location.id)], limit=1)
                     if existing:
                         existing.write(vals)
-                        existing._trigger_disaster_alert()
                     else:
                         vals.update({'date': dt, 'location_id': location.id})
-                        rec = self.create(vals)
-                        rec._trigger_disaster_alert()
+                        self.create(vals)
             else:
                 _logger.error(f"Weather API Error: {response.status_code} - {response.text}")
         except Exception as e:
             _logger.error(f"Weather Fetch Exception: {str(e)}")
-
-    @api.model
-    def get_context_weather(self, res_model, res_id):
-        """
-        获取当前记录上下文的天气信息
-        """
-        if not res_model or not res_id:
-            return None
-        
-        location = False
-        if res_model == 'mrp.production':
-            mo = self.env['mrp.production'].browse(res_id)
-            location = mo.agri_task_id.land_parcel_id
-        elif res_model == 'project.task':
-            task = self.env['project.task'].browse(res_id)
-            location = task.land_parcel_id
-        elif res_model == 'stock.location':
-            location = self.env['stock.location'].browse(res_id)
-            
-        if not location or not location.is_land_parcel:
-            return None
-            
-        # 获取今天的预报
-        forecast = self.search([
-            ('location_id', '=', location.id),
-            ('date', '=', fields.Date.today())
-        ], limit=1)
-        
-        if not forecast:
-            return None
-            
-        return {
-            'temp_max': forecast.temp_max,
-            'temp_min': forecast.temp_min,
-            'condition': forecast.condition,
-            'icon': self._map_icon_to_fa(forecast.icon),
-            'humidity': forecast.humidity,
-            'wind_speed': forecast.wind_speed,
-            'is_warning': forecast.is_warning,
-            'warning_type': forecast.warning_type,
-        }
-
-    def _map_icon_to_fa(self, icon_id):
-        """将 OpenWeatherMap 图标 ID 映射到 FontAwesome """
-        mapping = {
-            '01d': 'fa-sun-o',
-            '01n': 'fa-moon-o',
-            '02d': 'fa-cloud',
-            '02n': 'fa-cloud',
-            '03d': 'fa-cloud',
-            '03n': 'fa-cloud',
-            '04d': 'fa-cloud',
-            '04n': 'fa-cloud',
-            '09d': 'fa-tint',
-            '10d': 'fa-umbrella',
-            '11d': 'fa-bolt',
-            '13d': 'fa-snowflake-o',
-            '50d': 'fa-bars',
-        }
-        return mapping.get(icon_id, 'fa-sun-o')

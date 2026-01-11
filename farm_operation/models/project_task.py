@@ -13,6 +13,26 @@ class ProjectTask(models.Model):
     land_parcel_id = fields.Many2one('stock.location', string="Land Parcel/Pond", domain=[('is_land_parcel', '=', True)])
     gps_lat = fields.Float(related='land_parcel_id.gps_lat', store=True)
     gps_lng = fields.Float(related='land_parcel_id.gps_lng', store=True)
+    
+    # Weather Forecast [US-Weather]
+    forecast_ids = fields.One2many(
+        'farm.weather.forecast', 
+        compute='_compute_weather_forecasts', 
+        string="Weather Forecasts"
+    )
+
+    def _compute_weather_forecasts(self):
+        for task in self:
+            if task.planned_date_begin and task.land_parcel_id:
+                # Find forecasts for the planned period
+                task.forecast_ids = self.env['farm.weather.forecast'].search([
+                    ('location_id', '=', task.land_parcel_id.id),
+                    ('date', '>=', task.planned_date_begin),
+                    ('date', '<=', task.date_deadline or task.planned_date_begin)
+                ])
+            else:
+                task.forecast_ids = False
+
     biological_lot_id = fields.Many2one('stock.lot', string="Biological Asset/Lot", domain="[('is_animal', '=', True)]")
 
     # 需求驱动关联 [US-28]
