@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="farm_automation_rule_view_tree" model="ir.ui.view">
+        <field name="name">farm.automation.rule.list</field>
+        <field name="model">farm.automation.rule</field>
+        <field name="arch" type="xml">
+            <list string="Automation Rules">
+                <field name="name"/>
+                <field name="sensor_type"/>
+                <field name="operator"/>
+                <field name="threshold"/>
+                <field name="target_device_id"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_farm_automation_rule" model="ir.actions.act_window">
+        <field name="name">Automation Rules</field>
+        <field name="res_model">farm.automation.rule</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_farm_iot_root" name="Farm IOT" parent="farm_breeding.menu_breeding_root" sequence="50"/>
+    <menuitem id="menu_farm_automation" name="Automation Rules" parent="menu_farm_iot_root" action="action_farm_automation_rule" sequence="20"/>
+    <menuitem id="menu_farm_telemetry_history" name="Telemetry History" parent="menu_farm_iot_root" action="action_farm_telemetry" sequence="10"/>
+</odoo>
