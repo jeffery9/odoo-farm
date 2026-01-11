@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_prevention_template,farm.prevention.template,model_farm_prevention_template,base.group_user,1,1,1,1
+access_prevention_line,farm.prevention.line,model_farm_prevention_line,base.group_user,1,1,1,1

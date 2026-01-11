@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="farm_prevention_template_view_tree" model="ir.ui.view">
+        <field name="name">farm.prevention.template.list</field>
+        <field name="model">farm.prevention.template</field>
+        <field name="arch" type="xml">
+            <list string="Prevention Plans">
+                <field name="name"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="farm_prevention_template_view_form" model="ir.ui.view">
+        <field name="name">farm.prevention.template.form</field>
+        <field name="model">farm.prevention.template</field>
+        <field name="arch" type="xml">
+            <form string="Prevention Plan">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Broiler Vaccination Plan"/></h1>
+                    </div>
+                    <group>
+                        <field name="active"/>
+                    </group>
+                    <notebook>
+                        <page string="Schedule" name="lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="delay_days"/>
+                                    <field name="name"/>
+                                    <field name="product_id"/>
+                                    <field name="qty"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_prevention_template" model="ir.actions.act_window">
+        <field name="name">Prevention Plans</field>
+        <field name="res_model tension.template" /> <!-- 修复 res_model -->
+        <field name="res_model">farm.prevention.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_safety_root" name="Safety &amp; Health" sequence="40"/>
+    <menuitem id="menu_prevention_template" name="Prevention Plans" parent="menu_safety_root" action="action_farm_prevention_template" sequence="10"/>
+</odoo>
