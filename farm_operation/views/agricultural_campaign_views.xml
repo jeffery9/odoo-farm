@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="agricultural_campaign_view_tree" model="ir.ui.view">
-        <field name="name">farm.agricultural.campaign.list</field>
-        <field name="model">farm.agricultural.campaign</field>
+        <field name="name">agricultural.campaign.list</field>
+        <field name="model">agricultural.campaign</field>
         <field name="arch" type="xml">
             <list string="Production Seasons">
                 <field name="name"/>
@@ -14,8 +14,8 @@
     </record>
 
     <record id="agricultural_campaign_view_form" model="ir.ui.view">
-        <field name="name">farm.agricultural.campaign.form</field>
-        <field name="model">farm.agricultural.campaign</field>
+        <field name="name">agricultural.campaign.form</field>
+        <field name="model">agricultural.campaign</field>
         <field name="arch" type="xml">
             <form string="Production Season">
                 <sheet>
@@ -24,31 +24,18 @@
                         <h1><field name="name" placeholder="e.g. 2026 Spring"/></h1>
                     </div>
                     <group>
-                        <group string="Basic Info">
+                        <group>
                             <field name="date_start"/>
                             <field name="date_end"/>
-                            <field name="land_parcel_id"/>
                         </group>
-                        <group string="GDD Growth Model (US-02-05)">
-                            <field name="target_gdd"/>
-                            <field name="accumulated_gdd" readonly="1"/>
-                            <field name="predicted_harvest_date" readonly="1" decoration-bf="1" decoration-info="1"/>
+                        <group>
+                            <field name="is_active"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Notes">
                             <field name="description"/>
-                        </page>
-                        <page string="Associated Tasks">
-                            <field name="project_task_ids">
-                                <tree>
-                                    <field name="name"/>
-                                    <field name="project_id"/>
-                                    <field name="land_parcel_id"/>
-                                    <field name="date_deadline"/>
-                                    <field name="stage_id"/>
-                                </tree>
-                            </field>
                         </page>
                     </notebook>
                 </sheet>
@@ -56,48 +43,9 @@
         </field>
     </record>
 
-    <!-- Kanban with GDD Progress -->
-    <record id="agricultural_campaign_view_kanban" model="ir.ui.view">
-        <field name="name">farm.agricultural.campaign.kanban</field>
-        <field name="model">farm.agricultural.campaign</field>
-        <field name="arch" type="xml">
-            <kanban class="o_kanban_mobile" sample="1">
-                <field name="name"/>
-                <field name="accumulated_gdd"/>
-                <field name="target_gdd"/>
-                <field name="predicted_harvest_date"/>
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click">
-                            <div class="o_kanban_record_top">
-                                <strong class="o_kanban_record_title"><field name="name"/></strong>
-                            </div>
-                            <div class="o_kanban_record_body">
-                                <div>GDD Progress: <field name="accumulated_gdd"/> / <field name="target_gdd"/></div>
-                                <div class="text-info">Est. Harvest: <field name="predicted_harvest_date"/></div>
-                            </div>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
-
-    <!-- Pivot View -->
-    <record id="agricultural_campaign_view_pivot" model="ir.ui.view">
-        <field name="name">farm.agricultural.campaign.pivot</field>
-        <field name="model">farm.agricultural.campaign</field>
-        <field name="arch" type="xml">
-            <pivot string="Season Analytics">
-                <field name="date_start" interval="year" type="row"/>
-                <field name="accumulated_gdd" type="measure"/>
-            </pivot>
-        </field>
-    </record>
-
     <record id="action_agricultural_campaign" model="ir.actions.act_window">
         <field name="name">Production Seasons</field>
-        <field name="res_model">farm.agricultural.campaign</field>
-        <field name="view_mode">list,kanban,form,pivot</field>
+        <field name="res_model">agricultural.campaign</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>
