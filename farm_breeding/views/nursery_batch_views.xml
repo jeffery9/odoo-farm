@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="farm_nursery_batch_view_tree" model="ir.ui.view">
+        <field name="name">farm.nursery.batch.list</field>
+        <field name="model">farm.nursery.batch</field>
+        <field name="arch" type="xml">
+            <list string="Nursery Batches" decoration-info="state == 'nursery'" decoration-success="state == 'ready'">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="sowing_date"/>
+                <field name="seedling_age"/>
+                <field name="current_count"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="farm_nursery_batch_view_form" model="ir.ui.view">
+        <field name="name">farm.nursery.batch.form</field>
+        <field name="model">farm.nursery.batch</field>
+        <field name="arch" type="xml">
+            <form string="Nursery Batch">
+                <header>
+                    <button name="action_create_transplant_task" string="Convert to Transplant Task" type="object" class="btn-primary" invisible="state != 'ready'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="germinating,nursery,ready,transplanted"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="sowing_date"/>
+                            <field name="seedling_age" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="quantity"/>
+                            <field name="survival_rate"/>
+                            <field name="current_count" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_nursery_batch" model="ir.actions.act_window">
+        <field name="name">Nursery Factory</field>
+        <field name="res_model">farm.nursery.batch</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_breeding_root" name="Breeding" sequence="30"/>
+    <menuitem id="menu_nursery_batch" name="Nursery Factory" parent="menu_breeding_root" action="action_farm_nursery_batch" sequence="10"/>
+</odoo>
