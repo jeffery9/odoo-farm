@@ -5,7 +5,8 @@
         <t t-call="web.basic_layout">
             <div class="page">
                 <t t-foreach="docs" t-as="lot">
-                    <div style="width: 100mm; height: 50mm; border: 1px solid black; padding: 5mm; margin-bottom: 5mm; page-break-inside: avoid;">
+                    <t t-set="bg_img" t-value="res_company.label_background_image"/>
+                    <div t-attf-style="width: 100mm; height: 50mm; border: 1px solid black; padding: 5mm; margin-bottom: 5mm; page-break-inside: avoid; position: relative; #{bg_img ? 'background-image: url(data:image/png;base64,' + bg_img.decode() + '); background-size: cover;' : ''}">
                         <div class="row">
                             <div class="col-8">
                                 <h3 t-field="lot.product_id.name" style="margin-top: 0;"/>
@@ -30,7 +31,8 @@
         <t t-call="web.basic_layout">
             <div class="page">
                 <t t-foreach="docs" t-as="loc">
-                    <div style="width: 150mm; height: 100mm; border: 2px solid green; padding: 10mm; margin-bottom: 10mm; page-break-inside: avoid; border-radius: 5mm;">
+                    <t t-set="bg_img" t-value="res_company.label_background_image"/>
+                    <div t-attf-style="width: 150mm; height: 100mm; border: 2px solid green; padding: 10mm; margin-bottom: 10mm; page-break-inside: avoid; border-radius: 5mm; position: relative; #{bg_img ? 'background-image: url(data:image/png;base64,' + bg_img.decode() + '); background-size: cover;' : ''}">
                         <div class="text-center">
                             <h1 style="color: green;" t-field="loc.name"/>
                             <hr/>
@@ -59,7 +61,8 @@
         <t t-call="web.basic_layout">
             <div class="page">
                 <t t-foreach="docs" t-as="lot">
-                    <div style="width: 40mm; height: 30mm; border: 1px solid #ccc; padding: 2mm; text-align: center; border-radius: 3mm; display: inline-block; margin: 2mm;">
+                    <t t-set="bg_img" t-value="res_company.label_background_image"/>
+                    <div t-attf-style="width: 40mm; height: 30mm; border: 1px solid #ccc; padding: 2mm; text-align: center; border-radius: 3mm; display: inline-block; margin: 2mm; position: relative; #{bg_img ? 'background-image: url(data:image/png;base64,' + bg_img.decode() + '); background-size: cover;' : ''}">
                         <div style="font-weight: bold; font-size: 14px;" t-field="lot.identification_number or lot.name"/>
                         <div style="font-size: 10px;" t-field="lot.product_id.agri_variety"/>
                         <div style="margin-top: 2mm;">
