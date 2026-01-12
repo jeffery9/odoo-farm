@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- 扩展补贴申请表单：增加中国特色字段 -->
+    <record id="view_subsidy_application_form_inherit_ch" model="ir.ui.view">
+        <field name="name">farm.subsidy.application.form.inherit.ch</field>
+        <field name="model">farm.subsidy.application</field>
+        <field name="inherit_id" ref="farm_subsidy.view_subsidy_application_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='program_id']" position="after">
+                <field name="crop_type_china"/>
+                <field name="declared_area_mu" invisible="not declared_area_mu"/>
+            </xpath>
+            <xpath expr="//button[@name='action_generate_moara_report']" position="replace">
+                <button name="action_generate_moara_report" string="Generate MOARA Report" type="object" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
