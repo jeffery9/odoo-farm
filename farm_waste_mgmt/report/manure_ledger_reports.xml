@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_moara_manure_ledger" model="ir.actions.report">
+        <field name="name">MOARA Manure Ledger</field>
+        <field name="model">farm.manure.ledger</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">farm_waste_mgmt.report_moara_manure_ledger_document</field>
+        <field name="report_file">farm_waste_mgmt.report_moara_manure_ledger_document</field>
+        <field name="binding_model_id" ref="model_farm_manure_ledger"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
