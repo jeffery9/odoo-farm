@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'China-specific Agricultural Product Compliance Certificate',
     'description': """
-        Automatically generates "Commitment to Compliance Certificates" for edible agricultural products [US-18-03].
+        Automatically generates "Commitment to Compliance Certificates" for edible agricultural products [US-67].
         - Includes producer, origin, lot, test results, and commitment statement.
         - Integrates QR code for traceability and auto-generation on dispatch.
     """,
@@ -19,5 +19,5 @@
     ],
     'installable': True,
     'application': False,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }
