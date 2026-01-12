@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Extend Company Settings for Entity Registration -->
+    <record id="res_config_settings_view_form_inherit_entity_reg" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.entity.reg</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='res_company_invoicing_settings']" position="after">
+                <h2>Entity Registration (CN)</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="unified_social_credit_code"/>
+                            <div class="text-muted">
+                                Unified Social Credit Code and registration info for Family Farms/Co-ops.
+                            </div>
+                            <field name="unified_social_credit_code" class="oe_inline"/>
+                            <field name="registration_no" class="oe_inline"/>
+                            <field name="entity_type" class="oe_inline"/>
+                        </div>
+                        <div class="o_setting_right_pane mt-3">
+                            <label for="license_expiry_date"/>
+                            <div class="text-muted">
+                                Manage electronic licenses and set expiry reminders.
+                            </div>
+                            <field name="license_expiry_date" class="oe_inline"/>
+                            <field name="is_license_expired" invisible="1"/>
+                            <button name="%(action_farm_cooperative_member)d" type="action" string="Manage Members" class="btn-link" invisible="entity_type != 'cooperative'"/>
+                        </div>
+                        <group string="Electronic Licenses">
+                            <field name="license_attachment_ids" widget="many2many_binary"/>
+                        </group>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Cooperative Member Form & Tree Views -->
+    <record id="view_farm_cooperative_member_tree" model="ir.ui.view">
+        <field name="name">farm.cooperative.member.tree</field>
+        <field name="model">farm.cooperative.member</field>
+        <field name="arch" type="xml">
+            <tree string="Cooperative Members">
+                <field name="partner_id"/>
+                <field name="membership_date"/>
+                <field name="share_capital"/>
+                <field name="is_chairman"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_farm_cooperative_member_form" model="ir.ui.view">
+        <field name="name">farm.cooperative.member.form</field>
+        <field name="model">farm.cooperative.member</field>
+        <field name="arch" type="xml">
+            <form string="Cooperative Member">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="company_id" invisible="1"/>
+                            <field name="partner_id"/>
+                            <field name="membership_date"/>
+                        </group>
+                        <group>
+                            <field name="share_capital"/>
+                            <field name="is_chairman"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_cooperative_member" model="ir.actions.act_window">
+        <field name="name">Cooperative Members</field>
+        <field name="res_model">farm.cooperative.member</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_farm_entity_reg_root" name="Entity Registration (CN)" parent="farm_hr.menu_hr_root" sequence="85"/>
+    <menuitem id="menu_farm_cooperative_member" name="Cooperative Members" parent="menu_farm_entity_reg_root" action="action_farm_cooperative_member" sequence="10" invisible="env.company.entity_type != 'cooperative'"/>
+</oo>
