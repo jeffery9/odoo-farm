@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- 扩展出库单视图：添加合格证生成按钮 -->
+    <record id="view_picking_form_inherit_cert_ch" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.cert.ch</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_validate']" position="after">
+                <button name="action_generate_cert_ch" string="Generate Cert (CN)" type="object" class="oe_highlight" invisible="not requires_cert_ch or state not in ('done')"/>
+                <field name="requires_cert_ch" invisible="1"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Certificates (China)" invisible="not requires_cert_ch">
+                    <field name="certificate_ch_ids">
+                        <tree>
+                            <field name="certificate_no"/>
+                            <field name="lot_id"/>
+                            <field name="product_id"/>
+                            <field name="production_date"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
