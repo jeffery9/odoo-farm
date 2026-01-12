@@ -19,6 +19,7 @@
         'security/ir.model.access.csv',
         'data/multi_farm_data.xml',
         'views/multi_farm_views.xml',
+        'views/menu.xml',
     ],
     'demo': [
     ],

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Farm Multi-Farm App 顶级菜单 -->
+    <menuitem id="menu_farm_multi_farm_root"
+              name="Multi-Entity Collaboration"
+              sequence="120"
+              web_icon="farm_multi_farm,static/description/icon.png"
+              groups="farm_core.group_farm_manager"/>
+
+    <!-- App 内子菜单 -->
+    <menuitem id="menu_cooperative_management"
+              name="Cooperative Management"
+              parent="menu_farm_multi_farm_root"
+              sequence="10"
+              groups="farm_multi_farm.group_user"/>
+
+    <menuitem id="menu_cooperative_entities"
+              name="Cooperatives"
+              parent="menu_cooperative_management"
+              action="action_cooperative_entities"
+              sequence="10"
+              groups="farm_multi_farm.group_user"/>
+
+    <menuitem id="menu_farm_entities"
+              name="Farm Entities"
+              parent="menu_cooperative_management"
+              action="action_farm_entities"
+              sequence="20"
+              groups="farm_multi_farm.group_user"/>
+
+    <menuitem id="menu_resource_sharing"
+              name="Resource Sharing"
+              parent="menu_farm_multi_farm_root"
+              sequence="20"
+              action="action_resource_sharing"
+              groups="farm_multi_farm.group_user"/>
+
+    <menuitem id="menu_internal_settlements"
+              name="Internal Settlements"
+              parent="menu_farm_multi_farm_root"
+              sequence="30"
+              action="action_internal_settlements"
+              groups="farm_multi_farm.group_user"/>
+
+    <menuitem id="menu_franchise_farms"
+              name="Franchise Farms"
+              parent="menu_farm_multi_farm_root"
+              sequence="40"
+              action="action_franchise_farms"
+              groups="farm_multi_farm.group_user"/>
+</odoo>
