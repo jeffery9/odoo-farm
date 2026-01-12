@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 术语映射视图 -->
+    <record id="view_term_mapping_tree" model="ir.ui.view">
+        <field name="name">term.mapping.tree</field>
+        <field name="model">term.mapping</field>
+        <field name="arch" type="xml">
+            <tree string="Term Mappings" decoration-danger="not is_active" decoration-success="is_active">
+                <field name="name"/>
+                <field name="source_term"/>
+                <field name="target_term"/>
+                <field name="language_code"/>
+                <field name="industry_context"/>
+                <field name="is_active"/>
+                <field name="region_specific"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_term_mapping_form" model="ir.ui.view">
+        <field name="name">term.mapping.form</field>
+        <field name="model">term.mapping</field>
+        <field name="arch" type="xml">
+            <form string="Term Mapping">
+                <header>
+                    <field name="is_active" widget="boolean_toggle"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Mapping Name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="source_term" placeholder="e.g. Manufacturing Order"/>
+                            <field name="target_term" placeholder="e.g. Intervention"/>
+                            <field name="language_code"/>
+                        </group>
+                        <group>
+                            <field name="industry_context"/>
+                            <field name="region_specific"/>
+                            <field name="region_code" attrs="{'invisible': [('region_specific', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                        <page string="Usage">
+                            <field name="example_usage" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- 术语映射菜单和动作 -->
+    <record id="action_term_mappings" model="ir.actions.act_window">
+        <field name="name">Term Mappings</field>
+        <field name="res_model">term.mapping</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_term_mapping" 
+              name="Term Mappings" 
+              parent="farm_ux_deindustrialization.menu_ux_root" 
+              action="action_term_mappings" 
+              sequence="10"/>
+</odoo>
