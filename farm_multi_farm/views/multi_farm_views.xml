@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 合作社视图 -->
+    <!-- 合作社实体视图 -->
     <record id="view_cooperative_entity_tree" model="ir.ui.view">
         <field name="name">cooperative.entity.tree</field>
         <field name="model">cooperative.entity</field>
         <field name="arch" type="xml">
             <tree string="Cooperatives">
-                <field name="code"/>
                 <field name="name"/>
+                <field name="code"/>
                 <field name="legal_representative"/>
                 <field name="registration_number"/>
                 <field name="is_active"/>
@@ -323,6 +323,7 @@
     <!-- 菜单 -->
     <menuitem id="menu_multi_farm_root" 
               name="Multi-Entity Collaboration" 
+              parent="farm_core.menu_farm_root" 
               sequence="120"
               groups="farm_core.group_farm_manager"/>
 
