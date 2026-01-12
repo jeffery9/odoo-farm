@@ -363,18 +363,32 @@ class ProductSync(models.Model):
         if product.image_1920:  # 主图
             # 转换为主图格式
             processed_image = self._convert_image_format(product.image_1920, 'main')
-            images.append(processed_image)
+            if processed_image:
+                images.append(processed_image)
         if product.image_variant_ids:  # 变体图片
             for img in product.image_variant_ids[:4]:  # 最多4张变体图
                 processed_image = self._convert_image_format(img, 'variant')
-                images.append(processed_image)
+                if processed_image:
+                    images.append(processed_image)
         return images
 
     def _convert_image_format(self, image_data, image_type):
         """转换图片格式为抖音要求 [US-21-02]"""
         # 这里应该实现实际的图片处理逻辑
         # 抖音可能要求特定的尺寸、格式等
-        return image_data  # 简化实现
+        if not image_data:
+            return None
+
+        # 在实际实现中，这里需要使用图像处理库如Pillow来调整图片尺寸和格式
+        # 例如：将图片调整为抖音要求的尺寸，转换为合适的格式
+        import base64
+        try:
+            # 验证图片数据
+            base64.b64decode(image_data)  # 验证是否为有效的base64数据
+            return image_data  # 在实际实现中，这里应该返回处理后的图片数据
+        except Exception:
+            _logger.error(f"Invalid image data for {image_type} image")
+            return None
 
     def sync_all_products(self):
         """批量同步所有产品 [US-21-02]"""
