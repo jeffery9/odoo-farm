@@ -9,6 +9,7 @@
         - Internal Batch/Lot Tags
         - Individual Animal Identification (Ear Tags) [US-01-04]
         - Land Parcel Signage with GIS/History QR [US-01-03]
+        - Package Conversion and Label Compliance [US-14-10]
     """,
     'author': 'Jeffery',
     'depends': ['farm_core', 'farm_marketing', 'barcodes'],

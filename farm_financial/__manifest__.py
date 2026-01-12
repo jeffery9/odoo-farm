@@ -8,6 +8,7 @@
         - Comprehensive Cost Accounting (Inputs, Labor, Overhead) [US-04-02]
         - Automated Cost Attribution to Plots/Lots/Campaigns
         - Profitability Analysis per Production Unit
+        - Storage and Processing Cost Allocation [US-14-13]
     """,
     'author': 'Jeffery',
     'depends': ['farm_operation', 'account', 'analytic'],

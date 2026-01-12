@@ -7,6 +7,7 @@
         IOT module for Odoo 19 Farm Management System.
         - Telemetry Data Collection (Temperature, PH, DO, etc.) [US-11-03, US-02-02]
         - Threshold Alerts [US-06-02]
+        - Storage Environment Monitoring and Alerts [US-14-06]
     """,
     'author': 'Jeffery',
     'depends': ['farm_core', 'project', 'industrial_iot'],
