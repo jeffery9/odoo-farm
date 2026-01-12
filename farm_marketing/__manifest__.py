@@ -8,6 +8,7 @@
         - Consumer-facing Traceability Portal [US-08-01]
         - Product Story & Quality Certificate Display
         - Integration with Agritourism & CRM
+        - Expiry Warning and Promotional Linkage [US-14-14]
     """,
     'author': 'Jeffery',
     'depends': ['farm_core', 'farm_quality', 'farm_operation', 'website'],

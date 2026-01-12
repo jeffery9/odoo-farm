@@ -8,6 +8,7 @@
         - Records disposal methods (composting, biogas, third-party transfer).
         - Tracks destination and recipient information.
         - Generates monthly ledgers compliant with Ministry of Agriculture and Rural Affairs requirements.
+        - Processing Waste Registration [US-14-12]
     """,
     'author': 'Jeffery',
     'depends': ['farm_core', 'farm_livestock'],

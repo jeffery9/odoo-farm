@@ -8,6 +8,7 @@
         - Production Season Planning (Campaign) [US-01-02]
         - Agri-Intervention Records (Interventions) [US-02-02]
         - Harvest & Grading [US-02-04]
+        - Product Grading and Batch Management [US-14-05]
     """,
     'author': 'Jeffery',
     'depends': ['farm_core', 'mrp', 'project'],
