@@ -20,7 +20,7 @@
         <field name="inherit_id" ref="farm_operation.view_task_form2_inherit_farm_op"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='agri_interventions']" position="after">
-                <page string="Green Monitor" name="green_monitor">
+                <page string="Green Monitor (减量考核)" name="green_monitor">
                     <group>
                         <group string="Fertilizer Usage">
                             <field name="total_fertilizer_used"/>
@@ -40,7 +40,7 @@
     <!-- 扩展产季表单：减量报告按钮 -->
     <record id="view_agricultural_campaign_form_inherit_green_monitor" model="ir.ui.view">
         <field name="name">agricultural.campaign.form.inherit.green.monitor</field>
-        <field name="model">farm.agricultural.campaign</field>
+        <field name="model">agricultural.campaign</field>
         <field name="inherit_id" ref="farm_operation.agricultural_campaign_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_create_tasks_from_route']" position="after">

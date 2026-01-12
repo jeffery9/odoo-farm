@@ -3,18 +3,18 @@ from odoo import models, fields, api, _
 class StockLocation(models.Model):
     _inherit = 'stock.location'
 
-    # 减量目标 [US-18-06]
+    # 减量目标 [US-70]
     fertilizer_reduction_target = fields.Float("Fertilizer Reduction Target (%)", default=0.0)
     pesticide_reduction_target = fields.Float("Pesticide Reduction Target (%)", default=0.0)
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
-    # 化肥农药使用量汇总 (kg) [US-18-06]
+    # 化肥农药使用量汇总 (kg) [US-70]
     total_fertilizer_used = fields.Float("Total Fertilizer Used (kg)", compute='_compute_green_monitor_stats', store=True)
     total_pesticide_used = fields.Float("Total Pesticide Used (kg)", compute='_compute_green_monitor_stats', store=True)
     
-    # 单位面积使用量 (kg)
+    # 单位面积使用量 (kg/亩)
     fertilizer_per_mu = fields.Float("Fertilizer (kg/mu)", compute='_compute_green_monitor_stats', store=True)
     pesticide_per_mu = fields.Float("Pesticide (kg/mu)", compute='_compute_green_monitor_stats', store=True)
 
@@ -44,12 +44,12 @@ class FarmGreenMonitorReport(models.AbstractModel):
 
     @api.model
     def _get_report_values(self, docids, data=None):
-        docs = self.env['farm.agricultural.campaign'].browse(docids)
+        docs = self.env['agricultural.campaign'].browse(docids)
         # 这里需要更复杂的逻辑来获取历史数据和计算趋势
         # 简化示例：假设docids是campaigns
         return {
             'doc_ids': docids,
-            'doc_model': 'farm.agricultural.campaign',
+            'doc_model': 'agricultural.campaign',
             'docs': docs,
             'get_reduction_data': self._get_reduction_data,
         }
