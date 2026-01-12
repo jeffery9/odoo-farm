@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Extend Equipment Form -->
+    <record id="hr_equipment_view_form_inherit_farm" model="ir.ui.view">
+        <field name="name">maintenance.equipment.form.inherit.farm</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="is_agri_machinery"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Agri Specs &amp; Logs" invisible="not is_agri_machinery">
+                    <group>
+                        <group string="Technical Specs">
+                            <field name="horsepower"/>
+                            <field name="working_width"/>
+                            <field name="fuel_type"/>
+                            <field name="fuel_tank_capacity"/>
+                        </group>
+                        <group string="Statistics">
+                            <field name="total_engine_hours"/>
+                        </group>
+                    </group>
+                    <field name="fuel_log_ids">
+                        <list editable="bottom">
+                            <field name="date"/>
+                            <field name="task_id"/>
+                            <field name="engine_hours"/>
+                            <field name="fuel_consumed"/>
+                            <field name="operator_id"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Usage Log Menu -->
+    <record id="action_farm_equipment_log" model="ir.actions.act_window">
+        <field name="name">Machinery Logs</field>
+        <field name="res_model">farm.equipment.log</field>
+        <field name="view_mode">list,form,graph</field>
+    </record>
+
+    <menuitem id="menu_farm_machinery_root" name="Machinery" parent="farm_core.menu_farm_root" sequence="70"/>
+    <menuitem id="menu_farm_equipment" name="Fleet" parent="menu_farm_machinery_root" action="maintenance.hr_equipment_action" sequence="10"/>
+    <menuitem id="menu_farm_equipment_logs" name="Usage Logs" parent="menu_farm_machinery_root" action="action_farm_equipment_log" sequence="20"/>
+</odoo>
