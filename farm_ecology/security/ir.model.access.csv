@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_biodiversity_indicator,farm.biodiversity.indicator,model_farm_biodiversity_indicator,farm_core.group_farm_worker,1,1,1,1
+access_farm_ecological_zone,farm.ecological.zone,model_farm_ecological_zone,farm_core.group_farm_manager,1,1,1,1

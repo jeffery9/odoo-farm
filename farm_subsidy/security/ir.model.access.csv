@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_subsidy_program,farm.subsidy.program,model_farm_subsidy_program,farm_core.group_farm_manager,1,1,1,1
+access_farm_subsidy_application,farm.subsidy.application,model_farm_subsidy_application,farm_core.group_farm_manager,1,1,1,1

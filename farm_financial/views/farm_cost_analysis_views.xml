@@ -29,4 +29,6 @@
         <field name="res_model">account.analytic.line</field>
         <field name="view_mode">list,form,graph,pivot</field>
     </record>
+
+    <menuitem id="menu_farm_finance_root" name="Finance &amp; Costs" parent="farm_core.menu_farm_root" sequence="80"/>
 </odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_biodiversity_indicator_tree" model="ir.ui.view">
+        <field name="name">farm.biodiversity.indicator.list</field>
+        <field name="model">farm.biodiversity.indicator</field>
+        <field name="arch" type="xml">
+            <list string="Biodiversity Logs">
+                <field name="date"/>
+                <field name="location_id"/>
+                <field name="indicator_type"/>
+                <field name="species_name"/>
+                <field name="count_observed"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_farm_ecology" model="ir.actions.act_window">
+        <field name="name">Biodiversity Logs</field>
+        <field name="res_model">farm.biodiversity.indicator</field>
+        <field name="view_mode">list,form,graph</field>
+    </record>
+
+    <menuitem id="menu_farm_ecology_root" name="Biodiversity" parent="farm_sustainability.menu_sustainability_root" sequence="30"/>
+    <menuitem id="menu_farm_biodiversity" name="Observations" parent="menu_farm_ecology_root" action="action_farm_ecology" sequence="10"/>
+</odoo>
