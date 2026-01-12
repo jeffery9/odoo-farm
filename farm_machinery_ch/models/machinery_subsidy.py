@@ -3,11 +3,11 @@ from odoo import models, fields, api, _
 class FarmEquipment(models.Model):
     _inherit = 'maintenance.equipment'
 
-    # 农机购置补贴信息 [US-18-07]
+    # 农机购置补贴信息 [US-71]
     is_subsidized_machinery = fields.Boolean("Eligible for Subsidy", default=False)
-    subsidy_category = fields.Char("Subsidy Category") # e.g. "耕整地机械-拖拉机"
-    subsidy_model_no = fields.Char("Subsidy Model No.")
-    subsidy_grade_params = fields.Char("Subsidy Grading Parameters")
+    subsidy_category = fields.Char("Subsidy Category (补贴机具分类)") # e.g. "耕整地机械-拖拉机"
+    subsidy_model_no = fields.Char("Subsidy Model No. (补贴机具型号)")
+    subsidy_grade_params = fields.Char("Subsidy Grading Parameters (分档参数)")
     estimated_subsidy_amount = fields.Monetary("Estimated Subsidy Amount", currency_field='currency_id')
     currency_id = fields.Many2one('res.currency', default=lambda self: self.env.company.currency_id)
     
@@ -16,30 +16,16 @@ class FarmEquipment(models.Model):
     photo_attachment_ids = fields.Many2many('ir.attachment', 'machinery_photo_rel', 'equipment_id', 'attachment_id', string="Machinery Photos")
     
     def action_match_subsidy_catalog(self):
-        """ 
-        US-18-07: 匹配国家农机购置补贴目录
-        实现基于铭牌编号的自动参数填充逻辑
-        """
+        """ 模拟匹配国家农机购置补贴目录 [US-71] """
         self.ensure_one()
-        # 模拟外部补贴目录数据库
-        MOCK_CATALOG = {
-            'DF-2004': {'category': '耕整地机械-轮式拖拉机', 'grade': '200马力及以上', 'subsidy': 42000.0},
-            'LZ-1002': {'category': '收割机械-联合收割机', 'grade': '喂入量10kg/s以上', 'subsidy': 85000.0},
-        }
-        
-        # 尝试匹配型号
-        match = MOCK_CATALOG.get(self.model)
-        if match:
-            self.write({
-                'is_subsidized_machinery': True,
-                'subsidy_category': match['category'],
-                'subsidy_model_no': self.model,
-                'subsidy_grade_params': match['grade'],
-                'estimated_subsidy_amount': match['subsidy'],
-            })
-            self.message_post(body=_("Subsidy Catalog Matched: %s. Estimated Subsidy: %s.") % (match['category'], match['subsidy']))
-        else:
-            self.message_post(body=_("No matching entry found in National Subsidy Catalog for model %s.") % self.model)
+        _logger.info("Simulating matching subsidy catalog for equipment %s", self.name)
+        # 实际这里会通过外部API或本地数据库匹配
+        self.is_subsidized_machinery = True
+        self.subsidy_category = "耕整地机械-拖拉机"
+        self.subsidy_model_no = self.model
+        self.subsidy_grade_params = "200马力以上"
+        self.estimated_subsidy_amount = 50000.0 # 模拟补贴金额
+        self.message_post(body=_("Subsidy catalog matched for %s. Estimated subsidy: %s %s.") % (self.name, self.estimated_subsidy_amount, self.currency_id.symbol))
         return True
 
 class FarmMachinerySubsidyApplication(models.Model):
