@@ -321,44 +321,49 @@
     </record>
 
     <!-- 菜单 -->
-    <menuitem id="menu_multi_farm_root" 
-              name="Multi-Entity Collaboration" 
-              parent="farm_core.menu_farm_root" 
-              sequence="120"
-              groups="farm_core.group_farm_manager"/>
+    <!-- App 顶级菜单在当前模块中定义 -->
+    <!-- 这里定义 App 内的子菜单 -->
 
-    <menuitem id="menu_cooperative_management" 
-              name="Cooperative Management" 
-              parent="menu_multi_farm_root" 
-              sequence="10"/>
+    <menuitem id="menu_cooperative_management"
+              name="Cooperative Management"
+              parent="menu_farm_multi_farm_root"  <!-- 关联到App菜单 -->
+              sequence="10"
+              groups="farm_multi_farm.group_user"/>
 
-    <menuitem id="menu_cooperative_entities" 
-              name="Cooperatives" 
-              parent="menu_cooperative_management" 
-              action="action_cooperative_entities"/>
+    <menuitem id="menu_cooperative_entities"
+              name="Cooperatives"
+              parent="menu_cooperative_management"
+              action="action_cooperative_entities"
+              sequence="10"
+              groups="farm_multi_farm.group_user"/>
 
-    <menuitem id="menu_farm_entities" 
-              name="Farm Entities" 
-              parent="menu_cooperative_management" 
-              action="action_farm_entities"/>
-
-    <menuitem id="menu_resource_sharing" 
-              name="Resource Sharing" 
-              parent="menu_multi_farm_root" 
+    <menuitem id="menu_farm_entities"
+              name="Farm Entities"
+              parent="menu_cooperative_management"
+              action="action_farm_entities"
               sequence="20"
-              action="action_resource_sharing"/>
+              groups="farm_multi_farm.group_user"/>
 
-    <menuitem id="menu_internal_settlements" 
-              name="Internal Settlements" 
-              parent="menu_multi_farm_root" 
+    <menuitem id="menu_resource_sharing"
+              name="Resource Sharing"
+              parent="menu_farm_multi_farm_root"  <!-- 关联到App菜单 -->
+              sequence="20"
+              action="action_resource_sharing"
+              groups="farm_multi_farm.group_user"/>
+
+    <menuitem id="menu_internal_settlements"
+              name="Internal Settlements"
+              parent="menu_farm_multi_farm_root"  <!-- 关联到App菜单 -->
               sequence="30"
-              action="action_internal_settlements"/>
+              action="action_internal_settlements"
+              groups="farm_multi_farm.group_user"/>
 
-    <menuitem id="menu_franchise_farms" 
-              name="Franchise Farms" 
-              parent="menu_multi_farm_root" 
+    <menuitem id="menu_franchise_farms"
+              name="Franchise Farms"
+              parent="menu_farm_multi_farm_root"  <!-- 关联到App菜单 -->
               sequence="40"
-              action="action_franchise_farms"/>
+              action="action_franchise_farms"
+              groups="farm_multi_farm.group_user"/>
 
     <!-- 动作 -->
     <record id="action_cooperative_entities" model="ir.actions.act_window">
