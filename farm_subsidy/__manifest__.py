@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'Government Subsidies and Policy Compliance',
     'description': """
-        Manage agricultural subsidies and policy compliance [US-17-02].
+        Manage agricultural subsidies and policy compliance [US-56].
         - Subsidy Programs (e.g. Organic Conversion, Crop Rotation)
         - Application Tracking & Reporting
         - Linking Subsidies to Land Parcels
@@ -17,5 +17,5 @@
     ],
     'installable': True,
     'application': False,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }

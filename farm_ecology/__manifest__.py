@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'Biodiversity Tracking and Ecological Indicators',
     'description': """
-        Ecological management for sustainable farming [US-17-05].
+        Ecological management for sustainable farming [US-59].
         - Biodiversity Indicators (Insects, Birds, Vegetation)
         - Ecological Infrastructure Maintenance (Hedges, Ponds)
         - ESG Reporting support
@@ -17,5 +17,5 @@
     ],
     'installable': True,
     'application': False,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }

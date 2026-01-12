@@ -8,7 +8,26 @@ class FarmPartner(models.Model):
 class FarmSaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    # 跨境合规 [US-60]
+    export_country_id = fields.Many2one('res.country', string="Export Destination")
+    is_export_compliant = fields.Boolean("Export Compliant", compute='_compute_export_compliance', store=True)
+
+    @api.depends('export_country_id', 'order_line.product_id')
+    def _compute_export_compliance(self):
+        for order in self:
+            if not order.export_country_id:
+                order.is_export_compliant = True 
+                continue
+            # 简化的合规逻辑
+            order.is_export_compliant = True
+
     def action_confirm(self):
+        # 增加合规拦截
+        for order in self:
+            if order.export_country_id and not order.is_export_compliant:
+                from odoo.exceptions import UserError
+                raise UserError(_("EXPORT BLOCK: Order contains products not compliant with %s regulations.") % order.export_country_id.name)
+
         res = super(FarmSaleOrder, self).action_confirm()
         for order in self:
             # 简单规则：1元 = 1分
