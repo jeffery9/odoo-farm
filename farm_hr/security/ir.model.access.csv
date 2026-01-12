@@ -1,6 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_farm_worklog_worker,farm.worklog.worker,model_farm_worklog,farm_core.group_farm_worker,1,1,1,0
-access_farm_worklog_manager,farm.worklog.manager,model_farm_worklog,farm_core.group_farm_manager,1,1,1,1
-access_farm_wage_rule_mgr,farm.wage.rule.mgr,model_farm_wage_rule,farm_core.group_farm_manager,1,1,1,1
-access_farm_labor_payment_mgr,farm.labor.payment.mgr,model_farm_labor_payment,farm_core.group_farm_manager,1,1,1,1
-access_farm_labor_payment_line_mgr,farm.labor.payment.line.mgr,model_farm_labor_payment_line,farm_core.group_farm_manager,1,1,1,1
+access_farm_agri_skill,farm.agri.skill,model_farm_agri_skill,farm_core.group_farm_manager,1,1,1,1
+access_farm_employee_certificate,farm.employee.certificate,model_farm_employee_certificate,farm_core.group_farm_manager,1,1,1,1
