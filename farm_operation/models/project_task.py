@@ -1,4 +1,5 @@
-from odoo import models, fields
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
@@ -40,7 +41,7 @@ class ProjectTask(models.Model):
     support_id = fields.Many2one('product.product', string="Support Object", help="The land parcel, animal or group this task is performed on.")
     size_value = fields.Float("Production Size", help="Area in sqm/mu or quantity of individuals.")
 
-    # 需求驱动关联 [US-28]
+    # 需求驱动关联 [US-03-01]
     sale_order_id = fields.Many2one('sale.order', string="Source Sale Order")
 
     intervention_ids = fields.One2many(
@@ -49,17 +50,17 @@ class ProjectTask(models.Model):
         string="Agri Interventions"
     )
 
-    # 养分汇总 [US-07]
+    # 养分汇总 [US-01-03]
     total_n = fields.Float("Total Nitrogen (kg)", compute='_compute_nutrients', store=True)
     total_p = fields.Float("Total Phosphorus (kg)", compute='_compute_nutrients', store=True)
     total_k = fields.Float("Total Potassium (kg)", compute='_compute_nutrients', store=True)
 
-    # 养分密度 (kg/mu) [US-07 Algorithm]
+    # 养分密度 (kg/mu) [US-01-03 Algorithm]
     n_density = fields.Float("N Density (kg/mu)", compute='_compute_agri_math')
     p_density = fields.Float("P Density (kg/mu)", compute='_compute_agri_math')
     k_density = fields.Float("K Density (kg/mu)", compute='_compute_agri_math')
 
-    # 安全收获检查 [US-35 Algorithm]
+    # 安全收获检查 [US-11-03 Algorithm]
     is_safe_to_harvest = fields.Boolean("Safe to Harvest", compute='_compute_agri_math')
     days_to_safety = fields.Integer("Days to Safety", compute='_compute_agri_math')
 
@@ -86,7 +87,7 @@ class ProjectTask(models.Model):
                 task.days_to_safety = 0
 
     def action_view_telemetry(self):
-        """ 跳转至该任务关联的遥测趋势图 [US-11] """
+        """ 跳转至该任务关联的遥测趋势图 [US-11-03] """
         self.ensure_one()
         action = self.env["ir.actions.actions"]._for_xml_id("farm_iot.action_farm_telemetry")
         action['domain'] = [('production_id', '=', self.id)]
@@ -118,7 +119,7 @@ class ProjectTask(models.Model):
 
     @api.model
     def cron_generate_feeding_proposals(self):
-        """ 每日定时任务：为畜牧/水产生成建议的饲喂干预 [US-09 Algorithm] """
+        """ 每日定时任务：为畜牧/水产生成建议的饲喂干预 [US-01-03 Algorithm] """
         # 寻找活跃的养殖任务
         tasks = self.search([
             ('project_id.activity_family', 'in', ['livestock', 'aquaculture']),
@@ -140,7 +141,7 @@ class ProjectTask(models.Model):
                 feed_rate = curve_line[0].daily_feed_rate if curve_line else 0.0
                 
                 if feed_rate > 0:
-                    # 计算建议投喂量 = 估算生物总量 * 喂养率
+                    # 计算建议投喂量 = 估算生物总量 = 数量 * 平均体重
                     estimated_biomass = lot.animal_count * expected_weight
                     suggested_feed_qty = estimated_biomass * (feed_rate / 100.0)
                     
@@ -148,3 +149,38 @@ class ProjectTask(models.Model):
                     task.message_post(body=_("DAILY FEED PROPOSAL: Age %s days. Estimated Biomass: %s kg. Suggested Feed: %s kg.") % (
                         age, estimated_biomass, suggested_feed_qty
                     ))
+    
+    # Required Qualifications for Task [US-17-08]
+    required_skill_ids = fields.Many2many(
+        'farm.training.skill', 
+        string="Required Skills",
+        help="Skills required to perform this task."
+    )
+    required_certification_ids = fields.Many2many(
+        'farm.training.certification',
+        string="Required Certifications",
+        help="Certifications required to perform this task."
+    )
+
+    @api.constrains('user_ids', 'required_skill_ids', 'required_certification_ids')
+    def _check_employee_qualifications(self):
+        for task in self:
+            if not task.required_skill_ids and not task.required_certification_ids:
+                continue # No specific qualifications required for this task
+
+            for user in task.user_ids:
+                employee = self.env['hr.employee'].search([('user_id', '=', user.id)], limit=1)
+                if not employee:
+                    # Depending on policy, either raise error or skip
+                    # For now, we'll assume every assigned user should be an employee for qualification checks
+                    continue 
+
+                try:
+                    employee.check_qualification_for_task(
+                        required_skills=task.required_skill_ids,
+                        required_certifications=task.required_certification_ids
+                    )
+                except ValidationError as e:
+                    raise ValidationError(_(f"Qualification Error for Task '{task.name}': {e.args[0]}"))
+
+

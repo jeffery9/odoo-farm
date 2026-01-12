@@ -4,11 +4,11 @@ from odoo.exceptions import ValidationError
 class FarmLocation(models.Model):
     _inherit = 'stock.location'
 
-    # 土地承包权信息 [US-65]
+    # 土地承包权信息 [US-18-01]
     land_contract_no = fields.Char("Land Contract No. (承包经营权证号)")
     contractor_id = fields.Many2one('res.partner', string="Contractor (承包方)")
     
-    # 土地性质 [US-65]
+    # 土地性质 [US-18-01]
     land_nature = fields.Selection([
         ('general_farmland', '一般农田'),
         ('permanent_basic_farmland', '永久基本农田'),

@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'China-specific Financial Accounting for Rural Revitalization Projects',
     'description': """
-        Manages dedicated accounting for government-supported rural revitalization project funds [US-73].
+        Manages dedicated accounting for government-supported rural revitalization project funds [US-18-09].
         - Associates purchase and expense documents with specific project numbers.
         - Generates detailed project fund utilization reports with invoice references.
         - Ensures dedicated use of special funds.

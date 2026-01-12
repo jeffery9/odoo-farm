@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- 扩展 BOM 视图：增加农业加工配方 [US-45] -->
+    <!-- 扩展 BOM 视图：增加农业加工配方 [US-14-02] -->
     <record id="mrp_bom_form_view_inherit_farm_proc" model="ir.ui.view">
         <field name="name">mrp.bom.form.inherit.farm.proc</field>
         <field name="model">mrp.bom</field>
@@ -44,7 +44,7 @@
         </field>
     </record>
 
-    <!-- 扩展工作中心：能耗单价 [US-47] -->
+    <!-- 扩展工作中心：能耗单价 [US-14-04] -->
     <record id="mrp_workcenter_view_inherit_farm_proc" model="ir.ui.view">
         <field name="name">mrp.workcenter.form.inherit.farm.proc</field>
         <field name="model">mrp.workcenter</field>
@@ -62,7 +62,7 @@
         </field>
     </record>
 
-    <!-- 扩展工单：记录实际能耗 [US-47] -->
+    <!-- 扩展工单：记录实际能耗 [US-14-04] -->
     <record id="mrp_production_workorder_tree_editable_view_inherit_farm_proc" model="ir.ui.view">
         <field name="name">mrp.workorder.list.inherit.farm.proc</field>
         <field name="model">mrp.workorder</field>
@@ -95,7 +95,7 @@
                             <field name="process_temperature"/>
                             <field name="moisture_content"/>
                         </group>
-                        <group string="Mass Balance (US-44)">
+                        <group string="Mass Balance (US-04-02)">
                             <field name="scrap_qty" string="Cleaning/Process Loss"/>
                             <field name="total_output_qty"/>
                             <field name="is_balanced" widget="boolean_toggle" readonly="1" decoration-success="is_balanced" decoration-danger="not is_balanced"/>

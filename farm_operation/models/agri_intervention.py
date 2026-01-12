@@ -29,6 +29,17 @@ class AgriIntervention(models.Model):
     
     procedure_name = fields.Char("Procedure/Method", help="e.g. Mechanical sowing, manual weeding")
 
+    # Harvest Grading [US-02-04]
+    grade_a_qty = fields.Float("Grade A Quantity")
+    grade_b_qty = fields.Float("Grade B Quantity")
+    grade_c_qty = fields.Float("Grade C Quantity")
+
+    @api.constrains('grade_a_qty', 'grade_b_qty', 'grade_c_qty')
+    def _check_graded_quantities(self):
+        for intervention in self:
+            if intervention.intervention_type == 'harvesting' and (intervention.grade_a_qty < 0 or intervention.grade_b_qty < 0 or intervention.grade_c_qty < 0):
+                raise UserError(_("Graded quantities cannot be negative."))
+
     # Ekylibre Mapping: Costing [US-Mapping]
     input_cost = fields.Float("Input Cost", compute='_compute_agri_costs', store=True)
     tool_cost = fields.Float("Tool/Machinery Cost", compute='_compute_agri_costs', store=True)
@@ -52,7 +63,7 @@ class AgriIntervention(models.Model):
             mo.tool_cost = tools
             mo.total_agri_cost = inputs + labor + tools
 
-    # 工时追踪 [US-42]
+    # 工时追踪 [US-13-03]
     work_start_datetime = fields.Datetime("Work Start")
     is_working = fields.Boolean("In Progress", default=False)
 
@@ -90,7 +101,7 @@ class AgriIntervention(models.Model):
         self.message_post(body=_("Labor: Work stopped and recorded at %s") % now)
 
     def action_confirm(self):
-        """ 扩展确认逻辑，进行安全拦截 [US-36] 并传递任务 ID 到供应端 [US-29] """
+        """ 扩展确认逻辑，进行安全拦截 [US-03-04] 并传递任务 ID 到供应端 [US-03-02] """
         for mo in self:
             # 1. 检查有机拦截
             if mo.agri_task_id.land_parcel_id.certification_level in ['organic', 'organic_transition']:
@@ -108,22 +119,83 @@ class AgriIntervention(models.Model):
                 
         return super(AgriIntervention, self).action_confirm()
 
+    def button_mark_done(self):
+        """ Extend the done logic to handle graded harvesting outputs and trigger quality check [US-05-02]. """
+        for intervention in self:
+            if intervention.intervention_type == 'harvesting':
+                # Handle graded quantities logic
+                total_graded_qty = intervention.grade_a_qty + intervention.grade_b_qty + intervention.grade_c_qty
+                
+                if total_graded_qty > 0:
+                    # Logic to create separate stock moves and lots for each grade
+                    finished_product = intervention.product_id
+                    
+                    def _create_graded_move_and_lot(grade_type, qty):
+                        if qty <= 0:
+                            return None
+                        
+                        # Create a new lot with the specified grade
+                        graded_lot = self.env['stock.lot'].create({
+                            'product_id': finished_product.id,
+                            'name': finished_product.name + '/' + grade_type.upper() + '/' + (self.env['ir.sequence'].next_by_code('stock.lot') or _('New')),
+                            'quality_grade': grade_type,
+                        })
+                        
+                        # Create a stock move for this graded quantity
+                        move = self.env['stock.move'].create({
+                            'name': _('Harvest Output (%s)') % grade_type.upper(),
+                            'product_id': finished_product.id,
+                            'product_uom_qty': qty,
+                            'product_uom': finished_product.uom_id.id,
+                            'location_id': intervention.location_src_id.id, # Production location
+                            'location_dest_id': intervention.location_dest_id.id, # Destination (stock) location
+                            'production_id': intervention.id,
+                            'lot_ids': [(6, 0, [graded_lot.id])],
+                            'state': 'done', # Mark as done directly
+                        })
+                        move._action_done() # Finalize the move
+                        return graded_lot.id
+                        
+                    graded_lot_ids = []
+                    graded_lot_ids.append(_create_graded_move_and_lot('grade_a', intervention.grade_a_qty))
+                    graded_lot_ids.append(_create_graded_move_and_lot('grade_b', intervention.grade_b_qty))
+                    graded_lot_ids.append(_create_graded_move_and_lot('grade_c', intervention.grade_c_qty))
+                    
+                    graded_lot_ids = [lot_id for lot_id in graded_lot_ids if lot_id]
+
+                    # US-05-02: Trigger quality check for custom created graded lots
+                    if graded_lot_ids:
+                        for lot_id in graded_lot_ids:
+                            try:
+                                self.env['farm.quality.check'].create({
+                                    'lot_id': lot_id,
+                                    'task_id': intervention.agri_task_id.id,
+                                    'name': _('Harvest QC: %s for Grade %s') % (intervention.name, self.env['stock.lot'].browse(lot_id).quality_grade.upper()),
+                                })
+                            except Exception:
+                                pass
+
+                    # Prevent base MRP from creating duplicate finished moves
+                    # by setting product_qty to 0 for the super call if custom moves are created
+                    intervention.product_qty = 0
+
+            # US-05-02: Trigger quality check for non-graded harvesting
+            elif intervention.intervention_type == 'harvesting' and intervention.product_qty > 0:
+                try:
+                    lot_ids = intervention.move_finished_ids.mapped('lot_ids')
+                    self.env['farm.quality.check'].create({
+                        'lot_id': lot_ids[:1].id if lot_ids else False,
+                        'task_id': intervention.agri_task_id.id,
+                        'name': _('Harvest QC: %s') % intervention.name,
+                    })
+                except Exception:
+                    pass 
+
+        # Call super method to handle other MRP production logic (e.g., raw material consumption, state change)
+        res = super(AgriIntervention, self).button_mark_done()
+        return res
+
 class ProcurementGroup(models.Model):
     _inherit = 'procurement.group'
 
     agri_task_id = fields.Many2one('project.task', string="Agri Task")
-
-    def button_mark_done(self):
-        """ 扩展完成逻辑，触发质量检查 [US-49] """
-        res = super(AgriIntervention, self).button_mark_done()
-        for mo in self:
-            if mo.intervention_type == 'harvesting':
-                try:
-                    self.env['farm.quality.check'].create({
-                        'lot_id': mo.move_finished_ids.mapped('lot_ids')[:1].id,
-                        'task_id': mo.agri_task_id.id,
-                        'name': _('Harvest QC: %s') % mo.name,
-                    })
-                except Exception:
-                    pass 
-        return res

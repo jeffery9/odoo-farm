@@ -41,7 +41,7 @@ class FarmDeviceCommand(models.TransientModel):
             self.device_id.send_command(action_name, **params)
             latency = int((time.time() - start_ts) * 1000)
             
-            # 记录审计日志 [US-21]
+            # 记录审计日志 [US-06-03]
             self.env['farm.command.log'].create({
                 'device_id': self.device_id.id,
                 'command': action_name,

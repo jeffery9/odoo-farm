@@ -47,7 +47,7 @@ class FarmLaborPayment(models.Model):
             payment.total_amount = sum(payment.line_ids.mapped('subtotal'))
 
     def action_post_to_accounting(self):
-        """ 创建会计凭证 (Journal Entry) 并建立连接 [US-43] """
+        """ 创建会计凭证 (Journal Entry) 并建立连接 [US-13-04] """
         self.ensure_one()
         if not self.journal_id:
             raise UserError(_("Please select a Journal before posting."))

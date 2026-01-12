@@ -9,7 +9,7 @@ class TestFarmActivity(TransactionCase):
         self.Project = self.env['project.project']
 
     def test_01_create_agri_activity(self):
-        """ 测试创建不同家族的农业活动 [US-01] """
+        """ 测试创建不同家族的农业活动 [US-01-01] """
         project_planting = self.Project.create({
             'name': 'Organic Wheat 2026',
             'is_agri_activity': True,
@@ -32,7 +32,7 @@ class TestFarmLocation(TransactionCase):
         self.Location = self.env['stock.location']
 
     def test_03_create_land_parcel(self):
-        """ 测试创建地块 [US-03] """
+        """ 测试创建地块 [US-01-03] """
         parcel = self.Location.create({
             'name': 'North Field A1',
             'is_land_parcel': True,
@@ -55,7 +55,7 @@ class TestFarmLot(TransactionCase):
         })
 
     def test_04_create_animal_lot(self):
-        """ 测试创建动物资产批次 [US-04] """
+        """ 测试创建动物资产批次 [US-01-04] """
         cow_lot = self.Lot.create({
             'name': 'COW-2026-001',
             'product_id': self.animal_product.id,

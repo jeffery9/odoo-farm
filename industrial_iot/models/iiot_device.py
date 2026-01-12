@@ -31,7 +31,7 @@ class IiotDevice(models.Model):
     config_token = fields.Char('Config Token', copy=False, help='One-time configuration download token')
     firmware_version = fields.Char('Firmware Version', help='Current firmware version')
 
-    # 视频流集成 [US-52]
+    # 视频流集成 [US-16-01]
     is_camera = fields.Boolean("Is Camera", default=False)
     live_stream_url = fields.Char("Live Stream URL", help="HLS/HTTP/RTSP stream URL for the camera")
 

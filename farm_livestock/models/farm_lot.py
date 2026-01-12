@@ -7,7 +7,7 @@ class FarmLot(models.Model):
     animal_count = fields.Integer("Animal Count", default=1)
     average_weight = fields.Float("Average Weight (kg)", help="Current average weight of individuals in this lot.")
     
-    # 生物阶段 [US-12]
+    # 生物阶段 [US-05-04]
     biological_stage = fields.Selection([
         ('born', 'Born/Started'),
         ('growing', 'Growing'),

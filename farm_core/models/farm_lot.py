@@ -11,7 +11,7 @@ class FarmLot(models.Model):
         ('other', 'Other (其他/无)')
     ], string="Gender")
     
-    # 系谱跟踪 [US-32] 预留
+    # 系谱跟踪 [US-10-02] 预留
     father_id = fields.Many2one('stock.lot', string="Father (父本)", domain="[('product_id', '=', product_id)]")
     mother_id = fields.Many2one('stock.lot', string="Mother (母本)", domain="[('product_id', '=', product_id)]")
     
@@ -23,19 +23,19 @@ class FarmLot(models.Model):
         ('harvested', 'Harvested/Culled (已收获/淘汰)')
     ], string="Biological Stage", default='newborn')
 
-    # 质量等级 [US-08]
+    # 质量等级 [US-02-04]
     quality_grade = fields.Selection([
         ('grade_a', 'Grade A (特级/优等)'),
         ('grade_b', 'Grade B (一级/合格)'),
         ('grade_c', 'Grade C (二级/次品)'),
     ], string="Quality Grade")
 
-    # 安全合规 [US-35]
+    # 安全合规 [US-11-03]
     withdrawal_end_datetime = fields.Datetime("Safe to Harvest After", help="Withdrawal period end date.")
     is_safe_to_harvest = fields.Boolean("Is Safe to Harvest", compute='_compute_is_safe')
     withdrawal_days_left = fields.Integer("Withdrawal Countdown", compute='_compute_withdrawal_days')
     
-    # 隔离管理 [US-34]
+    # 隔离管理 [US-11-02]
     state = fields.Selection([
         ('healthy', 'Healthy (正常)'),
         ('quarantine', 'Quarantined (隔离)'),
@@ -65,7 +65,7 @@ class FarmLot(models.Model):
             else:
                 lot.withdrawal_days_left = 0
 
-    # 动态属性 [US-02]
+    # 动态属性 [US-01-02]
     lot_properties = fields.Properties(
         'Properties',
         definition='product_id.lot_properties_definition'

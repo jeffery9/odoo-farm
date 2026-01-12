@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- Booking Calendar View [US-17] -->
+    <!-- Booking Calendar View [US-02-03] -->
     <record id="farm_booking_view_calendar" model="ir.ui.view">
         <field name="name">farm.booking.calendar</field>
         <field name="model">farm.booking</field>

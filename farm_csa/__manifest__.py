@@ -5,7 +5,7 @@
     'summary': 'Community Supported Agriculture (CSA) and Weekly Vegetable Bags',
     'description': """
         CSA module for Odoo 19 Farm Management System.
-        - Subscription Plan management (Weekly, Monthly) [US-26]
+        - Subscription Plan management (Weekly, Monthly) [US-02-04]
         - Automated Delivery Task (Picking) Generation
         - Customer Subscription Lifecycle
     """,

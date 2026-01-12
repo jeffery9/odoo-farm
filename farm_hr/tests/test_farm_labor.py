@@ -13,7 +13,7 @@ class TestFarmLabor(TransactionCase):
         self.task = self.Task.create({'name': 'Apple Harvesting Task'})
 
     def test_01_piece_rate_worklog(self):
-        """ 测试计件工时记录 [US-43] """
+        """ 测试计件工时记录 [US-13-04] """
         worklog = self.Worklog.create({
             'employee_id': self.worker.id,
             'task_id': self.task.id,

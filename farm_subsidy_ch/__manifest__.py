@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'China-specific Farmland Protection and Grain Subsidy Application',
     'description': """
-        Supports Chinese government's farmland protection and grain subsidy policies [US-68].
+        Supports Chinese government's farmland protection and grain subsidy policies [US-05-04].
         - Categorization by crop type (early rice, wheat, corn).
         - Generates subsidy application forms matching Ministry of Agriculture and Rural Affairs templates.
         - Integrates with planting area and crop type data from the system.

@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'Pest/Disease Identification and Agricultural Knowledge',
     'description': """
-        Knowledge management for farmers [US-61].
+        Knowledge management for farmers [US-17-07].
         - Pest & Disease Database with Photos
         - Solution Recommendations linked to Technical Routes
         - Integration with Field Tasks

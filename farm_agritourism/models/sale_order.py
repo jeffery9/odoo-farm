@@ -16,7 +16,7 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self).action_confirm()
         for order in self:
             for line in order.order_line:
-                # 1. 需求驱动生产任务 [US-28]
+                # 1. 需求驱动生产任务 [US-03-01]
                 if line.product_id.is_variety:
                     self.env['project.task'].create({
                         'name': _('Demand: %s for %s') % (line.product_id.name, order.name),
@@ -25,7 +25,7 @@ class SaleOrder(models.Model):
                         'sale_order_id': order.id,
                     })
                 
-                # 2. 体验项目自动预约 [US-18]
+                # 2. 体验项目自动预约 [US-02-04]
                 if line.product_id.is_experience_package:
                     self.env['farm.booking'].create({
                         'name': _('Booking for %s') % order.name,

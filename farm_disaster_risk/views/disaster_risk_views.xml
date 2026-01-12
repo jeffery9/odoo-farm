@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Disaster Incident Views -->
+    <record id="view_farm_disaster_incident_tree" model="ir.ui.view">
+        <field name="name">farm.disaster.incident.tree</field>
+        <field name="model">farm.disaster.incident</field>
+        <field name="arch" type="xml">
+            <tree string="Disaster Incidents" decoration-danger="intensity == 'severe'">
+                <field name="name"/>
+                <field name="disaster_type"/>
+                <field name="date_start"/>
+                <field name="intensity"/>
+                <field name="total_estimated_loss" widget="monetary"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_farm_disaster_incident_form" model="ir.ui.view">
+        <field name="name">farm.disaster.incident.form</field>
+        <field name="model">farm.disaster.incident</field>
+        <field name="arch" type="xml">
+            <form string="Disaster Incident">
+                <header>
+                    <button name="action_create_crisis_incident" string="Create Crisis Incident" type="object" class="oe_highlight" invisible="crisis_incident_id"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="disaster_type"/>
+                            <field name="intensity"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Affected Areas">
+                            <field name="affected_location_ids" widget="many2many_tags"/>
+                            <field name="description"/>
+                        </page>
+                        <page string="Loss Assessments">
+                            <field name="loss_assessment_ids">
+                                <tree editable="bottom">
+                                    <field name="assessment_date"/>
+                                    <field name="affected_parcel_id"/>
+                                    <field name="crop_id"/>
+                                    <field name="estimated_loss_amount" widget="monetary"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="total_estimated_loss" widget="monetary"/>
+                            </group>
+                        </page>
+                        <page string="Crisis Integration">
+                            <field name="crisis_incident_id"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Loss Assessment Views -->
+    <record id="view_farm_loss_assessment_tree" model="ir.ui.view">
+        <field name="name">farm.loss.assessment.tree</field>
+        <field name="model">farm.loss.assessment</field>
+        <field name="arch" type="xml">
+            <tree string="Loss Assessments">
+                <field name="disaster_incident_id"/>
+                <field name="assessment_date"/>
+                <field name="affected_parcel_id"/>
+                <field name="estimated_loss_amount" widget="monetary"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_farm_disaster_incident" model="ir.actions.act_window">
+        <field name="name">Disaster Incidents</field>
+        <field name="res_model">farm.disaster.incident</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_farm_loss_assessment" model="ir.actions.act_window">
+        <field name="name">Loss Assessments</field>
+        <field name="res_model">farm.loss.assessment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menus -->
+    <menuitem id="menu_farm_disaster_risk_root" name="Disaster Risk" parent="farm_crisis.menu_farm_safety_crisis" sequence="10"/>
+    <menuitem id="menu_farm_disaster_incident" name="Incidents" parent="menu_farm_disaster_risk_root" action="action_farm_disaster_incident" sequence="10"/>
+    <menuitem id="menu_farm_loss_assessment" name="Loss Assessments" parent="menu_farm_disaster_risk_root" action="action_farm_loss_assessment" sequence="20"/>
+</odoo>

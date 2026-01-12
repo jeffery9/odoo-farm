@@ -5,7 +5,7 @@
     'summary': 'Link Picking Activities to POS Sales',
     'description': """
         POS module for Odoo 19 Farm Management System.
-        - Associate POS orders with specific picking plots [US-16]
+        - Associate POS orders with specific picking plots [US-02-02]
         - Automated stock deduction from land parcels
         - Traceability from Receipt to Field
     """,

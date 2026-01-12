@@ -36,10 +36,10 @@ class ProductTemplate(models.Model):
         curve = self.growth_curve_ids.filtered(lambda c: c.age_days <= age_days).sorted('age_days', reverse=True)
         return curve[0].target_weight if curve else 0.0
 
-    # 批次属性定义 [US-02]
+    # 批次属性定义 [US-01-02]
     lot_properties_definition = fields.PropertiesDefinition('Lot Properties Definition')
 
-    # 养分含量 [US-07]
+    # 养分含量 [US-01-03]
     n_content = fields.Float("Nitrogen (N) %", help="Nitrogen percentage content")
     p_content = fields.Float("Phosphorus (P) %", help="Phosphorus percentage content")
     k_content = fields.Float("Potassium (K) %", help="Potassium percentage content")

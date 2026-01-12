@@ -15,7 +15,7 @@ class TestAgritourismBooking(TransactionCase):
         })
 
     def test_01_create_picking_booking(self):
-        """ 测试创建采摘预约 [US-51] """
+        """ 测试创建采摘预约 [US-02-01] """
         booking = self.Booking.create({
             'name': 'Weekend Picking Activity',
             'partner_id': self.Partner.id,

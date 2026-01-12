@@ -53,7 +53,7 @@
                                     </t>
                                 </div>
 
-                                <!-- 实况监控 [US-52] -->
+                                <!-- 实况监控 [US-16-01] -->
                                 <t t-if="video_url">
                                     <h4 class="mb-3"><i class="fa fa-video-camera text-danger me-2"/>Live View (实况监控)</h4>
                                     <div class="card shadow-sm mb-4 border-0 bg-dark overflow-hidden" style="aspect-ratio: 16/9;">

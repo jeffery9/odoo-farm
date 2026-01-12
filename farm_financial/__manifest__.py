@@ -5,7 +5,7 @@
     'summary': 'Farm Cost Accounting and Financial Dashboards',
     'description': """
         Financial module for Odoo 19 Farm Management System.
-        - Comprehensive Cost Accounting (Inputs, Labor, Overhead) [US-41]
+        - Comprehensive Cost Accounting (Inputs, Labor, Overhead) [US-04-02]
         - Automated Cost Attribution to Plots/Lots/Campaigns
         - Profitability Analysis per Production Unit
     """,

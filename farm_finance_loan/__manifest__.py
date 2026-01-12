@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'Agricultural Loans, Collateral Valuation and Credit Lines',
     'description': """
-        Financial management for agricultural loans and credit [US-58].
+        Financial management for agricultural loans and credit [US-17-04].
         - Biological Asset Valuation for Collateral
         - Loan Application & Repayment Schedules
         - Integration with Production Cycles

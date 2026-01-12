@@ -21,14 +21,14 @@ class MrpBom(models.Model):
 class MrpBomLine(models.Model):
     _inherit = 'mrp.bom.line'
 
-    # 稀释比例 [US-13]
+    # 稀释比例 [US-01-04]
     dilution_ratio = fields.Float(
         "Dilution Ratio (1:N)", 
         default=0.0,
         help="If set, the component quantity will be calculated as (Finished Qty / Ratio). E.g. 1:500."
     )
     
-    # 饲喂比例 [US-09]
+    # 饲喂比例 [US-01-03]
     feeding_ratio = fields.Float(
         "Feeding Ratio (%)", 
         default=0.0,

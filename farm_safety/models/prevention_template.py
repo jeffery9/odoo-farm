@@ -45,7 +45,7 @@ class StockPickingQuarantine(models.Model):
     _inherit = 'stock.picking'
 
     def button_validate(self):
-        """ 隔离拦截逻辑 [US-34] """
+        """ 隔离拦截逻辑 [US-11-02] """
         for picking in self:
             for move in picking.move_ids:
                 for lot in move.lot_ids:

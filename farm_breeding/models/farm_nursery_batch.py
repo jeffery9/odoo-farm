@@ -11,7 +11,7 @@ class FarmNurseryBatch(models.Model):
     sowing_date = fields.Date("Sowing Date", default=fields.Date.today)
     seedling_age = fields.Integer("Seedling Age (Days)", compute='_compute_seedling_age')
     
-    # Transition Math [US-31]
+    # Transition Math [US-03-02]
     target_land_area = fields.Float("Target Area (mu/sqm)")
     target_density = fields.Float("Target Density (Plants/unit)")
     estimated_loss_rate = fields.Float("Nursery Loss Rate (%)", default=10.0)

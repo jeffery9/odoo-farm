@@ -5,7 +5,7 @@ class FarmEquipment(models.Model):
 
     is_agri_machinery = fields.Boolean("Is Agricultural Machinery", default=False)
     
-    # Technical Specs [US-55]
+    # Technical Specs [US-05-03]
     horsepower = fields.Float("Engine Power (HP)")
     working_width = fields.Float("Working Width (m)")
     fuel_type = fields.Selection([

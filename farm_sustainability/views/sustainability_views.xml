@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- 养分投入趋势图 [US-39] -->
+    <!-- 养分投入趋势图 [US-08-03] -->
     <record id="agricultural_campaign_view_graph_sustainability" model="ir.ui.view">
         <field name="name">agricultural.campaign.graph.sustainability</field>
         <field name="model">agricultural.campaign</field>

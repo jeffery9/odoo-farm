@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Training Course Views -->
+    <record id="view_farm_training_course_tree" model="ir.ui.view">
+        <field name="name">farm.training.course.tree</field>
+        <field name="model">farm.training.course</field>
+        <field name="arch" type="xml">
+            <tree string="Training Courses">
+                <field name="name"/>
+                <field name="course_type"/>
+                <field name="duration_hours"/>
+                <field name="related_skill_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_farm_training_course_form" model="ir.ui.view">
+        <field name="name">farm.training.course.form</field>
+        <field name="model">farm.training.course</field>
+        <field name="arch" type="xml">
+            <form string="Training Course">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="course_type"/>
+                            <field name="duration_hours"/>
+                        </group>
+                        <group>
+                            <field name="related_skill_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Employee Training Record Views -->
+    <record id="view_farm_employee_training_tree" model="ir.ui.view">
+        <field name="name">farm.employee.training.tree</field>
+        <field name="model">farm.employee.training</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Training Records">
+                <field name="employee_id"/>
+                <field name="course_id"/>
+                <field name="date_completed"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_farm_employee_training_form" model="ir.ui.view">
+        <field name="name">farm.employee.training.form</field>
+        <field name="model">farm.employee.training</field>
+        <field name="arch" type="xml">
+            <form string="Employee Training Record">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="course_id"/>
+                        </group>
+                        <group>
+                            <field name="date_completed"/>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_farm_training_course" model="ir.actions.act_window">
+        <field name="name">Training Courses</field>
+        <field name="res_model">farm.training.course</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_farm_employee_training" model="ir.actions.act_window">
+        <field name="name">Employee Training Records</field>
+        <field name="res_model">farm.employee.training</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menus -->
+    <menuitem id="menu_farm_training_root" name="Training &amp; Certs" parent="farm_hr.menu_farm_hr_root" sequence="60"/>
+    <menuitem id="menu_farm_training_courses" name="Courses" parent="menu_farm_training_root" action="action_farm_training_course" sequence="10"/>
+    <menuitem id="menu_farm_employee_training_records" name="Training Records" parent="menu_farm_training_root" action="action_farm_employee_training" sequence="20"/>
+</odoo>

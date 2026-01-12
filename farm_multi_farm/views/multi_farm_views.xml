@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Extend Company Form -->
+    <record id="res_company_form_view_inherit_multi_farm" model="ir.ui.view">
+        <field name="name">res.company.form.inherit.multi.farm</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='phone']" position="after">
+                <field name="is_cooperative_member"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend Farm Vehicle Form -->
+    <record id="farm_vehicle_form_view_inherit_multi_farm" model="ir.ui.view">
+        <field name="name">farm.vehicle.form.inherit.multi.farm</field>
+        <field name="model">farm.vehicle</field>
+        <field name="inherit_id" ref="farm_logistics.farm_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vehicle_type']" position="after">
+                <field name="can_be_shared"/>
+                <field name="shared_company_ids" widget="many2many_tags" invisible="not can_be_shared"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend HR Employee Form -->
+    <record id="hr_employee_form_view_inherit_multi_farm" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.multi.farm</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='department_id']" position="after">
+                <field name="can_be_shared"/>
+                <field name="shared_company_ids" widget="many2many_tags" invisible="not can_be_shared"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extend Project Task Form -->
+    <record id="project_task_form_view_inherit_multi_farm" model="ir.ui.view">
+        <field name="name">project.task.form.inherit.multi.farm</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form_from_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_ids']" position="after">
+                <field name="shared_employee_id"/>
+                <field name="shared_vehicle_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Internal Settlement Views -->
+    <record id="view_farm_internal_settlement_tree" model="ir.ui.view">
+        <field name="name">farm.internal.settlement.tree</field>
+        <field name="model">farm.internal.settlement</field>
+        <field name="arch" type="xml">
+            <tree string="Internal Settlements">
+                <field name="name"/>
+                <field name="from_company_id"/>
+                <field name="to_company_id"/>
+                <field name="settlement_type"/>
+                <field name="amount"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_farm_internal_settlement_form" model="ir.ui.view">
+        <field name="name">farm.internal.settlement.form</field>
+        <field name="model">farm.internal.settlement</field>
+        <field name="arch" type="xml">
+            <form string="Internal Settlement">
+                <header>
+                    <button name="action_generate_invoice" string="Generate Invoice" type="object" class="oe_highlight" invisible="state != 'confirmed'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,invoiced"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="from_company_id"/>
+                            <field name="to_company_id"/>
+                            <field name="settlement_type"/>
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="related_task_id"/>
+                        </group>
+                    </group>
+                    <field name="invoice_id" readonly="1" invisible="not invoice_id"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_internal_settlement" model="ir.actions.act_window">
+        <field name="name">Internal Settlements</field>
+        <field name="res_model">farm.internal.settlement</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_farm_multi_farm_root" name="Multi-Farm Collab" parent="farm_core.menu_farm_root" sequence="110"/>
+    <menuitem id="menu_farm_internal_settlement" name="Internal Settlements" parent="menu_farm_multi_farm_root" action="action_farm_internal_settlement" sequence="10"/>
+</oo>
