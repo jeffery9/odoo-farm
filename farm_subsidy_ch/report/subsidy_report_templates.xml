@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_moara_subsidy_form_document">
+        <t t-call="web.external_layout">
+            <t t-set="doc" t-value="doc.with_context(lang=doc.lang)"/>
+            <div class="page">
+                <div class="text-center">
+                    <h2>农业农村部耕地地力保护补贴申报表</h2>
+                    <h3>Farmland Fertility Protection Subsidy Application Form (MOARA)</h3>
+                </div>
+
+                <table class="table table-sm table-bordered mt32">
+                    <tr>
+                        <td><strong>申报单号 / Application No.:</strong></td>
+                        <td><span t-field="doc.name"/></td>
+                        <td><strong>申报年度 / Fiscal Year:</strong></td>
+                        <td><span t-field="doc.fiscal_year"/></td>
+                    </tr>
+                    <tr>
+                        <td><strong>补贴项目 / Subsidy Program:</strong></td>
+                        <td><span t-field="doc.program_id.name"/></td>
+                        <td><strong>作物类型 / Crop Type:</strong></td>
+                        <td><span t-field="doc.crop_type_china"/></td>
+                    </tr>
+                    <tr>
+                        <td><strong>申报面积 (亩) / Declared Area (mu):</strong></td>
+                        <td><span t-field="doc.declared_area_mu" t-options='{"widget": "float", "precision": 2}'/></td>
+                        <td><strong>预估补贴金额 / Estimated Subsidy:</strong></td>
+                        <td><span t-field="doc.estimated_amount" t-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/></td>
+                    </tr>
+                </table>
+
+                <h3 class="mt32">申报地块明细 / Declared Land Parcels:</h3>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th>地块名称 / Parcel Name</th>
+                            <th>面积 (平方米) / Area (sqm)</th>
+                            <th>土地性质 / Land Nature</th>
+                            <th>承包证号 / Contract No.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="doc.land_parcel_ids" t-as="parcel">
+                            <tr>
+                                <td><span t-field="parcel.name"/></td>
+                                <td><span t-field="parcel.land_area"/></td>
+                                <td><span t-field="parcel.land_nature"/></td>
+                                <td><span t-field="parcel.land_contract_no"/></td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <div class="mt-5 text-right">
+                    <p><strong>申报人（盖章）：</strong></p>
+                    <p>____________________</p>
+                    <p>（日期：<span t-esc="datetime.now().strftime('%Y年%m月%d日')"/>）</p>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
