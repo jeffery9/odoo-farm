@@ -56,6 +56,10 @@ class FarmLocation(models.Model):
         ('oak', 'Oak Barrel (橡木桶)'),
         ('ceramic', 'Ceramic (陶瓷)')
     ], string="Material")
+    
+    # 多农场协同 [US-63]
+    # 使用 Odoo 原生 Company 机制，但在 UI 上强化 Farm 概念
+    farm_id = fields.Many2one('res.company', string="Belonging Farm", default=lambda self: self.env.company)
 
     @api.depends('water_depth')
     def _compute_water_depth_dm(self):
