@@ -38,14 +38,14 @@ class StockLot(models.Model):
     def _compute_input_history(self):
         """计算批次的投入品历史"""
         for lot in self:
-            # 农事记录来确定投入品历史
+            # 这里需要根据实际的生产/农事记录来确定投入品历史
             # 简化实现：暂时设为空
             lot.input_history_ids = [(5, 0, 0)]  # 清空关联
 
     def check_export_compliance(self, country_code):
         """
         检查批次是否符合目标国家的出口标准 [US-17-06]
-
+        
         :param country_code: 目标国家代码
         :return: (is_compliant, violations) 是否合规及违规详情
         """
@@ -53,82 +53,20 @@ class StockLot(models.Model):
             ('code', '=', country_code.upper()),
             ('active', '=', True)
         ], limit=1)
-
+        
         if not country_standard:
             return True, []
-
-        # 获取该批次使用过的投入品 - 这里需要根据实际的模型关系获取投入品历史
-        # 在实际实现中，这可能需要从农事记录、库存移动等获取信息
+        
+        # 获取该批次使用过的投入品
         violating_products = []
-
-        # 获取与该批次相关的投入品历史
-        input_history = self._get_input_history()
-
-        if input_history:
+        if self.input_history_ids:
             prohibited_products = country_standard.prohibited_products
-            violating_products = input_history & prohibited_products
-
+            violating_products = self.input_history_ids & prohibited_products
+        
         is_compliant = len(violating_products) == 0
         violations = [product.name for product in violating_products]
-
+        
         return is_compliant, violations
-
-    def _get_input_history(self):
-        """
-        获取投入品历史 [US-17-06]
-        根据实际的业务模型获取该批次或订单相关的投入品历史
-        """
-        # 在实际实现中，这可能需要从以下模型获取数据：
-        # - stock.lot 与投入品的关系
-        # - agri.intervention 使用的投入品
-        # - mrp.production 使用的原材料
-        # - stock.move 记录
-
-        # 这里是一个示例实现，根据实际模型关系进行调整
-        input_products = self.env['product.product']
-
-        # 示例：如果这是一个销售订单，我们可以检查相关的生产或采购历史
-        if self._name == 'sale.order':
-            # 检查订单行中的产品相关的投入品历史
-            for order_line in self.order_line:
-                product = order_line.product_id
-                # 获取与该产品相关的投入品历史
-                # 这里需要根据实际的业务模型进行调整
-                related_products = self._get_related_inputs_for_product(product)
-                input_products |= related_products
-
-        return input_products
-
-    def _get_related_inputs_for_product(self, product):
-        """
-        获取与产品相关的投入品 [US-17-06]
-        根据产品的BOM或生产历史获取相关的投入品
-        """
-        input_products = self.env['product.product']
-
-        # 查找与该产品相关的生产订单
-        production_orders = self.env['mrp.production'].search([
-            ('product_id', '=', product.id),
-            ('state', '=', 'done')  # 只获取已完成的生产订单
-        ])
-
-        for production in production_orders:
-            # 获取生产订单中使用的原材料
-            for move in production.move_raw_ids:
-                input_products |= move.product_id
-
-        # 查找与该产品相关的农事干预
-        # 这里假设有一个农事干预模型，实际实现中需要根据具体模型调整
-        interventions = self.env['farm.agricultural.intervention'].search([
-            ('output_product_id', '=', product.id)
-        ])
-
-        for intervention in interventions:
-            # 获取干预中使用的投入品
-            for input_line in intervention.input_ids:
-                input_products |= input_line.product_id
-
-        return input_products
 
 
 class SaleOrder(models.Model):
@@ -138,7 +76,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     export_country_code = fields.Char(
-        'Export Country Code',
+        'Export Country Code', 
         help='如果此订单是出口订单，请输入目标国家代码'
     )
     export_compliance_status = fields.Selection([
@@ -147,162 +85,9 @@ class SaleOrder(models.Model):
         ('non_compliant', 'Non-Compliant')
     ], string='Export Compliance Status', default='unknown', readonly=True)
 
-    def generate_compliance_report(self, country_code):
-        """
-        生成合规报告 [US-17-06]
-
-        :param country_code: 目标国家代码
-        :return: 合规报告内容
-        """
-        country_standard = self.env['export.country.standard'].search([
-            ('code', '=', country_code.upper()),
-            ('active', '=', True)
-        ], limit=1)
-
-        if not country_standard:
-            return {
-                'country': country_code,
-                'status': 'No standard found',
-                'details': 'No export standard found for this country.',
-                'compliant': False,
-                'violations': [],
-                'recommendations': []
-            }
-
-        # 对于销售订单，我们需要检查关联的产品批次的合规性
-        # 这里简化处理，假设订单中有一个产品
-        product_lot = self.order_line[0].product_id if self.order_line else None
-        if product_lot:
-            is_compliant, violations = product_lot.check_export_compliance(country_code)
-        else:
-            is_compliant = True
-            violations = []
-
-        report = {
-            'order_info': {
-                'name': self.name,
-                'product': self.order_line[0].product_id.name if self.order_line else 'N/A',
-                'order_date': self.date_order,
-            },
-            'country': country_code,
-            'standard': country_standard.name,
-            'status': 'Compliant' if is_compliant else 'Non-compliant',
-            'details': country_standard.compliance_requirements,
-            'compliant': is_compliant,
-            'violations': violations,
-            'recommendations': self._get_compliance_recommendations(country_standard, violations) if not is_compliant else []
-        }
-
-        return report
-
-    def _get_compliance_recommendations(self, standard, violations):
-        """
-        获取合规建议 [US-17-06]
-
-        :param standard: 国家标准记录
-        :param violations: 违规列表
-        :return: 合规建议列表
-        """
-        recommendations = []
-
-        if violations:
-            recommendations.append(f"Remove the following prohibited products: {', '.join(violations)}")
-
-        if standard.compliance_requirements:
-            recommendations.append(f"Follow these requirements: {standard.compliance_requirements}")
-
-        recommendations.append("Consider using alternative inputs that comply with the destination country's regulations.")
-
-        return recommendations
-
-    def auto_check_compliance_before_sale(self):
-        """
-        销售前自动检查合规性 [US-17-06]
-        """
-        for order in self:
-            if order.export_country_code:
-                is_compliant, violations = order.check_export_compliance(order.export_country_code)
-
-                if not is_compliant:
-                    order.export_compliance_status = 'non_compliant'
-                    # 记录合规检查失败的详细信息
-                    compliance_log = self.env['export.compliance.log'].create({
-                        'order_id': order.id,
-                        'country_code': order.export_country_code,
-                        'violations': ', '.join(violations),
-                        'checked_on': fields.Datetime.now(),
-                        'result': 'failed'
-                    })
-                else:
-                    order.export_compliance_status = 'compliant'
-                    # 记录合规检查成功的详细信息
-                    compliance_log = self.env['export.compliance.log'].create({
-                        'order_id': order.id,
-                        'country_code': order.export_country_code,
-                        'result': 'passed'
-                    })
-
-    def generate_certificate_of_compliance(self):
-        """
-        生成合规证书 [US-17-06]
-        """
-        for order in self:
-            if order.export_compliance_status == 'compliant':
-                certificate_data = {
-                    'order_id': order.id,
-                    'product_name': order.order_line[0].product_id.name if order.order_line else '',
-                    'destination_country': order.export_country_code,
-                    'certificate_number': self._generate_certificate_number(),
-                    'issue_date': fields.Date.today(),
-                    'valid_until': fields.Date.add(fields.Date.today(), months=1),  # 有效期1个月
-                    'inspector': self.env.user.name,
-                    'compliance_details': order.generate_compliance_report(order.export_country_code)
-                }
-
-                certificate = self.env['export.certificate'].create(certificate_data)
-                return certificate
-        return None
-
-    def _generate_certificate_number(self):
-        """
-        生成证书编号 [US-17-06]
-        """
-        import datetime
-        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-        random_part = str(hash(timestamp))[-6:]  # 取哈希值的后6位作为随机部分
-        return f"CERT-{timestamp}-{random_part}"
-
     def action_confirm(self):
-        """在确认销售订单时检查出口合规性及繁育代次硬拦截 [US-01-05]"""
+        """在确认销售订单时检查出口合规性"""
         for order in self:
-            # 1. 繁育代次硬拦截 [US-01-05] (Core-Closure)
-            for line in order.order_line:
-                product = line.product_id
-                # 检查产品模板层级的设定
-                if product.agri_generation in ['g0', 'g1', 'g2']:
-                    # 创建审核 Activity [Workflow]
-                    order.activity_schedule(
-                        'mail.mail_activity_data_todo',
-                        summary=_('Breeding Generation Compliance Alert：[%s]') % product.name,
-                        note=_('Detected attempt to sell non-commercial product (%s)。Please verify if this operation has special authorization.') % product.agri_generation.upper(),
-                        user_id=order.user_id.id # 暂时指派给销售员自己，实际应指派给经理
-                    )
-                    raise ValidationError(_(
-                        "Hard-block: Sales of non-commercial breeding generations prohibited.\n"
-                        "产品 [%s] 的代次为 %s，belongs to internal R&D or breeding reserves and is strictly prohibited from direct sale."
-                    ) % (product.display_name, product.agri_generation.upper()))
-                
-                # 如果有具体批次，检查批次层级的设定
-                # 农业场景下，即便产品模板是 g3，具体某个批次如果是回购或降级，也可能被标记为内部级
-                for move in line.move_ids:
-                    for lot in move.move_line_ids.lot_id:
-                        if lot.agri_generation in ['g0', 'g1', 'g2']:
-                            raise ValidationError(_(
-                                "Hard-block: Batch generation violation.\n"
-                                "批次 [%s] 的繁育代次为 %s，Strictly prohibited from entering commercial circulation."
-                            ) % (lot.name, lot.agri_generation.upper()))
-
-            # 2. 出口合规性检查 [US-17-06]
             if order.export_country_code:
                 # 检查订单中所有产品的合规性
                 non_compliant_lines = []
