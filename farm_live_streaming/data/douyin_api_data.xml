@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 示例直播会话数据 -->
+    <record id="demo_live_session_1" model="live.streaming.session">
+        <field name="name">春季新鲜果蔬直播</field>
+        <field name="start_time" eval="DateTime.now() - timedelta(days=1)"/>
+        <field name="end_time" eval="DateTime.now() - timedelta(days=1, hours=2)"/>
+        <field name="status">ended</field>
+        <field name="description">展示我们农场最新鲜的春季果蔬，包括溯源信息</field>
+    </record>
+
+    <record id="demo_live_session_2" model="live.streaming.session">
+        <field name="name">有机蔬菜种植过程直播</field>
+        <field name="start_time" eval="DateTime.now() + timedelta(days=3)"/>
+        <field name="status">planned</field>
+        <field name="description">直播有机蔬菜的种植过程，展示我们的有机认证</field>
+    </record>
+</odoo>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 直播统计数据视图 -->
+    <record id="view_live_statistics_tree" model="ir.ui.view">
+        <field name="name">live.statistics.tree</field>
+        <field name="model">live.statistics</field>
+        <field name="arch" type="xml">
+            <tree string="Live Statistics">
+                <field name="live_session_id"/>
+                <field name="date"/>
+                <field name="view_count"/>
+                <field name="like_count"/>
+                <field name="comment_count"/>
+                <field name="conversion_rate"/>
+                <field name="total_sales"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_live_statistics_form" model="ir.ui.view">
+        <field name="name">live.statistics.form</field>
+        <field name="model">live.statistics</field>
+        <field name="arch" type="xml">
+            <form string="Live Statistics">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="live_session_id"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="view_count"/>
+                            <field name="like_count"/>
+                            <field name="comment_count"/>
+                        </group>
+                    </group>
+                    <group string="Engagement Metrics">
+                        <field name="share_count"/>
+                        <field name="max_online_count"/>
+                        <field name="avg_watch_duration"/>
+                        <field name="new_fans_count"/>
+                    </group>
+                    <group string="Product Metrics">
+                        <field name="product_click_count"/>
+                        <field name="product_cart_count"/>
+                    </group>
+                    <group string="Sales Metrics">
+                        <field name="conversion_rate"/>
+                        <field name="total_sales"/>
+                        <field name="order_count"/>
+                        <field name="live_duration"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- 菜单项 -->
+    <menuitem id="menu_live_statistics" 
+              name="Live Statistics" 
+              parent="menu_live_streaming_root" 
+              action="action_live_statistics"/>
+
+    <!-- 动作 -->
+    <record id="action_live_statistics" model="ir.actions.act_window">
+        <field name="name">Live Streaming Statistics</field>
+        <field name="res_model">live.statistics</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+    </record>
+</odoo>
