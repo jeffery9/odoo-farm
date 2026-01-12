@@ -93,12 +93,29 @@ Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         """检查证书有效性 [US-17-06]"""
         certificate = self.search([('certificate_number', '=', certificate_number)], limit=1)
         if certificate:
+            # 检查是否激活
             if not certificate.is_active:
-                return {'valid': False, 'message': 'Certificate has been deactivated'}
-            if certificate.valid_until < fields.Date.today():
-                return {'valid': False, 'message': 'Certificate has expired'}
-            return {'valid': True, 'certificate': certificate.read()}
-        return {'valid': False, 'message': 'Certificate not found'}
+                return {'valid': False, 'message': 'Certificate has been deactivated', 'certificate': certificate.read()}
+
+            # 检查是否过期
+            if certificate.valid_until and certificate.valid_until < fields.Date.today():
+                return {'valid': False, 'message': 'Certificate has expired', 'certificate': certificate.read()}
+
+            # 检查是否在有效期内
+            if certificate.issue_date and certificate.issue_date > fields.Date.today():
+                return {'valid': False, 'message': 'Certificate is not yet valid', 'certificate': certificate.read()}
+
+            # 返回有效证书信息
+            return {
+                'valid': True,
+                'certificate': certificate.read(),
+                'message': 'Certificate is valid',
+                'issue_date': certificate.issue_date,
+                'valid_until': certificate.valid_until,
+                'product_name': certificate.product_name,
+                'destination_country': certificate.destination_country
+            }
+        return {'valid': False, 'message': 'Certificate not found', 'certificate_number': certificate_number}
 
 
 class ExportCountryStandard(models.Model):
