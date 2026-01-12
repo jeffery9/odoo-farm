@@ -8,7 +8,7 @@ class AgriculturalCampaign(models.Model):
     total_p = fields.Float("Total Phosphorus (kg)", compute='_compute_campaign_nutrients', store=True)
     total_k = fields.Float("Total Potassium (kg)", compute='_compute_campaign_nutrients', store=True)
 
-    # 减量化对比指标 [US-39]
+    # 减量化对比指标 [US-08-03]
     n_reduction_rate = fields.Float("N Reduction %", compute='_compute_reduction_rates')
     p_reduction_rate = fields.Float("P Reduction %", compute='_compute_reduction_rates')
     k_reduction_rate = fields.Float("K Reduction %", compute='_compute_reduction_rates')

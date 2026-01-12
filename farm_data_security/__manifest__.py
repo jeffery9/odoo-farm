@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'China-specific Data Localization and Cybersecurity Compliance',
     'description': """
-        Ensures compliance with China's data localization and cybersecurity (等级保护) regulations [US-74].
+        Ensures compliance with China's data localization and cybersecurity (等级保护) regulations [US-18-10].
         - Configuration for data storage region (mainland China).
         - Declaration of Cybersecurity Classified Protection (等级保护) Level 3 compliance.
         - Enhanced audit logging for sensitive operations (e.g., deleting land parcels, exporting farmer info).

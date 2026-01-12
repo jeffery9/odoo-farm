@@ -39,7 +39,7 @@ class ProjectTask(models.Model):
             if vals.get('project_id'):
                 project = self.env['project.project'].browse(vals['project_id'])
                 if project.is_agri_activity:
-                    # 获取序列号规则 [US-01]
+                    # 获取序列号规则 [US-01-01]
                     sequence = project.task_sequence_id
                     if not sequence and project.activity_family:
                         seq_code = 'farm.task.%s' % project.activity_family

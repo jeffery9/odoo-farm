@@ -65,6 +65,13 @@
             <xpath expr="//page[@name='finished_steps']//field[@name='move_finished_ids']//list//field[@name='product_uom_qty']" position="after">
                 <field name="quality_grade" optional="show"/>
             </xpath>
+            <xpath expr="//page[@name='finished_products']" position="inside">
+                <group string="Harvest Grading" attrs="{'invisible': [('intervention_type', '!=', 'harvesting')]}">
+                    <field name="grade_a_qty"/>
+                    <field name="grade_b_qty"/>
+                    <field name="grade_c_qty"/>
+                </group>
+            </xpath>
         </field>
     </record>
 </odoo>

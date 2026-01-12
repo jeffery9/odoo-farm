@@ -1,0 +1,140 @@
+<odoo>
+    <data>
+        <!-- Action and Menu for Skills -->
+        <record id="action_farm_training_skill" model="ir.actions.act_window">
+            <field name="name">Skills</field>
+            <field name="res_model">farm.training.skill</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_farm_training_skill"
+                  name="Skills"
+                  action="action_farm_training_skill"
+                  parent="menu_farm_training_root"
+                  sequence="10"/>
+
+        <!-- Form View for Skills -->
+        <record id="farm_training_skill_view_form" model="ir.ui.view">
+            <field name="name">farm.training.skill.form</field>
+            <field name="model">farm.training.skill</field>
+            <field name="arch" type="xml">
+                <form string="Skill">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View for Skills -->
+        <record id="farm_training_skill_view_tree" model="ir.ui.view">
+            <field name="name">farm.training.skill.tree</field>
+            <field name="model">farm.training.skill</field>
+            <field name="arch" type="xml">
+                <tree string="Skills">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action and Menu for Certifications -->
+        <record id="action_farm_training_certification" model="ir.actions.act_window">
+            <field name="name">Certifications</field>
+            <field name="res_model">farm.training.certification</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_farm_training_certification"
+                  name="Certifications"
+                  action="action_farm_training_certification"
+                  parent="menu_farm_training_root"
+                  sequence="20"/>
+
+        <!-- Form View for Certifications -->
+        <record id="farm_training_certification_view_form" model="ir.ui.view">
+            <field name="name">farm.training.certification.form</field>
+            <field name="model">farm.training.certification</field>
+            <field name="arch" type="xml">
+                <form string="Certification">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="validity_period"/>
+                            <field name="required_skills_ids" widget="many2many_tags"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View for Certifications -->
+        <record id="farm_training_certification_view_tree" model="ir.ui.view">
+            <field name="name">farm.training.certification.tree</field>
+            <field name="model">farm.training.certification</field>
+            <field name="arch" type="xml">
+                <tree string="Certifications">
+                    <field name="name"/>
+                    <field name="validity_period"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action and Menu for Training Records -->
+        <record id="action_farm_training_training_record" model="ir.actions.act_window">
+            <field name="name">Training Records</field>
+            <field name="res_model">farm.training.training_record</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_farm_training_training_record"
+                  name="Training Records"
+                  action="action_farm_training_training_record"
+                  parent="menu_farm_training_root"
+                  sequence="30"/>
+
+        <!-- Form View for Training Records -->
+        <record id="farm_training_training_record_view_form" model="ir.ui.view">
+            <field name="name">farm.training.training_record.form</field>
+            <field name="model">farm.training.training_record</field>
+            <field name="arch" type="xml">
+                <form string="Training Record">
+                    <sheet>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="certification_id"/>
+                            <field name="training_date"/>
+                            <field name="expiration_date"/>
+                            <field name="status"/>
+                            <field name="trainer_id"/>
+                            <field name="notes"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View for Training Records -->
+        <record id="farm_training_training_record_view_tree" model="ir.ui.view">
+            <field name="name">farm.training.training_record.tree</field>
+            <field name="model">farm.training.training_record</field>
+            <field name="arch" type="xml">
+                <tree string="Training Records">
+                    <field name="employee_id"/>
+                    <field name="certification_id"/>
+                    <field name="training_date"/>
+                    <field name="expiration_date"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Main menu for Farm Training -->
+        <menuitem id="menu_farm_training_root"
+                  name="Farm Training"
+                  sequence="100"
+                  web_icon="farm_training,static/description/icon.png"/>
+
+    </data>
+</odoo>

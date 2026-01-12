@@ -5,8 +5,8 @@
     'summary': 'Nursery Batch Tracking and Breeding Pedigree',
     'description': """
         Breeding module for Odoo 19 Farm Management System.
-        - Nursery Factory Management (Seedling Age, Survival Rate) [US-31]
-        - Pedigree & Trait Tracking [US-32]
+        - Nursery Factory Management (Seedling Age, Survival Rate) [US-03-02]
+        - Pedigree & Trait Tracking [US-10-02]
     """,
     'author': 'Jeffery',
     'depends': ['farm_operation', 'farm_core'],

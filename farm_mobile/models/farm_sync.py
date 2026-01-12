@@ -41,7 +41,7 @@ class FarmSyncQueue(models.Model):
                 record.write({'status': 'failed', 'error_message': str(e)})
 
     def action_get_asset_redirect(self, barcode):
-        """ 根据条码返回资产跳转信息 [US-22] """
+        """ 根据条码返回资产跳转信息 [US-02-03] """
         # 搜索批次
         lot = self.env['stock.lot'].search([('name', '=', barcode)], limit=1)
         if lot:

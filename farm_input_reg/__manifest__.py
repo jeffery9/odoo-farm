@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'China-specific Pesticide/Veterinary Drug Real-name Registration',
     'description': """
-        Implements China's regulations on agricultural input usage [US-66].
+        Implements China's regulations on agricultural input usage [US-10-02].
         - Real-name registration for pesticide/veterinary drug applicators.
         - Tracking of product registration numbers.
         - Warning/Blocking for prohibited/restricted inputs.

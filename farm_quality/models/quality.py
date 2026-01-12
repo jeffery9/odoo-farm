@@ -113,7 +113,7 @@ class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
     def button_validate(self):
-        """ 质量拦截逻辑 [US-51] """
+        """ 质量拦截逻辑 [US-05-04] """
         for picking in self:
             # 仅针对出库或内部调拨进行检查
             if picking.picking_type_code in ['outgoing', 'internal']:

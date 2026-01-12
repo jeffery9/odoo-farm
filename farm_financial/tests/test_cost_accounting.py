@@ -9,7 +9,7 @@ class TestFarmCostAccounting(TransactionCase):
         self.Campaign = self.env['agricultural.campaign'].create({'name': '2026 Test Season'})
 
     def test_01_automatic_analytic_account_creation(self):
-        """ 测试创建生产任务时自动生成辅助核算账户 [US-41] """
+        """ 测试创建生产任务时自动生成辅助核算账户 [US-04-02] """
         task = self.Task.create({
             'name': 'Cost Test Task',
             'campaign_id': self.Campaign.id,
@@ -21,7 +21,7 @@ class TestFarmCostAccounting(TransactionCase):
         self.assertEqual(task.analytic_account_id.plan_id.name, 'Agri-Projects', "应属于农业项目计划")
 
     def test_02_cost_aggregation_logic(self):
-        """ 测试成本归集逻辑（模拟） [US-41] """
+        """ 测试成本归集逻辑（模拟） [US-04-02] """
         task = self.Task.create({'name': 'Aggregation Test'})
         
         # 创建一个模拟的成本凭证行

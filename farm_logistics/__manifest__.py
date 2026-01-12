@@ -5,7 +5,7 @@
     'summary': 'Cold Chain, Packaging and Farm Direct Logistics',
     'description': """
         Logistics module for Odoo 19 Farm Management System.
-        - Cold Chain Management (Temperature tracking) [US-30]
+        - Cold Chain Management (Temperature tracking) [US-03-03]
         - Multi-level Packaging support
         - Integrated Field Delivery
     """,

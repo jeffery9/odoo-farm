@@ -72,7 +72,7 @@ class FarmManureLedger(models.Model):
             ledger.total_quantity_disposed = sum(ledger.batch_ids.mapped('quantity'))
 
     def action_generate_moara_ledger(self):
-        """ 模拟生成农业农村部畜禽粪污资源化利用台账 [US-69] """
+        """ 模拟生成农业农村部畜禽粪污资源化利用台账 [US-18-05] """
         self.ensure_one()
         self.message_post(body=_("MOARA Manure Utilization Ledger generated for %s/%s.") % (self.month, self.year))
         return True

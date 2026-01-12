@@ -5,10 +5,10 @@
     'summary': 'Core Agricultural Master Data and Activity Classification',
     'description': """
         Base module for Odoo 19 Farm Management System.
-        - Agricultural Activity Classification (US-01)
-        - Sector-specific attributes (US-02)
-        - Land Parcel Management (US-03)
-        - Biological Asset Management (US-04)
+        - Agricultural Activity Classification (US-01-01)
+        - Sector-specific attributes (US-01-02)
+        - Land Parcel Management (US-01-03)
+        - Biological Asset Management (US-01-04)
     """,
     'author': 'Jeffery',
     'depends': ['project', 'stock', 'uom', 'base_setup'],

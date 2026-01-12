@@ -21,7 +21,7 @@ class TestGroupMovements(TransactionCase):
         })
 
     def test_01_record_death(self):
-        """ 测试记录动物死亡减员 [US-12] """
+        """ 测试记录动物死亡减员 [US-05-04] """
         # 初始数量假设通过库存已经有了，这里测试逻辑层面的记录
         self.group_a.action_record_death(qty=2, reason='disease', notes='Swine flu suspicion')
         
@@ -31,7 +31,7 @@ class TestGroupMovements(TransactionCase):
         self.assertIn('disease', message.body)
 
     def test_02_merge_groups(self):
-        """ 测试群组合并 [US-12] """
+        """ 测试群组合并 [US-05-04] """
         group_b = self.Lot.create({
             'name': 'PIG-GRP-B',
             'product_id': self.pig_product.id,

@@ -5,9 +5,9 @@
     'summary': 'Epidemic Prevention Scheduling and Biosafety Control',
     'description': """
         Safety module for Odoo 19 Farm Management System.
-        - Automatic Prevention & Plant Protection Scheduling [US-33]
-        - Quarantine & Outbreak Management [US-34]
-        - Medicine Withdrawal Period Tracking [US-35]
+        - Automatic Prevention & Plant Protection Scheduling [US-03-03]
+        - Quarantine & Outbreak Management [US-11-02]
+        - Medicine Withdrawal Period Tracking [US-11-03]
     """,
     'author': 'Jeffery',
     'depends': ['farm_operation', 'farm_core'],

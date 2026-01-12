@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'Biodiversity Tracking and Ecological Indicators',
     'description': """
-        Ecological management for sustainable farming [US-59].
+        Ecological management for sustainable farming [US-17-05].
         - Biodiversity Indicators (Insects, Birds, Vegetation)
         - Ecological Infrastructure Maintenance (Hedges, Ponds)
         - ESG Reporting support

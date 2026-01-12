@@ -3,7 +3,7 @@ from odoo import models, fields, api, _
 class MrpBom(models.Model):
     _inherit = 'mrp.bom'
 
-    # 农业加工配方扩展 [US-45]
+    # 农业加工配方扩展 [US-14-02]
     industry_type = fields.Selection([
         ('standard', 'Standard'),
         ('baking', 'Baking (烘焙)'),
@@ -49,7 +49,7 @@ class FarmBomGradeDistribution(models.Model):
 class MrpWorkcenter(models.Model):
     _inherit = 'mrp.workcenter'
 
-    # 能耗核算基础 [US-47]
+    # 能耗核算基础 [US-14-04]
     energy_type = fields.Selection([
         ('electricity', 'Electricity (电)'),
         ('water', 'Water (水)'),
@@ -60,14 +60,14 @@ class MrpWorkcenter(models.Model):
 class MrpWorkorder(models.Model):
     _inherit = 'mrp.workorder'
 
-    # 实际工序能耗记录 [US-47]
+    # 实际工序能耗记录 [US-14-04]
     actual_energy_consumption = fields.Float("Actual Energy Consumption")
     process_parameters = fields.Text("Process Parameters (e.g. Temperature, Pressure)")
 
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    # 汇总能耗成本 [US-47]
+    # 汇总能耗成本 [US-14-04]
     total_energy_cost = fields.Float("Total Energy Cost", compute='_compute_total_energy_cost', store=True)
 
     @api.onchange('bom_id')
@@ -115,7 +115,7 @@ class MrpProduction(models.Model):
                 total += wo.actual_energy_consumption * wo.workcenter_id.energy_cost_per_hour
             mo.total_energy_cost = total
 
-    # 加工能耗记录 [US-62]
+    # 加工能耗记录 [US-17-08]
     energy_meter_start = fields.Float("Energy Meter Start", help="Meter reading before processing")
     energy_meter_end = fields.Float("Energy Meter End", help="Meter reading after processing")
     energy_consumption = fields.Float("Energy Consumption", compute='_compute_energy_consumption', store=True)
@@ -124,7 +124,7 @@ class MrpProduction(models.Model):
     moisture_content = fields.Float("Moisture Content (%)", help="Final moisture content for dried products")
     process_temperature = fields.Float("Process Temperature (℃)")
     
-    # 损耗与平衡校验 [US-44]
+    # 损耗与平衡校验 [US-04-02]
     scrap_qty = fields.Float("Process Loss (kg)", help="Quantity lost during cleaning/sorting/processing")
     total_output_qty = fields.Float("Total Output Qty", compute='_compute_total_output_qty')
     is_balanced = fields.Boolean("Mass Balanced", compute='_compute_total_output_qty')
@@ -143,7 +143,7 @@ class MrpProduction(models.Model):
             mo.is_balanced = abs(mo.total_output_qty - raw_qty) < (raw_qty * 0.001) if raw_qty > 0 else True
 
     def button_mark_done(self):
-        """ 强制平衡校验并建立批次溯源 [US-46] """
+        """ 强制平衡校验并建立批次溯源 [US-15-03] """
         for mo in self:
             if not mo.is_balanced:
                 from odoo.exceptions import UserError

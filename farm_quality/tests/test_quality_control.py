@@ -14,7 +14,7 @@ class TestFarmQuality(TransactionCase):
         self.lot = self.Lot.create({'name': 'APP-2026-001', 'product_id': self.apple.id})
 
     def test_01_quality_point_and_check(self):
-        """ 测试创建质量控制点并执行检查 [US-13, US-14] """
+        """ 测试创建质量控制点并执行检查 [US-01-04, US-15-02] """
         # 1. 定义控制点：收获前农残检测
         point = self.Point.create({
             'name': 'Pesticide Residue Test',
@@ -35,7 +35,7 @@ class TestFarmQuality(TransactionCase):
         self.assertEqual(self.lot.quality_status, 'failed', "批次状态应自动更新为失败")
 
     def test_02_measurement_check(self):
-        """ 测试数值测量型检查 [US-14] """
+        """ 测试数值测量型检查 [US-15-02] """
         point = self.Point.create({
             'name': 'Sugar Content (Brix)',
             'test_type': 'measure',
