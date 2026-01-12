@@ -2,6 +2,9 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 import requests
 import json
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class DouyinAccount(models.Model):
@@ -179,34 +182,179 @@ class ProductSync(models.Model):
         for sync in self:
             try:
                 product = sync.product_id
+                account = sync.douyin_account_id
+
+                # 检查账户是否已授权
+                if not account.access_token:
+                    raise Exception("Account not authorized or token expired")
+
                 # 构建产品数据
                 product_data = {
                     'name': product.name,
                     'description': product.description_sale or product.name,
                     'price': product.list_price,
+                    'original_price': product.lst_price or product.list_price,
                     'stock_num': int(product.qty_available),
-                    'category_id': sync.sync_category_map or '',  # 使用映射的分类
-                    'images': self._prepare_product_images(product),  # 处理产品图片
+                    'category_id': sync.sync_category_map or self._get_douyin_category(product),
+                    'brand': product.categ_id.name if product.categ_id else '',
+                    'weight': product.weight,
+                    'dimension': {
+                        'length': getattr(product, 'length', 0),
+                        'width': getattr(product, 'width', 0),
+                        'height': getattr(product, 'height', 0),
+                    } if hasattr(product, 'length') else {},
+                    'sku_id': product.default_code or str(product.id),
+                    'status': 1,  # 1=上架，0=下架
                 }
 
-                # 调用抖音API创建/更新商品
-                # 这里需要实际的API调用
-                # response = self.call_douyin_api('product/create', product_data, sync.douyin_account_id)
+                # 处理产品图片
+                image_urls = self._upload_product_images(product, account)
+                if image_urls:
+                    product_data['head_image_list'] = image_urls['head_images'] if 'head_images' in image_urls else [image_urls[0]]
+                    if 'detail_images' in image_urls:
+                        product_data['detail_image_list'] = image_urls['detail_images']
 
-                sync.sync_status = 'synced'
-                sync.last_sync_time = fields.Datetime.now()
-                sync.sync_error = False
-                sync.last_error_message = False
-                sync.sync_retry_count = 0
-                sync.sync_image_processed = True
+                # 调用抖音API创建/更新商品
+                if sync.douyin_product_id:
+                    # 更新现有商品
+                    response = self._call_douyin_api('product/update', product_data, account, method='POST', product_id=sync.douyin_product_id)
+                else:
+                    # 创建新商品
+                    response = self._call_douyin_api('product/create', product_data, account, method='POST')
+
+                if response and response.get('success'):
+                    sync.douyin_product_id = response.get('product_id') or sync.douyin_product_id
+                    sync.sync_status = 'synced'
+                    sync.last_sync_time = fields.Datetime.now()
+                    sync.sync_error = False
+                    sync.last_error_message = False
+                    sync.sync_retry_count = 0
+                    sync.sync_image_processed = True
+
+                    # 记录同步成功日志
+                    _logger.info(f"Product {product.name} synced successfully to Douyin with ID: {sync.douyin_product_id}")
+                else:
+                    error_msg = response.get('msg', 'Unknown error') if response else 'No response from API'
+                    raise Exception(f"API call failed: {error_msg}")
+
             except Exception as e:
                 sync.sync_status = 'error'
                 sync.sync_error = str(e)
                 sync.last_error_message = str(e)
                 sync.sync_retry_count += 1
+                _logger.error(f"Failed to sync product {sync.product_id.name} to Douyin: {str(e)}")
+
                 if sync.sync_retry_count >= sync.max_retry_count:
                     # 达到最大重试次数，停止尝试
-                    pass
+                    _logger.warning(f"Max retry count reached for product {sync.product_id.name}. Stopping sync attempts.")
+
+    def _get_douyin_category(self, product):
+        """获取抖音商品分类 [US-21-02]"""
+        # 根据产品类别映射到抖音分类
+        category_mapping = {
+            'Fruits & Vegetables': '101',  # 偗果蔬菜示例ID
+            'Grains & Oils': '102',        # 粮油调味示例ID
+            'Fresh Meat': '103',            # 新鲜肉类示例ID
+            'Dairy Products': '104',        # 乳制品示例ID
+        }
+
+        category_name = product.categ_id.name if product.categ_id else ''
+        return category_mapping.get(category_name, '101')  # 默认返回水果蔬菜分类
+
+    def _upload_product_images(self, product, account):
+        """上传产品图片到抖音 [US-21-02]"""
+        image_urls = {}
+
+        # 上传主图
+        if product.image_1920:
+            head_image_url = self._upload_single_image(product.image_1920, account, 'head')
+            if head_image_url:
+                image_urls['head_images'] = [head_image_url]
+
+        # 上传详情图
+        detail_images = []
+        if product.image_variant_ids:
+            for img in product.image_variant_ids[:4]:  # 最多4张详情图
+                detail_img_url = self._upload_single_image(img, account, 'detail')
+                if detail_img_url:
+                    detail_images.append(detail_img_url)
+
+        if detail_images:
+            image_urls['detail_images'] = detail_images
+
+        return image_urls
+
+    def _upload_single_image(self, image_data, account, image_type):
+        """上传单张图片到抖音 [US-21-02]"""
+        try:
+            # 解码Base64图片数据
+            import base64
+            image_binary = base64.b64decode(image_data)
+
+            # 准备上传请求
+            upload_url = "https://open.douyin.com/api/media/upload/"
+            headers = {
+                'Authorization': f"Bearer {account.access_token}",
+            }
+
+            # 在实际实现中，这里需要使用 multipart/form-data 发送文件
+            # files = {'media': ('product_image.jpg', image_binary, 'image/jpeg')}
+            # response = requests.post(upload_url, headers=headers, files=files)
+
+            # 模拟上传成功
+            # 实际实现中，需要处理真实的API调用
+            import uuid
+            mock_image_url = f"https://example.com/images/{uuid.uuid4()}.jpg"
+            return mock_image_url
+
+        except Exception as e:
+            _logger.error(f"Failed to upload image: {str(e)}")
+            return None
+
+    def _call_douyin_api(self, endpoint, data, account, method='POST', **kwargs):
+        """调用抖音API的通用方法 [US-21-02]"""
+        try:
+            # 构建API URL
+            base_url = "https://open.douyin.com"
+            url = f"{base_url}/{endpoint}/"
+
+            # 设置请求头
+            headers = {
+                'Content-Type': 'application/json',
+                'Authorization': f"Bearer {account.access_token}",
+                'User-Agent': 'Odoo-Farm-System/1.0'
+            }
+
+            # 添加特定参数
+            if 'product_id' in kwargs:
+                data['product_id'] = kwargs['product_id']
+
+            # 在实际实现中，这里需要发送真实的HTTP请求
+            # response = requests.request(method, url, headers=headers, json=data)
+            # return response.json() if response.status_code == 200 else None
+
+            # 模拟API响应 - 在实际部署时需要替换为真实API调用
+            import json
+            import random
+
+            # 模拟API响应
+            success = random.choice([True, True, True, True, False])  # 80% 成功率模拟
+            if success:
+                return {
+                    'success': True,
+                    'product_id': f"dy_prod_{data.get('name', 'default')}",
+                    'msg': 'Success'
+                }
+            else:
+                return {
+                    'success': False,
+                    'msg': 'Simulated API error for demonstration',
+                    'error_code': 'SIM_ERROR_001'
+                }
+
+        except Exception as e:
+            _logger.error(f"API call failed: {str(e)}")
+            return None
 
     def _prepare_product_images(self, product):
         """准备产品图片 [US-21-02]"""
@@ -243,18 +391,43 @@ class ProductSync(models.Model):
     def auto_sync_stock(self):
         """自动同步库存变化 [US-21-02]"""
         # 查找所有已同步的产品
-        synced_products = self.search([('sync_status', '=', 'synced'), ('is_active', '=', True)])
+        synced_products = self.search([('sync_status', '=', 'synced'), ('is_active', '=', True), ('douyin_product_id', '!=', False)])
         for sync in synced_products:
             product = sync.product_id
             # 检查库存是否发生变化
-            if product.qty_available != sync.product_id.virtual_available:
-                # 同步库存到抖音
-                stock_data = {
-                    'product_id': sync.douyin_product_id,
-                    'stock_num': int(product.qty_available)
-                }
-                # 调用抖音API更新库存
-                # response = self.call_douyin_api('product/update_stock', stock_data, sync.douyin_account_id)
+            if int(product.qty_available) != sync.product_id.virtual_available:
+                try:
+                    # 同步库存到抖音
+                    stock_data = {
+                        'product_id': sync.douyin_product_id,
+                        'sku_id': product.default_code or str(product.id),
+                        'stock_num': int(product.qty_available),
+                        'update_type': 'STOCK_UPDATE'  # 库存更新类型
+                    }
+
+                    # 调用抖音API更新库存
+                    response = self._call_douyin_api('product/update_stock', stock_data, sync.douyin_account_id, method='POST')
+
+                    if response and response.get('success'):
+                        # 更新最后同步时间
+                        sync.last_sync_time = fields.Datetime.now()
+                        _logger.info(f"Stock for product {product.name} synced successfully. New stock: {int(product.qty_available)}")
+                    else:
+                        error_msg = response.get('msg', 'Unknown error') if response else 'No response from API'
+                        _logger.error(f"Failed to sync stock for product {product.name}: {error_msg}")
+
+                        # 更新错误信息
+                        sync.sync_status = 'error'
+                        sync.sync_error = f"Stock sync failed: {error_msg}"
+                        sync.last_error_message = f"Stock sync failed: {error_msg}"
+                        sync.sync_retry_count += 1
+
+                except Exception as e:
+                    _logger.error(f"Exception during stock sync for product {product.name}: {str(e)}")
+                    sync.sync_status = 'error'
+                    sync.sync_error = str(e)
+                    sync.last_error_message = str(e)
+                    sync.sync_retry_count += 1
 
     @api.model
     def scheduled_sync(self):
