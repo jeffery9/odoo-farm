@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Manure Batch Form -->
+    <record id="view_farm_manure_batch_form" model="ir.ui.view">
+        <field name="name">farm.manure.batch.form</field>
+        <field name="model">farm.manure.batch</field>
+        <field name="arch" type="xml">
+            <form string="Manure Batch">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="batch_no"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="production_date"/>
+                            <field name="quantity"/>
+                            <field name="lot_source_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="location_source_id"/>
+                            <field name="disposal_method"/>
+                        </group>
+                    </group>
+                    <group string="Destination" invisible="disposal_method not in ['transfer_third_party', 'direct_field_use']">
+                        <field name="recipient_partner_id" invisible="disposal_method != 'transfer_third_party'"/>
+                        <field name="destination_location_id" invisible="disposal_method != 'direct_field_use'"/>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Manure Batch Tree -->
+    <record id="view_farm_manure_batch_tree" model="ir.ui.view">
+        <field name="name">farm.manure.batch.tree</field>
+        <field name="model">farm.manure.batch</field>
+        <field name="arch" type="xml">
+            <tree string="Manure Batches">
+                <field name="batch_no"/>
+                <field name="production_date"/>
+                <field name="quantity"/>
+                <field name="disposal_method"/>
+                <field name="location_source_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Manure Ledger Form -->
+    <record id="view_farm_manure_ledger_form" model="ir.ui.view">
+        <field name="name">farm.manure.ledger.form</field>
+        <field name="model">farm.manure.ledger</field>
+        <field name="arch" type="xml">
+            <form string="Manure Ledger">
+                <header>
+                    <button name="action_generate_moara_ledger" string="Generate Report" type="object" class="oe_highlight" invisible="state != 'confirmed'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,reported"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="ledger_no"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="year"/>
+                            <field name="month"/>
+                        </group>
+                        <group>
+                            <field name="total_quantity_disposed"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Included Batches">
+                            <field name="batch_ids" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Manure Ledger Tree -->
+    <record id="view_farm_manure_ledger_tree" model="ir.ui.view">
+        <field name="name">farm.manure.ledger.tree</field>
+        <field name="model">farm.manure.ledger</field>
+        <field name="arch" type="xml">
+            <tree string="Manure Ledgers">
+                <field name="ledger_no"/>
+                <field name="year"/>
+                <field name="month"/>
+                <field name="total_quantity_disposed"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_farm_manure_batch" model="ir.actions.act_window">
+        <field name="name">Manure Batches</field>
+        <field name="res_model">farm.manure.batch</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_farm_manure_ledger" model="ir.actions.act_window">
+        <field name="name">Manure Ledgers</field>
+        <field name="res_model">farm.manure.ledger</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menus -->
+    <menuitem id="menu_farm_waste_mgmt_root" name="Waste Management" parent="farm_core.menu_farm_root" sequence="100"/>
+    <menuitem id="menu_farm_manure_batch" name="Manure Batches" parent="menu_farm_waste_mgmt_root" action="action_farm_manure_batch" sequence="10"/>
+    <menuitem id="menu_farm_manure_ledger" name="Manure Ledgers" parent="menu_farm_waste_mgmt_root" action="action_farm_manure_ledger" sequence="20"/>
+</odoo>
