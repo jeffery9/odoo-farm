@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 主农场菜单 (顶级菜单) -->
+    <menuitem id="menu_farm_root" 
+              name="Farm Management" 
+              sequence="10"
+              groups="farm_core.group_farm_user"/>
+
+    <!-- 农业活动家族菜单 -->
+    <menuitem id="menu_agri_family_root" 
+              name="Agricultural Families" 
+              parent="menu_farm_root" 
+              sequence="10"/>
+
+    <!-- 农业活动配置菜单 -->
+    <menuitem id="menu_agri_config" 
+              name="Configurations" 
+              parent="menu_agri_family_root" 
+              sequence="10"/>
+
+    <!-- 农业活动任务菜单 -->
+    <menuitem id="menu_agri_campaign" 
+              name="Production Campaigns" 
+              parent="menu_agri_family_root" 
+              sequence="20"/>
+
+    <!-- 农业活动执行菜单 -->
+    <menuitem id="menu_agri_operations" 
+              name="Operations" 
+              parent="menu_agri_family_root" 
+              sequence="30"/>
+
+    <!-- 农业活动报告菜单 -->
+    <menuitem id="menu_agri_reporting" 
+              name="Reporting" 
+              parent="menu_agri_family_root" 
+              sequence="40"/>
+
+    <!-- 观光农业根菜单 -->
+    <menuitem id="menu_agritourism_root" 
+              name="Agritourism" 
+              parent="menu_farm_root" 
+              sequence="50"/>
+
+    <!-- 畜牧根菜单 -->
+    <menuitem id="menu_livestock_root" 
+              name="Livestock" 
+              parent="menu_farm_root" 
+              sequence="20"/>
+
+    <!-- 种植根菜单 -->
+    <menuitem id="menu_planting_root" 
+              name="Planting" 
+              parent="menu_farm_root" 
+              sequence="15"/>
+
+    <!-- 加工根菜单 -->
+    <menuitem id="menu_processing_root" 
+              name="Processing" 
+              parent="menu_farm_root" 
+              sequence="40"/>
+
+    <!-- 质量管理根菜单 -->
+    <menuitem id="menu_quality_root" 
+              name="Quality Control" 
+              parent="menu_farm_root" 
+              sequence="60"
+              groups="farm_core.group_farm_specialist"/>
+
+    <!-- 安全管理根菜单 -->
+    <menuitem id="menu_safety_root" 
+              name="Safety & Crisis" 
+              parent="menu_farm_root" 
+              sequence="40"/>
+
+    <!-- 供应链管理根菜单 -->
+    <menuitem id="menu_supply_root" 
+              name="Supply Chain" 
+              parent="menu_farm_root" 
+              sequence="30"/>
+
+    <!-- 营销管理根菜单 -->
+    <menuitem id="menu_marketing_root" 
+              name="Marketing" 
+              parent="menu_farm_root" 
+              sequence="70"/>
+
+    <!-- 人力资源管理根菜单 -->
+    <menuitem id="menu_hr_root" 
+              name="Labor & HR" 
+              parent="menu_farm_root" 
+              sequence="80"/>
+
+    <!-- 财务管理根菜单 -->
+    <menuitem id="menu_finance_root" 
+              name="Finance & Costs" 
+              parent="menu_farm_root" 
+              sequence="90"/>
+
+    <!-- 多农场协同根菜单 -->
+    <menuitem id="menu_multi_farm_root" 
+              name="Multi-Entity Collaboration" 
+              parent="menu_farm_root" 
+              sequence="120"
+              groups="farm_core.group_farm_manager"/>
+</odoo>

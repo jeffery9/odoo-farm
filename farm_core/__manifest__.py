@@ -20,6 +20,7 @@
         'views/farm_activity_views.xml',
         'views/farm_location_views.xml',
         'views/soil_analysis_views.xml',
+        'views/menu.xml',
     ],
     'demo': [
         'data/farm_demo_data.xml',
