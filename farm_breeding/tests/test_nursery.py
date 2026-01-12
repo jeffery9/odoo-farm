@@ -17,7 +17,7 @@ class TestNurseryManagement(TransactionCase):
         })
 
     def test_01_seedling_age_calculation(self):
-        """ 测试苗龄自动计算 [US-31] """
+        """ 测试苗龄自动计算 [US-03-02] """
         ten_days_ago = fields.Date.today() - timedelta(days=10)
         batch = self.NurseryBatch.create({
             'name': 'TOM-2026-001',
@@ -27,7 +27,7 @@ class TestNurseryManagement(TransactionCase):
         self.assertEqual(batch.seedling_age, 10, "苗龄应为10天")
 
     def test_02_convert_to_transplant_task(self):
-        """ 测试一键生成移栽任务 [US-31] """
+        """ 测试一键生成移栽任务 [US-03-02] """
         batch = self.NurseryBatch.create({
             'name': 'TOM-2026-002',
             'product_id': self.seed.id,

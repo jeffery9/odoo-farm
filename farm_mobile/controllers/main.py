@@ -5,7 +5,7 @@ class FarmMobileController(http.Controller):
 
     @http.route('/agri/scan/<string:model>/<int:res_id>', type='http', auth='user')
     def agri_scan_redirect(self, model, res_id, **kwargs):
-        """ 扫码重定向逻辑 [US-22] """
+        """ 扫码重定向逻辑 [US-02-03] """
         if model == 'location':
             # 跳转至该地块关联的未完成任务
             task = request.env['project.task'].sudo().search([

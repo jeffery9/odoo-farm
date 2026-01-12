@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError, UserError
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    # 农药/兽药实名制与监管 [US-66]
+    # 农药/兽药实名制与监管 [US-10-02]
     is_regulated_input = fields.Boolean("Is Regulated Input (受监管投入品)", default=False)
     reg_cert_no = fields.Char("Registration/Approval No. (登记证号/批文号)")
     is_prohibited_restricted = fields.Boolean("Prohibited/Restricted (禁限用)", default=False)
@@ -13,7 +13,7 @@ class ProductTemplate(models.Model):
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    # 农事操作人信息 [US-66]
+    # 农事操作人信息 [US-10-02]
     operator_id_card = fields.Char("Operator ID Card No. (操作人身份证号)", copy=False)
     
     @api.constrains('operator_id_card')
@@ -38,7 +38,7 @@ class MrpProduction(models.Model):
         return super(MrpProduction, self).action_confirm()
 
     def action_sync_to_provincial_platform(self):
-        """ 模拟向省级农资监管平台同步数据 [US-66] """
+        """ 模拟向省级农资监管平台同步数据 [US-10-02] """
         self.ensure_one()
         _logger.info("Simulating data sync to provincial platform for %s. Operator: %s", self.name, self.operator_id_card)
         self.message_post(body=_("Data sync to provincial platform simulated for Intervention %s.") % self.name)

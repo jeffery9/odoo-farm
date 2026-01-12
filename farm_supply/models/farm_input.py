@@ -18,22 +18,22 @@ class ProductTemplate(models.Model):
     is_safety_approved = fields.Boolean("Safety Approved", default=True, help="Is this input compliant with organic/safety standards?")
     active_ingredient = fields.Char("Active Ingredient", help="e.g. Glyphosate, Nitrogen content")
     
-    # 养分含量 [US-07]
+    # 养分含量 [US-01-03]
     n_content = fields.Float("Nitrogen (%)", help="Nitrogen percentage")
     p_content = fields.Float("Phosphorus (%)", help="Phosphorus percentage")
     k_content = fields.Float("Potassium (%)", help="Potassium percentage")
     
-    # 休药期/安全间隔期 [US-35]
+    # 休药期/安全间隔期 [US-11-03]
     withdrawal_period_days = fields.Integer("Withdrawal Period (Days)", default=0, help="Days to wait before harvest/slaughter after using this input.")
     
-    # 生长周期 [US-28]
+    # 生长周期 [US-03-01]
     growth_cycle_days = fields.Integer("Growth Cycle (Days)", default=0, help="Typical duration from start to harvest.")
 
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     def action_confirm(self):
-        """ 检查生长周期提前期 [US-28] """
+        """ 检查生长周期提前期 [US-03-01] """
         for order in self:
             for line in order.order_line:
                 product = line.product_id

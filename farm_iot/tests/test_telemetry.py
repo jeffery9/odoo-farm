@@ -9,7 +9,7 @@ class TestTelemetry(TransactionCase):
         self.task = self.Task.create({'name': 'Pond 01 Management'})
 
     def test_01_log_telemetry(self):
-        """ 测试记录遥测数据 [US-11] """
+        """ 测试记录遥测数据 [US-11-03] """
         telemetry = self.Telemetry.create({
             'name': 'Oxygen Sensor 01',
             'sensor_type': 'dissolved_oxygen',

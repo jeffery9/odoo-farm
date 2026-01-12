@@ -52,7 +52,7 @@ class StockPicking(models.Model):
             picking.requires_cert_ch = any(p.categ_id.id == self.env.ref('farm_core.category_harvested').id for p in picking.move_ids.mapped('product_id'))
 
     def action_generate_cert_ch(self):
-        """ 生成食用农产品承诺达标合格证 [US-67] """
+        """ 生成食用农产品承诺达标合格证 [US-18-03] """
         self.ensure_one()
         for move in self.move_ids.filtered(lambda m: m.state == 'done'):
             for lot in move.lot_ids:

@@ -5,9 +5,9 @@
     'summary': 'Livestock and Aquaculture management, Feeding and Groups',
     'description': """
         Livestock module for Odoo 19 Farm Management System.
-        - Feeding Plans & Formulas (BOM based) [US-09]
-        - Biological Asset Tracking [US-04 integration]
-        - Group Movements (Merge, Split, Death) [US-12]
+        - Feeding Plans & Formulas (BOM based) [US-01-03]
+        - Biological Asset Tracking [US-01-04 integration]
+        - Group Movements (Merge, Split, Death) [US-05-04]
     """,
     'author': 'Jeffery',
     'depends': ['farm_operation', 'farm_core'],

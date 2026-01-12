@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'China-specific Livestock/Poultry Manure Management and Ledger',
     'description': """
-        Manages livestock and poultry manure resource utilization ledgers [US-69].
+        Manages livestock and poultry manure resource utilization ledgers [US-18-05].
         - Records disposal methods (composting, biogas, third-party transfer).
         - Tracks destination and recipient information.
         - Generates monthly ledgers compliant with Ministry of Agriculture and Rural Affairs requirements.

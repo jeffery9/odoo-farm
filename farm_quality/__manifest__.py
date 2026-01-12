@@ -5,9 +5,9 @@
     'summary': 'Quality Control Points, Checks and Traceability',
     'description': """
         Quality module for Odoo 19 Farm Management System.
-        - Quality Control Points (QCP) definition [US-13]
-        - Quality Checks (Pass/Fail, Measurements) [US-14]
-        - Quality Alerts & Traceability [US-15]
+        - Quality Control Points (QCP) definition [US-01-04]
+        - Quality Checks (Pass/Fail, Measurements) [US-15-02]
+        - Quality Alerts & Traceability [US-02-01]
     """,
     'author': 'Jeffery',
     'depends': ['farm_operation', 'farm_core'],

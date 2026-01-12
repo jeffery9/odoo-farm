@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'Emergency Protocols and Crisis Management SOPs',
     'description': """
-        Manage agricultural emergencies and crisis response [US-57].
+        Manage agricultural emergencies and crisis response [US-17-03].
         - Emergency Protocols (SOPs for Disease, Fire, Contamination)
         - Crisis Mode Activation & Asset Lockdown
         - Incident Logging & Reporting

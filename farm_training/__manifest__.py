@@ -1,24 +1,29 @@
 {
-    'name': 'Farm Training & Certification',
-    'version': '1.0',
-    'category': 'Industries/Agriculture',
-    'summary': 'Farmer Skill Training and Mandatory Qualification Checks',
+    'name': "Farm Training",
+    'summary': "Manage farmer training, skills, and certifications for farm workers.",
     'description': """
-        US-17-08: Farmer training and qualification admission.
-        - Training session management and hour tracking.
-        - Certificate management with expiry monitoring.
-        - Mandatory qualification checks for professional tasks (e.g. Drone, Chemical handling).
+        Module to manage farmer training programs, track employee skills,
+        and issue/validate certifications for various agricultural tasks.
+        It helps HR manage worker qualifications and prevent unqualified assignments.
     """,
-    'author': 'Jeffery',
-    'depends': ['hr', 'farm_core', 'farm_operation'],
+    'author': "Your Company Name",
+    'website': "https://www.yourcompany.com",
+    'category': 'Human Resources/Farm',
+    'version': '1.0',
+    'depends': [
+        'base',
+        'hr', # Dependency on Odoo's Human Resources module for employees
+        'farm_core', # Dependency on farm_core for farm-specific base data
+    ],
     'data': [
         'security/ir.model.access.csv',
+        'views/farm_training_views.xml',
+        'views/hr_employee_views.xml',
         'data/farm_training_data.xml',
-        'views/training_views.xml',
-        'views/employee_views.xml',
-        'views/menu.xml',
     ],
+    'demo': [],
     'installable': True,
-    'application': False,
-    'license': 'AGPL-3',
+    'application': True,
+    'auto_install': False,
+    'license': 'LGPL-3',
 }

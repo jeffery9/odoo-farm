@@ -26,7 +26,7 @@ class TestAgriBOM(TransactionCase):
         })
 
     def test_01_dilution_calculation(self):
-        """ 测试稀释比例自动计算投入量 [US-13] """
+        """ 测试稀释比例自动计算投入量 [US-01-04] """
         # 创建一个 1000L 的喷洒任务
         mo = self.env['mrp.production'].create({
             'product_id': self.spraying_liquid.id,

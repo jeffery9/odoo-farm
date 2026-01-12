@@ -18,7 +18,7 @@ class FarmTraceabilityController(http.Controller):
         # 获取质检通过记录
         qc_checks = lot.quality_check_ids.filtered(lambda c: c.quality_state == 'pass')
         
-        # 获取直播流地址 [US-52]
+        # 获取直播流地址 [US-16-01]
         video_url = lot.location_id.camera_device_id.live_stream_url if lot.location_id.camera_device_id else False
 
         values = {

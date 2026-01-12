@@ -27,7 +27,7 @@ class FarmTelemetry(models.Model):
     value = fields.Float("Value", required=True)
     timestamp = fields.Datetime("Timestamp", default=fields.Datetime.now, required=True)
     
-    # 关联生产任务 [US-11]
+    # 关联生产任务 [US-11-03]
     production_id = fields.Many2one('project.task', string="Production Task")
     
     # 关联 IIoT 设备
@@ -36,7 +36,7 @@ class FarmTelemetry(models.Model):
     # 关联地块（可选）
     land_parcel_id = fields.Many2one('stock.location', string="Land Parcel/Pond")
     
-    # GIS Snapshot [US-19]
+    # GIS Snapshot [US-02-02]
     gps_lat = fields.Float("Latitude", digits=(10, 7))
     gps_lng = fields.Float("Longitude", digits=(10, 7))
 

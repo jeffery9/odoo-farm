@@ -34,7 +34,7 @@ class FarmRuralRevitalizationProject(models.Model):
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
-    # 关联乡村振兴项目 [US-73]
+    # 关联乡村振兴项目 [US-18-09]
     rural_project_id = fields.Many2one('farm.rural.revitalization.project', string="Rural Revitalization Project")
     
     @api.constrains('rural_project_id', 'state')

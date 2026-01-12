@@ -3,14 +3,14 @@ from odoo import models, fields, api, _
 class StockLocation(models.Model):
     _inherit = 'stock.location'
 
-    # 减量目标 [US-70]
+    # 减量目标 [US-18-06]
     fertilizer_reduction_target = fields.Float("Fertilizer Reduction Target (%)", default=0.0)
     pesticide_reduction_target = fields.Float("Pesticide Reduction Target (%)", default=0.0)
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
-    # 化肥农药使用量汇总 (kg) [US-70]
+    # 化肥农药使用量汇总 (kg) [US-18-06]
     total_fertilizer_used = fields.Float("Total Fertilizer Used (kg)", compute='_compute_green_monitor_stats', store=True)
     total_pesticide_used = fields.Float("Total Pesticide Used (kg)", compute='_compute_green_monitor_stats', store=True)
     

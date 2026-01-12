@@ -17,7 +17,7 @@ class FarmLotBreeding(models.Model):
     trait_value_ids = fields.One2many('farm.trait.value', 'lot_id', string="Traits")
     trait_score_avg = fields.Float("Average Trait Score", compute='_compute_trait_score_avg', store=True)
     
-    # Pedigree [US-04, US-32]
+    # Pedigree [US-01-04, US-10-02]
     sire_id = fields.Many2one('stock.lot', string="Sire (父本)", domain="[('gender', '=', 'male')]")
     dam_id = fields.Many2one('stock.lot', string="Dam (母本)", domain="[('gender', '=', 'female')]")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('other', 'Mixed/Unknown')], default='other')

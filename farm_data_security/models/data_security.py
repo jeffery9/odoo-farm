@@ -11,7 +11,7 @@ class ResConfigSettings(models.TransientModel):
     is_dengbao_level3_compliant = fields.Boolean("Dengbao Level 3 Compliant (等保三级)", config_parameter='farm_data_security.is_dengbao_level3_compliant')
 
     def action_check_data_localization(self):
-        """ 模拟数据本地化检查 [US-74] """
+        """ 模拟数据本地化检查 [US-18-10] """
         self.ensure_one()
         # 实际应检查 Odoo 实例的部署区域、数据库位置等
         if self.data_storage_region == 'china_mainland':
@@ -33,7 +33,7 @@ class FarmLocation(models.Model):
     _inherit = 'stock.location'
 
     def unlink(self):
-        """ 敏感操作审计：删除地块 [US-74] """
+        """ 敏感操作审计：删除地块 [US-18-10] """
         for rec in self:
             _logger.info("Sensitive Operation Audit: User %s deleted Land Parcel %s (ID: %s)", 
                          self.env.user.name, rec.name, rec.id)
@@ -43,7 +43,7 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     def write(self, vals):
-        """ 敏感操作审计：修改农户信息 [US-74] """
+        """ 敏感操作审计：修改农户信息 [US-18-10] """
         if 'is_company' in vals and not vals['is_company']: # 如果是个人农户
             _logger.info("Sensitive Operation Audit: User %s modified Farmer/Partner %s (ID: %s) with changes: %s",
                          self.env.user.name, self.name, self.id, vals)

@@ -62,18 +62,25 @@ class FarmWeatherForecast(models.Model):
             self._fetch_weather_for_location(loc)
 
     def _trigger_disaster_alert(self):
-        """ 触发灾害预警 [US-64] """
+        """ 触发灾害预警 [US-17-10] """
         if self.is_warning and self.warning_type in ['storm', 'frost', 'heat']:
             # 1. 查找是否已有活跃的预警
-            existing = self.env['mail.activity'].search([
+            existing_activity = self.env['mail.activity'].search([
                 ('res_model', '=', 'stock.location'),
                 ('res_id', '=', self.location_id.id),
                 ('summary', 'like', 'Weather Alert'),
                 ('date_deadline', '>=', fields.Date.today())
             ], limit=1)
             
-            if not existing:
-                # 2. 创建预警活动
+            # 查找是否已有对应的灾害事件草稿
+            existing_incident = self.env['farm.disaster.incident'].search([
+                ('disaster_type', '=', self.warning_type),
+                ('date_start', '=', self.date),
+                ('affected_location_ids', 'in', self.location_id.id)
+            ], limit=1)
+
+            if not existing_activity:
+                # 2. 创建预警活动 (Mail Activity)
                 self.env['mail.activity'].create({
                     'res_model': 'stock.location',
                     'res_id': self.location_id.id,
@@ -82,11 +89,22 @@ class FarmWeatherForecast(models.Model):
                     'note': _('Please check the parcel and activate protection measures if necessary.'),
                     'user_id': self.env.user.id, 
                 })
-                
-                # 3. 自动生成损失评估草稿 (如果是极端灾害)
-                if self.warning_type == 'storm':
-                    # 这里可以进一步集成 farm_crisis 模块生成 incident
-                    pass
+            
+            if not existing_incident:
+                # 3. 自动生成灾害事件草稿 (Farm Disaster Incident)
+                disaster_type_map = {
+                    'storm': 'gale', # 将风暴映射为大风/暴风
+                    'frost': 'frost',
+                    'heat': 'high_temp'
+                }
+                self.env['farm.disaster.incident'].create({
+                    'name': _('Weather Disaster: %s on %s for %s') % (self.warning_type, self.date, self.location_id.name),
+                    'disaster_type': disaster_type_map.get(self.warning_type, 'other'),
+                    'date_start': self.date,
+                    'affected_location_ids': [(4, self.location_id.id)],
+                    'description': _('Auto-generated from weather forecast: %s predicted.') % self.warning_type,
+                    'intensity': 'moderate', # 默认中度，可后续人工调整
+                })
 
     def _fetch_weather_for_location(self, location):
         """ 

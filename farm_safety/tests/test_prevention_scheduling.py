@@ -24,7 +24,7 @@ class TestPreventionScheduling(TransactionCase):
         })
 
     def test_01_apply_template_to_task(self):
-        """ 测试应用模板自动生成子任务 [US-33] """
+        """ 测试应用模板自动生成子任务 [US-03-03] """
         # 创建一个生产任务，开始日期为今天
         base_task = self.Task.create({
             'name': 'Pig Batch 2026-001',

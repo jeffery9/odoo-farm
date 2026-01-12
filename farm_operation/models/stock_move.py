@@ -3,7 +3,7 @@ from odoo import models, fields
 class StockMove(models.Model):
     _inherit = 'stock.move'
 
-    # 收获分级字段 [US-08]
+    # 收获分级字段 [US-02-04]
     quality_grade = fields.Selection([
         ('grade_a', 'Grade A (特级/优等)'),
         ('grade_b', 'Grade B (一级/合格)'),

@@ -22,7 +22,7 @@ class TestAgriInterventions(TransactionCase):
         })
 
     def test_01_link_intervention_to_task(self):
-        """ 测试干预记录（MO）关联生产任务 [US-06] """
+        """ 测试干预记录（MO）关联生产任务 [US-02-02] """
         intervention = self.Intervention.create({
             'product_id': self.product.id,
             'bom_id': self.bom.id,

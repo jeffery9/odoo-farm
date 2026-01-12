@@ -7,7 +7,7 @@ class FarmLocation(models.Model):
     land_area = fields.Float("Area (sqm/mu)", digits=(16, 2), help="Surface area of the parcel.")
     land_area_uom_id = fields.Many2one('uom.uom', string="Area Unit", domain="[('category_id.measure_type', '=', 'area')]")
     
-    # GIS Core Fields [US-03]
+    # GIS Core Fields [US-01-03]
     gps_lat = fields.Float("Latitude", digits=(10, 7))
     gps_lng = fields.Float("Longitude", digits=(10, 7))
     gps_coordinates = fields.Text("GPS Coordinates (GeoJSON)", help="GeoJSON format for boundaries/polygons.")
@@ -44,7 +44,7 @@ class FarmLocation(models.Model):
             loc.latest_ph = latest.ph_level if latest else 0.0
             loc.latest_organic_matter = latest.organic_matter if latest else 0.0
 
-    # 针对水产 [US-02]
+    # 针对水产 [US-01-02]
     water_depth = fields.Float("Water Depth (m)")
     water_depth_dm = fields.Float("Water Depth (dm)", compute='_compute_water_depth_dm', inverse='_inverse_water_depth_dm')
 
@@ -57,7 +57,7 @@ class FarmLocation(models.Model):
         ('ceramic', 'Ceramic (陶瓷)')
     ], string="Material")
     
-    # 多农场协同 [US-63]
+    # 多农场协同 [US-17-09]
     # 使用 Odoo 原生 Company 机制，但在 UI 上强化 Farm 概念
     farm_id = fields.Many2one('res.company', string="Belonging Farm", default=lambda self: self.env.company)
 
@@ -70,7 +70,7 @@ class FarmLocation(models.Model):
         for loc in self:
             loc.water_depth = loc.water_depth_dm / 10.0
 
-    # 动态属性 [US-02]
+    # 动态属性 [US-01-02]
     location_properties_definition = fields.PropertiesDefinition('Location Properties Definition')
     location_properties = fields.Properties(
         'Properties',

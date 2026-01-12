@@ -9,7 +9,7 @@ class TestFarmProperties(TransactionCase):
         self.Product = self.env['product.product']
 
     def test_01_location_properties(self):
-        """ 测试地块的动态属性 [US-02] """
+        """ 测试地块的动态属性 [US-01-02] """
         # 定义属性：酸碱度(PH)
         parcel = self.Location.create({
             'name': 'East Field B2',
@@ -26,7 +26,7 @@ class TestFarmProperties(TransactionCase):
         self.assertEqual(parcel.location_properties.get('ph_level'), 7, "PH值应为7")
 
     def test_02_lot_properties(self):
-        """ 测试生物资产的动态属性 [US-02] """
+        """ 测试生物资产的动态属性 [US-01-02] """
         product = self.Product.create({
             'name': 'Tilapia (罗非鱼)',
             'type': 'product',

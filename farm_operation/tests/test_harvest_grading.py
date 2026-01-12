@@ -16,7 +16,7 @@ class TestHarvestGrading(TransactionCase):
         })
 
     def test_01_harvest_multiple_grades(self):
-        """ 测试收获作业的多级产出 [US-08] """
+        """ 测试收获作业的多级产出 [US-02-04] """
         # 创建收获干预
         harvest_op = self.Intervention.create({
             'product_id': self.apple.id,

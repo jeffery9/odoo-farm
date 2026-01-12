@@ -5,7 +5,7 @@
     'summary': 'Agricultural Machinery Management, Fuel Logs and Usage Tracking',
     'description': """
         Equipment module for Odoo 19 Farm Management System.
-        - Extension of Maintenance module for Agriculture [US-55]
+        - Extension of Maintenance module for Agriculture [US-05-03]
         - Machinery details (Horsepower, Fuel Type, Linkage)
         - Usage & Fuel Logging linked to Operations
     """,

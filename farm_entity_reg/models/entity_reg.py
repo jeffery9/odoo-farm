@@ -4,7 +4,7 @@ from datetime import date
 class ResCompany(models.Model):
     _inherit = 'res.company'
 
-    # 家庭农场/合作社备案信息 [US-72]
+    # 家庭农场/合作社备案信息 [US-18-08]
     unified_social_credit_code = fields.Char("Unified Social Credit Code (统一社会信用代码)")
     registration_no = fields.Char("Registration No. (备案编号)")
     entity_type = fields.Selection([

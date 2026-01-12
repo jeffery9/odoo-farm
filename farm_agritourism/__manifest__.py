@@ -5,7 +5,7 @@
     'summary': 'Agritourism, Picking Activities and Plot Adoption',
     'description': """
         Agritourism module for Odoo 19 Farm Management System.
-        - Picking & Family Activity Booking [US-51]
+        - Picking & Family Activity Booking [US-02-01]
         - Plot Adoption/Rental Management
         - Integration with Farm Activities
     """,

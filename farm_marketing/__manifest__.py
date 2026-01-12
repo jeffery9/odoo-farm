@@ -5,7 +5,7 @@
     'summary': 'Consumer Traceability, Marketing QR Codes and Brand Story',
     'description': """
         Marketing module for Odoo 19 Farm Management System.
-        - Consumer-facing Traceability Portal [US-15]
+        - Consumer-facing Traceability Portal [US-08-01]
         - Product Story & Quality Certificate Display
         - Integration with Agritourism & CRM
     """,

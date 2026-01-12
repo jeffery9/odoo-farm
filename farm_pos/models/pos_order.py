@@ -3,7 +3,7 @@ from odoo import models, fields, api
 class PosOrder(models.Model):
     _inherit = 'pos.order'
 
-    # 关联采摘地块 [US-16]
+    # 关联采摘地块 [US-02-02]
     picking_location_id = fields.Many2one(
         'stock.location', 
         string="Picking Source Plot",

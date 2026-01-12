@@ -5,8 +5,8 @@
     'summary': 'Seasonal Labor, Field Worklogs and Piece-rate Wages',
     'description': """
         HR module for Odoo 19 Farm Management System.
-        - Seasonal Labor Management (Contractors/External workers) [US-42]
-        - Field Task Worklogs & Piece-rate performance [US-43]
+        - Seasonal Labor Management (Contractors/External workers) [US-13-03]
+        - Field Task Worklogs & Piece-rate performance [US-13-04]
         - Automated labor cost attribution to farm tasks
     """,
     'author': 'Jeffery',
@@ -18,6 +18,7 @@
         'views/farm_employee_views.xml',
         'views/farm_worklog_views.xml',
         'views/farm_wage_views.xml',
+        'views/farm_training_views.xml', # Add farm_training views here
     ],
     'installable': True,
     'application': False,

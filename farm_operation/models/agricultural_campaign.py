@@ -11,4 +11,8 @@ class AgriculturalCampaign(models.Model):
     is_active = fields.Boolean("Active", default=True)
     description = fields.Text("Description")
     
-    company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
+    project_task_ids = fields.One2many(
+        'project.task',
+        'campaign_id',
+        string="Associated Tasks"
+    )

@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'China-specific Agricultural Machinery Purchase Subsidy Management',
     'description': """
-        Supports Chinese government's agricultural machinery purchase subsidy policies [US-71].
+        Supports Chinese government's agricultural machinery purchase subsidy policies [US-18-07].
         - Automatic matching with national subsidy catalogs based on machinery specifications.
         - Pre-fills application fields (e.g., category, grading parameters).
         - Generates subsidy application packages including invoices, photos, and usage proofs.

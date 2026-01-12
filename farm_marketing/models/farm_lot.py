@@ -8,7 +8,7 @@ class FarmPartner(models.Model):
 class FarmSaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    # 跨境合规 [US-60]
+    # 跨境合规 [US-17-06]
     export_country_id = fields.Many2one('res.country', string="Export Destination")
     is_export_compliant = fields.Boolean("Export Compliant", compute='_compute_export_compliance', store=True)
 
@@ -66,7 +66,7 @@ class FarmLotMarketing(models.Model):
 
     traceability_url = fields.Char("Traceability URL", compute='_compute_traceability_url')
     
-    # Marketing Content [US-25]
+    # Marketing Content [US-08-01]
     story_title = fields.Char("Growth Story Title")
     story_content = fields.Html("Growth Story Content")
     marketing_image_ids = fields.Many2many('ir.attachment', string="Marketing Photos")
@@ -76,8 +76,8 @@ class FarmLotMarketing(models.Model):
     water_purity = fields.Char("Water Purity Grade")
 
     def get_full_traceability_data(self):
-        """ 
-        核心溯源算法：聚合该批次从种子到餐桌的全生命周期数据 [US-14, US-25]
+        """
+        核心溯源算法：聚合该批次从种子到餐桌的全生命周期数据 [US-15-03, US-08-01]
         """
         self.ensure_one()
         

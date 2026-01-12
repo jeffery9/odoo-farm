@@ -5,8 +5,8 @@
     'summary': 'Mobile-first UI for Field Operations and Scanning',
     'description': """
         Mobile module for Odoo 19 Farm Management System.
-        - Field Operator Workbench (Large buttons, simplified tasks) [US-10]
-        - QR/Barcode Quick Actions (Scan to Feeding, Scan to Harvest) [US-11]
+        - Field Operator Workbench (Large buttons, simplified tasks) [US-06-02]
+        - QR/Barcode Quick Actions (Scan to Feeding, Scan to Harvest) [US-02-03]
         - Optimized Mobile Dashboards (PWA ready)
     """,
     'author': 'Jeffery',

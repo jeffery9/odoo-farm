@@ -30,7 +30,7 @@ class TestLivestockFeeding(TransactionCase):
         self.task = self.Task.create({'name': 'Piggery Group 01'})
 
     def test_01_feeding_intervention_bom(self):
-        """ 测试饲喂干预自动应用配方 [US-09] """
+        """ 测试饲喂干预自动应用配方 [US-01-03] """
         feeding_op = self.Intervention.create({
             'product_id': self.feeding_output.id,
             'bom_id': self.bom.id,

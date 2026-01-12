@@ -14,7 +14,7 @@ class TestQualityAlert(TransactionCase):
         self.point = self.env['farm.quality.point'].create({'name': 'Standard Test'})
 
     def test_01_create_alert_from_failed_check(self):
-        """ 测试从失败的检查中触发质量告警 [US-15] """
+        """ 测试从失败的检查中触发质量告警 [US-02-01] """
         check = self.Check.create({
             'point_id': self.point.id,
             'lot_id': self.lot.id,

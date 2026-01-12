@@ -15,7 +15,7 @@ class TestBreedingManagement(TransactionCase):
         })
 
     def test_01_pedigree_tracking(self):
-        """ 测试系谱追踪（父母本关联） [US-32] """
+        """ 测试系谱追踪（父母本关联） [US-10-02] """
         father = self.Lot.create({'name': 'TOM-MALE-01', 'product_id': self.variety.id, 'gender': 'male'})
         mother = self.Lot.create({'name': 'TOM-FEMALE-01', 'product_id': self.variety.id, 'gender': 'female'})
         
@@ -30,7 +30,7 @@ class TestBreedingManagement(TransactionCase):
         self.assertEqual(offspring.mother_id.id, mother.id)
 
     def test_02_trait_recording(self):
-        """ 测试性状指标记录 [US-32] """
+        """ 测试性状指标记录 [US-10-02] """
         lot = self.Lot.create({'name': 'TOM-TRAIT-01', 'product_id': self.variety.id})
         
         # 记录性状：抗病性=高

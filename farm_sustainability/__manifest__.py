@@ -5,7 +5,7 @@
     'summary': 'Sustainability Indicators, Fertilizer Reduction and Ecological Buffers',
     'description': """
         Sustainability module for Odoo 19 Farm Management System.
-        - Monitoring Fertilizer (N/P/K) Reduction Trends [US-39]
+        - Monitoring Fertilizer (N/P/K) Reduction Trends [US-08-03]
         - Ecological Buffer Zone Maintenance Records
         - Environmental Impact Dashboards
     """,
