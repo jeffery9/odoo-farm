@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_reduction_trend" model="ir.actions.report">
+        <field name="name">Reduction Trend Report</field>
+        <field name="model">agricultural.campaign</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">farm_green_monitor.report_fertilizer_pesticide_reduction_trend</field>
+        <field name="report_file">farm_green_monitor.report_fertilizer_pesticide_reduction_trend</field>
+        <field name="binding_model_id" ref="farm_operation.model_agricultural_campaign"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
