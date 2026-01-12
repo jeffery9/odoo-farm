@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 序列定义 -->
+    <record id="seq_cooperative_entity" model="ir.sequence">
+        <field name="name">Cooperative Entity Sequence</field>
+        <field name="code">cooperative.entity</field>
+        <field name="prefix">COOP-</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_farm_entity" model="ir.sequence">
+        <field name="name">Farm Entity Sequence</field>
+        <field name="code">farm.entity</field>
+        <field name="prefix">FE-</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_internal_settlement" model="ir.sequence">
+        <field name="name">Internal Settlement Sequence</field>
+        <field name="code">internal.settlement</field>
+        <field name="prefix">IS-</field>
+        <field name="padding">6</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_franchise_farm" model="ir.sequence">
+        <field name="name">Franchise Farm Sequence</field>
+        <field name="code">franchise.farm</field>
+        <field name="prefix">FF-</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>
