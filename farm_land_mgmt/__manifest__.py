@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'China-specific Land Contract Rights and Land Use Control',
     'description': """
-        Implements China's land management regulations [US-18-01].
+        Implements China's land management regulations [US-65].
         - Land Contract Rights Certificate Tracking
         - Land Use Control Validation (e.g., Permanent Basic Farmland protection)
         - Prevents illegal land use for specific agricultural activities.
@@ -17,5 +17,5 @@
     ],
     'installable': True,
     'application': False,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }
