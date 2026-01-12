@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_subsidy_application_tree" model="ir.ui.view">
+        <field name="name">farm.subsidy.application.list</field>
+        <field name="model">farm.subsidy.application</field>
+        <field name="arch" type="xml">
+            <list string="Subsidy Applications">
+                <field name="name"/>
+                <field name="program_id"/>
+                <field name="fiscal_year"/>
+                <field name="estimated_amount"/>
+                <field name="state" widget="badge" decoration-success="state == 'approved'" decoration-warning="state == 'submitted'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_subsidy_application_form" model="ir.ui.view">
+        <field name="name">farm.subsidy.application.form</field>
+        <field name="model">farm.subsidy.application</field>
+        <field name="arch" type="xml">
+            <form string="Subsidy Application">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="program_id"/>
+                            <field name="fiscal_year"/>
+                        </group>
+                        <group>
+                            <field name="declared_quantity"/>
+                            <field name="estimated_amount" widget="monetary"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Parcels">
+                            <field name="land_parcel_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_subsidy" model="ir.actions.act_window">
+        <field name="name">Subsidies</field>
+        <field name="res_model">farm.subsidy.application</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_farm_subsidy_root" name="Policy &amp; Subsidies" parent="farm_financial.menu_farm_finance_root" sequence="20"/>
+    <menuitem id="menu_farm_subsidy_app" name="Applications" parent="menu_farm_subsidy_root" action="action_farm_subsidy" sequence="10"/>
+</odoo>
