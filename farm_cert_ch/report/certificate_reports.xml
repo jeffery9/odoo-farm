@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_farm_product_certificate" model="ir.actions.report">
+        <field name="name">Product Certificate (China)</field>
+        <field name="model">farm.product.certificate</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">farm_cert_ch.report_product_certificate_document</field>
+        <field name="report_file">farm_cert_ch.report_product_certificate_document</field>
+        <field name="binding_model_id" ref="model_farm_product_certificate"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

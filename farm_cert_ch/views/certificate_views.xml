@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Certificate Form View -->
+    <record id="view_farm_product_certificate_form" model="ir.ui.view">
+        <field name="name">farm.product.certificate.form</field>
+        <field name="model">farm.product.certificate</field>
+        <field name="arch" type="xml">
+            <form string="Product Certificate">
+                <header>
+                    <button name="%(action_report_farm_product_certificate)d" string="Print Certificate" type="action" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="certificate_no"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="picking_id"/>
+                            <field name="lot_id"/>
+                            <field name="product_id"/>
+                        </group>
+                        <group>
+                            <field name="producer_name"/>
+                            <field name="origin_location_id"/>
+                            <field name="production_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Commitment &amp; Quality">
+                            <group>
+                                <field name="commitment_statement" nolabel="1"/>
+                            </group>
+                            <group string="Quality Checks">
+                                <field name="quality_check_ids" widget="many2many_tags" readonly="1"/>
+                            </group>
+                        </page>
+                        <page string="QR Code">
+                            <field name="certificate_qr_code" widget="url"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_product_certificate" model="ir.actions.act_window">
+        <field name="name">Product Certificates (China)</field>
+        <field name="res_model">farm.product.certificate</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_farm_cert_ch_root" name="China Certificates" parent="farm_core.menu_farm_root" sequence="95"/>
+    <menuitem id="menu_farm_product_certificate" name="Product Certificates" parent="menu_farm_cert_ch_root" action="action_farm_product_certificate" sequence="10"/>
+</odoo>
