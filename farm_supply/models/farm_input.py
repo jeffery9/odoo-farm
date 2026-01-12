@@ -4,6 +4,8 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     is_agri_input = fields.Boolean("Is Agri Input", default=False)
+
+    is_agri_input = fields.Boolean("Is Agri Input", default=False)
     input_type = fields.Selection([
         ('seed', 'Seed/Variety (种子/种苗)'),
         ('fertilizer', 'Fertilizer (化肥/有机肥)'),
