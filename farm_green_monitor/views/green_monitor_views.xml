@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- 扩展地块表单：减量目标 -->
+    <record id="view_location_form_inherit_green_monitor" model="ir.ui.view">
+        <field name="name">stock.location.form.inherit.green.monitor</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="farm_core.view_location_form_inherit_farm_gis"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='land_area']" position="after">
+                <field name="fertilizer_reduction_target" widget="percentage"/>
+                <field name="pesticide_reduction_target" widget="percentage"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- 扩展生产任务表单：减量指标 -->
+    <record id="view_project_task_form_inherit_green_monitor" model="ir.ui.view">
+        <field name="name">project.task.form.inherit.green.monitor</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="farm_operation.view_task_form2_inherit_farm_op"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='agri_interventions']" position="after">
+                <page string="Green Monitor (减量考核)" name="green_monitor">
+                    <group>
+                        <group string="Fertilizer Usage">
+                            <field name="total_fertilizer_used"/>
+                            <field name="fertilizer_per_mu"/>
+                        </group>
+                        <group string="Pesticide Usage">
+                            <field name="total_pesticide_used"/>
+                            <field name="pesticide_per_mu"/>
+                        </group>
+                    </group>
+                    <button name="%(action_report_reduction_trend)d" type="action" string="Print Reduction Report" class="oe_highlight"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- 扩展产季表单：减量报告按钮 -->
+    <record id="view_agricultural_campaign_form_inherit_green_monitor" model="ir.ui.view">
+        <field name="name">agricultural.campaign.form.inherit.green.monitor</field>
+        <field name="model">agricultural.campaign</field>
+        <field name="inherit_id" ref="farm_operation.agricultural_campaign_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_create_tasks_from_route']" position="after">
+                <button name="%(action_report_reduction_trend)d" type="action" string="Print Reduction Report" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

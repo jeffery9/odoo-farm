@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_location_green_monitor,stock.location,model_stock_location,farm_core.group_farm_manager,1,1,1,1
+access_project_task_green_monitor,project.task,model_project_task,farm_core.group_farm_worker,1,1,1,1
