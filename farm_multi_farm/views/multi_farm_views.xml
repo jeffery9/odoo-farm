@@ -1,17 +1,78 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Farm Entity Views [US-19-01] -->
+    <!-- 合作社视图 -->
+    <record id="view_cooperative_entity_tree" model="ir.ui.view">
+        <field name="name">cooperative.entity.tree</field>
+        <field name="model">cooperative.entity</field>
+        <field name="arch" type="xml">
+            <tree string="Cooperatives">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="legal_representative"/>
+                <field name="registration_number"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_cooperative_entity_form" model="ir.ui.view">
+        <field name="name">cooperative.entity.form</field>
+        <field name="model">cooperative.entity</field>
+        <field name="arch" type="xml">
+            <form string="Cooperative">
+                <header>
+                    <field name="is_active" widget="boolean_toggle"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Cooperative Name"/></h1>
+                        <h3><field name="code"/></h3>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="legal_representative"/>
+                            <field name="registration_number"/>
+                            <field name="registration_date"/>
+                        </group>
+                        <group>
+                            <field name="phone"/>
+                            <field name="email"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Address">
+                            <field name="address"/>
+                        </page>
+                        <page string="Member Farms">
+                            <field name="member_farm_ids">
+                                <tree>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="contact_person"/>
+                                    <field name="is_active"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- 农场实体视图 -->
     <record id="view_farm_entity_tree" model="ir.ui.view">
         <field name="name">farm.entity.tree</field>
         <field name="model">farm.entity</field>
         <field name="arch" type="xml">
             <tree string="Farm Entities">
+                <field name="code"/>
                 <field name="name"/>
                 <field name="entity_type"/>
                 <field name="parent_entity_id"/>
                 <field name="company_id"/>
-                <field name="start_date"/>
-                <field name="end_date"/>
                 <field name="is_active"/>
             </tree>
         </field>
@@ -27,29 +88,46 @@
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name"/></h1>
+                        <h1><field name="name" placeholder="Entity Name"/></h1>
+                        <h3><field name="code"/></h3>
                     </div>
                     <group>
                         <group>
                             <field name="entity_type"/>
-                            <field name="company_id"/>
                             <field name="parent_entity_id"/>
+                            <field name="cooperative_id"/>
+                            <field name="company_id"/>
                         </group>
                         <group>
-                            <field name="start_date"/>
-                            <field name="end_date"/>
-                            <field name="cooperative_id"/>
+                            <field name="contact_person"/>
+                            <field name="phone"/>
+                            <field name="email"/>
                         </group>
                     </group>
+                    <group string="Contract Period">
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                    <group string="Data Sharing">
+                        <field name="data_isolation_level"/>
+                        <field name="shared_data_types" widget="many2many_tags"/>
+                    </group>
                     <notebook>
-                        <page string="Child Entities" attrs="{'invisible': [('entity_type', '!=', 'cooperative')]}">
-                            <field name="child_entity_ids"/>
+                        <page string="Address">
+                            <field name="address"/>
                         </page>
-                        <page string="Franchise Details" attrs="{'invisible': [('entity_type', '!=', 'franchise')]}">
-                            <group>
-                                <field name="franchise_agreement" filename="name + '_agreement.pdf'"/>
-                                <field name="franchise_fee"/>
-                            </group>
+                        <page string="Child Entities">
+                            <field name="child_entity_ids">
+                                <tree>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="entity_type"/>
+                                    <field name="is_active"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Description">
+                            <field name="description"/>
                         </page>
                     </notebook>
                 </sheet>
@@ -57,16 +135,17 @@
         </field>
     </record>
 
-    <!-- Farm Entity Link Views [US-19-01] -->
-    <record id="view_farm_entity_link_tree" model="ir.ui.view">
-        <field name="name">farm.entity.link.tree</field>
-        <field name="model">farm.entity.link</field>
+    <!-- 资源共享视图 -->
+    <record id="view_resource_sharing_tree" model="ir.ui.view">
+        <field name="name">resource.sharing.tree</field>
+        <field name="model">resource.sharing</field>
         <field name="arch" type="xml">
-            <tree string="Entity Links">
+            <tree string="Resource Sharing">
                 <field name="name"/>
                 <field name="source_entity_id"/>
                 <field name="target_entity_id"/>
-                <field name="link_type"/>
+                <field name="resource_type"/>
+                <field name="resource_name"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
                 <field name="is_active"/>
@@ -74,170 +153,51 @@
         </field>
     </record>
 
-    <record id="view_farm_entity_link_form" model="ir.ui.view">
-        <field name="name">farm.entity.link.form</field>
-        <field name="model">farm.entity.link</field>
+    <record id="view_resource_sharing_form" model="ir.ui.view">
+        <field name="name">resource.sharing.form</field>
+        <field name="model">resource.sharing</field>
         <field name="arch" type="xml">
-            <form string="Entity Link">
+            <form string="Resource Sharing">
                 <header>
                     <field name="is_active" widget="boolean_toggle"/>
+                    <button name="action_create_internal_settlement" type="object" string="Create Settlement" class="oe_highlight" invisible="internal_settlement_id"/>
                 </header>
                 <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
                     <group>
                         <group>
                             <field name="source_entity_id"/>
                             <field name="target_entity_id"/>
+                            <field name="resource_type"/>
+                            <field name="resource_id"/>
                         </group>
                         <group>
-                            <field name="link_type"/>
+                            <field name="resource_name"/>
                             <field name="start_date"/>
                             <field name="end_date"/>
                         </group>
                     </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- Data Sharing Rule Views [US-19-02] -->
-    <record id="view_farm_data_sharing_rule_tree" model="ir.ui.view">
-        <field name="name">farm.data.sharing.rule.tree</field>
-        <field name="model">farm.data.sharing.rule</field>
-        <field name="arch" type="xml">
-            <tree string="Data Sharing Rules">
-                <field name="name"/>
-                <field name="source_entity_id"/>
-                <field name="target_entity_id"/>
-                <field name="data_type"/>
-                <field name="access_level"/>
-                <field name="is_active"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="view_farm_data_sharing_rule_form" model="ir.ui.view">
-        <field name="name">farm.data.sharing.rule.form</field>
-        <field name="model">farm.data.sharing.rule</field>
-        <field name="arch" type="xml">
-            <form string="Data Sharing Rule">
-                <header>
-                    <field name="is_active" widget="boolean_toggle"/>
-                </header>
-                <sheet>
-                    <div class="oe_title">
-                        <h1><field name="name"/></h1>
-                    </div>
-                    <group>
-                        <group>
-                            <field name="source_entity_id"/>
-                            <field name="target_entity_id"/>
-                        </group>
-                        <group>
-                            <field name="data_type"/>
-                            <field name="access_level"/>
-                        </group>
+                    <group string="Sharing Terms">
+                        <field name="sharing_cost"/>
+                        <field name="sharing_unit"/>
+                    </group>
+                    <group string="Settlement" attrs="{'invisible': [('internal_settlement_id', '=', False)]}">
+                        <field name="internal_settlement_id"/>
                     </group>
                     <group string="Description">
-                        <field name="description" nolabel="1"/>
+                        <field name="description"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Farm Vehicle Views [US-19-03] -->
-    <record id="view_farm_vehicle_tree" model="ir.ui.view">
-        <field name="name">farm.vehicle.tree</field>
-        <field name="model">farm.vehicle</field>
-        <field name="arch" type="xml">
-            <tree string="Farm Vehicles">
-                <field name="name"/>
-                <field name="license_plate"/>
-                <field name="vehicle_type"/>
-                <field name="company_id"/>
-                <field name="status"/>
-                <field name="can_be_shared"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="view_farm_vehicle_form" model="ir.ui.view">
-        <field name="name">farm.vehicle.form</field>
-        <field name="model">farm.vehicle</field>
-        <field name="arch" type="xml">
-            <form string="Farm Vehicle">
-                <header>
-                    <field name="status" widget="statusbar"/>
-                </header>
-                <sheet>
-                    <div class="oe_title">
-                        <h1><field name="name"/></h1>
-                    </div>
-                    <group>
-                        <group>
-                            <field name="name"/>
-                            <field name="license_plate"/>
-                            <field name="vehicle_type"/>
-                        </group>
-                        <group>
-                            <field name="company_id"/>
-                            <field name="status"/>
-                        </group>
-                    </group>
-                    <group string="Sharing Options">
-                        <field name="can_be_shared"/>
-                        <field name="sharing_cost"/>
-                        <field name="shared_entity_ids" widget="many2many_tags" attrs="{'invisible': [('can_be_shared', '=', False)]}"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- Extend Company Form -->
-    <record id="res_company_form_view_inherit_multi_farm" model="ir.ui.view">
-        <field name="name">res.company.form.inherit.multi.farm</field>
-        <field name="model">res.company</field>
-        <field name="inherit_id" ref="base.view_company_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='phone']" position="after">
-                <field name="is_cooperative_member"/>
-                <field name="farm_entity_id"/>
-            </xpath>
-        </field>
-    </record>
-
-    <!-- Extend HR Employee Form -->
-    <record id="hr_employee_form_view_inherit_multi_farm" model="ir.ui.view">
-        <field name="name">hr.employee.form.inherit.multi.farm</field>
-        <field name="model">hr.employee</field>
-        <field name="inherit_id" ref="hr.view_employee_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='department_id']" position="after">
-                <field name="can_be_shared"/>
-                <field name="shared_entity_ids" widget="many2many_tags" invisible="not can_be_shared"/>
-            </xpath>
-        </field>
-    </record>
-
-    <!-- Extend Project Task Form -->
-    <record id="project_task_form_view_inherit_multi_farm" model="ir.ui.view">
-        <field name="name">project.task.form.inherit.multi.farm</field>
-        <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_form_from_project"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='user_ids']" position="after">
-                <field name="assigned_entity_id"/>
-                <field name="shared_employee_id"/>
-                <field name="shared_vehicle_id"/>
-            </xpath>
-        </field>
-    </record>
-
-    <!-- Internal Settlement Views [US-19-03, US-19-04] -->
-    <record id="view_farm_internal_settlement_tree" model="ir.ui.view">
-        <field name="name">farm.internal.settlement.tree</field>
-        <field name="model">farm.internal.settlement</field>
+    <!-- 内部结算视图 -->
+    <record id="view_internal_settlement_tree" model="ir.ui.view">
+        <field name="name">internal.settlement.tree</field>
+        <field name="model">internal.settlement</field>
         <field name="arch" type="xml">
             <tree string="Internal Settlements">
                 <field name="name"/>
@@ -246,18 +206,18 @@
                 <field name="settlement_type"/>
                 <field name="amount"/>
                 <field name="settlement_date"/>
-                <field name="state" widget="badge"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
 
-    <record id="view_farm_internal_settlement_form" model="ir.ui.view">
-        <field name="name">farm.internal.settlement.form</field>
-        <field name="model">farm.internal.settlement</field>
+    <record id="view_internal_settlement_form" model="ir.ui.view">
+        <field name="name">internal.settlement.form</field>
+        <field name="model">internal.settlement</field>
         <field name="arch" type="xml">
             <form string="Internal Settlement">
                 <header>
-                    <button name="action_generate_invoice" string="Generate Invoice" type="object" class="oe_highlight" invisible="state != 'confirmed'"/>
+                    <button name="action_generate_invoice" type="object" string="Generate Invoice" class="oe_highlight" invisible="state != 'confirmed'"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,invoiced,paid"/>
                 </header>
                 <sheet>
@@ -267,200 +227,92 @@
                     <group>
                         <group>
                             <field name="from_entity_id"/>
-                            <field name="from_company_id"/>
-                        </group>
-                        <group>
                             <field name="to_entity_id"/>
-                            <field name="to_company_id"/>
                         </group>
-                    </group>
-                    <group>
                         <group>
                             <field name="settlement_type"/>
-                            <field name="settlement_date"/>
-                        </group>
-                        <group>
                             <field name="amount"/>
                             <field name="currency_id" invisible="1"/>
                         </group>
                     </group>
-                    <group string="Details">
-                        <field name="description" nolabel="1"/>
+                    <group>
+                        <field name="settlement_date"/>
+                        <field name="description"/>
                     </group>
-                    <group string="Related" attrs="{'invisible': [('related_task_id', '=', False)]}">
-                        <field name="related_task_id"/>
+                    <group string="Related Documents" attrs="{'invisible': [('resource_sharing_id', '=', False)]}">
+                        <field name="resource_sharing_id"/>
                     </group>
                     <group string="Invoice" attrs="{'invisible': [('invoice_id', '=', False)]}">
-                        <field name="invoice_id" readonly="1"/>
+                        <field name="invoice_id"/>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Cooperative Report Views [US-19-04] -->
-    <record id="view_farm_cooperative_report_tree" model="ir.ui.view">
-        <field name="name">farm.cooperative.report.tree</field>
-        <field name="model">farm.cooperative.report</field>
+    <!-- 加盟农场视图 -->
+    <record id="view_franchise_farm_tree" model="ir.ui.view">
+        <field name="name">franchise.farm.tree</field>
+        <field name="model">franchise.farm</field>
         <field name="arch" type="xml">
-            <tree string="Cooperative Reports">
-                <field name="name"/>
-                <field name="cooperative_entity_id"/>
-                <field name="report_type"/>
-                <field name="report_date"/>
-                <field name="state"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="view_farm_cooperative_report_form" model="ir.ui.view">
-        <field name="name">farm.cooperative.report.form</field>
-        <field name="model">farm.cooperative.report</field>
-        <field name="arch" type="xml">
-            <form string="Cooperative Report">
-                <header>
-                    <button name="action_generate_report" string="Generate Report" type="object" class="oe_highlight"/>
-                    <field name="state" widget="statusbar"/>
-                </header>
-                <sheet>
-                    <div class="oe_title">
-                        <h1><field name="name"/></h1>
-                    </div>
-                    <group>
-                        <group>
-                            <field name="cooperative_entity_id"/>
-                            <field name="report_type"/>
-                        </group>
-                        <group>
-                            <field name="start_date"/>
-                            <field name="end_date"/>
-                            <field name="report_date"/>
-                        </group>
-                    </group>
-                    <notebook>
-                        <page string="Content" attrs="{'invisible': [('state', '!=', 'generated')]}">
-                            <field name="content"/>
-                        </page>
-                    </notebook>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- Standard Procedure Views [US-19-05] -->
-    <record id="view_farm_standard_procedure_tree" model="ir.ui.view">
-        <field name="name">farm.standard.procedure.tree</field>
-        <field name="model">farm.standard.procedure</field>
-        <field name="arch" type="xml">
-            <tree string="Standard Procedures">
-                <field name="name"/>
+            <tree string="Franchise Farms">
                 <field name="code"/>
-                <field name="category"/>
-                <field name="is_mandatory"/>
-                <field name="effective_date"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="view_farm_standard_procedure_form" model="ir.ui.view">
-        <field name="name">farm.standard.procedure.form</field>
-        <field name="model">farm.standard.procedure</field>
-        <field name="arch" type="xml">
-            <form string="Standard Procedure">
-                <header>
-                    <field name="is_mandatory" widget="boolean_toggle"/>
-                </header>
-                <sheet>
-                    <div class="oe_title">
-                        <h1><field name="name"/></h1>
-                    </div>
-                    <group>
-                        <group>
-                            <field name="name"/>
-                            <field name="code"/>
-                        </group>
-                        <group>
-                            <field name="category"/>
-                            <field name="is_mandatory"/>
-                        </group>
-                    </group>
-                    <group>
-                        <group>
-                            <field name="effective_date"/>
-                            <field name="expiry_date"/>
-                        </group>
-                        <group>
-                            <field name="document_name"/>
-                        </group>
-                    </group>
-                    <group string="Applicable Entities">
-                        <field name="applicable_entities" widget="many2many_tags"/>
-                    </group>
-                    <notebook>
-                        <page string="Description">
-                            <field name="description" nolabel="1"/>
-                        </page>
-                        <page string="Document">
-                            <field name="procedure_document" filename="document_name"/>
-                        </page>
-                        <page string="Compliance Checks">
-                            <field name="compliance_check_ids"/>
-                        </page>
-                    </notebook>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- Compliance Check Views [US-19-05] -->
-    <record id="view_farm_compliance_check_tree" model="ir.ui.view">
-        <field name="name">farm.compliance.check.tree</field>
-        <field name="model">farm.compliance.check</field>
-        <field name="arch" type="xml">
-            <tree string="Compliance Checks">
                 <field name="name"/>
-                <field name="entity_id"/>
-                <field name="procedure_id"/>
+                <field name="farm_entity_id"/>
                 <field name="compliance_status"/>
-                <field name="check_date"/>
+                <field name="is_active"/>
             </tree>
         </field>
     </record>
 
-    <record id="view_farm_compliance_check_form" model="ir.ui.view">
-        <field name="name">farm.compliance.check.form</field>
-        <field name="model">farm.compliance.check</field>
+    <record id="view_franchise_farm_form" model="ir.ui.view">
+        <field name="name">franchise.farm.form</field>
+        <field name="model">franchise.farm</field>
         <field name="arch" type="xml">
-            <form string="Compliance Check">
+            <form string="Franchise Farm">
                 <header>
-                    <field name="compliance_status" widget="statusbar"/>
+                    <button name="action_perform_compliance_check" type="object" string="Perform Compliance Check"/>
+                    <button name="action_push_operational_standards" type="object" string="Push Standards"/>
+                    <field name="is_active" widget="boolean_toggle"/>
+                    <field name="compliance_status" widget="statusbar" statusbar_colors='{"compliant": "green", "warning": "orange", "non_compliant": "red"}'/>
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name"/></h1>
+                        <h1><field name="name" placeholder="Franchise Farm Name"/></h1>
+                        <h3><field name="code"/></h3>
                     </div>
                     <group>
                         <group>
-                            <field name="entity_id"/>
-                            <field name="procedure_id"/>
+                            <field name="farm_entity_id"/>
+                            <field name="franchise_agreement_date"/>
+                            <field name="franchise_expiry_date"/>
                         </group>
                         <group>
-                            <field name="check_date"/>
-                            <field name="compliance_status"/>
+                            <field name="franchise_fee"/>
+                            <field name="royalty_rate"/>
                         </group>
                     </group>
-                    <group>
-                        <field name="next_check_date"/>
-                    </group>
                     <notebook>
-                        <page string="Notes">
-                            <field name="notes" nolabel="1"/>
+                        <page string="Rights & Standards">
+                            <group>
+                                <field name="brand_usage_rights" nolabel="1"/>
+                            </group>
+                            <group>
+                                <field name="operational_standards" nolabel="1"/>
+                            </group>
                         </page>
-                        <page string="Corrective Actions">
-                            <field name="corrective_actions" nolabel="1"/>
+                        <page string="Compliance">
+                            <group>
+                                <field name="compliance_status"/>
+                                <field name="last_audit_date"/>
+                                <field name="next_audit_date"/>
+                            </group>
+                            <group>
+                                <field name="audit_notes" nolabel="1"/>
+                            </group>
                         </page>
-                        <page string="Attachments">
-                            <field name="attachment_ids"/>
+                        <page string="Description">
+                            <field name="description"/>
                         </page>
                     </notebook>
                 </sheet>
@@ -468,66 +320,73 @@
         </field>
     </record>
 
-    <!-- Actions -->
-    <record id="action_farm_entity" model="ir.actions.act_window">
+    <!-- 菜单 -->
+    <menuitem id="menu_multi_farm_root" 
+              name="Multi-Entity Collaboration" 
+              sequence="120"
+              groups="farm_core.group_farm_manager"/>
+
+    <menuitem id="menu_cooperative_management" 
+              name="Cooperative Management" 
+              parent="menu_multi_farm_root" 
+              sequence="10"/>
+
+    <menuitem id="menu_cooperative_entities" 
+              name="Cooperatives" 
+              parent="menu_cooperative_management" 
+              action="action_cooperative_entities"/>
+
+    <menuitem id="menu_farm_entities" 
+              name="Farm Entities" 
+              parent="menu_cooperative_management" 
+              action="action_farm_entities"/>
+
+    <menuitem id="menu_resource_sharing" 
+              name="Resource Sharing" 
+              parent="menu_multi_farm_root" 
+              sequence="20"
+              action="action_resource_sharing"/>
+
+    <menuitem id="menu_internal_settlements" 
+              name="Internal Settlements" 
+              parent="menu_multi_farm_root" 
+              sequence="30"
+              action="action_internal_settlements"/>
+
+    <menuitem id="menu_franchise_farms" 
+              name="Franchise Farms" 
+              parent="menu_multi_farm_root" 
+              sequence="40"
+              action="action_franchise_farms"/>
+
+    <!-- 动作 -->
+    <record id="action_cooperative_entities" model="ir.actions.act_window">
+        <field name="name">Cooperatives</field>
+        <field name="res_model">cooperative.entity</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_farm_entities" model="ir.actions.act_window">
         <field name="name">Farm Entities</field>
         <field name="res_model">farm.entity</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <record id="action_farm_entity_link" model="ir.actions.act_window">
-        <field name="name">Entity Links</field>
-        <field name="res_model">farm.entity.link</field>
+    <record id="action_resource_sharing" model="ir.actions.act_window">
+        <field name="name">Resource Sharing</field>
+        <field name="res_model">resource.sharing</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <record id="action_farm_data_sharing_rule" model="ir.actions.act_window">
-        <field name="name">Data Sharing Rules</field>
-        <field name="res_model">farm.data.sharing.rule</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <record id="action_farm_vehicle" model="ir.actions.act_window">
-        <field name="name">Farm Vehicles</field>
-        <field name="res_model">farm.vehicle</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <record id="action_farm_internal_settlement" model="ir.actions.act_window">
+    <record id="action_internal_settlements" model="ir.actions.act_window">
         <field name="name">Internal Settlements</field>
-        <field name="res_model">farm.internal.settlement</field>
+        <field name="res_model">internal.settlement</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <record id="action_farm_cooperative_report" model="ir.actions.act_window">
-        <field name="name">Cooperative Reports</field>
-        <field name="res_model">farm.cooperative.report</field>
+    <record id="action_franchise_farms" model="ir.actions.act_window">
+        <field name="name">Franchise Farms</field>
+        <field name="res_model">franchise.farm</field>
         <field name="view_mode">tree,form</field>
     </record>
-
-    <record id="action_farm_standard_procedure" model="ir.actions.act_window">
-        <field name="name">Standard Procedures</field>
-        <field name="res_model">farm.standard.procedure</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <record id="action_farm_compliance_check" model="ir.actions.act_window">
-        <field name="name">Compliance Checks</field>
-        <field name="res_model">farm.compliance.check</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <!-- Menu Items -->
-    <menuitem id="menu_farm_multi_farm_root" name="Multi-Farm Collab" parent="farm_core.menu_farm_root" sequence="110"/>
-    <menuitem id="menu_farm_entities" name="Entities" parent="menu_farm_multi_farm_root" action="action_farm_entity" sequence="1"/>
-    <menuitem id="menu_farm_entity_links" name="Entity Links" parent="menu_farm_multi_farm_root" action="action_farm_entity_link" sequence="2"/>
-    <menuitem id="menu_farm_data_sharing" name="Data Sharing" parent="menu_farm_multi_farm_root" action="action_farm_data_sharing_rule" sequence="3"/>
-    <menuitem id="menu_farm_shared_resources" name="Shared Resources" parent="menu_farm_multi_farm_root" sequence="4"/>
-    <menuitem id="menu_farm_vehicles" name="Vehicles" parent="menu_farm_shared_resources" action="action_farm_vehicle" sequence="1"/>
-    <menuitem id="menu_farm_internal_settlement" name="Internal Settlements" parent="menu_farm_multi_farm_root" action="action_farm_internal_settlement" sequence="10"/>
-    <menuitem id="menu_farm_reports" name="Reports" parent="menu_farm_multi_farm_root" sequence="20"/>
-    <menuitem id="menu_farm_cooperative_reports" name="Cooperative Reports" parent="menu_farm_reports" action="action_farm_cooperative_report" sequence="1"/>
-    <menuitem id="menu_farm_standards" name="Standards & Compliance" parent="menu_farm_multi_farm_root" sequence="30"/>
-    <menuitem id="menu_farm_standard_procedures" name="Standard Procedures" parent="menu_farm_standards" action="action_farm_standard_procedure" sequence="1"/>
-    <menuitem id="menu_farm_compliance_checks" name="Compliance Checks" parent="menu_farm_standards" action="action_farm_compliance_check" sequence="2"/>
 </odoo>
