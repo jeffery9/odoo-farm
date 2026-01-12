@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 示例合作社实体 -->
+    <record id="demo_cooperative" model="farm.entity">
+        <field name="name">丰收农业合作社</field>
+        <field name="entity_type">cooperative</field>
+        <field name="is_active" eval="True"/>
+    </record>
+
+    <!-- 示例农场实体 -->
+    <record id="demo_farm_1" model="farm.entity">
+        <field name="name">张三家农场</field>
+        <field name="entity_type">farm</field>
+        <field name="parent_entity_id" ref="demo_cooperative"/>
+        <field name="is_active" eval="True"/>
+    </record>
+
+    <record id="demo_farm_2" model="farm.entity">
+        <field name="name">李四家庭农场</field>
+        <field name="entity_type">farm</field>
+        <field name="parent_entity_id" ref="demo_cooperative"/>
+        <field name="is_active" eval="True"/>
+    </record>
+
+    <!-- 示例加盟农场 -->
+    <record id="demo_franchise_farm" model="farm.entity">
+        <field name="name">绿色田园加盟农场</field>
+        <field name="entity_type">franchise</field>
+        <field name="parent_entity_id" ref="demo_cooperative"/>
+        <field name="is_active" eval="True"/>
+        <field name="franchise_fee" eval="5000.0"/>
+    </record>
+
+    <!-- 示例实体链接 -->
+    <record id="demo_entity_link" model="farm.entity.link">
+        <field name="source_entity_id" ref="demo_cooperative"/>
+        <field name="target_entity_id" ref="demo_farm_1"/>
+        <field name="link_type">membership</field>
+        <field name="is_active" eval="True"/>
+    </record>
+
+    <!-- 示例数据共享规则 -->
+    <record id="demo_sharing_rule" model="farm.data.sharing.rule">
+        <field name="name">生产数据共享</field>
+        <field name="source_entity_id" ref="demo_farm_1"/>
+        <field name="target_entity_id" ref="demo_cooperative"/>
+        <field name="data_type">production</field>
+        <field name="access_level">read</field>
+        <field name="is_active" eval="True"/>
+    </record>
+
+    <!-- 示例标准操作规程 -->
+    <record id="demo_standard_proc" model="farm.standard.procedure">
+        <field name="name">有机蔬菜种植标准</field>
+        <field name="code">ORG-VEG-001</field>
+        <field name="category">planting</field>
+        <field name="description">有机蔬菜种植的标准化操作流程</field>
+        <field name="is_mandatory" eval="True"/>
+        <field name="effective_date" eval="DateTime.now().date()"/>
+    </record>
+
+    <!-- 示例合规检查 -->
+    <record id="demo_compliance_check" model="farm.compliance.check">
+        <field name="name">有机蔬菜种植合规检查</field>
+        <field name="entity_id" ref="demo_franchise_farm"/>
+        <field name="procedure_id" ref="demo_standard_proc"/>
+        <field name="compliance_status">pending</field>
+        <field name="check_date" eval="DateTime.now().date()"/>
+    </record>
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 示例出口国家标准数据 -->
+    <record id="export_standard_usa" model="export.country.standard">
+        <field name="name">United States of America</field>
+        <field name="code">US</field>
+        <field name="compliance_requirements">Compliance with FDA regulations, organic certification requirements, etc.</field>
+    </record>
+
+    <record id="export_standard_eu" model="export.country.standard">
+        <field name="name">European Union</field>
+        <field name="code">EU</field>
+        <field name="compliance_requirements">Compliance with EU organic regulations, pesticide residue limits (MRLs), etc.</field>
+    </record>
+
+    <record id="export_standard_japan" model="export.country.standard">
+        <field name="name">Japan</field>
+        <field name="code">JP</field>
+        <field name="compliance_requirements">Compliance with Japanese Agricultural Standards (JAS), positive list system, etc.</field>
+    </record>
+</odoo>

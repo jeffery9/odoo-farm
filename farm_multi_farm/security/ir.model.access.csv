@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_entity,farm.entity,model_farm_entity,farm_core.group_farm_manager,1,1,1,1
+access_farm_entity_link,farm.entity.link,model_farm_entity_link,farm_core.group_farm_manager,1,1,1,1
+access_farm_data_sharing_rule,farm.data.sharing.rule,model_farm_data_sharing_rule,farm_core.group_farm_manager,1,1,1,1
+access_farm_vehicle,farm.vehicle,model_farm_vehicle,farm_core.group_farm_manager,1,1,1,1
+access_res_company_multi_farm,res.company,base.model_res_company,farm_core.group_farm_manager,1,1,1,1
+access_hr_employee_multi_farm,hr.employee,hr.model_hr_employee,farm_core.group_farm_manager,1,1,1,1
+access_farm_internal_settlement,farm.internal.settlement,model_farm_internal_settlement,farm_core.group_farm_manager,1,1,1,1
+access_farm_cooperative_report,farm.cooperative.report,model_farm_cooperative_report,farm_core.group_farm_manager,1,1,1,1
+access_farm_standard_procedure,farm.standard.procedure,model_farm_standard_procedure,farm_core.group_farm_manager,1,1,1,1
+access_farm_compliance_check,farm.compliance.check,model_farm_compliance_check,farm_core.group_farm_manager,1,1,1,1

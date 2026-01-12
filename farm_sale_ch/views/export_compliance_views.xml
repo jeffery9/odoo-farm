@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 出口标准配置 -->
+    <record id="view_export_country_standard_tree" model="ir.ui.view">
+        <field name="name">export.country.standard.tree</field>
+        <field name="model">export.country.standard</field>
+        <field name="arch" type="xml">
+            <tree string="Export Country Standards">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="prohibited_products"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_export_country_standard_form" model="ir.ui.view">
+        <field name="name">export.country.standard.form</field>
+        <field name="model">export.country.standard</field>
+        <field name="arch" type="xml">
+            <form string="Export Country Standard">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="active"/>
+                    </group>
+                    <group string="Prohibited Products/Pesticides">
+                        <field name="prohibited_products" widget="many2many_tags"/>
+                    </group>
+                    <group string="Additional Compliance Requirements">
+                        <field name="compliance_requirements" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- 菜单项 -->
+    <menuitem id="menu_export_compliance_root" 
+              name="Export Compliance" 
+              sequence="50"/>
+
+    <menuitem id="menu_export_country_standards" 
+              name="Country Standards" 
+              parent="menu_export_compliance_root" 
+              action="action_export_country_standards"/>
+
+    <record id="action_export_country_standards" model="ir.actions.act_window">
+        <field name="name">Country Standards</field>
+        <field name="res_model">export.country.standard</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
