@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'China-specific Management of Family Farm / Cooperative Registration Info',
     'description': """
-        Maintains registration information for family farms and agricultural cooperatives [US-18-08].
+        Maintains registration information for family farms and agricultural cooperatives [US-72].
         - Tracks unified social credit code, registration number, and member lists.
         - Stores electronic certificates with expiry date reminders.
         - Ensures compliance with Chinese agricultural entity regulations.
@@ -17,5 +17,5 @@
     ],
     'installable': True,
     'application': False,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }
