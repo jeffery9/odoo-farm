@@ -29,11 +29,15 @@
                 </div>
             </xpath>
             <xpath expr="//page[@name='settings']" position="after">
-                <page string="Agricultural Info" invisible="not is_agri_activity">
+                <page string="Agricultural Info" name="agricultural_info" invisible="not is_agri_activity">
                     <group>
                         <group>
                             <field name="activity_family" widget="radio" options="{'horizontal': true}"/>
+                            <field name="production_cycle"/>
                             <field name="task_sequence_id" groups="base.group_no_one"/>
+                        </group>
+                        <group>
+                            <field name="land_parcel_ids" widget="many2many_tags" />
                         </group>
                     </group>
                 </page>

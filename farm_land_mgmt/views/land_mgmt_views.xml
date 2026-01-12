@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- 扩展地块表单：土地承包权与性质 -->
+    <record id="view_location_form_inherit_land_mgmt" model="ir.ui.view">
+        <field name="name">stock.location.form.inherit.land.mgmt</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="farm_core.view_location_form_inherit_farm_gis"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='gps_coordinates']" position="before">
+                <group string="China Land Contract Info" invisible="not is_land_parcel">
+                    <field name="land_contract_no"/>
+                    <field name="contractor_id"/>
+                    <field name="land_nature" widget="radio" options="{'horizontal': true}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- 扩展项目表单：显示土地合规信息 -->
+    <record id="view_project_project_form_inherit_land_mgmt" model="ir.ui.view">
+        <field name="name">project.project.form.inherit.land.mgmt</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="farm_core.edit_project_inherit_farm"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='agricultural_info']" position="inside">
+                <group string="Land Use Compliance (China)" invisible="not is_agri_activity">
+                    <field name="land_parcel_ids" widget="many2many_tags"/>
+                    <label for="land_nature_display"/>
+                    <div name="land_nature_display">
+                        <span class="oe_read_only" t-if="land_parcel_ids.filtered(lambda p: p.land_nature == 'permanent_basic_farmland')">
+                            <strong>部分关联地块为永久基本农田。</strong>
+                        </span>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
