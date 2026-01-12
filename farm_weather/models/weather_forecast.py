@@ -61,6 +61,33 @@ class FarmWeatherForecast(models.Model):
         for loc in locations:
             self._fetch_weather_for_location(loc)
 
+    def _trigger_disaster_alert(self):
+        """ 触发灾害预警 [US-64] """
+        if self.is_warning and self.warning_type in ['storm', 'frost', 'heat']:
+            # 1. 查找是否已有活跃的预警
+            existing = self.env['mail.activity'].search([
+                ('res_model', '=', 'stock.location'),
+                ('res_id', '=', self.location_id.id),
+                ('summary', 'like', 'Weather Alert'),
+                ('date_deadline', '>=', fields.Date.today())
+            ], limit=1)
+            
+            if not existing:
+                # 2. 创建预警活动
+                self.env['mail.activity'].create({
+                    'res_model': 'stock.location',
+                    'res_id': self.location_id.id,
+                    'activity_type_id': self.env.ref('mail.mail_activity_data_warning').id,
+                    'summary': _('Weather Alert: %s predicted on %s') % (self.warning_type, self.date),
+                    'note': _('Please check the parcel and activate protection measures if necessary.'),
+                    'user_id': self.env.user.id, 
+                })
+                
+                # 3. 自动生成损失评估草稿 (如果是极端灾害)
+                if self.warning_type == 'storm':
+                    # 这里可以进一步集成 farm_crisis 模块生成 incident
+                    pass
+
     def _fetch_weather_for_location(self, location):
         """ 
         Call external Weather API (Example: OpenWeatherMap OneCall API)
@@ -102,9 +129,11 @@ class FarmWeatherForecast(models.Model):
                     existing = self.search([('date', '=', dt), ('location_id', '=', location.id)], limit=1)
                     if existing:
                         existing.write(vals)
+                        existing._trigger_disaster_alert()
                     else:
                         vals.update({'date': dt, 'location_id': location.id})
-                        self.create(vals)
+                        rec = self.create(vals)
+                        rec._trigger_disaster_alert()
             else:
                 _logger.error(f"Weather API Error: {response.status_code} - {response.text}")
         except Exception as e:
