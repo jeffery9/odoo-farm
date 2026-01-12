@@ -311,8 +311,7 @@ class FarmCooperativeReport(models.Model):
     def action_generate_report(self):
         """生成报表 [US-19-04]"""
         for report in self:
-            # 这里应该实现具体的报表生成逻辑
-            # 汇总各农场的财务数据
+            # 根据报告类型生成真实的报表内容
             content = self._generate_report_content(report)
             report.write({
                 'content': content,
