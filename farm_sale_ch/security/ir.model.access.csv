@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_export_country_standard,export.country.standard,model_export_country_standard,farm_core.group_farm_user,1,1,1,1
+access_export_compliance_log,export.compliance.log,model_export_compliance_log,farm_core.group_farm_user,1,1,1,1
+access_export_certificate,export.certificate,model_export_certificate,farm_core.group_farm_user,1,1,1,1
