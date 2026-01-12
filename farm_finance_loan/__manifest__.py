@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'Agricultural Loans, Collateral Valuation and Credit Lines',
     'description': """
-        Financial management for agricultural loans and credit [US-17-04].
+        Financial management for agricultural loans and credit [US-58].
         - Biological Asset Valuation for Collateral
         - Loan Application & Repayment Schedules
         - Integration with Production Cycles
@@ -17,5 +17,5 @@
     ],
     'installable': True,
     'application': False,
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
 }
