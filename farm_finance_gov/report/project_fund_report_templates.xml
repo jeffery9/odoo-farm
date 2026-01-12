@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_project_fund_utilization_document">
+        <t t-call="web.external_layout">
+            <t t-set="doc" t-value="doc.with_context(lang=doc.lang)"/>
+            <div class="page">
+                <div class="text-center">
+                    <h2>乡村振兴项目资金使用明细表</h2>
+                    <h3>Rural Revitalization Project Fund Utilization Report</h3>
+                </div>
+
+                <table class="table table-sm table-bordered mt32">
+                    <tr>
+                        <td><strong>项目名称 / Project Name:</strong></td>
+                        <td><span t-field="doc.name"/></td>
+                        <td><strong>项目编号 / Project Code:</strong></td>
+                        <td><span t-field="doc.code"/></td>
+                    </tr>
+                    <tr>
+                        <td><strong>资金来源 / Fund Source:</strong></td>
+                        <td><span t-field="doc.fund_source"/></td>
+                        <td><strong>预算金额 / Budget Amount:</strong></td>
+                        <td><span t-field="doc.budget_amount" t-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/></td>
+                    </tr>
+                    <tr>
+                        <td><strong>项目状态 / Project Status:</strong></td>
+                        <td><span t-field="doc.state"/></td>
+                        <td><strong>已支出金额 / Total Expenditure:</strong></td>
+                        <td><span t-field="doc.total_expenditure" t-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/></td>
+                    </tr>
+                </table>
+
+                <h3 class="mt32">支出明细 / Expenditure Details:</h3>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th>凭证日期 / Date</th>
+                            <th>凭证号 / Reference</th>
+                            <th>摘要 / Description</th>
+                            <th>金额 / Amount</th>
+                            <th>凭证类型 / Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="doc.account_move_ids" t-as="move">
+                            <t t-if="move.state == 'posted'">
+                                <tr>
+                                    <td><span t-field="move.date"/></td>
+                                    <td><span t-field="move.name"/></td>
+                                    <td><span t-field="move.narration"/></td>
+                                    <td><span t-field="move.amount_total_in_currency_dlc" t-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/></td>
+                                    <td><span t-field="move.move_type"/></td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+                <div class="mt-5 text-right">
+                    <p><strong>财务负责人（盖章）：</strong></p>
+                    <p>____________________</p>
+                    <p>（日期：<span t-esc="datetime.now().strftime('%Y年%m月%d日')"/>）</p>
+                </div>
+            </div>
+        </t>
+    </template>
+</oo>
