@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_crisis_incident_tree" model="ir.ui.view">
+        <field name="name">farm.crisis.incident.list</field>
+        <field name="model">farm.crisis.incident</field>
+        <field name="arch" type="xml">
+            <list string="Crisis Incidents" decoration-danger="state == 'active'">
+                <field name="name"/>
+                <field name="protocol_id"/>
+                <field name="date_start"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_crisis_incident_form" model="ir.ui.view">
+        <field name="name">farm.crisis.incident.form</field>
+        <field name="model">farm.crisis.incident</field>
+        <field name="arch" type="xml">
+            <form string="Crisis Incident">
+                <header>
+                    <button name="action_activate_crisis" string="ACTIVATE LOCKDOWN" type="object" class="btn-danger" invisible="state != 'draft'" confirm="Are you sure? This will lock all affected assets."/>
+                    <button name="action_resolve" string="Mark Resolved" type="object" class="btn-success" invisible="state != 'active'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="active,resolved"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="protocol_id"/>
+                            <field name="date_start"/>
+                        </group>
+                        <group>
+                            <field name="date_end" invisible="not date_end"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Affected Scope">
+                            <group>
+                                <field name="affected_location_ids" widget="many2many_tags"/>
+                                <field name="affected_lot_ids"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_crisis" model="ir.actions.act_window">
+        <field name="name">Emergency Incidents</field>
+        <field name="res_model">farm.crisis.incident</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_farm_emergency_protocol" model="ir.actions.act_window">
+        <field name="name">Emergency Protocols (SOP)</field>
+        <field name="res_model">farm.emergency.protocol</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_farm_safety_crisis" name="Crisis Management" parent="farm_safety.menu_farm_safety_root" sequence="50"/>
+    <menuitem id="menu_farm_crisis_incident" name="Incidents" parent="menu_farm_safety_crisis" action="action_farm_crisis" sequence="10"/>
+    <menuitem id="menu_farm_crisis_protocol" name="Protocols (SOP)" parent="menu_farm_safety_crisis" action="action_farm_emergency_protocol" sequence="20"/>
+</odoo>
