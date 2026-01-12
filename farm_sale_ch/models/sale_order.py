@@ -45,7 +45,7 @@ class StockLot(models.Model):
     def check_export_compliance(self, country_code):
         """
         检查批次是否符合目标国家的出口标准 [US-17-06]
-        
+
         :param country_code: 目标国家代码
         :return: (is_compliant, violations) 是否合规及违规详情
         """
@@ -53,19 +53,19 @@ class StockLot(models.Model):
             ('code', '=', country_code.upper()),
             ('active', '=', True)
         ], limit=1)
-        
+
         if not country_standard:
             return True, []
-        
+
         # 获取该批次使用过的投入品
         violating_products = []
         if self.input_history_ids:
             prohibited_products = country_standard.prohibited_products
             violating_products = self.input_history_ids & prohibited_products
-        
+
         is_compliant = len(violating_products) == 0
         violations = [product.name for product in violating_products]
-        
+
         return is_compliant, violations
 
 
@@ -76,7 +76,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     export_country_code = fields.Char(
-        'Export Country Code', 
+        'Export Country Code',
         help='如果此订单是出口订单，请输入目标国家代码'
     )
     export_compliance_status = fields.Selection([
@@ -84,6 +84,131 @@ class SaleOrder(models.Model):
         ('compliant', 'Compliant'),
         ('non_compliant', 'Non-Compliant')
     ], string='Export Compliance Status', default='unknown', readonly=True)
+
+    def generate_compliance_report(self, country_code):
+        """
+        生成合规报告 [US-17-06]
+
+        :param country_code: 目标国家代码
+        :return: 合规报告内容
+        """
+        country_standard = self.env['export.country.standard'].search([
+            ('code', '=', country_code.upper()),
+            ('active', '=', True)
+        ], limit=1)
+
+        if not country_standard:
+            return {
+                'country': country_code,
+                'status': 'No standard found',
+                'details': 'No export standard found for this country.',
+                'compliant': False,
+                'violations': [],
+                'recommendations': []
+            }
+
+        # 对于销售订单，我们需要检查关联的产品批次的合规性
+        # 这里简化处理，假设订单中有一个产品
+        product_lot = self.order_line[0].product_id if self.order_line else None
+        if product_lot:
+            is_compliant, violations = product_lot.check_export_compliance(country_code)
+        else:
+            is_compliant = True
+            violations = []
+
+        report = {
+            'order_info': {
+                'name': self.name,
+                'product': self.order_line[0].product_id.name if self.order_line else 'N/A',
+                'order_date': self.date_order,
+            },
+            'country': country_code,
+            'standard': country_standard.name,
+            'status': 'Compliant' if is_compliant else 'Non-compliant',
+            'details': country_standard.compliance_requirements,
+            'compliant': is_compliant,
+            'violations': violations,
+            'recommendations': self._get_compliance_recommendations(country_standard, violations) if not is_compliant else []
+        }
+
+        return report
+
+    def _get_compliance_recommendations(self, standard, violations):
+        """
+        获取合规建议 [US-17-06]
+
+        :param standard: 国家标准记录
+        :param violations: 违规列表
+        :return: 合规建议列表
+        """
+        recommendations = []
+
+        if violations:
+            recommendations.append(f"Remove the following prohibited products: {', '.join(violations)}")
+
+        if standard.compliance_requirements:
+            recommendations.append(f"Follow these requirements: {standard.compliance_requirements}")
+
+        recommendations.append("Consider using alternative inputs that comply with the destination country's regulations.")
+
+        return recommendations
+
+    def auto_check_compliance_before_sale(self):
+        """
+        销售前自动检查合规性 [US-17-06]
+        """
+        for order in self:
+            if order.export_country_code:
+                is_compliant, violations = order.check_export_compliance(order.export_country_code)
+
+                if not is_compliant:
+                    order.export_compliance_status = 'non_compliant'
+                    # 记录合规检查失败的详细信息
+                    compliance_log = self.env['export.compliance.log'].create({
+                        'order_id': order.id,
+                        'country_code': order.export_country_code,
+                        'violations': ', '.join(violations),
+                        'checked_on': fields.Datetime.now(),
+                        'result': 'failed'
+                    })
+                else:
+                    order.export_compliance_status = 'compliant'
+                    # 记录合规检查成功的详细信息
+                    compliance_log = self.env['export.compliance.log'].create({
+                        'order_id': order.id,
+                        'country_code': order.export_country_code,
+                        'result': 'passed'
+                    })
+
+    def generate_certificate_of_compliance(self):
+        """
+        生成合规证书 [US-17-06]
+        """
+        for order in self:
+            if order.export_compliance_status == 'compliant':
+                certificate_data = {
+                    'order_id': order.id,
+                    'product_name': order.order_line[0].product_id.name if order.order_line else '',
+                    'destination_country': order.export_country_code,
+                    'certificate_number': self._generate_certificate_number(),
+                    'issue_date': fields.Date.today(),
+                    'valid_until': fields.Date.add(fields.Date.today(), months=1),  # 有效期1个月
+                    'inspector': self.env.user.name,
+                    'compliance_details': order.generate_compliance_report(order.export_country_code)
+                }
+
+                certificate = self.env['export.certificate'].create(certificate_data)
+                return certificate
+        return None
+
+    def _generate_certificate_number(self):
+        """
+        生成证书编号 [US-17-06]
+        """
+        import datetime
+        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        random_part = str(hash(timestamp))[-6:]  # 取哈希值的后6位作为随机部分
+        return f"CERT-{timestamp}-{random_part}"
 
     def action_confirm(self):
         """在确认销售订单时检查出口合规性"""
