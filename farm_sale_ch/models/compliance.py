@@ -64,9 +64,29 @@ class ExportCertificate(models.Model):
         # 创建证书文档的逻辑
         # 这里应该使用PDF库生成正式的证书文档
         import base64
-        # 简化实现：返回一个虚拟的PDF内容
-        dummy_pdf_content = base64.b64encode(b"Certificate document content")
-        return dummy_pdf_content
+        from datetime import datetime
+
+        # 创建证书内容
+        certificate_content = f"""EXPORT COMPLIANCE CERTIFICATE
+
+Certificate Number: {certificate.certificate_number}
+Issue Date: {certificate.issue_date}
+Valid Until: {certificate.valid_until}
+
+Product: {certificate.product_name}
+Destination Country: {certificate.destination_country}
+Inspector: {certificate.inspector}
+
+Compliance Details:
+{certificate.compliance_details}
+
+Issued by: Farm Management System
+Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+        """.encode('utf-8')
+
+        # 使用base64编码内容
+        certificate_pdf_content = base64.b64encode(certificate_content)
+        return certificate_pdf_content
 
     @api.model
     def check_certificate_validity(self, certificate_number):
