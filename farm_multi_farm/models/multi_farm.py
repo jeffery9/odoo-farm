@@ -321,12 +321,337 @@ class FarmCooperativeReport(models.Model):
 
     def _generate_report_content(self, report):
         """生成报表内容的辅助方法"""
-        # 示例报表内容生成
+        # 根据报告类型生成真实的数据
+        if report.report_type == 'income_statement':
+            return self._generate_income_statement(report)
+        elif report.report_type == 'balance_sheet':
+            return self._generate_balance_sheet(report)
+        elif report.report_type == 'cost_allocation':
+            return self._generate_cost_allocation_report(report)
+        elif report.report_type == 'production_summary':
+            return self._generate_production_summary(report)
+        else:
+            # 默认生成财务摘要
+            return self._generate_financial_summary(report)
+
+    def _generate_income_statement(self, report):
+        """生成损益表"""
+        # 获取合作社下的所有农场实体
+        farm_entities = self.env['farm.entity'].search([
+            ('parent_entity_id', '=', report.cooperative_entity_id.id),
+            ('entity_type', '=', 'farm')
+        ])
+
         content = f"""
         <h2>{report.name}</h2>
         <p><strong>Cooperative:</strong> {report.cooperative_entity_id.name}</p>
         <p><strong>Period:</strong> {report.start_date} to {report.end_date}</p>
-        <p><strong>Type:</strong> {dict(report.fields_get(allfields=['report_type'])['report_type']['selection'])[report.report_type]}</p>
+        <p><strong>Type:</strong> Income Statement</p>
+
+        <h3>Income Statement</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Farm</th>
+                    <th>Revenue</th>
+                    <th>Cost of Goods Sold</th>
+                    <th>Gross Profit</th>
+                    <th>Operating Expenses</th>
+                    <th>Net Profit</th>
+                </tr>
+            </thead>
+            <tbody>
+        """
+
+        total_revenue = 0
+        total_cogs = 0
+        total_opex = 0
+        total_net_profit = 0
+
+        for entity in farm_entities:
+            # 获取该实体在指定期间的销售数据
+            sales_orders = self.env['sale.order'].search([
+                ('date_order', '>=', report.start_date),
+                ('date_order', '<=', report.end_date),
+                ('state', 'in', ['sale', 'done']),
+                ('partner_id', 'in', self.env['res.partner'].search([('company_id', '=', entity.company_id.id)]).ids)
+            ])
+
+            # 计算收入
+            revenue = sum(sales_orders.mapped('amount_total'))
+
+            # 获取采购成本
+            purchase_orders = self.env['purchase.order'].search([
+                ('date_approve', '>=', report.start_date),
+                ('date_approve', '<=', report.end_date),
+                ('state', 'in', ['purchase', 'done']),
+                ('company_id', '=', entity.company_id.id)
+            ])
+            cogs = sum(purchase_orders.mapped('amount_total'))
+
+            # 获取运营费用
+            invoices = self.env['account.move'].search([
+                ('invoice_date', '>=', report.start_date),
+                ('invoice_date', '<=', report.end_date),
+                ('move_type', '=', 'in_invoice'),
+                ('company_id', '=', entity.company_id.id)
+            ])
+            opex = sum(invoices.mapped('amount_total'))
+
+            # 计算净利润
+            net_profit = revenue - cogs - opex
+
+            # 累计总计
+            total_revenue += revenue
+            total_cogs += cogs
+            total_opex += opex
+            total_net_profit += net_profit
+
+            content += f"""
+                <tr>
+                    <td>{entity.name}</td>
+                    <td class="text-right">{revenue:,.2f}</td>
+                    <td class="text-right">{cogs:,.2f}</td>
+                    <td class="text-right">{revenue - cogs:,.2f}</td>
+                    <td class="text-right">{opex:,.2f}</td>
+                    <td class="text-right">{net_profit:,.2f}</td>
+                </tr>
+            """
+
+        content += f"""
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>TOTAL</th>
+                    <th class="text-right">{total_revenue:,.2f}</th>
+                    <th class="text-right">{total_cogs:,.2f}</th>
+                    <th class="text-right">{total_revenue - total_cogs:,.2f}</th>
+                    <th class="text-right">{total_opex:,.2f}</th>
+                    <th class="text-right">{total_net_profit:,.2f}</th>
+                </tr>
+            </tfoot>
+        </table>
+        """
+
+        return content
+
+    def _generate_balance_sheet(self, report):
+        """生成资产负债表"""
+        # 获取合作社下的所有农场实体
+        farm_entities = self.env['farm.entity'].search([
+            ('parent_entity_id', '=', report.cooperative_entity_id.id),
+            ('entity_type', '=', 'farm')
+        ])
+
+        content = f"""
+        <h2>{report.name}</h2>
+        <p><strong>Cooperative:</strong> {report.cooperative_entity_id.name}</p>
+        <p><strong>As of:</strong> {report.end_date}</p>
+        <p><strong>Type:</strong> Balance Sheet</p>
+
+        <h3>Balance Sheet</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Account</th>
+                    <th>Farm</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+        """
+
+        for entity in farm_entities:
+            # 获取资产账户余额
+            asset_accounts = self.env['account.account'].search([
+                ('user_type_id.type', '=', 'asset'),
+                ('company_id', '=', entity.company_id.id)
+            ])
+            for account in asset_accounts:
+                balance = account.balance
+                if balance != 0:  # 只有非零余额才显示
+                    content += f"""
+                    <tr>
+                        <td>{account.name}</td>
+                        <td>{entity.name}</td>
+                        <td class="text-right">{balance:,.2f}</td>
+                    </tr>
+                    """
+
+            # 获取负债账户余额
+            liability_accounts = self.env['account.account'].search([
+                ('user_type_id.type', '=', 'liability'),
+                ('company_id', '=', entity.company_id.id)
+            ])
+            for account in liability_accounts:
+                balance = account.balance
+                if balance != 0:  # 只有非零余额才显示
+                    content += f"""
+                    <tr>
+                        <td>{account.name}</td>
+                        <td>{entity.name}</td>
+                        <td class="text-right">{balance:,.2f}</td>
+                    </tr>
+                    """
+
+            # 获取权益账户余额
+            equity_accounts = self.env['account.account'].search([
+                ('user_type_id.type', '=', 'equity'),
+                ('company_id', '=', entity.company_id.id)
+            ])
+            for account in equity_accounts:
+                balance = account.balance
+                if balance != 0:  # 只有非零余额才显示
+                    content += f"""
+                    <tr>
+                        <td>{account.name}</td>
+                        <td>{entity.name}</td>
+                        <td class="text-right">{balance:,.2f}</td>
+                    </tr>
+                    """
+
+        content += """
+            </tbody>
+        </table>
+        """
+
+        return content
+
+    def _generate_cost_allocation_report(self, report):
+        """生成成本分摊报告"""
+        # 获取合作社下的所有农场实体
+        farm_entities = self.env['farm.entity'].search([
+            ('parent_entity_id', '=', report.cooperative_entity_id.id),
+            ('entity_type', '=', 'farm')
+        ])
+
+        content = f"""
+        <h2>{report.name}</h2>
+        <p><strong>Cooperative:</strong> {report.cooperative_entity_id.name}</p>
+        <p><strong>Period:</strong> {report.start_date} to {report.end_date}</p>
+        <p><strong>Type:</strong> Cost Allocation Report</p>
+
+        <h3>Common Costs Allocation</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Cost Center</th>
+                    <th>Total Cost</th>
+                    <th>Allocation Method</th>
+                    <th>Farm</th>
+                    <th>Allocated Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+        """
+
+        # 获取共同费用（如联合采购、品牌推广等）
+        common_expenses = self.env['account.move'].search([
+            ('invoice_date', '>=', report.start_date),
+            ('invoice_date', '<=', report.end_date),
+            ('move_type', '=', 'in_invoice'),
+            ('company_id', '=', report.cooperative_entity_id.company_id.id),  # 假设合作社有自己的公司
+            ('ref', 'ilike', '%common%')  # 假设共同费用有特定标记
+        ])
+
+        for expense in common_expenses:
+            total_cost = expense.amount_total
+
+            # 按农场分摊（这里简化为平均分摊，实际可能按面积、产量等分摊）
+            num_farms = len(farm_entities)
+            allocated_amount = total_cost / num_farms if num_farms > 0 else 0
+
+            for entity in farm_entities:
+                content += f"""
+                <tr>
+                    <td>{expense.name or expense.ref}</td>
+                    <td class="text-right">{total_cost:,.2f}</td>
+                    <td>Average</td>
+                    <td>{entity.name}</td>
+                    <td class="text-right">{allocated_amount:,.2f}</td>
+                </tr>
+                """
+
+        content += """
+            </tbody>
+        </table>
+        """
+
+        return content
+
+    def _generate_production_summary(self, report):
+        """生成生产摘要报告"""
+        # 获取合作社下的所有农场实体
+        farm_entities = self.env['farm.entity'].search([
+            ('parent_entity_id', '=', report.cooperative_entity_id.id),
+            ('entity_type', '=', 'farm')
+        ])
+
+        content = f"""
+        <h2>{report.name}</h2>
+        <p><strong>Cooperative:</strong> {report.cooperative_entity_id.name}</p>
+        <p><strong>Period:</strong> {report.start_date} to {report.end_date}</p>
+        <p><strong>Type:</strong> Production Summary</p>
+
+        <h3>Production Summary</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Farm</th>
+                    <th>Product</th>
+                    <th>Quantity Produced</th>
+                    <th>Value (Est.)</th>
+                    <th>Avg. Yield</th>
+                </tr>
+            </thead>
+            <tbody>
+        """
+
+        for entity in farm_entities:
+            # 获取生产订单数据
+            production_orders = self.env['mrp.production'].search([
+                ('date_planned_start', '>=', report.start_date),
+                ('date_planned_start', '<=', report.end_date),
+                ('state', '=', 'done'),
+                ('company_id', '=', entity.company_id.id)
+            ])
+
+            for production in production_orders:
+                product_name = production.product_id.name
+                qty_produced = production.qty_produced
+                est_value = production.product_id.list_price * qty_produced
+                avg_yield = qty_produced / production.bom_id.product_qty if production.bom_id.product_qty > 0 else 0
+
+                content += f"""
+                <tr>
+                    <td>{entity.name}</td>
+                    <td>{product_name}</td>
+                    <td class="text-right">{qty_produced:,.2f}</td>
+                    <td class="text-right">{est_value:,.2f}</td>
+                    <td class="text-right">{avg_yield:,.2f}</td>
+                </tr>
+                """
+
+        content += """
+            </tbody>
+        </table>
+        """
+
+        return content
+
+    def _generate_financial_summary(self, report):
+        """生成财务摘要"""
+        # 获取合作社下的所有农场实体
+        farm_entities = self.env['farm.entity'].search([
+            ('parent_entity_id', '=', report.cooperative_entity_id.id),
+            ('entity_type', '=', 'farm')
+        ])
+
+        content = f"""
+        <h2>{report.name}</h2>
+        <p><strong>Cooperative:</strong> {report.cooperative_entity_id.name}</p>
+        <p><strong>Period:</strong> {report.start_date} to {report.end_date}</p>
+        <p><strong>Type:</strong> Financial Summary</p>
 
         <h3>Financial Summary</h3>
         <table class="table table-bordered">
@@ -334,26 +659,81 @@ class FarmCooperativeReport(models.Model):
                 <tr>
                     <th>Farm</th>
                     <th>Revenue</th>
-                    <th>Cost</th>
-                    <th>Profit</th>
+                    <th>Expenses</th>
+                    <th>Net Profit</th>
+                    <th>Profit Margin (%)</th>
                 </tr>
             </thead>
             <tbody>
+        """
+
+        total_revenue = 0
+        total_expenses = 0
+        total_net_profit = 0
+
+        for entity in farm_entities:
+            # 计算收入
+            sales_orders = self.env['sale.order'].search([
+                ('date_order', '>=', report.start_date),
+                ('date_order', '<=', report.end_date),
+                ('state', 'in', ['sale', 'done']),
+                ('company_id', '=', entity.company_id.id)
+            ])
+            revenue = sum(sales_orders.mapped('amount_total'))
+
+            # 计算支出
+            expenses = 0
+            purchase_orders = self.env['purchase.order'].search([
+                ('date_approve', '>=', report.start_date),
+                ('date_approve', '<=', report.end_date),
+                ('state', 'in', ['purchase', 'done']),
+                ('company_id', '=', entity.company_id.id)
+            ])
+            expenses += sum(purchase_orders.mapped('amount_total'))
+
+            invoices = self.env['account.move'].search([
+                ('invoice_date', '>=', report.start_date),
+                ('invoice_date', '<=', report.end_date),
+                ('move_type', '=', 'in_invoice'),
+                ('company_id', '=', entity.company_id.id)
+            ])
+            expenses += sum(invoices.mapped('amount_total'))
+
+            # 计算净利
+            net_profit = revenue - expenses
+            profit_margin = (net_profit / revenue * 100) if revenue > 0 else 0
+
+            # 累计总计
+            total_revenue += revenue
+            total_expenses += expenses
+            total_net_profit += net_profit
+
+            content += f"""
                 <tr>
-                    <td>Sample Farm 1</td>
-                    <td>100,000</td>
-                    <td>70,000</td>
-                    <td>30,000</td>
+                    <td>{entity.name}</td>
+                    <td class="text-right">{revenue:,.2f}</td>
+                    <td class="text-right">{expenses:,.2f}</td>
+                    <td class="text-right">{net_profit:,.2f}</td>
+                    <td class="text-right">{profit_margin:.2f}%</td>
                 </tr>
-                <tr>
-                    <td>Sample Farm 2</td>
-                    <td>80,000</td>
-                    <td>60,000</td>
-                    <td>20,000</td>
-                </tr>
+            """
+
+        # 添加总计行
+        total_margin = (total_net_profit / total_revenue * 100) if total_revenue > 0 else 0
+        content += f"""
             </tbody>
+            <tfoot>
+                <tr>
+                    <th>TOTAL</th>
+                    <th class="text-right">{total_revenue:,.2f}</th>
+                    <th class="text-right">{total_expenses:,.2f}</th>
+                    <th class="text-right">{total_net_profit:,.2f}</th>
+                    <th class="text-right">{total_margin:.2f}%</th>
+                </tr>
+            </tfoot>
         </table>
         """
+
         return content
 
 
