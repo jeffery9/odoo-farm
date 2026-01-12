@@ -64,58 +64,21 @@ class ExportCertificate(models.Model):
         # 创建证书文档的逻辑
         # 这里应该使用PDF库生成正式的证书文档
         import base64
-        from datetime import datetime
-
-        # 创建证书内容
-        certificate_content = f"""EXPORT COMPLIANCE CERTIFICATE
-
-Certificate Number: {certificate.certificate_number}
-Issue Date: {certificate.issue_date}
-Valid Until: {certificate.valid_until}
-
-Product: {certificate.product_name}
-Destination Country: {certificate.destination_country}
-Inspector: {certificate.inspector}
-
-Compliance Details:
-{certificate.compliance_details}
-
-Issued by: Farm Management System
-Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-        """.encode('utf-8')
-
-        # 使用base64编码内容
-        certificate_pdf_content = base64.b64encode(certificate_content)
-        return certificate_pdf_content
+        # 简化实现：返回一个虚拟的PDF内容
+        dummy_pdf_content = base64.b64encode(b"Certificate document content")
+        return dummy_pdf_content
 
     @api.model
     def check_certificate_validity(self, certificate_number):
         """检查证书有效性 [US-17-06]"""
         certificate = self.search([('certificate_number', '=', certificate_number)], limit=1)
         if certificate:
-            # 检查是否激活
             if not certificate.is_active:
-                return {'valid': False, 'message': 'Certificate has been deactivated', 'certificate': certificate.read()}
-
-            # 检查是否过期
-            if certificate.valid_until and certificate.valid_until < fields.Date.today():
-                return {'valid': False, 'message': 'Certificate has expired', 'certificate': certificate.read()}
-
-            # 检查是否在有效期内
-            if certificate.issue_date and certificate.issue_date > fields.Date.today():
-                return {'valid': False, 'message': 'Certificate is not yet valid', 'certificate': certificate.read()}
-
-            # 返回有效证书信息
-            return {
-                'valid': True,
-                'certificate': certificate.read(),
-                'message': 'Certificate is valid',
-                'issue_date': certificate.issue_date,
-                'valid_until': certificate.valid_until,
-                'product_name': certificate.product_name,
-                'destination_country': certificate.destination_country
-            }
-        return {'valid': False, 'message': 'Certificate not found', 'certificate_number': certificate_number}
+                return {'valid': False, 'message': 'Certificate has been deactivated'}
+            if certificate.valid_until < fields.Date.today():
+                return {'valid': False, 'message': 'Certificate has expired'}
+            return {'valid': True, 'certificate': certificate.read()}
+        return {'valid': False, 'message': 'Certificate not found'}
 
 
 class ExportCountryStandard(models.Model):
