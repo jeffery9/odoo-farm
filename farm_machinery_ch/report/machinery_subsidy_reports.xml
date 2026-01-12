@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_machinery_subsidy_application" model="ir.actions.report">
+        <field name="name">Machinery Subsidy Application</field>
+        <field name="model">farm.machinery.subsidy.application</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">farm_machinery_ch.report_machinery_subsidy_application_document</field>
+        <field name="report_file">farm_machinery_ch.report_machinery_subsidy_application_document</field>
+        <field name="binding_model_id" ref="model_farm_machinery_subsidy_application"/>
+        <field name="binding_type">report</field>
+    </record>
+</oo>

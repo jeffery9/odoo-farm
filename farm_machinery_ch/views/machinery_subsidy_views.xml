@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Extend Equipment Form -->
+    <record id="maintenance_equipment_form_view_inherit_machinery_ch" model="ir.ui.view">
+        <field name="name">maintenance.equipment.form.inherit.machinery.ch</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="is_agri_machinery" invisible="1"/> <!-- 确保字段存在但可能隐藏 -->
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Subsidy Info (CN)" name="subsidy_info_cn" invisible="not is_agri_machinery">
+                    <group>
+                        <group>
+                            <field name="is_subsidized_machinery"/>
+                            <field name="subsidy_category" invisible="not is_subsidized_machinery"/>
+                            <field name="subsidy_model_no" invisible="not is_subsidized_machinery"/>
+                        </group>
+                        <group>
+                            <field name="subsidy_grade_params" invisible="not is_subsidized_machinery"/>
+                            <field name="estimated_subsidy_amount" widget="monetary" invisible="not is_subsidized_machinery"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <button name="action_match_subsidy_catalog" string="Match Subsidy Catalog" type="object" class="oe_highlight" invisible="not is_agri_machinery or is_subsidized_machinery"/>
+                    <group string="Attachments for Application">
+                        <field name="invoice_attachment_ids" widget="many2many_binary"/>
+                        <field name="photo_attachment_ids" widget="many2many_binary"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Machinery Subsidy Application Form -->
+    <record id="view_farm_machinery_subsidy_application_form" model="ir.ui.view">
+        <field name="name">farm.machinery.subsidy.application.form</field>
+        <field name="model">farm.machinery.subsidy.application</field>
+        <field name="arch" type="xml">
+            <form string="Machinery Subsidy Application">
+                <header>
+                    <button name="%(action_report_machinery_subsidy_application)d" string="Print Application Form" type="action" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,paid"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="equipment_id"/>
+                            <field name="applicant_id"/>
+                        </group>
+                        <group>
+                            <field name="application_date"/>
+                            <field name="estimated_subsidy"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Machinery Subsidy Application Tree -->
+    <record id="view_farm_machinery_subsidy_application_tree" model="ir.ui.view">
+        <field name="name">farm.machinery.subsidy.application.tree</field>
+        <field name="model">farm.machinery.subsidy.application</field>
+        <field name="arch" type="xml">
+            <tree string="Machinery Subsidy Applications">
+                <field name="name"/>
+                <field name="equipment_id"/>
+                <field name="estimated_subsidy"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_farm_machinery_subsidy_application" model="ir.actions.act_window">
+        <field name="name">Machinery Subsidy Applications</field>
+        <field name="res_model">farm.machinery.subsidy.application</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_farm_machinery_ch_root" name="Machinery Subsidies (CN)" parent="farm_equipment.menu_farm_machinery_root" sequence="30"/>
+    <menuitem id="menu_farm_machinery_subsidy_app" name="Applications" parent="menu_farm_machinery_ch_root" action="action_farm_machinery_subsidy_application" sequence="10"/>
+</oo>
