@@ -50,6 +50,11 @@
         <field name="model">mrp.workcenter</field>
         <field name="inherit_id" ref="mrp.mrp_workcenter_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <div class="alert alert-info text-center" role="alert" style="margin-bottom:0px;">
+                    <strong>Agri-Processing Unit / Station</strong>
+                </div>
+            </xpath>
             <xpath expr="//group[@name='general']" position="inside">
                 <field name="energy_type"/>
                 <field name="energy_cost_per_hour"/>
@@ -63,6 +68,9 @@
         <field name="model">mrp.workorder</field>
         <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">Processing Steps</attribute>
+            </xpath>
             <xpath expr="//field[@name='duration']" position="after">
                 <field name="actual_energy_consumption"/>
             </xpath>
