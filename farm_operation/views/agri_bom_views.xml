@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!-- 重命名 BOM 菜单为 "Formulas & Recipes" -->
+    <menuitem id="mrp.menu_mrp_bom" name="Formulas &amp; Recipes" parent="menu_agri_config" sequence="10"/>
+
+    <record id="mrp_bom_tree_view_inherit_farm" model="ir.ui.view">
+        <field name="name">mrp.bom.list.inherit.farm</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">Agri-Recipes</attribute>
+            </xpath>
+            <xpath expr="//field[@name='code']" position="attributes">
+                <attribute name="string">Formula Code</attribute>
+            </xpath>
+        </field>
+    </record>
+
     <record id="mrp_bom_form_view_inherit_farm" model="ir.ui.view">
         <field name="name">mrp.bom.form.inherit.farm</field>
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='code']" position="attributes">
+                <attribute name="string">Formula Reference</attribute>
+            </xpath>
             <xpath expr="//field[@name='product_tmpl_id']" position="after">
                 <field name="agri_activity_type" widget="radio" options="{'horizontal': true}"/>
                 <field name="application_stage" invisible="not agri_activity_type"/>

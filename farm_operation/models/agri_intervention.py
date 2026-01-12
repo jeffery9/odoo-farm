@@ -3,6 +3,7 @@ from odoo.exceptions import UserError
 
 class AgriIntervention(models.Model):
     _inherit = 'mrp.production'
+    _description = 'Agricultural Intervention (农事干预/作业)'
 
     agri_task_id = fields.Many2one(
         'project.task', 

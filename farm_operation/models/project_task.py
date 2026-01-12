@@ -2,6 +2,7 @@ from odoo import models, fields
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
+    _description = 'Activity Production (生产实施/任务)'
 
     campaign_id = fields.Many2one(
         'agricultural.campaign', 

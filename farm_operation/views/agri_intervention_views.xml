@@ -1,10 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!-- 重命名 MRP 菜单为 "Farm Interventions" -->
+    <record id="mrp.menu_mrp_root" model="ir.ui.menu">
+        <field name="name">Farm Interventions</field>
+        <field name="active" eval="False"/> <!-- 隐藏原生 MRP 入口，使用自定义入口 -->
+    </record>
+
+    <!-- 自定义农业操作入口 -->
+    <menuitem id="menu_farm_operation_intervention" name="Interventions" parent="menu_agri_campaign" action="mrp.mrp_production_action" sequence="20"/>
+
+    <!-- 修改生产单列表视图的 Label -->
+    <record id="view_mrp_production_filter_inherit_farm" model="ir.ui.view">
+        <field name="name">mrp.production.search.inherit.farm</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='todo']" position="attributes">
+                <attribute name="string">To Do (待执行)</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_production_tree_view_inherit_farm" model="ir.ui.view">
+        <field name="name">mrp.production.list.inherit.farm</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">Agri-Interventions</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="string">Intervention No.</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="attributes">
+                <attribute name="string">Output/Harvest</attribute>
+            </xpath>
+        </field>
+    </record>
+
     <record id="mrp_production_form_view_inherit_farm_op" model="ir.ui.view">
         <field name="name">mrp.production.form.inherit.farm.op</field>
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <!-- 顶部横幅：明确这是农业干预 -->
+                <div class="alert alert-info text-center" role="alert" style="margin-bottom:0px;">
+                    <strong>Agricultural Intervention Record</strong>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='bom_id']" position="attributes">
+                <attribute name="string">Recipe/Formula (配方)</attribute>
+            </xpath>
             <xpath expr="//header" position="inside">
                 <button name="action_start_work" string="Start Work" type="object" class="btn-success" invisible="is_working or state in ['done', 'cancel']"/>
                 <button name="action_stop_work" string="Stop Work" type="object" class="btn-warning" invisible="not is_working"/>
