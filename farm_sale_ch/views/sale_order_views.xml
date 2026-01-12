@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 扩展销售订单表单视图 -->
+    <record id="view_order_form_inherit_export_compliance" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.export.compliance</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='order_lines']" position="before">
+                <page string="Export Compliance" name="export_compliance">
+                    <group>
+                        <group>
+                            <field name="export_country_code" placeholder="Enter ISO country code (e.g. US, EU, JP)"/>
+                        </group>
+                        <group>
+                            <field name="export_compliance_status"/>
+                        </group>
+                    </group>
+                    <div attrs="{'invisible': [('export_country_code', '=', False)]}">
+                        <p>When an export country is specified, the system will automatically check product compliance before order confirmation.</p>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
