@@ -75,6 +75,32 @@ class AgriSkill(models.Model):
 
     name = fields.Char("Skill Name", required=True) # e.g., Harvester Operator, Veterinarian
     description = fields.Text("Description")
+    
+    # 资质要求 [US-62]
+    requires_certificate = fields.Boolean("Requires Certificate", default=False)
+
+class FarmEmployeeCertificate(models.Model):
+    _name = 'farm.employee.certificate'
+    _description = 'Employee Skill Certificate'
+
+    employee_id = fields.Many2one('hr.employee', required=True)
+    skill_id = fields.Many2one('farm.agri.skill', string="Skill/Qualification", required=True)
+    certificate_number = fields.Char("Cert No.")
+    date_expiry = fields.Date("Expiry Date")
+    
+    state = fields.Selection([
+        ('valid', 'Valid'),
+        ('expired', 'Expired')
+    ], compute='_compute_state', store=True)
+
+    @api.depends('date_expiry')
+    def _compute_state(self):
+        today = fields.Date.today()
+        for cert in self:
+            if cert.date_expiry and cert.date_expiry < today:
+                cert.state = 'expired'
+            else:
+                cert.state = 'valid'
 
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
@@ -83,6 +109,8 @@ class HrEmployee(models.Model):
     hourly_cost = fields.Float("Hourly Cost", default=0.0)
     agri_skill_ids = fields.Many2many('farm.agri.skill', string="Agricultural Skills")
     piece_rate_total = fields.Float("Total Piece-rate Performance", compute='_compute_piece_rate')
+    
+    certificate_ids = fields.One2many('farm.employee.certificate', 'employee_id', string="Certificates")
 
     def _compute_piece_rate(self):
         for employee in self:

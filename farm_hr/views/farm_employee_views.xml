@@ -16,6 +16,23 @@
                     </group>
                 </page>
             </xpath>
+            <xpath expr="//page[@name='public']" position="after">
+                <page string="Farm Skills &amp; Certs" name="farm_skills">
+                    <group>
+                        <field name="is_seasonal"/>
+                        <field name="hourly_cost"/>
+                        <field name="agri_skill_ids" widget="many2many_tags"/>
+                    </group>
+                    <field name="certificate_ids">
+                        <list editable="bottom">
+                            <field name="skill_id"/>
+                            <field name="certificate_number"/>
+                            <field name="date_expiry"/>
+                            <field name="state" widget="badge" decoration-danger="state=='expired'" decoration-success="state=='valid'"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
         </field>
     </record>
 </odoo>
