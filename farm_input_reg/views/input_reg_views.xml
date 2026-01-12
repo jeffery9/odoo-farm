@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- 扩展产品模板：农药/兽药登记信息 -->
+    <record id="product_template_form_view_inherit_input_reg" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.input.reg</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='inventory']" position="after">
+                <page string="Input Regulation (China)" name="input_regulation" invisible="not is_agri_input">
+                    <group>
+                        <group>
+                            <field name="is_regulated_input"/>
+                            <field name="reg_cert_no" invisible="not is_regulated_input"/>
+                        </group>
+                        <group>
+                            <field name="is_prohibited_restricted" invisible="not is_regulated_input"/>
+                            <field name="prohibited_reason" invisible="not is_prohibited_restricted"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- 扩展农事干预表单：操作人身份证号 -->
+    <record id="mrp_production_form_view_inherit_input_reg" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.input.reg</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='intervention_type']" position="after">
+                <field name="operator_id_card" invisible="intervention_type not in ['protection', 'medical']"/>
+                <button name="action_sync_to_provincial_platform" string="Sync to Regulator" type="object" class="oe_highlight" invisible="intervention_type not in ['protection', 'medical']"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
