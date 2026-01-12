@@ -57,16 +57,78 @@ class StockLot(models.Model):
         if not country_standard:
             return True, []
 
-        # 获取该批次使用过的投入品
+        # 获取该批次使用过的投入品 - 这里需要根据实际的模型关系获取投入品历史
+        # 在实际实现中，这可能需要从农事记录、库存移动等获取信息
         violating_products = []
-        if self.input_history_ids:
+
+        # 获取与该批次相关的投入品历史
+        input_history = self._get_input_history()
+
+        if input_history:
             prohibited_products = country_standard.prohibited_products
-            violating_products = self.input_history_ids & prohibited_products
+            violating_products = input_history & prohibited_products
 
         is_compliant = len(violating_products) == 0
         violations = [product.name for product in violating_products]
 
         return is_compliant, violations
+
+    def _get_input_history(self):
+        """
+        获取投入品历史 [US-17-06]
+        根据实际的业务模型获取该批次或订单相关的投入品历史
+        """
+        # 在实际实现中，这可能需要从以下模型获取数据：
+        # - stock.lot (批次) 与投入品的关系
+        # - agri.intervention (农事干预) 使用的投入品
+        # - mrp.production (生产订单) 使用的原材料
+        # - stock.move (库存移动) 记录
+
+        # 这里是一个示例实现，根据实际模型关系进行调整
+        input_products = self.env['product.product']
+
+        # 示例：如果这是一个销售订单，我们可以检查相关的生产或采购历史
+        if self._name == 'sale.order':
+            # 检查订单行中的产品相关的投入品历史
+            for order_line in self.order_line:
+                product = order_line.product_id
+                # 获取与该产品相关的投入品历史
+                # 这里需要根据实际的业务模型进行调整
+                related_products = self._get_related_inputs_for_product(product)
+                input_products |= related_products
+
+        return input_products
+
+    def _get_related_inputs_for_product(self, product):
+        """
+        获取与产品相关的投入品 [US-17-06]
+        根据产品的BOM或生产历史获取相关的投入品
+        """
+        input_products = self.env['product.product']
+
+        # 查找与该产品相关的生产订单
+        production_orders = self.env['mrp.production'].search([
+            ('product_id', '=', product.id),
+            ('state', '=', 'done')  # 只获取已完成的生产订单
+        ])
+
+        for production in production_orders:
+            # 获取生产订单中使用的原材料
+            for move in production.move_raw_ids:
+                input_products |= move.product_id
+
+        # 查找与该产品相关的农事干预
+        # 这里假设有一个农事干预模型，实际实现中需要根据具体模型调整
+        interventions = self.env['agri.intervention'].search([
+            ('output_product_id', '=', product.id)
+        ])
+
+        for intervention in interventions:
+            # 获取干预中使用的投入品
+            for input_line in intervention.input_ids:
+                input_products |= input_line.product_id
+
+        return input_products
 
 
 class SaleOrder(models.Model):
