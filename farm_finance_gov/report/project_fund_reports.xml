@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_project_fund_utilization" model="ir.actions.report">
+        <field name="name">Project Fund Utilization Report</field>
+        <field name="model">farm.rural.revitalization.project</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">farm_finance_gov.report_project_fund_utilization_document</field>
+        <field name="report_file">farm_finance_gov.report_project_fund_utilization_document</field>
+        <field name="binding_model_id" ref="model_farm_rural_revitalization_project"/>
+        <field name="binding_type">report</field>
+    </record>
+</oo>
