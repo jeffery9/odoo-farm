@@ -30,7 +30,7 @@
                         <tr>
                             <th>批次号 / Batch No.</th>
                             <th>产生日期 / Production Date</th>
-                            <th>数量 (kg) / 数量 / Quantity (kg)</th>
+                            <th>数量 (kg) / Quantity (kg)</th>
                             <th>来源 / Source</th>
                             <th>处理方式 / Disposal Method</th>
                             <th>去向/接收方 / Destination/Recipient</th>
