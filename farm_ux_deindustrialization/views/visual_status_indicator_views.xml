@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 视觉状态标识视图 -->
+    <record id="view_visual_status_indicator_tree" model="ir.ui.view">
+        <field name="name">visual.status.indicator.tree</field>
+        <field name="model">visual.status.indicator</field>
+        <field name="arch" type="xml">
+            <tree string="Visual Status Indicators" decoration-danger="not is_active" decoration-success="is_active">
+                <field name="name"/>
+                <field name="status_type"/>
+                <field name="status_value"/>
+                <field name="color_code"/>
+                <field name="icon_class"/>
+                <field name="badge_style"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_visual_status_indicator_form" model="ir.ui.view">
+        <field name="name">visual.status.indicator.form</field>
+        <field name="model">visual.status.indicator</field>
+        <field name="arch" type="xml">
+            <form string="Visual Status Indicator">
+                <header>
+                    <field name="is_active" widget="boolean_toggle"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Indicator Name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="status_type"/>
+                            <field name="status_value"/>
+                        </group>
+                        <group>
+                            <field name="color_code"/>
+                            <field name="icon_class"/>
+                            <field name="badge_style"/>
+                        </group>
+                    </group>
+                    <group string="Enhanced Feedback">
+                        <field name="notification_sound"/>
+                        <field name="vibration_pattern"/>
+                        <field name="animation_effect"/>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- 视觉状态标识菜单和动作 -->
+    <record id="action_visual_indicators" model="ir.actions.act_window">
+        <field name="name">Visual Status Indicators</field>
+        <field name="res_model">visual.status.indicator</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_visual_indicators" 
+              name="Visual Status Indicators" 
+              parent="farm_ux_deindustrialization.menu_ux_root" 
+              action="action_visual_indicators" 
+              sequence="30"/>
+</odoo>

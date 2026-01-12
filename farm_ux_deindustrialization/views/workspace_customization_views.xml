@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 工作空间定制视图 -->
+    <record id="view_workspace_customization_tree" model="ir.ui.view">
+        <field name="name">workspace.customization.tree</field>
+        <field name="model">workspace.customization</field>
+        <field name="arch" type="xml">
+            <tree string="Workspace Customizations">
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="theme_preference"/>
+                <field name="font_size"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_workspace_customization_form" model="ir.ui.view">
+        <field name="name">workspace.customization.form</field>
+        <field name="model">workspace.customization</field>
+        <field name="arch" type="xml">
+            <form string="Workspace Customization">
+                <header>
+                    <field name="is_active" widget="boolean_toggle"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Customization Name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="theme_preference"/>
+                            <field name="font_size"/>
+                        </group>
+                        <group>
+                            <field name="language_preference"/>
+                            <field name="timezone_preference"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Dashboard Widgets">
+                            <field name="dashboard_widgets" widget="ace" options="{'mode': 'json'}"/>
+                        </page>
+                        <page string="Quick Actions">
+                            <field name="quick_actions" widget="ace" options="{'mode': 'json'}"/>
+                        </page>
+                        <page string="Layout Preferences">
+                            <field name="layout_preference" widget="ace" options="{'mode': 'json'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- 工作空间定制菜单和动作 -->
+    <record id="action_workspace_customization" model="ir.actions.act_window">
+        <field name="name">Workspace Customization</field>
+        <field name="res_model">workspace.customization</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_workspace_customization" 
+              name="Workspace Customization" 
+              parent="farm_ux_deindustrialization.menu_ux_root" 
+              action="action_workspace_customization" 
+              sequence="40"/>
+</odoo>

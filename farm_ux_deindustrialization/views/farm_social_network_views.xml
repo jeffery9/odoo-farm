@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 农场社交网络视图 -->
+    <record id="view_farm_social_network_tree" model="ir.ui.view">
+        <field name="name">farm.social.network.tree</field>
+        <field name="model">farm.social.network</field>
+        <field name="arch" type="xml">
+            <tree string="Farm Social Networks" decoration-danger="not is_active" decoration-success="is_active">
+                <field name="name"/>
+                <field name="network_type"/>
+                <field name="privacy_level"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_farm_social_network_form" model="ir.ui.view">
+        <field name="name">farm.social.network.form</field>
+        <field name="model">farm.social.network</field>
+        <field name="arch" type="xml">
+            <form string="Farm Social Network">
+                <header>
+                    <field name="is_active" widget="boolean_toggle"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Network Name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="network_type"/>
+                            <field name="privacy_level"/>
+                        </group>
+                        <group>
+                            <field name="created_by"/>
+                            <field name="created_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Members">
+                            <field name="member_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Administrators">
+                            <field name="admin_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Communication">
+                            <group string="Message Board">
+                                <field name="message_board" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Shared Resources">
+                            <field name="shared_resources" nolabel="1"/>
+                        </page>
+                        <page string="Description">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- 农场社交网络菜单和动作 -->
+    <record id="action_farm_social" model="ir.actions.act_window">
+        <field name="name">Farm Social Network</field>
+        <field name="res_model">farm.social.network</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_farm_social" 
+              name="Farm Social Network" 
+              parent="farm_ux_deindustrialization.menu_ux_root" 
+              action="action_farm_social" 
+              sequence="80"/>
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- UX & De-industrialization 菜单 -->
+    <menuitem id="menu_ux_root" 
+              name="UX & De-industrialization" 
+              sequence="150"
+              groups="farm_core.group_farm_manager"/>
+
+    <menuitem id="menu_term_mapping" 
+              name="Term Mappings" 
+              parent="menu_ux_root" 
+              sequence="10"/>
+
+    <menuitem id="menu_form_layouts" 
+              name="Form Layout Templates" 
+              parent="menu_ux_root" 
+              sequence="20"/>
+
+    <menuitem id="menu_visual_indicators" 
+              name="Visual Status Indicators" 
+              parent="menu_ux_root" 
+              sequence="30"/>
+
+    <menuitem id="menu_workspace_customization" 
+              name="Workspace Customization" 
+              parent="menu_ux_root" 
+              sequence="40"/>
+
+    <menuitem id="menu_contextual_help" 
+              name="Contextual Help" 
+              parent="menu_ux_root" 
+              sequence="50"/>
+
+    <menuitem id="menu_agricultural_knowledge" 
+              name="Agricultural Knowledge" 
+              parent="menu_ux_root" 
+              sequence="60"/>
+
+    <menuitem id="menu_multi_sensory" 
+              name="Multi-Sensory Interaction" 
+              parent="menu_ux_root" 
+              sequence="70"/>
+
+    <menuitem id="menu_farm_social" 
+              name="Farm Social Network" 
+              parent="menu_ux_root" 
+              sequence="80"/>
+
+    <menuitem id="menu_accessibility" 
+              name="Accessibility Settings" 
+              parent="menu_ux_root" 
+              sequence="90"/>
+</odoo>
