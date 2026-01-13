@@ -15,7 +15,43 @@ class FarmLot(models.Model):
         ('harvested', 'Harvested')
     ], string="Biological Stage", default='born')
 
-    def action_record_death(self, qty, reason, notes=False):
+    # US-03-01: 生长预测与饲喂核销
+    start_weight = fields.Float("Initial Weight (kg)")
+    current_predicted_weight = fields.Float("Predicted Weight (kg)", compute='_compute_predicted_weight', store=True)
+    average_daily_gain = fields.Float("ADG (kg/day)", default=0.5, help="Average Daily Gain")
+    
+    active_feeding_bom_id = fields.Many2one('mrp.bom', string="Active Feeding Recipe", 
+                                           domain="[('type', '=', 'normal'), ('intervention_type', '=', 'feeding')]")
+
+    @api.depends('create_date', 'start_weight', 'average_daily_gain')
+    def _compute_predicted_weight(self):
+        today = fields.Date.today()
+        for lot in self:
+            if lot.create_date and lot.biological_stage in ['born', 'growing']:
+                days_passed = (today - lot.create_date.date()).days
+                lot.current_predicted_weight = lot.start_weight + (days_passed * lot.average_daily_gain)
+            else:
+                lot.current_predicted_weight = lot.average_weight
+
+    def _cron_daily_feed_depletion(self):
+        """ 定时任务：每日自动生成饲喂干预并冲减库存 [US-03-01] """
+        Intervention = self.env['mrp.production']
+        active_lots = self.search([('biological_stage', 'in', ['born', 'growing']), ('active_feeding_bom_id', '!=', False)])
+        
+        for lot in active_lots:
+            # 自动创建“已完成”的饲喂干预
+            intervention = Intervention.create({
+                'product_id': lot.product_id.id,
+                'bom_id': lot.active_feeding_bom_id.id,
+                'product_qty': lot.animal_count, # 按头数计算
+                'intervention_type': 'feeding',
+                'lot_producing_id': lot.id,
+                'date_start': fields.Datetime.now(),
+            })
+            intervention.action_confirm()
+            # 自动确认完成，触发库存冲减
+            intervention.button_mark_done()
+            _logger.info("Daily feed depletion recorded for lot %s using BOM %s", lot.name, lot.active_feeding_bom_id.name)
         """ 记录减员并发布审计消息 """
         self.ensure_one()
         if qty <= 0:

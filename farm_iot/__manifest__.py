@@ -15,6 +15,7 @@
         'security/ir.model.access.csv',
         'views/farm_telemetry_views.xml',
         'views/farm_automation_views.xml',
+        'views/storage_env_views.xml',
     ],
     'installable': True,
     'application': False,

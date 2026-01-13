@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 抖音账号配置视图 -->
-    <record id="view_douyin_account_tree" model="ir.ui.view">
-        <field name="name">douyin.account.tree</field>
+    <!-- Douyin Account Views -->
+    <record id="view_douyin_account_list" model="ir.ui.view">
+        <field name="name">douyin.account.list</field>
         <field name="model">douyin.account</field>
         <field name="arch" type="xml">
-            <tree string="Douyin Accounts">
+            <list>
                 <field name="name"/>
-                <field name="app_id"/>
-                <field name="shop_id"/>
-                <field name="is_active"/>
-                <field name="last_sync_time"/>
-            </tree>
+                <field name="client_key"/>
+                <field name="state" widget="badge" decoration-success="state == 'authorized'"/>
+                <field name="token_expiry"/>
+            </list>
         </field>
     </record>
 
@@ -19,120 +18,63 @@
         <field name="name">douyin.account.form</field>
         <field name="model">douyin.account</field>
         <field name="arch" type="xml">
-            <form string="Douyin Account">
+            <form>
                 <header>
-                    <button name="action_authorize" type="object" string="Authorize" class="oe_highlight" attrs="{'invisible': [('access_token', '!=', False)]}"/>
-                    <field name="is_active" widget="boolean_toggle"/>
+                    <button name="action_authorize" string="Link Douyin Account" type="object" class="oe_highlight" invisible="state == 'authorized'"/>
+                    <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Account Name"/></h1>
+                    </div>
                     <group>
-                        <group>
-                            <field name="name"/>
-                            <field name="app_id"/>
-                            <field name="app_secret" password="True"/>
+                        <group string="API Credentials">
+                            <field name="client_key"/>
+                            <field name="client_secret"/>
                         </group>
-                        <group>
-                            <field name="shop_id"/>
-                            <field name="live_room_ids"/>
-                            <field name="last_sync_time"/>
+                        <group string="Auth Status">
+                            <field name="access_token" password="1"/>
+                            <field name="token_expiry"/>
                         </group>
-                    </group>
-                    <group string="Tokens">
-                        <field name="access_token" password="True"/>
-                        <field name="refresh_token" password="True"/>
                     </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>
 
-    <!-- 直播会话视图 -->
-    <record id="view_live_streaming_session_tree" model="ir.ui.view">
-        <field name="name">live.streaming.session.tree</field>
-        <field name="model">live.streaming.session</field>
+    <!-- Douyin Product Mapping -->
+    <record id="view_douyin_product_list" model="ir.ui.view">
+        <field name="name">douyin.product.list</field>
+        <field name="model">douyin.product</field>
         <field name="arch" type="xml">
-            <tree string="Live Streaming Sessions">
-                <field name="name"/>
-                <field name="douyin_account_id"/>
-                <field name="start_time"/>
-                <field name="end_time"/>
-                <field name="status"/>
-                <field name="view_count"/>
-                <field name="like_count"/>
-            </tree>
+            <list editable="bottom">
+                <field name="account_id"/>
+                <field name="product_id"/>
+                <field name="douyin_item_id"/>
+                <field name="sync_state" widget="badge"/>
+                <button name="action_sync_to_douyin" string="Sync" type="object" icon="fa-refresh"/>
+            </list>
         </field>
     </record>
 
-    <record id="view_live_streaming_session_form" model="ir.ui.view">
-        <field name="name">live.streaming.session.form</field>
-        <field name="model">live.streaming.session</field>
-        <field name="arch" type="xml">
-            <form string="Live Streaming Session">
-                <header>
-                    <button name="action_start_live" type="object" string="Start Live" class="oe_highlight" attrs="{'invisible': [('status', '!=', 'planned')]}"/>
-                    <button name="action_end_live" type="object" string="End Live" attrs="{'invisible': [('status', '!=', 'live')]}"/>
-                    <button name="action_archive_live" type="object" string="Archive" attrs="{'invisible': [('status', '!=', 'ended')]}"/>
-                    <field name="status" widget="statusbar" statusbar_visible="planned,live,ended,archived"/>
-                </header>
-                <sheet>
-                    <group>
-                        <group>
-                            <field name="name"/>
-                            <field name="douyin_account_id"/>
-                            <field name="start_time"/>
-                            <field name="end_time"/>
-                        </group>
-                        <group>
-                            <field name="preview_url"/>
-                            <field name="live_url"/>
-                            <field name="description"/>
-                        </group>
-                    </group>
-                    <group string="Products in Live">
-                        <field name="products" widget="many2many_tags"/>
-                    </group>
-                    <group string="Statistics" attrs="{'invisible': [('status', '=', 'planned')]}">
-                        <group>
-                            <field name="view_count"/>
-                            <field name="like_count"/>
-                            <field name="comment_count"/>
-                        </group>
-                    </group>
-                    <group string="Archive" attrs="{'invisible': [('status', '!=', 'archived')]}">
-                        <field name="video_archive" filename="name"/>
-                        <field name="archive_url"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- 菜单 -->
-    <menuitem id="menu_live_streaming_root" 
-              name="Live Streaming" 
-              sequence="40"
-              groups="farm_core.group_farm_manager"/>
-
-    <menuitem id="menu_douyin_accounts" 
-              name="Douyin Accounts" 
-              parent="menu_live_streaming_root" 
-              action="action_douyin_accounts"/>
-
-    <menuitem id="menu_live_sessions" 
-              name="Live Sessions" 
-              parent="menu_live_streaming_root" 
-              action="action_live_sessions"/>
-
-    <!-- 动作 -->
-    <record id="action_douyin_accounts" model="ir.actions.act_window">
+    <!-- Actions -->
+    <record id="action_douyin_account" model="ir.actions.act_window">
         <field name="name">Douyin Accounts</field>
         <field name="res_model">douyin.account</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
-    <record id="action_live_sessions" model="ir.actions.act_window">
-        <field name="name">Live Streaming Sessions</field>
-        <field name="res_model">live.streaming.session</field>
-        <field name="view_mode">tree,form</field>
+    <record id="action_douyin_product" model="ir.actions.act_window">
+        <field name="name">Product Mapping</field>
+        <field name="res_model">douyin.product</field>
+        <field name="view_mode">list</field>
     </record>
+
+    <menuitem id="menu_douyin_config" name="Douyin Integration" parent="farm_core.menu_farm_root" sequence="90"/>
+    <menuitem id="menu_douyin_account" name="Accounts" parent="menu_douyin_config" action="action_douyin_account" sequence="10"/>
+    <menuitem id="menu_douyin_product" name="Shop Sync" parent="menu_douyin_config" action="action_douyin_product" sequence="20"/>
 </odoo>

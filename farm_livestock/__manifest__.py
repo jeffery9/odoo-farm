@@ -13,7 +13,8 @@
     'depends': ['farm_operation', 'farm_core'],
     'data': [
         'security/ir.model.access.csv',
-        'views/livestock_feeding_views.xml',
+        'data/ir_cron_data.xml',
+        'views/farm_lot_views.xml',
     ],
     'demo': [
         'data/farm_livestock_demo.xml',
