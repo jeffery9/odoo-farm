@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_faq_entry_tree" model="ir.ui.view">
+        <field name="name">faq.entry.tree</field>
+        <field name="model">faq.entry</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="question"/>
+                <field name="category"/>
+                <field name="target_model"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_faq_entry" model="ir.actions.act_window">
+        <field name="name">FAQs</field>
+        <field name="res_model">faq.entry</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_farm_knowledge_root" 
+              name="Farm Knowledge" 
+              parent="farm_core.menu_farm_root" 
+              sequence="60"/>
+
+    <menuitem id="menu_pest_disease" 
+              name="Pest &amp; Disease Map" 
+              parent="menu_farm_knowledge_root" 
+              action="action_farm_pest_disease" 
+              sequence="10"/>
+
+    <menuitem id="menu_knowledge_base" 
+              name="Knowledge Base" 
+              parent="menu_farm_knowledge_root" 
+              action="action_agricultural_knowledge" 
+              sequence="20"/>
+
+    <menuitem id="menu_faq" 
+              name="FAQs" 
+              parent="menu_farm_knowledge_root" 
+              action="action_faq_entry" 
+              sequence="30"/>
+</odoo>
