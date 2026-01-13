@@ -10,7 +10,7 @@
         - Links to affected land parcels and triggers draft loss assessments.
         - Supports integration with insurance claims processes.
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_core', 'farm_weather', 'farm_crisis', 'farm_operation'],
     'data': [
         'security/ir.model.access.csv',

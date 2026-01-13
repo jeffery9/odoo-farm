@@ -9,7 +9,7 @@
         - QR/Barcode Quick Actions (Scan to Feeding, Scan to Harvest) [US-02-03]
         - Optimized Mobile Dashboards (PWA ready)
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_operation', 'farm_livestock', 'farm_iot', 'web'],
     'data': [
         'security/ir.model.access.csv',

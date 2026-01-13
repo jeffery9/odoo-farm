@@ -9,7 +9,7 @@
         - Automatic verification of batch history against destination standards before sales out
         - Generate compliance certificates for export
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_core', 'sale', 'stock'],
     'data': [
         'security/ir.model.access.csv',

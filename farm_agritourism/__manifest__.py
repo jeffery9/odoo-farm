@@ -9,7 +9,7 @@
         - Plot Adoption/Rental Management
         - Integration with Farm Activities
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_core', 'sale'],
     'data': [
         'security/ir.model.access.csv',

@@ -15,7 +15,7 @@
         - Mobile Optimized Kanban Views
         - Energy & Cost Analytic Pivots
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': [
         'mrp',
         'stock',

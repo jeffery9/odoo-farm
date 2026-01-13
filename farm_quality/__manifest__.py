@@ -9,7 +9,7 @@
         - Quality Checks (Pass/Fail, Measurements) [US-15-02]
         - Quality Alerts & Traceability [US-02-01]
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_operation', 'farm_core'],
     'data': [
         'security/ir.model.access.csv',

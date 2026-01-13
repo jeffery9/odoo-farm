@@ -9,7 +9,7 @@
         - Application Tracking & Reporting
         - Linking Subsidies to Land Parcels
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_core', 'account'],
     'data': [
         'security/ir.model.access.csv',

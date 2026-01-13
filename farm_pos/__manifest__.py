@@ -9,7 +9,7 @@
         - Automated stock deduction from land parcels
         - Traceability from Receipt to Field
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_core', 'point_of_sale'],
     'data': [
         'security/ir.model.access.csv',

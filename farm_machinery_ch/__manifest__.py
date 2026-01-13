@@ -9,7 +9,7 @@
         - Pre-fills application fields (e.g., category, grading parameters).
         - Generates subsidy application packages including invoices, photos, and usage proofs.
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_equipment', 'farm_core'],
     'data': [
         'security/ir.model.access.csv',

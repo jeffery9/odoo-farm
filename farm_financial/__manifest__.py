@@ -10,7 +10,7 @@
         - Profitability Analysis per Production Unit
         - Storage and Processing Cost Allocation [US-14-13]
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_operation', 'account', 'analytic'],
     'data': [
         'security/ir.model.access.csv',

@@ -15,7 +15,7 @@
         - Mobile-optimized Kanban views
         - Knowledge analytics pivot tables
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_planning'],
     'data': [
         'security/ir.model.access.csv',

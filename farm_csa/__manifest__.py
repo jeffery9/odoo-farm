@@ -9,7 +9,7 @@
         - Automated Delivery Task (Picking) Generation
         - Customer Subscription Lifecycle
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_core', 'stock', 'sale'],
     'data': [
         'security/ir.model.access.csv',

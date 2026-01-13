@@ -9,7 +9,7 @@
         - Quarantine & Outbreak Management [US-11-02]
         - Medicine Withdrawal Period Tracking [US-11-03]
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_operation', 'farm_core'],
     'data': [
         'security/ir.model.access.csv',

@@ -13,7 +13,7 @@
         - Live preview and promotion [US-21-06]
         - Live content archiving and reuse [US-21-07]
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_marketing', 'farm_supply', 'sale', 'stock', 'website'],
     'data': [
         'security/ir.model.access.csv',

@@ -10,7 +10,7 @@
         - Warning/Blocking for prohibited/restricted inputs.
         - Simulation of data synchronization to provincial regulatory platforms.
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_supply', 'farm_operation'],
     'data': [
         'security/ir.model.access.csv',

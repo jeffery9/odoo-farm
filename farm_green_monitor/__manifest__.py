@@ -9,7 +9,7 @@
         - Generates reduction trend charts for government inspection.
         - Provides early warnings if usage increases year-over-year.
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_core', 'farm_operation', 'farm_supply', 'farm_sustainability'],
     'data': [
         'security/ir.model.access.csv',

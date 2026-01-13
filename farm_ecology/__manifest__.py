@@ -9,7 +9,7 @@
         - Ecological Infrastructure Maintenance (Hedges, Ponds)
         - ESG Reporting support
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_core', 'farm_sustainability'],
     'data': [
         'security/ir.model.access.csv',

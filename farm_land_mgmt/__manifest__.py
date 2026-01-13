@@ -9,7 +9,7 @@
         - Land Use Control Validation (e.g., Permanent Basic Farmland protection)
         - Prevents illegal land use for specific agricultural activities.
     """,
-    'author': 'Jeffery',
+    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
     'depends': ['farm_core', 'farm_operation'],
     'data': [
         'security/ir.model.access.csv',
