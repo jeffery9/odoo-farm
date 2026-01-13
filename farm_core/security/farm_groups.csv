@@ -1,0 +1,19 @@
+# Farm Core Module User Groups
+
+[farm_core.group_farm_user]
+name = Farm/User
+category_xml_id = farm_core.module_category_farm_management
+implied_ids = 
+users = 
+
+[farm_core.group_farm_manager]
+name = Farm/Manager
+category_xml_id = farm_core.module_category_farm_management
+implied_ids = farm_core.group_farm_user
+users = 
+
+[farm_core.group_farm_admin]
+name = Farm/Administrator
+category_xml_id = farm_core.module_category_farm_management
+implied_ids = farm_core.group_farm_manager
+users = 

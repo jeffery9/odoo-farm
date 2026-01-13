@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_view_inherit_agri_nutrient" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.agri.nutrient</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='inventory']" position="after">
+                <page string="Agricultural Data" name="agri_data">
+                    <group>
+                        <group string="Nutrient Content (%)" invisible="agricultural_type != 'input'">
+                            <field name="n_content"/>
+                            <field name="p_content"/>
+                            <field name="k_content"/>
+                        </group>
+                        <group string="MTO Planning" invisible="agricultural_type not in ['output', False]">
+                            <field name="growth_duration"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

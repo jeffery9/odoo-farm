@@ -76,3 +76,35 @@ class FarmLocation(models.Model):
         'Properties',
         definition='location_properties_definition'
     )
+
+    # US-02-03: Accumulated Nutrient Balance
+    total_n_input = fields.Float("Accumulated Nitrogen (kg)", compute='_compute_nutrient_balance')
+    total_p_input = fields.Float("Accumulated Phosphorus (kg)", compute='_compute_nutrient_balance')
+    total_k_input = fields.Float("Accumulated Potassium (kg)", compute='_compute_nutrient_balance')
+
+    # 养分目标与盈亏
+    target_n_per_mu = fields.Float("Target N (kg/mu)", help="Optimal nitrogen for the current crop")
+    target_p_per_mu = fields.Float("Target P (kg/mu)")
+    target_k_per_mu = fields.Float("Target K (kg/mu)")
+
+    n_balance_status = fields.Float("N Surplus/Deficit", compute='_compute_balance_status')
+    p_balance_status = fields.Float("P Surplus/Deficit", compute='_compute_balance_status')
+    k_balance_status = fields.Float("K Surplus/Deficit", compute='_compute_balance_status')
+
+    def _compute_balance_status(self):
+        for loc in self:
+            area = loc.land_area or 1.0 # 避免除以0
+            loc.n_balance_status = loc.total_n_input - (loc.target_n_per_mu * area)
+            loc.p_balance_status = loc.total_p_input - (loc.target_p_per_mu * area)
+            loc.k_balance_status = loc.total_k_input - (loc.target_k_per_mu * area)
+
+    def _compute_nutrient_balance(self):
+        """ 汇总该地块所有任务的养分投入 """
+        for loc in self:
+            # 找到所有关联该地块的生产任务
+            tasks = self.env['project.task'].search([('land_parcel_id', '=', loc.id)])
+            interventions = self.env['mrp.production'].search([('agri_task_id', 'in', tasks.ids), ('state', '=', 'done')])
+            
+            loc.total_n_input = sum(interventions.mapped('pure_n_qty'))
+            loc.total_p_input = sum(interventions.mapped('pure_p_qty'))
+            loc.total_k_input = sum(interventions.mapped('pure_k_qty'))
