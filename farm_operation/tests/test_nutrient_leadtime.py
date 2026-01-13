@@ -47,6 +47,27 @@ class TestNutrientLeadtime(TransactionCase):
         # Check calculation: 100kg * 46% = 46kg pure N
         self.assertEqual(mo.pure_n_qty, 46.0)
         self.assertEqual(mo.pure_p_qty, 0.0)
+        
+        # Mark as done to trigger accumulation
+        mo.button_mark_done()
+        
+        # 3. Check Land Parcel accumulation [US-02-03]
+        parcel = self.env['stock.location'].create({
+            'name': 'Parcel A',
+            'is_land_parcel': True,
+            'land_area': 10.0
+        })
+        # Link intervention to parcel via task
+        task = self.env['project.task'].create({
+            'name': 'Fertilizing Task',
+            'project_id': self.env['project.project'].search([], limit=1).id,
+            'land_parcel_id': parcel.id
+        })
+        mo.agri_task_id = task.id
+        
+        # Verify compute
+        parcel._compute_nutrient_balance()
+        self.assertEqual(parcel.total_n_input, 46.0)
 
     def test_02_leadtime_warning(self):
         """ Test that Sale Order raises error if lead-time is insufficient [US-09-01] """
