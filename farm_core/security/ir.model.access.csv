@@ -3,3 +3,4 @@ access_farm_activity_manager,farm.activity.manager,model_farm_activity,group_far
 access_farm_activity_worker,farm.activity.worker,model_farm_activity,group_farm_worker,1,0,0,0
 access_farm_lot_worker,farm.lot.worker,model_stock_lot,group_farm_worker,1,1,1,0
 access_farm_location_worker,farm.location.worker,model_stock_location,group_farm_worker,1,1,1,0
+access_farm_geofence_user,farm.geofence user,model_farm_geofence,base.group_user,1,1,1,1

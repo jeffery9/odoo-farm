@@ -21,6 +21,7 @@
         'views/farm_location_views.xml',
         'views/product_template_views.xml',
         'views/soil_analysis_views.xml',
+        'views/farm_geofence_views.xml',
         'views/menu.xml',
     ],
     'demo': [
