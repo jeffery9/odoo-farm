@@ -17,6 +17,7 @@
                             <field name="working_width"/>
                             <field name="payload_capacity"/>
                             <field name="max_flight_time"/>
+                            <field name="checklist_id" domain="[('equipment_type', '=', 'drone')]"/>
                         </group>
                     </group>
                     <separator string="Battery Packs"/>
@@ -36,6 +37,7 @@
                             <field name="working_width"/>
                             <field name="fuel_type"/>
                             <field name="fuel_tank_capacity"/>
+                            <field name="checklist_id" domain="[('equipment_type', '=', 'machinery')]"/>
                         </group>
                         <group string="Statistics">
                             <field name="total_engine_hours"/>

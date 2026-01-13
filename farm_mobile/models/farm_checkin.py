@@ -80,9 +80,22 @@ class AgriIntervention(models.Model):
             ], limit=1)
 
     def action_mobile_check_in(self, lat, lng, photo_base64=False):
-        """ 移动端专用打卡接口 """
+        """ 移动端专用打卡接口：增加点检硬性拦截 """
         self.ensure_one()
-        # 记录打卡
+        
+        # 1. 检查所使用的工具是否有点检要求 [US-26-03]
+        for tool in self.tool_ids:
+            if tool.checklist_id:
+                # 查找最近一次点检记录 (暂简化为必须存在一次合格点检)
+                submission = self.env['farm.checklist.submission'].search([
+                    ('equipment_id', '=', tool.id),
+                    ('task_id', '=', self.id),
+                    ('state', '=', 'pass')
+                ], limit=1)
+                if not submission:
+                    raise UserError(_("SAFETY BLOCK: Please complete the PRE-OP CHECKLIST for %s before starting!") % tool.name)
+
+        # 2. 记录打卡
         checkin = self.env['farm.checkin'].create({
             'intervention_id': self.id,
             'gps_lat': lat,
