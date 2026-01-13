@@ -10,18 +10,18 @@ class FarmActivity(models.Model):
     )
     
     activity_family = fields.Selection([
-        ('planting', 'Planting (种植)'),
-        ('livestock', 'Livestock (畜牧)'),
-        ('aquaculture', 'Aquaculture (养鱼/水产)'),
-        ('agritourism', 'Agritourism (观光农业)'),
-        ('baking', 'Baking (烘焙)'),
-        ('winemaking', 'Winemaking (酿酒)'),
-        ('food_processing', 'Food Processing (食品加工)'),
+        ('planting', 'Planting'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('agritourism', 'Agritourism'),
+        ('baking', 'Baking'),
+        ('winemaking', 'Winemaking'),
+        ('food_processing', 'Food Processing'),
     ], string="Activity Family", help="Specify the agricultural sector.")
 
     production_cycle = fields.Selection([
-        ('annual', 'Annual (年度)'),
-        ('perennial', 'Perennial (多年生)'),
+        ('annual', 'Annual'),
+        ('perennial', 'Perennial'),
     ], string="Production Cycle", default='annual')
 
     task_sequence_id = fields.Many2one(

@@ -15,10 +15,10 @@ class FarmLocation(models.Model):
     gis_map_url = fields.Char("Map Link", compute='_compute_gis_map_url')
     
     soil_type = fields.Selection([
-        ('clay', 'Clay (粘土)'),
-        ('silt', 'Silt (粉砂土)'),
-        ('sand', 'Sand (沙土)'),
-        ('loam', 'Loam (壤土)'),
+        ('clay', 'Clay'),
+        ('silt', 'Silt'),
+        ('sand', 'Sand'),
+        ('loam', 'Loam'),
     ], string="Soil Type")
     
     @api.depends('gps_lat', 'gps_lng')
@@ -52,9 +52,9 @@ class FarmLocation(models.Model):
     is_vessel = fields.Boolean("Is Vessel/Tank", default=False)
     vessel_capacity = fields.Float("Vessel Capacity (L)")
     vessel_material = fields.Selection([
-        ('stainless', 'Stainless Steel (不锈钢)'),
-        ('oak', 'Oak Barrel (橡木桶)'),
-        ('ceramic', 'Ceramic (陶瓷)')
+        ('stainless', 'Stainless Steel'),
+        ('oak', 'Oak Barrel'),
+        ('ceramic', 'Ceramic')
     ], string="Material")
     
     # 多农场协同 [US-17-09]
