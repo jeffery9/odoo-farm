@@ -45,7 +45,7 @@ class ContextualHelp(models.Model):
         ('intermediate', 'Intermediate'),
         ('advanced', 'Advanced'),
     ], string='Difficulty Level', default='beginner')
-    related_faq_ids = fields.Many2many('faq.entry', string='Related FAQ Entries')
+    # related_faq_ids = fields.Many2many('faq.entry', string='Related FAQ Entries')
 
     def get_contextual_help(self, model_name, field_name=None, view_type=None):
         """获取上下文相关的帮助"""
