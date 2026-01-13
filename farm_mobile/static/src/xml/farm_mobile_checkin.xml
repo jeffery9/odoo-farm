@@ -2,20 +2,6 @@
 <templates xml:space="preserve">
     <t t-name="farm_mobile.CheckinButton" owl="1">
         <div class="o_farm_mobile_checkin_container d-flex flex-column gap-2 mb-3">
-            <!-- 离线状态指示器 [US-07-05] -->
-            <div class="alert alert-warning py-1 mb-2 text-center" t-if="!navigator.onLine">
-                <i class="fa fa-wifi me-1"/> Working Offline
-            </div>
-
-            <!-- 离线作业指南列表 [US-07-07] -->
-            <div class="offline_kb_section p-2 mb-3 border rounded bg-light" t-if="!navigator.onLine and state.offline_articles.length > 0">
-                <h6 class="text-primary border-bottom pb-1"><i class="fa fa-book me-1"/> Offline SOPs</h6>
-                <div t-foreach="state.offline_articles" t-as="art" t-key="art.id" class="small mb-2">
-                    <strong t-esc="art.name"/>
-                    <div class="text-muted" style="max-height: 100px; overflow-y: auto;" t-out="art.content"/>
-                </div>
-            </div>
-            
             <!-- 隐藏的相机调用 input -->
             <input type="file" id="mobile_camera_input" accept="image/*" capture="camera" style="display:none;"/>
             
@@ -25,7 +11,7 @@
                     t-on-click="onSiteCheckin"
                     style="font-size: 1.5rem; border-radius: 15px;">
                 <i class="fa fa-map-marker me-2"/>
-                <span t-if="!state.is_loading">🚩 Site Check-in</span>
+                <span t-if="!state.is_loading">🚩 Site Check-in (进场打卡)</span>
                 <span t-else="">Processing...</span>
             </button>
 
@@ -34,7 +20,7 @@
                     t-on-click="onCaptureEvidence"
                     style="font-size: 1.5rem; border-radius: 15px;">
                 <i class="fa fa-camera me-2"/>
-                <span t-if="!state.is_loading">📸 Capture Evidence</span>
+                <span t-if="!state.is_loading">📸 Capture Evidence (拍照取证)</span>
                 <span t-else="">Processing...</span>
             </button>
 

@@ -3,7 +3,6 @@
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { Component, useState } from "@odoo/owl";
-import { OfflineStorage } from "./offline_storage";
 
 export class FarmMobileCheckin extends Component {
     static template = "farm_mobile.CheckinButton";
@@ -14,26 +13,7 @@ export class FarmMobileCheckin extends Component {
         this.state = useState({
             is_loading: false,
             gps_info: "",
-            offline_articles: [],
         });
-        
-        // 如果离线，从本地读取知识库 [US-07-07]
-        if (!navigator.onLine) {
-            OfflineStorage.getOfflineKnowledge().then(articles => {
-                this.state.offline_articles = articles;
-            });
-        }
-        // 每次进入界面，尝试同步离线队列并缓存当前数据
-        if (navigator.onLine) {
-            OfflineStorage.syncAll(this.orm);
-            // 自动缓存当前任务详情 [US-07-07]
-            OfflineStorage.cacheTasks([this.props.record.data]);
-            
-            // 预取相关的知识库文章 (SOP) [US-07-07]
-            this.orm.searchRead("farm.knowledge.article", [], ["name", "content"]).then(articles => {
-                OfflineStorage.cacheKnowledge(articles);
-            });
-        }
     }
 
     async _getGPS() {
@@ -96,30 +76,10 @@ export class FarmMobileCheckin extends Component {
                 this.state.is_loading = false;
                 return;
             }
-            
-            try {
-                // 尝试在线上传
-                await this.orm.call("mrp.production", "action_mobile_capture_evidence", [
-                    this.props.record.res_id, coords.latitude, coords.longitude, photo
-                ]);
-                this.notification.add("Evidence Recorded!", { type: "success" });
-            } catch (online_err) {
-                // 在线失败，转存离线队列 [US-07-06]
-                await OfflineStorage.saveToQueue({
-                    res_id: this.props.record.res_id,
-                    lat: coords.latitude,
-                    lng: coords.longitude,
-                    photo: photo
-                });
-                
-                // 注册后台同步 (仅部分浏览器支持)
-                if ('serviceWorker' in navigator && 'SyncManager' in window) {
-                    const reg = await navigator.serviceWorker.ready;
-                    await reg.sync.register('sync-field-evidence');
-                }
-                
-                this.notification.add("Offline Mode: Evidence saved locally and will sync when network is restored.", { type: "warning", sticky: true });
-            }
+            await this.orm.call("mrp.production", "action_mobile_capture_evidence", [
+                this.props.record.res_id, coords.latitude, coords.longitude, photo
+            ]);
+            this.notification.add("Evidence Recorded!", { type: "success" });
             window.location.reload();
         } catch (err) {
             this.notification.add("Evidence Failed: " + err.message, { type: "danger" });
