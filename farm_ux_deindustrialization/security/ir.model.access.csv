@@ -4,8 +4,6 @@ access_form_layout_template_user,form.layout.template.user,model_form_layout_tem
 access_visual_status_indicator_user,visual.status.indicator.user,model_visual_status_indicator,farm_core.group_farm_user,1,1,1,1
 access_workspace_customization_user,workspace.customization.user,model_workspace_customization,farm_core.group_farm_user,1,1,1,1
 access_contextual_help_user,contextual.help.user,model_contextual_help,farm_core.group_farm_user,1,1,1,1
-access_faq_entry_user,faq.entry.user,model_faq_entry,farm_core.group_farm_user,1,1,1,1
-access_agricultural_knowledge_user,agricultural.knowledge.user,model_agricultural_knowledge,farm_core.group_farm_user,1,1,1,1
 access_multi_sensory_interaction_user,multi.sensory.interaction.user,model_multi_sensory_interaction,farm_core.group_farm_user,1,1,1,1
 access_farm_social_network_user,farm.social.network.user,model_farm_social_network,farm_core.group_farm_user,1,1,1,1
 access_accessibility_settings_user,accessibility.settings.user,model_accessibility_settings,farm_core.group_farm_user,1,1,1,1

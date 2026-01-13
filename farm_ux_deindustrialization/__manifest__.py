@@ -19,11 +19,13 @@
     """,
     'author': 'Jeffery',
     'depends': [
-        'farm_core', 
-        'farm_operation', 
-        'farm_marketing', 
-        'farm_quality', 
+        'farm_core',
+        'farm_operation',
+        'farm_marketing',
+        'farm_quality',
         'farm_safety',
+        'farm_knowledge',
+        'knowledge',
         'base_setup',
         'web'
     ],
@@ -35,12 +37,18 @@
         'views/visual_status_indicator_views.xml',
         'views/workspace_customization_views.xml',
         'views/contextual_help_views.xml',
-        'views/faq_entry_views.xml',
-        'views/agricultural_knowledge_views.xml',
         'views/multi_sensory_interaction_views.xml',
         'views/farm_social_network_views.xml',
         'views/accessibility_settings_views.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'farm_ux_deindustrialization/static/src/css/workspace_customization.css',
+            'farm_ux_deindustrialization/static/src/js/farm_ux_integration.esm.js',
+            'farm_ux_deindustrialization/static/src/js/term_mapping_handler.esm.js',
+            'farm_ux_deindustrialization/static/src/xml/*.xml',
+        ],
+    },
     'demo': [
     ],
     'installable': True,

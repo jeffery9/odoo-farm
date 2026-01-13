@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="FarmUXIntegration">
+        <div class="o_farm_ux_container">
+            <!-- 悬浮帮助与协作中心按钮 -->
+            <div class="o_farm_help_toggle btn btn-success rounded-circle shadow-lg" 
+                 t-on-click="toggleHelpPanel"
+                 title="Farm Hub: Help &amp; Social"
+                 style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; z-index: 1050; cursor: pointer; border: 3px solid white;">
+                <i class="fa fa-leaf fa-2x"/>
+                <span t-if="state.unreadMessages > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <t t-esc="state.unreadMessages"/>
+                </span>
+            </div>
+
+            <!-- 侧边综合面板 -->
+            <div t-if="state.showHelpPanel" 
+                 class="o_farm_hub_panel bg-white shadow-lg border-start"
+                 style="position: fixed; top: 0; right: 0; width: 380px; height: 100vh; z-index: 1060; overflow-y: auto; display: flex; flex-direction: column;">
+                
+                <!-- 头部 -->
+                <div class="p-3 border-bottom d-flex justify-content-between align-items-center bg-light">
+                    <h5 class="mb-0 text-success"><i class="fa fa-map me-2"/>Farm Hub</h5>
+                    <button class="btn-close" t-on-click="toggleHelpPanel"></button>
+                </div>
+
+                <!-- 内容区 -->
+                <div class="flex-grow-1 p-3">
+                    <!-- Tab 切换 (帮助 vs 社交) -->
+                    <ul class="nav nav-pills nav-fill mb-3">
+                        <li class="nav-item">
+                            <a class="nav-link active small" href="#">Knowledge</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link small" href="#">Social</a>
+                        </li>
+                    </ul>
+
+                    <!-- 1. 上下文帮助区 -->
+                    <div class="mb-4">
+                        <h6 class="text-uppercase fw-bold small text-muted mb-3">Contextual Guidance</h6>
+                        <div t-if="state.contextualHelp.length === 0" class="text-center py-4 bg-light rounded">
+                            <small class="text-muted">No specific tips for this view.</small>
+                        </div>
+                        <t t-else="" t-foreach="state.contextualHelp" t-as="help" t-key="help.id">
+                            <div class="alert alert-success border-0 shadow-sm mb-3">
+                                <h6 class="alert-heading fw-bold"><t t-esc="help.name"/></h6>
+                                <div class="small mb-2"><t t-out="help.content"/></div>
+                                <a t-if="help.video_url" t-att-href="help.video_url" target="_blank" class="btn btn-xs btn-link p-0 text-decoration-none">
+                                    <i class="fa fa-play-circle"/> Watch Video
+                                </a>
+                            </div>
+                        </t>
+                    </div>
+
+                    <!-- 2. 农业社交动态 (Mockup) -->
+                    <div class="mb-4">
+                        <h6 class="text-uppercase fw-bold small text-muted mb-3">Farm Social</h6>
+                        <div class="list-group list-group-flush small">
+                            <div class="list-group-item px-0">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <strong class="mb-1">Co-op Alert</strong>
+                                    <small>3m ago</small>
+                                </div>
+                                <p class="mb-1 text-muted">Shared harvest equipment available in Zone B.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 底部：用户偏好状态 -->
+                <div class="p-3 bg-light border-top">
+                    <div class="d-flex justify-content-between align-items-center small">
+                        <span class="text-muted">UX Mode: <t t-esc="state.workspaceCustomization.theme"/></span>
+                        <span class="text-success"><i class="fa fa-check-circle me-1"/>Accessibility Active</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

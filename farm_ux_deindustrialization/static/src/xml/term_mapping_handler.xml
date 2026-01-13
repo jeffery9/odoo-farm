@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="TermMappingHandler">
+        <!-- 这是一个OWL组件，不需要实际的DOM元素，因为它主要用于后台处理 -->
+        <t t-if="state.loaded">
+            <div class="term-mapping-handler-root" style="display: none;">
+                <!-- 组件状态指示器 -->
+                <span t-esc="state.loaded ? 'Term Mapping Handler Loaded' : 'Loading...'"/>
+            </div>
+        </t>
+    </t>
+</templates>
