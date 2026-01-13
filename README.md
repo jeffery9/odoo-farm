@@ -26,7 +26,23 @@
 *   ☁️ **SAAS 架构支持**：支持多农场独立运行、合作社级数据汇总，适合集团化或产业园部署。
 *   🛡️ **中国特色合规与安全**：内置 GB 7718 标签标准、农药实名制登记及畜禽粪污资源化台账。
 
-### 4. 🚀 核心功能矩阵 (Feature Matrix)
+### 4. 顶级菜单预览 (App Directory)
+```
+农场管理 (Farm)
+├── 基础数据 (Master Data)
+├── 种植管理 (Planting)
+├── 畜牧管理 (Livestock)
+├── 水产养殖 (Aquaculture)
+├── 观光农业 (Agritourism)
+├── 农产品加工 (Processing)
+├── 供应链管理 (Supply Chain)
+├── 质量与安全 (Quality & Safety)
+├── 物联网与自动化 (IoT)
+├── 财务与成本 (Finance)
+└── 加盟与合作社 (Cooperative)
+```
+
+### 5. 🚀 核心功能矩阵 (Feature Matrix)
 *   **🌾 种植与生产**：生产季规划、农事干预记录、收获分级、N/P/K 养分平衡自动计算。
 *   **🐄 畜牧与水产**：个体耳标/群组管理、ADG 预测模型、自动化饲喂核销、环境预警。
 *   **🏭 农产品加工**：多级配方 (BOM)、精细化能耗成本分摊、QCP 检查点、留样管理。
@@ -57,7 +73,23 @@ Traditional agriculture faces challenges like "black box" production, industrial
 *   ☁️ **SAAS Ready**: Native multi-tenant isolation and cooperative-level aggregation, ideal for groups or industrial parks.
 *   🛡️ **China Compliance Pack**: Built-in GB 7718 standards, pesticide real-name registration, and manure ledger compliance.
 
-### 4. 🚀 Core Feature Matrix
+### 4. App Directory (Menu Preview)
+```
+Farm Management (Farm)
+├── Master Data (基础数据)
+├── Planting (种植管理)
+├── Livestock (畜牧管理)
+├── Aquaculture (水产养殖)
+├── Agritourism (观光农业)
+├── Processing (农产品加工)
+├── Supply Chain (供应链管理)
+├── Quality & Safety (质量与安全)
+├── IoT & Automation (物联网与自动化)
+├── Finance & Costs (财务与成本)
+└── Cooperative (加盟与合作社)
+```
+
+### 5. 🚀 Core Feature Matrix
 *   **🌾 Planting & Production**: Campaign planning, intervention logs, harvest grading, auto N/P/K calculation.
 *   **🐄 Livestock & Aquaculture**: Ear tag/Group tracking, ADG prediction models, automated feeding depletion.
 *   **🏭 Agri-Processing**: Multi-stage BOMs, refined energy cost allocation, QCP inspection, sample management.
