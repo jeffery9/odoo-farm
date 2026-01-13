@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_farm_pest_disease,farm.pest.disease,model_farm_pest_disease,farm_core.group_farm_worker,1,1,1,1
+access_farm_pest_disease_user,farm.pest.disease.user,model_farm_pest_disease,farm_core.group_farm_user,1,1,1,1
+access_agricultural_knowledge_user,agricultural.knowledge.user,model_agricultural_knowledge,farm_core.group_farm_user,1,1,1,1
+access_faq_entry_user,faq.entry.user,model_faq_entry,farm_core.group_farm_user,1,1,1,1

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_pest_disease_tree" model="ir.ui.view">
+        <field name="name">farm.pest.disease.tree</field>
+        <field name="model">farm.pest.disease</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="scientific_name"/>
+                <field name="category"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Kanban View for Pest & Disease [US-UX] -->
+    <record id="view_farm_pest_disease_kanban" model="ir.ui.view">
+        <field name="name">farm.pest.disease.kanban</field>
+        <field name="model">farm.pest.disease</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="photo"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img t-if="record.photo.raw_value" t-att-src="kanban_image('farm.pest.disease', 'photo', record.id.raw_value)" alt="Photo"/>
+                                <div t-else="" class="o_kanban_image_fill_left bg-light d-flex align-items-center justify-content-center">
+                                    <i class="fa fa-bug fa-3x text-muted"/>
+                                </div>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                <div class="text-muted"><field name="category"/></div>
+                                <div t-if="record.scientific_name.value"><i><field name="scientific_name"/></i></div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_farm_pest_disease_form" model="ir.ui.view">
+        <field name="name">farm.pest.disease.form</field>
+        <field name="model">farm.pest.disease</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_view_treatment" string="View Treatment Plan" type="object" class="oe_highlight" t-if="recommended_intervention_id"/>
+                </header>
+                <sheet>
+                    <field name="photo" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name"/></h1>
+                        <field name="scientific_name" placeholder="Scientific Name (Latin)"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="category"/>
+                            <field name="recommended_intervention_id"/>
+                        </group>
+                        <group>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Symptoms &amp; Cause">
+                            <group>
+                                <field name="symptoms"/>
+                                <field name="cause"/>
+                            </group>
+                        </page>
+                        <page string="Prevention &amp; Control">
+                            <field name="prevention"/>
+                        </page>
+                        <page string="Details">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_pest_disease" model="ir.actions.act_window">
+        <field name="name">Pest &amp; Disease Map</field>
+        <field name="res_model">farm.pest.disease</field>
+        <field name="view_mode">kanban,tree,form</field>
+    </record>
+</odoo>
