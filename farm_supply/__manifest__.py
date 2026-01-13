@@ -15,6 +15,7 @@
         'security/ir.model.access.csv',
         'views/farm_input_views.xml',
         'views/purchase_order_views.xml',
+        'views/seasonal_stock_views.xml',
     ],
     'installable': True,
     'application': False,

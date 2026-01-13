@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_seasonal_stock_rule_tree" model="ir.ui.view">
+        <field name="name">farm.seasonal.stock.rule.tree</field>
+        <field name="model">farm.seasonal.stock.rule</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="month"/>
+                <field name="product_id"/>
+                <field name="location_id"/>
+                <field name="min_qty"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_farm_seasonal_stock_rule" model="ir.actions.act_window">
+        <field name="name">Seasonal Safety Stock</field>
+        <field name="res_model">farm.seasonal.stock.rule</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem id="menu_farm_seasonal_stock" name="Seasonal Safety Stock" parent="menu_farm_supply_root" action="action_farm_seasonal_stock_rule" sequence="30"/>
+</odoo>
