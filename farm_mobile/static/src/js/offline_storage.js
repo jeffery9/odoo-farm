@@ -9,6 +9,14 @@ export class OfflineStorage {
                 if (!db.objectStoreNames.contains("evidence_queue")) {
                     db.createObjectStore("evidence_queue", { keyPath: "id", autoIncrement: true });
                 }
+                // 新增：任务缓存表 [US-07-07]
+                if (!db.objectStoreNames.contains("tasks_cache")) {
+                    db.createObjectStore("tasks_cache", { keyPath: "id" });
+                }
+                // 新增：离线数据变更队列 [US-07-08]
+                if (!db.objectStoreNames.contains("input_changes")) {
+                    db.createObjectStore("input_changes", { keyPath: "id", autoIncrement: true });
+                }
             };
             request.onsuccess = (e) => resolve(e.target.result);
             request.onerror = (e) => reject(e.target.error);
@@ -23,6 +31,19 @@ export class OfflineStorage {
             tx.oncomplete = () => resolve();
             tx.onerror = () => reject();
         });
+    }
+
+    static async cacheTasks(tasks) {
+        const db = await this.openDB();
+        const tx = db.transaction("tasks_cache", "readwrite");
+        const store = tx.objectStore("tasks_cache");
+        tasks.forEach(task => store.put(task));
+    }
+
+    static async saveInputChange(change) {
+        const db = await this.openDB();
+        const tx = db.transaction("input_changes", "readwrite");
+        tx.objectStore("input_changes").add(change);
     }
 
     static async syncAll(orm) {
