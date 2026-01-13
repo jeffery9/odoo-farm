@@ -1,5 +1,6 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
+import datetime
 
 class FarmCertificateType(models.Model):
     _name = 'farm.certificate.type'
