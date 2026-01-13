@@ -60,3 +60,41 @@ class FarmCrisisIncident(models.Model):
 
     def action_resolve(self):
         self.write({'state': 'resolved', 'date_end': fields.Datetime.now()})
+
+class StockLot(models.Model):
+    _inherit = 'stock.lot'
+
+    is_crisis_locked = fields.Boolean("Locked by Crisis", compute='_compute_crisis_lock', search='_search_crisis_locked')
+
+    def _compute_crisis_lock(self):
+        """ 检查该批次是否处于活动状态的危机区域中 """
+        for lot in self:
+            active_crisis = self.env['farm.crisis.incident'].search([
+                ('state', '=', 'active'),
+                '|',
+                ('affected_lot_ids', 'in', lot.id),
+                ('affected_location_ids', 'parent_of', lot.location_id.id)
+            ])
+            lot.is_crisis_locked = bool(active_crisis)
+
+    def _search_crisis_locked(self, operator, value):
+        """ 支持对锁定状态的搜索和过滤 """
+        active_crisis = self.env['farm.crisis.incident'].search([('state', '=', 'active')])
+        lot_ids = active_crisis.mapped('affected_lot_ids').ids
+        location_ids = active_crisis.mapped('affected_location_ids').ids
+        
+        # 找到处于这些位置的所有子位置下的批次
+        all_affected_locations = self.env['stock.location'].search([('id', 'child_of', location_ids)])
+        
+        return ['|', ('id', 'in', lot_ids), ('location_id', 'in', all_affected_locations.ids)]
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    def action_confirm(self):
+        """ 确认销售订单前，强行校验是否包含锁定批次 """
+        for order in self:
+            for line in order.order_line:
+                if line.lot_id and line.lot_id.is_crisis_locked:
+                    raise UserError(_("SALE BLOCK: Lot '%s' is under CRISIS LOCKDOWN and cannot be sold.") % line.lot_id.name)
+        return super(SaleOrder, self).action_confirm()

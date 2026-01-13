@@ -75,6 +75,20 @@ class FarmLotMarketing(models.Model):
     avg_temp = fields.Float("Average Growth Temperature (℃)")
     water_purity = fields.Char("Water Purity Grade")
 
+    # Expiry & Promotion [US-14-14]
+    is_near_expiry = fields.Boolean('Near Expiry', compute='_compute_is_near_expiry')
+    promotion_link_id = fields.Many2one('coupon.program', string="Promotion Program", 
+                                       help="Link to a promotion for clearing near-expiry stock")
+
+    def _compute_is_near_expiry(self):
+        today = fields.Date.today()
+        for lot in self:
+            if lot.expiration_date:
+                delta = lot.expiration_date - today
+                lot.is_near_expiry = 0 <= delta.days <= 7
+            else:
+                lot.is_near_expiry = False
+
     def get_full_traceability_data(self):
         """
         核心溯源算法：聚合该批次从种子到餐桌的全生命周期数据 [US-15-03, US-08-01]

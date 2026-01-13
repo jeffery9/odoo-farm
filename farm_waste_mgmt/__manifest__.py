@@ -17,6 +17,7 @@
         'report/manure_ledger_report_templates.xml',
         'report/manure_ledger_reports.xml',
         'views/waste_mgmt_views.xml',
+        'views/waste_management_views.xml',
     ],
     'installable': True,
     'application': False,

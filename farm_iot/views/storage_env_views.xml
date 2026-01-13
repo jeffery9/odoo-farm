@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_storage_env_tree" model="ir.ui.view">
+        <field name="name">farm.storage.env.tree</field>
+        <field name="model">farm.storage.env</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="is_alert">
+                <field name="timestamp"/>
+                <field name="location_id"/>
+                <field name="temperature"/>
+                <field name="humidity"/>
+                <field name="is_alert" invisible="1"/>
+                <field name="alert_message"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_farm_storage_env_form" model="ir.ui.view">
+        <field name="name">farm.storage.env.form</field>
+        <field name="model">farm.storage.env</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="location_id"/>
+                            <field name="timestamp"/>
+                        </group>
+                        <group>
+                            <field name="temperature"/>
+                            <field name="humidity"/>
+                            <field name="co2_level"/>
+                        </group>
+                    </group>
+                    <group string="Alert Status" t-if="is_alert">
+                        <field name="is_alert"/>
+                        <field name="alert_message"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_storage_env" model="ir.actions.act_window">
+        <field name="name">Storage Monitoring</field>
+        <field name="res_model">farm.storage.env</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

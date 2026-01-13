@@ -35,27 +35,47 @@ class AccountMoveLine(models.Model):
         if self.move_id.agri_task_id and self.move_id.agri_task_id.analytic_account_id:
             self.analytic_distribution = {str(self.move_id.agri_task_id.analytic_account_id.id): 100}
 
-class AccountPayment(models.Model):
-    _inherit = 'account.payment'
+class ProcessingCostAllocation(models.Model):
+    """
+    US-14-13: 仓储加工成本精细化分摊
+    将加工过程中的间接费用（水电、折旧等）分摊到产品批次
+    """
+    _name = 'farm.processing.cost'
+    _description = 'Processing Cost Allocation'
 
-    agri_task_id = fields.Many2one(
-        'project.task', 
-        string="Farm Task",
-        help="Directly link a payment to a farm task (e.g. cash payment for seasonal labor)."
-    )
+    production_id = fields.Many2one('mrp.production', string="Processing Order", required=True)
+    water_rate = fields.Float("Water Unit Price", default=5.0)
+    electricity_rate = fields.Float("Electricity Unit Price", default=1.0)
+    
+    total_water_cost = fields.Float("Total Water Cost", compute='_compute_total_costs')
+    total_electricity_cost = fields.Float("Total Electricity Cost", compute='_compute_total_costs')
+    other_indirect_costs = fields.Float("Other Indirect Costs (Labor/Depreciation)")
+    
+    total_processing_cost = fields.Float("Total Processing Cost", compute='_compute_total_costs', store=True)
 
-    def action_post(self):
-        """ 支付确认时，如果是直接关联任务的，自动生成分析行 """
-        res = super().action_post()
-        for payment in self:
-            if payment.agri_task_id and payment.agri_task_id.analytic_account_id:
-                # 只有在没有关联发票的情况下才手动创建（发票支付会自动通过核销产生分析行，取决于配置）
-                if not payment.reconciled_bill_ids and not payment.reconciled_invoice_ids:
-                    self.env['account.analytic.line'].create({
-                        'name': _('Direct Payment: %s') % payment.ref or payment.name,
-                        'account_id': payment.agri_task_id.analytic_account_id.id,
-                        'amount': -payment.amount if payment.payment_type == 'outbound' else payment.amount,
-                        'date': payment.date,
-                        'partner_id': payment.partner_id.id,
-                    })
-        return res
+    @api.depends('production_id', 'water_rate', 'electricity_rate', 'other_indirect_costs')
+    def _compute_total_costs(self):
+        for rec in self:
+            # 读取 mrp.production 中的能耗读数
+            water_cons = getattr(rec.production_id, 'water_consumption', 0)
+            elec_cons = getattr(rec.production_id, 'electricity_consumption', 0)
+            
+            rec.total_water_cost = water_cons * rec.water_rate
+            rec.total_electricity_cost = elec_cons * rec.electricity_rate
+            rec.total_processing_cost = rec.total_water_cost + rec.total_electricity_cost + rec.other_indirect_costs
+
+    def action_allocate_costs(self):
+        """ 将计算出的成本写入加工产品的分析账户 [US-14-13] """
+        self.ensure_one()
+        if self.total_processing_cost > 0:
+            # 找到加工产品的分析账户 (通过 mrp.production 关联的农事任务或产品的分析账户)
+            analytic_account = self.production_id.product_id.bom_ids[:1].analytic_account_id
+            if analytic_account:
+                self.env['account.analytic.line'].create({
+                    'name': _('Processing Overhead: %s') % self.production_id.name,
+                    'account_id': analytic_account.id,
+                    'amount': -self.total_processing_cost,
+                    'date': fields.Date.today(),
+                    'unit_amount': 1,
+                })
+        return True
