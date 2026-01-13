@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_certificate_type_user,farm.certificate.type.user,model_farm_certificate_type,farm_core.group_farm_user,1,1,1,1
+access_farm_certificate_user,farm.certificate.user,model_farm_certificate,farm_core.group_farm_user,1,1,1,1
+access_farm_training_session_user,farm.training.session.user,model_farm_training_session,farm_core.group_farm_user,1,1,1,1

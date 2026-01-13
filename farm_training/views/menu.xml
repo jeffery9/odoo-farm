@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_farm_training_root" 
+              name="Training &amp; Skills" 
+              parent="farm_hr.menu_farm_hr_root" 
+              sequence="50"/>
+
+    <menuitem id="menu_farm_training_session" 
+              name="Training Sessions" 
+              parent="menu_farm_training_root" 
+              action="action_farm_training_session" 
+              sequence="10"/>
+
+    <menuitem id="menu_farm_certificate" 
+              name="Employee Certificates" 
+              parent="menu_farm_training_root" 
+              action="action_farm_certificate" 
+              sequence="20"/>
+
+    <menuitem id="menu_farm_certificate_type" 
+              name="Certificate Types (Setup)" 
+              parent="menu_farm_training_root" 
+              action="action_farm_certificate_type" 
+              sequence="90"/>
+</odoo>
