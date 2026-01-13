@@ -3,6 +3,7 @@
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { Component, useState } from "@odoo/owl";
+import { OfflineStorage } from "./offline_storage";
 
 export class FarmMobileCheckin extends Component {
     static template = "farm_mobile.CheckinButton";
@@ -76,10 +77,30 @@ export class FarmMobileCheckin extends Component {
                 this.state.is_loading = false;
                 return;
             }
-            await this.orm.call("mrp.production", "action_mobile_capture_evidence", [
-                this.props.record.res_id, coords.latitude, coords.longitude, photo
-            ]);
-            this.notification.add("Evidence Recorded!", { type: "success" });
+            
+            try {
+                // 尝试在线上传
+                await this.orm.call("mrp.production", "action_mobile_capture_evidence", [
+                    this.props.record.res_id, coords.latitude, coords.longitude, photo
+                ]);
+                this.notification.add("Evidence Recorded!", { type: "success" });
+            } catch (online_err) {
+                // 在线失败，转存离线队列 [US-07-06]
+                await OfflineStorage.saveToQueue({
+                    res_id: this.props.record.res_id,
+                    lat: coords.latitude,
+                    lng: coords.longitude,
+                    photo: photo
+                });
+                
+                // 注册后台同步 (仅部分浏览器支持)
+                if ('serviceWorker' in navigator && 'SyncManager' in window) {
+                    const reg = await navigator.serviceWorker.ready;
+                    await reg.sync.register('sync-field-evidence');
+                }
+                
+                this.notification.add("Offline Mode: Evidence saved locally and will sync when network is restored.", { type: "warning", sticky: true });
+            }
             window.location.reload();
         } catch (err) {
             this.notification.add("Evidence Failed: " + err.message, { type: "danger" });
