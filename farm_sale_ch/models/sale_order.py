@@ -273,8 +273,29 @@ class SaleOrder(models.Model):
         return f"CERT-{timestamp}-{random_part}"
 
     def action_confirm(self):
-        """在确认销售订单时检查出口合规性"""
+        """在确认销售订单时检查出口合规性及繁育代次硬拦截 [US-01-05]"""
         for order in self:
+            # 1. 繁育代次硬拦截 [US-01-05] (Core-Closure)
+            for line in order.order_line:
+                product = line.product_id
+                # 检查产品模板层级的设定
+                if product.agri_generation in ['g0', 'g1', 'g2']:
+                    raise ValidationError(_(
+                        "硬拦截：禁止销售非商品级繁育代次批次。\n"
+                        "产品 [%s] 的代次为 %s，属于内部研发或繁育储备，严禁直接售卖给外部客户。"
+                    ) % (product.display_name, product.agri_generation.upper()))
+                
+                # 如果有具体批次，检查批次层级的设定
+                # 农业场景下，即便产品模板是 g3，具体某个批次如果是回购或降级，也可能被标记为内部级
+                for move in line.move_ids:
+                    for lot in move.move_line_ids.lot_id:
+                        if lot.agri_generation in ['g0', 'g1', 'g2']:
+                            raise ValidationError(_(
+                                "硬拦截：批次代次违规。\n"
+                                "批次 [%s] 的繁育代次为 %s，严禁进入商品流通领域。"
+                            ) % (lot.name, lot.agri_generation.upper()))
+
+            # 2. 出口合规性检查 [US-17-06]
             if order.export_country_code:
                 # 检查订单中所有产品的合规性
                 non_compliant_lines = []

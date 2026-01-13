@@ -92,15 +92,33 @@ class MrpProduction(models.Model):
                 self.brix_level = self.bom_id.target_brix
 
     def button_mark_done(self):
-        """ 强制平衡校验并建立批次溯源 [US-04-02, US-14-03] """
+        """ 强制平衡校验、关键质量拦截并建立批次溯源 [US-04-02, US-14-03, US-14-19] """
         for mo in self:
+            # 1. 物料平衡校验 [US-14-06]
             if not mo.is_balanced:
                 from odoo.exceptions import UserError
                 raise UserError(_("MASS BALANCE ERROR: Total input (%s) does not match total output + loss (%s).") % (
                     sum(mo.move_raw_ids.mapped('product_uom_qty')), mo.total_output_qty
                 ))
             
-            # 建立溯源关联
+            # 2. 关键工艺质量硬拦截 [US-14-19] (Core-Closure)
+            if mo.process_mode == 'fermentation' and (mo.ph_level < 3.0 or mo.ph_level > 4.5):
+                from odoo.exceptions import ValidationError
+                raise ValidationError(_(
+                    "CORE-CLOSURE: 关键质量拦截 (熔断)。\n"
+                    "当前发酵液 pH 值为 %s，超出了安全范围 (3.0 - 4.5)。\n"
+                    "严禁将质量异常的半成品标记为完成，请执行【报废】或【异常处理】流程。"
+                ) % mo.ph_level)
+
+            if mo.process_mode == 'sterilization' and mo.process_temperature < 121.0:
+                from odoo.exceptions import ValidationError
+                raise ValidationError(_(
+                    "CORE-CLOSURE: 杀菌温度不合规。\n"
+                    "实际杀菌温度为 %s℃，未达到工艺要求的 121.0℃ 瞬时杀菌标准。\n"
+                    "该批次存在微生物超标风险，严禁标记为完成。"
+                ) % mo.process_temperature)
+
+            # 3. 建立溯源关联
             raw_lots = mo.move_raw_ids.mapped('lot_ids') | mo.harvest_lot_ids
             if raw_lots:
                 main_raw_lot = raw_lots[0]

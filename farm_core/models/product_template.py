@@ -46,3 +46,35 @@ class ProductTemplate(models.Model):
 
     # MTO 提前期逻辑 [US-09-01]
     growth_duration = fields.Integer("Growth Duration (Days)", help="Standard growth period from planting to harvest.")
+
+    # 繁育代次追踪 (G0-G3) [US-01-05]
+    agri_generation = fields.Selection([
+        ('g0', 'G0 (Breeder Seed/Original)'),
+        ('g1', 'G1 (Foundation Seed)'),
+        ('g2', 'G2 (Registered Seed)'),
+        ('g3', 'G3 (Certified/Commercial Seed)')
+    ], string="Agri Generation", help="Generation tracking for seeds or livestock.")
+
+    # 生物资产转固核算 [US-01-06]
+    is_biological_asset = fields.Boolean("Is Biological Asset", default=False)
+    maturity_age_days = fields.Integer("Maturity Age (Days)", help="Age at which the asset is considered mature (e.g. starts producing fruit/milk).")
+
+    # 农业 UOM (计量单位) 弹性转换 [US-01-02]
+    standard_dose = fields.Float("Standard Dose", help="Recommended quantity per unit of area.")
+    dose_uom_id = fields.Many2one('uom.uom', string="Dose Unit", help="Unit for the dose (e.g., kg/mu, L/ha).")
+
+    # 繁育代次追踪 (G0-G3) [US-01-05]
+    agri_generation = fields.Selection([
+        ('g0', 'G0 (Breeder Seed/Original)'),
+        ('g1', 'G1 (Foundation Seed)'),
+        ('g2', 'G2 (Registered Seed)'),
+        ('g3', 'G3 (Certified/Commercial Seed)')
+    ], string="Agri Generation", help="Generation tracking for seeds or livestock.")
+
+    # 生物资产转固核算 [US-01-06]
+    is_biological_asset = fields.Boolean("Is Biological Asset", default=False)
+    maturity_age_days = fields.Integer("Maturity Age (Days)", help="Age at which the asset is considered mature (e.g. starts producing fruit/milk).")
+
+    # 农业 UOM (计量单位) 弹性转换 [US-01-02]
+    standard_dose = fields.Float("Standard Dose", help="Recommended quantity per unit of area.")
+    dose_uom_id = fields.Many2one('uom.uom', string="Dose Unit", help="Unit for the dose (e.g., kg/mu, L/ha).")

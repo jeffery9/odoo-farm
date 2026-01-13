@@ -11,7 +11,7 @@
         - Automatic Certification Inheritance for Harvested Lots
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'farm_operation'],
+    'depends': ['farm_core', 'farm_operation', 'purchase'],
     'data': [
         'security/ir.model.access.csv',
         'views/certification_views.xml',
