@@ -27,7 +27,7 @@ class TestExportCompliance(TransactionCase):
             })]
         })
         
-        # 强制设置合规状态为 False
+        # 强制设置合规状态为 False (模拟校验失败)
         so.is_export_compliant = False
         
         # 尝试确认订单，应触发拦截

@@ -40,8 +40,35 @@ class TestProcessingLogic(TransactionCase):
             mo.button_mark_done()
 
     def test_traceability_linkage(self):
-        """ Test that finished lot links to raw lot [US-14-03] """
-        # This is a complex test involving stock moves and lots
-        # We verify the logic exists in the model
-        self.assertTrue(hasattr(self.env['stock.lot'], 'parent_lot_id'))
-        self.assertTrue(hasattr(self.Production, 'is_balanced'))
+        """ Test that finished lot links to raw lot and calculates full path [US-14-03] """
+        # 1. Create a root lot (Harvest)
+        root_lot = self.env['stock.lot'].create({
+            'name': 'ROOT-LOT',
+            'product_id': self.raw_material.id,
+            'company_id': self.env.company.id,
+        })
+        
+        # 2. Create MO to process root lot into finished good
+        mo = self.Production.create({
+            'product_id': self.finished_good.id,
+            'bom_id': self.bom.id,
+            'product_qty': 1.0,
+            'harvest_lot_ids': [(4, root_lot.id)]
+        })
+        mo.action_confirm()
+        
+        # Create output lot
+        finished_lot = self.env['stock.lot'].create({
+            'name': 'JUICE-LOT',
+            'product_id': self.finished_good.id,
+            'company_id': self.env.company.id,
+        })
+        
+        # Simulate finishing
+        mo.lot_producing_id = finished_lot.id
+        mo.button_mark_done()
+        
+        # 3. Verify linkage
+        self.assertEqual(finished_lot.parent_lot_id.id, root_lot.id)
+        # Verify pre-calculated path
+        self.assertEqual(finished_lot.full_traceability_path, str(root_lot.id))
