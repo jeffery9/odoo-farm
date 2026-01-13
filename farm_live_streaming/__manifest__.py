@@ -18,7 +18,9 @@
     'data': [
         'security/ir.model.access.csv',
         'data/douyin_api_data.xml',
+        'data/douyin_cron_data.xml',
         'views/douyin_account_views.xml',
+        'views/douyin_qualification_views.xml',
         'views/live_streaming_views.xml',
         'views/product_sync_views.xml',
         'views/live_order_views.xml',
@@ -27,5 +29,5 @@
     ],
     'installable': True,
     'application': False,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }
