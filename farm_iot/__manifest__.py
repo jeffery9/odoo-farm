@@ -9,8 +9,7 @@
         - Threshold Alerts [US-06-02]
         - Storage Environment Monitoring and Alerts [US-14-06]
     """,
-    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
-    "website": "http://www.geninit.cn",
+    'author': 'Jeffery',
     'depends': ['farm_core', 'project', 'industrial_iot'],
     'data': [
         'security/ir.model.access.csv',

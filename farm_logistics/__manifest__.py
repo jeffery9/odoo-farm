@@ -10,8 +10,7 @@
         - Integrated Field Delivery
         - Temperature Curve Tracking for Logistics [US-14-11]
     """,
-    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
-    "website": "http://www.geninit.cn",
+    'author': 'Jeffery',
     'depends': ['farm_core', 'stock'],
     'data': [
         'security/ir.model.access.csv',

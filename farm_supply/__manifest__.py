@@ -9,8 +9,7 @@
         - Purchase Order Integration with Safety Checks
         - Input Usage Forecasting and Stock Alerts
     """,
-    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
-    "website": "http://www.geninit.cn",
+    'author': 'Jeffery',
     'depends': ['farm_core', 'purchase', 'stock'],
     'data': [
         'security/ir.model.access.csv',

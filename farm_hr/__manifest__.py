@@ -9,8 +9,7 @@
         - Field Task Worklogs & Piece-rate performance [US-13-04]
         - Automated labor cost attribution to farm tasks
     """,
-    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
-    "website": "http://www.geninit.cn",
+    'author': 'Jeffery',
     'depends': ['farm_operation', 'hr', 'hr_attendance', 'account'],
     'data': [
         'security/ir.model.access.csv',

@@ -10,8 +10,7 @@
         - Land Parcel Management (US-01-03)
         - Biological Asset Management (US-01-04)
     """,
-    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
-    "website": "http://www.geninit.cn",
+    'author': 'Jeffery',
     'depends': ['project', 'stock', 'uom', 'base_setup'],
     'data': [
         'security/farm_security.xml',

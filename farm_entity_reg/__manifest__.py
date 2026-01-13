@@ -9,8 +9,7 @@
         - Stores electronic certificates with expiry date reminders.
         - Ensures compliance with Chinese agricultural entity regulations.
     """,
-    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
-    "website": "http://www.geninit.cn",
+    'author': 'Jeffery',
     'depends': ['base', 'farm_core'],
     'data': [
         'security/ir.model.access.csv',

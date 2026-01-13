@@ -9,8 +9,7 @@
         - Loan Application & Repayment Schedules
         - Integration with Production Cycles
     """,
-    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
-    "website": "http://www.geninit.cn",
+    'author': 'Jeffery',
     'depends': ['farm_operation', 'farm_financial'],
     'data': [
         'security/ir.model.access.csv',

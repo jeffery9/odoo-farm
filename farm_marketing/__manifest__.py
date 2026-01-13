@@ -10,8 +10,7 @@
         - Integration with Agritourism & CRM
         - Expiry Warning and Promotional Linkage [US-14-14]
     """,
-    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
-    "website": "http://www.geninit.cn",
+    'author': 'Jeffery',
     'depends': ['farm_core', 'farm_quality', 'farm_operation', 'website'],
     'data': [
         'security/ir.model.access.csv',

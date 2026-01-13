@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_trait_comparison_wizard_form" model="ir.ui.view">
+        <field name="name">farm.trait.comparison.wizard.form</field>
+        <field name="model">farm.trait.comparison.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Trait Comparison">
+                <sheet>
+                    <group>
+                        <field name="lot_ids" widget="many2many_tags" placeholder="Select lots to compare..."/>
+                    </group>
+                    <notebook>
+                        <page string="Comparison Table" name="results">
+                            <field name="line_ids" readonly="1">
+                                <tree>
+                                    <field name="lot_id"/>
+                                    <field name="trait_name"/>
+                                    <field name="value"/>
+                                    <field name="score" widget="priority"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

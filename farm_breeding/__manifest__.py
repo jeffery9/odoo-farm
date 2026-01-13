@@ -8,11 +8,11 @@
         - Nursery Factory Management (Seedling Age, Survival Rate) [US-03-02]
         - Pedigree & Trait Tracking [US-10-02]
     """,
-    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
-    "website": "http://www.geninit.cn",
+    'author': 'Jeffery',
     'depends': ['farm_operation', 'farm_core'],
     'data': [
         'security/ir.model.access.csv',
+        'wizard/trait_comparison_wizard_views.xml',
         'views/nursery_batch_views.xml',
         'views/breeding_views.xml',
     ],

@@ -10,8 +10,7 @@
         - Harvest & Grading [US-02-04]
         - Product Grading and Batch Management [US-14-05]
     """,
-    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
-    "website": "http://www.geninit.cn",
+    'author': 'Jeffery',
     'depends': ['farm_core', 'mrp', 'project'],
     'data': [
         'security/ir.model.access.csv',

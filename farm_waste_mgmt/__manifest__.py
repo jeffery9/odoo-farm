@@ -10,8 +10,7 @@
         - Generates monthly ledgers compliant with Ministry of Agriculture and Rural Affairs requirements.
         - Processing Waste Registration [US-14-12]
     """,
-    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
-    "website": "http://www.geninit.cn",
+    'author': 'Jeffery',
     'depends': ['farm_core', 'farm_livestock'],
     'data': [
         'security/ir.model.access.csv',

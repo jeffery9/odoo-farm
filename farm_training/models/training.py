@@ -48,6 +48,44 @@ class FarmTrainingSession(models.Model):
     def action_complete(self):
         self.write({'state': 'done'})
 
+    def _cron_check_certificate_expiry(self):
+        """ US-17-08: 自动扫描即将过期的证书并提醒负责人 """
+        today = fields.Date.today()
+        warning_date = today + datetime.timedelta(days=30)
+        
+        # 查找 30 天内即将过期的有效证书
+        expiring_certs = self.env['farm.certificate'].search([
+            ('expiry_date', '<=', warning_date),
+            ('expiry_date', '>=', today),
+            ('is_valid', '=', True)
+        ])
+        
+        for cert in expiring_certs:
+            # 创建预警活动
+            cert.activity_schedule(
+                'mail.mail_activity_data_warning',
+                user_id=cert.employee_id.parent_id.user_id.id or self.env.uid,
+                summary=_("CERTIFICATE EXPIRING: %s for %s") % (cert.certificate_type_id.name, cert.employee_id.name),
+                note=_("The certificate will expire on %s. Please arrange for recertification.") % cert.expiry_date
+            )
+
+    @api.model
+    def get_qualified_worker_domain(self, intervention_type):
+        """ 返回具备特定任务资质的员工过滤域 """
+        required_cert_type = self.env['farm.certificate.type'].search([
+            ('required_for_intervention_types', '=', intervention_type)
+        ], limit=1)
+        
+        if not required_cert_type:
+            return [] # 无特殊要求
+            
+        # 找到所有持有该类型有效证书的员工
+        valid_certs = self.env['farm.certificate'].search([
+            ('certificate_type_id', '=', required_cert_type.id),
+            ('is_valid', '=', True)
+        ])
+        return [('id', 'in', valid_certs.mapped('employee_id').ids)]
+
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
@@ -61,6 +99,13 @@ class HrEmployee(models.Model):
 
 class AgriIntervention(models.Model):
     _inherit = 'mrp.production'
+
+    @api.onchange('intervention_type')
+    def _onchange_intervention_type_filter_workers(self):
+        """ US-17-08: 根据任务类型动态过滤具备资质的工人 """
+        if self.intervention_type:
+            domain = self.env['farm.certificate.type'].get_qualified_worker_domain(self.intervention_type)
+            return {'domain': {'doer_ids': domain}}
 
     def action_confirm(self):
         """ 
