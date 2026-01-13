@@ -1,97 +1,90 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Training Course Views -->
-    <record id="view_farm_training_course_tree" model="ir.ui.view">
-        <field name="name">farm.training.course.tree</field>
-        <field name="model">farm.training.course</field>
+    <!-- Training Session Views -->
+    <record id="view_farm_training_session_tree" model="ir.ui.view">
+        <field name="name">farm.training.session.tree</field>
+        <field name="model">farm.training.session</field>
         <field name="arch" type="xml">
-            <tree string="Training Courses">
+            <tree decoration-info="state == 'draft'" decoration-success="state == 'done'">
+                <field name="date"/>
                 <field name="name"/>
-                <field name="course_type"/>
-                <field name="duration_hours"/>
-                <field name="related_skill_ids" widget="many2many_tags"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="view_farm_training_course_form" model="ir.ui.view">
-        <field name="name">farm.training.course.form</field>
-        <field name="model">farm.training.course</field>
-        <field name="arch" type="xml">
-            <form string="Training Course">
-                <sheet>
-                    <div class="oe_title">
-                        <h1><field name="name"/></h1>
-                    </div>
-                    <group>
-                        <group>
-                            <field name="course_type"/>
-                            <field name="duration_hours"/>
-                        </group>
-                        <group>
-                            <field name="related_skill_ids" widget="many2many_tags"/>
-                        </group>
-                    </group>
-                    <notebook>
-                        <page string="Description">
-                            <field name="description"/>
-                        </page>
-                    </notebook>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- Employee Training Record Views -->
-    <record id="view_farm_employee_training_tree" model="ir.ui.view">
-        <field name="name">farm.employee.training.tree</field>
-        <field name="model">farm.employee.training</field>
-        <field name="arch" type="xml">
-            <tree string="Employee Training Records">
-                <field name="employee_id"/>
-                <field name="course_id"/>
-                <field name="date_completed"/>
+                <field name="trainer_id"/>
+                <field name="hours" sum="Total Hours"/>
                 <field name="state" widget="badge"/>
             </tree>
         </field>
     </record>
 
-    <record id="view_farm_employee_training_form" model="ir.ui.view">
-        <field name="name">farm.employee.training.form</field>
-        <field name="model">farm.employee.training</field>
+    <record id="view_farm_training_session_form" model="ir.ui.view">
+        <field name="name">farm.training.session.form</field>
+        <field name="model">farm.training.session</field>
         <field name="arch" type="xml">
-            <form string="Employee Training Record">
+            <form>
+                <header>
+                    <button name="action_complete" string="Mark as Completed" type="object" class="oe_highlight" invisible="state == 'done'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
                 <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Training Topic"/></h1>
+                    </div>
                     <group>
                         <group>
-                            <field name="employee_id"/>
-                            <field name="course_id"/>
+                            <field name="date"/>
+                            <field name="trainer_id"/>
                         </group>
                         <group>
-                            <field name="date_completed"/>
-                            <field name="state"/>
+                            <field name="hours"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Trainees" name="trainees">
+                            <field name="trainee_ids"/>
+                        </page>
+                        <page string="Content" name="content">
+                            <field name="content" widget="html"/>
+                        </page>
+                    </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
             </form>
         </field>
     </record>
 
+    <!-- Certificate Views -->
+    <record id="view_farm_certificate_tree" model="ir.ui.view">
+        <field name="name">farm.certificate.tree</field>
+        <field name="model">farm.certificate</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="not is_valid">
+                <field name="employee_id"/>
+                <field name="certificate_type_id"/>
+                <field name="name"/>
+                <field name="expiry_date"/>
+                <field name="is_valid" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
     <!-- Actions -->
-    <record id="action_farm_training_course" model="ir.actions.act_window">
-        <field name="name">Training Courses</field>
-        <field name="res_model">farm.training.course</field>
+    <record id="action_farm_training_session" model="ir.actions.act_window">
+        <field name="name">Training Sessions</field>
+        <field name="res_model">farm.training.session</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <record id="action_farm_employee_training" model="ir.actions.act_window">
-        <field name="name">Employee Training Records</field>
-        <field name="res_model">farm.employee.training</field>
+    <record id="action_farm_certificate" model="ir.actions.act_window">
+        <field name="name">Farmer Certificates</field>
+        <field name="res_model">farm.certificate</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Menus -->
-    <menuitem id="menu_farm_training_root" name="Training &amp; Certs" parent="farm_hr.menu_farm_hr_root" sequence="60"/>
-    <menuitem id="menu_farm_training_courses" name="Courses" parent="menu_farm_training_root" action="action_farm_training_course" sequence="10"/>
-    <menuitem id="menu_farm_employee_training_records" name="Training Records" parent="menu_farm_training_root" action="action_farm_employee_training" sequence="20"/>
+    <record id="action_farm_certificate_type" model="ir.actions.act_window">
+        <field name="name">Certificate Types</field>
+        <field name="res_model">farm.certificate.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 </odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Example Skills -->
+        <record id="skill_drone_operator" model="farm.training.skill">
+            <field name="name">Drone Operator</field>
+            <field name="description">Skill to operate agricultural drones for spraying, mapping, etc.</field>
+        </record>
+        <record id="skill_tractor_operator" model="farm.training.skill">
+            <field name="name">Tractor Operator</field>
+            <field name="description">Skill to operate tractors and related machinery.</field>
+        </record>
+        <record id="skill_livestock_health_monitor" model="farm.training.skill">
+            <field name="name">Livestock Health Monitor</field>
+            <field name="description">Skill to monitor and identify common livestock health issues.</field>
+        </record>
+
+        <!-- Example Certifications -->
+        <record id="cert_pesticide_application" model="farm.training.certification">
+            <field name="name">Certified Pesticide Applicator</field>
+            <field name="description">Certification for safe and effective pesticide application.</field>
+            <field name="validity_period">5</field>
+            <field name="required_skills_ids" eval="[(6,0,[ref('skill_drone_operator'), ref('skill_tractor_operator')])]"/>
+        </record>
+        <record id="cert_basic_veterinary_aid" model="farm.training.certification">
+            <field name="name">Basic Veterinary Aid</field>
+            <field name="description">Certification in providing basic veterinary first aid to livestock.</field>
+            <field name="validity_period">3</field>
+            <field name="required_skills_ids" eval="[(6,0,[ref('skill_livestock_health_monitor')])]"/>
+        </record>
+    </data>
+</odoo>
