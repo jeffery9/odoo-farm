@@ -22,12 +22,13 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'farm_mobile/static/src/js/pwa_loader.js',
             'farm_mobile/static/src/js/farm_mobile_checkin.js',
+            'farm_mobile/static/src/js/offline_storage.js',
             'farm_mobile/static/src/xml/farm_mobile_checkin.xml',
             'farm_mobile/static/src/scss/farm_mobile.scss',
         ],
     },
+
     'installable': True,
     'application': False,
     'license': 'AGPL-3',
