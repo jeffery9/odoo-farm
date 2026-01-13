@@ -2,6 +2,11 @@
 <templates xml:space="preserve">
     <t t-name="farm_mobile.CheckinButton" owl="1">
         <div class="o_farm_mobile_checkin_container d-flex flex-column gap-2 mb-3">
+            <!-- 离线状态指示器 [US-07-05] -->
+            <div class="alert alert-warning py-1 mb-2 text-center" t-if="!navigator.onLine">
+                <i class="fa fa-wifi me-1"/> Working Offline
+            </div>
+            
             <!-- 隐藏的相机调用 input -->
             <input type="file" id="mobile_camera_input" accept="image/*" capture="camera" style="display:none;"/>
             
