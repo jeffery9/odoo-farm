@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_production_lot_form_inherit_qc_release" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.qc.release</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <header>
+                <button name="action_qc_release" string="QC Release" type="object" class="oe_highlight" 
+                        invisible="qc_release_state == 'released'" groups="farm_quality.group_farm_quality_manager"/>
+                <field name="qc_release_state" widget="statusbar" statusbar_visible="locked,released"/>
+            </header>
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="quality_status" widget="badge" decoration-success="quality_status == 'passed'" decoration-danger="quality_status == 'failed'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
