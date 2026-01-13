@@ -14,12 +14,25 @@ export class FarmMobileCheckin extends Component {
         this.state = useState({
             is_loading: false,
             gps_info: "",
+            offline_articles: [],
         });
+        
+        // 如果离线，从本地读取知识库 [US-07-07]
+        if (!navigator.onLine) {
+            OfflineStorage.getOfflineKnowledge().then(articles => {
+                this.state.offline_articles = articles;
+            });
+        }
         // 每次进入界面，尝试同步离线队列并缓存当前数据
         if (navigator.onLine) {
             OfflineStorage.syncAll(this.orm);
             // 自动缓存当前任务详情 [US-07-07]
             OfflineStorage.cacheTasks([this.props.record.data]);
+            
+            // 预取相关的知识库文章 (SOP) [US-07-07]
+            this.orm.searchRead("farm.knowledge.article", [], ["name", "content"]).then(articles => {
+                OfflineStorage.cacheKnowledge(articles);
+            });
         }
     }
 

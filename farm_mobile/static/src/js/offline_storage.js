@@ -17,6 +17,10 @@ export class OfflineStorage {
                 if (!db.objectStoreNames.contains("input_changes")) {
                     db.createObjectStore("input_changes", { keyPath: "id", autoIncrement: true });
                 }
+                // 新增：知识库离线缓存 [US-07-07]
+                if (!db.objectStoreNames.contains("knowledge_cache")) {
+                    db.createObjectStore("knowledge_cache", { keyPath: "id" });
+                }
             };
             request.onsuccess = (e) => resolve(e.target.result);
             request.onerror = (e) => reject(e.target.error);
@@ -44,6 +48,21 @@ export class OfflineStorage {
         const db = await this.openDB();
         const tx = db.transaction("input_changes", "readwrite");
         tx.objectStore("input_changes").add(change);
+    }
+
+    static async cacheKnowledge(articles) {
+        const db = await this.openDB();
+        const tx = db.transaction("knowledge_cache", "readwrite");
+        const store = tx.objectStore("knowledge_cache");
+        articles.forEach(art => store.put(art));
+    }
+
+    static async getOfflineKnowledge() {
+        const db = await this.openDB();
+        const tx = db.transaction("knowledge_cache", "readonly");
+        return new Promise(resolve => {
+            tx.objectStore("knowledge_cache").getAll().onsuccess = (e) => resolve(e.target.result);
+        });
     }
 
     static async syncAll(orm) {
