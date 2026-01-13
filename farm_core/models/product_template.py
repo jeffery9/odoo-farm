@@ -14,19 +14,19 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     agricultural_type = fields.Selection([
-        ('land_parcel', 'Land Parcel (地块)'),
-        ('animal', 'Animal (个体动物)'),
-        ('animal_group', 'Animal Group (群组)'),
-        ('equipment', 'Equipment (设备)'),
-        ('input', 'Input (投入品)'),
-        ('output', 'Output (产出品)'),
+        ('land_parcel', 'Land Parcel'),
+        ('animal', 'Animal'),
+        ('animal_group', 'Animal Group'),
+        ('equipment', 'Equipment'),
+        ('input', 'Input'),
+        ('output', 'Output'),
     ], string="Agricultural Type")
 
     # 农业特有字段 [Everything is a Product]
-    agri_variety = fields.Char("Variety/Species (品种)")
+    agri_variety = fields.Char("Variety/Species")
     born_at = fields.Datetime("Born At/Started At")
     dead_at = fields.Datetime("Dead At/Terminated At")
-    identification_number = fields.Char("Identification No. (耳标/编号)")
+    identification_number = fields.Char("Identification No.")
 
     # Growth Curve Data [US-Livestock]
     growth_curve_ids = fields.One2many('farm.growth.curve', 'product_id', string="Growth Curve")

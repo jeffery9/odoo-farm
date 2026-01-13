@@ -6,28 +6,28 @@ class FarmLot(models.Model):
     is_animal = fields.Boolean("Is Biological Asset", default=False)
     birth_date = fields.Date("Birth/Germination Date")
     gender = fields.Selection([
-        ('male', 'Male (公)'),
-        ('female', 'Female (母)'),
-        ('other', 'Other (其他/无)')
+        ('male', 'Male'),
+        ('female', 'Female'),
+        ('other', 'Other')
     ], string="Gender")
     
     # 系谱跟踪 [US-10-02] 预留
-    father_id = fields.Many2one('stock.lot', string="Father (父本)", domain="[('product_id', '=', product_id)]")
-    mother_id = fields.Many2one('stock.lot', string="Mother (母本)", domain="[('product_id', '=', product_id)]")
+    father_id = fields.Many2one('stock.lot', string="Father", domain="[('product_id', '=', product_id)]")
+    mother_id = fields.Many2one('stock.lot', string="Mother", domain="[('product_id', '=', product_id)]")
     
     # 状态
     biological_stage = fields.Selection([
-        ('newborn', 'Newborn/Seedling (幼龄)'),
-        ('growing', 'Growing (生长)'),
-        ('mature', 'Mature/Adult (成年)'),
-        ('harvested', 'Harvested/Culled (已收获/淘汰)')
+        ('newborn', 'Newborn/Seedling'),
+        ('growing', 'Growing'),
+        ('mature', 'Mature/Adult'),
+        ('harvested', 'Harvested/Culled')
     ], string="Biological Stage", default='newborn')
 
     # 质量等级 [US-02-04]
     quality_grade = fields.Selection([
-        ('grade_a', 'Grade A (特级/优等)'),
-        ('grade_b', 'Grade B (一级/合格)'),
-        ('grade_c', 'Grade C (二级/次品)'),
+        ('grade_a', 'Grade A'),
+        ('grade_b', 'Grade B'),
+        ('grade_c', 'Grade C'),
     ], string="Quality Grade")
 
     # 安全合规 [US-11-03]
@@ -37,10 +37,10 @@ class FarmLot(models.Model):
     
     # 隔离管理 [US-11-02]
     state = fields.Selection([
-        ('healthy', 'Healthy (正常)'),
-        ('quarantine', 'Quarantined (隔离)'),
-        ('disposed', 'Disposed (已处置)'),
-        ('locked', 'Quality Locked (质量锁定)')
+        ('healthy', 'Healthy'),
+        ('quarantine', 'Quarantined'),
+        ('disposed', 'Disposed'),
+        ('locked', 'Quality Locked')
     ], string="Health State", default='healthy', tracking=True)
 
     @api.depends('quality_status')
