@@ -111,3 +111,47 @@ class AgriCostWIPTransfer(models.AbstractModel):
             lot_id.message_post(body=_("WIP COST TRANSFERRED: %s total cost absorbed from task %s") % (total_wip_cost, task_id.name))
             
         return total_wip_cost
+
+class AgriMortalityAmortization(models.AbstractModel):
+    """
+    US-03-05: 死亡成本自动重分配 (Core-Closure)
+    当生物资产死亡时，将其已发生的成本均摊到存活个体中。
+    """
+    _name = 'farm.mortality.amortization'
+    _description = 'Mortality Cost Absorption Logic'
+
+    def action_absorb_mortality_cost(self, dead_lot_id, surviving_lot_id):
+        """
+        :param dead_lot_id: 死亡资产批次 (个体)
+        :param surviving_lot_id: 吸收成本的存活资产批次 (通常是同一个大 Lot)
+        """
+        if not dead_lot_id or not surviving_lot_id:
+            return False
+
+        # 1. 寻找关联的分析账户 (通过任务关联)
+        task = self.env['project.task'].search([('lot_ids', 'in', [dead_lot_id.id])], limit=1)
+        if not task or not task.analytic_account_id:
+            return False
+
+        # 2. 汇总已发生 WIP 成本
+        analytic_lines = self.env['account.analytic.line'].search([
+            ('account_id', '=', task.analytic_account_id.id),
+            ('lot_id', '=', dead_lot_id.id) # 假设分析行有批次关联
+        ])
+        mortality_cost = abs(sum(analytic_lines.mapped('amount')))
+
+        if mortality_cost > 0:
+            # 3. 创建成本转移行 (均摊给存活者)
+            self.env['account.analytic.line'].create({
+                'name': _('Mortality Cost Absorption: %s') % dead_lot_id.name,
+                'account_id': task.analytic_account_id.id,
+                'amount': -mortality_cost, # 依然是支出，但在分析报表上标记为“死亡吸收”
+                'lot_id': surviving_lot_id.id,
+                'unit_amount': 0, # 不计产量
+            })
+            
+            surviving_lot_id.message_post(body=_(
+                "CORE-CLOSURE: Absorbed %s cost from deceased asset [%s]."
+            ) % (mortality_cost, dead_lot_id.name))
+            
+        return True

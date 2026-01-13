@@ -70,3 +70,16 @@ class FarmLot(models.Model):
         'Properties',
         definition='product_id.lot_properties_definition'
     )
+
+    # 繁育代次追踪 (G0-G3) [US-01-05]
+    agri_generation = fields.Selection([
+        ('g0', 'G0 (Breeder Seed/Original)'),
+        ('g1', 'G1 (Foundation Seed)'),
+        ('g2', 'G2 (Registered Seed)'),
+        ('g3', 'G3 (Certified/Commercial Seed)')
+    ], string="Agri Generation", help="Generation tracking for this specific lot.", default='g3')
+
+    @api.onchange('product_id')
+    def _onchange_product_id_generation(self):
+        if self.product_id and self.product_id.agri_generation:
+            self.agri_generation = self.product_id.agri_generation
