@@ -18,7 +18,7 @@ class TestCostAllocation(TransactionCase):
             'electricity_meter_start': 100.0,
             'electricity_meter_end': 150.0, # 50 units consumed
         })
-        # 关联分析账户到产品或 BOM (逻辑取决于实现)
+        # 关联分析账户到产品或 BOM
         product.bom_ids = [(0, 0, {
             'product_tmpl_id': product.product_tmpl_id.id,
             'product_qty': 1,

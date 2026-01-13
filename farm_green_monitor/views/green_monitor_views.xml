@@ -20,7 +20,7 @@
         <field name="inherit_id" ref="farm_operation.view_task_form2_inherit_farm_op"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='agri_interventions']" position="after">
-                <page string="Green Monitor (减量考核)" name="green_monitor">
+                <page string="Green Monitor" name="green_monitor">
                     <group>
                         <group string="Fertilizer Usage">
                             <field name="total_fertilizer_used"/>

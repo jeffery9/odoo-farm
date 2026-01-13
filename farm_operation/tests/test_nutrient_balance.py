@@ -47,7 +47,7 @@ class TestNutrientBalance(TransactionCase):
             })]
         })
         
-        # 模拟 MO 完成逻辑（此处需调用触发计算的方法）
+        # 模拟 MO 完成逻辑
         self.task._update_nutrient_balance()
         
         # 预期结果: 

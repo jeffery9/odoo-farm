@@ -38,7 +38,7 @@ class StockLot(models.Model):
     def _compute_input_history(self):
         """计算批次的投入品历史"""
         for lot in self:
-            # 这里需要根据实际的生产/农事记录来确定投入品历史
+            # 农事记录来确定投入品历史
             # 简化实现：暂时设为空
             lot.input_history_ids = [(5, 0, 0)]  # 清空关联
 
@@ -79,10 +79,10 @@ class StockLot(models.Model):
         根据实际的业务模型获取该批次或订单相关的投入品历史
         """
         # 在实际实现中，这可能需要从以下模型获取数据：
-        # - stock.lot (批次) 与投入品的关系
-        # - agri.intervention (农事干预) 使用的投入品
-        # - mrp.production (生产订单) 使用的原材料
-        # - stock.move (库存移动) 记录
+        # - stock.lot 与投入品的关系
+        # - agri.intervention 使用的投入品
+        # - mrp.production 使用的原材料
+        # - stock.move 记录
 
         # 这里是一个示例实现，根据实际模型关系进行调整
         input_products = self.env['product.product']

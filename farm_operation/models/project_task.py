@@ -3,7 +3,7 @@ from odoo.exceptions import ValidationError
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
-    _description = 'Activity Production (生产实施/任务)'
+    _description = 'Activity Production'
 
     campaign_id = fields.Many2one(
         'agricultural.campaign', 
@@ -11,7 +11,7 @@ class ProjectTask(models.Model):
         help="Link this production task to a specific season."
     )
     
-    # 继承 farm_core 中的地块/资产逻辑
+    # 继承 farm_core 资产逻辑
     land_parcel_id = fields.Many2one('stock.location', string="Land Parcel/Pond", domain=[('is_land_parcel', '=', True)])
     gps_lat = fields.Float(related='land_parcel_id.gps_lat', store=True)
     gps_lng = fields.Float(related='land_parcel_id.gps_lng', store=True)
@@ -119,7 +119,7 @@ class ProjectTask(models.Model):
 
     @api.model
     def cron_generate_feeding_proposals(self):
-        """ 每日定时任务：为畜牧/水产生成建议的饲喂干预 [US-01-03 Algorithm] """
+        """ 每日定时任务：水产生成建议的饲喂干预 [US-01-03 Algorithm] """
         # 寻找活跃的养殖任务
         tasks = self.search([
             ('project_id.activity_family', 'in', ['livestock', 'aquaculture']),

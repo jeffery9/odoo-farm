@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 主农场菜单 (顶级菜单) -->
+    <!-- 主农场菜单 -->
     <menuitem id="menu_farm_root" 
               name="Farm Management" 
               web_icon="farm_core,static/description/icon.svg"

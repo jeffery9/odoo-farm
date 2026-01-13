@@ -20,7 +20,7 @@ class LiveOrder(models.Model):
     account_id = fields.Many2one('douyin.account', string="Account", required=True)
     session_id = fields.Many2one('live.streaming.session', string="Live Session")
     
-    # 原始报文快照 (用于后续追溯)
+    # 原始报文快照
     raw_data = fields.Text("Raw Data JSON")
     
     # 业务关联
@@ -29,10 +29,10 @@ class LiveOrder(models.Model):
     amount_total = fields.Float("Order Amount")
     
     state = fields.Selection([
-        ('draft', 'Downloaded (仅下载)'),
-        ('imported', 'Imported (已导入)'),
-        ('failed', 'Error (失败)'),
-        ('shipped', 'Shipped (已发货同步)')
+        ('draft', 'Downloaded'),
+        ('imported', 'Imported'),
+        ('failed', 'Error'),
+        ('shipped', 'Shipped')
     ], default='draft', tracking=True)
 
     def action_view_odoo_so(self):

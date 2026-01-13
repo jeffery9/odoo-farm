@@ -12,7 +12,7 @@ class IrUiView(models.Model):
         """统一处理视图定制：术语映射 + 布局模板"""
         result = super().get_view(view_id=view_id, view_type=view_type, **options)
 
-        # 1. 应用术语映射 (后端处理视图架构)
+        # 1. 应用术语映射
         arch = result.get('arch')
         if arch:
             # 调用 term.mapping 逻辑

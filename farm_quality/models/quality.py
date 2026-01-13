@@ -8,8 +8,8 @@ class FarmQualityPoint(models.Model):
     name = fields.Char("Title", required=True)
     product_id = fields.Many2one('product.product', string="Product/Variety")
     test_type = fields.Selection([
-        ('pass_fail', 'Pass - Fail (通过/失败)'),
-        ('measure', 'Measure (数值测量)')
+        ('pass_fail', 'Pass - Fail'),
+        ('measure', 'Measure')
     ], string="Test Type", default='pass_fail', required=True)
     
     # 测量标准
@@ -141,8 +141,8 @@ class FarmLotQuality(models.Model):
     
     # US-15-05: 默认锁定与释放
     qc_release_state = fields.Selection([
-        ('locked', 'Locked (待检锁定)'),
-        ('released', 'Released (已放行)'),
+        ('locked', 'Locked'),
+        ('released', 'Released'),
     ], string="QC Release Status", default='locked', tracking=True)
 
     quality_check_ids = fields.One2many('farm.quality.check', 'lot_id', string="Quality Checks")

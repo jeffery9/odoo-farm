@@ -16,7 +16,7 @@
         <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='todo']" position="attributes">
-                <attribute name="string">To Do (待执行)</attribute>
+                <attribute name="string">To Do</attribute>
             </xpath>
         </field>
     </record>
@@ -50,7 +50,7 @@
                 </div>
             </xpath>
             <xpath expr="//field[@name='bom_id']" position="attributes">
-                <attribute name="string">Recipe/Formula (配方)</attribute>
+                <attribute name="string">Recipe/Formula</attribute>
             </xpath>
             <xpath expr="//header" position="inside">
                 <button name="action_start_work" string="Start Work" type="object" class="btn-success" invisible="is_working or state in ['done', 'cancel']"/>

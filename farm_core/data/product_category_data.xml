@@ -8,7 +8,7 @@
 
         <!-- Sub-Categories -->
         <record id="category_seeds" model="product.category">
-            <name>Seeds &amp; Varieties (种苗)</name>
+            <name>Seeds &amp; Varieties</name>
             <parent_id ref="category_agri_root"/>
         </record>
 

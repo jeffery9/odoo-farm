@@ -10,9 +10,9 @@ class FarmCommandLog(models.Model):
     params = fields.Text("Parameters")
     
     status = fields.Selection([
-        ('sent', 'Sent (已发送)'),
-        ('success', 'Success (执行成功)'),
-        ('failed', 'Failed (失败)')
+        ('sent', 'Sent'),
+        ('success', 'Success'),
+        ('failed', 'Failed')
     ], default='sent')
     
     execution_time_ms = fields.Integer("Latency (ms)", help="Response latency in milliseconds")

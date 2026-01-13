@@ -8,9 +8,9 @@ class FarmCSAPlan(models.Model):
     name = fields.Char("Plan Name", required=True)
     product_id = fields.Many2one('product.product', string="Default Product/Bag", required=True)
     frequency = fields.Selection([
-        ('weekly', 'Weekly (每周)'),
-        ('biweekly', 'Bi-weekly (每两周)'),
-        ('monthly', 'Monthly (每月)')
+        ('weekly', 'Weekly'),
+        ('biweekly', 'Bi-weekly'),
+        ('monthly', 'Monthly')
     ], string="Frequency", default='weekly', required=True)
     price = fields.Float("Price per Delivery")
 

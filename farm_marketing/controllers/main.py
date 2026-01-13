@@ -10,7 +10,7 @@ class FarmTraceabilityController(http.Controller):
         if not lot:
             return request.render('website.404')
             
-        # 获取关联的生产任务（溯源核心）
+        # 获取关联的生产任务
         production_task = request.env['project.task'].sudo().search([
             ('biological_lot_id', '=', lot.id)
         ], limit=1)

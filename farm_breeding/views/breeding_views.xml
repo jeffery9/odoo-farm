@@ -8,11 +8,11 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Breeding &amp; Traits" name="breeding">
                     <group>
-                        <group string="Pedigree (系谱)">
+                        <group string="Pedigree">
                             <field name="father_id" options="{'no_create': True}"/>
                             <field name="mother_id" options="{'no_create': True}"/>
                         </group>
-                        <group string="Evaluation (评估)">
+                        <group string="Evaluation">
                             <field name="trait_score_avg" widget="priority"/>
                         </group>
                     </group>

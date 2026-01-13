@@ -15,8 +15,8 @@ class FarmDataExchanger(models.Model):
     ], string="Data Format", default='daplos', required=True)
     
     exchange_type = fields.Selection([
-        ('export', 'Export (导出)'),
-        ('import', 'Import (导入)')
+        ('export', 'Export'),
+        ('import', 'Import')
     ], default='export', required=True)
     
     date = fields.Datetime("Exchange Date", default=fields.Datetime.now)
@@ -68,7 +68,7 @@ class FarmDataExchanger(models.Model):
 
     def _export_telepac_csv(self):
         """
-        TELEPAC 导出：生成符合欧盟/国际合规标准的 CSV 台账
+        TELEPAC 导出：国际合规标准的 CSV 台账
         """
         import io
         import csv

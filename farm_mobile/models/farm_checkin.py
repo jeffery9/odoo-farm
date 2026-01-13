@@ -86,7 +86,7 @@ class AgriIntervention(models.Model):
         # 1. 检查所使用的工具是否有点检要求 [US-26-03]
         for tool in self.tool_ids:
             if tool.checklist_id:
-                # 查找最近一次点检记录 (暂简化为必须存在一次合格点检)
+                # 查找最近一次点检记录
                 submission = self.env['farm.checklist.submission'].search([
                     ('equipment_id', '=', tool.id),
                     ('task_id', '=', self.id),

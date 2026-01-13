@@ -4,7 +4,7 @@ class FarmEquipment(models.Model):
     _inherit = 'maintenance.equipment'
 
     is_agri_machinery = fields.Boolean("Is Agricultural Machinery", default=False)
-    is_drone = fields.Boolean("Is Drone (无人机)", default=False)
+    is_drone = fields.Boolean("Is Drone", default=False)
     
     # Technical Specs [US-05-03, US-22-01]
     horsepower = fields.Float("Engine Power (HP)")
@@ -60,13 +60,13 @@ class FarmBattery(models.Model):
     name = fields.Char("Serial Number", required=True)
     drone_id = fields.Many2one('maintenance.equipment', string="Assigned Drone", domain="[('is_drone', '=', True)]")
     
-    cycle_count = fields.Integer("Cycle Count (循环次数)", default=0, tracking=True)
+    cycle_count = fields.Integer("Cycle Count", default=0, tracking=True)
     max_cycles = fields.Integer("Design Life (Cycles)", default=200)
     current_capacity_health = fields.Float("Health (%)", default=100.0, tracking=True)
     
     state = fields.Selection([
         ('healthy', 'Good'),
-        ('aging', 'Aging (建议更换)'),
+        ('aging', 'Aging'),
         ('retired', 'Retired'),
         ('damaged', 'Damaged')
     ], string="Status", compute='_compute_state', store=True)

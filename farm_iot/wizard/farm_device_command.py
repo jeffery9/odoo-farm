@@ -7,15 +7,15 @@ class FarmDeviceCommand(models.TransientModel):
 
     device_id = fields.Many2one('iiot.device', string="Target Device", required=True)
     command_type = fields.Selection([
-        ('switch', 'Switch On/Off (开关控制)'),
-        ('set_threshold', 'Set Threshold (设置阈值)'),
-        ('reboot', 'Reboot Device (重启设备)'),
-        ('custom', 'Custom JSON (自定义指令)')
+        ('switch', 'Switch On/Off'),
+        ('set_threshold', 'Set Threshold'),
+        ('reboot', 'Reboot Device'),
+        ('custom', 'Custom JSON')
     ], string="Command Type", default='switch', required=True)
     
     action = fields.Selection([
-        ('on', 'Turn ON (开启)'),
-        ('off', 'Turn OFF (关闭)')
+        ('on', 'Turn ON'),
+        ('off', 'Turn OFF')
     ], string="Action")
     
     custom_params = fields.Text("Custom Parameters (JSON)")

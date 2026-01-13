@@ -28,7 +28,7 @@ class TestFarmCertification(TransactionCase):
             'location_id': self.plot.id
         })
         
-        # 模拟保存/更新逻辑，使其继承地块状态
+        # 更新逻辑，使其继承地块状态
         lot._onchange_location_id_certification()
         self.assertEqual(lot.certification_level, 'organic_transition')
 

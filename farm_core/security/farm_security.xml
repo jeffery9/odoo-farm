@@ -13,7 +13,7 @@
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
 
-    <!-- 角色 2: 质量/技术专家 (Specialist) -->
+    <!-- 角色 2: 技术专家 (Specialist) -->
     <record id="group_farm_specialist" model="res.groups">
         <field name="name">Agri Specialist (Agri Specialist)</field>
         <field name="category_id" ref="module_category_farm_management"/>

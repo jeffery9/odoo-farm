@@ -16,9 +16,9 @@ class FarmQualitySample(models.Model):
     expiry_date = fields.Date("Retention Expiry")
     
     state = fields.Selection([
-        ('active', 'Retained (留样中)'),
-        ('used', 'Used (已检测)'),
-        ('disposed', 'Disposed (已销毁)')
+        ('active', 'Retained'),
+        ('used', 'Used'),
+        ('disposed', 'Disposed')
     ], default='active', tracking=True)
 
     check_ids = fields.One2many('farm.quality.check', 'sample_id', string="Quality Checks")

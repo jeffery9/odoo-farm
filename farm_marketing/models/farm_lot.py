@@ -42,7 +42,7 @@ class FarmSaleOrderLine(models.Model):
     def action_view_traceability(self):
         """ 跳转到该行关联批次的外部溯源页面 """
         self.ensure_one()
-        # 寻找已分配的批次 (从库存移动中找)
+        # 寻找已分配的批次
         move = self.move_ids.filtered(lambda m: m.state == 'done')
         lot = move.lot_ids[:1]
         if lot:
@@ -111,7 +111,7 @@ class FarmLotMarketing(models.Model):
         }
 
         if task:
-            # 2. 聚合该地块/任务下的所有农事干预
+            # 2. 任务下的所有农事干预
             for op in task.intervention_ids.sorted('date_finished'):
                 data['interventions'].append({
                     'type': op.intervention_type,
@@ -128,7 +128,7 @@ class FarmLotMarketing(models.Model):
                         'is_organic': move.product_id.is_safety_approved
                     })
 
-        # 4. 追溯加工环节 (递归向上)
+        # 4. 追溯加工环节
         current_lot = self
         while current_lot.parent_lot_id:
             parent = current_lot.parent_lot_id

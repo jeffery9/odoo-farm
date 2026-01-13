@@ -9,10 +9,10 @@ class FarmSubsidyProgram(models.Model):
     authority = fields.Char("Issuing Authority")
     
     subsidy_type = fields.Selection([
-        ('area', 'Per Area (按面积)'),
-        ('head', 'Per Head (按头数)'),
-        ('project', 'Project Based (项目制)'),
-        ('output', 'Per Output (按产量)')
+        ('area', 'Per Area'),
+        ('head', 'Per Head'),
+        ('project', 'Project Based'),
+        ('output', 'Per Output')
     ], required=True, default='area')
     
     amount_per_unit = fields.Monetary("Amount per Unit")

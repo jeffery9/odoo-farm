@@ -3,7 +3,7 @@ from odoo.exceptions import UserError
 
 class AgriIntervention(models.Model):
     _inherit = 'mrp.production'
-    _description = 'Agricultural Intervention (农事干预/作业)'
+    _description = 'Agricultural Intervention'
 
     agri_task_id = fields.Many2one(
         'project.task', 
@@ -13,15 +13,15 @@ class AgriIntervention(models.Model):
     
     # 农业特有的作业分类 [核心字段 - 已恢复]
     intervention_type = fields.Selection([
-        ('tillage', 'Soil Preparation (耕作)'),
-        ('sowing', 'Sowing/Planting (播种/移栽)'),
-        ('fertilizing', 'Fertilizing (施肥)'),
-        ('irrigation', 'Irrigation (灌溉)'),
-        ('protection', 'Crop Protection (植保)'),
-        ('aerial_spraying', 'Aerial Spraying (无人机飞防)'),
-        ('harvesting', 'Harvesting (收获)'),
-        ('feeding', 'Feeding (饲喂)'),
-        ('medical', 'Medical/Prevention (医疗/防疫)'),
+        ('tillage', 'Soil Preparation'),
+        ('sowing', 'Sowing/Planting'),
+        ('fertilizing', 'Fertilizing'),
+        ('irrigation', 'Irrigation'),
+        ('protection', 'Crop Protection'),
+        ('aerial_spraying', 'Aerial Spraying'),
+        ('harvesting', 'Harvesting'),
+        ('feeding', 'Feeding'),
+        ('medical', 'Medical/Prevention'),
     ], string="Intervention Type")
 
     def action_export_drone_kml(self):
@@ -124,13 +124,13 @@ class AgriIntervention(models.Model):
                 p_total += move.product_uom_qty * (move.product_id.p_content / 100.0)
                 k_total += move.product_uom_qty * (move.product_id.k_content / 100.0)
             
-            # 2. 劳动力成本 (基于工单或工时)
-            labor = sum(mo.workorder_ids.mapped('duration')) / 60.0 * 50.0 # 假设 50/小时
+            # 2. 劳动力成本
+            labor = sum(mo.workorder_ids.mapped('duration')) / 60.0 * 50.0 # 假设 50
             
-            # 3. 工具与机械成本 (基于工单或无人机作业面积)
+            # 3. 工具与机械成本
             tools = sum(mo.workorder_ids.mapped(lambda w: w.duration / 60.0 * w.workcenter_id.costs_hour))
             
-            # US-22-05: 累加无人机作业成本 (基于作业亩数 * 单位折旧/耗能)
+            # US-22-05: 累加无人机作业成本 (基于作业亩数 * 耗能)
             if mo.intervention_type == 'aerial_spraying' and mo.drone_id:
                 # 假设每亩综合成本 5.0 (折旧+电池损耗)
                 tools += mo.actual_flight_area * 5.0
@@ -190,7 +190,7 @@ class AgriIntervention(models.Model):
                     if is_organic_parcel:
                         # 如果是有机地块，记录违规日期以重置转换期 [US-12-02]
                         mo.agri_task_id.land_parcel_id.last_prohibited_substance_date = fields.Date.today()
-                        # 发出警告而非强制报错（取决于农场策略），这里选择报错以严格合规
+                        # 发出警告而非强制报错，这里选择报错以严格合规
                         raise UserError(_("COMPLIANCE ERROR: Product %s is not approved for organic production on parcel %s!") % (
                             move.product_id.name, mo.agri_task_id.land_parcel_id.name
                         ))

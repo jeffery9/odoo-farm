@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- 扩展产品模板：农药/兽药登记信息 -->
+    <!-- 扩展产品模板：兽药登记信息 -->
     <record id="product_template_form_view_inherit_input_reg" model="ir.ui.view">
         <field name="name">product.template.form.inherit.input.reg</field>
         <field name="model">product.template</field>

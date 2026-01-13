@@ -17,14 +17,14 @@ class FarmTelemetry(models.Model):
 
     name = fields.Char("Sensor Name", required=True)
     sensor_type = fields.Selection([
-        ('temperature', 'Temperature (温度)'),
-        ('ph', 'pH Level (酸碱度)'),
-        ('dissolved_oxygen', 'Dissolved Oxygen (溶氧量)'),
-        ('humidity', 'Humidity (湿度)'),
-        ('soil_moisture', 'Soil Moisture (土壤水分)'),
-        ('flight_altitude', 'Flight Altitude (高度)'),
-        ('chemical_level', 'Chemical Level (药箱水位)'),
-        ('battery_voltage', 'Drone Battery (电压)')
+        ('temperature', 'Temperature'),
+        ('ph', 'pH Level'),
+        ('dissolved_oxygen', 'Dissolved Oxygen'),
+        ('humidity', 'Humidity'),
+        ('soil_moisture', 'Soil Moisture'),
+        ('flight_altitude', 'Flight Altitude'),
+        ('chemical_level', 'Chemical Level'),
+        ('battery_voltage', 'Drone Battery')
     ], string="Sensor Type", required=True)
     
     value = fields.Float("Value", required=True)
@@ -35,7 +35,7 @@ class FarmTelemetry(models.Model):
     drone_id = fields.Many2one('maintenance.equipment', string="Drone", domain="[('is_drone', '=', True)]")
     device_id = fields.Many2one('iiot.device', string="IIoT Device")
     
-    # 关联地块（可选）
+    # 关联地块
     land_parcel_id = fields.Many2one('stock.location', string="Land Parcel/Pond")
     
     # GIS Snapshot [US-02-02]
@@ -74,7 +74,7 @@ class FarmTelemetry(models.Model):
         telemetry.device_id.message_post(body=msg_body, message_type='notification', subtype_xmlid='mail.mt_comment')
         fence.message_post(body=msg_body, message_type='notification', subtype_xmlid='mail.mt_comment')
         
-        # 创建待办活动 (高优先级)
+        # 创建待办活动
         self.env['mail.activity'].create({
             'res_id': telemetry.device_id.id,
             'res_model_id': self.env['ir.model']._get('iiot.device').id,

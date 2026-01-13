@@ -54,7 +54,7 @@ class FarmEcologicalActivity(models.Model):
     location_id = fields.Many2one('stock.location', string="Land Parcel/Zone", domain=[('is_land_parcel', '=', True)])
     description = fields.Text("Description")
     impact_category = fields.Selection([
-        ('biodiversity', 'Biodiversity (生物多样性)'),
-        ('soil_health', 'Soil Health (土壤健康)'),
-        ('water_protection', 'Water Protection (水资源保护)')
+        ('biodiversity', 'Biodiversity'),
+        ('soil_health', 'Soil Health'),
+        ('water_protection', 'Water Protection')
     ], string="Impact Category", required=True)

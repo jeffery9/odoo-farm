@@ -18,9 +18,9 @@ class MrpProduction(models.Model):
     ], string="Process Mode", default='standard')
 
     # 行业化参数 [US-16-02]
-    vintage_year = fields.Integer("Vintage (年份)")
+    vintage_year = fields.Integer("Vintage")
     alcohol_content = fields.Float("Alcohol %")
-    brix_level = fields.Float("Brix (糖度)")
+    brix_level = fields.Float("Brix")
     ph_level = fields.Float("pH Level")
     baking_temp = fields.Float("Baking Temp (℃)")
     proofing_time = fields.Float("Proofing Duration (Min)")
@@ -112,7 +112,7 @@ class MrpProduction(models.Model):
                 )
                 from odoo.exceptions import ValidationError
                 raise ValidationError(_(
-                    "CORE-CLOSURE: Critical Quality Interception (熔断).\n"
+                    "CORE-CLOSURE: Critical Quality Interception.\n"
                     "Current fermentation pH value is %s, which is outside the safety range (3.0 - 4.5).\n"
                     "An exception handling todo has been automatically created for the workshop supervisor."
                 ) % mo.ph_level)

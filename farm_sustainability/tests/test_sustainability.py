@@ -22,7 +22,7 @@ class TestSustainability(TransactionCase):
             'total_k': 50.0
         })
         
-        # 2026 季任务 (减量化)
+        # 2026 季任务
         self.Task.create({
             'name': '2026 Task',
             'campaign_id': self.season_2026.id,
@@ -31,6 +31,6 @@ class TestSustainability(TransactionCase):
             'total_k': 40.0
         })
         
-        # 验证汇总（通过视图进行）
+        # 验证汇总
         # 这里验证数据基础字段是否存在
         self.assertTrue(hasattr(self.season_2026, 'total_n'))

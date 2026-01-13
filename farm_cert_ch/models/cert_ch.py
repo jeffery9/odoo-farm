@@ -17,11 +17,11 @@ class FarmProductCertificate(models.Model):
     
     # 承诺声明
     commitment_statement = fields.Html("Commitment Statement", default="""
-        <p>本人/本单位郑重承诺，所销售食用农产品符合农产品质量安全国家强制性标准，对产品质量安全负责。</p>
+        <p>本单位郑重承诺，所销售食用农产品符合农产品质量安全国家强制性标准，对产品质量安全负责。</p>
         <p>I/We hereby solemnly promise that the edible agricultural products sold comply with the national mandatory standards for agricultural product quality and safety, and are responsible for the quality and safety of the products.</p>
     """)
     
-    # 检测结果 (关联到质量模块)
+    # 检测结果
     quality_check_ids = fields.Many2many('farm.quality.check', string="Related Quality Checks")
     
     certificate_qr_code = fields.Char("Certificate QR Code", compute='_compute_qr_code', store=True)

@@ -11,11 +11,11 @@ class FarmWorklog(models.Model):
     date = fields.Date("Date", default=fields.Date.today, required=True)
     
     work_type = fields.Selection([
-        ('tillage', 'Tillage (耕作)'),
-        ('sowing', 'Sowing (播种)'),
-        ('harvesting', 'Harvesting (收获)'),
-        ('packaging', 'Packaging (包装)'),
-        ('feeding', 'Feeding (饲喂)')
+        ('tillage', 'Tillage'),
+        ('sowing', 'Sowing'),
+        ('harvesting', 'Harvesting'),
+        ('packaging', 'Packaging'),
+        ('feeding', 'Feeding')
     ], string="Work Type", required=True)
     
     quantity = fields.Float("Done Quantity", default=1.0)

@@ -11,13 +11,13 @@ class FarmGeofence(models.Model):
 
     name = fields.Char("Fence Name", required=True)
     fence_type = fields.Selection([
-        ('grazing', 'Grazing Area (放牧区)'),
-        ('no_fly', 'No-fly Zone (禁飞区)'),
-        ('quarantine', 'Quarantine Zone (隔离区)'),
-        ('buffer', 'Buffer Zone (缓冲带)')
+        ('grazing', 'Grazing Area'),
+        ('no_fly', 'No-fly Zone'),
+        ('quarantine', 'Quarantine Zone'),
+        ('buffer', 'Buffer Zone')
     ], string="Type", default='grazing', required=True)
 
-    # 坐标定义: lon,lat;lon,lat... (首尾闭合)
+    # 坐标定义: lon,lat;lon,lat...
     coordinates = fields.Text("Polygon Coordinates", required=True, 
                              help="GPS coordinates in 'lon,lat;lon,lat' format. Must be closed (first and last same).")
     
@@ -26,9 +26,9 @@ class FarmGeofence(models.Model):
 
     # 关联资产类型
     target_category = fields.Selection([
-        ('livestock', 'Livestock (畜禽)'),
-        ('drone', 'Drones (无人机)'),
-        ('machinery', 'Machinery (农机)')
+        ('livestock', 'Livestock'),
+        ('drone', 'Drones'),
+        ('machinery', 'Machinery')
     ], string="Target Assets", default='livestock')
 
     # 告警级别
@@ -73,7 +73,7 @@ class FarmGeofence(models.Model):
         """
         self.ensure_one()
         lot = self.env['stock.lot'].browse(lot_id)
-        # 获取该批次关联的所有设备遥测记录 (假设设备在作业期间关联了批次)
+        # 获取该批次关联的所有设备遥测记录
         telemetries = self.env['farm.telemetry'].search([
             ('drone_id.business_ref', '=', f"stock.lot,{lot.id}"),
             ('gps_lat', '!=', 0),

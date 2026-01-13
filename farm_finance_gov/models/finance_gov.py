@@ -7,7 +7,7 @@ class FarmRuralRevitalizationProject(models.Model):
 
     name = fields.Char("Project Name", required=True)
     code = fields.Char("Project Code", required=True)
-    fund_source = fields.Char("Fund Source (资金来源)")
+    fund_source = fields.Char("Fund Source")
     budget_amount = fields.Monetary("Budget Amount", currency_field='currency_id')
     currency_id = fields.Many2one('res.currency', default=lambda self: self.env.company.currency_id)
     
@@ -41,7 +41,7 @@ class AccountMove(models.Model):
     def _check_rural_project_funds(self):
         for move in self:
             if move.rural_project_id and move.state == 'posted':
-                # 简单校验：项目支出不能超预算 (更复杂的应在预算模块实现)
+                # 简单校验：项目支出不能超预算
                 if move.rural_project_id.total_expenditure + move.amount_total_in_currency_dlc > move.rural_project_id.budget_amount:
                     #raise ValidationError(_("Project '%s' budget exceeded by this move.") % move.rural_project_id.name) # 暂时不强制限
                     pass # 仅记录警告，不阻止

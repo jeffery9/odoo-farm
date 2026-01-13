@@ -50,9 +50,9 @@
                         </group>
                     </group>
                     <group string="Remote Control" name="remote_control">
-                        <button name="send_command" string="Power On (开启)" type="object" context="{'action': 'power', 'params': {'state': 'on'}}" class="oe_highlight"/>
-                        <button name="send_command" string="Power Off (关闭)" type="object" context="{'action': 'power', 'params': {'state': 'off'}}" class="oe_highlight"/>
-                        <button name="send_command" string="Reset (重启)" type="object" context="{'action': 'reset'}" class="oe_highlight"/>
+                        <button name="send_command" string="Power On" type="object" context="{'action': 'power', 'params': {'state': 'on'}}" class="oe_highlight"/>
+                        <button name="send_command" string="Power Off" type="object" context="{'action': 'power', 'params': {'state': 'off'}}" class="oe_highlight"/>
+                        <button name="send_command" string="Reset" type="object" context="{'action': 'reset'}" class="oe_highlight"/>
                         <field name="live_stream_url" widget="url" invisible="not is_camera"/>
                     </group>
                     <notebook>

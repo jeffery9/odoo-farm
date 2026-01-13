@@ -9,10 +9,10 @@ class FarmCertificateType(models.Model):
     name = fields.Char("Certificate Name", required=True, translate=True) # e.g. "Drone Operator License"
     code = fields.Char("Code", required=True)
     required_for_intervention_types = fields.Selection([
-        ('protection', 'Crop Protection (飞防/植保)'),
-        ('aerial_spraying', 'Aerial Spraying (无人机飞防)'),
-        ('medical', 'Medical/Prevention (防疫)'),
-        ('harvesting', 'Mechanical Harvesting (机收)')
+        ('protection', 'Crop Protection'),
+        ('aerial_spraying', 'Aerial Spraying'),
+        ('medical', 'Medical/Prevention'),
+        ('harvesting', 'Mechanical Harvesting')
     ], string="Mandatory for Task Type", help="If set, system will check for this certificate during task confirmation.")
 
 class FarmCertificate(models.Model):

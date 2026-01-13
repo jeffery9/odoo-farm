@@ -21,7 +21,7 @@ self.addEventListener('sync', (event) => {
 
 async function syncEvidenceData() {
   console.log('PWA: Syncing offline evidence data...');
-  // 这里的逻辑可以调用 IndexedDB 数据并上传
+  / IndexedDB 数据并上传
 }
 """
         return body + custom_logic

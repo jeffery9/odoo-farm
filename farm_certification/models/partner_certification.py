@@ -26,9 +26,9 @@ class FarmPartnerCertification(models.Model):
 
     partner_id = fields.Many2one('res.partner', string="Supplier", required=True, ondelete='cascade')
     cert_type = fields.Selection([
-        ('organic', 'Organic (有机)'),
-        ('green', 'Green Food (绿色食品)'),
-        ('gi', 'Geographical Indication (地理标志)'),
+        ('organic', 'Organic'),
+        ('green', 'Green Food'),
+        ('gi', 'Geographical Indication'),
         ('gap', 'GAP')
     ], string="Certification Type", required=True)
     cert_number = fields.Char("Certificate No.", required=True)

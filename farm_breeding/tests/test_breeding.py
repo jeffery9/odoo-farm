@@ -15,7 +15,7 @@ class TestBreedingManagement(TransactionCase):
         })
 
     def test_01_pedigree_tracking(self):
-        """ 测试系谱追踪（父母本关联） [US-10-02] """
+        """ 测试系谱追踪 [US-10-02] """
         father = self.Lot.create({'name': 'TOM-MALE-01', 'product_id': self.variety.id, 'gender': 'male'})
         mother = self.Lot.create({'name': 'TOM-FEMALE-01', 'product_id': self.variety.id, 'gender': 'female'})
         

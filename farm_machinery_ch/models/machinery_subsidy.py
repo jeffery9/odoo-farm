@@ -5,9 +5,9 @@ class FarmEquipment(models.Model):
 
     # 农机购置补贴信息 [US-18-07]
     is_subsidized_machinery = fields.Boolean("Eligible for Subsidy", default=False)
-    subsidy_category = fields.Char("Subsidy Category (补贴机具分类)") # e.g. "耕整地机械-拖拉机"
-    subsidy_model_no = fields.Char("Subsidy Model No. (补贴机具型号)")
-    subsidy_grade_params = fields.Char("Subsidy Grading Parameters (分档参数)")
+    subsidy_category = fields.Char("Subsidy Category") # e.g. "耕整地机械-拖拉机"
+    subsidy_model_no = fields.Char("Subsidy Model No.")
+    subsidy_grade_params = fields.Char("Subsidy Grading Parameters")
     estimated_subsidy_amount = fields.Monetary("Estimated Subsidy Amount", currency_field='currency_id')
     currency_id = fields.Many2one('res.currency', default=lambda self: self.env.company.currency_id)
     

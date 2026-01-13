@@ -332,7 +332,7 @@ class FranchiseFarm(models.Model):
             farm.last_audit_date = fields.Date.today()
             farm.audit_notes = f"Compliance check performed on {fields.Date.today()}"
             
-            # 计算下次审计日期（假设每年一次）
+            # 计算下次审计日期
             from datetime import timedelta
             farm.next_audit_date = fields.Date.add(fields.Date.today(), days=365)
 

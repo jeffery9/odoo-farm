@@ -37,9 +37,9 @@ class FarmVehicle(models.Model):
     name = fields.Char("License Plate", required=True)
     model = fields.Char("Model")
     vehicle_type = fields.Selection([
-        ('refrigerated', 'Refrigerated Truck (冷藏车)'),
-        ('tractor', 'Tractor (拖拉机)'),
-        ('van', 'Van (厢式货车)'),
+        ('refrigerated', 'Refrigerated Truck'),
+        ('tractor', 'Tractor'),
+        ('van', 'Van'),
         ('other', 'Other')
     ], string="Type", default='refrigerated')
     capacity_weight = fields.Float("Max Payload (kg)")

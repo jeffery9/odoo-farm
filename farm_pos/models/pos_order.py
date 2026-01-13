@@ -13,11 +13,11 @@ class PosOrder(models.Model):
 
     def _prepare_invoice_vals(self):
         vals = super()._prepare_invoice_vals()
-        # 传递地块信息到发票（可选）
+        # 传递地块信息到发票
         return vals
 
 class PosOrderLine(models.Model):
     _inherit = 'pos.order.line'
 
-    # 支持行级别的批次指定（溯源）
+    # 支持行级别的批次指定
     lot_id = fields.Many2one('stock.lot', string="Production Lot")

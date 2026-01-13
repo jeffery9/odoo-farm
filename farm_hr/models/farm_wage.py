@@ -6,11 +6,11 @@ class FarmWageRule(models.Model):
     _description = 'Piece-rate Wage Rule'
 
     work_type = fields.Selection([
-        ('tillage', 'Tillage (耕作)'),
-        ('sowing', 'Sowing (播种)'),
-        ('harvesting', 'Harvesting (收获)'),
-        ('packaging', 'Packaging (包装)'),
-        ('feeding', 'Feeding (饲喂)')
+        ('tillage', 'Tillage'),
+        ('sowing', 'Sowing'),
+        ('harvesting', 'Harvesting'),
+        ('packaging', 'Packaging'),
+        ('feeding', 'Feeding')
     ], string="Work Type", required=True)
     
     price_per_unit = fields.Float("Price per Unit", required=True, help="Wage per unit of work (e.g. 0.5 per kg)")
@@ -68,7 +68,7 @@ class FarmLaborPayment(models.Model):
             'debit': 0.0,
         }))
         
-        # 借方：工资费用 (Debit)，按任务/核算账户拆分
+        # 借方：工资费用 (Debit)，核算账户拆分
         for line in self.line_ids:
             analytic_account = line.worklog_id.task_id.analytic_account_id
             analytic_distribution = {str(analytic_account.id): 100} if analytic_account else False

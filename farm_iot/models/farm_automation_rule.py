@@ -8,9 +8,9 @@ class FarmAutomationRule(models.Model):
     active = fields.Boolean(default=True)
     
     sensor_type = fields.Selection([
-        ('temperature', 'Temperature (温度)'),
-        ('ph', 'pH Level (酸碱度)'),
-        ('dissolved_oxygen', 'Dissolved Oxygen (溶氧量)'),
+        ('temperature', 'Temperature'),
+        ('ph', 'pH Level'),
+        ('dissolved_oxygen', 'Dissolved Oxygen'),
     ], string="Trigger Sensor", required=True)
     
     operator = fields.Selection([
@@ -41,7 +41,7 @@ class FarmAutomationRule(models.Model):
             params = json.loads(self.command_params or '{}')
             self.target_device_id.send_command(self.command_to_send, **params)
             
-            # 在任务/地块消息流中记录自动触发
+            # 地块消息流中记录自动触发
             if telemetry.production_id:
                 telemetry.production_id.message_post(
                     body=_("AUTOMATION: Rule '%s' triggered. Command '%s' sent to %s because %s was %s %s.") % (
