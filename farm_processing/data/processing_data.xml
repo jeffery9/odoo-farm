@@ -1,45 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-        <!-- Standard Agricultural Processing Workcenters -->
-        <record id="workcenter_sorting_manual" model="mrp.workcenter">
-            <name>Manual Sorting Station (人工分拣站)</name>
-            <energy_type>electricity</energy_type>
-            <energy_cost_per_hour>2.0</energy_cost_per_hour>
-            <time_efficiency>100</time_efficiency>
-            <capacity>1</capacity>
-        </record>
-
-        <record id="workcenter_washing_line" model="mrp.workcenter">
-            <name>Industrial Washing Line (工业清洗线)</name>
-            <energy_type>water</energy_type>
-            <energy_cost_per_hour>15.0</energy_cost_per_hour>
-            <time_efficiency>100</time_efficiency>
-            <capacity>1</capacity>
-        </record>
-
-        <record id="workcenter_drying_oven" model="mrp.workcenter">
-            <name>Dehydration/Drying Oven (烘干/脱水炉)</name>
-            <energy_type>gas</energy_type>
-            <energy_cost_per_hour>45.0</energy_cost_per_hour>
-            <time_efficiency>100</time_efficiency>
-            <capacity>1</capacity>
-        </record>
-
-        <record id="workcenter_packaging_auto" model="mrp.workcenter">
-            <name>Automatic Packaging Machine (自动包装机)</name>
-            <energy_type>electricity</energy_type>
-            <energy_cost_per_hour>12.0</energy_cost_per_hour>
-            <time_efficiency>100</time_efficiency>
-            <capacity>1</capacity>
-        </record>
-
-        <record id="workcenter_cold_room" model="mrp.workcenter">
-            <name>Pre-cooling / Cold Storage (预冷/冷藏库)</name>
-            <energy_type>electricity</energy_type>
-            <energy_cost_per_hour>25.0</energy_cost_per_hour>
-            <time_efficiency>100</time_efficiency>
-            <capacity>1</capacity>
+        <record id="seq_farm_processing_waste" model="ir.sequence">
+            <field name="name">Farm Processing Waste</field>
+            <field name="code">farm.processing.waste</field>
+            <field name="prefix">WST/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
         </record>
     </data>
 </odoo>
