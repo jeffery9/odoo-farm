@@ -16,6 +16,7 @@
         'views/farm_telemetry_views.xml',
         'views/farm_automation_views.xml',
         'views/storage_env_views.xml',
+        'views/iiot_device_views.xml',
     ],
     'installable': True,
     'application': False,

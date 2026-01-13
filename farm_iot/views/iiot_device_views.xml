@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_iiot_device_form_inherit_farm_iot" model="ir.ui.view">
+        <field name="name">iiot.device.form.inherit.farm.iot</field>
+        <field name="model">iiot.device</field>
+        <field name="inherit_id" ref="industrial_iot.view_iiot_device_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='profile_id']" position="after">
+                <field name="geofence_id" options="{'no_create': True}"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Active Alerts" name="active_alerts">
+                    <field name="active_alert_ids" readonly="1">
+                        <tree>
+                            <field name="summary"/>
+                            <field name="date_deadline"/>
+                            <field name="activity_type_id"/>
+                            <field name="user_id"/>
+                        </tree>
+                    </field>
+                </page>
+                <page string="Command Logs" name="command_logs">
+                    <field name="command_log_ids" readonly="1">
+                        <tree>
+                            <field name="create_date"/>
+                            <field name="command"/>
+                            <field name="status"/>
+                            <field name="operator_id"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
