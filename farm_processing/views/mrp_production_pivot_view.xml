@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_mrp_production_pivot_inherit_farm" model="ir.ui.view">
+        <field name="name">mrp.production.pivot.inherit.farm</field>
+        <field name="model">mrp.production</field>
+        <field name="arch" type="xml">
+            <pivot string="Processing Analytics" sample="1">
+                <field name="product_id" type="row"/>
+                <field name="date_finished" interval="month" type="col"/>
+                <field name="product_qty" type="measure"/>
+                <field name="scrap_qty" type="measure"/>
+                <field name="loss_rate" type="measure"/>
+                <field name="total_energy_cost" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="mrp.mrp_production_action" model="ir.actions.act_window">
+        <field name="view_mode">list,kanban,form,calendar,pivot,graph</field>
+    </record>
+</odoo>

@@ -97,6 +97,7 @@
                         </group>
                         <group string="Mass Balance (US-04-02)">
                             <field name="scrap_qty" string="Cleaning/Process Loss"/>
+                            <field name="loss_rate" widget="percentage" decoration-danger="loss_rate > 15" decoration-warning="loss_rate > 5"/>
                             <field name="total_output_qty"/>
                             <field name="is_balanced" widget="boolean_toggle" readonly="1" decoration-success="is_balanced" decoration-danger="not is_balanced"/>
                         </group>

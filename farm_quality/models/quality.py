@@ -153,3 +153,9 @@ class FarmLotQuality(models.Model):
         # 权限校验通常在视图中通过 groups 属性处理，这里仅做逻辑切换
         self.write({'qc_release_state': 'released'})
         self.message_post(body=_("QC RELEASE: Lot has been manually released for sale/transfer."))
+
+    def action_lock(self):
+        """ 手动锁定批次 [US-15-05] """
+        self.ensure_one()
+        self.write({'qc_release_state': 'locked'})
+        self.message_post(body=_("QC LOCK: Lot has been manually locked due to quality suspicion."))

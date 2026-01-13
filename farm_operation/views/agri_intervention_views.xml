@@ -55,6 +55,7 @@
             <xpath expr="//header" position="inside">
                 <button name="action_start_work" string="Start Work" type="object" class="btn-success" invisible="is_working or state in ['done', 'cancel']"/>
                 <button name="action_stop_work" string="Stop Work" type="object" class="btn-warning" invisible="not is_working"/>
+                <button name="action_export_drone_kml" string="Export Drone Route" type="object" class="btn-info" invisible="intervention_type != 'aerial_spraying'"/>
                 <field name="is_working" invisible="1"/>
             </xpath>
             <xpath expr="//field[@name='user_id']" position="after">
@@ -66,6 +67,10 @@
                 <field name="quality_grade" optional="show"/>
             </xpath>
             <xpath expr="//page[@name='finished_products']" position="inside">
+                <group string="Drone Operation Feedback" invisible="intervention_type != 'aerial_spraying'">
+                    <field name="drone_id"/>
+                    <field name="actual_flight_area"/>
+                </group>
                 <group string="Harvest Grading" invisible="intervention_type != 'harvesting'">
                     <field name="grade_a_qty"/>
                     <field name="grade_b_qty"/>

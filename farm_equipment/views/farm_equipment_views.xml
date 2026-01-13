@@ -8,8 +8,27 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='category_id']" position="after">
                 <field name="is_agri_machinery"/>
+                <field name="is_drone"/>
             </xpath>
             <xpath expr="//notebook" position="inside">
+                <page string="Drone Specs" invisible="not is_drone">
+                    <group>
+                        <group string="UAV Parameters">
+                            <field name="working_width"/>
+                            <field name="payload_capacity"/>
+                            <field name="max_flight_time"/>
+                        </group>
+                    </group>
+                    <separator string="Battery Packs"/>
+                    <field name="battery_ids">
+                        <list>
+                            <field name="name"/>
+                            <field name="cycle_count"/>
+                            <field name="current_capacity_health"/>
+                            <field name="state" widget="badge" decoration-success="state == 'healthy'" decoration-warning="state == 'aging'"/>
+                        </list>
+                    </field>
+                </page>
                 <page string="Agri Specs &amp; Logs" invisible="not is_agri_machinery">
                     <group>
                         <group string="Technical Specs">
@@ -46,4 +65,59 @@
     <menuitem id="menu_farm_machinery_root" name="Machinery" parent="farm_core.menu_farm_root" sequence="70"/>
     <menuitem id="menu_farm_equipment" name="Fleet" parent="menu_farm_machinery_root" action="maintenance.hr_equipment_action" sequence="10"/>
     <menuitem id="menu_farm_equipment_logs" name="Usage Logs" parent="menu_farm_machinery_root" action="action_farm_equipment_log" sequence="20"/>
+
+    <!-- Battery Views [US-22-01] -->
+    <record id="farm_battery_view_list" model="ir.ui.view">
+        <field name="name">farm.battery.list</field>
+        <field name="model">farm.battery</field>
+        <field name="arch" type="xml">
+            <list string="Drone Batteries">
+                <field name="name"/>
+                <field name="drone_id"/>
+                <field name="cycle_count"/>
+                <field name="current_capacity_health" widget="progressbar"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="farm_battery_view_form" model="ir.ui.view">
+        <field name="name">farm.battery.form</field>
+        <field name="model">farm.battery</field>
+        <field name="arch" type="xml">
+            <form string="Drone Battery">
+                <header>
+                    <button name="action_log_cycle" string="Log Cycle" type="object" class="btn-primary"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="drone_id"/>
+                            <field name="max_cycles"/>
+                        </group>
+                        <group>
+                            <field name="cycle_count"/>
+                            <field name="current_capacity_health"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_battery" model="ir.actions.act_window">
+        <field name="name">Drone Batteries</field>
+        <field name="res_model">farm.battery</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_farm_battery" name="Batteries" parent="menu_farm_machinery_root" action="action_farm_battery" sequence="30"/>
 </odoo>
