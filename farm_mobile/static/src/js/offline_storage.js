@@ -24,4 +24,26 @@ export class OfflineStorage {
             tx.onerror = () => reject();
         });
     }
+
+    static async syncAll(orm) {
+        const db = await this.openDB();
+        const tx = db.transaction("evidence_queue", "readonly");
+        const store = tx.objectStore("evidence_queue");
+        const allItems = await new Promise(resolve => {
+            store.getAll().onsuccess = (e) => resolve(e.target.result);
+        });
+
+        for (const item of allItems) {
+            try {
+                await orm.call("mrp.production", "action_mobile_capture_evidence", [
+                    item.res_id, item.lat, item.lng, item.photo
+                ]);
+                // 成功后删除
+                const delTx = db.transaction("evidence_queue", "readwrite");
+                delTx.objectStore("evidence_queue").delete(item.id);
+            } catch (err) {
+                console.error("PWA: Failed to sync item", item.id, err);
+            }
+        }
+    }
 }

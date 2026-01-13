@@ -15,6 +15,8 @@ export class FarmMobileCheckin extends Component {
             is_loading: false,
             gps_info: "",
         });
+        // 每次进入界面，尝试同步离线队列 [US-07-06]
+        OfflineStorage.syncAll(this.orm);
     }
 
     async _getGPS() {
