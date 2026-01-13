@@ -17,6 +17,7 @@
         'views/quality_point_views.xml',
         'views/quality_check_views.xml',
         'views/quality_alert_views.xml',
+        'views/stock_lot_views.xml',
     ],
     'installable': True,
     'application': False,

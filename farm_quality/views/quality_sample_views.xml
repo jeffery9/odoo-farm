@@ -14,6 +14,52 @@
         </field>
     </record>
 
+    <record id="farm_quality_sample_view_form" model="ir.ui.view">
+        <field name="name">farm.quality.sample.form</field>
+        <field name="model">farm.quality.sample</field>
+        <field name="arch" type="xml">
+            <form string="Quality Sample">
+                <header>
+                    <button name="action_dispose" string="Mark Disposed" type="object" class="btn-secondary" invisible="state == 'disposed'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="active,used,disposed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="lot_id"/>
+                            <field name="product_id"/>
+                        </group>
+                        <group>
+                            <field name="collection_date"/>
+                            <field name="collected_by"/>
+                            <field name="expiry_date"/>
+                            <field name="storage_location"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Quality Checks" name="quality_checks">
+                            <field name="check_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="point_id"/>
+                                    <field name="quality_state" widget="badge" decoration-success="quality_state == 'pass'" decoration-danger="quality_state == 'fail'"/>
+                                    <field name="user_id"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
     <record id="action_farm_quality_sample" model="ir.actions.act_window">
         <field name="name">Retention Samples</field>
         <field name="res_model">farm.quality.sample</field>

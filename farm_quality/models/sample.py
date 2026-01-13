@@ -21,6 +21,8 @@ class FarmQualitySample(models.Model):
         ('disposed', 'Disposed (已销毁)')
     ], default='active', tracking=True)
 
+    check_ids = fields.One2many('farm.quality.check', 'sample_id', string="Quality Checks")
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:

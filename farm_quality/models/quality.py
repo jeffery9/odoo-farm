@@ -27,6 +27,8 @@ class FarmQualityCheck(models.Model):
     name = fields.Char("Reference", required=True, default=lambda self: _('New'))
     point_id = fields.Many2one('farm.quality.point', string="Control Point")
     lot_id = fields.Many2one('stock.lot', string="Lot/Batch", required=True)
+    sample_id = fields.Many2one('farm.quality.sample', string="Linked Sample", 
+                               help="The physical sample used for this check.")
     task_id = fields.Many2one('project.task', string="Production Task")
     
     test_type = fields.Selection(related='point_id.test_type', store=True)
@@ -113,16 +115,19 @@ class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
     def button_validate(self):
-        """ 质量拦截逻辑 [US-05-04] """
+        """ 质量与放行拦截逻辑 [US-05-04, US-15-05] """
         for picking in self:
-            # 仅针对出库或内部调拨进行检查
             if picking.picking_type_code in ['outgoing', 'internal']:
                 for move in picking.move_ids:
                     for lot in move.lot_ids:
+                        # 1. 检查质量状态
                         if lot.quality_status == 'failed':
-                            raise UserError(_("QUALITY ALERT: Lot %s has failed quality inspection and is locked for sale/transfer.") % lot.name)
-                        elif lot.quality_status == 'none' and move.product_id.is_agri_input: # 示例：对投入品也进行强制检查
-                             raise UserError(_("QUALITY PENDING: Lot %s must pass quality inspection before transfer.") % lot.name)
+                            raise UserError(_("QUALITY ALERT: Lot %s has failed quality inspection.") % lot.name)
+                        
+                        # 2. 检查放行状态 [US-15-05]
+                        if lot.qc_release_state == 'locked':
+                            raise UserError(_("QC LOCKED: Lot %s is pending release and cannot be moved.") % lot.name)
+                            
         return super().button_validate()
 
 class FarmLotQuality(models.Model):
@@ -134,4 +139,17 @@ class FarmLotQuality(models.Model):
         ('failed', 'Failed')
     ], string="Quality Status", default='none', tracking=True)
     
+    # US-15-05: 默认锁定与释放
+    qc_release_state = fields.Selection([
+        ('locked', 'Locked (待检锁定)'),
+        ('released', 'Released (已放行)'),
+    ], string="QC Release Status", default='locked', tracking=True)
+
     quality_check_ids = fields.One2many('farm.quality.check', 'lot_id', string="Quality Checks")
+
+    def action_qc_release(self):
+        """ 手动放行批次 """
+        self.ensure_one()
+        # 权限校验通常在视图中通过 groups 属性处理，这里仅做逻辑切换
+        self.write({'qc_release_state': 'released'})
+        self.message_post(body=_("QC RELEASE: Lot has been manually released for sale/transfer."))

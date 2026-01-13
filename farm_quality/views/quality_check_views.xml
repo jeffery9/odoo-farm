@@ -30,6 +30,7 @@
                         <group>
                             <field name="point_id"/>
                             <field name="lot_id"/>
+                            <field name="sample_id" domain="[('lot_id', '=', lot_id)]"/>
                             <field name="test_type" invisible="1"/>
                         </group>
                         <group>
