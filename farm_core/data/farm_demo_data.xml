@@ -3,7 +3,7 @@
     <data noupdate="0">
         <!-- Sample Land Parcels -->
         <record id="location_parcel_north_01" model="stock.location">
-            <field name="name">North Field 01 (北区1号地)</field>
+            <field name="name">North Field 01 (North Field 01)</field>
             <field name="location_id" ref="stock.stock_location_locations"/>
             <field name="usage">internal</field>
             <field name="is_land_parcel">True</field>
@@ -16,7 +16,7 @@
         </record>
 
         <record id="location_pond_south_01" model="stock.location">
-            <field name="name">South Fish Pond 01 (南区1号鱼塘)</field>
+            <field name="name">South Fish Pond 01 (South Fish Pond 01)</field>
             <field name="location_id" ref="stock.stock_location_locations"/>
             <field name="usage">internal</field>
             <field name="is_land_parcel">True</field>
@@ -27,7 +27,7 @@
 
         <!-- Sample Varieties -->
         <record id="product_variety_wheat" model="product.product">
-            <field name="name">Winter Wheat Variety A (冬小麦品种A)</field>
+            <field name="name">Winter Wheat Variety A (Winter Wheat Variety A)</field>
             <field name="is_variety">True</field>
             <field name="agricultural_type">input</field>
             <field name="categ_id" ref="farm_core.category_seeds"/>
@@ -38,7 +38,7 @@
         </record>
 
         <record id="product_variety_cow" model="product.product">
-            <field name="name">Holstein Dairy Cow (荷斯坦奶牛)</field>
+            <field name="name">Holstein Dairy Cow (Holstein Dairy Cow)</field>
             <field name="is_variety">True</field>
             <field name="agricultural_type">animal</field>
             <field name="uom_id" ref="uom.product_uom_unit"/>

@@ -11,9 +11,9 @@ class FarmPestDisease(models.Model):
     name = fields.Char(string="Name", required=True, translate=True)
     scientific_name = fields.Char(string="Scientific Name")
     category = fields.Selection([
-        ('pest', 'Pest (虫害)'),
-        ('disease', 'Disease (病害)'),
-        ('weed', 'Weed (杂草)')
+        ('pest', 'Pest'),
+        ('disease', 'Disease'),
+        ('weed', 'Weed')
     ], string="Category", required=True)
 
     symptoms = fields.Html(string="Symptoms Description", translate=True)

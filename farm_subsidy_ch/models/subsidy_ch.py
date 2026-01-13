@@ -5,14 +5,14 @@ class FarmSubsidyApplication(models.Model):
 
     # 中国耕地地力保护与种粮补贴 [US-05-04]
     crop_type_china = fields.Selection([
-        ('early_rice', '早稻'),
-        ('wheat', '小麦'),
-        ('corn', '玉米'),
-        ('soybean', '大豆'),
+        ('early_rice', 'Early Rice'),
+        ('wheat', 'Wheat'),
+        ('corn', 'Corn'),
+        ('soybean', 'Soybean'),
         ('other', '其他')
     ], string="Crop Type (China)")
     
-    declared_area_mu = fields.Float("Declared Area (亩)", compute='_compute_declared_area_mu', store=True)
+    declared_area_mu = fields.Float("Declared Area (mu)", compute='_compute_declared_area_mu', store=True)
 
     @api.depends('land_parcel_ids.land_area')
     def _compute_declared_area_mu(self):

@@ -7,9 +7,9 @@ class FarmResource(models.Model):
 
     name = fields.Char("Resource Name", required=True)
     resource_type = fields.Selection([
-        ('fishing', 'Fishing Spot (钓位)'),
-        ('bbq', 'BBQ Area (烧烤位)'),
-        ('room', 'Farm Stay (农宿)'),
+        ('fishing', 'Fishing Spot'),
+        ('bbq', 'BBQ Area'),
+        ('room', 'Farm Stay'),
         ('other', 'Other')
     ], string="Type", required=True)
     active = fields.Boolean(default=True)
@@ -30,11 +30,11 @@ class FarmBooking(models.Model):
     resource_id = fields.Many2one('farm.resource', string="Booked Resource")
     
     booking_type = fields.Selection([
-        ('picking', 'Picking (采摘)'),
-        ('family', 'Family Event (亲子活动)'),
-        ('adoption', 'Adoption (认养/租赁)'),
-        ('visit', 'Farm Visit (参观)'),
-        ('resource', 'Resource Booking (资源预约)')
+        ('picking', 'Picking'),
+        ('family', 'Family Event'),
+        ('adoption', 'Adoption'),
+        ('visit', 'Farm Visit'),
+        ('resource', 'Resource Booking')
     ], string="Type", default='picking', required=True)
     
     land_parcel_id = fields.Many2one(

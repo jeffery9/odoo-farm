@@ -2,7 +2,7 @@
 <odoo>
     <!-- Combined View for Farm Cockpit -->
     <record id="action_farm_cockpit" model="ir.actions.act_window">
-        <field name="name">Farm Cockpit (控制塔)</field>
+        <field name="name">Farm Cockpit</field>
         <field name="res_model">project.task</field>
         <field name="view_mode">kanban,list,graph,pivot</field>
         <field name="domain">[('is_agri_activity', '=', True)]</field>

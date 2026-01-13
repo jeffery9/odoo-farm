@@ -7,7 +7,7 @@
               sequence="10"
               groups="farm_core.group_farm_user"/>
 
-    <!-- 农业活动家族菜单 -->
+    <!-- Agricultural Activity Family Menu -->
     <menuitem id="menu_agri_family_root" 
               name="Agricultural Families" 
               parent="menu_farm_root" 
@@ -43,13 +43,13 @@
               parent="menu_farm_root" 
               sequence="50"/>
 
-    <!-- 畜牧根菜单 -->
+    <!-- Livestock Root Menu -->
     <menuitem id="menu_livestock_root" 
               name="Livestock" 
               parent="menu_farm_root" 
               sequence="20"/>
 
-    <!-- 种植根菜单 -->
+    <!-- Planting Root Menu -->
     <menuitem id="menu_planting_root" 
               name="Planting" 
               parent="menu_farm_root" 

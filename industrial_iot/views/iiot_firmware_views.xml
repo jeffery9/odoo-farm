@@ -24,7 +24,7 @@
         <field name="arch" type="xml">
             <form string="固件版本">
                 <header>
-                    <button name="action_upload_firmware" string="上传固件" type="object" class="btn-primary"/>
+                    <button name="action_upload_firmware" string="Upload Firmware" type="object" class="btn-primary"/>
                 </header>
                 <sheet>
                     <group>

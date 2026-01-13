@@ -5,55 +5,55 @@
             <t t-set="doc" t-value="doc.with_context(lang=doc.lang)"/>
             <div class="page">
                 <div class="text-center">
-                    <h2>农机购置补贴申请表</h2>
+                    <h2>Machinery Subsidy Application</h2>
                     <h3>Agricultural Machinery Purchase Subsidy Application Form</h3>
                 </div>
 
                 <table class="table table-sm table-bordered mt32">
                     <tr>
-                        <td><strong>申请编号 / Application No.:</strong></td>
+                        <td><strong>Application No.:</strong></td>
                         <td><span t-field="doc.name"/></td>
-                        <td><strong>申请日期 / Application Date:</strong></td>
+                        <td><strong>Application Date:</strong></td>
                         <td><span t-field="doc.application_date"/></td>
                     </tr>
                     <tr>
-                        <td><strong>申请人 / Applicant:</strong></td>
+                        <td><strong>Applicant:</strong></td>
                         <td><span t-field="doc.applicant_id.name"/></td>
-                        <td><strong>联系方式 / Contact:</strong></td>
+                        <td><strong>Contact:</strong></td>
                         <td><span t-field="doc.applicant_id.phone"/></td>
                     </tr>
                 </table>
 
-                <h3 class="mt32">农机信息 / Machinery Information:</h3>
+                <h3 class="mt32">Machinery Information:</h3>
                 <table class="table table-sm table-bordered">
                     <tr>
-                        <td><strong>农机名称 / Machinery Name:</strong></td>
+                        <td><strong>Machinery Name:</strong></td>
                         <td><span t-field="doc.equipment_id.name"/></td>
-                        <td><strong>品牌型号 / Brand Model:</strong></td>
+                        <td><strong>Brand Model:</strong></td>
                         <td><span t-field="doc.equipment_id.model"/></td>
                     </tr>
                     <tr>
-                        <td><strong>补贴机具分类 / Subsidy Category:</strong></td>
+                        <td><strong>Subsidy Category:</strong></td>
                         <td><span t-field="doc.equipment_id.subsidy_category"/></td>
-                        <td><strong>补贴机具型号 / Subsidy Model No.:</strong></td>
+                        <td><strong>Subsidy Model No.:</strong></td>
                         <td><span t-field="doc.equipment_id.subsidy_model_no"/></td>
                     </tr>
                     <tr>
-                        <td><strong>分档参数 / Grading Parameters:</strong></td>
+                        <td><strong>Grading Parameters:</strong></td>
                         <td><span t-field="doc.equipment_id.subsidy_grade_params"/></td>
-                        <td><strong>预估补贴金额 / Estimated Subsidy:</strong></td>
+                        <td><strong>Estimated Subsidy:</strong></td>
                         <td><span t-field="doc.estimated_subsidy"/> <span t-field="doc.currency_id.symbol"/></td>
                     </tr>
                 </table>
 
-                <h3 class="mt32">附件 / Attachments:</h3>
+                <h3 class="mt32">Attachments:</h3>
                 <ul>
                     <li>购机发票照片：请在农机详情页上传</li>
                     <li>农机实物照片：请在农机详情页上传</li>
                 </ul>
 
                 <div class="mt-5 text-right">
-                    <p><strong>申请人（盖章）：</strong></p>
+                    <p><strong>Applicant (Stamp):</strong></p>
                     <p>____________________</p>
                     <p>（日期：<span t-esc="datetime.now().strftime('%Y年%m月%d日')"/>）</p>
                 </div>

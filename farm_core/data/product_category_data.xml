@@ -3,7 +3,7 @@
     <data noupdate="1">
         <!-- Root Category -->
         <record id="category_agri_root" model="product.category">
-            <name>Agricultural Products (农产品)</name>
+            <name>Agricultural Products (Agricultural Products)</name>
         </record>
 
         <!-- Sub-Categories -->
@@ -13,22 +13,22 @@
         </record>
 
         <record id="category_inputs" model="product.category">
-            <name>Farming Inputs (投入品)</name>
+            <name>Farming Inputs (Farming Inputs)</name>
             <parent_id ref="category_agri_root"/>
         </record>
 
         <record id="category_fertilizers" model="product.category">
-            <name>Fertilizers (肥料)</name>
+            <name>Fertilizers (Fertilizers)</name>
             <parent_id ref="category_inputs"/>
         </record>
 
         <record id="category_pesticides" model="product.category">
-            <name>Pesticides (农药/植保)</name>
+            <name>Pesticides (Pesticides)</name>
             <parent_id ref="category_inputs"/>
         </record>
 
         <record id="category_harvested" model="product.category">
-            <name>Harvested Crops (采收作物)</name>
+            <name>Harvested Crops (Harvested Crops)</name>
             <parent_id ref="category_agri_root"/>
         </record>
     </data>

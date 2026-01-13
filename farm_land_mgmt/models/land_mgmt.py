@@ -5,16 +5,16 @@ class FarmLocation(models.Model):
     _inherit = 'stock.location'
 
     # 土地承包权信息 [US-18-01]
-    land_contract_no = fields.Char("Land Contract No. (承包经营权证号)")
-    contractor_id = fields.Many2one('res.partner', string="Contractor (承包方)")
+    land_contract_no = fields.Char("Land Contract No.")
+    contractor_id = fields.Many2one('res.partner', string="Contractor")
     
-    # 土地性质 [US-18-01]
+    # Land Nature [US-18-01]
     land_nature = fields.Selection([
-        ('general_farmland', '一般农田'),
-        ('permanent_basic_farmland', '永久基本农田'),
-        ('construction_land', '建设用地'),
-        ('other', '其他')
-    ], string="Land Nature (土地性质)", default='general_farmland')
+        ('general_farmland', 'General Farmland'),
+        ('permanent_basic_farmland', 'Permanent Basic Farmland'),
+        ('construction_land', 'Construction Land'),
+        ('other', 'Other')
+    ], string="Land Nature", default='general_farmland')
 
     @api.constrains('land_nature', 'is_land_parcel')
     def _check_land_nature_validity(self):

@@ -23,10 +23,10 @@ class FarmWeatherForecast(models.Model):
     
     is_warning = fields.Boolean("Weather Warning", compute='_compute_warning', store=True)
     warning_type = fields.Selection([
-        ('frost', 'Frost Risk (霜冻)'),
-        ('storm', 'Heavy Rain/Storm (大雨/暴雨)'),
-        ('heat', 'Extreme Heat (高温)'),
-        ('wind', 'Strong Wind (大风)')
+        ('frost', 'Frost Risk'),
+        ('storm', 'Heavy Rain/Storm'),
+        ('heat', 'Extreme Heat'),
+        ('wind', 'Strong Wind')
     ], string="Warning Type")
 
     @api.depends('temp_min', 'precipitation', 'temp_max', 'wind_speed')
