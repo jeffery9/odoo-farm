@@ -66,11 +66,22 @@
                 <field name="quality_grade" optional="show"/>
             </xpath>
             <xpath expr="//page[@name='finished_products']" position="inside">
-                <group string="Harvest Grading" attrs="{'invisible': [('intervention_type', '!=', 'harvesting')]}">
+                <group string="Harvest Grading" invisible="intervention_type != 'harvesting'">
                     <field name="grade_a_qty"/>
                     <field name="grade_b_qty"/>
                     <field name="grade_c_qty"/>
                 </group>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Soil Nutrient Balance" name="nutrient_balance" invisible="intervention_type not in ['fertilizing', 'tillage']">
+                    <group>
+                        <group string="Current Application (Pure Nutrient)">
+                            <field name="pure_n_qty"/>
+                            <field name="pure_p_qty"/>
+                            <field name="pure_k_qty"/>
+                        </group>
+                    </group>
+                </page>
             </xpath>
         </field>
     </record>

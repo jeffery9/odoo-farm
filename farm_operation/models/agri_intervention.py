@@ -46,11 +46,23 @@ class AgriIntervention(models.Model):
     doer_cost = fields.Float("Labor Cost", compute='_compute_agri_costs', store=True)
     total_agri_cost = fields.Float("Total Intervention Cost", compute='_compute_agri_costs', store=True)
 
+    # US-02-03: Soil Nutrient Inputs
+    pure_n_qty = fields.Float("Pure Nitrogen (N) kg", compute='_compute_agri_costs', store=True)
+    pure_p_qty = fields.Float("Pure Phosphorus (P) kg", compute='_compute_agri_costs', store=True)
+    pure_k_qty = fields.Float("Pure Potassium (K) kg", compute='_compute_agri_costs', store=True)
+
     @api.depends('move_raw_ids.state', 'move_raw_ids.product_uom_qty', 'workorder_ids.duration')
     def _compute_agri_costs(self):
         for mo in self:
-            # 1. 投入品成本
-            inputs = sum(mo.move_raw_ids.mapped(lambda m: m.product_uom_qty * m.product_id.standard_price))
+            # 1. 投入品成本与养分计算
+            inputs = 0.0
+            n_total = p_total = k_total = 0.0
+            for move in mo.move_raw_ids:
+                inputs += move.product_uom_qty * move.product_id.standard_price
+                # 计算养分 (假设 UOM 是 kg)
+                n_total += move.product_uom_qty * (move.product_id.n_content / 100.0)
+                p_total += move.product_uom_qty * (move.product_id.p_content / 100.0)
+                k_total += move.product_uom_qty * (move.product_id.k_content / 100.0)
             
             # 2. 劳动力成本 (基于工单或工时)
             labor = sum(mo.workorder_ids.mapped('duration')) / 60.0 * 50.0 # 假设 50/小时
@@ -62,6 +74,9 @@ class AgriIntervention(models.Model):
             mo.doer_cost = labor
             mo.tool_cost = tools
             mo.total_agri_cost = inputs + labor + tools
+            mo.pure_n_qty = n_total
+            mo.pure_p_qty = p_total
+            mo.pure_k_qty = k_total
 
     # 工时追踪 [US-13-03]
     work_start_datetime = fields.Datetime("Work Start")
@@ -104,10 +119,16 @@ class AgriIntervention(models.Model):
         """ 扩展确认逻辑，进行安全拦截 [US-03-04] 并传递任务 ID 到供应端 [US-03-02] """
         for mo in self:
             # 1. 检查有机拦截
-            if mo.agri_task_id.land_parcel_id.certification_level in ['organic', 'organic_transition']:
-                for move in mo.move_raw_ids:
-                    if move.product_id.is_agri_input and not move.product_id.is_safety_approved:
-                        raise UserError(_("COMPLIANCE ERROR: Product %s is not approved for organic production!") % move.product_id.name)
+            is_organic_parcel = mo.agri_task_id.land_parcel_id.certification_level in ['organic', 'organic_transition']
+            for move in mo.move_raw_ids:
+                if move.product_id.is_agri_input and not move.product_id.is_safety_approved:
+                    if is_organic_parcel:
+                        # 如果是有机地块，记录违规日期以重置转换期 [US-12-02]
+                        mo.agri_task_id.land_parcel_id.last_prohibited_substance_date = fields.Date.today()
+                        # 发出警告而非强制报错（取决于农场策略），这里选择报错以严格合规
+                        raise UserError(_("COMPLIANCE ERROR: Product %s is not approved for organic production on parcel %s!") % (
+                            move.product_id.name, mo.agri_task_id.land_parcel_id.name
+                        ))
             
             # 2. 传递 agri_task_id 到采购逻辑 (通过 procurement_group)
             if mo.agri_task_id and mo.procurement_group_id:
