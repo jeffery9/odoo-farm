@@ -9,7 +9,8 @@
         - Generates subsidy application forms matching Ministry of Agriculture and Rural Affairs templates.
         - Integrates with planting area and crop type data from the system.
     """,
-    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
+    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
+    "website": "http://www.geninit.cn",
     'depends': ['farm_subsidy', 'farm_core', 'farm_operation'],
     'data': [
         'security/ir.model.access.csv',

@@ -9,7 +9,8 @@
         - Link weather to GIS locations (parcels)
         - Weather-based alerts (Frost, Storm, High Temp)
     """,
-    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
+    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
+    "website": "http://www.geninit.cn",
     'depends': ['farm_core', 'farm_iot'],
     'data': [
         'security/ir.model.access.csv',

@@ -9,7 +9,8 @@
         - Crisis Mode Activation & Asset Lockdown
         - Incident Logging & Reporting
     """,
-    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
+    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
+    "website": "http://www.geninit.cn",
     'depends': ['farm_core', 'farm_safety'],
     'data': [
         'security/ir.model.access.csv',

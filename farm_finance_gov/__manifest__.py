@@ -9,7 +9,8 @@
         - Generates detailed project fund utilization reports with invoice references.
         - Ensures dedicated use of special funds.
     """,
-    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
+    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
+    "website": "http://www.geninit.cn",
     'depends': ['account', 'farm_financial'],
     'data': [
         'security/ir.model.access.csv',

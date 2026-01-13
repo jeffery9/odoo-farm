@@ -9,7 +9,8 @@
         - Declaration of Cybersecurity Classified Protection (等级保护) Level 3 compliance.
         - Enhanced audit logging for sensitive operations (e.g., deleting land parcels, exporting farmer info).
     """,
-    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
+    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
+    "website": "http://www.geninit.cn",
     'depends': ['base', 'base_setup', 'auditlog'], # 假设有 auditlog 模块
     'data': [
         'security/ir.model.access.csv',

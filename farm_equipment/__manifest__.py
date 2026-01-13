@@ -9,7 +9,8 @@
         - Machinery details (Horsepower, Fuel Type, Linkage)
         - Usage & Fuel Logging linked to Operations
     """,
-    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
+    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
+    "website": "http://www.geninit.cn",
     'depends': ['farm_operation', 'maintenance'],
     'data': [
         'security/ir.model.access.csv',

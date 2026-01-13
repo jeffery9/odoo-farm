@@ -8,7 +8,8 @@
         - Includes producer, origin, lot, test results, and commitment statement.
         - Integrates QR code for traceability and auto-generation on dispatch.
     """,
-    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
+    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
+    "website": "http://www.geninit.cn",
     'depends': ['farm_core', 'stock', 'farm_marketing'],
     'data': [
         'security/ir.model.access.csv',

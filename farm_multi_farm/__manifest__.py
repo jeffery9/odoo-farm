@@ -13,7 +13,8 @@
         - Cooperative-level financial consolidation and cost allocation [US-19-04]
         - Franchise farm standardized management [US-19-05]
     """,
-    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
+    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
+    "website": "http://www.geninit.cn",
     'depends': ['farm_core', 'farm_equipment', 'farm_hr', 'farm_financial', 'farm_marketing', 'project', 'account'],
     'data': [
         'security/ir.model.access.csv',

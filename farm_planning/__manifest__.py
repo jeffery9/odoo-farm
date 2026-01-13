@@ -10,7 +10,8 @@
         - Intervention Proposals (Estimated future tasks)
         - Resource Load Forecasting (Labor, Equipment, Inputs)
     """,
-    'author': \"genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>\",
+    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
+    "website": "http://www.geninit.cn",
     'depends': ['farm_operation', 'farm_hr'],
     'data': [
         'security/ir.model.access.csv',
