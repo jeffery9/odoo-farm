@@ -43,3 +43,6 @@ class ProductTemplate(models.Model):
     n_content = fields.Float("Nitrogen (N) %", help="Nitrogen percentage content")
     p_content = fields.Float("Phosphorus (P) %", help="Phosphorus percentage content")
     k_content = fields.Float("Potassium (K) %", help="Potassium percentage content")
+
+    # MTO 提前期逻辑 [US-09-01]
+    growth_duration = fields.Integer("Growth Duration (Days)", help="Standard growth period from planting to harvest.")

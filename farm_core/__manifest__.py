@@ -19,6 +19,7 @@
         'data/product_category_data.xml',
         'views/farm_activity_views.xml',
         'views/farm_location_views.xml',
+        'views/product_template_views.xml',
         'views/soil_analysis_views.xml',
         'views/menu.xml',
     ],

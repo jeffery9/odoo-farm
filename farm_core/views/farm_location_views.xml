@@ -37,6 +37,25 @@
                             </list>
                         </field>
                     </page>
+                    <page string="Nutrient Balance" name="nutrient_balance">
+                        <group>
+                            <group string="Optimal Targets (per mu)">
+                                <field name="target_n_per_mu"/>
+                                <field name="target_p_per_mu"/>
+                                <field name="target_k_per_mu"/>
+                            </group>
+                            <group string="Current Balance Status (Total)">
+                                <field name="n_balance_status" decoration-danger="n_balance_status &lt; 0" decoration-success="n_balance_status &gt; 0"/>
+                                <field name="p_balance_status" decoration-danger="p_balance_status &lt; 0" decoration-success="p_balance_status &gt; 0"/>
+                                <field name="k_balance_status" decoration-danger="k_balance_status &lt; 0" decoration-success="k_balance_status &gt; 0"/>
+                            </group>
+                        </group>
+                        <group string="Cumulative Actual Inputs">
+                            <field name="total_n_input"/>
+                            <field name="total_p_input"/>
+                            <field name="total_k_input"/>
+                        </group>
+                    </page>
                 </notebook>
                 <group string="Boundary Data (GeoJSON)" invisible="not is_land_parcel">
                     <field name="gps_coordinates" nolabel="1" placeholder='{"type": "Polygon", "coordinates": [[...]]}'/>
