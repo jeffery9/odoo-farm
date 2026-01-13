@@ -25,7 +25,7 @@ class AgriIntervention(models.Model):
     ], string="Intervention Type")
 
     def action_export_drone_kml(self):
-        """ US-22-03: 将地块 GIS 边界导出为无人机可识别的 KML 文件 """
+        """ US-22-03, US-23-03: 将地块边界与周边禁飞区导出为 KML """
         self.ensure_one()
         import base64
         # 1. 查找关联地块
@@ -33,31 +33,47 @@ class AgriIntervention(models.Model):
         if not parcel or not parcel.gps_coordinates:
             raise UserError(_("No GIS boundaries defined for the selected land parcel!"))
         
-        # 2. 生成 KML 模版内容
-        kml_content = f"""<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+        # 2. 查找周边禁飞区围栏
+        nearby_fences = self.env['farm.geofence'].search([
+            ('fence_type', '=', 'no_fly'),
+            ('active', '=', True)
+        ])
+        
+        # 3. 生成 KML
+        kml_header = """<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <kml xmlns=\"http://www.opengis.net/kml/2.2\">
   <Document>
-    <name>Drone Route for {self.name}</name>
-    <Placemark>
-      <name>{parcel.name}</name>
-      <Polygon>
-        <outerBoundaryIs>
-          <LinearRing>
-            <coordinates>
-              {parcel.gps_coordinates.replace(';', ' ')}
-            </coordinates>
-          </LinearRing>
-        </outerBoundaryIs>
-      </Polygon>
-    </Placemark>
-  </Document>
+    <name>Drone Mission: {name}</name>
+    <Style id=\"workArea\"><PolyStyle><color>4d00ff00</color></PolyStyle></Style>
+    <Style id=\"noFly\"><PolyStyle><color>4d0000ff</color></PolyStyle></Style>
+""".format(name=self.name)
+
+        # 核心作业区
+        work_area = f"""    <Placemark>
+      <name>Work Area: {parcel.name}</name>
+      <styleUrl>#workArea</styleUrl>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>{parcel.gps_coordinates.replace(';', ' ')}</coordinates></LinearRing></outerBoundaryIs></Polygon>
+    </Placemark>"""
+
+        # 禁飞区
+        nf_areas = ""
+        for nf in nearby_fences:
+            nf_areas += f"""    <Placemark>
+      <name>NO-FLY: {nf.name}</name>
+      <styleUrl>#noFly</styleUrl>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>{nf.coordinates.replace(';', ' ')}</coordinates></LinearRing></outerBoundaryIs></Polygon>
+    </Placemark>"""
+
+        kml_footer = """  </Document>
 </kml>"""
         
-        # 3. 创建附件
+        full_kml = kml_header + work_area + nf_areas + kml_footer
+        
+        # 4. 创建附件
         attachment = self.env['ir.attachment'].create({
-            'name': f"{self.name}_route.kml",
+            'name': f"{self.name}_mission.kml",
             'type': 'binary',
-            'datas': base64.b64encode(kml_content.encode('utf-8')),
+            'datas': base64.b64encode(full_kml.encode('utf-8')),
             'mimetype': 'application/vnd.google-earth.kml+xml',
         })
         
@@ -189,9 +205,47 @@ class AgriIntervention(models.Model):
                 
         return super(AgriIntervention, self).action_confirm()
 
-    # 无人机作业反馈 [US-22-04]
     actual_flight_area = fields.Float("Actual Flown Area (mu/ha)")
     drone_id = fields.Many2one('maintenance.equipment', string="Drone Used", domain="[('is_drone', '=', True)]")
+    
+    # 空间审计 [US-23-04]
+    out_of_bounds_count = fields.Integer("OOB Point Count", compute='_compute_spatial_audit', help="Number of telemetry points outside the parcel.")
+    spatial_compliance_rate = fields.Float("Spatial Compliance (%)", compute='_compute_spatial_audit')
+
+    @api.depends('agri_task_id.land_parcel_id', 'is_working')
+    def _compute_spatial_audit(self):
+        """ 统计该任务期间所有 GPS 记录的合规性 """
+        for mo in self:
+            parcel = mo.agri_task_id.land_parcel_id
+            if not parcel or not parcel.gps_coordinates:
+                mo.out_of_bounds_count = 0
+                mo.spatial_compliance_rate = 100.0
+                continue
+            
+            # 创建一个临时围栏对象进行判定
+            temp_fence = self.env['farm.geofence'].new({
+                'coordinates': parcel.gps_coordinates
+            })
+            
+            # 获取该任务期间的遥测记录
+            telemetries = self.env['farm.telemetry'].search([
+                ('production_id', '=', mo.agri_task_id.id),
+                ('gps_lat', '!=', 0),
+                ('gps_lng', '!=', 0)
+            ])
+            
+            if not telemetries:
+                mo.out_of_bounds_count = 0
+                mo.spatial_compliance_rate = 100.0
+                continue
+            
+            oob_count = 0
+            for t in telemetries:
+                if not temp_fence.is_point_inside(t.gps_lng, t.gps_lat):
+                    oob_count += 1
+            
+            mo.out_of_bounds_count = oob_count
+            mo.spatial_compliance_rate = ((len(telemetries) - oob_count) / len(telemetries)) * 100.0
 
     def button_mark_done(self):
         """ Extend the done logic to handle drone spraying depletion and graded outputs. """

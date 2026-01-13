@@ -67,9 +67,15 @@
                 <field name="quality_grade" optional="show"/>
             </xpath>
             <xpath expr="//page[@name='finished_products']" position="inside">
-                <group string="Drone Operation Feedback" invisible="intervention_type != 'aerial_spraying'">
-                    <field name="drone_id"/>
-                    <field name="actual_flight_area"/>
+                <group string="Drone/Machinery Spatial Audit" invisible="intervention_type not in ['aerial_spraying', 'tillage', 'harvesting']">
+                    <group>
+                        <field name="drone_id" invisible="intervention_type != 'aerial_spraying'"/>
+                        <field name="actual_flight_area" invisible="intervention_type != 'aerial_spraying'"/>
+                    </group>
+                    <group string="Boundary Compliance">
+                        <field name="spatial_compliance_rate" widget="progressbar"/>
+                        <field name="out_of_bounds_count" decoration-danger="out_of_bounds_count > 0"/>
+                    </group>
                 </group>
                 <group string="Harvest Grading" invisible="intervention_type != 'harvesting'">
                     <field name="grade_a_qty"/>
