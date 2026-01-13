@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_disaster_incident,farm.disaster.incident,model_farm_disaster_incident,farm_core.group_farm_worker,1,1,1,1
+access_farm_loss_assessment,farm.loss.assessment,model_farm_loss_assessment,farm_core.group_farm_worker,1,1,1,1
