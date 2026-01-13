@@ -14,10 +14,10 @@ class FarmManureBatch(models.Model):
     
     # 处理方式
     disposal_method = fields.Selection([
-        ('composting', 'Composting (堆肥)'),
-        ('biogas', 'Biogas Digestion (沼气发酵)'),
-        ('transfer_third_party', 'Transfer to Third Party (第三方转运)'),
-        ('direct_field_use', 'Direct Field Use (直接还田)')
+        ('composting', 'Composting'),
+        ('biogas', 'Biogas Digestion'),
+        ('transfer_third_party', 'Transfer to Third Party'),
+        ('direct_field_use', 'Direct Field Use')
     ], string="Disposal Method", required=True)
     
     # 去向及接收方

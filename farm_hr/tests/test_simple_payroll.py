@@ -8,7 +8,7 @@ class TestSimplePayroll(TransactionCase):
         self.Employee = self.env['hr.employee'].create({'name': 'Piece Rate Worker'})
         self.Task = self.env['project.task'].create({'name': 'Task A'})
         
-        # 1. 定义规则：采摘 = 2.0 / 单位
+        # 1. 定义规则：采摘 = 2.0
         self.env['farm.wage.rule'].create({
             'work_type': 'harvesting',
             'price_per_unit': 2.0

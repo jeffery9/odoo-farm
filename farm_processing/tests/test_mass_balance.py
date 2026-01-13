@@ -26,7 +26,7 @@ class TestMassBalance(TransactionCase):
             'product_qty': 100.0, # 投入 100kg
         })
         
-        # 模拟：产出 90kg，记录损耗 5kg -> 总计 95kg (不平衡)
+        # 模拟：产出 90kg，记录损耗 5kg -> 总计 95kg
         mo.scrap_qty = 5.0
         mo._compute_total_output_qty()
         self.assertFalse(mo.is_balanced)
@@ -35,7 +35,7 @@ class TestMassBalance(TransactionCase):
         with self.assertRaises(UserError):
             mo.button_mark_done()
             
-        # 修正：产出 90kg，损耗 10kg -> 总计 100kg (平衡)
+        # 修正：产出 90kg，损耗 10kg -> 总计 100kg
         mo.scrap_qty = 10.0
         mo._compute_total_output_qty()
         self.assertTrue(mo.is_balanced)

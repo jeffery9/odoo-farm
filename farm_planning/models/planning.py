@@ -16,7 +16,7 @@ class AgriInterventionTemplate(models.Model):
     # 预设投入品
     input_ids = fields.One2many('agri.intervention.template.input', 'template_id', string="Estimated Inputs")
     
-    # 预设工时 (小时)
+    # 预设工时
     estimated_labor_hours = fields.Float("Estimated Labor (Hours)", default=1.0)
 
 class AgriInterventionTemplateInput(models.Model):

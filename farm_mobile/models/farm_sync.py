@@ -9,7 +9,7 @@ class FarmSyncQueue(models.Model):
         ('worklog', 'Field Worklog'),
         ('feeding', 'Feeding record'),
         ('harvest', 'Harvest record'),
-        ('delivery', 'Mobile Delivery (扫码出库)')
+        ('delivery', 'Mobile Delivery')
     ], required=True)
     
     payload = fields.Text("Data Payload (JSON)", required=True)

@@ -4,17 +4,17 @@ from odoo.exceptions import ValidationError, UserError
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    # 农药/兽药实名制与监管 [US-10-02]
-    is_regulated_input = fields.Boolean("Is Regulated Input (受监管投入品)", default=False)
-    reg_cert_no = fields.Char("Registration/Approval No. (登记证号/批文号)")
-    is_prohibited_restricted = fields.Boolean("Prohibited/Restricted (禁限用)", default=False)
+    # 兽药实名制与监管 [US-10-02]
+    is_regulated_input = fields.Boolean("Is Regulated Input", default=False)
+    reg_cert_no = fields.Char("Registration/Approval No.")
+    is_prohibited_restricted = fields.Boolean("Prohibited/Restricted", default=False)
     prohibited_reason = fields.Text("Prohibited/Restricted Reason")
 
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
     # 农事操作人信息 [US-10-02]
-    operator_id_card = fields.Char("Operator ID Card No. (操作人身份证号)", copy=False)
+    operator_id_card = fields.Char("Operator ID Card No.", copy=False)
     
     @api.constrains('operator_id_card')
     def _check_operator_id_card(self):

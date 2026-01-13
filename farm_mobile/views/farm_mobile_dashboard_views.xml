@@ -18,7 +18,7 @@
         <field name="context">{'default_intervention_type': 'feeding'}</field>
     </record>
 
-    <!-- 移动端仪表板 (使用一个简单的静态视图或表单来模拟) -->
+    <!-- 移动端仪表板 -->
     <record id="view_farm_mobile_workbench_form" model="ir.ui.view">
         <field name="name">farm.mobile.workbench.form</field>
         <field name="model">res.users</field> <!-- 使用用户模型作为载体 -->

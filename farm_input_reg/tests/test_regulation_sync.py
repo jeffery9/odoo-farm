@@ -8,7 +8,7 @@ class TestRegulationSync(TransactionCase):
         self.Product = self.env['product.product']
         self.Intervention = self.env['mrp.production']
         
-        # 1. 创建受监管投入品 (农药)
+        # 1. 创建受监管投入品
         self.pesticide = self.Product.create({
             'name': 'Restricted Pesticide A',
             'is_regulated_input': True,

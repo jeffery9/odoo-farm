@@ -5,18 +5,18 @@ class StockMove(models.Model):
 
     # 收获分级字段 [US-02-04]
     quality_grade = fields.Selection([
-        ('grade_a', 'Grade A (特级/优等)'),
-        ('grade_b', 'Grade B (一级/合格)'),
-        ('grade_c', 'Grade C (二级/次品)'),
+        ('grade_a', 'Grade A'),
+        ('grade_b', 'Grade B'),
+        ('grade_c', 'Grade C'),
     ], string="Quality Grade")
 
     # US-14-07: Agri Loss Management
     agri_loss_reason = fields.Selection([
-        ('natural', 'Natural Dehydration (自然脱水)'),
-        ('decay', 'Decay/Rot (腐烂)'),
-        ('pest_damage', 'Pest/Rodent Damage (虫鼠害)'),
-        ('handling', 'Handling Damage (装卸搬运损耗)'),
-        ('processing', 'Processing Waste (加工损耗)'),
+        ('natural', 'Natural Dehydration'),
+        ('decay', 'Decay/Rot'),
+        ('pest_damage', 'Pest/Rodent Damage'),
+        ('handling', 'Handling Damage'),
+        ('processing', 'Processing Waste'),
     ], string="Agri Loss Reason")
 
     def _prepare_move_line_vals(self, quantity=None, reserved_quant=None):

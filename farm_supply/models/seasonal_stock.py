@@ -41,7 +41,7 @@ class FarmSeasonalStockRule(models.Model):
             available_qty = sum(quants.mapped('quantity'))
             
             if available_qty < rule.min_qty:
-                # 触发采购预警 (创建活动)
+                # 触发采购预警
                 self.env['mail.activity'].create({
                     'res_model_id': self.env.ref('product.model_product_product').id,
                     'res_id': rule.product_id.id,

@@ -14,7 +14,7 @@ class AgriculturalCampaign(models.Model):
     
     # GDD 生长模型 [US-02-05]
     base_temperature = fields.Float("Base Temp (℃)", default=10.0, help="Lower threshold for crop growth.")
-    target_gdd = fields.Float("Target GDD (积温目标)", help="GDD required for harvest.")
+    target_gdd = fields.Float("Target GDD", help="GDD required for harvest.")
     accumulated_gdd = fields.Float("Current GDD", compute='_compute_gdd', store=True)
     predicted_harvest_date = fields.Date("Predicted Harvest", compute='_compute_gdd', store=True)
 
@@ -57,7 +57,7 @@ class AgriculturalCampaign(models.Model):
             
             rec.accumulated_gdd = total_gdd
             
-            # 2. 预测收获日期 (线性外推)
+            # 2. 预测收获日期
             rec.predicted_harvest_date = False
             if total_gdd > 0 and days_count > 0 and rec.target_gdd:
                 gdd_per_day = total_gdd / days_count

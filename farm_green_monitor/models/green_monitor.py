@@ -14,7 +14,7 @@ class ProjectTask(models.Model):
     total_fertilizer_used = fields.Float("Total Fertilizer Used (kg)", compute='_compute_green_monitor_stats', store=True)
     total_pesticide_used = fields.Float("Total Pesticide Used (kg)", compute='_compute_green_monitor_stats', store=True)
     
-    # 单位面积使用量 (kg/亩)
+    # 单位面积使用量 (kg)
     fertilizer_per_mu = fields.Float("Fertilizer (kg/mu)", compute='_compute_green_monitor_stats', store=True)
     pesticide_per_mu = fields.Float("Pesticide (kg/mu)", compute='_compute_green_monitor_stats', store=True)
 

@@ -21,7 +21,7 @@ class TestFarmCostAccounting(TransactionCase):
         self.assertEqual(task.analytic_account_id.plan_id.name, 'Agri-Projects', "应属于农业项目计划")
 
     def test_02_cost_aggregation_logic(self):
-        """ 测试成本归集逻辑（模拟） [US-04-02] """
+        """ 测试成本归集逻辑 [US-04-02] """
         task = self.Task.create({'name': 'Aggregation Test'})
         
         # 创建一个模拟的成本凭证行

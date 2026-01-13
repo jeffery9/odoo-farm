@@ -5,7 +5,7 @@ import re
 class DouyinQualification(models.Model):
     """
     US-21-01: 抖音入驻资质预审
-    职责：收集并校验开通抖音企业号/小店所需的法定资料
+    职责：小店所需的法定资料
     """
     _name = 'douyin.qualification'
     _description = 'Douyin Onboarding Qualification'
@@ -15,15 +15,15 @@ class DouyinQualification(models.Model):
     company_id = fields.Many2one('res.company', string="Farm Company", default=lambda self: self.env.company)
     
     # 核心资质信息
-    business_license = fields.Binary("Business License (营业执照)", required=True)
-    uscc = fields.Char("Unified Social Credit Code (信用代码)", required=True)
+    business_license = fields.Binary("Business License", required=True)
+    uscc = fields.Char("Unified Social Credit Code", required=True)
     
     legal_person_name = fields.Char("Legal Representative", required=True)
     id_card_front = fields.Binary("ID Card Front")
     id_card_back = fields.Binary("ID Card Back")
     
-    # 行业特定资质 (农业/食品)
-    food_license = fields.Binary("Food Business License (食品经营许可证)")
+    # 行业特定资质
+    food_license = fields.Binary("Food Business License")
     cert_expiry_date = fields.Date("License Expiry Date")
     
     state = fields.Selection([

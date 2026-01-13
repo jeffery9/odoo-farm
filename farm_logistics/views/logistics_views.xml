@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <record id="action_farm_picking" model="ir.actions.act_window">
+        <field name="name">Farm Movements</field>
+        <field name="res_model">stock.picking</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Manage all farm inputs, harvest collections and transfers.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_farm_movements" name="Movements" parent="menu_farm_logistics_root" action="action_farm_picking" sequence="10"/>
+
     <record id="view_picking_form_inherit_farm_logistics" model="ir.ui.view">
         <field name="name">stock.picking.form.inherit.farm.logistics</field>
         <field name="model">stock.picking</field>

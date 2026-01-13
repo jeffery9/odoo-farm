@@ -3,7 +3,7 @@
     <data noupdate="0">
         <!-- Sample Processed Product -->
         <record id="product_apple_juice" model="product.product">
-            <field name="name">Organic Apple Juice (1L) (有机苹果汁)</field>
+            <field name="name">Organic Apple Juice (1L)</field>
             <field name="uom_id" ref="uom.product_uom_litre"/>
             <field name="list_price">25.0</field>
         </record>

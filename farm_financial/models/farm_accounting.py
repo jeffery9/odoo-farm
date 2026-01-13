@@ -94,7 +94,7 @@ class AgriCostWIPTransfer(models.AbstractModel):
         if not task_id.analytic_account_id:
             return 0.0
             
-        # 1. Sum all analytic line costs under this task (支出为负)
+        # 1. Sum all analytic line costs under this task
         analytic_lines = self.env['account.analytic.line'].search([
             ('account_id', '=', task_id.analytic_account_id.id)
         ])
@@ -128,7 +128,7 @@ class AgriMortalityAmortization(models.AbstractModel):
         if not dead_lot_id or not surviving_lot_id:
             return False
 
-        # 1. Look for associated analytic account (通过任务关联)
+        # 1. Look for associated analytic account
         task = self.env['project.task'].search([('lot_ids', 'in', [dead_lot_id.id])], limit=1)
         if not task or not task.analytic_account_id:
             return False
@@ -141,7 +141,7 @@ class AgriMortalityAmortization(models.AbstractModel):
         mortality_cost = abs(sum(analytic_lines.mapped('amount')))
 
         if mortality_cost > 0:
-            # 3. Create cost transfer line (均摊给存活者)
+            # 3. Create cost transfer line
             self.env['account.analytic.line'].create({
                 'name': _('Mortality Cost Absorption: %s') % dead_lot_id.name,
                 'account_id': task.analytic_account_id.id,

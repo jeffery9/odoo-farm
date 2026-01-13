@@ -4,11 +4,11 @@ class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
 
     data_storage_region = fields.Selection([
-        ('china_mainland', 'China Mainland (中国大陆)'),
-        ('overseas', 'Overseas (境外)')
+        ('china_mainland', 'China Mainland'),
+        ('overseas', 'Overseas')
     ], string="Data Storage Region", config_parameter='farm_data_security.data_storage_region')
     
-    is_dengbao_level3_compliant = fields.Boolean("Dengbao Level 3 Compliant (等保三级)", config_parameter='farm_data_security.is_dengbao_level3_compliant')
+    is_dengbao_level3_compliant = fields.Boolean("Dengbao Level 3 Compliant", config_parameter='farm_data_security.is_dengbao_level3_compliant')
 
     def action_check_data_localization(self):
         """ 模拟数据本地化检查 [US-18-10] """

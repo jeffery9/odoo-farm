@@ -49,13 +49,11 @@
                             <field name="firmware_version"/>
                         </group>
                     </group>
-                    <group string="业务关联">
-                        <field name="business_ref"/>
-                    </group>
-                    <group string="状态信息">
-                        <field name="connection_status"/>
-                        <field name="last_telemetry"/>
-                        <field name="last_command"/>
+                    <group string="Remote Control" name="remote_control">
+                        <button name="send_command" string="Power On" type="object" context="{'action': 'power', 'params': {'state': 'on'}}" class="oe_highlight"/>
+                        <button name="send_command" string="Power Off" type="object" context="{'action': 'power', 'params': {'state': 'off'}}" class="oe_highlight"/>
+                        <button name="send_command" string="Reset" type="object" context="{'action': 'reset'}" class="oe_highlight"/>
+                        <field name="live_stream_url" widget="url" invisible="not is_camera"/>
                     </group>
                     <notebook>
                         <page string="Business Ref" name="business_ref_page">

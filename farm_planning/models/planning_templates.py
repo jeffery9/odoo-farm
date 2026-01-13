@@ -6,11 +6,11 @@ class AgriInterventionTemplate(models.Model):
 
     name = fields.Char("Operation Name", required=True) # e.g., Standard Sowing
     intervention_type = fields.Selection([
-        ('tillage', 'Soil Preparation (耕作)'),
-        ('sowing', 'Sowing (播种)'),
-        ('fertilizing', 'Fertilizing (施肥)'),
-        ('protection', 'Protection (植保)'),
-        ('harvesting', 'Harvesting (收获)')
+        ('tillage', 'Soil Preparation'),
+        ('sowing', 'Sowing'),
+        ('fertilizing', 'Fertilizing'),
+        ('protection', 'Protection'),
+        ('harvesting', 'Harvesting')
     ], required=True)
     
     # 预设资源需求

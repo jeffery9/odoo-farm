@@ -11,9 +11,9 @@ class MrpBom(models.Model):
 
     industry_type = fields.Selection([
         ('standard', 'Standard'),
-        ('baking', 'Baking (烘焙)'),
-        ('winemaking', 'Winemaking (酿酒)'),
-        ('food_processing', 'Food Processing (食品加工)')
+        ('baking', 'Baking'),
+        ('winemaking', 'Winemaking'),
+        ('food_processing', 'Food Processing')
     ], string="Industry Type", default='standard')
 
     # 预期等级分布 [US-14-08]
@@ -32,10 +32,10 @@ class MrpBomLine(models.Model):
     _inherit = 'mrp.bom.line'
 
     ingredient_role = fields.Selection([
-        ('main', 'Main Material (主料)'),
-        ('additive', 'Additive (添加剂)'),
-        ('yeast', 'Fermentation Agent (发酵剂/菌种)'),
-        ('packaging', 'Packaging (包材)')
+        ('main', 'Main Material'),
+        ('additive', 'Additive'),
+        ('yeast', 'Fermentation Agent'),
+        ('packaging', 'Packaging')
     ], string="Ingredient Role", default='main')
 
 class FarmBomGradeDistribution(models.Model):
@@ -44,8 +44,8 @@ class FarmBomGradeDistribution(models.Model):
 
     bom_id = fields.Many2one('mrp.bom', ondelete='cascade')
     quality_grade = fields.Selection([
-        ('grade_a', 'Grade A (特级/优等)'),
-        ('grade_b', 'Grade B (一级/合格)'),
-        ('grade_c', 'Grade C (二级/次品)'),
+        ('grade_a', 'Grade A'),
+        ('grade_b', 'Grade B'),
+        ('grade_c', 'Grade C'),
     ], string="Quality Grade", required=True)
     expected_percentage = fields.Float("Expected %", required=True)

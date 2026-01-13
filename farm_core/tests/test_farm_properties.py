@@ -28,7 +28,7 @@ class TestFarmProperties(TransactionCase):
     def test_02_lot_properties(self):
         """ 测试生物资产的动态属性 [US-01-02] """
         product = self.Product.create({
-            'name': 'Tilapia (罗非鱼)',
+            'name': 'Tilapia',
             'type': 'product',
             'tracking': 'lot'
         })

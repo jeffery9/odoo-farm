@@ -93,7 +93,7 @@ class FarmWeatherForecast(models.Model):
             if not existing_incident:
                 # 3. 自动生成灾害事件草稿 (Farm Disaster Incident)
                 disaster_type_map = {
-                    'storm': 'gale', # 将风暴映射为大风/暴风
+                    'storm': 'gale', # 暴风
                     'frost': 'frost',
                     'heat': 'high_temp'
                 }

@@ -6,11 +6,11 @@ class FarmEmergencyProtocol(models.Model):
 
     name = fields.Char("Protocol Name", required=True) # e.g. "Avian Flu Response Level 1"
     crisis_type = fields.Selection([
-        ('disease', 'Disease Outbreak (疫病)'),
-        ('pest', 'Pest Infestation (虫害)'),
-        ('contamination', 'Contamination (污染)'),
-        ('disaster', 'Natural Disaster (自然灾害)'),
-        ('security', 'Security Breach (安防)')
+        ('disease', 'Disease Outbreak'),
+        ('pest', 'Pest Infestation'),
+        ('contamination', 'Contamination'),
+        ('disaster', 'Natural Disaster'),
+        ('security', 'Security Breach')
     ], required=True)
     
     steps = fields.Html("Action Steps (SOP)")

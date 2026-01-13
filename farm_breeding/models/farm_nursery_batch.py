@@ -23,11 +23,11 @@ class FarmNurseryBatch(models.Model):
     current_count = fields.Float("Current Count", compute='_compute_current_count', store=True)
     
     state = fields.Selection([
-        ('germinating', 'Germinating (催芽)'),
-        ('nursery', 'Nursery (育苗中)'),
-        ('ready', 'Ready (待移栽)'),
-        ('transplanted', 'Transplanted (已移栽)'),
-        ('failed', 'Failed (失败)')
+        ('germinating', 'Germinating'),
+        ('nursery', 'Nursery'),
+        ('ready', 'Ready'),
+        ('transplanted', 'Transplanted'),
+        ('failed', 'Failed')
     ], string="Status", default='germinating', tracking=True)
 
     # 库位信息 [US-10-01]

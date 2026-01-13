@@ -9,13 +9,13 @@ class FarmDisasterIncident(models.Model):
 
     name = fields.Char("Incident Ref", default=lambda self: _('New'))
     disaster_type = fields.Selection([
-        ('hail', 'Hail (冰雹)'),
-        ('frost', 'Frost (霜冻)'),
-        ('flood', 'Flood (洪涝)'),
-        ('drought', 'Drought (干旱)'),
-        ('gale', 'Gale/Storm (大风/暴风)'),
-        ('high_temp', 'High Temperature (高温)'),
-        ('other', 'Other (其他)')
+        ('hail', 'Hail'),
+        ('frost', 'Frost'),
+        ('flood', 'Flood'),
+        ('drought', 'Drought'),
+        ('gale', 'Gale/Storm'),
+        ('high_temp', 'High Temperature'),
+        ('other', 'Other')
     ], string="Disaster Type", required=True)
     
     date_start = fields.Date("Start Date", default=fields.Date.today)
@@ -23,9 +23,9 @@ class FarmDisasterIncident(models.Model):
     
     affected_location_ids = fields.Many2many('stock.location', string="Affected Land Parcels", domain=[('is_land_parcel', '=', True)])
     intensity = fields.Selection([
-        ('minor', 'Minor (轻微)'),
-        ('moderate', 'Moderate (中度)'),
-        ('severe', 'Severe (严重)')
+        ('minor', 'Minor'),
+        ('moderate', 'Moderate'),
+        ('severe', 'Severe')
     ], string="Intensity", default='minor')
     
     description = fields.Text("Description of Damage")
@@ -92,7 +92,7 @@ class FarmLossAssessment(models.Model):
     
     loss_description = fields.Text("Detailed Loss Description")
     
-    insurance_claim_id = fields.Many2one('account.move', string="Linked Insurance Claim") # 假设是供应商账单/退款
+    insurance_claim_id = fields.Many2one('account.move', string="Linked Insurance Claim") # 退款
     
     state = fields.Selection([
         ('draft', 'Draft'),

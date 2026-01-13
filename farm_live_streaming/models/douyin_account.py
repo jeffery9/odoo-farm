@@ -33,9 +33,9 @@ class DouyinAccount(models.Model):
 
     # US-21-01: 监控增强
     health_status = fields.Selection([
-        ('healthy', 'Healthy (运行正常)'),
-        ('warning', 'Expiring Soon (即将过期)'),
-        ('error', 'Auth Failed (授权失效)'),
+        ('healthy', 'Healthy'),
+        ('warning', 'Expiring Soon'),
+        ('error', 'Auth Failed'),
     ], string="Health Status", compute='_compute_health_status', store=True)
     
     last_health_check = fields.Datetime("Last Check")
@@ -58,7 +58,7 @@ class DouyinAccount(models.Model):
                 rec.health_status = 'healthy'
 
     def action_verify_connection(self):
-        """ 手动/自动验证 API 连通性 """
+        """ 自动验证 API 连通性 """
         self.ensure_one()
         # 调用简单的个人信息接口测试 Token 有效性
         res = self._do_douyin_request("/oauth/userinfo/", method='GET')

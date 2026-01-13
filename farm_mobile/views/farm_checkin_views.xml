@@ -32,7 +32,7 @@
                 </div>
             </xpath>
             <xpath expr="//header" position="inside">
-                <button name="action_mobile_check_out" string="🏁 Site Check-out (签退)" type="object" class="btn-warning o_mobile_action" invisible="not current_check_in_id"/>
+                <button name="action_mobile_check_out" string="🏁 Site Check-out" type="object" class="btn-warning o_mobile_action" invisible="not current_check_in_id"/>
                 <field name="current_check_in_id" invisible="1"/>
             </xpath>
             <xpath expr="//notebook" position="inside">

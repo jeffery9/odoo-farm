@@ -24,7 +24,7 @@ class FarmEvidence(models.Model):
     worker_id = fields.Many2one('hr.employee', string="Captured By", default=lambda self: self.env.user.employee_id)
     note = fields.Text("Field Notes")
 
-    # 判定位置合规性 (如果关联了地块)
+    # 判定位置合规性
     is_on_site = fields.Boolean("Location Verified", compute='_compute_site_verification', store=True)
 
     @api.depends('gps_lat', 'gps_lng', 'res_model', 'res_id')

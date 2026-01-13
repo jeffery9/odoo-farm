@@ -5,17 +5,17 @@ class MrpBom(models.Model):
 
     # Ekylibre Mapping: Recipe Classification [US-Mapping]
     agri_activity_type = fields.Selection([
-        ('feed', 'Feed Formula (饲料配方)'),
-        ('fertilizer', 'Fertilizer Mix (肥料配方)'),
-        ('planting', 'Planting Scheme (种植方案)'),
-        ('protection', 'Protection Mix (植保配方)')
+        ('feed', 'Feed Formula'),
+        ('fertilizer', 'Fertilizer Mix'),
+        ('planting', 'Planting Scheme'),
+        ('protection', 'Protection Mix')
     ], string="Agri activity Type", help="Classify BOM as an agricultural recipe.")
 
     application_stage = fields.Selection([
-        ('seedling', 'Seedling/Nursery (育苗期)'),
-        ('growing', 'Growing (生长期)'),
-        ('harvest', 'Harvest (收获期)'),
-        ('finishing', 'Finishing (育肥期)')
+        ('seedling', 'Seedling/Nursery'),
+        ('growing', 'Growing'),
+        ('harvest', 'Harvest'),
+        ('finishing', 'Finishing')
     ], string="Application Stage")
 
 class MrpBomLine(models.Model):
@@ -43,7 +43,7 @@ class MrpProduction(models.Model):
         """ 拦截并根据稀释比例和饲喂比例修正物料需求量 """
         res = super()._onchange_bom_id()
         for mo in self:
-            # 尝试获取生物资产信息（如果关联了任务）
+            # 尝试获取生物资产信息
             lot = mo.agri_task_id.biological_lot_id if hasattr(mo, 'agri_task_id') else False
             
             for move in mo.move_raw_ids:
@@ -56,7 +56,7 @@ class MrpProduction(models.Model):
                 elif bom_line.feeding_ratio > 0 and lot:
                     # 计算生物总量 = 数量 * 平均体重
                     total_biomass = (getattr(lot, 'animal_count', 0) * getattr(lot, 'average_weight', 0.0))
-                    # 投入量 = 总量 * 比例 / 100
+                    # 投入量 = 总量 * 100
                     move.product_uom_qty = total_biomass * (bom_line.feeding_ratio / 100.0)
         return res
 

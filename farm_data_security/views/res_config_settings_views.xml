@@ -21,7 +21,7 @@
                         <div class="o_setting_right_pane mt-3">
                             <label for="is_dengbao_level3_compliant"/>
                             <div class="text-muted">
-                                Declare compliance with Cybersecurity Classified Protection (等保) Level 3 requirements.
+                                Declare compliance with Cybersecurity Classified Protection Level 3 requirements.
                             </div>
                             <field name="is_dengbao_level3_compliant"/>
                         </div>

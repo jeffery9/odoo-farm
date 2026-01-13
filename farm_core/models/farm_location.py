@@ -48,7 +48,7 @@ class FarmLocation(models.Model):
     water_depth = fields.Float("Water Depth (m)")
     water_depth_dm = fields.Float("Water Depth (dm)", compute='_compute_water_depth_dm', inverse='_inverse_water_depth_dm')
 
-    # 容器管理 [酿酒/酿造]
+    # 容器管理 [酿造]
     is_vessel = fields.Boolean("Is Vessel/Tank", default=False)
     vessel_capacity = fields.Float("Vessel Capacity (L)")
     vessel_material = fields.Selection([

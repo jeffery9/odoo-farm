@@ -8,8 +8,8 @@ class FarmLoan(models.Model):
     name = fields.Char("Loan Reference", default=lambda self: _('New'))
     partner_id = fields.Many2one('res.partner', string="Lender (Bank/Co-op)", required=True)
     loan_type = fields.Selection([
-        ('operational', 'Operational (运营贷)'),
-        ('equipment', 'Equipment (农机贷)'),
+        ('operational', 'Operational'),
+        ('equipment', 'Equipment'),
         ('biological', 'Biological Asset Mortgage')
     ], required=True)
     
@@ -35,7 +35,7 @@ class FarmLoan(models.Model):
     @api.depends('collateral_lot_ids')
     def _compute_collateral_value(self):
         for loan in self:
-            # 简单估值：数量 * 品种标准价 (实际可接入评估模型)
+            # 简单估值：数量 * 品种标准价
             val = 0.0
             for lot in loan.collateral_lot_ids:
                 price = lot.product_id.standard_price
