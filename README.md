@@ -1,154 +1,90 @@
-# Odoo 19 农场管理系统：菜单架构设计与实现 (Farm Management System: Menu Architecture Design & Implementation)
+# 智慧农业全链路数字化解决方案：基于 Odoo 19 的“种子到餐桌”实践
 
-## 项目概述
+## 1. 方案愿景
+在数字化转型的浪潮中，传统农业面临着生产过程“黑盒”、管理术语“工业化”以及合规追溯成本高昂等核心挑战。本方案基于 **Odoo 19 社区版**，深度复刻并优化了欧洲领先的农业 ERP（Ekylibre）能力，打造了一套专为中国农业设计的**全链路数字化底座**。我们不仅仅是记录数据，更是通过内置的农业算法与 IoT 感知，实现从地块规划、精准作业、合规加工到消费者营销的闭环管理。
 
-本项目是 Odoo 19 农场管理系统的菜单架构设计与实现，旨在为农业企业提供一套完整的、符合农业行业习惯的用户界面系统。系统通过三层用户组架构（技术层、应用层、角色层）实现了从基础功能到业务角色的完整权限管理。
+---
 
-## 架构设计原则
+## 2. 核心痛点与解决之道
 
-### 1. 三层用户组架构
-- **技术层级用户组**：基于系统功能模块的技术权限（Addon级别）
-- **应用层级用户组**：基于业务App的复合权限组
-- **角色层级用户组**：基于业务角色的最终用户权限组
+### 痛点 A：ERP 术语与农业习惯的“水土不服”
+*   **我们的解决之道**：**全站去工业化 UX**。系统自动将工业术语映射为“农事干预”、“生产配方”、“任务产量”。通过智能感知界面，技术员看到的是 N/P/K 养分平衡，而工人看到的是极简的移动端打卡按钮。
 
-### 2. 单一职责原则 (SRP)
-- 每个模块承担单一职责
-- 每个模型文件只包含一个主要模型
-- 每个视图文件只包含相关模型的视图定义
-- 每个菜单项对应明确的业务功能
+### 痛点 B：生产计划与生物生长周期的“脱节”
+*   **我们的解决之道**：**MTO 生产提前期智能校验**。系统内置作物品种生长模型，在确认销售订单时自动计算“交货剩余天数”是否足以覆盖“作物生长周期”，从源头规避违约风险。
 
-### 3. 农业术语去工业化
-- 使用农业术语替代工业术语
-- 符合农业行业习惯和认知
-- 消除制造业术语的认知摩擦
-- 提供本地化和区域化支持
+### 痛点 C：养分投入与成本核算的“模糊账”
+*   **我们的解决之道**：**自动化养分平衡算法**。在确认施肥作业时，系统自动根据化肥成分换算为“纯养分”投入量，并实时汇总至地块 GIS。财务端同步实现水电能耗向具体批次的精细化分摊。
 
-## 菜单结构
+---
 
-### 顶级菜单项
+## 3. 方案亮点
+
+*   🚀 **全链路数字孪生溯源**：每一颗果实都有它的“履历”。扫描二维码，回溯**具体地块、天气曲线、施用清单及农工资质**。
+*   🌍 **GIS 与 IoT 智慧感知**：地块是活的“生产单元”，实时显示温湿度、土壤墒情，并在异常时联动控制设备。
+*   🏭 **农产品深加工的一入多出管理**：支持 **Mass Balance（物料平衡）校验**，建立加工环节的批次父子继承，确保追溯不断链。
+*   🌐 **多业态融合与全行业覆盖**：覆盖**大田种植、畜牧养殖、水产、食品加工（烘焙/酿酒）及农旅融合**。
+*   ☁️ **SAAS 架构与多租户隔离**：支持多农场独立运行、合作社级数据汇总，适合集团化或产业园部署。
+*   🛡️ **中国特色合规与安全**：内置 GB 7718 标签标准、农药实名制登记及畜禽粪污资源化台账。
+
+---
+
+## 4. 四大业务版块
+
+1.  **种植/养殖管理**：生产季规划、农事作业记录、生物阶段跟踪（出生->生长->收获）、系谱维护。
+2.  **供应链与加工**：智能采购建议、多级配方管理、能耗成本核算、冷链物流温控追溯。
+3.  **农旅与商业**：采摘预约、资源日历管理、CSA（社区支持农业）会员订阅、直播带货订单同步。
+4.  **智慧辅助决策**：经营驾驶舱、养分减量化分析、临期产品自动促销联动。
+
+---
+
+## 5. 目录结构与文档指引
+
+### 顶级菜单预览
 ```
-Farm Management (农场管理)
-├── Agricultural Families (农业活动家族)
-├── Planting (种植管理)
-├── Livestock (畜牧管理)
-├── Aquaculture (水产养殖)
-├── Agritourism (观光农业)
-├── Processing (农产品加工)
-├── Supply Chain (供应链)
-├── Marketing (营销管理)
-├── Quality & Safety (质量与安全)
-├── HR & Labor (人力与劳力)
-├── Finance & Costs (财务与成本)
-├── Multi-Entity Collaboration (多实体协同)
-├── IoT & Automation (物联网与自动化)
-├── Sustainability (可持续发展)
-├── Administration (系统管理)
-└── Dashboards (仪表板)
-```
-
-### 核心功能模块
-- **farm_core**: 基础主数据管理
-- **farm_operation**: 生产作业管理
-- **farm_planning**: 生产规划管理
-- **farm_multi_farm**: 多实体协同与合作社管理
-- **farm_ux_deindustrialization**: 用户体验与术语去工业化
-- **farm_live_streaming**: 直播与抖音对接
-
-## 实现的史诗 (Epics)
-
-### 史诗 16：用户体验与术语去工业化 (UX & De-industrialization)
-- **US-16-01**: 术语农业化映射
-- **US-16-02**: 行业化表单布局
-- **US-16-03**: 视觉化状态标识
-- **US-16-04**: 个性化工作空间定制
-- **US-16-05**: 智能上下文帮助
-- **US-16-06**: 农业知识图谱集成
-- **US-16-07**: 多感官交互体验
-- **US-16-08**: 农业社交与协作功能
-- **US-16-09**: 无障碍设计与包容性
-
-### 史诗 19：多实体协同与合作社管理 (Multi-Entity Collaboration & Cooperative Management)
-- **US-19-01**: 多农场实体关系建模
-- **US-19-02**: 租户级数据隔离与共享
-- **US-19-03**: 跨农场资源调度与协同
-- **US-19-04**: 合作社级财务汇总与分摊
-- **US-19-05**: 加盟农场标准化管理
-
-### 史诗 21：直播与抖音对接 (Live Streaming & Douyin Integration)
-- **US-21-01**: 抖音账号授权与绑定
-- **US-21-02**: 商品库同步与管理
-- **US-21-03**: 直播间商品关联
-- **US-21-04**: 订单自动回传与处理
-- **US-21-05**: 直播数据统计与分析
-- **US-21-06**: 直播预告与推广
-- **US-21-07**: 直播内容存档与复用
-
-## 技术实现
-
-### 模型层 (Models)
-- 每个功能模块有独立的模型文件
-- 遵循 Odoo 19 开发规范
-- 实现完整的业务逻辑和数据验证
-
-### 视图层 (Views)
-- 每个模型有对应的树形和表单视图
-- 支持移动端友好界面
-- 实现农业术语的界面展示
-
-### 安全层 (Security)
-- 完整的权限控制体系
-- 数据级访问控制
-- 角色基础的访问控制 (RBAC)
-
-### 业务价值
-1. **提升用户体验**：使用农业术语，符合行业习惯
-2. **增强协作效率**：支持多实体协同管理
-3. **保障数据安全**：实现租户级数据隔离
-4. **促进标准化**：统一的生产标准和管理流程
-5. **支持合规管理**：符合中国农业法规要求
-
-## 文件结构
-
-```
-farm/
-├── EPICS_AND_USER_STORIES.md          # 用户故事汇总
-├── MODULE_PLAN.md                     # 模块计划
-├── DEVELOPMENT_CONVENTIONS.md         # 开发规范
-├── MENU_STRUCTURE_PLAN.md             # 菜单结构规划
-├── MENU_IMPLEMENTATION_PLAN.md        # 菜单实现计划
-├── MENU_IMPLEMENTATION_CHECKLIST.md   # 菜单实现检查清单
-├── MENU_ARCHITECTURE_DIAGRAM.md       # 菜单架构图
-├── APPLICATION_ARCHITECTURE.md        # 应用架构
-├── USER_GROUPS_DESIGN.md              # 用户组设计
-├── farm_core/                         # 核心模块
-├── farm_operation/                    # 生产作业模块
-├── farm_multi_farm/                   # 多实体协同模块
-├── farm_ux_deindustrialization/       # 用户体验模块
-└── farm_live_streaming/               # 直播电商模块
+农场管理 (Farm)
+├── 基础数据 (Master Data)
+├── 种植管理 (Planting)
+├── 畜牧管理 (Livestock)
+├── 水产养殖 (Aquaculture)
+├── 观光农业 (Agritourism)
+├── 农产品加工 (Processing)
+├── 供应链管理 (Supply Chain)
+├── 质量与安全 (Quality & Safety)
+├── 物联网与自动化 (IoT)
+├── 财务与成本 (Finance)
+└── 加盟与合作社 (Cooperative)
 ```
 
-## 安装与配置
+### 📖 业务与规划 (Business & Planning)
+- [解决方案概览](docs/business/SOLUTION_OVERVIEW.md) - 智慧农业全链路核心价值
+- [史诗与用户故事](docs/business/EPICS_AND_USER_STORIES.md) - 完整的功能需求清单
+- [模块开发计划](docs/business/MODULE_PLAN.md) - 模块矩阵与职责定义
+- [业务流程规范](docs/business/BUSINESS_PROCESS_SPEC.md) - E2E 业务流程设计
 
-1. 安装依赖模块：
-   ```bash
-   # 安装基础模块
-   pip install odoo19
-   ```
+### 🏗️ 架构与设计 (Architecture & Design)
+- [系统架构概览](docs/architecture/SYSTEM_ARCHITECTURE.md)
+- [应用架构设计](docs/architecture/APPLICATION_ARCHITECTURE.md)
+- [UI/UX 设计规范](docs/architecture/UI_UX_SPEC.md)
+- [菜单架构总结](docs/architecture/MENU_ARCHITECTURE_PROJECT_SUMMARY.md)
 
-2. 安装农场管理系统模块：
-   ```bash
-   # 在 Odoo 配置中添加模块路径
-   --addons-path=addons,/path/to/farm/modules
-   ```
+### 🛡️ 权限与安全 (Security)
+- [三层用户组设计](docs/security/THREE_TIER_USER_GROUPS_DESIGN.md)
+- [用户组权限矩阵](docs/security/USER_GROUPS_DESIGN.md)
 
-3. 启用模块：
-   - 在 Odoo 应用商店中安装所需模块
-   - 配置用户权限和角色
+### 🛠️ 技术开发 (Technical)
+- [开发规约](docs/technical/DEVELOPMENT_CONVENTIONS.md)
+- [数据模型规范](docs/technical/DATA_SCHEMA_SPEC.md)
+- [Odoo 映射指南](docs/technical/ODOO_MAPPING_SPEC.md)
+
+### ✅ 验证与审计 (Verification)
+- [功能测试规范](docs/verification/FUNCTIONAL_TEST_SPEC.md)
+- [验证报告汇总](docs/verification/USER_GROUPS_VERIFICATION_REPORT.md)
+
+---
 
 ## 许可证
-
-本项目采用 LGPL-3 许可证，允许自由使用、修改和分发。
+本项目采用 LGPL-3 许可证。
 
 ## 联系方式
-
-如需技术支持或功能定制，请联系项目团队。
+Jeffery - [项目团队]
