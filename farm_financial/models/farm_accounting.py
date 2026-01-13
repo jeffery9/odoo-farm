@@ -79,3 +79,35 @@ class ProcessingCostAllocation(models.Model):
                     'unit_amount': 1,
                 })
         return True
+
+class AgriCostWIPTransfer(models.AbstractModel):
+    """
+    US-14-15: 生产性生物资产成本归集与结转逻辑
+    """
+    _name = 'farm.cost.wip.transfer'
+    _description = 'WIP to Finished Goods Cost Transfer'
+
+    def action_transfer_wip_to_lot(self, task_id, lot_id):
+        """
+        在收获结转时，将归集的 WIP 总成本分配至产出批次
+        """
+        if not task_id.analytic_account_id:
+            return 0.0
+            
+        # 1. 汇总该任务下的所有分析行成本 (支出为负)
+        analytic_lines = self.env['account.analytic.line'].search([
+            ('account_id', '=', task_id.analytic_account_id.id)
+        ])
+        total_wip_cost = abs(sum(analytic_lines.mapped('amount')))
+        
+        if total_wip_cost > 0 and lot_id:
+            # 2. 将成本分摊到批次 (存储在 lot 的成本价字段，或通过 valuation 调整)
+            # 假设批次有标准成本字段
+            if hasattr(lot_id, 'standard_price'):
+                # 按产量分摊 (简单实现：总量分摊)
+                lot_id.write({'standard_price': total_wip_cost / (lot_id.product_qty or 1.0)})
+                
+            # 记录审计日志
+            lot_id.message_post(body=_("WIP COST TRANSFERRED: %s total cost absorbed from task %s") % (total_wip_cost, task_id.name))
+            
+        return total_wip_cost
