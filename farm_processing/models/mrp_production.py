@@ -97,8 +97,15 @@ class MrpProduction(models.Model):
             raw_lots = mo.move_raw_ids.mapped('lot_ids') | mo.harvest_lot_ids
             if raw_lots:
                 main_raw_lot = raw_lots[0]
+                # 计算全路径：当前上游路径 + 本次批次 ID
+                upstream_path = main_raw_lot.full_traceability_path or ""
+                new_path = f"{upstream_path}/{main_raw_lot.id}" if upstream_path else str(main_raw_lot.id)
+                
                 for finished_move in mo.move_finished_ids:
                     for finished_lot in finished_move.lot_ids:
-                        finished_lot.parent_lot_id = main_raw_lot.id
+                        finished_lot.write({
+                            'parent_lot_id': main_raw_lot.id,
+                            'full_traceability_path': new_path
+                        })
                         
-        return super().button_mark_done()
+        return super(MrpProduction, self).button_mark_done()
