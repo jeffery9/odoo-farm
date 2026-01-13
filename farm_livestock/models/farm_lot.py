@@ -1,5 +1,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class FarmLot(models.Model):
     _inherit = 'stock.lot'
@@ -18,7 +21,7 @@ class FarmLot(models.Model):
     # US-03-01: 生长预测与饲喂核销
     start_weight = fields.Float("Initial Weight (kg)")
     current_predicted_weight = fields.Float("Predicted Weight (kg)", compute='_compute_predicted_weight', store=True)
-    average_daily_gain = fields.Float("ADG (kg/day)", default=0.5, help="Average Daily Gain")
+    average_daily_gain = fields.Float("Average Daily Gain (kg/day)", default=0.5)
     
     active_feeding_bom_id = fields.Many2one('mrp.bom', string="Active Feeding Recipe", 
                                            domain="[('type', '=', 'normal'), ('intervention_type', '=', 'feeding')]")
@@ -52,6 +55,8 @@ class FarmLot(models.Model):
             # 自动确认完成，触发库存冲减
             intervention.button_mark_done()
             _logger.info("Daily feed depletion recorded for lot %s using BOM %s", lot.name, lot.active_feeding_bom_id.name)
+
+    def action_record_mortality(self, qty, reason, notes=None):
         """ 记录减员并发布审计消息 """
         self.ensure_one()
         if qty <= 0:
