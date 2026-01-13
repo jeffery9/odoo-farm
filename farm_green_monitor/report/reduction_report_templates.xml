@@ -6,33 +6,33 @@
                 <t t-call="web.external_layout">
                     <div class="page">
                         <div class="text-center">
-                            <h2>Fertilizer & Pesticide Reduction Audit Report</h2>
-                            <h3>Fertilizer &amp; Pesticide Reduction Assessment Report</h3>
+                            <h2>化肥 / Fertilizer & 农药 / Pesticide 减量比例 / Reduction Audit Report</h2>
+                            <h3>化肥 / Fertilizer &amp; 农药 / Pesticide 减量比例 / Reduction Assessment Report</h3>
                         </div>
 
                         <table class="table table-sm table-bordered mt32">
                             <tr>
-                                <td><strong>Campaign Name:</strong></td>
+                                <td><strong>产季名称 / Campaign Name:</strong></td>
                                 <td><span t-field="doc.name"/></td>
-                                <td><strong>Start Date:</strong></td>
+                                <td><strong>起始日期 / Start Date:</strong></td>
                                 <td><span t-field="doc.date_start"/></td>
                             </tr>
                         </table>
 
-                        <h3 class="mt32">Fertilizer Usage Comparison:</h3>
+                        <h3 class="mt32">化肥使用量对比 / 化肥 / Fertilizer Usage Comparison:</h3>
                         <table class="table table-sm table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Metric</th>
-                                    <th>本季 (kg) / This Season (kg/mu)</th>
-                                    <th>上季 (kg) / Last Season (kg/mu)</th>
-                                    <th>Reduction (%)</th>
+                                    <th>指标 / Metric</th>
+                                    <th>本季 (kg) / 本季 / This Season (kg/mu)</th>
+                                    <th>上季 (kg) / 上季 / Last Season (kg/mu)</th>
+                                    <th>减量比例 / Reduction (%)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <t t-set="data" t-value="get_reduction_data(doc)"/>
                                 <tr>
-                                    <td><strong>Fertilizer</strong></td>
+                                    <td><strong>化肥 / Fertilizer</strong></td>
                                     <td><span t-esc="data['fertilizer_this_season']"/></td>
                                     <td><span t-esc="data['fertilizer_prev_season']"/></td>
                                     <td>
@@ -45,19 +45,19 @@
                             </tbody>
                         </table>
 
-                        <h3 class="mt32">Pesticide Usage Comparison:</h3>
+                        <h3 class="mt32">农药使用量对比 / 农药 / Pesticide Usage Comparison:</h3>
                         <table class="table table-sm table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Metric</th>
-                                    <th>本季 (kg) / This Season (kg/mu)</th>
-                                    <th>上季 (kg) / Last Season (kg/mu)</th>
-                                    <th>Reduction (%)</th>
+                                    <th>指标 / Metric</th>
+                                    <th>本季 (kg) / 本季 / This Season (kg/mu)</th>
+                                    <th>上季 (kg) / 上季 / Last Season (kg/mu)</th>
+                                    <th>减量比例 / Reduction (%)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><strong>Pesticide</strong></td>
+                                    <td><strong>农药 / Pesticide</strong></td>
                                     <td><span t-esc="data['pesticide_this_season']"/></td>
                                     <td><span t-esc="data['pesticide_prev_season']"/></td>
                                     <td>

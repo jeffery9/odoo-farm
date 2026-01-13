@@ -45,7 +45,7 @@
                                 </t-foreach>
                             </t>
                             <t t-else="">
-                                <p>未进行第三方检测，No third-party testing, producer's commitment only.</p>
+                                <p>未进行第三方检测，仅为生产者承诺 / No third-party testing, producer's commitment only.</p>
                             </t>
                         </td>
                     </tr>
