@@ -14,7 +14,8 @@
     'data': [
         'security/ir.model.access.csv',
         'data/ir_cron_data.xml',
-        'views/farm_lot_views.xml',
+        'views/livestock_lot_views.xml',
+        'views/livestock_feeding_views.xml',
     ],
     'demo': [
         'data/farm_livestock_demo.xml',

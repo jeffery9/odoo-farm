@@ -18,10 +18,54 @@ class AgriIntervention(models.Model):
         ('fertilizing', 'Fertilizing (施肥)'),
         ('irrigation', 'Irrigation (灌溉)'),
         ('protection', 'Crop Protection (植保)'),
+        ('aerial_spraying', 'Aerial Spraying (无人机飞防)'),
         ('harvesting', 'Harvesting (收获)'),
         ('feeding', 'Feeding (饲喂)'),
         ('medical', 'Medical/Prevention (医疗/防疫)'),
     ], string="Intervention Type")
+
+    def action_export_drone_kml(self):
+        """ US-22-03: 将地块 GIS 边界导出为无人机可识别的 KML 文件 """
+        self.ensure_one()
+        import base64
+        # 1. 查找关联地块
+        parcel = self.agri_task_id.land_parcel_id or self.location_dest_id
+        if not parcel or not parcel.gps_coordinates:
+            raise UserError(_("No GIS boundaries defined for the selected land parcel!"))
+        
+        # 2. 生成 KML 模版内容
+        kml_content = f"""<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<kml xmlns=\"http://www.opengis.net/kml/2.2\">
+  <Document>
+    <name>Drone Route for {self.name}</name>
+    <Placemark>
+      <name>{parcel.name}</name>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>
+              {parcel.gps_coordinates.replace(';', ' ')}
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Document>
+</kml>"""
+        
+        # 3. 创建附件
+        attachment = self.env['ir.attachment'].create({
+            'name': f"{self.name}_route.kml",
+            'type': 'binary',
+            'datas': base64.b64encode(kml_content.encode('utf-8')),
+            'mimetype': 'application/vnd.google-earth.kml+xml',
+        })
+        
+        return {
+            'type': 'ir.actions.act_url',
+            'url': f'/web/content/{attachment.id}?download=true',
+            'target': 'self',
+        }
 
     # Ekylibre Mapping: Intervention Parameters [US-Mapping]
     doer_ids = fields.Many2many('hr.employee', string="Doers/Workers")
@@ -140,9 +184,20 @@ class AgriIntervention(models.Model):
                 
         return super(AgriIntervention, self).action_confirm()
 
+    # 无人机作业反馈 [US-22-04]
+    actual_flight_area = fields.Float("Actual Flown Area (mu/ha)")
+    drone_id = fields.Many2one('maintenance.equipment', string="Drone Used", domain="[('is_drone', '=', True)]")
+
     def button_mark_done(self):
-        """ Extend the done logic to handle graded harvesting outputs and trigger quality check [US-05-02]. """
+        """ Extend the done logic to handle drone spraying depletion and graded outputs. """
         for intervention in self:
+            # US-22-04: 无人机飞防自动核销
+            if intervention.intervention_type == 'aerial_spraying' and intervention.actual_flight_area > 0:
+                for move in intervention.move_raw_ids:
+                    # 根据实际作业面积动态调整原材料需求量
+                    # 假设配方中 product_uom_qty 是针对 1 亩设计的
+                    move.product_uom_qty = intervention.actual_flight_area * (move.bom_line_id.product_qty if move.bom_line_id else 1.0)
+
             if intervention.intervention_type == 'harvesting':
                 # Handle graded quantities logic
                 total_graded_qty = intervention.grade_a_qty + intervention.grade_b_qty + intervention.grade_c_qty

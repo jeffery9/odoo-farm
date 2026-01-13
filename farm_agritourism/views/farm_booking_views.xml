@@ -13,6 +13,50 @@
         </field>
     </record>
 
+    <!-- Kanban View for Mobile [US-UX] -->
+    <record id="farm_booking_view_kanban" model="ir.ui.view">
+        <field name="name">farm.booking.kanban</field>
+        <field name="model">farm.booking</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" default_group_by="state">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="date_start"/>
+                <field name="booking_type"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_record_top">
+                                <strong class="o_kanban_record_title"><field name="partner_id"/></strong>
+                                <span class="badge rounded-pill bg-info float-end"><field name="booking_type"/></span>
+                            </div>
+                            <div class="o_kanban_record_body">
+                                <div>Ref: <field name="name"/></div>
+                                <div class="text-muted"><i class="fa fa-calendar"/> <field name="date_start"/></div>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <field name="state" widget="label_selection" options="{'classes': {'draft': 'default', 'confirmed': 'success', 'done': 'primary'}}"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Pivot View for Analytics [US-UX] -->
+    <record id="farm_booking_view_pivot" model="ir.ui.view">
+        <field name="name">farm.booking.pivot</field>
+        <field name="model">farm.booking</field>
+        <field name="arch" type="xml">
+            <pivot string="Booking Analysis">
+                <field name="booking_date" interval="month" type="col"/>
+                <field name="booking_type" type="row"/>
+                <field name="resource_id" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
     <record id="farm_booking_view_tree" model="ir.ui.view">
         <field name="name">farm.booking.list</field>
         <field name="model">farm.booking</field>
@@ -73,7 +117,7 @@
     <record id="action_farm_booking" model="ir.actions.act_window">
         <field name="name">Activity Bookings</field>
         <field name="res_model">farm.booking</field>
-        <field name="view_mode">calendar,list,form</field>
+        <field name="view_mode">calendar,kanban,list,form,pivot</field>
     </record>
 
     <record id="action_farm_resource" model="ir.actions.act_window">
