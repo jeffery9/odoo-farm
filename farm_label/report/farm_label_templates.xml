@@ -73,4 +73,53 @@
             </div>
         </t>
     </template>
+
+    <!-- 4. GB 7718 Food Label (Standard) -->
+    <template id="report_gb7718_food_label">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="lot">
+                    <div style="width: 100mm; border: 1.5px solid #000; padding: 5mm; margin-bottom: 5mm; font-family: sans-serif; font-size: 10pt;">
+                        <h2 t-field="lot.product_id.name" style="text-align: center; border-bottom: 1px solid #000; padding-bottom: 2mm;"/>
+                        
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <strong>Ingredients:</strong> <span t-field="lot.product_id.ingredient_list"/>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-1">
+                            <div class="col-6"><strong>Net Content:</strong> <span t-field="lot.net_content"/></div>
+                            <div class="col-6"><strong>Production Date:</strong> <span t-field="lot.create_date" t-options='{"widget": "date"}'/></div>
+                        </div>
+
+                        <div class="row mt-1">
+                            <div class="col-6"><strong>Shelf Life:</strong> <span t-field="lot.product_id.shelf_life_days"/> Days</div>
+                            <div class="col-6"><strong>Standard Code:</strong> <span t-field="lot.product_id.food_standard_code"/></div>
+                        </div>
+
+                        <div class="row mt-1">
+                            <div class="col-12"><strong>Storage:</strong> <span t-field="lot.product_id.storage_condition"/></div>
+                        </div>
+
+                        <div class="row mt-1">
+                            <div class="col-12"><strong>Producer:</strong> <span t-field="lot.producer_id.name"/></div>
+                            <div class="col-12"><strong>License No:</strong> <span t-field="lot.product_id.production_license_no"/></div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-8">
+                                <strong>Batch No:</strong> <span t-field="lot.name"/><br/>
+                                <img t-att-src="'/report/barcode/?barcode_type=Code128&amp;value=%s&amp;width=200&amp;height=30' % lot.name" style="width:50mm;height:8mm;"/>
+                            </div>
+                            <div class="col-4 text-center">
+                                <img t-att-src="'/report/barcode/?barcode_type=QR&amp;value=%s&amp;width=100&amp;height=100' % lot.traceability_url" style="width:20mm;height:20mm;"/>
+                                <div style="font-size: 7pt;">Trace Source</div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
 </odoo>
