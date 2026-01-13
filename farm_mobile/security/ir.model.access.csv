@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_mobile_res_users,mobile.res.users,base.model_res_users,farm_core.group_farm_worker,1,0,0,0access_farm_evidence_user,farm.evidence user,model_farm_evidence,base.group_user,1,1,1,1
 access_farm_evidence_user,farm.evidence user,model_farm_evidence,base.group_user,1,1,1,1
+access_farm_submission_user,farm.checklist.submission user,model_farm_checklist_submission,base.group_user,1,1,1,1
+access_farm_submission_line_user,farm.checklist.submission.line user,model_farm_checklist_submission_line,base.group_user,1,1,1,1

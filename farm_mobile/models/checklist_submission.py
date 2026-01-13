@@ -18,8 +18,8 @@ class FarmChecklistSubmission(models.Model):
     line_ids = fields.One2many('farm.checklist.submission.line', 'submission_id', string="Details")
     
     state = fields.Selection([
-        ('pass', 'Pass'),
-        ('fail', 'Fail')
+        ('pass', 'Pass (安全)'),
+        ('fail', 'Fail (存在隐患)')
     ], string="Result", compute='_compute_state', store=True)
 
     @api.model_create_multi

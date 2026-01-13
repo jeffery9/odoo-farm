@@ -14,6 +14,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/farm_equipment_views.xml',
+        'views/equipment_checklist_views.xml',
     ],
     'installable': True,
     'application': False,
