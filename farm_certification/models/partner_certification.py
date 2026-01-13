@@ -44,18 +44,25 @@ class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
     def button_confirm(self):
-        """ US-09-06: 供应商合规资质硬核查 """
+        """ US-09-06: 供应商合规资质硬核查 + Activity 驱动工作流 """
         today = fields.Date.today()
         for order in self:
-            # 只有当产品类别涉及合规要求时（如种子、农药）才强制核查
-            # 这里简化为：如果供应商有任何农事证书记录，则必须有一张在有效期内
             if order.partner_id.agri_certification_ids:
                 valid_certs = order.partner_id.agri_certification_ids.filtered(
                     lambda c: c.state == 'valid' and c.date_expiry >= today
                 )
                 if not valid_certs:
+                    # 1. 创建合规补全 Activity [Workflow]
+                    compliance_user = self.env.ref('farm_core.group_farm_admin').users[:1] # 演示逻辑：发给农场管理员
+                    order.activity_schedule(
+                        'mail.mail_activity_data_todo',
+                        summary=_('供应商资质过期：需补全 [%s]') % order.partner_id.name,
+                        note=_('该订单涉及核心农资采购，但供应商资质已失效。请立即更新资质文档，否则订单无法继续执行。'),
+                        user_id=compliance_user.id if compliance_user else self.env.user.id
+                    )
+                    # 2. 抛出警告但不强制锁死，改为由 Activity 驱动后续动作
                     raise ValidationError(_(
-                        "CORE-CLOSURE: 供应商 [%s] 的农业资质证书已过期或无效.\n"
-                        "根据合规要求，严禁从资质失效的供应商处采购核心农资。"
+                        "CORE-CLOSURE: 供应商 [%s] 农业资质已过期.\n"
+                        "已自动为合规专员创建待办任务，请更新资质后再试。"
                     ) % order.partner_id.name)
         return super(PurchaseOrder, self).button_confirm()
