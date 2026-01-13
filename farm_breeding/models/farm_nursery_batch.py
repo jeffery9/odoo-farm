@@ -30,6 +30,10 @@ class FarmNurseryBatch(models.Model):
         ('failed', 'Failed (失败)')
     ], string="Status", default='germinating', tracking=True)
 
+    # 库位信息 [US-10-01]
+    location_src_id = fields.Many2one('stock.location', string="Nursery Location", help="Seedling room/area")
+    location_dest_id = fields.Many2one('stock.location', string="Production Area", help="Final field/plot")
+
     @api.depends('sowing_date')
     def _compute_seedling_age(self):
         today = date.today()
@@ -53,33 +57,46 @@ class FarmNurseryBatch(models.Model):
             batch.current_count = batch.quantity * (batch.survival_rate / 100.0)
 
     def action_create_transplant_task(self):
-        """ 一键转化为大田移栽任务并生成移库单 """
+        """ 一键转化为大田移栽任务并生成移库单 [US-10-01] """
         self.ensure_one()
+        from odoo.exceptions import UserError
+        if not self.location_src_id or not self.location_dest_id:
+            raise UserError(_("Please define Nursery and Production locations before transplanting."))
         
-        # 1. 创建任务
-        task_vals = {
+        # 1. 创建移栽任务
+        task = self.env['project.task'].create({
             'name': _('Transplant Task: %s') % self.name,
-            'description': _('Transplanting %s seedlings. Variety: %s') % (self.current_count, self.product_id.display_name),
+            'description': _('Transplanting %s seedlings. Age: %s days.') % (self.current_count, self.seedling_age),
             'project_id': self.env['project.project'].search([('activity_family', '=', 'planting')], limit=1).id,
-            'size_value': self.target_land_area,
-        }
-        task = self.env['project.task'].create(task_vals)
+            'land_parcel_id': self.location_dest_id.id,
+        })
         
-        # 2. 生成内部调拨 (从育苗室到生产区)
+        # 2. 生成内部调拨单 (Stock Picking)
         picking_type = self.env['stock.picking.type'].search([('code', '=', 'internal')], limit=1)
-        if picking_type:
-            self.env['stock.picking'].create({
-                'picking_type_id': picking_type.id,
-                'origin': self.name,
-                'move_ids': [(0, 0, {
-                    'name': self.name,
-                    'product_id': self.product_id.id,
-                    'product_uom_qty': self.current_count,
-                    'product_uom': self.product_id.uom_id.id,
-                    'location_id': self.env.ref('stock.stock_location_stock').id, # 简化示例
-                    'location_dest_id': self.env.ref('stock.stock_location_stock').id,
-                })]
-            })
+        if not picking_type:
+            picking_type = self.env['stock.picking.type'].search([('sequence_code', '=', 'INT')], limit=1)
+
+        picking = self.env['stock.picking'].create({
+            'picking_type_id': picking_type.id if picking_type else False,
+            'location_id': self.location_src_id.id,
+            'location_dest_id': self.location_dest_id.id,
+            'origin': self.name,
+            'move_ids': [(0, 0, {
+                'name': _('Seedling Transfer: %s') % self.name,
+                'product_id': self.product_id.id,
+                'product_uom_qty': self.current_count,
+                'product_uom': self.product_id.uom_id.id,
+                'location_id': self.location_src_id.id,
+                'location_dest_id': self.location_dest_id.id,
+            })]
+        })
+        picking.action_confirm() # 确认调拨
 
         self.write({'state': 'transplanted'})
-        return task
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'project.task',
+            'res_id': task.id,
+            'view_mode': 'form',
+            'target': 'current',
+        }

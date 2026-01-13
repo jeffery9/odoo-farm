@@ -51,3 +51,14 @@ class FarmLotBreeding(models.Model):
         for lot in self:
             scores = lot.trait_value_ids.mapped('score')
             lot.trait_score_avg = sum(scores) / len(scores) if scores else 0.0
+
+    def action_compare_traits(self):
+        """ 弹出性状对比向导 [US-10-02] """
+        return {
+            'name': _('Trait Performance Comparison'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'farm.trait.comparison.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {'default_lot_ids': self.ids}
+        }
