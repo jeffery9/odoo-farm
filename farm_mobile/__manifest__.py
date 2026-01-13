@@ -3,6 +3,7 @@
     'version': '1.0',
     'category': 'Industries/Agriculture',
     'summary': 'Mobile Field Operations and Hardware Integration',
+    'icon': '/farm_mobile/static/description/icon.svg',
     'description': """
         Mobile capabilities for Odoo 19 Farm System.
         - Hardware Integration: GPS, Camera [US-24-01, US-24-04]

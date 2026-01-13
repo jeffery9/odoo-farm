@@ -2,7 +2,8 @@
     'name': 'Farm Processing Management',
     'version': '1.1',
     'category': 'Industries/Agriculture',
-    'summary': 'Agricultural Product Processing & Transformation',
+    'summary': 'Agricultural product sorting and deep processing',
+    'icon': '/farm_processing/static/description/icon.svg',
     'description': """
         Epic 14: Agri-Processing Management.
         

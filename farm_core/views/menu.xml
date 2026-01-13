@@ -3,6 +3,7 @@
     <!-- 主农场菜单 (顶级菜单) -->
     <menuitem id="menu_farm_root" 
               name="Farm Management" 
+              web_icon="farm_core,static/description/icon.svg"
               sequence="10"
               groups="farm_core.group_farm_user"/>
 
@@ -52,12 +53,14 @@
     <menuitem id="menu_planting_root" 
               name="Planting" 
               parent="menu_farm_root" 
+              web_icon="farm_planning,static/description/icon.svg"
               sequence="15"/>
 
     <!-- 加工根菜单 -->
     <menuitem id="menu_processing_root" 
               name="Processing" 
               parent="menu_farm_root" 
+              web_icon="farm_processing,static/description/icon.svg"
               sequence="40"/>
 
     <!-- 质量管理根菜单 -->

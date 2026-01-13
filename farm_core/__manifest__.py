@@ -3,6 +3,7 @@
     'version': '1.0',
     'category': 'Industries/Agriculture',
     'summary': 'Core Agricultural Master Data and Activity Classification',
+    'icon': '/farm_core/static/description/icon.svg',
     'description': """
         Base module for Odoo 19 Farm Management System.
         - Agricultural Activity Classification (US-01-01)

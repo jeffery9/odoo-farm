@@ -2,7 +2,8 @@
     'name': 'Farm Dashboard & Cockpit',
     'version': '1.0',
     'category': 'Industries/Agriculture',
-    'summary': 'Unified Dashboard for Farm Operations and Metrics',
+    'summary': 'Unified Management Dashboard for Odoo Farm',
+    'icon': '/farm_dashboard/static/description/icon.svg',
     'description': """
         Dashboard module for Odoo 19 Farm Management System.
         - Integrated view of production, inventory and weather
