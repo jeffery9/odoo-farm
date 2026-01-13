@@ -11,29 +11,29 @@
 
                 <table class="table table-sm table-bordered mt32">
                     <tr>
-                        <td><strong>Ledger No.:</strong></td>
+                        <td><strong>台账编号 / Ledger No.:</strong></td>
                         <td><span t-field="doc.ledger_no"/></td>
-                        <td><strong>Year:</strong></td>
+                        <td><strong>年份 / Year:</strong></td>
                         <td><span t-field="doc.year"/></td>
                     </tr>
                     <tr>
-                        <td><strong>Month:</strong></td>
+                        <td><strong>月份 / Month:</strong></td>
                         <td><span t-field="doc.month"/></td>
                         <td><strong>总处理量 (kg) / Total Disposed Qty (kg):</strong></td>
                         <td><span t-field="doc.total_quantity_disposed"/></td>
                     </tr>
                 </table>
 
-                <h3 class="mt32">Manure Batch Details:</h3>
+                <h3 class="mt32">粪污批次明细 / Manure Batch Details:</h3>
                 <table class="table table-sm table-bordered">
                     <thead>
                         <tr>
-                            <th>Batch No.</th>
-                            <th>Production Date</th>
-                            <th>数量 (kg) / Quantity (kg)</th>
-                            <th>Source</th>
-                            <th>Disposal Method</th>
-                            <th>Destination/Recipient</th>
+                            <th>批次号 / Batch No.</th>
+                            <th>产生日期 / Production Date</th>
+                            <th>数量 (kg) / 数量 / Quantity (kg)</th>
+                            <th>来源 / Source</th>
+                            <th>处理方式 / Disposal Method</th>
+                            <th>去向/接收方 / Destination/Recipient</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,7 +50,7 @@
                     </tbody>
                 </table>
                 <div class="mt-5 text-right">
-                    <p><strong>畜牧场主：</strong></p>
+                    <p><strong>畜牧场主（盖章）：</strong></p>
                     <p>____________________</p>
                     <p>（日期：<span t-esc="datetime.now().strftime('%Y年%m月%d日')"/>）</p>
                 </div>
