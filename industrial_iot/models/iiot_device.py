@@ -98,30 +98,35 @@ class IiotDevice(models.Model):
         }
 
     def get_topic_map(self):
-        """Generate complete Topic list"""
+        """
+        Generate complete Topic list with SaaS isolation [company_id prefix]
+        """
         self.ensure_one()
         if not self.profile_id:
             return {}
 
         profile = self.profile_id
         device_id = self.device_id
+        # 强制增加公司前缀，确保 SaaS 多租户隔离
+        prefix = f"company_{self.env.company.id}/"
 
         return {
-            'telemetry': profile.telemetry_topic_template.format(device=device_id),
-            'command': profile.command_topic_template.format(device=device_id),
-            'ota_notify': profile.ota_notify_topic_template.format(device=device_id),
-            'ota_status': profile.ota_status_topic_template.format(device=device_id),
+            'telemetry': prefix + profile.telemetry_topic_template.format(device=device_id),
+            'command': prefix + profile.command_topic_template.format(device=device_id),
+            'ota_notify': prefix + profile.ota_notify_topic_template.format(device=device_id),
+            'ota_status': prefix + profile.ota_status_topic_template.format(device=device_id),
         }
 
     def send_command(self, action, **params):
-        """Send command"""
+        """Send command with SaaS isolation"""
         self.ensure_one()
 
         if not self.profile_id:
             raise UserError(_("Device not associated with communication profile"))
 
-        # Get command topic
-        command_topic = self.profile_id.command_topic_template.format(device=self.device_id)
+        # Get command topic with prefix
+        prefix = f"company_{self.env.company.id}/"
+        command_topic = prefix + self.profile_id.command_topic_template.format(device=self.device_id)
 
         # Render command message using Jinja2 template
         try:
