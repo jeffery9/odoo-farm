@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mrp_bom_form_inherit_farm_v2" model="ir.ui.view">
+        <field name="name">mrp.bom.form.inherit.farm.v2</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="processing_type"/>
+                <field name="industry_type"/>
+                <field name="is_parameter_required"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Agri-Process Standards">
+                    <group>
+                        <group string="Industry Targets">
+                            <field name="target_temp" invisible="not is_parameter_required"/>
+                            <field name="target_ph" invisible="not is_parameter_required"/>
+                            <field name="target_brix" invisible="not is_parameter_required"/>
+                            <field name="target_proofing_time" invisible="not is_parameter_required"/>
+                            <field name="standard_duration" invisible="not is_parameter_required"/>
+                        </group>
+                        <group string="Safety &amp; Yield">
+                            <field name="haccp_instructions"/>
+                        </group>
+                    </group>
+                    <field name="grade_distribution_ids">
+                        <tree editable="bottom">
+                            <field name="quality_grade"/>
+                            <field name="expected_percentage"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='bom_line_ids']/tree/field[@name='product_id']" position="after">
+                <field name="ingredient_role"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
