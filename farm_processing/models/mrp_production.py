@@ -103,19 +103,33 @@ class MrpProduction(models.Model):
             
             # 2. 关键工艺质量硬拦截 [US-14-19] (Core-Closure)
             if mo.process_mode == 'fermentation' and (mo.ph_level < 3.0 or mo.ph_level > 4.5):
+                # 创建异常处置 Activity [Workflow]
+                mo.activity_schedule(
+                    'mail.mail_activity_data_todo',
+                    summary=_('质控拦截：发酵 pH 值异常 [%s]') % mo.ph_level,
+                    note=_('发酵过程 pH 值超出安全范围。请指派技术员执行【异常处理】流程，或手动授权报废。'),
+                    user_id=mo.user_id.id
+                )
                 from odoo.exceptions import ValidationError
                 raise ValidationError(_(
                     "CORE-CLOSURE: 关键质量拦截 (熔断)。\n"
                     "当前发酵液 pH 值为 %s，超出了安全范围 (3.0 - 4.5)。\n"
-                    "严禁将质量异常的半成品标记为完成，请执行【报废】或【异常处理】流程。"
+                    "已自动为车间主管创建异常处置待办事项。"
                 ) % mo.ph_level)
 
             if mo.process_mode == 'sterilization' and mo.process_temperature < 121.0:
+                # 创建异常处置 Activity [Workflow]
+                mo.activity_schedule(
+                    'mail.mail_activity_data_todo',
+                    summary=_('质控拦截：杀菌温度不达标 [%s℃]') % mo.process_temperature,
+                    note=_('该批次杀菌温度未达到 121.0℃。严禁直接入库，请执行重新杀菌或降级处理流程。'),
+                    user_id=mo.user_id.id
+                )
                 from odoo.exceptions import ValidationError
                 raise ValidationError(_(
                     "CORE-CLOSURE: 杀菌温度不合规。\n"
-                    "实际杀菌温度为 %s℃，未达到工艺要求的 121.0℃ 瞬时杀菌标准。\n"
-                    "该批次存在微生物超标风险，严禁标记为完成。"
+                    "实际杀菌温度为 %s℃，未达到工艺要求的 121.0℃ 标准。\n"
+                    "该批次存在风险，已创建异常处置待办事项。"
                 ) % mo.process_temperature)
 
             # 3. 建立溯源关联

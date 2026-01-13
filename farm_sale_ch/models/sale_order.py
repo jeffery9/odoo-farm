@@ -280,9 +280,16 @@ class SaleOrder(models.Model):
                 product = line.product_id
                 # 检查产品模板层级的设定
                 if product.agri_generation in ['g0', 'g1', 'g2']:
+                    # 创建审核 Activity [Workflow]
+                    order.activity_schedule(
+                        'mail.mail_activity_data_todo',
+                        summary=_('繁育代次合规预警：[%s]') % product.name,
+                        note=_('检测到尝试销售非商品级产品 (%s)。请核实该操作是否获得特殊授权。') % product.agri_generation.upper(),
+                        user_id=order.user_id.id # 暂时指派给销售员自己，实际应指派给经理
+                    )
                     raise ValidationError(_(
                         "硬拦截：禁止销售非商品级繁育代次批次。\n"
-                        "产品 [%s] 的代次为 %s，属于内部研发或繁育储备，严禁直接售卖给外部客户。"
+                        "产品 [%s] 的代次为 %s，属于内部研发或繁育储备，严禁直接售卖。"
                     ) % (product.display_name, product.agri_generation.upper()))
                 
                 # 如果有具体批次，检查批次层级的设定
