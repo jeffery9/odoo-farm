@@ -1,5 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_douyin_account,douyin.account,model_douyin_account,farm_core.group_farm_user,1,1,1,1
+access_douyin_product,douyin.product,model_douyin_product,farm_core.group_farm_user,1,1,1,1
 access_live_streaming_session,live.streaming.session,model_live_streaming_session,farm_core.group_farm_user,1,1,1,1
 access_product_sync,product.sync,model_product_sync,farm_core.group_farm_user,1,1,1,1
 access_live_order,live.order,model_live_order,farm_core.group_farm_user,1,1,1,1

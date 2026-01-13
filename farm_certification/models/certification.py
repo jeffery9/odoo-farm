@@ -13,19 +13,28 @@ class FarmLocationCert(models.Model):
     ], string="Certification Level", default='conventional', tracking=True)
     
     conversion_start_date = fields.Date("Conversion Start Date")
+    last_prohibited_substance_date = fields.Date("Last Prohibited Substance Date", 
+                                               help="Automatically updated when a non-organic input is used.")
     conversion_target_days = fields.Integer("Target Conversion Days", default=1095) # 默认3年
-    conversion_progress = fields.Float("Conversion Progress (%)", compute='_compute_conversion_progress')
+    conversion_progress = fields.Float("Conversion Progress (%)", compute='_compute_conversion_progress', store=True)
     
-    certificate_number = fields.Char("Certificate No.")
-    certificate_expiry = fields.Date("Certificate Expiry")
-
-    @api.depends('conversion_start_date', 'conversion_target_days')
+    @api.depends('conversion_start_date', 'last_prohibited_substance_date', 'conversion_target_days')
     def _compute_conversion_progress(self):
         today = date.today()
         for loc in self:
-            if loc.conversion_start_date and loc.conversion_target_days > 0:
-                delta = (today - loc.conversion_start_date).days
-                loc.conversion_progress = min(100.0, (delta / loc.conversion_target_days) * 100.0)
+            # 转换起始点取“申报开始日期”和“最后一次违规施用日期”中的较晚者
+            start_point = loc.conversion_start_date
+            if loc.last_prohibited_substance_date:
+                if not start_point or loc.last_prohibited_substance_date > start_point:
+                    start_point = loc.last_prohibited_substance_date
+            
+            if start_point and loc.conversion_target_days > 0:
+                delta = (today - start_point).days
+                loc.conversion_progress = max(0.0, min(100.0, (delta / loc.conversion_target_days) * 100.0))
+                
+                # 如果进度达到100%，自动升级状态
+                if loc.conversion_progress == 100.0 and loc.certification_level == 'organic_transition':
+                    loc.certification_level = 'organic'
             else:
                 loc.conversion_progress = 0.0
 
