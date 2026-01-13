@@ -22,6 +22,14 @@ class AccessibilitySettings(models.Model):
     reduced_motion = fields.Boolean('Reduced Motion', help='Reduce animations and motion effects')
     color_blind_mode = fields.Boolean('Color Blind Mode', help='Adjust colors for color blindness')
     voice_navigation = fields.Boolean('Voice Navigation', help='Enable voice-based navigation')
+    font_family_preference = fields.Char('Font Family Preference', help='Preferred font family for accessibility')
+    alternative_input_method = fields.Selection([
+        ('none', 'None'),
+        ('voice', 'Voice Control'),
+        ('switch', 'Switch Control'),
+        ('eye_tracking', 'Eye Tracking'),
+    ], string='Alternative Input Method', default='none')
+    voice_control_enabled = fields.Boolean('Voice Control Enabled', help='Enable voice commands')
     custom_color_scheme = fields.Char('Custom Color Scheme', help='Custom CSS for color adjustments')
     is_active = fields.Boolean('Is Active', default=True)
     last_updated = fields.Datetime('Last Updated', default=fields.Datetime.now)

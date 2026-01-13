@@ -3,8 +3,7 @@ from . import form_layout_template
 from . import visual_status_indicator
 from . import workspace_customization
 from . import contextual_help
-from . import faq_entry
-from . import agricultural_knowledge
 from . import multi_sensory_interaction
 from . import farm_social_network
 from . import accessibility_settings
+from . import integration
