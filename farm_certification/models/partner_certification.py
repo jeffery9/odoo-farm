@@ -29,7 +29,7 @@ class FarmPartnerCertification(models.Model):
         ('organic', 'Organic (有机)'),
         ('green', 'Green Food (绿色食品)'),
         ('gi', 'Geographical Indication (地理标志)'),
-        ('gap', 'GAP (良好农业规范)')
+        ('gap', 'GAP')
     ], string="Certification Type", required=True)
     cert_number = fields.Char("Certificate No.", required=True)
     date_start = fields.Date("Issue Date")
@@ -56,13 +56,13 @@ class PurchaseOrder(models.Model):
                     compliance_user = self.env.ref('farm_core.group_farm_admin').users[:1] # 演示逻辑：发给农场管理员
                     order.activity_schedule(
                         'mail.mail_activity_data_todo',
-                        summary=_('供应商资质过期：需补全 [%s]') % order.partner_id.name,
-                        note=_('该订单涉及核心农资采购，但供应商资质已失效。请立即更新资质文档，否则订单无法继续执行。'),
+                        summary=_('Supplier Certificate Expired: Completion Required [%s]') % order.partner_id.name,
+                        note=_('This order involves core agricultural inputs, but the supplier credentials have expired.Please update the qualification documents immediately, otherwise the order cannot proceed.'),
                         user_id=compliance_user.id if compliance_user else self.env.user.id
                     )
                     # 2. 抛出警告但不强制锁死，改为由 Activity 驱动后续动作
                     raise ValidationError(_(
-                        "CORE-CLOSURE: 供应商 [%s] 农业资质已过期.\n"
-                        "已自动为合规专员创建待办任务，请更新资质后再试。"
+                        "CORE-CLOSURE: 供应商 [%s] agricultural qualification has expired.\n"
+                        "A todo task has been automatically created for the compliance officer. Please update credentials and try again."
                     ) % order.partner_id.name)
         return super(PurchaseOrder, self).button_confirm()

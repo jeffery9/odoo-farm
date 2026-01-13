@@ -5,9 +5,9 @@ class MrpWorkcenter(models.Model):
 
     # 能耗核算基础 [US-14-04]
     energy_type = fields.Selection([
-        ('electricity', 'Electricity (电)'),
-        ('water', 'Water (水)'),
-        ('gas', 'Gas (气/煤)'),
+        ('electricity', 'Electricity'),
+        ('water', 'Water'),
+        ('gas', 'Gas'),
     ], string="Primary Energy Type")
     energy_cost_per_hour = fields.Float("Energy Cost per Hour")
 
