@@ -96,4 +96,64 @@
             </xpath>
         </field>
     </record>
+
+    <!-- Kanban View for Interventions -->
+    <record id="mrp_production_kanban_view_inherit_farm" model="ir.ui.view">
+        <field name="name">mrp.production.kanban.inherit.farm</field>
+        <field name="model">mrp.production</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="intervention_type"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_record_top">
+                                <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                <field name="state" widget="label_selection" options="{'classes': {'draft': 'default', 'confirmed': 'info', 'progress': 'warning', 'done': 'success'}}"/>
+                            </div>
+                            <div class="o_kanban_record_body">
+                                <div><i class="fa fa-tag me-1"/> <field name="intervention_type"/></div>
+                                <div><i class="fa fa-cube me-1"/> <field name="product_id"/></div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Calendar View for Interventions -->
+    <record id="mrp_production_calendar_view_inherit_farm" model="ir.ui.view">
+        <field name="name">mrp.production.calendar.inherit.farm</field>
+        <field name="model">mrp.production</field>
+        <field name="arch" type="xml">
+            <calendar string="Intervention Schedule" date_start="date_start" date_stop="date_finished" color="intervention_type" quick_create="0">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="intervention_type" filters="1"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Pivot View for Performance Analysis -->
+    <record id="mrp_production_pivot_view_inherit_farm" model="ir.ui.view">
+        <field name="name">mrp.production.pivot.inherit.farm</field>
+        <field name="model">mrp.production</field>
+        <field name="arch" type="xml">
+            <pivot string="Intervention Analysis" sample="1">
+                <field name="date_finished" interval="month" type="col"/>
+                <field name="intervention_type" type="row"/>
+                <field name="product_qty" type="measure"/>
+                <field name="total_agri_cost" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Update Action to include all views -->
+    <record id="mrp.mrp_production_action" model="ir.actions.act_window">
+        <field name="view_mode">list,kanban,form,calendar,pivot,graph</field>
+    </record>
 </odoo>
