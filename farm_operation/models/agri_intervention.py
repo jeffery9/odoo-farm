@@ -111,8 +111,13 @@ class AgriIntervention(models.Model):
             # 2. 劳动力成本 (基于工单或工时)
             labor = sum(mo.workorder_ids.mapped('duration')) / 60.0 * 50.0 # 假设 50/小时
             
-            # 3. 工具成本 (示例：基于工单中的工作中心费率)
+            # 3. 工具与机械成本 (基于工单或无人机作业面积)
             tools = sum(mo.workorder_ids.mapped(lambda w: w.duration / 60.0 * w.workcenter_id.costs_hour))
+            
+            # US-22-05: 累加无人机作业成本 (基于作业亩数 * 单位折旧/耗能)
+            if mo.intervention_type == 'aerial_spraying' and mo.drone_id:
+                # 假设每亩综合成本 5.0 (折旧+电池损耗)
+                tools += mo.actual_flight_area * 5.0
             
             mo.input_cost = inputs
             mo.doer_cost = labor
