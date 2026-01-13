@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="farm_mobile.CheckinButton" owl="1">
+        <div class="o_farm_mobile_checkin_container d-flex flex-column gap-2 mb-3">
+            <!-- 隐藏的相机调用 input -->
+            <input type="file" id="mobile_camera_input" accept="image/*" capture="camera" style="display:none;"/>
+            
+            <button class="btn btn-primary btn-lg p-4" 
+                    t-if="!props.record.data.current_check_in_id"
+                    t-att-disabled="state.is_loading"
+                    t-on-click="onSiteCheckin"
+                    style="font-size: 1.5rem; border-radius: 15px;">
+                <i class="fa fa-map-marker me-2"/>
+                <span t-if="!state.is_loading">🚩 Site Check-in (进场打卡)</span>
+                <span t-else="">Processing...</span>
+            </button>
+
+            <button class="btn btn-success btn-lg p-4" 
+                    t-att-disabled="state.is_loading"
+                    t-on-click="onCaptureEvidence"
+                    style="font-size: 1.5rem; border-radius: 15px;">
+                <i class="fa fa-camera me-2"/>
+                <span t-if="!state.is_loading">📸 Capture Evidence (拍照取证)</span>
+                <span t-else="">Processing...</span>
+            </button>
+
+            <div t-if="state.gps_info" class="text-center text-muted small">
+                <t t-esc="state.gps_info"/>
+            </div>
+        </div>
+    </t>
+</templates>

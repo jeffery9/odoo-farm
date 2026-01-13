@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="farm_checkin_view_list" model="ir.ui.view">
+        <field name="name">farm.checkin.list</field>
+        <field name="model">farm.checkin</field>
+        <field name="arch" type="xml">
+            <list string="Check-in Logs">
+                <field name="worker_id"/>
+                <field name="intervention_id"/>
+                <field name="check_in_time"/>
+                <field name="is_on_site" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_farm_checkin" model="ir.actions.act_window">
+        <field name="name">Site Check-in Logs</field>
+        <field name="res_model">farm.checkin</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- 移动端作业界面的打卡按钮注入 -->
+    <record id="mrp_production_form_view_inherit_mobile_checkin" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.mobile.checkin</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="farm_operation.mrp_production_form_view_inherit_farm_op"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="after">
+                <!-- 注入 OWL 硬件交互组件 -->
+                <div class="o_mobile_hardware_widget" invisible="state in ['done', 'cancel']">
+                    <widget name="farm_mobile_checkin"/>
+                </div>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_mobile_check_out" string="🏁 Site Check-out (签退)" type="object" class="btn-warning o_mobile_action" invisible="not current_check_in_id"/>
+                <field name="current_check_in_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Site Evidence" name="field_evidence">
+                    <field name="evidence_ids" readonly="1">
+                        <kanban>
+                            <field name="id"/>
+                            <field name="photo"/>
+                            <field name="name"/>
+                            <field name="taken_at"/>
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <div class="oe_kanban_global_click">
+                                        <div class="o_kanban_image">
+                                            <field name="photo" widget="image" options="{'zoom': true, 'preview_image': 'photo'}"/>
+                                        </div>
+                                        <div class="oe_kanban_details">
+                                            <strong><field name="name"/></strong>
+                                            <div><field name="taken_at"/></div>
+                                            <field name="is_on_site" widget="boolean_toggle"/>
+                                        </div>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                    </field>
+                </page>
+                <page string="Check-in History" name="checkins">
+                    <field name="check_in_ids" readonly="1">
+                        <list>
+                            <field name="check_in_time"/>
+                            <field name="check_out_time"/>
+                            <field name="is_on_site"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="menu_farm_mobile_checkin" name="Check-in Logs" parent="farm_core.menu_farm_root" action="action_farm_checkin" sequence="90"/>
+</odoo>

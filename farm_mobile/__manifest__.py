@@ -1,27 +1,33 @@
 {
-    'name': 'Farm Mobile Workbench',
+    'name': 'Farm Mobile',
     'version': '1.0',
     'category': 'Industries/Agriculture',
-    'summary': 'Mobile-first UI for Field Operations and Scanning',
+    'summary': 'Mobile Field Operations and Hardware Integration',
     'description': """
-        Mobile module for Odoo 19 Farm Management System.
-        - Field Operator Workbench (Large buttons, simplified tasks) [US-06-02]
-        - QR/Barcode Quick Actions (Scan to Feeding, Scan to Harvest) [US-02-03]
-        - Optimized Mobile Dashboards (PWA ready)
+        Mobile capabilities for Odoo 19 Farm System.
+        - Hardware Integration: GPS, Camera [US-24-01, US-24-04]
+        - Site Check-in and Geofencing Verification [US-24-02]
+        - Field Evidence Collection (Photo + GPS) [US-07-05]
+        - Automated Timesheet Sync [US-24-03]
     """,
     'author': 'Jeffery',
-    'depends': ['farm_operation', 'farm_livestock', 'farm_iot', 'web'],
+    'depends': ['farm_core', 'farm_operation', 'hr_timesheet'],
     'data': [
         'security/ir.model.access.csv',
-        'views/farm_mobile_menus.xml',
+        'data/ir_sequence_data.xml',
+        'views/farm_checkin_views.xml',
+        'views/farm_evidence_views.xml',
         'views/farm_mobile_dashboard_views.xml',
+        'views/farm_mobile_menus.xml',
     ],
     'assets': {
         'web.assets_backend': [
+            'farm_mobile/static/src/js/farm_mobile_checkin.js',
+            'farm_mobile/static/src/xml/farm_mobile_checkin.xml',
             'farm_mobile/static/src/scss/farm_mobile.scss',
         ],
     },
     'installable': True,
-    'application': True,
+    'application': False,
     'license': 'AGPL-3',
 }

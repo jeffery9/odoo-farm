@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="farm_evidence_view_list" model="ir.ui.view">
+        <field name="name">farm.evidence.list</field>
+        <field name="model">farm.evidence</field>
+        <field name="arch" type="xml">
+            <list string="Field Evidence">
+                <field name="taken_at"/>
+                <field name="worker_id"/>
+                <field name="res_model"/>
+                <field name="is_on_site" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="farm_evidence_view_kanban" model="ir.ui.view">
+        <field name="name">farm.evidence.kanban</field>
+        <field name="model">farm.evidence</field>
+        <field name="arch" type="xml">
+            <kanban sample="1">
+                <field name="id"/>
+                <field name="photo"/>
+                <field name="name"/>
+                <field name="taken_at"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <field name="photo" widget="image" options="{'zoom': true, 'preview_image': 'photo'}"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong><field name="name"/></strong>
+                                <div><field name="taken_at"/></div>
+                                <div><field name="worker_id"/></div>
+                                <field name="is_on_site" widget="boolean_toggle"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="farm_evidence_view_form" model="ir.ui.view">
+        <field name="name">farm.evidence.form</field>
+        <field name="model">farm.evidence</field>
+        <field name="arch" type="xml">
+            <form string="Field Evidence">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Site Photo">
+                            <field name="photo" widget="image" options="{'size': [400, 400]}"/>
+                        </group>
+                        <group string="Context">
+                            <field name="worker_id"/>
+                            <field name="taken_at"/>
+                            <field name="res_model"/>
+                            <field name="res_id"/>
+                        </group>
+                    </group>
+                    <group string="GPS &amp; Audit">
+                        <group>
+                            <field name="gps_lat"/>
+                            <field name="gps_lng"/>
+                        </group>
+                        <group>
+                            <field name="is_on_site" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                    <group string="Notes">
+                        <field name="note" nolabel="1" placeholder="Describe what was observed..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_evidence" model="ir.actions.act_window">
+        <field name="name">Field Evidence Logs</field>
+        <field name="res_model">farm.evidence</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+    <menuitem id="menu_farm_evidence" name="Field Evidence" parent="farm_core.menu_farm_root" action="action_farm_evidence" sequence="95"/>
+</odoo>
