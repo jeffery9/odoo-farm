@@ -7,10 +7,10 @@
 <a name="chinese"></a>
 ## 中文版 (Chinese)
 
-### 1. 方案愿景
+### 1. 方案愿景 (Vision)
 在数字化转型的浪潮中，传统农业面临着生产过程“黑盒”、管理术语“工业化”以及合规追溯成本高昂等核心挑战。**Odoo Farm** 基于 **Odoo 19 社区版**，深度复刻并优化了欧洲领先的农业 ERP（Ekylibre）能力，打造了一套专为中国农业设计的**全链路数字化底座**。我们不仅仅是记录数据，更是通过内置的农业算法与 IoT 感知，实现从地块规划、精准作业、合规加工到消费者营销的闭环管理。
 
-### 2. 核心痛点与解决之道
+### 2. 核心痛点与解决之道 (Pain Points & Solutions)
 *   **痛点 A：ERP 术语与农业习惯的“水土不服”**
     *   **解决之道**：**全站去工业化 UX**。系统自动将工业术语映射为“农事干预”、“生产配方”、“任务产量”。通过智能感知界面，技术员看到的是 N/P/K 养分平衡，而工人看到的是极简的移动端打卡按钮。
 *   **痛点 B：生产计划与生物生长周期的“脱节”**
@@ -18,20 +18,20 @@
 *   **痛点 C：养分投入与成本核算的“模糊账”**
     *   **解决之道**：**自动化养分平衡算法**。在确认施肥作业时，系统自动根据化肥成分换算为“纯养分”投入量，并实时汇总至地块 GIS。财务端同步实现水电能耗向具体批次的精细化分摊。
 
-### 3. 方案亮点
-*   🚀 **全链路数字孪生溯源**：每一颗果实都有它的“履历”。扫描二维码，回溯具体地块、天气曲线、施用清单及农工资质。
+### 3. 核心亮点 (Key Highlights)
+*   🚀 **全链路数字孪生溯源**：每一颗果实都有它的“履历”。扫描二维码，回溯**具体地块、天气曲线、施用清单及农工资质**。
 *   🌍 **GIS 与 IoT 智慧感知**：地块是活的“生产单元”，实时显示温湿度、土壤墒情，并在异常时联动控制设备。
 *   🏭 **农产品深加工的一入多出管理**：支持 **Mass Balance（物料平衡）校验**，建立加工环节的批次父子继承，确保追溯不断链。
-*   🌐 **多业态融合与全行业覆盖**：覆盖大田种植、畜牧养殖、水产、食品加工（烘焙/酿酒）及农旅融合。
-*   ☁️ **SAAS 架构与多租户隔离**：支持多农场独立运行、合作社级数据汇总，适合集团化或产业园部署。
+*   🌐 **多业态融合与全行业覆盖**：通过“农业活动家族”架构，覆盖**大田种植、畜牧养殖、水产、食品加工（烘焙/酿酒）及农旅融合**。
+*   ☁️ **SAAS 架构支持**：支持多农场独立运行、合作社级数据汇总，适合集团化或产业园部署。
 *   🛡️ **中国特色合规与安全**：内置 GB 7718 标签标准、农药实名制登记及畜禽粪污资源化台账。
 
 ### 4. 🚀 核心功能矩阵 (Feature Matrix)
-*   **🌾 种植与生产**：全生命周期管理、科学植保算法、MTO 智能调度。
-*   **🐄 畜牧与水产**：生物资产数字化、自动化饲喂核销、环境预警联动。
-*   **🏭 农产品加工**：一入多出模型、Mass Balance 校验、精细化成本分摊。
-*   **📡 智慧物联与溯源**：工业级 IoT 集成、全链路数字孪生、智慧决策看板。
-*   **🏪 商业与合规**：全行业覆盖（烘焙/酿酒等）、中国合规包、全渠道营销。
+*   **🌾 种植与生产**：生产季规划、农事干预记录、收获分级、N/P/K 养分平衡自动计算。
+*   **🐄 畜牧与水产**：个体耳标/群组管理、ADG 预测模型、自动化饲喂核销、环境预警。
+*   **🏭 农产品加工**：多级配方 (BOM)、精细化能耗成本分摊、QCP 检查点、留样管理。
+*   **📡 智慧物联**：工业级 MQTT 集成、多租户隔离 Topic、远程下控、智慧决策看板。
+*   **🏪 商业与合规**：CSA 会员订阅、直播带货订单同步、中国合规包、二维码溯源营销。
 
 ---
 
@@ -39,42 +39,41 @@
 ## English Version
 
 ### 1. Solution Vision
-Amidst the wave of digital transformation, traditional agriculture faces core challenges such as "black box" production processes, industrialized management terminology, and high compliance traceability costs. **Odoo Farm**, built on **Odoo 19 Community Edition**, deeply replicates and optimizes the capabilities of Ekylibre (a leading European Agri-ERP), creating a **full-chain digital foundation** tailored for modern agriculture. We go beyond mere data recording; through built-in agricultural algorithms and IoT sensing, we enable closed-loop management from land planning and precision farming to compliant processing and consumer marketing.
+Traditional agriculture faces challenges like "black box" production, industrialized terminology mismatch, and high compliance costs. **Odoo Farm**, built on **Odoo 19**, replicates and optimizes top-tier European Agri-ERP (Ekylibre) capabilities into a **full-chain digital foundation**. We transform data into insights through built-in algorithms and IoT, covering everything from land planning to consumer marketing.
 
 ### 2. Core Pain Points & Solutions
-*   **Pain Point A: Mismatch between ERP terminology and agricultural habits**
-    *   **Solution**: **Full-site De-industrialized UX**. The system automatically maps industrial terms to "Agri-Interventions," "Production Recipes," and "Task Yields." Through context-aware interfaces, technicians see N/P/K balances while workers see minimalist mobile check-in buttons.
-*   **Pain Point B: Disconnection between production planning and biological growth cycles**
-    *   **Solution**: **Smart MTO Lead-time Validation**. Built-in crop growth models automatically calculate whether the "days to delivery" cover the "crop growth cycle" during sales order confirmation, mitigating default risks at the source.
-*   **Pain Point C: Vague records of nutrient inputs and cost accounting**
-    *   **Solution**: **Automated Nutrient Balance Algorithms**. Upon confirming fertilization tasks, the system converts fertilizer components into "pure nutrient" inputs and aggregates them to the parcel GIS in real-time. Financial modules simultaneously achieve precise allocation of water and energy costs to specific batches.
+*   **Pain Point A: Terminology Mismatch**
+    *   **Solution**: **De-industrialized UX**. Automatically maps "MO/BOM" to "Agri-Interventions" and "Recipes." Context-aware interfaces show N/P/K for technicians and big-button mobile apps for workers.
+*   **Pain Point B: Biological Cycle vs. Planning Gap**
+    *   **Solution**: **Smart MTO Lead-time Validation**. Built-in growth models verify if delivery dates cover the biological growth period during order confirmation.
+*   **Pain Point C: Vague Costing & Nutrient Tracking**
+    *   **Solution**: **Automated Nutrient Balance**. Fertilization tasks automatically convert chemical usage into "pure nutrient" inputs on the parcel GIS. Processing costs are precisely allocated to lots based on meter readings.
 
-### 3. Solution Highlights
-*   🚀 **Full-Chain Digital Twin Traceability**: Every fruit has its "resume." Scan a QR code to trace back to specific parcels, weather curves, input lists, and worker qualifications.
-*   🌍 **GIS & IoT Smart Sensing**: Parcels are "living production units," displaying real-time temperature, humidity, and soil moisture, with automated device control triggered by anomalies.
-*   🏭 **Agri-Processing One-in-Multi-out**: Supports **Mass Balance validation**, establishing parent-child batch inheritance across processing stages to ensure unbroken traceability.
-*   🌐 **Multi-Sector Fusion & Full Coverage**: Covers field crops, livestock, aquaculture, food processing (baking/winemaking), and agritourism.
-*   ☁️ **SAAS Architecture & Multi-tenant Isolation**: Supports independent operation of multiple farms and cooperative-level data aggregation, ideal for group or industrial park deployments.
-*   🛡️ **Localized Compliance & Safety**: Built-in GB 7718 label standards, pesticide real-name registration, and manure resource utilization ledgers.
+### 3. Key Highlights
+*   🚀 **Full-Chain Digital Twin Traceability**: Trace every batch back to its **land parcel, weather history, inputs used, and worker qualifications**.
+*   🌍 **GIS & IoT Smart Sensing**: Parcels act as "living units" with real-time telemetry and automated threshold-based device control.
+*   🏭 **Agri-Processing One-in-Multi-out**: Supports **Mass Balance validation** and parent-child lot inheritance to ensure zero gaps in the supply chain.
+*   🌐 **Multi-Sector Full Coverage**: Engineered for crops, livestock, aquaculture, food processing (Baking/Winery), and agritourism.
+*   ☁️ **SAAS Ready**: Native multi-tenant isolation and cooperative-level aggregation, ideal for groups or industrial parks.
+*   🛡️ **China Compliance Pack**: Built-in GB 7718 standards, pesticide real-name registration, and manure ledger compliance.
 
 ### 4. 🚀 Core Feature Matrix
-*   **🌾 Planting & Production**: Full lifecycle management, scientific crop protection algorithms, smart MTO scheduling.
-*   **🐄 Livestock & Aquaculture**: Biological asset digitization, automated feeding depletion, environmental alert linkage.
-*   **🏭 Agri-Processing**: One-in-Multi-out models, Mass Balance validation, refined cost allocation.
-*   **📡 Smart IoT & Traceability**: Industrial-grade IoT integration, full-chain digital twins, smart decision dashboards.
-*   **🏪 Commerce & Compliance**: Full industry coverage (Baking/Winemaking etc.), China compliance pack, omnichannel marketing.
+*   **🌾 Planting & Production**: Campaign planning, intervention logs, harvest grading, auto N/P/K calculation.
+*   **🐄 Livestock & Aquaculture**: Ear tag/Group tracking, ADG prediction models, automated feeding depletion.
+*   **🏭 Agri-Processing**: Multi-stage BOMs, refined energy cost allocation, QCP inspection, sample management.
+*   **📡 Smart IoT**: Industrial MQTT integration, multi-tenant Topic isolation, remote control, and KPI dashboards.
+*   **🏪 Commerce & Marketing**: CSA subscriptions, live streaming order sync, QR story-telling marketing.
 
 ---
 
-## 🛠️ Deployment & Installation
+## 🛠️ Deployment & Installation / 部署与安装
 
-### 1. Requirements
-*   **OS**: Linux (Ubuntu 22.04 recommended) or macOS.
+### 1. Requirements (环境要求)
+*   **OS**: Linux (Ubuntu 22.04+) or macOS.
 *   **Engine**: Odoo 19.0 Community Edition.
-*   **Python**: 3.12+.
-*   **Database**: PostgreSQL 16+.
+*   **Python**: 3.12+ / **PostgreSQL**: 16+.
 
-### 2. Installation Steps
+### 2. Installation Steps (安装步骤)
 1.  **Clone code**: 
     ```bash
     git clone https://github.com/jeffery9/odoo-farm
@@ -97,4 +96,5 @@ Amidst the wave of digital transformation, traditional agriculture faces core ch
 Licensed under **GNU Affero General Public License v3 (AGPLv3)**. SaaS providers **must** disclose source code. See [LICENSE](LICENSE).
 
 ## 📩 Contact
-Jeffery - [Project Team]
+**genin IT, 亘盈信息技术**, jeffery <jeffery9@gmail.com>
+Website: [http://www.geninit.cn](http://www.geninit.cn)
