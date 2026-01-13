@@ -5,39 +5,39 @@
             <t t-set="doc" t-value="doc.with_context(lang=doc.lang)"/>
             <div class="page">
                 <div class="text-center">
-                    <h2>食用农产品承诺达标合格证</h2>
+                    <h2>Commitment Certificate for Edible Agri-products</h2>
                     <h3>Certificate of Compliance for Edible Agricultural Products</h3>
                     <img t-att-src="'/report/barcode/?barcode_type=QR&amp;value=%s&amp;width=180&amp;height=180' % doc.certificate_qr_code" style="width:40mm;height:40mm; margin: 10px 0;"/>
                 </div>
 
                 <div class="row mt32 mb32">
                     <div class="col-6">
-                        <strong>证书编号 / Cert. No.:</strong> <span t-field="doc.certificate_no"/>
+                        <strong>Cert. No.:</strong> <span t-field="doc.certificate_no"/>
                     </div>
                     <div class="col-6">
-                        <strong>批次号 / Lot No.:</strong> <span t-field="doc.lot_id.name"/>
+                        <strong>Lot No.:</strong> <span t-field="doc.lot_id.name"/>
                     </div>
                 </div>
 
                 <table class="table table-sm table-bordered">
                     <tr>
-                        <td><strong>生产者名称 / Producer:</strong></td>
+                        <td><strong>Producer:</strong></td>
                         <td><span t-field="doc.producer_name"/></td>
                     </tr>
                     <tr>
-                        <td><strong>产品名称 / Product Name:</strong></td>
+                        <td><strong>Product Name:</strong></td>
                         <td><span t-field="doc.product_id.name"/></td>
                     </tr>
                     <tr>
-                        <td><strong>生产日期 / Production Date:</strong></td>
+                        <td><strong>Production Date:</strong></td>
                         <td><span t-field="doc.production_date" t-options='{"widget": "date"}'/></td>
                     </tr>
                     <tr>
-                        <td><strong>产地 / Origin:</strong></td>
+                        <td><strong>Origin:</strong></td>
                         <td><span t-field="doc.origin_location_id.name"/></td>
                     </tr>
                     <tr>
-                        <td><strong>检测结果 / Test Results:</strong></td>
+                        <td><strong>Test Results:</strong></td>
                         <td>
                             <t t-if="doc.quality_check_ids">
                                 <t t-foreach="doc.quality_check_ids" t-as="qc">
@@ -52,12 +52,12 @@
                 </table>
 
                 <div class="mt-4">
-                    <strong>承诺声明 / Commitment Statement:</strong>
+                    <strong>Commitment Statement:</strong>
                     <div t-field="doc.commitment_statement" class="mt-2"/>
                 </div>
 
                 <div class="text-right mt-5">
-                    <strong>签发日期 / Issue Date:</strong> <span t-esc="datetime.now().strftime('%Y-%m-%d')"/>
+                    <strong>Issue Date:</strong> <span t-esc="datetime.now().strftime('%Y-%m-%d')"/>
                 </div>
             </div>
         </t>

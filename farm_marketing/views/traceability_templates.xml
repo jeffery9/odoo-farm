@@ -16,11 +16,11 @@
                                     <div class="card-body">
                                         <div class="row text-center">
                                             <div class="col-6 border-end">
-                                                <h6>Origin (产地)</h6>
+                                                <h6>Origin</h6>
                                                 <p t-field="lot.location_id.name"/>
                                             </div>
                                             <div class="col-6">
-                                                <h6>Status (状态)</h6>
+                                                <h6>Status</h6>
                                                 <span class="badge rounded-pill bg-info" t-field="lot.biological_stage"/>
                                             </div>
                                         </div>
@@ -35,7 +35,7 @@
                                 </div>
 
                                 <!-- 生产节点 (Timeline) -->
-                                <h4 class="mb-3"><i class="fa fa-history text-success me-2"/>Life Cycle (生命档案)</h4>
+                                <h4 class="mb-3"><i class="fa fa-history text-success me-2"/>Life Cycle</h4>
                                 <div class="list-group mb-4 shadow-sm">
                                     <div class="list-group-item">
                                         <div class="d-flex w-100 justify-content-between">
@@ -55,7 +55,7 @@
 
                                 <!-- 实况监控 [US-16-01] -->
                                 <t t-if="video_url">
-                                    <h4 class="mb-3"><i class="fa fa-video-camera text-danger me-2"/>Live View (实况监控)</h4>
+                                    <h4 class="mb-3"><i class="fa fa-video-camera text-danger me-2"/>Live View</h4>
                                     <div class="card shadow-sm mb-4 border-0 bg-dark overflow-hidden" style="aspect-ratio: 16/9;">
                                         <iframe t-att-src="video_url" 
                                                 class="w-100 h-100 border-0" 
@@ -66,7 +66,7 @@
                                 </t>
 
                                 <!-- 质检报告 -->
-                                <h4 class="mb-3"><i class="fa fa-certificate text-warning me-2"/>Quality Trust (质量认证)</h4>
+                                <h4 class="mb-3"><i class="fa fa-certificate text-warning me-2"/>Quality Trust</h4>
                                 <div class="card shadow-sm mb-4">
                                     <div class="card-body">
                                         <t t-if="qc_checks">

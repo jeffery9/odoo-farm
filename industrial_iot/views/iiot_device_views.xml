@@ -25,7 +25,7 @@
         <field name="arch" type="xml">
             <form string="IIoT设备">
                 <header>
-                    <button name="action_generate_config_token" string="生成配置令牌" type="object" class="btn-primary"/>
+                    <button name="action_generate_config_token" string="Generate Config Token" type="object" class="btn-primary"/>
                     <field name="connection_status" widget="statusbar" statusbar_visible="online"/>
                 </header>
                 <sheet>
@@ -64,9 +64,7 @@
                         <page string="Config &amp; Topics" name="config_topics">
                             <group>
                                 <field name="config_token" readonly="1"/>
-                                <div>
-                                    <button name="action_generate_config_token" string="重新生成令牌" type="object" class="btn-secondary"/>
-                                </div>
+                                <button name="action_generate_config_token" string="Regenerate Token" type="object" class="btn-secondary"/>
                             </group>
                         </page>
                         <page string="Topic配置" name="topics">

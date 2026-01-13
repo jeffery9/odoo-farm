@@ -39,7 +39,7 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Collateral (抵押物)" invisible="loan_type != 'biological'">
+                        <page string="Collateral" invisible="loan_type != 'biological'">
                             <field name="collateral_lot_ids"/>
                             <group class="oe_subtotal_footer">
                                 <field name="collateral_value"/>

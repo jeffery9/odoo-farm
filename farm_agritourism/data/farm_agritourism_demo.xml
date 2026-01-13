@@ -3,18 +3,18 @@
     <data noupdate="0">
         <!-- Sample Resources -->
         <record id="resource_fishing_01" model="farm.resource">
-            <field name="name">Fishing Spot A (1号钓位)</field>
+            <field name="name">Fishing Spot A (No. 1 Fishing Spot)</field>
             <field name="resource_type">fishing</field>
         </record>
 
         <record id="resource_bbq_01" model="farm.resource">
-            <field name="name">Family BBQ Zone (亲子烧烤区)</field>
+            <field name="name">Family BBQ Zone (Family BBQ Zone)</field>
             <field name="resource_type">bbq</field>
         </record>
 
         <!-- Sample Experience Package -->
         <record id="product_experience_family" model="product.product">
-            <field name="name">Family Farm Day Package (农场亲子一日游套餐)</field>
+            <field name="name">Family Farm Day Package (Family Farm Day Package)</field>
             <field name="is_experience_package">True</field>
             <field name="list_price">299.0</field>
             <field name="type">service</field>

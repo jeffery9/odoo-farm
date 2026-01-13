@@ -25,8 +25,8 @@
         <field name="arch" type="xml">
             <form string="OTA更新记录">
                 <header>
-                    <button name="action_send_update_command" string="发送更新指令" type="object" class="btn-primary" invisible="status != 'draft'"/>
-                    <button name="action_cancel_update" string="取消更新" type="object" invisible="status not in ('draft', 'pending')"/>
+                    <button name="action_send_update_command" string="Send Update Command" type="object" class="btn-primary" invisible="status != 'draft'"/>
+                    <button name="action_cancel_update" string="Cancel Update" type="object" invisible="status not in ('draft', 'pending')"/>
                     <field name="status" widget="statusbar" statusbar_visible="draft,pending,in_progress,success,failed"/>
                 </header>
                 <sheet>

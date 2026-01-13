@@ -10,7 +10,7 @@ class FarmLoan(models.Model):
     loan_type = fields.Selection([
         ('operational', 'Operational (运营贷)'),
         ('equipment', 'Equipment (农机贷)'),
-        ('biological', 'Biological Asset Mortgage (活体抵押)')
+        ('biological', 'Biological Asset Mortgage')
     ], required=True)
     
     amount_principal = fields.Monetary("Principal Amount", currency_field='currency_id')

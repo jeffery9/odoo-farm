@@ -9,10 +9,10 @@ class FarmBiodiversityIndicator(models.Model):
     location_id = fields.Many2one('stock.location', string="Location", domain=[('is_land_parcel', '=', True)])
     
     indicator_type = fields.Selection([
-        ('insect', 'Insects/Pollinators (昆虫)'),
-        ('bird', 'Birds (鸟类)'),
-        ('plant', 'Wild Vegetation (野生植物)'),
-        ('soil_life', 'Soil Life (土壤生物)')
+        ('insect', 'Insects/Pollinators'),
+        ('bird', 'Birds'),
+        ('plant', 'Wild Vegetation'),
+        ('soil_life', 'Soil Life')
     ], required=True)
     
     species_name = fields.Char("Species Name")
@@ -27,10 +27,10 @@ class FarmEcologicalZone(models.Model):
 
     name = fields.Char("Zone Name", required=True) # e.g. North Hedge, Buffer Strip
     zone_type = fields.Selection([
-        ('hedge', 'Hedge (树篱)'),
-        ('buffer', 'Buffer Strip (缓冲带)'),
-        ('pond', 'Ecological Pond (生态塘)'),
-        ('forest', 'Forest Patch (小微林地)')
+        ('hedge', 'Hedge'),
+        ('buffer', 'Buffer Strip'),
+        ('pond', 'Ecological Pond'),
+        ('forest', 'Forest Patch')
     ], required=True)
     
     area = fields.Float("Area (sqm)")
