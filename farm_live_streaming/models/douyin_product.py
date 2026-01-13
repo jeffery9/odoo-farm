@@ -57,3 +57,40 @@ class DouyinProduct(models.Model):
                 })
             else:
                 rec.sync_state = 'error'
+
+    def action_sync_stock_only(self):
+        """ 仅同步库存量：供库存变动钩子调用 [US-21-08] """
+        for rec in self:
+            if not rec.douyin_item_id or rec.account_id.state != 'authorized':
+                continue
+            
+            payload = {
+                'item_id': rec.douyin_item_id,
+                'stock': int(rec.product_id.qty_available),
+            }
+            # 调用专门的库存更新 API
+            rec.account_id._do_douyin_request("/item/update_stock/", params=payload)
+            rec.last_sync_time = fields.Datetime.now()
+
+class StockQuant(models.Model):
+    _inherit = 'stock.quant'
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        quants = super().create(vals_list)
+        quants._trigger_douyin_stock_sync()
+        return quants
+
+    def write(self, vals):
+        res = super().write(vals)
+        if 'inventory_quantity' in vals or 'quantity' in vals:
+            self._trigger_douyin_stock_sync()
+        return res
+
+    def _trigger_douyin_stock_sync(self):
+        """ 触发该产品关联的所有抖音铺货库存同步 """
+        for quant in self:
+            douyin_mappings = self.env['douyin.product'].search([('product_id', '=', quant.product_id.id)])
+            for mapping in douyin_mappings:
+                # 异步或通过定时任务触发，这里简化为直接调用
+                mapping.action_sync_stock_only()

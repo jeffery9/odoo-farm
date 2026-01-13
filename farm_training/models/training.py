@@ -9,6 +9,7 @@ class FarmCertificateType(models.Model):
     code = fields.Char("Code", required=True)
     required_for_intervention_types = fields.Selection([
         ('protection', 'Crop Protection (飞防/植保)'),
+        ('aerial_spraying', 'Aerial Spraying (无人机飞防)'),
         ('medical', 'Medical/Prevention (防疫)'),
         ('harvesting', 'Mechanical Harvesting (机收)')
     ], string="Mandatory for Task Type", help="If set, system will check for this certificate during task confirmation.")
@@ -102,7 +103,7 @@ class AgriIntervention(models.Model):
 
     @api.onchange('intervention_type')
     def _onchange_intervention_type_filter_workers(self):
-        """ US-17-08: 根据任务类型动态过滤具备资质的工人 """
+        """ US-17-08, US-22-02: 根据任务类型动态过滤具备资质的工人 """
         if self.intervention_type:
             domain = self.env['farm.certificate.type'].get_qualified_worker_domain(self.intervention_type)
             return {'domain': {'doer_ids': domain}}

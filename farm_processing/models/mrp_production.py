@@ -45,10 +45,11 @@ class MrpProduction(models.Model):
 
     total_energy_cost = fields.Float("Total Energy Cost", compute='_compute_total_energy_cost', store=True)
 
-    # 损耗与物料平衡 [US-04-02]
-    scrap_qty = fields.Float("Process Loss (kg)")
-    total_output_qty = fields.Float("Total Output Qty", compute='_compute_total_output_qty')
-    is_balanced = fields.Boolean("Mass Balanced", compute='_compute_total_output_qty')
+    # 损耗与物料平衡 [US-04-02, US-14-06]
+    scrap_qty = fields.Float("Process Loss (kg)", help="Physical waste/scraps recorded during process.")
+    loss_rate = fields.Float("Loss Rate (%)", compute='_compute_total_output_qty', store=True)
+    total_output_qty = fields.Float("Total Output Qty", compute='_compute_total_output_qty', store=True)
+    is_balanced = fields.Boolean("Mass Balanced", compute='_compute_total_output_qty', store=True)
 
     @api.depends('water_meter_start', 'water_meter_end', 'electricity_meter_start', 'electricity_meter_end')
     def _compute_consumption(self):
@@ -68,9 +69,15 @@ class MrpProduction(models.Model):
     def _compute_total_output_qty(self):
         for mo in self:
             finished_and_byproducts_qty = sum(mo.move_finished_ids.mapped('product_uom_qty'))
-            mo.total_output_qty = finished_and_byproducts_qty + mo.scrap_qty
             raw_qty = sum(mo.move_raw_ids.mapped('product_uom_qty'))
+            
+            mo.total_output_qty = finished_and_byproducts_qty + mo.scrap_qty
             mo.is_balanced = abs(mo.total_output_qty - raw_qty) < (raw_qty * 0.001) if raw_qty > 0 else True
+            
+            if raw_qty > 0:
+                mo.loss_rate = (mo.scrap_qty / raw_qty) * 100.0
+            else:
+                mo.loss_rate = 0.0
 
     @api.onchange('bom_id')
     def _onchange_bom_id_farm(self):

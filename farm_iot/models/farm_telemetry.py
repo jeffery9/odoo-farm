@@ -22,15 +22,17 @@ class FarmTelemetry(models.Model):
         ('dissolved_oxygen', 'Dissolved Oxygen (溶氧量)'),
         ('humidity', 'Humidity (湿度)'),
         ('soil_moisture', 'Soil Moisture (土壤水分)'),
+        ('flight_altitude', 'Flight Altitude (高度)'),
+        ('chemical_level', 'Chemical Level (药箱水位)'),
+        ('battery_voltage', 'Drone Battery (电压)')
     ], string="Sensor Type", required=True)
     
     value = fields.Float("Value", required=True)
     timestamp = fields.Datetime("Timestamp", default=fields.Datetime.now, required=True)
     
-    # 关联生产任务 [US-11-03]
+    # 关联资产与任务
     production_id = fields.Many2one('project.task', string="Production Task")
-    
-    # 关联 IIoT 设备
+    drone_id = fields.Many2one('maintenance.equipment', string="Drone", domain="[('is_drone', '=', True)]")
     device_id = fields.Many2one('iiot.device', string="IIoT Device")
     
     # 关联地块（可选）

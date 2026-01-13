@@ -25,8 +25,10 @@
     'data': [
         'security/ir.model.access.csv',
         'data/processing_data.xml',
-        'views/mrp_production_views.xml',
+        'views/farm_processing_views.xml',
+        'views/mrp_production_pivot_view.xml',
         'views/mrp_bom_views.xml',
+        'views/mrp_production_views.xml',
         'views/stock_lot_views.xml',
         'views/menu.xml',
     ],
