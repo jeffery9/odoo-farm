@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 class FarmLocation(models.Model):
     _inherit = 'stock.location'
@@ -46,11 +46,40 @@ class FarmTelemetry(models.Model):
     def create(self, vals_list):
         records = super().create(vals_list)
         for record in records:
-            # 查找并运行相关的自动化规则
+            # 1. 自动化规则触发
             rules = self.env['farm.automation.rule'].search([
                 ('active', '=', True),
                 ('sensor_type', '=', record.sensor_type)
             ])
             for rule in rules:
                 rule.check_and_trigger(record)
+            
+            # 2. 地理围栏越界判定 [US-23-02, US-23-06]
+            if record.device_id and record.device_id.geofence_id and record.gps_lat and record.gps_lng:
+                fence = record.device_id.geofence_id
+                is_inside = fence.is_point_inside(record.gps_lng, record.gps_lat)
+                
+                if not is_inside:
+                    # 触发越界告警
+                    self._trigger_geofence_alarm(record, fence)
         return records
+
+    def _trigger_geofence_alarm(self, telemetry, fence):
+        """ 创建越界告警活动与消息推送 """
+        msg_body = _("GEOFENCE ALERT: Device %s has LEFT the assigned fence '%s' at [%s, %s]!") % (
+            telemetry.device_id.name, fence.name, telemetry.gps_lat, telemetry.gps_lng
+        )
+        
+        # 记录消息到设备和围栏
+        telemetry.device_id.message_post(body=msg_body, message_type='notification', subtype_xmlid='mail.mt_comment')
+        fence.message_post(body=msg_body, message_type='notification', subtype_xmlid='mail.mt_comment')
+        
+        # 创建待办活动 (高优先级)
+        self.env['mail.activity'].create({
+            'res_id': telemetry.device_id.id,
+            'res_model_id': self.env['ir.model']._get('iiot.device').id,
+            'activity_type_id': self.env.ref('mail.mail_activity_data_todo').id,
+            'summary': _('BOUNDARY BREACH: %s') % telemetry.device_id.name,
+            'note': msg_body,
+            'user_id': telemetry.device_id.create_uid.id or self.env.user.id,
+        })
