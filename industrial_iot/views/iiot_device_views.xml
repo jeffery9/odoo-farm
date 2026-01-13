@@ -42,6 +42,7 @@
                         </group>
                         <group string="Status &amp; Control">
                             <field name="is_active"/>
+                            <field name="is_camera"/>
                             <field name="firmware_version"/>
                             <field name="connection_status" widget="badge" decoration-success="connection_status == 'online'" decoration-danger="connection_status == 'error'" decoration-info="connection_status == 'offline'"/>
                             <field name="last_telemetry"/>
@@ -57,26 +58,6 @@
                     <notebook>
                         <page string="Business Ref" name="business_ref_page">
                             <group><field name="business_ref"/></group>
-                        </page>
-                        <page string="Active Alerts" name="active_alerts">
-                            <field name="active_alert_ids" readonly="1">
-                                <tree>
-                                    <field name="summary"/>
-                                    <field name="date_deadline"/>
-                                    <field name="activity_type_id"/>
-                                    <field name="user_id"/>
-                                </tree>
-                            </field>
-                        </page>
-                        <page string="Command Logs" name="command_logs">
-                            <field name="command_log_ids" readonly="1">
-                                <tree>
-                                    <field name="create_date"/>
-                                    <field name="command"/>
-                                    <field name="status"/>
-                                    <field name="operator_id"/>
-                                </tree>
-                            </field>
                         </page>
                         <page string="Config &amp; Topics" name="config_topics">
                             <group>

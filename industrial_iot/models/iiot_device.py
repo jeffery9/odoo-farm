@@ -45,10 +45,6 @@ class IiotDevice(models.Model):
         ('error', 'Error')
     ], string='Connection Status', default='offline')
 
-    # Integrations for Farm IIoT
-    command_log_ids = fields.One2many('farm.command.log', 'device_id', string="Command History")
-    active_alert_ids = fields.One2many('mail.activity', 'res_id', domain=[('res_model', '=', 'iiot.device'), ('state', '!=', 'done')], string="Active Alerts") # Assuming mail.activity for alerts
-
     # Tracking
     created_date = fields.Datetime('Created Date', default=fields.Datetime.now)
     last_update = fields.Datetime('Last Update', default=fields.Datetime.now)
