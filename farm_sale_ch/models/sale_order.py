@@ -283,13 +283,13 @@ class SaleOrder(models.Model):
                     # 创建审核 Activity [Workflow]
                     order.activity_schedule(
                         'mail.mail_activity_data_todo',
-                        summary=_('繁育代次合规预警：[%s]') % product.name,
-                        note=_('检测到尝试销售非商品级产品 (%s)。请核实该操作是否获得特殊授权。') % product.agri_generation.upper(),
+                        summary=_('Breeding Generation Compliance Alert：[%s]') % product.name,
+                        note=_('Detected attempt to sell non-commercial product (%s)。Please verify if this operation has special authorization.') % product.agri_generation.upper(),
                         user_id=order.user_id.id # 暂时指派给销售员自己，实际应指派给经理
                     )
                     raise ValidationError(_(
-                        "硬拦截：禁止销售非商品级繁育代次批次。\n"
-                        "产品 [%s] 的代次为 %s，属于内部研发或繁育储备，严禁直接售卖。"
+                        "Hard-block: Sales of non-commercial breeding generations prohibited.\n"
+                        "产品 [%s] 的代次为 %s，belongs to internal R&D or breeding reserves and is strictly prohibited from direct sale."
                     ) % (product.display_name, product.agri_generation.upper()))
                 
                 # 如果有具体批次，检查批次层级的设定
@@ -298,8 +298,8 @@ class SaleOrder(models.Model):
                     for lot in move.move_line_ids.lot_id:
                         if lot.agri_generation in ['g0', 'g1', 'g2']:
                             raise ValidationError(_(
-                                "硬拦截：批次代次违规。\n"
-                                "批次 [%s] 的繁育代次为 %s，严禁进入商品流通领域。"
+                                "Hard-block: Batch generation violation.\n"
+                                "批次 [%s] 的繁育代次为 %s，Strictly prohibited from entering commercial circulation."
                             ) % (lot.name, lot.agri_generation.upper()))
 
             # 2. 出口合规性检查 [US-17-06]

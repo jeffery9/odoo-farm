@@ -12,9 +12,9 @@ class MrpProduction(models.Model):
 
     process_mode = fields.Selection([
         ('standard', 'Standard'),
-        ('baking', 'Baking (烘焙)'),
-        ('fermentation', 'Fermentation (发酵/酿造)'),
-        ('sterilization', 'Sterilization (杀菌/灌装)')
+        ('baking', 'Baking'),
+        ('fermentation', 'Fermentation'),
+        ('sterilization', 'Sterilization')
     ], string="Process Mode", default='standard')
 
     # 行业化参数 [US-16-02]
@@ -106,30 +106,30 @@ class MrpProduction(models.Model):
                 # 创建异常处置 Activity [Workflow]
                 mo.activity_schedule(
                     'mail.mail_activity_data_todo',
-                    summary=_('质控拦截：发酵 pH 值异常 [%s]') % mo.ph_level,
-                    note=_('发酵过程 pH 值超出安全范围。请指派技术员执行【异常处理】流程，或手动授权报废。'),
+                    summary=_('Quality Block: Fermentation pH Abnormal [%s]') % mo.ph_level,
+                    note=_('Fermentation pH value is outside the safety range.Please assign a technician to execute the [Exception Handling] process or manually authorize scrapping.'),
                     user_id=mo.user_id.id
                 )
                 from odoo.exceptions import ValidationError
                 raise ValidationError(_(
-                    "CORE-CLOSURE: 关键质量拦截 (熔断)。\n"
-                    "当前发酵液 pH 值为 %s，超出了安全范围 (3.0 - 4.5)。\n"
-                    "已自动为车间主管创建异常处置待办事项。"
+                    "CORE-CLOSURE: Critical Quality Interception (熔断).\n"
+                    "Current fermentation pH value is %s, which is outside the safety range (3.0 - 4.5).\n"
+                    "An exception handling todo has been automatically created for the workshop supervisor."
                 ) % mo.ph_level)
 
             if mo.process_mode == 'sterilization' and mo.process_temperature < 121.0:
                 # 创建异常处置 Activity [Workflow]
                 mo.activity_schedule(
                     'mail.mail_activity_data_todo',
-                    summary=_('质控拦截：杀菌温度不达标 [%s℃]') % mo.process_temperature,
-                    note=_('该批次杀菌温度未达到 121.0℃。严禁直接入库，请执行重新杀菌或降级处理流程。'),
+                    summary=_('Quality Block: Sterilization Temp Below Standard [%s℃]') % mo.process_temperature,
+                    note=_('The sterilization temperature for this batch did not reach 121.0℃. Direct entry to inventory is strictly prohibited; please execute re-sterilization or downgrading process.'),
                     user_id=mo.user_id.id
                 )
                 from odoo.exceptions import ValidationError
                 raise ValidationError(_(
-                    "CORE-CLOSURE: 杀菌温度不合规。\n"
-                    "实际杀菌温度为 %s℃，未达到工艺要求的 121.0℃ 标准。\n"
-                    "该批次存在风险，已创建异常处置待办事项。"
+                    "CORE-CLOSURE: Sterilization temperature non-compliant.\n"
+                    "Actual sterilization temperature was %s℃, failing to meet the process requirement of 121.0℃.\n"
+                    "Risk detected for this batch; exception handling todo created."
                 ) % mo.process_temperature)
 
             # 3. 建立溯源关联

@@ -12,15 +12,15 @@ class AccountMove(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            # 从来源订单自动带入农事任务 ID
+            # Automatically fetch Farm Task ID from origin order
             if not vals.get('agri_task_id'):
                 if vals.get('invoice_origin'):
-                    # 尝试从采购单匹配
+                    # Attempt matching from Purchase Order
                     po = self.env['purchase.order'].search([('name', '=', vals['invoice_origin'])], limit=1)
                     if po and po.agri_task_id:
                         vals['agri_task_id'] = po.agri_task_id.id
                     else:
-                        # 尝试从销售单匹配
+                        # Attempt matching from Sales Order
                         so = self.env['sale.order'].search([('name', '=', vals['invoice_origin'])], limit=1)
                         if so and hasattr(so, 'agri_task_id') and so.agri_task_id:
                             vals['agri_task_id'] = so.agri_task_id.id
@@ -31,7 +31,7 @@ class AccountMoveLine(models.Model):
 
     @api.onchange('product_id')
     def _onchange_agri_analytic(self):
-        """ 自动带入农事任务的核算账户 """
+        """ Automatically fetch Farm Task analytic account """
         if self.move_id.agri_task_id and self.move_id.agri_task_id.analytic_account_id:
             self.analytic_distribution = {str(self.move_id.agri_task_id.analytic_account_id.id): 100}
 
@@ -56,7 +56,7 @@ class ProcessingCostAllocation(models.Model):
     @api.depends('production_id', 'water_rate', 'electricity_rate', 'other_indirect_costs')
     def _compute_total_costs(self):
         for rec in self:
-            # 读取 mrp.production 中的能耗读数
+            # Read energy readings from mrp.production
             water_cons = getattr(rec.production_id, 'water_consumption', 0)
             elec_cons = getattr(rec.production_id, 'electricity_consumption', 0)
             
@@ -65,10 +65,10 @@ class ProcessingCostAllocation(models.Model):
             rec.total_processing_cost = rec.total_water_cost + rec.total_electricity_cost + rec.other_indirect_costs
 
     def action_allocate_costs(self):
-        """ 将计算出的成本写入加工产品的分析账户 [US-14-13] """
+        """ Write calculated costs to processing product analytic account [US-14-13] """
         self.ensure_one()
         if self.total_processing_cost > 0:
-            # 找到加工产品的分析账户 (通过 mrp.production 关联的农事任务或产品的分析账户)
+            # Find processing product analytic account (通过 mrp.production 关联的农事任务或产品的分析账户)
             analytic_account = self.production_id.product_id.bom_ids[:1].analytic_account_id
             if analytic_account:
                 self.env['account.analytic.line'].create({
@@ -89,25 +89,25 @@ class AgriCostWIPTransfer(models.AbstractModel):
 
     def action_transfer_wip_to_lot(self, task_id, lot_id):
         """
-        在收获结转时，将归集的 WIP 总成本分配至产出批次
+        Allocate accumulated WIP costs to harvest lots during harvest transfer
         """
         if not task_id.analytic_account_id:
             return 0.0
             
-        # 1. 汇总该任务下的所有分析行成本 (支出为负)
+        # 1. Sum all analytic line costs under this task (支出为负)
         analytic_lines = self.env['account.analytic.line'].search([
             ('account_id', '=', task_id.analytic_account_id.id)
         ])
         total_wip_cost = abs(sum(analytic_lines.mapped('amount')))
         
         if total_wip_cost > 0 and lot_id:
-            # 2. 将成本分摊到批次 (存储在 lot 的成本价字段，或通过 valuation 调整)
-            # 假设批次有标准成本字段
+            # 2. Distribute costs to lots (存储在 lot 的成本价字段，或通过 valuation 调整)
+            # Assume lot has a standard price field
             if hasattr(lot_id, 'standard_price'):
                 # 按产量分摊 (简单实现：总量分摊)
                 lot_id.write({'standard_price': total_wip_cost / (lot_id.product_qty or 1.0)})
                 
-            # 记录审计日志
+            # Record audit logs
             lot_id.message_post(body=_("WIP COST TRANSFERRED: %s total cost absorbed from task %s") % (total_wip_cost, task_id.name))
             
         return total_wip_cost
@@ -115,39 +115,39 @@ class AgriCostWIPTransfer(models.AbstractModel):
 class AgriMortalityAmortization(models.AbstractModel):
     """
     US-03-05: 死亡成本自动重分配 (Core-Closure)
-    当生物资产死亡时，将其已发生的成本均摊到存活个体中。
+    When a biological asset dies, its accumulated costs are amortized across surviving individuals.
     """
     _name = 'farm.mortality.amortization'
     _description = 'Mortality Cost Absorption Logic'
 
     def action_absorb_mortality_cost(self, dead_lot_id, surviving_lot_id):
         """
-        :param dead_lot_id: 死亡资产批次 (个体)
-        :param surviving_lot_id: 吸收成本的存活资产批次 (通常是同一个大 Lot)
+        :param dead_lot_id: Mortality asset lot (Individual)
+        :param surviving_lot_id: Surviving lot absorbing costs (通常是同一个大 Lot)
         """
         if not dead_lot_id or not surviving_lot_id:
             return False
 
-        # 1. 寻找关联的分析账户 (通过任务关联)
+        # 1. Look for associated analytic account (通过任务关联)
         task = self.env['project.task'].search([('lot_ids', 'in', [dead_lot_id.id])], limit=1)
         if not task or not task.analytic_account_id:
             return False
 
-        # 2. 汇总已发生 WIP 成本
+        # 2. Aggregate incurred WIP costs
         analytic_lines = self.env['account.analytic.line'].search([
             ('account_id', '=', task.analytic_account_id.id),
-            ('lot_id', '=', dead_lot_id.id) # 假设分析行有批次关联
+            ('lot_id', '=', dead_lot_id.id) # Assume analytic lines have lot links
         ])
         mortality_cost = abs(sum(analytic_lines.mapped('amount')))
 
         if mortality_cost > 0:
-            # 3. 创建成本转移行 (均摊给存活者)
+            # 3. Create cost transfer line (均摊给存活者)
             self.env['account.analytic.line'].create({
                 'name': _('Mortality Cost Absorption: %s') % dead_lot_id.name,
                 'account_id': task.analytic_account_id.id,
-                'amount': -mortality_cost, # 依然是支出，但在分析报表上标记为“死亡吸收”
+                'amount': -mortality_cost, # Still an expense, but marked as mortality absorption in reports
                 'lot_id': surviving_lot_id.id,
-                'unit_amount': 0, # 不计产量
+                'unit_amount': 0, # Do not count yield
             })
             
             surviving_lot_id.message_post(body=_(

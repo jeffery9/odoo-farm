@@ -5,11 +5,11 @@ class FarmLocationCert(models.Model):
     _inherit = 'stock.location'
 
     certification_level = fields.Selection([
-        ('conventional', 'Conventional (常规)'),
-        ('organic_transition', 'Organic Transition (有机转换期)'),
-        ('organic', 'Organic (有机)'),
-        ('green', 'Green Food (绿色食品)'),
-        ('gi', 'Geographical Indication (地理标志)')
+        ('conventional', 'Conventional'),
+        ('organic_transition', 'Organic Transition'),
+        ('organic', 'Organic'),
+        ('green', 'Green Food'),
+        ('gi', 'Geographical Indication')
     ], string="Certification Level", default='conventional', tracking=True)
     
     conversion_start_date = fields.Date("Conversion Start Date")
@@ -42,11 +42,11 @@ class FarmLotCert(models.Model):
     _inherit = 'stock.lot'
 
     certification_level = fields.Selection([
-        ('conventional', 'Conventional (常规)'),
-        ('organic_transition', 'Organic Transition (有机转换期)'),
-        ('organic', 'Organic (有机)'),
-        ('green', 'Green Food (绿色食品)'),
-        ('gi', 'Geographical Indication (地理标志)')
+        ('conventional', 'Conventional'),
+        ('organic_transition', 'Organic Transition'),
+        ('organic', 'Organic'),
+        ('green', 'Green Food'),
+        ('gi', 'Geographical Indication')
     ], string="Certification Level", store=True)
 
     @api.onchange('location_id')
