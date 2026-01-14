@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="AgriSpatialGauge">
+        <div class="o_agri_spatial_gauge d-flex align-items-center gap-3 p-3 bg-white rounded shadow-sm border" t-if="props.record.data.intervention_type === 'aerial_spraying' || props.record.data.intervention_type === 'tillage'">
+            <div class="gauge-container position-relative" style="width: 80px; height: 80px;">
+                <svg viewBox="0 0 36 36" class="circular-chart" style="transform: rotate(-90deg);">
+                    <path class="circle-bg"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                        stroke="#eee"
+                        stroke-width="3"
+                    />
+                    <path class="circle"
+                        t-att-stroke="gaugeColor"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        t-att-stroke-dasharray="strokeDasharray"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                    />
+                    <text x="18" y="20.35" class="percentage" style="font-size: 8px; text-anchor: middle; font-weight: bold; transform: rotate(90deg); transform-origin: center;" t-att-fill="gaugeColor">
+                        <t t-esc="Math.round(props.record.data.spatial_compliance_rate)"/>%
+                    </text>
+                </svg>
+            </div>
+            <div class="gauge-info flex-grow-1">
+                <div class="fw-bold text-uppercase small text-muted">Spatial Compliance</div>
+                <div class="h5 mb-0" t-att-class="props.record.data.out_of_bounds_count > 0 ? 'text-danger' : 'text-success'">
+                    <t t-if="props.record.data.out_of_bounds_count === 0">
+                        <i class="fa fa-check-circle me-1"/> Within Boundaries
+                    </t>
+                    <t t-else="">
+                        <i class="fa fa-warning me-1"/> <t t-esc="props.record.data.out_of_bounds_count"/> OOB Points
+                    </t>
+                </div>
+                <div class="small text-muted mt-1">
+                    Verified via GPS Geofencing
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

@@ -32,6 +32,7 @@
         'data/accessibility_settings_data.xml',
         'views/menu.xml',
         'views/term_mapping_views.xml',
+        'views/voice_alias_views.xml',
         'views/form_layout_template_views.xml',
         'views/visual_status_indicator_views.xml',
         'views/workspace_customization_views.xml',
@@ -43,8 +44,11 @@
     'assets': {
         'web.assets_backend': [
             'farm_ux/static/src/css/workspace_customization.css',
+            'farm_ux/static/src/css/accessibility.css',
             'farm_ux/static/src/js/farm_ux_integration.esm.js',
             'farm_ux/static/src/js/term_mapping_handler.esm.js',
+            'farm_ux/static/src/js/agri_action_buttons.esm.js',
+            'farm_ux/static/src/js/agri_spatial_gauge.esm.js',
             'farm_ux/static/src/xml/*.xml',
         ],
     },

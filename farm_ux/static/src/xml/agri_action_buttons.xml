@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="AgriActionButtons">
+        <div class="o_agri_action_buttons d-flex flex-column gap-3 p-3 bg-light border-top mt-3" t-if="props.record.data.simplified_state !== 'done'">
+            <button t-if="canStart" 
+                    class="btn btn-success btn-lg py-4 fw-bold shadow-sm d-flex align-items-center justify-content-center gap-3"
+                    t-on-click="onStartWork">
+                <i class="fa fa-play fa-2x"/>
+                <div class="text-start">
+                    <div class="h4 mb-0">START WORK</div>
+                    <div class="small opacity-75">Begin recording time and GPS</div>
+                </div>
+            </button>
+            
+            <button t-if="canStop" 
+                    class="btn btn-warning btn-lg py-4 fw-bold shadow-sm d-flex align-items-center justify-content-center gap-3"
+                    t-on-click="onStopWork">
+                <i class="fa fa-stop fa-2x"/>
+                <div class="text-start">
+                    <div class="h4 mb-0">STOP WORK</div>
+                    <div class="small opacity-75">Pause/Finish recording</div>
+                </div>
+            </button>
+
+            <button t-if="canFinish" 
+                    class="btn btn-primary btn-lg py-4 fw-bold shadow-sm d-flex align-items-center justify-content-center gap-3"
+                    t-on-hold="onFinishWork"
+                    t-att-class="{'btn-secondary': state.isHolding}">
+                <i class="fa fa-check-circle fa-2x"/>
+                <div class="text-start">
+                    <div class="h4 mb-0"><t t-esc="state.isHolding ? 'HOLD TO CONFIRM...' : 'MARK AS DONE'"/></div>
+                    <div class="small opacity-75">Finalize intervention</div>
+                </div>
+            </button>
+        </div>
+    </t>
+</templates>

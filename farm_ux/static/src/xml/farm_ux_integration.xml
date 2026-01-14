@@ -29,15 +29,18 @@
                     <!-- Tab 切换 (帮助 vs 社交) -->
                     <ul class="nav nav-pills nav-fill mb-3">
                         <li class="nav-item">
-                            <a class="nav-link active small" href="#">Knowledge</a>
+                            <a class="nav-link active small" href="#" t-on-click="() => this.state.activeTab = 'knowledge'">Knowledge</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link small" href="#">Social</a>
+                            <a class="nav-link small" href="#" t-on-click="() => this.state.activeTab = 'weather'">Weather</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link small" href="#" t-on-click="() => this.state.activeTab = 'social'">Social</a>
                         </li>
                     </ul>
 
                     <!-- 1. 上下文帮助区 -->
-                    <div class="mb-4">
+                    <div t-if="state.activeTab === 'knowledge'" class="mb-4">
                         <h6 class="text-uppercase fw-bold small text-muted mb-3">Contextual Guidance</h6>
                         <div t-if="state.contextualHelp.length === 0" class="text-center py-4 bg-light rounded">
                             <small class="text-muted">No specific tips for this view.</small>
@@ -53,8 +56,43 @@
                         </t>
                     </div>
 
-                    <!-- 2. 农业社交动态 (Mockup) -->
-                    <div class="mb-4">
+                    <!-- 2. 天气预报区 -->
+                    <div t-if="state.activeTab === 'weather'" class="mb-4">
+                        <h6 class="text-uppercase fw-bold small text-muted mb-3">Weather Context</h6>
+                        <div t-if="!state.weatherData" class="text-center py-4 bg-light rounded">
+                            <small class="text-muted">No weather data for this location.</small>
+                        </div>
+                        <div t-else="" class="card border-0 shadow-sm bg-info text-white mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h3 class="mb-0"><t t-esc="Math.round(state.weatherData.temp_max)"/>°C</h3>
+                                        <div class="small"><t t-esc="state.weatherData.condition"/></div>
+                                    </div>
+                                    <div class="display-4">
+                                        <i t-att-class="'fa ' + (state.weatherData.icon || 'fa-sun-o')"/>
+                                    </div>
+                                </div>
+                                <hr class="my-2 border-white opacity-25"/>
+                                <div class="row text-center small">
+                                    <div class="col">
+                                        <i class="fa fa-tint me-1"/><t t-esc="state.weatherData.humidity"/>%
+                                    </div>
+                                    <div class="col">
+                                        <i class="fa fa-flag me-1"/><t t-esc="state.weatherData.wind_speed"/>m/s
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div t-if="state.weatherData &amp;&amp; state.weatherData.is_warning" class="alert alert-danger border-0 shadow-sm">
+                            <h6 class="alert-heading fw-bold"><i class="fa fa-warning me-2"/>Warning: <t t-esc="state.weatherData.warning_type"/></h6>
+                            <div class="small">Operation risks detected. Check safety protocols.</div>
+                        </div>
+                    </div>
+
+                    <!-- 3. 农业社交动态 (Mockup) -->
+                    <div t-if="state.activeTab === 'social'" class="mb-4">
                         <h6 class="text-uppercase fw-bold small text-muted mb-3">Farm Social</h6>
                         <div class="list-group list-group-flush small">
                             <div class="list-group-item px-0">
@@ -70,6 +108,9 @@
 
                 <!-- 底部：用户偏好状态 -->
                 <div class="p-3 bg-light border-top">
+                    <button class="btn btn-outline-success w-100 mb-2" t-on-click="startVoiceControl">
+                        <i class="fa fa-microphone me-2"/>Voice Command
+                    </button>
                     <div class="d-flex justify-content-between align-items-center small">
                         <span class="text-muted">UX Mode: <t t-esc="state.workspaceCustomization.theme"/></span>
                         <span class="text-success"><i class="fa fa-check-circle me-1"/>Accessibility Active</span>
