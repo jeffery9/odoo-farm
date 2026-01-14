@@ -156,3 +156,63 @@ class FarmWeatherForecast(models.Model):
                 _logger.error(f"Weather API Error: {response.status_code} - {response.text}")
         except Exception as e:
             _logger.error(f"Weather Fetch Exception: {str(e)}")
+
+    @api.model
+    def get_context_weather(self, res_model, res_id):
+        """
+        获取当前记录上下文的天气信息
+        """
+        if not res_model or not res_id:
+            return None
+        
+        location = False
+        if res_model == 'mrp.production':
+            mo = self.env['mrp.production'].browse(res_id)
+            location = mo.agri_task_id.land_parcel_id
+        elif res_model == 'project.task':
+            task = self.env['project.task'].browse(res_id)
+            location = task.land_parcel_id
+        elif res_model == 'stock.location':
+            location = self.env['stock.location'].browse(res_id)
+            
+        if not location or not location.is_land_parcel:
+            return None
+            
+        # 获取今天的预报
+        forecast = self.search([
+            ('location_id', '=', location.id),
+            ('date', '=', fields.Date.today())
+        ], limit=1)
+        
+        if not forecast:
+            return None
+            
+        return {
+            'temp_max': forecast.temp_max,
+            'temp_min': forecast.temp_min,
+            'condition': forecast.condition,
+            'icon': self._map_icon_to_fa(forecast.icon),
+            'humidity': forecast.humidity,
+            'wind_speed': forecast.wind_speed,
+            'is_warning': forecast.is_warning,
+            'warning_type': forecast.warning_type,
+        }
+
+    def _map_icon_to_fa(self, icon_id):
+        """将 OpenWeatherMap 图标 ID 映射到 FontAwesome """
+        mapping = {
+            '01d': 'fa-sun-o',
+            '01n': 'fa-moon-o',
+            '02d': 'fa-cloud',
+            '02n': 'fa-cloud',
+            '03d': 'fa-cloud',
+            '03n': 'fa-cloud',
+            '04d': 'fa-cloud',
+            '04n': 'fa-cloud',
+            '09d': 'fa-tint',
+            '10d': 'fa-umbrella',
+            '11d': 'fa-bolt',
+            '13d': 'fa-snowflake-o',
+            '50d': 'fa-bars',
+        }
+        return mapping.get(icon_id, 'fa-sun-o')
