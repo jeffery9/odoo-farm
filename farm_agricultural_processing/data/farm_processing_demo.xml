@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Sample Processed Product -->
+        <record id="product_apple_juice" model="product.product">
+            <field name="name">Organic Apple Juice (1L)</field>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="list_price">25.0</field>
+        </record>
+
+        <record id="product_raw_apple" model="product.product">
+            <field name="name">Raw Apples (Fuji) (富士苹果-原料)</field>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+        </record>
+
+        <!-- Sample BOM for Apple Juice -->
+        <record id="bom_apple_juice" model="mrp.bom">
+            <field name="product_tmpl_id" ref="product_apple_juice_product_template"/>
+            <field name="product_qty">100.0</field>
+            <field name="type">normal</field>
+            <field name="industry_type">food_processing</field>
+            <field name="expected_yield_rate">90.0</field>
+            <field name="target_temp">85.0</field> <!-- Pasteurization -->
+        </record>
+
+        <record id="bom_line_apple" model="mrp.bom.line">
+            <field name="bom_id" ref="bom_apple_juice"/>
+            <field name="product_id" ref="product_raw_apple"/>
+            <field name="product_qty">120.0</field>
+            <field name="ingredient_role">main</field>
+        </record>
+    </data>
+</odoo>

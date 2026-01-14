@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_storage_env_user,storage.env.user,model_farm_storage_env,farm_core.group_farm_user,1,1,1,1
+access_processing_waste_user,processing.waste.user,model_farm_agricultural_processing_waste,farm_core.group_farm_user,1,1,1,1

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Production Form View Inherit -->
+    <record id="view_mrp_production_form_inherit_farm_v2" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.farm.v2</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='bom_id']" position="after">
+                <field name="processing_type" widget="radio" options="{'horizontal': true}"/>
+                <field name="process_mode" invisible="processing_type != 'deep'"/>
+            </xpath>
+            
+            <xpath expr="//page[@name='miscellaneous']" position="before">
+                <page string="Agri-Processing" name="agri_processing">
+                    <group>
+                        <group string="Industry Parameters">
+                            <field name="vintage_year" invisible="process_mode != 'fermentation'"/>
+                            <field name="brix_level" invisible="process_mode != 'fermentation'"/>
+                            <field name="baking_temp" invisible="process_mode != 'baking'"/>
+                            <field name="proofing_time" invisible="process_mode != 'baking'"/>
+                            <field name="process_temperature"/>
+                            <field name="moisture_content"/>
+                            <field name="is_haccp_compliant"/>
+                        </group>
+                        <group string="Mass Balance &amp; Energy">
+                            <field name="scrap_qty"/>
+                            <field name="total_output_qty" readonly="1"/>
+                            <field name="is_balanced" widget="boolean_toggle"/>
+                            <hr colspan="2"/>
+                            <label for="water_meter_start" string="Water (m³)"/>
+                            <div class="o_row">
+                                <field name="water_meter_start"/> - <field name="water_meter_end"/>
+                            </div>
+                            <label for="electricity_meter_start" string="Elec (kWh)"/>
+                            <div class="o_row">
+                                <field name="electricity_meter_start"/> - <field name="electricity_meter_end"/>
+                            </div>
+                        </group>
+                    </group>
+                    <group string="Traceability">
+                        <field name="harvest_lot_ids" widget="many2many_tags"/>
+                        <field name="additive_lot_ids" widget="many2many_tags"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Kanban View for Mobile Optimization [US-UX] -->
+    <record id="view_mrp_production_kanban_farm" model="ir.ui.view">
+        <field name="name">mrp.production.kanban.farm</field>
+        <field name="model">mrp.production</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="product_qty"/>
+                <field name="state"/>
+                <field name="processing_type"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title"><field name="product_id"/></strong>
+                                </div>
+                                <span class="badge rounded-pill bg-info"><field name="processing_type"/></span>
+                            </div>
+                            <div class="o_kanban_record_body">
+                                <div>Qty: <field name="product_qty"/></div>
+                                <div t-if="record.state.raw_value == 'progress'">
+                                    <div class="progress" style="height: 5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <field name="priority" widget="priority"/>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <field name="state" widget="label_selection" options="{'classes': {'draft': 'default', 'cancel': 'default', 'none': 'danger', 'waiting': 'warning', 'confirmed': 'info', 'done': 'success'}}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Pivot View for Energy Analysis [US-UX] -->
+    <record id="view_mrp_production_pivot_farm" model="ir.ui.view">
+        <field name="name">mrp.production.pivot.farm</field>
+        <field name="model">mrp.production</field>
+        <field name="arch" type="xml">
+            <pivot string="Energy &amp; Cost Analysis" sample="1">
+                <field name="product_id" type="row"/>
+                <field name="date_finished" interval="month" type="col"/>
+                <field name="water_consumption" type="measure"/>
+                <field name="electricity_consumption" type="measure"/>
+                <field name="total_energy_cost" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+</odoo>

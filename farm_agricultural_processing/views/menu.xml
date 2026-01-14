@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_farm_agricultural_processing_root"
+              name="Agricultural Processing"
+              parent="farm_core.menu_farm_root"
+              sequence="40"/>
+
+    <menuitem id="menu_processing_orders"
+              name="Processing Tasks"
+              parent="menu_farm_agricultural_processing_root"
+              action="mrp.mrp_production_action"
+              sequence="10"/>
+
+    <menuitem id="menu_processing_boms"
+              name="Agri-Recipes (BOM)"
+              parent="menu_farm_agricultural_processing_root"
+              action="mrp.mrp_bom_form_action"
+              sequence="20"/>
+
+    <menuitem id="menu_storage_monitoring"
+              name="Storage Monitoring"
+              parent="menu_farm_agricultural_processing_root"
+              action="action_farm_storage_env"
+              sequence="30"/>
+
+    <menuitem id="menu_processing_waste"
+              name="Waste Registry"
+              parent="menu_farm_agricultural_processing_root"
+              action="action_farm_agricultural_processing_waste"
+              sequence="40"/>
+</odoo>

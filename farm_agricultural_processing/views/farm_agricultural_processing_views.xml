@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- 扩展 BOM 视图：增加农业加工配方 [US-14-02] -->
+    <record id="mrp_bom_form_view_inherit_farm_proc" model="ir.ui.view">
+        <field name="name">mrp.bom.form.inherit.farm.proc</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_qty']" position="after">
+                <field name="industry_type"/>
+                <field name="expected_yield_rate" widget="percentage"/>
+            </xpath>
+            <xpath expr="//field[@name='bom_line_ids']/list/field[@name='product_id']" position="after">
+                <field name="ingredient_role"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Agri-Process Recipe" name="agri_recipe">
+                    <group>
+                        <field name="process_description" placeholder="Describe the steps, e.g. Wash -> Peel -> Juice..."/>
+                    </group>
+                    <group string="Target Parameters" invisible="industry_type == 'standard'">
+                        <group>
+                            <field name="target_temp" invisible="industry_type not in ['baking', 'food_processing']"/>
+                            <field name="target_proofing_time" invisible="industry_type != 'baking'"/>
+                        </group>
+                        <group>
+                            <field name="target_brix" invisible="industry_type != 'winemaking'"/>
+                            <field name="target_ph" invisible="industry_type != 'winemaking'"/>
+                        </group>
+                    </group>
+                    <group string="HACCP Instructions" invisible="industry_type != 'food_processing'">
+                        <field name="haccp_instructions" nolabel="1"/>
+                    </group>
+                    <group string="Expected Grade Distribution">
+                        <field name="grade_distribution_ids" nolabel="1">
+                            <list editable="bottom">
+                                <field name="quality_grade"/>
+                                <field name="expected_percentage" widget="percentage"/>
+                            </list>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- 扩展工作中心：能耗单价 [US-14-04] -->
+    <record id="mrp_workcenter_view_inherit_farm_proc" model="ir.ui.view">
+        <field name="name">mrp.workcenter.form.inherit.farm.proc</field>
+        <field name="model">mrp.workcenter</field>
+        <field name="inherit_id" ref="mrp.mrp_workcenter_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <div class="alert alert-info text-center" role="alert" style="margin-bottom:0px;">
+                    <strong>Agri-Processing Unit / Station</strong>
+                </div>
+            </xpath>
+            <xpath expr="//group[@name='general']" position="inside">
+                <field name="energy_type"/>
+                <field name="energy_cost_per_hour"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- 扩展工单：记录实际能耗 [US-14-04] -->
+    <record id="mrp_production_workorder_tree_editable_view_inherit_farm_proc" model="ir.ui.view">
+        <field name="name">mrp.workorder.list.inherit.farm.proc</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">Processing Steps</attribute>
+            </xpath>
+            <xpath expr="//field[@name='duration']" position="after">
+                <field name="actual_energy_consumption"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_production_form_view_inherit_farm_proc" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.farm.proc</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='miscellaneous']" position="before">
+                <page string="Agri-Processing Details" name="agri_processing">
+                    <group>
+                        <group string="Energy Monitoring">
+                            <field name="energy_meter_start"/>
+                            <field name="energy_meter_end"/>
+                            <field name="energy_consumption" readonly="1"/>
+                            <field name="total_energy_cost" widget="monetary" decoration-bf="1"/>
+                        </group>
+                        <group string="Process Quality">
+                            <field name="process_temperature"/>
+                            <field name="moisture_content"/>
+                        </group>
+                        <group string="Mass Balance (US-04-02)">
+                            <field name="scrap_qty" string="Cleaning/Process Loss"/>
+                            <field name="loss_rate" widget="percentage" decoration-danger="loss_rate > 15" decoration-warning="loss_rate > 5"/>
+                            <field name="total_output_qty"/>
+                            <field name="is_balanced" widget="boolean_toggle" readonly="1" decoration-success="is_balanced" decoration-danger="not is_balanced"/>
+                        </group>
+                    </group>
+                    <group string="Industry Mode">
+                        <field name="process_mode" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+                    <notebook>
+                        <page string="Winemaking" invisible="process_mode != 'fermentation'">
+                            <group>
+                                <group>
+                                    <field name="vintage_year"/>
+                                    <field name="alcohol_content"/>
+                                </group>
+                                <group>
+                                    <field name="brix_level"/>
+                                    <field name="ph_level"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Baking" invisible="process_mode != 'baking'">
+                            <group>
+                                <field name="baking_temp"/>
+                                <field name="proofing_time"/>
+                            </group>
+                        </page>
+                        <page string="Food Safety" invisible="process_mode != 'sterilization'">
+                            <group>
+                                <field name="is_haccp_compliant"/>
+                                <field name="additive_lot_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- 扩展批次视图显示溯源 -->
+    <record id="view_production_lot_form_inherit_farm_proc" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.farm.proc</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="parent_lot_id" options="{'no_create': True}"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Traceability Tree" name="traceability">
+                    <field name="child_lot_ids" readonly="1">
+                        <list>
+                            <field name="name"/>
+                            <field name="product_id"/>
+                            <field name="create_date"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="menu_farm_agricultural_processing_root" name="Agricultural Processing" parent="farm_operation.menu_agri_campaign" sequence="40"/>
+    <menuitem id="menu_farm_agricultural_processing_mo" name="Processing Orders" parent="menu_farm_agricultural_processing_root" action="mrp.mrp_production_action" sequence="10"/>
+</odoo>

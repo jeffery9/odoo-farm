@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_production_lot_form_inherit_farm_v2" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.farm.v2</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="quality_grade" widget="priority"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Agri-Traceability" name="agri_traceability">
+                    <group>
+                        <group string="Origin">
+                            <field name="parent_lot_id"/>
+                            <field name="harvest_date"/>
+                            <field name="plot_id"/>
+                        </group>
+                        <group string="Derivatives">
+                            <field name="child_lot_ids" widget="many2many_tags" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
