@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- GAP Certification Form View -->
+    <record id="view_gap_certification_form" model="ir.ui.view">
+        <field name="name">farm.gap.certification.form</field>
+        <field name="model">farm.gap.certification</field>
+        <field name="arch" type="xml">
+            <form string="GAP Certification">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="valid,expired"/>
+                    <button name="action_renew_certificate" type="object" string="Renew Certificate"
+                            invisible="status == 'expired' and expiry_date &lt; current_date"
+                            class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_gap_audit)d" type="action" class="oe_stat_button"
+                                icon="fa-check-circle">
+                            <field string="Audits" name="id" invisible="1"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="cert_number"/>
+                            <field name="cert_type"/>
+                            <field name="partner_id"/>
+                        </group>
+                        <group>
+                            <field name="issue_date"/>
+                            <field name="expiry_date"/>
+                            <field name="last_audit_date"/>
+                            <field name="next_audit_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="GAP Requirements">
+                            <group>
+                                <group string="Core Requirements">
+                                    <field name="water_quality_compliance"/>
+                                    <field name="soil_health_management"/>
+                                    <field name="pest_management_plan"/>
+                                </group>
+                                <group string="Safety & Traceability">
+                                    <field name="worker_health_safety"/>
+                                    <field name="traceability_system"/>
+                                    <field name="environmental_protection"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Audit Information">
+                            <group>
+                                <field name="audit_result"/>
+                                <field name="non_conformities"/>
+                            </group>
+                        </page>
+                        <page string="Documentation">
+                            <group>
+                                <field name="certificate_file" filename="cert_number"/>
+                                <field name="audit_report_file" filename="cert_number"/>
+                                <field name="supporting_docs" filename="cert_number"/>
+                            </group>
+                        </page>
+                        <page string="Certified Locations & Products">
+                            <group>
+                                <field name="farm_location_ids" widget="many2many_tags"/>
+                                <field name="product_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- GAP Certification Tree View -->
+    <record id="view_gap_certification_tree" model="ir.ui.view">
+        <field name="name">farm.gap.certification.tree</field>
+        <field name="model">farm.gap.certification</field>
+        <field name="arch" type="xml">
+            <tree string="GAP Certifications" decoration-danger="expiry_date &lt; current_date"
+                  decoration-success="status == 'valid' and expiry_date &gt;= current_date"
+                  decoration-muted="status == 'expired'">
+                <field name="name"/>
+                <field name="cert_number"/>
+                <field name="cert_type"/>
+                <field name="partner_id"/>
+                <field name="issue_date"/>
+                <field name="expiry_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- GAP Audit Form View -->
+    <record id="view_gap_audit_form" model="ir.ui.view">
+        <field name="name">farm.gap.audit.form</field>
+        <field name="model">farm.gap.audit</field>
+        <field name="arch" type="xml">
+            <form string="GAP Audit">
+                <header>
+                    <field name="audit_result" widget="statusbar" statusbar_visible="pass,conditional,fail"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="certification_id"/>
+                            <field name="partner_id"/>
+                            <field name="audit_date"/>
+                            <field name="auditor"/>
+                            <field name="audit_type"/>
+                        </group>
+                        <group>
+                            <field name="compliant"/>
+                            <field name="total_score"/>
+                            <field name="follow_up_required"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Audit Scores">
+                            <group string="GAP Criteria Scores">
+                                <group>
+                                    <field name="water_quality_score"/>
+                                    <field name="soil_management_score"/>
+                                    <field name="pest_management_score"/>
+                                </group>
+                                <group>
+                                    <field name="worker_safety_score"/>
+                                    <field name="traceability_score"/>
+                                    <field name="environmental_score"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Findings">
+                            <group>
+                                <field name="non_conformities"/>
+                                <field name="corrective_actions"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- GAP Audit Tree View -->
+    <record id="view_gap_audit_tree" model="ir.ui.view">
+        <field name="name">farm.gap.audit.tree</field>
+        <field name="model">farm.gap.audit</field>
+        <field name="arch" type="xml">
+            <tree string="GAP Audits" decoration-info="audit_result == 'pass'"
+                  decoration-warning="audit_result == 'conditional'"
+                  decoration-danger="audit_result == 'fail'">
+                <field name="certification_id"/>
+                <field name="partner_id"/>
+                <field name="audit_date"/>
+                <field name="auditor"/>
+                <field name="audit_type"/>
+                <field name="total_score"/>
+                <field name="audit_result"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- GAP Daily Compliance Check Form View -->
+    <record id="view_gap_compliance_check_form" model="ir.ui.view">
+        <field name="name">farm.gap.compliance.check.form</field>
+        <field name="model">farm.gap.compliance.check</field>
+        <field name="arch" type="xml">
+            <form string="GAP Daily Compliance Check">
+                <header>
+                    <field name="overall_compliant" widget="statusbar" statusbar_visible="True,False"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="location_id"/>
+                            <field name="date"/>
+                            <field name="checker_id"/>
+                        </group>
+                    </group>
+                    <group string="Daily Compliance Checks">
+                        <group>
+                            <field name="water_quality_compliant"/>
+                            <field name="soil_management_compliant"/>
+                            <field name="pest_management_compliant"/>
+                        </group>
+                        <group>
+                            <field name="worker_safety_compliant"/>
+                            <field name="traceability_compliant"/>
+                            <field name="environmental_compliant"/>
+                        </group>
+                    </group>
+                    <group string="Notes & Actions">
+                        <field name="notes" placeholder="Record any observations or issues..."/>
+                        <field name="corrective_actions" placeholder="Define required corrective actions..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- GAP Daily Compliance Check Tree View -->
+    <record id="view_gap_compliance_check_tree" model="ir.ui.view">
+        <field name="name">farm.gap.compliance.check.tree</field>
+        <field name="model">farm.gap.compliance.check</field>
+        <field name="arch" type="xml">
+            <tree string="GAP Daily Compliance Checks" decoration-success="overall_compliant == True"
+                  decoration-danger="overall_compliant == False">
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="date"/>
+                <field name="checker_id"/>
+                <field name="overall_compliant"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- GAP Requirement Form View -->
+    <record id="view_gap_requirement_form" model="ir.ui.view">
+        <field name="name">farm.gap.requirement.form</field>
+        <field name="model">farm.gap.requirement</field>
+        <field name="arch" type="xml">
+            <form string="GAP Requirement">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="category"/>
+                            <field name="mandatory"/>
+                            <field name="frequency"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Implementation">
+                            <field name="implementation_guide"/>
+                            <field name="evidence_required"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- GAP Requirement Tree View -->
+    <record id="view_gap_requirement_tree" model="ir.ui.view">
+        <field name="name">farm.gap.requirement.tree</field>
+        <field name="model">farm.gap.requirement</field>
+        <field name="arch" type="xml">
+            <tree string="GAP Requirements">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="mandatory"/>
+                <field name="frequency"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- GAP Certification Menu -->
+    <menuitem id="menu_gap_certification_root" name="GAP Certification" parent="menu_farm_certification" sequence="10"/>
+
+    <menuitem id="menu_gap_certification" name="GAP Certificates" parent="menu_gap_certification_root"
+              action="action_gap_certification" sequence="10"/>
+
+    <menuitem id="menu_gap_audit" name="GAP Audits" parent="menu_gap_certification_root"
+              action="action_gap_audit" sequence="20"/>
+
+    <menuitem id="menu_gap_compliance" name="Daily Compliance" parent="menu_gap_certification_root"
+              action="action_gap_compliance_check" sequence="30"/>
+
+    <menuitem id="menu_gap_requirements" name="GAP Requirements" parent="menu_gap_certification_root"
+              action="action_gap_requirement" sequence="40"/>
+
+    <!-- GAP Certification Action -->
+    <record id="action_gap_certification" model="ir.actions.act_window">
+        <field name="name">GAP Certifications</field>
+        <field name="res_model">farm.gap.certification</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add GAP Certifications
+            </p><p>
+                Manage GAP (Good Agricultural Practices) certifications for your farm operations.
+            </p>
+        </field>
+    </record>
+
+    <!-- GAP Audit Action -->
+    <record id="action_gap_audit" model="ir.actions.act_window">
+        <field name="name">GAP Audits</field>
+        <field name="res_model">farm.gap.audit</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- GAP Compliance Check Action -->
+    <record id="action_gap_compliance_check" model="ir.actions.act_window">
+        <field name="name">GAP Daily Compliance Checks</field>
+        <field name="res_model">farm.gap.compliance.check</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- GAP Requirement Action -->
+    <record id="action_gap_requirement" model="ir.actions.act_window">
+        <field name="name">GAP Requirements</field>
+        <field name="res_model">farm.gap.requirement</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
