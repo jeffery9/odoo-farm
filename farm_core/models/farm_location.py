@@ -4,6 +4,14 @@ class FarmLocation(models.Model):
     _inherit = 'stock.location'
 
     is_land_parcel = fields.Boolean("Is Land Parcel", default=False)
+    land_nature = fields.Selection([
+        ('basic_farmland', 'Permanent Basic Farmland (永久基本农田)'),
+        ('general_farmland', 'General Farmland (一般耕地)'),
+        ('garden_land', 'Garden Land (园地)'),
+        ('forest_land', 'Forest Land (林地)'),
+        ('other_agri_land', 'Other Agricultural Land (其他农用地)'),
+        ('construction_land', 'Construction Land (建设用地)'),
+    ], string="Land Nature", help="Classification based on national land use guidelines.")
     land_area = fields.Float("Area (sqm/mu)", digits=(16, 2), help="Surface area of the parcel.")
     land_area_uom_id = fields.Many2one('uom.uom', string="Area Unit", domain="[('category_id.measure_type', '=', 'area')]")
     
@@ -21,6 +29,44 @@ class FarmLocation(models.Model):
         ('loam', 'Loam'),
     ], string="Soil Type")
     
+    # US-32-01: Terroir Profiling (产地风土数字化)
+    slope = fields.Float("Slope Gradient (%)", help="Slope of the land parcel.")
+    aspect = fields.Selection([
+        ('n', 'North'), ('ne', 'North-East'), ('e', 'East'), ('se', 'South-East'),
+        ('s', 'South'), ('sw', 'South-West'), ('w', 'West'), ('nw', 'North-West')
+    ], string="Aspect / Orientation")
+    water_source = fields.Selection([
+        ('river', 'River/Stream'),
+        ('well', 'Groundwater Well'),
+        ('reservoir', 'Reservoir'),
+        ('rain', 'Rain-fed')
+    ], string="Primary Water Source")
+    
+    micro_climate_notes = fields.Text("Micro-climate Characteristics", help="Description of local climate factors.")
+    soil_mineral_composition = fields.Text("Mineral Composition", help="Key minerals present in the soil.")
+
+    # US-32-01: Terroir Profiling (产地风土数字化)
+    slope = fields.Float("Slope Gradient (%)", help="Slope of the land parcel.")
+    aspect = fields.Selection([
+        ('n', 'North'), ('ne', 'North-East'), ('e', 'East'), ('se', 'South-East'),
+        ('s', 'South'), ('sw', 'South-West'), ('w', 'West'), ('nw', 'North-West')
+    ], string="Aspect / Orientation")
+    water_source = fields.Selection([
+        ('river', 'River/Stream'),
+        ('well', 'Groundwater Well'),
+        ('reservoir', 'Reservoir'),
+        ('rain', 'Rain-fed')
+    ], string="Primary Water Source")
+    
+    micro_climate_notes = fields.Text("Micro-climate Characteristics", help="Description of local climate factors.")
+    soil_mineral_composition = fields.Text("Mineral Composition", help="Key minerals present in the soil.")
+
+    # US-33-01: Vertical Farming / High-density Storage (立体库位管理)
+    is_vertical_location = fields.Boolean("Is Vertical / Shelf", default=False)
+    shelf_id = fields.Char("Shelf ID")
+    shelf_level = fields.Integer("Level / Row")
+    shelf_slot = fields.Char("Slot / Position")
+
     @api.depends('gps_lat', 'gps_lng')
     def _compute_gis_map_url(self):
         for loc in self:
@@ -99,12 +145,26 @@ class FarmLocation(models.Model):
             loc.k_balance_status = loc.total_k_input - (loc.target_k_per_mu * area)
 
     def _compute_nutrient_balance(self):
-        """ 汇总该地块所有任务的养分投入 """
+        """ 汇总该地块所有任务的养分投入，并包含粪污还田贡献 [US-27-01] """
         for loc in self:
-            # 找到所有关联该地块的生产任务
+            # 1. 生产任务投入
             tasks = self.env['project.task'].search([('land_parcel_id', '=', loc.id)])
             interventions = self.env['mrp.production'].search([('agri_task_id', 'in', tasks.ids), ('state', '=', 'done')])
             
-            loc.total_n_input = sum(interventions.mapped('pure_n_qty'))
-            loc.total_p_input = sum(interventions.mapped('pure_p_qty'))
-            loc.total_k_input = sum(interventions.mapped('pure_k_qty'))
+            total_n = sum(interventions.mapped('pure_n_qty'))
+            total_p = sum(interventions.mapped('pure_p_qty'))
+            total_k = sum(interventions.mapped('pure_k_qty'))
+
+            # 2. 粪污还田贡献 [US-27-01]
+            if hasattr(self.env['farm.manure.batch'], 'search'):
+                manure_batches = self.env['farm.manure.batch'].search([
+                    ('destination_location_id', '=', loc.id),
+                    ('disposal_method', '=', 'direct_field_use')
+                ])
+                total_n += sum(manure_batches.mapped('pure_n_qty'))
+                total_p += sum(manure_batches.mapped('pure_p_qty'))
+                total_k += sum(manure_batches.mapped('pure_k_qty'))
+
+            loc.total_n_input = total_n
+            loc.total_p_input = total_p
+            loc.total_k_input = total_k

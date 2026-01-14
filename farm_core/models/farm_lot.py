@@ -185,3 +185,30 @@ class FarmLot(models.Model):
     def _onchange_product_id_generation(self):
         if self.product_id and self.product_id.agri_generation:
             self.agri_generation = self.product_id.agri_generation
+
+    def action_reverse_traceability(self):
+        """ US-31-02: Reverse Traceability Audit
+        Find all raw material lots used to produce this lot.
+        """
+        self.ensure_one()
+        # Find the Manufacturing Order (Intervention) that produced this lot
+        mo = self.env['mrp.production'].search([('lot_producing_id', '=', self.id)], limit=1)
+        if not mo:
+            # Fallback: check stock move lines
+            move_line = self.env['stock.move.line'].search([('lot_id', '=', self.id), ('state', '=', 'done')], limit=1)
+            mo = move_line.move_id.production_id
+            
+        if mo:
+            input_lots = mo.move_raw_ids.mapped('move_line_ids.lot_id')
+            if not input_lots:
+                raise UserError(_("No input lots found for the production of this batch."))
+            return {
+                'name': _('Reverse Traceability: %s') % self.name,
+                'type': 'ir.actions.act_window',
+                'res_model': 'stock.lot',
+                'view_mode': 'list,form',
+                'domain': [('id', 'in', input_lots.ids)],
+                'context': self._context,
+            }
+        else:
+            raise UserError(_("No production record found for this lot to trace back!"))
