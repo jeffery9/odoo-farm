@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Mushroom Operation Form View -->
+    <record id="view_farm_mushroom_operation_form" model="ir.ui.view">
+        <field name="name">farm.mushroom.operation.form</field>
+        <field name="model">farm.mushroom.operation</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='extra_info']" position="after">
+                <page string="Mushroom Cultivation Information" name="mushroom_info">
+                    <group name="strain_info" string="Strain & Spawn Management">
+                        <field name="mushroom_strain"/>
+                        <field name="spawn_type"/>
+                        <field name="spawn_source"/>
+                        <field name="spawn_date"/>
+                    </group>
+                    <group name="substrate_info" string="Substrate Management">
+                        <field name="substrate_type"/>
+                        <field name="substrate_preparation_date"/>
+                        <field name="substrate_sterilization_temp"/>
+                        <field name="substrate_sterilization_time"/>
+                        <field name="substrate_recipe"/>
+                    </group>
+                    <group name="environmental_info" string="Environmental Control">
+                        <group name="environmental_params" string="Environmental Parameters">
+                            <field name="growing_temperature"/>
+                            <field name="humidity_level"/>
+                            <field name="co2_level"/>
+                            <field name="ventilation_rate"/>
+                        </group>
+                        <group name="lighting" string="Lighting Control">
+                            <field name="light_intensity"/>
+                        </group>
+                    </group>
+                    <group name="growth_info" string="Growth Tracking">
+                        <group name="timing" string="Growth Timing">
+                            <field name="colonization_date"/>
+                            <field name="first_fruiting_date"/>
+                            <field name="days_to_first_flush"/>
+                        </group>
+                        <group name="flush_info" string="Flush/Harvest Information">
+                            <field name="flush_count"/>
+                            <field name="current_flush_number"/>
+                        </group>
+                    </group>
+                    <group name="harvest_info" string="Harvest Management">
+                        <field name="harvest_schedule_ids" nolabel="1" colspan="2">
+                            <tree string="Harvest Schedule" editable="bottom">
+                                <field name="flush_number"/>
+                                <field name="harvest_date"/>
+                                <field name="yield_amount"/>
+                                <field name="quality_grade"/>
+                                <field name="notes"/>
+                            </tree>
+                        </field>
+                        <group>
+                            <field name="total_yield"/>
+                            <field name="average_yield_per_flush"/>
+                        </group>
+                    </group>
+                    <group name="quality_info" string="Quality & Contamination Control">
+                        <field name="contamination_status"/>
+                        <field name="contamination_notes"/>
+                    </group>
+                    <group name="batch_info" string="Batch Management">
+                        <field name="batch_number"/>
+                        <field name="batch_size"/>
+                        <field name="mushroom_stage"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Mushroom Operation Tree View -->
+    <record id="view_farm_mushroom_operation_tree" model="ir.ui.view">
+        <field name="name">farm.mushroom.operation.tree</field>
+        <field name="model">farm.mushroom.operation</field>
+        <field name="inherit_id" ref="project.view_task_tree2"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="mushroom_strain"/>
+                <field name="mushroom_stage"/>
+                <field name="contamination_status"/>
+                <field name="current_flush_number"/>
+                <field name="total_yield"/>
+                <field name="batch_number"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Mushroom Harvest Form View -->
+    <record id="view_farm_mushroom_harvest_form" model="ir.ui.view">
+        <field name="name">farm.mushroom.harvest.form</field>
+        <field name="model">farm.mushroom.harvest</field>
+        <field name="arch" type="xml">
+            <form string="Mushroom Harvest">
+                <sheet>
+                    <group>
+                        <group name="main_info">
+                            <field name="operation_id"/>
+                            <field name="flush_number"/>
+                            <field name="harvest_date"/>
+                        </group>
+                        <group name="yield_info">
+                            <field name="yield_amount"/>
+                            <field name="quality_grade"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Mushroom Harvest Tree View -->
+    <record id="view_farm_mushroom_harvest_tree" model="ir.ui.view">
+        <field name="name">farm.mushroom.harvest.tree</field>
+        <field name="model">farm.mushroom.harvest</field>
+        <field name="arch" type="xml">
+            <tree string="Mushroom Harvests">
+                <field name="harvest_date"/>
+                <field name="operation_id"/>
+                <field name="flush_number"/>
+                <field name="yield_amount"/>
+                <field name="quality_grade"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for Mushroom Operations -->
+    <record id="action_farm_mushroom_operations" model="ir.actions.act_window">
+        <field name="name">Mushroom Operations</field>
+        <field name="res_model">farm.mushroom.operation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Action for Mushroom Harvests -->
+    <record id="action_farm_mushroom_harvests" model="ir.actions.act_window">
+        <field name="name">Mushroom Harvests</field>
+        <field name="res_model">farm.mushroom.harvest</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu items for Mushroom Cultivation -->
+    <menuitem id="menu_farm_mushroom_root"
+              name="Mushroom Cultivation"
+              parent="farm_core.menu_farm_root"
+              sequence="25"/>
+
+    <menuitem id="menu_farm_mushroom_operations"
+              name="Operations"
+              parent="menu_farm_mushroom_root"
+              action="action_farm_mushroom_operations"
+              sequence="10"/>
+
+    <menuitem id="menu_farm_mushroom_harvests"
+              name="Harvests"
+              parent="menu_farm_mushroom_root"
+              action="action_farm_mushroom_harvests"
+              sequence="20"/>
+</odoo>
