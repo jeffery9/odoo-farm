@@ -18,6 +18,8 @@ export class FarmUXIntegration extends Component {
             visualIndicators: [],
             accessibilityFeatures: {},
             contextualHelp: [],
+            weatherData: null,
+            activeTab: 'knowledge',
             showHelpPanel: false,
             currentModel: '',
             currentViewType: '',
@@ -43,7 +45,7 @@ export class FarmUXIntegration extends Component {
 
             const visualIndicators = await this.orm.searchRead(
                 'visual.status.indicator', [['is_active', '=', true]],
-                ['status_type', 'status_value', 'color_code', 'icon_class', 'badge_style']
+                ['id', 'status_type', 'status_value', 'color_code', 'icon_class', 'badge_style']
             );
 
             const accessibilityFeatures = session.accessibility_features || await this.orm.call(
@@ -90,24 +92,21 @@ export class FarmUXIntegration extends Component {
     }
 
     /**
-     * 监听视图变化以获取上下文帮助
+     * 监听视图变化以获取上下文帮助和天气
      */
     listenToViewChanges() {
-        // 监听 Odoo 的 Breadcrumbs 或 Action 变化
-        // 在 Odoo 19 中，我们可以通过订阅 bus 或监听 DOM 变化来感知当前模型
         const self = this;
-        
-        // 简单的监听方式：每当视图渲染完成后检查当前模型
-        const originalActionDo = this.action.doAction;
-        // 注意：在实际生产中应更优雅地继承 ActionService
+        // 在 Odoo 19 中，我们可以监听控制器变化
+        // 这里简化为定时检查或通过 toggleHelpPanel 触发
     }
 
     /**
-     * 加载上下文帮助
+     * 加载上下文数据 (帮助、天气等)
      */
-    async loadContextualHelp(model, viewType) {
+    async loadContextData(model, viewType, resId) {
         if (!model) return;
         try {
+            // 1. 加载上下文帮助
             const helpData = await this.orm.call(
                 'accessibility.integration',
                 'get_contextual_help_data',
@@ -115,23 +114,79 @@ export class FarmUXIntegration extends Component {
                 { model_name: model, view_type: viewType }
             );
             this.state.contextualHelp = helpData;
+
+            // 2. 加载天气 (如果是干预或地块相关)
+            if (resId && (model === 'mrp.production' || model === 'project.task' || model === 'stock.location')) {
+                const weatherData = await this.orm.call(
+                    'farm.weather.forecast',
+                    'get_context_weather',
+                    [],
+                    { res_model: model, res_id: resId }
+                );
+                this.state.weatherData = weatherData;
+            } else {
+                this.state.weatherData = null;
+            }
+
             this.state.currentModel = model;
             this.state.currentViewType = viewType;
         } catch (error) {
-            console.error('Error loading contextual help:', error);
+            console.error('Error loading context data:', error);
         }
     }
 
     toggleHelpPanel() {
         this.state.showHelpPanel = !this.state.showHelpPanel;
         if (this.state.showHelpPanel) {
-            // 尝试从当前控制器获取模型信息
-            const controller = this.env.services.action.currentController;
+            // 从当前控制器获取模型信息
+            const controller = this.action.currentController;
             if (controller && controller.props.resModel) {
-                this.loadContextualHelp(controller.props.resModel, controller.props.type || 'form');
+                this.loadContextData(
+                    controller.props.resModel, 
+                    controller.props.type || 'form',
+                    controller.props.resId
+                );
             }
         }
     }
+
+    /**
+     * 语音控制集成 [US-16-07]
+     */
+    startVoiceControl() {
+        if (!('webkitSpeechRecognition' in window)) {
+            console.warn('Speech recognition not supported');
+            return;
+        }
+
+        const recognition = new window.webkitSpeechRecognition();
+        recognition.lang = 'zh-CN';
+        recognition.continuous = false;
+        recognition.interimResults = false;
+
+        recognition.onresult = (event) => {
+            const command = event.results[0][0].transcript;
+            this.processVoiceCommand(command);
+        };
+
+        recognition.start();
+    }
+
+    processVoiceCommand(command) {
+        console.log('Voice Command received:', command);
+        if (command.includes('开始') || command.includes('作业')) {
+            const btn = document.querySelector('.o_agri_action_buttons .btn-success');
+            if (btn) btn.click();
+        } else if (command.includes('停止') || command.includes('结束')) {
+            const btn = document.querySelector('.o_agri_action_buttons .btn-warning');
+            if (btn) btn.click();
+        } else if (command.includes('完成') || command.includes('保存')) {
+            const btn = document.querySelector('.o_form_button_save, .o_agri_action_buttons .btn-primary');
+            if (btn) btn.click();
+        }
+    }
+
+
 
     enableScreenReaderCompatibility() {
         const elements = document.querySelectorAll('button, a, input, select, textarea');
