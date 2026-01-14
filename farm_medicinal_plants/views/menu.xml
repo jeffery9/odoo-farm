@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Medicinal Plants specific menu items will be added here -->
+    <menuitem id="farm_medicinal_plants_menu_root"
+              name="Medicinal Plants"
+              sequence="24"
+              groups="base.group_user"/>
+</odoo>

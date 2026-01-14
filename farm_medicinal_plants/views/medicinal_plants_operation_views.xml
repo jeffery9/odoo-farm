@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Medicinal Plants Operation Form View -->
+    <record id="view_farm_medicinal_plants_operation_form" model="ir.ui.view">
+        <field name="name">farm.medicinal.plants.operation.form</field>
+        <field name="model">farm.medicinal.plants.operation</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='extra_info']" position="after">
+                <page string="Medicinal Plants Information" name="medicinal_plants_info">
+                    <group name="plant_info" string="Plant & Variety Information">
+                        <field name="plant_species"/>
+                        <field name="variety"/>
+                        <field name="daodi_requirements"/>
+                        <field name="cultivation_method"/>
+                        <field name="medicinal_plant_stage"/>
+                    </group>
+                    <group name="environmental_info" string="Environmental Factors for Quality">
+                        <group name="environmental_factors" string="Environmental Parameters">
+                            <field name="light_intensity"/>
+                            <field name="soil_ph"/>
+                            <field name="cultivation_altitude"/>
+                            <field name="soil_type"/>
+                        </group>
+                        <group name="environmental_impact" string="Quality Impact">
+                            <field name="environmental_factors"/>
+                        </group>
+                    </group>
+                    <group name="compound_info" string="Active Ingredient Management">
+                        <group name="compound_target" string="Target Compounds">
+                            <field name="target_compound"/>
+                            <field name="target_compound_level"/>
+                        </group>
+                        <group name="compound_current" string="Current Status">
+                            <field name="current_compound_level"/>
+                            <field name="compound_analysis_date"/>
+                            <field name="compound_analysis_status"/>
+                        </group>
+                        <group name="compound_profile" string="Compound Profile">
+                            <field name="active_ingredients"/>
+                        </group>
+                    </group>
+                    <group name="gmp_info" string="GMP Compliance">
+                        <group name="gmp_status" string="GMP Status">
+                            <field name="gmp_compliant"/>
+                            <field name="gmp_certification_number"/>
+                            <field name="gmp_inspection_date"/>
+                            <field name="gmp_status"/>
+                        </group>
+                    </group>
+                    <group name="harvest_info" string="Harvest Management">
+                        <field name="optimal_harvest_window"/>
+                        <field name="harvest_timing_factor"/>
+                        <field name="harvest_method"/>
+                    </group>
+                    <group name="quality_info" string="Quality Control">
+                        <field name="quality_grade"/>
+                        <field name="quality_notes"/>
+                        <field name="quality_certifications"/>
+                    </group>
+                    <group name="processing_info" string="Processing Management">
+                        <field name="processing_method"/>
+                        <field name="processing_date"/>
+                        <field name="processed_quantity"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Medicinal Plants Operation Tree View -->
+    <record id="view_farm_medicinal_plants_operation_tree" model="ir.ui.view">
+        <field name="name">farm.medicinal.plants.operation.tree</field>
+        <field name="model">farm.medicinal.plants.operation</field>
+        <field name="inherit_id" ref="project.view_task_tree2"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="plant_species"/>
+                <field name="current_compound_level"/>
+                <field name="compound_analysis_status"/>
+                <field name="quality_grade"/>
+                <field name="gmp_compliant"/>
+                <field name="medicinal_plant_stage"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Medicinal Plants Analysis Form View -->
+    <record id="view_farm_medicinal_plants_analysis_form" model="ir.ui.view">
+        <field name="name">farm.medicinal.plants.analysis.form</field>
+        <field name="model">farm.medicinal.plants.analysis</field>
+        <field name="arch" type="xml">
+            <form string="Medicinal Plants Analysis">
+                <sheet>
+                    <group>
+                        <group name="main_info">
+                            <field name="operation_id"/>
+                            <field name="analysis_date"/>
+                            <field name="analyst"/>
+                        </group>
+                        <group name="compound_analysis">
+                            <field name="target_compound"/>
+                            <field name="compound_level"/>
+                            <field name="analysis_status"/>
+                        </group>
+                    </group>
+                    <group string="Analysis Details">
+                        <field name="testing_method"/>
+                        <field name="analysis_notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Medicinal Plants Analysis Tree View -->
+    <record id="view_farm_medicinal_plants_analysis_tree" model="ir.ui.view">
+        <field name="name">farm.medicinal.plants.analysis.tree</field>
+        <field name="model">farm.medicinal.plants.analysis</field>
+        <field name="arch" type="xml">
+            <tree string="Medicinal Plants Analysis">
+                <field name="analysis_date"/>
+                <field name="operation_id"/>
+                <field name="target_compound"/>
+                <field name="compound_level"/>
+                <field name="analysis_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for Medicinal Plants Operations -->
+    <record id="action_farm_medicinal_plants_operations" model="ir.actions.act_window">
+        <field name="name">Medicinal Plants Operations</field>
+        <field name="res_model">farm.medicinal.plants.operation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Action for Medicinal Plants Analysis -->
+    <record id="action_farm_medicinal_plants_analysis" model="ir.actions.act_window">
+        <field name="name">Medicinal Plants Analysis</field>
+        <field name="res_model">farm.medicinal.plants.analysis</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu items for Medicinal Plants -->
+    <menuitem id="menu_farm_medicinal_plants_root"
+              name="Medicinal Plants"
+              parent="farm_core.menu_farm_root"
+              sequence="24"/>
+
+    <menuitem id="menu_farm_medicinal_plants_operations"
+              name="Operations"
+              parent="menu_farm_medicinal_plants_root"
+              action="action_farm_medicinal_plants_operations"
+              sequence="10"/>
+
+    <menuitem id="menu_farm_medicinal_plants_analysis"
+              name="Compound Analysis"
+              parent="menu_farm_medicinal_plants_root"
+              action="action_farm_medicinal_plants_analysis"
+              sequence="20"/>
+</odoo>
