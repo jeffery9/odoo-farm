@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_biosafety_access_log_tree" model="ir.ui.view">
+        <field name="name">farm.biosafety.access.log.tree</field>
+        <field name="model">farm.biosafety.access.log</field>
+        <field name="arch" type="xml">
+            <list string="Bio-safety Logs" decoration-danger="not sanitization_confirmed">
+                <field name="access_time"/>
+                <field name="location_id"/>
+                <field name="person_id"/>
+                <field name="employee_id"/>
+                <field name="access_type"/>
+                <field name="sanitization_confirmed"/>
+                <field name="quarantine_period_passed"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_farm_biosafety_access_log_form" model="ir.ui.view">
+        <field name="name">farm.biosafety.access.log.form</field>
+        <field name="model">farm.biosafety.access.log</field>
+        <field name="arch" type="xml">
+            <form string="Bio-safety Access">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="location_id"/>
+                            <field name="access_time"/>
+                            <field name="access_type"/>
+                        </group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="person_id"/>
+                            <field name="vehicle_plate"/>
+                        </group>
+                    </group>
+                    <group string="Safety Compliance">
+                        <field name="sanitization_confirmed" widget="boolean_toggle"/>
+                        <field name="quarantine_period_passed"/>
+                    </group>
+                    <group string="Details">
+                        <field name="purpose"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_biosafety_access_log" model="ir.actions.act_window">
+        <field name="name">Bio-safety Access Control</field>
+        <field name="res_model">farm.biosafety.access.log</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_farm_biosafety_access"
+              name="Access Control"
+              parent="farm_safety.menu_farm_safety_root"
+              action="action_farm_biosafety_access_log"
+              sequence="30"/>
+</odoo>
