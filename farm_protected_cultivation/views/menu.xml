@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Protected Cultivation specific menu items -->
+    <menuitem id="menu_farm_protected_cultivation_menu_root"
+              name="Protected Cultivation"
+              parent="farm_core.menu_farm_root"
+              sequence="21"/>
+</odoo>

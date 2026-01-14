@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Protected Cultivation Operation Form View -->
+    <record id="view_farm_protected_cultivation_operation_form" model="ir.ui.view">
+        <field name="name">farm.protected.cultivation.operation.form</field>
+        <field name="model">farm.protected.cultivation.operation</field>
+        <field name="arch" type="xml">
+            <form string="Protected Cultivation Operation">
+                <header>
+                    <field name="stage_id" widget="statusbar" clickable="1"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_environmental_logs"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-area-chart">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Environmental Logs</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group name="main_info" string="Operation Information">
+                            <field name="name"/>
+                            <field name="crop_type_id"/>
+                            <field name="growing_structure_id"/>
+                            <field name="operation_type"/>
+                        </group>
+                        <group name="structure_info" string="Growing Structure">
+                            <field name="structure_type"/>
+                            <field name="growing_method"/>
+                            <field name="irrigation_fertigation_system"/>
+                            <field name="growing_media_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Environmental Targets" name="environmental_targets">
+                            <group>
+                                <group name="temperature" string="Temperature Control">
+                                    <field name="temperature_target_min"/>
+                                    <field name="temperature_target_max"/>
+                                </group>
+                                <group name="humidity" string="Humidity Control">
+                                    <field name="humidity_target_min"/>
+                                    <field name="humidity_target_max"/>
+                                </group>
+                                <group name="co2_lighting" string="CO2 and Lighting">
+                                    <field name="co2_level_target"/>
+                                    <field name="lighting_schedule"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Nutrient Management" name="nutrient_management">
+                            <group>
+                                <field name="nutrient_solution_ph"/>
+                                <field name="nutrient_solution_ec"/>
+                            </group>
+                        </page>
+                        <page string="Environmental Logs" name="environmental_logs">
+                            <field name="environmental_log_ids" nolabel="1">
+                                <tree string="Environmental Logs" editable="bottom">
+                                    <field name="timestamp"/>
+                                    <field name="temperature"/>
+                                    <field name="humidity"/>
+                                    <field name="co2_level"/>
+                                    <field name="light_intensity"/>
+                                    <field name="ph_level"/>
+                                    <field name="ec_level"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Description" name="description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="activity_ids"/>
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Protected Cultivation Operation Tree View -->
+    <record id="view_farm_protected_cultivation_operation_tree" model="ir.ui.view">
+        <field name="name">farm.protected.cultivation.operation.tree</field>
+        <field name="model">farm.protected.cultivation.operation</field>
+        <field name="arch" type="xml">
+            <tree string="Protected Cultivation Operations">
+                <field name="name"/>
+                <field name="crop_type_id"/>
+                <field name="growing_structure_id"/>
+                <field name="structure_type"/>
+                <field name="temperature_target_min"/>
+                <field name="temperature_target_max"/>
+                <field name="stage_id"/>
+                <field name="date_assign"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Environmental Log Form View -->
+    <record id="view_farm_environmental_log_form" model="ir.ui.view">
+        <field name="name">farm.environmental.log.form</field>
+        <field name="model">farm.environmental.log</field>
+        <field name="arch" type="xml">
+            <form string="Environmental Log">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="timestamp"/>
+                            <field name="location_id"/>
+                            <field name="protected_operation_id"/>
+                        </group>
+                        <group string="Environmental Conditions">
+                            <field name="temperature"/>
+                            <field name="humidity"/>
+                            <field name="co2_level"/>
+                        </group>
+                        <group string="Nutrient Data">
+                            <field name="ph_level"/>
+                            <field name="ec_level"/>
+                            <field name="light_intensity"/>
+                        </group>
+                    </group>
+                    <group string="Notes">
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Environmental Log Tree View -->
+    <record id="view_farm_environmental_log_tree" model="ir.ui.view">
+        <field name="name">farm.environmental.log.tree</field>
+        <field name="model">farm.environmental.log</field>
+        <field name="arch" type="xml">
+            <tree string="Environmental Logs" default_order="timestamp desc">
+                <field name="timestamp"/>
+                <field name="location_id"/>
+                <field name="protected_operation_id"/>
+                <field name="temperature"/>
+                <field name="humidity"/>
+                <field name="co2_level"/>
+                <field name="ph_level"/>
+                <field name="ec_level"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action to open Protected Cultivation Operations -->
+    <record id="action_farm_protected_cultivation_operations" model="ir.actions.act_window">
+        <field name="name">Protected Cultivation Operations</field>
+        <field name="res_model">farm.protected.cultivation.operation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Action to open Environmental Logs -->
+    <record id="action_farm_environmental_logs" model="ir.actions.act_window">
+        <field name="name">Environmental Logs</field>
+        <field name="res_model">farm.environmental.log</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu items for Protected Cultivation -->
+    <menuitem id="menu_protected_cultivation_operations"
+              name="Operations"
+              parent="farm_protected_cultivation.menu_farm_protected_cultivation_menu_root"
+              action="action_farm_protected_cultivation_operations"
+              sequence="10"/>
+
+    <menuitem id="menu_protected_cultivation_logs"
+              name="Environmental Logs"
+              parent="farm_protected_cultivation.menu_farm_protected_cultivation_menu_root"
+              action="action_farm_environmental_logs"
+              sequence="20"/>

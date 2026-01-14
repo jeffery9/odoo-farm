@@ -1,0 +1,5 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_protected_cultivation_operation_user","protected.cultivation.operation.user","model_farm_protected_cultivation_operation","farm_core.group_farm_user",1,1,1,1
+"access_protected_cultivation_operation_manager","protected.cultivation.operation.manager","model_farm_protected_cultivation_operation","farm_core.group_farm_manager",1,1,1,1
+"access_environmental_log_user","environmental.log.user","model_farm_environmental_log","farm_core.group_farm_user",1,1,1,1
+"access_environmental_log_manager","environmental.log.manager","model_farm_environmental_log","farm_core.group_farm_manager",1,1,1,1
