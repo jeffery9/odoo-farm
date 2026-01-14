@@ -27,20 +27,50 @@ class FarmQualityCheck(models.Model):
     name = fields.Char("Reference", required=True, default=lambda self: _('New'))
     point_id = fields.Many2one('farm.quality.point', string="Control Point")
     lot_id = fields.Many2one('stock.lot', string="Lot/Batch", required=True)
-    sample_id = fields.Many2one('farm.quality.sample', string="Linked Sample", 
+    sample_id = fields.Many2one('farm.quality.sample', string="Linked Sample",
                                help="The physical sample used for this check.")
     task_id = fields.Many2one('project.task', string="Production Task")
-    
+
     test_type = fields.Selection(related='point_id.test_type', store=True)
     measure = fields.Float("Actual Measure")
-    
+
     quality_state = fields.Selection([
         ('none', 'To do'),
         ('pass', 'Passed'),
         ('fail', 'Failed')
     ], string="Status", default='none', tracking=True)
-    
+
     user_id = fields.Many2one('res.users', string="Responsible", default=lambda self: self.env.user)
+
+    # 盲样相关字段 [US-15-06] - 用于测试人员界面控制
+    is_blind_view = fields.Boolean("Blind View", compute='_compute_blind_view', help="Whether the current user should see masked information")
+
+    def _compute_blind_view(self):
+        """ 计算当前用户是否应以盲样视图查看 [US-15-06] """
+        for record in self:
+            # 如果关联了盲样测试，且当前用户是盲样测试人员，则显示盲样视图
+            if (record.sample_id and record.sample_id.is_blind_test and
+                record.sample_id.blind_tester_id and
+                record.sample_id.blind_tester_id.id == self.env.uid):
+                record.is_blind_view = True
+            else:
+                record.is_blind_view = False
+
+    @property
+    def display_lot_name(self):
+        """ 返回应显示的批次名称，盲样时隐藏真实信息 [US-15-06] """
+        if self.is_blind_view and self.sample_id:
+            info = self.sample_id.get_blind_sample_info()
+            return info['lot_display']
+        return self.lot_id.name
+
+    @property
+    def display_product_name(self):
+        """ 返回应显示的产品名称，盲样时隐藏真实信息 [US-15-06] """
+        if self.is_blind_view and self.sample_id:
+            info = self.sample_id.get_blind_sample_info()
+            return info['product_display']
+        return self.lot_id.product_id.name if self.lot_id.product_id else _("Unknown Product")
 
     @api.model_create_multi
     def create(self, vals_list):
