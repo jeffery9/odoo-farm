@@ -14,7 +14,7 @@
 
     <record id="visual_indicator_gdd_progress" model="visual.status.indicator">
         <field name="name">GDD Progress Status</field>
-        <field name="model_name">farm.agricultural.campaign</field>
+        <field name="model_name">agricultural.campaign</field>
         <field name="field_name">accumulated_gdd</field>
         <field name="evaluation_logic">lambda record: 'red' if record.accumulated_gdd and record.target_gdd and record.accumulated_gdd / record.target_gdd * 100 >= 95 else 'green' if record.accumulated_gdd and record.target_gdd and record.accumulated_gdd / record.target_gdd * 100 >= 50 else 'orange'</field>
         <field name="icon">fa-thermometer-half</field>
