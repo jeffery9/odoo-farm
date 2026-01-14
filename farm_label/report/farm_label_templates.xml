@@ -122,4 +122,58 @@
             </div>
         </t>
     </template>
+
+    <!-- 5. China Agri-Product Certificate of Conformity (食用农产品承诺达标合格证) [US-18-03] -->
+    <template id="report_china_agri_certificate">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-foreach="docs" t-as="lot">
+                    <div style="width: 140mm; border: 2px solid #000; padding: 10mm; margin-bottom: 10mm; font-family: 'SimSun', serif; page-break-inside: avoid;">
+                        <h2 style="text-align: center; font-weight: bold; font-size: 24pt; margin-bottom: 5mm;">食用农产品承诺达标合格证</h2>
+                        <h3 style="text-align: center; font-size: 14pt; margin-bottom: 10mm;">(Agri-Product Certificate of Conformity)</h3>
+                        
+                        <div style="font-size: 14pt; line-height: 2;">
+                            <div class="row">
+                                <div class="col-12"><strong>产品名称 (Product):</strong> <span t-field="lot.product_id.name"/></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6"><strong>重量/数量 (Qty):</strong> <span t-field="lot.product_qty"/> <span t-field="lot.product_uom_id"/></div>
+                                <div class="col-6"><strong>生产日期 (Date):</strong> <span t-field="lot.create_date" t-options='{"widget": "date"}'/></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><strong>产地 (Origin):</strong> <span t-field="lot.location_id.display_name"/></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><strong>主体名称 (Producer):</strong> <span t-field="res_company.name"/></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><strong>主体代码 (Credit Code):</strong> <span t-field="res_company.vat"/></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12"><strong>联系电话 (Phone):</strong> <span t-field="res_company.phone"/></div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 10mm; border-top: 1px solid #000; padding-top: 5mm;">
+                            <p style="font-size: 12pt; font-weight: bold;">承诺声明 (Commitment):</p>
+                            <p style="font-size: 10pt; line-height: 1.5;">
+                                本主体承诺：不使用禁限用农药兽药及非法添加物；遵守农药兽药安全间隔期、休药期规定；销售的食用农产品符合农药兽药残留食品安全国家标准。
+                                (I commit that no prohibited substances are used, and safety withdrawal periods are respected.)
+                            </p>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-8">
+                                <div style="font-size: 10pt;">查询追溯二维码 (Scan for Traceability):</div>
+                                <img t-att-src="'/report/barcode/?barcode_type=QR&amp;value=%s&amp;width=120&amp;height=120' % (lot.traceability_url or 'N/A')" style="width:30mm;height:30mm;"/>
+                            </div>
+                            <div class="col-4 text-center">
+                                <div style="border: 1px solid #ccc; height: 30mm; width: 30mm; line-height: 30mm; font-size: 8pt; color: #ccc;">(Producer Seal)</div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </t>
+    </template>
 </odoo>

@@ -7,3 +7,4 @@ from . import multi_sensory_interaction
 from . import farm_social_network
 from . import accessibility_settings
 from . import integration
+from . import voice_alias

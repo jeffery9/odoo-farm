@@ -32,4 +32,15 @@
         <field name="binding_model_id" ref="stock.model_stock_lot"/>
         <field name="binding_type">report</field>
     </record>
+
+    <!-- China Agri-Product Certificate of Conformity [US-18-03] -->
+    <record id="action_report_china_agri_certificate" model="ir.actions.report">
+        <field name="name">Agri-Product Certificate of Conformity (合格证)</field>
+        <field name="model">stock.lot</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">farm_label.report_china_agri_certificate</field>
+        <field name="report_file">farm_label.report_china_agri_certificate</field>
+        <field name="binding_model_id" ref="stock.model_stock_lot"/>
+        <field name="binding_type">report</field>
+    </record>
 </odoo>

@@ -8,6 +8,7 @@
             <header>
                 <button name="action_qc_release" string="QC Release" type="object" class="oe_highlight" 
                         invisible="qc_release_state == 'released'" groups="farm_quality.group_farm_quality_manager"/>
+                <button name="action_reverse_traceability" string="Reverse Traceability" type="object" icon="fa-history"/>
                 <field name="qc_release_state" widget="statusbar" statusbar_visible="locked,released"/>
             </header>
             <xpath expr="//field[@name='ref']" position="after">

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_voice_recognition_alias_tree" model="ir.ui.view">
+        <field name="name">farm.voice.recognition.alias.tree</field>
+        <field name="model">farm.voice.recognition.alias</field>
+        <field name="arch" type="xml">
+            <tree string="Voice Recognition Aliases" editable="bottom">
+                <field name="alias"/>
+                <field name="target_term"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_voice_recognition_aliases" model="ir.actions.act_window">
+        <field name="name">Voice Recognition Aliases</field>
+        <field name="res_model">farm.voice.recognition.alias</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_voice_recognition_alias"
+              name="Voice Aliases"
+              parent="farm_ux.menu_ux_root"
+              action="action_voice_recognition_aliases"
+              sequence="20"/>
+</odoo>
