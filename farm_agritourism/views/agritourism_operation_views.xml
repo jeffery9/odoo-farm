@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Agritourism Operation Form View -->
+    <record id="view_farm_agritourism_operation_form" model="ir.ui.view">
+        <field name="name">farm.agritourism.operation.form</field>
+        <field name="model">farm.agritourism.operation</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='extra_info']" position="after">
+                <page string="Agritourism Information" name="agritourism_info">
+                    <group name="activity_info" string="Activity Information">
+                        <field name="activity_type"/>
+                        <field name="activity_code"/>
+                    </group>
+                    <group name="visitor_info" string="Visitor Management">
+                        <group name="visitor_counts" string="Visitor Counts">
+                            <field name="visitor_count"/>
+                            <field name="actual_visitor_count"/>
+                        </group>
+                        <group name="visitor_details" string="Visitor Details">
+                            <field name="visitor_age_distribution"/>
+                            <field name="visitor_special_needs"/>
+                        </group>
+                    </group>
+                    <group name="scheduling_info" string="Scheduling & Resources">
+                        <group name="scheduling" string="Activity Schedule">
+                            <field name="activity_date"/>
+                            <field name="activity_start_time"/>
+                            <field name="activity_end_time"/>
+                            <field name="requires_reservation"/>
+                        </group>
+                        <group name="resource_usage" string="Resource Usage">
+                            <field name="resource_usage_ids" nolabel="1" colspan="2">
+                                <tree string="Resource Usage" editable="bottom">
+                                    <field name="resource_id"/>
+                                    <field name="usage_start_time"/>
+                                    <field name="usage_end_time"/>
+                                    <field name="assigned_staff"/>
+                                    <field name="usage_notes"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+                    <group name="safety_info" string="Safety & Compliance">
+                        <field name="safety_measures"/>
+                        <field name="emergency_contact"/>
+                        <field name="insurance_coverage"/>
+                        <field name="risk_assessment_completed"/>
+                    </group>
+                    <group name="membership_info" string="Member & Loyalty Program">
+                        <field name="member_discount_applied"/>
+                        <field name="membership_tier"/>
+                        <field name="loyalty_points_earned"/>
+                    </group>
+                    <group name="experience_info" string="Experience Quality">
+                        <field name="experience_quality_score"/>
+                        <field name="guest_feedback"/>
+                        <field name="improvement_suggestions"/>
+                    </group>
+                    <group name="weather_info" string="Weather Considerations">
+                        <field name="weather_suitable"/>
+                        <field name="weather_impact_notes"/>
+                        <field name="backup_plan"/>
+                    </group>
+                    <group name="revenue_info" string="Revenue Tracking">
+                        <group name="revenue_breakdown" string="Revenue Breakdown">
+                            <field name="merchandise_sales"/>
+                            <field name="food_beverage_sales"/>
+                            <field name="total_revenue"/>
+                        </group>
+                        <group name="sales_integration" string="Sales Integration">
+                            <field name="related_sale_orders" widget="many2many_tags" options="{'no_create_edit': true}"/>
+                        </group>
+                    </group>
+                    <group name="workflow_info" string="Agritourism Workflow">
+                        <field name="agritourism_stage"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Agritourism Operation Tree View -->
+    <record id="view_farm_agritourism_operation_tree" model="ir.ui.view">
+        <field name="name">farm.agritourism.operation.tree</field>
+        <field name="model">farm.agritourism.operation</field>
+        <field name="inherit_id" ref="project.view_task_tree2"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="activity_type"/>
+                <field name="activity_date"/>
+                <field name="visitor_count"/>
+                <field name="actual_visitor_count"/>
+                <field name="experience_quality_score"/>
+                <field name="total_revenue"/>
+                <field name="agritourism_stage"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Action for Agritourism Operations -->
+    <record id="action_farm_agritourism_operations" model="ir.actions.act_window">
+        <field name="name">Agritourism Operations</field>
+        <field name="res_model">farm.agritourism.operation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu item for Agritourism Operations -->
+    <menuitem id="menu_farm_agritourism_operations"
+              name="Activities"
+              parent="farm_agritourism.menu_farm_agritourism_root"
+              action="action_farm_agritourism_operations"
+              sequence="15"/>
+</odoo>
