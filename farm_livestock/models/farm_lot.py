@@ -69,6 +69,52 @@ class FarmLot(models.Model):
     days_in_milk = fields.Integer('Days in Milk')
     egg_production_rate = fields.Float('Egg Production Rate (%)')
 
+    # US-35-02: High-density Precision Feeding Logic
+    stocking_density = fields.Float("Stocking Density (heads/sqm)", compute='_compute_stocking_density')
+    total_feed_consumed = fields.Float("Total Feed Consumed (kg)", compute='_compute_feed_stats')
+    feed_conversion_ratio = fields.Float("Feed Conversion Ratio (FCR)", compute='_compute_feed_stats', help="Total Feed / Total Weight Gain")
+
+    # US-35-03: Health Anomaly Early Warning
+    health_index = fields.Float("Health Index (0-100)", default=100.0)
+    is_health_anomaly = fields.Boolean("Anomaly Detected", default=False)
+    last_anomaly_date = fields.Datetime("Last Anomaly Time")
+
+    @api.depends('animal_count', 'location_id.land_area')
+    def _compute_stocking_density(self):
+        for lot in self:
+            area = lot.location_id.land_area or 1.0
+            lot.stocking_density = lot.animal_count / area
+
+    def _compute_feed_stats(self):
+        for lot in self:
+            # Aggregate from interventions
+            feeding_ops = self.env['mrp.production'].search([
+                ('lot_producing_id', '=', lot.id),
+                ('intervention_type', '=', 'feeding'),
+                ('state', '=', 'done')
+            ])
+            total_feed = sum(feeding_ops.mapped('product_qty')) # Simplified
+            lot.total_feed_consumed = total_feed
+            
+            weight_gain = (lot.current_predicted_weight - lot.start_weight) * lot.animal_count
+            lot.feed_conversion_ratio = total_feed / weight_gain if weight_gain > 0 else 0.0
+
+    def action_check_health_anomalies(self):
+        """ US-35-03: Basic anomaly detection based on growth rate vs average """
+        for lot in self:
+            if lot.average_daily_gain < 0.1: # Threshold for anomaly
+                lot.write({
+                    'is_health_anomaly': True,
+                    'last_anomaly_date': fields.Datetime.now()
+                })
+                lot.message_post(body=_("HEALTH ALERT: Growth rate for lot %s is critically low (%s kg/day)!") % (lot.name, lot.average_daily_gain))
+                lot.activity_schedule(
+                    'mail.mail_activity_data_todo',
+                    summary=_('Health Anomaly: %s') % lot.name,
+                    note=_('Low growth rate detected. Please inspect for disease or environmental stress.'),
+                    user_id=self.env.user.id
+                )
+
     @api.depends('create_date', 'start_weight', 'average_daily_gain')
     def _compute_predicted_weight(self):
         today = fields.Date.today()

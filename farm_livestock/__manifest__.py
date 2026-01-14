@@ -22,6 +22,7 @@
         'security/ir.model.access.csv',
         'data/ir_cron_data.xml',
         'views/livestock_lot_views.xml',
+        'views/livestock_advanced_views.xml',
         'views/livestock_feeding_views.xml',
         'views/livestock_views.xml',
         'views/menu.xml',
