@@ -3,10 +3,10 @@ from odoo.exceptions import UserError
 
 class AgriIntervention(models.Model):
     _inherit = 'mrp.production'
-    _description = 'Agricultural Intervention'
+    _description = 'Agricultural Intervention (De-industrialized View)'
 
     agri_task_id = fields.Many2one(
-        'project.task', 
+        'project.task',
         string="Production Task",
         help="The specific production task this intervention belongs to."
     )
@@ -149,12 +149,59 @@ class AgriIntervention(models.Model):
 
     def action_start_work(self):
         """ 一键打卡：开始作业 """
+        # US-02-06: Weather window check for spray operations
+        if self.intervention_type in ['fertilizing', 'protection', 'aerial_spraying']:
+            self._check_weather_window()
+
         self.ensure_one()
         self.write({
             'work_start_datetime': fields.Datetime.now(),
             'is_working': True
         })
         self.message_post(body=_("Labor: Work started at %s") % self.work_start_datetime)
+
+    def _check_weather_window(self):
+        """
+        Check weather conditions before allowing spray operations [US-02-06]
+        """
+        self.ensure_one()
+
+        # 获取作业地点最近的天气预报
+        parcel = self.agri_task_id.land_parcel_id
+        if not parcel or not parcel.gps_coordinates:
+            return  # 如果没有地理信息，则跳过检查
+
+        # 获取未来24小时天气预报
+        from datetime import datetime, timedelta
+        end_time = datetime.now() + timedelta(hours=24)
+
+        # 查找相关的天气预报记录 (需要安装天气模块)
+        if hasattr(self.env['farm.weather.forecast'], 'search'):
+            forecast = self.env['farm.weather.forecast'].search([
+                ('location_id', '=', parcel.id),
+                ('forecast_datetime', '<=', end_time),
+                ('forecast_datetime', '>=', datetime.now()),
+                ('forecast_datetime', '=', datetime.now())  # 最近的预报
+            ], limit=1, order='forecast_datetime asc')
+
+            if forecast:
+                # 检查风速是否超过4级（限制喷洒作业）
+                if forecast.wind_speed_kmh and forecast.wind_speed_kmh > 16:  # 4级风约16km/h
+                    # 创建审批Activity
+                    self.activity_schedule(
+                        'mail.mail_activity_data_todo',
+                        summary=_('Weather Window Check: Wind too strong for spray operation [%s km/h]') % forecast.wind_speed_kmh,
+                        note=_('Attempted spray operation on %s was blocked due to high wind speed (%s km/h > 16 km/h). '
+                               'Please verify with technical director before proceeding with spray operation.') % (
+                                   self.name, forecast.wind_speed_kmh
+                               ),
+                        user_id=self.user_id.id
+                    )
+                    raise UserError(_(
+                        "WEATHER WINDOW BLOCK: Wind speed too high for spray operation. "
+                        "Current wind speed is %s km/h, maximum allowed is 16 km/h (4 level wind). "
+                        "An exception handling task has been automatically created for technical director review."
+                    ) % forecast.wind_speed_kmh)
 
     def action_stop_work(self):
         """ 一键打卡：停止作业并自动创建工时记录 """
