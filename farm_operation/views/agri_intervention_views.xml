@@ -53,10 +53,16 @@
                 <attribute name="string">Recipe/Formula</attribute>
             </xpath>
             <xpath expr="//header" position="inside">
-                <button name="action_start_work" string="Start Work" type="object" class="btn-success" invisible="is_working or state in ['done', 'cancel']"/>
+                <button name="action_submit_for_approval" string="Submit for Approval" type="object" class="btn-primary" invisible="approval_state != 'draft' or state != 'draft'"/>
+                <button name="action_approve" string="Approve" type="object" class="btn-success" invisible="approval_state != 'to_approve'" groups="mrp.group_mrp_manager"/>
+                <button name="action_reject" string="Reject" type="object" class="btn-danger" invisible="approval_state != 'to_approve'" groups="mrp.group_mrp_manager"/>
+                
+                <button name="action_start_work" string="Start Work" type="object" class="btn-success" invisible="is_working or state != 'confirmed'"/>
                 <button name="action_stop_work" string="Stop Work" type="object" class="btn-warning" invisible="not is_working"/>
                 <button name="action_export_drone_kml" string="Export Drone Route" type="object" class="btn-info" invisible="intervention_type != 'aerial_spraying'"/>
                 <field name="is_working" invisible="1"/>
+                <field name="approval_state" invisible="1"/>
+                <field name="simplified_state" widget="statusbar" statusbar_visible="draft,approval,ready,progress,done"/>
             </xpath>
             <xpath expr="//field[@name='user_id']" position="after">
                 <field name="agri_task_id" readonly="state != 'draft'"/>
@@ -73,8 +79,7 @@
                         <field name="actual_flight_area" invisible="intervention_type != 'aerial_spraying'"/>
                     </group>
                     <group string="Boundary Compliance">
-                        <field name="spatial_compliance_rate" widget="progressbar"/>
-                        <field name="out_of_bounds_count" decoration-danger="out_of_bounds_count > 0"/>
+                        <widget name="agri_spatial_gauge"/>
                     </group>
                 </group>
                 <group string="Harvest Grading" invisible="intervention_type != 'harvesting'">
@@ -83,7 +88,9 @@
                     <field name="grade_c_qty"/>
                 </group>
             </xpath>
-            <xpath expr="//notebook" position="inside">
+            <xpath expr="//sheet" position="inside">
+                <widget name="agri_action_buttons"/>
+                <notebook>
                 <page string="Soil Nutrient Balance" name="nutrient_balance" invisible="intervention_type not in ['fertilizing', 'tillage']">
                     <group>
                         <group string="Current Application (Pure Nutrient)">

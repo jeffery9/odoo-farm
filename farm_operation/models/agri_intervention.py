@@ -88,6 +88,10 @@ class AgriIntervention(models.Model):
     tool_ids = fields.Many2many('maintenance.equipment', string="Tools/Machinery")
     
     procedure_name = fields.Char("Procedure/Method", help="e.g. Mechanical sowing, manual weeding")
+    
+    # US-18-02: China Real-name Registration
+    operator_id_card = fields.Char("Operator ID Card", help="Required for pesticide/veterinary real-name registration.")
+    product_registration_no = fields.Char("Product Registration No.", help="Pesticide or veterinary product registration number.")
 
     # Harvest Grading [US-02-04]
     grade_a_qty = fields.Float("Grade A Quantity")
@@ -146,6 +150,63 @@ class AgriIntervention(models.Model):
     # 工时追踪 [US-13-03]
     work_start_datetime = fields.Datetime("Work Start")
     is_working = fields.Boolean("In Progress", default=False)
+
+    # Simplified Approval System [US-16-01]
+    approval_state = fields.Selection([
+        ('draft', 'Draft'),
+        ('to_approve', 'Awaiting Approval'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    ], string="Approval Status", default='draft', tracking=True)
+    
+    approver_id = fields.Many2one('res.users', string="Approver", tracking=True)
+    approval_date = fields.Datetime("Approval Date", readonly=True)
+    
+    simplified_state = fields.Selection([
+        ('draft', 'Draft'),
+        ('approval', 'Approval'),
+        ('ready', 'Ready'),
+        ('progress', 'In Progress'),
+        ('done', 'Completed'),
+    ], string="Simplified State", compute='_compute_simplified_state', store=True)
+
+    @api.depends('state', 'approval_state')
+    def _compute_simplified_state(self):
+        for rec in self:
+            if rec.state == 'draft' and rec.approval_state == 'draft':
+                rec.simplified_state = 'draft'
+            elif rec.approval_state == 'to_approve':
+                rec.simplified_state = 'approval'
+            elif rec.state == 'confirmed' or rec.approval_state == 'approved':
+                rec.simplified_state = 'ready'
+            elif rec.state == 'progress':
+                rec.simplified_state = 'progress'
+            elif rec.state in ['to_close', 'done']:
+                rec.simplified_state = 'done'
+            else:
+                rec.simplified_state = 'draft'
+
+    def action_submit_for_approval(self):
+        self.ensure_one()
+        self.write({'approval_state': 'to_approve'})
+        self.message_post(body=_("Intervention submitted for supervisor approval."))
+
+    def action_approve(self):
+        self.ensure_one()
+        self.write({
+            'approval_state': 'approved',
+            'approver_id': self.env.user.id,
+            'approval_date': fields.Datetime.now()
+        })
+        # 批准后自动确认生产单
+        if self.state == 'draft':
+            self.action_confirm()
+        self.message_post(body=_("Intervention approved by %s") % self.env.user.name)
+
+    def action_reject(self):
+        self.ensure_one()
+        self.write({'approval_state': 'rejected'})
+        self.message_post(body=_("Intervention rejected."))
 
     def action_start_work(self):
         """ 一键打卡：开始作业 """
@@ -230,6 +291,14 @@ class AgriIntervention(models.Model):
     def action_confirm(self):
         """ 扩展确认逻辑，进行安全拦截 [US-03-04] 并传递任务 ID 到供应端 [US-03-02] """
         for mo in self:
+            # US-18-02: Check real-name registration for pesticide/veterinary
+            if mo.intervention_type in ['protection', 'aerial_spraying', 'medical']:
+                if not mo.operator_id_card:
+                    raise UserError(_("COMPLIANCE ERROR: Operator ID Card is required for real-name registration of %s!") % dict(self._fields['intervention_type'].selection).get(mo.intervention_type))
+                import re
+                if not re.match(r'^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$', mo.operator_id_card):
+                    raise UserError(_("COMPLIANCE ERROR: Invalid ID Card format for operator!"))
+
             # 1. 检查有机拦截
             is_organic_parcel = mo.agri_task_id.land_parcel_id.certification_level in ['organic', 'organic_transition']
             for move in mo.move_raw_ids:
