@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extended Livestock Lot Form View -->
+    <record id="view_stock_lot_livestock_form_inherit" model="ir.ui.view">
+        <field name="name">stock.lot.livestock.form.inherit</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='main_group']" position="after">
+                <group name="livestock_info" string="Livestock Information">
+                    <field name="animal_name"/>
+                    <field name="ear_tag_number"/>
+                    <field name="birth_date"/>
+                    <field name="animal_count"/>
+                    <field name="average_weight"/>
+                    <field name="current_predicted_weight"/>
+                </group>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Breeding Management" name="breeding_management" invisible="not is_animal">
+                    <group>
+                        <group name="breeding_status" string="Breeding Status">
+                            <field name="breeding_status"/>
+                            <field name="expected_farrowing_date"/>
+                            <field name="sire_id"/>
+                            <field name="dam_id"/>
+                        </group>
+                        <group name="reproduction_data" string="Reproduction Data">
+                            <field name="lactation_number"/>
+                            <field name="days_in_milk"/>
+                        </group>
+                    </group>
+                    <group string="Breeding Records">
+                        <field name="breeding_record_ids" nolabel="1" colspan="2">
+                            <tree string="Breeding Records" editable="bottom">
+                                <field name="breeding_date"/>
+                                <field name="breeding_method"/>
+                                <field name="sire_id"/>
+                                <field name="gestation_days"/>
+                                <field name="pregnancy_test_result"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Pedigree Information">
+                        <field name="pedigree_info" nolabel="1" placeholder="Enter pedigree information..."/>
+                    </group>
+                </page>
+                <page string="Health Management" name="health_management" invisible="not is_animal">
+                    <group>
+                        <group name="health_status" string="Health Status">
+                            <field name="health_status"/>
+                            <field name="last_vaccination_date"/>
+                        </group>
+                        <group name="withdrawal_period" string="Withdrawal Period">
+                            <field name="withdrawal_end_datetime"/>
+                        </group>
+                    </group>
+                    <group string="Vaccination & Medication">
+                        <field name="vaccination_schedule" nolabel="1" placeholder="Enter vaccination schedule..."/>
+                        <field name="medication_records" nolabel="1" placeholder="Enter medication records..."/>
+                    </group>
+                    <footer>
+                        <button name="action_update_health_status"
+                                type="object"
+                                string="Update Health Status"
+                                class="btn-primary"/>
+                    </footer>
+                </page>
+                <page string="Production Data" name="production_data" invisible="not is_animal">
+                    <group>
+                        <group name="milk_production" string="Milk Production">
+                            <field name="milk_yield_avg"/>
+                            <field name="biological_stage"/>
+                            <field name="egg_production_rate"/>
+                        </group>
+                        <group name="growth_data" string="Growth Data">
+                            <field name="start_weight"/>
+                            <field name="average_daily_gain"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_calculate_expected_yield"
+                                type="object"
+                                string="Calculate Expected Yield"
+                                invisible="biological_stage != 'lactating'"/>
+                    </footer>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Breeding Record Form View -->
+    <record id="view_farm_breeding_record_form" model="ir.ui.view">
+        <field name="name">farm.breeding.record.form</field>
+        <field name="model">farm.breeding.record</field>
+        <field name="arch" type="xml">
+            <form string="Breeding Record">
+                <sheet>
+                    <group>
+                        <group name="main_info">
+                            <field name="animal_id"/>
+                            <field name="breeding_date"/>
+                            <field name="breeding_method"/>
+                        </group>
+                        <group name="sire_info">
+                            <field name="sire_id"/>
+                            <field name="gestation_days"/>
+                        </group>
+                    </group>
+                    <group string="Details">
+                        <field name="expected_offspring_count"/>
+                        <field name="breeding_notes"/>
+                    </group>
+                    <group string="Pregnancy Check">
+                        <field name="pregnancy_test_date"/>
+                        <field name="pregnancy_test_result"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Breeding Record Tree View -->
+    <record id="view_farm_breeding_record_tree" model="ir.ui.view">
+        <field name="name">farm.breeding.record.tree</field>
+        <field name="model">farm.breeding.record</field>
+        <field name="arch" type="xml">
+            <tree string="Breeding Records">
+                <field name="animal_id"/>
+                <field name="breeding_date"/>
+                <field name="breeding_method"/>
+                <field name="sire_id"/>
+                <field name="pregnancy_test_result"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Health Update Wizard Form View -->
+    <record id="view_farm_animal_health_wizard_form" model="ir.ui.view">
+        <field name="name">farm.animal.health.wizard.form</field>
+        <field name="model">farm.animal.health.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Update Animal Health Status">
+                <sheet>
+                    <group>
+                        <field name="animal_id"/>
+                        <field name="health_status"/>
+                    </group>
+                    <group string="Treatment Information">
+                        <field name="treatment_notes"/>
+                    </group>
+                    <group>
+                        <field name="next_vaccination_date"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_update_health_status"
+                            type="object"
+                            string="Update Status"
+                            class="btn-primary"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Breeding Records -->
+    <record id="action_breeding_records" model="ir.actions.act_window">
+        <field name="name">Breeding Records</field>
+        <field name="res_model">farm.breeding.record</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu items for Livestock Management -->
+    <menuitem id="menu_livestock_breeding"
+              name="Breeding Records"
+              parent="farm_livestock.menu_livestock_breeding"
+              action="action_breeding_records"
+              sequence="45"/>
+</odoo>

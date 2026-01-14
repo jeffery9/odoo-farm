@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_farm_livestock_root"
+              name="Livestock"
+              parent="farm_core.menu_farm_root"
+              sequence="28"/>
+
+    <menuitem id="menu_livestock_animals"
+              name="Animals"
+              parent="menu_farm_livestock_root"
+              sequence="10"/>
+
+    <menuitem id="menu_livestock_groups"
+              name="Groups"
+              parent="menu_farm_livestock_root"
+              sequence="20"/>
+
+    <menuitem id="menu_livestock_health"
+              name="Health"
+              parent="menu_farm_livestock_root"
+              sequence="30"/>
+
+    <menuitem id="menu_livestock_breeding"
+              name="Breeding"
+              parent="menu_farm_livestock_root"
+              sequence="40"/>
+</odoo>
