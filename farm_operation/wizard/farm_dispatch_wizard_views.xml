@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_dispatch_wizard_form" model="ir.ui.view">
+        <field name="name">farm.dispatch.wizard.form</field>
+        <field name="model">farm.dispatch.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Dispatch Tasks">
+                <group>
+                    <group>
+                        <field name="intervention_type"/>
+                        <field name="campaign_id"/>
+                    </group>
+                    <group>
+                        <field name="product_id" required="1"/>
+                        <field name="total_area" readonly="1"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Selected Parcels" name="parcels">
+                        <field name="location_ids">
+                            <tree>
+                                <field name="display_name"/>
+                                <field name="land_area"/>
+                                <field name="land_area_uom_id"/>
+                                <field name="gps_lat"/>
+                                <field name="gps_lng"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="action_dispatch" string="Dispatch" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_dispatch_wizard" model="ir.actions.act_window">
+        <field name="name">Dispatch Tasks</field>
+        <field name="res_model">farm.dispatch.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="stock.model_stock_location"/>
+        <field name="binding_view_types">list</field>
+    </record>
+</odoo>

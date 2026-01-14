@@ -19,6 +19,7 @@
     'depends': ['farm_core', 'mrp', 'project'],
     'data': [
         'security/ir.model.access.csv',
+        'wizard/farm_dispatch_wizard_views.xml',
         'views/agricultural_campaign_views.xml',
         'views/project_task_views.xml',
         'views/agri_intervention_views.xml',

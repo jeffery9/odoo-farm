@@ -1,4 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_agri_campaign_manager,agri.campaign.manager,model_agricultural_campaign,group_farm_manager,1,1,1,1
 access_agri_campaign_worker,agri.campaign.worker,model_agricultural_campaign,group_farm_worker,1,0,0,0
-access_agri_task_worker,agri.task.worker,model_project_task,group_farm_worker,1,1,1,0
+access_agri_task_worker,agri.task.worker,model_project_task,group_farm_worker,1,1,1,0access_farm_dispatch_wizard_manager,farm.dispatch.wizard.manager,model_farm_dispatch_wizard,group_farm_manager,1,1,1,1
