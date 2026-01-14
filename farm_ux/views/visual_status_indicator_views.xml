@@ -63,7 +63,7 @@
 
     <menuitem id="menu_visual_indicators" 
               name="Visual Status Indicators" 
-              parent="farm_ux_deindustrialization.menu_ux_root" 
+              parent="farm_ux.menu_ux_root" 
               action="action_visual_indicators" 
               sequence="30"/>
 </odoo>

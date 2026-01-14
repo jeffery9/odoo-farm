@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_term_mapping_user,term.mapping.user,model_term_mapping,base.group_system,1,1,1,1
+access_form_layout_template_user,form.layout.template.user,model_form_layout_template,base.group_system,1,1,1,1
+access_visual_status_indicator_user,visual.status.indicator.user,model_visual_status_indicator,base.group_system,1,1,1,1
+access_workspace_customization_user,workspace.customization.user,model_workspace_customization,base.group_system,1,1,1,1
+access_contextual_help_user,contextual.help.user,model_contextual_help,base.group_system,1,1,1,1
+access_multi_sensory_interaction_user,multi.sensory.interaction.user,model_multi_sensory_interaction,base.group_system,1,1,1,1
+access_farm_social_network_user,farm.social.network.user,model_farm_social_network,base.group_system,1,1,1,1
+access_accessibility_settings_user,accessibility.settings.user,model_accessibility_settings,base.group_system,1,1,1,1

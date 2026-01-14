@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <!-- UX & De-industrialization 主菜单 -->
-    <menuitem id="menu_ux_root" 
-              name="UX & De-industrialization" 
-              sequence="150"
-              groups="farm_core.group_farm_manager"/>
-</odoo>

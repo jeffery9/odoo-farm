@@ -72,7 +72,7 @@
 
     <menuitem id="menu_contextual_help" 
               name="Contextual Help" 
-              parent="farm_ux_deindustrialization.menu_ux_root" 
+              parent="farm_ux.menu_ux_root" 
               action="action_contextual_help" 
               sequence="50"/>
 </odoo>

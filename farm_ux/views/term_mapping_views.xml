@@ -62,9 +62,9 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_term_mapping" 
-              name="Term Mappings" 
-              parent="farm_ux_deindustrialization.menu_ux_root" 
-              action="action_term_mappings" 
+    <menuitem id="menu_term_mapping"
+              name="Term Mappings"
+              parent="farm_ux.menu_ux_root"
+              action="action_term_mappings"
               sequence="10"/>
 </odoo>

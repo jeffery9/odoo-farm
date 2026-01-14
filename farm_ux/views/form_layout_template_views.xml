@@ -62,7 +62,7 @@
 
     <menuitem id="menu_form_layouts" 
               name="Form Layout Templates" 
-              parent="farm_ux_deindustrialization.menu_ux_root" 
+              parent="farm_ux.menu_ux_root" 
               action="action_form_layouts" 
               sequence="20"/>
 </odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Farm UX 主菜单 -->
+    <menuitem id="menu_ux_root"
+              name="Farm UX"
+              parent="base.menu_administration"
+              sequence="150"
+              groups="base.group_system"/>
+</odoo>

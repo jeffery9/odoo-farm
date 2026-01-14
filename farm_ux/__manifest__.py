@@ -1,11 +1,11 @@
 {
-    'name': 'Farm UX & De-industrialization',
+    'name': 'Farm UX',
     'version': '1.0',
     'category': 'Industries/Agriculture',
     'summary': 'User Experience & Agricultural Terminology Adaptation',
     'description': """
-        User Experience & De-industrialization Module for Odoo 19 Farm Management System.
-        
+        User Experience Module for Odoo 19 Farm Management System.
+
         Features:
         - Agricultural terminology mapping [US-16-01]
         - Industry-specific form layouts [US-16-02]
@@ -19,14 +19,7 @@
     """,
     'author': 'Jeffery',
     'depends': [
-        'farm_core',
-        'farm_operation',
-        'farm_marketing',
-        'farm_quality',
-        'farm_safety',
-        'farm_knowledge',
-        'knowledge',
-        'base_setup',
+        'base',
         'web'
     ],
     'data': [
@@ -49,15 +42,16 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'farm_ux_deindustrialization/static/src/css/workspace_customization.css',
-            'farm_ux_deindustrialization/static/src/js/farm_ux_integration.esm.js',
-            'farm_ux_deindustrialization/static/src/js/term_mapping_handler.esm.js',
-            'farm_ux_deindustrialization/static/src/xml/*.xml',
+            'farm_ux/static/src/css/workspace_customization.css',
+            'farm_ux/static/src/js/farm_ux_integration.esm.js',
+            'farm_ux/static/src/js/term_mapping_handler.esm.js',
+            'farm_ux/static/src/xml/*.xml',
         ],
     },
     'demo': [
     ],
     'installable': True,
     'application': False,
+    'auto_install': True,
     'license': 'AGPL-3',
 }

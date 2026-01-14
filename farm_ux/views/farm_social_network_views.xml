@@ -69,7 +69,7 @@
 
     <menuitem id="menu_farm_social" 
               name="Farm Social Network" 
-              parent="farm_ux_deindustrialization.menu_ux_root" 
+              parent="farm_ux.menu_ux_root" 
               action="action_farm_social" 
               sequence="80"/>
 </odoo>
