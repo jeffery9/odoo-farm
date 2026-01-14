@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_farm_operation_root"
+              name="Operations"
+              parent="farm_core.menu_farm_root"
+              sequence="10"/>
+
+    <menuitem id="menu_agricultural_campaigns"
+              name="Campaigns"
+              parent="menu_farm_operation_root"
+              sequence="10"/>
+
+    <menuitem id="menu_agri_interventions"
+              name="Interventions"
+              parent="menu_farm_operation_root"
+              sequence="20"/>
+
+    <menuitem id="menu_agri_boms"
+              name="Formulas (BOM)"
+              parent="menu_farm_operation_root"
+              sequence="30"/>
+</odoo>
