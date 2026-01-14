@@ -31,6 +31,12 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'data/term_mapping_data.xml',
+        'data/form_layout_template_data.xml',
+        'data/visual_status_indicator_data.xml',
+        'data/contextual_help_data.xml',
+        'data/multi_sensory_interaction_data.xml',
+        'data/accessibility_settings_data.xml',
         'views/menu.xml',
         'views/term_mapping_views.xml',
         'views/form_layout_template_views.xml',

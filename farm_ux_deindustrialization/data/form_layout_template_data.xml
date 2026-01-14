@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 种植业特定表单布局 - 农业干预 [US-16-02] -->
+    <record id="form_layout_planting_intervention" model="form.layout.template">
+        <field name="name">Planting Agricultural Intervention Layout</field>
+        <field name="model_name">mrp.production</field>
+        <field name="industry_type">planting</field>
+        <field name="is_active">True</field>
+        <field name="description">种植业专用的农业干预表单布局，包含GIS位置快照和NPK进度条</field>
+        <field name="user_role">technician</field>
+        <field name="version">1.0</field>
+        <field name="layout_definition">{
+            "sections": [
+                {
+                    "name": "basic_info",
+                    "title": "基本信息",
+                    "fields": ["name", "product_id", "product_qty", "product_uom_id", "date_planned_start", "date_planned_finished"],
+                    "display": "row"
+                },
+                {
+                    "name": "location_info",
+                    "title": "地块信息",
+                    "fields": ["agri_task_id", "agri_task_id.land_parcel_id", "agri_task_id.land_parcel_id.gps_coordinates"],
+                    "display": "map_preview"
+                },
+                {
+                    "name": "intervention_details",
+                    "title": "农事干预详情",
+                    "fields": ["intervention_type", "procedure_name", "doer_ids", "tool_ids"],
+                    "display": "group"
+                },
+                {
+                    "name": "inputs_nutrients",
+                    "title": "投入品与养分",
+                    "fields": ["move_raw_ids", "pure_n_qty", "pure_p_qty", "pure_k_qty"],
+                    "display": "progress_bars"
+                },
+                {
+                    "name": "grading_output",
+                    "title": "分级产出",
+                    "fields": ["grade_a_qty", "grade_b_qty", "grade_c_qty"],
+                    "display": "graded_input"
+                },
+                {
+                    "name": "compliance_tracking",
+                    "title": "合规与追溯",
+                    "fields": ["is_on_site", "spatial_compliance_rate", "quality_status"],
+                    "display": "compliance_badges"
+                }
+            ]
+        }</field>
+    </record>
+
+    <!-- 畜牧业特定表单布局 - 农业干预 [US-16-02] -->
+    <record id="form_layout_livestock_intervention" model="form.layout.template">
+        <field name="name">Livestock Agricultural Intervention Layout</field>
+        <field name="model_name">mrp.production</field>
+        <field name="industry_type">livestock</field>
+        <field name="is_active">True</field>
+        <field name="description">畜牧业专用的农业干预表单布局</field>
+        <field name="user_role">technician</field>
+        <field name="version">1.0</field>
+        <field name="layout_definition">{
+            "sections": [
+                {
+                    "name": "basic_info",
+                    "title": "基本信息",
+                    "fields": ["name", "product_id", "product_qty", "product_uom_id", "date_planned_start", "date_planned_finished"],
+                    "display": "row"
+                },
+                {
+                    "name": "livestock_info",
+                    "title": "牲畜信息",
+                    "fields": ["agri_task_id", "agri_task_id.lot_ids", "biological_stage", "average_daily_gain"],
+                    "display": "group"
+                },
+                {
+                    "name": "intervention_details",
+                    "title": "农事干预详情",
+                    "fields": ["intervention_type", "procedure_name", "doer_ids", "tool_ids"],
+                    "display": "group"
+                },
+                {
+                    "name": "feeding_info",
+                    "title": "饲喂信息",
+                    "fields": ["active_feeding_bom_id", "feeding_rate", "feed_consumption"],
+                    "display": "feeding_section"
+                },
+                {
+                    "name": "health_monitoring",
+                    "title": "健康监控",
+                    "fields": ["withdrawal_end_datetime", "withdrawal_days_left", "health_state", "veterinary_note"],
+                    "display": "health_badges"
+                }
+            ]
+        }</field>
+    </record>
+
+    <!-- 加工业特定表单布局 - 农业干预 [US-16-02] -->
+    <record id="form_layout_processing_intervention" model="form.layout.template">
+        <field name="name">Processing Agricultural Intervention Layout</field>
+        <field name="model_name">mrp.production</field>
+        <field name="industry_type">processing</field>
+        <field name="is_active">True</field>
+        <field name="description">加工业专用的农业干预表单布局，包含能耗读数录入区</field>
+        <field name="user_role">technician</field>
+        <field name="version">1.0</field>
+        <field name="layout_definition">{
+            "sections": [
+                {
+                    "name": "basic_info",
+                    "title": "基本信息",
+                    "fields": ["name", "product_id", "product_qty", "product_uom_id", "date_planned_start", "date_planned_finished"],
+                    "display": "row"
+                },
+                {
+                    "name": "processing_details",
+                    "title": "加工详情",
+                    "fields": ["processing_type", "process_mode", "harvest_lot_ids", "additive_lot_ids"],
+                    "display": "group"
+                },
+                {
+                    "name": "energy_consumption",
+                    "title": "能耗读数录入",
+                    "fields": ["water_meter_start", "water_meter_end", "electricity_meter_start", "electricity_meter_end"],
+                    "display": "energy_input_group"
+                },
+                {
+                    "name": "process_parameters",
+                    "title": "工艺参数",
+                    "fields": ["process_temperature", "baking_temp", "ph_level", "brix_level", "alcohol_content"],
+                    "display": "parameter_sliders"
+                },
+                {
+                    "name": "quality_control",
+                    "title": "质量控制",
+                    "fields": ["moisture_content", "is_haccp_compliant", "scrap_qty", "loss_rate"],
+                    "display": "quality_badges"
+                }
+            ]
+        }</field>
+    </record>
+
+    <!-- 酿酒业特定表单布局 - 农业干预 [US-16-02] -->
+    <record id="form_layout_winemaking_intervention" model="form.layout.template">
+        <field name="name">Winemaking Agricultural Intervention Layout</field>
+        <field name="model_name">mrp.production</field>
+        <field name="industry_type">winemaking</field>
+        <field name="is_active">True</field>
+        <field name="description">酿酒业专用的农业干预表单布局，包含年份和酒精度等参数</field>
+        <field name="user_role">technician</field>
+        <field name="version">1.0</field>
+        <field name="layout_definition">{
+            "sections": [
+                {
+                    "name": "basic_info",
+                    "title": "基本信息",
+                    "fields": ["name", "product_id", "product_qty", "product_uom_id", "date_planned_start", "date_planned_finished"],
+                    "display": "row"
+                },
+                {
+                    "name": "vintage_details",
+                    "title": "年份详情",
+                    "fields": ["vintage_year", "alcohol_content", "brix_level", "ph_level"],
+                    "display": "vintage_group"
+                },
+                {
+                    "name": "fermentation_monitoring",
+                    "title": "发酵监控",
+                    "fields": ["process_mode", "baking_temp", "proofing_time", "process_temperature"],
+                    "display": "fermentation_group"
+                },
+                {
+                    "name": "quality_parameters",
+                    "title": "质量参数",
+                    "fields": ["moisture_content", "is_haccp_compliant", "haccp_instructions"],
+                    "display": "quality_group"
+                }
+            ]
+        }</field>
+    </record>
+
+    <!-- 通用农业干预布局 [US-16-02] -->
+    <record id="form_layout_general_intervention" model="form.layout.template">
+        <field name="name">General Agricultural Intervention Layout</field>
+        <field name="model_name">mrp.production</field>
+        <field name="industry_type">general</field>
+        <field name="is_active">True</field>
+        <field name="description">通用农业干预表单布局</field>
+        <field name="user_role">technician</field>
+        <field name="version">1.0</field>
+        <field name="layout_definition">{
+            "sections": [
+                {
+                    "name": "basic_info",
+                    "title": "基本信息",
+                    "fields": ["name", "product_id", "product_qty", "product_uom_id", "date_planned_start", "date_planned_finished"],
+                    "display": "row"
+                },
+                {
+                    "name": "task_assignment",
+                    "title": "任务分配",
+                    "fields": ["agri_task_id", "user_id", "workorder_ids"],
+                    "display": "group"
+                },
+                {
+                    "name": "resource_planning",
+                    "title": "资源规划",
+                    "fields": ["move_raw_ids", "move_finished_ids", "bom_id"],
+                    "display": "group"
+                }
+            ]
+        }</field>
+    </record>
+
+</odoo>
