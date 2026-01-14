@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_agri_gi_registry_tree" model="ir.ui.view">
+        <field name="name">agri.gi.registry.tree</field>
+        <field name="model">agri.gi.registry</field>
+        <field name="arch" type="xml">
+            <list string="GI Registries">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="product_template_id"/>
+                <field name="protection_area_id"/>
+                <field name="is_active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_agri_gi_registry_form" model="ir.ui.view">
+        <field name="name">agri.gi.registry.form</field>
+        <field name="model">agri.gi.registry</field>
+        <field name="arch" type="xml">
+            <form string="GI Registry">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. West Lake Longjing Tea"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="product_template_id"/>
+                            <field name="is_active"/>
+                        </group>
+                        <group>
+                            <field name="protection_area_id"/>
+                            <field name="authority_name"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Certificates" name="certificates">
+                            <field name="certificate_attachment_ids" widget="many2many_binary"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_agri_gi_registry" model="ir.actions.act_window">
+        <field name="name">GI Registry</field>
+        <field name="res_model">agri.gi.registry</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_agri_gi_registry"
+              name="GI Registry"
+              parent="farm_core.menu_farm_root"
+              action="action_agri_gi_registry"
+              sequence="60"/>
+
+    <!-- Inherit Stock Lot Form -->
+    <record id="view_production_lot_form_inherit_gi" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.gi</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <header>
+                <button name="action_generate_gi_code" string="Generate GI Code" type="object" class="oe_highlight" invisible="not gi_registry_id or gi_security_code"/>
+            </header>
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="gi_registry_id" options="{'no_create': True}"/>
+                <field name="gi_security_code" invisible="not gi_security_code"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

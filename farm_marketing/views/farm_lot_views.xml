@@ -27,6 +27,17 @@
                         <field name="marketing_image_ids" widget="many2many_binary"/>
                     </group>
                 </page>
+                <page string="Brand &amp; Integrity" name="brand_integrity">
+                    <group>
+                        <group string="Premium Brand Protection">
+                            <field name="is_premium_brand"/>
+                            <field name="allowed_partner_ids" widget="many2many_tags" invisible="not is_premium_brand"/>
+                        </group>
+                        <group string="Integrity Assessment">
+                            <field name="integrity_score" widget="gauge" options="{'max_value': 100}"/>
+                        </group>
+                    </group>
+                </page>
             </xpath>
         </field>
     </record>

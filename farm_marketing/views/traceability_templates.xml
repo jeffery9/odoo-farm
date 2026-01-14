@@ -31,6 +31,36 @@
                                                 </span>
                                             </div>
                                         </t>
+                                        <t t-if="lot.gi_security_code">
+                                            <div class="mt-2 text-center">
+                                                <span class="text-success" style="font-weight: bold;">
+                                                    <i class="fa fa-shield me-1"/>地理标志防伪码 / GI Secure Code: <span t-field="lot.gi_security_code"/>
+                                                </span>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+
+                                <!-- 风土特征 (Terroir) [US-32-05] -->
+                                <h4 class="mb-3"><i class="fa fa-globe text-primary me-2"/>风土特征 / Terroir Profiles</h4>
+                                <div class="card shadow-sm mb-4 border-0">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6 mb-2">
+                                                <strong>坡度 / Slope:</strong> <span t-field="lot.location_id.slope"/>%
+                                            </div>
+                                            <div class="col-6 mb-2">
+                                                <strong>朝向 / Aspect:</strong> <span t-field="lot.location_id.aspect"/>
+                                            </div>
+                                            <div class="col-12 mb-2">
+                                                <strong>水源 / Water:</strong> <span t-field="lot.location_id.water_source"/>
+                                            </div>
+                                            <t t-if="lot.location_id.micro_climate_notes">
+                                                <div class="col-12 mb-2">
+                                                    <strong>微气候 / Climate:</strong> <p class="text-muted" t-field="lot.location_id.micro_climate_notes"/>
+                                                </div>
+                                            </t>
+                                        </div>
                                     </div>
                                 </div>
 
