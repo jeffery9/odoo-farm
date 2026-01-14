@@ -179,6 +179,17 @@ class ProjectTask(models.Model):
         help="Certifications required to perform this task."
     )
 
+    @api.constrains('land_parcel_id', 'industry_type')
+    def _check_land_use_restriction(self):
+        """ US-18-01: Hard-block non-grain tasks on Permanent Basic Farmland """
+        for task in self:
+            if task.land_parcel_id.land_nature == 'basic_farmland':
+                if task.industry_type not in ['field_crops', 'mixed']:
+                    raise ValidationError(_(
+                        "HARD-BLOCK COMPLIANCE: Land parcel '%s' is marked as Permanent Basic Farmland. "
+                        "Non-grain production activities (like tourism or livestock) are strictly prohibited by national policy!"
+                    ) % task.land_parcel_id.name)
+
     @api.constrains('user_ids', 'required_skill_ids', 'required_certification_ids')
     def _check_employee_qualifications(self):
         for task in self:
