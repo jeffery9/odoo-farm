@@ -57,10 +57,10 @@
               sequence="15"/>
 
     <!-- 加工根菜单 -->
-    <menuitem id="menu_processing_root" 
-              name="Processing" 
-              parent="menu_farm_root" 
-              web_icon="farm_processing,static/description/icon.svg"
+    <menuitem id="menu_processing_root"
+              name="Agricultural Processing"
+              parent="menu_farm_root"
+              web_icon="farm_agricultural_processing,static/description/icon.svg"
               sequence="40"/>
 
     <!-- 质量管理根菜单 -->

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.farm.core</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Agricultural Industry Modules" string="Agricultural Industry Modules">
+                    <h2>Industry Configuration</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_farm_field_crops"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_farm_field_crops"/>
+                                <div class="text-muted">
+                                    Manage field crop plots, sowing/harvesting, mechanized operations, etc.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_farm_protected_cultivation"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_farm_protected_cultivation"/>
+                                <div class="text-muted">
+                                    Manage greenhouse environment control, water-fertilizer integration, temperature/humidity monitoring, etc.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_farm_orchard_horticulture"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_farm_orchard_horticulture"/>
+                                <div class="text-muted">
+                                    Manage tree pruning records, flowering period management, harvest tracking, annual cycle, etc.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_farm_livestock"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_farm_livestock"/>
+                                <div class="text-muted">
+                                    Manage breeding records, health records, breeding management, individual identification, etc.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_farm_aquaculture"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_farm_aquaculture"/>
+                                <div class="text-muted">
+                                    Manage water quality monitoring, feeding management, growth tracking, dissolved oxygen/pH monitoring, etc.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_farm_medicinal_plants"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_farm_medicinal_plants"/>
+                                <div class="text-muted">
+                                    Manage GMP compliance for medicinal plants, active ingredient tracking, compliance certification, etc.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_farm_mushroom"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_farm_mushroom"/>
+                                <div class="text-muted">
+                                    Manage multi-batch cultivation, environmental control, harvest records, multi-harvest tracking, etc.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_farm_apiculture"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_farm_apiculture"/>
+                                <div class="text-muted">
+                                    Manage bee colony management, hive positioning, nectar source tracking, migration tracking, etc.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_farm_agricultural_processing"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_farm_agricultural_processing"/>
+                                <div class="text-muted">
+                                    Manage product recipes, quality inspection, packaging tracking, batch inheritance, etc.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="module_farm_agritourism"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="module_farm_agritourism"/>
+                                <div class="text-muted">
+                                    Manage resource booking, activity management, membership services, experience project tracking, etc.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_farm_config_settings" model="ir.actions.act_window">
+        <field name="name">Industry Configuration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{"module_name": "farm_core"}</field>
+    </record>
+
+    <menuitem id="menu_farm_config_settings"
+              name="Industry Configuration"
+              parent="base.menu_administration"
+              action="action_farm_config_settings"
+              sequence="10"/>
+</odoo>
