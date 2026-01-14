@@ -14,6 +14,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/sustainability_views.xml',
+        'views/carbon_views.xml',
     ],
     'installable': True,
     'application': False,

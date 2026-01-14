@@ -44,6 +44,64 @@ class AgriculturalCampaign(models.Model):
             campaign.total_p = sum(tasks.mapped('total_p'))
             campaign.total_k = sum(tasks.mapped('total_k'))
 
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    # US-30-01: Carbon Emission Factor (kg CO2e / unit)
+    carbon_emission_factor = fields.Float("Carbon Emission Factor (kg CO2e / unit)", help="CO2 equivalent emissions per unit of this product.")
+
+class AgriIntervention(models.Model):
+    _inherit = 'mrp.production'
+
+    # US-30-01: Auto-calculated Carbon Emission for this intervention
+    calculated_carbon_emission = fields.Float("Calculated Carbon Emission (kg CO2e)", compute='_compute_carbon_emission', store=True)
+
+    @api.depends('move_raw_ids.product_uom_qty', 'move_raw_ids.product_id.carbon_emission_factor')
+    def _compute_carbon_emission(self):
+        for mo in self:
+            total_emission = 0.0
+            for move in mo.move_raw_ids:
+                total_emission += move.product_uom_qty * (move.product_id.carbon_emission_factor or 0.0)
+            mo.calculated_carbon_emission = total_emission
+
+class StockLot(models.Model):
+    _inherit = 'stock.lot'
+
+    # US-30-01: Accumulated Carbon Footprint for this batch
+    carbon_footprint = fields.Float("Carbon Footprint (kg CO2e)", compute='_compute_carbon_footprint', store=True)
+
+    @api.depends('quality_status', 'create_date') # Simplified trigger
+    def _compute_carbon_footprint(self):
+        for lot in self:
+            # Accumulated from the intervention that produced this lot
+            mo = self.env['mrp.production'].search([('lot_producing_id', '=', lot.id)], limit=1)
+            lot.carbon_footprint = mo.calculated_carbon_emission if mo else 0.0
+
+class CarbonAsset(models.Model):
+    """ US-30-02: Carbon Sequestration Assets (e.g., Orchards, Forests) """
+    _name = 'farm.carbon.asset'
+    _description = 'Carbon Sequestration Asset'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
+    name = fields.Char("Asset Name", required=True)
+    location_id = fields.Many2one('stock.location', string="Location/Parcel", domain=[('is_land_parcel', '=', True)])
+    asset_type = fields.Selection([
+        ('orchard', 'Orchard'),
+        ('forest', 'Forest'),
+        ('pasture', 'Permanent Pasture'),
+        ('tillage', 'Conservation Tillage')
+    ], string="Type", required=True)
+    
+    initial_carbon_stock = fields.Float("Initial Carbon Stock (t CO2e)")
+    annual_sequestration_rate = fields.Float("Annual Sequestration Rate (t CO2e / mu / year)")
+    
+    current_carbon_value = fields.Float("Current Carbon Balance (t CO2e)", compute='_compute_carbon_balance')
+
+    def _compute_carbon_balance(self):
+        for asset in self:
+            # Simplified calculation based on age
+            asset.current_carbon_value = asset.initial_carbon_stock + (asset.annual_sequestration_rate * (asset.location_id.land_area or 0.0))
+
 class FarmEcologicalActivity(models.Model):
     _name = 'farm.ecological.activity'
     _description = 'Ecological Maintenance Activity'
