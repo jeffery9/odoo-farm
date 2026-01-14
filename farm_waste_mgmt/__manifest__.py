@@ -10,7 +10,7 @@
         - Generates monthly ledgers compliant with Ministry of Agriculture and Rural Affairs requirements.
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'farm_livestock'],
+    'depends': ['farm_core', 'farm_livestock', 'farm_quality'],
     'data': [
         'security/ir.model.access.csv',
         'report/manure_ledger_report_templates.xml',
