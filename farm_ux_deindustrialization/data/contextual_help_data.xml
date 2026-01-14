@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 农业干预表单帮助 - 种植业 [US-16-05] -->
+    <record id="help_planting_intervention_form" model="contextual.help">
+        <field name="name">Agricultural Intervention Form Help - Planting</field>
+        <field name="model_name">mrp.production</field>
+        <field name="view_type">form</field>
+        <field name="help_content">&lt;p&gt;This form is used to record agricultural interventions for planting operations.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Intervention Type:&lt;/strong&gt; Select the type of operation (sowing, fertilizing, protection, harvesting)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Land Parcel:&lt;/strong&gt; Select the field where the operation will take place&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GDD Tracking:&lt;/strong&gt; Monitor growing degree days for optimal timing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Input Recording:&lt;/strong&gt; Record all inputs used during the intervention&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Make sure to complete GPS check-in when starting the operation to verify location compliance.&lt;/p&gt;</field>
+        <field name="is_active">True</field>
+        <field name="priority">10</field>
+        <field name="industry_context">planting</field>
+        <field name="difficulty_level">beginner</field>
+    </record>
+
+    <!-- 农业干预表单帮助 - 畜牧业 [US-16-05] -->
+    <record id="help_livestock_intervention_form" model="contextual.help">
+        <field name="name">Agricultural Intervention Form Help - Livestock</field>
+        <field name="model_name">mrp.production</field>
+        <field name="view_type">form</field>
+        <field name="help_content">&lt;p&gt;This form is used to record agricultural interventions for livestock operations.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Intervention Type:&lt;/strong&gt; Select the type of operation (feeding, medical, breeding)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Animal Group:&lt;/strong&gt; Select the livestock batch being treated&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ADG Tracking:&lt;/strong&gt; Monitor average daily gain for growth analysis&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Withdrawal Period:&lt;/strong&gt; Record medication and calculate safe harvest date&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ensure all medications are properly recorded to maintain withdrawal period compliance.&lt;/p&gt;</field>
+        <field name="is_active">True</field>
+        <field name="priority">10</field>
+        <field name="industry_context">livestock</field>
+        <field name="difficulty_level">beginner</field>
+    </record>
+
+    <!-- 农业干预表单帮助 - 加工 [US-16-05] -->
+    <record id="help_processing_intervention_form" model="contextual.help">
+        <field name="name">Agricultural Intervention Form Help - Processing</field>
+        <field name="model_name">mrp.production</field>
+        <field name="view_type">form</field>
+        <field name="help_content">&lt;p&gt;This form is used to record agricultural interventions for processing operations.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Processing Type:&lt;/strong&gt; Select primary (sorting/cleaning), deep (transformation), or packaging&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Energy Meters:&lt;/strong&gt; Record start and end readings for water and electricity consumption&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Process Parameters:&lt;/strong&gt; Monitor temperature, pH, and other critical control points&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Loss Rate:&lt;/strong&gt; Track processing losses against maximum allowable rates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ensure all quality parameters are within acceptable ranges before marking as done.&lt;/p&gt;</field>
+        <field name="is_active">True</field>
+        <field name="priority">10</field>
+        <field name="industry_context">processing</field>
+        <field name="difficulty_level">intermediate</field>
+    </record>
+
+    <!-- 农业干预表单帮助 - 酿酒 [US-16-05] -->
+    <record id="help_winemaking_intervention_form" model="contextual.help">
+        <field name="name">Agricultural Intervention Form Help - Winemaking</field>
+        <field name="model_name">mrp.production</field>
+        <field name="view_type">form</field>
+        <field name="help_content">&lt;p&gt;This form is used to record agricultural interventions for winemaking operations.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Vintage Year:&lt;/strong&gt; Record the harvest year for traceability&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Process Mode:&lt;/strong&gt; Select fermentation, sterilization, or other specialized processes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Quality Parameters:&lt;/strong&gt; Monitor alcohol content, Brix level, and pH throughout process&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HACCP Compliance:&lt;/strong&gt; Ensure all critical control points are monitored&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Maintain strict temperature control during fermentation for quality wine production.&lt;/p&gt;</field>
+        <field name="is_active">True</field>
+        <field name="priority">10</field>
+        <field name="industry_context">winemaking</field>
+        <field name="difficulty_level">advanced</field>
+    </record>
+
+    <!-- 通用农业干预表单帮助 [US-16-05] -->
+    <record id="help_general_intervention_form" model="contextual.help">
+        <field name="name">General Agricultural Intervention Form Help</field>
+        <field name="model_name">mrp.production</field>
+        <field name="view_type">form</field>
+        <field name="help_content">&lt;p&gt;This form is used to record agricultural interventions (formerly Manufacturing Orders in industrial ERP systems).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Task Assignment:&lt;/strong&gt; Link to specific farm task for resource planning&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Input/Output Tracking:&lt;/strong&gt; Record all materials consumed and products produced&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Resource Allocation:&lt;/strong&gt; Assign workers, tools, and equipment&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Compliance Monitoring:&lt;/strong&gt; Track quality, safety, and regulatory compliance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Complete GPS check-in and photo evidence when starting operations for full traceability.&lt;/p&gt;</field>
+        <field name="is_active">True</field>
+        <field name="priority">5</field>
+        <field name="industry_context">general</field>
+        <field name="difficulty_level">beginner</field>
+    </record>
+
+    <!-- 收获分级帮助 [US-16-05] -->
+    <record id="help_harvest_grading" model="contextual.help">
+        <field name="name">Harvest Grading Help</field>
+        <field name="model_name">mrp.production</field>
+        <field name="field_name">grade_a_qty</field>
+        <field name="view_type">form</field>
+        <field name="help_content">&lt;p&gt;Record harvest output by quality grade:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Grade A:&lt;/strong&gt; Premium quality products meeting highest standards&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grade B:&lt;/strong&gt; Good quality products with minor imperfections&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Grade C:&lt;/strong&gt; Lower quality products suitable for processing&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Loss/Scrap:&lt;/strong&gt; Record waste and unusable material in the scrap_qty field&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Grade distribution affects pricing and marketability of your products.&lt;/p&gt;</field>
+        <field name="is_active">True</field>
+        <field name="priority">15</field>
+        <field name="industry_context">general</field>
+        <field name="difficulty_level">beginner</field>
+    </record>
+
+    <!-- 休药期管理帮助 [US-16-05] -->
+    <record id="help_withdrawal_period" model="contextual.help">
+        <field name="name">Withdrawal Period Management Help</field>
+        <field name="model_name">stock.lot</field>
+        <field name="field_name">withdrawal_end_datetime</field>
+        <field name="view_type">form</field>
+        <field name="help_content">&lt;p&gt;The withdrawal period is the time between the last administration of medication/veterinary products and when the animals or their products (milk, eggs) are safe for human consumption.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Record medication date:&lt;/strong&gt; When the medication was administered&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Check product label:&lt;/strong&gt; Follow withdrawal period specified by manufacturer&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Monitor countdown:&lt;/strong&gt; Track remaining days until safe for harvest/consumption&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Prevent early sale:&lt;/strong&gt; System will block sales before withdrawal period ends&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Maintaining accurate withdrawal periods is essential for food safety and regulatory compliance.&lt;/p&gt;</field>
+        <field name="is_active">True</field>
+        <field name="priority">5</field>
+        <field name="industry_context">livestock</field>
+        <field name="difficulty_level">intermediate</field>
+    </record>
+
+    <!-- 积温计算帮助 [US-16-05] -->
+    <record id="help_gdd_calculation" model="contextual.help">
+        <field name="name">Growing Degree Days Calculation Help</field>
+        <field name="model_name">agricultural.campaign</field>
+        <field name="field_name">accumulated_gdd</field>
+        <field name="view_type">form</field>
+        <field name="help_content">&lt;p&gt;Growing Degree Days (GDD) is a heat accumulation measurement used to predict plant development rates.&lt;/p&gt;
+&lt;p&gt;GDD = ((Maximum Temperature + Minimum Temperature) / 2) - Base Temperature&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Base Temperature:&lt;/strong&gt; The minimum temperature required for plant growth&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Accumulation:&lt;/strong&gt; GDD values accumulate over time from planting&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Target GDD:&lt;/strong&gt; The amount needed for specific growth stages or harvest&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Predictive Value:&lt;/strong&gt; Use to time interventions like harvesting, pest control&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;GDD helps optimize timing of agricultural operations for better yields.&lt;/p&gt;</field>
+        <field name="is_active">True</field>
+        <field name="priority">8</field>
+        <field name="industry_context">planting</field>
+        <field name="difficulty_level">intermediate</field>
+    </record>
+
+</odoo>
