@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_production_lot_form_inherit_livestock_advanced" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.livestock.advanced</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <header>
+                <button name="action_check_health_anomalies" string="Scan for Anomalies" type="object" class="btn-info" invisible="biological_stage == 'harvested'"/>
+            </header>
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="is_health_anomaly" invisible="not is_health_anomaly" widget="boolean_favorite" decoration-danger="is_health_anomaly"/>
+                <field name="health_index" widget="gauge" options="{'max_value': 100}" invisible="not is_animal"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Intensive Management" name="intensive_mgmt" invisible="not is_animal">
+                    <group>
+                        <group string="Precision Feeding">
+                            <field name="total_feed_consumed"/>
+                            <field name="feed_conversion_ratio" decoration-danger="feed_conversion_ratio > 3.0" decoration-success="feed_conversion_ratio &lt; 2.0"/>
+                        </group>
+                        <group string="Stocking &amp; Space">
+                            <field name="stocking_density"/>
+                            <field name="last_anomaly_date" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
