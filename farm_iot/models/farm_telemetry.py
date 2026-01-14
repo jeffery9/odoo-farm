@@ -24,7 +24,8 @@ class FarmTelemetry(models.Model):
         ('soil_moisture', 'Soil Moisture'),
         ('flight_altitude', 'Flight Altitude'),
         ('chemical_level', 'Chemical Level'),
-        ('battery_voltage', 'Drone Battery')
+        ('battery_voltage', 'Drone Battery'),
+        ('micro_sensor', 'Urban Micro-sensor')
     ], string="Sensor Type", required=True)
     
     value = fields.Float("Value", required=True)
@@ -38,6 +39,9 @@ class FarmTelemetry(models.Model):
     # 关联地块
     land_parcel_id = fields.Many2one('stock.location', string="Land Parcel/Pond")
     
+    # US-36-01: Adoption Linkage
+    adopted_lot_id = fields.Many2one('stock.lot', string="Adopted Asset", help="If the sensor is attached to a specific adopted tree/animal")
+
     # GIS Snapshot [US-02-02]
     gps_lat = fields.Float("Latitude", digits=(10, 7))
     gps_lng = fields.Float("Longitude", digits=(10, 7))
@@ -62,6 +66,19 @@ class FarmTelemetry(models.Model):
                 if not is_inside:
                     # 触发越界告警
                     self._trigger_geofence_alarm(record, fence)
+
+            # 3. 认养推送逻辑 [US-36-01]
+            if record.adopted_lot_id:
+                # Find active subscriptions for this lot
+                subs = self.env['farm.csa.subscription'].search([
+                    ('adopted_lot_id', '=', record.adopted_lot_id.id),
+                    ('state', '=', 'active')
+                ])
+                for sub in subs:
+                    # Post message to customer
+                    sub.message_post(body=_("STATUS UPDATE: Your adopted asset %s sent a new reading: %s %s at %s.") % (
+                        record.adopted_lot_id.name, record.value, record.sensor_type, record.timestamp
+                    ))
         return records
 
     def _trigger_geofence_alarm(self, telemetry, fence):

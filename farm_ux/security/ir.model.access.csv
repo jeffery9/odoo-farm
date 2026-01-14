@@ -6,4 +6,4 @@ access_workspace_customization_user,workspace.customization.user,model_workspace
 access_contextual_help_user,contextual.help.user,model_contextual_help,base.group_system,1,1,1,1
 access_multi_sensory_interaction_user,multi.sensory.interaction.user,model_multi_sensory_interaction,base.group_system,1,1,1,1
 access_farm_social_network_user,farm.social.network.user,model_farm_social_network,base.group_system,1,1,1,1
-access_accessibility_settings_user,accessibility.settings.user,model_accessibility_settings,base.group_system,1,1,1,1
+access_accessibility_settings_user,accessibility.settings.user,model_accessibility_settings,base.group_system,1,1,1,1access_voice_recognition_alias_system,voice.recognition.alias.system,model_farm_voice_recognition_alias,base.group_system,1,1,1,1
