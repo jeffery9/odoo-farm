@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 通用农业术语映射 [US-16-01] -->
+    <record id="term_mapping_mrp_production" model="term.mapping">
+        <field name="name">Manufacturing Order - Intervention</field>
+        <field name="source_term">Manufacturing Order</field>
+        <field name="target_term">Agricultural Intervention</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">制造订单映射为农业干预</field>
+        <field name="example_usage">将系统中的制造订单术语替换为农业干预，更符合农业场景</field>
+    </record>
+
+    <record id="term_mapping_mrp_production_short" model="term.mapping">
+        <field name="name">MO - Agri Intervention</field>
+        <field name="source_term">MO</field>
+        <field name="target_term">AI</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">MO缩写映射为农业干预</field>
+        <field name="example_usage">将系统中的MO缩写替换为AI（Agricultural Intervention）</field>
+    </record>
+
+    <record id="term_mapping_production_plan" model="term.mapping">
+        <field name="name">Production Plan - Farm Plan</field>
+        <field name="source_term">Production Plan</field>
+        <field name="target_term">Farm Plan</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">生产计划映射为农场计划</field>
+        <field name="example_usage">将系统中的生产计划术语替换为农场计划</field>
+    </record>
+
+    <record id="term_mapping_work_order" model="term.mapping">
+        <field name="name">Work Order - Field Task</field>
+        <field name="source_term">Work Order</field>
+        <field name="target_term">Field Task</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">工单映射为田间任务</field>
+        <field name="example_usage">将系统中的工单术语替换为田间任务</field>
+    </record>
+
+    <record id="term_mapping_workorder" model="term.mapping">
+        <field name="name">Workorder - Field Operation</field>
+        <field name="source_term">Workorder</field>
+        <field name="target_term">Field Operation</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">工单映射为田间作业</field>
+        <field name="example_usage">将系统中的工单术语替换为田间作业</field>
+    </record>
+
+    <record id="term_mapping_bom" model="term.mapping">
+        <field name="name">Bill of Materials - Farm Recipe</field>
+        <field name="source_term">Bill of Materials</field>
+        <field name="target_term">Farm Recipe</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">物料清单映射为农场配方</field>
+        <field name="example_usage">将系统中的物料清单术语替换为农场配方</field>
+    </record>
+
+    <record id="term_mapping_raw_materials" model="term.mapping">
+        <field name="name">Raw Materials - Farm Inputs</field>
+        <field name="source_term">Raw Materials</field>
+        <field name="target_term">Farm Inputs</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">原材料映射为农场投入品</field>
+        <field name="example_usage">将系统中的原材料术语替换为农场投入品</field>
+    </record>
+
+    <record id="term_mapping_finished_product" model="term.mapping">
+        <field name="name">Finished Product - Harvest Output</field>
+        <field name="source_term">Finished Product</field>
+        <field name="target_term">Harvest Output</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">成品映射为收获产出</field>
+        <field name="example_usage">将系统中的成品术语替换为收获产出</field>
+    </record>
+
+    <record id="term_mapping_stock_location" model="term.mapping">
+        <field name="name">Stock Location - Farm Location</field>
+        <field name="source_term">Stock Location</field>
+        <field name="target_term">Farm Location</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">库存位置映射为农场位置</field>
+        <field name="example_usage">将系统中的库存位置术语替换为农场位置</field>
+    </record>
+
+    <record id="term_mapping_inventory" model="term.mapping">
+        <field name="name">Inventory - Farm Stock</field>
+        <field name="source_term">Inventory</field>
+        <field name="target_term">Farm Stock</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">库存映射为农场库存</field>
+        <field name="example_usage">将系统中的库存术语替换为农场库存</field>
+    </record>
+
+    <!-- 种植业专用术语映射 -->
+    <record id="term_mapping_seed" model="term.mapping">
+        <field name="name">Seed Material</field>
+        <field name="source_term">Seed</field>
+        <field name="target_term">Seed</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">planting</field>
+        <field name="is_active">True</field>
+        <field name="description">种子术语</field>
+        <field name="example_usage">在种植业场景中使用种子术语</field>
+    </record>
+
+    <record id="term_mapping_fertilizer" model="term.mapping">
+        <field name="name">Fertilizer Input</field>
+        <field name="source_term">Fertilizer</field>
+        <field name="target_term">Fertilizer</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">planting</field>
+        <field name="is_active">True</field>
+        <field name="description">肥料投入品</field>
+        <field name="example_usage">在种植业场景中使用肥料术语</field>
+    </record>
+
+    <record id="term_mapping_pesticide" model="term.mapping">
+        <field name="name">Pesticide Input</field>
+        <field name="source_term">Pesticide</field>
+        <field name="target_term">Pesticide</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">planting</field>
+        <field name="is_active">True</field>
+        <field name="description">农药投入品</field>
+        <field name="example_usage">在种植业场景中使用农药术语</field>
+    </record>
+
+    <record id="term_mapping_harvest" model="term.mapping">
+        <field name="name">Harvest Operation</field>
+        <field name="source_term">Harvest</field>
+        <field name="target_term">Harvest</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">planting</field>
+        <field name="is_active">True</field>
+        <field name="description">收获作业</field>
+        <field name="example_usage">在种植业场景中使用收获术语</field>
+    </record>
+
+    <record id="term_mapping_sowing" model="term.mapping">
+        <field name="name">Sowing Operation</field>
+        <field name="source_term">Sowing</field>
+        <field name="target_term">Sowing</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">planting</field>
+        <field name="is_active">True</field>
+        <field name="description">播种作业</field>
+        <field name="example_usage">在种植业场景中使用播种术语</field>
+    </record>
+
+    <!-- 畜牧业专用术语映射 -->
+    <record id="term_mapping_livestock" model="term.mapping">
+        <field name="name">Livestock - Animals</field>
+        <field name="source_term">Livestock</field>
+        <field name="target_term">Animals</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">livestock</field>
+        <field name="is_active">True</field>
+        <field name="description">牲畜映射为动物</field>
+        <field name="example_usage">在畜牧业场景中使用动物术语</field>
+    </record>
+
+    <record id="term_mapping_feed" model="term.mapping">
+        <field name="name">Feed Input</field>
+        <field name="source_term">Feed</field>
+        <field name="target_term">Feed</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">livestock</field>
+        <field name="is_active">True</field>
+        <field name="description">饲料投入品</field>
+        <field name="example_usage">在畜牧业场景中使用饲料术语</field>
+    </record>
+
+    <record id="term_mapping_feeding" model="term.mapping">
+        <field name="name">Feeding Operation</field>
+        <field name="source_term">Feeding</field>
+        <field name="target_term">Feeding</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">livestock</field>
+        <field name="is_active">True</field>
+        <field name="description">饲喂作业</field>
+        <field name="example_usage">在畜牧业场景中使用饲喂术语</field>
+    </record>
+
+    <record id="term_mapping_breeding" model="term.mapping">
+        <field name="name">Breeding Operation</field>
+        <field name="source_term">Breeding</field>
+        <field name="target_term">Breeding</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">livestock</field>
+        <field name="is_active">True</field>
+        <field name="description">繁育作业</field>
+        <field name="example_usage">在畜牧业场景中使用繁育术语</field>
+    </record>
+
+    <!-- 加工业专用术语映射 -->
+    <record id="term_mapping_processing" model="term.mapping">
+        <field name="name">Processing - Food Processing</field>
+        <field name="source_term">Processing</field>
+        <field name="target_term">Food Processing</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">processing</field>
+        <field name="is_active">True</field>
+        <field name="description">加工映射为食品加工</field>
+        <field name="example_usage">在加工业场景中使用食品加工术语</field>
+    </record>
+
+    <record id="term_mapping_baking" model="term.mapping">
+        <field name="name">Baking - Baking Process</field>
+        <field name="source_term">Baking</field>
+        <field name="target_term">Baking Process</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">processing</field>
+        <field name="is_active">True</field>
+        <field name="description">烘焙映射为烘焙工艺</field>
+        <field name="example_usage">在烘焙加工场景中使用烘焙工艺术语</field>
+    </record>
+
+    <record id="term_mapping_fermentation" model="term.mapping">
+        <field name="name">Fermentation - Fermentation Process</field>
+        <field name="source_term">Fermentation</field>
+        <field name="target_term">Fermentation Process</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">processing</field>
+        <field name="is_active">True</field>
+        <field name="description">发酵映射为发酵工艺</field>
+        <field name="example_usage">在发酵加工场景中使用发酵工艺术语</field>
+    </record>
+
+    <!-- 酿酒业专用术语映射 -->
+    <record id="term_mapping_viticulture" model="term.mapping">
+        <field name="name">Viticulture - Grape Growing</field>
+        <field name="source_term">Viticulture</field>
+        <field name="target_term">Grape Growing</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">winemaking</field>
+        <field name="is_active">True</field>
+        <field name="description">葡萄栽培映射为葡萄种植</field>
+        <field name="example_usage">在酿酒业场景中使用葡萄种植术语</field>
+    </record>
+
+    <record id="term_mapping_crushing" model="term.mapping">
+        <field name="name">Crushing - Grape Crushing</field>
+        <field name="source_term">Crushing</field>
+        <field name="target_term">Grape Crushing</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">winemaking</field>
+        <field name="is_active">True</field>
+        <field name="description">压榨映射为葡萄压榨</field>
+        <field name="example_usage">在酿酒业场景中使用葡萄压榨术语</field>
+    </record>
+
+    <!-- 通用农业操作术语 -->
+    <record id="term_mapping_intervention" model="term.mapping">
+        <field name="name">Intervention - Farm Operation</field>
+        <field name="source_term">Intervention</field>
+        <field name="target_term">Farm Operation</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">干预映射为农场作业</field>
+        <field name="example_usage">将系统中的干预术语替换为农场作业</field>
+    </record>
+
+    <record id="term_mapping_campaign" model="term.mapping">
+        <field name="name">Campaign - Growing Season</field>
+        <field name="source_term">Campaign</field>
+        <field name="target_term">Growing Season</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">战役映射为生长季</field>
+        <field name="example_usage">将系统中的战役术语替换为生长季</field>
+    </record>
+
+    <record id="term_mapping_task" model="term.mapping">
+        <field name="name">Task - Farm Task</field>
+        <field name="source_term">Task</field>
+        <field name="target_term">Farm Task</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">任务映射为农场任务</field>
+        <field name="example_usage">将系统中的任务术语替换为农场任务</field>
+    </record>
+
+    <!-- 菜单和视图术语映射 -->
+    <record id="term_mapping_manufacturing" model="term.mapping">
+        <field name="name">Manufacturing - Farm Operations</field>
+        <field name="source_term">Manufacturing</field>
+        <field name="target_term">Farm Operations</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">制造映射为农场作业</field>
+        <field name="example_usage">将制造菜单替换为农场作业菜单</field>
+    </record>
+
+    <record id="term_mapping_production" model="term.mapping">
+        <field name="name">Production - Farm Production</field>
+        <field name="source_term">Production</field>
+        <field name="target_term">Farm Production</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+        <field name="description">生产映射为农场生产</field>
+        <field name="example_usage">将生产模块替换为农场生产</field>
+    </record>
+
+</odoo>
