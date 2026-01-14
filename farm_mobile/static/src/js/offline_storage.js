@@ -21,6 +21,10 @@ export class OfflineStorage {
                 if (!db.objectStoreNames.contains("knowledge_cache")) {
                     db.createObjectStore("knowledge_cache", { keyPath: "id" });
                 }
+                // 新增：离线地图瓦片缓存 [US-26-04]
+                if (!db.objectStoreNames.contains("map_tiles")) {
+                    db.createObjectStore("map_tiles", { keyPath: "url" });
+                }
             };
             request.onsuccess = (e) => resolve(e.target.result);
             request.onerror = (e) => reject(e.target.error);

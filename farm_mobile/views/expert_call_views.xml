@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_expert_call_tree" model="ir.ui.view">
+        <field name="name">farm.expert.call.tree</field>
+        <field name="model">farm.expert.call</field>
+        <field name="arch" type="xml">
+            <tree string="Expert Calls" decoration-info="status == 'ongoing'" decoration-success="status == 'completed'" decoration-muted="status == 'missed'">
+                <field name="name"/>
+                <field name="start_time"/>
+                <field name="worker_id"/>
+                <field name="expert_id"/>
+                <field name="intervention_id"/>
+                <field name="call_type"/>
+                <field name="status" widget="badge"/>
+                <field name="duration" string="Duration (s)"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_farm_expert_call_form" model="ir.ui.view">
+        <field name="name">farm.expert.call.form</field>
+        <field name="model">farm.expert.call</field>
+        <field name="arch" type="xml">
+            <form string="Expert Call">
+                <header>
+                    <field name="status" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="intervention_id"/>
+                            <field name="worker_id"/>
+                            <field name="expert_id"/>
+                        </group>
+                        <group>
+                            <field name="start_time"/>
+                            <field name="end_time"/>
+                            <field name="call_type"/>
+                            <field name="recording_url" widget="url"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Consultation Notes" name="notes">
+                            <field name="notes" placeholder="Detailed notes from the expert..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_expert_call" model="ir.actions.act_window">
+        <field name="name">Expert Calls</field>
+        <field name="res_model">farm.expert.call</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No expert calls recorded yet.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_farm_expert_call"
+              name="Expert Consultations"
+              parent="farm_mobile.menu_mobile_field_ops"
+              action="action_farm_expert_call"
+              sequence="30"/>
+</odoo>
