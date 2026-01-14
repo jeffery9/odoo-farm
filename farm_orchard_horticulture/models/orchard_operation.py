@@ -155,3 +155,34 @@ class FruitTree(models.Model):
     # Special attributes
     is_pollinator = fields.Boolean(string='Is Pollinator Tree')
     compatible_varieties = fields.Text(string='Compatible Varieties for Pollination')
+
+    # US-34-01 & US-34-02: Advanced Perennial Asset Management
+    productive_state = fields.Selection([
+        ('juvenile', 'Juvenile (Non-bearing)'),
+        ('ascending', 'Early Bearing'),
+        ('peak', 'Peak Production'),
+        ('declining', 'Declining Yield'),
+        ('dead', 'Dead/Removed')
+    ], string="Productive State", default='juvenile')
+    
+    yield_record_ids = fields.One2many('farm.plant.yield.record', 'lot_id', string="Yield History")
+    total_cumulative_yield = fields.Float("Cumulative Yield (kg)", compute='_compute_cumulative_yield', store=True)
+
+    @api.depends('yield_record_ids.quantity')
+    def _compute_cumulative_yield(self):
+        for lot in self:
+            lot.total_cumulative_yield = sum(lot.yield_record_ids.mapped('quantity'))
+
+class PlantYieldRecord(models.Model):
+    """ US-34-02: Records historical yield for a specific plant asset """
+    _name = 'farm.plant.yield.record'
+    _description = 'Plant Yield Record'
+    _order = 'harvest_date desc'
+
+    lot_id = fields.Many2one('stock.lot', string="Plant Asset", required=True, ondelete='cascade')
+    harvest_date = fields.Date("Harvest Date", default=fields.Date.today)
+    quantity = fields.Float("Yield Quantity (kg)", required=True)
+    quality_grade = fields.Selection([
+        ('a', 'Grade A'), ('b', 'Grade B'), ('c', 'Grade C')
+    ], string="Quality Grade")
+    campaign_id = fields.Many2one('agricultural.campaign', string="Campaign/Season")

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_production_lot_form_inherit_orchard" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.orchard</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="is_fruit_tree" invisible="1"/>
+                <field name="productive_state" invisible="not is_fruit_tree" widget="badge"/>
+                <field name="total_cumulative_yield" invisible="not is_fruit_tree"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Orchard Lifecycle" name="orchard_lifecycle" invisible="not is_fruit_tree">
+                    <group>
+                        <group string="Planting Info">
+                            <field name="planting_date"/>
+                            <field name="tree_age"/>
+                            <field name="rootstock_variety"/>
+                        </group>
+                        <group string="Physical Specs">
+                            <field name="trunk_diameter"/>
+                            <field name="canopy_height"/>
+                            <field name="canopy_spread"/>
+                        </group>
+                    </group>
+                    <separator string="Yield History (历年产量趋势)"/>
+                    <field name="yield_record_ids">
+                        <tree editable="bottom">
+                            <field name="harvest_date"/>
+                            <field name="campaign_id"/>
+                            <field name="quantity"/>
+                            <field name="quality_grade"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Yield Analysis Action -->
+    <record id="action_orchard_yield_analysis" model="ir.actions.act_window">
+        <field name="name">Orchard Yield Analysis</field>
+        <field name="res_model">farm.plant.yield.record</field>
+        <field name="view_mode">graph,pivot,list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Analyze yield trends across your orchard batches.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_orchard_yield_analysis"
+              name="Yield Analysis"
+              parent="farm_orchard_horticulture.menu_farm_orchard_horticulture_menu_root"
+              action="action_orchard_yield_analysis"
+              sequence="30"/>
+</odoo>
