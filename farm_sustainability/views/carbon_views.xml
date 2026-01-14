@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Carbon Asset Views -->
+    <record id="view_farm_carbon_asset_tree" model="ir.ui.view">
+        <field name="name">farm.carbon.asset.tree</field>
+        <field name="model">farm.carbon.asset</field>
+        <field name="arch" type="xml">
+            <list string="Carbon Assets">
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="asset_type"/>
+                <field name="current_carbon_value" string="Carbon Balance (t CO2e)"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_farm_carbon_asset_form" model="ir.ui.view">
+        <field name="name">farm.carbon.asset.form</field>
+        <field name="model">farm.carbon.asset</field>
+        <field name="arch" type="xml">
+            <form string="Carbon Asset">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. Apple Orchard Carbon Sink"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="location_id"/>
+                            <field name="asset_type"/>
+                        </group>
+                        <group>
+                            <field name="initial_carbon_stock"/>
+                            <field name="annual_sequestration_rate"/>
+                            <field name="current_carbon_value"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_carbon_asset" model="ir.actions.act_window">
+        <field name="name">Carbon Assets</field>
+        <field name="res_model">farm.carbon.asset</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_carbon_asset" name="Carbon Assets" parent="farm_sustainability.menu_sustainability_root" action="action_farm_carbon_asset" sequence="30"/>
+
+    <!-- Inheritances -->
+    <record id="product_template_form_view_inherit_carbon" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.carbon</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='inventory']" position="after">
+                <page string="Carbon &amp; Sustainability" name="carbon">
+                    <group>
+                        <field name="carbon_emission_factor"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="mrp_production_form_view_inherit_carbon" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.carbon</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="calculated_carbon_emission" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_production_lot_form_inherit_carbon" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.carbon</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="carbon_footprint" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
