@@ -7,10 +7,14 @@
         <field name="arch" type="xml">
             <form string="Protected Cultivation Operation">
                 <header>
+                    <button name="action_start_automation" string="Start Automation" type="object" class="oe_highlight" invisible="is_automation_enabled"/>
+                    <button name="action_stop_automation" string="Stop Automation" type="object" invisible="not is_automation_enabled"/>
+                    <field name="automation_status" widget="status_with_icon" invisible="not is_automation_enabled"/>
                     <field name="stage_id" widget="statusbar" clickable="1"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
+                        <field name="is_automation_enabled" invisible="1"/>
                         <button name="action_view_environmental_logs"
                                 type="object"
                                 class="oe_stat_button"
@@ -56,6 +60,17 @@
                                 <field name="nutrient_solution_ph"/>
                                 <field name="nutrient_solution_ec"/>
                             </group>
+                        </page>
+                        <page string="Automation Linkage" name="automation_linkage">
+                            <field name="automation_rule_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="sensor_type"/>
+                                    <field name="operator"/>
+                                    <field name="threshold"/>
+                                    <field name="target_device_id"/>
+                                </tree>
+                            </field>
                         </page>
                         <page string="Environmental Logs" name="environmental_logs">
                             <field name="environmental_log_ids" nolabel="1">

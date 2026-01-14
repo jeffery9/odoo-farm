@@ -103,6 +103,37 @@ class ProtectedCultivationOperation(models.Model):
         help='Electrical conductivity of the nutrient solution'
     )
 
+    # US-33-02: Water-Fertilizer-Light Automation Linkage (水肥光联动控制)
+    is_automation_enabled = fields.Boolean("Enable Environmental Automation", default=False)
+    automation_status = fields.Selection([
+        ('idle', 'Idle'),
+        ('active', 'Active'),
+        ('error', 'Sync Error')
+    ], string="Automation Status", default='idle')
+    
+    automation_rule_ids = fields.Many2many('farm.automation.rule', string="Linked Automation Rules")
+
+    def action_start_automation(self):
+        """ Start the automated environmental control systems """
+        for rec in self:
+            if not rec.automation_rule_ids:
+                from odoo.exceptions import UserError
+                raise UserError(_("Please link at least one automation rule before starting!"))
+            rec.write({
+                'is_automation_enabled': True,
+                'automation_status': 'active'
+            })
+            rec.message_post(body=_("SYSTEM: Environmental automation started for this greenhouse batch."))
+
+    def action_stop_automation(self):
+        """ Stop the automated systems """
+        for rec in self:
+            rec.write({
+                'is_automation_enabled': False,
+                'automation_status': 'idle'
+            })
+            rec.message_post(body=_("SYSTEM: Environmental automation stopped."))
+
     @api.model
     def create(self, vals):
         # Set default values based on crop type if available
