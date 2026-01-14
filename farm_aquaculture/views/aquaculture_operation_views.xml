@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Aquaculture Operation Form View -->
+    <record id="view_farm_aquaculture_operation_form" model="ir.ui.view">
+        <field name="name">farm.aquaculture.operation.form</field>
+        <field name="model">farm.aquaculture.operation</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='extra_info']" position="after">
+                <page string="Aquaculture Information" name="aquaculture_info">
+                    <group name="pond_info" string="Pond/Tank Information">
+                        <field name="pond_id"/>
+                        <field name="pond_capacity"/>
+                        <field name="aquatic_species"/>
+                        <field name="initial_stocking"/>
+                        <field name="current_count"/>
+                        <field name="aquaculture_stage"/>
+                    </group>
+                    <group name="water_quality" string="Water Quality Management">
+                        <group name="water_params" string="Water Parameters">
+                            <field name="water_temperature"/>
+                            <field name="ph_level"/>
+                            <field name="dissolved_oxygen"/>
+                            <field name="water_quality_status"/>
+                        </group>
+                        <group name="water_chemistry" string="Water Chemistry">
+                            <field name="ammonia_level"/>
+                            <field name="nitrite_level"/>
+                        </group>
+                    </group>
+                    <group name="feeding_info" string="Feeding Management">
+                        <field name="daily_feeding_rate"/>
+                        <field name="last_feeding_date"/>
+                        <field name="feeding_schedule"/>
+                    </group>
+                    <group name="growth_tracking" string="Growth Tracking">
+                        <field name="avg_initial_weight"/>
+                        <field name="avg_current_weight"/>
+                        <field name="growth_rate"/>
+                        <field name="target_weight"/>
+                    </group>
+                    <group name="harvest_info" string="Harvest Management">
+                        <field name="harvest_readiness"/>
+                        <field name="harvest_plan_date"/>
+                    </group>
+                    <group name="water_system" string="Water Treatment & Circulation">
+                        <field name="water_treatment_method"/>
+                        <field name="circulation_rate"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Aquaculture Operation Tree View -->
+    <record id="view_farm_aquaculture_operation_tree" model="ir.ui.view">
+        <field name="name">farm.aquaculture.operation.tree</field>
+        <field name="model">farm.aquaculture.operation</field>
+        <field name="inherit_id" ref="project.view_task_tree2"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="pond_id"/>
+                <field name="aquatic_species"/>
+                <field name="current_count"/>
+                <field name="water_quality_status"/>
+                <field name="avg_current_weight"/>
+                <field name="harvest_readiness"/>
+                <field name="aquaculture_stage"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Water Quality Log Form View -->
+    <record id="view_farm_water_quality_log_form" model="ir.ui.view">
+        <field name="name">farm.water.quality.log.form</field>
+        <field name="model">farm.water.quality.log</field>
+        <field name="arch" type="xml">
+            <form string="Water Quality Log">
+                <sheet>
+                    <group>
+                        <group name="main_info">
+                            <field name="operation_id"/>
+                            <field name="log_date"/>
+                        </group>
+                        <group name="water_parameters">
+                            <field name="temperature"/>
+                            <field name="ph_level"/>
+                            <field name="dissolved_oxygen"/>
+                            <field name="ammonia_level"/>
+                            <field name="nitrite_level"/>
+                        </group>
+                    </group>
+                    <group string="Additional Parameters">
+                        <field name="water_turbidity"/>
+                        <field name="water_salinity"/>
+                    </group>
+                    <group>
+                        <field name="weather_conditions"/>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Water Quality Log Tree View -->
+    <record id="view_farm_water_quality_log_tree" model="ir.ui.view">
+        <field name="name">farm.water.quality.log.tree</field>
+        <field name="model">farm.water.quality.log</field>
+        <field name="arch" type="xml">
+            <tree string="Water Quality Logs">
+                <field name="log_date"/>
+                <field name="operation_id"/>
+                <field name="temperature"/>
+                <field name="ph_level"/>
+                <field name="dissolved_oxygen"/>
+                <field name="ammonia_level"/>
+                <field name="nitrite_level"/>
+                <field name="water_quality_status" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for Aquaculture Operations -->
+    <record id="action_farm_aquaculture_operations" model="ir.actions.act_window">
+        <field name="name">Aquaculture Operations</field>
+        <field name="res_model">farm.aquaculture.operation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Action for Water Quality Logs -->
+    <record id="action_farm_water_quality_logs" model="ir.actions.act_window">
+        <field name="name">Water Quality Logs</field>
+        <field name="res_model">farm.water.quality.log</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu items for Aquaculture -->
+    <menuitem id="menu_farm_aquaculture_root"
+              name="Aquaculture"
+              parent="farm_core.menu_farm_root"
+              sequence="23"/>
+
+    <menuitem id="menu_farm_aquaculture_operations"
+              name="Operations"
+              parent="menu_farm_aquaculture_root"
+              action="action_farm_aquaculture_operations"
+              sequence="10"/>
+
+    <menuitem id="menu_farm_water_quality_logs"
+              name="Water Quality Logs"
+              parent="menu_farm_aquaculture_root"
+              action="action_farm_water_quality_logs"
+              sequence="20"/>
+</odoo>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Aquaculture specific menu items will be added here -->
+    <menuitem id="farm_aquaculture_menu_root"
+              name="Aquaculture"
+              sequence="23"
+              groups="base.group_user"/>
+</odoo>
