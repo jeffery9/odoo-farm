@@ -3,23 +3,40 @@ from odoo.exceptions import ValidationError
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
-    _description = 'Activity Production'
+    _description = 'Multi-Industry Activity Production'
+
+    # Industry type to support multi-industry operations
+    industry_type = fields.Selection([
+        ('field_crops', 'Field Crops'),
+        ('protected_cultivation', 'Protected Cultivation'),
+        ('orchard_horticulture', 'Orchard Horticulture'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('medicinal_plants', 'Medicinal Plants'),
+        ('mushroom', 'Mushroom Cultivation'),
+        ('apiculture', 'Apiculture'),
+        ('agricultural_processing', 'Agricultural Processing'),
+        ('agritourism', 'Agritourism'),
+        ('mixed', 'Mixed Operations'),
+    ], string='Industry Type',
+       help='Type of agricultural industry this task belongs to',
+       default='field_crops')
 
     campaign_id = fields.Many2one(
-        'agricultural.campaign', 
+        'agricultural.campaign',
         string="Campaign/Season",
         help="Link this production task to a specific season."
     )
-    
+
     # 继承 farm_core 资产逻辑
     land_parcel_id = fields.Many2one('stock.location', string="Land Parcel/Pond", domain=[('is_land_parcel', '=', True)])
     gps_lat = fields.Float(related='land_parcel_id.gps_lat', store=True)
     gps_lng = fields.Float(related='land_parcel_id.gps_lng', store=True)
-    
+
     # Weather Forecast [US-Weather]
     forecast_ids = fields.One2many(
-        'farm.weather.forecast', 
-        compute='_compute_weather_forecasts', 
+        'farm.weather.forecast',
+        compute='_compute_weather_forecasts',
         string="Weather Forecasts"
     )
 
@@ -45,8 +62,8 @@ class ProjectTask(models.Model):
     sale_order_id = fields.Many2one('sale.order', string="Source Sale Order")
 
     intervention_ids = fields.One2many(
-        'mrp.production', 
-        'agri_task_id', 
+        'mrp.production',
+        'agri_task_id',
         string="Agri Interventions"
     )
 
@@ -71,7 +88,7 @@ class ProjectTask(models.Model):
             task.n_density = task.total_n / area
             task.p_density = task.total_p / area
             task.k_density = task.total_k / area
-            
+
             # 2. 安全检查
             today = fields.Datetime.now()
             lot = task.biological_lot_id
@@ -126,11 +143,11 @@ class ProjectTask(models.Model):
             ('state', '=', 'inprogress'), # 假定状态
             ('biological_lot_id', '!=', False)
         ])
-        
+
         for task in tasks:
             lot = task.biological_lot_id
             product = lot.product_id
-            
+
             # 计算年龄
             if lot.born_at:
                 age = (fields.Datetime.now() - lot.born_at).days
@@ -139,20 +156,20 @@ class ProjectTask(models.Model):
                 # 寻找匹配的生长曲线行以获取喂养率
                 curve_line = product.growth_curve_ids.filtered(lambda c: c.age_days <= age).sorted('age_days', reverse=True)
                 feed_rate = curve_line[0].daily_feed_rate if curve_line else 0.0
-                
+
                 if feed_rate > 0:
                     # 计算建议投喂量 = 估算生物总量 = 数量 * 平均体重
                     estimated_biomass = lot.animal_count * expected_weight
                     suggested_feed_qty = estimated_biomass * (feed_rate / 100.0)
-                    
+
                     # 发送建议消息或创建草稿 MO
                     task.message_post(body=_("DAILY FEED PROPOSAL: Age %s days. Estimated Biomass: %s kg. Suggested Feed: %s kg.") % (
                         age, estimated_biomass, suggested_feed_qty
                     ))
-    
+
     # Required Qualifications for Task [US-17-08]
     required_skill_ids = fields.Many2many(
-        'farm.training.skill', 
+        'farm.training.skill',
         string="Required Skills",
         help="Skills required to perform this task."
     )
@@ -173,7 +190,7 @@ class ProjectTask(models.Model):
                 if not employee:
                     # Depending on policy, either raise error or skip
                     # For now, we'll assume every assigned user should be an employee for qualification checks
-                    continue 
+                    continue
 
                 try:
                     employee.check_qualification_for_task(
@@ -182,5 +199,30 @@ class ProjectTask(models.Model):
                     )
                 except ValidationError as e:
                     raise ValidationError(_(f"Qualification Error for Task '{task.name}': {e.args[0]}"))
+
+    @api.onchange('industry_type')
+    def _onchange_industry_type(self):
+        """When industry type changes, update task fields and behaviors"""
+        if self.industry_type:
+            # Update project or task based on industry type
+            industry_project_mapping = {
+                'field_crops': 'Field Crops Operations',
+                'protected_cultivation': 'Protected Cultivation Operations',
+                'orchard_horticulture': 'Orchard Operations',
+                'livestock': 'Livestock Operations',
+                'aquaculture': 'Aquaculture Operations',
+                'medicinal_plants': 'Medicinal Plants Operations',
+                'mushroom': 'Mushroom Operations',
+                'apiculture': 'Apiculture Operations',
+                'agricultural_processing': 'Processing Operations',
+                'agritourism': 'Agritourism Operations',
+            }
+
+            # Update or create project if needed
+            if self.industry_type in industry_project_mapping:
+                project_name = industry_project_mapping[self.industry_type]
+                project = self.env['project.project'].search([('name', '=', project_name)], limit=1)
+                if project:
+                    self.project_id = project.id
 
 
