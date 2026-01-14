@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 状态指示器配置 - 遵循三色信号灯原则 [US-16-03] -->
+    <record id="visual_indicator_withdrawal_period" model="visual.status.indicator">
+        <field name="name">Withdrawal Period Status</field>
+        <field name="model_name">stock.lot</field>
+        <field name="field_name">withdrawal_end_datetime</field>
+        <field name="evaluation_logic">lambda record: 'red' if record.withdrawal_status == 'warning' and record.withdrawal_remaining_days <= 3 else 'orange' if record.withdrawal_status == 'warning' else 'green'</field>
+        <field name="icon">fa-hourglass-half</field>
+        <field name="description">休药期状态指示器，红色表示即将到期，橙色表示正在休药期，绿色表示安全</field>
+        <field name="is_active">True</field>
+        <field name="display_on_mobile">True</field>
+    </record>
+
+    <record id="visual_indicator_gdd_progress" model="visual.status.indicator">
+        <field name="name">GDD Progress Status</field>
+        <field name="model_name">agricultural.campaign</field>
+        <field name="field_name">accumulated_gdd</field>
+        <field name="evaluation_logic">lambda record: 'red' if record.accumulated_gdd and record.target_gdd and record.accumulated_gdd / record.target_gdd * 100 >= 95 else 'green' if record.accumulated_gdd and record.target_gdd and record.accumulated_gdd / record.target_gdd * 100 >= 50 else 'orange'</field>
+        <field name="icon">fa-thermometer-half</field>
+        <field name="description">积温进度指示器，红色表示接近目标，绿色表示进度良好，橙色表示进度缓慢</field>
+        <field name="is_active">True</field>
+        <field name="display_on_mobile">True</field>
+    </record>
+
+    <record id="visual_indicator_harvest_grade" model="visual.status.indicator">
+        <field name="name">Harvest Grade Status</field>
+        <field name="model_name">mrp.production</field>
+        <field name="field_name">grade_a_qty</field>
+        <field name="evaluation_logic">lambda record: 'green' if record.grade_a_qty and record.grade_a_qty / (record.grade_a_qty + record.grade_b_qty + record.grade_c_qty or 1) >= 0.7 else 'orange' if record.grade_a_qty and record.grade_a_qty / (record.grade_a_qty + record.grade_b_qty + record.grade_c_qty or 1) >= 0.4 else 'red'</field>
+        <field name="icon">fa-star</field>
+        <field name="description">收获等级指示器，基于A级品占比显示质量状态</field>
+        <field name="is_active">True</field>
+        <field name="display_on_mobile">True</field>
+    </record>
+
+    <record id="visual_indicator_adg_trend" model="visual.status.indicator">
+        <field name="name">ADG Trend Status</field>
+        <field name="model_name">stock.lot</field>
+        <field name="field_name">average_daily_gain</field>
+        <field name="evaluation_logic">lambda record: 'green' if record.average_daily_gain and record.average_daily_gain > 1.0 else 'orange' if record.average_daily_gain and record.average_daily_gain > 0.5 else 'red'</field>
+        <field name="icon">fa-line-chart</field>
+        <field name="description">日增重趋势指示器，基于平均日增重显示牲畜健康状态</field>
+        <field name="is_active">True</field>
+        <field name="display_on_mobile">True</field>
+    </record>
+
+    <record id="visual_indicator_maturity" model="visual.status.indicator">
+        <field name="name">Biological Asset Maturity Status</field>
+        <field name="model_name">stock.lot</field>
+        <field name="field_name">is_mature</field>
+        <field name="evaluation_logic">lambda record: 'green' if record.is_mature else 'orange'</field>
+        <field name="icon">fa-leaf</field>
+        <field name="description">生物资产成熟度指示器，绿色表示已成熟，橙色表示生长期</field>
+        <field name="is_active">True</field>
+        <field name="display_on_mobile">True</field>
+    </record>
+
+    <record id="visual_indicator_spatial_compliance" model="visual.status.indicator">
+        <field name="name">Spatial Compliance Status</field>
+        <field name="model_name">mrp.production</field>
+        <field name="field_name">spatial_compliance_rate</field>
+        <field name="evaluation_logic">lambda record: 'green' if record.spatial_compliance_rate >= 95.0 else 'orange' if record.spatial_compliance_rate >= 80.0 else 'red'</field>
+        <field name="icon">fa-map-marker</field>
+        <field name="description">空间合规性指示器，显示作业与地块边界的合规率</field>
+        <field name="is_active">True</field>
+        <field name="display_on_mobile">True</field>
+    </record>
+
+    <record id="visual_indicator_loss_rate" model="visual.status.indicator">
+        <field name="name">Processing Loss Rate Status</field>
+        <field name="model_name">mrp.production</field>
+        <field name="field_name">loss_rate</field>
+        <field name="evaluation_logic">lambda record: 'red' if record.loss_rate and record.bom_id and record.loss_rate > record.bom_id.max_loss_rate else 'green' if record.loss_rate and record.loss_rate <= record.bom_id.max_loss_rate * 0.8 else 'orange'</field>
+        <field name="icon">fa-balance-scale</field>
+        <field name="description">加工损耗率指示器，红色表示超标，绿色表示良好，橙色表示接近阈值</field>
+        <field name="is_active">True</field>
+        <field name="display_on_mobile">True</field>
+    </record>
+
+    <record id="visual_indicator_quality_status" model="visual.status.indicator">
+        <field name="name">Quality Status Indicator</field>
+        <field name="model_name">stock.lot</field>
+        <field name="field_name">quality_status</field>
+        <field name="evaluation_logic">lambda record: 'red' if record.quality_status == 'failed' else 'green' if record.quality_status == 'passed' else 'orange'</field>
+        <field name="icon">fa-check-circle</field>
+        <field name="description">质量状态指示器，红色表示不合格，绿色表示合格，橙色表示未检测</field>
+        <field name="is_active">True</field>
+        <field name="display_on_mobile">True</field>
+    </record>
+
+</odoo>
