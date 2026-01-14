@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Orchard Horticulture specific menu items -->
+    <menuitem id="menu_farm_orchard_horticulture_menu_root"
+              name="Orchard Horticulture"
+              parent="farm_core.menu_farm_root"
+              sequence="22"/>
+</odoo>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Orchard Operation Form View -->
+    <record id="view_farm_orchard_operation_form" model="ir.ui.view">
+        <field name="name">farm.orchard.operation.form</field>
+        <field name="model">farm.orchard.operation</field>
+        <field name="arch" type="xml">
+            <form string="Orchard Operation">
+                <header>
+                    <field name="stage_id" widget="statusbar" clickable="1"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_tree_details"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-tree">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Tree Details</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group name="main_info" string="Operation Information">
+                            <field name="name"/>
+                            <field name="operation_type"/>
+                            <field name="orchard_block_id"/>
+                        </group>
+                        <group name="tree_info" string="Tree Information">
+                            <field name="tree_id"/>
+                            <field name="tree_age"/>
+                            <field name="tree_variety"/>
+                            <field name="rootstock_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Pruning & Training" name="pruning_training">
+                            <group>
+                                <group name="pruning_info">
+                                    <field name="pruning_type"/>
+                                    <field name="training_system"/>
+                                    <field name="last_pruning_date"/>
+                                </group>
+                                <group name="canopy_info">
+                                    <field name="canopy_height"/>
+                                    <field name="canopy_spread"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Flowering & Fruiting" name="flowering_fruiting">
+                            <group>
+                                <group name="flowering_info">
+                                    <field name="flowering_start_date"/>
+                                    <field name="flowering_end_date"/>
+                                </group>
+                                <group name="fruiting_info">
+                                    <field name="expected_fruit_count"/>
+                                    <field name="harvest_readiness_check"/>
+                                    <field name="fruit_quality_grade"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Pollination" name="pollination">
+                            <group>
+                                <field name="pollinator_tree_ids" widget="many2many_tags" options="{'no_create_edit': true}"/>
+                            </group>
+                        </page>
+                        <page string="Seasonal Management" name="seasonal_management">
+                            <group>
+                                <field name="dormant_treatment"/>
+                                <field name="growing_season_notes"/>
+                                <field name="irrigation_method"/>
+                            </group>
+                        </page>
+                        <page string="Description" name="description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="activity_ids"/>
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Orchard Operation Tree View -->
+    <record id="view_farm_orchard_operation_tree" model="ir.ui.view">
+        <field name="name">farm.orchard.operation.tree</field>
+        <field name="model">farm.orchard.operation</field>
+        <field name="arch" type="xml">
+            <tree string="Orchard Operations">
+                <field name="name"/>
+                <field name="tree_id"/>
+                <field name="tree_variety"/>
+                <field name="orchard_block_id"/>
+                <field name="pruning_type"/>
+                <field name="stage_id"/>
+                <field name="date_assign"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action to open Orchard Operations -->
+    <record id="action_farm_orchard_operations" model="ir.actions.act_window">
+        <field name="name">Orchard Operations</field>
+        <field name="res_model">farm.orchard.operation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu items for Orchard Operations -->
+    <menuitem id="menu_orchard_operations"
+              name="Operations"
+              parent="farm_orchard_horticulture.menu_farm_orchard_horticulture_menu_root"
+              action="action_farm_orchard_operations"
+              sequence="10"/>
+</odoo>
