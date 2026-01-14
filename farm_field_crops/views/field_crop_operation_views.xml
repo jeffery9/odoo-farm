@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Field Crop Operation Form View -->
+    <record id="view_farm_field_crop_operation_form" model="ir.ui.view">
+        <field name="name">farm.field.crop.operation.form</field>
+        <field name="model">farm.field.crop.operation</field>
+        <field name="arch" type="xml">
+            <form string="Field Crop Operation">
+                <header>
+                    <field name="stage_id" widget="statusbar" clickable="1"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_field_details"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-map-o"
+                                invisible="not field_parcel_id">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">View Field</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group name="main_info" string="Operation Information">
+                            <field name="name"/>
+                            <field name="crop_type_id"/>
+                            <field name="field_parcel_id"/>
+                            <field name="operation_type"/>
+                        </group>
+                        <group name="field_crops_data" string="Field Crops Specific Data">
+                            <field name="seeding_rate"/>
+                            <field name="planting_density"/>
+                            <field name="fertilizer_application_rate"/>
+                            <field name="irrigation_schedule"/>
+                            <field name="crop_rotation_sequence"/>
+                            <field name="expected_yield"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Planning" name="planning" invisible="project_id">
+                            <group>
+                                <group name="planning_dates">
+                                    <field name="planned_date_begin"/>
+                                    <field name="planned_date_end"/>
+                                </group>
+                                <group name="actual_dates">
+                                    <field name="date_assign"/>
+                                    <field name="date_end"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="activity_ids"/>
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Field Crop Operation Tree View -->
+    <record id="view_farm_field_crop_operation_tree" model="ir.ui.view">
+        <field name="name">farm.field.crop.operation.tree</field>
+        <field name="model">farm.field.crop.operation</field>
+        <field name="arch" type="xml">
+            <tree string="Field Crop Operations">
+                <field name="name"/>
+                <field name="crop_type_id"/>
+                <field name="field_parcel_id"/>
+                <field name="seeding_rate"/>
+                <field name="planting_density"/>
+                <field name="fertilizer_application_rate"/>
+                <field name="stage_id"/>
+                <field name="date_assign"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action to open Field Crop Operations -->
+    <record id="action_farm_field_crop_operations" model="ir.actions.act_window">
+        <field name="name">Field Crop Operations</field>
+        <field name="res_model">farm.field.crop.operation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first field crop operation
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu items for Field Crop Operations -->
+    <menuitem id="menu_field_crop_operations_root"
+              name="Field Crops"
+              parent="farm_core.menu_farm_root"
+              sequence="20"/>
+
+    <menuitem id="menu_field_crop_operations"
+              name="Operations"
+              parent="menu_field_crop_operations_root"
+              action="action_farm_field_crop_operations"
+              sequence="10"/>
+</odoo>

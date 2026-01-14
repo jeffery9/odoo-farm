@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Field Crops specific menu items are now in field_crop_operation_views.xml -->
+</odoo>
