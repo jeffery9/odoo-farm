@@ -27,6 +27,13 @@ class FarmSaleOrder(models.Model):
             if order.export_country_id and not order.is_export_compliant:
                 from odoo.exceptions import UserError
                 raise UserError(_("EXPORT BLOCK: Order contains products not compliant with %s regulations.") % order.export_country_id.name)
+            
+            # US-32-03: Channel Protection Whitelist check
+            for line in order.order_line:
+                if hasattr(line, 'lot_id') and line.lot_id and line.lot_id.is_premium_brand:
+                    if order.partner_id not in line.lot_id.allowed_partner_ids:
+                        from odoo.exceptions import UserError
+                        raise UserError(_("CHANNEL PROTECTION: Lot %s is reserved for premium channels. Customer %s is not in the whitelist!") % (line.lot_id.name, order.partner_id.name))
 
         res = super(FarmSaleOrder, self).action_confirm()
         for order in self:
@@ -39,12 +46,14 @@ class FarmSaleOrder(models.Model):
 class FarmSaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    lot_id = fields.Many2one('stock.lot', string="Assigned Lot") # Optional: depends on modules installed, but we add it for logic
+
     def action_view_traceability(self):
         """ 跳转到该行关联批次的外部溯源页面 """
         self.ensure_one()
         # 寻找已分配的批次
         move = self.move_ids.filtered(lambda m: m.state == 'done')
-        lot = move.lot_ids[:1]
+        lot = self.lot_id or move.lot_ids[:1]
         if lot:
             return {
                 'type': 'ir.actions.act_url',
@@ -66,6 +75,34 @@ class FarmLotMarketing(models.Model):
 
     traceability_url = fields.Char("Traceability URL", compute='_compute_traceability_url')
     
+    # US-32-03: Channel Protection
+    is_premium_brand = fields.Boolean("Premium Brand Lot", default=False)
+    allowed_partner_ids = fields.Many2many('res.partner', string="Allowed Premium Channels")
+
+    # US-32-04: Organic Integrity Scoring
+    # Formula: Integrity = Geofence Rate * 0.4 + Input Whitelist Rate * 0.4 + QC Pass Rate * 0.2
+    integrity_score = fields.Float("Organic Integrity Score", compute='_compute_integrity_score', store=True)
+
+    @api.depends('quality_status', 'state') # Simplified dependencies
+    def _compute_integrity_score(self):
+        for lot in self:
+            # In real system, these would be fetched from actual records
+            # For prototype, we simulate based on current state
+            geofence_compliance = 100.0 if lot.state == 'healthy' else 80.0
+            input_whitelist_rate = 100.0 if lot.quality_status == 'passed' else 70.0
+            qc_pass_rate = 100.0 if lot.quality_status == 'passed' else 0.0
+            
+            score = (geofence_compliance * 0.4) + (input_whitelist_rate * 0.4) + (qc_pass_rate * 0.2)
+            lot.integrity_score = score
+            
+            if score < 60.0:
+                lot.activity_schedule(
+                    'mail.mail_activity_data_todo',
+                    summary=_('Integrity Warning: Low Score (%s)') % score,
+                    note=_('Lot %s has an integrity score below 60. Please investigate immediately.') % lot.name,
+                    user_id=self.env.user.id # Should be quality manager
+                )
+
     # Marketing Content [US-08-01]
     story_title = fields.Char("Growth Story Title")
     story_content = fields.Html("Growth Story Content")
