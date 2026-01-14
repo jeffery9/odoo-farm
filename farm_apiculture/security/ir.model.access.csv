@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_farm_apiculture_operation,access_farm_apiculture_operation,model_farm_apiculture_operation,base.group_user,1,1,1,1
+access_farm_hive_inspection,access_farm_hive_inspection,model_farm_hive_inspection,base.group_user,1,1,1,1
