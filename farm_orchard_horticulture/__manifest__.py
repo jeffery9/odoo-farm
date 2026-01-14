@@ -25,6 +25,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/orchard_operation_views.xml',
+        'views/fruit_tree_views.xml',
         'views/menu.xml',
     ],
     'demo': [
