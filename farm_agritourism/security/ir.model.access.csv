@@ -2,3 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_farm_booking_worker,farm.booking.worker,model_farm_booking,farm_core.group_farm_worker,1,1,1,1
 access_farm_resource_mgr,farm.resource.mgr,model_farm_resource,farm_core.group_farm_manager,1,1,1,1
 access_farm_resource_worker,farm.resource.worker,model_farm_resource,farm_core.group_farm_worker,1,0,0,0
+access_farm_agritourism_operation,access_farm_agritourism_operation,model_farm_agritourism_operation,base.group_user,1,1,1,1
+access_farm_resource_usage,access_farm_resource_usage,model_farm_resource_usage,base.group_user,1,1,1,1
