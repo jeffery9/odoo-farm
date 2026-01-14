@@ -10,6 +10,7 @@
                 <group string="Agricultural &amp; GIS Info" invisible="not is_land_parcel">
                     <group>
                         <field name="is_land_parcel"/>
+                        <field name="land_nature"/>
                         <field name="land_area"/>
                         <field name="soil_type"/>
                     </group>
@@ -17,6 +18,27 @@
                         <field name="gps_lat"/>
                         <field name="gps_lng"/>
                         <field name="gis_map_url" widget="url" text="View on Map" invisible="not gis_map_url"/>
+                    </group>
+                </group>
+                <group string="Terroir Profiling (风土数字化)" invisible="not is_land_parcel">
+                    <group>
+                        <field name="slope"/>
+                        <field name="aspect"/>
+                        <field name="water_source"/>
+                    </group>
+                    <group>
+                        <field name="soil_mineral_composition"/>
+                        <field name="micro_climate_notes"/>
+                    </group>
+                </group>
+                <group string="Vertical Farming / High-Density" invisible="usage != 'internal'">
+                    <group>
+                        <field name="is_vertical_location"/>
+                        <field name="shelf_id" invisible="not is_vertical_location"/>
+                    </group>
+                    <group invisible="not is_vertical_location">
+                        <field name="shelf_level"/>
+                        <field name="shelf_slot"/>
                     </group>
                 </group>
                 <group string="Latest Soil Health" invisible="not is_land_parcel">
