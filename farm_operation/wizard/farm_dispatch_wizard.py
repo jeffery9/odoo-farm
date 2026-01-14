@@ -17,7 +17,7 @@ class FarmDispatchWizard(models.TransientModel):
         ('harvesting', 'Harvesting'),
     ], string="Intervention Type", required=True, default='aerial_spraying')
     
-    campaign_id = fields.Many2one('farm.agricultural.campaign', string="Campaign/Season", required=True)
+    campaign_id = fields.Many2one('agricultural.campaign', string="Campaign/Season", required=True)
     product_id = fields.Many2one('product.product', string="Target Product (Crop)", help="The crop or output product.")
     
     @api.model
