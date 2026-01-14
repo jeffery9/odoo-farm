@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_farm_processing_bom_form_inherit_agri_v2" model="ir.ui.view">
-        <field name="name">farm.processing.bom.form.inherit.agri.v2</field>
-        <field name="model">farm.processing.bom</field>
-        <field name="inherit_id" ref="farm_processing.view_farm_processing_bom_form"/>
+    <record id="view_mrp_bom_form_inherit_farm_v2" model="ir.ui.view">
+        <field name="name">mrp.bom.form.inherit.farm.v2</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='processing_type']" position="after">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="processing_type"/>
                 <field name="industry_type"/>
                 <field name="is_parameter_required"/>
             </xpath>

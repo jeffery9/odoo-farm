@@ -1,40 +1,42 @@
 {
-    'name': 'Farm Agricultural Processing (Industry Profile)',
+    'name': 'Farm Agricultural Processing',
     'version': '1.1',
     'category': 'Industries/Agriculture',
-    'summary': 'Industry-specific configurations and views for agricultural processing',
+    'summary': 'Agricultural Processing Management - Recipes, Quality Control, Batch Traceability',
+    'icon': '/farm_agricultural_processing/static/description/icon.svg',
     'description': """
-        This module provides the industry-specific layer for Agricultural Processing.
-        It depends on the core logic provided by 'farm_processing'.
+        Agricultural Processing Management Module for Odoo 19 Farm Management System.
 
         Features:
-        - Industry-specific configuration (Industry Settings)
-        - Pre-configured menus for Baking, Winemaking, etc.
-        - Simplified views tailored for agri-processing workers.
-        - Industry dashboards for Yield and Loss analysis.
+        - Product recipe and formulation management
+        - Quality inspection and control processes
+        - Batch inheritance and traceability
+        - Primary Processing (Sorting, Cleaning, Packaging) [US-14-01, US-14-08]
+        - Deep Processing (Multi-stage BOM, Recipes) [US-14-02, US-14-09]
+        - One-in-Multi-out support
+        - Full Traceability (Harvest to Final Product) [US-14-03]
+        - Mass Balance & Loss Management [US-04-02]
+        - Mobile Optimized Kanban Views
+        - Energy & Cost Analytic Pivots
     """,
     'author': 'Jeffery',
     'depends': [
-        'farm_processing',
+        'mrp',
+        'stock',
+        'farm_core',
+        'farm_ux_deindustrialization'
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/sc_license_views.xml',
-        'views/mrp_processing_industry_views.xml',
-        'views/seasonal_bom_views.xml',
-        'views/mrp_production_views.xml',
-        'views/mrp_bom_views.xml',
-        'views/menu.xml',
+        'data/processing_data.xml',
         'views/farm_agricultural_processing_views.xml',
-        'views/agri_processing_analytics_views.xml',
-        'views/agri_processing_quality_compliance_views.xml',
-        'views/agri_processing_net_vegetables_views.xml',
-        'views/agri_processing_formula_views.xml',
-        'views/stock_lot_views.xml',
-        'views/agri_processing_packaging_views.xml',
         'views/mrp_production_pivot_view.xml',
+        'views/mrp_bom_views.xml',
+        'views/mrp_production_views.xml',
+        'views/stock_lot_views.xml',
+        'views/menu.xml',
     ],
     'installable': True,
-    'application': False,
+    'application': True,
     'license': 'AGPL-3',
 }
