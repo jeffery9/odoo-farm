@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Cron job for checking biological asset maturity and transferring costs [US-01-06] -->
+    <record id="ir_cron_check_biological_asset_maturity" model="ir.cron">
+        <field name="name">Check Biological Asset Maturity</field>
+        <field name="model_id" ref="model_stock_lot"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_check_maturity_and_transfer_asset()</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>
