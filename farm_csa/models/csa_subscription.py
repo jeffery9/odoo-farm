@@ -33,6 +33,15 @@ class FarmCSASubscription(models.Model):
         ('expired', 'Expired')
     ], string="Status", default='draft', tracking=True)
 
+    sub_type = fields.Selection([
+        ('bag', 'Weekly Bag'),
+        ('adoption', 'Asset Adoption (认养)')
+    ], string="Subscription Type", default='bag')
+    
+    # US-36-01: Adoption Linkage
+    adopted_lot_id = fields.Many2one('stock.lot', string="Adopted Asset", 
+                                    help="The specific animal or tree adopted by the customer.")
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
@@ -42,6 +51,47 @@ class FarmCSASubscription(models.Model):
 
     def action_activate(self):
         self.write({'state': 'active'})
+        for sub in self:
+            if sub.sub_type == 'adoption' and sub.adopted_lot_id:
+                sub.adopted_lot_id.message_post(body=_("ADOPTION: This asset has been adopted by %s.") % sub.partner_id.name)
+
+class FarmSharedTool(models.Model):
+    """ US-36-02: Shared Tool Management for Urban/Community Farming """
+    _name = 'farm.shared.tool'
+    _description = 'Shared Agricultural Tool'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
+    name = fields.Char("Tool Name", required=True)
+    equipment_id = fields.Many2one('maintenance.equipment', string="Related Equipment")
+    tool_type = fields.Selection([
+        ('hand', 'Hand Tool'),
+        ('power', 'Power Tool'),
+        ('sensor', 'Portable Sensor')
+    ], string="Type")
+    
+    status = fields.Selection([
+        ('available', 'Available'),
+        ('borrowed', 'In Use'),
+        ('maintenance', 'Under Maintenance')
+    ], default='available', tracking=True)
+    
+    current_user_id = fields.Many2one('res.partner', string="Current User")
+
+    def action_borrow(self, partner_id):
+        self.ensure_one()
+        self.write({
+            'status': 'borrowed',
+            'current_user_id': partner_id
+        })
+        self.message_post(body=_("Tool borrowed by customer %s.") % self.current_user_id.name)
+
+    def action_return(self):
+        self.ensure_one()
+        self.write({
+            'status': 'available',
+            'current_user_id': False
+        })
+        self.message_post(body=_("Tool returned and available for next user."))
 
     def _generate_delivery_tasks(self):
         """ 定时任务调用：为当天到期的订阅生成配送单 """
