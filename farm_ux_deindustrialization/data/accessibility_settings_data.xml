@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 默认无障碍设置 [US-16-09] -->
+    <record id="default_accessibility_setting" model="accessibility.settings">
+        <field name="name">Default Accessibility Configuration</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="screen_reader_enabled">True</field>
+        <field name="keyboard_navigation">True</field>
+        <field name="font_scaling">1.2</field>
+        <field name="high_contrast_mode">False</field>
+        <field name="large_touch_targets">True</field>
+        <field name="reduced_motion">True</field>
+        <field name="color_blind_mode">False</field>
+        <field name="voice_navigation">False</field>
+        <field name="font_family_preference">sans-serif</field>
+        <field name="alternative_input_method">none</field>
+        <field name="voice_control_enabled">False</field>
+        <field name="is_active">True</field>
+        <field name="last_updated" eval="DateTime.now()"/>
+    </record>
+
+    <!-- 高对比度模式设置 [US-16-09] -->
+    <record id="high_contrast_setting" model="accessibility.settings">
+        <field name="name">High Contrast Accessibility Setting</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="screen_reader_enabled">True</field>
+        <field name="keyboard_navigation">True</field>
+        <field name="font_scaling">1.4</field>
+        <field name="high_contrast_mode">True</field>
+        <field name="large_touch_targets">True</field>
+        <field name="reduced_motion">True</field>
+        <field name="color_blind_mode">False</field>
+        <field name="custom_color_scheme">#000000,#FFFFFF,#FF0000,#00FF00</field>
+        <field name="is_active">True</field>
+        <field name="last_updated" eval="DateTime.now()"/>
+    </record>
+
+    <!-- 大字模式设置 [US-16-09] -->
+    <record id="large_font_setting" model="accessibility.settings">
+        <field name="name">Large Font Accessibility Setting</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="screen_reader_enabled">True</field>
+        <field name="keyboard_navigation">True</field>
+        <field name="font_scaling">1.8</field>
+        <field name="high_contrast_mode">False</field>
+        <field name="large_touch_targets">True</field>
+        <field name="reduced_motion">True</field>
+        <field name="color_blind_mode">False</field>
+        <field name="font_family_preference">Arial, sans-serif</field>
+        <field name="is_active">True</field>
+        <field name="last_updated" eval="DateTime.now()"/>
+    </record>
+
+</odoo>

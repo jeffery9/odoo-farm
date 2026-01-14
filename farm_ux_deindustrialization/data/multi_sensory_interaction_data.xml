@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 语音输入功能 - 农业干预 [US-16-07] -->
+    <record id="msi_voice_input_intervention" model="multi.sensory.interaction">
+        <field name="name">Voice Input for Agricultural Interventions</field>
+        <field name="interaction_type">voice_input</field>
+        <field name="model_name">mrp.production</field>
+        <field name="is_enabled">True</field>
+        <field name="voice_commands">{
+            "zh": {
+                "开始作业": "action_start_work",
+                "停止作业": "action_stop_work",
+                "记录投入品": "open_raw_materials",
+                "添加工人": "add_worker",
+                "记录产量": "record_output"
+            },
+            "en": {
+                "start work": "action_start_work",
+                "stop work": "action_stop_work",
+                "record inputs": "open_raw_materials",
+                "add worker": "add_worker",
+                "record output": "record_output"
+            }
+        }</field>
+        <field name="haptic_feedback">True</field>
+        <field name="audio_notification">True</field>
+        <field name="description">为农业干预表单提供语音输入功能，便于在田间作业时免手操作</field>
+    </record>
+
+    <!-- 触觉反馈 - 关键操作确认 [US-16-07] -->
+    <record id="msi_haptic_feedback_critical_ops" model="multi.sensory.interaction">
+        <field name="name">Haptic Feedback for Critical Operations</field>
+        <field name="interaction_type">haptic_feedback</field>
+        <field name="model_name">mrp.production</field>
+        <field name="is_enabled">True</field>
+        <field name="haptic_feedback">True</field>
+        <field name="field_name">state</field>
+        <field name="gesture_mappings">{
+            "pattern": [100, 50, 100],
+            "intensity": 0.8
+        }</field>
+        <field name="audio_notification">True</field>
+        <field name="description">在关键操作（如完成作业、质量检测）时提供触觉反馈确认</field>
+    </record>
+
+    <!-- 视觉增强 - 大字模式 [US-16-09] -->
+    <record id="msi_visual_enhancement_large_font" model="multi.sensory.interaction">
+        <field name="name">Visual Enhancement - Large Font Mode</field>
+        <field name="interaction_type">visual_enhancement</field>
+        <field name="is_enabled">True</field>
+        <field name="large_font_support">True</field>
+        <field name="high_contrast_mode">True</field>
+        <field name="screen_reader_compatible">True</field>
+        <field name="keyboard_shortcuts">{
+            "Ctrl+L": "toggle_large_font",
+            "Ctrl+H": "toggle_high_contrast",
+            "F7": "screen_reader_mode"
+        }</field>
+        <field name="description">为视力不佳的用户提供大字模式和高对比度显示</field>
+    </record>
+
+    <!-- 大触控目标 - 移动端优化 [US-16-07] -->
+    <record id="msi_large_touch_targets_mobile" model="multi.sensory.interaction">
+        <field name="name">Large Touch Targets for Mobile</field>
+        <field name="interaction_type">large_touch_target</field>
+        <field name="model_name">farm.checkin</field>
+        <field name="is_enabled">True</field>
+        <field name="haptic_feedback">True</field>
+        <field name="visual_enhancement">True</field>
+        <field name="description">在移动端提供大触控目标，便于戴手套操作</field>
+    </record>
+
+    <!-- 语音输入 - 打卡功能 [US-16-07] -->
+    <record id="msi_voice_checkin" model="multi.sensory.interaction">
+        <field name="name">Voice Input for Check-in</field>
+        <field name="interaction_type">voice_input</field>
+        <field name="model_name">farm.checkin</field>
+        <field name="is_enabled">True</field>
+        <field name="voice_commands">{
+            "zh": {
+                "现场打卡": "action_mobile_check_in",
+                "签退": "action_mobile_check_out",
+                "拍照取证": "capture_evidence",
+                "记录异常": "report_issue"
+            },
+            "en": {
+                "check in": "action_mobile_check_in",
+                "check out": "action_mobile_check_out",
+                "take photo": "capture_evidence",
+                "report issue": "report_issue"
+            }
+        }</field>
+        <field name="haptic_feedback">True</field>
+        <field name="audio_notification">True</field>
+        <field name="description">为现场打卡提供语音输入功能</field>
+    </record>
+
+    <!-- 语音输入 - 质量检测 [US-16-07] -->
+    <record id="msi_voice_quality_check" model="multi.sensory.interaction">
+        <field name="name">Voice Input for Quality Checks</field>
+        <field name="interaction_type">voice_input</field>
+        <field name="model_name">farm.quality.check</field>
+        <field name="is_enabled">True</field>
+        <field name="voice_commands">{
+            "zh": {
+                "质量合格": "action_pass",
+                "质量不合格": "action_fail",
+                "记录测量值": "input_measure",
+                "开始检测": "action_open_quality_alert"
+            },
+            "en": {
+                "quality pass": "action_pass",
+                "quality fail": "action_fail",
+                "input measurement": "input_measure",
+                "start check": "action_open_quality_alert"
+            }
+        }</field>
+        <field name="haptic_feedback">True</field>
+        <field name="audio_notification">True</field>
+        <field name="description">为质量检测提供语音输入功能</field>
+    </record>
+
+</odoo>
