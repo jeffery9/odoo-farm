@@ -11,7 +11,7 @@
         - Processing Waste Registration [US-14-12]
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'farm_livestock'],
+    'depends': ['farm_core', 'farm_livestock', 'farm_quality'],
     'data': [
         'security/ir.model.access.csv',
         'report/manure_ledger_report_templates.xml',

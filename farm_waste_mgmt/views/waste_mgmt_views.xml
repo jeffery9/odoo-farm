@@ -6,6 +6,9 @@
         <field name="model">farm.manure.batch</field>
         <field name="arch" type="xml">
             <form string="Manure Batch">
+                <header>
+                    <button name="action_convert_to_fertilizer" string="Convert to Fertilizer" type="object" class="oe_highlight" invisible="not fertilizer_product_id"/>
+                </header>
                 <sheet>
                     <div class="oe_title">
                         <h1><field name="batch_no"/></h1>
@@ -19,6 +22,8 @@
                         <group>
                             <field name="location_source_id"/>
                             <field name="disposal_method"/>
+                            <field name="fertilizer_product_id"/>
+                            <field name="quality_check_id" invisible="disposal_method != 'composting'"/>
                         </group>
                     </group>
                     <group string="Destination" invisible="disposal_method not in ['transfer_third_party', 'direct_field_use']">
