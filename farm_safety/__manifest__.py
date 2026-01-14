@@ -16,6 +16,7 @@
         'views/prevention_template_views.xml',
         'views/project_task_views.xml',
         'views/farm_lot_views.xml',
+        'views/biosafety_access_views.xml',
     ],
     'installable': True,
     'application': False,

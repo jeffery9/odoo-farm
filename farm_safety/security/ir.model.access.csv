@@ -1,4 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_prevention_template_spec,prev.template.spec,model_farm_prevention_template,group_farm_specialist,1,1,1,1
 access_prevention_line_spec,prev.line.spec,model_farm_prevention_line,group_farm_specialist,1,1,1,1
-access_prevention_template_worker,prev.template.worker,model_farm_prevention_template,group_farm_worker,1,0,0,0
+access_prevention_template_worker,prev.template.worker,model_farm_prevention_template,group_farm_worker,1,0,0,0access_farm_biosafety_access_log_manager,farm.biosafety.access.log.manager,model_farm_biosafety_access_log,farm_core.group_farm_manager,1,1,1,1
