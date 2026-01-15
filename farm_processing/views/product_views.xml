@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_view_inherit_farm" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.farm</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <!-- 0. Smart Buttons Isolation -->
+            <xpath expr="//button[@name='action_view_mos']" position="attributes">
+                <attribute name="invisible">not is_processed_food</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_view_bom']" position="attributes">
+                <attribute name="invisible">not is_processed_food</attribute>
+            </xpath>
+
+            <!-- 1. Industry Toggles -->
+            <xpath expr="//div[@name='options']" position="inside">
+                <span class="d-inline-block">
+                    <field name="is_agri_material"/>
+                    <label for="is_agri_material"/>
+                </span>
+                <span class="d-inline-block">
+                    <field name="is_processed_food"/>
+                    <label for="is_processed_food"/>
+                </span>
+            </xpath>
+
+            <!-- 2. Dynamic Notebook Pages -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Agricultural Inputs" name="agri_inputs" invisible="not is_agri_material">
+                    <group>
+                        <group string="Nutrient Content (NPK)">
+                            <field name="n_content"/>
+                            <field name="p_content"/>
+                            <field name="k_content"/>
+                        </group>
+                        <group string="Substitutes">
+                            <field name="substitute_product_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Food Compliance" name="food_compliance" invisible="not is_processed_food">
+                    <group>
+                        <group string="Regulatory">
+                            <field name="sc_category_ids" widget="many2many_tags"/>
+                        </group>
+                        <group string="Safety">
+                            <field name="allergen_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <group string="Nutritional Information">
+                        <field name="nutrition_info" nolabel="1" placeholder="Add per 100g nutritional data here..."/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

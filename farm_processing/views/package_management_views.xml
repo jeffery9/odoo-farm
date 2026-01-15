@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Farm Package Level Views -->
+    <record id="farm_package_level_tree_view" model="ir.ui.view">
+        <field name="name">farm.package.level.tree</field>
+        <field name="model">farm.package.level</field>
+        <field name="arch" type="xml">
+            <tree string="Package Levels">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="parent_level_id"/>
+                <field name="child_level_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="farm_package_level_form_view" model="ir.ui.view">
+        <field name="name">farm.package.level.form</field>
+        <field name="model">farm.package.level</field>
+        <field name="arch" type="xml">
+            <form string="Package Level">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="parent_level_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Child Levels">
+                            <field name="child_level_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_package_level" model="ir.actions.act_window">
+        <field name="name">Package Levels</field>
+        <field name="res_model">farm.package.level</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Farm Package Views -->
+    <record id="farm_package_tree_view" model="ir.ui.view">
+        <field name="name">farm.package.tree</field>
+        <field name="model">farm.package</field>
+        <field name="arch" type="xml">
+            <tree string="Packages">
+                <field name="name"/>
+                <field name="package_level_id"/>
+                <field name="product_id"/>
+                <field name="lot_id"/>
+                <field name="quantity"/>
+                <field name="parent_package_id"/>
+                <field name="location_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="farm_package_form_view" model="ir.ui.view">
+        <field name="name">farm.package.form</field>
+        <field name="model">farm.package</field>
+        <field name="arch" type="xml">
+            <form string="Package">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="package_level_id"/>
+                            <field name="product_id"/>
+                            <field name="lot_id"/>
+                            <field name="quantity"/>
+                        </group>
+                        <group>
+                            <field name="parent_package_id"/>
+                            <field name="location_id"/>
+                            <field name="barcode"/>
+                            <field name="create_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Contains Packages">
+                            <field name="child_package_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_package" model="ir.actions.act_window">
+        <field name="name">Packages</field>
+        <field name="res_model">farm.package</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_farm_package_root"
+              name="Packaging Management"
+              parent="farm_processing.menu_farm_processing_root"
+              sequence="70"/>
+
+    <menuitem id="menu_farm_package_levels"
+              name="Package Levels"
+              parent="menu_farm_package_root"
+              action="action_farm_package_level"
+              sequence="10"/>
+
+    <menuitem id="menu_farm_packages"
+              name="Packages"
+              parent="menu_farm_package_root"
+              action="action_farm_package"
+              sequence="20"/>
+</odoo>

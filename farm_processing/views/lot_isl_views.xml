@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 1. Specialized View for Land Harvest Lots (Crop) -->
+    <record id="view_farm_lot_harvest_form" model="ir.ui.view">
+        <field name="name">farm.lot.harvest.form</field>
+        <field name="model">farm.lot.harvest</field>
+        <field name="arch" type="xml">
+            <form string="Harvest Lot (ISL)">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Harvest Batch Ref"/>
+                        <h1><field name="name" placeholder="e.g. CORN-2026-P01"/></h1>
+                    </div>
+                    <group>
+                        <group string="Core Product">
+                            <field name="product_id" readonly="1"/>
+                            <field name="product_qty"/>
+                        </group>
+                        <group string="Terroir &amp; Origin (ISL)">
+                            <field name="plot_id"/>
+                            <field name="terroir_attributes_json" widget="ace" options="{'mode': 'json'}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- 2. Specialized View for Livestock Assets (Biological) -->
+    <record id="view_farm_lot_livestock_form" model="ir.ui.view">
+        <field name="name">farm.lot.livestock.form</field>
+        <field name="model">farm.lot.livestock</field>
+        <field name="arch" type="xml">
+            <form string="Biological Asset (ISL)">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Animal ID / Ear Tag"/>
+                        <h1><field name="name" placeholder="e.g. SWINE-001-F"/></h1>
+                    </div>
+                    <group>
+                        <group string="Biological Base">
+                            <field name="product_id" string="Species" readonly="1"/>
+                            <field name="birth_date"/>
+                            <field name="gender"/>
+                        </group>
+                        <group string="Current Growth (ISL)">
+                            <field name="current_weight"/>
+                            <field name="life_stage" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_lot_livestock_isl" model="ir.actions.act_window">
+        <field name="name">Biological Assets (ISL)</field>
+        <field name="res_model">farm.lot.livestock</field>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+</odoo>

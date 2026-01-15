@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sequence for Farm Package -->
+        <record id="seq_farm_package" model="ir.sequence">
+            <field name="name">Farm Package Sequence</field>
+            <field name="code">farm.package</field>
+            <field name="prefix">PKG/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

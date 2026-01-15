@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="farm_recall_wizard_form_view" model="ir.ui.view">
+        <field name="name">farm.recall.wizard.form</field>
+        <field name="model">farm.recall.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Recall Simulation">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_id" options="{'no_create': True}"/>
+                            <field name="lot_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="trace_direction" widget="radio"/>
+                        </group>
+                    </group>
+                    <group string="Trace Results">
+                        <field name="recall_line_ids" nolabel="1">
+                            <tree create="false" edit="false" delete="false">
+                                <field name="sequence" invisible="1"/>
+                                <field name="level" invisible="1"/>
+                                <field name="display_name_indented"/>
+                                <field name="product_id"/>
+                                <field name="lot_id"/>
+                                <field name="quantity"/>
+                                <field name="uom_id"/>
+                                <field name="move_type"/>
+                                <field name="reference"/>
+                                <field name="partner_id"/>
+                                <field name="date"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_simulate_recall" string="Simulate Recall" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_recall_wizard" model="ir.actions.act_window">
+        <field name="name">Recall Simulation</field>
+        <field name="res_model">farm.recall.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_farm_recall_simulation"
+              name="Recall Simulation"
+              parent="farm_processing.menu_farm_processing_root"
+              action="action_farm_recall_wizard"
+              sequence="60"
+              groups="mrp.group_mrp_manager"/>
+</odoo>

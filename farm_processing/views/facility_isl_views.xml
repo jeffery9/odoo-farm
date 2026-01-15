@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 1. Specialized View for Workcenters (Facilities) -->
+    <record id="view_farm_industry_workcenter_form" model="ir.ui.view">
+        <field name="name">farm.industry.workcenter.form</field>
+        <field name="model">farm.industry.workcenter</field>
+        <field name="arch" type="xml">
+            <form string="Industry Facility (ISL)">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Facility Name"/>
+                        <h1><field name="name" placeholder="e.g. Greenhouse A, Pond 01"/></h1>
+                    </div>
+                    <group>
+                        <group string="Standard Resource">
+                            <field name="code"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Industry Metadata (ISL)">
+                            <field name="facility_type" widget="radio"/>
+                            <field name="surface_area" invisible="facility_type == 'factory_line'"/>
+                            <field name="volume_capacity" invisible="facility_type not in ['fish_pond', 'greenhouse']"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="IoT &amp; Environmental Intelligence" name="environmental">
+                            <group>
+                                <field name="has_climate_control"/>
+                                <field name="main_sensor_topic" placeholder="telemetry/facility/01/data"/>
+                            </group>
+                        </group>
+                        <page string="Productivity (Base)" name="productivity">
+                            <field name="capacity"/>
+                            <field name="time_efficiency"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- 2. Specialized View for Operations (SOPs) -->
+    <record id="view_farm_industry_operation_form" model="ir.ui.view">
+        <field name="name">farm.industry.operation.form</field>
+        <field name="model">farm.industry.operation</field>
+        <field name="arch" type="xml">
+            <form string="Technical Operation (ISL)">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Standard Process">
+                            <field name="workcenter_id"/>
+                            <field name="time_cycle_manual"/>
+                        </group>
+                        <group string="Industry Parameter Monitoring (ISL)">
+                            <field name="param_monitoring_required"/>
+                            <field name="target_value" invisible="not param_monitoring_required"/>
+                            <field name="tolerance_range" invisible="not param_monitoring_required"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Technical Manual (SOP)" name="sop">
+                            <field name="technical_manual" placeholder="Detailed technical instructions for this step..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_industry_workcenter_isl" model="ir.actions.act_window">
+        <field name="name">Agri Facilities (ISL)</field>
+        <field name="res_model">farm.industry.workcenter</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

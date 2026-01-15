@@ -5,35 +5,69 @@
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
         <field name="arch" type="xml">
+            <!-- 1. Purpose Selector in Header -->
             <xpath expr="//field[@name='type']" position="after">
-                <field name="processing_type"/>
-                <field name="industry_type"/>
-                <field name="is_parameter_required"/>
+                <field name="industry_type" string="Industry Standard"/>
+                <field name="processing_type" invisible="industry_type == 'standard'"/>
             </xpath>
-            <xpath expr="//notebook" position="inside">
-                <page string="Agri-Process Standards">
+
+            <!-- 2. Agri-Specific Group -->
+            <xpath expr="//group[@name='main_group']" position="after">
+                <group name="agri_logistics" string="Agricultural Logistics" invisible="industry_type == 'standard'">
                     <group>
-                        <group string="Industry Targets">
-                            <field name="target_temp" invisible="not is_parameter_required"/>
-                            <field name="target_ph" invisible="not is_parameter_required"/>
-                            <field name="target_brix" invisible="not is_parameter_required"/>
-                            <field name="target_proofing_time" invisible="not is_parameter_required"/>
-                            <field name="standard_duration" invisible="not is_parameter_required"/>
+                        <field name="dilution_ratio"/>
+                        <field name="solution_volume_per_hectare"/>
+                    </group>
+                    <group>
+                        <field name="is_seasonal_bom"/>
+                        <field name="season_name" invisible="not is_seasonal_bom" required="is_seasonal_bom"/>
+                    </group>
+                </group>
+            </xpath>
+
+            <!-- 3. Industry-Driven Process Parameters -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Process Standards" name="agri_standards" invisible="industry_type == 'standard'">
+                    <group>
+                        <group string="Core Targets">
+                            <field name="target_temp"/>
+                            <field name="target_ph" invisible="industry_type not in ['winemaking', 'food_processing']"/>
+                            <field name="target_brix" invisible="industry_type != 'winemaking'"/>
+                            <field name="target_proofing_time" invisible="industry_type != 'baking'"/>
+                            <field name="standard_duration"/>
                         </group>
-                        <group string="Safety &amp; Yield">
-                            <field name="haccp_instructions"/>
+                        <group string="Yield &amp; Balance">
+                            <field name="max_loss_rate" widget="percentage"/>
+                            <field name="mass_balance_tolerance" widget="percentage"/>
+                            <field name="is_blind_mixing" groups="mrp.group_mrp_manager"/>
                         </group>
                     </group>
-                    <field name="grade_distribution_ids">
-                        <tree editable="bottom">
-                            <field name="quality_grade"/>
-                            <field name="expected_percentage"/>
-                        </tree>
-                    </field>
+                    
+                    <group string="HACCP Instructions">
+                        <field name="haccp_instructions" nolabel="1" placeholder="Critical Control Points instructions..."/>
+                    </group>
+
+                    <group string="Expected Output Quality" invisible="processing_type != 'primary'">
+                        <field name="grade_distribution_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="quality_grade"/>
+                                <field name="expected_percentage" widget="percentage" sum="Total 100%"/>
+                            </tree>
+                        </field>
+                    </group>
                 </page>
             </xpath>
+
+            <!-- 4. Dynamic Column Visibility in Lines -->
             <xpath expr="//field[@name='bom_line_ids']/tree/field[@name='product_id']" position="after">
-                <field name="ingredient_role"/>
+                <field name="ingredient_role" column_invisible="parent.industry_type == 'standard'"/>
+            </xpath>
+
+            <!-- 5. Workcenter Capability Isolation -->
+            <xpath expr="//field[@name='operation_ids']/tree/field[@name='workcenter_id']" position="attributes">
+                <attribute name="domain">
+                    [('industry_capability', '=', 'agri_machinery')] if parent.industry_type == 'standard' else [('industry_capability', '=', 'food_line')] if parent.industry_type == 'food_processing' else [('industry_capability', '=', 'livestock_pen')] if parent.industry_type == 'livestock' else []
+                </attribute>
             </xpath>
         </field>
     </record>

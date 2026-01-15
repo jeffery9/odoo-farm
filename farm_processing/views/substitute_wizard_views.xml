@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="farm_substitute_wizard_form_view" model="ir.ui.view">
+        <field name="name">farm.substitute.wizard.form</field>
+        <field name="model">farm.substitute.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Substitute Product Suggestion">
+                <sheet>
+                    <group>
+                        <field name="mrp_production_id" readonly="1"/>
+                        <field name="original_product_id" readonly="1"/>
+                        <field name="original_quantity" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Suggested Substitutes">
+                            <field name="substitute_line_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="is_selected" widget="radio"/>
+                                    <field name="substitute_product_id" readonly="1"/>
+                                    <field name="suggested_quantity"/>
+                                    <field name="n_content"/>
+                                    <field name="p_content"/>
+                                    <field name="k_content"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_confirm_substitute" string="Confirm Substitute" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_substitute_wizard" model="ir.actions.act_window">
+        <field name="name">Suggest Substitutes</field>
+        <field name="res_model">farm.substitute.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

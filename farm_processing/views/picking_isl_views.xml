@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_industry_picking_form" model="ir.ui.view">
+        <field name="name">farm.industry.picking.form</field>
+        <field name="model">farm.industry.picking</field>
+        <field name="arch" type="xml">
+            <form string="Industry Logistics (ISL)">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,assigned,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Logistics Base">
+                            <field name="picking_type_id"/>
+                            <field name="location_id"/>
+                            <field name="location_dest_id"/>
+                            <field name="scheduled_date"/>
+                        </group>
+                        <group string="Industry Compliance (ISL)">
+                            <field name="industry_type" widget="radio"/>
+                            <field name="compliance_ref" invisible="industry_type == 'crop'"/>
+                            <field name="biosecurity_status" widget="statusorder" invisible="industry_type != 'livestock'"/>
+                            <field name="sanitization_timestamp" invisible="industry_type != 'livestock'"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Detailed Moves" name="moves">
+                            <field name="move_ids_without_package">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="product_uom_qty" string="Demand"/>
+                                    <field name="quantity" string="Done"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_industry_picking_isl" model="ir.actions.act_window">
+        <field name="name">Industry Pickings (ISL)</field>
+        <field name="res_model">farm.industry.picking</field>
+        <field name="view_mode">list,form,calendar</field>
+    </record>
+</odoo>

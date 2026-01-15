@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mrp_workorder_pivot_farm" model="ir.ui.view">
+        <field name="name">mrp.workorder.pivot.farm</field>
+        <field name="model">mrp.workorder</field>
+        <field name="arch" type="xml">
+            <pivot string="Workorder Efficiency Analysis" sample="1">
+                <field name="workcenter_id" type="row"/>
+                <field name="date_start" interval="month" type="col"/>
+                <field name="product_id" type="row"/>
+                <field name="loss_rate_workorder" type="measure" string="Workorder Loss Rate (%)"/>
+                <field name="actual_energy_consumption" type="measure" string="Actual Energy Consumed"/>
+                <field name="duration" type="measure" string="Duration (minutes)"/>
+            </pivot>
+        </field>
+    </record>
+</odoo>

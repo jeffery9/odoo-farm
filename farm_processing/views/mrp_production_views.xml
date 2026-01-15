@@ -6,48 +6,91 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='bom_id']" position="after">
-                <field name="processing_type" widget="radio" options="{'horizontal': true}"/>
-                <field name="process_mode" invisible="processing_type != 'deep'"/>
+            <!-- 1. Header Buttons -->
+            <xpath expr="//header" position="inside">
+                <button name="button_recalculate_quantities" string="Recalculate" type="object"
+                        invisible="not is_agri_processing or state not in ['draft', 'confirmed']"/>
+                <button name="action_adjust_by_potency" string="Standardize Potency" type="object"
+                        invisible="not is_agri_processing or state not in ['draft', 'confirmed']"
+                        class="btn-secondary" icon="fa-flask"/>
+                <button name="button_substitute_components" string="Substitutes" type="object"
+                        invisible="not is_agri_processing or state not in ['draft', 'confirmed']"/>
             </xpath>
-            
-            <xpath expr="//page[@name='miscellaneous']" position="before">
-                <page string="Agri-Processing" name="agri_processing">
+
+            <!-- 2. Header Information -->
+            <xpath expr="//field[@name='bom_id']" position="after">
+                <field name="is_agri_processing" invisible="1"/>
+                <field name="is_blind_mixing" invisible="1"/>
+                <field name="user_can_see_quantities" invisible="1"/>
+                <field name="is_growth_order" invisible="not is_agri_processing"/>
+                <field name="industry_type" invisible="not is_agri_processing"/>
+                <field name="processing_type" invisible="not is_agri_processing"/>
+                <field name="area_to_treat" invisible="not is_agri_processing or is_growth_order"/>
+            </xpath>
+
+            <!-- 3. Dynamic Tabs based on Purpose -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Livestock Growth" name="livestock_growth" invisible="not is_growth_order">
                     <group>
-                        <group string="Industry Parameters">
-                            <field name="vintage_year" invisible="process_mode != 'fermentation'"/>
-                            <field name="brix_level" invisible="process_mode != 'fermentation'"/>
-                            <field name="baking_temp" invisible="process_mode != 'baking'"/>
-                            <field name="proofing_time" invisible="process_mode != 'baking'"/>
-                            <field name="process_temperature"/>
-                            <field name="moisture_content"/>
-                            <field name="is_haccp_compliant"/>
+                        <group string="Weight Tracking">
+                            <field name="initial_total_weight"/>
+                            <field name="final_total_weight"/>
                         </group>
-                        <group string="Mass Balance &amp; Energy">
-                            <field name="scrap_qty"/>
-                            <field name="total_output_qty" readonly="1"/>
-                            <field name="is_balanced" widget="boolean_toggle"/>
-                            <hr colspan="2"/>
-                            <label for="water_meter_start" string="Water (m³)"/>
-                            <div class="o_row">
-                                <field name="water_meter_start"/> - <field name="water_meter_end"/>
-                            </div>
-                            <label for="electricity_meter_start" string="Elec (kWh)"/>
-                            <div class="o_row">
-                                <field name="electricity_meter_start"/> - <field name="electricity_meter_end"/>
-                            </div>
+                        <group string="Efficiency Metrics">
+                            <field name="fcr" widget="statinfo"/>
                         </group>
-                    </group>
-                    <group string="Traceability">
-                        <field name="harvest_lot_ids" widget="many2many_tags"/>
-                        <field name="additive_lot_ids" widget="many2many_tags"/>
                     </group>
                 </page>
+                <page string="Energy &amp; Costs" name="energy_costs" invisible="not is_agri_processing">
+                    <group>
+                        <group string="Energy Monitoring (US-14-04)">
+                            <field name="energy_reading_start"/>
+                            <field name="energy_reading_end"/>
+                            <field name="energy_unit_price"/>
+                            <field name="energy_cost_total"/>
+                        </group>
+                        <group string="Cost Sharing (US-04-03)">
+                            <field name="byproduct_cost_share_total" widget="progressbar"/>
+                            <field name="finished_product_cost_share" widget="progressbar"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Quality Gate" name="quality_gate" invisible="not is_agri_processing">
+                    <group>
+                        <group string="Status">
+                            <field name="quality_gate_status" widget="statusorder"/>
+                            <field name="rework_mo_id" invisible="not rework_mo_id"/>
+                            <field name="rejection_reason_id" invisible="not rejection_reason_id"/>
+                        </group>
+                        <group string="Checks">
+                            <field name="quality_check_ids" nolabel="1">
+                                <tree>
+                                    <field name="check_date"/>
+                                    <field name="check_type"/>
+                                    <field name="result"/>
+                                    <field name="checker_id"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <!-- 4. Blind Mixing: Column Visibility & Industry Filtering -->
+            <xpath expr="//field[@name='move_raw_ids']/list/field[@name='product_id']" position="attributes">
+                <attribute name="domain">
+                    [('is_agri_material', '=', True)] if parent.industry_type == 'livestock' else [('is_processed_food', '=', True)] if parent.industry_type == 'food_processing' else []
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='move_raw_ids']/list/field[@name='product_uom_qty']" position="attributes">
+                <attribute name="column_invisible">parent.user_can_see_quantities == False</attribute>
+            </xpath>
+            <xpath expr="//field[@name='move_raw_ids']/list/field[@name='quantity']" position="attributes">
+                <attribute name="column_invisible">parent.user_can_see_quantities == False</attribute>
             </xpath>
         </field>
     </record>
 
-    <!-- Kanban View for Mobile Optimization [US-UX] -->
+    <!-- Kanban View for Mobile Optimization -->
     <record id="view_mrp_production_kanban_farm" model="ir.ui.view">
         <field name="name">mrp.production.kanban.farm</field>
         <field name="model">mrp.production</field>
@@ -69,18 +112,13 @@
                             </div>
                             <div class="o_kanban_record_body">
                                 <div>Qty: <field name="product_qty"/></div>
-                                <div t-if="record.state.raw_value == 'progress'">
-                                    <div class="progress" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="o_kanban_record_bottom">
                                 <div class="oe_kanban_bottom_left">
                                     <field name="priority" widget="priority"/>
                                 </div>
                                 <div class="oe_kanban_bottom_right">
-                                    <field name="state" widget="label_selection" options="{'classes': {'draft': 'default', 'cancel': 'default', 'none': 'danger', 'waiting': 'warning', 'confirmed': 'info', 'done': 'success'}}"/>
+                                    <field name="state" widget="label_selection" options="{'classes': {'draft': 'default', 'cancel': 'default', 'done': 'success'}}"/>
                                 </div>
                             </div>
                         </div>
@@ -90,17 +128,17 @@
         </field>
     </record>
 
-    <!-- Pivot View for Energy Analysis [US-UX] -->
+    <!-- Pivot View for Energy Analysis -->
     <record id="view_mrp_production_pivot_farm" model="ir.ui.view">
         <field name="name">mrp.production.pivot.farm</field>
         <field name="model">mrp.production</field>
         <field name="arch" type="xml">
-            <pivot string="Energy &amp; Cost Analysis" sample="1">
+            <pivot string="Production &amp; Cost Analysis" sample="1">
                 <field name="product_id" type="row"/>
                 <field name="date_finished" interval="month" type="col"/>
-                <field name="water_consumption" type="measure"/>
-                <field name="electricity_consumption" type="measure"/>
-                <field name="total_energy_cost" type="measure"/>
+                <field name="processing_type" type="row"/>
+                <field name="product_qty" type="measure" string="Produced Quantity"/>
+                <field name="energy_cost_total" type="measure"/>
             </pivot>
         </field>
     </record>

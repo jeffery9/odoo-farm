@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_agri_product_form" model="ir.ui.view">
+        <field name="name">farm.agri.product.form</field>
+        <field name="model">farm.agri.product</field>
+        <field name="arch" type="xml">
+            <form string="Agricultural Product (ISL)">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Species / Variety"/>
+                        <h1><field name="name" placeholder="e.g. Fuji Apple, Duroc Pig"/></h1>
+                    </div>
+                    <group>
+                        <group string="Industry Classification">
+                            <field name="industry_tag" widget="radio" options="{'horizontal': true}"/>
+                            <field name="default_code" string="Internal SKU"/>
+                        </group>
+                        <group string="Standard ERP Attributes">
+                            <field name="type"/>
+                            <field name="uom_id"/>
+                            <field name="tracking"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Nutrient Profile" name="nutrients" invisible="industry_tag != 'material'">
+                            <group>
+                                <group string="NPK Content">
+                                    <field name="n_content"/>
+                                    <field name="p_content"/>
+                                    <field name="k_content"/>
+                                </group>
+                                <group string="Standardization">
+                                    <field name="is_potency_standardized"/>
+                                    <field name="target_purity" invisible="not is_potency_standardized"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Compliance &amp; Nutrition" name="compliance" invisible="industry_tag != 'food'">
+                            <group>
+                                <field name="sc_category_ids" widget="many2many_tags"/>
+                                <field name="allergen_ids" widget="many2many_tags"/>
+                            </group>
+                            <group string="Labels">
+                                <field name="nutrition_table" placeholder="Nutritional breakdown..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_agri_product_isl" model="ir.actions.act_window">
+        <field name="name">Agri Products (ISL)</field>
+        <field name="res_model">farm.agri.product</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
