@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Field Crops specific menu items are now in field_crop_operation_views.xml -->
+    <menuitem id="farm_field_crops_menu_root"
+              name="Field Crops"
+              parent="farm_core.menu_farm_root"
+              sequence="20"
+              groups="base.group_user"/>
+
+    <menuitem id="menu_field_crop_tasks"
+              name="Field Operations"
+              parent="farm_field_crops_menu_root"
+              action="action_farm_crop_mo_isl"
+              sequence="10"/>
+
+    <menuitem id="menu_field_crop_recipes"
+              name="Crop Recipes"
+              parent="farm_field_crops_menu_root"
+              action="action_farm_crop_bom_isl"
+              sequence="20"/>
 </odoo>
