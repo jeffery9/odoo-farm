@@ -1,4 +1,2 @@
-from . import mrp_production
-from . import mrp_bom
-from . import stock_lot
-from . import mrp_work
+from . import sc_license
+from . import mrp_processing_inherit

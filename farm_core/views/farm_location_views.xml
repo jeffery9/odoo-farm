@@ -78,6 +78,22 @@
                             <field name="total_k_input"/>
                         </group>
                     </page>
+                    <page string="Spatial Intelligence (GIS)" name="spatial_gis" invisible="not is_land_parcel">
+                        <header>
+                            <button name="action_calculate_area" string="Calculate Area from Boundary" type="object" class="btn-secondary" icon="fa-calculator"/>
+                        </header>
+                        <group>
+                            <group string="Boundary Data">
+                                <field name="boundary_geojson" widget="ace" options="{'mode': 'json'}" placeholder='{"type": "Polygon", "coordinates": [...]}'/>
+                            </group>
+                            <group string="Calculated Metrics">
+                                <field name="calculated_area_ha"/>
+                                <div class="alert alert-info" role="alert">
+                                    <i class="fa fa-info-circle"/> Area is calculated using spherical Shoelace algorithm.
+                                </div>
+                            </group>
+                        </group>
+                    </page>
                 </notebook>
                 <group string="Boundary Data (GeoJSON)" invisible="not is_land_parcel">
                     <field name="gps_coordinates" nolabel="1" placeholder='{"type": "Polygon", "coordinates": [[...]]}'/>
