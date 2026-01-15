@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ISL View for Livestock BOM -->
+    <record id="view_farm_livestock_bom_form" model="ir.ui.view">
+        <field name="name">farm.livestock.bom.form</field>
+        <field name="model">farm.livestock.bom</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Breeding Recipe (Livestock)</h1>
+                    </div>
+                    <group>
+                        <group string="Animal Base">
+                            <field name="product_tmpl_id" string="Species"/>
+                            <field name="product_qty"/>
+                            <field name="product_uom_id"/>
+                        </group>
+                        <group string="Husbandry Cycle (ISL)">
+                            <field name="growth_days_expected"/>
+                            <field name="daily_feed_intake"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Feed Formulation" name="feed">
+                            <field name="bom_line_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ISL View for Livestock Production -->
+    <record id="view_farm_livestock_production_form" model="ir.ui.view">
+        <field name="name">farm.livestock.production.form</field>
+        <field name="model">farm.livestock.production</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="button_mark_done" type="object" string="Mark as Done" invisible="state != 'confirmed'" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Livestock Growth Order</h1>
+                    </div>
+                    <group>
+                        <group string="Order Info (Base)">
+                            <field name="product_id"/>
+                            <field name="product_qty"/>
+                            <field name="bom_id"/>
+                        </group>
+                        <group string="Efficiency (ISL)">
+                            <field name="initial_total_weight"/>
+                            <field name="final_total_weight"/>
+                            <field name="fcr"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_livestock_bom_isl" model="ir.actions.act_window">
+        <field name="name">Livestock Recipes (ISL)</field>
+        <field name="res_model">farm.livestock.bom</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_farm_livestock_mo_isl" model="ir.actions.act_window">
+        <field name="name">Livestock Growth Tasks</field>
+        <field name="res_model">farm.livestock.production</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
