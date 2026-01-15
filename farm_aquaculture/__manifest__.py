@@ -19,13 +19,16 @@
     'depends': [
         'farm_core',
         'farm_operation',
+        'farm_mrp',
         'farm_iot',
         'project',
         'stock',
+        'mrp',
     ],
     'data': [
         'security/ir.model.access.csv',
         'views/aquaculture_operation_views.xml',
+        'views/aquaculture_isl_views.xml',
         'views/menu.xml',
     ],
     'demo': [
