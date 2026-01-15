@@ -24,4 +24,16 @@
               name="Breeding"
               parent="menu_farm_livestock_root"
               sequence="40"/>
+
+    <menuitem id="menu_livestock_growth_tasks"
+              name="Growth Tasks"
+              parent="menu_farm_livestock_root"
+              action="action_farm_livestock_mo_isl"
+              sequence="50"/>
+
+    <menuitem id="menu_livestock_recipes"
+              name="Husbandry Recipes"
+              parent="menu_farm_livestock_root"
+              action="action_farm_livestock_bom_isl"
+              sequence="60"/>
 </odoo>
