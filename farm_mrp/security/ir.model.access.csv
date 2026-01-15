@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_agri_bom_mixin,farm.agri.bom.mixin,model_farm_agri_bom_mixin,,1,1,1,1
+access_farm_agri_production_mixin,farm.agri.production.mixin,model_farm_agri_production_mixin,,1,1,1,1
