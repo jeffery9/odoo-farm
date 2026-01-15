@@ -17,7 +17,7 @@
         - Animal lifecycle and age-based management
     """,
     'author': 'Jeffery',
-    'depends': ['farm_operation', 'farm_core', 'project', 'mrp', 'stock'],
+    'depends': ['farm_operation', 'farm_core', 'farm_mrp', 'project', 'mrp', 'stock'],
     'data': [
         'security/ir.model.access.csv',
         'data/ir_cron_data.xml',
@@ -25,6 +25,7 @@
         'views/livestock_advanced_views.xml',
         'views/livestock_feeding_views.xml',
         'views/livestock_views.xml',
+        'views/livestock_isl_views.xml',
         'views/menu.xml',
     ],
     'demo': [
