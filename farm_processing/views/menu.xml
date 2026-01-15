@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_farm_processing_root"
-              name="Farm Processing"
-              parent="farm_core.menu_farm_root"
-              sequence="40"/>
+    <record id="action_farm_processing_mo_isl" model="ir.actions.act_window">
+        <field name="name">Food Processing Tasks</field>
+        <field name="res_model">farm.processing.production</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Start an ISL-managed processing task.</p>
+        </field>
+    </record>
 
-    <menuitem id="menu_processing_orders"
-              name="Processing Tasks"
-              parent="menu_farm_processing_root"
-              action="mrp.mrp_production_action"
-              sequence="10"/>
+    <record id="action_farm_livestock_mo_isl" model="ir.actions.act_window">
+        <field name="name">Livestock Growth Tasks</field>
+        <field name="res_model">farm.livestock.production</field>
+        <field name="view_mode">list,form</field>
+    </record>
 
-    <menuitem id="menu_processing_boms"
-              name="Agri-Recipes (BOM)"
-              parent="menu_farm_processing_root"
-              action="mrp.mrp_bom_form_action"
-              sequence="20"/>
+    <record id="action_farm_crop_mo_isl" model="ir.actions.act_window">
+        <field name="name">Crop Field Tasks</field>
+        <field name="res_model">farm.crop.production</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Root Menus -->
+    <menuitem id="menu_farm_processing_root" name="Farm Processing" parent="farm_core.menu_farm_root" sequence="40"/>
+
+    <!-- Processing Sub-menu -->
+    <menuitem id="menu_processing_orders" name="Processing Tasks" parent="menu_farm_processing_root" action="action_farm_processing_mo_isl" sequence="10"/>
+    <menuitem id="menu_processing_boms" name="Agri-Recipes (BOM)" parent="menu_farm_processing_root" action="action_farm_processing_bom_isl" sequence="20"/>
 
     <menuitem id="menu_storage_monitoring"
               name="Storage Monitoring"
