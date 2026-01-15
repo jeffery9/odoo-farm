@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mrp_production_form_inherit_agri_industry" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.agri.industry</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="priority">20</field> <!-- Higher priority to ensure these changes apply -->
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='bom_id']" position="after">
+                <field name="processing_type" widget="radio" options="{'horizontal': true}"
+                       attrs="{'invisible': [('is_agri_processing_enabled', '=', False)]}"/>
+                <field name="process_mode" invisible="processing_type != 'deep' or not is_agri_processing_enabled"/>
+            </xpath>
+            
+            <xpath expr="//page[@name='miscellaneous']" position="before">
+                <page string="Agri-Processing" name="agri_processing_industry_page"
+                      attrs="{'invisible': [('is_agri_processing_enabled', '=', False)]}">
+                    <group>
+                        <group string="Industry Parameters">
+                            <field name="vintage_year" invisible="process_mode != 'fermentation'"/>
+                            <field name="brix_level" invisible="process_mode != 'fermentation'"/>
+                            <field name="baking_temp" invisible="process_mode != 'baking'"/>
+                            <field name="proofing_time" invisible="process_mode != 'baking'"/>
+                            <field name="process_temperature"/>
+                            <field name="moisture_content"/>
+                            <field name="is_haccp_compliant"/>
+                        </group>
+                        <group string="Mass Balance &amp; Energy">
+                            <field name="scrap_qty"/>
+                            <field name="loss_rate" widget="progressbar"/>
+                            <field name="loss_approval_state" invisible="loss_approval_state == 'none'"/>
+                            <field name="total_output_qty" readonly="1"/>
+                            <field name="is_balanced" widget="boolean_toggle"/>
+                            <hr colspan="2"/>
+                            <label for="water_meter_start" string="Water (m³)"/>
+                            <div class="o_row">
+                                <field name="water_meter_start"/> - <field name="water_meter_end"/>
+                            </div>
+                            <label for="electricity_meter_start" string="Elec (kWh)"/>
+                            <div class="o_row">
+                                <field name="electricity_meter_start"/> - <field name="electricity_meter_end"/>
+                            </div>
+                        </group>
+                    </group>
+                    <group string="Traceability">
+                        <field name="harvest_lot_ids" widget="many2many_tags"/>
+                        <field name="additive_lot_ids" widget="many2many_tags"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit mrp.bom form view to add SC Category based on industry setting -->
+    <record id="view_mrp_bom_form_inherit_agri_industry" model="ir.ui.view">
+        <field name="name">mrp.bom.form.inherit.agri.industry</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_qty']" position="after">
+                <field name="sc_category_id" attrs="{'invisible': [('is_agri_processing_enabled', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

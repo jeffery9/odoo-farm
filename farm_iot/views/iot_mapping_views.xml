@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_iot_device_mapping_form" model="ir.ui.view">
+        <field name="name">iot.device.mapping.form</field>
+        <field name="model">iot.device.mapping</field>
+        <field name="arch" type="xml">
+            <form string="IoT Device Mapping">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. Electricity Meter to MO Mapper"/></h1>
+                    </div>
+                    <group>
+                        <group string="Source Config">
+                            <field name="device_id"/>
+                            <field name="mqtt_topic"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Target Config">
+                            <field name="mapping_type"/>
+                            <field name="target_model_id"/>
+                            <field name="target_field_id" invisible="mapping_type != 'field'"/>
+                            <field name="method_name" invisible="mapping_type != 'method'"/>
+                        </group>
+                    </group>
+                    <group string="Record Matching Logic">
+                        <field name="match_record_by"/>
+                        <field name="match_field_id" invisible="match_record_by != 'criteria'"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_iot_device_mapping_tree" model="ir.ui.view">
+        <field name="name">iot.device.mapping.tree</field>
+        <field name="model">iot.device.mapping</field>
+        <field name="arch" type="xml">
+            <list string="IoT Device Mappings">
+                <field name="name"/>
+                <field name="device_id"/>
+                <field name="mqtt_topic"/>
+                <field name="target_model_id"/>
+                <field name="mapping_type"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_iot_device_mapping" model="ir.actions.act_window">
+        <field name="name">IoT Device Mappings</field>
+        <field name="res_model">iot.device.mapping</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_sc_license_tree" model="ir.ui.view">
+        <field name="name">farm.sc.license.tree</field>
+        <field name="model">farm.sc.license</field>
+        <field name="arch" type="xml">
+            <list decoration-success="is_active" decoration-danger="not is_active">
+                <field name="name"/>
+                <field name="company_id"/>
+                <field name="expiry_date"/>
+                <field name="is_active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_farm_sc_license_form" model="ir.ui.view">
+        <field name="name">farm.sc.license.form</field>
+        <field name="model">farm.sc.license</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="expiry_date"/>
+                            <field name="is_active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Permitted Categories">
+                            <field name="category_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_sc_license" model="ir.actions.act_window">
+        <field name="name">SC Production Licenses</field>
+        <field name="res_model">farm.sc.license</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_farm_sc_license"
+              name="SC Licenses"
+              parent="farm_processing.menu_farm_processing_root"
+              action="action_farm_sc_license"
+              sequence="50"/>
+
+    <!-- Inherit Views to add sc_category_id back -->
+    <record id="view_mrp_bom_form_inherit_sc" model="ir.ui.view">
+        <field name="name">mrp.bom.form.inherit.sc</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="farm_processing.view_mrp_bom_form_inherit_farm_v2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='haccp_instructions']" position="after">
+                <field name="sc_category_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -15,11 +15,56 @@ class FarmLocation(models.Model):
     land_area = fields.Float("Area (sqm/mu)", digits=(16, 2), help="Surface area of the parcel.")
     land_area_uom_id = fields.Many2one('uom.uom', string="Area Unit", domain="[('category_id.measure_type', '=', 'area')]")
     
-    # GIS Core Fields [US-01-03]
+    # GIS Core Fields [US-01-03, US-TECH-04-01]
     gps_lat = fields.Float("Latitude", digits=(10, 7))
     gps_lng = fields.Float("Longitude", digits=(10, 7))
-    gps_coordinates = fields.Text("GPS Coordinates (GeoJSON)", help="GeoJSON format for boundaries/polygons.")
+    boundary_geojson = fields.Text("Boundary Coordinates (GeoJSON)", help="GeoJSON Polygon for the land parcel boundary.")
+    calculated_area_ha = fields.Float("Calculated Area (Ha)", digits=(16, 4), readonly=True, help="Area calculated from GeoJSON coordinates.")
     
+    def action_calculate_area(self):
+        """ US-TECH-04-01: Calculate area using Shoelace formula from GeoJSON. """
+        import json
+        import math
+
+        for loc in self:
+            if not loc.boundary_geojson:
+                continue
+            try:
+                data = json.loads(loc.boundary_geojson)
+                # Assuming simple Polygon: {"type": "Polygon", "coordinates": [[[lng, lat], ...]]}
+                coords = []
+                if data.get('type') == 'Polygon':
+                    coords = data['coordinates'][0]
+                elif data.get('type') == 'Feature' and data['geometry']['type'] == 'Polygon':
+                    coords = data['geometry']['coordinates'][0]
+                
+                if len(coords) < 3:
+                    continue
+
+                # Shoelace algorithm for spherical coordinates (simplified to planar for small parcels)
+                area = 0.0
+                n = len(coords)
+                for i in range(n):
+                    j = (i + 1) % n
+                    # Conversion constant: approx 111.3km per degree. mu/sqm logic.
+                    # Simplified planar area in square degrees then converted to Ha
+                    area += coords[i][0] * coords[j][1]
+                    area -= coords[j][0] * coords[i][1]
+                
+                area = abs(area) / 2.0
+                # Roughly convert sq degrees to Ha (Value varies by latitude, this is a baseline)
+                # Correct way involves Haversine or projected CRS. 
+                # For this prototype, we'll store the logic placeholder.
+                lat_avg = sum(c[1] for c in coords) / n
+                meters_per_deg_lat = 111132.0
+                meters_per_deg_lng = 111132.0 * math.cos(math.radians(lat_avg))
+                
+                real_area_sqm = area * meters_per_deg_lat * meters_per_deg_lng
+                loc.calculated_area_ha = real_area_sqm / 10000.0
+                loc.land_area = real_area_sqm # Sync with generic field
+            except Exception as e:
+                _logger.error("Area calculation failed for %s: %s", loc.name, str(e))
+
     gis_map_url = fields.Char("Map Link", compute='_compute_gis_map_url')
     
     soil_type = fields.Selection([
