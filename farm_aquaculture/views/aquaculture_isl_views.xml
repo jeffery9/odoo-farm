@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ISL View for Aquaculture BOM -->
+    <record id="view_farm_aquaculture_bom_form" model="ir.ui.view">
+        <field name="name">farm.aquaculture.bom.form</field>
+        <field name="model">farm.aquaculture.bom</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Aquaculture Recipe</h1>
+                    </div>
+                    <group>
+                        <group string="Core Recipe (Base)">
+                            <field name="product_tmpl_id"/>
+                            <field name="product_qty"/>
+                            <field name="product_uom_id"/>
+                        </group>
+                        <group string="Aquaculture Standards (ISL)">
+                            <field name="pond_type"/>
+                            <field name="target_dissolved_oxygen"/>
+                            <field name="target_ph_range"/>
+                            <field name="stocking_density_limit"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Components (Base)" name="components">
+                            <field name="bom_line_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ISL View for Aquaculture Production -->
+    <record id="view_farm_aquaculture_production_form" model="ir.ui.view">
+        <field name="name">farm.aquaculture.production.form</field>
+        <field name="model">farm.aquaculture.production</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="button_mark_done" type="object" string="Mark as Done" invisible="state != 'confirmed'" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Aquaculture Order</h1>
+                    </div>
+                    <group>
+                        <group string="Order Info (Base)">
+                            <field name="product_id"/>
+                            <field name="product_qty"/>
+                            <field name="bom_id"/>
+                            <field name="date_start"/>
+                        </group>
+                        <group string="Water Quality (ISL)">
+                            <field name="water_temp"/>
+                            <field name="dissolved_oxygen"/>
+                            <field name="ph_level"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Growth Stats (ISL)">
+                            <field name="avg_individual_weight"/>
+                            <field name="survival_rate"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_aquaculture_mo_isl" model="ir.actions.act_window">
+        <field name="name">Aquaculture Tasks</field>
+        <field name="res_model">farm.aquaculture.production</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_farm_aquaculture_bom_isl" model="ir.actions.act_window">
+        <field name="name">Aquaculture Recipes</field>
+        <field name="res_model">farm.aquaculture.bom</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

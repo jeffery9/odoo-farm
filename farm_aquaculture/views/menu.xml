@@ -3,6 +3,19 @@
     <!-- Aquaculture specific menu items will be added here -->
     <menuitem id="farm_aquaculture_menu_root"
               name="Aquaculture"
+              parent="farm_core.menu_farm_root"
               sequence="23"
               groups="base.group_user"/>
+
+    <menuitem id="menu_aquaculture_tasks"
+              name="Aquaculture Tasks"
+              parent="farm_aquaculture_menu_root"
+              action="action_farm_aquaculture_mo_isl"
+              sequence="10"/>
+
+    <menuitem id="menu_aquaculture_recipes"
+              name="Aquaculture Recipes"
+              parent="farm_aquaculture_menu_root"
+              action="action_farm_aquaculture_bom_isl"
+              sequence="20"/>
 </odoo>
