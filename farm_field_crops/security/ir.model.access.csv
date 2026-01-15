@@ -1,3 +1,6 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
 "access_field_crop_operation_user","field.crop.operation.user","model_farm_field_crop_operation","farm_core.group_farm_user",1,1,1,1
 "access_field_crop_operation_manager","field.crop.operation.manager","model_farm_field_crop_operation","farm_core.group_farm_manager",1,1,1,1
+access_farm_crop_bom,farm.crop.bom,model_farm_crop_bom,,1,1,1,1
+access_farm_crop_production,farm.crop.production,model_farm_crop_production,,1,1,1,1
+access_farm_crop_lot,farm.crop.lot,model_farm_crop_lot,,1,1,1,1
