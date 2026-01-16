@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Farm Location Tree View -->
+    <record id="view_farm_location_tree" model="ir.ui.view">
+        <field name="name">farm.location.tree</field>
+        <field name="model">farm.location</field>
+        <field name="arch" type="xml">
+            <tree string="Farm Locations">
+                <field name="name"/>
+                <field name="is_land_parcel"/>
+                <field name="land_nature"/>
+                <field name="land_area"/>
+                <field name="calculated_area_ha"/>
+                <field name="slope"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Farm Location Form View -->
+    <record id="view_farm_location_form" model="ir.ui.view">
+        <field name="name">farm.location.form</field>
+        <field name="model">farm.location</field>
+        <field name="arch" type="xml">
+            <form string="Farm Location">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="is_land_parcel"/>
+                            <field name="location_id"/>
+                        </group>
+                        <group>
+                            <field name="active"/>
+                            <field name="usage"/>
+                        </group>
+                    </group>
+                    <group string="Agricultural Properties" attrs="{'invisible': [('is_land_parcel', '=', False)]}">
+                        <group>
+                            <field name="land_nature"/>
+                            <field name="land_area"/>
+                            <field name="land_area_uom_id"/>
+                        </group>
+                        <group>
+                            <field name="calculated_area_ha"/>
+                            <button name="calculate_area" type="object" string="Calculate Area" class="oe_link"/>
+                        </group>
+                    </group>
+                    <group string="GIS Information" attrs="{'invisible': [('is_land_parcel', '=', False)]}">
+                        <group>
+                            <field name="gps_lat"/>
+                            <field name="gps_lng"/>
+                        </group>
+                        <group>
+                            <field name="gis_map_url" widget="url"/>
+                        </group>
+                    </group>
+                    <group string="Terroir Characteristics" attrs="{'invisible': [('is_land_parcel', '=', False)]}">
+                        <group>
+                            <field name="soil_type"/>
+                            <field name="slope"/>
+                            <field name="aspect"/>
+                        </group>
+                        <group>
+                            <field name="water_source"/>
+                            <field name="water_depth"/>
+                            <field name="water_depth_dm"/>
+                        </group>
+                    </group>
+                    <group string="Vertical/Container Properties" attrs="{'invisible': [('is_vertical_location', '=', False)]}">
+                        <group>
+                            <field name="is_vertical_location"/>
+                            <field name="shelf_id"/>
+                        </group>
+                        <group>
+                            <field name="shelf_level"/>
+                            <field name="shelf_slot"/>
+                        </group>
+                    </group>
+                    <group string="Vessel Properties" attrs="{'invisible': [('is_vessel', '=', False)]}">
+                        <group>
+                            <field name="is_vessel"/>
+                            <field name="vessel_capacity"/>
+                        </group>
+                        <group>
+                            <field name="vessel_material"/>
+                        </group>
+                    </group>
+                    <group string="Soil Analysis" attrs="{'invisible': [('is_land_parcel', '=', False)]}">
+                        <field name="latest_ph"/>
+                        <field name="latest_organic_matter"/>
+                    </group>
+                    <field name="boundary_geojson"/>
+                    <field name="micro_climate_notes"/>
+                    <field name="soil_mineral_composition"/>
+                    <field name="location_properties_definition"/>
+                    <field name="location_properties"/>
+                    <notebook attrs="{'invisible': [('is_land_parcel', '=', False)]}">
+                        <page string="Soil Analyses" name="soil_analyses">
+                            <field name="soil_analysis_ids">
+                                <tree>
+                                    <field name="analysis_date"/>
+                                    <field name="ph_level"/>
+                                    <field name="organic_matter"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Nutrient Balance" name="nutrient_balance">
+                            <group>
+                                <group string="Accumulated Inputs">
+                                    <field name="total_n_input"/>
+                                    <field name="total_p_input"/>
+                                    <field name="total_k_input"/>
+                                </group>
+                                <group string="Targets &amp; Status">
+                                    <field name="target_n_per_mu"/>
+                                    <field name="target_p_per_mu"/>
+                                    <field name="target_k_per_mu"/>
+                                    <field name="n_balance_status"/>
+                                    <field name="p_balance_status"/>
+                                    <field name="k_balance_status"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Soil Analysis Tree View -->
+    <record id="view_soil_analysis_tree" model="ir.ui.view">
+        <field name="name">farm.soil.analysis.tree</field>
+        <field name="model">farm.soil.analysis</field>
+        <field name="arch" type="xml">
+            <tree string="Soil Analyses" decoration-info="state == 'draft'" decoration-success="state == 'done'" decoration-danger="state == 'cancel'">
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="analysis_date"/>
+                <field name="ph_level"/>
+                <field name="organic_matter"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Soil Analysis Form View -->
+    <record id="view_soil_analysis_form" model="ir.ui.view">
+        <field name="name">farm.soil.analysis.form</field>
+        <field name="model">farm.soil.analysis</field>
+        <field name="arch" type="xml">
+            <form string="Soil Analysis">
+                <header>
+                    <button name="action_validate" type="object" string="Validate" class="oe_highlight" states="draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="location_id"/>
+                        </group>
+                        <group>
+                            <field name="analysis_date"/>
+                            <field name="laboratory_id"/>
+                        </group>
+                    </group>
+                    <group string="Nutrient Content">
+                        <group>
+                            <field name="ph_level"/>
+                            <field name="organic_matter"/>
+                        </group>
+                        <group>
+                            <field name="nitrogen_content"/>
+                            <field name="phosphorus_content"/>
+                            <field name="potassium_content"/>
+                        </group>
+                    </group>
+                    <group string="Trace Elements">
+                        <field name="magnesium"/>
+                        <field name="calcium"/>
+                    </group>
+                    <field name="recommendation"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_land_location_root" name="Land &amp; Locations"
+              parent="farm_core.menu_farm_root"
+              sequence="20">
+        <menuitem id="menu_farm_locations" name="Farm Locations"
+                  action="action_farm_location_list"
+                  sequence="10"/>
+        <menuitem id="menu_soil_analyses" name="Soil Analyses"
+                  action="action_soil_analysis_list"
+                  sequence="20"/>
+    </menuitem>
+
+    <!-- Actions -->
+    <record id="action_farm_location_list" model="ir.actions.act_window">
+        <field name="name">Farm Locations</field>
+        <field name="res_model">farm.location</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_soil_analysis_list" model="ir.actions.act_window">
+        <field name="name">Soil Analyses</field>
+        <field name="res_model">farm.soil.analysis</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

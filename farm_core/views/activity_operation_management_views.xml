@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Farm Activity Tree View -->
+    <record id="view_farm_activity_tree" model="ir.ui.view">
+        <field name="name">farm.activity.tree</field>
+        <field name="model">farm.activity</field>
+        <field name="arch" type="xml">
+            <tree string="Farm Activities">
+                <field name="name"/>
+                <field name="is_agri_activity"/>
+                <field name="activity_family"/>
+                <field name="production_cycle"/>
+                <field name="date_start"/>
+                <field name="date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Farm Activity Form View -->
+    <record id="view_farm_activity_form" model="ir.ui.view">
+        <field name="name">farm.activity.form</field>
+        <field name="model">farm.activity</field>
+        <field name="arch" type="xml">
+            <form string="Farm Activity">
+                <header>
+                    <field name="activity_state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="is_agri_activity"/>
+                            <field name="activity_family"/>
+                        </group>
+                        <group>
+                            <field name="production_cycle"/>
+                            <field name="date_start"/>
+                            <field name="date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="task_sequence_id"/>
+                    </group>
+                    <group string="Agricultural Properties">
+                        <field name="partner_id"/>
+                        <field name="user_id"/>
+                        <field name="color"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Farm Task Tree View -->
+    <record id="view_farm_task_tree" model="ir.ui.view">
+        <field name="name">farm.task.tree</field>
+        <field name="model">farm.task</field>
+        <field name="arch" type="xml">
+            <tree string="Farm Tasks">
+                <field name="name"/>
+                <field name="activity_family"/>
+                <field name="land_parcel_id"/>
+                <field name="product_id"/>
+                <field name="date_deadline"/>
+                <field name="kanban_state"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Farm Task Form View -->
+    <record id="view_farm_task_form" model="ir.ui.view">
+        <field name="name">farm.task.form</field>
+        <field name="model">farm.task</field>
+        <field name="arch" type="xml">
+            <form string="Farm Task">
+                <header>
+                    <field name="stage_id" widget="statusbar" clickable="True"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="activity_family"/>
+                            <field name="project_id"/>
+                        </group>
+                        <group>
+                            <field name="date_deadline"/>
+                            <field name="priority"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="land_parcel_id"/>
+                        <field name="product_id"/>
+                        <field name="user_ids" widget="many2many_tags"/>
+                    </group>
+                    <group string="Timing Information">
+                        <group>
+                            <field name="planned_start_date"/>
+                            <field name="planned_end_date"/>
+                        </group>
+                        <group>
+                            <field name="actual_start_date"/>
+                            <field name="actual_end_date"/>
+                        </group>
+                    </group>
+                    <group string="Resources &amp; Costs">
+                        <group>
+                            <field name="required_labor_hours"/>
+                            <field name="required_equipment_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="estimated_cost"/>
+                            <field name="actual_cost"/>
+                        </group>
+                    </group>
+                    <group string="Materials &amp; Requirements">
+                        <field name="required_material_ids" widget="many2many_tags"/>
+                    </group>
+                    <group string="Quality &amp; Compliance">
+                        <group>
+                            <field name="safety_protocol_followed"/>
+                            <field name="quality_check_required"/>
+                        </group>
+                        <group>
+                            <field name="quality_check_done"/>
+                        </group>
+                    </group>
+                    <field name="description"/>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_activity_operation_root" name="Activities &amp; Operations"
+              parent="farm_core.menu_farm_root"
+              sequence="30">
+        <menuitem id="menu_farm_activities" name="Farm Activities"
+                  action="action_farm_activity_list"
+                  sequence="10"/>
+        <menuitem id="menu_farm_tasks" name="Farm Tasks"
+                  action="action_farm_task_list"
+                  sequence="20"/>
+    </menuitem>
+
+    <!-- Actions -->
+    <record id="action_farm_activity_list" model="ir.actions.act_window">
+        <field name="name">Farm Activities</field>
+        <field name="res_model">farm.activity</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_farm_task_list" model="ir.actions.act_window">
+        <field name="name">Farm Tasks</field>
+        <field name="res_model">farm.task</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
