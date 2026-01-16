@@ -1,6 +1,7 @@
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import UserError
 from datetime import timedelta
+from odoo import fields
 
 class TestFarmAgriculturalProcessing(TransactionCase):
 
