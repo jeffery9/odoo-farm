@@ -4,7 +4,7 @@ class TestCampaignPlanning(TransactionCase):
 
     def setUp(self):
         super(TestCampaignPlanning, self).setUp()
-        self.Campaign = self.env['agricultural.campaign']
+        self.Campaign = self.env['farm.agricultural.campaign']
         self.Task = self.env['project.task']
         self.Project = self.env['project.project']
         

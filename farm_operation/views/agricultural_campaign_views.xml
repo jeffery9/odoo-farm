@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="agricultural_campaign_view_tree" model="ir.ui.view">
-        <field name="name">agricultural.campaign.list</field>
-        <field name="model">agricultural.campaign</field>
+        <field name="name">farm.agricultural.campaign.list</field>
+        <field name="model">farm.agricultural.campaign</field>
         <field name="arch" type="xml">
             <list string="Production Seasons">
                 <field name="name"/>
@@ -14,8 +14,8 @@
     </record>
 
     <record id="agricultural_campaign_view_form" model="ir.ui.view">
-        <field name="name">agricultural.campaign.form</field>
-        <field name="model">agricultural.campaign</field>
+        <field name="name">farm.agricultural.campaign.form</field>
+        <field name="model">farm.agricultural.campaign</field>
         <field name="arch" type="xml">
             <form string="Production Season">
                 <sheet>
@@ -58,8 +58,8 @@
 
     <!-- Kanban with GDD Progress -->
     <record id="agricultural_campaign_view_kanban" model="ir.ui.view">
-        <field name="name">agricultural.campaign.kanban</field>
-        <field name="model">agricultural.campaign</field>
+        <field name="name">farm.agricultural.campaign.kanban</field>
+        <field name="model">farm.agricultural.campaign</field>
         <field name="arch" type="xml">
             <kanban class="o_kanban_mobile" sample="1">
                 <field name="name"/>
@@ -85,8 +85,8 @@
 
     <!-- Pivot View -->
     <record id="agricultural_campaign_view_pivot" model="ir.ui.view">
-        <field name="name">agricultural.campaign.pivot</field>
-        <field name="model">agricultural.campaign</field>
+        <field name="name">farm.agricultural.campaign.pivot</field>
+        <field name="model">farm.agricultural.campaign</field>
         <field name="arch" type="xml">
             <pivot string="Season Analytics">
                 <field name="date_start" interval="year" type="row"/>
@@ -97,7 +97,7 @@
 
     <record id="action_agricultural_campaign" model="ir.actions.act_window">
         <field name="name">Production Seasons</field>
-        <field name="res_model">agricultural.campaign</field>
+        <field name="res_model">farm.agricultural.campaign</field>
         <field name="view_mode">list,kanban,form,pivot</field>
     </record>
 </odoo>
