@@ -5,7 +5,7 @@ class TestSustainability(TransactionCase):
     def setUp(self):
         super(TestSustainability, self).setUp()
         self.Task = self.env['project.task']
-        self.Campaign = self.env['agricultural.campaign']
+        self.Campaign = self.env['farm.agricultural.campaign']
         
         # 创建两个不同的生产季进行对比
         self.season_2025 = self.Campaign.create({'name': '2025 Season'})

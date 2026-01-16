@@ -1,7 +1,7 @@
 from odoo import models, fields, api
 
 class AgriculturalCampaign(models.Model):
-    _inherit = 'agricultural.campaign'
+    _inherit = 'farm.agricultural.campaign'
 
     # 汇总该生产季下所有任务的养分投入
     total_n = fields.Float("Total Nitrogen (kg)", compute='_compute_campaign_nutrients', store=True)
