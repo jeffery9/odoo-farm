@@ -119,7 +119,7 @@ class StockLot(models.Model):
 
         # 查找与该产品相关的农事干预
         # 这里假设有一个农事干预模型，实际实现中需要根据具体模型调整
-        interventions = self.env['agri.intervention'].search([
+        interventions = self.env['farm.agricultural.intervention'].search([
             ('output_product_id', '=', product.id)
         ])
 
