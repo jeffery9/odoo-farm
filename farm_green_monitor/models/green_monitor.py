@@ -44,12 +44,12 @@ class FarmGreenMonitorReport(models.AbstractModel):
 
     @api.model
     def _get_report_values(self, docids, data=None):
-        docs = self.env['agricultural.campaign'].browse(docids)
+        docs = self.env['farm.agricultural.campaign'].browse(docids)
         # 这里需要更复杂的逻辑来获取历史数据和计算趋势
         # 简化示例：假设docids是campaigns
         return {
             'doc_ids': docids,
-            'doc_model': 'agricultural.campaign',
+            'doc_model': 'farm.agricultural.campaign',
             'docs': docs,
             'get_reduction_data': self._get_reduction_data,
         }
