@@ -138,7 +138,7 @@
     <!-- 积温计算帮助 [US-16-05] -->
     <record id="help_gdd_calculation" model="contextual.help">
         <field name="name">Growing Degree Days Calculation Help</field>
-        <field name="model_name">agricultural.campaign</field>
+        <field name="model_name">farm.agricultural.campaign</field>
         <field name="field_name">accumulated_gdd</field>
         <field name="view_type">form</field>
         <field name="help_content">&lt;p&gt;Growing Degree Days (GDD) is a heat accumulation measurement used to predict plant development rates.&lt;/p&gt;
