@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Joint Procurement PO Tree View -->
+    <record id="view_joint_procurement_po_tree" model="ir.ui.view">
+        <field name="name">joint.procurement.po.tree</field>
+        <field name="model">joint.procurement.po</field>
+        <field name="arch" type="xml">
+            <tree string="Joint Procurement POs" decoration-info="state=='confirmed'" decoration-success="state=='done'" decoration-muted="state=='cancel'">
+                <field name="name"/>
+                <field name="cooperative_id"/>
+                <field name="supplier_id"/>
+                <field name="procurement_date"/>
+                <field name="total_amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Joint Procurement PO Form View -->
+    <record id="view_joint_procurement_po_form" model="ir.ui.view">
+        <field name="name">joint.procurement.po.form</field>
+        <field name="model">joint.procurement.po</field>
+        <field name="arch" type="xml">
+            <form string="Joint Procurement PO">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"
+                            states="draft"/>
+                    <button name="action_create_member_pos" type="object" string="Create Member POs"
+                            states="confirmed"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="cooperative_id"/>
+                            <field name="procurement_date"/>
+                        </group>
+                        <group>
+                            <field name="supplier_id"/>
+                            <field name="total_amount"/>
+                        </group>
+                    </group>
+                    <field name="description"/>
+                    <notebook>
+                        <page string="Member POs" name="member_pos">
+                            <field name="child_po_ids">
+                                <tree editable="top">
+                                    <field name="member_id"/>
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_price"/>
+                                    <field name="amount"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Hub and Spoke Distribution Tree View -->
+    <record id="view_hub_spoke_distribution_tree" model="ir.ui.view">
+        <field name="name">hub.spoke.distribution.tree</field>
+        <field name="model">hub.spoke.distribution</field>
+        <field name="arch" type="xml">
+            <tree string="Hub and Spoke Distributions" decoration-info="state=='in_transit'" decoration-success="state=='delivered'" decoration-muted="state=='draft'">
+                <field name="name"/>
+                <field name="cooperative_id"/>
+                <field name="source_location"/>
+                <field name="distribution_date"/>
+                <field name="total_quantity"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Hub and Spoke Distribution Form View -->
+    <record id="view_hub_spoke_distribution_form" model="ir.ui.view">
+        <field name="name">hub.spoke.distribution.form</field>
+        <field name="model">hub.spoke.distribution</field>
+        <field name="arch" type="xml">
+            <form string="Hub and Spoke Distribution">
+                <header>
+                    <button name="action_start_delivery" type="object" string="Start Delivery" class="oe_highlight"
+                            states="draft"/>
+                    <button name="action_confirm_delivery" type="object" string="Confirm Delivery"
+                            states="in_transit"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="cooperative_id"/>
+                            <field name="distribution_date"/>
+                        </group>
+                        <group>
+                            <field name="source_location"/>
+                            <field name="total_quantity"/>
+                        </group>
+                    </group>
+                    <field name="description"/>
+                    <notebook>
+                        <page string="Distribution Lines" name="lines">
+                            <field name="distribution_lines">
+                                <tree editable="top">
+                                    <field name="destination_member_id"/>
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="delivery_date"/>
+                                    <field name="delivery_confirmed"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Netting Settlement Tree View -->
+    <record id="view_netting_settlement_tree" model="ir.ui.view">
+        <field name="name">netting.settlement.tree</field>
+        <field name="model">netting.settlement</field>
+        <field name="arch" type="xml">
+            <tree string="Netting Settlements" decoration-info="state=='calculated'" decoration-success="state=='processed'" decoration-muted="state=='draft'">
+                <field name="name"/>
+                <field name="cooperative_id"/>
+                <field name="member_id"/>
+                <field name="settlement_date"/>
+                <field name="receivable_amount"/>
+                <field name="payable_amount"/>
+                <field name="net_amount"/>
+                <field name="settlement_direction"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Netting Settlement Form View -->
+    <record id="view_netting_settlement_form" model="ir.ui.view">
+        <field name="name">netting.settlement.form</field>
+        <field name="model">netting.settlement</field>
+        <field name="arch" type="xml">
+            <form string="Netting Settlement">
+                <header>
+                    <button name="action_calculate_settlement" type="object" string="Calculate Settlement" class="oe_highlight"
+                            states="draft"/>
+                    <button name="action_process_settlement" type="object" string="Process Settlement"
+                            states="calculated"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="cooperative_id"/>
+                            <field name="settlement_date"/>
+                        </group>
+                        <group>
+                            <field name="member_id"/>
+                            <field name="settlement_direction"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="receivable_amount"/>
+                            <field name="payable_amount"/>
+                            <field name="net_amount"/>
+                        </group>
+                    </group>
+                    <field name="description"/>
+                    <notebook>
+                        <page string="Receivable Lines" name="receivables">
+                            <field name="receivable_lines">
+                                <tree editable="top">
+                                    <field name="source_document"/>
+                                    <field name="amount"/>
+                                    <field name="due_date"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Payable Lines" name="payables">
+                            <field name="payable_lines">
+                                <tree editable="top">
+                                    <field name="source_document"/>
+                                    <field name="amount"/>
+                                    <field name="due_date"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_procurement_finance" name="Procurement & Finance"
+              parent="menu_cooperative_root"
+              sequence="120">
+        <menuitem id="menu_joint_procurement_pos" name="Joint Procurement POs"
+                  action="action_joint_procurement_po_list"
+                  sequence="10"/>
+        <menuitem id="menu_hub_spoke_distributions" name="Hub & Spoke Distributions"
+                  action="action_hub_spoke_distribution_list"
+                  sequence="20"/>
+        <menuitem id="menu_netting_settlements" name="Netting Settlements"
+                  action="action_netting_settlement_list"
+                  sequence="30"/>
+    </menuitem>
+
+    <!-- Actions -->
+    <record id="action_joint_procurement_po_list" model="ir.actions.act_window">
+        <field name="name">Joint Procurement POs</field>
+        <field name="res_model">joint.procurement.po</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hub_spoke_distribution_list" model="ir.actions.act_window">
+        <field name="name">Hub and Spoke Distributions</field>
+        <field name="res_model">hub.spoke.distribution</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_netting_settlement_list" model="ir.actions.act_window">
+        <field name="name">Netting Settlements</field>
+        <field name="res_model">netting.settlement</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

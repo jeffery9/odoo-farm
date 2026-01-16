@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Cooperative Member Tree View -->
+    <record id="view_cooperative_member_tree" model="ir.ui.view">
+        <field name="name">cooperative.member.tree</field>
+        <field name="model">cooperative.member</field>
+        <field name="arch" type="xml">
+            <tree string="Cooperative Members">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="cooperative_id"/>
+                <field name="shares_held"/>
+                <field name="share_value"/>
+                <field name="membership_status"/>
+                <field name="credit_limit"/>
+                <field name="available_credit"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Cooperative Member Form View -->
+    <record id="view_cooperative_member_form" model="ir.ui.view">
+        <field name="name">cooperative.member.form</field>
+        <field name="model">cooperative.member</field>
+        <field name="arch" type="xml">
+            <form string="Cooperative Member">
+                <header>
+                    <field name="membership_status" widget="statusbar" statusbar_visible="active,suspended,withdrawn"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_share_transactions" type="object"
+                                class="oe_stat_button" icon="fa-exchange">
+                            <field string="Share Transactions" name="share_transaction_ids" widget="statinfo"/>
+                        </button>
+                        <button name="action_view_dividends" type="object"
+                                class="oe_stat_button" icon="fa-money">
+                            <field string="Dividends" name="dividend_line_ids" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="partner_id"/>
+                            <field name="cooperative_id"/>
+                        </group>
+                        <group>
+                            <field name="join_date"/>
+                            <field name="membership_status"/>
+                            <field name="dividend_eligibility"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Investment Information" name="investment">
+                            <group>
+                                <group>
+                                    <field name="shares_held"/>
+                                    <field name="share_value"/>
+                                    <field name="total_investment"/>
+                                </group>
+                                <group>
+                                    <field name="trading_volume"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Credit Information" name="credit">
+                            <group>
+                                <group>
+                                    <field name="credit_limit"/>
+                                    <field name="credit_used"/>
+                                    <field name="available_credit"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Financial Summary" name="financial">
+                            <group>
+                                <group>
+                                    <field name="account_balance"/>
+                                    <field name="loan_balance"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Share Transaction Tree View -->
+    <record id="view_share_transaction_tree" model="ir.ui.view">
+        <field name="name">share.transaction.tree</field>
+        <field name="model">share.transaction</field>
+        <field name="arch" type="xml">
+            <tree string="Share Transactions" decoration-success="state=='confirmed'" decoration-muted="state=='cancelled'">
+                <field name="name"/>
+                <field name="member_id"/>
+                <field name="transaction_type"/>
+                <field name="shares_count"/>
+                <field name="total_amount"/>
+                <field name="transaction_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Share Transaction Form View -->
+    <record id="view_share_transaction_form" model="ir.ui.view">
+        <field name="name">share.transaction.form</field>
+        <field name="model">share.transaction</field>
+        <field name="arch" type="xml">
+            <form string="Share Transaction">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"
+                            states="draft"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            states="draft,confirmed"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="member_id"/>
+                            <field name="transaction_type"/>
+                        </group>
+                        <group>
+                            <field name="shares_count"/>
+                            <field name="share_price"/>
+                            <field name="total_amount"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="transaction_date"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Dividend Distribution Tree View -->
+    <record id="view_dividend_distribution_tree" model="ir.ui.view">
+        <field name="name">dividend.distribution.tree</field>
+        <field name="model">dividend.distribution</field>
+        <field name="arch" type="xml">
+            <tree string="Dividend Distributions" decoration-success="state=='distributed'" decoration-muted="state=='cancelled'">
+                <field name="name"/>
+                <field name="cooperative_id"/>
+                <field name="distribution_date"/>
+                <field name="total_dividend_amount"/>
+                <field name="distribution_type"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Dividend Distribution Form View -->
+    <record id="view_dividend_distribution_form" model="ir.ui.view">
+        <field name="name">dividend.distribution.form</field>
+        <field name="model">dividend.distribution</field>
+        <field name="arch" type="xml">
+            <form string="Dividend Distribution">
+                <header>
+                    <button name="action_calculate_dividends" type="object" string="Calculate Dividends" class="oe_highlight"
+                            states="draft"/>
+                    <button name="action_distribute_dividends" type="object" string="Distribute"
+                            states="calculated"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="cooperative_id"/>
+                            <field name="distribution_date"/>
+                        </group>
+                        <group>
+                            <field name="total_dividend_amount"/>
+                            <field name="distribution_type"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="trading_volume_ratio"/>
+                        <field name="share_ratio"/>
+                    </group>
+                    <field name="description"/>
+                    <notebook>
+                        <page string="Dividend Lines" name="lines">
+                            <field name="dividend_lines">
+                                <tree editable="top">
+                                    <field name="member_id"/>
+                                    <field name="share_based_amount"/>
+                                    <field name="trading_based_amount"/>
+                                    <field name="total_amount"/>
+                                    <field name="paid_amount"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Internal Credit Tree View -->
+    <record id="view_internal_credit_tree" model="ir.ui.view">
+        <field name="name">internal.credit.tree</field>
+        <field name="model">internal.credit</field>
+        <field name="arch" type="xml">
+            <tree string="Internal Credits" decoration-success="state=='active'" decoration-danger="state=='expired'">
+                <field name="name"/>
+                <field name="member_id"/>
+                <field name="credit_limit"/>
+                <field name="utilized_amount"/>
+                <field name="available_amount"/>
+                <field name="interest_rate"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Internal Credit Form View -->
+    <record id="view_internal_credit_form" model="ir.ui.view">
+        <field name="name">internal.credit.form</field>
+        <field name="model">internal.credit</field>
+        <field name="arch" type="xml">
+            <form string="Internal Credit">
+                <header>
+                    <button name="action_close_credit" type="object" string="Close Credit"
+                            states="active"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="member_id"/>
+                            <field name="cooperative_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="credit_limit"/>
+                            <field name="utilized_amount"/>
+                            <field name="available_amount"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                        <group>
+                            <field name="interest_rate"/>
+                            <field name="grace_period_days"/>
+                        </group>
+                    </group>
+                    <field name="description"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Credit Transaction Tree View -->
+    <record id="view_credit_transaction_tree" model="ir.ui.view">
+        <field name="name">credit.transaction.tree</field>
+        <field name="model">credit.transaction</field>
+        <field name="arch" type="xml">
+            <tree string="Credit Transactions" decoration-success="state=='confirmed'" decoration-muted="state=='reversed'">
+                <field name="name"/>
+                <field name="member_id"/>
+                <field name="credit_line_id"/>
+                <field name="transaction_type"/>
+                <field name="amount"/>
+                <field name="transaction_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Shared Machinery Pool Tree View -->
+    <record id="view_shared_machinery_pool_tree" model="ir.ui.view">
+        <field name="name">shared.machinery.pool.tree</field>
+        <field name="model">shared.machinery.pool</field>
+        <field name="arch" type="xml">
+            <tree string="Shared Machinery Pool" decoration-info="availability_status=='available'" decoration-success="availability_status=='in_use'" decoration-warning="availability_status=='maintenance'" decoration-danger="availability_status=='out_of_service'">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="equipment_id"/>
+                <field name="owner_member_id"/>
+                <field name="availability_status"/>
+                <field name="hourly_rate"/>
+                <field name="daily_rate"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Shared Machinery Pool Form View -->
+    <record id="view_shared_machinery_pool_form" model="ir.ui.view">
+        <field name="name">shared.machinery.pool.form</field>
+        <field name="model">shared.machinery.pool</field>
+        <field name="arch" type="xml">
+            <form string="Shared Machinery Pool">
+                <header>
+                    <button name="action_set_available" type="object" string="Set Available" class="oe_highlight"
+                            invisible="availability_status == 'available'"/>
+                    <button name="action_set_in_use" type="object" string="Set In Use"
+                            invisible="availability_status == 'in_use'"/>
+                    <button name="action_set_maintenance" type="object" string="Set Maintenance"
+                            invisible="availability_status == 'maintenance'"/>
+                    <button name="action_set_out_of_service" type="object" string="Set Out of Service"
+                            invisible="availability_status == 'out_of_service'"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="cooperative_id"/>
+                        </group>
+                        <group>
+                            <field name="owner_member_id"/>
+                            <field name="equipment_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="hourly_rate"/>
+                            <field name="daily_rate"/>
+                        </group>
+                        <group>
+                            <field name="availability_status"/>
+                            <field name="location"/>
+                        </group>
+                    </group>
+                    <field name="description"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Machinery Rental Tree View -->
+    <record id="view_machinery_rental_tree" model="ir.ui.view">
+        <field name="name">machinery.rental.tree</field>
+        <field name="model">machinery.rental</field>
+        <field name="arch" type="xml">
+            <tree string="Machinery Rentals" decoration-info="state=='confirmed'" decoration-success="state=='completed'" decoration-muted="state=='cancelled'">
+                <field name="name"/>
+                <field name="machinery_id"/>
+                <field name="renter_member_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="expected_cost"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Machinery Rental Form View -->
+    <record id="view_machinery_rental_form" model="ir.ui.view">
+        <field name="name">machinery.rental.form</field>
+        <field name="model">machinery.rental</field>
+        <field name="arch" type="xml">
+            <form string="Machinery Rental">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"
+                            states="draft"/>
+                    <button name="action_start_rental" type="object" string="Start Rental"
+                            states="confirmed"/>
+                    <button name="action_complete_rental" type="object" string="Complete"
+                            states="in_progress"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="machinery_id"/>
+                            <field name="renter_member_id"/>
+                        </group>
+                        <group>
+                            <field name="rental_type"/>
+                            <field name="expected_cost"/>
+                            <field name="actual_cost"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="actual_end_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_cooperative_root" name="Cooperative Management"
+              parent="farm_multi_farm.menu_multi_farm_root"
+              sequence="10"/>
+
+    <menuitem id="menu_cooperative_members" name="Members"
+              parent="menu_cooperative_root"
+              action="action_cooperative_member_list"
+              sequence="10"/>
+
+    <menuitem id="menu_cooperative_shares" name="Shares & Dividends"
+              parent="menu_cooperative_root"
+              sequence="20">
+        <menuitem id="menu_share_transactions" name="Share Transactions"
+                  action="action_share_transaction_list"
+                  sequence="10"/>
+        <menuitem id="menu_dividend_distributions" name="Dividend Distributions"
+                  action="action_dividend_distribution_list"
+                  sequence="20"/>
+    </menuitem>
+
+    <menuitem id="menu_internal_credit" name="Internal Credit"
+              parent="menu_cooperative_root"
+              action="action_internal_credit_list"
+              sequence="30"/>
+
+    <menuitem id="menu_shared_machinery" name="Shared Machinery"
+              parent="menu_cooperative_root"
+              sequence="40">
+        <menuitem id="menu_shared_machinery_pools" name="Machinery Pools"
+                  action="action_shared_machinery_pool_list"
+                  sequence="10"/>
+        <menuitem id="menu_machinery_rentals" name="Machinery Rentals"
+                  action="action_machinery_rental_list"
+                  sequence="20"/>
+    </menuitem>
+
+    <!-- Actions -->
+    <record id="action_cooperative_member_list" model="ir.actions.act_window">
+        <field name="name">Cooperative Members</field>
+        <field name="res_model">cooperative.member</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add Cooperative Members
+            </p>
+            <p>
+                Manage cooperative members, their shares, and credit arrangements.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_share_transaction_list" model="ir.actions.act_window">
+        <field name="name">Share Transactions</field>
+        <field name="res_model">share.transaction</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_dividend_distribution_list" model="ir.actions.act_window">
+        <field name="name">Dividend Distributions</field>
+        <field name="res_model">dividend.distribution</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_internal_credit_list" model="ir.actions.act_window">
+        <field name="name">Internal Credits</field>
+        <field name="res_model">internal.credit</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_shared_machinery_pool_list" model="ir.actions.act_window">
+        <field name="name">Shared Machinery</field>
+        <field name="res_model">shared.machinery.pool</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_machinery_rental_list" model="ir.actions.act_window">
+        <field name="name">Machinery Rentals</field>
+        <field name="res_model">machinery.rental</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

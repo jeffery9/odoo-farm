@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Quality Control Standard Tree View -->
+    <record id="view_quality_control_standard_tree" model="ir.ui.view">
+        <field name="name">quality.control.standard.tree</field>
+        <field name="model">quality.control.standard</field>
+        <field name="arch" type="xml">
+            <tree string="Quality Control Standards">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="cooperative_id"/>
+                <field name="product_category_id"/>
+                <field name="quality_threshold"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Quality Control Standard Form View -->
+    <record id="view_quality_control_standard_form" model="ir.ui.view">
+        <field name="name">quality.control.standard.form</field>
+        <field name="model">quality.control.standard</field>
+        <field name="arch" type="xml">
+            <form string="Quality Control Standard">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="cooperative_id"/>
+                        </group>
+                        <group>
+                            <field name="product_category_id"/>
+                            <field name="quality_threshold"/>
+                            <field name="is_active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="certification_required"/>
+                        <field name="certification_standard"/>
+                    </group>
+                    <field name="inspection_criteria"/>
+                    <field name="description"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Product Certification Tree View -->
+    <record id="view_product_certification_tree" model="ir.ui.view">
+        <field name="name">product.certification.tree</field>
+        <field name="model">product.certification</field>
+        <field name="arch" type="xml">
+            <tree string="Product Certifications" decoration-success="is_certified==True" decoration-danger="is_certified==False">
+                <field name="name"/>
+                <field name="cooperative_id"/>
+                <field name="member_id"/>
+                <field name="product_id"/>
+                <field name="quality_score"/>
+                <field name="is_certified"/>
+                <field name="expiry_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Joint Procurement Tree View -->
+    <record id="view_joint_procurement_tree" model="ir.ui.view">
+        <field name="name">joint.procurement.tree</field>
+        <field name="model">joint.procurement</field>
+        <field name="arch" type="xml">
+            <tree string="Joint Procurements" decoration-info="state=='confirmed'" decoration-success="state=='completed'" decoration-muted="state=='cancelled'">
+                <field name="name"/>
+                <field name="cooperative_id"/>
+                <field name="supplier_id"/>
+                <field name="procurement_date"/>
+                <field name="total_amount"/>
+                <field name="markup_rate"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Joint Procurement Form View -->
+    <record id="view_joint_procurement_form" model="ir.ui.view">
+        <field name="name">joint.procurement.form</field>
+        <field name="model">joint.procurement</field>
+        <field name="arch" type="xml">
+            <form string="Joint Procurement">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"
+                            states="draft"/>
+                    <button name="action_complete" type="object" string="Complete"
+                            states="confirmed,in_progress"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="cooperative_id"/>
+                            <field name="procurement_date"/>
+                        </group>
+                        <group>
+                            <field name="supplier_id"/>
+                            <field name="total_amount"/>
+                            <field name="markup_rate"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="procurement_type"/>
+                    </group>
+                    <field name="description"/>
+                    <notebook>
+                        <page string="Procurement Lines" name="lines">
+                            <field name="procurement_lines">
+                                <tree editable="top">
+                                    <field name="member_id"/>
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_price"/>
+                                    <field name="member_amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Settlement Lines" name="settlements">
+                            <field name="settlement_lines"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Internal Marketplace Tree View -->
+    <record id="view_internal_marketplace_tree" model="ir.ui.view">
+        <field name="name">internal.marketplace.tree</field>
+        <field name="model">internal.marketplace</field>
+        <field name="arch" type="xml">
+            <tree string="Internal Marketplace" decoration-info="state=='open'" decoration-success="state=='completed'" decoration-muted="state=='cancelled'">
+                <field name="name"/>
+                <field name="supplier_member_id"/>
+                <field name="listing_type"/>
+                <field name="product_id"/>
+                <field name="quantity"/>
+                <field name="unit_price"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Procurement Planning Tree View -->
+    <record id="view_procurement_planning_tree" model="ir.ui.view">
+        <field name="name">procurement.planning.tree</field>
+        <field name="model">procurement.planning</field>
+        <field name="arch" type="xml">
+            <tree string="Procurement Planning" decoration-info="state=='confirmed'" decoration-success="state=='executed'" decoration-muted="state=='cancelled'">
+                <field name="name"/>
+                <field name="cooperative_id"/>
+                <field name="planning_date"/>
+                <field name="planning_period"/>
+                <field name="season"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Agri Service Tree View -->
+    <record id="view_agri_service_tree" model="ir.ui.view">
+        <field name="name">agri.service.tree</field>
+        <field name="model">agri.service</field>
+        <field name="arch" type="xml">
+            <tree string="Agricultural Services" decoration-info="is_active==True" decoration-muted="is_active==False">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="provider_member_id"/>
+                <field name="service_category"/>
+                <field name="capacity"/>
+                <field name="unit_rate"/>
+                <field name="available_from"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Service Order Tree View -->
+    <record id="view_service_order_tree" model="ir.ui.view">
+        <field name="name">service.order.tree</field>
+        <field name="model">service.order</field>
+        <field name="arch" type="xml">
+            <tree string="Service Orders" decoration-info="state=='confirmed'" decoration-success="state=='completed'" decoration-muted="state=='cancelled'">
+                <field name="name"/>
+                <field name="service_id"/>
+                <field name="requester_member_id"/>
+                <field name="required_date"/>
+                <field name="total_amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Internal Loan Tree View -->
+    <record id="view_internal_loan_tree" model="ir.ui.view">
+        <field name="name">internal.loan.tree</field>
+        <field name="model">internal.loan</field>
+        <field name="arch" type="xml">
+            <tree string="Internal Loans" decoration-info="state=='disbursed'" decoration-success="state=='repaid'" decoration-danger="state=='defaulted'">
+                <field name="name"/>
+                <field name="borrower_member_id"/>
+                <field name="lender_member_id"/>
+                <field name="loan_amount"/>
+                <field name="interest_rate"/>
+                <field name="loan_date"/>
+                <field name="maturity_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Subsidy Disbursement Tree View -->
+    <record id="view_subsidy_disbursement_tree" model="ir.ui.view">
+        <field name="name">subsidy.disbursement.tree</field>
+        <field name="model">subsidy.disbursement</field>
+        <field name="arch" type="xml">
+            <tree string="Subsidy Disbursements" decoration-info="state=='approved'" decoration-success="state=='distributed'" decoration-muted="state=='pending'">
+                <field name="name"/>
+                <field name="cooperative_id"/>
+                <field name="subsidy_source"/>
+                <field name="total_amount"/>
+                <field name="disbursement_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Cooperative Decision Tree View -->
+    <record id="view_cooperative_decision_tree" model="ir.ui.view">
+        <field name="name">cooperative.decision.tree</field>
+        <field name="model">cooperative.decision</field>
+        <field name="arch" type="xml">
+            <tree string="Cooperative Decisions" decoration-info="state=='confirmed'" decoration-success="state=='executed'" decoration-muted="state=='cancelled'">
+                <field name="name"/>
+                <field name="decision_type"/>
+                <field name="meeting_date"/>
+                <field name="actual_majority"/>
+                <field name="voting_result"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Multi-sign Process Tree View -->
+    <record id="view_multi_sign_process_tree" model="ir.ui.view">
+        <field name="name">multi.sign.process.tree</field>
+        <field name="model">multi.sign.process</field>
+        <field name="arch" type="xml">
+            <tree string="Multi-sign Processes" decoration-info="state=='in_progress'" decoration-success="state=='approved'" decoration-danger="state=='rejected'">
+                <field name="name"/>
+                <field name="process_type"/>
+                <field name="initiator_id"/>
+                <field name="required_signers"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_quality_certification" name="Quality & Certification"
+              parent="menu_cooperative_root"
+              sequence="50">
+        <menuitem id="menu_quality_standards" name="Quality Standards"
+                  action="action_quality_control_standard_list"
+                  sequence="10"/>
+        <menuitem id="menu_product_certifications" name="Product Certifications"
+                  action="action_product_certification_list"
+                  sequence="20"/>
+    </menuitem>
+
+    <menuitem id="menu_joint_procurement" name="Joint Procurement"
+              parent="menu_cooperative_root"
+              action="action_joint_procurement_list"
+              sequence="60"/>
+
+    <menuitem id="menu_internal_marketplace" name="Internal Marketplace"
+              parent="menu_cooperative_root"
+              action="action_internal_marketplace_list"
+              sequence="70"/>
+
+    <menuitem id="menu_procurement_planning" name="Procurement Planning"
+              parent="menu_cooperative_root"
+              action="action_procurement_planning_list"
+              sequence="80"/>
+
+    <menuitem id="menu_agri_services" name="Agricultural Services"
+              parent="menu_cooperative_root"
+              sequence="90">
+        <menuitem id="menu_agri_service_catalog" name="Service Catalog"
+                  action="action_agri_service_list"
+                  sequence="10"/>
+        <menuitem id="menu_service_orders" name="Service Orders"
+                  action="action_service_order_list"
+                  sequence="20"/>
+    </menuitem>
+
+    <menuitem id="menu_internal_finance" name="Internal Finance"
+              parent="menu_cooperative_root"
+              sequence="100">
+        <menuitem id="menu_internal_loans" name="Internal Loans"
+                  action="action_internal_loan_list"
+                  sequence="10"/>
+        <menuitem id="menu_subsidy_disbursements" name="Subsidy Disbursements"
+                  action="action_subsidy_disbursement_list"
+                  sequence="20"/>
+    </menuitem>
+
+    <menuitem id="menu_governance" name="Governance"
+              parent="menu_cooperative_root"
+              sequence="110">
+        <menuitem id="menu_cooperative_decisions" name="Cooperative Decisions"
+                  action="action_cooperative_decision_list"
+                  sequence="10"/>
+        <menuitem id="menu_multi_sign_processes" name="Multi-sign Processes"
+                  action="action_multi_sign_process_list"
+                  sequence="20"/>
+    </menuitem>
+
+    <!-- Actions -->
+    <record id="action_quality_control_standard_list" model="ir.actions.act_window">
+        <field name="name">Quality Control Standards</field>
+        <field name="res_model">quality.control.standard</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_product_certification_list" model="ir.actions.act_window">
+        <field name="name">Product Certifications</field>
+        <field name="res_model">product.certification</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_joint_procurement_list" model="ir.actions.act_window">
+        <field name="name">Joint Procurements</field>
+        <field name="res_model">joint.procurement</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_internal_marketplace_list" model="ir.actions.act_window">
+        <field name="name">Internal Marketplace</field>
+        <field name="res_model">internal.marketplace</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_procurement_planning_list" model="ir.actions.act_window">
+        <field name="name">Procurement Planning</field>
+        <field name="res_model">procurement.planning</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_agri_service_list" model="ir.actions.act_window">
+        <field name="name">Agricultural Services</field>
+        <field name="res_model">agri.service</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_service_order_list" model="ir.actions.act_window">
+        <field name="name">Service Orders</field>
+        <field name="res_model">service.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_internal_loan_list" model="ir.actions.act_window">
+        <field name="name">Internal Loans</field>
+        <field name="res_model">internal.loan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_subsidy_disbursement_list" model="ir.actions.act_window">
+        <field name="name">Subsidy Disbursements</field>
+        <field name="res_model">subsidy.disbursement</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_cooperative_decision_list" model="ir.actions.act_window">
+        <field name="name">Cooperative Decisions</field>
+        <field name="res_model">cooperative.decision</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_multi_sign_process_list" model="ir.actions.act_window">
+        <field name="name">Multi-sign Processes</field>
+        <field name="res_model">multi.sign.process</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

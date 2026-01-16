@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Cooperative Treasury Form View -->
+    <record id="view_cooperative_treasury_form" model="ir.ui.view">
+        <field name="name">cooperative.treasury.form</field>
+        <field name="model">cooperative.treasury</field>
+        <field name="arch" type="xml">
+            <form string="Cooperative Treasury">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="cooperative_id"/>
+                        </group>
+                        <group>
+                            <field name="current_balance"/>
+                            <field name="currency_id"/>
+                        </group>
+                    </group>
+                    <field name="description"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Internal Loan Tree View -->
+    <!-- Already created in quality_operations_views.xml -->
+
+    <!-- Subsidy Disbursement Tree View -->
+    <!-- Already created in quality_operations_views.xml -->
+
+    <!-- Cooperative Decision Tree View -->
+    <!-- Already created in quality_operations_views.xml -->
+
+    <!-- Multi-sign Process Tree View -->
+    <!-- Already created in quality_operations_views.xml -->
+
+    <!-- Additional menu items that may have been missed -->
+    <menuitem id="menu_treasury" name="Treasury"
+              parent="menu_internal_finance"
+              action="action_cooperative_treasury_list"
+              sequence="30"/>
+
+    <!-- Actions -->
+    <record id="action_cooperative_treasury_list" model="ir.actions.act_window">
+        <field name="name">Cooperative Treasury</field>
+        <field name="res_model">cooperative.treasury</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
