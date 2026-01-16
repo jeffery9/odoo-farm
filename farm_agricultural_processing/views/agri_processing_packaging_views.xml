@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Processing Packaging Tree View -->
+    <record id="view_agri_processing_packaging_tree" model="ir.ui.view">
+        <field name="name">agri.processing.packaging.tree</field>
+        <field name="model">agri.processing.packaging</field>
+        <field name="arch" type="xml">
+            <tree string="Processing Packaging Batches">
+                <field name="name"/>
+                <field name="production_id"/>
+                <field name="package_type"/>
+                <field name="box_barcode"/>
+                <field name="total_items"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Processing Packaging Form View -->
+    <record id="view_agri_processing_packaging_form" model="ir.ui.view">
+        <field name="name">agri.processing.packaging.form</field>
+        <field name="model">agri.processing.packaging</field>
+        <field name="arch" type="xml">
+            <form string="Processing Packaging Batch">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="production_id"/>
+                            <field name="package_type"/>
+                        </group>
+                        <group>
+                            <field name="parent_package_id"/>
+                            <field name="total_items"/>
+                        </group>
+                    </group>
+                    <group string="Barcode Information">
+                        <field name="individual_barcodes" widget="text"/>
+                        <field name="box_barcode"/>
+                        <field name="pallet_barcode"/>
+                    </group>
+                    <group string="Contained Lots">
+                        <field name="contained_lot_ids" widget="many2many_tags"/>
+                    </group>
+                    <notebook>
+                        <page string="Child Packages" name="child_packages">
+                            <field name="child_packages">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="package_type"/>
+                                    <field name="box_barcode"/>
+                                    <field name="total_items"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
