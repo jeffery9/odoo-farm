@@ -54,13 +54,13 @@ class TestUXIntegration(TransactionCase):
         """Test contextual help retrieval logic"""
         help_record = self.ContextualHelp.create({
             'name': 'Crop Help',
-            'model_name': 'farm.crop',
+            'model_name': 'farm.crop.production',
             'view_type': 'form',
             'help_content': '<p>How to grow crops</p>',
             'is_active': True
         })
         
-        help_data = self.env['accessibility.integration'].get_contextual_help_data('farm.crop', 'form')
+        help_data = self.env['accessibility.integration'].get_contextual_help_data('farm.crop.production', 'form')
         self.assertTrue(len(help_data) > 0)
         self.assertEqual(help_data[0]['name'], 'Crop Help')
 
