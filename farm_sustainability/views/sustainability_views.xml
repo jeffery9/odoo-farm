@@ -2,8 +2,8 @@
 <odoo>
     <!-- 养分投入趋势图 [US-08-03] -->
     <record id="agricultural_campaign_view_graph_sustainability" model="ir.ui.view">
-        <field name="name">agricultural.campaign.graph.sustainability</field>
-        <field name="model">agricultural.campaign</field>
+        <field name="name">farm.agricultural.campaign.graph.sustainability</field>
+        <field name="model">farm.agricultural.campaign</field>
         <field name="arch" type="xml">
             <graph string="Nutrient Reduction Trends" type="bar">
                 <field name="name" type="row"/>
@@ -16,7 +16,7 @@
 
     <record id="action_farm_sustainability_dashboard" model="ir.actions.act_window">
         <field name="name">Sustainability Dashboard</field>
-        <field name="res_model">agricultural.campaign</field>
+        <field name="res_model">farm.agricultural.campaign</field>
         <field name="view_mode">list,graph,pivot</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -27,8 +27,8 @@
 
     <!-- 生产季列表页增加减量化展示 -->
     <record id="agricultural_campaign_view_tree_sustainability" model="ir.ui.view">
-        <field name="name">agricultural.campaign.list.sustainability</field>
-        <field name="model">agricultural.campaign</field>
+        <field name="name">farm.agricultural.campaign.list.sustainability</field>
+        <field name="model">farm.agricultural.campaign</field>
         <field name="inherit_id" ref="farm_operation.agricultural_campaign_view_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='is_active']" position="after">
@@ -62,8 +62,8 @@
     <menuitem id="menu_sustainability_dashboard" name="Impact Dashboard" parent="menu_sustainability_root" action="action_farm_sustainability_dashboard" sequence="10"/>
     <menuitem id="menu_ecological_activity" name="Ecological Records" parent="menu_sustainability_root" action="action_farm_ecological_activity" sequence="20"/>
     <record id="agricultural_campaign_view_form_sustainability" model="ir.ui.view">
-        <field name="name">agricultural.campaign.form.sustainability</field>
-        <field name="model">agricultural.campaign</field>
+        <field name="name">farm.agricultural.campaign.form.sustainability</field>
+        <field name="model">farm.agricultural.campaign</field>
         <field name="inherit_id" ref="farm_operation.agricultural_campaign_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
