@@ -6,7 +6,7 @@ class TestFarmCostAccounting(TransactionCase):
         super(TestFarmCostAccounting, self).setUp()
         self.Task = self.env['project.task']
         self.AnalyticAccount = self.env['account.analytic.account']
-        self.Campaign = self.env['agricultural.campaign'].create({'name': '2026 Test Season'})
+        self.Campaign = self.env['farm.agricultural.campaign'].create({'name': '2026 Test Season'})
 
     def test_01_automatic_analytic_account_creation(self):
         """ 测试创建生产任务时自动生成辅助核算账户 [US-04-02] """
