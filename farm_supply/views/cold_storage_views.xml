@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Cold Storage Reading Tree View -->
+    <record id="view_cold_storage_reading_tree" model="ir.ui.view">
+        <field name="name">cold.storage.reading.tree</field>
+        <field name="model">cold.storage.reading</field>
+        <field name="arch" type="xml">
+            <tree string="Cold Storage Readings">
+                <field name="location_id"/>
+                <field name="temperature"/>
+                <field name="timestamp"/>
+                <field name="humidity"/>
+                <field name="energy_consumption"/>
+                <field name="is_alert"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Cold Storage Reading Form View -->
+    <record id="view_cold_storage_reading_form" model="ir.ui.view">
+        <field name="name">cold.storage.reading.form</field>
+        <field name="model">cold.storage.reading</field>
+        <field name="arch" type="xml">
+            <form string="Cold Storage Reading">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="location_id"/>
+                            <field name="temperature"/>
+                            <field name="timestamp"/>
+                        </group>
+                        <group>
+                            <field name="humidity"/>
+                            <field name="energy_consumption"/>
+                            <field name="is_alert"/>
+                        </group>
+                    </group>
+                    <field name="notes"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Menu Items for Cold Storage Management -->
+    <menuitem id="menu_cold_storage_readings" name="Cold Storage Readings"
+              parent="menu_supply_chain_root"
+              sequence="15">
+        <menuitem id="menu_cold_storage_reading_list" name="Temperature &amp; Energy Readings"
+                  action="action_cold_storage_reading_list"
+                  sequence="10"/>
+    </menuitem>
+
+    <!-- Actions -->
+    <record id="action_cold_storage_reading_list" model="ir.actions.act_window">
+        <field name="name">Cold Storage Readings</field>
+        <field name="res_model">cold.storage.reading</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

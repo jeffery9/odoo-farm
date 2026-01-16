@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Shelf Life Prediction Tree View -->
+    <record id="view_shelf_life_prediction_tree" model="ir.ui.view">
+        <field name="name">shelf.life.prediction.tree</field>
+        <field name="model">shelf.life.prediction</field>
+        <field name="arch" type="xml">
+            <tree string="Shelf Life Predictions">
+                <field name="name"/>
+                <field name="lot_id"/>
+                <field name="product_id"/>
+                <field name="initial_shelf_life"/>
+                <field name="predicted_shelf_life"/>
+                <field name="current_temperature"/>
+                <field name="accumulated_temperature_deviation"/>
+                <field name="is_warning_triggered"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Shelf Life Prediction Form View -->
+    <record id="view_shelf_life_prediction_form" model="ir.ui.view">
+        <field name="name">shelf.life.prediction.form</field>
+        <field name="model">shelf.life.prediction</field>
+        <field name="arch" type="xml">
+            <form string="Shelf Life Prediction">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="lot_id"/>
+                            <field name="product_id"/>
+                        </group>
+                        <group>
+                            <field name="initial_shelf_life"/>
+                            <field name="predicted_shelf_life"/>
+                            <field name="quality_warning_threshold"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="current_temperature"/>
+                        <field name="accumulated_temperature_deviation"/>
+                        <field name="is_warning_triggered"/>
+                    </group>
+                    <notebook>
+                        <page string="Temperature Readings" name="readings">
+                            <field name="temperature_readings">
+                                <tree editable="top">
+                                    <field name="temperature"/>
+                                    <field name="timestamp"/>
+                                    <field name="location_id"/>
+                                    <field name="humidity"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Precooling Process Tree View -->
+    <record id="view_precooling_process_tree" model="ir.ui.view">
+        <field name="name">precooling.process.tree</field>
+        <field name="model">precooling.process</field>
+        <field name="arch" type="xml">
+            <tree string="Pre-cooling Processes">
+                <field name="name"/>
+                <field name="lot_id"/>
+                <field name="product_id"/>
+                <field name="initial_temperature"/>
+                <field name="target_temperature"/>
+                <field name="cooling_status"/>
+                <field name="can_proceed_to_warehouse"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Precooling Process Form View -->
+    <record id="view_precooling_process_form" model="ir.ui.view">
+        <field name="name">precooling.process.form</field>
+        <field name="model">precooling.process</field>
+        <field name="arch" type="xml">
+            <form string="Pre-cooling Process">
+                <header>
+                    <button name="action_start_cooling" type="object" string="Start Cooling" class="oe_highlight"
+                            states="pending"/>
+                    <button name="action_complete_cooling" type="object" string="Complete Cooling"
+                            states="cooling"/>
+                    <field name="cooling_status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="lot_id"/>
+                            <field name="product_id"/>
+                        </group>
+                        <group>
+                            <field name="initial_temperature"/>
+                            <field name="target_temperature"/>
+                            <field name="cooling_duration_hours"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="start_time"/>
+                        <field name="end_time"/>
+                        <field name="actual_duration_hours"/>
+                        <field name="can_proceed_to_warehouse"/>
+                    </group>
+                    <field name="cooling_notes"/>
+                    <notebook>
+                        <page string="Temperature Readings" name="readings">
+                            <field name="temperature_readings">
+                                <tree editable="top">
+                                    <field name="temperature"/>
+                                    <field name="timestamp"/>
+                                    <field name="humidity"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Quality Based Pricing Tree View -->
+    <record id="view_quality_based_pricing_tree" model="ir.ui.view">
+        <field name="name">quality.based.pricing.tree</field>
+        <field name="model">quality.based.pricing</field>
+        <field name="arch" type="xml">
+            <tree string="Quality-Based Pricing Rules" decoration-muted="active==False">
+                <field name="name"/>
+                <field name="product_category_id"/>
+                <field name="quality_attribute"/>
+                <field name="base_price"/>
+                <field name="premium_rate"/>
+                <field name="discount_rate"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Export Document Hub Tree View -->
+    <record id="view_export_document_hub_tree" model="ir.ui.view">
+        <field name="name">export.document.hub.tree</field>
+        <field name="model">export.document.hub</field>
+        <field name="arch" type="xml">
+            <tree string="Export Document Hub">
+                <field name="name"/>
+                <field name="export_order_id"/>
+                <field name="country_of_origin"/>
+                <field name="destination_country"/>
+                <field name="export_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Export Document Hub Form View -->
+    <record id="view_export_document_hub_form" model="ir.ui.view">
+        <field name="name">export.document.hub.form</field>
+        <field name="model">export.document.hub</field>
+        <field name="arch" type="xml">
+            <form string="Export Document Hub">
+                <header>
+                    <button name="action_generate_documents" type="object" string="Generate Documents" class="oe_highlight"
+                            states="draft,pending_approval,approved"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="export_order_id"/>
+                            <field name="export_date"/>
+                        </group>
+                        <group>
+                            <field name="country_of_origin"/>
+                            <field name="destination_country"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="phytosanitary_certificate_required"/>
+                        <field name="coo_certificate_required"/>
+                        <field name="quality_certificate_required"/>
+                    </group>
+                    <field name="batch_ids" widget="many2many_tags"/>
+                    <field name="notes"/>
+                    <notebook>
+                        <page string="Generated Documents" name="documents">
+                            <field name="generated_documents">
+                                <tree>
+                                    <field name="document_type"/>
+                                    <field name="name"/>
+                                    <field name="language"/>
+                                    <field name="generated_date"/>
+                                    <field name="is_signed"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Circular Asset Tracking Tree View -->
+    <record id="view_circular_asset_tracking_tree" model="ir.ui.view">
+        <field name="name">circular.asset.tracking.tree</field>
+        <field name="model">circular.asset.tracking</field>
+        <field name="arch" type="xml">
+            <tree string="Circular Asset Tracking">
+                <field name="name"/>
+                <field name="asset_type"/>
+                <field name="asset_serial"/>
+                <field name="current_status"/>
+                <field name="current_location"/>
+                <field name="assigned_to_partner"/>
+                <field name="overdue_days"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Circular Asset Tracking Form View -->
+    <record id="view_circular_asset_tracking_form" model="ir.ui.view">
+        <field name="name">circular.asset.tracking.form</field>
+        <field name="model">circular.asset.tracking</field>
+        <field name="arch" type="xml">
+            <form string="Circular Asset Tracking">
+                <header>
+                    <field name="current_status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="asset_type"/>
+                            <field name="asset_serial"/>
+                        </group>
+                        <group>
+                            <field name="purchase_date"/>
+                            <field name="purchase_price"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="current_location"/>
+                        <field name="current_status"/>
+                    </group>
+                    <group string="Assignment Information" invisible="current_status != 'in_use'">
+                        <field name="assigned_to_partner"/>
+                        <field name="assigned_date"/>
+                        <field name="due_return_date"/>
+                        <field name="actual_return_date"/>
+                    </group>
+                    <group>
+                        <field name="rental_cost_per_day"/>
+                        <field name="total_rental_income"/>
+                        <field name="overdue_days"/>
+                    </group>
+                    <field name="description"/>
+                    <notebook>
+                        <page string="Rental Agreements" name="agreements">
+                            <field name="rental_agreements">
+                                <tree editable="top">
+                                    <field name="partner_id"/>
+                                    <field name="agreement_date"/>
+                                    <field name="rental_start_date"/>
+                                    <field name="rental_end_date"/>
+                                    <field name="daily_rate"/>
+                                    <field name="total_income"/>
+                                    <field name="status"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_supply_chain_root" name="Supply Chain Management"
+              parent="farm_supply.menu_supply_root"
+              sequence="20"/>
+
+    <menuitem id="menu_shelf_life" name="Shelf Life Management"
+              parent="menu_supply_chain_root"
+              sequence="10">
+        <menuitem id="menu_shelf_life_predictions" name="Shelf Life Predictions"
+                  action="action_shelf_life_prediction_list"
+                  sequence="10"/>
+    </menuitem>
+
+    <menuitem id="menu_precooling" name="Pre-cooling Management"
+              parent="menu_supply_chain_root"
+              sequence="20">
+        <menuitem id="menu_precooling_processes" name="Pre-cooling Processes"
+                  action="action_precooling_process_list"
+                  sequence="10"/>
+    </menuitem>
+
+    <menuitem id="menu_quality_pricing" name="Quality-Based Pricing"
+              parent="menu_supply_chain_root"
+              action="action_quality_based_pricing_list"
+              sequence="30"/>
+
+    <menuitem id="menu_export_documents" name="Export Documents"
+              parent="menu_supply_chain_root"
+              action="action_export_document_hub_list"
+              sequence="40"/>
+
+    <menuitem id="menu_circular_assets" name="Circular Assets"
+              parent="menu_supply_chain_root"
+              action="action_circular_asset_tracking_list"
+              sequence="50"/>
+
+    <!-- Actions -->
+    <record id="action_shelf_life_prediction_list" model="ir.actions.act_window">
+        <field name="name">Shelf Life Predictions</field>
+        <field name="res_model">shelf.life.prediction</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_precooling_process_list" model="ir.actions.act_window">
+        <field name="name">Pre-cooling Processes</field>
+        <field name="res_model">precooling.process</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_quality_based_pricing_list" model="ir.actions.act_window">
+        <field name="name">Quality-Based Pricing Rules</field>
+        <field name="res_model">quality.based.pricing</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_export_document_hub_list" model="ir.actions.act_window">
+        <field name="name">Export Document Hub</field>
+        <field name="res_model">export.document.hub</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_circular_asset_tracking_list" model="ir.actions.act_window">
+        <field name="name">Circular Asset Tracking</field>
+        <field name="res_model">circular.asset.tracking</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

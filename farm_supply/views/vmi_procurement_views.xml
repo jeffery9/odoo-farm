@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- VMI Sensor Reading Tree View -->
+    <record id="view_vmi_sensor_reading_tree" model="ir.ui.view">
+        <field name="name">vmi.sensor.reading.tree</field>
+        <field name="model">vmi.sensor.reading</field>
+        <field name="arch" type="xml">
+            <tree string="VMI Sensor Readings">
+                <field name="vmi_config_id"/>
+                <field name="product_id"/>
+                <field name="sensor_id"/>
+                <field name="quantity"/>
+                <field name="timestamp"/>
+                <field name="temperature"/>
+                <field name="humidity"/>
+                <field name="is_valid_reading"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- VMI Sensor Reading Form View -->
+    <record id="view_vmi_sensor_reading_form" model="ir.ui.view">
+        <field name="name">vmi.sensor.reading.form</field>
+        <field name="model">vmi.sensor.reading</field>
+        <field name="arch" type="xml">
+            <form string="VMI Sensor Reading">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="vmi_config_id"/>
+                            <field name="product_id"/>
+                        </group>
+                        <group>
+                            <field name="sensor_id"/>
+                            <field name="quantity"/>
+                            <field name="unit_of_measure"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="timestamp"/>
+                        <field name="temperature"/>
+                        <field name="humidity"/>
+                        <field name="is_valid_reading"/>
+                    </group>
+                    <field name="notes"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Joint Procurement Order Tree View -->
+    <record id="view_joint_procurement_order_tree" model="ir.ui.view">
+        <field name="name">joint.procurement.order.tree</field>
+        <field name="model">joint.procurement.order</field>
+        <field name="arch" type="xml">
+            <tree string="Joint Procurement Orders">
+                <field name="coop_config_id"/>
+                <field name="product_id"/>
+                <field name="requested_quantity"/>
+                <field name="unit_of_measure"/>
+                <field name="requested_by_farm"/>
+                <field name="status"/>
+                <field name="cost_per_farm"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Joint Procurement Order Form View -->
+    <record id="view_joint_procurement_order_form" model="ir.ui.view">
+        <field name="name">joint.procurement.order.form</field>
+        <field name="model">joint.procurement.order</field>
+        <field name="arch" type="xml">
+            <form string="Joint Procurement Order">
+                <header>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="coop_config_id"/>
+                            <field name="product_id"/>
+                            <field name="unit_of_measure"/>
+                        </group>
+                        <group>
+                            <field name="requested_quantity"/>
+                            <field name="cost_per_farm"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="requested_by_farm"/>
+                        <field name="total_cost"/>
+                    </group>
+                    <notebook>
+                        <page string="Procurement Orders" name="procurement_orders">
+                            <field name="procurement_orders">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="partner_id"/>
+                                    <field name="date_order"/>
+                                    <field name="amount_total"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Menu Items for Additional Management -->
+    <menuitem id="menu_vmi_sensor_readings" name="VMI Sensor Readings"
+              parent="menu_vmi_management"
+              sequence="20">
+        <menuitem id="menu_vmi_sensor_reading_list" name="Sensor Readings"
+                  action="action_vmi_sensor_reading_list"
+                  sequence="10"/>
+    </menuitem>
+
+    <menuitem id="menu_joint_procurement_orders" name="Joint Procurement Orders"
+              parent="menu_joint_procurement"
+              sequence="20">
+        <menuitem id="menu_joint_procurement_order_list" name="Procurement Orders"
+                  action="action_joint_procurement_order_list"
+                  sequence="10"/>
+    </menuitem>
+
+    <!-- Actions -->
+    <record id="action_vmi_sensor_reading_list" model="ir.actions.act_window">
+        <field name="name">VMI Sensor Readings</field>
+        <field name="res_model">vmi.sensor.reading</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_joint_procurement_order_list" model="ir.actions.act_window">
+        <field name="name">Joint Procurement Orders</field>
+        <field name="res_model">joint.procurement.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
