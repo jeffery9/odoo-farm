@@ -179,7 +179,7 @@ class StockLot(models.Model):
             ('expiration_date', '<=', expiring_date),
             ('product_id.type', '=', 'product'), # Only actual products
         ])
-        
+
         for lot in expiring_lots:
             # Check if an activity for this lot already exists
             existing_activity = self.env['mail.activity'].search([
@@ -203,5 +203,51 @@ class StockLot(models.Model):
                     'note': _('This lot is expiring soon. Ensure it is used before the expiration date to avoid waste.'),
                 })
                 _logger.info("Created activity for expiring lot %s", lot.name)
+
+        # Also check for expired lots (past expiration date) - additional functionality for US-04-04
+        self._check_expired_lots()
+        return True
+
+    def _check_expired_lots(self):
+        """ Check for expired lots and create urgent activity reminders. """
+        _logger.info("Running _check_expired_lots cron job...")
+        today = fields.Date.today()
+        # Find lots that have expired (expiration date is in the past)
+        expired_lots = self.search([
+            ('expiration_date', '!=', False),
+            ('expiration_date', '<', today),
+            ('product_id.type', '=', 'product'), # Only actual products
+        ])
+
+        for lot in expired_lots:
+            # Check if an urgent activity for this expired lot already exists
+            existing_urgent_activity = self.env['mail.activity'].search([
+                ('res_model_id', '=', self.env['ir.model']._get_id(self._name)),
+                ('res_id', '=', lot.id),
+                ('summary', 'ilike', _('Expired Lot')),
+                ('state', 'not in', ['done', 'canceled']) # Don't create if open activity exists
+            ], limit=1)
+
+            if not existing_urgent_activity:
+                # Create an urgent reminder activity for the warehouse manager to quarantine or dispose
+                self.env['mail.activity'].create({
+                    'res_model_id': self.env['ir.model']._get_id(self._name),
+                    'res_id': lot.id,
+                    'activity_type_id': self.env.ref('mail.mail_activity_data_todo').id,
+                    'summary': _('URGENT: Expired Lot: %s (%s) expired on %s. Quarantine required.') % (lot.product_id.display_name, lot.name, lot.expiration_date),
+                    'user_id': self.env.ref('stock.group_stock_user').users[0].id if self.env.ref('stock.group_stock_user').users else self.env.user.id,
+                    'date_deadline': today,
+                    'note': _('This lot has expired on %s. Immediate action required to quarantine or dispose of the expired inventory to prevent contamination or compliance issues.') % lot.expiration_date,
+                })
+                _logger.info("Created urgent activity for expired lot %s", lot.name)
+
+        return True
+
+    def _check_lot_expiry_before_use(self):
+        """ US-04-04: Check if a lot is expired before it's used in operations. """
+        today = fields.Date.today()
+        if self.expiration_date and self.expiration_date < today:
+            from odoo.exceptions import UserError
+            raise UserError(_("The lot '%s' is expired (expired on %s). It cannot be used in operations.") % (self.name, self.expiration_date))
         return True
 
