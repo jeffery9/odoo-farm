@@ -185,4 +185,4 @@ class PlantYieldRecord(models.Model):
     quality_grade = fields.Selection([
         ('a', 'Grade A'), ('b', 'Grade B'), ('c', 'Grade C')
     ], string="Quality Grade")
-    campaign_id = fields.Many2one('agricultural.campaign', string="Campaign/Season")
+    campaign_id = fields.Many2one('farm.agricultural.campaign', string="Campaign/Season")
