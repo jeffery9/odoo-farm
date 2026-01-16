@@ -23,7 +23,7 @@ class ProjectTask(models.Model):
        default='field_crops')
 
     campaign_id = fields.Many2one(
-        'agricultural.campaign',
+        'farm.agricultural.campaign',
         string="Campaign/Season",
         help="Link this production task to a specific season."
     )

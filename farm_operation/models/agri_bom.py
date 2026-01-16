@@ -1,39 +1,12 @@
 from odoo import models, fields, api
 
 class MrpBom(models.Model):
-    _inherit = 'mrp.bom'
+    _inherit = ['mrp.bom', 'farm.agricultural.bom.mixin']  # Use the shared BOM logic
 
-    # Ekylibre Mapping: Recipe Classification [US-Mapping]
-    agri_activity_type = fields.Selection([
-        ('feed', 'Feed Formula'),
-        ('fertilizer', 'Fertilizer Mix'),
-        ('planting', 'Planting Scheme'),
-        ('protection', 'Protection Mix')
-    ], string="Agri activity Type", help="Classify BOM as an agricultural recipe.")
-
-    application_stage = fields.Selection([
-        ('seedling', 'Seedling/Nursery'),
-        ('growing', 'Growing'),
-        ('harvest', 'Harvest'),
-        ('finishing', 'Finishing')
-    ], string="Application Stage")
 
 class MrpBomLine(models.Model):
-    _inherit = 'mrp.bom.line'
+    _inherit = ['mrp.bom.line', 'farm.agricultural.bom.line.mixin']  # Use the shared BOM line logic
 
-    # 稀释比例 [US-01-04]
-    dilution_ratio = fields.Float(
-        "Dilution Ratio (1:N)", 
-        default=0.0,
-        help="If set, the component quantity will be calculated as (Finished Qty / Ratio). E.g. 1:500."
-    )
-    
-    # 饲喂比例 [US-01-03]
-    feeding_ratio = fields.Float(
-        "Feeding Ratio (%)", 
-        default=0.0,
-        help="Percentage of total biomass (Count * Avg Weight) for daily feeding."
-    )
 
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
@@ -45,12 +18,12 @@ class MrpProduction(models.Model):
         for mo in self:
             # 尝试获取生物资产信息
             lot = mo.agri_task_id.biological_lot_id if hasattr(mo, 'agri_task_id') else False
-            
+
             for move in mo.move_raw_ids:
                 bom_line = mo.bom_id.bom_line_ids.filtered(lambda l: l.product_id == move.product_id)
                 if not bom_line:
                     continue
-                    
+
                 if bom_line.dilution_ratio > 0:
                     move.product_uom_qty = mo.product_qty / bom_line.dilution_ratio
                 elif bom_line.feeding_ratio > 0 and lot:
