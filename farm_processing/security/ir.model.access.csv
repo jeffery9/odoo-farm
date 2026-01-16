@@ -6,3 +6,4 @@ access_farm_package_user,farm.package,model_farm_package,base.group_user,1,1,1,1
 access_farm_bom_package_line_user,farm.bom.package.line,model_farm_bom_package_line,base.group_user,1,1,1,1
 access_farm_processing_bom,farm.processing.bom,model_farm_processing_bom,,1,1,1,1
 access_farm_processing_production,farm.processing.production,model_farm_processing_production,,1,1,1,1
+access_farm_processing_bom_line,farm.processing.bom.line,model_farm_processing_bom_line,,1,1,1,1

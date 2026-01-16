@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add ISL navigation button and indicator to MRP Production Form View -->
+    <record id="view_mrp_production_form_isl_nav" model="ir.ui.view">
+        <field name="name">mrp.production.form.isl.nav</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <div class="o_row" invisible="not isl_record_type">
+                    <field name="isl_record_type" widget="badge" decoration-info="isl_record_type"/>
+                </div>
+                <button name="action_view_isl_record"
+                        type="object"
+                        string="View ISL Record"
+                        class="btn-primary"
+                        invisible="not industry_type"/>
+            </header>
+        </field>
+    </record>
+
+    <!-- Add ISL navigation button and indicator to MRP BOM Form View -->
+    <record id="view_mrp_bom_form_isl_nav" model="ir.ui.view">
+        <field name="name">mrp.bom.form.isl.nav</field>
+        <field name="model">mr.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <div class="o_row" invisible="not isl_record_type">
+                    <field name="isl_record_type" widget="badge" decoration-info="isl_record_type"/>
+                </div>
+                <button name="action_view_isl_record"
+                        type="object"
+                        string="View ISL Record"
+                        class="btn-primary"
+                        invisible="not industry_type or industry_type == 'standard'"/>
+            </header>
+        </field>
+    </record>
+
+    <!-- Add ISL navigation button and indicator to Stock Lot Form View -->
+    <record id="view_stock_lot_form_isl_nav" model="ir.ui.view">
+        <field name="name">stock.lot.form.isl.nav</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <div class="o_row" invisible="not isl_record_type">
+                    <field name="isl_record_type" widget="badge" decoration-info="isl_record_type"/>
+                </div>
+                <button name="action_view_isl_record"
+                        type="object"
+                        string="View ISL Record"
+                        class="btn-primary"/>
+            </header>
+        </field>
+    </record>
+
+    <!-- Add ISL navigation to MRP BOM Line Tree View -->
+    <record id="view_mrp_bom_line_tree_isl_nav" model="ir.ui.view">
+        <field name="name">mrp.bom.line.tree.isl.nav</field>
+        <field name="model">mrp.bom.line</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_line_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="before">
+                <field name="isl_record_type" widget="badge" invisible="not isl_record_type" decoration-info="isl_record_type"/>
+                <button name="action_view_isl_record"
+                        type="object"
+                        string="ISL"
+                        class="btn-sm"
+                        invisible="not isl_record_type"
+                        title="View ISL Record"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add ISL navigation button and indicator to MRP BOM Line Form View -->
+    <record id="view_mrp_bom_line_form_isl_nav" model="ir.ui.view">
+        <field name="name">mrp.bom.line.form.isl.nav</field>
+        <field name="model">mrp.bom.line</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_line_form_view"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <div class="o_row" invisible="not isl_record_type">
+                    <field name="isl_record_type" widget="badge" decoration-info="isl_record_type"/>
+                </div>
+                <button name="action_view_isl_record"
+                        type="object"
+                        string="View ISL Record"
+                        class="btn-primary"
+                        invisible="not isl_record_type"/>
+            </header>
+        </field>
+    </record>
+</odoo>
