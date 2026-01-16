@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_production_lot_form_inherit_farm_v2" model="ir.ui.view">
-        <field name="name">stock.lot.form.inherit.farm.v2</field>
+    <record id="view_stock_lot_form_inherit_agri_v2" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.agri.v2</field>
         <field name="model">stock.lot</field>
         <field name="inherit_id" ref="stock.view_production_lot_form"/>
         <field name="arch" type="xml">
