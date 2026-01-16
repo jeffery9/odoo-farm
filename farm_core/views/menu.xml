@@ -70,7 +70,7 @@
 
     <!-- 安全管理根菜单 -->
     <menuitem id="menu_safety_root" 
-              name="Safety & Crisis" 
+              name="Safety &amp; Crisis" 
               parent="menu_farm_root" 
               sequence="40"/>
 
@@ -88,15 +88,21 @@
 
     <!-- 人力资源管理根菜单 -->
     <menuitem id="menu_hr_root" 
-              name="Labor & HR" 
+              name="Labor &amp; HR" 
               parent="menu_farm_root" 
               sequence="80"/>
 
     <!-- 财务管理根菜单 -->
-    <menuitem id="menu_finance_root" 
-              name="Finance & Costs" 
-              parent="menu_farm_root" 
+    <menuitem id="menu_finance_root"
+              name="Finance &amp; Costs"
+              parent="menu_farm_root"
               sequence="90"/>
+
+    <!-- 生物资产估值菜单 -->
+    <menuitem id="menu_farm_management"
+              name="Asset Management"
+              parent="menu_finance_root"
+              sequence="10"/>
 
     <!-- 多农场协同根菜单 -->
     <menuitem id="menu_multi_farm_root" 
