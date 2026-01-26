@@ -1,37 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_farm_loan_tree" model="ir.ui.view">
-        <field name="name">farm.loan.list</field>
-        <field name="model">farm.loan</field>
-        <field name="arch" type="xml">
-            <list string="Agricultural Loans">
-                <field name="name"/>
-                <field name="partner_id"/>
-                <field name="loan_type"/>
-                <field name="amount_principal"/>
-                <field name="state" widget="badge"/>
-            </list>
-        </field>
-    </record>
-
+    <!-- Farm Loan Form View -->
     <record id="view_farm_loan_form" model="ir.ui.view">
         <field name="name">farm.loan.form</field>
         <field name="model">farm.loan</field>
         <field name="arch" type="xml">
-            <form string="Loan Application">
+            <form string="Agricultural Loan">
                 <header>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,active,paid"/>
+                    <button name="action_submit_application" type="object" string="Submit Application" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_approve_loan" type="object" string="Approve" class="oe_highlight" invisible="state != 'submitted'"/>
+                    <button name="action_disburse_loan" type="object" string="Disburse" class="oe_highlight" invisible="state != 'approved'"/>
+                    <button name="action_mark_repaid" type="object" string="Mark Repaid" invisible="state != 'active'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,active,paid"/>
                 </header>
                 <sheet>
-                    <div class="oe_title">
-                        <h1><field name="name"/></h1>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
                     </div>
                     <group>
                         <group>
+                            <field name="name"/>
                             <field name="partner_id"/>
                             <field name="loan_type"/>
+                        </group>
+                        <group>
+                            <field name="credit_score" readonly="1"/>
+                            <field name="is_high_risk" readonly="1"/>
+                            <field name="risk_score" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Financial Terms">
+                        <group>
                             <field name="amount_principal"/>
-                            <field name="currency_id" invisible="1"/>
+                            <field name="amount_interest"/>
+                            <field name="currency_id"/>
+                        </group>
+                        <group>
+                            <field name="interest_rate"/>
+                            <field name="duration_months"/>
+                            <field name="repayment_frequency"/>
+                        </group>
+                    </group>
+                    <group string="Collateral">
+                        <field name="collateral_lot_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="collateral_value" readonly="1"/>
+                    </group>
+                    <group string="Repayment Tracking">
+                        <group>
+                            <field name="total_repaid" readonly="1"/>
+                            <field name="remaining_balance" readonly="1"/>
                         </group>
                         <group>
                             <field name="date_start"/>
@@ -39,10 +58,10 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Collateral" invisible="loan_type != 'biological'">
-                            <field name="collateral_lot_ids"/>
-                            <group class="oe_subtotal_footer">
-                                <field name="collateral_value"/>
+                        <page string="Credit Information">
+                            <group>
+                                <field name="credit_score_id" readonly="1"/>
+                                <field name="service_fees"/>
                             </group>
                         </page>
                     </notebook>
@@ -51,11 +70,305 @@
         </field>
     </record>
 
-    <record id="action_farm_loan" model="ir.actions.act_window">
-        <field name="name">Loans &amp; Credit</field>
-        <field name="res_model">farm.loan</field>
-        <field name="view_mode">list,form</field>
+    <!-- Farm Loan Tree View -->
+    <record id="view_farm_loan_tree" model="ir.ui.view">
+        <field name="name">farm.loan.tree</field>
+        <field name="model">farm.loan</field>
+        <field name="arch" type="xml">
+            <tree string="Agricultural Loans">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="loan_type"/>
+                <field name="amount_principal"/>
+                <field name="currency_id"/>
+                <field name="credit_score"/>
+                <field name="total_repaid"/>
+                <field name="remaining_balance"/>
+                <field name="state"/>
+            </tree>
+        </field>
     </record>
 
-    <menuitem id="menu_farm_finance_loan" name="Loans" parent="farm_financial.menu_farm_finance_root" action="action_farm_loan" sequence="30"/>
+    <!-- Risk Assessment Form View -->
+    <record id="view_farm_risk_assessment_form" model="ir.ui.view">
+        <field name="name">farm.risk.assessment.form</field>
+        <field name="model">farm.risk.assessment</field>
+        <field name="arch" type="xml">
+            <form string="Farm Risk Assessment">
+                <header>
+                    <button name="action_calculate_comprehensive_risk" type="object" string="Calculate Risk" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,completed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="assessment_date"/>
+                        </group>
+                        <group>
+                            <field name="credit_score_id"/>
+                            <field name="risk_score" readonly="1"/>
+                            <field name="overall_risk_rating" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Farm Characteristics">
+                        <group>
+                            <field name="farm_size"/>
+                            <field name="farming_years"/>
+                            <field name="annual_revenue"/>
+                        </group>
+                        <group>
+                            <field name="crop_variety_count"/>
+                            <field name="livestock_types"/>
+                            <field name="insurance_coverage_pct"/>
+                        </group>
+                    </group>
+                    <group string="Risk Scores">
+                        <group>
+                            <field name="diversification_score"/>
+                            <field name="soil_quality_score"/>
+                            <field name="irrigation_access"/>
+                        </group>
+                        <group>
+                            <field name="technology_adoption"/>
+                            <field name="market_access_score"/>
+                            <field name="credit_history_score"/>
+                        </group>
+                    </group>
+                    <group string="Financial Risk Factors">
+                        <group>
+                            <field name="debt_to_income_ratio"/>
+                            <field name="previous_losses"/>
+                        </group>
+                        <group>
+                            <field name="weather_risk_score"/>
+                            <field name="market_price_volatility"/>
+                        </group>
+                    </group>
+                    <group string="Loan Recommendations">
+                        <group>
+                            <field name="recommended_loan_amount"/>
+                            <field name="interest_rate_adjustment"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Risk Assessment Tree View -->
+    <record id="view_farm_risk_assessment_tree" model="ir.ui.view">
+        <field name="name">farm.risk.assessment.tree</field>
+        <field name="model">farm.risk.assessment</field>
+        <field name="arch" type="xml">
+            <tree string="Farm Risk Assessments">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="assessment_date"/>
+                <field name="risk_score"/>
+                <field name="overall_risk_rating"/>
+                <field name="recommended_loan_amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Supply Chain Finance Form View -->
+    <record id="view_supply_chain_finance_form" model="ir.ui.view">
+        <field name="name">farm.supply.chain.finance.form</field>
+        <field name="model">farm.supply.chain.finance</field>
+        <field name="arch" type="xml">
+            <form string="Supply Chain Finance">
+                <header>
+                    <button name="action_submit_application" type="object" string="Submit Application" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_approve_application" type="object" string="Approve" class="oe_highlight" invisible="state != 'submitted'"/>
+                    <button name="action_activate_service" type="object" string="Activate" class="oe_highlight" invisible="state != 'approved'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,active,completed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="buyer_id"/>
+                        </group>
+                        <group>
+                            <field name="sale_order_id"/>
+                            <field name="invoice_id"/>
+                        </group>
+                    </group>
+                    <group string="Financial Terms">
+                        <group>
+                            <field name="amount"/>
+                            <field name="advance_amount"/>
+                            <field name="currency_id"/>
+                        </group>
+                        <group>
+                            <field name="financing_percentage"/>
+                            <field name="interest_rate"/>
+                            <field name="duration_months"/>
+                        </group>
+                    </group>
+                    <group string="Terms and Conditions">
+                        <group>
+                            <field name="recourse_type"/>
+                            <field name="early_payment_discount"/>
+                        </group>
+                        <group>
+                            <field name="service_fees"/>
+                            <field name="risk_score" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Timeline">
+                        <field name="application_date"/>
+                        <field name="approval_date"/>
+                        <field name="maturity_date"/>
+                        <field name="payment_received"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Supply Chain Finance Tree View -->
+    <record id="view_supply_chain_finance_tree" model="ir.ui.view">
+        <field name="name">farm.supply.chain.finance.tree</field>
+        <field name="model">farm.supply.chain.finance</field>
+        <field name="arch" type="xml">
+            <tree string="Supply Chain Finance">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="amount"/>
+                <field name="advance_amount"/>
+                <field name="financing_percentage"/>
+                <field name="risk_score"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Input Financing Form View -->
+    <record id="view_input_financing_form" model="ir.ui.view">
+        <field name="name">farm.input.financing.form</field>
+        <field name="model">farm.input.financing</field>
+        <field name="arch" type="xml">
+            <form string="Input Financing">
+                <header>
+                    <button name="action_submit_application" type="object" string="Submit Application" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_approve_application" type="object" string="Approve" class="oe_highlight" invisible="state != 'submitted'"/>
+                    <button name="action_activate_service" type="object" string="Activate" class="oe_highlight" invisible="state != 'approved'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,active,completed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="input_type"/>
+                        </group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="supplier_id"/>
+                        </group>
+                    </group>
+                    <group string="Input Details">
+                        <group>
+                            <field name="quantity"/>
+                            <field name="unit_price"/>
+                            <field name="total_amount"/>
+                        </group>
+                        <group>
+                            <field name="collateral_input"/>
+                        </group>
+                    </group>
+                    <group string="Financial Terms">
+                        <group>
+                            <field name="amount_financed"/>
+                            <field name="currency_id"/>
+                            <field name="interest_rate"/>
+                        </group>
+                        <group>
+                            <field name="duration_months"/>
+                            <field name="repayment_method"/>
+                            <field name="repayment_percentage"/>
+                        </group>
+                    </group>
+                    <group string="Tracking">
+                        <group>
+                            <field name="delivery_status"/>
+                            <field name="usage_verification"/>
+                        </group>
+                        <group>
+                            <field name="application_date"/>
+                            <field name="approval_date"/>
+                            <field name="maturity_date"/>
+                        </group>
+                    </group>
+                    <group string="Risk">
+                        <field name="risk_score" readonly="1"/>
+                        <field name="service_fees"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Input Financing Tree View -->
+    <record id="view_input_financing_tree" model="ir.ui.view">
+        <field name="name">farm.input.financing.tree</field>
+        <field name="model">farm.input.financing</field>
+        <field name="arch" type="xml">
+            <tree string="Input Financing">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="input_type"/>
+                <field name="total_amount"/>
+                <field name="amount_financed"/>
+                <field name="risk_score"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_farm_loan" model="ir.actions.act_window">
+        <field name="name">Agricultural Loans</field>
+        <field name="res_model">farm.loan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_farm_risk_assessment" model="ir.actions.act_window">
+        <field name="name">Risk Assessments</field>
+        <field name="res_model">farm.risk.assessment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_farm_supply_chain_finance" model="ir.actions.act_window">
+        <field name="name">Supply Chain Finance</field>
+        <field name="res_model">farm.supply.chain.finance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_farm_input_financing" model="ir.actions.act_window">
+        <field name="name">Input Financing</field>
+        <field name="res_model">farm.input.financing</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_farm_finance_root" name="Financial Services" parent="farm_security.menu_farm_root" sequence="25"/>
+
+    <menuitem id="menu_farm_loans" name="Loans" parent="menu_farm_finance_root" sequence="10"/>
+    <menuitem id="menu_farm_loan" name="Agricultural Loans" parent="menu_farm_loans" action="action_farm_loan" sequence="10"/>
+
+    <menuitem id="menu_farm_risk" name="Risk Management" parent="menu_farm_finance_root" sequence="20"/>
+    <menuitem id="menu_farm_risk_assessment" name="Risk Assessments" parent="menu_farm_risk" action="action_farm_risk_assessment" sequence="10"/>
+
+    <menuitem id="menu_farm_supply_chain" name="Supply Chain Finance" parent="menu_farm_finance_root" sequence="30"/>
+    <menuitem id="menu_farm_supply_chain_finance" name="Supply Chain Finance" parent="menu_farm_supply_chain" action="action_farm_supply_chain_finance" sequence="10"/>
+
+    <menuitem id="menu_farm_input_finance" name="Input Financing" parent="menu_farm_finance_root" sequence="40"/>
+    <menuitem id="menu_farm_input_financing" name="Input Financing" parent="menu_farm_input_finance" action="action_farm_input_financing" sequence="10"/>
+
 </odoo>
