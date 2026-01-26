@@ -22,7 +22,7 @@
     <!-- Add ISL navigation button and indicator to MRP BOM Form View -->
     <record id="view_mrp_bom_form_isl_nav" model="ir.ui.view">
         <field name="name">mrp.bom.form.isl.nav</field>
-        <field name="model">mr.bom</field>
+        <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
         <field name="arch" type="xml">
             <header position="inside">

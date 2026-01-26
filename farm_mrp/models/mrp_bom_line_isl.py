@@ -27,62 +27,70 @@ class MrpBomLine(models.Model):
     def create(self, vals_list):
         lines = super(MrpBomLine, self).create(vals_list)
         for line in lines:
-            isl_model = line._get_isl_model()
-            if isl_model:
-                # Check if ISL record already exists (to avoid duplicates if created from ISL side)
-                existing = self.env[isl_model].search([('bom_line_id', '=', line.id)], limit=1)
-                if not existing:
-                    self.env[isl_model].create({'bom_line_id': line.id})
+            # Use farm_isl's redirection mechanism
+            redirector = self.env['isl.model.redirector']
+            # For BOM lines, we need to think differently - they are linked to BOMs
+            # The ISL record will be automatically created by the ISL redirection utility for the parent BOM
+            # If needed, BOM line ISL records can be created separately when needed
         return lines
 
     def get_formview_action(self, access_uid=None):
         """ Transparently redirect to ISL view if available for BOM line. """
-        res = super(MrpBomLine, self).get_formview_action(access_uid=access_uid)
-        isl_model = self._get_isl_model()
-        if isl_model:
-            isl_record = self.env[isl_model].search([('bom_line_id', '=', self.id)], limit=1)
-            if isl_record:
-                res.update({
-                    'res_model': isl_model,
-                    'res_id': isl_record.id,
-                    'context': dict(self.env.context, isl_active=True)
-                })
-        return res
+        # Use the centralized ISL redirection mechanism from farm_isl
+        # Note: BOM line ISL redirection might be more complex as it depends on parent context
+        redirector = self.env['isl.model.redirector']
+        isl_record = redirector.get_isl_record('mrp.bom.line', self.id)
+
+        if isl_record:
+            return {
+                'type': 'ir.actions.act_window',
+                'res_model': isl_record._name,
+                'res_id': isl_record.id,
+                'view_mode': 'form',
+                'context': dict(self.env.context, isl_active=True)
+            }
+        # If no ISL record exists, use the default behavior
+        return super(MrpBomLine, self).get_formview_action(access_uid=access_uid)
 
     def write(self, vals):
         # Check if any records have ISL counterparts and if any protected fields are being modified
         if not self.env.context.get('bypass_isl_restrictions'):
-            # Identify protected fields that should only be modified through ISL
-            protected_fields = {
-                'farm.livestock.bom.line': ['dilution_ratio', 'feeding_ratio', 'feed_purpose'],
-                'farm.processing.bom.line': ['blend_ratio', 'additive_type', 'processing_role'],
-                'farm.aquaculture.bom.line': ['dose_rate_ppm', 'application_method', 'water_condition'],
-                'farm.crop.bom.line': ['application_rate', 'spray_volume', 'weather_condition']
-            }
+            # Use centralized ISL infrastructure to get corresponding ISL record
+            redirector = self.env['isl.model.redirector']
 
             for record in self:
-                isl_model = record._get_isl_model()
-                if isl_model and isl_model in protected_fields:
-                    isl_record = self.env[isl_model].search([('bom_line_id', '=', record.id)], limit=1)
-                    if isl_record:
-                        # Check if protected fields are being modified
-                        for field in protected_fields[isl_model]:
-                            if field in vals:
-                                raise UserError(_(
-                                    "Field '%s' is managed by the specialized ISL interface. Please modify through the %s interface."
-                                ) % (field.replace('_', ' ').title(), isl_model.replace('farm.', '').replace('.bom.line', '').replace('.', ' ').title()))
+                isl_record = redirector.get_isl_record('mrp.bom.line', record.id)
+                if isl_record:
+                    # Check for protected fields depending on the specific ISL model type
+                    protected_fields = []
+                    isl_model_name = isl_record._name
+
+                    if 'livestock' in isl_model_name:
+                        protected_fields = ['dilution_ratio', 'feeding_ratio', 'feed_purpose']
+                    elif 'processing' in isl_model_name:
+                        protected_fields = ['blend_ratio', 'additive_type', 'processing_role']
+                    elif 'aquaculture' in isl_model_name:
+                        protected_fields = ['dose_rate_ppm', 'application_method', 'water_condition']
+                    elif 'crop' in isl_model_name:
+                        protected_fields = ['application_rate', 'spray_volume', 'weather_condition']
+
+                    # Check if protected fields are being modified
+                    for field in protected_fields:
+                        if field in vals:
+                            raise UserError(_(
+                                "Field '%s' is managed by the specialized ISL interface. Please modify through the %s interface."
+                            ) % (field.replace('_', ' ').title(), isl_model_name.replace('farm.', '').replace('.bom.line', '').replace('.', ' ').title()))
 
         return super(MrpBomLine, self).write(vals)
 
     def unlink(self):
         # Check if any records have ISL counterparts - prevent direct deletion
         if not self.env.context.get('bypass_isl_restrictions'):
+            redirector = self.env['isl.model.redirector']
             for record in self:
-                isl_model = record._get_isl_model()
-                if isl_model:
-                    isl_record = self.env[isl_model].search([('bom_line_id', '=', record.id)], limit=1)
-                    if isl_record:
-                        raise UserError(_("Cannot directly delete base BOM line when ISL record exists. Please delete through the specialized ISL interface."))
+                isl_record = redirector.get_isl_record('mrp.bom.line', record.id)
+                if isl_record:
+                    raise UserError(_("Cannot directly delete base BOM line when ISL record exists. Please delete through the specialized ISL interface."))
 
         # Allow deletion if no ISL records exist or if bypass flag is set
         return super(MrpBomLine, self).unlink()
@@ -93,41 +101,43 @@ class MrpBomLine(models.Model):
     def _compute_isl_record_type(self):
         """ Compute the ISL record type if one exists for BOM line """
         for record in self:
-            isl_model = record._get_isl_model()
-            if isl_model:
-                isl_record = self.env[isl_model].search([('bom_line_id', '=', record.id)], limit=1)
-                if isl_record:
-                    # Extract human-readable name from model name
-                    if 'livestock' in isl_model:
-                        record.isl_record_type = 'Livestock'
-                    elif 'processing' in isl_model:
-                        record.isl_record_type = 'Processing'
-                    elif 'aquaculture' in isl_model:
-                        record.isl_record_type = 'Aquaculture'
-                    elif 'crop' in isl_model:
-                        record.isl_record_type = 'Crop'
-                    else:
-                        record.isl_record_type = isl_model.replace('farm.', '').replace('.bom.line', '').replace('.', ' ').title()
+            # Use the centralized ISL redirection mechanism from farm_isl
+            redirector = self.env['isl.model.redirector']
+            isl_record = redirector.get_isl_record('mrp.bom.line', record.id)
+            if isl_record:
+                # Extract human-readable name from model name
+                model_name = isl_record._name
+                if 'livestock' in model_name:
+                    record.isl_record_type = 'Livestock'
+                elif 'processing' in model_name:
+                    record.isl_record_type = 'Processing'
+                elif 'aquaculture' in model_name:
+                    record.isl_record_type = 'Aquaculture'
+                elif 'crop' in model_name:
+                    record.isl_record_type = 'Crop'
+                elif 'bom.line' in model_name:
+                    record.isl_record_type = model_name.replace('farm.', '').replace('.bom.line', '').replace('.', ' ').title()
                 else:
-                    record.isl_record_type = False
+                    record.isl_record_type = isl_record._name
             else:
                 record.isl_record_type = False
 
     def action_view_isl_record(self):
         """ Action to redirect to the specialized ISL view if one exists for BOM line """
         self.ensure_one()
-        isl_model = self._get_isl_model()
-        if isl_model:
-            isl_record = self.env[isl_model].search([('bom_line_id', '=', self.id)], limit=1)
-            if isl_record:
-                return {
-                    'name': _('View ISL BOM Line'),
-                    'type': 'ir.actions.act_window',
-                    'res_model': isl_model,
-                    'res_id': isl_record.id,
-                    'view_mode': 'form',
-                    'target': 'current',
-                }
+        # Use the centralized ISL redirection mechanism
+        redirector = self.env['isl.model.redirector']
+        isl_record = redirector.get_isl_record('mrp.bom.line', self.id)
+
+        if isl_record:
+            return {
+                'name': _('View ISL BOM Line'),
+                'type': 'ir.actions.act_window',
+                'res_model': isl_record._name,
+                'res_id': isl_record.id,
+                'view_mode': 'form',
+                'target': 'current',
+            }
         # If no ISL record exists, show a message
         return {
             'type': 'ir.actions.client',

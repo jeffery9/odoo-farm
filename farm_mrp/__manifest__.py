@@ -4,14 +4,17 @@
     'category': 'Industries/Agriculture',
     'summary': 'Base infrastructure for Industry Specialized Layer (ISL) on MRP models',
     'description': """
-        This module provides the base Mixins and redirection logic for agricultural
-        Industry Specialized Layer (ISL) implementation on top of Odoo MRP.
+        This module provides agricultural-specific extensions and Mixins built on top of
+        the general Industry Specialized Layer (ISL) architecture from farm_isl module.
 
-        It follows the "Delegation Inheritance" pattern to allow multiple agricultural
-        verticals (Livestock, Crop, Processing) to coexist on the same Odoo base.
+        It adds agriculture-specific functionality, field protection mechanisms,
+        and redirection utilities for agricultural verticals (Livestock, Crop, Processing, Aquaculture).
+
+        This module extends the general ISL infrastructure to provide agricultural-specific features.
     """,
-    'author': 'Jeffery',
-    'depends': ['mrp', 'stock', 'farm_core'],
+    "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
+    "website": "http://www.geninit.cn",
+    'depends': ['mrp', 'stock', 'farm_core', 'farm_isl'],
     'data': [
         'security/ir.model.access.csv',
         'views/mrp_isl_navigation_views.xml',

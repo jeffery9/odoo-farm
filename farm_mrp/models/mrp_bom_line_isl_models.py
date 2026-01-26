@@ -62,8 +62,9 @@ class MrpBomLineIslAbstract(models.AbstractModel):
         return []
 
     def _get_isl_record(self):
-        """Override this method to return associated ISL record for this base record"""
-        return None
+        """Get associated ISL record for this base record using centralized infrastructure"""
+        redirector = self.env['isl.model.redirector']
+        return redirector.get_isl_record('mrp.bom.line', self.id)
 
     def action_view_isl_record(self):
         """Override this method to provide navigation to ISL record"""
