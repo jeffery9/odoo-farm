@@ -9,7 +9,7 @@ class FarmCropBom(models.Model):
     _inherit = ['farm.agri.bom.mixin']
 
     bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
-    
+
     # Crop Specifics
     growing_season = fields.Selection([
         ('spring', 'Spring'),
@@ -27,7 +27,7 @@ class FarmCropProduction(models.Model):
     _inherit = ['farm.agri.production.mixin']
 
     production_id = fields.Many2one('mrp.production', string='Base MO', required=True, ondelete='cascade')
-    
+
     # Crop Specific Fields
     area_to_treat = fields.Float("Operational Area (Ha)", digits='Product Unit of Measure')
     
@@ -58,7 +58,7 @@ class FarmCropLot(models.Model):
     _inherits = {'stock.lot': 'lot_id'}
 
     lot_id = fields.Many2one('stock.lot', string='Base Lot', required=True, ondelete='cascade')
-    
+
     # Terroir Metadata (Moved from Base)
     plot_origin_id = fields.Many2one('stock.location', string='Origin Plot', domain="[('is_land_parcel', '=', True)]")
     terroir_json = fields.Text("Weighted Terroir Attributes")

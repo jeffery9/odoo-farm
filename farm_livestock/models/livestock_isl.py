@@ -8,7 +8,7 @@ class FarmLivestockBom(models.Model):
     _inherit = ['farm.agri.bom.mixin']
 
     bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
-    
+
     # Livestock Specifics
     growth_days_expected = fields.Integer("Expected Growth Days")
     daily_feed_intake = fields.Float("Avg Daily Feed (kg)")

@@ -8,7 +8,7 @@ class FarmAquacultureBom(models.Model):
     _inherit = ['farm.agri.bom.mixin']
 
     bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
-    
+
     # Aquaculture Specifics
     pond_type = fields.Selection([
         ('earthen', 'Earthen Pond'),

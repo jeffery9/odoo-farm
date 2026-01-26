@@ -2,14 +2,14 @@
 from odoo import models, fields, api, _
 
 class FarmAgriProduct(models.Model):
-    _name = 'farm.agri.product'
-    _description = 'Specialized Agricultural Product (ISL Layer)'
-    _inherits = {'product.template': 'product_tmpl_id'}
+    """
+    Specialized Agricultural Product extension of ISL architecture
+    This extends the centralized farm.product.template model with agricultural specific features
+    """
+    _inherit = 'farm.product.template'
 
-    product_tmpl_id = fields.Many2one('product.template', string='Base Product Template', required=True, ondelete='cascade')
-    
     # --- Specialized Metadata (Sunk from Base) ---
-    industry_tag = fields.Selection([
+    industry_tag = fields.Selection(selection_add=[
         ('material', 'Input Material (Seeds/Fertilizer)'),
         ('food', 'Processed Food'),
         ('livestock', 'Live Animal'),
@@ -28,3 +28,26 @@ class FarmAgriProduct(models.Model):
 
     is_potency_standardized = fields.Boolean("Standardize by Potency")
     target_purity = fields.Float("Target Purity %", default=100.0)
+
+    def write(self, vals):
+        # Ensure industry type is set appropriately when not specified
+        if 'industry_type' not in vals and not self.industry_type:
+            # Set based on industry_tag if available
+            if 'industry_tag' in vals:
+                if vals['industry_tag'] in ['food']:
+                    vals['industry_type'] = 'food_processing'
+                elif vals['industry_tag'] in ['material', 'raw_grain']:
+                    vals['industry_type'] = 'general'
+        return super().write(vals)
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        # Ensure industry type is set appropriately
+        for vals in vals_list:
+            if 'industry_type' not in vals or not vals.get('industry_type'):
+                # Set based on industry_tag if available
+                if vals.get('industry_tag') in ['food']:
+                    vals['industry_type'] = 'food_processing'
+                elif vals.get('industry_tag') in ['material', 'raw_grain']:
+                    vals['industry_type'] = 'general'
+        return super().create(vals_list)
