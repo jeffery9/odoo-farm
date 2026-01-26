@@ -9,10 +9,14 @@ This document explains the policy for release scripts and how to properly mainta
 - **Development branch (`dev`)**: ✅ Release scripts are stored here
 - **Release branch (`19.0`)**: ❌ Release scripts are NOT present here
 
+### Where Documentation Files Are Stored
+- **Development branch (`dev`)**: ✅ Documentation files (`.md`, `docs/`) are stored here
+- **Release branch (`19.0`)**: ❌ Documentation files are NOT present here
+
 ### Purpose
 - Release scripts are development tools used for managing the release process
-- They are NOT part of the core product code
-- They should not be included in product releases to keep the release branch clean
+- Documentation files provide development and usage information
+- Neither release scripts nor documentation should be included in product releases to keep the release branch clean
 
 ### Process
 1. Release scripts are created and maintained in the `dev` branch
