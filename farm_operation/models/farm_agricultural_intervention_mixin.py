@@ -21,6 +21,12 @@ class FarmAgriculturalInterventionMixin(models.AbstractModel):
         help="The specific production task this intervention belongs to."
     )
 
+    campaign_id = fields.Many2one(
+        'farm.agricultural.campaign',
+        string="Campaign/Season",
+        help="The production season this intervention belongs to."
+    )
+
     # Agricultural-specific intervention classification
     intervention_type = fields.Selection([
         ('tillage', 'Soil Preparation'),
@@ -59,42 +65,52 @@ class FarmAgriculturalInterventionMixin(models.AbstractModel):
     input_cost = fields.Float("Input Cost", compute='_compute_agri_costs', store=True)
     tool_cost = fields.Float("Tool/Machinery Cost", compute='_compute_agri_costs', store=True)
     doer_cost = fields.Float("Labor Cost", compute='_compute_agri_costs', store=True)
+    energy_cost = fields.Float("Energy/Utility Cost", compute='_compute_agri_costs', store=True)
     total_agri_cost = fields.Float("Total Intervention Cost", compute='_compute_agri_costs', store=True)
 
-    # US-02-03: Soil Nutrient Inputs
+    # US-02-03: Soil Nutrient Inputs (RESTORED)
     pure_n_qty = fields.Float("Pure Nitrogen (N) kg", compute='_compute_agri_costs', store=True)
     pure_p_qty = fields.Float("Pure Phosphorus (P) kg", compute='_compute_agri_costs', store=True)
     pure_k_qty = fields.Float("Pure Potassium (K) kg", compute='_compute_agri_costs', store=True)
 
-    @api.depends('move_raw_ids.state', 'move_raw_ids.product_uom_qty', 'workorder_ids.duration')
+    @api.depends('move_raw_ids.state', 'move_raw_ids.product_uom_qty', 'workorder_ids.duration', 'is_working')
     def _compute_agri_costs(self):
         for mo in self:
-            # 1. 投入品成本与养分计算
+            # 1. 投入品成本 (Actual Cost from Moves)
             inputs = 0.0
             n_total = p_total = k_total = 0.0
             for move in mo.move_raw_ids:
                 inputs += move.product_uom_qty * move.product_id.standard_price
-                # 计算养分 (假设 UOM 是 kg)
+                # RESTORED: Calculate Pure Nutrients
                 if hasattr(move.product_id, 'n_content'):
                     n_total += move.product_uom_qty * (move.product_id.n_content / 100.0)
                     p_total += move.product_uom_qty * (move.product_id.p_content / 100.0)
                     k_total += move.product_uom_qty * (move.product_id.k_content / 100.0)
 
             # 2. 劳动力成本
-            labor = sum(mo.workorder_ids.mapped('duration')) / 60.0 * 50.0 # 假设 50
+            labor = 0.0
+            if hasattr(mo, 'agri_task_id') and mo.agri_task_id:
+                labor = sum(mo.agri_task_id.worklog_ids.mapped(lambda l: l.quantity * (l.employee_id.hourly_cost or 50.0)))
 
             # 3. 工具与机械成本
-            tools = sum(mo.workorder_ids.mapped(lambda w: w.duration / 60.0 * w.workcenter_id.costs_hour))
+            tools = 0.0
+            if mo.workorder_ids:
+                tools = sum(mo.workorder_ids.mapped(lambda w: (w.duration / 60.0) * w.workcenter_id.costs_hour))
 
-            # US-22-05: 累加无人机作业成本 (基于作业亩数 * 耗能)
-            if hasattr(mo, 'intervention_type') and mo.intervention_type == 'aerial_spraying' and hasattr(mo, 'drone_id') and mo.drone_id:
-                # 假设每亩综合成本 5.0 (折旧+电池损耗)
-                tools += mo.actual_flight_area * 5.0 if hasattr(mo, 'actual_flight_area') else 0.0
+            # 4. 能耗成本
+            energy = 0.0
+            if hasattr(mo, 'electricity_consumption'):
+                energy += mo.electricity_consumption * 1.5
+            if hasattr(mo, 'water_consumption'):
+                energy += mo.water_consumption * 4.0
 
             mo.input_cost = inputs
             mo.doer_cost = labor
             mo.tool_cost = tools
-            mo.total_agri_cost = inputs + labor + tools
+            mo.energy_cost = energy
+            mo.total_agri_cost = inputs + labor + tools + energy
+
+            # RESTORED: Assign Nutrient Totals
             mo.pure_n_qty = n_total
             mo.pure_p_qty = p_total
             mo.pure_k_qty = k_total
@@ -246,27 +262,22 @@ class FarmAgriculturalInterventionMixin(models.AbstractModel):
             forecast = self.env['farm.weather.forecast'].search([
                 ('location_id', '=', parcel.id),
                 ('forecast_datetime', '<=', end_time),
-                ('forecast_datetime', '>=', datetime.now()),
-                ('forecast_datetime', '=', datetime.now())  # 最近的预报
+                ('forecast_datetime', '>=', datetime.now())
             ], limit=1, order='forecast_datetime asc')
 
             if forecast:
-                # 检查风速是否超过4级（限制喷洒作业）
-                if forecast.wind_speed_kmh and forecast.wind_speed_kmh > 16:  # 4级风约16km/h
-                    # 创建审批Activity
+                # 检查风速是否超过4级（约16km/h）
+                if forecast.wind_speed_kmh and forecast.wind_speed_kmh > 16:
+                    # US-02-06: Create high-priority activity for technician review
                     self.activity_schedule(
                         'mail.mail_activity_data_todo',
-                        summary=_('Weather Window Check: Wind too strong for spray operation [%s km/h]') % forecast.wind_speed_kmh,
-                        note=_('Attempted spray operation on %s was blocked due to high wind speed (%s km/h > 16 km/h). '
-                               'Please verify with technical director before proceeding with spray operation.') % (
-                                   self.name, forecast.wind_speed_kmh
-                               ),
-                        user_id=self.user_id.id if self.user_id else self.create_uid.id
+                        summary=_('WEATHER BLOCK: High Wind Speed (%s km/h)') % forecast.wind_speed_kmh,
+                        note=_('Intervention %s was blocked. Wind speed exceeds level 4. Review required by Technical Director.') % self.name,
+                        user_id=self.env.ref('farm_core.group_farm_specialist').users[:1].id or self.env.user.id
                     )
                     raise UserError(_(
-                        "WEATHER WINDOW BLOCK: Wind speed too high for spray operation. "
-                        "Current wind speed is %s km/h, maximum allowed is 16 km/h (4 level wind). "
-                        "An exception handling task has been automatically created for technical director review."
+                        "WEATHER WINDOW BLOCK: Wind speed too high (%s km/h > 16 km/h). "
+                        "Risk detected for spray operation. Technical director has been notified."
                     ) % forecast.wind_speed_kmh)
 
     def action_stop_work(self):
