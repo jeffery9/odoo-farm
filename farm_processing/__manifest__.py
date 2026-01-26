@@ -22,7 +22,8 @@
         'farm_core',
         'farm_mrp',
         'farm_ux',
-        'mail'
+        'mail',
+        'farm_isl'
     ],
     'data': [
         'security/ir.model.access.csv',

@@ -2,8 +2,8 @@
 <odoo>
     <!-- US-TECH-06-11: Specialized View for Food Processing BOM -->
     <record id="view_farm_processing_bom_form" model="ir.ui.view">
-        <field name="name">farm.processing.bom.form</field>
-        <field name="model">farm.processing.bom</field>
+        <field name="name">farm.mrp.bom.processing.form</field>
+        <field name="model">farm.mrp.bom</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -38,7 +38,7 @@
     <!-- Action for the specialized App -->
     <record id="action_farm_processing_bom_isl" model="ir.actions.act_window">
         <field name="name">Food Recipes (ISL)</field>
-        <field name="res_model">farm.processing.bom</field>
+        <field name="res_model">farm.mrp.bom</field>
         <field name="view_mode">list,form</field>
     </record>
 </odoo>
