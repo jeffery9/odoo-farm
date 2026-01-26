@@ -1,1 +1,13 @@
-from . import sustainability
+from . import (
+    agricultural_campaign_extension,
+    product_template_extension,
+    agri_intervention_extension,
+    stock_lot_extension,
+    carbon_asset,
+    ecological_activity,
+    industry_carbon_model,
+    industry_esg_model,
+    industry_calculation_rule,
+    industry_esg_metric,
+    carbon_footprint_calculation,
+)
