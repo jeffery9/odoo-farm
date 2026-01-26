@@ -16,5 +16,5 @@
     ],
     'installable': True,
     'application': True,
-    'license': 'LGPL-3',
+    'license': 'AGPL-3',
 }
