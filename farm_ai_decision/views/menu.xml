@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Decision Support Main Menu -->
+    <menuitem id="farm_ai_decision_menu_root"
+              name="AI Decision Support"
+              sequence="101"
+              web_icon="farm_ai_decision,static/description/icon.png"/>
+
+    <!-- AI Decision Categories -->
+    <menuitem id="farm_ai_prediction_menu"
+              name="Predictions"
+              parent="farm_ai_decision_menu_root"
+              sequence="10"/>
+
+    <menuitem id="farm_ai_crop_growth_prediction"
+              name="Crop Growth Prediction"
+              parent="farm_ai_prediction_menu"
+              action="action_ai_crop_growth_prediction"
+              sequence="10"/>
+
+    <menuitem id="farm_ai_market_prediction"
+              name="Market Prediction"
+              parent="farm_ai_prediction_menu"
+              action="action_ai_market_prediction"
+              sequence="20"/>
+
+    <menuitem id="farm_ai_harvest_timing"
+              name="Harvest Timing"
+              parent="farm_ai_prediction_menu"
+              action="action_ai_harvest_timing"
+              sequence="30"/>
+
+    <menuitem id="farm_ai_monitoring_menu"
+              name="Monitoring"
+              parent="farm_ai_decision_menu_root"
+              sequence="20"/>
+
+    <menuitem id="farm_ai_pest_detection"
+              name="Pest & Disease Detection"
+              parent="farm_ai_monitoring_menu"
+              action="action_ai_pest_disease_detection"
+              sequence="10"/>
+
+    <menuitem id="farm_ai_health_monitoring"
+              name="Health & Welfare Monitoring"
+              parent="farm_ai_monitoring_menu"
+              action="action_ai_health_monitoring"
+              sequence="20"/>
+
+    <menuitem id="farm_ai_decision_menu"
+              name="Decisions"
+              parent="farm_ai_decision_menu_root"
+              sequence="30"/>
+
+    <menuitem id="farm_ai_irrigation_decision"
+              name="Irrigation Decision"
+              parent="farm_ai_decision_menu"
+              action="action_ai_irrigation_decision"
+              sequence="10"/>
+
+    <menuitem id="farm_ai_fertilization_decision"
+              name="Fertilization Decision"
+              parent="farm_ai_decision_menu"
+              action="action_ai_fertilization_decision"
+              sequence="20"/>
+
+    <menuitem id="farm_ai_optimization_menu"
+              name="Optimization"
+              parent="farm_ai_decision_menu_root"
+              sequence="40"/>
+
+    <menuitem id="farm_ai_path_optimization"
+              name="Path Optimization"
+              parent="farm_ai_optimization_menu"
+              action="action_ai_operation_path_optimization"
+              sequence="10"/>
+
+    <menuitem id="farm_ai_resource_optimization"
+              name="Resource Optimization"
+              parent="farm_ai_optimization_menu"
+              action="action_ai_resource_optimization"
+              sequence="20"/>
+
+    <menuitem id="farm_ai_quality_grading"
+              name="Quality Grading"
+              parent="farm_ai_optimization_menu"
+              action="action_ai_quality_grading"
+              sequence="30"/>
+
+    <menuitem id="farm_ai_risk_management_menu"
+              name="Risk Management"
+              parent="farm_ai_decision_menu_root"
+              sequence="50"/>
+
+    <menuitem id="farm_ai_risk_assessment"
+              name="Risk Assessment"
+              parent="farm_ai_risk_management_menu"
+              action="action_ai_risk_assessment"
+              sequence="10"/>
+
+    <menuitem id="farm_ai_agent_menu"
+              name="AI Agents"
+              parent="farm_ai_decision_menu_root"
+              action="action_ai_agent"
+              sequence="60"/>
+</odoo>

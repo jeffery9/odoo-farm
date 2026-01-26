@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Resource Optimization Views -->
+    <record id="view_ai_resource_optimization_form" model="ir.ui.view">
+        <field name="name">ai.resource.optimization.form</field>
+        <field name="model">ai.resource.optimization</field>
+        <field name="arch" type="xml">
+            <form string="AI Resource Optimization">
+                <header>
+                    <button name="calculate_optimization" type="object" string="Calculate Optimization" class="oe_highlight"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_apply_recommendation" type="object" string="Apply Allocation" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'"/>
+                        <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'"/>
+                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="resource_type"/>
+                            <field name="required_quantity"/>
+                        </group>
+                        <group>
+                            <field name="available_quantity"/>
+                            <field name="optimized_allocation"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="allocation_efficiency"/>
+                        <field name="cost_impact"/>
+                        <field name="confidence_score"/>
+                        <field name="status"/>
+                    </group>
+                    <notebook>
+                        <page string="Resource Conflicts">
+                            <field name="resource_conflicts" placeholder="Resource conflict analysis"/>
+                        </page>
+                        <page string="Optimization Recommendation">
+                            <field name="optimization_recommendation" placeholder="Resource optimization recommendations"/>
+                        </page>
+                        <page string="Results">
+                            <group>
+                                <field name="recommendation" placeholder="Overall recommendation"/>
+                                <field name="decision_reasoning" placeholder="Reasoning behind the AI decision"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ai_resource_optimization_tree" model="ir.ui.view">
+        <field name="name">ai.resource.optimization.tree</field>
+        <field name="model">ai.resource.optimization</field>
+        <field name="arch" type="xml">
+            <tree string="AI Resource Optimization">
+                <field name="resource_type"/>
+                <field name="required_quantity"/>
+                <field name="optimized_allocation"/>
+                <field name="allocation_efficiency"/>
+                <field name="confidence_score"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_ai_resource_optimization" model="ir.actions.act_window">
+        <field name="name">AI Resource Optimization</field>
+        <field name="res_model">ai.resource.optimization</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

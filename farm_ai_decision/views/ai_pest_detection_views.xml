@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Pest Disease Detection Views -->
+    <record id="view_ai_pest_disease_detection_form" model="ir.ui.view">
+        <field name="name">ai.pest.disease.detection.form</field>
+        <field name="model">ai.pest.disease.detection</field>
+        <field name="arch" type="xml">
+            <form string="AI Pest and Disease Detection">
+                <header>
+                    <button name="analyze_pest_disease" type="object" string="Analyze" class="oe_highlight"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_apply_recommendation" type="object" string="Apply Recommendation" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'"/>
+                        <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'"/>
+                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="land_location_id"/>
+                            <field name="detection_date"/>
+                        </group>
+                        <group>
+                            <field name="pest_disease_name"/>
+                            <field name="severity_level"/>
+                            <field name="priority"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="affected_area_percentage"/>
+                            <field name="detection_method"/>
+                        </group>
+                        <group>
+                            <field name="confidence_score"/>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                    <group string="Image Evidence">
+                        <field name="image_attachment" filename="image_name"/>
+                        <field name="image_name"/>
+                    </group>
+                    <notebook>
+                        <page string="Analysis Results">
+                            <group>
+                                <field name="risk_assessment" placeholder="Risk assessment details"/>
+                            </group>
+                        </page>
+                        <page string="Treatment Options">
+                            <field name="treatment_options" placeholder="Treatment options and recommendations"/>
+                        </page>
+                        <page string="Prevention Advice">
+                            <field name="prevention_advice" placeholder="Prevention advice"/>
+                        </page>
+                        <page string="Results">
+                            <group>
+                                <field name="recommendation" placeholder="Overall recommendation"/>
+                                <field name="decision_reasoning" placeholder="Reasoning behind the AI decision"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ai_pest_disease_detection_tree" model="ir.ui.view">
+        <field name="name">ai.pest.disease.detection.tree</field>
+        <field name="model">ai.pest.disease.detection</field>
+        <field name="arch" type="xml">
+            <tree string="AI Pest and Disease Detection">
+                <field name="product_id"/>
+                <field name="pest_disease_name"/>
+                <field name="severity_level"/>
+                <field name="affected_area_percentage"/>
+                <field name="confidence_score"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_ai_pest_disease_detection" model="ir.actions.act_window">
+        <field name="name">AI Pest and Disease Detection</field>
+        <field name="res_model">ai.pest.disease.detection</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

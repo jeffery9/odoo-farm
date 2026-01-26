@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- AIDecisionEngine Form View -->
+    <record id="view_ai_decision_engine_form" model="ir.ui.view">
+        <field name="name">ai.decision.engine.form</field>
+        <field name="model">ai.decision.engine</field>
+        <field name="arch" type="xml">
+            <form string="AI Decision Engine">
+                <header>
+                    <button name="action_make_decision" type="object" string="Make Decision" class="oe_highlight"/>
+                    <button name="action_validate_decision" type="object" string="Validate Decision"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_make_decision" type="object" class="oe_stat_button" icon="fa-magic">
+                            <div class="o_stat_info">
+                                <field name="decision_count" widget="statinfo" string="Decisions"/>
+                            </div>
+                        </button>
+                        <button name="%(action_ai_decision_workflow)d" type="action" class="oe_stat_button" icon="fa-sitemap">
+                            <div class="o_stat_info">
+                                <field name="workflow_enabled" widget="statinfo" string="Workflow"/>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="decision_type"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="priority"/>
+                            <field name="confidence_score"/>
+                            <field name="average_confidence"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Configuration">
+                            <group>
+                                <field name="decision_config" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="decision_weights" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="decision_logic" widget="ace" options="{'mode': 'python'}"/>
+                            </group>
+                        </page>
+                        <page string="AI Services">
+                            <group>
+                                <field name="vision_service_ids" widget="many2many_tags"/>
+                                <field name="decision_service_ids" widget="many2many_tags"/>
+                                <field name="financial_service_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                        <page string="Execution">
+                            <group>
+                                <field name="workflow_enabled"/>
+                                <field name="coordination_layer_id"/>
+                                <field name="execution_context" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="input_data" widget="ace" options="{'mode': 'json'}"/>
+                            </group>
+                        </page>
+                        <page string="Results">
+                            <group>
+                                <field name="last_decision"/>
+                                <field name="decision_result" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="decision_reasoning"/>
+                                <field name="output_format"/>
+                            </group>
+                        </page>
+                        <page string="Performance">
+                            <group>
+                                <field name="performance_metrics" widget="ace" options="{'mode': 'json'}"/>
+                            </group>
+                        </page>
+                        <page string="ISL Configuration">
+                            <group>
+                                <field name="industry_type"/>
+                                <field name="uses_isl_data"/>
+                                <field name="data_isolation_level"/>
+                            </group>
+                        </page>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- AIDecisionEngine Tree View -->
+    <record id="view_ai_decision_engine_tree" model="ir.ui.view">
+        <field name="name">ai.decision.engine.tree</field>
+        <field name="model">ai.decision.engine</field>
+        <field name="arch" type="xml">
+            <tree string="AI Decision Engines">
+                <field name="name"/>
+                <field name="decision_type"/>
+                <field name="active"/>
+                <field name="confidence_score"/>
+                <field name="decision_count"/>
+                <field name="last_decision"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- AIDecisionContext Form View -->
+    <record id="view_ai_decision_context_form" model="ir.ui.view">
+        <field name="name">ai.decision.context.form</field>
+        <field name="model">ai.decision.context</field>
+        <field name="arch" type="xml">
+            <form string="AI Decision Context">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="crop_type"/>
+                            <field name="season"/>
+                        </group>
+                        <group>
+                            <field name="location_id"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Environment">
+                            <group>
+                                <field name="weather_conditions" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="soil_conditions" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="pest_conditions" widget="ace" options="{'mode': 'json'}"/>
+                            </group>
+                        </page>
+                        <page string="Configuration">
+                            <group>
+                                <field name="context_data" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="decision_engine_id"/>
+                                <field name="coordination_layer_id"/>
+                            </group>
+                        </page>
+                        <page string="ISL Configuration">
+                            <group>
+                                <field name="industry_type"/>
+                                <field name="uses_isl_data"/>
+                            </group>
+                        </page>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- AIDecisionContext Tree View -->
+    <record id="view_ai_decision_context_tree" model="ir.ui.view">
+        <field name="name">ai.decision.context.tree</field>
+        <field name="model">ai.decision.context</field>
+        <field name="arch" type="xml">
+            <tree string="AI Decision Contexts">
+                <field name="name"/>
+                <field name="crop_type"/>
+                <field name="location_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- AIDecisionRule Form View -->
+    <record id="view_ai_decision_rule_form" model="ir.ui.view">
+        <field name="name">ai.decision.rule.form</field>
+        <field name="model">ai.decision.rule</field>
+        <field name="arch" type="xml">
+            <form string="AI Decision Rule">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="decision_type"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="priority"/>
+                            <field name="confidence_threshold"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Logic">
+                            <group>
+                                <field name="condition_expression" widget="ace" options="{'mode': 'python'}"/>
+                                <field name="action_code" widget="ace" options="{'mode': 'python'}"/>
+                            </group>
+                        </page>
+                        <page string="ISL Configuration">
+                            <group>
+                                <field name="industry_type"/>
+                                <field name="applicable_to_all_industries"/>
+                            </group>
+                        </page>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- AIDecisionRule Tree View -->
+    <record id="view_ai_decision_rule_tree" model="ir.ui.view">
+        <field name="name">ai.decision.rule.tree</field>
+        <field name="model">ai.decision.rule</field>
+        <field name="arch" type="xml">
+            <tree string="AI Decision Rules">
+                <field name="name"/>
+                <field name="decision_type"/>
+                <field name="active"/>
+                <field name="priority"/>
+                <field name="confidence_threshold"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- AIDecisionWorkflow Form View -->
+    <record id="view_ai_decision_workflow_form" model="ir.ui.view">
+        <field name="name">ai.decision.workflow.form</field>
+        <field name="model">ai.decision.workflow</field>
+        <field name="arch" type="xml">
+            <form string="AI Decision Workflow">
+                <header>
+                    <button name="execute_workflow" type="object" string="Execute Workflow" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="decision_engine_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Steps">
+                            <field name="step_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="step_type"/>
+                                    <field name="condition"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Configuration">
+                            <group>
+                                <field name="workflow_definition" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="trigger_conditions" widget="ace" options="{'mode': 'json'}"/>
+                            </group>
+                        </page>
+                        <page string="Execution">
+                            <group>
+                                <field name="execution_count"/>
+                                <field name="last_execution"/>
+                                <field name="success_rate"/>
+                            </group>
+                        </page>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- AIDecisionWorkflow Tree View -->
+    <record id="view_ai_decision_workflow_tree" model="ir.ui.view">
+        <field name="name">ai.decision.workflow.tree</field>
+        <field name="model">ai.decision.workflow</field>
+        <field name="arch" type="xml">
+            <tree string="AI Decision Workflows">
+                <field name="name"/>
+                <field name="active"/>
+                <field name="execution_count"/>
+                <field name="success_rate"/>
+                <field name="last_execution"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- AIDecisionWorkflowStep Form View -->
+    <record id="view_ai_decision_workflow_step_form" model="ir.ui.view">
+        <field name="name">ai.decision.workflow.step.form</field>
+        <field name="model">ai.decision.workflow.step</field>
+        <field name="arch" type="xml">
+            <form string="AI Decision Workflow Step">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="step_type"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="workflow_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Configuration">
+                            <group>
+                                <field name="decision_engine_id" attrs="{'invisible': [('step_type', '!=', 'ai_decision')], 'required': [('step_type', '=', 'ai_decision')]}"/>
+                                <field name="coordination_layer_id" attrs="{'invisible': [('step_type', '!=', 'ai_coordination')], 'required': [('step_type', '=', 'ai_coordination')]}"/>
+                                <field name="step_config" widget="ace" options="{'mode': 'json'}"/>
+                            </group>
+                        </page>
+                        <page string="Conditions and Actions">
+                            <group>
+                                <field name="condition" widget="ace" options="{'mode': 'python'}"/>
+                                <field name="action_code" widget="ace" options="{'mode': 'python'}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Menu Items for Decision Engine -->
+    <record id="action_ai_decision_engine" model="ir.actions.act_window">
+        <field name="name">Decision Engines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ai.decision.engine</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add your first AI Decision Engine!
+            </p><p>
+                Create centralized decision engines that coordinate between different AI modules
+                including vision, decision, and financial services for agricultural intelligence.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_ai_decision_context" model="ir.actions.act_window">
+        <field name="name">Decision Contexts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ai.decision.context</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Decision Context!
+            </p><p>
+                Define contexts for AI decision making including location, crop type,
+                seasonal conditions, and environmental factors.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_ai_decision_rule" model="ir.actions.act_window">
+        <field name="name">Decision Rules</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ai.decision.rule</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Decision Rule!
+            </p><p>
+                Define business rules for AI decision making with conditions and actions
+                that can be applied across different agricultural scenarios.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_ai_decision_workflow" model="ir.actions.act_window">
+        <field name="name">Decision Workflows</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ai.decision.workflow</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Decision Workflow!
+            </p><p>
+                Design complex workflows that execute multiple AI decision steps in sequence
+                to accomplish sophisticated agricultural intelligence tasks.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_ai_decision_engine"
+              name="Decision Engines"
+              parent="farm_ai_agent_decision_menu"
+              action="action_ai_decision_engine"
+              sequence="10"/>
+
+    <menuitem id="menu_ai_decision_context"
+              name="Decision Contexts"
+              parent="farm_ai_agent_decision_menu"
+              action="action_ai_decision_context"
+              sequence="20"/>
+
+    <menuitem id="menu_ai_decision_rule"
+              name="Decision Rules"
+              parent="farm_ai_agent_rules_menu"
+              action="action_ai_decision_rule"
+              sequence="10"/>
+
+    <menuitem id="menu_ai_decision_workflow"
+              name="Decision Workflows"
+              parent="farm_ai_agent_workflows_menu"
+              action="action_ai_decision_workflow"
+              sequence="10"/>
+
+</odoo>

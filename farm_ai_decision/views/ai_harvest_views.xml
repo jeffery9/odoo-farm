@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Harvest Timing Views -->
+    <record id="view_ai_harvest_timing_form" model="ir.ui.view">
+        <field name="name">ai.harvest.timing.form</field>
+        <field name="model">ai.harvest.timing</field>
+        <field name="arch" type="xml">
+            <form string="AI Harvest Timing">
+                <header>
+                    <button name="calculate_optimal_harvest" type="object" string="Calculate Optimal Time" class="oe_highlight"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_apply_recommendation" type="object" string="Apply Timing" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'"/>
+                        <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'"/>
+                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="land_location_id"/>
+                        </group>
+                        <group>
+                            <field name="confidence_score"/>
+                            <field name="priority"/>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                    <group string="Harvest Dates">
+                        <group>
+                            <field name="planting_date"/>
+                            <field name="expected_harvest_date"/>
+                        </group>
+                        <group>
+                            <field name="optimal_harvest_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="quality_score"/>
+                        <field name="yield_impact"/>
+                        <field name="market_price_factor"/>
+                    </group>
+                    <notebook>
+                        <page string="Quality Metrics">
+                            <field name="quality_metrics" placeholder="Quality metrics JSON data"/>
+                        </page>
+                        <page string="Weather Impact">
+                            <field name="weather_impact" placeholder="Weather impact assessment"/>
+                        </page>
+                        <page string="Harvest Recommendation">
+                            <field name="harvest_recommendation" placeholder="Detailed harvest timing recommendations"/>
+                        </page>
+                        <page string="Results">
+                            <group>
+                                <field name="recommendation" placeholder="Overall recommendation"/>
+                                <field name="decision_reasoning" placeholder="Reasoning behind the AI decision"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ai_harvest_timing_tree" model="ir.ui.view">
+        <field name="name">ai.harvest.timing.tree</field>
+        <field name="model">ai.harvest.timing</field>
+        <field name="arch" type="xml">
+            <tree string="AI Harvest Timing">
+                <field name="product_id"/>
+                <field name="planting_date"/>
+                <field name="optimal_harvest_date"/>
+                <field name="quality_score"/>
+                <field name="confidence_score"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_ai_harvest_timing" model="ir.actions.act_window">
+        <field name="name">AI Harvest Timing</field>
+        <field name="res_model">ai.harvest.timing</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

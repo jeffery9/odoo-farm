@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Vision Base Tree View -->
+    <record id="view_ai_vision_base_tree" model="ir.ui.view">
+        <field name="name">ai.vision.base.tree</field>
+        <field name="model">ai.vision.base</field>
+        <field name="arch" type="xml">
+            <tree string="AI Vision Base">
+                <field name="name"/>
+                <field name="analysis_date"/>
+                <field name="confidence_score"/>
+                <field name="status"/>
+                <field name="model_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- AI Vision Base Form View -->
+    <record id="view_ai_vision_base_form" model="ir.ui.view">
+        <field name="name">ai.vision.base.form</field>
+        <field name="model">ai.vision.base</field>
+        <field name="arch" type="xml">
+            <form string="AI Vision Base">
+                <header>
+                    <button name="action_process_image" type="object" string="Process Image" class="oe_highlight"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="AI Vision Analysis Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="analysis_date"/>
+                            <field name="confidence_score"/>
+                            <field name="model_type"/>
+                            <field name="priority"/>
+                        </group>
+                        <group>
+                            <field name="processing_time"/>
+                            <field name="image_filename"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Image">
+                            <group>
+                                <field name="image" filename="image_filename"/>
+                            </group>
+                        </page>
+                        <page string="Parameters & Results">
+                            <group>
+                                <field name="input_parameters" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="output_data" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="analysis_result"/>
+                                <field name="analysis_reasoning"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>

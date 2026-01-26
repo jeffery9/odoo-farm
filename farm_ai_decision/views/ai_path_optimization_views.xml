@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Operation Path Optimization Views -->
+    <record id="view_ai_operation_path_optimization_form" model="ir.ui.view">
+        <field name="name">ai.operation.path.optimization.form</field>
+        <field name="model">ai.operation.path.optimization</field>
+        <field name="arch" type="xml">
+            <form string="AI Operation Path Optimization">
+                <header>
+                    <button name="calculate_optimized_path" type="object" string="Calculate Path" class="oe_highlight"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_apply_recommendation" type="object" string="Apply Path" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'"/>
+                        <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'"/>
+                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="operation_type"/>
+                            <field name="vehicle_type"/>
+                        </group>
+                        <group>
+                            <field name="confidence_score"/>
+                            <field name="priority"/>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="total_distance"/>
+                        <field name="estimated_duration"/>
+                        <field name="fuel_consumption_rate"/>
+                    </group>
+                    <group string="Affected Locations">
+                        <field name="land_location_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                    <notebook>
+                        <page string="Optimized Path">
+                            <field name="optimized_path" placeholder="JSON coordinates for optimized path"/>
+                        </page>
+                        <page string="Efficiency Gains">
+                            <field name="efficiency_gains" placeholder="Efficiency improvement details"/>
+                        </page>
+                        <page string="Path Recommendation">
+                            <field name="path_recommendation" placeholder="Detailed path optimization recommendations"/>
+                        </page>
+                        <page string="Results">
+                            <group>
+                                <field name="recommendation" placeholder="Overall recommendation"/>
+                                <field name="decision_reasoning" placeholder="Reasoning behind the AI decision"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ai_operation_path_optimization_tree" model="ir.ui.view">
+        <field name="name">ai.operation.path.optimization.tree</field>
+        <field name="model">ai.operation.path.optimization</field>
+        <field name="arch" type="xml">
+            <tree string="AI Operation Path Optimization">
+                <field name="operation_type"/>
+                <field name="total_distance"/>
+                <field name="estimated_duration"/>
+                <field name="confidence_score"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_ai_operation_path_optimization" model="ir.actions.act_window">
+        <field name="name">AI Operation Path Optimization</field>
+        <field name="res_model">ai.operation.path.optimization</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

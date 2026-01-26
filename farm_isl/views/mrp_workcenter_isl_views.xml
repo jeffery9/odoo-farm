@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ISL MRP Work Center Views -->
+    <record id="view_isl_mrp_workcenter_form" model="ir.ui.view">
+        <field name="name">farm.mrp.workcenter.form</field>
+        <field name="model">farm.mrp.workcenter</field>
+        <field name="arch" type="xml">
+            <form string="ISL MRP Work Center">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="working_state"/>
+                        </group>
+                        <group>
+                            <field name="industry_type"/>
+                            <field name="is_isl_model"/>
+                            <field name="efficiency_factor"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Industry Specific" invisible="industry_type != 'food_processing' and industry_type != 'pharmaceutical'">
+                            <group>
+                                <field name="cip_required"/>
+                                <field name="capacity_uom" placeholder="Capacity unit of measure"/>
+                            </group>
+                        </page>
+                        <page string="Industry Specific" invisible="industry_type != 'pharmaceutical'">
+                            <group>
+                                <field name="clean_room_class" placeholder="Clean room classification"/>
+                            </group>
+                        </page>
+                        <page string="Industry Specific" invisible="industry_type != 'chemical'">
+                            <group>
+                                <field name="explosion_proof"/>
+                            </group>
+                        </page>
+                        <page string="General Industry Info">
+                            <group>
+                                <field name="compliance_requirements"/>
+                                <field name="industry_standards"/>
+                                <field name="safety_requirements"/>
+                            </group>
+                        </page>
+                        <page string="Costs">
+                            <group>
+                                <field name="costs_hour"/>
+                                <field name="costs_hour_second"/>
+                                <field name="costs_cycle"/>
+                                <field name="costs_cycle_second"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_isl_mrp_workcenter_tree" model="ir.ui.view">
+        <field name="name">farm.mrp.workcenter.tree</field>
+        <field name="model">farm.mrp.workcenter</field>
+        <field name="arch" type="xml">
+            <tree string="ISL MRP Work Centers">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="working_state"/>
+                <field name="industry_type"/>
+                <field name="costs_hour"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_isl_mrp_workcenter" model="ir.actions.act_window">
+        <field name="name">ISL MRP Work Centers</field>
+        <field name="res_model">farm.mrp.workcenter</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

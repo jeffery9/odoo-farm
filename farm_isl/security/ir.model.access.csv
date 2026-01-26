@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_isl_farm_mrp_production,farm.mrp.production,model_farm_mrp_production,farm_security.group_farm_user,1,1,1,1
+access_isl_farm_mrp_bom,farm.mrp.bom,model_farm_mrp_bom,farm_security.group_farm_user,1,1,1,1
+access_isl_farm_mrp_workcenter,farm.mrp.workcenter,model_farm_mrp_workcenter,farm_security.group_farm_user,1,1,1,1
+access_isl_farm_stock_lot,farm.stock.lot,model_farm_stock_lot,farm_security.group_farm_user,1,1,1,1
+access_isl_farm_sale_order,farm.sale.order,model_farm_sale_order,farm_security.group_farm_user,1,1,1,1
+access_isl_farm_purchase_order,farm.purchase.order,model_farm_purchase_order,farm_security.group_farm_user,1,1,1,1
+access_isl_farm_product_template,farm.product.template,model_farm_product_template,farm_security.group_farm_user,1,1,1,1
+access_isl_farm_stock_picking,farm.stock.picking,model_farm_stock_picking,farm_security.group_farm_user,1,1,1,1
+access_isl_farm_mrp_workorder,farm.mrp.workorder,model_farm_mrp_workorder,farm_security.group_farm_user,1,1,1,1
+access_isl_farm_quality_control,farm.quality.control,model_farm_quality_control,farm_security.group_farm_user,1,1,1,1
+access_isl_isl_model_redirector,isl.model.redirector,model_isl_model_redirector,farm_security.group_farm_user,1,1,1,1
+access_isl_farm_extension,farm.isl.extension,model_farm_isl_extension,farm_security.group_farm_user,1,1,1,1
+access_isl_optimization_mixin,isl.optimization.mixin,model_isl_optimization_mixin,farm_security.group_farm_user,1,1,1,1
+access_isl_migration_utility,isl.migration.utility,model_isl_migration_utility,farm_security.group_farm_user,1,1,1,1

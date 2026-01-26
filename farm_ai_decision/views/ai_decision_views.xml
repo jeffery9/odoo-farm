@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Decision Base Views -->
+    <record id="view_ai_decision_base_form" model="ir.ui.view">
+        <field name="name">ai.decision.base.form</field>
+        <field name="model">ai.decision.base</field>
+        <field name="arch" type="xml">
+            <form string="AI Decision Base" create="false" edit="false">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_apply_recommendation" type="object" string="Apply Recommendation" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'"/>
+                        <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'"/>
+                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="decision_date"/>
+                            <field name="model_type"/>
+                        </group>
+                        <group>
+                            <field name="confidence_score"/>
+                            <field name="priority"/>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Recommendation">
+                            <field name="recommendation"/>
+                        </page>
+                        <page string="Decision Reasoning">
+                            <field name="decision_reasoning"/>
+                        </page>
+                        <page string="Input/Output Data">
+                            <group>
+                                <field name="input_data" placeholder="Input data used by AI model (JSON)"/>
+                                <field name="output_data" placeholder="Output data from AI model (JSON)"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ai_decision_base_tree" model="ir.ui.view">
+        <field name="name">ai.decision.base.tree</field>
+        <field name="model">ai.decision.base</field>
+        <field name="arch" type="xml">
+            <tree string="AI Decision Base">
+                <field name="name"/>
+                <field name="model_type"/>
+                <field name="decision_date"/>
+                <field name="confidence_score"/>
+                <field name="priority"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

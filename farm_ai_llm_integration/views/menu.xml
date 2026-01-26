@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- LLM Integration Main Menu -->
+    <menuitem id="farm_ai_llm_integration_menu_root"
+              name="LLM Integration"
+              parent="farm_ai_decision.farm_ai_decision_menu_root"
+              sequence="50"/>
+
+    <menuitem id="farm_llm_config_menu"
+              name="LLM Configurations"
+              parent="farm_ai_llm_integration_menu_root"
+              action="action_llm_config"
+              sequence="10"/>
+
+    <menuitem id="farm_llm_service_menu"
+              name="LLM Services"
+              parent="farm_ai_llm_integration_menu_root"
+              action="action_llm_service"
+              sequence="20"/>
+</odoo>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ISL Product Template Views -->
+    <record id="view_isl_product_template_form" model="ir.ui.view">
+        <field name="name">farm.product.template.form</field>
+        <field name="model">farm.product.template</field>
+        <field name="arch" type="xml">
+            <form string="ISL Product Template">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <field name="image_1920" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="type"/>
+                            <field name="categ_id"/>
+                            <field name="list_price"/>
+                        </group>
+                        <group>
+                            <field name="industry_type"/>
+                            <field name="industry_category"/>
+                            <field name="is_isl_model"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Industry Specific" invisible="industry_type != 'food_processing'">
+                            <group>
+                                <field name="allergen_information" placeholder="Food allergen information"/>
+                                <field name="shelf_life"/>
+                            </group>
+                        </page>
+                        <page string="Industry Specific" invisible="industry_type != 'pharmaceutical'">
+                            <group>
+                                <field name="pharmacological_class" placeholder="Pharmaceutical pharmacological class"/>
+                                <field name="regulatory_class" placeholder="Pharmaceutical regulatory class"/>
+                            </group>
+                        </page>
+                        <page string="Industry Specific" invisible="industry_type != 'chemical'">
+                            <group>
+                                <field name="hazard_class" placeholder="Chemical hazard classification"/>
+                                <field name="storage_temperature"/>
+                                <field name="storage_humidity"/>
+                            </group>
+                        </page>
+                        <page string="General Industry Info">
+                            <group>
+                                <field name="regulatory_compliance"/>
+                                <field name="storage_temperature"/>
+                                <field name="storage_humidity"/>
+                            </group>
+                        </page>
+                        <page string="Documents">
+                            <group>
+                                <field name="safety_data_sheet" filename="safety_data_sheet_name"/>
+                                <field name="safety_data_sheet_name"/>
+                            </group>
+                        </page>
+                        <page string="Inventory">
+                            <group>
+                                <field name="sale_ok"/>
+                                <field name="purchase_ok"/>
+                                <field name="detailed_type"/>
+                                <field name="uom_id" groups="uom.group_uom"/>
+                                <field name="uom_po_id" groups="uom.group_uom"/>
+                                <field name="tracking"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_isl_product_template_tree" model="ir.ui.view">
+        <field name="name">farm.product.template.tree</field>
+        <field name="model">farm.product.template</field>
+        <field name="arch" type="xml">
+            <tree string="ISL Product Templates">
+                <field name="name"/>
+                <field name="type"/>
+                <field name="list_price"/>
+                <field name="industry_type"/>
+                <field name="industry_category"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_isl_product_template" model="ir.actions.act_window">
+        <field name="name">ISL Product Templates</field>
+        <field name="res_model">farm.product.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Image Analysis Prediction Tree View -->
+    <record id="view_ai_image_analysis_prediction_tree" model="ir.ui.view">
+        <field name="name">ai.image.analysis.prediction.tree</field>
+        <field name="model">ai.image.analysis.prediction</field>
+        <field name="arch" type="xml">
+            <tree string="AI Image Analysis Prediction">
+                <field name="name"/>
+                <field name="crop_id"/>
+                <field name="growth_stage"/>
+                <field name="predicted_yield"/>
+                <field name="optimal_harvest_time"/>
+                <field name="confidence_score"/>
+                <field name="analysis_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- AI Image Analysis Prediction Form View -->
+    <record id="view_ai_image_analysis_prediction_form" model="ir.ui.view">
+        <field name="name">ai.image.analysis.prediction.form</field>
+        <field name="model">ai.image.analysis.prediction</field>
+        <field name="arch" type="xml">
+            <form string="AI Image Analysis Prediction">
+                <header>
+                    <button name="action_process_image" type="object" string="Process Image" class="oe_highlight"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Image Analysis Prediction"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="crop_id"/>
+                            <field name="growth_stage"/>
+                            <field name="optimal_harvest_time"/>
+                        </group>
+                        <group>
+                            <field name="predicted_yield"/>
+                            <field name="yield_unit"/>
+                            <field name="confidence_score"/>
+                            <field name="analysis_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Image">
+                            <group>
+                                <field name="image" filename="image_filename"/>
+                            </group>
+                        </page>
+                        <page string="Predictions">
+                            <group>
+                                <field name="growth_prediction"/>
+                                <field name="potential_issues"/>
+                            </group>
+                        </page>
+                        <page string="Risks &amp; Mitigation">
+                            <group>
+                                <field name="risk_factors"/>
+                                <field name="mitigation_strategies"/>
+                            </group>
+                        </page>
+                        <page string="Results &amp; Parameters">
+                            <group>
+                                <field name="input_parameters" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="output_data" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="analysis_result"/>
+                            </group>
+                        </page>
+                        <page string="ISL Configuration">
+                            <group>
+                                <field name="industry_id"/>
+                                <field name="uses_isl_data"/>
+                                <field name="data_isolation_level"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- AI Image Analysis Prediction Action -->
+    <record id="action_ai_image_analysis_prediction" model="ir.actions.act_window">
+        <field name="name">Image Analysis Prediction</field>
+        <field name="res_model">ai.image.analysis.prediction</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add your first image analysis prediction!
+            </p>
+            <p>
+                AI-powered yield prediction and growth analysis from crop images. Upload images
+                to predict yield, growth stages, and potential issues.
+            </p>
+        </field>
+    </record>
+</odoo>

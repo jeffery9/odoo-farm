@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ISL MRP Production Views -->
+    <record id="view_isl_mrp_production_form" model="ir.ui.view">
+        <field name="name">farm.mrp.production.form</field>
+        <field name="model">farm.mrp.production</field>
+        <field name="arch" type="xml">
+            <form string="ISL MRP Production">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,progress,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_confirm" type="object" string="Confirm" class="oe_stat_button" icon="fa-check" invisible="state in ('confirmed', 'progress', 'done', 'cancel')"/>
+                        <button name="action_start" type="object" string="Start" class="oe_stat_button" icon="fa-play" invisible="state != 'confirmed'"/>
+                        <button name="action_cancel" type="object" string="Cancel" class="oe_stat_button" icon="fa-times" invisible="state not in ('confirmed', 'progress')"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="product_id"/>
+                            <field name="product_qty"/>
+                            <field name="product_uom_id"/>
+                            <field name="date_planned_start"/>
+                        </group>
+                        <group>
+                            <field name="industry_type"/>
+                            <field name="industry_specialization"/>
+                            <field name="is_isl_model"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Industry Specific" invisible="industry_type != 'food_processing'">
+                            <group>
+                                <field name="haccp_plan" placeholder="HACCP Plan for food processing"/>
+                            </group>
+                        </page>
+                        <page string="Industry Specific" invisible="industry_type != 'pharmaceutical'">
+                            <group>
+                                <field name="gmp_compliance"/>
+                                <field name="quality_gate_checks" placeholder="Quality gate checks for pharma"/>
+                            </group>
+                        </page>
+                        <page string="Industry Specific" invisible="industry_type != 'chemical'">
+                            <group>
+                                <field name="safety_procedures" placeholder="Safety procedures for chemical processing"/>
+                            </group>
+                        </page>
+                        <page string="General Industry Info">
+                            <group>
+                                <field name="compliance_requirements"/>
+                                <field name="industry_standards"/>
+                                <field name="safety_requirements"/>
+                                <field name="quality_control_points"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_isl_mrp_production_tree" model="ir.ui.view">
+        <field name="name">farm.mrp.production.tree</field>
+        <field name="model">farm.mrp.production</field>
+        <field name="arch" type="xml">
+            <tree string="ISL MRP Productions">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="product_qty"/>
+                <field name="date_planned_start"/>
+                <field name="industry_type"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_isl_mrp_production" model="ir.actions.act_window">
+        <field name="name">Farm ISL MRP Productions</field>
+        <field name="res_model">farm.mrp.production</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

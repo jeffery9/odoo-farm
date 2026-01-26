@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Crop Growth Prediction Views -->
+    <record id="view_ai_crop_growth_prediction_form" model="ir.ui.view">
+        <field name="name">ai.crop.growth.prediction.form</field>
+        <field name="model">ai.crop.growth.prediction</field>
+        <field name="arch" type="xml">
+            <form string="AI Crop Growth Prediction">
+                <header>
+                    <button name="calculate_growth_prediction" type="object" string="Calculate Prediction" class="oe_highlight"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_apply_recommendation" type="object" string="Apply Recommendation" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'"/>
+                        <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'"/>
+                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="land_location_id"/>
+                            <field name="planting_date"/>
+                        </group>
+                        <group>
+                            <field name="confidence_score"/>
+                            <field name="priority"/>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="expected_harvest_date"/>
+                            <field name="predicted_yield"/>
+                        </group>
+                        <group>
+                            <field name="current_growth_stage"/>
+                            <field name="growth_deviation"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Growth Analysis">
+                            <group>
+                                <field name="environmental_factors" placeholder="Environmental factors JSON data"/>
+                                <field name="growth_curve_data" placeholder="Growth curve analysis data"/>
+                            </group>
+                        </page>
+                        <page string="Recommendation">
+                            <field name="growth_recommendation" placeholder="Growth optimization recommendations"/>
+                        </page>
+                        <page string="Results">
+                            <group>
+                                <field name="recommendation" placeholder="Overall recommendation"/>
+                                <field name="decision_reasoning" placeholder="Reasoning behind the AI decision"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ai_crop_growth_prediction_tree" model="ir.ui.view">
+        <field name="name">ai.crop.growth.prediction.tree</field>
+        <field name="model">ai.crop.growth.prediction</field>
+        <field name="arch" type="xml">
+            <tree string="AI Crop Growth Predictions">
+                <field name="product_id"/>
+                <field name="land_location_id"/>
+                <field name="planting_date"/>
+                <field name="expected_harvest_date"/>
+                <field name="predicted_yield"/>
+                <field name="confidence_score"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_ai_crop_growth_prediction" model="ir.actions.act_window">
+        <field name="name">AI Crop Growth Predictions</field>
+        <field name="res_model">ai.crop.growth.prediction</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

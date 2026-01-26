@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Market Prediction Views -->
+    <record id="view_ai_market_prediction_form" model="ir.ui.view">
+        <field name="name">ai.market.prediction.form</field>
+        <field name="model">ai.market.prediction</field>
+        <field name="arch" type="xml">
+            <form string="AI Market Prediction">
+                <header>
+                    <button name="calculate_market_prediction" type="object" string="Calculate Prediction" class="oe_highlight"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_apply_recommendation" type="object" string="Apply Strategy" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'"/>
+                        <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'"/>
+                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="current_price"/>
+                        </group>
+                        <group>
+                            <field name="confidence_score"/>
+                            <field name="risk_level"/>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                    <group string="Price Predictions">
+                        <group>
+                            <field name="predicted_price_7d"/>
+                            <field name="predicted_price_30d"/>
+                            <field name="predicted_price_90d"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="price_trend"/>
+                        <field name="priority"/>
+                    </group>
+                    <notebook>
+                        <page string="Market Factors">
+                            <field name="market_factors" placeholder="Market factors analysis"/>
+                        </page>
+                        <page string="Sales Strategy">
+                            <field name="sales_strategy" placeholder="Recommended sales strategy"/>
+                        </page>
+                        <page string="Optimal Timing">
+                            <field name="optimal_sales_timing" placeholder="Optimal sales timing recommendations"/>
+                        </page>
+                        <page string="Results">
+                            <group>
+                                <field name="recommendation" placeholder="Overall recommendation"/>
+                                <field name="decision_reasoning" placeholder="Reasoning behind the AI decision"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ai_market_prediction_tree" model="ir.ui.view">
+        <field name="name">ai.market.prediction.tree</field>
+        <field name="model">ai.market.prediction</field>
+        <field name="arch" type="xml">
+            <tree string="AI Market Predictions">
+                <field name="product_id"/>
+                <field name="current_price"/>
+                <field name="predicted_price_30d"/>
+                <field name="price_trend"/>
+                <field name="confidence_score"/>
+                <field name="risk_level"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_ai_market_prediction" model="ir.actions.act_window">
+        <field name="name">AI Market Predictions</field>
+        <field name="res_model">ai.market.prediction</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

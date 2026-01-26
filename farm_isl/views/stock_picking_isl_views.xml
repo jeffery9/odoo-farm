@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ISL Stock Picking Views -->
+    <record id="view_isl_stock_picking_form" model="ir.ui.view">
+        <field name="name">farm.stock.picking.form</field>
+        <field name="model">farm.stock.picking</field>
+        <field name="arch" type="xml">
+            <form string="ISL Stock Picking">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" invisible="state not in ('draft', 'waiting', 'confirmed', 'assigned')" class="oe_highlight"/>
+                    <button name="action_assign" type="object" string="Check Availability" invisible="state not in ('confirmed', 'waiting', 'assigned')"/>
+                    <button name="do_unreserve" type="object" string="Unreserve" invisible="state != 'assigned' or not show_operations"/>
+                    <button name="button_validate" name="action_done" type="object" string="Validate" invisible="state != 'assigned'" class="oe_highlight"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state not in ('draft', 'waiting', 'confirmed', 'assigned')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,waiting,confirmed,assigned,done,cancel"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="picking_type_id" invisible="1"/>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="industry_type"/>
+                            <field name="is_isl_model"/>
+                            <field name="temperature_control"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Industry Specific" invisible="industry_type != 'food_processing' and industry_type != 'pharmaceutical'">
+                            <group>
+                                <field name="temperature_log" placeholder="Temperature monitoring log"/>
+                                <field name="humidity_log" placeholder="Humidity monitoring log"/>
+                            </group>
+                        </page>
+                        <page string="Industry Specific" invisible="industry_type != 'food_processing'">
+                            <group>
+                                <field name="chain_of_custody" placeholder="Food chain of custody documentation"/>
+                            </group>
+                        </page>
+                        <page string="Industry Specific" invisible="industry_type != 'pharmaceutical'">
+                            <group>
+                                <field name="security_seal" placeholder="Pharmaceutical security seal"/>
+                            </group>
+                        </page>
+                        <page string="General Industry Info">
+                            <group>
+                                <field name="shelf_life_tracking"/>
+                                <field name="batch_tracking"/>
+                                <field name="lot_tracking"/>
+                                <field name="expiry_tracking"/>
+                                <field name="humidity_control"/>
+                                <field name="light_sensitive"/>
+                            </group>
+                        </page>
+                        <page string="Operations">
+                            <field name="move_ids_without_package" nolabel="1" context="{'default_picking_id': id, 'picking_type_code': picking_type_id.code, 'default_state': state}">
+                                <tree editable="top">
+                                    <field name="product_id"/>
+                                    <field name="description_picking"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="product_uom" groups="uom.group_uom" options="{'no_create': True}"/>
+                                    <field name="location_id" groups="stock.group_stock_multi_locations"/>
+                                    <field name="location_dest_id" groups="stock.group_stock_multi_locations"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_isl_stock_picking_tree" model="ir.ui.view">
+        <field name="name">farm.stock.picking.tree</field>
+        <field name="model">farm.stock.picking</field>
+        <field name="arch" type="xml">
+            <tree string="ISL Stock Pickings">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="picking_type_id"/>
+                <field name="scheduled_date"/>
+                <field name="industry_type"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_isl_stock_picking" model="ir.actions.act_window">
+        <field name="name">ISL Stock Pickings</field>
+        <field name="res_model">farm.stock.picking</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_llm_configuration,llm.configuration,model_llm_configuration,farm_security.group_farm_user,1,1,1,1
+access_llm_service,llm.service,model_llm_service,farm_security.group_farm_user,1,1,1,1

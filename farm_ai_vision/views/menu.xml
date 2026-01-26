@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Vision Main Menu -->
+    <menuitem id="farm_ai_vision_menu_root"
+              name="AI Vision System"
+              sequence="102"
+              web_icon="farm_ai_vision,static/description/icon.png"/>
+
+    <!-- AI Vision Categories -->
+    <menuitem id="farm_ai_vision_detection_menu"
+              name="Detection &amp; Diagnosis"
+              parent="farm_ai_vision_menu_root"
+              sequence="10"/>
+
+    <menuitem id="farm_ai_pest_disease_detection"
+              name="Pest & Disease Detection"
+              parent="farm_ai_vision_detection_menu"
+              action="action_ai_pest_disease_detection"
+              sequence="10"/>
+
+    <menuitem id="farm_ai_visual_sorting_menu"
+              name="Sorting & Grading"
+              parent="farm_ai_vision_menu_root"
+              sequence="20"/>
+
+    <menuitem id="farm_ai_visual_sorting"
+              name="Visual Sorting"
+              parent="farm_ai_visual_sorting_menu"
+              action="action_ai_visual_sorting"
+              sequence="10"/>
+
+    <menuitem id="farm_ai_planning_menu"
+              name="Planning &amp; Recommendations"
+              parent="farm_ai_vision_menu_root"
+              sequence="30"/>
+
+    <menuitem id="farm_ai_image_based_planning"
+              name="Image-Based Planning"
+              parent="farm_ai_planning_menu"
+              action="action_ai_image_based_planning"
+              sequence="10"/>
+
+    <menuitem id="farm_ai_prediction_menu"
+              name="Prediction &amp; Analytics"
+              parent="farm_ai_vision_menu_root"
+              sequence="40"/>
+
+    <menuitem id="farm_ai_image_analysis_prediction"
+              name="Image Analysis Prediction"
+              parent="farm_ai_prediction_menu"
+              action="action_ai_image_analysis_prediction"
+              sequence="10"/>
+
+    <menuitem id="farm_ai_risk_menu"
+              name="Risk Assessment"
+              parent="farm_ai_vision_menu_root"
+              sequence="50"/>
+
+    <menuitem id="farm_ai_vision_risk_assessment"
+              name="Vision Risk Assessment"
+              parent="farm_ai_risk_menu"
+              action="action_ai_vision_risk_assessment"
+              sequence="10"/>
+</odoo>

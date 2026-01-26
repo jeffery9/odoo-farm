@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Health Monitoring Views -->
+    <record id="view_ai_health_monitoring_form" model="ir.ui.view">
+        <field name="name">ai.health.monitoring.form</field>
+        <field name="model">ai.health.monitoring</field>
+        <field name="arch" type="xml">
+            <form string="AI Health and Welfare Monitoring">
+                <header>
+                    <button name="monitor_health_welfare" type="object" string="Monitor" class="oe_highlight"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_apply_recommendation" type="object" string="Apply Care" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'"/>
+                        <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'"/>
+                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="animal_id"/>
+                            <field name="species_type"/>
+                        </group>
+                        <group>
+                            <field name="welfare_score"/>
+                            <field name="health_risk_level"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="confidence_score"/>
+                        <field name="priority"/>
+                        <field name="status"/>
+                    </group>
+                    <notebook>
+                        <page string="Behavioral Metrics">
+                            <field name="behavioral_metrics" placeholder="Behavioral metrics JSON data"/>
+                        </page>
+                        <page string="Health Indicators">
+                            <field name="health_indicators" placeholder="Health indicators JSON data"/>
+                        </page>
+                        <page string="Monitoring Alert">
+                            <field name="monitoring_alert" placeholder="Health monitoring alerts"/>
+                        </page>
+                        <page string="Health Recommendation">
+                            <field name="health_recommendation" placeholder="Health recommendations"/>
+                        </page>
+                        <page string="Welfare Improvements">
+                            <field name="welfare_improvements" placeholder="Welfare improvement suggestions"/>
+                        </page>
+                        <page string="Results">
+                            <group>
+                                <field name="recommendation" placeholder="Overall recommendation"/>
+                                <field name="decision_reasoning" placeholder="Reasoning behind the AI decision"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ai_health_monitoring_tree" model="ir.ui.view">
+        <field name="name">ai.health.monitoring.tree</field>
+        <field name="model">ai.health.monitoring</field>
+        <field name="arch" type="xml">
+            <tree string="AI Health and Welfare Monitoring">
+                <field name="animal_id"/>
+                <field name="species_type"/>
+                <field name="welfare_score"/>
+                <field name="health_risk_level"/>
+                <field name="confidence_score"/>
+                <field name="priority"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_ai_health_monitoring" model="ir.actions.act_window">
+        <field name="name">AI Health and Welfare Monitoring</field>
+        <field name="res_model">ai.health.monitoring</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

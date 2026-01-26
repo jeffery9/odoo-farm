@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- LLM Service Tree View -->
+    <record id="view_llm_service_tree" model="ir.ui.view">
+        <field name="name">llm.service.tree</field>
+        <field name="model">llm.service</field>
+        <field name="arch" type="xml">
+            <tree string="LLM Services">
+                <field name="name"/>
+                <field name="config_id"/>
+                <field name="last_call_time"/>
+                <field name="call_count"/>
+                <field name="error_count"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- LLM Service Form View -->
+    <record id="view_llm_service_form" model="ir.ui.view">
+        <field name="name">llm.service.form</field>
+        <field name="model">llm.service</field>
+        <field name="arch" type="xml">
+            <form string="LLM Service">
+                <header>
+                    <button name="call_llm" type="object" string="Test API Call" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Service Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Configuration">
+                            <field name="config_id"/>
+                        </group>
+                        <group string="Statistics">
+                            <field name="call_count"/>
+                            <field name="error_count"/>
+                            <field name="last_call_time"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Test API">
+                            <group>
+                                <field name="config_id" invisible="1"/>
+                                <p>Click "Test API Call" to verify the LLM connection with a simple test query.</p>
+                            </group>
+                        </page>
+                        <page string="Usage">
+                            <p>LLM services are used internally by AI agents to enhance decision making with large language models.</p>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- LLM Service Action -->
+    <record id="action_llm_service" model="ir.actions.act_window">
+        <field name="name">LLM Services</field>
+        <field name="res_model">llm.service</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Configure your LLM services!
+            </p>
+            <p>
+                LLM services provide the interface to Large Language Models. They use the configurations
+                set up in LLM Configurations to make API calls. These services are used by AI agents
+                to enhance traditional algorithms with LLM capabilities.
+            </p>
+        </field>
+    </record>
+</odoo>

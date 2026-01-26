@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Quality Grading Views -->
+    <record id="view_ai_quality_grading_form" model="ir.ui.view">
+        <field name="name">ai.quality.grading.form</field>
+        <field name="model">ai.quality.grading</field>
+        <field name="arch" type="xml">
+            <form string="AI Quality Grading">
+                <header>
+                    <button name="perform_quality_grading" type="object" string="Grade Quality" class="oe_highlight"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_apply_recommendation" type="object" string="Apply Sorting" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'"/>
+                        <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'"/>
+                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="batch_lot_id"/>
+                        </group>
+                        <group>
+                            <field name="sample_size"/>
+                            <field name="predicted_grade"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="quality_score"/>
+                        <field name="confidence_score"/>
+                        <field name="status"/>
+                    </group>
+                    <notebook>
+                        <page string="Quality Attributes">
+                            <field name="quality_attributes" placeholder="Quality attributes JSON data"/>
+                        </page>
+                        <page string="Grading Criteria">
+                            <field name="grading_criteria" placeholder="Grading criteria applied"/>
+                        </page>
+                        <page string="Sorting Recommendation">
+                            <field name="sorting_recommendation" placeholder="Sorting and grading recommendations"/>
+                        </page>
+                        <page string="Market Suggestion">
+                            <field name="market_suggestion" placeholder="Market placement suggestions"/>
+                        </page>
+                        <page string="Results">
+                            <group>
+                                <field name="recommendation" placeholder="Overall recommendation"/>
+                                <field name="decision_reasoning" placeholder="Reasoning behind the AI decision"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ai_quality_grading_tree" model="ir.ui.view">
+        <field name="name">ai.quality.grading.tree</field>
+        <field name="model">ai.quality.grading</field>
+        <field name="arch" type="xml">
+            <tree string="AI Quality Grading">
+                <field name="product_id"/>
+                <field name="batch_lot_id"/>
+                <field name="predicted_grade"/>
+                <field name="quality_score"/>
+                <field name="confidence_score"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_ai_quality_grading" model="ir.actions.act_window">
+        <field name="name">AI Quality Grading</field>
+        <field name="res_model">ai.quality.grading</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

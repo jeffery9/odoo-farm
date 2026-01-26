@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ISL Stock Lot Views -->
+    <record id="view_isl_stock_lot_form" model="ir.ui.view">
+        <field name="name">farm.stock.lot.form</field>
+        <field name="model">farm.stock.lot</field>
+        <field name="arch" type="xml">
+            <form string="ISL Stock Lot">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="product_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="ref"/>
+                        </group>
+                        <group>
+                            <field name="industry_type"/>
+                            <field name="is_isl_model"/>
+                            <field name="expiry_tracking"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Industry Specific" invisible="industry_type != 'food_processing'">
+                            <group>
+                                <field name="harvest_date"/>
+                                <field name="kill_date"/>
+                                <field name="storage_conditions" placeholder="Food storage conditions"/>
+                            </group>
+                        </page>
+                        <page string="Industry Specific" invisible="industry_type != 'pharmaceutical'">
+                            <group>
+                                <field name="sterility_date"/>
+                                <field name="stability_data" placeholder="Pharmaceutical stability data"/>
+                            </group>
+                        </page>
+                        <page string="Industry Specific" invisible="industry_type != 'chemical'">
+                            <field name="storage_conditions" placeholder="Chemical storage requirements"/>
+                        </page>
+                        <page string="General Industry Info">
+                            <group>
+                                <field name="shelf_life_tracking"/>
+                                <field name="batch_tracking"/>
+                                <field name="lot_tracking"/>
+                                <field name="inventory_compliance"/>
+                                <field name="temperature_control"/>
+                                <field name="humidity_control"/>
+                                <field name="light_sensitive"/>
+                            </group>
+                        </page>
+                        <page string="Documents">
+                            <group>
+                                <field name="certificate_of_analysis" filename="certificate_of_analysis_name"/>
+                                <field name="certificate_of_analysis_name"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_isl_stock_lot_tree" model="ir.ui.view">
+        <field name="name">farm.stock.lot.tree</field>
+        <field name="model">farm.stock.lot</field>
+        <field name="arch" type="xml">
+            <tree string="ISL Stock Lots">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="ref"/>
+                <field name="industry_type"/>
+                <field name="harvest_date"/>
+                <field name="shelf_life_tracking"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_isl_stock_lot" model="ir.actions.act_window">
+        <field name="name">ISL Stock Lots</field>
+        <field name="res_model">farm.stock.lot</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

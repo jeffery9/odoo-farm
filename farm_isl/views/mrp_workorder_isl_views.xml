@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ISL MRP Work Order Views -->
+    <record id="view_isl_mrp_workorder_form" model="ir.ui.view">
+        <field name="name">farm.mrp.workorder.form</field>
+        <field name="model">farm.mrp.workorder</field>
+        <field name="arch" type="xml">
+            <form string="ISL MRP Work Order">
+                <header>
+                    <button name="button_start" type="object" string="Start" invisible="state != 'pending'" class="oe_highlight"/>
+                    <button name="button_done" type="object" string="Done" invisible="state != 'progress'" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="pending,ready,progress,done,cancel"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="workcenter_id"/>
+                            <field name="production_id"/>
+                        </group>
+                        <group>
+                            <field name="industry_type"/>
+                            <field name="is_isl_model"/>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Industry Specific" invisible="industry_type != 'pharmaceutical'">
+                            <group>
+                                <field name="batch_record" placeholder="Pharmaceutical batch record"/>
+                                <field name="operator_certification" placeholder="Operator certification requirements"/>
+                            </group>
+                        </page>
+                        <page string="Industry Specific" invisible="industry_type != 'food_processing' and industry_type != 'pharmaceutical'">
+                            <group>
+                                <field name="in_process_inspection" placeholder="In-process inspection requirements"/>
+                            </group>
+                        </page>
+                        <page string="General Industry Info">
+                            <group>
+                                <field name="compliance_requirements"/>
+                                <field name="industry_standards"/>
+                                <field name="quality_control_points"/>
+                                <field name="equipment_validation" placeholder="Equipment validation requirements"/>
+                            </group>
+                        </page>
+                        <page string="Scheduling">
+                            <group>
+                                <field name="date_start"/>
+                                <field name="date_finished"/>
+                                <field name="duration_expected"/>
+                                <field name="duration"/>
+                            </group>
+                        </page>
+                        <page string="Operations">
+                            <field name="operation_id"/>
+                            <field name="product_uom_qty"/>
+                            <field name="qty_produced"/>
+                            <field name="qty_producing"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_isl_mrp_workorder_tree" model="ir.ui.view">
+        <field name="name">farm.mrp.workorder.tree</field>
+        <field name="model">farm.mrp.workorder</field>
+        <field name="arch" type="xml">
+            <tree string="ISL MRP Work Orders">
+                <field name="name"/>
+                <field name="workcenter_id"/>
+                <field name="production_id"/>
+                <field name="date_start"/>
+                <field name="industry_type"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_isl_mrp_workorder" model="ir.actions.act_window">
+        <field name="name">ISL MRP Work Orders</field>
+        <field name="res_model">farm.mrp.workorder</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

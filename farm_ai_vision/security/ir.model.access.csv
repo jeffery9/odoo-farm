@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_vision_base,ai.vision.base,model_ai_vision_base,farm_security.group_farm_user,1,1,1,1
+access_ai_pest_disease_detection,ai.pest.disease.detection,model_ai_pest_disease_detection,farm_security.group_farm_user,1,1,1,1
+access_ai_visual_sorting,ai.visual.sorting,model_ai_visual_sorting,farm_security.group_farm_user,1,1,1,1
+access_ai_image_based_planning,ai.image.based.planning,model_ai_image_based_planning,farm_security.group_farm_user,1,1,1,1
+access_ai_image_analysis_prediction,ai.image.analysis.prediction,model_ai_image_analysis_prediction,farm_security.group_farm_user,1,1,1,1
+access_ai_vision_risk_assessment,ai.vision.risk.assessment,model_ai_vision_risk_assessment,farm_security.group_farm_user,1,1,1,1

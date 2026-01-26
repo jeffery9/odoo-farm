@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Agent Tree View -->
+    <record id="view_ai_agent_tree" model="ir.ui.view">
+        <field name="name">ai.agent.tree</field>
+        <field name="model">ai.agent</field>
+        <field name="arch" type="xml">
+            <tree string="AI Agents">
+                <field name="name"/>
+                <field name="agent_type"/>
+                <field name="industry_id"/>
+                <field name="model_architecture"/>
+                <field name="confidence_score"/>
+                <field name="status"/>
+                <field name="execution_count"/>
+                <field name="last_execution"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- AI Agent Form View -->
+    <record id="view_ai_agent_form" model="ir.ui.view">
+        <field name="name">ai.agent.form</field>
+        <field name="model">ai.agent</field>
+        <field name="arch" type="xml">
+            <form string="AI Agent">
+                <header>
+                    <button name="action_execute_agent" type="object" string="Execute Agent" class="oe_highlight"/>
+                    <button name="action_train_model" type="object" string="Retrain Model"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="AI Agent Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="agent_type"/>
+                            <field name="industry_id"/>
+                            <field name="model_architecture"/>
+                            <field name="confidence_score"/>
+                        </group>
+                        <group>
+                            <field name="training_accuracy"/>
+                            <field name="last_trained"/>
+                            <field name="execution_count"/>
+                            <field name="last_execution"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Configuration">
+                            <group>
+                                <group string="Model Configuration">
+                                    <field name="parameters" widget="ace" options="{'mode': 'json'}"/>
+                                </group>
+                                <group string="Data Schema">
+                                    <field name="input_schema" widget="ace" options="{'mode': 'json'}"/>
+                                    <field name="output_schema" widget="ace" options="{'mode': 'json'}"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Performance Metrics">
+                            <group>
+                                <group string="Classification Metrics">
+                                    <field name="precision_score"/>
+                                    <field name="recall_score"/>
+                                    <field name="f1_score"/>
+                                </group>
+                                <group string="Regression Metrics">
+                                    <field name="mse_score"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="ISL Integration">
+                            <group>
+                                <group string="ISL Configuration">
+                                    <field name="uses_isl_data"/>
+                                    <field name="isl_model_access" widget="ace" options="{'mode': 'json'}"/>
+                                    <field name="data_isolation_level"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Data &amp; Results">
+                            <group>
+                                <field name="input_data" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="output_data" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="decision_reasoning"/>
+                            </group>
+                        </page>
+
+                        <page string="Execution Stats">
+                            <group>
+                                <field name="avg_response_time"/>
+                                <field name="training_data_source"/>
+                                <field name="training_samples"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- AI Agent Action -->
+    <record id="action_ai_agent" model="ir.actions.act_window">
+        <field name="name">AI Agents</field>
+        <field name="res_model">ai.agent</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add your first AI Agent!
+            </p>
+            <p>
+                AI Agents provide intelligent decision support for agricultural operations.
+                They can perform recommendations, analysis, optimization, predictions, and monitoring
+                using various machine learning model architectures.
+            </p>
+        </field>
+    </record>
+</odoo>
