@@ -2,12 +2,15 @@
     'name': 'Farm Ecology & Biodiversity',
     'version': '1.0',
     'category': 'Industries/Agriculture',
-    'summary': 'Biodiversity Tracking and Ecological Indicators',
+    'summary': 'Scientific Ecological Data Collection & Biodiversity Tracking',
     'description': """
-        Ecological management for sustainable farming [US-17-05].
-        - Biodiversity Indicators (Insects, Birds, Vegetation)
-        - Ecological Infrastructure Maintenance (Hedges, Ponds)
-        - ESG Reporting support
+        Pure ecological data collection and environmental monitoring for sustainable farming [US-17-05].
+        - Scientific Biodiversity Indicators (Insects, Birds, Vegetation)
+        - Environmental Impact Measurements (pesticide, fertilizer, water, fuel usage)
+        - Water Efficiency Data Collection
+        - Ecological Infrastructure Monitoring
+        NOTE: This module focuses on scientific data collection without ESG governance context.
+        ESG assessments and reporting are handled by the farm_esg_* modules.
     """,
     'author': 'Jeffery',
     'depends': ['farm_core', 'farm_sustainability'],
