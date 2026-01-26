@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ESG Target Views -->
+    <record id="view_esg_target_tree" model="ir.ui.view">
+        <field name="name">esg.target.tree</field>
+        <field name="model">esg.target</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="target_type"/>
+                <field name="baseline_value"/>
+                <field name="target_value"/>
+                <field name="current_value"/>
+                <field name="progress_percentage"/>
+                <field name="is_achieved"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_esg_target_form" model="ir.ui.view">
+        <field name="name">esg.target.form</field>
+        <field name="model">esg.target</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_update_current_value" type="object" string="Update Current Value"/>
+                    <button name="action_mark_achieved" type="object" string="Mark as Achieved" invisible="current_value &lt; target_value and target_type == 'improvement' or current_value &gt; target_value and target_type == 'reduction'"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_track_progress" type="object" string="Track Progress" class="oe_stat_button" icon="fa-line-chart"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="category"/>
+                            <field name="target_type"/>
+                        </group>
+                        <group>
+                            <field name="priority"/>
+                            <field name="responsible_user_id"/>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                    <group string="Target Values">
+                        <field name="baseline_value"/>
+                        <field name="target_value"/>
+                        <field name="current_value"/>
+                        <field name="unit_of_measurement"/>
+                    </group>
+                    <group string="Timeline">
+                        <field name="start_date"/>
+                        <field name="target_date"/>
+                        <field name="achieved_date"/>
+                    </group>
+                    <group string="Progress" col="4">
+                        <field name="progress_percentage"/>
+                        <field name="is_achieved"/>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Framework & Indicators">
+                            <group>
+                                <field name="framework_id"/>
+                            </group>
+                            <group string="Related Indicators">
+                                <field name="related_indicator_ids" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Stakeholders">
+                            <field name="stakeholder_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        </page>
+                        <page string="Updates">
+                            <field name="last_update"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_esg_target" model="ir.actions.act_window">
+        <field name="name">ESG Targets</field>
+        <field name="res_model">esg.target</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- ESG Performance Report Views -->
+    <record id="view_esg_performance_report_tree" model="ir.ui.view">
+        <field name="name">esg.performance.report.tree</field>
+        <field name="model">esg.performance.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="report_date"/>
+                <field name="report_period"/>
+                <field name="overall_esg_score"/>
+                <field name="achievement_rate"/>
+                <field name="year"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_esg_performance_report_form" model="ir.ui.view">
+        <field name="name">esg.performance.report.form</field>
+        <field name="model">esg.performance.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_generate_report" type="object" string="Generate Report" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="report_period"/>
+                            <field name="year"/>
+                        </group>
+                        <group>
+                            <field name="report_date"/>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+                    <group string="ESG Scores" col="4">
+                        <field name="environmental_score"/>
+                        <field name="social_score"/>
+                        <field name="governance_score"/>
+                        <field name="overall_esg_score"/>
+                    </group>
+                    <group string="Target Metrics" col="4">
+                        <field name="total_targets"/>
+                        <field name="achieved_targets"/>
+                        <field name="achievement_rate"/>
+                    </group>
+                    <group string="Compliance Metrics" col="4">
+                        <field name="compliance_rate"/>
+                        <field name="audit_findings"/>
+                        <field name="corrective_actions"/>
+                    </group>
+                    <notebook>
+                        <page string="Executive Summary">
+                            <field name="executive_summary"/>
+                        </page>
+                        <page string="Performance Details">
+                            <group string="Key Achievements">
+                                <field name="key_achievements" nolabel="1"/>
+                            </group>
+                            <group string="Challenges">
+                                <field name="challenges" nolabel="1"/>
+                            </group>
+                            <group string="Improvement Plan">
+                                <field name="improvement_plan" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Related Data">
+                            <group string="Related Assessments">
+                                <field name="assessment_ids" nolabel="1"/>
+                            </group>
+                            <group string="Related Targets">
+                                <field name="target_ids" nolabel="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_esg_performance_report" model="ir.actions.act_window">
+        <field name="name">ESG Performance Reports</field>
+        <field name="res_model">esg.performance.report</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

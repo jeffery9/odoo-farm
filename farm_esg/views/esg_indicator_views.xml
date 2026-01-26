@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ESG Indicator Views -->
+    <record id="view_esg_indicator_tree" model="ir.ui.view">
+        <field name="name">esg.indicator.tree</field>
+        <field name="model">esg.indicator</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="category"/>
+                <field name="subcategory"/>
+                <field name="unit_of_measurement"/>
+                <field name="target_value"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_esg_indicator_form" model="ir.ui.view">
+        <field name="name">esg.indicator.form</field>
+        <field name="model">esg.indicator</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="category"/>
+                            <field name="subcategory"/>
+                        </group>
+                        <group>
+                            <field name="framework_id"/>
+                            <field name="is_active"/>
+                            <field name="unit_of_measurement"/>
+                            <field name="weight"/>
+                        </group>
+                    </group>
+                    <group string="Values and Targets">
+                        <field name="baseline_value"/>
+                        <field name="target_value"/>
+                        <field name="threshold_value"/>
+                    </group>
+                    <group string="Acceptable Range">
+                        <field name="min_acceptable_value"/>
+                        <field name="max_acceptable_value"/>
+                        <field name="is_percentage"/>
+                    </group>
+                    <group string="Data Collection">
+                        <field name="data_collection_method"/>
+                        <field name="reporting_frequency"/>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Assessment Lines" name="assessment_lines">
+                            <field name="assessment_line_ids" nolabel="1">
+                                <tree>
+                                    <field name="assessment_id"/>
+                                    <field name="actual_value"/>
+                                    <field name="performance_score"/>
+                                    <field name="achievement_percentage"/>
+                                    <field name="collection_date"/>
+                                    <field name="verification_status"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_esg_indicator" model="ir.actions.act_window">
+        <field name="name">ESG Indicators</field>
+        <field name="res_model">esg.indicator</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- ESG Assessment Line Views -->
+    <record id="view_esg_assessment_line_tree" model="ir.ui.view">
+        <field name="name">esg.assessment.line.tree</field>
+        <field name="model">esg.assessment.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="assessment_id"/>
+                <field name="indicator_id"/>
+                <field name="actual_value"/>
+                <field name="target_value"/>
+                <field name="performance_score"/>
+                <field name="verification_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_esg_assessment_line_form" model="ir.ui.view">
+        <field name="name">esg.assessment.line.form</field>
+        <field name="model">esg.assessment.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="assessment_id"/>
+                            <field name="indicator_id"/>
+                        </group>
+                        <group>
+                            <field name="actual_value"/>
+                            <field name="target_value"/>
+                            <field name="baseline_value"/>
+                        </group>
+                    </group>
+                    <group string="Performance Metrics">
+                        <field name="performance_score"/>
+                        <field name="achievement_percentage"/>
+                        <field name="variance"/>
+                    </group>
+                    <group string="Data Source">
+                        <field name="data_source"/>
+                        <field name="verification_status"/>
+                        <field name="collection_date"/>
+                        <field name="collected_by"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_esg_assessment_line" model="ir.actions.act_window">
+        <field name="name">ESG Assessment Lines</field>
+        <field name="res_model">esg.assessment.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
