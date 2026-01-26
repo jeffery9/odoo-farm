@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_esg_environmental_report,esg.environmental.report,model_esg_environmental_report,farm_core.group_farm_manager,1,1,1,1
+access_esg_environmental_compliance,esg.environmental.compliance,model_esg_environmental_compliance,farm_core.group_farm_manager,1,1,1,1
+access_esg_environmental_report_user,esg.environmental.report.user,model_esg_environmental_report,farm_core.group_farm_user,1,0,0,0
+access_esg_environmental_compliance_user,esg.environmental.compliance.user,model_esg_environmental_compliance,farm_core.group_farm_user,1,0,0,0

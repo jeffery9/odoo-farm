@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sequences for Financial Services Module -->
+    <data noupdate="1">
+        <record id="seq_farm_livestock_asset_loan" model="ir.sequence">
+            <field name="name">Farm Livestock Asset Loan</field>
+            <field name="code">farm.livestock.asset.loan</field>
+            <field name="prefix">LAL/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_farm_crop_yield_insurance" model="ir.sequence">
+            <field name="name">Farm Crop Yield Insurance</field>
+            <field name="code">farm.crop.yield.insurance</field>
+            <field name="prefix">CYI/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_farm_carbon_credit_finance" model="ir.sequence">
+            <field name="name">Farm Carbon Credit Finance</field>
+            <field name="code">farm.carbon.credit.finance</field>
+            <field name="prefix">CCF/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_farm_futures_hedging" model="ir.sequence">
+            <field name="name">Farm Futures Hedging</field>
+            <field name="code">farm.futures.hedging</field>
+            <field name="prefix">FH/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

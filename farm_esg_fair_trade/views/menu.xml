@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="esg_fair_trade_menu" name="ESG Fair Trade" sequence="10" groups="farm_core.group_farm_manager"/>
+
+    <menuitem id="esg_fair_trade_certificates_menu" name="Fair Trade Certificates"
+              parent="esg_fair_trade_menu" sequence="10"
+              action="action_fair_trade_certificate"/>
+
+    <menuitem id="esg_fair_trade_premium_allocations_menu" name="Premium Allocations"
+              parent="esg_fair_trade_menu" sequence="20"
+              action="action_fair_trade_premium_allocation"/>
+
+    <menuitem id="esg_community_investments_menu" name="Community Investments"
+              parent="esg_fair_trade_menu" sequence="30"
+              action="action_community_investment"/>
+
+    <menuitem id="esg_labor_conditions_menu" name="Labor Conditions"
+              parent="esg_fair_trade_menu" sequence="40"
+              action="action_labor_condition"/>

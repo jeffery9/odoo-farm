@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ESG Report Views -->
+    <record id="view_esg_report_tree" model="ir.ui.view">
+        <field name="name">farm.esg.report.tree</field>
+        <field name="model">farm.esg.report</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="report_type"/>
+                <field name="report_period"/>
+                <field name="report_year"/>
+                <field name="report_status"/>
+                <field name="language"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_esg_report_form" model="ir.ui.view">
+        <field name="name">farm.esg.report.form</field>
+        <field name="model">farm.esg.report</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_generate_report_content" type="object" string="Generate Content" states="draft"/>
+                    <button name="action_approve_report" type="object" string="Approve" states="draft,review"/>
+                    <button name="action_publish_report" type="object" string="Publish" states="approved" class="oe_highlight"/>
+                    <field name="report_status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="report_type"/>
+                            <field name="report_format"/>
+                        </group>
+                        <group>
+                            <field name="report_period"/>
+                            <field name="report_year"/>
+                            <field name="language"/>
+                        </group>
+                    </group>
+                    <group string="Industry">
+                        <field name="industry_sector"/>
+                    </group>
+                    <notebook>
+                        <page string="Content">
+                            <group string="Executive Summary">
+                                <field name="executive_summary" nolabel="1" colspan="2"/>
+                            </group>
+                            <group string="Environmental">
+                                <field name="environmental_section" nolabel="1" colspan="2"/>
+                            </group>
+                            <group string="Social">
+                                <field name="social_section" nolabel="1" colspan="2"/>
+                            </group>
+                            <group string="Governance">
+                                <field name="governance_section" nolabel="1" colspan="2"/>
+                            </group>
+                        </page>
+                        <page string="Data Sources">
+                            <group>
+                                <field name="carbon_footprint_data"/>
+                                <field name="biodiversity_data"/>
+                                <field name="community_impact_data"/>
+                                <field name="governance_metrics"/>
+                            </group>
+                        </page>
+                        <page string="Compliance &amp; Risk">
+                            <group>
+                                <field name="compliance_status"/>
+                                <field name="risk_assessment_summary"/>
+                                <field name="target_achievement"/>
+                            </group>
+                        </page>
+                        <page string="Commitments">
+                            <group>
+                                <field name="future_commitments"/>
+                            </group>
+                        </page>
+                        <page string="Management">
+                            <group>
+                                <field name="responsible_user"/>
+                                <field name="stakeholder_distribution"/>
+                            </group>
+                            <group string="Dates">
+                                <field name="approval_date"/>
+                                <field name="publication_date"/>
+                                <field name="next_report_due"/>
+                            </group>
+                            <group string="Assurance">
+                                <field name="assurance_provider"/>
+                                <field name="assurance_opinion"/>
+                                <field name="data_source_verification"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_esg_report" model="ir.actions.act_window">
+        <field name="name">ESG Reports</field>
+        <field name="res_model">farm.esg.report</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- ESG Dashboard Views -->
+    <record id="view_esg_dashboard_tree" model="ir.ui.view">
+        <field name="name">farm.esg.dashboard.tree</field>
+        <field name="model">farm.esg.dashboard</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="dashboard_type"/>
+                <field name="overall_esg_score"/>
+                <field name="display_period"/>
+                <field name="target_audience"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_esg_dashboard_form" model="ir.ui.view">
+        <field name="name">farm.esg.dashboard.form</field>
+        <field name="model">farm.esg.dashboard</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_refresh_dashboard" type="object" string="Refresh Dashboard" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="dashboard_type"/>
+                            <field name="target_audience"/>
+                        </group>
+                        <group>
+                            <field name="display_period"/>
+                            <field name="last_updated"/>
+                            <field name="refresh_frequency"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Scores">
+                            <group>
+                                <field name="environmental_score"/>
+                                <field name="social_score"/>
+                                <field name="governance_score"/>
+                                <field name="overall_esg_score"/>
+                            </group>
+                        </page>
+                        <page string="Dates">
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                        </page>
+                        <page string="Metrics">
+                            <group string="Key Metrics">
+                                <field name="key_metrics" nolabel="1" colspan="2"/>
+                            </group>
+                            <group string="Trend Analysis">
+                                <field name="trend_analysis" nolabel="1" colspan="2"/>
+                            </group>
+                            <group string="Risk Indicators">
+                                <field name="risk_indicators" nolabel="1" colspan="2"/>
+                            </group>
+                            <group string="Compliance Status">
+                                <field name="compliance_status" nolabel="1" colspan="2"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_esg_dashboard" model="ir.actions.act_window">
+        <field name="name">ESG Dashboards</field>
+        <field name="res_model">farm.esg.dashboard</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Sustainability Goal Views -->
+    <record id="view_sustainability_goal_tree" model="ir.ui.view">
+        <field name="name">farm.esg.sustainability.goal.tree</field>
+        <field name="model">farm.esg.sustainability.goal</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="goal_type"/>
+                <field name="goal_status"/>
+                <field name="progress_percentage"/>
+                <field name="target_year"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sustainability_goal_form" model="ir.ui.view">
+        <field name="name">farm.esg.sustainability.goal.form</field>
+        <field name="model">farm.esg.sustainability.goal</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_update_progress" type="object" string="Update Progress" class="oe_highlight"/>
+                    <field name="goal_status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="goal_type"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="goal_status"/>
+                            <field name="progress_percentage"/>
+                            <field name="current_value"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Targets">
+                            <group>
+                                <field name="baseline_year"/>
+                                <field name="baseline_value"/>
+                                <field name="target_year"/>
+                                <field name="target_value"/>
+                            </group>
+                        </page>
+                        <page string="Planning">
+                            <group>
+                                <field name="responsible_team"/>
+                                <field name="action_plan"/>
+                                <field name="monitoring_frequency"/>
+                            </group>
+                            <group>
+                                <field name="last_review_date"/>
+                                <field name="next_review_date"/>
+                            </group>
+                        </page>
+                        <page string="KPIs &amp; Metrics">
+                            <group>
+                                <field name="key_performance_indicators"/>
+                                <field name="sustainability_framework"/>
+                            </group>
+                        </page>
+                        <page string="Management">
+                            <group string="Supporting Initiatives">
+                                <field name="supporting_initiatives" nolabel="1" colspan="2"/>
+                            </group>
+                            <group>
+                                <field name="budget_allocated"/>
+                                <field name="budget_spent"/>
+                            </group>
+                            <group string="Risk Management">
+                                <field name="risk_factors" nolabel="1" colspan="2"/>
+                                <field name="mitigation_strategies" nolabel="1" colspan="2"/>
+                            </group>
+                            <group string="Stakeholders">
+                                <field name="stakeholder_impact" nolabel="1" colspan="2"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sustainability_goal" model="ir.actions.act_window">
+        <field name="name">Sustainability Goals</field>
+        <field name="res_model">farm.esg.sustainability.goal</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

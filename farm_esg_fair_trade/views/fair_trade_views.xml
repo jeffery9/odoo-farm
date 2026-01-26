@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Fair Trade Certificate Views -->
+    <record id="view_fair_trade_certificate_tree" model="ir.ui.view">
+        <field name="name">farm.esg.fair.trade.certificate.tree</field>
+        <field name="model">farm.esg.fair.trade.certificate</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="certificate_number"/>
+                <field name="issuing_body"/>
+                <field name="expiry_date"/>
+                <field name="is_active"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_fair_trade_certificate_form" model="ir.ui.view">
+        <field name="name">farm.esg.fair.trade.certificate.form</field>
+        <field name="model">farm.esg.fair.trade.certificate</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_check_expiry_alerts" type="object" string="Check Expiry Alerts" class="oe_highlight"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="certificate_number"/>
+                            <field name="certificate_type"/>
+                        </group>
+                        <group>
+                            <field name="issuing_body"/>
+                            <field name="issue_date"/>
+                            <field name="expiry_date"/>
+                            <field name="is_active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Details">
+                            <group>
+                                <field name="fair_trade_premium"/>
+                                <field name="annual_audit_date"/>
+                                <field name="next_audit_date"/>
+                                <field name="compliance_score"/>
+                                <field name="assigned_to_user_id"/>
+                            </group>
+                        </page>
+                        <page string="Covered Items">
+                            <group>
+                                <field name="covered_products" widget="many2many_tags"/>
+                                <field name="covered_farms" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fair_trade_certificate" model="ir.actions.act_window">
+        <field name="name">Fair Trade Certificates</field>
+        <field name="res_model">farm.esg.fair.trade.certificate</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Fair Trade Premium Allocation Views -->
+    <record id="view_fair_trade_premium_allocation_tree" model="ir.ui.view">
+        <field name="name">farm.esg.fair.trade.premium.allocation.tree</field>
+        <field name="model">farm.esg.fair.trade.premium.allocation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="allocation_reference"/>
+                <field name="certificate_id"/>
+                <field name="allocation_type"/>
+                <field name="amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_fair_trade_premium_allocation_form" model="ir.ui.view">
+        <field name="name">farm.esg.fair.trade.premium.allocation.form</field>
+        <field name="model">farm.esg.fair.trade.premium.allocation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_allocate" type="object" string="Allocate" states="draft" class="oe_highlight"/>
+                    <button name="action_approve" type="object" string="Approve" states="allocated" class="oe_highlight"/>
+                    <button name="action_reject" type="object" string="Reject" states="allocated"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="certificate_id"/>
+                            <field name="allocation_type"/>
+                            <field name="allocation_date"/>
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="allocated_by"/>
+                            <field name="approved_by"/>
+                            <field name="approval_date"/>
+                        </group>
+                    </group>
+                    <group string="Details">
+                        <field name="description"/>
+                        <field name="beneficiaries"/>
+                        <field name="impact_measure"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fair_trade_premium_allocation" model="ir.actions.act_window">
+        <field name="name">Fair Trade Premium Allocations</field>
+        <field name="res_model">farm.esg.fair.trade.premium.allocation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Community Investment Views -->
+    <record id="view_community_investment_tree" model="ir.ui.view">
+        <field name="name">farm.esg.community.investment.tree</field>
+        <field name="model">farm.esg.community.investment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="investment_type"/>
+                <field name="amount"/>
+                <field name="investment_date"/>
+                <field name="project_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_community_investment_form" model="ir.ui.view">
+        <field name="name">farm.esg.community.investment.form</field>
+        <field name="model">farm.esg.community.investment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="investment_type"/>
+                            <field name="project_status"/>
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="beneficiaries_count"/>
+                            <field name="investment_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Details">
+                            <group>
+                                <field name="location"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="annual_recurring"/>
+                            </group>
+                            <group string="Description">
+                                <field name="description"/>
+                                <field name="impact_assessment"/>
+                            </group>
+                        </page>
+                        <page string="Evidence">
+                            <field name="evidence_attachments" filename="evidence_attachments_fname"/>
+                            <field name="reported_by"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_community_investment" model="ir.actions.act_window">
+        <field name="name">Community Investments</field>
+        <field name="res_model">farm.esg.community.investment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Labor Condition Views -->
+    <record id="view_labor_condition_tree" model="ir.ui.view">
+        <field name="name">farm.esg.labor.condition.tree</field>
+        <field name="model">farm.esg.labor.condition</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="condition_type"/>
+                <field name="expiry_date"/>
+                <field name="is_valid"/>
+                <field name="compliance_status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_labor_condition_form" model="ir.ui.view">
+        <field name="name">farm.esg.labor.condition.form</field>
+        <field name="model">farm.esg.labor.condition</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_schedule_inspection" type="object" string="Schedule Inspection"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="employee_id"/>
+                            <field name="condition_type"/>
+                            <field name="training_record"/>
+                        </group>
+                        <group>
+                            <field name="issue_date"/>
+                            <field name="expiry_date"/>
+                            <field name="is_valid"/>
+                            <field name="compliance_status"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Details">
+                            <group>
+                                <field name="certification"/>
+                                <field name="issuing_body"/>
+                                <field name="safety_score"/>
+                            </group>
+                            <group string="Dates">
+                                <field name="last_inspection_date"/>
+                                <field name="next_inspection_date"/>
+                            </group>
+                        </page>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_labor_condition" model="ir.actions.act_window">
+        <field name="name">Labor Conditions</field>
+        <field name="res_model">farm.esg.labor.condition</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

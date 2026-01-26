@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="esg_environmental_menu" name="ESG Environmental" sequence="50" groups="farm_core.group_farm_manager"/>
+
+    <menuitem id="esg_environmental_reports_menu" name="Environmental Reports"
+              parent="esg_environmental_menu" sequence="10"
+              action="action_esg_environmental_report"/>
+
+    <menuitem id="esg_environmental_compliance_menu" name="Environmental Compliance"
+              parent="esg_environmental_menu" sequence="20"
+              action="action_esg_environmental_compliance"/>

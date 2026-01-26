@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_esg_risk_assessment,farm.esg.risk.assessment,model_farm_esg_risk_assessment,farm_core.group_farm_manager,1,1,1,1
+access_esg_compliance_monitoring,farm.esg.compliance.monitoring,model_farm_esg_compliance_monitoring,farm_core.group_farm_manager,1,1,1,1
+access_esg_data_governance,farm.esg.data.governance,model_farm_esg_data_governance,farm_core.group_farm_manager,1,1,1,1
+access_stakeholder_engagement,farm.esg.stakeholder.engagement,model_farm_esg_stakeholder_engagement,farm_core.group_farm_manager,1,1,1,1
+access_esg_kpi,farm.esg.kpi,model_farm_esg_kpi,farm_core.group_farm_manager,1,1,1,1
+access_supply_chain_esg_rating,farm.esg.supply.chain.rating,model_farm_esg_supply_chain_rating,farm_core.group_farm_manager,1,1,1,1

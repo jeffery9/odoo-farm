@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Livestock Asset Loan Views -->
+    <record id="view_livestock_asset_loan_form" model="ir.ui.view">
+        <field name="name">livestock.asset.loan.form</field>
+        <field name="model">livestock.asset.loan</field>
+        <field name="arch" type="xml">
+            <form string="Livestock Asset Loan">
+                <header>
+                    <button name="action_submit_application" type="object" string="Submit Application" class="oe_highlight" invisible="status != 'draft'"/>
+                    <button name="action_approve_application" type="object" string="Approve" invisible="status != 'pending'"/>
+                    <button name="action_reject_application" type="object" string="Reject" invisible="status != 'pending'"/>
+                    <button name="action_activate_service" type="object" string="Activate" invisible="status != 'approved'"/>
+                    <button name="calculate_animal_valuation" type="object" string="Calculate Valuation" class="oe_highlight"/>
+                    <button name="update_health_status" type="object" string="Update Health" class="oe_highlight"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,pending,approved,rejected,active,completed,cancelled"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_complete_service" type="object" string="Complete" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'active'"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="animal_category"/>
+                        </group>
+                        <group>
+                            <field name="status"/>
+                            <field name="reference"/>
+                        </group>
+                    </group>
+                    <group string="Animal Details">
+                        <group>
+                            <field name="animal_count"/>
+                            <field name="animal_avg_weight"/>
+                            <field name="animal_age_months"/>
+                        </group>
+                        <group>
+                            <field name="breed_type"/>
+                            <field name="health_status"/>
+                        </group>
+                    </group>
+                    <group string="Financial Details">
+                        <group>
+                            <field name="animal_valuation"/>
+                            <field name="collateral_value"/>
+                            <field name="loan_to_value_ratio"/>
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="currency_id"/>
+                            <field name="interest_rate"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="valuation_date"/>
+                        <field name="duration_months"/>
+                        <field name="insurance_policy"/>
+                        <field name="veterinary_cert"/>
+                    </group>
+                    <group>
+                        <field name="monitoring_frequency"/>
+                        <field name="tracking_device_id"/>
+                        <field name="risk_score"/>
+                    </group>
+                    <notebook>
+                        <page string="Risk Assessment">
+                            <group>
+                                <field name="risk_score"/>
+                                <field name="service_fees"/>
+                                <field name="application_date"/>
+                                <field name="approval_date"/>
+                            </group>
+                        </page>
+                        <page string="Insurance &amp; Monitoring">
+                            <group>
+                                <field name="insurance_policy"/>
+                                <field name="veterinary_cert"/>
+                                <field name="monitoring_frequency"/>
+                                <field name="tracking_device_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_livestock_asset_loan_tree" model="ir.ui.view">
+        <field name="name">livestock.asset.loan.tree</field>
+        <field name="model">livestock.asset.loan</field>
+        <field name="arch" type="xml">
+            <tree string="Livestock Asset Loans">
+                <field name="name"/>
+                <field name="animal_category"/>
+                <field name="animal_count"/>
+                <field name="animal_valuation"/>
+                <field name="health_status"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_livestock_asset_loan" model="ir.actions.act_window">
+        <field name="name">Livestock Asset Loans</field>
+        <field name="res_model">livestock.asset.loan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

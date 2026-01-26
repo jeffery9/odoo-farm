@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Crop Yield Insurance Views -->
+    <record id="view_crop_yield_insurance_form" model="ir.ui.view">
+        <field name="name">crop.yield.insurance.form</field>
+        <field name="model">crop.yield.insurance</field>
+        <field name="arch" type="xml">
+            <form string="Crop Yield Insurance">
+                <header>
+                    <button name="action_submit_application" type="object" string="Submit Application" class="oe_highlight" invisible="status != 'draft'"/>
+                    <button name="action_approve_application" type="object" string="Approve" invisible="status != 'pending'"/>
+                    <button name="action_reject_application" type="object" string="Reject" invisible="status != 'pending'"/>
+                    <button name="action_activate_service" type="object" string="Activate" invisible="status != 'approved'"/>
+                    <button name="calculate_expected_yield" type="object" string="Calculate Yield" class="oe_highlight"/>
+                    <button name="calculate_claim" type="object" string="Calculate Claim" class="oe_highlight" invisible="status != 'active'"/>
+                    <button name="approve_claim" type="object" string="Approve Claim" class="oe_highlight" invisible="claim_status != 'verified'"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,pending,approved,rejected,active,completed,cancelled"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_complete_service" type="object" string="Complete" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'active'"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="product_id"/>
+                            <field name="land_location_id"/>
+                        </group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="status"/>
+                            <field name="reference"/>
+                        </group>
+                    </group>
+                    <group string="Coverage Details">
+                        <group>
+                            <field name="coverage_area"/>
+                            <field name="coverage_percentage"/>
+                            <field name="coverage_type"/>
+                        </group>
+                        <group>
+                            <field name="expected_yield"/>
+                            <field name="historical_yield"/>
+                        </group>
+                    </group>
+                    <group string="Financial Details">
+                        <group>
+                            <field name="amount"/>
+                            <field name="premium_rate"/>
+                            <field name="premium_amount"/>
+                        </group>
+                        <group>
+                            <field name="indemnity_base_price"/>
+                            <field name="currency_id"/>
+                            <field name="risk_score"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="planting_date"/>
+                        <field name="duration_months"/>
+                        <field name="weather_monitoring"/>
+                    </group>
+                    <group string="Claims Information">
+                        <group>
+                            <field name="claim_status"/>
+                            <field name="claim_amount"/>
+                        </group>
+                        <group>
+                            <field name="payout_percentage"/>
+                            <field name="adjuster_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Risk Assessment">
+                            <group>
+                                <field name="risk_score"/>
+                                <field name="service_fees"/>
+                                <field name="application_date"/>
+                                <field name="approval_date"/>
+                            </group>
+                        </page>
+                        <page string="Policy Details">
+                            <group>
+                                <field name="insurance_policy"/>
+                                <field name="coverage_type"/>
+                                <field name="coverage_percentage"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_crop_yield_insurance_tree" model="ir.ui.view">
+        <field name="name">crop.yield.insurance.tree</field>
+        <field name="model">crop.yield.insurance</field>
+        <field name="arch" type="xml">
+            <tree string="Crop Yield Insurance">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="coverage_area"/>
+                <field name="amount"/>
+                <field name="claim_status"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_crop_yield_insurance" model="ir.actions.act_window">
+        <field name="name">Crop Yield Insurance</field>
+        <field name="res_model">crop.yield.insurance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

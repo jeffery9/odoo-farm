@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_esg_report,farm.esg.report,model_farm_esg_report,farm_core.group_farm_manager,1,1,1,1
+access_esg_dashboard,farm.esg.dashboard,model_farm_esg_dashboard,farm_core.group_farm_manager,1,1,1,1
+access_sustainability_goal,farm.esg.sustainability.goal,model_farm_esg_sustainability_goal,farm_core.group_farm_manager,1,1,1,1

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="esg_report_menu" name="ESG Reporting" sequence="30" groups="farm_core.group_farm_manager"/>
+
+    <menuitem id="esg_reports_menu" name="Reports"
+              parent="esg_report_menu" sequence="10"
+              action="action_esg_report"/>
+
+    <menuitem id="esg_dashboards_menu" name="Dashboards"
+              parent="esg_report_menu" sequence="20"
+              action="action_esg_dashboard"/>
+
+    <menuitem id="esg_sustainability_goals_menu" name="Sustainability Goals"
+              parent="esg_report_menu" sequence="30"
+              action="action_sustainability_goal"/>
