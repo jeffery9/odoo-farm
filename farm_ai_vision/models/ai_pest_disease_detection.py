@@ -253,4 +253,31 @@ class AIPestDiseaseDetection(AIVisionBase):
                 if 'severity' in output:
                     record.treatment_priority = severity_priority.get(output['severity'], 'monitor')
 
+            # Link to knowledge base for enhanced recommendations
+            record.link_to_knowledge_base()
+
         return result
+
+    def link_to_knowledge_base(self):
+        """
+        Link the AI detection to the knowledge base for enhanced recommendations
+        """
+        for record in self:
+            if record.detected_pest_disease:
+                # Find matching pest/disease in the knowledge base
+                pest_disease = self.env['farm.pest.disease'].search([
+                    ('name', 'ilike', record.detected_pest_disease),
+                ], limit=1)
+
+                if pest_disease:
+                    # Update AI record with information from knowledge base
+                    if record.treatment_priority == 'immediate' or not record.recommended_treatment:
+                        # Use conventional treatment as default if priority is high
+                        record.recommended_treatment = pest_disease.conventional_treatment or pest_disease.integrated_treatment or record.recommended_treatment
+
+                    if not record.prevention_tips:
+                        record.prevention_tips = pest_disease.prevention_methods or record.prevention_tips
+
+                    # Set affected crops if not already set
+                    if not record.crop_type and pest_disease.affected_crops:
+                        record.crop_type = pest_disease.affected_crops[0]

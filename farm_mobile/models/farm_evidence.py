@@ -13,14 +13,14 @@ class FarmEvidence(models.Model):
     name = fields.Char("Evidence Label", required=True, default=lambda self: _('Field Photo'))
     res_model = fields.Char("Related Model", index=True)
     res_id = fields.Many2one_reference("Related ID", model_field='res_model', index=True)
-    
+
     photo = fields.Binary("Evidence Photo", attachment=True, required=True)
-    
+
     # 自动采集的硬件数据 [US-24-01]
     gps_lat = fields.Float("Latitude", digits=(10, 7))
     gps_lng = fields.Float("Longitude", digits=(10, 7))
     taken_at = fields.Datetime("Captured Time", default=fields.Datetime.now)
-    
+
     worker_id = fields.Many2one('hr.employee', string="Captured By", default=lambda self: self.env.user.employee_id)
     note = fields.Text("Field Notes")
 
@@ -30,6 +30,9 @@ class FarmEvidence(models.Model):
     # 证据链哈希校验 [US-25-05]
     evidence_hash = fields.Char("Evidence Hash", compute='_compute_evidence_hash', store=True, help="SHA256 hash of evidence data for integrity verification")
     is_hash_verified = fields.Boolean("Hash Verified", default=True, help="Indicates if evidence data has been tampered with")
+
+    # US-65-04: Subsidy Evidence Automation - Link to subsidy applications
+    subsidy_application_id = fields.Many2one('farm.subsidy.application', string="Subsidy Application", index=True)
 
     @api.depends('photo', 'gps_lat', 'gps_lng', 'taken_at', 'worker_id', 'note')
     def _compute_evidence_hash(self):

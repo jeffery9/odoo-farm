@@ -51,6 +51,9 @@
             <form>
                 <header>
                     <button name="action_view_treatment" string="View Treatment Plan" type="object" class="oe_highlight" t-if="recommended_intervention_id"/>
+                    <button name="action_recommend_treatments" string="Get Integrated Recommendations" type="object" class="btn-primary"/>
+                    <button name="action_recommend_treatments" string="Get Conventional Recommendations" type="object" context="{'treatment_type': 'conventional'}" class="btn-secondary"/>
+                    <button name="action_recommend_treatments" string="Get Organic Recommendations" type="object" context="{'treatment_type': 'organic'}" class="btn-success"/>
                 </header>
                 <sheet>
                     <field name="photo" widget="image" class="oe_avatar"/>
@@ -73,13 +76,43 @@
                             <group>
                                 <field name="symptoms"/>
                                 <field name="cause"/>
+                                <field name="optimal_conditions"/>
                             </group>
                         </page>
-                        <page string="Prevention &amp; Control">
-                            <field name="prevention"/>
+                        <page string="Treatment Recommendations">
+                            <div class="alert alert-info" role="alert">
+                                <strong>Compliance Note:</strong> Ensure treatment methods comply with your certification standards.
+                            </div>
+                            <group string="Conventional Treatment">
+                                <field name="conventional_treatment"/>
+                                <field name="conventional_products" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            </group>
+                            <group string="Organic/Green Treatment">
+                                <field name="organic_treatment"/>
+                                <field name="organic_products" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            </group>
+                            <group string="Integrated Approach">
+                                <field name="integrated_treatment"/>
+                            </group>
+                            <group>
+                                <field name="compliance_standards"/>
+                                <field name="severity_level"/>
+                            </group>
+                        </page>
+                        <page string="Prevention &amp; Monitoring">
+                            <group string="Prevention Methods">
+                                <field name="prevention_methods"/>
+                            </group>
+                            <group string="Monitoring Tips">
+                                <field name="monitoring_tips"/>
+                            </group>
+                            <group string="Affected Crops">
+                                <field name="affected_crops" widget="many2many_tags"/>
+                            </group>
                         </page>
                         <page string="Details">
                             <field name="description"/>
+                            <field name="prevention"/>
                         </page>
                     </notebook>
                 </sheet>

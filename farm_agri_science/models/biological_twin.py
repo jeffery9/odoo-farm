@@ -110,3 +110,13 @@ class FarmBiologicalTwin(models.Model):
                     'project_id': self.env.ref('farm_operation.project_farm_operations').id,
                     'description': _("Biological twin detected low health score. Visual inspection required.")
                 })
+
+    def action_optimize_environment(self):
+        """
+        L5 Autonomous Logic Hook:
+        This method is intended to be overridden by specific environment control modules
+        (e.g., farm_greenhouse, farm_irrigation) to implement automated adjustments.
+        
+        Base implementation does nothing.
+        """
+        return True
