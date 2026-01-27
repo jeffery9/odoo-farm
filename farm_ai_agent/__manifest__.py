@@ -14,12 +14,14 @@
         "farm_ai_decision",
         "farm_ai_llm_integration",
         "farm_finance_advanced",
-        "farm_isl"
+        "farm_isl",
+        "farm_robotics"
     ],
     "data": [
         "security/ir.model.access.csv",
         "views/ai_agent_views.xml",
         "views/ai_decision_engine_views.xml",
+        "views/mission_orchestrator_views.xml",
         "views/menu.xml",
     ],
     "demo": [
@@ -32,15 +34,13 @@
     AI Decision System for Agricultural Applications
     ============
 
-    This module implements a unified AI-driven agricultural intelligent decision support system,
-    consolidating functionality from the original AI Agent Support, Financial Services Integration,
-    and AI Decision Support modules.
+    This module implements a unified AI-driven agricultural intelligent decision support system.
 
     Key Features:
     - Unified AI agent framework for orchestrating different AI services
     - Centralized decision engine coordinating between different AI models
+    - L5 Autonomous Mission Orchestrator: Auto-dispatches robot clusters based on biological twin alerts
     - Integration of vision, decision, and financial AI services
-    - Standardized interfaces for AI model integration
     - Enhanced LLM integration for domain-specific intelligence
     """,
 }

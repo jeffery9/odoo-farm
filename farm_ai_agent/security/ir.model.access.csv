@@ -7,3 +7,5 @@ access_ai_decision_context,access_ai_decision_context,model_ai_decision_context,
 access_ai_decision_rule,access_ai_decision_rule,model_ai_decision_rule,base.group_user,1,1,1,1
 access_ai_decision_workflow,access_ai_decision_workflow,model_ai_decision_workflow,base.group_user,1,1,1,1
 access_ai_decision_workflow_step,access_ai_decision_workflow_step,model_ai_decision_workflow_step,base.group_user,1,1,1,1
+access_ai_autonomous_orchestrator,ai.autonomous.orchestrator,model_ai_autonomous_orchestrator,base.group_user,1,1,1,1
+access_ai_autonomous_mission_log,ai.autonomous.mission.log,model_ai_autonomous_mission_log,base.group_user,1,1,1,1
