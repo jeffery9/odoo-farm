@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Digital Twin Scene Views -->
+    <record id="view_farm_digital_twin_scene_tree" model="ir.ui.view">
+        <name>farm.digital.twin.scene.list</name>
+        <model>farm.digital.twin.scene</model>
+        <arch type="xml">
+            <list>
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="view_farm_digital_twin_scene_form" model="ir.ui.view">
+        <name>farm.digital.twin.scene.form</name>
+        <model>farm.digital.twin.scene</model>
+        <arch type="xml">
+            <form>
+                <header>
+                    <button name="action_activate" string="Activate Scene" type="object" class="oe_highlight" invisible="state == 'active'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="location_id"/>
+                            <field name="base_model_url" placeholder="https://example.com/models/farm.glb"/>
+                        </group>
+                        <group>
+                            <field name="environment_hdr_url"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Device Markers" name="markers">
+                            <field name="device_marker_ids">
+                                <list editable="bottom">
+                                    <field name="device_id"/>
+                                    <field name="pos_x"/>
+                                    <field name="pos_y"/>
+                                    <field name="pos_z"/>
+                                    <field name="rotation_y"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </arch>
+    </record>
+
+    <record id="action_farm_digital_twin_scene" model="ir.actions.act_window">
+        <name>Digital Twin Scenes</name>
+        <res_model>farm.digital.twin.scene</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- Location Extension -->
+    <record id="view_farm_location_form_digital_twin" model="ir.ui.view">
+        <name>farm.location.form.digital.twin</name>
+        <model>farm.location</model>
+        <inherit_id ref="farm_core.view_farm_location_form"/>
+        <arch type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_open_digital_twin" string="Digital Twin Live" type="object" class="btn-primary" 
+                        invisible="not digital_twin_enabled or not digital_twin_scene_id"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Digital Twin Config" name="digital_twin">
+                    <group>
+                        <group>
+                            <field name="digital_twin_enabled"/>
+                            <field name="digital_twin_scene_id" invisible="not digital_twin_enabled"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </arch>
+    </record>
+
+    <!-- Menus -->
+    <menuitem id="menu_farm_iot_digital_twin" name="Digital Twin" 
+              parent="menu_farm_iot_root" sequence="50"/>
+    <menuitem id="menu_farm_digital_twin_scene" name="3D Scenes" 
+              parent="menu_farm_iot_digital_twin" action="action_farm_digital_twin_scene" sequence="10"/>
+</odoo>
