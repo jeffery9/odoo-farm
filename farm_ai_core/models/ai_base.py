@@ -31,28 +31,9 @@ class AIBaseMixin(models.AbstractModel):
 
     def action_process_with_ai(self):
         """Process the record with AI and update fields"""
-        for record in self:
-            record.ai_status = 'processing'
-
-            try:
-                # Call the specific AI processing method
-                result = record._process_ai()
-
-                # Update common AI fields
-                record.ai_status = 'completed'
-                record.ai_model_used = result.get('model_used', 'Default AI Model')
-                record.ai_confidence_score = result.get('confidence', 0.0)
-                record.ai_processing_time = result.get('processing_time', 0.0)
-                record.ai_input_data = json.dumps(result.get('input_data', {}))
-                record.ai_output_data = json.dumps(result.get('output_data', {}))
-
-                # Update any specific fields based on the result
-                record._update_from_ai_result(result)
-
-            except Exception as e:
-                record.ai_status = 'failed'
-                _logger.error(f"AI processing failed for {record._name} {record.id}: {str(e)}")
-                raise UserError(_("AI processing failed: %s") % str(e))
+        # This method is now available via the AIBaseMixinService abstract model
+        mixin_service = self.env['ai.base.mixin.service']
+        return mixin_service.action_process_with_ai()
 
     def _process_ai(self):
         """Override in specific models to implement AI processing logic"""
@@ -69,90 +50,174 @@ class AIBaseMixin(models.AbstractModel):
         pass
 
     def get_active_ai_config(self):
-        """Get the active AI configuration for this record"""
-        return self.env['ai.configuration'].search([('is_active', '=', True)], limit=1)
+        """Get the active AI configuration for this record - abstract method"""
+        # This method is now available via the AIBaseMixinService abstract model
+        mixin_service = self.env['ai.base.mixin.service']
+        return mixin_service.get_active_ai_config()
 
     def call_llm_service(self, prompt, context_data=None):
         """Generic method to call LLM service if available"""
-        if not context_data:
-            context_data = {}
+        # This method is now available via the AIBaseMixinService abstract model
+        mixin_service = self.env['ai.base.mixin.service']
+        return mixin_service.call_llm_service(prompt, context_data)
 
-        # Try to use the LLM service from farm_ai_llm_integration if available
-        try:
-            # Look for an active LLM service in the system
-            llm_service = self.env['llm.service'].sudo().search([], limit=1)
+    def call_ai_service(self, service_type, prompt, context_data=None, model_override=None):
+        """
+        Generic method to call any type of AI service (LLM, Vision, ML, etc.)
+        """
+        # This method is now available via the AIBaseMixinService abstract model
+        mixin_service = self.env['ai.base.mixin.service']
+        return mixin_service.call_ai_service(service_type, prompt, context_data, model_override)
 
-            if llm_service:
-                # Use the existing LLM service implementation
-                result = llm_service.call_llm(prompt, context_data)
-                return result
-            else:
-                # If no LLM service is available, try to use configuration from ai.configuration
-                llm_config = self.env['ai.configuration'].sudo().search([
-                    ('is_active', '=', True),
-                    ('is_default', '=', True)
-                ], limit=1)
+    def process_with_ai_decision_engine(self, data, decision_type='classification'):
+        """
+        Use AI decision engine to process data and make decisions
 
-                if llm_config:
-                    # Create a temporary LLM service based on the configuration
-                    # In a real implementation this would call the actual API
-                    # For now, we'll use a fallback approach
-                    _logger.warning("No active LLM service found, using fallback")
-                    return {
-                        'success': False,
-                        'error': 'No active LLM service available',
-                        'response': None,
-                        'fallback_used': True
-                    }
-                else:
-                    _logger.warning("No active LLM configuration found")
-                    return {
-                        'success': False,
-                        'error': 'No active LLM configuration',
-                        'response': None
-                    }
-        except Exception as e:
-            _logger.error(f"Error calling LLM service: {str(e)}")
-            return {
-                'success': False,
-                'error': str(e),
-                'response': None
-            }
+        Args:
+            data (dict): Input data to process
+            decision_type (str): Type of decision to make
+
+        Returns:
+            dict: Decision result with confidence
+        """
+        # Find available AI decision engines
+        all_models = list(self.env.registry.keys())
+
+        for model_name in all_models:
+            if 'decision' in model_name.lower() or 'engine' in model_name.lower():
+                try:
+                    model = self.env[model_name]
+                    if hasattr(model, 'make_decision') or hasattr(model, 'process_decision'):
+                        service = self.env[model_name].sudo().search([], limit=1)
+                        if service:
+                            if hasattr(service, 'make_decision'):
+                                return service.make_decision(data, decision_type)
+                            elif hasattr(service, 'process_decision'):
+                                return service.process_decision(data, decision_type)
+                except:
+                    continue
+
+        # Default fallback - return a basic decision structure
+        return {
+            'success': False,
+            'error': 'No AI decision engine available',
+            'decision': None,
+            'confidence': 0.0
+        }
+
+    def get_best_model_for_task(self, task_type, performance_threshold=70.0):
+        """
+        Find the best AI model for a specific task based on performance metrics
+
+        Args:
+            task_type (str): Type of task ('classification', 'detection', 'prediction', etc.)
+            performance_threshold (float): Minimum performance threshold
+
+        Returns:
+            AIModelRegistry: Best performing model for the task
+        """
+        # This method is now available via the AIDecisionEngine abstract model
+        decision_engine = self.env['ai.decision.engine']
+        return decision_engine.get_best_model_for_task(task_type, performance_threshold)
+
+    def run_model_inference(self, model_id, input_data):
+        """
+        Run inference on a specific AI model
+
+        Args:
+            model_id (int): ID of the AI model to use
+            input_data: Input data for the model
+
+        Returns:
+            dict: Inference result with output and metadata
+        """
+        # This method is now available via the AIDecisionEngine abstract model
+        decision_engine = self.env['ai.decision.engine']
+        return decision_engine.run_model_inference(model_id, input_data)
+
+    def evaluate_ai_model_performance(self, model_id, test_dataset):
+        """
+        Evaluate the performance of an AI model on a test dataset
+
+        Args:
+            model_id (int): ID of the model to evaluate
+            test_dataset: Dataset to evaluate the model on
+
+        Returns:
+            dict: Performance metrics
+        """
+        # This method is now available via the AIDecisionEngine abstract model
+        decision_engine = self.env['ai.decision.engine']
+        return decision_engine.evaluate_ai_model_performance(model_id, test_dataset)
+
+    def get_ai_recommendations(self, context_data, recommendation_type='general'):
+        """
+        Get AI-powered recommendations based on context data
+
+        Args:
+            context_data (dict): Contextual information for recommendations
+            recommendation_type (str): Type of recommendation ('farming', 'resource', 'risk', etc.)
+
+        Returns:
+            dict: AI-powered recommendations
+        """
+        # This method is now available via the AIDecisionEngine abstract model
+        decision_engine = self.env['ai.decision.engine']
+        return decision_engine.get_ai_recommendations(context_data, recommendation_type)
+
+    def analyze_with_ai(self, data, analysis_type='classification'):
+        """
+        Perform AI-powered analysis on provided data
+
+        Args:
+            data: Data to analyze
+            analysis_type (str): Type of analysis to perform
+
+        Returns:
+            dict: Analysis results
+        """
+        # This method is now available via the AIDecisionEngine abstract model
+        decision_engine = self.env['ai.decision.engine']
+        return decision_engine.analyze_with_ai(data, analysis_type)
+
+    def get_ai_system_health(self):
+        """
+        Get an overview of the AI system's health and performance
+
+        Returns:
+            dict: Health metrics for the AI system
+        """
+        # This method is now available via the AIDecisionEngine abstract model
+        decision_engine = self.env['ai.decision.engine']
+        return decision_engine.get_ai_system_health()
 
 
-class AIConfiguration(models.Model):
+class AIConfiguration(models.AbstractModel):
     """
-    AI Configuration and Settings
+    AI Configuration and Settings - Abstract interface for AI configurations
+    Implementation should be provided by specialized AI modules like farm_ai_llm_integration
     """
     _name = 'ai.configuration'
-    _description = 'AI Configuration'
+    _description = 'AI Configuration Interface'
 
     name = fields.Char('Configuration Name', required=True)
     ai_provider = fields.Selection([
-        ('openai', 'OpenAI'),
-        ('anthropic', 'Anthropic'),
-        ('google', 'Google'),
-        ('huggingface', 'Hugging Face'),
-        ('ollama', 'Ollama'),
-        ('custom', 'Custom API'),
-    ], string='AI Provider', required=True)
+        ('llm', 'LLM Service'),
+        ('vision', 'Computer Vision'),
+        ('ml', 'Machine Learning'),
+        ('custom', 'Custom AI Service'),
+    ], string='AI Provider Type', required=True, default='llm')
 
+    # Common configuration fields
     api_key = fields.Char('API Key', help='API key for the AI service')
     base_url = fields.Char('Base URL', help='Base URL for the AI service API')
     default_model = fields.Char('Default Model', help='Default model to use')
-
     is_active = fields.Boolean('Is Active', default=False)
     is_default = fields.Boolean('Is Default', default=False)
 
-    # Rate limiting
-    requests_per_minute = fields.Integer('Requests per minute', default=10)
-    requests_per_day = fields.Integer('Requests per day', default=1000)
-
-    # Additional configuration options
+    # Common performance settings
     timeout = fields.Integer('Timeout (seconds)', default=30, help='Request timeout in seconds')
     max_retries = fields.Integer('Max Retries', default=3, help='Number of retries on failure')
-    temperature = fields.Float('Temperature', default=0.7, help='Temperature parameter for text generation')
-    max_tokens = fields.Integer('Max Tokens', default=1000, help='Maximum tokens in response')
 
     # Statistics
     total_requests = fields.Integer('Total Requests', default=0, readonly=True)
@@ -162,64 +227,14 @@ class AIConfiguration(models.Model):
 
     _sql_constraints = [
         ('name_unique', 'UNIQUE(name)', 'Configuration name must be unique!'),
-        ('default_unique', 'UNIQUE(is_default)', 'Only one configuration can be default!'),
     ]
 
-    @api.constrains('is_active', 'is_default')
-    def _check_active_default(self):
-        """Ensure only active configurations can be default"""
-        for record in self:
-            if record.is_default and not record.is_active:
-                raise ValidationError(_("A default configuration must be active."))
-
     def test_connection(self):
-        """Test the AI service connection"""
-        self.ensure_one()
-
-        if not self.api_key:
-            raise UserError(_("API key is required to test the connection."))
-
-        # In a real implementation, this would call the actual AI service
-        # to verify that the configuration is working properly.
-        # For now we'll just return True to indicate the configuration is valid.
-        try:
-            # This would be replaced by actual connection test to the AI provider
-            _logger.info(f"Testing connection to {self.ai_provider} API")
-
-            # Update statistics
-            self.write({
-                'last_used': fields.Datetime.now()
-            })
-
-            return {
-                'success': True,
-                'message': f"Successfully connected to {self.ai_provider} API"
-            }
-        except Exception as e:
-            return {
-                'success': False,
-                'message': f"Failed to connect to {self.ai_provider} API: {str(e)}"
-            }
-
-    def action_test_connection(self):
-        """Action to test connection (UI-facing method)"""
-        result = self.test_connection()
-
-        if result['success']:
-            message = result['message']
-            return {
-                'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {
-                    'title': _('Connection Test Success'),
-                    'message': message,
-                    'type': 'success',
-                    'sticky': False,
-                }
-            }
-        else:
-            message = result['message']
-            raise UserError(message)
+        """
+        Test the AI service connection - should be implemented by specialized modules
+        """
+        # This is an abstract method that should be overridden by implementation modules
+        raise NotImplementedError(_("This method should be implemented by the specific AI module"))
 
     def increment_request_stats(self, success=True):
         """Increment request statistics"""
@@ -235,12 +250,15 @@ class AIConfiguration(models.Model):
             config.write(vals)
 
 
+
+
 class AIModelRegistry(models.Model):
     """
     AI Model Registry
     """
     _name = 'ai.model.registry'
     _description = 'AI Model Registry'
+    _inherit = ['ai.decision.engine']  # Inherit decision engine functionality
 
     name = fields.Char('Model Name', required=True)
     model_type = fields.Selection([
@@ -253,6 +271,9 @@ class AIModelRegistry(models.Model):
         ('vision', 'Computer Vision'),
         ('nlp', 'Natural Language Processing'),
         ('recommendation', 'Recommendation System'),
+        ('regression', 'Regression Analysis'),
+        ('clustering', 'Clustering'),
+        ('anomaly_detection', 'Anomaly Detection'),
     ], string='Model Type', required=True)
 
     description = fields.Text('Description')
@@ -264,10 +285,15 @@ class AIModelRegistry(models.Model):
     recall = fields.Float('Recall (%)')
     f1_score = fields.Float('F1 Score (%)')
     mae = fields.Float('Mean Absolute Error', help='For regression models')
+    mse = fields.Float('Mean Squared Error', help='For regression models')
+    rmse = fields.Float('Root Mean Squared Error', help='For regression models')
 
     last_trained = fields.Datetime('Last Trained')
     training_dataset = fields.Char('Training Dataset')
     training_samples_count = fields.Integer('Training Samples Count', help='Number of samples used for training')
+
+    # Agricultural-specific performance metrics
+    domain_specific_metrics = fields.Text('Domain-specific Metrics', help='JSON format for domain-specific metrics')
 
     # Model metadata
     input_format = fields.Char('Input Format', help='Expected input format (e.g., image, text, structured data)')
@@ -277,14 +303,22 @@ class AIModelRegistry(models.Model):
     # Model configuration
     config_params = fields.Text('Configuration Parameters', help='JSON configuration for the model')
     preprocessing_steps = fields.Text('Preprocessing Steps', help='Steps required to preprocess input data')
+    postprocessing_steps = fields.Text('Postprocessing Steps', help='Steps required to process model output')
 
     is_active = fields.Boolean('Is Active', default=True)
     is_default = fields.Boolean('Is Default', default=False)
+    is_agricultural_model = fields.Boolean('Is Agricultural Model', default=False,
+        help="Indicates if this model is specifically designed for agricultural applications")
 
     # Performance and usage statistics
     inference_count = fields.Integer('Inference Count', default=0, readonly=True)
     avg_inference_time = fields.Float('Avg Inference Time (ms)', readonly=True)
     last_used = fields.Datetime('Last Used', readonly=True)
+
+    # Agricultural domain-specific fields
+    target_crops = fields.Char('Target Crops', help='Comma-separated list of crops this model targets')
+    target_conditions = fields.Char('Target Conditions', help='Environmental conditions this model is optimized for')
+    recommended_use_cases = fields.Text('Recommended Use Cases', help='Specific use cases this model is recommended for')
 
     _sql_constraints = [
         ('name_version_unique', 'UNIQUE(name, version)', 'Model name and version must be unique!'),
@@ -347,6 +381,23 @@ class AIModelRegistry(models.Model):
             ('is_active', '=', True)
         ], limit=1)
 
+    @api.model
+    def get_agricultural_models_for_task(self, task_type):
+        """
+        Get agricultural-specific models for a particular task
+
+        Args:
+            task_type (str): Type of task to find models for
+
+        Returns:
+            AIModelRegistry: Recordset of relevant agricultural models
+        """
+        return self.search([
+            ('model_type', '=', task_type),
+            ('is_agricultural_model', '=', True),
+            ('is_active', '=', True)
+        ])
+
     def action_evaluate_model(self):
         """Action to evaluate model performance on test dataset"""
         # In a real implementation, this would run the model on a test dataset
@@ -372,19 +423,3 @@ class AIModelRegistry(models.Model):
                     'sticky': False,
                 }
             }
-
-    def action_visualize_model(self):
-        """Action to visualize model architecture (for compatible models)"""
-        # For models that support visualization, this would show model architecture
-        # In a real implementation, this could generate charts or diagrams
-        message = f"Model {self.name} visualization not available in this implementation."
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': _('Model Visualization'),
-                'message': message,
-                'type': 'info',
-                'sticky': False,
-            }
-        }

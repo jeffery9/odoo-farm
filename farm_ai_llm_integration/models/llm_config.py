@@ -10,12 +10,17 @@ _logger = logging.getLogger(__name__)
 
 class LLMConfiguration(models.Model):
     """
-    Configuration for LLM providers
+    Configuration for LLM providers - implements the AI Configuration interface
     """
     _name = 'llm.configuration'
     _description = 'LLM Provider Configuration'
+    # Use delegation inheritance to properly link to the base interface
+    _inherits = {'ai.configuration': 'ai_config_id'}
 
-    name = fields.Char('Configuration Name', required=True)
+    # Foreign key to the base ai.configuration
+    ai_config_id = fields.Many2one('ai.configuration', string='AI Configuration', required=True, ondelete='cascade', auto_join=True)
+
+    # Provider-specific fields (in addition to inherited ai.configuration fields)
     provider = fields.Selection([
         ('openai', 'OpenAI'),
         ('anthropic', 'Anthropic'),
@@ -24,16 +29,6 @@ class LLMConfiguration(models.Model):
         ('custom', 'Custom API'),
         ('ollama', 'Ollama'),
     ], string='LLM Provider', required=True)
-
-    api_key = fields.Char('API Key', help="API key for the LLM provider")
-    api_base_url = fields.Char('API Base URL', help="Base URL for API requests")
-    default_model = fields.Char('Default Model', help="Default model to use, e.g. gpt-4, claude-3-opus")
-    temperature = fields.Float('Temperature', default=0.7, help="Controls randomness (0.0-1.0)")
-    max_tokens = fields.Integer('Max Tokens', default=1024, help="Maximum tokens in response")
-    timeout = fields.Integer('Timeout (seconds)', default=30, help="API call timeout")
-
-    is_active = fields.Boolean('Is Active', default=True, help="Whether this configuration is active")
-    is_default = fields.Boolean('Is Default', help="Only one configuration can be default")
 
     # Performance settings
     rate_limit_requests = fields.Integer('Rate Limit (requests/min)', default=60)
@@ -58,7 +53,55 @@ class LLMConfiguration(models.Model):
         if len(active_defaults) > 1:
             raise UserError("Only one LLM configuration can be set as default.")
 
+    def test_connection(self):
+        """
+        Test the LLM service connection - implementation of abstract method from ai.configuration
+        """
+        try:
+            # Try a simple test using llm.service
+            llm_service = self.env['llm.service'].sudo().search([('config_id', '=', self.id)], limit=1)
+            if llm_service:
+                # Test with a simple prompt
+                result = llm_service.call_llm("Say 'connection test' in one word", {})
+                if result.get('success'):
+                    _logger.info(f"LLM configuration {self.name} connection test successful")
+                    return True
+                else:
+                    _logger.error(f"LLM configuration {self.name} connection test failed: {result.get('error')}")
+                    return False
+            else:
+                # If no service exists, create a temporary one for testing
+                service = self.env['llm.service'].sudo().create({
+                    'name': f'Test Service for {self.name}',
+                    'config_id': self.id,
+                })
+                result = service.call_llm("Say 'connection test' in one word", {})
+                if result.get('success'):
+                    _logger.info(f"LLM configuration {self.name} connection test successful")
+                    # Clean up the test service
+                    service.unlink()
+                    return True
+                else:
+                    _logger.error(f"LLM configuration {self.name} connection test failed: {result.get('error')}")
+                    # Clean up the test service
+                    service.unlink()
+                    return False
+        except Exception as e:
+            _logger.error(f"LLM configuration {self.name} connection test failed with exception: {str(e)}")
+            return False
+
+    def increment_request_stats(self, success=True):
+        """Increment request statistics - implementation of method from ai.configuration"""
+        # Call the parent implementation to maintain the base functionality
+        super(LLMConfiguration, self).increment_request_stats(success=success)
+
     @api.model
     def get_active_default(self):
         """Get the active default LLM configuration"""
         return self.search([('is_default', '=', True), ('is_active', '=', True)], limit=1)
+
+    def get_ai_provider_type(self):
+        """
+        Return the AI provider type for reflection/discovery purposes
+        """
+        return self.ai_provider or 'llm'

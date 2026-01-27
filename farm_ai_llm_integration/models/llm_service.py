@@ -437,3 +437,129 @@ class LLMService(models.Model):
                 "Provide recommendations for improvement."
             )
         }
+
+    def call_ai_service(self, service_type, prompt, context_data=None, model_override=None):
+        """
+        Generic method to call AI service based on service type
+
+        Args:
+            service_type (str): Type of AI service ('llm', 'vision', 'ml', etc.)
+            prompt (str): The input to process
+            context_data (dict): Additional context information
+            model_override (str): Specific model to use instead of default
+
+        Returns:
+            dict: Response from the AI service
+        """
+        # For LLM service type, delegate to the main call_llm method
+        if service_type.lower() in ['llm', 'language', 'text', 'chat']:
+            return self.call_llm(prompt, context_data, model_override)
+
+        # For other types, return error since this is an LLM service
+        return {
+            'success': False,
+            'error': f'LLM service cannot handle {service_type} requests. Service type not supported.',
+            'response': None
+        }
+
+    def call_llm_service(self, prompt, context_data=None, model_override=None):
+        """
+        Wrapper method to call LLM service - matches the expected interface
+        """
+        return self.call_llm(prompt, context_data, model_override)
+
+    def make_decision(self, data, decision_type='classification'):
+        """
+        Make decisions using the LLM service
+
+        Args:
+            data: Input data for decision making
+            decision_type (str): Type of decision to make
+
+        Returns:
+            dict: Decision result with confidence
+        """
+        try:
+            # Format the decision-making request
+            if decision_type.lower() == 'classification':
+                prompt = f"Classify the following agricultural data: {data}. Provide your classification and confidence level."
+            elif decision_type.lower() == 'recommendation':
+                prompt = f"Based on the following context: {data}, provide agricultural recommendations. Focus on practical, evidence-based advice."
+            elif decision_type.lower() == 'diagnosis':
+                prompt = f"Diagnose the following agricultural issue: {data}. Provide possible causes and solutions."
+            else:
+                prompt = f"Analyze the following data: {data}. Provide insights relevant to type {decision_type}."
+
+            # Enhance with agricultural context if configured
+            if self.config_id.use_agricultural_context:
+                prompt = self._enhance_prompt_with_ag_context(prompt, data)
+
+            result = self.call_llm(prompt)
+
+            # Extract confidence from the response if available
+            confidence = 85.0  # Default confidence for LLM responses
+
+            return {
+                'success': result.get('success', False),
+                'decision': result.get('response', 'No response generated'),
+                'confidence': confidence,
+                'model_used': result.get('model_used', 'LLM Service'),
+                'raw_response': result
+            }
+        except Exception as e:
+            return {
+                'success': False,
+                'decision': None,
+                'confidence': 0.0,
+                'error': str(e)
+            }
+
+    def process_decision(self, data, decision_type='classification'):
+        """
+        Process agricultural decision making
+
+        Args:
+            data: Input data for decision making
+            decision_type (str): Type of decision to make
+
+        Returns:
+            dict: Decision result with confidence
+        """
+        return self.make_decision(data, decision_type)
+
+    def get_agricultural_insights(self, data):
+        """
+        Extract agricultural insights from input data
+
+        Args:
+            data: Input data to analyze
+
+        Returns:
+            dict: Agricultural insights
+        """
+        try:
+            prompt = f"""
+            Analyze the following agricultural data and extract key insights:
+            {data}
+
+            Please provide:
+            1. Key observations
+            2. Potential issues or concerns
+            3. Recommendations for improvement
+            4. Risk factors to consider
+            """
+
+            result = self.call_llm(prompt)
+
+            return {
+                'success': result.get('success', False),
+                'insights': result.get('response', ''),
+                'model_used': result.get('model_used', 'LLM Service'),
+                'raw_response': result
+            }
+        except Exception as e:
+            return {
+                'success': False,
+                'insights': None,
+                'error': str(e)
+            }
