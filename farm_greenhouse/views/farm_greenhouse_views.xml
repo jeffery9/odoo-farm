@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Greenhouse Form Extension -->
+    <record id="view_farm_location_form_greenhouse" model="ir.ui.view">
+        <name>farm.location.form.greenhouse</name>
+        <model>farm.location</model>
+        <inherit_id ref="farm_core.view_farm_location_form"/>
+        <arch type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Greenhouse Ops" name="greenhouse" invisible="not is_land_parcel">
+                    <group>
+                        <group string="Configuration">
+                            <field name="is_greenhouse"/>
+                            <field name="greenhouse_type" invisible="not is_greenhouse"/>
+                        </group>
+                        <group string="Real-time Status" invisible="not is_greenhouse">
+                            <field name="current_temp"/>
+                            <field name="current_humidity"/>
+                            <field name="current_ec"/>
+                            <field name="current_ph"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </arch>
+    </record>
+
+    <!-- Control Rule Views -->
+    <record id="view_farm_greenhouse_rule_tree" model="ir.ui.view">
+        <name>farm.greenhouse.control.rule.list</name>
+        <model>farm.greenhouse.control.rule</model>
+        <arch type="xml">
+            <list>
+                <field name="name"/>
+                <field name="greenhouse_id"/>
+                <field name="parameter"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="action_farm_greenhouse_rule" model="ir.actions.act_window">
+        <name>Greenhouse Rules</name>
+        <res_model>farm.greenhouse.control.rule</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- Energy Views -->
+    <record id="view_farm_greenhouse_energy_tree" model="ir.ui.view">
+        <name>farm.greenhouse.energy.log.list</name>
+        <model>farm.greenhouse.energy.log</model>
+        <arch type="xml">
+            <list>
+                <field name="greenhouse_id"/>
+                <field name="date"/>
+                <field name="kwh_consumed" sum="Total kWh"/>
+                <field name="carbon_footprint" sum="Total CO2"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="action_farm_greenhouse_energy" model="ir.actions.act_window">
+        <name>Energy &amp; Carbon Logs</name>
+        <res_model>farm.greenhouse.energy.log</res_model>
+        <view_mode>list,pivot,graph</view_mode>
+    </record>
+
+    <!-- Menus -->
+    <menuitem id="menu_farm_greenhouse_root" name="Smart Greenhouse" 
+              parent="farm_core.menu_farm_root" sequence="18"/>
+    
+    <menuitem id="menu_farm_greenhouse_rules" name="Automation Rules" 
+              parent="menu_farm_greenhouse_root" action="action_farm_greenhouse_rule" sequence="20"/>
+              
+    <menuitem id="menu_farm_greenhouse_energy" name="Energy &amp; Sustainability" 
+              parent="menu_farm_greenhouse_root" action="action_farm_greenhouse_energy" sequence="30"/>
+</odoo>
