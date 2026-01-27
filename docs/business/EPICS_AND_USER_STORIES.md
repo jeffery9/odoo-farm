@@ -1,6 +1,6 @@
 # Odoo 农业生态系统：史诗与用户故事全集 (Full Index of Epics & User Stories)
 
-本文件是系统的功能全景索引。系统通过四个核心 **PDCA (Plan-Do-Check-Act)** 闭环实现业务的持续进化：
+本文件是系统的功能全景索引。系统通过四个核心 **PDCA (Plan-Do-Check-Act)** 闭环实现业务的持续进化。
 
 ### 🔄 核心 PDCA 闭环路径 (Continuous Improvement Loops)
 1. **生产进化闭环 (Growth Loop)**: 
@@ -25,12 +25,16 @@
   - 重点：作业真实性校验算法、农业信用评分、气象指数保险自动化理赔。
 - **[EPIC 49: 全息溯源与交互式品牌营销](epics/EPIC_49_Holistic_Traceability_Marketing.md)**
   - 重点：全息溯源 PWA、风土时空档案、关键节点视频挂载、减碳证书。
+- **[EPIC 58: AI 智能决策支持平台](epics/EPIC_58_AI_Decision_Support_Platform.md)**
+  - 重点：AI Agent、决策执行闭环、活体资产抵押、碳交易金融化。
+- **[EPIC 63: 数字孪生农业](epics/EPIC_63_Digital_Twin_Agriculture.md)**
+  - 重点：高精度 GIS 建模、3D 实时同步、虚拟仿真决策、ISL 缓存优化。
 
 ---
 
 ## 🟢 核心生产与生物资产 (Core Production)
 - [EPIC 01: 农业基础数据中心](epics/EPIC_01_Agricultural_Master_Data.md)
-- [EPIC 02: 种植生产全生命周期管理](epics/EPIC_02_Plant_Farming_Management.md)
+- [EPIC 02: 种植生产全生命周期管理 (Plant Farming)](epics/EPIC_02_Plant_Farming.md)
 - [EPIC 03: 畜牧与水产养殖管理](epics/EPIC_03_Livestock_Aquaculture.md)
 - [EPIC 10: 育苗与种质资源库](epics/EPIC_10_Nursery_Breeding.md)
 - [EPIC 33: CEA 受控环境农业 (温室/垂直工厂)](epics/EPIC_33_CEA_Vertical_Farming.md)
@@ -39,6 +43,7 @@
 - [EPIC 39: 养蜂迁徙与产地追踪](epics/EPIC_39_Apiculture_Migration.md)
 - [EPIC 41: 菌类多潮采集与包块管理](epics/EPIC_41_Fungi_Multi_Flush.md)
 - [EPIC 42: 遗传多样性与遗传档案库](epics/EPIC_42_Germplasm_Genetic_Bank.md)
+- [EPIC 64: 智能畜禽管理 (Smart Livestock)](epics/EPIC_64_Smart_Livestock_Management.md)
 
 ---
 
@@ -49,6 +54,7 @@
 - [EPIC 31: 逆向物流与缺陷批次召回](epics/EPIC_31_Reverse_Recall.md)
 - [EPIC 40: 中药材炮制与 GAP 加工合规](epics/EPIC_40_Medicinal_Herbs_Processing.md)
 - [EPIC 45: 中央厨房与团餐供应作业](epics/EPIC_45_Central_Kitchen_Operations.md)
+- [EPIC 54: ISL 行业标准层架构 (ISL)](epics/EPIC_54_ISL_Architecture.md)
 
 ---
 
@@ -63,6 +69,8 @@
 - [EPIC 30: 碳足迹账座与 ESG 披露](epics/EPIC_30_Carbon_ESG_Ledger.md)
 - [EPIC 32: 品牌有机诚信与地理标志 (GI)](epics/EPIC_32_Brand_Organic_Integrity.md)
 - [EPIC 44: 订单农业结算与分利模型](epics/EPIC_44_Contract_Farming_Settlement.md)
+- [EPIC 52: 高级溯源系统 (Advanced Traceability)](epics/EPIC_52_Advanced_Traceability_System.md)
+- [EPIC 56: ESG 合规与可持续性管理](epics/EPIC_56_ESG_COMPLIANCE_MANAGEMENT.md)
 
 ---
 
@@ -71,7 +79,7 @@
 - [EPIC 07: 现场移动作业 (Offline-first PWA)](epics/EPIC_07_Mobile_Field_Ops.md)
 - [EPIC 08: 消费者触达与社群互动营销](epics/EPIC_08_Marketing_Engagement.md)
 - [EPIC 16: Odoo 农业专用 UX 与术语去工业化标准](epics/EPIC_16_Agri_UX_Standard.md)
-- [EPIC 21: 直播电商与抖音/快手集成](epics/EPIC_21_Live_Streaming_Douyin.md)
+- [EPIC 21: 直播电商与抖音对接](epics/EPIC_21_Live_Streaming_Douyin.md)
 - [EPIC 22: 无人机作业集群调度](epics/EPIC_22_Drone_Operations.md)
 - [EPIC 23: 地理围栏、监控与资产安全](epics/EPIC_23_Geofencing_Security.md)
 - [EPIC 24: 现场考勤、电子围栏与安全打卡](epics/EPIC_24_Mobile_Site_Checkin.md)
@@ -80,10 +88,17 @@
 - [EPIC 27: 农业循环经济与废弃物资源化](epics/EPIC_27_Circular_Economy.md)
 - [EPIC 28: AI 预测洞察与计算机视觉](epics/EPIC_28_AI_Vision.md)
 - [EPIC 29: 农业风险量化与灾害保险](epics/EPIC_29_Agri_Risk_Insurance.md)
-- [EPIC 37: 农业设备工效 (OPE) 智能分析](epics/EPIC_37_Agri_OPE_Intelligence.md)
+- [EPIC 37: 农业综合生产效能 (OPE) 智能分析](epics/EPIC_37_Agri_OPE_Intelligence.md)
 - [EPIC 43: 生物能源与 ESG 市场交易集成](epics/EPIC_43_BioEnergy_ESG_Market.md)
-- **[EPIC 50: 层级视图容器与多维管理视角](epics/EPIC_50_Hierarchy_View_Containers.md)**
-  - 重点：管理视角解耦、逻辑容器嵌套、跨模型 OPE 聚合。
+- [EPIC 50: 层级视图容器与多维管理视角](epics/EPIC_50_Hierarchy_View_Containers.md)
+- [EPIC 51: 农用机器人与自动化系统](epics/EPIC_51_Agricultural_Robotics_Automation.md)
+- [EPIC 53: 数字化农业平台核心](epics/EPIC_53_Digital_Agriculture_Platform.md)
+- [EPIC 55: 农业网络安全与数据保护](epics/EPIC_55_Agricultural_Cybersecurity.md)
+- [EPIC 57: 智慧温室环境控制](epics/EPIC_57_Smart_Greenhouse_Control.md)
+- [EPIC 59: AI 大语言模型集成](epics/EPIC_59_AI_LLM_Integration.md)
+- [EPIC 60: AI 金融分析与风险评估](epics/EPIC_60_AI_Financial_Analytics.md)
+- [EPIC 61: 农用机器人与自动化控制](epics/EPIC_61_Agricultural_Robotics_Automation.md)
+- [EPIC 62: AI 驱动的协调与工作流](epics/EPIC_62_AI_Driven_Coordination_Workflow.md)
 
 ---
 
@@ -95,6 +110,6 @@
 
 ---
 **核对结论**:
-- 目录已包含 `epics/` 文件夹下全部 49 个文件。
-- 史诗编号覆盖 01 - 49，删除了重复的 16 号文件索引。
-- **最后更新**: 2026-01-25
+- 目录已包含 `epics/` 文件夹下全部 64 个文件（含新增 AI 与 ISL 史诗）。
+- 史诗编号已更正，`EPIC_02` 已重命名为 `EPIC_02_Plant_Farming.md` 并更新链接。
+- **最后更新**: 2026-01-27
