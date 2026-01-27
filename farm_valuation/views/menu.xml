@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu Items for Farm Valuation Module -->
+    <menuitem id="menu_valuation_root"
+              name="Valuation"
+              parent="farm_core.menu_farm_root"
+              sequence="25"/>
+
+    <menuitem id="menu_market_prices"
+              name="Market Prices"
+              parent="menu_valuation_root"
+              action="action_market_price_list"
+              sequence="10"/>
+
+    <menuitem id="menu_biological_asset_valuations"
+              name="Biological Asset Valuations"
+              parent="menu_valuation_root"
+              action="action_biological_asset_fair_valuation_list"
+              sequence="20"/>
+
+    <!-- Actions -->
+    <record id="action_market_price_list" model="ir.actions.act_window">
+        <name>Market Prices</name>
+        <res_model>farm.market.price</res_model>
+        <view_mode>tree,form</view_mode>
+    </record>
+
+    <record id="action_biological_asset_fair_valuation_list" model="ir.actions.act_window">
+        <name>Biological Asset Fair Valuations</name>
+        <res_model>farm.biological.asset.fair.valuation</res_model>
+        <view_mode>tree,form</view_mode>
+    </record>
+</odoo>

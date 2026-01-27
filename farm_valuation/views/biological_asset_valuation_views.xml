@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Biological Asset Fair Valuation Tree View -->
+    <record id="view_biological_asset_fair_valuation_tree" model="ir.ui.view">
+        <name>farm.biological.asset.fair.valuation.tree</name>
+        <model>farm.biological.asset.fair.valuation</model>
+        <arch type="xml">
+            <list string="Biological Asset Fair Valuations"
+                  decoration-info="revaluation_type == 'gain'"
+                  decoration-danger="revaluation_type == 'loss'">
+                <field name="name"/>
+                <field name="asset_id"/>
+                <field name="valuation_date"/>
+                <field name="current_growth_progress"/>
+                <field name="current_yield_potential"/>
+                <field name="market_price"/>
+                <field name="fair_value"/>
+                <field name="revaluation_amount"/>
+                <field name="revaluation_type"/>
+                <field name="is_accounting_entry_created"/>
+            </list>
+        </arch>
+    </record>
+
+    <!-- Biological Asset Fair Valuation Form View -->
+    <record id="view_biological_asset_fair_valuation_form" model="ir.ui.view">
+        <name>farm.biological.asset.fair.valuation.form</name>
+        <model>farm.biological.asset.fair.valuation</model>
+        <arch type="xml">
+            <form string="Biological Asset Fair Valuation">
+                <header>
+                    <button name="action_create_revaluation_entry"
+                            string="Create Revaluation Entry"
+                            type="object"
+                            class="btn-primary"
+                            invisible="is_accounting_entry_created"/>
+                    <field name="is_accounting_entry_created" widget="boolean_button"
+                           options='{"terminology": "active"}'/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Asset &amp; Valuation Info">
+                            <field name="asset_id"/>
+                            <field name="valuation_date"/>
+                            <field name="valuation_method"/>
+                        </group>
+                        <group string="Growth &amp; Yield">
+                            <field name="current_growth_progress" widget="percentage"/>
+                            <field name="target_yield"/>
+                            <field name="current_yield_potential"/>
+                        </group>
+                    </group>
+                    <group string="Market Price Information">
+                        <field name="market_price"/>
+                        <field name="market_price_source"/>
+                    </group>
+                    <group string="Efficiency Integration">
+                        <field name="ope_score"/>
+                        <field name="efficiency_multiplier"/>
+                    </group>
+                    <group string="Valuation Results">
+                        <field name="fair_value" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="previous_valuation" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="revaluation_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="revaluation_type"/>
+                    </group>
+                    <group string="Accounting Information" invisible="not journal_entry_id">
+                        <field name="journal_entry_id"/>
+                        <field name="is_accounting_entry_created"/>
+                    </group>
+                </sheet>
+            </form>
+        </arch>
+    </record>
+
+    <!-- Extend Biological Asset Form View to include fair valuation -->
+    <record id="view_biological_asset_form_extension" model="ir.ui.view">
+        <name>farm.biological.asset.form.valuation.extension</name>
+        <model>farm.biological.asset</model>
+        <inherit_id="farm_core.view_farm_biological_asset_form"/>
+        <arch type="xml">
+            <notebook position="inside">
+                <page string="Fair Valuation" name="fair_valuation">
+                    <group>
+                        <field name="current_fair_value" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="fair_value_date"/>
+                    </group>
+                    <group col="2">
+                        <button name="action_run_fair_valuation"
+                                string="Run Fair Valuation"
+                                type="object"
+                                class="btn-primary"/>
+                    </group>
+                    <field name="fair_valuation_ids" mode="tree">
+                        <tree string="Fair Valuations">
+                            <field name="valuation_date"/>
+                            <field name="current_growth_progress" widget="percentage"/>
+                            <field name="fair_value" widget="monetary"/>
+                            <field name="revaluation_amount" widget="monetary"/>
+                            <field name="revaluation_type"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </arch>
+    </record>
+
+    <!-- Add field to biological asset model to link to fair valuations -->
+    <record id="view_biological_asset_form_fair_valuation_field" model="ir.ui.view">
+        <name>farm.biological.asset.form.fair.valuation.field</name>
+        <model>farm.biological.asset</model>
+        <inherit_id="farm_core.view_farm_biological_asset_form"/>
+        <field name="arch" type="xml">
+            <!-- This will be handled by adding the field to the model -->
+        </field>
+    </record>
+
+</odoo>

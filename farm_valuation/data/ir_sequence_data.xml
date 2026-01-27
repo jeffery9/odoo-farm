@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Market Price Sequence -->
+        <record id="seq_market_price" model="ir.sequence">
+            <name>Market Price</name>
+            <code>farm.market.price</code>
+            <prefix>MKT/</prefix>
+            <padding>5</padding>
+            <company_id eval="False"/>
+        </record>
+
+        <!-- Biological Asset Fair Valuation Sequence -->
+        <record id="seq_biological_asset_fair_valuation" model="ir.sequence">
+            <name>Biological Asset Fair Valuation</name>
+            <code>farm.biological.asset.fair.valuation</code>
+            <prefix>VAL/</prefix>
+            <padding>5</padding>
+            <company_id eval="False"/>
+        </record>
+    </data>
+</odoo>

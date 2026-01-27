@@ -23,12 +23,16 @@ class AccessibilitySettings(models.Model):
     color_blind_mode = fields.Boolean('Color Blind Mode', help='Adjust colors for color blindness')
     
     # Inclusive Design for diverse workforce [US-65-01]
-    inclusive_mode = fields.Boolean('Inclusive Mode (High Accessibility)', 
-                                   help='Simplified UI with large fonts and high contrast for aging or low-digital-literacy workforce.')
+    inclusive_mode = fields.Boolean('Inclusive/Elder Mode', 
+                                   help='Simplified UI with large fonts (1.5x) and high contrast for aging or low-digital-literacy workforce.')
     voice_entry_enabled = fields.Boolean('Voice-First Entry', 
                                         help='Prioritize voice input for recording farm activities.')
     
     voice_navigation = fields.Boolean('Voice Navigation', help='Enable voice-based navigation')
+    
+    # UI Simplification
+    hide_advanced_menus = fields.Boolean('Hide Advanced Menus', default=True, help="Hide configuration and complex menus.")
+    simplified_kanban = fields.Boolean('Simplified Kanban Cards', default=True, help="Show only essential status and action buttons.")
 
     @api.constrains('font_scaling')
     def _check_font_scaling_range(self):
@@ -39,12 +43,13 @@ class AccessibilitySettings(models.Model):
 
     @api.onchange('inclusive_mode')
     def _onchange_inclusive_mode(self):
-        """US-65-01: Auto-preset accessibility for Inclusive Mode"""
+        """US-65-01: Auto-preset accessibility for Elder Mode"""
         if self.inclusive_mode:
             self.font_scaling = 1.5
             self.large_touch_targets = True
             self.high_contrast_mode = True
-            self.alternative_input_method = 'voice'
+            self.hide_advanced_menus = True
+            self.simplified_kanban = True
             self.voice_entry_enabled = True
 
     
