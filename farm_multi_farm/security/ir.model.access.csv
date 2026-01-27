@@ -40,3 +40,7 @@ access_netting_settlement_user,netting.settlement.user,model_netting_settlement,
 access_netting_receivable_line_user,netting.receivable.line.user,model_netting_receivable_line,farm_multi_farm.group_user,1,1,1,0
 access_netting_payable_line_user,netting.payable.line.user,model_netting_payable_line,farm_multi_farm.group_user,1,1,1,0
 access_farm_regional_oversight,farm.regional.oversight,model_farm_regional_oversight,farm_multi_farm.group_user,1,1,1,1
+access_contract_farming_agreement_user,contract.farming.agreement.user,model_contract_farming_agreement,farm_multi_farm.group_user,1,1,1,1
+access_contract_farming_input_prepayment_user,contract.farming.input.prepayment.user,model_contract_farming_input_prepayment,farm_multi_farm.group_user,1,1,1,1
+access_contract_farming_yield_commitment_user,contract.farming.yield.commitment.user,model_contract_farming_yield_commitment,farm_multi_farm.group_user,1,1,1,1
+access_contract_farming_settlement_user,contract.farming.settlement.user,model_contract_farming_settlement,farm_multi_farm.group_user,1,1,1,1

@@ -31,3 +31,4 @@ from . import quality_operations_models
 from . import finance_governance_models
 from . import advanced_procurement_models
 from . import extension_models
+from . import contract_farming_agreement

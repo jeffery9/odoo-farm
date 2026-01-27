@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Product Form to add FEFO configuration -->
+    <record id="product_template_form_view_inherit_fefo" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.fefo</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='inventory']/group" position="inside">
+                <group name="fefo_config" string="FEFO Configuration">
+                    <field name="use_fefo_strategy"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit Stock Move Line Tree View to add expiration date column -->
+    <record id="view_stock_move_line_operation_tree_inherit_fefo" model="ir.ui.view">
+        <field name="name">stock.move.line.operation.tree.inherit.fefo</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_name']" position="after">
+                <field name="expiration_date" optional="show" string="Expiry Date"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit Stock Move Line Form View to show expiration date -->
+    <record id="view_stock_move_line_inherit_fefo" model="ir.ui.view">
+        <field name="name">stock.move.line.inherit.fefo</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_id']" position="after">
+                <field name="expiration_date" readonly="1" attrs="{'invisible': [('lot_id', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit Stock Picking Form to add FEFO validation button -->
+    <record id="view_picking_form_inherit_fefo" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.fefo</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_ids_without_package']/tree//field[@name='product_id']" position="after">
+                <field name="expiration_date" optional="show" attrs="{'column_invisible': [('show_reserved', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
