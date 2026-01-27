@@ -10,20 +10,19 @@ import base64
 
 _logger = logging.getLogger(__name__)
 
-class AIVisionBase(models.AbstractModel):
+class AIVisionBase(models.Model):
     """
-    Abstract base model for AI vision functionality
+    Base model for AI vision functionality
     Implements core functionality for computer vision in agriculture
     """
     _name = 'ai.vision.base'
     _description = 'AI Vision Base Model'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'ai.base.mixin']
 
     name = fields.Char('Name', required=True)
     image = fields.Binary('Image', attachment=True, help="Input image for AI vision analysis")
     image_filename = fields.Char('Image Filename')
     analysis_date = fields.Datetime('Analysis Date', default=fields.Datetime.now)
-    confidence_score = fields.Float('Confidence Score', default=0.0, help="0-100% confidence in the AI vision analysis")
     analysis_result = fields.Html('Analysis Result')
     status = fields.Selection([
         ('draft', 'Draft'),
@@ -33,7 +32,6 @@ class AIVisionBase(models.AbstractModel):
     ], default='draft', string='Status')
     model_type = fields.Char('Model Type', help="Type of AI vision model used for analysis")
     input_parameters = fields.Text('Input Parameters', help="JSON parameters used for image analysis")
-    output_data = fields.Text('Output Data', help="JSON results from AI vision model")
     analysis_reasoning = fields.Html('Analysis Reasoning', help="Explanation of AI vision analysis process")
     priority = fields.Selection([
         ('low', 'Low'),
@@ -41,7 +39,6 @@ class AIVisionBase(models.AbstractModel):
         ('high', 'High'),
         ('critical', 'Critical'),
     ], string='Priority', default='medium')
-    processing_time = fields.Float('Processing Time (ms)', help="Time taken to process the image")
 
     def action_process_image(self):
         """Process the image through AI vision algorithms"""
@@ -52,9 +49,10 @@ class AIVisionBase(models.AbstractModel):
             result = self._process_image_ai(record)
             record.output_data = json.dumps(result)
             record.analysis_result = result.get('description', 'Image processed successfully')
-            record.confidence_score = result.get('confidence', 0.85)
+            record.ai_confidence_score = result.get('confidence', 0.85)
+            record.ai_model_used = result.get('model_type', 'Default Vision Model')
             record.status = 'completed'
-            record.processing_time = result.get('processing_time', 120.0)
+            record.ai_processing_time = result.get('processing_time', 120.0)
 
     def _process_image_ai(self, record):
         """Process image using AI vision algorithms"""
@@ -66,7 +64,8 @@ class AIVisionBase(models.AbstractModel):
             'confidence': random.uniform(0.7, 0.95),
             'processing_time': random.uniform(50, 300),
             'features_detected': ['leaf', 'stem', 'color_patterns'],
-            'tags': ['healthy', 'mature']
+            'tags': ['healthy', 'mature'],
+            'model_type': 'Default Vision Model'
         }
 
     def action_upload_image(self):

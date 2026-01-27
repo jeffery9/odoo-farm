@@ -7,18 +7,17 @@ import logging
 import json
 from datetime import datetime, timedelta
 import base64
-from .ai_vision_base import AIVisionBase
 
 _logger = logging.getLogger(__name__)
 
-class AIVisionRiskAssessment(AIVisionBase):
+class AIVisionRiskAssessment(models.Model):
     """
     AI model for AI vision risk assessment
     Implements US-58-14: AI视觉风险评估
     """
     _name = 'ai.vision.risk.assessment'
     _description = 'AI Vision Risk Assessment'
-    _inherit = ['ai.vision.base']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'ai.base.mixin']
 
     risk_type = fields.Selection([
         ('crop_health', 'Crop Health Risk'),
@@ -208,6 +207,19 @@ class AIVisionRiskAssessment(AIVisionBase):
 
         return result
 
+    def _process_ai(self):
+        """Override the base AI processing method for image-based risk assessment"""
+        result = self._process_image_ai(self)
+        result.update({
+            'input_data': {
+                'risk_type': self.risk_type,
+                'image_present': bool(self.image),
+                'industry': self.industry_id.name if self.industry_id else None,
+            },
+            'output_data': result.copy()
+        })
+        return result
+
     def _process_image_traditional(self, record):
         """Process image using traditional methods (existing implementation)"""
         # In a real implementation, this would call actual risk assessment models
@@ -349,4 +361,17 @@ class AIVisionRiskAssessment(AIVisionBase):
                 if 'monitoring_plan' in output:
                     record.risk_monitoring_plan = output['monitoring_plan']
 
+        return result
+
+    def _process_ai(self):
+        """Override the base AI processing method for image-based risk assessment"""
+        result = self._process_image_ai(self)
+        result.update({
+            'input_data': {
+                'risk_type': self.risk_type,
+                'image_present': bool(self.image),
+                'industry': self.industry_id.name if self.industry_id else None,
+            },
+            'output_data': result.copy()
+        })
         return result

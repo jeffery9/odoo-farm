@@ -12,7 +12,7 @@
         "mrp",
         "farm_core",
         "farm_operation",
-        "farm_ai_decision",
+        "farm_ai_core",
         "farm_quality",
         "farm_livestock",
         "farm_ai_llm_integration"

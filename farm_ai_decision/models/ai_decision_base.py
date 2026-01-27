@@ -10,17 +10,16 @@ import random
 
 _logger = logging.getLogger(__name__)
 
-class AIDecisionBase(models.AbstractModel):
+class AIDecisionBase(models.Model):
     """
-    Abstract base model for AI decision support
+    Base model for AI decision support
     """
     _name = 'ai.decision.base'
     _description = 'AI Decision Support Base Model'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'ai.base.mixin']
 
     name = fields.Char('Name', required=True)
     decision_date = fields.Datetime('Decision Date', default=fields.Datetime.now)
-    confidence_score = fields.Float('Confidence Score', default=0.0, help="0-100% confidence in the AI recommendation")
     recommendation = fields.Html('Recommendation')
     status = fields.Selection([
         ('draft', 'Draft'),
@@ -31,7 +30,6 @@ class AIDecisionBase(models.AbstractModel):
     ], default='draft', string='Status')
     model_type = fields.Char('Model Type', help="Type of AI model used for decision")
     input_data = fields.Text('Input Data', help="JSON data used for decision making")
-    output_data = fields.Text('Output Data', help="JSON results from AI model")
     decision_reasoning = fields.Html('Decision Reasoning', help="Explanation of AI decision process")
     priority = fields.Selection([
         ('low', 'Low'),
