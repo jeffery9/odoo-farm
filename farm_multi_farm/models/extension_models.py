@@ -114,3 +114,29 @@ class FarmEntityExtension(models.Model):
             'financial_records': self.env['account.move'].search([('company_id', '=', self.company_id.id)]),
         }
         return documents
+
+class StockLotExtension(models.Model):
+    """
+    US-19-27: 产品/批次单社归属唯一性
+    Ensures a lot is managed by only one cooperative for traceability/subsidy integrity.
+    """
+    _inherit = 'stock.lot'
+
+    assigned_cooperative_id = fields.Many2one('cooperative.entity', string="Responsible Cooperative",
+                                             help="The single cooperative responsible for this product's compliance/marketing.")
+    
+    cooperative_purpose = fields.Selection(related='assigned_cooperative_id.purpose_type', string="Cooperative Purpose Context")
+    
+    is_government_audited = fields.Boolean("Government Audit Passed", default=False)
+
+    def action_assign_cooperative(self, cooperative_id):
+        """
+        Assigns the lot to a cooperative. 
+        Enforces business rule: one lot -> one cooperative.
+        """
+        self.ensure_one()
+        if self.assigned_cooperative_id and self.assigned_cooperative_id.id != cooperative_id:
+            from odoo.exceptions import UserError
+            raise UserError(_("EXCLUSIVITY VIOLATION: This lot is already assigned to cooperative %s. "
+                              "A product lot can only belong to one cooperative for compliance integrity.") % self.assigned_cooperative_id.name)
+        self.assigned_cooperative_id = cooperative_id

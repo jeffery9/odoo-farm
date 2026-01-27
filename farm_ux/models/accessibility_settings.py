@@ -22,55 +22,29 @@ class AccessibilitySettings(models.Model):
     reduced_motion = fields.Boolean('Reduced Motion', help='Reduce animations and motion effects')
     color_blind_mode = fields.Boolean('Color Blind Mode', help='Adjust colors for color blindness')
     
-    # Japanese-inspired Elder Mode [US-65-01]
-    elder_mode = fields.Boolean('Japanese Elder Mode', 
-                               help='Enable simplified UI with large fonts and high contrast for aging farmers.')
+    # Inclusive Design for diverse workforce [US-65-01]
+    inclusive_mode = fields.Boolean('Inclusive Mode (High Accessibility)', 
+                                   help='Simplified UI with large fonts and high contrast for aging or low-digital-literacy workforce.')
     voice_entry_enabled = fields.Boolean('Voice-First Entry', 
                                         help='Prioritize voice input for recording farm activities.')
     
     voice_navigation = fields.Boolean('Voice Navigation', help='Enable voice-based navigation')
-    font_family_preference = fields.Char('Font Family Preference', help='Preferred font family for accessibility')
-    alternative_input_method = fields.Selection([
-        ('none', 'None'),
-        ('voice', 'Voice Control'),
-        ('switch', 'Switch Control'),
-        ('eye_tracking', 'Eye Tracking'),
-    ], string='Alternative Input Method', default='none')
-    voice_control_enabled = fields.Boolean('Voice Control Enabled', help='Enable voice commands')
-    custom_color_scheme = fields.Char('Custom Color Scheme', help='Custom CSS for color adjustments')
-    is_active = fields.Boolean('Is Active', default=True)
-    last_updated = fields.Datetime('Last Updated', default=fields.Datetime.now)
 
-        @api.constrains('font_scaling')
+    @api.constrains('font_scaling')
+    def _check_font_scaling_range(self):
+        """检查字体缩放范围"""
+        for setting in self:
+            if setting.font_scaling < 0.5 or setting.font_scaling > 3.0:
+                raise ValidationError(_("Font scaling factor must be between 0.5 and 3.0"))
 
-        def _check_font_scaling_range(self):
-
-            """检查字体缩放范围"""
-
-            for setting in self:
-
-                if setting.font_scaling < 0.5 or setting.font_scaling > 3.0:
-
-                    raise ValidationError(_("Font scaling factor must be between 0.5 and 3.0"))
-
-    
-
-        @api.onchange('elder_mode')
-
-        def _onchange_elder_mode(self):
-
-            """US-65-01: Auto-preset accessibility for Japanese Elder Mode"""
-
-            if self.elder_mode:
-
-                self.font_scaling = 1.5
-
-                self.large_touch_targets = True
-
-                self.high_contrast_mode = True
-
-                self.alternative_input_method = 'voice'
-
-                self.voice_entry_enabled = True
+    @api.onchange('inclusive_mode')
+    def _onchange_inclusive_mode(self):
+        """US-65-01: Auto-preset accessibility for Inclusive Mode"""
+        if self.inclusive_mode:
+            self.font_scaling = 1.5
+            self.large_touch_targets = True
+            self.high_contrast_mode = True
+            self.alternative_input_method = 'voice'
+            self.voice_entry_enabled = True
 
     

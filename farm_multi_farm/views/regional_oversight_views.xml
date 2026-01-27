@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_regional_oversight_tree" model="ir.ui.view">
+        <name>farm.regional.oversight.list</name>
+        <model>farm.regional.oversight</model>
+        <arch type="xml">
+            <list decoration-danger="alert_count > 0">
+                <field name="name"/>
+                <field name="agency_id"/>
+                <field name="total_land_area"/>
+                <field name="total_predicted_yield"/>
+                <field name="avg_compliance_score" widget="percentage"/>
+                <field name="alert_count"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="view_farm_regional_oversight_form" model="ir.ui.view">
+        <name>farm.regional.oversight.form</name>
+        <model>farm.regional.oversight</model>
+        <arch type="xml">
+            <form>
+                <header>
+                    <button name="action_refresh_regional_data" string="Refresh Regional Data" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Region Name (e.g. Zhejiang Zone A)"/></h1>
+                    </div>
+                    <group>
+                        <group string="Regulatory Control">
+                            <field name="agency_id"/>
+                            <field name="cooperative_ids" widget="many2many_tags"/>
+                        </group>
+                        <group string="Regional Capacity">
+                            <field name="total_land_area"/>
+                            <field name="total_predicted_yield"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Governance Dashboard" name="governance">
+                            <group>
+                                <group string="Compliance Health">
+                                    <field name="avg_compliance_score" widget="gauge" options="{'max_value': 100}"/>
+                                    <field name="alert_count"/>
+                                </group>
+                                <group string="Food Security Index">
+                                    <p class="text-muted">Regional yield forecast vs. target quotas.</p>
+                                    <!-- This could be a chart in the future -->
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </arch>
+    </record>
+
+    <record id="action_farm_regional_oversight" model="ir.actions.act_window">
+        <name>Regional Oversight (G2B)</name>
+        <res_model>farm.regional.oversight</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <menuitem id="menu_regional_oversight"
+              name="Regional Oversight (G2B)"
+              parent="menu_farm_multi_farm_root"
+              action="action_farm_regional_oversight"
+              sequence="5"/>
+</odoo>
