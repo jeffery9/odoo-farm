@@ -14,6 +14,7 @@
     'data': [
         'security/ir.model.access.csv',
         'data/analytic_data.xml',
+        'data/ir_sequence_data.xml',
         'views/farm_cost_analysis_views.xml',
     ],
     'installable': True,

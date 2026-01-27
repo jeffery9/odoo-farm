@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_project_task_fin_manager,task.fin.manager,model_project_task,group_farm_manager,1,1,1,1
+access_farm_processing_cost,farm.processing.cost,model_farm_processing_cost,farm_core.group_farm_user,1,1,1,1
+access_farm_cpa_analysis,farm.cpa.analysis,model_farm_cpa_analysis,farm_core.group_farm_user,1,1,1,1

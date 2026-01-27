@@ -31,4 +31,79 @@
     </record>
 
     <menuitem id="menu_farm_finance_root" name="Finance &amp; Costs" parent="farm_core.menu_farm_root" sequence="80"/>
+
+    <!-- CPA Analysis Views -->
+    <record id="view_farm_cpa_analysis_tree" model="ir.ui.view">
+        <name>farm.cpa.analysis.list</name>
+        <model>farm.cpa.analysis</model>
+        <arch type="xml">
+            <list decoration-success="margin_percentage > 20" decoration-danger="margin_percentage &lt; 0">
+                <field name="name"/>
+                <field name="activity_id"/>
+                <field name="location_id"/>
+                <field name="total_production_cost"/>
+                <field name="harvest_revenue"/>
+                <field name="gross_profit"/>
+                <field name="margin_percentage" widget="percentage"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="view_farm_cpa_analysis_form" model="ir.ui.view">
+        <name>farm.cpa.analysis.form</name>
+        <model>farm.cpa.analysis</model>
+        <arch type="xml">
+            <form>
+                <header>
+                    <button name="action_calculate_cpa" string="Calculate CPA" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="activity_id"/>
+                            <field name="location_id"/>
+                        </group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="Cost Breakdown">
+                        <group>
+                            <field name="total_material_cost"/>
+                            <field name="total_labor_cost"/>
+                        </group>
+                        <group>
+                            <field name="total_machinery_cost"/>
+                            <field name="total_indirect_cost"/>
+                        </group>
+                    </group>
+                    <div class="oe_right">
+                        <group class="oe_subtotal_footer">
+                            <field name="total_production_cost" class="oe_subtotal_footer_separator"/>
+                            <field name="harvest_revenue"/>
+                            <field name="gross_profit" class="oe_subtotal_footer_separator"/>
+                            <field name="margin_percentage"/>
+                        </group>
+                    </div>
+                </sheet>
+                <chatter/>
+            </form>
+        </arch>
+    </record>
+
+    <record id="action_farm_cpa_analysis" model="ir.actions.act_window">
+        <name>CPA Analysis (Cost Per Parcel)</name>
+        <res_model>farm.cpa.analysis</res_model>
+        <view_mode>list,form,pivot,graph</view_mode>
+    </record>
+
+    <menuitem id="menu_farm_cpa_analysis" name="CPA Analysis (Single Parcel)" 
+              parent="menu_farm_finance_root" action="action_farm_cpa_analysis" sequence="10"/>
 </odoo>
