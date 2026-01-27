@@ -17,3 +17,4 @@ from . import mrp_work
 from . import mrp_workcenter
 from . import package_management
 from . import processing_bom_line_isl
+from . import industry_isl

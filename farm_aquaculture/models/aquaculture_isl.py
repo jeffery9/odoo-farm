@@ -21,6 +21,19 @@ class FarmAquacultureBom(models.Model):
     target_ph_range = fields.Char("Target pH Range")
     stocking_density_limit = fields.Float("Max Stocking Density (heads/m³)")
 
+class FarmLotAquaculture(models.Model):
+    _name = 'farm.lot.aquaculture'
+    _description = 'Aquaculture Asset Lot (ISL Layer)'
+    _inherits = {'stock.lot': 'lot_id'}
+
+    lot_id = fields.Many2one('stock.lot', string='Base Lot', required=True, ondelete='cascade')
+    
+    # Aquaculture Specifics
+    stocking_date = fields.Date("Stocking Date")
+    initial_count = fields.Integer("Initial Count")
+    current_count = fields.Integer("Current Count")
+    water_volume_m3 = fields.Float("Water Volume (m³)")
+
 class FarmAquacultureProduction(models.Model):
     _name = 'farm.aquaculture.production'
     _description = 'Aquaculture Growth Order (ISL Layer)'

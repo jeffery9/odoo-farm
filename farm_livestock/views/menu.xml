@@ -10,15 +10,22 @@
               parent="menu_farm_livestock_root"
               sequence="10"/>
 
-    <menuitem id="menu_livestock_groups"
-              name="Groups"
+    <menuitem id="menu_livestock_events"
+              name="Lifecycle Events"
               parent="menu_farm_livestock_root"
-              sequence="20"/>
+              action="action_farm_livestock_event"
+              sequence="15"/>
 
     <menuitem id="menu_livestock_health"
               name="Health"
               parent="menu_farm_livestock_root"
               sequence="30"/>
+
+    <menuitem id="menu_livestock_env"
+              name="Environment Monitoring"
+              parent="menu_farm_livestock_root"
+              action="action_farm_livestock_house_env"
+              sequence="35"/>
 
     <menuitem id="menu_livestock_breeding"
               name="Breeding"
