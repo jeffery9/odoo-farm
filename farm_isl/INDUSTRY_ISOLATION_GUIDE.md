@@ -286,36 +286,54 @@ def migrate_to_industry_specific(isl_record, source_record):
 
 The ISL architecture supports two approaches for industry-specific extensions:
 
-### Approach 1: Inheritance from Centralized ISL Models (Recommended)
+### Approach 1: Direct Extension from Base Models with _inherits (Recommended)
 ```python
-# Industry extends centralized ISL model
+# Industry-specific model using _inherits mechanism (RECOMMENDED)
 class FarmProcessingProduction(models.Model):
     _name = 'farm.processing.production'
     _description = 'Farm Food Processing Order'
-    _inherit = ['farm.mrp.production', 'farm.agri.production.mixin']
+    _inherits = {'mrp.production': 'mrp_production_id'}  # Direct relationship to base model
+    _inherit = ['farm.manufacturing.mixin']  # Abstract industry functionality
+
+    # Critical: Define the foreign key field
+    mrp_production_id = fields.Many2one(
+        'mrp.production',
+        string='Base Production Order',
+        required=True,
+        ondelete='cascade'  # Ensures proper cleanup
+    )
 
     # Food processing specific fields
     energy_reading_start = fields.Float(string='Energy Reading Start')
     haccp_instructions = fields.Html("HACCP Critical Instructions")
 ```
 
-### Approach 2: Direct Extension from Base Models with ISL Integration (Legacy Support)
+### Approach 2: Extension from Centralized ISL Models (Alternative)
 ```python
-# Industry-specific model extending base model directly
-class FarmLivestockProduction(models.Model):
-    _name = 'farm.livestock.production'
-    _description = 'Livestock Growth Order (ISL Layer)'
-    _inherits = {'mrp.production': 'production_id'}
-    _inherit = ['farm.agri.production.mixin']
+# Industry extends centralized ISL model (also valid)
+class FarmProcessingProduction(models.Model):
+    _name = 'farm.processing.production'
+    _description = 'Farm Food Processing Order'
+    _inherit = ['farm.mrp.production', 'farm.agri.production.mixin']  # Extends centralized ISL
 
-    production_id = fields.Many2one('mrp.production', required=True, ondelete='cascade')
-
-    # Livestock specific fields
-    initial_total_weight = fields.Float("Initial Total Weight (kg)")
-    fcr = fields.Float("Feed Conversion Ratio (FCR)")
+    # Food processing specific fields
+    energy_reading_start = fields.Float(string='Energy Reading Start')
+    haccp_instructions = fields.Html("HACCP Critical Instructions")
 ```
 
-Both approaches are valid depending on the use case, with the first being preferred for new developments for better consistency.
+### Key Considerations for _inherits Approach (Recommended)
+
+The `_inherits` approach is recommended because it provides:
+- **Complete ownership**: The ISL record owns its base record
+- **Proper cleanup**: Cascade deletion maintains data integrity
+- **Clear relationships**: Explicit foreign key relationships
+- **Better performance**: Direct database relationships
+
+When using `_inherits`, always remember to:
+1. Define the Many2one field for the base model relationship
+2. Use `ondelete='cascade'` for proper cleanup
+3. Use descriptive field names (e.g., `mrp_production_id`, `stock_lot_id`)
+4. Set the proper industry type during creation/updates
 
 ## Data Migration for Industry Isolation
 

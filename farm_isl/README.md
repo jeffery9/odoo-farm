@@ -61,10 +61,11 @@ All ISL models support the following industry types with specific requirements:
 
 1. **Model Naming**: All ISL models follow the pattern `farm.{module}.{model}` (e.g., `farm.mrp.production`)
 2. **Field Structure**: Common industry_type field with validation methods for each industry
-3. **Inheritance**: Use `_inherits` for extension, never `_inherit` for ISL models
+3. **Inheritance**: Use `_inherits` mechanism for extension to create proper ownership relationships
 4. **Relationship Field**: Use base model name with `_id` suffix (e.g., `mrp_production_id`)
-5. **Validation Methods**: Industry-specific validation in `_validate_{model}_compliance` methods
-6. **Security**: Comprehensive access rights defined in `ir.model.access.csv`
+5. **Foreign Key**: Always define the Many2one field for the base model relationship with `ondelete='cascade'`
+6. **Validation Methods**: Industry-specific validation in `_validate_{model}_compliance` methods
+7. **Security**: Comprehensive access rights defined in `ir.model.access.csv`
 
 ## Usage Pattern
 
