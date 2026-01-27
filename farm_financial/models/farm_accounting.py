@@ -155,3 +155,72 @@ class AgriMortalityAmortization(models.AbstractModel):
             ) % (mortality_cost, dead_lot_id.name))
             
         return True
+
+class FarmCpaAnalysis(models.Model):
+    """
+    US-02-11: 单产损益分析 (CPA - Cost Per Acre/Parcel)
+    """
+    _name = 'farm.cpa.analysis'
+    _description = 'Cost Per Parcel Analysis'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
+    name = fields.Char("Analysis Ref", required=True, default=lambda self: _('New'))
+    activity_id = fields.Many2one('farm.activity', string="Production Campaign", required=True)
+    location_id = fields.Many2one('farm.location', string="Land Parcel", required=True)
+    
+    date_from = fields.Date("Date From")
+    date_to = fields.Date("Date To")
+    
+    # Financial Aggregates
+    total_material_cost = fields.Monetary("Material Cost (Seeds/Fertilizer/Meds)")
+    total_labor_cost = fields.Monetary("Labor Cost")
+    total_machinery_cost = fields.Monetary("Machinery/Fuel Cost")
+    total_indirect_cost = fields.Monetary("Indirect/Overhead Cost")
+    
+    total_production_cost = fields.Monetary("Total Production Cost", compute='_compute_totals', store=True)
+    
+    harvest_revenue = fields.Monetary("Harvest Revenue")
+    gross_profit = fields.Monetary("Gross Profit", compute='_compute_totals', store=True)
+    margin_percentage = fields.Float("Margin (%)", compute='_compute_totals', store=True)
+    
+    currency_id = fields.Many2one('res.currency', default=lambda self: self.env.company.currency_id)
+    state = fields.Selection([('draft', 'Draft'), ('calculated', 'Calculated'), ('closed', 'Closed')], default='draft')
+
+    @api.depends('total_material_cost', 'total_labor_cost', 'total_machinery_cost', 'total_indirect_cost', 'harvest_revenue')
+    def _compute_totals(self):
+        for rec in self:
+            rec.total_production_cost = rec.total_material_cost + rec.total_labor_cost + rec.total_machinery_cost + rec.total_indirect_cost
+            rec.gross_profit = rec.harvest_revenue - rec.total_production_cost
+            rec.margin_percentage = (rec.gross_profit / rec.harvest_revenue * 100.0) if rec.harvest_revenue else 0.0
+
+    def action_calculate_cpa(self):
+        """
+        US-02-11: CPA Calculation Logic
+        Aggregates costs from analytic lines linked to the parcel and campaign
+        """
+        self.ensure_one()
+        # 1. Find all tasks for this parcel in this campaign
+        tasks = self.env['project.task'].search([
+            ('project_id', '=', self.activity_id.id),
+            ('land_parcel_id', '=', self.location_id.id)
+        ])
+        
+        analytic_accounts = tasks.mapped('analytic_account_id')
+        if not analytic_accounts:
+            return
+            
+        # 2. Query Analytic Lines [Cost Penetration]
+        lines = self.env['account.analytic.line'].search([
+            ('account_id', 'in', analytic_accounts.ids)
+        ])
+        
+        self.total_material_cost = abs(sum(lines.filtered(lambda l: l.product_id and l.product_id.type == 'consu').mapped('amount')))
+        self.total_labor_cost = abs(sum(lines.filtered(lambda l: not l.product_id).mapped('amount'))) # Timesheets/Manual lines
+        self.total_machinery_cost = abs(sum(lines.filtered(lambda l: l.product_id and 'equipment' in l.product_id.name.lower()).mapped('amount')))
+        self.total_indirect_cost = abs(sum(lines.filtered(lambda l: not l.product_id and l.name and 'indirect' in l.name.lower()).mapped('amount')))
+        
+        # 3. Revenue from associated sales or valuation
+        # Simplified: Look for revenue analytic lines (amount > 0)
+        self.harvest_revenue = sum(lines.filtered(lambda l: l.amount > 0).mapped('amount'))
+        
+        self.state = 'calculated'
