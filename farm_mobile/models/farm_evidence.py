@@ -2,8 +2,9 @@ from odoo import models, fields, api, _
 
 class FarmEvidence(models.Model):
     """
-    US-24-04 & US-07-05: 通用现场取证模型
-    职责：记录带 GPS 水印的现场照片，支持关联任务、地块、批次等
+    US-24-04 & US-07-05: 通用现场取证基础设施
+    职责：提供移动端现场取证的基础能力，支持关联任务、地块、批次、补贴申请等
+    作为技术基础设施，为各业务模块提供证据收集、验证和存储服务
     """
     _name = 'farm.evidence'
     _description = 'Field Evidence'

@@ -10,7 +10,7 @@
         - Linking Subsidies to Land Parcels
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'account'],
+    'depends': ['farm_core', 'farm_mobile', 'account'],
     'data': [
         'security/ir.model.access.csv',
         'views/subsidy_views.xml',
