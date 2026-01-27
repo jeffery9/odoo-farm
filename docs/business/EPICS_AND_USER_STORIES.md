@@ -22,7 +22,8 @@
 - **[EPIC 48: 农业金融信用与指数保险](epics/EPIC_48_Agri_Financial_Credit_Insurance.md)**
 - **[EPIC 49: 全息溯源与交互式品牌营销](epics/EPIC_49_Holistic_Traceability_Marketing.md)**
 - **[EPIC 58: AI 智能决策支持平台](epics/EPIC_58_AI_Decision_Support_Platform.md)**
-- **[EPIC 63: 数字孪生农业](epics/EPIC_63_Digital_Twin_Agriculture.md)**
+- [EPIC 63: 数字孪生农业](epics/EPIC_63_Digital_Twin_Agriculture.md)
+- [EPIC 65: 日本式“精致农业”与小农合规管理](epics/EPIC_65_Japan_Exquisite_Agriculture.md)
 
 ---
 
