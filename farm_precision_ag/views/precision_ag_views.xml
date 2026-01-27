@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Farm Location Extension -->
+    <record id="view_farm_location_form_precision" model="ir.ui.view">
+        <name>farm.location.form.precision</name>
+        <model>farm.location</model>
+        <inherit_id ref="farm_core.view_farm_location_form"/>
+        <arch type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_generate_grid" string="Generate Spatial Grid" type="object" class="oe_highlight" 
+                        invisible="not boundary_geojson or not is_land_parcel"/>
+                <button name="action_fetch_ndvi" string="Fetch NDVI Data" type="object" 
+                        invisible="not grid_ids or not is_land_parcel"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Spatial Grid" name="spatial_grid" invisible="not is_land_parcel">
+                    <field name="grid_ids" readonly="1">
+                        <list>
+                            <field name="name"/>
+                            <field name="center_lat"/>
+                            <field name="center_lng"/>
+                            <field name="ndvi" widget="progressbar"/>
+                            <field name="soil_fertility"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </arch>
+    </record>
+
+    <!-- VRA Strategy Views -->
+    <record id="view_farm_vra_strategy_tree" model="ir.ui.view">
+        <name>farm.vra.strategy.list</name>
+        <model>farm.vra.strategy</model>
+        <arch type="xml">
+            <list>
+                <field name="name"/>
+                <field name="type"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="view_farm_vra_strategy_form" model="ir.ui.view">
+        <name>farm.vra.strategy.form</name>
+        <model>farm.vra.strategy</model>
+        <arch type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="type"/>
+                        </group>
+                        <group invisible="type != 'linear'">
+                            <field name="target_ndvi"/>
+                            <field name="slope"/>
+                        </group>
+                        <group invisible="type != 'step'">
+                            <field name="step_threshold_low"/>
+                            <field name="step_threshold_high"/>
+                            <field name="step_multiplier_low"/>
+                            <field name="step_multiplier_high"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </arch>
+    </record>
+
+    <record id="action_farm_vra_strategy" model="ir.actions.act_window">
+        <name>VRA Strategies</name>
+        <res_model>farm.vra.strategy</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- VRA Prescription Views -->
+    <record id="view_farm_vra_prescription_tree" model="ir.ui.view">
+        <name>farm.vra.prescription.list</name>
+        <model>farm.vra.prescription</model>
+        <arch type="xml">
+            <list>
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="strategy_id"/>
+                <field name="base_rate"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="view_farm_vra_prescription_form" model="ir.ui.view">
+        <name>farm.vra.prescription.form</name>
+        <model>farm.vra.prescription</model>
+        <arch type="xml">
+            <form>
+                <header>
+                    <button name="action_calculate" string="Calculate Prescription" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="location_id"/>
+                            <field name="strategy_id"/>
+                        </group>
+                        <group>
+                            <field name="base_rate"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Prescription Map (Grid)" name="grid_lines">
+                            <field name="line_ids" readonly="1">
+                                <list>
+                                    <field name="grid_id"/>
+                                    <field name="target_rate"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </arch>
+    </record>
+
+    <record id="action_farm_vra_prescription" model="ir.actions.act_window">
+        <name>VRA Prescriptions</name>
+        <res_model>farm.vra.prescription</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_precision_ag_root" name="Precision Ag" parent="farm_core.menu_farm_root" sequence="25"/>
+    <menuitem id="menu_farm_vra_strategy" name="VRA Strategies" parent="menu_precision_ag_root" action="action_farm_vra_strategy" sequence="10"/>
+    <menuitem id="menu_farm_vra_prescription" name="VRA Prescriptions" parent="menu_precision_ag_root" action="action_farm_vra_prescription" sequence="20"/>
+</odoo>

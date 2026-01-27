@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_location_grid,farm.location.grid,model_farm_location_grid,farm_core.group_farm_user,1,1,1,1
+access_farm_vra_strategy,farm.vra.strategy,model_farm_vra_strategy,farm_core.group_farm_user,1,1,1,1
+access_farm_vra_prescription,farm.vra.prescription,model_farm_vra_prescription,farm_core.group_farm_user,1,1,1,1
+access_farm_vra_prescription_line,farm.vra.prescription.line,model_farm_vra_prescription_line,farm_core.group_farm_user,1,1,1,1
