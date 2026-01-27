@@ -48,6 +48,8 @@
     - INTEGRATION_GUIDE.md: Integration standards for other modules
     - STANDARDIZATION_REPORT.md: Detailed standardization analysis
     - ARCHITECTURE_OVERVIEW.md: Current state and organization patterns
+    - INDUSTRY_ISOLATION_GUIDE.md: Industry isolation best practices
+    - DATA_ISOLATION_EXAMPLE.py: Sample data migration patterns
 
     Key Features:
     - Abstract base models for industry specialization
