@@ -17,8 +17,17 @@
     - **验收条件**：
         - **(Analytics)** 实现 `farm.greenhouse.energy.log` 模块，自动核算用电/用水量并转化为碳足迹（Carbon Footprint）。
 
-4. **[US-57-04] 政府监管平台对接**：💡 待规划
+4. **[US-57-04] 政府监管平台对接**：✅ 已完成 (2026-01-27)
     - **描述**：作为合规经理，我希望系统自动向政府监管平台报送农业生产经营数据。
+    - **验收条件**：
+        - **(Integration)** 实现 `farm.government.platform.config` 配置模型，支持多平台API连接。
+        - **(Automation)** 实现 `farm.government.data.report` 自动化报告生成与提交机制。
+        - **(Monitoring)** 提供监管数据提交状态跟踪与错误处理功能。
 
-5. **[US-57-05] 电商平台 API 集成**：💡 待规划
+5. **[US-57-05] 电商平台 API 集成**：✅ 已完成 (2026-01-26)
     - **描述**：作为电商运营专员，我希望将农产品库存和订单同步到主流电商平台。
+    - **验收条件**：
+        - **(Integration)** 实现 `douyin.product` 电商平台配置模型。
+        - **(Sync)** 实现库存同步机制，支持主流电商平台（抖音、淘宝、京东、拼多多等）。
+        - **(Logging)** 提供 `douyin.product` 同步日志跟踪功能。
+    - **(Note)** This functionality has been implemented in the `farm_live_streaming` module which provides comprehensive e-commerce platform integration including Douyin live streaming, product synchronization, and order management.

@@ -121,12 +121,21 @@ farm_<module_name>/
 - **视图文件**: 使用 `model_name_views.xml` 格式，如 `cooperative_entity_views.xml`
 - **测试文件**: 使用 `test_model_name.py` 格式，如 `test_cooperative_entity.py`
 - **权限文件**: 使用 `model_name_security.xml` 格式，如 `cooperative_security.xml`
+- **避免冗余后缀**: 禁止在文件名中使用冗余的后缀如 `management`, `extension`, `handler`, `controller` 等，除非它们能明确表达模型的特定职责。例如：
+  - ❌ `biological_asset_management.py` → ✅ `biological_asset.py`
+  - ❌ `land_location_management.py` → ✅ `land_location.py`
+  - ❌ `activity_operation_management.py` → ✅ `activity_operation.py`
+  - ❌ `user_extension.py` → ✅ `user.py` 或更具体的名称
+  - ❌ `data_handler.py` → ✅ `data_service.py` 或直接 `data.py`（如果职责明确）
 
 ## 10. 模块依赖规范
 - **显式依赖**: 在 `__manifest__.py` 中明确定义所有依赖
 - **最小依赖**: 每个模块只依赖必需的其他模块
 - **避免循环依赖**: 确保模块间无循环依赖关系
-- **依赖层级**: 遵循 `farm_core` → `business_modules` → `integration_modules` 的依赖层级
+- **依赖层级**: 遵循 `farm_core` (基础层) → `farm_agri_science` (科学层) → `business_modules` (应用层) 的严格分层架构。
+    - **基础模块** (如 `farm_core`) **严禁**依赖上层业务模块 (如 `farm_greenhouse`)。
+    - **上层模块**通过继承 (`_inherit`) 扩展基础模块功能，实现 Inversion of Control (控制反转)。
+    - 若基础层需调用上层逻辑，必须在基础层定义抽象钩子 (Hook)，由上层模块覆盖实现。
 
 ## 10. 农业业务逻辑规范 (Agricultural Business Logic)
 
