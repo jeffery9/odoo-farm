@@ -54,6 +54,10 @@
                                     <field name="predicted_yield"/>
                                     <field name="confidence_level"/>
                                 </group>
+                                <group string="Environmental Impact (L4)">
+                                    <field name="accumulated_carbon"/>
+                                    <field name="carbon_intensity" decoration-danger="carbon_intensity > 0.5" decoration-success="carbon_intensity <= 0.2"/>
+                                </group>
                             </group>
                         </page>
                     </notebook>

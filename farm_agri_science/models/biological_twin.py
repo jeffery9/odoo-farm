@@ -31,6 +31,23 @@ class FarmBiologicalTwin(models.Model):
         ('high', 'High (Near-harvest)')
     ], default='low')
 
+    # L4: ESG Integration (Carbon Footprint)
+    accumulated_carbon = fields.Float("Accumulated Carbon (kg CO2e)", compute='_compute_carbon_footprint')
+    carbon_intensity = fields.Float("Carbon Intensity (kg CO2e/kg yield)", compute='_compute_carbon_footprint')
+
+    def _compute_carbon_footprint(self):
+        """
+        L4 Logic: Aggregates real-time carbon data from the ledger for this specific location/cycle.
+        """
+        for rec in self:
+            ledger_entries = self.env['farm.carbon.ledger'].sudo().search([
+                ('location_id', '=', rec.location_id.id),
+                ('date', '>=', rec.start_date)
+            ])
+            total_co2 = sum(ledger_entries.mapped('total_co2e'))
+            rec.accumulated_carbon = total_co2
+            rec.carbon_intensity = total_co2 / rec.predicted_yield if rec.predicted_yield > 0 else 0.0
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:

@@ -14,7 +14,9 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "data/ir_sequence_data.xml",
         "views/environmental_views.xml",
+        "views/carbon_accounting_views.xml",
         "views/menu.xml",
     ],
     "demo": [

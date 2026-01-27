@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_farm_carbon_ledger" model="ir.sequence">
+        <name>Carbon Ledger</name>
+        <field name="code">farm.carbon.ledger</field>
+        <field name="prefix">CO2/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>
