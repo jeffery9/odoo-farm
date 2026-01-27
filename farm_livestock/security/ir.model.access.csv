@@ -3,3 +3,5 @@ access_livestock_death_report_worker,death.report.worker,model_livestock_death_r
 access_farm_livestock_bom,farm.livestock.bom,model_farm_livestock_bom,,1,1,1,1
 access_farm_livestock_production,farm.livestock.production,model_farm_livestock_production,,1,1,1,1
 access_farm_livestock_bom_line,farm.livestock.bom.line,model_farm_livestock_bom_line,,1,1,1,1
+access_farm_livestock_event,farm.livestock.event,model_farm_livestock_event,base.group_user,1,1,1,1
+access_farm_livestock_house_env,farm.livestock.house.env,model_farm_livestock_house_env,base.group_user,1,1,1,1

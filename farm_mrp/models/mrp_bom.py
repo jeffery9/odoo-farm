@@ -11,6 +11,8 @@ class MrpBom(models.Model):
         ('processing', 'Processing'),
         ('aquaculture', 'Aquaculture'),
         ('crop', 'Crop'),
+        ('pharma', 'Pharmaceutical'),
+        ('chemical', 'Chemical'),
     ], string="Industry Type", default='standard')
 
     isl_record_type = fields.Char(string="ISL Record Type", compute='_compute_isl_record_type', store=False)

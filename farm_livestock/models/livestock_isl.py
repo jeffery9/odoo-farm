@@ -13,6 +13,51 @@ class FarmLivestockBom(models.Model):
     growth_days_expected = fields.Integer("Expected Growth Days")
     daily_feed_intake = fields.Float("Avg Daily Feed (kg)")
 
+class FarmLotLivestock(models.Model):
+    _name = 'farm.lot.livestock'
+    _description = 'Livestock Asset Lot (ISL Layer)'
+    _inherits = {'stock.lot': 'lot_id'}
+
+    lot_id = fields.Many2one('stock.lot', string='Base Lot', required=True, ondelete='cascade')
+    
+    # [US-64-01] 个体动物档案管理
+    birth_date = fields.Date("Birth Date")
+    gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string="Gender")
+    current_weight = fields.Float("Weight (kg)")
+    
+    # [US-64-04] 生殖与繁殖管理
+    breeding_status = fields.Selection([
+        ('immature', 'Immature'),
+        ('open', 'Open'),
+        ('in_heat', 'In Heat'),
+        ('pregnant', 'Pregnant'),
+        ('lactating', 'Lactating'),
+        ('dry', 'Dry')
+    ], string="Breeding Status", default='immature')
+    
+    # [US-64-02] 智能健康监测
+    health_index = fields.Float("Health Index (0-100)", default=100.0)
+    last_vet_check = fields.Date("Last Veterinary Check")
+
+    # [US-64-06] 产量与性能分析
+    fcr_actual = fields.Float("Actual FCR", compute='_compute_performance_metrics')
+    avg_daily_gain = fields.Float("Actual ADG (kg/day)", compute='_compute_performance_metrics')
+    
+    def _compute_performance_metrics(self):
+        for rec in self:
+            # Aggregate data from completed production orders
+            orders = self.env['farm.livestock.production'].search([
+                ('production_id.lot_producing_id', '=', rec.lot_id.id),
+                ('production_id.state', '=', 'done')
+            ])
+            if orders:
+                rec.fcr_actual = sum(orders.mapped('fcr')) / len(orders)
+                # Simplified ADG calculation
+                rec.avg_daily_gain = sum(orders.mapped('avg_daily_gain_recorded')) / len(orders) if hasattr(orders, 'avg_daily_gain_recorded') else 0.5
+            else:
+                rec.fcr_actual = 0.0
+                rec.avg_daily_gain = 0.0
+
 class FarmLivestockProduction(models.Model):
     _name = 'farm.livestock.production'
     _description = 'Livestock Growth Order (ISL Layer)'
@@ -25,6 +70,7 @@ class FarmLivestockProduction(models.Model):
     initial_total_weight = fields.Float("Initial Total Weight (kg)")
     final_total_weight = fields.Float("Final Total Weight (kg)")
     fcr = fields.Float("Feed Conversion Ratio (FCR)", compute='_compute_fcr_isl')
+    avg_daily_gain_recorded = fields.Float("Recorded ADG (kg/day)", compute='_compute_fcr_isl')
 
     # --- Polymorphic Link (US-TECH-06-26) ---
     livestock_bom_id = fields.Many2one('farm.livestock.bom', string='Livestock Recipe', compute='_compute_livestock_bom_id')
@@ -37,12 +83,21 @@ class FarmLivestockProduction(models.Model):
             else:
                 rec.livestock_bom_id = False
 
-    @api.depends('initial_total_weight', 'final_total_weight')
+    @api.depends('initial_total_weight', 'final_total_weight', 'production_id.product_qty', 'production_id.date_start', 'production_id.date_finished')
     def _compute_fcr_isl(self):
         for rec in self:
             gain = rec.final_total_weight - rec.initial_total_weight
-            # Basic FCR placeholder
-            rec.fcr = (rec.product_qty / gain) if gain > 0 else 0.0
+            # FCR = Total Feed / Total Weight Gain
+            # Assuming product_qty is the feed amount for simplicity in this context, 
+            # or it's linked via analytics.
+            rec.fcr = (rec.production_id.product_qty / gain) if gain > 0 else 0.0
+            
+            # ADG calculation
+            if rec.production_id.date_start and rec.production_id.date_finished:
+                days = (rec.production_id.date_finished - rec.production_id.date_start).days or 1
+                rec.avg_daily_gain_recorded = gain / (days * (rec.production_id.product_qty or 1.0)) # per head approx
+            else:
+                rec.avg_daily_gain_recorded = 0.0
 
     def isl_post_done(self):
         """ US-TECH-06-27: Update resulting lot metadata with ISL weight data. """
@@ -53,3 +108,11 @@ class FarmLivestockProduction(models.Model):
             isl_lot = self.env['farm.lot.livestock'].search([('lot_id', '=', lot.id)], limit=1)
             if isl_lot:
                 isl_lot.current_weight = self.final_total_weight / (self.production_id.product_qty or 1.0)
+                # Create a weight measurement event [US-64-01]
+                self.env['farm.livestock.event'].create({
+                    'lot_id': lot.id,
+                    'event_type': 'weight',
+                    'measured_weight': isl_lot.current_weight,
+                    'event_date': fields.Datetime.now(),
+                    'notes': _("Auto-recorded from Production Order %s") % self.production_id.name
+                })
