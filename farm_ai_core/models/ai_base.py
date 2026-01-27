@@ -77,30 +77,42 @@ class AIBaseMixin(models.AbstractModel):
         if not context_data:
             context_data = {}
 
-        # Find active LLM configuration
-        llm_config = self.env['ai.configuration'].search([
-            ('is_active', '=', True),
-            ('is_default', '=', True),
-            ('ai_provider', '!=', False)
-        ], limit=1)
-
-        if not llm_config:
-            _logger.warning("No active LLM configuration found")
-            return {'success': False, 'error': 'No active LLM configuration', 'response': None}
-
-        # In the real implementation, this would call the actual LLM service
-        # based on the provider configuration (OpenAI, Anthropic, etc.)
-        # For now, we'll simulate the call
+        # Try to use the LLM service from farm_ai_llm_integration if available
         try:
-            # This would be replaced by actual API calls to the LLM provider
-            simulated_response = f"Simulated response to: {prompt[:50]}..."
-            return {
-                'success': True,
-                'response': simulated_response,
-                'model_used': llm_config.default_model or llm_config.ai_provider,
-                'processing_time': random.uniform(500, 2000)  # ms
-            }
+            # Look for an active LLM service in the system
+            llm_service = self.env['llm.service'].sudo().search([], limit=1)
+
+            if llm_service:
+                # Use the existing LLM service implementation
+                result = llm_service.call_llm(prompt, context_data)
+                return result
+            else:
+                # If no LLM service is available, try to use configuration from ai.configuration
+                llm_config = self.env['ai.configuration'].sudo().search([
+                    ('is_active', '=', True),
+                    ('is_default', '=', True)
+                ], limit=1)
+
+                if llm_config:
+                    # Create a temporary LLM service based on the configuration
+                    # In a real implementation this would call the actual API
+                    # For now, we'll use a fallback approach
+                    _logger.warning("No active LLM service found, using fallback")
+                    return {
+                        'success': False,
+                        'error': 'No active LLM service available',
+                        'response': None,
+                        'fallback_used': True
+                    }
+                else:
+                    _logger.warning("No active LLM configuration found")
+                    return {
+                        'success': False,
+                        'error': 'No active LLM configuration',
+                        'response': None
+                    }
         except Exception as e:
+            _logger.error(f"Error calling LLM service: {str(e)}")
             return {
                 'success': False,
                 'error': str(e),
