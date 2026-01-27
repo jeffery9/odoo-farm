@@ -47,16 +47,51 @@ class MachineryRental(models.Model):
             if not record.start_date or not record.end_date:
                 record.expected_cost = 0.0
                 continue
-            # Calculate expected cost based on rental type and duration
-            # This is a simplified calculation - real implementation would consider more factors
-            if record.machinery_id and record.machinery_id.hourly_rate:
-                duration_hours = (record.end_date - record.start_date).total_seconds() / 3600
-                if record.rental_type == 'hourly':
-                    record.expected_cost = duration_hours * record.machinery_id.hourly_rate
-                elif record.rental_type == 'daily':
-                    duration_days = max(1, int(duration_hours / 24))
-                    record.expected_cost = duration_days * record.machinery_id.daily_rate
-                else:
-                    record.expected_cost = 0.0  # Would need additional logic for area/task based
+
+            machinery = record.machinery_id
+            duration = 0.0
+            if record.rental_type == 'hourly':
+                diff = fields.Datetime.from_string(record.end_date) - fields.Datetime.from_string(record.start_date)
+                duration = diff.total_seconds() / 3600.0
+                record.expected_cost = duration * machinery.hourly_rate
+            elif record.rental_type == 'daily':
+                from datetime import datetime
+                start = fields.Date.from_string(str(record.start_date)[:10])
+                end = fields.Date.from_string(str(record.end_date)[:10])
+                duration = (end - start).days + 1
+                record.expected_cost = duration * machinery.daily_rate
             else:
-                record.expected_cost = 0.0
+                record.expected_cost = 0.0  # Other types need different calculation
+
+    def action_confirm(self):
+        """确认租赁"""
+        for rental in self:
+            if rental.state == 'draft':
+                rental.state = 'confirmed'
+                # Update machinery status to in_use
+                rental.machinery_id.availability_status = 'in_use'
+
+    def action_start_rental(self):
+        """开始租赁"""
+        for rental in self:
+            if rental.state == 'confirmed':
+                rental.state = 'in_progress'
+                rental.machinery_id.availability_status = 'in_use'
+
+    def action_complete_rental(self):
+        """完成租赁"""
+        for rental in self:
+                rental.state = 'completed'
+                rental.actual_end_date = fields.Datetime.now()
+                rental.machinery_id.availability_status = 'available'
+
+                # Create internal settlement for the rental
+                settlement = self.env['internal.settlement'].create({
+                    'from_entity_id': rental.renter_member_id.partner_id.company_id.id,
+                    'to_entity_id': rental.machinery_id.owner_member_id.partner_id.company_id.id,
+                    'settlement_type': 'resource_rental',
+                    'resource_sharing_id': False,  # This is machinery rental, not resource sharing
+                    'amount': rental.actual_cost or rental.expected_cost,
+                    'description': f'Machinery rental for {rental.machinery_id.name}',
+                })
+                rental.settlement_id = settlement.id

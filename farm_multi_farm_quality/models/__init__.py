@@ -1,1 +1,2 @@
-# Empty for now - can add quality-related models later
+from . import product_certification
+from . import quality_control_standard

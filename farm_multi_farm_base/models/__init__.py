@@ -4,3 +4,7 @@ from . import extension_models
 from . import res_partner_extension
 from . import regional_oversight
 from . import utils
+from . import agri_service
+from . import contract_farming_agreement
+from . import service_order
+from . import stock_picking_type_extension
