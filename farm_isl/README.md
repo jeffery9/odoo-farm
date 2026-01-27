@@ -81,3 +81,14 @@ The ISL architecture provides several extension points for additional functional
 - Industry-specific extension modules can be created using the `ISLIndustryExtension` model
 - Custom validation methods can be added to specific ISL models
 - View customizations can be added for industry-specific user interfaces
+
+## Industry-Specific Extensions
+
+The ISL architecture supports industry-specific extensions through a hybrid approach that combines centralized infrastructure with distributed specialization:
+
+- Core ISL infrastructure in `farm_isl` provides common functionality and redirection
+- Industry-specific modules (e.g., `farm_processing`, `farm_livestock`) extend ISL models using `_inherit`
+- Each industry can implement specialized functionality while maintaining consistent architecture patterns
+- Centralized redirection mechanisms ensure proper navigation between base and specialized models
+
+For more details on the hybrid architecture pattern, see ARCHITECTURE_OVERVIEW.md.

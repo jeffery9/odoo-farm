@@ -47,6 +47,7 @@
     - README.md: Core architecture overview
     - INTEGRATION_GUIDE.md: Integration standards for other modules
     - STANDARDIZATION_REPORT.md: Detailed standardization analysis
+    - ARCHITECTURE_OVERVIEW.md: Current state and organization patterns
 
     Key Features:
     - Abstract base models for industry specialization
