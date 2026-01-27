@@ -9,6 +9,8 @@
                 <field name="program_id"/>
                 <field name="fiscal_year"/>
                 <field name="estimated_amount"/>
+                <field name="evidence_collected"/>
+                <field name="compliance_status" widget="badge" decoration-success="compliance_status == 'compliant'" decoration-info="compliance_status == 'verified'" decoration-warning="compliance_status == 'pending'"/>
                 <field name="state" widget="badge" decoration-success="state == 'approved'" decoration-warning="state == 'submitted'"/>
             </list>
         </field>
@@ -30,16 +32,32 @@
                         <group>
                             <field name="program_id"/>
                             <field name="fiscal_year"/>
+                            <field name="compliance_status"/>
                         </group>
                         <group>
                             <field name="declared_quantity"/>
                             <field name="estimated_amount" widget="monetary"/>
+                            <field name="evidence_collected"/>
                             <field name="currency_id" invisible="1"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Parcels">
                             <field name="land_parcel_ids"/>
+                        </page>
+                        <page string="Compliance">
+                            <group>
+                                <group string="Compliance Verification">
+                                    <field name="handbook_generated_date"/>
+                                    <button name="action_collect_compliance_evidence" string="Collect Compliance Evidence" type="object" class="oe_highlight"/>
+                                    <button name="action_generate_compliance_handbook" string="Generate Compliance Handbook" type="object" class="oe_highlight"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Activity">
+                            <group string="Compliance Details">
+                                <field name="compliance_handbook_data" widget="ace" options="{'mode': 'json'}"/>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>
