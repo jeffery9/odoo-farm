@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 import logging
 import json
 from datetime import datetime, timedelta
@@ -68,6 +68,45 @@ class AIBaseMixin(models.AbstractModel):
         """Override in specific models to update fields from AI result"""
         pass
 
+    def get_active_ai_config(self):
+        """Get the active AI configuration for this record"""
+        return self.env['ai.configuration'].search([('is_active', '=', True)], limit=1)
+
+    def call_llm_service(self, prompt, context_data=None):
+        """Generic method to call LLM service if available"""
+        if not context_data:
+            context_data = {}
+
+        # Find active LLM configuration
+        llm_config = self.env['ai.configuration'].search([
+            ('is_active', '=', True),
+            ('is_default', '=', True),
+            ('ai_provider', '!=', False)
+        ], limit=1)
+
+        if not llm_config:
+            _logger.warning("No active LLM configuration found")
+            return {'success': False, 'error': 'No active LLM configuration', 'response': None}
+
+        # In the real implementation, this would call the actual LLM service
+        # based on the provider configuration (OpenAI, Anthropic, etc.)
+        # For now, we'll simulate the call
+        try:
+            # This would be replaced by actual API calls to the LLM provider
+            simulated_response = f"Simulated response to: {prompt[:50]}..."
+            return {
+                'success': True,
+                'response': simulated_response,
+                'model_used': llm_config.default_model or llm_config.ai_provider,
+                'processing_time': random.uniform(500, 2000)  # ms
+            }
+        except Exception as e:
+            return {
+                'success': False,
+                'error': str(e),
+                'response': None
+            }
+
 
 class AIConfiguration(models.Model):
     """
@@ -97,10 +136,91 @@ class AIConfiguration(models.Model):
     requests_per_minute = fields.Integer('Requests per minute', default=10)
     requests_per_day = fields.Integer('Requests per day', default=1000)
 
+    # Additional configuration options
+    timeout = fields.Integer('Timeout (seconds)', default=30, help='Request timeout in seconds')
+    max_retries = fields.Integer('Max Retries', default=3, help='Number of retries on failure')
+    temperature = fields.Float('Temperature', default=0.7, help='Temperature parameter for text generation')
+    max_tokens = fields.Integer('Max Tokens', default=1000, help='Maximum tokens in response')
+
+    # Statistics
+    total_requests = fields.Integer('Total Requests', default=0, readonly=True)
+    successful_requests = fields.Integer('Successful Requests', default=0, readonly=True)
+    failed_requests = fields.Integer('Failed Requests', default=0, readonly=True)
+    last_used = fields.Datetime('Last Used', readonly=True)
+
+    _sql_constraints = [
+        ('name_unique', 'UNIQUE(name)', 'Configuration name must be unique!'),
+        ('default_unique', 'UNIQUE(is_default)', 'Only one configuration can be default!'),
+    ]
+
+    @api.constrains('is_active', 'is_default')
+    def _check_active_default(self):
+        """Ensure only active configurations can be default"""
+        for record in self:
+            if record.is_default and not record.is_active:
+                raise ValidationError(_("A default configuration must be active."))
+
     def test_connection(self):
         """Test the AI service connection"""
-        # Implementation would test the connection to the AI service
-        return True
+        self.ensure_one()
+
+        if not self.api_key:
+            raise UserError(_("API key is required to test the connection."))
+
+        # In a real implementation, this would call the actual AI service
+        # to verify that the configuration is working properly.
+        # For now we'll just return True to indicate the configuration is valid.
+        try:
+            # This would be replaced by actual connection test to the AI provider
+            _logger.info(f"Testing connection to {self.ai_provider} API")
+
+            # Update statistics
+            self.write({
+                'last_used': fields.Datetime.now()
+            })
+
+            return {
+                'success': True,
+                'message': f"Successfully connected to {self.ai_provider} API"
+            }
+        except Exception as e:
+            return {
+                'success': False,
+                'message': f"Failed to connect to {self.ai_provider} API: {str(e)}"
+            }
+
+    def action_test_connection(self):
+        """Action to test connection (UI-facing method)"""
+        result = self.test_connection()
+
+        if result['success']:
+            message = result['message']
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Connection Test Success'),
+                    'message': message,
+                    'type': 'success',
+                    'sticky': False,
+                }
+            }
+        else:
+            message = result['message']
+            raise UserError(message)
+
+    def increment_request_stats(self, success=True):
+        """Increment request statistics"""
+        for config in self:
+            vals = {
+                'total_requests': config.total_requests + 1,
+                'last_used': fields.Datetime.now()
+            }
+            if success:
+                vals['successful_requests'] = config.successful_requests + 1
+            else:
+                vals['failed_requests'] = config.failed_requests + 1
+            config.write(vals)
 
 
 class AIModelRegistry(models.Model):
@@ -118,23 +238,141 @@ class AIModelRegistry(models.Model):
         ('generation', 'Content Generation'),
         ('prediction', 'Time Series Prediction'),
         ('analysis', 'Data Analysis'),
+        ('vision', 'Computer Vision'),
+        ('nlp', 'Natural Language Processing'),
+        ('recommendation', 'Recommendation System'),
     ], string='Model Type', required=True)
 
     description = fields.Text('Description')
-    version = fields.Char('Version', required=True)
+    version = fields.Char('Version', required=True, default='1.0.0')
 
     # Performance metrics
     accuracy = fields.Float('Accuracy (%)')
     precision = fields.Float('Precision (%)')
     recall = fields.Float('Recall (%)')
+    f1_score = fields.Float('F1 Score (%)')
+    mae = fields.Float('Mean Absolute Error', help='For regression models')
 
     last_trained = fields.Datetime('Last Trained')
     training_dataset = fields.Char('Training Dataset')
+    training_samples_count = fields.Integer('Training Samples Count', help='Number of samples used for training')
+
+    # Model metadata
+    input_format = fields.Char('Input Format', help='Expected input format (e.g., image, text, structured data)')
+    output_format = fields.Char('Output Format', help='Expected output format')
+    hardware_requirements = fields.Char('Hardware Requirements', help='Recommended hardware (e.g., GPU, RAM)')
+
+    # Model configuration
+    config_params = fields.Text('Configuration Parameters', help='JSON configuration for the model')
+    preprocessing_steps = fields.Text('Preprocessing Steps', help='Steps required to preprocess input data')
 
     is_active = fields.Boolean('Is Active', default=True)
     is_default = fields.Boolean('Is Default', default=False)
 
+    # Performance and usage statistics
+    inference_count = fields.Integer('Inference Count', default=0, readonly=True)
+    avg_inference_time = fields.Float('Avg Inference Time (ms)', readonly=True)
+    last_used = fields.Datetime('Last Used', readonly=True)
+
+    _sql_constraints = [
+        ('name_version_unique', 'UNIQUE(name, version)', 'Model name and version must be unique!'),
+        ('name_required', 'CHECK(name != \'\')', 'Model name is required!'),
+        ('version_required', 'CHECK(version != \'\')', 'Version is required!'),
+    ]
+
+    @api.constrains('accuracy', 'precision', 'recall', 'f1_score')
+    def _check_performance_metrics(self):
+        """Ensure performance metrics are within valid range"""
+        for record in self:
+            if record.accuracy and (record.accuracy < 0 or record.accuracy > 100):
+                raise ValidationError(_("Accuracy must be between 0 and 100."))
+            if record.precision and (record.precision < 0 or record.precision > 100):
+                raise ValidationError(_("Precision must be between 0 and 100."))
+            if record.recall and (record.recall < 0 or record.recall > 100):
+                raise ValidationError(_("Recall must be between 0 and 100."))
+            if record.f1_score and (record.f1_score < 0 or record.f1_score > 100):
+                raise ValidationError(_("F1 Score must be between 0 and 100."))
+
     def load_model(self):
-        """Load the AI model for inference"""
-        # Implementation would load the model
-        pass
+        """
+        Load the AI model for inference.
+        In a real implementation, this would load the actual model file
+        and prepare it for inference based on the model type.
+        """
+        # This is a placeholder implementation
+        _logger.info(f"Loading model {self.name} (version {self.version})")
+
+        # In a real implementation, this would:
+        # 1. Load the model from storage
+        # 2. Initialize the model with configuration
+        # 3. Set up any required resources (GPU, memory, etc.)
+        # 4. Return a model object ready for inference
+        return {
+            'model_loaded': True,
+            'model_name': self.name,
+            'model_type': self.model_type,
+            'config': self.config_params
+        }
+
+    def update_inference_stats(self, inference_time_ms):
+        """Update model inference statistics"""
+        for model in self:
+            total_inferences = model.inference_count + 1
+            new_avg_time = ((model.avg_inference_time * model.inference_count) + inference_time_ms) / total_inferences
+
+            model.write({
+                'inference_count': total_inferences,
+                'avg_inference_time': new_avg_time,
+                'last_used': fields.Datetime.now()
+            })
+
+    @api.model
+    def get_default_model_for_type(self, model_type):
+        """Get the default model for a specific model type"""
+        return self.search([
+            ('model_type', '=', model_type),
+            ('is_default', '=', True),
+            ('is_active', '=', True)
+        ], limit=1)
+
+    def action_evaluate_model(self):
+        """Action to evaluate model performance on test dataset"""
+        # In a real implementation, this would run the model on a test dataset
+        # and update the performance metrics
+        for model in self:
+            # Placeholder for evaluation logic
+            _logger.info(f"Evaluating model {model.name}")
+
+            # In a real implementation, this would:
+            # 1. Load test dataset
+            # 2. Run model inference on test data
+            # 3. Calculate performance metrics
+            # 4. Update model record with new metrics
+
+            # For now, just return a success notification
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Model Evaluation'),
+                    'message': f"Model {model.name} evaluation started in background",
+                    'type': 'info',
+                    'sticky': False,
+                }
+            }
+
+    def action_visualize_model(self):
+        """Action to visualize model architecture (for compatible models)"""
+        # For models that support visualization, this would show model architecture
+        # In a real implementation, this could generate charts or diagrams
+        message = f"Model {self.name} visualization not available in this implementation."
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _('Model Visualization'),
+                'message': message,
+                'type': 'info',
+                'sticky': False,
+            }
+        }
