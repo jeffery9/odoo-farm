@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Insurance Policy Views -->
+    <record id="view_crop_yield_policy_tree" model="ir.ui.view">
+        <name>farm.crop.yield.insurance.policy.list</name>
+        <model>farm.crop.yield.insurance.policy</model>
+        <arch type="xml">
+            <tree string="Insurance Policies" decoration-success="state == 'active'" decoration-warning="state == 'expired'">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="product_id"/>
+                <field name="location_id"/>
+                <field name="policy_start_date"/>
+                <field name="policy_end_date"/>
+                <field name="sum_insured"/>
+                <field name="premium_amount"/>
+                <field name="state"/>
+                <field name="claim_status" widget="badge"/>
+            </tree>
+        </arch>
+    </record>
+
+    <record id="view_crop_yield_policy_form" model="ir.ui.view">
+        <name>farm.crop.yield.insurance.policy.form</name>
+        <model>farm.crop.yield.insurance.policy</model>
+        <arch type="xml">
+            <form string="Insurance Policy">
+                <header>
+                    <button name="action_activate_policy" string="Activate Policy" type="object" class="oe_highlight" states="draft"/>
+                    <button name="action_file_claim" string="File New Claim" type="object" class="btn-primary" states="active,expired" invisible="claim_status != 'no_claim' or state not in ('active', 'expired')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,expired,cancelled"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Policy Holder &amp; Location">
+                            <field name="partner_id"/>
+                            <field name="farm_entity_id"/>
+                            <field name="location_id"/>
+                        </group>
+                        <group string="Product &amp; Coverage">
+                            <field name="product_id"/>
+                            <field name="sum_insured"/>
+                            <field name="premium_rate"/>
+                            <field name="premium_amount" readonly="1"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="Policy Dates">
+                        <field name="policy_start_date"/>
+                        <field name="policy_end_date"/>
+                    </group>
+                    <group string="Actuarial Data" name="actuarial_data">
+                        <field name="base_yield_trend"/>
+                        <field name="risk_factor"/>
+                        <field name="actuarial_probability_loss"/>
+                        <field name="actuarial_premium_rate"/>
+                        <button name="action_calculate_actuarial_data" string="Calculate Actuarial Data" type="object" class="btn-secondary"/>
+                    </group>
+                    <notebook>
+                        <page string="Yield Forecast &amp; Actuals" name="yield_data">
+                            <group>
+                                <group>
+                                    <field name="predicted_yield_kg"/>
+                                </group>
+                                <group>
+                                    <field name="actual_yield_kg"/>
+                                    <field name="yield_deviation_pct"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Claims" name="claims">
+                            <field name="claim_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="claim_date"/>
+                                    <field name="reported_yield_kg"/>
+                                    <field name="assessed_loss_amount"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                            <button name="action_file_claim" string="File New Claim" type="object" icon="fa-plus" invisible="claim_status != 'no_claim' or state not in ('active', 'expired')"/>
+                        </page>
+                        <page string="AI Actuarial Analysis" name="ai_analysis">
+                            <group>
+                                <field name="yield_prediction_id"/>
+                            </group>
+                            <group string="AI Derived Metrics">
+                                <p>Based on predictive models and historical data.</p>
+                                <!-- Placeholder for more AI-driven risk assessment -->
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </arch>
+    </record>
+
+    <record id="action_crop_yield_policy" model="ir.actions.act_window">
+        <name>Crop Yield Insurance Policies</name>
+        <res_model>farm.crop.yield.insurance.policy</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- Claim Views -->
+    <record id="view_farm_insurance_claim_tree" model="ir.ui.view">
+        <name>farm.insurance.claim.list</name>
+        <model>farm.insurance.claim</model>
+        <arch type="xml">
+            <list string="Insurance Claims" decoration-info="state == 'filed'" decoration-success="state == 'paid'" decoration-danger="state == 'rejected'">
+                <field name="name"/>
+                <field name="policy_id"/>
+                <field name="claim_date"/>
+                <field name="reported_yield_kg"/>
+                <field name="assessed_loss_amount"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="view_farm_insurance_claim_form" model="ir.ui.view">
+        <name>farm.insurance.claim.form</name>
+        <model>farm.insurance.claim</model>
+        <arch type="xml">
+            <form string="Insurance Claim">
+                <header>
+                    <button name="action_review_claim" string="Review Claim" type="object" states="filed" class="oe_highlight"/>
+                    <button name="action_approve_claim" string="Approve Claim" type="object" states="under_review" class="btn-primary"/>
+                    <button name="action_reject_claim" string="Reject Claim" type="object" states="under_review" class="btn-secondary"/>
+                    <button name="action_mark_as_paid" string="Mark as Paid" type="object" states="approved"/>
+                    <field name="state" widget="statusbar" statusbar_visible="filed,under_review,approved,paid,rejected"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="policy_id"/>
+                            <field name="claim_date"/>
+                        </group>
+                        <group>
+                            <field name="reported_yield_kg"/>
+                            <field name="assessed_loss_amount"/>
+                            <field name="payout_amount"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Assessment &amp; Payout" name="assessment">
+                            <group>
+                                <field name="assessment_report" nolabel="1"/>
+                            </group>
+                            <group string="Payout Calculation" name="payout_calc">
+                                <group>
+                                    <field name="assessed_loss_amount"/>
+                                    <field name="payout_amount"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </arch>
+    </record>
+
+    <record id="action_farm_insurance_claim_form" model="ir.actions.act_window">
+        <name>Insurance Claims</name>
+        <res_model>farm.insurance.claim</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_insurance_root" name="Insurance"
+              parent="farm_core.menu_finance_root"
+              sequence="50"/>
+              
+    <menuitem id="menu_crop_yield_insurance" name="Crop Yield Policies"
+              parent="menu_insurance_root"
+              action="action_crop_yield_policy"
+              sequence="10"/>
+
+    <menuitem id="menu_insurance_claims" name="Claims"
+              parent="menu_insurance_root"
+              action="action_farm_insurance_claim_form"
+              sequence="20"/>
+</odoo>

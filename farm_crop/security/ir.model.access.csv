@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crop_rotation_history_manager,farm.crop.rotation.history.manager,model_farm_crop_rotation_history,base.group_user,1,1,1,1
+access_crop_rotation_history_user,farm.crop.rotation.history.user,model_farm_crop_rotation_history,base.group_user,1,1,1,0

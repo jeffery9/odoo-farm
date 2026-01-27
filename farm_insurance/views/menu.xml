@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Main Insurance Menu -->
+    <menuitem id="menu_insurance_root"
+              name="Insurance"
+              parent="farm_core.menu_finance_root"
+              sequence="50"/>
+</odoo>
