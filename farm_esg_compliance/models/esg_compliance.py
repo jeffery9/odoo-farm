@@ -1,34 +1,5 @@
 from odoo import models, fields, api, _
 
-class FarmSubsidy(models.Model):
-    _name = 'farm.subsidy'
-    _description = 'Agricultural Subsidy Tracking'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
-
-    name = fields.Char("Subsidy Program", required=True)
-    subsidy_type = fields.Selection([
-        ('land', 'Land-based Subsidy'),
-        ('input', 'Input/Fertilizer Subsidy'),
-        ('machinery', 'Machinery Subsidy'),
-        ('disaster', 'Disaster Relief')
-    ], string="Type", required=True)
-    
-    amount = fields.Monetary("Subsidy Amount", currency_field='currency_id')
-    currency_id = fields.Many2one('res.currency', default=lambda self: self.env.company.currency_id)
-    
-    application_date = fields.Date("Application Date")
-    disbursement_date = fields.Date("Disbursement Date")
-    
-    location_id = fields.Many2one('farm.location', string="Target Land Parcel")
-    compliance_verified = fields.Boolean("Compliance Check Passed", default=False)
-    
-    state = fields.Selection([
-        ('draft', 'Draft'),
-        ('applied', 'Application Submitted'),
-        ('approved', 'Approved'),
-        ('paid', 'Disbursed'),
-        ('cancel', 'Cancelled')
-    ], default='draft', tracking=True)
 
 class FarmBiodiversityMetric(models.Model):
     _name = 'farm.biodiversity.metric'
