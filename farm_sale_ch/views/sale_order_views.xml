@@ -6,6 +6,9 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+            <header position="inside">
+                <button name="%(farm_marketing.action_view_order_intervention_calendar)d" type="action" string="Field Operations Calendar" class="oe_highlight" attrs="{'invisible': [('state', 'not in', ['sale', 'done'])]}"/>
+            </header>
             <xpath expr="//notebook/page[@name='order_lines']" position="before">
                 <page string="Export Compliance" name="export_compliance">
                     <group>
@@ -23,4 +26,5 @@
             </xpath>
         </field>
     </record>
+
 </odoo>

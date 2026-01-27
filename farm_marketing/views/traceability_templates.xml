@@ -124,4 +124,11 @@
             </div>
         </t>
     </template>
+
+    <!-- Action for order intervention calendar -->
+    <record id="action_view_order_intervention_calendar" model="ir.actions.act_url">
+        <field name="name">Field Operations Calendar</field>
+        <field name="url" eval="'/farm/order/' + str(object.id) + '/calendar'"/>
+        <field name="target">new</field>
+    </record>
 </odoo>

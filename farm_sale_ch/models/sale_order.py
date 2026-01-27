@@ -272,6 +272,71 @@ class SaleOrder(models.Model):
         random_part = str(hash(timestamp))[-6:]  # 取哈希值的后6位作为随机部分
         return f"CERT-{timestamp}-{random_part}"
 
+    def get_intervention_calendar_data(self):
+        """
+        US-67-02: 获取与销售订单关联的干预日历数据
+        为渠道买家提供实时的田间作业进度
+        """
+        self.ensure_one()
+
+        # 获取与订单关联的批次
+        lot_ids = []
+        for line in self.order_line:
+            for move in line.move_ids:
+                lot_ids.extend(move.move_line_ids.lot_ids.ids)
+
+        # 获取批次关联的任务和干预
+        intervention_data = []
+
+        # 通过批次找到生产任务
+        if lot_ids:
+            lots = self.env['stock.lot'].browse(lot_ids)
+            for lot in lots:
+                # 获取与批次关联的生产任务（如果有）
+                production_task = self.env['project.task'].search([
+                    ('biological_lot_id', '=', lot.id)
+                ], limit=1)
+
+                if production_task:
+                    # 获取与任务关联的所有干预
+                    interventions = self.env['agri.intervention'].search([
+                        ('agri_task_id', '=', production_task.id)
+                    ])
+
+                    for intervention in interventions:
+                        intervention_data.append({
+                            'id': intervention.id,
+                            'name': intervention.name,
+                            'intervention_type': intervention.intervention_type,
+                            'state': intervention.state,
+                            'date_start': intervention.date_start,
+                            'date_finished': intervention.date_finished,
+                            'task_name': production_task.name,
+                        })
+
+        # 如果订单直接关联到任务
+        order_tasks = self.env['project.task'].search([
+            ('sale_order_id', '=', self.id)
+        ])
+
+        for task in order_tasks:
+            interventions = self.env['agri.intervention'].search([
+                ('agri_task_id', '=', task.id)
+            ])
+
+            for intervention in interventions:
+                intervention_data.append({
+                    'id': intervention.id,
+                    'name': intervention.name,
+                    'intervention_type': intervention.intervention_type,
+                    'state': intervention.state,
+                    'date_start': intervention.date_start,
+                    'date_finished': intervention.date_finished,
+                    'task_name': task.name,
+                })
+
+        return intervention_data
+
     def action_confirm(self):
         """在确认销售订单时检查出口合规性及繁育代次硬拦截 [US-01-05]"""
         for order in self:
