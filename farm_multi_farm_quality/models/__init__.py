@@ -1,0 +1,1 @@
+# Empty for now - can add quality-related models later
