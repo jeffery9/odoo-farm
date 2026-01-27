@@ -9,12 +9,16 @@
         - Market price integration for commodity pricing
         - Automatic revaluation journal entries
         - Compliance with CAS standards for biological assets
+        NOTE: This module now uses the consolidated farm_biological_valuation module for core functionality.
     """,
     "author": "Odoo Farm Dev Team",
     "depends": [
         "farm_core",
         "account",
         "product",
+        "farm_biological_valuation",  # Consolidated biological asset valuation
+        "farm_financial_core",  # Core financial foundation
+        "farm_financial_valuation",  # Financial valuation specialization
     ],
     "data": [
         "security/ir.model.access.csv",

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_credit_score_user,farm.credit.score.user,model_farm_credit_score,farm_security.group_farm_user,1,1,1,1
+access_farm_coop_settlement_user,farm.coop.settlement.user,model_farm_coop_settlement,farm_security.group_farm_user,1,1,1,1

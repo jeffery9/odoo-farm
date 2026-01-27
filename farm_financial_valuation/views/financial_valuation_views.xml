@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree view for financial asset valuation -->
+    <record id="view_financial_asset_valuation_tree" model="ir.ui.view">
+        <field name="name">farm.financial.asset.valuation.tree</field>
+        <field name="model">farm.financial.asset.valuation</field>
+        <field name="arch" type="xml">
+            <tree string="Financial Asset Valuations">
+                <field name="name"/>
+                <field name="asset_id"/>
+                <field name="valuation_date"/>
+                <field name="valuation_method"/>
+                <field name="valuation_amount"/>
+                <field name="confidence_level"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view for financial asset valuation -->
+    <record id="view_financial_asset_valuation_form" model="ir.ui.view">
+        <field name="name">farm.financial.asset.valuation.form</field>
+        <field name="model">farm.financial.asset.valuation</field>
+        <field name="arch" type="xml">
+            <form string="Financial Asset Valuation">
+                <header>
+                    <button name="action_calculate_valuation" type="object" string="Recalculate" class="oe_highlight"/>
+                    <button name="action_create_accounting_entries" type="object" string="Create Accounting Entries"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Basic Information">
+                            <field name="name"/>
+                            <field name="asset_id"/>
+                            <field name="valuation_date"/>
+                            <field name="asset_type"/>
+                        </group>
+                        <group string="Valuation Setup">
+                            <field name="valuation_method"/>
+                            <field name="confidence_level"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Market Approach" invisible="valuation_method != 'market_price'">
+                            <group>
+                                <field name="market_price"/>
+                                <field name="market_price_source"/>
+                                <field name="market_adjustment_factor"/>
+                                <field name="fair_value"/>
+                            </group>
+                        </page>
+                        <page string="Cost Approach" invisible="valuation_method != 'cost_model'">
+                            <group>
+                                <field name="original_cost"/>
+                                <field name="accumulated_depreciation"/>
+                                <field name="net_book_value"/>
+                            </group>
+                        </page>
+                        <page string="Income Approach" invisible="valuation_method != 'income_approach'">
+                            <group string="Income Parameters">
+                                <field name="projected_cash_flows"/>
+                                <field name="discount_rate"/>
+                                <field name="useful_life_years"/>
+                            </group>
+                        </page>
+                        <page string="Comparable Approach" invisible="valuation_method != 'comparable_sales'">
+                            <group string="Comparable Assets">
+                                <field name="comparable_asset_ids" widget="many2many_tags"/>
+                                <field name="adjustment_factors"/>
+                            </group>
+                        </page>
+                        <page string="Results">
+                            <group>
+                                <field name="valuation_amount"/>
+                                <field name="valuation_variance"/>
+                            </group>
+                        </page>
+                        <page string="Professional Details">
+                            <group>
+                                <field name="valuer_id"/>
+                                <field name="valuation_report_reference"/>
+                            </group>
+                            <group string="Compliance">
+                                <field name="compliance_requirements"/>
+                            </group>
+                            <group string="Notes">
+                                <field name="valuation_notes" nolabel="1" colspan="2"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view for valuation templates -->
+    <record id="view_financial_valuation_template_tree" model="ir.ui.view">
+        <field name="name">farm.financial.valuation.template.tree</field>
+        <field name="model">farm.financial.valuation.template</field>
+        <field name="arch" type="xml">
+            <tree string="Financial Valuation Templates">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="default_valuation_method"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form view for valuation templates -->
+    <record id="view_financial_valuation_template_form" model="ir.ui.view">
+        <field name="name">farm.financial.valuation.template.form</field>
+        <field name="model">farm.financial.valuation.template</field>
+        <field name="arch" type="xml">
+            <form string="Financial Valuation Template">
+                <sheet>
+                    <group>
+                        <group string="Template Information">
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Valuation Settings">
+                            <field name="default_valuation_method"/>
+                            <field name="default_market_adjustment"/>
+                            <field name="default_discount_rate"/>
+                            <field name="default_confidence_level"/>
+                        </group>
+                    </group>
+                    <group string="Professional Requirements">
+                        <field name="requires_professional_valuation"/>
+                        <field name="recommended_valuer_ids" widget="many2many_tags"/>
+                    </group>
+                    <group string="Compliance & Notes">
+                        <field name="compliance_requirements" nolabel="1" colspan="2"/>
+                        <field name="standard_notes" nolabel="1" colspan="2"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_financial_asset_valuation" model="ir.actions.act_window">
+        <field name="name">Financial Asset Valuations</field>
+        <field name="res_model">farm.financial.asset.valuation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_financial_valuation_template" model="ir.actions.act_window">
+        <field name="name">Valuation Templates</field>
+        <field name="res_model">farm.financial.valuation.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

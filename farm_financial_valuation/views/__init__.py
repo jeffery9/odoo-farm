@@ -1,0 +1,1 @@
+# Empty file for views init

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_financial_asset_valuation_user,financial.asset.valuation.user,model_farm_financial_asset_valuation,farm_security.group_farm_user,1,1,1,1
+access_financial_valuation_template_user,financial.valuation.template.user,model_farm_financial_valuation_template,farm_security.group_farm_user,1,1,1,1
