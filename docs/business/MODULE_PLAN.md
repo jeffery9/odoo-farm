@@ -184,6 +184,12 @@
 - 其他模块只可读取数据或通过标准接口发起修改请求。
 - 维护数据一致性和完整性约束。
 
+### 移动端职责分离原则
+- **`farm_mobile` 模块**: 移动端基础设施，提供通用能力（GPS定位、拍照、离线同步、现场数据采集等）
+- **业务模块**: 承担具体业务逻辑，通过 API 或继承方式使用 farm_mobile 的能力
+- **职责边界**: 移动端的业务逻辑实现在相应的业务模块中，farm_mobile 仅提供技术支持
+- **模块协作**: 业务模块通过标准化接口使用 farm_mobile 的功能，实现松耦合架构
+
 ## 4. 用户故事 (User Story) 分配矩阵
 
 | 史诗 (Epic) | 包含的 US ID | 承载模块 |
@@ -217,7 +223,7 @@
 | **Epic 59: AI LLM 集成** | US-59-01 至 US-59-07 | `farm_ai_llm_integration`, `farm_knowledge` | ✅ 完成 |
 | **Epic 60: AI 金融分析** | US-60-01 至 US-60-03 | `farm_financial`, `farm_ai_agent` | ✅ 完成 |
 | **Epic 62: AI 协调与工作流** | US-62-01 至 US-62-03 | `farm_ai_agent`, `farm_isl` | ✅ 完成 |
-| **Epic 65: 补贴证据自动化** | US-65-04 | `farm_subsidy`, `farm_mobile` | ✅ 完成 |
+| **Epic 65: 补贴证据自动化** | US-65-04 | `farm_subsidy` | `farm_mobile` | ✅ 完成 |
 | **Epic 67: 订单生产全透明** | US-67-02 | `farm_marketing`, `farm_sale_ch`, `farm_operation` | ✅ 完成 |
 
 ## 5. 开发依赖关系
@@ -278,9 +284,12 @@ graph TD
     - US-16-23 (三端自适应引擎): 根据 User-Agent 动态注入视图布局。
 
 ### 9.4 补贴证据自动化 (Epic 65)
-- **实现模块**: farm_subsidy, farm_mobile
+- **主实现模块**: farm_subsidy
+- **技术支持模块**: farm_mobile
 - **核心逻辑**:
     - US-65-04 (Subsidy Evidence Automation): 自动聚合农场活动图片证据生成符合审计标准的合规报告，简化政府补贴申请流程。
+    - farm_subsidy 负责补贴业务逻辑、证据聚合和合规报告生成
+    - farm_mobile 提供移动端基础设施，包括现场证据采集、GPS定位、时间戳等功能
 
 ### 9.5 订单生产全透明 (Epic 67)
 - **实现模块**: farm_marketing, farm_sale_ch, farm_operation
