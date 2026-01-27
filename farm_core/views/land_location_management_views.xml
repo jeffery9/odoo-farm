@@ -180,7 +180,22 @@
                         <field name="magnesium"/>
                         <field name="calcium"/>
                     </group>
+                    <group string="Heavy Metals Analysis" name="heavy_metals">
+                        <group>
+                            <field name="lead_content"/>
+                            <field name="cadmium_content"/>
+                            <field name="mercury_content"/>
+                            <field name="arsenic_content"/>
+                        </group>
+                        <group>
+                            <field name="chromium_content"/>
+                            <field name="copper_content"/>
+                            <field name="zinc_content"/>
+                            <field name="nickel_content"/>
+                        </group>
+                    </group>
                     <field name="recommendation"/>
+                    <field name="remediation_advice"/>
                 </sheet>
             </form>
         </field>
