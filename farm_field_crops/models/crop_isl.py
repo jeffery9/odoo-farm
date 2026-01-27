@@ -3,6 +3,11 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
 class FarmCropBom(models.Model):
+    """
+    Crop Farming Recipe (ISL Layer)
+    Implements ISL standards using _inherits mechanism for proper ownership
+    and industry specialization while maintaining base functionality.
+    """
     _name = 'farm.crop.bom'
     _description = 'Crop Farming Recipe (ISL Layer)'
     _inherits = {'mrp.bom': 'bom_id'}
@@ -17,10 +22,29 @@ class FarmCropBom(models.Model):
         ('autumn', 'Autumn'),
         ('winter', 'Winter')
     ], string="Growing Season")
-    
+
     phi_days = fields.Integer("Pre-Harvest Interval (PHI) Days", help="Safe days to wait after last treatment before harvest.")
 
+    def write(self, vals):
+        # Ensure industry type is set to crop agriculture
+        if 'industry_type' not in vals and not self.industry_type:
+            vals['industry_type'] = 'crop'
+        return super().write(vals)
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        # Ensure industry type is set to crop agriculture
+        for vals in vals_list:
+            if 'industry_type' not in vals or not vals.get('industry_type'):
+                vals['industry_type'] = 'crop'
+        return super().create(vals_list)
+
 class FarmCropProduction(models.Model):
+    """
+    Crop Farming Task (ISL Layer)
+    Implements ISL standards using _inherits mechanism for proper ownership
+    and industry specialization while maintaining base functionality.
+    """
     _name = 'farm.crop.production'
     _description = 'Crop Farming Task (ISL Layer)'
     _inherits = {'mrp.production': 'production_id'}
@@ -30,7 +54,7 @@ class FarmCropProduction(models.Model):
 
     # Crop Specific Fields
     area_to_treat = fields.Float("Operational Area (Ha)", digits='Product Unit of Measure')
-    
+
     # --- Polymorphic Link (US-TECH-06-26) ---
     crop_bom_id = fields.Many2one('farm.crop.bom', string='Crop Recipe', compute='_compute_crop_bom_id')
 
@@ -52,7 +76,26 @@ class FarmCropProduction(models.Model):
                 if rec.area_to_treat > plot.calculated_area_ha * 1.05:
                     raise UserError(_("ISL SPATIAL BLOCK: Declared area exceeds physical plot boundary of %s.") % plot.name)
 
+    def write(self, vals):
+        # Ensure industry type is set to crop agriculture
+        if 'industry_type' not in vals and not self.industry_type:
+            vals['industry_type'] = 'crop'
+        return super().write(vals)
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        # Ensure industry type is set to crop agriculture
+        for vals in vals_list:
+            if 'industry_type' not in vals or not vals.get('industry_type'):
+                vals['industry_type'] = 'crop'
+        return super().create(vals_list)
+
 class FarmCropLot(models.Model):
+    """
+    Crop Harvest Batch (ISL Layer)
+    Implements ISL standards using _inherits mechanism for proper ownership
+    and industry specialization while maintaining base functionality.
+    """
     _name = 'farm.crop.lot'
     _description = 'Crop Harvest Batch (ISL Layer)'
     _inherits = {'stock.lot': 'lot_id'}
@@ -62,3 +105,17 @@ class FarmCropLot(models.Model):
     # Terroir Metadata (Moved from Base)
     plot_origin_id = fields.Many2one('farm.location', string='Origin Plot', domain="[('is_land_parcel', '=', True)]")
     terroir_json = fields.Text("Weighted Terroir Attributes")
+
+    def write(self, vals):
+        # Ensure industry type is set to crop agriculture
+        if 'industry_type' not in vals and not self.industry_type:
+            vals['industry_type'] = 'crop'
+        return super().write(vals)
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        # Ensure industry type is set to crop agriculture
+        for vals in vals_list:
+            if 'industry_type' not in vals or not vals.get('industry_type'):
+                vals['industry_type'] = 'crop'
+        return super().create(vals_list)

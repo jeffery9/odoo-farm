@@ -52,6 +52,8 @@
     - DATA_ISOLATION_EXAMPLE.py: Sample data migration patterns
     - _INHERITS_IMPLEMENTATION.md: _inherits mechanism best practices
     - _INHERITS_RELATIONSHIP_EXAMPLE.py: _inherits relationship patterns
+    - ISL_IMPLEMENTATION_REVIEW.md: Comprehensive implementation review
+    - ISL_REVIEW_FINDINGS.md: Key findings and recommendations
 
     Key Features:
     - Abstract base models for industry specialization
