@@ -28,7 +28,6 @@ Provide common functionality and industry-specific fields for different function
 Extend core Odoo models using the `_inherits` mechanism:
 
 - `FarmMRPProduction`: Extends `mrp.production`
-- `FarmMRPProduction`: Extends `mrp.production`
 - `FarmMRPBom`: Extends `mrp.bom`
 - `FarmMRPWorkcenter`: Extends `mrp.workcenter`
 - `FarmMRPWorkorder`: Extends `mrp.workorder`

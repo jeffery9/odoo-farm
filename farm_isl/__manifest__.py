@@ -36,12 +36,17 @@
     "auto_install": False,
     "license": "AGPL-3",
     "website": "http://www.geninit.cn",
-    "description": """
+    "description": '''
     ISL (Industry Specialized Layer) Architecture Implementation
     ============
 
     This module implements the Industry Specialized Layer architecture for agricultural operations,
     allowing for industry-specific specializations while maintaining compatibility with standard Odoo features.
+
+    Documentation:
+    - README.md: Core architecture overview
+    - INTEGRATION_GUIDE.md: Integration standards for other modules
+    - STANDARDIZATION_REPORT.md: Detailed standardization analysis
 
     Key Features:
     - Abstract base models for industry specialization
@@ -52,5 +57,5 @@
 
     The ISL architecture enables agricultural businesses to implement industry-specific requirements
     across different verticals while leveraging shared core functionality.
-    """,
+    ''',
 }
