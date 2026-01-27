@@ -39,6 +39,48 @@
         </arch>
     </record>
 
+    <record id="view_farm_greenhouse_rule_form" model="ir.ui.view">
+        <name>farm.greenhouse.control.rule.form</name>
+        <model>farm.greenhouse.control.rule</model>
+        <arch type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="greenhouse_id"/>
+                            <field name="parameter"/>
+                        </group>
+                        <group>
+                            <field name="is_ai_controlled"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group string="Thresholds">
+                        <field name="threshold_low"/>
+                        <field name="threshold_high"/>
+                    </group>
+                    <notebook>
+                        <page string="Actions">
+                            <field name="action_ids">
+                                <list editable="bottom">
+                                    <field name="device_id"/>
+                                    <field name="command"/>
+                                    <field name="value"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="AI Logs" invisible="not is_ai_controlled">
+                            <field name="ai_adjustment_log" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </arch>
+    </record>
+
     <record id="action_farm_greenhouse_rule" model="ir.actions.act_window">
         <name>Greenhouse Rules</name>
         <res_model>farm.greenhouse.control.rule</res_model>

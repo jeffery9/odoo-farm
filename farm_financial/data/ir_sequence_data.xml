@@ -7,5 +7,12 @@
             <field name="prefix">CPA/%(year)s/</field>
             <field name="padding">5</field>
         </record>
+
+        <record id="seq_agri_cost_template" model="ir.sequence">
+            <field name="name">Agricultural Cost Template</field>
+            <field name="code">agri.cost.template</field>
+            <field name="prefix">AGRI-CT/%(year)s/</field>
+            <field name="padding">5</field>
+        </record>
     </data>
 </odoo>

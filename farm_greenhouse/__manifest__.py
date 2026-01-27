@@ -8,13 +8,15 @@
         - Environmental Multi-parameter Control [US-57-01]
         - Nutrient Solution & Irrigation Management [US-57-02]
         - Energy Optimization & Carbon Monitoring [US-57-03]
+        - Government Regulatory Platform Integration [US-57-04]
     """,
     'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',
     'website': 'http://www.geninit.cn',
-    'depends': ['farm_core', 'farm_iot'],
+    'depends': ['farm_core', 'farm_iot', 'farm_agri_science'],
     'data': [
         'security/ir.model.access.csv',
         'views/farm_greenhouse_views.xml',
+        'views/government_reporting_views.xml',
     ],
     'installable': True,
     'application': True,
