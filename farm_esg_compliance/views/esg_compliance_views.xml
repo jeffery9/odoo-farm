@@ -63,6 +63,7 @@
             <form>
                 <header>
                     <button name="action_run_compliance_audit" string="Run Compliance Audit" type="object" class="oe_highlight"/>
+                    <button name="action_generate_technical_dossier" string="Generate Technical Dossier" type="object"/>
                     <field name="compliance_status" widget="statusbar" statusbar_visible="pending,ready,blocked"/>
                 </header>
                 <sheet>

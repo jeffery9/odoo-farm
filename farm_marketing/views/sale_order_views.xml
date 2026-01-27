@@ -5,8 +5,14 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="is_preorder"/>
+                <field name="reservation_expiry" invisible="not is_preorder"/>
+            </xpath>
             <xpath expr="//field[@name='order_line']//list//field[@name='product_uom_qty']" position="after">
-                <field name="lot_id" groups="stock.group_production_lot" optional="show"/>
+                <field name="lot_id" groups="stock.group_production_lot" optional="show" string="Reserved Lot"/>
+                <field name="required_integrity_score" optional="hide"/>
+                <field name="is_reserved" widget="boolean_favorite" nolabel="1"/>
                 <button name="action_view_traceability" type="object" icon="fa-leaf" title="Traceability" invisible="state != 'sale'"/>
             </xpath>
         </field>

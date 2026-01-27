@@ -20,6 +20,8 @@
         'views/partner_views.xml',
         'views/sale_order_views.xml',
         'views/market_demand_views.xml',
+        'views/consumer_feedback_views.xml',
+        'views/market_connector_views.xml',
     ],
     'installable': True,
     'application': False,
