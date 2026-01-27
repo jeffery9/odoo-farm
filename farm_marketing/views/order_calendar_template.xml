@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="order_calendar_template" name="Order Calendar Template">
+        <t t-call="website.layout">
+            <div class="oe_structure"/>
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Order Production Calendar - <span t-field="order.name"/></h2>
+                        <p class="text-muted">Real-time field operation progress for your order</p>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Order Information</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p><strong>Order Date:</strong> <span t-field="order.date_order"/></p>
+                                        <p><strong>Customer:</strong> <span t-field="order.partner_id.name"/></p>
+                                        <p><strong>Total Amount:</strong> <span t-field="order.amount_total"/></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Order Status:</strong> <span t-field="order.state"/></p>
+                                        <p><strong>Required Date:</strong> <span t-field="order.commitment_date"/></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Field Operations Calendar</h4>
+                                <p class="text-muted">Track real-time progress of field operations for your order</p>
+                            </div>
+                            <div class="card-body">
+                                <div id="calendar-container" style="height: 600px;"></div>
+                            </div>
+                        </div>
+
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h4>Operations Legend</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p><span class="badge badge-primary">蓝色</span> Soil Preparation (Tillage)</p>
+                                        <p><span class="badge badge-success">绿色</span> Sowing/Planting</p>
+                                        <p><span class="badge badge-warning">橙色</span> Fertilizing</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><span class="badge" style="background-color: lightblue;">浅蓝色</span> Irrigation</p>
+                                        <p><span class="badge badge-danger">红色</span> Crop Protection</p>
+                                        <p><span class="badge" style="background-color: darkred;">深红色</span> Aerial Spraying</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><span class="badge" style="background-color: brown;">棕色</span> Harvesting</p>
+                                        <p><span class="badge badge-secondary">灰色</span> Feeding</p>
+                                        <p><span class="badge" style="background-color: purple;">紫色</span> Medical/Prevention</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    // Load FullCalendar
+                    if (typeof FullCalendar !== 'undefined') {
+                        var calendarEl = document.getElementById('calendar-container');
+                        var calendar = new FullCalendar.Calendar(calendarEl, {
+                            initialView: 'dayGridMonth',
+                            headerToolbar: {
+                                left: 'prev,next today',
+                                center: 'title',
+                                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                            },
+                            events: function(info, successCallback, failureCallback) {
+                                // Fetch calendar events from the API
+                                $.ajax({
+                                    url: '/farm/api/order/' + $('#order_id').data('order-id') + '/calendar',
+                                    method: 'POST',
+                                    success: function(response) {
+                                        if (response.error) {
+                                            console.error('Error fetching calendar data:', response.error);
+                                            successCallback([]);
+                                        } else {
+                                            successCallback(response.events || []);
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error('Error:', error);
+                                        successCallback([]);
+                                    }
+                                });
+                            },
+                            eventClick: function(info) {
+                                // Show event details when clicked
+                                var event = info.event;
+                                var bodyContent = `
+                                    <p><strong>Operation:</strong> ${event.title}</p>
+                                    <p><strong>Task:</strong> ${event.extendedProps.task_name}</p>
+                                    <p><strong>Type:</strong> ${event.extendedProps.intervention_type}</p>
+                                    <p><strong>Status:</strong> ${event.extendedProps.state}</p>
+                                `;
+
+                                alert(bodyContent);
+                            },
+                            eventTimeFormat: {
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                hour12: false
+                            }
+                        });
+
+                        calendar.render();
+                    } else {
+                        console.error('FullCalendar library not available');
+                    }
+                });
+            </script>
+
+            <!-- Add order ID as data attribute for use in JavaScript -->
+            <div id="order_id" t-att-data-order-id="order.id" style="display: none;"></div>
+        </t>
+    </template>
+</odoo>
