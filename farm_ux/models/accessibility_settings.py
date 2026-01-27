@@ -21,6 +21,13 @@ class AccessibilitySettings(models.Model):
     large_touch_targets = fields.Boolean('Large Touch Targets', help='Enable larger touch targets for easier interaction')
     reduced_motion = fields.Boolean('Reduced Motion', help='Reduce animations and motion effects')
     color_blind_mode = fields.Boolean('Color Blind Mode', help='Adjust colors for color blindness')
+    
+    # Japanese-inspired Elder Mode [US-65-01]
+    elder_mode = fields.Boolean('Japanese Elder Mode', 
+                               help='Enable simplified UI with large fonts and high contrast for aging farmers.')
+    voice_entry_enabled = fields.Boolean('Voice-First Entry', 
+                                        help='Prioritize voice input for recording farm activities.')
+    
     voice_navigation = fields.Boolean('Voice Navigation', help='Enable voice-based navigation')
     font_family_preference = fields.Char('Font Family Preference', help='Preferred font family for accessibility')
     alternative_input_method = fields.Selection([
@@ -34,9 +41,36 @@ class AccessibilitySettings(models.Model):
     is_active = fields.Boolean('Is Active', default=True)
     last_updated = fields.Datetime('Last Updated', default=fields.Datetime.now)
 
-    @api.constrains('font_scaling')
-    def _check_font_scaling_range(self):
-        """检查字体缩放范围"""
-        for setting in self:
-            if setting.font_scaling < 0.5 or setting.font_scaling > 3.0:
-                raise ValidationError(_("Font scaling factor must be between 0.5 and 3.0"))
+        @api.constrains('font_scaling')
+
+        def _check_font_scaling_range(self):
+
+            """检查字体缩放范围"""
+
+            for setting in self:
+
+                if setting.font_scaling < 0.5 or setting.font_scaling > 3.0:
+
+                    raise ValidationError(_("Font scaling factor must be between 0.5 and 3.0"))
+
+    
+
+        @api.onchange('elder_mode')
+
+        def _onchange_elder_mode(self):
+
+            """US-65-01: Auto-preset accessibility for Japanese Elder Mode"""
+
+            if self.elder_mode:
+
+                self.font_scaling = 1.5
+
+                self.large_touch_targets = True
+
+                self.high_contrast_mode = True
+
+                self.alternative_input_method = 'voice'
+
+                self.voice_entry_enabled = True
+
+    
