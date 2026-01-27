@@ -23,6 +23,7 @@
         'data/ir_cron_data.xml',
         'views/land_location_management_views.xml',
         'views/activity_operation_management_views.xml',
+        'views/biological_asset_management_views.xml',
         'views/geofencing_management_views.xml',
         'views/config_setup_management_views.xml',
         'views/menu.xml',
