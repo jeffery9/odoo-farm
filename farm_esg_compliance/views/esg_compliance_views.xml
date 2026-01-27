@@ -56,6 +56,48 @@
         </arch>
     </record>
 
+    <record id="view_farm_export_compliance_form" model="ir.ui.view">
+        <name>farm.export.compliance.form</name>
+        <model>farm.export.compliance</model>
+        <arch type="xml">
+            <form>
+                <header>
+                    <button name="action_run_compliance_audit" string="Run Compliance Audit" type="object" class="oe_highlight"/>
+                    <field name="compliance_status" widget="statusbar" statusbar_visible="pending,ready,blocked"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Export Ref..."/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="target_market_id"/>
+                            <field name="product_id"/>
+                            <field name="standard_id"/>
+                        </group>
+                        <group>
+                            <field name="residue_limit_ok"/>
+                            <field name="phytosanitary_cert_ok"/>
+                            <field name="labeling_ok"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Audit Log" name="audit_log">
+                            <group>
+                                <field name="last_audit_run" readonly="1"/>
+                                <field name="audit_log" readonly="1"/>
+                            </group>
+                            <group string="Detected Gaps">
+                                <field name="missing_records" readonly="1"/>
+                                <field name="withdrawal_violation" readonly="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </arch>
+    </record>
+
     <record id="action_farm_export_compliance" model="ir.actions.act_window">
         <name>Export Compliance Checker</name>
         <res_model>farm.export.compliance</res_model>

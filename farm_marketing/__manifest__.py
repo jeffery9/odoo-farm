@@ -19,6 +19,7 @@
         'views/product_template_views.xml',
         'views/partner_views.xml',
         'views/sale_order_views.xml',
+        'views/market_demand_views.xml',
     ],
     'installable': True,
     'application': False,
