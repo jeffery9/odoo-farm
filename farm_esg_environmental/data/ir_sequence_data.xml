@@ -7,4 +7,12 @@
         <field name="padding">5</field>
         <field name="company_id" eval="False"/>
     </record>
+
+    <record id="seq_esg_red_line_monitoring" model="ir.sequence">
+        <name>ESG Red Line Monitoring</name>
+        <field name="code">farm.esg.red.line.monitoring</field>
+        <field name="prefix">ESG-RL/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
 </odoo>

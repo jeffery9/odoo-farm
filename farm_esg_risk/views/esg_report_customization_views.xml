@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ESG Report Customization Tree View -->
+    <record id="view_esg_report_customization_tree" model="ir.ui.view">
+        <field name="name">farm.esg.report.customization.tree</field>
+        <field name="model">farm.esg.report.customization</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="report_type"/>
+                <field name="stakeholder_group"/>
+                <field name="report_format"/>
+                <field name="report_language"/>
+                <field name="auto_generation"/>
+                <field name="is_active"/>
+                <field name="last_generated"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ESG Report Customization Form View -->
+    <record id="view_esg_report_customization_form" model="ir.ui.view">
+        <field name="name">farm.esg.report.customization.form</field>
+        <field name="model">farm.esg.report.customization</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_generate_report" type="object" string="Generate Report" class="oe_highlight"/>
+                    <button name="action_preview_report" type="object" string="Preview Report"/>
+                    <button name="action_apply_filters" type="object" string="Apply Filters"/>
+                    <field name="is_active" widget="boolean_toggle"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_export_template" type="object" class="oe_stat_button" icon="fa-download">
+                            <div>Export Template</div>
+                        </button>
+                    </div>
+                    <group>
+                        <group name="basic_info" string="Report Configuration">
+                            <field name="name"/>
+                            <field name="report_type"/>
+                            <field name="stakeholder_group"/>
+                            <field name="report_format"/>
+                            <field name="report_language"/>
+                        </group>
+                        <group name="scheduling" string="Scheduling">
+                            <field name="auto_generation"/>
+                            <field name="generation_frequency"/>
+                            <field name="last_generated"/>
+                            <field name="next_scheduled_generation"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Content Customization">
+                            <group>
+                                <field name="report_sections" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="custom_metrics" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="data_filters" widget="ace" options="{'mode': 'json'}"/>
+                                <field name="custom_header"/>
+                                <field name="custom_footer"/>
+                                <field name="executive_summary"/>
+                            </group>
+                        </page>
+                        <page string="Brand & Design">
+                            <group>
+                                <field name="report_logo" widget="image" class="oe_avatar"/>
+                                <field name="brand_colors"/>
+                                <field name="visualization_types"/>
+                            </group>
+                        </page>
+                        <page string="ESG Data Selection">
+                            <group>
+                                <field name="environmental_data_included"/>
+                                <field name="social_data_included"/>
+                                <field name="governance_data_included"/>
+                                <field name="kpi_included"/>
+                                <field name="compliance_data_included"/>
+                            </group>
+                        </page>
+                        <page string="Access & Recipients">
+                            <group>
+                                <field name="report_access_level"/>
+                                <field name="allowed_users" widget="many2many_tags"/>
+                                <field name="report_recipients" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- ESG Report Customization Search View -->
+    <record id="view_esg_report_customization_search" model="ir.ui.view">
+        <field name="name">farm.esg.report.customization.search</field>
+        <field name="model">farm.esg.report.customization</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="report_type"/>
+                <field name="stakeholder_group"/>
+                <field name="report_format"/>
+                <field name="auto_generation"/>
+                <field name="is_active"/>
+                <separator/>
+                <filter name="filter_active" string="Active" domain="[('is_active', '=', True)]"/>
+                <filter name="filter_auto_gen" string="Auto Generation" domain="[('auto_generation', '=', True)]"/>
+                <filter name="filter_investor" string="Investor Reports" domain="[('report_type', '=', 'investor')]"/>
+                <filter name="filter_regulatory" string="Regulatory Reports" domain="[('report_type', '=', 'regulatory')]"/>
+                <group>
+                    <filter name="group_by_report_type" string="Report Type" context="{'group_by': 'report_type'}"/>
+                    <filter name="group_by_stakeholder" string="Stakeholder Group" context="{'group_by': 'stakeholder_group'}"/>
+                    <filter name="group_by_format" string="Output Format" context="{'group_by': 'report_format'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ESG Report Customization Action Window -->
+    <record id="action_esg_report_customization" model="ir.actions.act_window">
+        <field name="name">ESG Report Customization</field>
+        <field name="res_model">farm.esg.report.customization</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_esg_report_customization_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create customized ESG reports for different stakeholder groups
+            </p>
+            <p>
+                Configure ESG reports tailored to different stakeholder needs:
+                investors, regulators, customers, and internal management.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu item for ESG Report Customization -->
+    <menuitem id="esg_report_customization_menu" name="Report Customization"
+              parent="esg_risk_menu" sequence="60"
+              action="action_esg_report_customization"/>
+
+</odoo>

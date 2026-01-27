@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ESG Red Line Configuration Tree View -->
+    <record id="view_esg_red_line_config_tree" model="ir.ui.view">
+        <field name="name">farm.esg.red.line.config.tree</field>
+        <field name="model">farm.esg.red.line.config</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="red_line_type"/>
+                <field name="threshold_value"/>
+                <field name="threshold_unit"/>
+                <field name="active_monitoring"/>
+                <field name="monitoring_frequency"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ESG Red Line Configuration Form View -->
+    <record id="view_esg_red_line_config_form" model="ir.ui.view">
+        <field name="name">farm.esg.red.line.config.form</field>
+        <field name="model">farm.esg.red.line.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="red_line_type"/>
+                            <field name="active_monitoring"/>
+                        </group>
+                        <group>
+                            <field name="monitoring_frequency"/>
+                            <field name="buffer_distance_km" attrs="{'invisible': [('red_line_type', 'not in', ['protected_area', 'deforestation'])]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Threshold Settings" attrs="{'invisible': [('red_line_type', 'in', ['protected_area', 'deforestation'])]}">
+                            <group>
+                                <field name="threshold_value"/>
+                                <field name="threshold_unit"/>
+                                <field name="threshold_description"/>
+                            </group>
+                        </page>
+                        <page string="Geofence Settings" attrs="{'invisible': [('red_line_type', 'not in', ['protected_area', 'deforestation'])]}">
+                            <group>
+                                <field name="coordinates" placeholder="Enter coordinates in format: lon,lat;lon,lat;..."/>
+                            </group>
+                        </page>
+                        <page string="Response Plan">
+                            <group>
+                                <field name="remediation_plan"/>
+                            </group>
+                        </page>
+                        <page string="Details">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ESG Red Line Monitoring Tree View -->
+    <record id="view_esg_red_line_monitoring_tree" model="ir.ui.view">
+        <field name="name">farm.esg.red.line.monitoring.tree</field>
+        <field name="model">farm.esg.red.line.monitoring</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="compliance_status=='violation' or compliance_status=='critical'"
+                  decoration-warning="compliance_status=='warning'"
+                  decoration-success="compliance_status=='compliant' or compliance_status=='resolved'">
+                <field name="name"/>
+                <field name="red_line_config_id"/>
+                <field name="batch_lot_id"/>
+                <field name="location_id"/>
+                <field name="compliance_status"/>
+                <field name="detection_date"/>
+                <field name="current_value"/>
+                <field name="threshold_value"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ESG Red Line Monitoring Form View -->
+    <record id="view_esg_red_line_monitoring_form" model="ir.ui.view">
+        <field name="name">farm.esg.red.line.monitoring.form</field>
+        <field name="model">farm.esg.red.line.monitoring</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_issue_red_line_alert" type="object" string="Issue Alert"
+                            attrs="{'invisible': ['|', ('compliance_status', 'in', ['compliant', 'resolved']), ('alert_issued', '=', True)]}"
+                            class="oe_highlight"/>
+                    <button name="action_resolve_violation" type="object" string="Resolve Violation"
+                            attrs="{'invisible': [('compliance_status', 'not in', ['warning', 'violation', 'critical'])]}"
+                            class="oe_highlight"/>
+                    <field name="compliance_status" widget="statusbar" statusbar_visible="compliant,warning,violation,critical,resolved"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="red_line_config_id"/>
+                            <field name="batch_lot_id"/>
+                        </group>
+                        <group>
+                            <field name="location_id"/>
+                            <field name="detection_date"/>
+                            <field name="detection_method"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Compliance Status">
+                            <field name="compliance_status"/>
+                            <field name="current_value"/>
+                            <field name="threshold_value"/>
+                            <field name="alert_issued"/>
+                        </group>
+                        <group string="ESG Metrics">
+                            <field name="carbon_footprint_kg"/>
+                            <field name="water_usage_m3"/>
+                            <field name="land_use_area"/>
+                        </group>
+                        <group string="Geofence Check" attrs="{'invisible': [('red_line_config_id.red_line_type', 'not in', ['protected_area', 'deforestation'])]}">
+                            <field name="is_in_protected_area"/>
+                            <field name="distance_to_boundary_km"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Detection Details">
+                            <field name="detection_details"/>
+                        </page>
+                        <page string="Response Actions" attrs="{'invisible': [('compliance_status', 'in', ['compliant', 'resolved'])]}">
+                            <group>
+                                <field name="corrective_actions"/>
+                                <field name="resolution_notes" attrs="{'required': [('compliance_status', 'in', ['warning', 'violation', 'critical'])]}"/>
+                                <field name="remediation_date"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Inherit Stock Lot Form to Add ESG Compliance -->
+    <record id="view_stock_lot_esg_compliance_form" model="ir.ui.view">
+        <field name="name">stock.lot.esg.compliance.form</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='tracking']" position="after">
+                <page string="ESG Compliance" name="esg_compliance">
+                    <group>
+                        <field name="esg_compliance_status"/>
+                        <field name="water_usage_m3"/>
+                        <field name="land_use_area_m2"/>
+                        <field name="last_esg_check"/>
+                    </group>
+                    <group>
+                        <button name="action_check_esg_compliance" type="object" string="Check ESG Compliance" class="oe_highlight"/>
+                    </group>
+                    <group string="ESG Monitoring Records">
+                        <field name="esg_monitoring_ids" nolabel="1" readonly="1">
+                            <tree>
+                                <field name="red_line_config_id"/>
+                                <field name="compliance_status"/>
+                                <field name="detection_date"/>
+                                <field name="current_value"/>
+                                <field name="detection_details"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <field name="red_line_config_id"/>
+                                    <field name="compliance_status"/>
+                                    <field name="detection_date"/>
+                                </group>
+                                <group>
+                                    <field name="current_value"/>
+                                    <field name="threshold_value"/>
+                                </group>
+                                <field name="detection_details"/>
+                            </form>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_esg_red_line_config" model="ir.actions.act_window">
+        <field name="name">ESG Red Line Configurations</field>
+        <field name="res_model">farm.esg.red.line.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_esg_red_line_monitoring" model="ir.actions.act_window">
+        <field name="name">ESG Red Line Monitoring</field>
+        <field name="res_model">farm.esg.red.line.monitoring</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_esg_red_line_root" name="ESG Red Line Monitoring"
+              parent="farm_esg_environmental.farm_esg_environmental_root" sequence="40"/>
+
+    <menuitem id="menu_esg_red_line_config" name="Red Line Configurations"
+              action="action_esg_red_line_config"
+              parent="menu_esg_red_line_root" sequence="10"/>
+
+    <menuitem id="menu_esg_red_line_monitoring" name="Monitoring Records"
+              action="action_esg_red_line_monitoring"
+              parent="menu_esg_red_line_root" sequence="20"/>
+
+</odoo>

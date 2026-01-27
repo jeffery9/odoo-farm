@@ -11,12 +11,14 @@
         "farm_core",
         "farm_esg",
         "farm_ecology",
+        "farm_agri_science",
     ],
     "data": [
         "security/ir.model.access.csv",
         "data/ir_sequence_data.xml",
         "views/environmental_views.xml",
         "views/carbon_accounting_views.xml",
+        "views/esg_red_line_monitoring_views.xml",
         "views/menu.xml",
     ],
     "demo": [
