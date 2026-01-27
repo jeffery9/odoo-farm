@@ -25,6 +25,7 @@
                 <header>
                     <button name="action_update_gdd" string="Update GDD (Weather Sync)" type="object" class="oe_highlight"/>
                     <button name="action_run_yield_prediction_ai" string="Run Yield Prediction AI" type="object"/>
+                    <button name="action_optimize_environment" string="L5: Optimize Environment" type="object" invisible="health_score > 90"/>
                 </header>
                 <sheet>
                     <div class="oe_title">

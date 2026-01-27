@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Input Registration Database Sequence -->
+        <record id="seq_input_registration_database" model="ir.sequence">
+            <name>Input Registration Database</name>
+            <code>farm.input.registration.database</code>
+            <prefix>REG/</prefix>
+            <padding>6</padding>
+            <company_id eval="False"/>
+        </record>
+    </data>
+</odoo>

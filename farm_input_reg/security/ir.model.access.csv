@@ -1,3 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_product_template_input_reg,product.template,model_product_template,farm_core.group_farm_manager,1,1,1,1
 access_mrp_production_input_reg,mrp.production,model_mrp_production,farm_core.group_farm_worker,1,1,1,1
+access_input_registration_database_manager,farm.input.registration.database.manager,model_farm_input_registration_database,base.group_user,1,1,1,1
+access_input_registration_database_user,farm.input.registration.database.user,model_farm_input_registration_database,base.group_user,1,1,1,0
+access_input_registration_lookup_wizard,farm.input.registration.lookup.wizard,model_farm_input_registration_lookup_wizard,base.group_user,1,1,1,1

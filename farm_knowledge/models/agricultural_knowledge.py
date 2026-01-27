@@ -81,6 +81,25 @@ class AgriculturalKnowledge(models.Model):
         ]
         return self.search(domain)
 
+    @api.model
+    def search_pest_disease_by_symptoms(self, symptoms_keywords):
+        """
+        US-17-13: Search for pest/diseases by symptom keywords
+        """
+        if not symptoms_keywords:
+            return self.env['farm.pest.disease'].browse()
+
+        # Search pest/disease database for matching symptoms
+        pest_disease_model = self.env['farm.pest.disease']
+        domain = [
+            '|', '|', '|',
+            ('name', 'ilike', symptoms_keywords),
+            ('symptoms', 'ilike', symptoms_keywords),
+            ('cause', 'ilike', symptoms_keywords),
+            ('description', 'ilike', symptoms_keywords)
+        ]
+        return pest_disease_model.search(domain)
+
     def action_mark_helpful(self):
         self.ensure_one()
         self.helpful_count += 1

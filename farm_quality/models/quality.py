@@ -33,6 +33,8 @@ class FarmQualityCheck(models.Model):
     sample_id = fields.Many2one('farm.quality.sample', string="Linked Sample",
                                help="The physical sample used for this check.")
     task_id = fields.Many2one('project.task', string="Production Task")
+    purchase_order_line_id = fields.Many2one('purchase.order.line', string="Purchase Order Line",
+                                            help="Link to purchase order line for acquisition quality checks (US-09-19)")
 
     test_type = fields.Selection(related='point_id.test_type', store=True)
     measure = fields.Float("Actual Measure")

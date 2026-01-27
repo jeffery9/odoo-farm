@@ -15,7 +15,8 @@
         "farm_ai_llm_integration",
         "farm_finance_advanced",
         "farm_isl",
-        "farm_robotics"
+        "farm_robotics",
+        "farm_agri_science"
     ],
     "data": [
         "security/ir.model.access.csv",
