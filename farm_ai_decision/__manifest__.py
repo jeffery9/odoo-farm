@@ -17,8 +17,7 @@
         "farm_operation",
         "farm_supply",
         "farm_ecology",
-        "farm_finance_loan",
-        "farm_ai_vision",
+        "farm_ai_core",
         "farm_ai_llm_integration",
     ],
     "data": [

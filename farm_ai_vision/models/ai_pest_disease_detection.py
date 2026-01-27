@@ -7,18 +7,17 @@ import logging
 import json
 from datetime import datetime, timedelta
 import base64
-from .ai_vision_base import AIVisionBase
 
 _logger = logging.getLogger(__name__)
 
-class AIPestDiseaseDetection(AIVisionBase):
+class AIPestDiseaseDetection(models.Model):
     """
     AI model for pest and disease detection from images
     Implements US-58-05: 病虫害图像识别与诊断
     """
     _name = 'ai.pest.disease.detection'
     _description = 'AI Pest & Disease Detection'
-    _inherit = ['ai.vision.base']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'ai.base.mixin']
 
     crop_type = fields.Many2one('product.template', string='Crop Type', domain=[('type', '=', 'product')])
     detection_type = fields.Selection([
@@ -281,3 +280,17 @@ class AIPestDiseaseDetection(AIVisionBase):
                     # Set affected crops if not already set
                     if not record.crop_type and pest_disease.affected_crops:
                         record.crop_type = pest_disease.affected_crops[0]
+
+    def _process_ai(self):
+        """Override the base AI processing method for image processing"""
+        result = self._process_image_ai(self)
+        result.update({
+            'input_data': {
+                'crop_type': self.crop_type.name if self.crop_type else None,
+                'detection_type': self.detection_type,
+                'image_present': bool(self.image),
+                'industry': self.industry_id.name if self.industry_id else None,
+            },
+            'output_data': result.copy()
+        })
+        return result

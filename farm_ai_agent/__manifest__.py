@@ -1,6 +1,6 @@
 {
-    "name": "Farm AI Decision System",
-    "summary": "Unified AI-driven agricultural intelligent decision support system",
+    "name": "Farm AI Agent System",
+    "summary": "AI agent framework for orchestrating agricultural AI services",
     "version": "19.0.1.0.0",
     "category": "Farming",
     "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
@@ -10,11 +10,10 @@
         "mail",
         "farm_core",
         "farm_operation",
+        "farm_ai_core",
         "farm_ai_vision",
         "farm_ai_decision",
         "farm_ai_llm_integration",
-        "farm_finance_advanced",
-        "farm_isl",
         "farm_robotics",
         "farm_agri_science"
     ],
@@ -32,16 +31,16 @@
     "license": "AGPL-3",
     "website": "http://www.geninit.cn",
     "description": """
-    AI Decision System for Agricultural Applications
+    AI Agent System for Agricultural Applications
     ============
 
-    This module implements a unified AI-driven agricultural intelligent decision support system.
+    This module implements an AI agent framework for orchestrating agricultural AI services.
 
     Key Features:
     - Unified AI agent framework for orchestrating different AI services
     - Centralized decision engine coordinating between different AI models
     - L5 Autonomous Mission Orchestrator: Auto-dispatches robot clusters based on biological twin alerts
-    - Integration of vision, decision, and financial AI services
+    - Integration of vision, decision, and LLM AI services
     - Enhanced LLM integration for domain-specific intelligence
     """,
 }

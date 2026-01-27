@@ -17,7 +17,7 @@ class AIRiskAssessment(models.Model):
     """
     _name = 'ai.risk.assessment'
     _description = 'AI Risk Assessment'
-    _inherit = ['ai.decision.base']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'ai.base.mixin']
 
     risk_category = fields.Selection([
         ('weather', 'Weather'),
@@ -193,5 +193,28 @@ class AIRiskAssessment(models.Model):
                 """
 
             record.monitoring_frequency = 'daily' if record.risk_level in ['high', 'critical'] else 'weekly'
-            record.confidence_score = min(85, max(60, 70 + random.uniform(-10, 10)))
-            record.status = 'recommended'
+            record.ai_confidence_score = min(85, max(60, 70 + random.uniform(-10, 10)))
+            record.ai_status = 'completed'
+
+    def _process_ai(self):
+        """Process the AI risk assessment and return results"""
+        self.perform_risk_assessment()
+        return {
+            'description': f'Risk assessment for {self.risk_category}',
+            'confidence': self.ai_confidence_score,
+            'processing_time': 100.0,
+            'model_used': 'Risk Assessment Model',
+            'input_data': {
+                'risk_category': self.risk_category,
+                'location': self.risk_location_id.name if self.risk_location_id else None,
+                'probability': self.risk_probability,
+                'impact': self.risk_impact,
+            },
+            'output_data': {
+                'risk_score': self.risk_score,
+                'risk_level': self.risk_level,
+                'mitigation_strategies': self.mitigation_strategies,
+                'contingency_plans': self.contingency_plans,
+                'factors': self.risk_factors,
+            }
+        }
