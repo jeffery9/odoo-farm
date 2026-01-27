@@ -20,7 +20,7 @@ class AIHarvestTiming(models.Model):
     _inherit = ['ai.decision.base']
 
     product_id = fields.Many2one('product.template', string='Crop')
-    land_location_id = fields.Many2one('stock.location', string='Location')
+    land_location_id = fields.Many2one('farm.location', string='Location')
     planting_date = fields.Date('Planting Date')
     expected_harvest_date = fields.Date('Expected Harvest Date')
     optimal_harvest_date = fields.Date('Optimal Harvest Date')

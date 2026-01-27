@@ -19,7 +19,7 @@ class AIFertilizationDecision(models.Model):
     _description = 'AI Fertilization Decision'
     _inherit = ['ai.decision.base']
 
-    land_location_id = fields.Many2one('stock.location', string='Land Location')
+    land_location_id = fields.Many2one('farm.location', string='Land Location')
     product_id = fields.Many2one('product.template', string='Crop')
     soil_nitrogen = fields.Float('Soil Nitrogen (ppm)')
     soil_phosphorus = fields.Float('Soil Phosphorus (ppm)')

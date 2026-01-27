@@ -52,7 +52,7 @@ class StockLot(models.Model):
             return False
 
         # Find all land parcels with defined boundaries
-        plots = self.env['stock.location'].search([
+        plots = self.env['farm.location'].search([
             ('is_land_parcel', '=', True),
             ('boundary_geojson', '!=', False)
         ])

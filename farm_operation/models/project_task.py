@@ -29,7 +29,7 @@ class ProjectTask(models.Model):
     )
 
     # 继承 farm_core 资产逻辑
-    land_parcel_id = fields.Many2one('stock.location', string="Land Parcel/Pond", domain=[('is_land_parcel', '=', True)])
+    land_parcel_id = fields.Many2one('farm.location', string="Land Parcel/Pond", domain=[('is_land_parcel', '=', True)])
     gps_lat = fields.Float(related='land_parcel_id.gps_lat', store=True)
     gps_lng = fields.Float(related='land_parcel_id.gps_lng', store=True)
 

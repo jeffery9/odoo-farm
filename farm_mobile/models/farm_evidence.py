@@ -102,7 +102,7 @@ class FarmEvidence(models.Model):
 
             # 逻辑：查找关联地块
             parcel = False
-            if rec.res_model == 'stock.location':
+            if rec.res_model == 'farm.location':
                 parcel = self.env[rec.res_model].browse(rec.res_id)
             elif rec.res_model == 'mrp.production':
                 mo = self.env[rec.res_model].browse(rec.res_id)

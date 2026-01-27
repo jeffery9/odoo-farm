@@ -31,7 +31,7 @@ class CircularAssetTracking(models.Model):
         ('in_repair', 'In Repair'),
         ('decommissioned', 'Decommissioned'),
     ], string='Current Status', default='available', required=True)
-    current_location = fields.Many2one('stock.location', string='Current Location')
+    current_location = fields.Many2one('farm.location', string='Current Location')
     assigned_to_partner = fields.Many2one('res.partner', string='Assigned To Partner (Customer)')
     assigned_date = fields.Date('Assigned Date')
     due_return_date = fields.Date('Due Return Date')

@@ -7,7 +7,7 @@ class CarbonAsset(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char("Asset Name", required=True)
-    location_id = fields.Many2one('stock.location', string="Location/Parcel", domain=[('is_land_parcel', '=', True)])
+    location_id = fields.Many2one('farm.location', string="Location/Parcel", domain=[('is_land_parcel', '=', True)])
     asset_type = fields.Selection([
         ('orchard', 'Orchard'),
         ('forest', 'Forest'),

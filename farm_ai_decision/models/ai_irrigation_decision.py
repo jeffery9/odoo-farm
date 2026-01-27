@@ -19,7 +19,7 @@ class AIIrrigationDecision(models.Model):
     _description = 'AI Irrigation Decision'
     _inherit = ['ai.decision.base']
 
-    land_location_id = fields.Many2one('stock.location', string='Land Location')
+    land_location_id = fields.Many2one('farm.location', string='Land Location')
     product_id = fields.Many2one('product.template', string='Crop')
     current_soil_moisture = fields.Float('Current Soil Moisture (%)')
     weather_forecast = fields.Text('Weather Forecast Data')

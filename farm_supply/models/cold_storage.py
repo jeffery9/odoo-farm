@@ -78,7 +78,7 @@ class ColdStorageReading(models.Model):
     _description = 'Cold Storage Environment Reading'
     _order = 'timestamp desc'
 
-    location_id = fields.Many2one('stock.location', string='Storage Location', required=True)
+    location_id = fields.Many2one('farm.location', string='Storage Location', required=True)
     temperature = fields.Float('Temperature (°C)', required=True)
     humidity = fields.Float('Humidity (%)', required=True)
     timestamp = fields.Datetime('Timestamp', required=True, default=fields.Datetime.now)

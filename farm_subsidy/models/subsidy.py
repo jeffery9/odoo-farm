@@ -37,7 +37,7 @@ class FarmSubsidyApplication(models.Model):
     fiscal_year = fields.Integer("Fiscal Year", default=lambda self: fields.Date.today().year)
 
     # 申报对象
-    land_parcel_ids = fields.Many2many('stock.location', string="Declared Parcels", domain=[('is_land_parcel', '=', True)])
+    land_parcel_ids = fields.Many2many('farm.location', string="Declared Parcels", domain=[('is_land_parcel', '=', True)])
 
     declared_quantity = fields.Float("Declared Qty (Area/Head)")
     estimated_amount = fields.Monetary("Estimated Amount", compute='_compute_estimated_amount')
@@ -86,7 +86,7 @@ class FarmSubsidyApplication(models.Model):
                 # Build domain for evidence search
                 evidence_domain = [
                     '|',
-                    ('res_model', '=', 'stock.location'),
+                    ('res_model', '=', 'farm.location'),
                     ('res_id', 'in', app.land_parcel_ids.ids),
                 ]
 
@@ -139,7 +139,7 @@ class FarmSubsidyApplication(models.Model):
         # Add conditions for land parcels
         if self.land_parcel_ids:
             evidence_domain.append('|')
-            evidence_domain.append(('res_model', '=', 'stock.location'))
+            evidence_domain.append(('res_model', '=', 'farm.location'))
             evidence_domain.append(('res_id', 'in', self.land_parcel_ids.ids))
 
             # Also include evidence from tasks on these parcels
@@ -202,7 +202,7 @@ class FarmSubsidyApplication(models.Model):
 
         if self.land_parcel_ids:
             evidence_domain.append('|')
-            evidence_domain.append(('res_model', '=', 'stock.location'))
+            evidence_domain.append(('res_model', '=', 'farm.location'))
             evidence_domain.append(('res_id', 'in', self.land_parcel_ids.ids))
 
             # Include evidence from tasks on these parcels

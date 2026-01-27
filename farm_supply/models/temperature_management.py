@@ -103,7 +103,7 @@ class TemperatureReading(models.Model):
     prediction_id = fields.Many2one('shelf.life.prediction', string='Shelf Life Prediction', required=True, ondelete='cascade')
     temperature = fields.Float('Temperature (°C)', required=True)
     timestamp = fields.Datetime('Timestamp', required=True)
-    location_id = fields.Many2one('stock.location', string='Location')
+    location_id = fields.Many2one('farm.location', string='Location')
     humidity = fields.Float('Humidity (%)')
     notes = fields.Text('Notes')
 

@@ -21,7 +21,7 @@ class FarmDisasterIncident(models.Model):
     date_start = fields.Date("Start Date", default=fields.Date.today)
     date_end = fields.Date("End Date")
     
-    affected_location_ids = fields.Many2many('stock.location', string="Affected Land Parcels", domain=[('is_land_parcel', '=', True)])
+    affected_location_ids = fields.Many2many('farm.location', string="Affected Land Parcels", domain=[('is_land_parcel', '=', True)])
     intensity = fields.Selection([
         ('minor', 'Minor'),
         ('moderate', 'Moderate'),
@@ -84,7 +84,7 @@ class FarmLossAssessment(models.Model):
     assessment_date = fields.Date("Assessment Date", default=fields.Date.today)
     assessor_id = fields.Many2one('res.partner', string="Assessor")
     
-    affected_parcel_id = fields.Many2one('stock.location', string="Affected Land Parcel", domain=[('is_land_parcel', '=', True)], required=True)
+    affected_parcel_id = fields.Many2one('farm.location', string="Affected Land Parcel", domain=[('is_land_parcel', '=', True)], required=True)
     crop_id = fields.Many2one('product.product', string="Affected Crop", domain=[('is_variety', '=', True)])
     
     estimated_loss_amount = fields.Monetary("Estimated Loss Amount", currency_field='currency_id')

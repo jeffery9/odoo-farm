@@ -20,7 +20,7 @@ class AIPestDiseaseDetection(models.Model):
     _inherit = ['ai.decision.base']
 
     product_id = fields.Many2one('product.template', string='Affected Crop')
-    land_location_id = fields.Many2one('stock.location', string='Location')
+    land_location_id = fields.Many2one('farm.location', string='Location')
     detection_date = fields.Datetime('Detection Date', default=fields.Datetime.now)
     pest_disease_name = fields.Char('Pest/Disease Name')
     severity_level = fields.Selection([
