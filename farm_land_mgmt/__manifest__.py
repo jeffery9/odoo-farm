@@ -14,6 +14,8 @@
     'data': [
         'security/ir.model.access.csv',
         'views/land_mgmt_views.xml',
+        'views/land_health_rotation_views.xml',
+        'views/soil_analysis_views.xml',
     ],
     'installable': True,
     'application': False,

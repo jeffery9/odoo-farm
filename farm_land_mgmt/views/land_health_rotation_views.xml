@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Land Health Record Tree View -->
+    <record id="view_land_health_record_tree" model="ir.ui.view">
+        <field name="name">farm.land.health.record.tree</field>
+        <field name="model">farm.land.health.record</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="land_parcel_id"/>
+                <field name="analysis_date"/>
+                <field name="soil_health_score"/>
+                <field name="health_status"/>
+                <field name="n_level"/>
+                <field name="p_level"/>
+                <field name="k_level"/>
+                <field name="ph_level"/>
+                <field name="organic_matter"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Land Health Record Form View -->
+    <record id="view_land_health_record_form" model="ir.ui.view">
+        <field name="name">farm.land.health.record.form</field>
+        <field name="model">farm.land.health.record</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group name="basic_info" string="Basic Information">
+                            <field name="name"/>
+                            <field name="land_parcel_id"/>
+                            <field name="analysis_date"/>
+                        </group>
+                        <group name="soil_metrics" string="Soil Metrics">
+                            <field name="n_level"/>
+                            <field name="p_level"/>
+                            <field name="k_level"/>
+                            <field name="ph_level"/>
+                            <field name="organic_matter"/>
+                            <field name="soil_texture"/>
+                            <field name="moisture_level"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group name="additional_metrics" string="Additional Metrics">
+                            <field name="compaction_level"/>
+                            <field name="salinity_level"/>
+                            <field name="soil_temperature"/>
+                        </group>
+                        <group name="status" string="Status">
+                            <field name="soil_health_score" readonly="1"/>
+                            <field name="health_status" readonly="1"/>
+                            <field name="next_analysis_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Analysis Details">
+                            <group>
+                                <field name="pest_disease_incidence"/>
+                                <field name="recommendations"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Crop Rotation History Tree View -->
+    <record id="view_crop_rotation_history_tree" model="ir.ui.view">
+        <field name="name">farm.land.crop.rotation.history.tree</field>
+        <field name="model">farm.land.crop.rotation.history</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="land_parcel_id"/>
+                <field name="product_id"/>
+                <field name="planting_date"/>
+                <field name="harvest_date"/>
+                <field name="state"/>
+                <field name="continuous_cropping_warning"/>
+                <field name="continuous_cropping_risk"/>
+                <field name="yield_amount"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Crop Rotation History Form View -->
+    <record id="view_crop_rotation_history_form" model="ir.ui.view">
+        <field name="name">farm.land.crop.rotation.history.form</field>
+        <field name="model">farm.land.crop.rotation.history</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group name="basic_info" string="Basic Information">
+                            <field name="name"/>
+                            <field name="land_parcel_id"/>
+                            <field name="product_id"/>
+                            <field name="state"/>
+                        </group>
+                        <group name="dates" string="Dates">
+                            <field name="planting_date"/>
+                            <field name="harvest_date"/>
+                            <field name="rotation_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group name="metrics" string="Metrics">
+                            <field name="yield_amount"/>
+                        </group>
+                        <group name="risk" string="Risk Assessment">
+                            <field name="continuous_cropping_warning"/>
+                            <field name="continuous_cropping_risk"/>
+                            <field name="warning_reason"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Add Land Health and Rotation fields to existing land management view -->
+    <record id="view_stock_location_land_health_form" model="ir.ui.view">
+        <field name="name">stock.location.land.health.form</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="farm_land_mgmt.view_stock_location_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='location_details']" position="after">
+                <page string="Land Health & Rotation" name="land_health_rotation">
+                    <group col="4">
+                        <field name="soil_health_score" readonly="1"/>
+                        <field name="health_status" readonly="1"/>
+                        <field name="rotation_risk_score" readonly="1"/>
+                        <field name="current_crop_type"/>
+                    </group>
+                    <group col="4">
+                        <field name="last_rotation_date" readonly="1"/>
+                        <field name="last_crop_planted" readonly="1"/>
+                        <field name="last_planting_date" readonly="1"/>
+                        <field name="continuous_cropping_risk_alert" readonly="1"/>
+                    </group>
+                    <div class="oe_button_box" name="land_health_buttons">
+                        <button name="action_add_health_record" type="object" class="oe_stat_button" icon="fa-heartbeat">
+                            <div>Add Health Record</div>
+                        </button>
+                        <button name="action_add_rotation_record" type="object" class="oe_stat_button" icon="fa-rotate-right">
+                            <div>Add Rotation Record</div>
+                        </button>
+                        <button name="action_view_soil_analyses" type="object" class="oe_stat_button" icon="fa-flask">
+                            <div>Soil Analyses</div>
+                        </button>
+                        <button name="action_view_health_history" type="object" class="oe_stat_button" icon="fa-history">
+                            <div>Health History</div>
+                        </button>
+                        <button name="action_view_rotation_timeline" type="object" class="oe_stat_button" icon="fa-timeline">
+                            <div>Rotation Timeline</div>
+                        </button>
+                    </div>
+                    <notebook>
+                        <page string="Health Records">
+                            <field name="land_health_records" readonly="1">
+                                <tree>
+                                    <field name="analysis_date"/>
+                                    <field name="soil_health_score"/>
+                                    <field name="health_status"/>
+                                    <field name="n_level"/>
+                                    <field name="p_level"/>
+                                    <field name="k_level"/>
+                                    <field name="ph_level"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Rotation History">
+                            <field name="crop_rotation_history" readonly="1">
+                                <tree>
+                                    <field name="rotation_date"/>
+                                    <field name="crop_type"/>
+                                    <field name="planting_date"/>
+                                    <field name="harvest_date"/>
+                                    <field name="rotation_sequence"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Search views -->
+    <record id="view_land_health_record_search" model="ir.ui.view">
+        <field name="name">farm.land.health.record.search</field>
+        <field name="model">farm.land.health.record</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="land_parcel_id"/>
+                <field name="analysis_date"/>
+                <field name="health_status"/>
+                <field name="soil_health_score"/>
+                <separator/>
+                <filter name="filter_excellent" string="Excellent Health" domain="[('health_status', '=', 'excellent')]"/>
+                <filter name="filter_good" string="Good Health" domain="[('health_status', '=', 'good')]"/>
+                <filter name="filter_poor" string="Poor Health" domain="[('health_status', '=', 'poor')]"/>
+                <filter name="filter_critical" string="Critical Health" domain="[('health_status', '=', 'critical')]"/>
+                <group>
+                    <filter name="group_by_land_parcel" string="Land Parcel" context="{'group_by': 'land_parcel_id'}"/>
+                    <filter name="group_by_health_status" string="Health Status" context="{'group_by': 'health_status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_crop_rotation_history_search" model="ir.ui.view">
+        <field name="name">farm.land.crop.rotation.history.search</field>
+        <field name="model">farm.land.crop.rotation.history</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="land_parcel_id"/>
+                <field name="crop_type"/>
+                <field name="planting_date"/>
+                <field name="harvest_date"/>
+                <separator/>
+                <filter name="filter_current_year" string="Current Year" domain="[('planting_date', '&gt;=', (context_today() - relativedelta(years=1)).strftime('%Y-01-01')), ('planting_date', '&lt;', context_today().strftime('%Y-01-01'))]"/>
+                <group>
+                    <filter name="group_by_land_parcel" string="Land Parcel" context="{'group_by': 'land_parcel_id'}"/>
+                    <filter name="group_by_crop_type" string="Crop Type" context="{'group_by': 'crop_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_land_health_record" model="ir.actions.act_window">
+        <field name="name">Land Health Records</field>
+        <field name="res_model">farm.land.health.record</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_land_health_record_search"/>
+    </record>
+
+    <record id="action_crop_rotation_history" model="ir.actions.act_window">
+        <field name="name">Crop Rotation History</field>
+        <field name="res_model">farm.land.crop.rotation.history</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_crop_rotation_history_search"/>
+    </record>
+
+    <!-- Menu items -->
+    <menuitem id="land_health_rotation_menu" name="Land Health & Rotation"
+              parent="farm_land_mgmt.land_management_menu" sequence="20"/>
+
+    <menuitem id="land_health_record_menu" name="Health Records"
+              parent="land_health_rotation_menu" sequence="10"
+              action="action_land_health_record"/>
+
+    <menuitem id="crop_rotation_history_menu" name="Rotation History"
+              parent="land_health_rotation_menu" sequence="20"
+              action="action_crop_rotation_history"/>
+
+</odoo>
