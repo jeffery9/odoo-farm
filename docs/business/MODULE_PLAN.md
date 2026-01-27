@@ -188,21 +188,21 @@
 
 | 史诗 (Epic) | 包含的 US ID | 承载模块 |
 | :--- | :--- | :--- |
-| **Epic 1: 基础数据** | US-01-01, US-01-02, US-01-03, US-01-04, US-01-08 | `farm_core` |
-| **Epic 2: 种植管理** | US-02-01, US-02-02, US-02-03, US-02-04, US-02-07, US-02-09, US-02-10 | `farm_operation` |
-| **Epic 3: 养殖管理** | US-03-01, US-03-02, US-03-03, US-03-04 | `farm_livestock`, `farm_iot` |
+| **Epic 1: 基础数据** | US-01-01, US-01-02, US-01-03, US-01-04, US-01-08, US-01-09 | `farm_core` |
+| **Epic 2: 种植管理** | US-02-01, US-02-02, US-02-03, US-02-04, US-02-07, US-02-09, US-02-10, US-02-11 | `farm_operation` |
+| **Epic 3: 养殖管理** | US-03-01, US-03-02, US-03-03, US-03-04, US-03-05, US-03-06 | `farm_livestock`, `farm_iot` |
 | **Epic 4: 供应链 BOM** | US-04-01, US-04-02, US-04-04, US-04-05 | `farm_operation`, `farm_supply` |
 | **Epic 5: 农旅体验** | US-05-01, US-05-02, US-05-03, US-05-04 | `farm_agritourism`, `farm_pos` |
 | **Epic 6: 物联控制** | US-06-01, US-06-02, US-06-03, US-06-04, US-06-05, US-06-06, US-06-07 | `farm_iot` |
 | **Epic 7: 移动端友好与现场作业** | US-07-01 至 US-07-17 | `farm_mobile`, `farm_ux`, `farm_core`, `farm_supply` |
 | **Epic 8: 营销参与** | US-08-01 至 US-08-05 | `farm_marketing`, `farm_csa` |
-| **Epic 9: 集成供应链** | US-09-01 至 US-09-17 | `farm_supply`, `farm_logistics` |
+| **Epic 9: 集成供应链** | US-09-01 至 US-09-18 | `farm_supply`, `farm_logistics` |
 | **Epic 10: 育苗育种** | US-10-01, US-10-02, US-10-03 | `farm_breeding`, `farm_quality` |
 | **Epic 11: 安全防疫** | US-11-01 至 US-11-07 | `farm_safety` |
 | **Epic 12: 认证合规** | US-12-01 至 US-12-09 | `farm_certification`, `farm_sustainability` |
 | **Epic 13: 劳动力管理** | US-13-01, US-13-02, US-13-03, US-13-04 | `farm_hr` |
 | **Epic 14: 产品加工** | US-14-01 至 US-14-23 | `farm_processing`, `farm_operation`, `farm_iot`, `farm_financial`, `farm_label`, `farm_logistics`, `farm_waste_mgmt`, `farm_marketing` |
-| **Epic 15: 质量控制** | US-15-01 至 US-15-10 | `farm_quality` |
+| **Epic 15: 质量控制** | US-15-01 至 US-15-11 | `farm_quality` |
 | **Epic 16: UX 与术语去工业化** | US-16-01 至 US-16-25 | `farm_ux`, `farm_dashboard`, `farm_mobile`, `farm_iot` | ✅ 完成 |
 | **Epic 19: 多实体协同与合作社管理** | US-19-01 至 US-19-23 | `farm_multi_farm`, `farm_financial`, `farm_equipment` | ✅ 完成 |
 | **Epic 21: 直播与抖音对接** | US-21-01 至 US-21-11 | `farm_live_streaming`, `farm_marketing`, `farm_financial` | ✅ 完成 |

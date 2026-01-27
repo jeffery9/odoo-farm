@@ -18,24 +18,18 @@
 *这些史诗代表了系统在精准农学、人工智能与金融层面的核心升级。*
 
 - **[EPIC 46: 精准生产与变量作业 (VRA)](epics/EPIC_46_Precision_Production_VRA.md)**
-  - 重点：PostGIS 空间网格、卫星 NDVI 映射、变量处方图、ISO-XML 指令导出。
 - **[EPIC 47: 生物生长智能与动态决策](epics/EPIC_47_Biological_Growth_Intelligence.md)**
-  - 重点：数字化品种模型、GDD 积温预警、智能水肥建议、产量动态预测。
 - **[EPIC 48: 农业金融信用与指数保险](epics/EPIC_48_Agri_Financial_Credit_Insurance.md)**
-  - 重点：作业真实性校验算法、农业信用评分、气象指数保险自动化理赔。
 - **[EPIC 49: 全息溯源与交互式品牌营销](epics/EPIC_49_Holistic_Traceability_Marketing.md)**
-  - 重点：全息溯源 PWA、风土时空档案、关键节点视频挂载、减碳证书。
 - **[EPIC 58: AI 智能决策支持平台](epics/EPIC_58_AI_Decision_Support_Platform.md)**
-  - 重点：AI Agent、决策执行闭环、活体资产抵押、碳交易金融化。
 - **[EPIC 63: 数字孪生农业](epics/EPIC_63_Digital_Twin_Agriculture.md)**
-  - 重点：高精度 GIS 建模、3D 实时同步、虚拟仿真决策、ISL 缓存优化。
 
 ---
 
 ## 🟢 核心生产与生物资产 (Core Production)
-- [EPIC 01: 农业基础数据中心](epics/EPIC_01_Agricultural_Master_Data.md)
-- [EPIC 02: 种植生产全生命周期管理 (Plant Farming)](epics/EPIC_02_Plant_Farming.md)
-- [EPIC 03: 畜牧与水产养殖管理](epics/EPIC_03_Livestock_Aquaculture.md)
+- [EPIC 01: 农业基础数据中心](epics/EPIC_01_Agricultural_Master_Data.md) (新增：土地健康与轮作档案)
+- [EPIC 02: 种植生产全生命周期管理 (Plant Farming)](epics/EPIC_02_Plant_Farming.md) (新增：单产效益分析)
+- [EPIC 03: 畜牧与水产养殖管理](epics/EPIC_03_Livestock_Aquaculture.md) (新增：非接触式 AI 估重、PSY/KPI 体系)
 - [EPIC 10: 育苗与种质资源库](epics/EPIC_10_Nursery_Breeding.md)
 - [EPIC 33: CEA 受控环境农业 (温室/垂直工厂)](epics/EPIC_33_CEA_Vertical_Farming.md)
 - [EPIC 34: 多年生果园与园艺管理](epics/EPIC_34_Perennial_Orchard.md)
@@ -49,7 +43,7 @@
 
 ## 🔴 供应链、加工与物流 (Processing & Supply Chain)
 - [EPIC 04: 农业供应链与混合配方 BOM](epics/EPIC_04_Agri_Supply_Chain_BOM.md)
-- [EPIC 09: 集成供应链与冷链物流](epics/EPIC_09_Integrated_Supply_Chain.md)
+- [EPIC 09: 集成供应链与冷链物流](epics/EPIC_09_Integrated_Supply_Chain.md) (新增：冷链违规库存降级)
 - [EPIC 14: 农产品深度加工管理 (Agri-Processing)](epics/EPIC_14_Agri_Processing_Management.md)
 - [EPIC 31: 逆向物流与缺陷批次召回](epics/EPIC_31_Reverse_Recall.md)
 - [EPIC 40: 中药材炮制与 GAP 加工合规](epics/EPIC_40_Medicinal_Herbs_Processing.md)
@@ -61,7 +55,7 @@
 ## 🟡 质量、合规与协作 (Quality, Compliance & Co-op)
 - [EPIC 11: 防疫、生物安全与应急响应](epics/EPIC_11_Epidemic_Prevention_Biosafety.md)
 - [EPIC 12: 有机认证与第三方审计](epics/EPIC_12_Certification_Organic_Farming.md)
-- [EPIC 15: 农业多维质量检验体系](epics/EPIC_15_Agri_Quality_Inspection.md)
+- [EPIC 15: 农业多维质量检验体系](epics/EPIC_15_Agri_Quality_Inspection.md) (新增：实验室 LIMS 集成)
 - [EPIC 17: 高级行业合规 (GMP/HACCP)](epics/EPIC_17_Advanced_Industry_Compliance.md)
 - [EPIC 18: 中国本土化农业合规 (SC/补贴/农机)](epics/EPIC_18_China_Compliance.md)
 - [EPIC 19: 多主体协同与合作社治理](epics/EPIC_19_Multi_Entity_Collaboration.md)
@@ -88,7 +82,7 @@
 - [EPIC 27: 农业循环经济与废弃物资源化](epics/EPIC_27_Circular_Economy.md)
 - [EPIC 28: AI 预测洞察与计算机视觉](epics/EPIC_28_AI_Vision.md)
 - [EPIC 29: 农业风险量化与灾害保险](epics/EPIC_29_Agri_Risk_Insurance.md)
-- [EPIC 37: 农业综合生产效能 (OPE) 智能分析](epics/EPIC_37_Agri_OPE_Intelligence.md)
+- [EPIC 37: 农业设备工效 (OPE) 智能分析](epics/EPIC_37_Agri_OPE_Intelligence.md)
 - [EPIC 43: 生物能源与 ESG 市场交易集成](epics/EPIC_43_BioEnergy_ESG_Market.md)
 - [EPIC 50: 层级视图容器与多维管理视角](epics/EPIC_50_Hierarchy_View_Containers.md)
 - [EPIC 51: 农用机器人与自动化系统](epics/EPIC_51_Agricultural_Robotics_Automation.md)
@@ -109,7 +103,5 @@
 - [EPIC 38: 农资分销商、零售商与渠道管理](epics/EPIC_38_Merchant_Management.md)
 
 ---
-**核对结论**:
-- 目录已包含 `epics/` 文件夹下全部 64 个文件（含新增 AI 与 ISL 史诗）。
-- 史诗编号已更正，`EPIC_02` 已重命名为 `EPIC_02_Plant_Farming.md` 并更新链接。
-- **最后更新**: 2026-01-27
+**存档时间**：2026-01-27
+**状态**：已集成全球主流农业 ERP（SAP/Oracle/YonBIP/Kingdee）的核心 Backlog。

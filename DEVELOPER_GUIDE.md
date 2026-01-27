@@ -13,9 +13,18 @@
 
 ---
 
-## 2. Odoo 开发范式与继承规范
+## 2. 核心设计原则 (Core Design Principles)
 
-### 2.1 模块与模型命名规范
+### 2.1 职责分离 (Separation of Concerns)
+- **水平层 (Horizontal)**: `farm_core` 仅定义全行业共有的元数据。严禁在此包含任何特定行业的计算逻辑或财务规则。
+- **垂直层 (Vertical)**: 每个行业模块（如 `farm_livestock`, `farm_processing`）应是自治的。行业特有的逻辑应留在各自模块，通过 `_inherits` 代理继承与 Odoo 原生模型交互。
+- **表现层 (UX)**: 所有的术语翻译、CSS 注入、菜单重排必须归口 `farm_ux` 或行业模块的 `views/` 目录，禁止业务逻辑与表现层代码混淆。
+
+### 2.2 DRY (Don't Repeat Yourself)
+- **Mixin 优先**: 通用的农业属性（如积温计算 GDD、养分记录、空间坐标计算）必须定义为 `AbstractModel` (Mixin)。子模块必须通过继承这些 Mixin 来复用逻辑，严禁在不同模块间复制粘贴相同的计算公式。
+- **领域逻辑提取**: 复杂的数学模型应提取为独立的 Python Helper 或专门的 `compute` 方法，确保一个算法在全系统中只有唯一的逻辑源头。
+
+## 3. Odoo 开发范式与继承规范
 - **Addon 前缀**: 所有自定义模块必须以 `farm_` 开头。
 - **Model 前缀**: 所有自定义模型 (`_name`) **必须以 `farm.` 开头**（例如：`farm.location.grid`）。
 - **职责分离原则 (Separation of Concerns)**:
@@ -44,6 +53,11 @@
 - **大规模搜索**: 优先使用 `search_file_content` 而非原生 `grep`。
 
 ---
+
+### 3.3 无损更新原则 (Lossless Update)
+- **严禁省略**: 在使用 `write_file` 或 `replace` 时，严禁使用 `...` 或 `(此处省略)` 占位符。这会导致历史文档（如已完成的 User Stories）或代码逻辑被物理删除。
+- **全量闭环**: 对于超过 5 行的文档修改，必须执行 `read_file` 获取全文，在本地内存中完成合并后，一次性全量回写。
+- **审计留痕**: 所有的更新必须保留原有的序号和标签，仅允许增量追加或对特定错误进行修正。
 
 ## 4. 空间数据与性能 (GIS & Performance)
 - **空间索引**: 任何新增的 `Geometry` 字段必须在 SQL 层面建立 `GIST` 索引。
