@@ -6,3 +6,7 @@ access_esg_environmental_compliance_user,esg.environmental.compliance.user,model
 access_farm_carbon_factor,farm.carbon.factor,model_farm_carbon_factor,farm_core.group_farm_manager,1,1,1,1
 access_farm_carbon_ledger,farm.carbon.ledger,model_farm_carbon_ledger,farm_core.group_farm_manager,1,1,1,1
 access_farm_carbon_ledger_user,farm.carbon.ledger.user,model_farm_carbon_ledger,farm_core.group_farm_user,1,0,0,0
+access_esg_red_line_config,farm.esg.red.line.config,model_farm_esg_red_line_config,farm_core.group_farm_manager,1,1,1,1
+access_esg_red_line_monitoring,farm.esg.red.line.monitoring,model_farm_esg_red_line_monitoring,farm_core.group_farm_manager,1,1,1,1
+access_esg_red_line_config_user,farm.esg.red.line.config.user,model_farm_esg_red_line_config,farm_core.group_farm_user,1,0,0,0
+access_esg_red_line_monitoring_user,farm.esg.red.line.monitoring.user,model_farm_esg_red_line_monitoring,farm_core.group_farm_user,1,1,1,1

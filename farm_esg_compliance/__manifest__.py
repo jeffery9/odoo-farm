@@ -12,7 +12,7 @@
     """,
     'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',
     'website': 'http://www.geninit.cn',
-    'depends': ['farm_esg', 'farm_esg_environmental', 'account'],
+    'depends': ['farm_esg', 'farm_esg_environmental', 'account', 'farm_agri_science'],
     'data': [
         'security/ir.model.access.csv',
         'views/esg_compliance_views.xml',
