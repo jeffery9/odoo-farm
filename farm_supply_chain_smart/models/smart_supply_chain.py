@@ -16,7 +16,7 @@ class FarmSupplyChainNode(models.Model):
     ], string="Node Type", required=True)
     
     partner_id = fields.Many2one('res.partner', string="Associated Entity")
-    location_id = fields.Many2one('stock.location', string="Physical Location")
+    location_id = fields.Many2one('farm.location', string="Physical Location")
     
     # Real-time KPIs
     current_inventory_value = fields.Monetary("Inventory Value", currency_field='currency_id')

@@ -45,7 +45,7 @@ class LandCropRotationHistory(models.Model):
 
             # Check for continuous cropping risk during creation
             if vals.get('land_parcel_id') and vals.get('product_id'):
-                land_parcel_id = self.env['stock.location'].browse(vals['land_parcel_id'])
+                land_parcel_id = self.env['farm.location'].browse(vals['land_parcel_id'])
                 product_id = self.env['product.template'].browse(vals['product_id'])
                 planting_date = vals.get('planting_date', fields.Date.today())
 
@@ -488,7 +488,7 @@ class SoilAnalysis(models.Model):
     _order = 'analysis_date desc'
 
     name = fields.Char("Report Reference", required=True, default=lambda self: _('New'))
-    location_id = fields.Many2one('stock.location', string="Land Parcel", required=True)
+    location_id = fields.Many2one('farm.location', string="Land Parcel", required=True)
     analysis_date = fields.Date("Analysis Date", default=fields.Date.today, required=True)
     laboratory_id = fields.Many2one('res.partner', string="Laboratory", domain=[('is_company', '=', True)])
 

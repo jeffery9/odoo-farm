@@ -7,7 +7,7 @@ class FarmBiosafetyAccessLog(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'access_time desc'
 
-    location_id = fields.Many2one('stock.location', string="Restricted Area", domain=[('usage', '=', 'internal')], required=True)
+    location_id = fields.Many2one('farm.location', string="Restricted Area", domain=[('usage', '=', 'internal')], required=True)
     person_id = fields.Many2one('res.partner', string="Person/Visitor")
     employee_id = fields.Many2one('hr.employee', string="Employee")
     

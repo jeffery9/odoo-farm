@@ -20,7 +20,7 @@ class AICropGrowthPrediction(models.Model):
     _inherit = ['ai.decision.base']
 
     product_id = fields.Many2one('product.template', string='Crop Type')
-    land_location_id = fields.Many2one('stock.location', string='Land Location')
+    land_location_id = fields.Many2one('farm.location', string='Land Location')
     planting_date = fields.Date('Planting Date')
     expected_harvest_date = fields.Date('Expected Harvest Date')
     current_growth_stage = fields.Char('Current Growth Stage')

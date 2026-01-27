@@ -10,7 +10,7 @@ class FarmWeatherForecast(models.Model):
     _order = 'date asc'
 
     date = fields.Date("Date", required=True)
-    location_id = fields.Many2one('stock.location', string="Farm Location", domain=[('is_land_parcel', '=', True)])
+    location_id = fields.Many2one('farm.location', string="Farm Location", domain=[('is_land_parcel', '=', True)])
     
     temp_max = fields.Float("Max Temp (℃)")
     temp_min = fields.Float("Min Temp (℃)")
@@ -53,7 +53,7 @@ class FarmWeatherForecast(models.Model):
     @api.model
     def action_fetch_weather_all_locations(self):
         """ Cron Job to fetch weather for all locations with GIS coordinates """
-        locations = self.env['stock.location'].search([
+        locations = self.env['farm.location'].search([
             ('is_land_parcel', '=', True),
             ('gps_lat', '!=', 0),
             ('gps_lng', '!=', 0)
@@ -66,7 +66,7 @@ class FarmWeatherForecast(models.Model):
         if self.is_warning and self.warning_type in ['storm', 'frost', 'heat']:
             # 1. 查找是否已有活跃的预警
             existing_activity = self.env['mail.activity'].search([
-                ('res_model', '=', 'stock.location'),
+                ('res_model', '=', 'farm.location'),
                 ('res_id', '=', self.location_id.id),
                 ('summary', 'like', 'Weather Alert'),
                 ('date_deadline', '>=', fields.Date.today())
@@ -82,7 +82,7 @@ class FarmWeatherForecast(models.Model):
             if not existing_activity:
                 # 2. 创建预警活动 (Mail Activity)
                 self.env['mail.activity'].create({
-                    'res_model': 'stock.location',
+                    'res_model': 'farm.location',
                     'res_id': self.location_id.id,
                     'activity_type_id': self.env.ref('mail.mail_activity_data_warning').id,
                     'summary': _('Weather Alert: %s predicted on %s') % (self.warning_type, self.date),
@@ -172,8 +172,8 @@ class FarmWeatherForecast(models.Model):
         elif res_model == 'project.task':
             task = self.env['project.task'].browse(res_id)
             location = task.land_parcel_id
-        elif res_model == 'stock.location':
-            location = self.env['stock.location'].browse(res_id)
+        elif res_model == 'farm.location':
+            location = self.env['farm.location'].browse(res_id)
             
         if not location or not location.is_land_parcel:
             return None

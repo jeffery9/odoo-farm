@@ -37,7 +37,7 @@ class FarmTelemetry(models.Model):
     device_id = fields.Many2one('iiot.device', string="IIoT Device")
     
     # 关联地块
-    land_parcel_id = fields.Many2one('stock.location', string="Land Parcel/Pond")
+    land_parcel_id = fields.Many2one('farm.location', string="Land Parcel/Pond")
     
     # US-36-01: Adoption Linkage
     adopted_lot_id = fields.Many2one('stock.lot', string="Adopted Asset", help="If the sensor is attached to a specific adopted tree/animal")

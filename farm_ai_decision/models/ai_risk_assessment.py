@@ -27,7 +27,7 @@ class AIRiskAssessment(models.Model):
         ('financial', 'Financial'),
         ('environmental', 'Environmental'),
     ], string='Risk Category')
-    risk_location_id = fields.Many2one('stock.location', string='Risk Location')
+    risk_location_id = fields.Many2one('farm.location', string='Risk Location')
     risk_probability = fields.Float('Risk Probability (%)')
     risk_impact = fields.Float('Risk Impact (%)')
     risk_score = fields.Float('Risk Score', compute='_compute_risk_score')

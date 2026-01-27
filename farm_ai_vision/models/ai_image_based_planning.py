@@ -20,7 +20,7 @@ class AIImageBasedPlanning(AIVisionBase):
     _description = 'AI Image-Based Planning'
     _inherit = ['ai.vision.base']
 
-    land_location_id = fields.Many2one('stock.location', string='Land Location', domain=[('usage', '=', 'internal')])
+    land_location_id = fields.Many2one('farm.location', string='Land Location', domain=[('usage', '=', 'internal')])
     crop_type = fields.Many2one('product.template', string='Suggested Crop Type', domain=[('type', '=', 'product')])
     planting_season = fields.Selection([
         ('spring', 'Spring'),

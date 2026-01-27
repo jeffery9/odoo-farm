@@ -74,7 +74,7 @@ class ESGAssessment(models.Model):
 
     assessed_entity_id = fields.Reference([
         ('res.company', 'Company'),
-        ('stock.location', 'Farm Location'),
+        ('farm.location', 'Farm Location'),
         ('mrp.production', 'Production Process'),
         ('product.product', 'Product'),
     ], string='Assessed Entity', help='The entity being assessed')

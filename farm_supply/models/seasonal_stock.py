@@ -10,7 +10,7 @@ class FarmSeasonalStockRule(models.Model):
 
     product_id = fields.Many2one('product.product', string="Agricultural Input", 
                                 domain=[('is_agri_input', '=', True)], required=True)
-    location_id = fields.Many2one('stock.location', string="Storage Location", 
+    location_id = fields.Many2one('farm.location', string="Storage Location",
                                  domain=[('usage', '=', 'internal')], required=True)
     
     month = fields.Selection([

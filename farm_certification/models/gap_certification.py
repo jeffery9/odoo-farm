@@ -19,7 +19,7 @@ class FarmGAPCertification(models.Model):
     ], string="GAP Standard Type", required=True, default='china_gap')
 
     partner_id = fields.Many2one('res.partner', string="Certified Entity", required=True)
-    farm_location_ids = fields.Many2many('stock.location', string="Certified Locations")
+    farm_location_ids = fields.Many2many('farm.location', string="Certified Locations")
     product_ids = fields.Many2many('product.product', string="Certified Products")
 
     issue_date = fields.Date("Issue Date", default=fields.Date.context_today, required=True)
@@ -216,7 +216,7 @@ class FarmGAPComplianceCheck(models.Model):
     _description = 'GAP Daily Compliance Check'
 
     name = fields.Char("Check Reference", compute='_compute_name', store=True)
-    location_id = fields.Many2one('stock.location', string="Location", required=True)
+    location_id = fields.Many2one('farm.location', string="Location", required=True)
     date = fields.Date("Check Date", default=fields.Date.context_today, required=True)
     checker_id = fields.Many2one('res.users', string="Checked By", default=lambda self: self.env.user)
 

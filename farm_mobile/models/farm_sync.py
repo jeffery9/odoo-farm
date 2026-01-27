@@ -52,11 +52,11 @@ class FarmSyncQueue(models.Model):
                 'view_mode': 'form',
             }
         # 搜索地块
-        loc = self.env['stock.location'].search([('name', '=', barcode), ('is_land_parcel', '=', True)], limit=1)
+        loc = self.env['farm.location'].search([('name', '=', barcode), ('is_land_parcel', '=', True)], limit=1)
         if loc:
             return {
                 'type': 'ir.actions.act_window',
-                'res_model': 'stock.location',
+                'res_model': 'farm.location',
                 'res_id': loc.id,
                 'view_mode': 'form',
             }

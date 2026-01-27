@@ -46,7 +46,7 @@ class FarmCropYieldInsurance(models.Model):
     service_fees = fields.Monetary('Service Fees', currency_field='currency_id')
 
     product_id = fields.Many2one('product.template', string='Crop Type')
-    land_location_id = fields.Many2one('stock.location', string='Farm Location')
+    land_location_id = fields.Many2one('farm.location', string='Farm Location')
     coverage_area = fields.Float('Coverage Area (hectares)')
     planting_date = fields.Date('Planting Date')
     expected_yield = fields.Float('Expected Yield (tons/ha)')

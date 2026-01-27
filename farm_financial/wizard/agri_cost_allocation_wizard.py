@@ -16,7 +16,7 @@ class AgriCostAllocationWizard(models.TransientModel):
 
     # Context fields
     task_id = fields.Many2one('project.task', string='Production Task', required=True)
-    land_parcel_id = fields.Many2one('stock.location', string='Land Parcel', required=True)
+    land_parcel_id = fields.Many2one('farm.location', string='Land Parcel', required=True)
     area_value = fields.Float('Area Value', help='Area of the land parcel')
     area_unit = fields.Selection([
         ('mu', 'Mu (Chinese Acre)'),

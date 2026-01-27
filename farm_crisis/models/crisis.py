@@ -27,7 +27,7 @@ class FarmCrisisIncident(models.Model):
     date_start = fields.Datetime("Detected At", default=fields.Datetime.now)
     date_end = fields.Datetime("Resolved At")
     
-    affected_location_ids = fields.Many2many('stock.location', string="Affected Zones", domain=[('is_land_parcel', '=', True)])
+    affected_location_ids = fields.Many2many('farm.location', string="Affected Zones", domain=[('is_land_parcel', '=', True)])
     affected_lot_ids = fields.Many2many('stock.lot', string="Affected Assets/Batches")
     
     state = fields.Selection([
@@ -84,7 +84,7 @@ class StockLot(models.Model):
         location_ids = active_crisis.mapped('affected_location_ids').ids
         
         # 找到处于这些位置的所有子位置下的批次
-        all_affected_locations = self.env['stock.location'].search([('id', 'child_of', location_ids)])
+        all_affected_locations = self.env['farm.location'].search([('id', 'child_of', location_ids)])
         
         return ['|', ('id', 'in', lot_ids), ('location_id', 'in', all_affected_locations.ids)]
 

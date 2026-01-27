@@ -6,7 +6,7 @@ class StorageEnvironment(models.Model):
     _description = 'Storage Environment Log'
     _order = 'timestamp desc'
 
-    location_id = fields.Many2one('stock.location', string='Storage Location', required=True)
+    location_id = fields.Many2one('farm.location', string='Storage Location', required=True)
     timestamp = fields.Datetime('Timestamp', default=fields.Datetime.now)
     temperature = fields.Float('Temperature (℃)')
     humidity = fields.Float('Humidity (%)')

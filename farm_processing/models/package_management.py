@@ -25,7 +25,7 @@ class FarmPackage(models.Model):
     parent_package_id = fields.Many2one('farm.package', string='Contained In Package', help="The package this package is contained within")
     child_package_ids = fields.One2many('farm.package', 'parent_package_id', string='Contains Packages')
 
-    location_id = fields.Many2one('stock.location', string='Location')
+    location_id = fields.Many2one('farm.location', string='Location')
     create_date = fields.Datetime(string='Creation Date', default=fields.Datetime.now)
     barcode = fields.Char(string='Barcode', copy=False, help="Barcode of the package for scanning")
 

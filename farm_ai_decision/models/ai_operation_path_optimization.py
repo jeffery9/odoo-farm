@@ -26,7 +26,7 @@ class AIOperationPathOptimization(models.Model):
         ('tillage', 'Tillage'),
         ('irrigation', 'Irrigation'),
     ], string='Operation Type')
-    land_location_ids = fields.Many2many('stock.location', string='Locations to Cover')
+    land_location_ids = fields.Many2many('farm.location', string='Locations to Cover')
     vehicle_type = fields.Char('Vehicle Type')
     fuel_consumption_rate = fields.Float('Fuel Consumption (L/ha)')
     estimated_duration = fields.Float('Estimated Duration (hours)')

@@ -62,7 +62,7 @@ class FarmCarbonCreditFinance(models.Model):
     credit_validity_years = fields.Integer('Credit Validity (years)', default=5)
     registry_name = fields.Char('Registry Name', help="Carbon registry where credits are registered")
     certification_body = fields.Char('Certification Body')
-    project_location = fields.Many2one('stock.location', string='Project Location')
+    project_location = fields.Many2one('farm.location', string='Project Location')
     implementation_status = fields.Selection([
         ('planned', 'Planned'),
         ('in_progress', 'In Progress'),

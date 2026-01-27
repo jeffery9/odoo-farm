@@ -10,7 +10,7 @@ class AgriGIRegistry(models.Model):
     code = fields.Char("GI Code", required=True, help="National GI protection code")
     product_template_id = fields.Many2one('product.template', string="Protected Product")
     
-    protection_area_id = fields.Many2one('stock.location', string="Protection Area (GIS)", domain=[('is_land_parcel', '=', True)])
+    protection_area_id = fields.Many2one('farm.location', string="Protection Area (GIS)", domain=[('is_land_parcel', '=', True)])
     
     authority_name = fields.Char("Issuing Authority")
     certificate_attachment_ids = fields.Many2many('ir.attachment', string="GI Certificates")

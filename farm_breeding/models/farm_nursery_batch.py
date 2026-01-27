@@ -31,8 +31,8 @@ class FarmNurseryBatch(models.Model):
     ], string="Status", default='germinating', tracking=True)
 
     # 库位信息 [US-10-01]
-    location_src_id = fields.Many2one('stock.location', string="Nursery Location", help="Seedling room/area")
-    location_dest_id = fields.Many2one('stock.location', string="Production Area", help="Final field/plot")
+    location_src_id = fields.Many2one('farm.location', string="Nursery Location", help="Seedling room/area")
+    location_dest_id = fields.Many2one('farm.location', string="Production Area", help="Final field/plot")
 
     @api.depends('sowing_date')
     def _compute_seedling_age(self):

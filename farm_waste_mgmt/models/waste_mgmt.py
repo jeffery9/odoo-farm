@@ -10,7 +10,7 @@ class FarmManureBatch(models.Model):
     production_date = fields.Date("Production Date", default=fields.Date.today)
     quantity = fields.Float("Quantity (kg)")
     lot_source_ids = fields.Many2many('stock.lot', string="Source Animal Lots", domain=[('agricultural_type', 'in', ['animal', 'animal_group'])])
-    location_source_id = fields.Many2one('stock.location', string="Source Location", domain=[('usage', '=', 'internal')]) # e.g., Barn
+    location_source_id = fields.Many2one('farm.location', string="Source Location", domain=[('usage', '=', 'internal')]) # e.g., Barn
     
     # 处理方式
     disposal_method = fields.Selection([
@@ -21,7 +21,7 @@ class FarmManureBatch(models.Model):
     ], string="Disposal Method", required=True)
     
     # 去向及接收方
-    destination_location_id = fields.Many2one('stock.location', string="Destination Location", domain=[('is_land_parcel', '=', True)], invisible="disposal_method != 'direct_field_use'")
+    destination_location_id = fields.Many2one('farm.location', string="Destination Location", domain=[('is_land_parcel', '=', True)], invisible="disposal_method != 'direct_field_use'")
     recipient_partner_id = fields.Many2one('res.partner', string="Recipient (Third Party)", invisible="disposal_method != 'transfer_third_party'")
     
     fertilizer_product_id = fields.Many2one('product.product', string="Converted Fertilizer Product", domain=[('input_type', '=', 'fertilizer')])

@@ -52,7 +52,7 @@ class FarmDataExchanger(models.Model):
         root = ET.Element("ISO11783_TaskData")
         
         # 1. 节点：地块信息
-        plots = self.env['stock.location'].search([('is_land_parcel', '=', True)])
+        plots = self.env['farm.location'].search([('is_land_parcel', '=', True)])
         for p in plots:
             p_node = ET.SubElement(root, "PFD", C=p.name, D=str(getattr(p, 'land_area', 0)))
             if p.gps_lat:
@@ -78,7 +78,7 @@ class FarmDataExchanger(models.Model):
         # 表头
         writer.writerow(['ParcelName', 'Area', 'CertLevel', 'LastInspection'])
         
-        certs = self.env['stock.location'].search([('is_land_parcel', '=', True)])
+        certs = self.env['farm.location'].search([('is_land_parcel', '=', True)])
         for c in certs:
             writer.writerow([
                 c.name, 

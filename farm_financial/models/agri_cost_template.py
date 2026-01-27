@@ -132,7 +132,7 @@ class AgriCostCalculation(models.TransientModel):
 
     # Link to the task/parcel for context
     task_id = fields.Many2one('project.task', string='Production Task')
-    land_parcel_id = fields.Many2one('stock.location', string='Land Parcel')
+    land_parcel_id = fields.Many2one('farm.location', string='Land Parcel')
     area_value = fields.Float('Area Value', help='Area in selected unit (mu, ha, etc.)')
     area_unit = fields.Selection([
         ('mu', 'Mu (Chinese Acre)'),

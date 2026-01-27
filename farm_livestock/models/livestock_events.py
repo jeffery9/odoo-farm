@@ -22,7 +22,7 @@ class FarmLivestockEvent(models.Model):
     ], string='Event Type', required=True)
     
     event_date = fields.Datetime('Event Date', default=fields.Datetime.now, required=True)
-    location_id = fields.Many2one('stock.location', string='Location')
+    location_id = fields.Many2one('farm.location', string='Location')
     responsible_id = fields.Many2one('res.users', string='Responsible', default=lambda self: self.env.user)
     
     notes = fields.Text('Notes')
@@ -42,7 +42,7 @@ class FarmLivestockHouseEnv(models.Model):
     _description = 'Livestock House Environment Log'
     _order = 'capture_time desc'
 
-    location_id = fields.Many2one('stock.location', string='House/Location', required=True)
+    location_id = fields.Many2one('farm.location', string='House/Location', required=True)
     capture_time = fields.Datetime('Capture Time', default=fields.Datetime.now)
     
     temperature = fields.Float("Temperature (℃)")

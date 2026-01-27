@@ -60,5 +60,5 @@ class FarmCropLot(models.Model):
     lot_id = fields.Many2one('stock.lot', string='Base Lot', required=True, ondelete='cascade')
 
     # Terroir Metadata (Moved from Base)
-    plot_origin_id = fields.Many2one('stock.location', string='Origin Plot', domain="[('is_land_parcel', '=', True)]")
+    plot_origin_id = fields.Many2one('farm.location', string='Origin Plot', domain="[('is_land_parcel', '=', True)]")
     terroir_json = fields.Text("Weighted Terroir Attributes")

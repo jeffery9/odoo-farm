@@ -6,7 +6,7 @@ class FarmBiodiversityIndicator(models.Model):
     _order = 'date desc'
 
     date = fields.Date("Observation Date", default=fields.Date.today)
-    location_id = fields.Many2one('stock.location', string="Location", domain=[('is_land_parcel', '=', True)])
+    location_id = fields.Many2one('farm.location', string="Location", domain=[('is_land_parcel', '=', True)])
     
     indicator_type = fields.Selection([
         ('insect', 'Insects/Pollinators'),
@@ -34,4 +34,4 @@ class FarmEcologicalZone(models.Model):
     ], required=True)
     
     area = fields.Float("Area (sqm)")
-    location_id = fields.Many2one('stock.location', string="Associated Parcel")
+    location_id = fields.Many2one('farm.location', string="Associated Parcel")

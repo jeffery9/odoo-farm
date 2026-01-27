@@ -12,7 +12,7 @@ class FarmProductCertificate(models.Model):
     product_id = fields.Many2one('product.product', related='lot_id.product_id', store=True)
 
     producer_name = fields.Char("Producer Name", default=lambda self: self.env.company.name)
-    origin_location_id = fields.Many2one('stock.location', string="Origin/Farm", domain=[('is_land_parcel', '=', True)])
+    origin_location_id = fields.Many2one('farm.location', string="Origin/Farm", domain=[('is_land_parcel', '=', True)])
     production_date = fields.Date("Production Date", related='lot_id.create_date', store=True)
     
     # 承诺声明
