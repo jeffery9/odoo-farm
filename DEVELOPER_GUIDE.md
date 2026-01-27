@@ -79,6 +79,7 @@
 ### 5.3 验收定义 (DoD)
 - 代码通过 Pylint/Odoo-lint 校验（若适用）。
 - `__manifest__.py` 已更新依赖关系。
+- **原子化提交验证**：确认代码逻辑与 `docs/` 下的文档更新已分为不同的 Git Commit，且所有提交信息均使用英文。
 
 ---
 **核心提醒**: 记住，我们是在构建一个科学系统。如果一个算法没有在 `docs/business/DOMAIN_LOGIC_ALGORITHMS.md` 中备案，它就不应该存在。
