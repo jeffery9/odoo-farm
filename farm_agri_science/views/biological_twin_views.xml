@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_biological_twin_tree" model="ir.ui.view">
+        <name>farm.biological.twin.list</name>
+        <model>farm.biological.twin</model>
+        <arch type="xml">
+            <list decoration-danger="health_score &lt; 60" decoration-success="health_score &gt; 80">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="location_id"/>
+                <field name="current_stage_id"/>
+                <field name="accumulated_gdd"/>
+                <field name="health_score" widget="badge"/>
+                <field name="expected_harvest_date"/>
+                <field name="predicted_yield"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="view_farm_biological_twin_form" model="ir.ui.view">
+        <name>farm.biological.twin.form</name>
+        <model>farm.biological.twin</model>
+        <arch type="xml">
+            <form>
+                <header>
+                    <button name="action_update_gdd" string="Update GDD (Weather Sync)" type="object" class="oe_highlight"/>
+                    <button name="action_run_yield_prediction_ai" string="Run Yield Prediction AI" type="object"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Configuration">
+                            <field name="product_id"/>
+                            <field name="location_id"/>
+                            <field name="start_date"/>
+                        </group>
+                        <group string="Thermal Intelligence (L3)">
+                            <field name="base_temp"/>
+                            <field name="accumulated_gdd"/>
+                            <field name="target_gdd_harvest"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Digital Twin Monitoring" name="monitoring">
+                            <group>
+                                <group string="Growth Health">
+                                    <field name="current_stage_id"/>
+                                    <field name="health_score" widget="gauge" options="{'max_value': 100}"/>
+                                </group>
+                                <group string="Yield Forecasting">
+                                    <field name="expected_harvest_date"/>
+                                    <field name="predicted_yield"/>
+                                    <field name="confidence_level"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </arch>
+    </record>
+
+    <record id="action_farm_biological_twin" model="ir.actions.act_window">
+        <name>Biological Digital Twins</name>
+        <res_model>farm.biological.twin</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <menuitem id="menu_biological_twin"
+              name="Biological Twins (AI)"
+              parent="menu_agri_science_root"
+              action="action_farm_biological_twin"
+              sequence="5"/>
+</odoo>
