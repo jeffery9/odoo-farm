@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 class FarmPartner(models.Model):
     _inherit = 'res.partner'
@@ -7,6 +7,10 @@ class FarmPartner(models.Model):
 
 class FarmSaleOrder(models.Model):
     _inherit = 'sale.order'
+
+    # 预订模式 [Order Enhancement]
+    is_preorder = fields.Boolean("Pre-order Reservation", help="Check to lock lots before confirmation.")
+    reservation_expiry = fields.Datetime("Reservation Expiry")
 
     # 跨境合规 [US-17-06]
     export_country_id = fields.Many2one('res.country', string="Export Destination")
@@ -22,7 +26,7 @@ class FarmSaleOrder(models.Model):
             order.is_export_compliant = True
 
     def action_confirm(self):
-        # 增加合规拦截
+        # 增加合规与锁定逻辑
         for order in self:
             if order.export_country_id and not order.is_export_compliant:
                 from odoo.exceptions import UserError
@@ -30,10 +34,16 @@ class FarmSaleOrder(models.Model):
             
             # US-32-03: Channel Protection Whitelist check
             for line in order.order_line:
-                if hasattr(line, 'lot_id') and line.lot_id and line.lot_id.is_premium_brand:
+                if line.lot_id and line.lot_id.is_premium_brand:
                     if order.partner_id not in line.lot_id.allowed_partner_ids:
                         from odoo.exceptions import UserError
                         raise UserError(_("CHANNEL PROTECTION: Lot %s is reserved for premium channels. Customer %s is not in the whitelist!") % (line.lot_id.name, order.partner_id.name))
+                
+                # Quality Matching: Ensure lot meets line requirements
+                if line.lot_id and line.required_integrity_score > 0:
+                    if line.lot_id.integrity_score < line.required_integrity_score:
+                        from odoo.exceptions import UserError
+                        raise UserError(_("QUALITY MISMATCH: Lot %s score (%s) is below required %s.") % (line.lot_id.name, line.lot_id.integrity_score, line.required_integrity_score))
 
         res = super(FarmSaleOrder, self).action_confirm()
         for order in self:
@@ -46,7 +56,14 @@ class FarmSaleOrder(models.Model):
 class FarmSaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    lot_id = fields.Many2one('stock.lot', string="Assigned Lot") # Optional: depends on modules installed, but we add it for logic
+    lot_id = fields.Many2one('stock.lot', string="Reserved Lot") 
+    required_integrity_score = fields.Float("Required Integrity", default=0.0)
+    
+    is_reserved = fields.Boolean("Is Locked", compute='_compute_reservation_status')
+
+    def _compute_reservation_status(self):
+        for line in self:
+            line.is_reserved = bool(line.lot_id)
 
     def action_view_traceability(self):
         """ 跳转到该行关联批次的外部溯源页面 """

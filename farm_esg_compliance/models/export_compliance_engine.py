@@ -29,36 +29,43 @@ class FarmExportCompliance(models.Model):
             rec.missing_records = False
             rec.withdrawal_violation = False
 
-    def action_run_compliance_audit(self):
+    def action_generate_technical_dossier(self):
         """
-        Executes the automated audit engine.
-        Maps farm records to standards like GlobalGAP or FSMA.
+        Israel Style: Generates a technical summary of the production quality.
+        Aggregates VRA precision data, GDD curves, and Carbon metrics.
         """
-        for rec in self:
-            log = []
-            log.append(_("Starting automated audit for %s against %s") % (rec.name, rec.standard_id.name))
-            
-            # 1. Check for Chemical Withdrawal Periods (Mock logic)
-            # Find recent pesticide applications for the product's origin location
-            # if pesticide_date + withdrawal_days > harvest_date: violation = True
-            log.append(_("[OK] Chemical withdrawal periods verified."))
-            
-            # 2. Check for Hygiene Logs (Mock logic)
-            # Search for completed 'cleaning' tasks in the production cycle
-            log.append(_("[OK] Equipment hygiene logs found and verified."))
-            
-            # 3. Check for Traceability (Mock logic)
-            # Ensure every batch has a linked source location and input record
-            log.append(_("[OK] Full traceability link confirmed."))
+        self.ensure_one()
+        dossier = []
+        dossier.append(_("--- TECHNICAL PRODUCTION DOSSIER ---"))
+        dossier.append(_("Product: %s") % self.product_id.name)
+        
+        # 1. Precision VRA Data
+        prescriptions = self.env['farm.vra.prescription'].search([
+            ('location_id', '=', self.product_id.origin_location_id.id if hasattr(self.product_id, 'origin_location_id') else False)
+        ], limit=1)
+        if prescriptions:
+            dossier.append(_("[VRA] Precision Variable Application enabled. Avg Rate: %s kg/mu") % prescriptions.base_rate)
+        
+        # 2. Biological Twin / Intelligence
+        twin = self.env['farm.biological.twin'].search([
+            ('product_id', '=', self.product_id.id)
+        ], order='create_date desc', limit=1)
+        if twin:
+            dossier.append(_("[AI] Biological Twin monitored. Total GDD: %s C. Health Score: %s") % (twin.accumulated_gdd, twin.health_score))
+            dossier.append(_("[ESG] Carbon Intensity: %s kg CO2e / kg") % twin.carbon_intensity)
 
-            rec.audit_log = "\n".join(log)
-            rec.last_audit_run = fields.Datetime.now()
-            rec.compliance_status = 'ready'
-            
-            return {
-                'effect': {
-                    'fadeout': 'slow',
-                    'message': _("Compliance audit completed successfully!"),
-                    'type': 'rainbow_man',
-                }
+        # 3. Quality Assurance
+        if self.residue_limit_ok:
+            dossier.append(_("[QC] MRL (Pesticide Residue) compliant with EU/US standards."))
+
+        self.audit_log = "\n".join(dossier)
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _('Dossier Generated'),
+                'message': _('Technical production dossier is now available in the audit log.'),
+                'type': 'success',
             }
+        }
+
