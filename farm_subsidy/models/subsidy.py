@@ -23,6 +23,11 @@ class FarmSubsidyProgram(models.Model):
     requirements = fields.Text("Compliance Requirements")
 
 class FarmSubsidyApplication(models.Model):
+    """
+    US-65-04: 补贴申请业务模型
+    职责：处理补贴申请的业务流程，包括证据自动化收集、合规性验证和报告生成
+    业务逻辑：通过farm_evidence基础设施实现补贴证据自动化功能
+    """
     _name = 'farm.subsidy.application'
     _description = 'Subsidy Application'
     _inherit = ['mail.thread', 'mail.activity.mixin']
