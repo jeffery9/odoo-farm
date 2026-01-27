@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Task Evidence Extension -->
+    <record id="view_task_form_credit_evidence" model="ir.ui.view">
+        <name>project.task.form.credit.evidence</name>
+        <model>project.task</model>
+        <inherit_id ref="project.view_task_form2"/>
+        <arch type="xml">
+            <header position="inside">
+                <button name="action_calculate_trust_score" string="Verify Evidence" type="object" class="btn-info"/>
+            </header>
+            <notebook position="inside">
+                <page string="Financial Evidence" name="financial_evidence">
+                    <group>
+                        <group string="Trust Assessment">
+                            <field name="trust_score" widget="gauge" options="{'max_field': 100}"/>
+                            <field name="trust_verification_status" widget="badge" 
+                                   decoration-success="trust_verification_status == 'verified'"
+                                   decoration-warning="trust_verification_status == 'suspicious'"
+                                   decoration-danger="trust_verification_status == 'fraud'"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </arch>
+    </record>
+
+    <!-- Farm Credit Score Views -->
+    <record id="view_farm_credit_score_tree" model="ir.ui.view">
+        <name>farm.credit.score.list</name>
+        <model>farm.credit.score</model>
+        <arch type="xml">
+            <list>
+                <field name="partner_id"/>
+                <field name="evaluation_date"/>
+                <field name="total_score" widget="badge" decoration-success="total_score >= 80" decoration-warning="total_score >= 60" decoration-danger="total_score &lt; 60"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="view_farm_credit_score_form" model="ir.ui.view">
+        <name>farm.credit.score.form</name>
+        <model>farm.credit.score</model>
+        <arch type="xml">
+            <form>
+                <header>
+                    <button name="action_auto_evaluate" string="Auto Evaluate" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_validate" string="Validate" type="object" invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Credit Score: <field name="total_score" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="evaluation_date"/>
+                        </group>
+                    </group>
+                    <group string="Scoring Components (Weights)">
+                        <group>
+                            <field name="gap_compliance_rate" widget="progressbar"/>
+                            <field name="yield_consistency_rate" widget="progressbar"/>
+                        </group>
+                        <group>
+                            <field name="input_reduction_rate" widget="progressbar"/>
+                            <field name="avg_trust_score" widget="progressbar"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </arch>
+    </record>
+
+    <record id="action_farm_credit_score" model="ir.actions.act_window">
+        <name>Farm Credit Scores</name>
+        <res_model>farm.credit.score</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- Coop Settlement Views -->
+    <record id="view_farm_coop_settlement_tree" model="ir.ui.view">
+        <name>farm.coop.settlement.list</name>
+        <model>farm.coop.settlement</model>
+        <arch type="xml">
+            <list>
+                <field name="partner_id"/>
+                <field name="date"/>
+                <field name="input_debt_amount" sum="Total Debt"/>
+                <field name="harvest_credit_amount" sum="Total Credit"/>
+                <field name="net_settlement_amount" sum="Total Payout"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="view_farm_coop_settlement_form" model="ir.ui.view">
+        <name>farm.coop.settlement.form</name>
+        <model>farm.coop.settlement</model>
+        <arch type="xml">
+            <form>
+                <header>
+                    <button name="action_fetch_data" string="Fetch Transactions" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_settle" string="Execute Settlement" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="input_debt_amount"/>
+                            <field name="harvest_credit_amount"/>
+                            <hr colspan="2"/>
+                            <field name="net_settlement_amount" class="oe_subtotal_footer_separator"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </arch>
+    </record>
+
+    <record id="action_farm_coop_settlement" model="ir.actions.act_window">
+        <name>Coop Settlements</name>
+        <res_model>farm.coop.settlement</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- Partner Extension -->
+    <record id="view_partner_form_credit" model="ir.ui.view">
+        <name>res.partner.form.credit</name>
+        <model>res.partner</model>
+        <inherit_id ref="base.view_partner_form"/>
+        <arch type="xml">
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page string="Agricultural Credit" name="agri_credit">
+                    <group>
+                        <field name="latest_credit_score" widget="gauge" options="{'max_field': 100}"/>
+                        <field name="is_high_risk_borrower" invisible="1"/>
+                        <div class="alert alert-danger" role="alert" invisible="not is_high_risk_borrower">
+                            <strong>High Risk:</strong> This farmer's credit score is below the safe threshold (70).
+                        </div>
+                    </group>
+                </page>
+            </xpath>
+        </arch>
+    </record>
+
+    <!-- Menus -->
+    <menuitem id="menu_farm_finance_scoring" name="Credit Scoring" 
+              parent="farm_financial.menu_finance_root" sequence="20"/>
+    <menuitem id="menu_farm_credit_score_act" name="Farm Credit Cards" 
+              parent="menu_farm_finance_scoring" action="action_farm_credit_score" sequence="10"/>
+    <menuitem id="menu_farm_coop_settlement_act" name="Member Settlements" 
+              parent="menu_farm_finance_scoring" action="action_farm_coop_settlement" sequence="20"/>
+</odoo>

@@ -15,6 +15,7 @@
         "farm_core",
         "farm_supply",
         "farm_marketing",
+        "farm_financial",
     ],
     "data": [
         "security/ir.model.access.csv",
@@ -23,6 +24,7 @@
         "views/crop_insurance_views.xml",
         "views/carbon_finance_views.xml",
         "views/futures_hedging_views.xml",
+        "views/credit_scoring_views.xml",
         "views/menu.xml",
     ],
     "demo": [

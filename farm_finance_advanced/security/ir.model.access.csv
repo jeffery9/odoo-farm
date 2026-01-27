@@ -1,5 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_livestock_asset_loan,livestock.asset.loan,model_farm_livestock_asset_loan,farm_security.group_farm_user,1,1,1,1
-access_crop_yield_insurance,crop.yield.insurance,model_farm_crop_yield_insurance,farm_security.group_farm_user,1,1,1,1
-access_carbon_credit_finance,carbon.credit.finance,model_farm_carbon_credit_finance,farm_security.group_farm_user,1,1,1,1
-access_futures_hedging,futures.hedging,model_farm_futures_hedging,farm_security.group_farm_user,1,1,1,1
+access_livestock_asset_loan,livestock.asset.loan,model_farm_livestock_asset_loan,farm_core.group_farm_user,1,1,1,1
+access_crop_yield_insurance,crop.yield.insurance,model_farm_crop_yield_insurance,farm_core.group_farm_user,1,1,1,1
+access_carbon_credit_finance,carbon.credit.finance,model_farm_carbon_credit_finance,farm_core.group_farm_user,1,1,1,1
+access_futures_hedging,futures.hedging,model_farm_futures_hedging,farm_core.group_farm_user,1,1,1,1
+access_farm_credit_score,farm.credit.score,model_farm_credit_score,farm_core.group_farm_user,1,1,1,1
+access_farm_insurance_index,farm.insurance.index,model_farm_insurance_index,farm_core.group_farm_user,1,1,1,1
+access_farm_insurance_claim,farm.insurance.claim,model_farm_insurance_claim,farm_core.group_farm_user,1,1,1,1
+access_farm_coop_settlement,farm.coop.settlement,model_farm_coop_settlement,farm_core.group_farm_user,1,1,1,1
