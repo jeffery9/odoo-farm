@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_agri_science_root" 
+              name="Agri-Science &amp; VRA" 
+              parent="farm_core.menu_farm_root" 
+              sequence="45"/>
+
+    <menuitem id="menu_vra_parent"
+              name="Precision VRA"
+              parent="menu_agri_science_root"
+              sequence="10"/>
+
+    <menuitem id="menu_vra_prescription"
+              name="Prescription Maps"
+              parent="menu_vra_parent"
+              action="action_farm_vra_prescription"
+              sequence="10"/>
+
+    <menuitem id="menu_vra_strategy"
+              name="VRA Decision Strategies"
+              parent="menu_vra_parent"
+              action="action_farm_vra_strategy"
+              sequence="15"/>
+
+    <menuitem id="menu_land_grid"
+              name="Land Grid Mapping"
+              parent="menu_vra_parent"
+              action="action_farm_land_grid_cell"
+              sequence="20"/>
+</odoo>

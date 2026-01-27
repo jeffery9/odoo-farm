@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_land_grid_cell_tree" model="ir.ui.view">
+        <name>farm.land.grid.cell.list</name>
+        <model>farm.land.grid.cell</model>
+        <arch type="xml">
+            <list string="Land Grid Cells" create="false">
+                <field name="location_id"/>
+                <field name="name"/>
+                <field name="row"/>
+                <field name="col"/>
+                <field name="ndvi_index" widget="progressbar"/>
+                <field name="soil_moisture"/>
+                <field name="nutrient_level"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="action_farm_land_grid_cell" model="ir.actions.act_window">
+        <name>Land Grid Mapping</name>
+        <res_model>farm.land.grid.cell</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- Inherit Location to add GIS Grid Control -->
+    <record id="view_farm_location_form_inherit_grid" model="ir.ui.view">
+        <name>farm.location.form.inherit.grid</name>
+        <model>farm.location</model>
+        <field name="inherit_id" ref="farm_core.view_farm_location_form"/>
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button name="action_generate_precision_grid" string="GIS: Generate Precise Grid" type="object" class="oe_highlight" invisible="grid_generated"/>
+                <button name="action_interpolate_soil_data" string="GIS: Soil Mapping (IDW)" type="object" invisible="not grid_generated"/>
+                <button name="action_fetch_satellite_ndvi" string="GIS: Raster Sync (NDVI)" type="object" invisible="not grid_generated"/>
+            </header>
+            <xpath expr="//group[@name='gis_information']" position="inside">
+                <group string="Spatial Processing">
+                    <field name="grid_resolution" widget="radio" options="{'horizontal': true}"/>
+                    <field name="grid_generated" readonly="1"/>
+                </group>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Spatial Raster Data" name="spatial_grid">
+                    <field name="grid_cell_ids" readonly="1">
+                        <list>
+                            <field name="name"/>
+                            <field name="row"/>
+                            <field name="col"/>
+                            <field name="center_lat" optional="hide"/>
+                            <field name="center_lng" optional="hide"/>
+                            <field name="ndvi_index" widget="progressbar" string="NDVI"/>
+                            <field name="soil_ph" string="pH (Interpolated)"/>
+                            <field name="water_stress" widget="gauge" options="{'max_value': 1}" string="Water Stress"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

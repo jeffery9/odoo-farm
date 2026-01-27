@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_vra_prescription_tree" model="ir.ui.view">
+        <name>farm.vra.prescription.list</name>
+        <model>farm.vra.prescription</model>
+        <arch type="xml">
+            <list decoration-info="state == 'generated'" decoration-success="state == 'executed'">
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="product_id"/>
+                <field name="target_type"/>
+                <field name="base_rate"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="view_farm_vra_prescription_form" model="ir.ui.view">
+        <name>farm.vra.prescription.form</name>
+        <model>farm.vra.prescription</model>
+        <arch type="xml">
+            <form>
+                <header>
+                    <button name="action_generate_prescription_map" string="Generate Prescription Map" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_export_to_machinery" string="Export ISO-XML / Shapefile" type="object" class="oe_highlight" invisible="state != 'generated'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,generated,exported,executed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Prescription Title..."/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="location_id"/>
+                            <field name="product_id"/>
+                            <field name="strategy_id"/>
+                        </group>
+                        <group>
+                            <field name="target_type"/>
+                            <field name="base_rate"/>
+                            <field name="algorithm_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Prescription Grid Details" name="grid_details">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="grid_cell_id"/>
+                                    <field name="target_rate"/>
+                                    <field name="uom_id"/>
+                                    <field name="actual_rate" readonly="1"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </arch>
+    </record>
+
+    <record id="action_farm_vra_prescription" model="ir.actions.act_window">
+        <name>VRA Prescription Maps</name>
+        <res_model>farm.vra.prescription</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+</odoo>
