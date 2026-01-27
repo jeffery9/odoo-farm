@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_farm_supply_chain_node,farm.supply.chain.node,model_farm_supply_chain_node,farm_core.group_farm_user,1,1,1,1
-access_farm_supply_demand_forecast,farm.supply.demand.forecast,model_farm_supply_demand_forecast,farm_core.group_farm_user,1,1,1,1
-access_farm_supply_risk_monitor,farm.supply.risk.monitor,model_farm_supply_risk_monitor,farm_core.group_farm_user,1,1,1,1
