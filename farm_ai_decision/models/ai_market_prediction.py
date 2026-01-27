@@ -14,107 +14,129 @@ class AIMarketPrediction(models.Model):
     """
     AI model for market price prediction
     Implements US-58-08: Agri-market intelligent prediction
+    US-60-04: Revenue Management & Hedging
+    US-60-05: Procurement Timing Prediction
     """
     _name = 'ai.market.prediction'
     _description = 'AI Market Prediction'
     _inherit = ['ai.decision.base']
 
-    product_id = fields.Many2one('product.template', string='Product')
-    current_price = fields.Float('Current Price')
+    prediction_type = fields.Selection([
+        ('sales', 'Sales/Revenue Optimization'),
+        ('procurement', 'Input Procurement Optimization')
+    ], string='Analysis Type', default='sales', required=True)
+
+    product_id = fields.Many2one('product.template', string='Product/Input')
+    current_price = fields.Float('Current Market Price')
     predicted_price_7d = fields.Float('Predicted Price (7 days)')
     predicted_price_30d = fields.Float('Predicted Price (30 days)')
     predicted_price_90d = fields.Float('Predicted Price (90 days)')
+    
     price_trend = fields.Selection([
-        ('up', 'Up'),
-        ('down', 'Down'),
+        ('up', 'Upward Trend'),
+        ('down', 'Downward Trend'),
         ('stable', 'Stable'),
-        ('volatile', 'Volatile'),
+        ('volatile', 'High Volatility'),
     ], string='Price Trend')
+
+    # US-60-04: Hedging & Revenue Management
+    futures_price = fields.Float('Futures Price (Target Month)')
+    basis_value = fields.Float('Basis (Spot - Futures)', compute='_compute_basis')
+    hedging_recommendation = fields.Html('Hedging Strategy')
+    optimal_sales_ratio = fields.Float('Recommended Sales Ratio (%)', help="Percentage of inventory to sell now vs hold/hedge")
+    
+    # US-60-05: Procurement Timing
+    procurement_action = fields.Selection([
+        ('buy_now', 'Strong Buy (Bottom Price)'),
+        ('wait', 'Hold/Wait (Price Peak)'),
+        ('bulk', 'Bulk Procurement Recommended'),
+        ('minimal', 'Minimal Purchase Only')
+    ], string="Procurement Action")
+
     market_factors = fields.Text('Market Factors Analysis')
-    sales_strategy = fields.Html('Sales Strategy')
-    optimal_sales_timing = fields.Html('Optimal Sales Timing')
-    risk_level = fields.Selection([
-        ('low', 'Low'),
-        ('medium', 'Medium'),
-        ('high', 'High'),
-    ], string='Risk Level', default='medium')
+    decision_summary = fields.Html('AI Decision Summary')
+
+    @api.depends('current_price', 'futures_price')
+    def _compute_basis(self):
+        for rec in self:
+            rec.basis_value = rec.current_price - rec.futures_price
 
     def calculate_market_prediction(self):
-        """Calculate market price predictions"""
+        """Enhanced AI calculation for Sales and Procurement"""
         for record in self:
-            if record.current_price:
-                # Simulate price prediction algorithm
-                base_change = random.uniform(-0.15, 0.20)  # -15% to +20%
+            if not record.current_price:
+                continue
 
-                # Adjust based on historical patterns
-                if record.product_id:
-                    if 'tomato' in record.product_id.name.lower():
-                        # Tomato prices often peak in winter
-                        seasonal_factor = 1.0 + (0.15 if datetime.now().month in [12, 1, 2, 11] else -0.05)
-                    elif 'wheat' in record.product_id.name.lower():
-                        # Wheat prices may peak during harvest season
-                        seasonal_factor = 1.0 + (0.10 if datetime.now().month in [6, 7, 8] else -0.05)
-                    else:
-                        seasonal_factor = 1.0
+            # 1. Base Prediction Logic (Simulated)
+            base_change = random.uniform(-0.15, 0.20)
+            seasonal_factor = 1.0
+            if record.product_id:
+                p_name = record.product_id.name.lower()
+                if any(x in p_name for x in ['fertilizer', 'urea', 'potash']):
+                    # Fertilizer linked to energy/oil
+                    seasonal_factor = 1.0 + (0.10 if datetime.now().month in [3, 4, 9, 10] else -0.05)
+                elif any(x in p_name for x in ['wheat', 'corn', 'soybean']):
+                    seasonal_factor = 1.0 + (0.05 if datetime.now().month in [6, 7, 8] else -0.05)
 
-                # Calculate predictions
-                record.predicted_price_7d = record.current_price * (1 + base_change * 0.2) * seasonal_factor
-                record.predicted_price_30d = record.current_price * (1 + base_change * 0.6) * seasonal_factor
-                record.predicted_price_90d = record.current_price * (1 + base_change) * seasonal_factor
+            record.predicted_price_7d = record.current_price * (1 + base_change * 0.2) * seasonal_factor
+            record.predicted_price_30d = record.current_price * (1 + base_change * 0.6) * seasonal_factor
+            record.predicted_price_90d = record.current_price * (1 + base_change) * seasonal_factor
 
-                # Determine trend
-                if base_change > 0.10:
-                    record.price_trend = 'up'
-                    record.priority = 'high'
-                elif base_change < -0.10:
-                    record.price_trend = 'down'
-                    record.priority = 'high'
-                elif abs(base_change) < 0.05:
-                    record.price_trend = 'stable'
-                else:
-                    record.price_trend = 'volatile'
+            # 2. Strategy Logic
+            if record.prediction_type == 'sales':
+                self._calculate_sales_strategy(record, base_change)
+            else:
+                self._calculate_procurement_strategy(record, base_change)
 
-                # Generate market factors
-                factors = [
-                    "Seasonal demand fluctuations",
-                    "Weather conditions affecting production",
-                    "Commodity market trends",
-                    "Supply chain disruptions",
-                    "Export/import regulations"
-                ]
-                record.market_factors = json.dumps(factors)
+            record.confidence_score = min(90, max(65, 75 + random.uniform(-10, 10)))
+            record.status = 'recommended'
 
-                # Generate sales strategy
-                if record.price_trend == 'up':
-                    record.sales_strategy = """
-                    <p><strong>Optimal Strategy:</strong> Consider holding inventory for better prices.</p>
-                    <ul>
-                        <li>Wait for price peak if storage is available</li>
-                        <li>Consider futures contracts to lock in higher prices</li>
-                        <li>Explore premium market segments</li>
-                    </ul>
-                    """
-                    record.optimal_sales_timing = "Hold for 30-60 days when prices are expected to peak"
-                elif record.price_trend == 'down':
-                    record.sales_strategy = """
-                    <p><strong>Optimal Strategy:</strong> Sell quickly to avoid losses.</p>
-                    <ul>
-                        <li>Harvest and sell immediately if ready</li>
-                        <li>Consider processing to add value</li>
-                        <li>Explore alternative markets</li>
-                    </ul>
-                    """
-                    record.optimal_sales_timing = "Sell as soon as possible before further price decline"
-                else:
-                    record.sales_strategy = """
-                    <p><strong>Optimal Strategy:</strong> Monitor closely and sell at local peaks.</p>
-                    <ul>
-                        <li>Watch for short-term price fluctuations</li>
-                        <li>Consider partial sales to reduce risk</li>
-                        <li>Prepare for seasonal changes</li>
-                    </ul>
-                    """
-                    record.optimal_sales_timing = "Monitor weekly, sell during temporary price peaks"
+    def _calculate_sales_strategy(self, record, base_change):
+        """US-60-04: Revenue Management & Hedging"""
+        record.futures_price = record.current_price * (1 + base_change * 1.1)
+        
+        if base_change > 0.05:
+            record.price_trend = 'up'
+            record.optimal_sales_ratio = 20.0
+            record.hedging_recommendation = """
+                <div class='alert alert-info'>
+                    <strong>Bullish Signal:</strong> Prices are rising. 
+                    Suggest holding 80% of stock. Sell 20% to cover immediate cash needs.
+                    Consider <strong>Long Call</strong> options to protect against missing further upside.
+                </div>
+            """
+        elif base_change < -0.05:
+            record.price_trend = 'down'
+            record.optimal_sales_ratio = 70.0
+            record.hedging_recommendation = """
+                <div class='alert alert-warning'>
+                    <strong>Bearish Signal:</strong> Downward pressure detected.
+                    Suggest immediate sale of 70% of inventory. 
+                    <strong>Hedge Recommendation:</strong> Short Futures on Zhengzhou Commodity Exchange (ZCE) to lock in current rates.
+                </div>
+            """
+        else:
+            record.price_trend = 'stable'
+            record.optimal_sales_ratio = 50.0
+            record.hedging_recommendation = "<p>Market stable. Maintain balanced sales approach.</p>"
 
-                record.confidence_score = min(85, max(60, 70 + random.uniform(-10, 10)))
-                record.status = 'recommended'
+    def _calculate_procurement_strategy(self, record, base_change):
+        """US-60-05: Input Procurement Optimization"""
+        if base_change < -0.08:
+            record.procurement_action = 'buy_now'
+            record.price_trend = 'down' # Good for buying
+            record.decision_summary = """
+                <p class='text-success'><strong>Bottom detected.</strong> AI predicts price rebound in 30 days.
+                Recommend <strong>Bulk Procurement</strong> for the next 2 production cycles.</p>
+            """
+        elif base_change > 0.08:
+            record.procurement_action = 'wait'
+            record.price_trend = 'up' # Bad for buying
+            record.decision_summary = """
+                <p class='text-danger'><strong>Price Peak.</strong> Energy costs driving fertilizer prices up.
+                Wait for correction. Purchase <strong>Minimal</strong> quantities only.</p>
+            """
+        else:
+            record.procurement_action = 'minimal'
+            record.price_trend = 'stable'
+            record.decision_summary = "<p>Prices normal. Regular procurement suggested.</p>"
