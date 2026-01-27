@@ -8,6 +8,7 @@
         - Comprehensive Cost Accounting (Inputs, Labor, Overhead) [US-04-02]
         - Automated Cost Attribution to Plots/Lots/Campaigns
         - Profitability Analysis per Production Unit
+        - Agricultural Standard Costing with Templates [US-65-03]
     """,
     'author': 'Jeffery',
     'depends': ['farm_operation', 'account', 'analytic'],
@@ -16,6 +17,7 @@
         'data/analytic_data.xml',
         'data/ir_sequence_data.xml',
         'views/farm_cost_analysis_views.xml',
+        'views/agri_cost_template_views.xml',
     ],
     'installable': True,
     'application': False,

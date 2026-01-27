@@ -39,6 +39,28 @@ class FarmGreenhouseControlRule(models.Model):
     
     action_ids = fields.One2many('farm.greenhouse.control.action', 'rule_id', string="Control Actions")
     active = fields.Boolean(default=True)
+    
+    # L5 Autonomous Control
+    is_ai_controlled = fields.Boolean("AI/Twin Controlled", default=False, 
+                                     help="If checked, thresholds can be dynamically adjusted by the Biological Twin.")
+    
+    ai_adjustment_log = fields.Text("AI Adjustment History")
+
+    def update_threshold_from_twin(self, new_low, new_high, reason):
+        """
+        Called by Biological Twin to dynamically adjust environment.
+        """
+        self.ensure_one()
+        if not self.is_ai_controlled:
+            return False
+        
+        old_low, old_high = self.threshold_low, self.threshold_high
+        self.write({
+            'threshold_low': new_low,
+            'threshold_high': new_high,
+            'ai_adjustment_log': (self.ai_adjustment_log or "") + f"\n[{fields.Datetime.now()}] Adjusted ({old_low}-{old_high}) -> ({new_low}-{new_high}): {reason}"
+        })
+        return True
 
 class FarmGreenhouseControlAction(models.Model):
     _name = 'farm.greenhouse.control.action'

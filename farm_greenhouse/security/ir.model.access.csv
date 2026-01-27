@@ -2,3 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_farm_greenhouse_rule,farm.greenhouse.control.rule,model_farm_greenhouse_control_rule,farm_core.group_farm_user,1,1,1,1
 access_farm_greenhouse_action,farm.greenhouse.control.action,model_farm_greenhouse_control_action,farm_core.group_farm_user,1,1,1,1
 access_farm_greenhouse_energy,farm.greenhouse.energy.log,model_farm_greenhouse_energy_log,farm_core.group_farm_user,1,1,1,1
+access_government_platform_config,farm.government.platform.config,model_farm_government_platform_config,farm_core.group_farm_user,1,1,1,1
+access_government_data_report,farm.government.data.report,model_farm_government_data_report,farm_core.group_farm_user,1,1,1,1

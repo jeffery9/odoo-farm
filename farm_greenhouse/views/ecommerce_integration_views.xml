@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- E-commerce Platform Views -->
+    <record id="view_ecommerce_platform_tree" model="ir.ui.view">
+        <field name="name">farm.ecommerce.platform.tree</field>
+        <field name="model">farm.ecommerce.platform</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="platform_type"/>
+                <field name="active"/>
+                <field name="last_sync"/>
+                <field name="next_sync"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ecommerce_platform_form" model="ir.ui.view">
+        <field name="name">farm.ecommerce.platform.form</field>
+        <field name="model">farm.ecommerce.platform</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_test_connection" type="object" string="Test Connection" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="platform_type"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="sync_inventory"/>
+                            <field name="sync_orders"/>
+                            <field name="sync_customers"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="API Configuration">
+                            <group>
+                                <field name="api_endpoint"/>
+                                <field name="client_id"/>
+                                <field name="client_secret"/>
+                                <field name="access_token"/>
+                                <field name="refresh_token"/>
+                                <field name="token_expiry"/>
+                            </group>
+                        </page>
+                        <page string="Sync Schedule">
+                            <group>
+                                <field name="last_sync"/>
+                                <field name="next_sync"/>
+                            </group>
+                        </page>
+                        <page string="Details">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- E-commerce Sync Log Views -->
+    <record id="view_ecommerce_sync_log_tree" model="ir.ui.view">
+        <field name="name">farm.ecommerce.sync.log.tree</field>
+        <field name="model">farm.ecommerce.sync.log</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="status=='failed'"
+                  decoration-info="status=='in_progress'"
+                  decoration-success="status=='completed'">
+                <field name="platform_id"/>
+                <field name="sync_type"/>
+                <field name="status"/>
+                <field name="records_processed"/>
+                <field name="records_success"/>
+                <field name="records_failed"/>
+                <field name="start_time"/>
+                <field name="duration"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ecommerce_sync_log_form" model="ir.ui.view">
+        <field name="name">farm.ecommerce.sync.log.form</field>
+        <field name="model">farm.ecommerce.sync.log</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <group>
+                            <field name="platform_id"/>
+                            <field name="sync_type"/>
+                        </group>
+                        <group>
+                            <field name="start_time"/>
+                            <field name="end_time"/>
+                            <field name="duration"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Statistics">
+                            <group>
+                                <field name="records_processed"/>
+                                <field name="records_success"/>
+                                <field name="records_failed"/>
+                            </group>
+                        </page>
+                        <page string="Details">
+                            <field name="details" widget="ace" options="{'mode': 'json'}"/>
+                        </page>
+                        <page string="Errors">
+                            <field name="error_message" attrs="{'invisible': [('error_message', '=', False)]}"
+                                   class="text-danger"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- E-commerce Listing Wizard View -->
+    <record id="view_ecommerce_listing_wizard_form" model="ir.ui.view">
+        <field name="name">farm.ecommerce.listing.wizard.form</field>
+        <field name="model">farm.ecommerce.listing.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="greenhouse_id"/>
+                        <field name="name"/>
+                        <field name="price"/>
+                    </group>
+                    <group>
+                        <field name="inventory_quantity"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description"/>
+                </group>
+                <group string="Platforms">
+                    <field name="active_platforms" widget="many2many_tags"/>
+                </group>
+                <footer>
+                    <button name="action_create_listings" string="Create Listings" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_ecommerce_platform" model="ir.actions.act_window">
+        <field name="name">E-commerce Platforms</field>
+        <field name="res_model">farm.ecommerce.platform</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_ecommerce_sync_log" model="ir.actions.act_window">
+        <field name="name">E-commerce Sync Logs</field>
+        <field name="res_model">farm.ecommerce.sync.log</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_ecommerce_integration" name="E-commerce Integration"
+              parent="menu_government_reporting" sequence="30"/>
+
+    <menuitem id="menu_ecommerce_platform" name="E-commerce Platforms"
+              action="action_ecommerce_platform"
+              parent="menu_ecommerce_integration" sequence="10"/>
+
+    <menuitem id="menu_ecommerce_sync_log" name="Sync Logs"
+              action="action_ecommerce_sync_log"
+              parent="menu_ecommerce_integration" sequence="20"/>
+
+</odoo>
