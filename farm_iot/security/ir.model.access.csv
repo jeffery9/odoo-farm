@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_farm_telemetry_worker,farm.telemetry.worker,model_farm_telemetry,group_farm_worker,1,1,1,0
-access_farm_automation_rule_spec,farm.automation.spec,model_farm_automation_rule,group_farm_specialist,1,1,1,1
+access_farm_telemetry,farm.telemetry,model_farm_telemetry,farm_core.group_farm_user,1,1,1,1
+access_farm_automation_rule,farm.automation.rule,model_farm_automation_rule,farm_core.group_farm_user,1,1,1,1
+access_farm_digital_twin_scene,farm.digital.twin.scene,model_farm_digital_twin_scene,farm_core.group_farm_user,1,1,1,1
+access_farm_digital_twin_marker,farm.digital.twin.marker,model_farm_digital_twin_marker,farm_core.group_farm_user,1,1,1,1
