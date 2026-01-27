@@ -50,6 +50,8 @@
     - ARCHITECTURE_OVERVIEW.md: Current state and organization patterns
     - INDUSTRY_ISOLATION_GUIDE.md: Industry isolation best practices
     - DATA_ISOLATION_EXAMPLE.py: Sample data migration patterns
+    - _INHERITS_IMPLEMENTATION.md: _inherits mechanism best practices
+    - _INHERITS_RELATIONSHIP_EXAMPLE.py: _inherits relationship patterns
 
     Key Features:
     - Abstract base models for industry specialization
