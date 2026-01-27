@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_subsidy,farm.subsidy,model_farm_subsidy,farm_core.group_farm_user,1,1,1,1
+access_farm_biodiversity_metric,farm.biodiversity.metric,model_farm_biodiversity_metric,farm_core.group_farm_user,1,1,1,1
+access_farm_export_compliance,farm.export.compliance,model_farm_export_compliance,farm_core.group_farm_user,1,1,1,1
+access_farm_certification_process,farm.certification.process,model_farm_certification_process,farm_core.group_farm_user,1,1,1,1
