@@ -23,6 +23,37 @@
 5. **边界限制**: 对计算结果应用物理极值限制
 6. **输出生成**: 生成符合 ISOBUS 标准的处方图文件
 
+## 具体实现 (Implementation)
+```python
+import numpy as np
+
+def generate_vra_map(grid_ids, ndvi_array, base_rate, strategy='linear'):
+    """
+    向量化生成变量处方图
+    ndvi_array: numpy 向量，包含所有网格的 NDVI 值
+    base_rate: 基准施肥量 (kg/亩)
+    """
+    # 1. 设置修正逻辑 (NDVI 越低，补肥越多)
+    if strategy == 'linear':
+        # 线性模型: Rate = Base * (1 + (Target_NDVI - Current_NDVI) * Slope)
+        target_ndvi = 0.7
+        slope = 0.5
+        rates = base_rate * (1 + (target_ndvi - ndvi_array) * slope)
+    elif strategy == 'step':
+        # 阈值步进模型
+        rates = np.full_like(ndvi_array, base_rate)
+        rates[ndvi_array < 0.3] *= 1.3
+        rates[ndvi_array > 0.6] *= 0.8
+        
+    # 2. 物理极限裁剪 (Cap & Floor)
+    max_rate = base_rate * 1.5
+    min_rate = base_rate * 0.5
+    final_rates = np.clip(rates, min_rate, max_rate)
+    
+    # 3. 构造结果字典
+    return dict(zip(grid_ids, final_rates.tolist()))
+```
+
 ## 业务规则
 - 支持多种策略类型：线性修正、阈值步进、分段函数等
 - 实现向量化计算以处理数千网格的高效计算

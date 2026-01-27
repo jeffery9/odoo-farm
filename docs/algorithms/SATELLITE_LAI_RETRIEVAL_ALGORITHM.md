@@ -27,6 +27,35 @@
 5. **后处理**: 空间插值和平滑处理
 6. **生物量转换**: 将LAI转换为生物量估算
 
+## 具体实现 (Implementation)
+```python
+import numpy as np
+
+def retrieve_lai_empirical(ndvi_raster):
+    """
+    基于 NDVI 的经验模型反演 LAI
+    模型: LAI = 3.61 * NDVI^2 + 0.11 * NDVI (Clevers et al.)
+    或者经典的指数模型: LAI = -1/k * ln((NDVI_max - NDVI)/(NDVI_max - NDVI_soil))
+    """
+    # 采用指数模型实现
+    k = 0.8 # 消光系数
+    ndvi_max = 0.92
+    ndvi_soil = 0.15
+    
+    # 裁剪并防错
+    ndvi = np.clip(ndvi_raster, ndvi_soil + 0.01, ndvi_max - 0.01)
+    
+    # 计算 LAI
+    lai = -(1/k) * np.log((ndvi_max - ndvi) / (ndvi_max - ndvi_soil))
+    
+    return {
+        'lai_raster': lai.tolist(),
+        'mean_lai': np.mean(lai),
+        'canopy_cover': (1 - np.exp(-k * lai)).tolist(), # 基于 Beer 定律估算覆盖度
+        'max_lai': np.max(lai)
+    }
+```
+
 ## 业务规则
 - 支持多种反演模型 (经验模型、物理模型、神经网络)
 - 考虑观测几何影响

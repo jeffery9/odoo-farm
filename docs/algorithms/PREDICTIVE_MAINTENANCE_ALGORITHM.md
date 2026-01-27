@@ -22,6 +22,33 @@
 5. **维护计划生成**: 生成预防性维护计划
 6. **优先级排序**: 根据风险等级排序维护任务
 
+## 具体实现 (Implementation)
+```python
+def check_maintenance_need(runtime_hours, last_service_hours, oil_temp_series, spec_thresholds):
+    """
+    基于运行时数与异常指标的维护检测
+    spec_thresholds: {'oil_temp_max': 110, 'service_interval': 250}
+    """
+    alerts = []
+    
+    # 1. 周期性检查
+    hours_since_last = runtime_hours - last_service_hours
+    if hours_since_last > spec_thresholds['service_interval'] * 0.9:
+        alerts.append("Scheduled maintenance due soon.")
+        
+    # 2. 状态趋势分析 (示例：油温持续过高)
+    if oil_temp_series and len(oil_temp_series) > 5:
+        recent_avg = sum(oil_temp_series[-5:]) / 5
+        if recent_avg > spec_thresholds['oil_temp_max']:
+            alerts.append("Engine oil temperature exceeds safety limits.")
+            
+    return {
+        'needs_service': len(alerts) > 0,
+        'reasons': alerts,
+        'risk_score': min(hours_since_last / spec_thresholds['service_interval'] * 100, 100)
+    }
+```
+
 ## 业务规则
 - 优先保障农忙季节设备正常运行
 - 平衡预防性维护成本与故障风险

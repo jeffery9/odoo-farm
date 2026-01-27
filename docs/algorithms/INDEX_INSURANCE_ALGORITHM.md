@@ -24,6 +24,43 @@
 4. **自动报案**: 通过 Webhook 向保险公司 API 发送理赔触发数据包
 5. **状态更新**: 更新保单理赔状态和相关记录
 
+## 具体实现 (Implementation)
+```python
+def check_insurance_trigger(weather_series, config):
+    """
+    检查气象指数是否触发理赔
+    weather_series: [{'date': '2026-07-01', 'value': 42.5}, ...] (如日最高气温)
+    config: {
+        'type': 'heat', 
+        'threshold': 40.0, 
+        'min_days': 3, 
+        'payout_per_unit': 500,
+        'insured_area': 100
+    }
+    """
+    triggered_days = []
+    consecutive_count = 0
+    
+    for entry in weather_series:
+        if entry['value'] >= config['threshold']:
+            consecutive_count += 1
+            if consecutive_count >= config['min_days']:
+                triggered_days.append(entry['date'])
+        else:
+            consecutive_count = 0
+            
+    if triggered_days:
+        payout = config['payout_per_unit'] * config['insured_area']
+        return {
+            'payout_trigger': True,
+            'payout_amount': payout,
+            'trigger_dates': triggered_days,
+            'reason': f"Threshold {config['threshold']} exceeded for {len(triggered_days)} days"
+        }
+        
+    return {'payout_trigger': False, 'payout_amount': 0.0}
+```
+
 ## 业务规则
 - 支持多种气象指数：降雨量、温度、风速等
 - 可持续时间要求以避免短暂异常触发

@@ -23,6 +23,41 @@
 4. **动态预测**: 利用未来天气预报预计算累计积温趋势
 5. **偏差分析**: 计算实际与预测生长的偏差
 
+## 具体实现 (Implementation)
+```python
+def calculate_daily_gdd(t_max, t_min, t_base, t_cap=None):
+    """
+    计算日有效积温
+    t_cap: 假设为上限温度(如玉米 30°C)，超过此温度生长不再加速
+    """
+    if t_cap:
+        t_max = min(t_max, t_cap)
+        t_min = min(t_min, t_cap)
+        
+    avg_temp = (t_max + t_min) / 2.0
+    gdd = max(avg_temp - t_base, 0.0)
+    return gdd
+
+def predict_harvest_date(start_date, current_gdd, target_gdd, forecast_data, t_base):
+    """
+    预测收获日期
+    forecast_data: [{'date': '2026-05-01', 't_max': 25, 't_min': 15}, ...]
+    """
+    remaining_gdd = target_gdd - current_gdd
+    if remaining_gdd <= 0:
+        return start_date # 已经成熟
+        
+    accumulated_forecast = 0.0
+    for day in forecast_data:
+        daily = calculate_daily_gdd(day['t_max'], day['t_min'], t_base)
+        accumulated_forecast += daily
+        if accumulated_forecast >= remaining_gdd:
+            return day['date']
+            
+    # 如果预报数据不足，按历史均值估算 (此处简化返回 None)
+    return None
+```
+
 ## 业务规则
 - 生物学零度由作物品种定义
 - 当日平均温度低于生物学零度时，当日积温为0

@@ -26,6 +26,41 @@
 6. **异常检测**: 识别NDVI值异常的区域
 7. **处方生成**: 基于NDVI分析结果生成变量作业处方
 
+## 具体实现 (Implementation)
+```python
+import numpy as np
+
+def calculate_ndvi(red_band, nir_band):
+    """
+    计算 NDVI 矩阵
+    red_band: numpy array (波段 4)
+    nir_band: numpy array (波段 8)
+    """
+    # 1. 浮点化与防零处理
+    red = red_band.astype(float)
+    nir = nir_band.astype(float)
+    
+    # 2. 执行公式: (NIR - Red) / (NIR + Red)
+    # 使用 np.divide 的 where 参数处理分母为 0 的情况
+    numerator = nir - red
+    denominator = nir + red
+    
+    ndvi = np.divide(numerator, denominator, out=np.zeros_like(numerator), where=denominator!=0)
+    
+    # 3. 长势分级映射
+    # 0.2 以下: 裸土/建筑; 0.2-0.5: 长势一般; > 0.5: 健康
+    status_map = np.zeros_like(ndvi)
+    status_map[ndvi > 0.2] = 1 # 一般
+    status_map[ndvi > 0.5] = 2 # 良好
+    status_map[ndvi > 0.7] = 3 # 极佳
+    
+    return {
+        'ndvi_matrix': ndvi,
+        'mean_ndvi': np.mean(ndvi[ndvi > 0]),
+        'health_zones': status_map.tolist()
+    }
+```
+
 ## 业务规则
 - NDVI值范围: -1.0 到 +1.0
 - 绿色植被: NDVI > 0.2

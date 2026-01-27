@@ -22,6 +22,35 @@
 5. **风险因素评估**: 评估影响生长的风险因素
 6. **动态调整**: 根据实际生长情况调整预测
 
+## 具体实现 (Implementation)
+```python
+from datetime import timedelta
+
+def predict_growth_stages(planting_date, daily_temp_forecast, base_temp, stage_gdd_targets):
+    """
+    基于积温 (GDD) 的生长阶段预测
+    daily_temp_forecast: [{'date': '2026-02-01', 'avg_temp': 15.5}, ...]
+    stage_gdd_targets: {'emergence': 150, 'flowering': 800, 'maturity': 1500}
+    """
+    cumulative_gdd = 0.0
+    predictions = {}
+    current_date = planting_date
+    
+    # 按照阶段目标排序
+    sorted_stages = sorted(stage_gdd_targets.items(), key=lambda x: x[1])
+    
+    for forecast in daily_temp_forecast:
+        avg_temp = forecast['avg_temp']
+        daily_gdd = max(avg_temp - base_temp, 0)
+        cumulative_gdd += daily_gdd
+        
+        for stage, target in sorted_stages:
+            if stage not in predictions and cumulative_gdd >= target:
+                predictions[stage] = forecast['date']
+                
+    return predictions
+```
+
 ## 业务规则
 - 遵循作物生长发育的基本规律
 - 考虑当地气候条件的特殊性

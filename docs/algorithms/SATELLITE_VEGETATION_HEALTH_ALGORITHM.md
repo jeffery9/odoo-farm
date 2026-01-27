@@ -29,6 +29,35 @@
 6. **建议生成**: 基于健康状况生成管理建议
 7. **趋势分析**: 分析健康状况的时间趋势
 
+## 具体实现 (Implementation)
+```python
+import numpy as np
+
+def evaluate_health_index(metrics, stage_weights):
+    """
+    植被健康加权评分
+    metrics: {'ndvi': 0.65, 'evi': 0.45, 'savi': 0.55}
+    stage_weights: {'ndvi': 0.5, 'evi': 0.3, 'savi': 0.2}
+    """
+    score = 0.0
+    for key, weight in stage_weights.items():
+        score += metrics.get(key, 0.0) * weight
+        
+    # 标准化到 0-100
+    final_score = score * 100
+    
+    # 胁迫识别逻辑 (示例：若 NDVI 低于 0.3 则标记风险)
+    stress_detected = False
+    if metrics.get('ndvi', 1.0) < 0.3:
+        stress_detected = True
+        
+    return {
+        'health_score': round(final_score, 2),
+        'status': 'Healthy' if final_score > 70 else 'Monitor' if final_score > 40 else 'Stressed',
+        'stress_warning': stress_detected
+    }
+```
+
 ## 业务规则
 - 不同作物类型使用不同健康评估模型
 - 考虑生长阶段对健康评估的影响

@@ -22,6 +22,40 @@
 5. **LLM综合**: 使用LLM进行结果综合（如果可用）
 6. **输出生成**: 生成协调后的综合结果
 
+## 具体实现 (Implementation)
+```python
+def coordinate_ai_outputs(results, method='weighted_average'):
+    """
+    AI 协调层聚合算法
+    results: {
+        'vision': {'recommendation': 'apply_fertilizer', 'confidence': 0.85},
+        'sensor': {'recommendation': 'hold_fertilizer', 'confidence': 0.60},
+        'market': {'recommendation': 'optimize_cost', 'confidence': 0.90}
+    }
+    """
+    if method == 'highest_confidence':
+        # 简单取最高置信度的结果
+        best_service = max(results.items(), key=lambda x: x[1]['confidence'])
+        return best_service[1]
+        
+    elif method == 'weighted_average':
+        # 加权投票逻辑
+        tally = {}
+        total_weight = 0
+        for service, data in results.items():
+            conf = data['confidence']
+            rec = data['recommendation']
+            tally[rec] = tally.get(rec, 0) + conf
+            total_weight += conf
+            
+        final_rec = max(tally.items(), key=lambda x: x[1])
+        return {
+            'recommendation': final_rec[0],
+            'confidence': final_rec[1] / total_weight,
+            'breakdown': results
+        }
+```
+
 ## 业务规则
 - 支持多种协调类型：跨模块工作流、多AI决策协调、视觉决策集成等
 - 提供多种聚合方法：投票法、加权平均、LLM综合、基于规则的综合

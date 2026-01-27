@@ -26,6 +26,54 @@
 3. **风险评估**: 根据信用分进行风险等级划分
 4. **动态更新**: 定期运行 Cron 任务刷新信用评分
 
+## 具体实现 (Implementation)
+```python
+def calculate_agricultural_credit_score(data):
+    """
+    计算农业信用评分的核心逻辑
+    data: {
+        'gps_conformance': 0.95, 
+        'violations_count': 0, 
+        'yield_cv': 0.12, 
+        'vra_usage': 0.8
+    }
+    """
+    # 1. 真实性得分 (权重 30%)
+    authenticity_score = data['gps_conformance'] * 100
+    
+    # 2. 合规性得分 (权重 30%)
+    # 基础分 100，每次违规扣 20 分
+    compliance_score = max(100 - (data['violations_count'] * 20), 0)
+    
+    # 3. 稳产性得分 (权重 20%)
+    # 变异系数 CV 越低，得分越高
+    stability_score = max(100 * (1 - data['yield_cv']), 0)
+    
+    # 4. 环保性得分 (权重 20%)
+    environmental_score = data['vra_usage'] * 100
+    
+    # 综合得分
+    final_score = (
+        authenticity_score * 0.3 +
+        compliance_score * 0.3 +
+        stability_score * 0.2 +
+        environmental_score * 0.2
+    )
+    
+    risk_level = 'Low' if final_score > 80 else 'Medium' if final_score > 60 else 'High'
+    
+    return {
+        'credit_score': round(final_score, 2),
+        'risk_assessment': risk_level,
+        'breakdown': {
+            'authenticity': authenticity_score,
+            'compliance': compliance_score,
+            'stability': stability_score,
+            'environmental': environmental_score
+        }
+    }
+```
+
 ## 业务规则
 - 真实性维度权重 30%（GPS 围栏重合度）
 - 合规性维度权重 30%（休药期拦截记录）

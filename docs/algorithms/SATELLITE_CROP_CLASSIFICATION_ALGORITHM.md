@@ -27,6 +27,42 @@
 5. **精度评估**: 计算分类精度和混淆矩阵
 6. **结果验证**: 使用独立样本验证分类结果
 
+## 具体实现 (Implementation)
+```python
+from sklearn.ensemble import RandomForestClassifier
+import numpy as np
+
+def classify_crop_types(bands_data, labels, locations):
+    """
+    基于随机森林的作物分类实现
+    bands_data: numpy array (n_pixels, n_bands)
+    labels: 训练标签
+    locations: 训练位置索引
+    """
+    # 1. 提取训练特征
+    X_train = bands_data[locations]
+    y_train = labels
+    
+    # 2. 训练分类器 (Random Forest)
+    clf = RandomForestClassifier(n_estimators=100, max_depth=10, random_state=42)
+    clf.fit(X_train, y_train)
+    
+    # 3. 执行全场预测
+    full_crop_map = clf.predict(bands_data)
+    probabilities = clf.predict_proba(bands_data)
+    
+    # 4. 统计结果
+    unique, counts = np.unique(full_crop_map, return_counts=True)
+    stats = dict(zip(unique.tolist(), counts.tolist()))
+    
+    return {
+        'crop_map': full_crop_map.tolist(),
+        'area_stats': stats,
+        'mean_confidence': np.mean(np.max(probabilities, axis=1)),
+        'feature_importance': clf.feature_importances_.tolist()
+    }
+```
+
 ## 业务规则
 - 支持主要农作物类型识别 (玉米、小麦、水稻、大豆等)
 - 时序特征提高分类精度

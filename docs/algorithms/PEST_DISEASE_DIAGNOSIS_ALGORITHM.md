@@ -22,6 +22,37 @@
 5. **防治建议生成**: 基于诊断结果生成防治方案
 6. **风险评估**: 评估病虫害传播风险
 
+## 具体实现 (Implementation)
+```python
+def fusion_diagnosis(cv_results, environmental_risk, user_notes):
+    """
+    多模态病虫害综合诊断逻辑
+    cv_results: AI 视觉识别置信度列表 [{'pest': 'aphid', 'conf': 0.85}, ...]
+    environmental_risk: 气象触发风险 {'powdery_mildew': 0.9, 'locust': 0.1}
+    """
+    final_score = {}
+    
+    # 1. 基础分值取自视觉识别
+    for res in cv_results:
+        final_score[res['pest']] = res['conf'] * 0.7 # 视觉权重 70%
+        
+    # 2. 结合气象风险调整 (环境因素可能显著增加某些病害概率)
+    for pest, risk in environmental_risk.items():
+        if pest in final_score:
+            final_score[pest] += risk * 0.3 # 环境权重 30%
+        else:
+            final_score[pest] = risk * 0.2
+            
+    # 3. 排序并返回最高置信度结果
+    best_match = max(final_score.items(), key=lambda x: x[1])
+    
+    return {
+        'pest_id': best_match[0],
+        'confidence': min(best_match[1], 1.0),
+        'status': 'confirmed' if best_match[1] > 0.8 else 'requires_review'
+    }
+```
+
 ## 业务规则
 - 严格遵循植物保护法规和用药指南
 - 优先推荐生物防治和绿色防控方法

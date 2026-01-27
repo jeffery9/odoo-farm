@@ -27,6 +27,45 @@
 6. **系谱验证**: 检查系谱逻辑一致性和异常
 7. **结果可视化**: 生成系谱树和关系网络图
 
+## 具体实现 (Implementation)
+```python
+def calculate_kinship_matrix(pedigree):
+    """
+    计算加性亲缘关系矩阵 (Numerator Relationship Matrix, A)
+    pedigree: list of (id, sire, dam), 已排序确保父母在子女前
+    """
+    n = len(pedigree)
+    A = np.zeros((n, n))
+    
+    # 映射 ID 到索引
+    id_map = {item[0]: i for i, item in enumerate(pedigree)}
+    
+    for i in range(n):
+        idx, s_id, d_id = pedigree[i]
+        s_idx = id_map.get(s_id)
+        d_idx = id_map.get(d_id)
+        
+        # 1. 计算对角线元素 (1 + F_i)
+        if s_idx is not None and d_idx is not None:
+            A[i, i] = 1 + 0.5 * A[s_idx, d_idx]
+        else:
+            A[i, i] = 1.0
+            
+        # 2. 计算非对角线元素
+        for j in range(i):
+            if s_idx is not None and d_idx is not None:
+                A[i, j] = A[j, i] = 0.5 * (A[j, s_idx] + A[j, d_idx])
+            elif s_idx is not None:
+                A[i, j] = A[j, i] = 0.5 * A[j, s_idx]
+            elif d_idx is not None:
+                A[i, j] = A[j, i] = 0.5 * A[j, d_idx]
+            else:
+                A[i, j] = A[j, i] = 0.0
+                
+    inbreeding_coeffs = {pedigree[i][0]: A[i, i] - 1 for i in range(n)}
+    return A, inbreeding_coeffs
+```
+
 ## 业务规则
 - 支持多世代系谱分析
 - 自动检测系谱错误和异常

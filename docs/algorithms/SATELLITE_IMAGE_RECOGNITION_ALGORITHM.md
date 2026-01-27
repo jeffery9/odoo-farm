@@ -40,6 +40,38 @@
 10. **异常检测**: 识别NDVI值异常的区域
 11. **处方生成**: 基于分析结果生成变量作业处方
 
+## 具体实现 (Implementation)
+```python
+import numpy as np
+
+def analyze_vegetation_health(spectral_bands):
+    """
+    植被健康综合评分算法 (VCI - Vegetation Condition Index)
+    spectral_bands: {'red': array, 'nir': array, 'blue': array}
+    """
+    red = spectral_bands['red'].astype(float)
+    nir = spectral_bands['nir'].astype(float)
+    blue = spectral_bands['blue'].astype(float)
+    
+    # 1. 计算 NDVI
+    ndvi = (nir - red) / (nir + red + 1e-10)
+    
+    # 2. 计算 EVI (增强植被指数, 减少大气和背景干扰)
+    # EVI = G * (NIR - RED) / (NIR + C1 * RED - C2 * BLUE + L)
+    evi = 2.5 * (nir - red) / (nir + 6 * red - 7.5 * blue + 1 + 1e-10)
+    
+    # 3. 综合健康评分 (0-100)
+    # 基于 NDVI 和 EVI 的加权组合
+    health_score = (0.6 * np.mean(ndvi) + 0.4 * np.mean(evi)) * 100
+    
+    return {
+        'ndvi_avg': np.mean(ndvi),
+        'evi_avg': np.mean(evi),
+        'health_score': np.clip(health_score, 0, 100),
+        'anomaly_ratio': np.sum(ndvi < 0.2) / ndvi.size
+    }
+```
+
 ## 业务规则
 - NDVI值范围: -1.0 到 +1.0
 - 绿色植被: NDVI > 0.2

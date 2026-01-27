@@ -20,6 +20,13 @@
 4. **步骤4**: 详细描述算法的第四步
 5. **步骤5**: 详细描述算法的第五步
 
+## 具体实现 (Implementation)
+```python
+def algorithm_name(param1, param2):
+    # 在此编写符合 Odoo 19 规范的 Python 逻辑参考实现
+    pass
+```
+
 ## 业务规则
 - 业务规则1描述
 - 业务规则2描述

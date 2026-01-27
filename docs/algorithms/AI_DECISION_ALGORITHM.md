@@ -23,6 +23,39 @@
 6. **置信度计算**: 计算整体决策置信度
 7. **推理生成**: 生成人类可读的决策推理过程
 
+## 具体实现 (Implementation)
+```python
+def make_ai_decision(input_data, decision_type):
+    """
+    核心 AI 决策逻辑实现
+    """
+    # 1. 策略路由映射
+    strategies = {
+        'irrigation': calculate_irrigation_logic,
+        'pest': calculate_pest_risk_logic,
+        'fertilizer': calculate_nutrient_balance_logic
+    }
+    
+    logic_func = strategies.get(decision_type)
+    if not logic_func:
+        return {'error': 'Unknown decision type'}
+        
+    # 2. 执行具体业务逻辑
+    raw_result = logic_func(input_data)
+    
+    # 3. 结果后处理与置信度校准
+    # 基于历史准确率进行惩罚项修正
+    confidence = raw_result.get('confidence', 0.5)
+    if input_data.get('data_quality') == 'low':
+        confidence *= 0.8
+        
+    return {
+        'decision': raw_result['value'],
+        'confidence': confidence,
+        'explanation': f"Based on {decision_type} logic with current environment parameters."
+    }
+```
+
 ## 业务规则
 - 优先使用LLM服务进行复杂分析
 - 支持多种决策类型：推荐、分析、优化、预测、监测、分类、规划

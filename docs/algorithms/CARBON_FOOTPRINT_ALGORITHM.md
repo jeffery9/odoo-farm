@@ -23,6 +23,36 @@
 4. **归口分配**: 将总排放量平摊至该批次下的每个产品单位
 5. **结果输出**: 生成单位产品碳排放指标 CO2e_per_unit
 
+## 具体实现 (Implementation)
+```python
+def calculate_carbon_ledger(inputs, energy, sequestration, factor_registry):
+    """
+    碳账本核算算法实现
+    inputs: {'urea': 500, 'potash': 200}
+    energy: {'diesel_liters': 150, 'electricity_kwh': 1200}
+    factor_registry: {'urea': 2.5, 'diesel_liters': 2.68, ...}
+    """
+    # 1. 投入品隐含碳
+    input_emissions = sum(v * factor_registry.get(k, 0.0) for k, v in inputs.items())
+    
+    # 2. 运营过程碳 (Scope 1 & 2)
+    operational_emissions = sum(v * factor_registry.get(k, 0.0) for k, v in energy.items())
+    
+    # 3. 总量与抵扣
+    gross_emissions = input_emissions + operational_emissions
+    net_footprint = max(gross_emissions - sequestration, 0.0)
+    
+    return {
+        'total_co2e_kg': net_footprint,
+        'breakdown': {
+            'scope_1_2': operational_emissions,
+            'scope_3_inputs': input_emissions,
+            'sequestration_offset': sequestration
+        },
+        'carbon_credit_estimate': net_footprint * 0.001 # 转换为吨并估算
+    }
+```
+
 ## 业务规则
 - 支持动态调整的排放因子库（按地区、季节等）
 - 包含所有主要碳排放源：化肥、农药、燃料、电力等

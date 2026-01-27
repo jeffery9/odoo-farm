@@ -28,6 +28,47 @@
 6. **置信度评估**: 评估变化检测的可信度
 7. **预警生成**: 基于变化强度生成预警信息
 
+## 具体实现 (Implementation)
+```python
+import numpy as np
+
+def detect_ndvi_change(ndvi_t1, ndvi_t2, threshold=0.15):
+    """
+    基于 NDVI 差值的植被变化检测
+    ndvi_t1: 前期 NDVI 矩阵
+    ndvi_t2: 后期 NDVI 矩阵
+    """
+    # 1. 计算差值矩阵
+    diff = ndvi_t2 - ndvi_t1
+    
+    # 2. 识别显著变化区域
+    # Positive Change (长势增加): diff > threshold
+    # Negative Change (长势衰减/受灾): diff < -threshold
+    
+    significant_increase = diff > threshold
+    significant_decrease = diff < -threshold
+    
+    # 3. 统计指标
+    n_pixels = diff.size
+    pct_increase = np.sum(significant_increase) / n_pixels * 100
+    pct_decrease = np.sum(significant_decrease) / n_pixels * 100
+    
+    # 4. 生成警报级别
+    severity = 0
+    if pct_decrease > 30: # 超过 30% 面积严重衰减
+        severity = 3 # 高危
+    elif pct_decrease > 10:
+        severity = 2 # 预警
+        
+    return {
+        'diff_matrix': diff.tolist(),
+        'pct_increase': pct_increase,
+        'pct_decrease': pct_decrease,
+        'severity_index': severity,
+        'alert_needed': severity >= 2
+    }
+```
+
 ## 业务规则
 - 支持多种植被指数用于变化检测
 - 变化阈值可配置，考虑作物类型差异

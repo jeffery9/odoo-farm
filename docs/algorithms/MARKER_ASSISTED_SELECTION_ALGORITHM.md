@@ -29,6 +29,37 @@
 6. **增益预测**: 预测选择响应和遗传增益
 7. **杂交设计**: 基于互补性设计杂交组合
 
+## 具体实现 (Implementation)
+```python
+def calculate_marker_score(genotypes, effects):
+    """
+    计算分子标记评分 (Molecular Score)
+    genotypes: dict {individual_id: [m1, m2, ... mk]} (编码为 0, 1, 2)
+    effects: list [e1, e2, ... ek] (对应标记的单位替代效应)
+    """
+    scores = {}
+    for ind_id, g_vec in genotypes.items():
+        # 分子评分 = Σ (基因型值 * 效应值)
+        score = sum(g * e for g, e in zip(g_vec, effects))
+        scores[ind_id] = score
+        
+    return scores
+
+def select_candidates(scores, top_pct=0.1):
+    """
+    执行选择
+    """
+    sorted_ids = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    n_select = max(int(len(sorted_ids) * top_pct), 1)
+    
+    selected = sorted_ids[:n_select]
+    return {
+        'selected_ids': [x[0] for x in selected],
+        'min_score': selected[-1][1],
+        'mean_score': sum(x[1] for x in selected) / n_select
+    }
+```
+
 ## 业务规则
 - 多性状选择考虑性状间相关性
 - 标记效应显著性阈值 p < 0.05

@@ -24,6 +24,46 @@
 5. **成本分析**: 生成成本分析报告
 6. **动态更新**: 根据新增活动更新成本数据
 
+## 具体实现 (Implementation)
+```python
+def calculate_batch_cost(batch_id, activities, input_costs, labor_costs, equipment_costs):
+    """
+    计算特定批次的生产成本
+    activities: 属于该批次的所有作业列表
+    input_costs: {'product_id': cost_per_unit, ...}
+    labor_costs: {'employee_id': rate_per_hour, ...}
+    """
+    total_input = 0.0
+    total_labor = 0.0
+    total_equipment = 0.0
+    
+    for act in activities:
+        # 1. 投入品成本 (种子、化肥等)
+        for line in act.input_lines:
+            total_input += line.qty * input_costs.get(line.product_id, 0.0)
+            
+        # 2. 人工成本
+        for labor in act.labor_lines:
+            total_labor += labor.hours * labor_costs.get(labor.employee_id, 0.0)
+            
+        # 3. 设备成本 (折旧+油耗)
+        for equip in act.equipment_lines:
+            total_equipment += equip.hours * equipment_costs.get(equip.equipment_id, 0.0)
+            
+    total_cost = total_input + total_labor + total_equipment
+    
+    return {
+        'batch_id': batch_id,
+        'total_cost': total_cost,
+        'breakdown': {
+            'inputs': total_input,
+            'labor': total_labor,
+            'equipment': total_equipment
+        },
+        'margin_analysis': (act.harvest_value - total_cost) / act.harvest_value if act.harvest_value > 0 else 0
+    }
+```
+
 ## 业务规则
 - 遵循农业会计准则
 - 支持多种成本分摊方法

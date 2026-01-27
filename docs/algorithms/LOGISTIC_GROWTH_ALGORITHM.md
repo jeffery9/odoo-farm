@@ -23,6 +23,43 @@
 4. **预警判断**: 若偏差 > 20%，触发生长异常预警
 5. **趋势预测**: 基于当前生长状态预测后续生长趋势
 
+## 具体实现 (Implementation)
+```python
+import numpy as np
+
+def logistic_growth_function(t, L, k, t0):
+    """
+    逻辑斯蒂生长公式核心实现
+    W(t) = L / (1 + exp(-k(t - t0)))
+    """
+    return L / (1 + np.exp(-k * (t - t0)))
+
+def analyze_growth_deviation(t_current, w_actual, variety_params):
+    """
+    分析生长偏差
+    variety_params: {'L': 100, 'k': 0.1, 't0': 50}
+    """
+    L, k, t0 = variety_params['L'], variety_params['k'], variety_params['t0']
+    w_expected = logistic_growth_function(t_current, L, k, t0)
+    
+    deviation = (w_actual - w_expected) / w_expected
+    
+    status = 'normal'
+    if deviation < -0.2:
+        status = 'critical_retardation'
+    elif deviation < -0.1:
+        status = 'warning_slow'
+    elif deviation > 0.2:
+        status = 'vigorous'
+        
+    return {
+        'expected': round(w_expected, 2),
+        'actual': w_actual,
+        'deviation_pct': round(deviation * 100, 2),
+        'status': status
+    }
+```
+
 ## 业务规则
 - 支持不同作物的差异化生长曲线参数
 - 当偏差 > 20% 时触发农技预警通知

@@ -22,6 +22,34 @@
 5. **水量计算**: 计算所需灌溉水量
 6. **计划优化**: 优化灌溉时间和分布
 
+## 具体实现 (Implementation)
+```python
+def calculate_irrigation_need(current_moisture, field_capacity, wilting_point, et_crop, rain_forecast):
+    """
+    计算灌溉需求量 (单位: mm)
+    et_crop: 作物蒸腾耗水量
+    rain_forecast: 预报降雨量
+    """
+    # 1. 设定安全阈值 (例如：田间持水量的 60%)
+    irrigation_threshold = wilting_point + (field_capacity - wilting_point) * 0.6
+    
+    # 2. 判断是否需要灌溉
+    if current_moisture < irrigation_threshold:
+        # 3. 计算亏缺量
+        deficit = field_capacity - current_moisture
+        
+        # 4. 考虑降雨补偿
+        net_requirement = max(deficit + et_crop - rain_forecast, 0)
+        
+        return {
+            'status': 'urgent' if current_moisture < wilting_point else 'needed',
+            'qty_mm': net_requirement,
+            'message': f"Irrigation needed to restore field capacity ({field_capacity}%)."
+        }
+        
+    return {'status': 'adequate', 'qty_mm': 0, 'message': "Soil moisture is sufficient."}
+```
+
 ## 业务规则
 - 严格遵循作物水分生理需求
 - 优先考虑天然降水，减少灌溉用水

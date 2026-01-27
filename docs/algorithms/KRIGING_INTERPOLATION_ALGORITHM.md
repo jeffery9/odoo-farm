@@ -22,6 +22,39 @@
 4. **不确定性评估**: 计算插值结果的方差和置信区间
 5. **网格化输出**: 将插值结果映射到目标网格系统
 
+## 具体实现 (Implementation)
+```python
+import numpy as np
+from pykrige.ok import OrdinaryKriging
+
+def interpolate_field_soil(points, target_grid):
+    """
+    执行普通克里金插值
+    points: [[x1, y1, v1], [x2, y2, v2], ...]
+    target_grid: {'x': np.linspace, 'y': np.linspace}
+    """
+    # 1. 准备训练数据
+    data = np.array(points)
+    x, y, z = data[:, 0], data[:, 1], data[:, 2]
+    
+    # 2. 构建克里金模型 (使用球面模型)
+    ok = OrdinaryKriging(
+        x, y, z, 
+        variogram_model='spherical',
+        verbose=False, 
+        enable_plotting=False
+    )
+    
+    # 3. 执行插值
+    grid_z, ss = ok.execute('grid', target_grid['x'], target_grid['y'])
+    
+    return {
+        'grid_data': grid_z.tolist(),
+        'variance': ss.tolist(),
+        'model_params': ok.variogram_model_parameters
+    }
+```
+
 ## 业务规则
 - 支持多种变差图模型：球面模型、指数模型、高斯模型
 - 考虑空间自相关性和各向异性

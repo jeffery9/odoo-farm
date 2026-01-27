@@ -22,6 +22,39 @@
 5. **设备适配**: 转换为农业设备可识别的格式
 6. **验证与优化**: 验证处方图合理性并进行优化
 
+## 具体实现 (Implementation)
+```python
+import numpy as np
+
+def generate_vra_prescription(grid_points, ndvi_values, base_rate, logic_params):
+    """
+    生成变量施肥 (VRA) 处方数据
+    grid_points: 空间网格坐标
+    ndvi_values: 对应的长势指数 (0.0-1.0)
+    logic_params: {'threshold': 0.4, 'boost_factor': 1.2, 'reduction_factor': 0.8}
+    """
+    prescriptions = []
+    threshold = logic_params['threshold']
+    
+    for i in range(len(grid_points)):
+        current_ndvi = ndvi_values[i]
+        rate = base_rate
+        
+        # 逻辑：长势弱 (NDVI 低) 补肥，长势极强 (NDVI 极高) 减肥
+        if current_ndvi < threshold:
+            rate *= logic_params['boost_factor']
+        elif current_ndvi > 0.8:
+            rate *= logic_params['reduction_factor']
+            
+        prescriptions.append({
+            'point': grid_points[i],
+            'rate': rate,
+            'unit': 'kg/ha'
+        })
+        
+    return prescriptions
+```
+
 ## 业务规则
 - 遵循精准农业和变量作业的标准
 - 支持多种插值算法（克里金、反距离权重等）

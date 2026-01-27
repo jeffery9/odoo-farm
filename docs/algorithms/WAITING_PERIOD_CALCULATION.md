@@ -24,6 +24,35 @@
 5. **预警生成**: 生成风险预警信息
 6. **报告生成**: 生成合规性报告
 
+## 具体实现 (Implementation)
+```python
+from datetime import timedelta
+
+def calculate_safe_harvest(application_records, harvest_date):
+    """
+    检查收获安全性
+    application_records: [{'product': 'Pesticide A', 'date': '2026-05-01', 'withdrawal_days': 21}, ...]
+    """
+    conflicts = []
+    
+    for rec in application_records:
+        safe_date = rec['date'] + timedelta(days=rec['withdrawal_days'])
+        if harvest_date < safe_date:
+            conflicts.append({
+                'product': rec['product'],
+                'applied_date': rec['date'],
+                'safe_date': safe_date,
+                'shortfall_days': (safe_date - harvest_date).days
+            })
+            
+    is_safe = len(conflicts) == 0
+    return {
+        'is_safe': is_safe,
+        'conflicts': conflicts,
+        'warning_level': 'Critical' if any(c['shortfall_days'] > 7 for c in conflicts) else 'Warning'
+    }
+```
+
 ## 业务规则
 - 严格遵循国家农药使用和食品安全法规
 - 有机认证要求高于常规标准

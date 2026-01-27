@@ -29,6 +29,32 @@
 6. **策略制定**: 生成杂交育种策略
 7. **结果排序**: 按预期优势排序杂交组合
 
+## 具体实现 (Implementation)
+```python
+def predict_heterosis(male_phenotype, female_phenotype, combining_ability):
+    """
+    预测杂交优势
+    combining_ability: {'gca_male': float, 'gca_female': float, 'sca': float}
+    """
+    # 1. 计算中亲均值 (Mid-Parent Value, MPV)
+    mpv = (male_phenotype + female_phenotype) / 2.0
+    
+    # 2. 计算预期杂交值 (Predicted Hybrid Value, PHV)
+    # PHV = General Combining Ability (GCA) + Specific Combining Ability (SCA)
+    phv = combining_ability['gca_male'] + combining_ability['gca_female'] + combining_ability['sca']
+    
+    # 3. 计算杂种优势百分比
+    # MPH = (PHV - MPV) / MPV * 100
+    mph = ((phv - mpv) / mpv) * 100 if mpv != 0 else 0.0
+    
+    return {
+        'predicted_value': phv,
+        'mid_parent_value': mpv,
+        'heterosis_percent': mph,
+        'recommendation': 'High' if mph > 15 else 'Standard'
+    }
+```
+
 ## 业务规则
 - 考虑加性和显性遗传效应
 - 支持多性状杂种优势预测
