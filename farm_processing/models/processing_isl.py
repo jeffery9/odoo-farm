@@ -19,6 +19,11 @@ class FarmProcessingBom(models.Model):
     standard_duration = fields.Float('Standard Duration (Minutes)')
     haccp_instructions = fields.Html("HACCP Critical Instructions")
 
+    # US-65-02: Artisan Craft Processing (e.g. Ichida Persimmons)
+    is_artisan_process = fields.Boolean("Artisan Craft Process", help="Enables specialized drying/curing monitoring.")
+    target_moisture_content = fields.Float("Target Moisture (%)")
+    target_weight_loss_ratio = fields.Float("Target Weight Loss (%)")
+
     def write(self, vals):
         # Ensure industry type is set to food processing
         if 'industry_type' not in vals and not self.industry_type:
@@ -46,6 +51,26 @@ class FarmProcessingProduction(models.Model):
     energy_reading_start = fields.Float(string='Energy Reading Start', copy=False)
     energy_reading_end = fields.Float(string='Energy Reading End', copy=False)
     energy_cost_total = fields.Float(string='Total Energy Cost', compute='_compute_energy_cost_isl')
+
+    # US-65-02: Artisan Monitoring
+    current_moisture_content = fields.Float("Current Moisture (%)", group_operator="avg")
+    current_weight_loss_ratio = fields.Float("Current Weight Loss (%)")
+    is_ready_for_harvest = fields.Boolean("Ready for Collection", compute='_compute_artisan_readiness', store=True)
+
+    @api.depends('current_moisture_content', 'processing_bom_id.target_moisture_content')
+    def _compute_artisan_readiness(self):
+        """US-65-02: Automated logic to determine if artisan drying is complete"""
+        for rec in self:
+            if rec.processing_bom_id and rec.processing_bom_id.is_artisan_process:
+                target = rec.processing_bom_id.target_moisture_content
+                if target > 0 and rec.current_moisture_content <= target:
+                    rec.is_ready_for_harvest = True
+                    # Notify the user (Simplified)
+                    rec.message_post(body=_("ARTISAN ALERT: Target moisture reached! The product is ready for collection."))
+                else:
+                    rec.is_ready_for_harvest = False
+            else:
+                rec.is_ready_for_harvest = False
 
     # --- Polymorphic Link (US-TECH-06-26) ---
     processing_bom_id = fields.Many2one('farm.processing.bom', string='Processing Recipe', compute='_compute_processing_bom_id')
