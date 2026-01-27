@@ -1,8 +1,8 @@
 from . import base_mixins
 from . import common_fields
 from . import gis_utils
-from . import land_location_management
-from . import activity_operation_management
+from . import land_location
+from . import activity_operation
 from . import (
     config_settings,
     industry_data_package,
@@ -15,4 +15,4 @@ from . import (
     farm_growth_curve,
     product_template_extension,
 )
-from . import geofencing_management
+from . import geofencing
