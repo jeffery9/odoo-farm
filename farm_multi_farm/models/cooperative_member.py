@@ -80,3 +80,8 @@ class CooperativeMember(models.Model):
         for record in self:
             # Would calculate based on internal loan records
             record.loan_balance = 0.0  # Placeholder
+
+    _sql_constraints = [
+        ('partner_cooperative_unique', 'unique(partner_id, cooperative_id)', 
+         'A partner can only be a member of the same cooperative once!')
+    ]

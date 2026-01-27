@@ -19,8 +19,8 @@ class FarmProcessingBom(models.Model):
     standard_duration = fields.Float('Standard Duration (Minutes)')
     haccp_instructions = fields.Html("HACCP Critical Instructions")
 
-    # US-65-02: Artisan Craft Processing (e.g. Ichida Persimmons)
-    is_artisan_process = fields.Boolean("Artisan Craft Process", help="Enables specialized drying/curing monitoring.")
+    # US-65-02: Artisan Craft Processing (e.g. Curing, Drying, Aging)
+    is_artisan_process = fields.Boolean("Artisan Craft Process", help="Enables precision monitoring for drying, curing or aging.")
     target_moisture_content = fields.Float("Target Moisture (%)")
     target_weight_loss_ratio = fields.Float("Target Weight Loss (%)")
 

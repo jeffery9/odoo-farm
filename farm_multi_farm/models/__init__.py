@@ -25,6 +25,7 @@ from . import (
     procurement_allocation_line,
     agri_service,
     service_order,
+    regional_oversight,
 )
 from . import quality_operations_models
 from . import finance_governance_models

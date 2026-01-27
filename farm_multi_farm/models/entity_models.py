@@ -25,6 +25,22 @@ class CooperativeEntity(models.Model):
     is_active = fields.Boolean('Is Active', default=True)
     description = fields.Text('Description')
 
+    # B2G / Government & Commercial dual-purpose [US-19-25]
+    purpose_type = fields.Selection([
+        ('commercial', 'Commercial (Business oriented)'),
+        ('government', 'Government (Regulatory/Policy oriented)'),
+        ('both', 'Dual Purpose (Commercial & Government)')
+    ], string="Cooperative Purpose", default='commercial', required=True, tracking=True)
+    
+    overseeing_agency_id = fields.Many2one('res.partner', string="Overseeing Government Agency", 
+                                          help="The government body this cooperative reports to.")
+    
+    is_subsidy_hub = fields.Boolean("Subsidy Distribution Hub", default=False, 
+                                   help="Check if this cooperative distributes government subsidies to members.")
+    
+    compliance_audit_authority = fields.Boolean("Has Audit Authority", default=False,
+                                               help="Check if this cooperative has the power to perform regulatory audits on members.")
+
     @api.model
     def create(self, vals):
         if 'code' not in vals or not vals['code']:

@@ -39,3 +39,4 @@ access_hub_spoke_distribution_line_user,hub.spoke.distribution.line.user,model_h
 access_netting_settlement_user,netting.settlement.user,model_netting_settlement,farm_multi_farm.group_user,1,1,1,0
 access_netting_receivable_line_user,netting.receivable.line.user,model_netting_receivable_line,farm_multi_farm.group_user,1,1,1,0
 access_netting_payable_line_user,netting.payable.line.user,model_netting_payable_line,farm_multi_farm.group_user,1,1,1,0
+access_farm_regional_oversight,farm.regional.oversight,model_farm_regional_oversight,farm_multi_farm.group_user,1,1,1,1

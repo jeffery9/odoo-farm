@@ -30,11 +30,15 @@
                     </div>
                     <group>
                         <group>
+                            <field name="purpose_type" widget="radio"/>
                             <field name="legal_representative"/>
                             <field name="registration_number"/>
                             <field name="registration_date"/>
                         </group>
                         <group>
+                            <field name="overseeing_agency_id" invisible="purpose_type == 'commercial'"/>
+                            <field name="is_subsidy_hub" invisible="purpose_type == 'commercial'"/>
+                            <field name="compliance_audit_authority" invisible="purpose_type == 'commercial'"/>
                             <field name="phone"/>
                             <field name="email"/>
                         </group>

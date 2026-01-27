@@ -1,4 +1,5 @@
 from odoo import models, fields, api, _
+import json
 
 class FarmLocation(models.Model):
     _inherit = 'farm.location'

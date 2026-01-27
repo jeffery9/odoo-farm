@@ -5,8 +5,6 @@
     'summary': 'Multi-Entity Collaboration & Cooperative Management',
     'description': """
         Multi-Entity Collaboration & Cooperative Management Module for Odoo 19 Farm Management System.
-
-        Features:
         - Multi-farm entity relationship modeling [US-19-01]
         - Tenant-level data isolation and sharing [US-19-02]
         - Cross-farm resource scheduling and collaboration [US-19-03]
@@ -32,29 +30,25 @@
     """,
     'author': 'Jeffery',
     'depends': [
-        'farm_core',      # Core farm infrastructure
-        'farm_equipment', # Equipment management for machinery sharing
-        'farm_hr',        # Human resources for member management
-        'farm_financial', # Financial management infrastructure
-        'farm_marketing', # Marketing integration
-        'project',        # Project management for service orders
-        'account',        # Accounting for settlements and financial records
+        'farm_core',
+        'farm_equipment',
+        'farm_hr',
+        'farm_financial',
+        'farm_marketing',
+        'project',
+        'account',
     ],
     'data': [
-        # Security and access rights
         'security/ir.model.access.csv',
-
-        # Data files
         'data/multi_farm_data.xml',
-
-        # Views organized by functionality
-        'views/multi_farm_views.xml',           # Basic entity models (farm.entity, cooperative.entity)
-        'views/cooperative_shares_views.xml',   # Share and dividend management
-        'views/cooperative_operations_views.xml', # Operations and services
-        'views/cooperative_finance_views.xml',    # Financial settlements
-        'views/menu.xml',                       # Main menu structure
-    ],
-    'demo': [
+        'views/entity_views.xml',
+        'views/member_share_views.xml',
+        'views/quality_operations_views.xml',
+        'views/finance_governance_views.xml',
+        'views/advanced_procurement_views.xml',
+        'views/regional_oversight_views.xml',
+        'views/stock_lot_views.xml',
+        'views/menu.xml',
     ],
     'installable': True,
     'application': False,
