@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extended account move view with agricultural task integration -->
+    <record id="view_account_move_agri_form" model="ir.ui.view">
+        <field name="name">account.move.agri.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <field name="ref" position="after">
+                <field name="agri_task_id"
+                       attrs="{'invisible': [('move_type', 'not in', ['in_invoice', 'out_invoice', 'in_refund', 'out_refund'])]}"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Extended account move line view -->
+    <record id="view_account_move_line_agri_form" model="ir.ui.view">
+        <field name="name">account.move.line.agri.form</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="agri_task_id"
+                       attrs="{'invisible': [('parent.move_type', 'not in', ['in_invoice', 'out_invoice', 'in_refund', 'out_refund'])]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

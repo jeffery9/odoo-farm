@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main menu for biological asset valuation -->
+    <menuitem id="biological_valuation_menu_root"
+              name="Biological Asset Valuation"
+              sequence="50"
+              web_icon="farm_biological_valuation,static/description/icon.png"/>
+
+    <menuitem id="biological_valuation_menu"
+              name="Valuations"
+              parent="biological_valuation_menu_root"
+              sequence="10"/>
+
+    <menuitem id="menu_biological_asset_valuation"
+              name="Asset Valuations"
+              parent="biological_valuation_menu"
+              action="action_biological_asset_valuation"
+              sequence="10"/>
+
+    <!-- Add biological asset extension actions to farm_core menu -->
+    <menuitem id="farm_biological_asset_valuation_action"
+              name="Biological Asset Valuation"
+              parent="farm_core.farm_asset_tracking_menu"
+              action="action_biological_asset_valuation"
+              sequence="20"/>
+</odoo>

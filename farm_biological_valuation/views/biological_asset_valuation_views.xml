@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form view for biological asset valuation -->
+    <record id="view_biological_asset_valuation_form" model="ir.ui.view">
+        <field name="name">farm.biological.asset.valuation.form</field>
+        <field name="model">farm.biological.asset.valuation</field>
+        <field name="arch" type="xml">
+            <form string="Biological Asset Valuation">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_create_revaluation_entry" type="object" string="Create Accounting Entry" class="oe_stat_button" icon="fa-pencil-square-o" invisible="is_accounting_entry_created"/>
+                        <field name="is_accounting_entry_created" invisible="1"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="asset_id"/>
+                            <field name="valuation_date"/>
+                            <field name="valuation_method"/>
+                        </group>
+                        <group>
+                            <field name="growth_stage_coefficient"/>
+                            <field name="current_growth_progress"/>
+                            <field name="target_yield"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Fair Value Details" invisible="valuation_method != 'market_price'">
+                            <group>
+                                <field name="current_yield_potential"/>
+                                <field name="market_price"/>
+                                <field name="market_price_source"/>
+                                <field name="fair_value"/>
+                                <field name="previous_valuation"/>
+                                <field name="revaluation_amount"/>
+                                <field name="revaluation_type"/>
+                            </group>
+                        </page>
+
+                        <page string="Cost Model Details" invisible="valuation_method == 'market_price'">
+                            <group>
+                                <field name="original_value"/>
+                                <field name="depreciation_years"/>
+                                <field name="annual_depreciation_rate"/>
+                                <field name="accumulated_depreciation"/>
+                                <field name="net_book_value"/>
+                            </group>
+                        </page>
+
+                        <page string="Growth Stage Coefficients">
+                            <field name="stage_coefficient_ids">
+                                <tree editable="bottom">
+                                    <field name="biological_stage"/>
+                                    <field name="coefficient"/>
+                                    <field name="description"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Accounting">
+                            <group>
+                                <field name="journal_entry_id"/>
+                                <field name="ope_score"/>
+                                <field name="efficiency_multiplier"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree view for biological asset valuation -->
+    <record id="view_biological_asset_valuation_tree" model="ir.ui.view">
+        <field name="name">farm.biological.asset.valuation.tree</field>
+        <field name="model">farm.biological.asset.valuation</field>
+        <field name="arch" type="xml">
+            <tree string="Biological Asset Valuations">
+                <field name="name"/>
+                <field name="asset_id"/>
+                <field name="valuation_date"/>
+                <field name="valuation_method"/>
+                <field name="fair_value" invisible="valuation_method != 'market_price'"/>
+                <field name="net_book_value" invisible="valuation_method == 'market_price'"/>
+                <field name="revaluation_amount" invisible="valuation_method != 'market_price'"/>
+                <field name="current_growth_progress"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action for biological asset valuation -->
+    <record id="action_biological_asset_valuation" model="ir.actions.act_window">
+        <field name="name">Biological Asset Valuations</field>
+        <field name="res_model">farm.biological.asset.valuation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

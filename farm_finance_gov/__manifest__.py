@@ -1,16 +1,22 @@
 {
-    'name': 'Farm Government Finance (China)',
+    'name': 'Farm Government Finance (DEPRECATED)',
     'version': '1.0',
     'category': 'Industries/Agriculture',
-    'summary': 'China-specific Financial Accounting for Rural Revitalization Projects',
+    'summary': 'DEPRECATED - Use farm_financial_government instead',
     'description': """
-        Manages dedicated accounting for government-supported rural revitalization project funds [US-18-09].
-        - Associates purchase and expense documents with specific project numbers.
-        - Generates detailed project fund utilization reports with invoice references.
-        - Ensures dedicated use of special funds.
+        DEPRECATED: Government finance management for rural revitalization projects.
+
+        This module has been deprecated. Use the new specialized module instead:
+        - farm_financial_government: Government program management
+
+        Please migrate to the new specialized module for better functionality.
     """,
     'author': 'Jeffery',
-    'depends': ['account', 'farm_financial'],
+    'depends': [
+        'account',
+        'farm_financial_government',  # Use new specialized module
+    ],
+    'auto_install': False,  # Don't auto-install deprecated module
     'data': [
         'security/ir.model.access.csv',
         'report/project_fund_report_templates.xml',
