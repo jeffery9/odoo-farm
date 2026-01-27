@@ -48,3 +48,21 @@ class JointProcurement(models.Model):
         """确认采购"""
         for procurement in self:
             procurement.state = 'confirmed'
+
+    def action_complete(self):
+        """完成采购并生成结算"""
+        for procurement in self:
+            procurement.state = 'completed'
+            # Generate settlements for each member's share
+            for line in procurement.procurement_lines:
+                settlement = self.env['internal.settlement'].create({
+                    'from_entity_id': line.member_id.partner_id.company_id.id,
+                    'to_entity_id': procurement.cooperative_id.company_id.id,
+                    'settlement_type': 'joint_procurement',
+                    'joint_procurement_id': procurement.id,
+                    'activity_production_id': False,
+                    'amount': line.member_amount,
+                    'description': f'Share of joint procurement {procurement.name} for {line.product_id.name}',
+                    'settlement_date': procurement.procurement_date,
+                })
+                line.settlement_id = settlement.id

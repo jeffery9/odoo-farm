@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_joint_procurement_user,joint.procurement.user,model_joint_procurement,farm_multi_farm_base.group_user,1,1,1,1
+access_joint_procurement_manager,joint.procurement.manager,model_joint_procurement,farm_multi_farm_base.group_manager,1,1,1,1
+access_procurement_planning_user,procurement.planning.user,model_procurement_planning,farm_multi_farm_base.group_user,1,1,1,1
+access_procurement_planning_manager,procurement.planning.manager,model_procurement_planning,farm_multi_farm_base.group_manager,1,1,1,1

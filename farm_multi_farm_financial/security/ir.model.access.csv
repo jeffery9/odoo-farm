@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dividend_distribution_user,dividend.distribution.user,model_dividend_distribution,farm_multi_farm_base.group_user,1,1,1,1
+access_dividend_distribution_manager,dividend.distribution.manager,model_dividend_distribution,farm_multi_farm_base.group_manager,1,1,1,1
+access_dividend_line_user,dividend.line.user,model_dividend_line,farm_multi_farm_base.group_user,1,1,1,1
+access_dividend_line_manager,dividend.line.manager,model_dividend_line,farm_multi_farm_base.group_manager,1,1,1,1
+access_share_transaction_user,share.transaction.user,model_share_transaction,farm_multi_farm_base.group_user,1,1,1,1
+access_share_transaction_manager,share.transaction.manager,model_share_transaction,farm_multi_farm_base.group_manager,1,1,1,1
+access_internal_credit_user,internal.credit.user,model_internal_credit,farm_multi_farm_base.group_user,1,1,1,1
+access_internal_credit_manager,internal.credit.manager,model_internal_credit,farm_multi_farm_base.group_manager,1,1,1,1
