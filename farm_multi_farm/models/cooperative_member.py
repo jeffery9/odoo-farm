@@ -25,7 +25,7 @@ class CooperativeMember(models.Model):
     shares_held = fields.Float('Shares Held', default=0.0)
     share_value = fields.Float('Share Value', compute='_compute_share_value', store=True)
     total_investment = fields.Float('Total Investment', compute='_compute_total_investment', store=True)
-    trading_volume = fields.Float('Trading Volume', help='Volume of transactions with cooperative')
+    trading_volume = fields.Float('Trading Volume', help='Volume of transactions with cooperative', compute='_compute_trading_volume', store=True)
     dividend_eligibility = fields.Boolean('Eligible for Dividends', default=True)
 
     # Fields for US-19-07 (Internal Credit)
@@ -80,6 +80,36 @@ class CooperativeMember(models.Model):
         for record in self:
             # Would calculate based on internal loan records
             record.loan_balance = 0.0  # Placeholder
+
+    @api.depends('partner_id')
+    def _compute_trading_volume(self):
+        """
+        Compute trading volume for the member based on their transactions with the cooperative
+        US-19-06: Calculate trading volume for dividend distribution
+        """
+        SaleOrder = self.env['sale.order']
+        PurchaseOrder = self.env['purchase.order']
+
+        for record in self:
+            total_volume = 0.0
+
+            # Calculate sales (member buying from cooperative) - based on purchase orders
+            purchase_orders = PurchaseOrder.search([
+                ('partner_id', '=', record.partner_id.id),
+                ('state', 'in', ['purchase', 'done'])  # Confirmed purchases
+            ])
+            for order in purchase_orders:
+                total_volume += order.amount_total
+
+            # Calculate purchases (member selling to cooperative) - based on sale orders
+            sale_orders = SaleOrder.search([
+                ('partner_id', '=', record.partner_id.id),
+                ('state', 'in', ['sale', 'done'])  # Confirmed sales
+            ])
+            for order in sale_orders:
+                total_volume += order.amount_total
+
+            record.trading_volume = total_volume
 
     _sql_constraints = [
         ('partner_cooperative_unique', 'unique(partner_id, cooperative_id)', 

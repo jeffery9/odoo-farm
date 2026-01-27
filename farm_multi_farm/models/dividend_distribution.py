@@ -36,7 +36,7 @@ class DividendDistribution(models.Model):
 
     dividend_lines = fields.One2many('dividend.line', 'distribution_id', string='Dividend Lines')
 
-    @api.depends('total_dividend_amount')
+    @api.depends('total_dividend_amount', 'cooperative_id.member_farm_ids.cooperative_member_ids.shares_held')
     def _compute_dividend_per_share(self):
         for record in self:
             total_shares = sum(member.shares_held for member in record.cooperative_id.member_farm_ids.mapped('cooperative_member_ids'))

@@ -24,6 +24,8 @@
     'data': [
         'security/ir.model.access.csv',
         'views/purchase_order_views.xml',
+        'views/quality_based_pricing_views.xml',
+        'views/fefo_picking_views.xml',
         'views/seasonal_stock_views.xml',
         'views/supply_chain_management_views.xml',
         'views/supply_chain_vmi_views.xml',

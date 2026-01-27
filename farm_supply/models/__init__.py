@@ -8,6 +8,7 @@ from . import seasonal_stock
 from . import temperature_management
 from . import cold_storage
 from . import quality_based_pricing
+from . import fefo_picking
 from . import export_documents
 from . import circular_assets
 from . import vmi_management

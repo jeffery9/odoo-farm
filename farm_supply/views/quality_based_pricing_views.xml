@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Quality-based Pricing Rules Tree View -->
+    <record id="view_quality_based_pricing_tree" model="ir.ui.view">
+        <field name="name">quality.based.pricing.tree</field>
+        <field name="model">quality.based.pricing</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="product_category_id"/>
+                <field name="quality_attribute"/>
+                <field name="base_price"/>
+                <field name="quality_grade_label"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Quality-based Pricing Rules Form View -->
+    <record id="view_quality_based_pricing_form" model="ir.ui.view">
+        <field name="name">quality.based.pricing.form</field>
+        <field name="model">quality.based.pricing</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group name="basic_info" string="Basic Information">
+                            <field name="name"/>
+                            <field name="product_category_id"/>
+                            <field name="quality_attribute"/>
+                            <field name="quality_measure_unit"/>
+                            <field name="active"/>
+                        </group>
+                        <group name="pricing_structure" string="Pricing Structure">
+                            <field name="base_price"/>
+                            <field name="min_value"/>
+                            <field name="max_value"/>
+                            <field name="premium_rate"/>
+                            <field name="discount_rate"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Quality Grading">
+                            <group>
+                                <field name="quality_min_threshold"/>
+                                <field name="quality_max_threshold"/>
+                                <field name="quality_grade_label"/>
+                                <field name="min_quality_for_acceptance"/>
+                            </group>
+                        </page>
+                        <page string="Acquisition Pricing Coefficients" name="acquisition_pricing">
+                            <group>
+                                <field name="protein_content_coefficient"/>
+                                <field name="moisture_content_coefficient"/>
+                                <field name="impurities_rate_coefficient"/>
+                            </group>
+                        </page>
+                        <page string="Advanced Pricing">
+                            <group>
+                                <field name="pricing_formula"/>
+                                <field name="purchase_order_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Inherit Purchase Order Form to add quality metrics -->
+    <record id="purchase_order_form_inherit_quality_pricing" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.quality.pricing</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_order_form_inherit_farm"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']//list" position="inside">
+                <field name="quality_grade" invisible="1"/>
+                <field name="quality_pricing_rule_id" column_invisible="context.get('hide_quality_pricing', False)"/>
+                <field name="base_unit_price" column_invisible="context.get('hide_quality_pricing', False)"/>
+                <field name="quality_adjusted_unit_price" column_invisible="context.get('hide_quality_pricing', False)"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//list//field[@name='price_unit']" position="after">
+                <field name="quality_grade" column_invisible="context.get('hide_quality_pricing', False)"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Detailed Purchase Order Line Form with Quality Metrics -->
+    <record id="purchase_order_line_form_inherit_quality_pricing" model="ir.ui.view">
+        <field name="name">purchase.order.line.form.inherit.quality.pricing</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='purchase_order_line_description']" position="after">
+                <group string="Quality Metrics" name="quality_metrics" invisible="not quality_pricing_rule_id">
+                    <group>
+                        <field name="quality_protein_content"/>
+                        <field name="quality_moisture_content"/>
+                        <field name="quality_impurities_rate"/>
+                    </group>
+                    <group>
+                        <field name="quality_grade"/>
+                        <field name="quality_pricing_rule_id"/>
+                        <field name="base_unit_price"/>
+                        <field name="quality_adjusted_unit_price"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Search View for Quality-based Pricing -->
+    <record id="view_quality_based_pricing_search" model="ir.ui.view">
+        <field name="name">quality.based.pricing.search</field>
+        <field name="model">quality.based.pricing</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="product_category_id"/>
+                <field name="quality_attribute"/>
+                <field name="quality_grade_label"/>
+                <field name="active"/>
+                <separator/>
+                <filter name="filter_active" string="Active" domain="[('active', '=', True)]"/>
+                <filter name="filter_inactive" string="Inactive" domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_by_category" string="Product Category" context="{'group_by': 'product_category_id'}"/>
+                    <filter name="group_by_attribute" string="Quality Attribute" context="{'group_by': 'quality_attribute'}"/>
+                    <filter name="group_by_grade" string="Quality Grade" context="{'group_by': 'quality_grade_label'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window for Quality-based Pricing -->
+    <record id="action_quality_based_pricing" model="ir.actions.act_window">
+        <field name="name">Quality-based Pricing Rules</field>
+        <field name="res_model">quality.based.pricing</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_quality_based_pricing_search"/>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="quality_based_pricing_menu" name="Quality-based Pricing"
+              parent="purchase.menu_purchase_config_purchase"
+              sequence="20"
+              action="action_quality_based_pricing"/>
+
+</odoo>

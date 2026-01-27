@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from . import processing_isl
+from . import artisan_log
 from . import lot_isl
 from . import product_isl
 from . import picking_isl

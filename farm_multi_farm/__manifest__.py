@@ -27,6 +27,7 @@
         - Virtual procurement consolidation [US-19-20]
         - Hub-and-spoke distribution tracking [US-19-21]
         - Netting settlement for internal transactions [US-19-22]
+        - "Company + Farmer" contract farming management [US-19-24]
     """,
     'author': 'Jeffery',
     'depends': [
@@ -37,6 +38,7 @@
         'farm_marketing',
         'project',
         'account',
+        'farm_agri_science',
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -48,6 +50,7 @@
         'views/advanced_procurement_views.xml',
         'views/regional_oversight_views.xml',
         'views/stock_lot_views.xml',
+        'views/contract_farming_views.xml',
         'views/menu.xml',
     ],
     'installable': True,
