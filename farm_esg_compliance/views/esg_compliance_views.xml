@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Subsidy Views -->
+    <record id="view_farm_subsidy_tree" model="ir.ui.view">
+        <name>farm.subsidy.list</name>
+        <model>farm.subsidy</model>
+        <arch type="xml">
+            <list decoration-success="state == 'paid'" decoration-info="state == 'approved'">
+                <field name="name"/>
+                <field name="subsidy_type"/>
+                <field name="amount"/>
+                <field name="disbursement_date"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="action_farm_subsidy" model="ir.actions.act_window">
+        <name>Agricultural Subsidies</name>
+        <res_model>farm.subsidy</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- Biodiversity Views -->
+    <record id="view_farm_biodiversity_tree" model="ir.ui.view">
+        <name>farm.biodiversity.metric.list</name>
+        <model>farm.biodiversity.metric</model>
+        <arch type="xml">
+            <list>
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="date"/>
+                <field name="species_count"/>
+                <field name="habitat_quality" widget="priority"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="action_farm_biodiversity" model="ir.actions.act_window">
+        <name>Biodiversity Monitoring</name>
+        <res_model>farm.biodiversity.metric</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- Export Compliance Views -->
+    <record id="view_farm_export_compliance_tree" model="ir.ui.view">
+        <name>farm.export.compliance.list</name>
+        <model>farm.export.compliance</model>
+        <arch type="xml">
+            <list decoration-success="compliance_status == 'ready'" decoration-danger="compliance_status == 'blocked'">
+                <field name="name"/>
+                <field name="target_market_id"/>
+                <field name="product_id"/>
+                <field name="compliance_status" widget="badge"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="action_farm_export_compliance" model="ir.actions.act_window">
+        <name>Export Compliance Checker</name>
+        <res_model>farm.export.compliance</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- Certification Views -->
+    <record id="view_farm_certification_tree" model="ir.ui.view">
+        <name>farm.certification.process.list</name>
+        <model>farm.certification.process</model>
+        <arch type="xml">
+            <list decoration-success="state == 'certified'" decoration-warning="state == 'expired'">
+                <field name="name"/>
+                <field name="cert_type"/>
+                <field name="valid_to"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="action_farm_certification" model="ir.actions.act_window">
+        <name>Sustainability Certifications</name>
+        <res_model>farm.certification.process</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- Menus -->
+    <menuitem id="menu_farm_esg_compliance_root" name="Compliance &amp; Sustainability" 
+              parent="farm_esg.esg_base_menu" sequence="25"/>
+    
+    <menuitem id="menu_farm_subsidy" name="Subsidies Tracking" 
+              parent="menu_farm_esg_compliance_root" action="action_farm_subsidy" sequence="10"/>
+              
+    <menuitem id="menu_farm_biodiversity" name="Biodiversity Monitoring" 
+              parent="menu_farm_esg_compliance_root" action="action_farm_biodiversity" sequence="20"/>
+              
+    <menuitem id="menu_farm_export_compliance" name="Export Compliance" 
+              parent="menu_farm_esg_compliance_root" action="action_farm_export_compliance" sequence="30"/>
+              
+    <menuitem id="menu_farm_certification" name="Certifications" 
+              parent="menu_farm_esg_compliance_root" action="action_farm_certification" sequence="40"/>
+</odoo>
