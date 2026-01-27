@@ -1,22 +1,25 @@
 {
-    'name': 'Farm Smart Supply Chain',
-    'version': '1.0',
+    'name': 'Farm Smart Supply Chain (DEPRECATED)',
+    'version': '19.0.1.0.0',
     'category': 'Industries/Agriculture',
-    'summary': 'AI-driven Supply Chain Visualization and Optimization',
+    'summary': 'DEPRECATED - Use farm_supply_analytics module instead',
     'description': """
-        Smart Supply Chain module for Odoo 19.
-        - Supply Chain Visualization (Control Tower) [US-54-01]
-        - Demand Forecasting & Inventory Optimization [US-54-02]
-        - Supply Chain Risk Management [US-54-03]
+        DEPRECATED: Smart Supply Chain module for Odoo 19.
+
+        This module has been deprecated. Supply chain visualization and analytics
+        functionality is now available in the farm_supply_analytics module.
+
+        Please use farm_supply_analytics for supply chain control tower,
+        demand forecasting, and risk management.
     """,
     'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',
     'website': 'http://www.geninit.cn',
-    'depends': ['farm_core', 'farm_supply', 'farm_logistics', 'farm_ai_decision'],
-    'data': [
-        'security/ir.model.access.csv',
-        'views/smart_supply_chain_views.xml',
+    'depends': [
+        'farm_core',
+        'farm_supply_core',
+        'farm_supply_analytics',
     ],
     'installable': True,
-    'application': True,
+    'application': False,
     'license': 'AGPL-3',
 }
