@@ -32,6 +32,9 @@
     'author': 'Jeffery',
     'depends': [
         'farm_core',
+        'farm_multi_farm_base',
+        'farm_multi_farm_financial',
+        'farm_multi_farm_procurement',
         'farm_equipment',
         'farm_hr',
         'farm_financial',
