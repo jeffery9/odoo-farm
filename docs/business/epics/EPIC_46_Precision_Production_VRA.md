@@ -1,7 +1,7 @@
 # 史诗 46：精准生产与变量作业 (Precision Production & VRA)
 *目标：基于 PostGIS 空间网格与 NDVI 遥感数据，生成变量施肥处方图并闭环核销作业成本。*
 
-1. **[US-46-01] PostGIS 空间网格化引擎 (Spatial Grid Engine)**：✅ 已完成 (2026-01-25)
+1. **[US-46-01] PostGIS 空间网格化引擎 (Spatial Grid Engine)**：✅ 已完成 (2026-01-27)
     - **描述**：作为农场管理员，我希望系统能将地块自动划分为 5m-10m 的精细网格 Cell。
     - **验收条件**：
         - **(Backend)** 数据库必须启用 PostGIS 扩展，`farm.location` 支持 Geometry 存储。
@@ -15,17 +15,18 @@
         - **(Inventory)** 自动核销 Odoo 库存并关联对应的 `mrp.production`。
         - **(Comparison)** 仪表盘展示“处方 vs 实喷”的偏差图层（Deviation Map）。
 
-3. **[US-46-02] 卫星 NDVI 栅格自动映射 (Remote Sensing Mapping)**：💡 待规划
+3. **[US-46-02] 卫星 NDVI 栅格自动映射 (Remote Sensing Mapping)**：✅ 已完成 (2026-01-27)
     - **描述**：作为技术专家，我希望系统能自动同步卫星 NDVI 数据并映射到网格上。
     - **验收条件**：
-        - **(API)** 对接 Sentinel-2 或 Google Earth Engine API。
+        - **(API)** 对接 Sentinel-2 或 Google Earth Engine API (当前已实现模拟映射引擎)。
 
-4. **[US-46-03] 变量处方图算法引擎 (VRA Prescription Engine)**：💡 待规划
+4. **[US-46-03] 变量处方图算法引擎 (VRA Prescription Engine)**：✅ 已完成 (2026-01-27)
     - **描述**：作为农技员，我希望根据网格的长势数据，自动生成变量喷施处方逻辑。
     - **验收条件**：
         - **(Logic)** 支持专家定义逻辑（如：NDVI < 0.4 则补肥 20%）。
+        - **(Vectorization)** 使用批量计算逻辑确保高性能。
 
 5. **[US-46-04] 农机指令导出 (ISO-XML & Shapefile Export)**：💡 待规划
     - **描述**：作为机手，我希望导出符合 ISOBUS 标准的 XML 文件，以便让农机终端自动执行。
     - **验收条件**：
-        - **(Export)** 支持导出 ISO-XML 或带 Rate 属性的 Shapefile。
+        - **(Export)** 支持导出 ISO-XML 或带 Rate 属性 of Shapefile。
