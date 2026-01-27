@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Supply Chain Node Views (Control Tower) -->
+    <record id="view_farm_supply_chain_node_tree" model="ir.ui.view">
+        <name>farm.supply.chain.node.list</name>
+        <model>farm.supply.chain.node</model>
+        <arch type="xml">
+            <list decoration-danger="status == 'critical'" decoration-warning="status == 'delayed'">
+                <field name="name"/>
+                <field name="node_type"/>
+                <field name="current_inventory_value"/>
+                <field name="pending_inbound_qty"/>
+                <field name="pending_outbound_qty"/>
+                <field name="status" widget="badge"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="action_farm_supply_chain_node" model="ir.actions.act_window">
+        <name>Supply Chain Control Tower</name>
+        <res_model>farm.supply.chain.node</res_model>
+        <view_mode>list,form,kanban</view_mode>
+    </record>
+
+    <!-- Demand Forecast Views -->
+    <record id="view_farm_supply_demand_forecast_tree" model="ir.ui.view">
+        <name>farm.supply.demand.forecast.list</name>
+        <model>farm.supply.demand.forecast</model>
+        <arch type="xml">
+            <list>
+                <field name="product_id"/>
+                <field name="forecast_period"/>
+                <field name="predicted_demand_qty"/>
+                <field name="current_stock_level"/>
+                <field name="optimization_action" widget="badge" decoration-info="optimization_action == 'hold'" decoration-success="optimization_action == 'replenish'"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="action_farm_supply_demand_forecast" model="ir.actions.act_window">
+        <name>Demand Forecasts</name>
+        <res_model>farm.supply.demand.forecast</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- Risk Monitor Views -->
+    <record id="view_farm_supply_risk_monitor_tree" model="ir.ui.view">
+        <name>farm.supply.risk.monitor.list</name>
+        <model>farm.supply.risk.monitor</model>
+        <arch type="xml">
+            <list>
+                <field name="name"/>
+                <field name="risk_category"/>
+                <field name="impact_level" widget="priority"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </arch>
+    </record>
+
+    <record id="action_farm_supply_risk_monitor" model="ir.actions.act_window">
+        <name>Supply Chain Risk Monitor</name>
+        <res_model>farm.supply.risk.monitor</res_model>
+        <view_mode>list,form</view_mode>
+    </record>
+
+    <!-- Menus -->
+    <menuitem id="menu_smart_supply_chain_root" name="Smart Supply Chain" 
+              parent="farm_core.menu_farm_root" sequence="35"/>
+    
+    <menuitem id="menu_supply_chain_control_tower" name="Control Tower (Nodes)" 
+              parent="menu_smart_supply_chain_root" action="action_farm_supply_chain_node" sequence="10"/>
+              
+    <menuitem id="menu_supply_demand_forecast" name="Demand Forecasting" 
+              parent="menu_smart_supply_chain_root" action="action_farm_supply_demand_forecast" sequence="20"/>
+              
+    <menuitem id="menu_supply_risk_monitor" name="Risk Management" 
+              parent="menu_smart_supply_chain_root" action="action_farm_supply_risk_monitor" sequence="30"/>
+</odoo>
