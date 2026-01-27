@@ -14,6 +14,7 @@ class FarmCropYieldInsurance(models.Model):
     """
     Model for crop yield insurance
     Implements US-58-03: Crop Yield Insurance Actuarial & Payout
+    US-48-03: Index-based Insurance Automation
     """
     _name = 'farm.crop.yield.insurance'
     _description = 'Farm Crop Yield Insurance'
@@ -53,14 +54,17 @@ class FarmCropYieldInsurance(models.Model):
         ('yield', 'Yield Only'),
         ('revenue', 'Revenue Protection'),
         ('multi_peril', 'Multi-Peril'),
+        ('weather_index', 'Weather Index Based'),
     ], string='Coverage Type', default='yield')
     coverage_percentage = fields.Float('Coverage Percentage (%)', default=75.0)
     indemnity_base_price = fields.Float('Indemnity Base Price', digits=(16, 2))
     premium_rate = fields.Float('Premium Rate (%)', default=5.0)
-    premium_amount = fields.Monetary('Premium Amount', currency_field='currency_id', compute='_compute_premium_amount', store=True)
     historical_yield = fields.Float('Historical Yield (tons/ha)', help="Historical yield for this farm")
     weather_monitoring = fields.Boolean('Weather Monitoring', default=True)
-    claim_amount = fields.Monetary('Claim Amount', currency_field='currency_id', default=0)
+    
+    # Claim management
+    claim_ids = fields.One2many('farm.insurance.claim', 'insurance_id', string="Claims")
+    claim_amount = fields.Monetary('Total Claim Amount', currency_field='currency_id', default=0)
     claim_status = fields.Selection([
         ('no_claim', 'No Claim'),
         ('reported', 'Claim Reported'),
@@ -70,6 +74,9 @@ class FarmCropYieldInsurance(models.Model):
     ], string='Claim Status', default='no_claim')
     payout_percentage = fields.Float('Payout Percentage (%)', default=0.0, help="Percentage of claim approved")
     adjuster_id = fields.Many2one('res.partner', string='Claims Adjuster')
+
+    # Index based configuration [US-48-03]
+    weather_index_ids = fields.Many2many('farm.insurance.index', string="Weather Trigger Indices")
 
     @api.depends('application_date', 'duration_months')
     def _compute_maturity_date(self):
@@ -117,25 +124,52 @@ class FarmCropYieldInsurance(models.Model):
         """Calculate insurance claim based on actual vs expected yield"""
         for record in self:
             # In a real system, this would connect to yield monitoring systems
-            # For simulation, we'll use random actual yield
             actual_yield = record.expected_yield * random.uniform(0.3, 1.2)  # 30% to 120% of expected
 
             if actual_yield < record.expected_yield * (record.coverage_percentage / 100):
                 # Calculate yield loss
                 yield_loss = (record.expected_yield - actual_yield) * record.coverage_area
-                record.claim_amount = yield_loss * record.indemnity_base_price
-                record.payout_percentage = min(100, (record.claim_amount / record.amount) * 100)
-            else:
-                record.claim_amount = 0
-                record.payout_percentage = 0
+                claim_amt = yield_loss * record.indemnity_base_price
+                
+                # Create a claim record
+                self.env['farm.insurance.claim'].create({
+                    'insurance_id': record.id,
+                    'claim_type': 'yield_loss',
+                    'requested_amount': claim_amt,
+                    'evidence_summary': f"Actual yield {actual_yield:.2f} tons/ha below threshold.",
+                })
+                record.claim_status = 'reported'
+                record.state = 'claim_made'
 
-            record.claim_status = 'verified'  # Simulate verification step
+    def action_check_weather_indices(self):
+        """
+        US-48-03: Automated Weather Index Claim Trigger
+        Check if any weather indices are triggered based on telemetry/external data
+        """
+        for record in self:
+            if not record.weather_index_ids:
+                continue
+            
+            for index in record.weather_index_ids:
+                # Mock: check if index is triggered (in real system, would check farm.weather.log)
+                triggered, value = index._check_trigger(record.land_location_id)
+                if triggered:
+                    # Auto-generate claim
+                    self.env['farm.insurance.claim'].create({
+                        'insurance_id': record.id,
+                        'claim_type': 'weather_index',
+                        'index_id': index.id,
+                        'requested_amount': record.amount * (index.payout_factor / 100.0),
+                        'evidence_summary': f"Weather index '{index.name}' triggered. Value: {value}. Threshold: {index.threshold_value}",
+                        'auto_triggered': True
+                    })
+                    record.claim_status = 'reported'
+                    record.state = 'claim_made'
 
     def approve_claim(self):
         """Approve the insurance claim"""
         for record in self:
             record.claim_status = 'approved'
-            record.payout_percentage = min(100, record.payout_percentage)  # Cap at 100%
             record.state = 'claim_approved'
 
     @api.model_create_multi
@@ -160,3 +194,69 @@ class FarmCropYieldInsurance(models.Model):
     def action_settle_claim(self):
         """Settle the approved claim"""
         self.write({'state': 'settled'})
+
+class FarmInsuranceIndex(models.Model):
+    _name = 'farm.insurance.index'
+    _description = 'Agricultural Insurance Index Trigger'
+
+    name = fields.Char("Index Name", required=True)
+    index_type = fields.Selection([
+        ('rainfall_high', 'High Rainfall (Flood)'),
+        ('rainfall_low', 'Low Rainfall (Drought)'),
+        ('temp_high', 'Extreme Heat'),
+        ('temp_low', 'Frost/Cold')
+    ], string="Index Type", required=True)
+    
+    threshold_value = fields.Float("Threshold Value", required=True)
+    comparison_operator = fields.Selection([
+        ('gt', '>'), ('lt', '<'), ('gte', '>='), ('lte', '<=')
+    ], string="Operator", default='gt', required=True)
+    
+    payout_factor = fields.Float("Payout Factor (%)", help="Percentage of total coverage to pay out if triggered", default=20.0)
+
+    def _check_trigger(self, location_id):
+        """Simulate checking weather logs"""
+        # In reality, query farm.weather.log filtered by location and current period
+        mock_val = random.uniform(0, 150)
+        is_triggered = False
+        if self.comparison_operator == 'gt' and mock_val > self.threshold_value:
+            is_triggered = True
+        elif self.comparison_operator == 'lt' and mock_val < self.threshold_value:
+            is_triggered = True
+        # ... other operators
+        return is_triggered, mock_val
+
+class FarmInsuranceClaim(models.Model):
+    _name = 'farm.insurance.claim'
+    _description = 'Agricultural Insurance Claim'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
+    insurance_id = fields.Many2one('farm.crop.yield.insurance', string="Policy", ondelete='cascade')
+    claim_type = fields.Selection([
+        ('yield_loss', 'Yield Loss'),
+        ('weather_index', 'Weather Index Trigger'),
+        ('pest_outbreak', 'Pest/Disease Outbreak')
+    ], string="Claim Type", required=True)
+    
+    index_id = fields.Many2one('farm.insurance.index', string="Triggering Index")
+    requested_amount = fields.Monetary("Requested Amount", currency_field='currency_id')
+    approved_amount = fields.Monetary("Approved Amount", currency_field='currency_id')
+    currency_id = fields.Many2one('res.currency', related='insurance_id.currency_id')
+    
+    evidence_summary = fields.Text("Evidence Summary")
+    auto_triggered = fields.Boolean("Auto-triggered", default=False)
+    
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('verified', 'Verified'),
+        ('approved', 'Approved'),
+        ('paid', 'Paid'),
+        ('rejected', 'Rejected')
+    ], string="Status", default='draft')
+
+    def action_verify(self):
+        self.state = 'verified'
+    
+    def action_approve(self):
+        self.state = 'approved'
+        self.approved_amount = self.requested_amount
