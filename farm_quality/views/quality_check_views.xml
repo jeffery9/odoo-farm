@@ -22,22 +22,60 @@
                     <button name="action_pass" string="Pass" type="object" class="btn-success" invisible="quality_state != 'none' or test_type == 'measure'"/>
                     <button name="action_fail" string="Fail" type="object" class="btn-danger" invisible="quality_state != 'none' or test_type == 'measure'"/>
                     <button name="action_done" string="Validate" type="object" class="btn-primary" invisible="quality_state != 'none' or test_type != 'measure'"/>
+                    <button name="action_check_ccp_violations" string="Verify CCP" type="object" class="btn-info" invisible="quality_state != 'none'"/>
                     <button name="action_open_quality_alert" string="Create Alert" type="object" class="btn-warning" invisible="quality_state != 'fail'"/>
                     <field name="quality_state" widget="statusbar"/>
                 </header>
                 <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
                     <group>
                         <group>
                             <field name="point_id"/>
-                            <field name="lot_id"/>
+                            <field name="lot_id" invisible="is_blind_view"/>
                             <field name="sample_id" domain="[('lot_id', '=', lot_id)]"/>
-                            <field name="test_type" invisible="1"/>
+                            <field name="task_id"/>
+                            <field name="is_blind_view" invisible="1"/>
                         </group>
                         <group>
+                            <field name="test_type" invisible="1"/>
                             <field name="measure" invisible="test_type != 'measure'"/>
                             <field name="user_id"/>
                         </group>
                     </group>
+                    <notebook>
+                        <page string="Field Quick Test" name="quick_test">
+                            <group>
+                                <field name="is_quick_test"/>
+                                <field name="quick_test_photo" widget="image" invisible="not is_quick_test"/>
+                            </group>
+                        </page>
+                        <page string="Sensory Evaluation" name="sensory" invisible="test_type != 'sensory'">
+                            <group>
+                                <group>
+                                    <field name="appearance_score" widget="priority"/>
+                                    <field name="aroma_score" widget="priority"/>
+                                </group>
+                                <group>
+                                    <field name="flavor_score" widget="priority"/>
+                                    <field name="texture_score" widget="priority"/>
+                                </group>
+                            </group>
+                            <field name="sensory_notes" placeholder="Detailed sensory profile notes..."/>
+                        </page>
+                        <page string="LIMS &amp; Traceability" name="lims">
+                            <group>
+                                <group string="LIMS Integration">
+                                    <field name="lims_device_id"/>
+                                    <field name="lims_source_data"/>
+                                </group>
+                                <group string="Security Fingerprint">
+                                    <field name="blockchain_hash"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids"/>
@@ -53,5 +91,6 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_quality_check" name="Quality Checks" parent="menu_quality_root" action="action_farm_quality_check" sequence="20"/>
+    <!-- The parent menu_quality_root is usually defined in farm_core or farm_quality menu file -->
+    <menuitem id="menu_quality_check" name="Quality Checks" parent="farm_core.menu_quality_root" action="action_farm_quality_check" sequence="20"/>
 </odoo>
