@@ -477,6 +477,12 @@
 | - US-85-03 | 农场运营优化仿真 | `farm_agri_science`, `farm_ai_decision`, `farm_operation` | 💡 待规划 |
 | - US-85-04 | 风险与应急仿真 | `farm_agri_science`, `farm_risk`, `farm_ai_decision` | 💡 待规划 |
 
+| **Epic 86: 区块链溯源与食品安全保障** | US-86-01 至 US-86-04 | `farm_supply_quality`, `farm_blockchain`, `farm_ai_vision`, `farm_marketing` | 💡 待规划 |
+| - US-86-01 | 区块链溯源数据记录 | `farm_supply_quality`, `farm_blockchain`, `farm_iot` | 💡 待规划 |
+| - US-86-02 | 消费者溯源查询系统 | `farm_marketing`, `farm_blockchain`, `farm_ai_vision` | 💡 待规划 |
+| - US-86-03 | 食品安全监控与预警 | `farm_supply_quality`, `farm_ai_decision`, `farm_blockchain` | 💡 待规划 |
+| - US-86-04 | 溯源数据验证与审计 | `farm_supply_quality`, `farm_compliance`, `farm_blockchain` | 💡 待规划 |
+
 
 ## 5. 开发依赖关系
 
