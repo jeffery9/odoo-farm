@@ -92,6 +92,8 @@
 - **Epic 87**：数据交换与标准化 (Data Exchange Standardization)
 - **Epic 88**：订单农业与农户结算管理 (Contract Farming Settlement) - *原计划编号44*
 - **Epic 89**：高级温室环境控制 (Advanced Greenhouse Environment Control) - *原计划编号57*
+- **Epic 90**：CSA社区支持农业与订单管理 (CSA Subscription & Order Management) - *原计划编号26*
+- **Epic 91**：农用机器人与自动化 (Agricultural Robotics & Automation) - *原计划编号51*
 
 ## 注意事项
 
