@@ -103,6 +103,15 @@
 | | `farm_multi_farm_financial` | 多实体财务、合并报表、内部结算。 | ✅ 完成 |
 | | `farm_multi_farm_cooperative` | 合作社管理、成员管理、协作机制。 | ✅ 完成 |
 | | `farm_multi_farm_government` | 政府监管、统计报告、合规检查。 | ✅ 完成 |
+
+| **Epic 18: 中国合规与政策适配** | US-18-01 至 US-18-06 | `farm_land_mgmt`, `farm_input_reg`, `farm_cert_ch`, `farm_subsidy_ch`, `farm_waste_mgmt`, `farm_green_monitor` | 💡 待规划 |
+| - US-18-01 | 土地承包与用途管制 | `farm_land_mgmt`, `farm_core` | 💡 待规划 |
+| - US-18-02 | 农药兽药监管对接 | `farm_input_reg`, `farm_regulatory` | 💡 待规划 |
+| - US-18-03 | 食用农产品合格证管理 | `farm_cert_ch`, `farm_quality` | 💡 待规划 |
+| - US-18-04 | 农业补贴申报与管理 | `farm_subsidy_ch`, `farm_financial` | 💡 待规划 |
+| - US-18-05 | 畜禽粪污资源化管理 | `farm_waste_mgmt`, `farm_environmental` | 💡 待规划 |
+| - US-18-06 | 化肥农药减量管理 | `farm_green_monitor`, `farm_operation` | 💡 待规划 |
+
 | **Epic 22: 无人机作业集成** | `farm_equipment` | 无人机机队管理、载荷与电池循环记录。 | ✅ 完成 |
 | | `farm_operation` | 航线 KML 导出、喷洒作业自动核销算法。 | ✅ 完成 |
 | | `farm_iot` | 无人机实时位置遥测（MQTT）。 | ✅ 完成 |
@@ -123,18 +132,6 @@
 | **Epic 34: 林果与多年生作物** | `farm_core`, `farm_operation` | 单株资产管理、历年产量趋势、成熟度监控。 | ✅ 完成 (2026-01-14) |
 | **Epic 35: 特种养殖与高密度养殖** | `farm_safety`, `farm_iot` | 生物安全门禁、高密度精准饲喂逻辑。 | ✅ 完成 (2026-01-14) |
 | **Epic 36: 城市农业与共享认养** | `farm_mobile`, `farm_csa` | 认养流程、共享工具管理、微型传感器接入。 | 💡 待规划 |
-| **Epic 18: 中国合规与政策适配** | | | |
-| **中国合规** | `farm_land_mgmt` | 土地承包权、用途管制与耕地保护。 | ✅ 完成 (2026-01-14) |
-| | `farm_input_reg` | 农药/兽药实名制与监管对接。 | ✅ 完成 |
-| | `farm_cert_ch` | 食用农产品合格证生成。 | ✅ 完成 |
-| | `farm_subsidy_ch` | 耕地地力/种粮补贴申报。 | ✅ 完成 |
-| | `farm_waste_mgmt` | 畜禽粪污资源化利用台账。 | ✅ 完成 |
-| | `farm_green_monitor` | 化肥农药减量考核与趋势监控。 | ✅ 完成 |
-| | `farm_machinery_ch` | 农机购置补贴信息预填。 | ✅ 完成 |
-| | `farm_entity_reg` | 家庭农场/合作社备案管理。 | ✅ 完成 |
-| | `farm_finance_gov` | 乡村振兴项目资金专项核算。 | ✅ 完成 |
-| | `farm_data_security` | 数据本地化与等保合规配置。 | ✅ 完成 |
-| **前端** | `farm_mobile` | 移动工作台、离线同步缓冲区。 | ✅ 完成 |
 | **战略升级 (2026)** | | | |
 | **Epic 52: 高级溯源系统** | `farm_processing` | 批次父子继承、Mock Recall 仪表盘。 | ✅ 完成 |
 | **Epic 54: ISL 行业架构** | `farm_isl` | 透明重定向、_inherits 代理继承、性能优化。 | ✅ 完成 |
@@ -259,11 +256,67 @@
 | **Epic 15: 质量控制** | US-15-01 至 US-15-10 | `farm_quality` |
 | **Epic 16: UX 与术语去工业化** | US-16-01 至 US-16-25 | `farm_ux`, `farm_dashboard`, `farm_mobile`, `farm_iot` | ✅ 完成 |
 | **Epic 19: 多实体协同与合作社管理** | US-19-01 至 US-19-23 | `farm_multi_farm_base`, `farm_multi_farm_financial`, `farm_multi_farm_cooperative`, `farm_equipment` | ✅ 完成 |
+
+| **Epic 20: 智能灌溉管理** | US-20-01 至 US-20-04 | `farm_iot`, `farm_ai_decision`, `farm_operation`, `farm_mobile` | 💡 待规划 |
+| - US-20-01 | 土壤湿度监测与分析 | `farm_iot`, `farm_ai_decision`, `farm_mobile` | 💡 待规划 |
+| - US-20-02 | 智能灌溉决策 | `farm_ai_decision`, `farm_weather`, `farm_operation` | 💡 待规划 |
+| - US-20-03 | 灌溉设备智能控制 | `farm_iot`, `farm_equipment`, `farm_mobile` | 💡 待规划 |
+| - US-20-04 | 水资源优化与节水分析 | `farm_ai_decision`, `farm_financial`, `farm_iot` | 💡 待规划 |
+
 | **Epic 21: 直播与抖音对接** | US-21-01 至 US-21-11 | `farm_live_streaming`, `farm_marketing`, `farm_financial` | ✅ 完成 |
 | **Epic 26: 高级现场智能** | US-26-01 至 US-26-08 | `farm_core`, `farm_mobile`, `farm_operation` | ✅ 完成 |
 | **Epic 28: AI 预测与智能视觉** | US-28-01 至 US-28-04 | `farm_ai_vision`, `farm_iot`, `farm_mobile` | ✅ 完成 |
 | **Epic 30: 碳足迹与 ESG 账座** | US-30-01 至 US-30-14 | `farm_ecology`, `farm_financial`, `farm_sustainability` | ✅ 完成 |
 | **Epic 37: 农业综合生产效能 (OPE)** | US-37-01 至 US-37-05 | `farm_dashboard`, `farm_financial`, `farm_operation` | ✅ 完成 |
+
+| **Epic 38: 牲畜健康监测与智能管理** | US-38-01 至 US-38-04 | `farm_livestock`, `farm_iot`, `farm_ai_vision`, `farm_ai_decision` | 💡 待规划 |
+| - US-38-01 | 牲畜健康指标监测 | `farm_livestock`, `farm_iot`, `farm_ai_vision` | 💡 待规划 |
+| - US-38-02 | 智能喂养管理 | `farm_livestock`, `farm_ai_decision`, `farm_iot` | 💡 待规划 |
+| - US-38-03 | 疾病预防与治疗管理 | `farm_livestock`, `farm_ai_decision`, `farm_iot` | 💡 待规划 |
+| - US-38-04 | 繁殖育种智能管理 | `farm_livestock`, `farm_ai_decision`, `farm_ai_vision` | 💡 待规划 |
+
+| **Epic 39: 农业气象站与环境监测** | US-39-01 至 US-39-04 | `farm_weather`, `farm_iot`, `farm_ai_decision`, `farm_operation` | 💡 待规划 |
+| - US-39-01 | 多参数环境数据采集 | `farm_weather`, `farm_iot`, `farm_operation` | 💡 待规划 |
+| - US-39-02 | 本地化天气预报 | `farm_weather`, `farm_ai_decision`, `farm_ai_vision` | 💡 待规划 |
+| - US-39-03 | 环境异常预警 | `farm_weather`, `farm_ai_decision`, `farm_mobile` | 💡 待规划 |
+| - US-39-04 | 历史数据分析与趋势预测 | `farm_weather`, `farm_ai_decision`, `farm_analytics` | 💡 待规划 |
+
+| **Epic 40: 精准施肥系统** | US-40-01 至 US-40-04 | `farm_operation`, `farm_iot`, `farm_ai_decision`, `farm_supply_procurement` | 💡 待规划 |
+| - US-40-01 | 土壤养分检测与分析 | `farm_iot`, `farm_ai_vision`, `farm_operation` | 💡 待规划 |
+| - US-40-02 | 作物营养需求建模 | `farm_ai_decision`, `farm_operation`, `farm_agri_science` | 💡 待规划 |
+| - US-40-03 | 变量施肥处方生成 | `farm_ai_decision`, `farm_operation`, `farm_equipment` | 💡 待规划 |
+| - US-40-04 | 施肥效果评估与优化 | `farm_ai_decision`, `farm_analytics`, `farm_operation` | 💡 待规划 |
+
+| **Epic 41: 无人机作物监测与管理** | US-41-01 至 US-41-04 | `farm_equipment`, `farm_ai_vision`, `farm_ai_decision`, `farm_operation` | 💡 待规划 |
+| - US-41-01 | 作物生长状况监测 | `farm_ai_vision`, `farm_equipment`, `farm_operation` | 💡 待规划 |
+| - US-41-02 | 病虫害智能识别 | `farm_ai_vision`, `farm_ai_decision`, `farm_operation` | 💡 待规划 |
+| - US-41-03 | 无人机农事作业 | `farm_equipment`, `farm_ai_decision`, `farm_operation` | 💡 待规划 |
+| - US-41-04 | 无人机数据整合与分析 | `farm_ai_vision`, `farm_ai_decision`, `farm_analytics` | 💡 待规划 |
+
+| **Epic 42: 智能温室控制** | US-42-01 至 US-42-04 | `farm_greenhouse`, `farm_iot`, `farm_ai_decision`, `farm_mobile` | 💡 待规划 |
+| - US-42-01 | 温室环境参数监测 | `farm_greenhouse`, `farm_iot`, `farm_mobile` | 💡 待规划 |
+| - US-42-02 | 智能环境控制算法 | `farm_greenhouse`, `farm_ai_decision`, `farm_iot` | 💡 待规划 |
+| - US-42-03 | 作物生长阶段自适应控制 | `farm_greenhouse`, `farm_ai_decision`, `farm_operation` | 💡 待规划 |
+| - US-42-04 | 远程监控与移动管理 | `farm_greenhouse`, `farm_mobile`, `farm_ai_decision` | 💡 待规划 |
+
+| **Epic 43: 杂草识别与智能控制** | US-43-01 至 US-43-04 | `farm_ai_vision`, `farm_ai_decision`, `farm_equipment`, `farm_operation` | 💡 待规划 |
+| - US-43-01 | 杂草种类智能识别 | `farm_ai_vision`, `farm_ai_decision`, `farm_operation` | 💡 待规划 |
+| - US-43-02 | 精准除草作业 | `farm_ai_vision`, `farm_equipment`, `farm_operation` | 💡 待规划 |
+| - US-43-03 | 除草剂使用优化 | `farm_ai_decision`, `farm_operation`, `farm_supply_procurement` | 💡 待规划 |
+| - US-43-04 | 杂草抗性监测与管理 | `farm_ai_decision`, `farm_ai_vision`, `farm_operation` | 💡 待规划 |
+
+| **Epic 44: 产后品质管理与保鲜** | US-44-01 至 US-44-04 | `farm_quality`, `farm_ai_vision`, `farm_ai_decision`, `farm_supply_logistics` | 💡 待规划 |
+| - US-44-01 | 产后品质实时监测 | `farm_quality`, `farm_ai_vision`, `farm_iot` | 💡 待规划 |
+| - US-44-02 | 智能保鲜环境控制 | `farm_iot`, `farm_ai_decision`, `farm_supply_logistics` | 💡 待规划 |
+| - US-44-03 | 保质期预测与库存优化 | `farm_ai_decision`, `farm_supply_analytics`, `farm_supply_logistics` | 💡 待规划 |
+| - US-44-04 | 成品分级与包装优化 | `farm_ai_vision`, `farm_ai_decision`, `farm_supply_quality` | 💡 待规划 |
+
+| **Epic 45: 农业知识管理与智能决策支持** | US-45-01 至 US-45-04 | `farm_knowledge`, `farm_ai_llm_integration`, `farm_ai_decision`, `farm_mobile` | 💡 待规划 |
+| - US-45-01 | 农业知识库构建 | `farm_knowledge`, `farm_ai_llm_integration`, `farm_ai_decision` | 💡 待规划 |
+| - US-45-02 | 智能农事建议系统 | `farm_ai_decision`, `farm_ai_llm_integration`, `farm_mobile` | 💡 待规划 |
+| - US-45-03 | 农业问答系统 | `farm_ai_llm_integration`, `farm_ai_vision`, `farm_mobile` | 💡 待规划 |
+| - US-45-04 | 决策支持与风险评估 | `farm_ai_decision`, `farm_analytics`, `farm_ai_llm_integration` | 💡 待规划 |
+
 | **Epic 46: 精准生产与变量作业** | US-46-01 至 US-46-05 | `farm_iot`, `farm_mobile`, `farm_operation` | ✅ 完成 |
 | **Epic 52: 高级溯源系统** | US-52-01 至 US-52-13 | `farm_processing`, `farm_quality` | ✅ 完成 |
 | **Epic 54: ISL 行业架构** | US-54-01 至 US-54-14 | `farm_isl`, `farm_processing` | ✅ 完成 |
