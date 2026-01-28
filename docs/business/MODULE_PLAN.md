@@ -459,6 +459,12 @@
 | - US-82-03 | 维护成本优化 | `farm_supply_analytics`, `farm_ai_decision`, `farm_financial_basic` | 💡 待规划 |
 | - US-82-04 | 智能维护工单系统 | `farm_equipment`, `farm_ai_agent`, `farm_operation` | 💡 待规划 |
 
+| **Epic 83: 碳中和与可持续发展管理** | US-83-01 至 US-83-04 | `farm_esg_compliance`, `farm_ai_decision`, `farm_supply_analytics`, `farm_iot` | 💡 待规划 |
+| - US-83-01 | 碳足迹全链路追踪 | `farm_esg_compliance`, `farm_supply_analytics`, `farm_iot` | 💡 待规划 |
+| - US-83-02 | 碳中和目标规划与监控 | `farm_esg_compliance`, `farm_ai_decision`, `farm_supply_analytics` | 💡 待规划 |
+| - US-83-03 | 碳信用与碳交易管理 | `farm_esg_compliance`, `farm_financial_basic`, `farm_ai_decision` | 💡 待规划 |
+| - US-83-04 | 可持续农业实践认证 | `farm_esg_compliance`, `farm_certification`, `farm_ai_agent` | 💡 待规划 |
+
 
 ## 5. 开发依赖关系
 
