@@ -98,6 +98,10 @@
 - **Epic 93**：蜂业与迁徙养殖管理 (Apiculture & Migration Management) - *原计划编号39*
 - **Epic 94**：中药材与炮制管理 (Medicinal Herbs & TCM Processing) - *原计划编号40*
 - **Epic 95**：食用菌与潮次管理 (Fungi & Multi-flush Harvest Management) - *原计划编号41*
+- **Epic 96**：种质资源与生物样本库 (Germplasm & Genetic Bank) - *原计划编号42*
+- **Epic 97**：生物质能源与外部ESG市场 (Bio-energy & External ESG Marketplace) - *原计划编号43*
+- **Epic 98**：中央厨房运营管理 (Central Kitchen Operations) - *原计划编号45*
+- **Epic 99**：智慧供应链协同 (Smart Supply Chain Collaboration) - *原计划编号54*
 
 ## 注意事项
 
