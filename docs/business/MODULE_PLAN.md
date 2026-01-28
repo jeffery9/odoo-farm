@@ -453,6 +453,12 @@
 | - US-81-02 | 农机作业冲突预防 | `farm_equipment`, `farm_ai_decision` | 💡 待规划 |
 | - US-81-03 | 智能加油补给调度 | `farm_equipment`, `farm_operation` | 💡 待规划 |
 
+| **Epic 82: AI驱动的全链路预测性维护** | US-82-01 至 US-82-04 | `farm_equipment`, `farm_ai_decision`, `farm_iot`, `farm_supply_analytics` | 💡 待规划 |
+| - US-82-01 | 农机设备健康监测 | `farm_equipment`, `farm_iot`, `farm_ai_decision` | 💡 待规划 |
+| - US-82-02 | 供应链节点预测性维护 | `farm_supply_analytics`, `farm_iot`, `farm_ai_decision` | 💡 待规划 |
+| - US-82-03 | 维护成本优化 | `farm_supply_analytics`, `farm_ai_decision`, `farm_financial_basic` | 💡 待规划 |
+| - US-82-04 | 智能维护工单系统 | `farm_equipment`, `farm_ai_agent`, `farm_operation` | 💡 待规划 |
+
 
 ## 5. 开发依赖关系
 
