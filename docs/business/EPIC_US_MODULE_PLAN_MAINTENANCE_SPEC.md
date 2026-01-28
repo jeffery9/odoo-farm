@@ -1,31 +1,27 @@
-# 史诗-用户故事-模块规划维护管理规范 (Epic-User Story-Module Plan Maintenance Management Specification)
+# 史诗-用户故事-模块规划维护管理规范 (Core Constitution for Product Governance)
 
 ## 1. 文档概述
 
 ### 1.1 目的与范围
-本规范定义了史诗(Epic)、用户故事(User Story)和模块规划(Module Plan)的维护管理流程，确保规划文档与实际开发保持同步，支持产品持续演进和版本管理。
+本规范作为项目产品治理的**核心宪法**，定义了史诗(Epic)、用户故事(User Story)和模块规划(Module Plan)的维护管理最高准则。它确立了从需求感知到代码实现的全生命周期治理机制，确保规划文档与实际开发保持物理与逻辑上的绝对同步。
 
-### 1.2 适用范围
-- **史诗管理**: 从史诗创建、开发到关闭的全生命周期管理
-- **用户故事管理**: 用户故事的定义、细化、开发和验证管理
-- **模块规划管理**: 模块矩阵、职责和依赖关系的持续更新
-- **规划协调**: 确保史诗-用户故事-模块规划的一致性
+### 1.2 核心管理原则 (Constitutional Principles)
+- **文档即真理 (Doc as Truth)**: 文档状态落后于代码实现被视为严重的工程事故。
+- **无损更新 (Lossless Update)**: 禁止在任何规划文档中使用省略号，必须全量维护 US 及其验收标准（AC）。
+- **职责分离 (SoC)**: 规划层（Constitution/Spec）、行业层（Epic/US）、实现层（Module/Code）必须层次分明。
 
-### 1.3 维护原则
-- **及时性**: 规划变更应及时反映在文档中
-- **准确性**: 文档内容应准确反映开发状态
-- **一致性**: 不同规划文档间保持内容一致
-- **可追溯性**: 维护需求到实现的完整追溯链路
+### 1.3 规范层级
+- **本宪法**: 定义流程、角色与治理框架。
+- **执行规范**: 详见 `docs/business/Epic_US_Classification_Guidelines.md`，定义 US 分类、精化与六维价值模型。
 
 ## 2. 规划文档结构
 
 ### 2.1 核心文档定义
-- **产品方向规范** (docs/business/PRODUCT_DIRECTION_SPEC.md): 定义产品发展方向、治理机制和战略规划
-- **史诗文档集** (docs/business/epics/): 每个史诗独立的文档文件
-- **用户故事矩阵** (MODULE_PLAN.md): 用户故事与模块的映射关系
-- **模块规划矩阵** (MODULE_PLAN.md): 模块职责和状态矩阵
-- **实施规范** (EPIC_ADDON_MAPPING_SPEC.md): 实施标准和要求
-- **规划维护规范** (EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md): 史诗-用户故事-模块规划的维护管理流程
+- **产品方向规范** (docs/business/PRODUCT_DIRECTION_SPEC.md): 定义产品发展方向、治理机制和战略规划。
+- **治理宪法** (EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md): 本文档。
+- **分类与精化规范** (docs/business/Epic_US_Classification_Guidelines.md): **具体执行规范**，定义 US 的技术映射与 UX 准则。
+- **史诗文档集** (docs/business/epics/): 每个史诗独立的业务逻辑定义。
+- **模块规划矩阵** (docs/business/MODULE_PLAN.md): 模块职责、用户故事映射与实现状态看板。
 
 ### 2.2 文档关联关系
 ```
