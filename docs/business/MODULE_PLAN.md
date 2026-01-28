@@ -471,6 +471,12 @@
 | - US-84-03 | 农业保险产品管理 | `farm_financial_insurance`, `farm_ai_decision`, `farm_operation` | 💡 待规划 |
 | - US-84-04 | 风险对冲与金融衍生品 | `farm_financial_derivatives`, `farm_risk`, `farm_ai_decision` | 💡 待规划 |
 
+| **Epic 85: 农业数字孪生与仿真建模** | US-85-01 至 US-85-04 | `farm_agri_science`, `farm_ai_decision`, `farm_iot`, `farm_ai_vision` | 💡 待规划 |
+| - US-85-01 | 农场数字孪生构建 | `farm_agri_science`, `farm_iot`, `farm_ai_vision` | 💡 待规划 |
+| - US-85-02 | 作物生长仿真模型 | `farm_agri_science`, `farm_ai_decision`, `farm_weather` | 💡 待规划 |
+| - US-85-03 | 农场运营优化仿真 | `farm_agri_science`, `farm_ai_decision`, `farm_operation` | 💡 待规划 |
+| - US-85-04 | 风险与应急仿真 | `farm_agri_science`, `farm_risk`, `farm_ai_decision` | 💡 待规划 |
+
 
 ## 5. 开发依赖关系
 
