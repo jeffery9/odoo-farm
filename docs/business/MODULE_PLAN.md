@@ -414,6 +414,27 @@
 | - US-74-11 | 客户需求共创平台 | `farm_marketing`, `farm_customer` | 💡 待规划 |
 | - US-74-12 | 个性化推荐系统 | `farm_ai_decision`, `farm_marketing` | 💡 待规划 |
 
+| **Epic 78: 高级VRA算法与多源数据融合** | US-78-01 至 US-78-04 | `farm_agri_science`, `farm_iot`, `farm_ai_decision`, `farm_ai_vision` | 💡 待规划 |
+| - US-78-01 | 土壤传感器数据实时集成 | `farm_iot`, `farm_agri_science` | 💡 待规划 |
+| - US-78-02 | 气象数据动态调整 | `farm_weather`, `farm_agri_science` | 💡 待规划 |
+| - US-78-03 | 无人机多光谱数据融合 | `farm_ai_vision`, `farm_agri_science` | 💡 待规划 |
+| - US-78-04 | 机器学习VRA模型优化 | `farm_ai_decision`, `farm_agri_science` | 💡 待规划 |
+
+| **Epic 79: VRA经济性分析与优化** | US-79-01 至 US-79-03 | `farm_financial`, `farm_agri_science`, `farm_ai_decision` | 💡 待规划 |
+| - US-79-01 | VRA成本效益分析引擎 | `farm_financial`, `farm_agri_science` | 💡 待规划 |
+| - US-79-02 | 动态经济阈值优化 | `farm_ai_decision`, `farm_financial` | 💡 待规划 |
+| - US-79-03 | VRA投资回报预测 | `farm_financial`, `farm_ai_decision` | 💡 待规划 |
+
+| **Epic 80: VRA环境影响评估** | US-80-01 至 US-80-03 | `farm_esg_compliance`, `farm_agri_science`, `farm_ai_decision` | 💡 待规划 |
+| - US-80-01 | VRA碳足迹核算 | `farm_esg_compliance`, `farm_agri_science` | 💡 待规划 |
+| - US-80-02 | 水体保护VRA策略 | `farm_esg_compliance`, `farm_agri_science` | 💡 待规划 |
+| - US-80-03 | 土壤健康VRA模型 | `farm_esg_compliance`, `farm_agri_science` | 💡 待规划 |
+
+| **Epic 81: VRA设备智能调度与协调** | US-81-01 至 US-81-03 | `farm_equipment`, `farm_ai_decision`, `farm_operation` | 💡 待规划 |
+| - US-81-01 | 多机协同作业调度 | `farm_equipment`, `farm_ai_decision` | 💡 待规划 |
+| - US-81-02 | 农机作业冲突预防 | `farm_equipment`, `farm_ai_decision` | 💡 待规划 |
+| - US-81-03 | 智能加油补给调度 | `farm_equipment`, `farm_operation` | 💡 待规划 |
+
 
 ## 5. 开发依赖关系
 
