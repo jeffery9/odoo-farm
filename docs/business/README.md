@@ -1,47 +1,66 @@
-# 农场管理系统：业务全景索引 (Business Index Central - V6.0)
+# 农场管理系统：业务全景索引 (Business Index Central - V7.0)
 
-本目录是 Odoo 19 农场管理系统（Farm Platform）的知识底座。它不仅是文档的集合，更是一个**业务与技术的映射中心**，通过结构化的索引，打通了“从业务愿景到代码实现”的完整链路。
+本目录是 Odoo 19 农场管理系统（Farm Platform）的**业务中枢与治理核心**。它不仅是文档库，更是“业务愿景 -> 规划治理 -> 代码落地”的中央控制台。
 
-## 1. 业务架构全景地图 (Documentation Map)
+## 1. 核心治理架构 (Governance Framework)
 
-| 层级 | 文档名称 | 解决的核心问题 |
+系统采用 **“一法一规”** 的双层治理体系，确保产品演进的严肃性与一致性。
+
+| 层级 | 关键文档 | 核心作用 |
 | :--- | :--- | :--- |
-| **战略层** | **[PRODUCT_DIRECTION_SPEC.md](PRODUCT_DIRECTION_SPEC.md)** | 我们要往哪里走？系统的愿景与核心价值。 |
-| | **[SOLUTION_OVERVIEW.md](SOLUTION_OVERVIEW.md)** | 系统是如何闭环的？一二三产融合的整体方案。 |
-| **规划层** | **[EPICS_AND_USER_STORIES.md](EPICS_AND_USER_STORIES.md)** | 我们需要做哪些功能？45 个史诗与 200+ 用户故事索引。 |
-| | **[MODULE_PLAN.md](MODULE_PLAN.md)** | 功能实现在哪个 Addon？User Story 到代码模块的物理映射。 |
-| **执行层** | **[US_REFINEMENT_STRATEGY.md](US_REFINEMENT_STRATEGY.md)** | 用户故事如何写才及格？原子级 AC（验收条件）精化准则。 |
-| | **[DOMAIN_LOGIC_ALGORITHMS.md](DOMAIN_LOGIC_ALGORITHMS.md)** | 核心农业计算公式是什么？NPK、GDD、FCR 等算法底座。 |
-| **标准层** | **[EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md](EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md)** | 如何维护这些文档？增量更新与痕迹保留规范。 |
-| | **[BUSINESS_PROCESS_SPEC.md](BUSINESS_PROCESS_SPEC.md)** | 流程图怎么画？Mermaid 建模标准。 |
-
-## 2. 核心业务能力域导航 (Capability Domains)
-
-通过下方链接，可直接跳转至细分领域的详细史诗（Epics）定义：
-
-### 🟢 核心经营与生产 (Core ERP)
-- [基础数据](epics/EPIC_01_Agricultural_Master_Data.md) | [种植管理](epics/EPIC_02_Plant_Farming_Management.md) | [养殖管理](epics/EPIC_03_Livestock_Aquaculture.md) | [BOM配方](epics/EPIC_04_Agri_Supply_Chain_BOM.md)
-
-### 供应、物流与冷链 (Supply Chain)
-- [集成供应链](epics/EPIC_09_Integrated_Supply_Chain.md) | [冷藏仓储](epics/EPIC_09_Integrated_Supply_Chain.md) | [物流配送](epics/EPIC_09_Integrated_Supply_Chain.md)
-
-### 🔴 质量、安全与加工 (Safety & Processing)
-- [农产品加工](epics/EPIC_14_Agri_Processing_Management.md) | [质量控制](epics/EPIC_15_Agri_Quality_Inspection.md) | [中央厨房](epics/EPIC_45_Central_Kitchen_Operations.md) | [安全防疫](epics/EPIC_11_Epidemic_Prevention_Biosafety.md)
-
-### 🟡 合规、社会化与金融 (Compliance & Social)
-- [中国合规](epics/EPIC_18_China_Compliance.md) | [合作社协同](epics/EPIC_19_Multi_Entity_Collaboration.md) | [国际标准](epics/EPIC_20_Data_Standardization.md) | [碳足迹/ESG](epics/EPIC_30_Carbon_ESG_Ledger.md)
-
-### 🔵 数字化、UX 与移动端 (Digital & UX)
-- [三端适配 UX](epics/EPIC_16_Agri_UX_Standard.md) | [现场作业](epics/EPIC_07_Mobile_Field_Ops.md) | [物联感知](epics/EPIC_06_IIOT_Automation.md) | [AI 洞察](epics/EPIC_28_AI_Vision.md)
-
-## 3. 核心维护准则 (Strict Maintenance Guidelines)
-
-为确保项目知识资产的可追溯性，所有编辑操作必须遵循：
-1. **留痕式更新**: **严禁物理删除**现有业务逻辑。过时内容必须使用 `~~Markdown删除线~~`。
-2. **三端视角**: UX 需求必须显式区分 PC、PDA 和手机的交互差异。
-3. **技术归口**: 新增 US 必须同步在 **[MODULE_PLAN.md](MODULE_PLAN.md)** 中明确其 Addon 归口。
-4. **双语政策**: 报表、标签、溯源页等面向客户的产出物必须标注双语要求。
+| **🏛️ 治理宪法** | **[EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md](EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md)** | **最高纲领**。定义生命周期、文档即真理原则、同步机制与审计标准。 |
+| **📘 执行规范** | **[Epic_US_Classification_Guidelines.md](Epic_US_Classification_Guidelines.md)** | **操作指南**。定义 US 六维价值模型、归口精化准则与分类标准。 |
 
 ---
-**Last Updated**: 2026-01-14  
-**Index Status**: Synchronized with V6.0 Baseline
+
+## 2. 业务规划全景 (Business Landscape)
+
+| 领域 | 文档入口 | 描述 |
+| :--- | :--- | :--- |
+| **战略方向** | **[PRODUCT_DIRECTION_SPEC.md](PRODUCT_DIRECTION_SPEC.md)** | 产品愿景、B2G/G2B 双轮驱动战略、L1-L5 演进路线图。 |
+| **业务闭环** | **[SOLUTION_OVERVIEW.md](SOLUTION_OVERVIEW.md)** | “种子到餐桌”全链路集成方案，解决痛点与技术架构。 |
+| **需求矩阵** | **[EPICS_AND_USER_STORIES.md](EPICS_AND_USER_STORIES.md)** | 史诗全集索引。定义 60+ Epics 与 300+ User Stories。 |
+| **实施落地** | **[MODULE_PLAN.md](MODULE_PLAN.md)** | **技术映射中心**。定义功能在 Addons 中的物理归属与开发状态。 |
+| **领域智慧** | **[DOMAIN_LOGIC_ALGORITHMS.md](DOMAIN_LOGIC_ALGORITHMS.md)** | 核心算法库。NPK 养分平衡、GDD 积温、AI 决策模型等公式定义。 |
+| **流程标准** | **[BUSINESS_PROCESS_SPEC.md](BUSINESS_PROCESS_SPEC.md)** | 跨模块集成流程图（Mermaid）、核心硬约束（Hard-Blocks）定义。 |
+
+---
+
+## 3. 核心业务能力域导航 (Capability Domains)
+
+快速跳转至细分领域的详细史诗定义：
+
+### 🟢 核心生产与运营 (Core Production)
+- [基础数据](epics/EPIC_01_Agricultural_Master_Data.md) | [种植管理](epics/EPIC_02_Plant_Farming.md) | [畜牧养殖](epics/EPIC_03_Livestock_Aquaculture.md) | [林果园艺](epics/EPIC_34_Perennial_Orchard.md)
+
+### 🚜 资源、设备与作业 (Resources & Operations)
+- [现场作业](epics/EPIC_07_Mobile_Field_Ops.md) | [农机管理](epics/EPIC_22_Drone_Operations.md) | [劳动力调度](epics/EPIC_13_HR_Labor_Scheduling.md) | [精准农业(VRA)](epics/EPIC_46_Precision_Production_VRA.md)
+
+### 📦 供应链与加工 (Supply Chain & Processing)
+- [集成供应链](epics/EPIC_09_Integrated_Supply_Chain.md) | [产后加工](epics/EPIC_14_Agri_Processing_Management.md) | [BOM配方](epics/EPIC_04_Agri_Supply_Chain_BOM.md) | [质量控制](epics/EPIC_15_Agri_Quality_Inspection.md)
+
+### 💰 市场、营销与品牌 (Market & Brand)
+- [品牌营销](epics/EPIC_08_Marketing_Engagement.md) | [溯源体系](epics/EPIC_49_Holistic_Traceability_Marketing.md) | [CSA订阅](epics/EPIC_36_Urban_Community_Farming.md) | [直播电商](epics/EPIC_21_Live_Streaming_Douyin.md)
+
+### 🛡️ 合规、风险与金融 (Compliance & Finance)
+- [认证合规](epics/EPIC_12_Certification_Organic_Farming.md) | [ESG/碳足迹](epics/EPIC_30_Carbon_ESG_Ledger.md) | [农业保险](epics/EPIC_48_Agri_Financial_Credit_Insurance.md) | [合作社协同](epics/EPIC_19_Multi_Entity_Collaboration.md)
+
+### 🧠 智能、数据与 UX (Intelligence & Digital)
+- [AI 决策平台](epics/EPIC_58_AI_Decision_Support_Platform.md) | [LLM 集成](epics/EPIC_59_AI_LLM_Integration.md) | [AI 视觉](epics/EPIC_28_AI_Vision.md) | [UX 标准](epics/EPIC_16_Agri_UX_Standard.md)
+
+---
+
+## 4. 黄金开发路径 (The Golden Path)
+
+在开始任何代码开发前，必须遵循以下步骤：
+
+1.  **查阅宪法**：确认 `EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md` 中的状态要求。
+2.  **定位需求**：在 `EPICS_AND_USER_STORIES.md` 找到对应的 Epic。
+3.  **精化 US**：依据 `Epic_US_Classification_Guidelines.md` 完善验收标准（AC）。
+4.  **映射模块**：在 `MODULE_PLAN.md` 确认代码归属的 Addon。
+5.  **对齐算法**：查阅 `DOMAIN_LOGIC_ALGORITHMS.md` 确保计算逻辑准确。
+6.  **执行开发**：代码实现与测试。
+
+---
+**Last Updated**: 2026-01-28
+**Governance Status**: Active (Constitutional Era)
