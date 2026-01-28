@@ -414,6 +414,24 @@
 | - US-74-11 | 客户需求共创平台 | `farm_marketing`, `farm_customer` | 💡 待规划 |
 | - US-74-12 | 个性化推荐系统 | `farm_ai_decision`, `farm_marketing` | 💡 待规划 |
 
+| **Epic 75: 供应链风险管控** | US-75-01 至 US-75-04 | `farm_supply_analytics`, `farm_ai_agent`, `farm_risk`, `farm_esg_compliance` | 💡 待规划 |
+| - US-75-01 | 供应链风险识别引擎 | `farm_supply_analytics`, `farm_ai_agent` | 💡 待规划 |
+| - US-75-02 | 供应链韧性评估 | `farm_supply_analytics`, `farm_ai_decision` | 💡 待规划 |
+| - US-75-03 | 供应链应急预案管理 | `farm_ai_agent`, `farm_supply_logistics` | 💡 待规划 |
+| - US-75-04 | 多源风险数据集成 | `farm_ai_decision`, `farm_supply_analytics`, `farm_weather`, `farm_market_data` | 💡 待规划 |
+
+| **Epic 76: 供应链碳足迹追踪** | US-76-01 至 US-76-04 | `farm_esg_compliance`, `farm_supply_analytics`, `farm_ai_decision`, `farm_supply_logistics` | 💡 待规划 |
+| - US-76-01 | 碳足迹数据采集引擎 | `farm_esg_compliance`, `farm_supply_analytics`, `farm_iot` | 💡 待规划 |
+| - US-76-02 | 智能碳减排策略 | `farm_ai_decision`, `farm_esg_compliance` | 💡 待规划 |
+| - US-76-03 | 供应商碳合规管理 | `farm_esg_compliance`, `farm_supply_procurement` | 💡 待规划 |
+| - US-76-04 | 碳中和认证与报告 | `farm_esg_compliance`, `farm_ai_llm_integration` | 💡 待规划 |
+
+| **Epic 77: 全球供应链治理** | US-77-01 至 US-77-04 | `farm_multi_farm_govern`, `farm_supply_logistics`, `farm_ai_llm_integration`, `farm_compliance` | 💡 待规划 |
+| - US-77-01 | 多国法规合规引擎 | `farm_compliance`, `farm_ai_llm_integration` | 💡 待规划 |
+| - US-77-02 | 跨文化供应链协同 | `farm_ai_llm_integration`, `farm_supply_logistics` | 💡 待规划 |
+| - US-77-03 | 全球供应链透明度管理 | `farm_supply_analytics`, `farm_ai_agent`, `farm_compliance` | 💡 待规划 |
+| - US-77-04 | 国际贸易风险监控 | `farm_ai_decision`, `farm_supply_analytics`, `farm_market_data` | 💡 待规划 |
+
 | **Epic 78: 高级VRA算法与多源数据融合** | US-78-01 至 US-78-04 | `farm_agri_science`, `farm_iot`, `farm_ai_decision`, `farm_ai_vision` | 💡 待规划 |
 | - US-78-01 | 土壤传感器数据实时集成 | `farm_iot`, `farm_agri_science` | 💡 待规划 |
 | - US-78-02 | 气象数据动态调整 | `farm_weather`, `farm_agri_science` | 💡 待规划 |

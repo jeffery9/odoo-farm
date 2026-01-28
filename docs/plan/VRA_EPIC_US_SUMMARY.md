@@ -126,13 +126,100 @@
 - **导出格式**: ISO-XML, Shapefile
 - **兼容标准**: ISOBUS
 
-## 8. 业务价值
+## 8. 建议扩展的 Epic/User Story
+
+### Epic 78: 高级VRA算法与多源数据融合 (Advanced VRA Algorithms & Multi-source Data Fusion)
+- **目标**: 整合土壤传感器、气象站、无人机遥感等多源数据，提升VRA处方精度
+- **建议User Stories**:
+  - **US-78-01**: 土壤传感器数据实时集成 (Soil Sensor Data Integration)
+    - **描述**: 作为农技员，我希望系统能实时集成土壤湿度、温度、养分传感器数据，用于VRA处方优化
+    - **模块**: `farm_iot`, `farm_agri_science`
+    - **优先级**: 💡 待规划
+
+  - **US-78-02**: 气象数据动态调整 (Dynamic Weather Adjustment)
+    - **描述**: 作为农场主，我希望VRA处方能根据短期天气预报动态调整，避免在降雨前施用
+    - **模块**: `farm_weather`, `farm_agri_science`
+    - **优先级**: 💡 待规划
+
+  - **US-78-03**: 无人机多光谱数据融合 (UAV Multispectral Data Fusion)
+    - **描述**: 作为技术员，我希望将无人机获取的高分辨率多光谱数据与卫星NDVI结合，提升局部区域精度
+    - **模块**: `farm_ai_vision`, `farm_agri_science`
+    - **优先级**: 💡 待规划
+
+  - **US-78-04**: 机器学习VRA模型优化 (ML-based VRA Model Optimization)
+    - **描述**: 作为数据分析师，我希望系统能基于历史作业效果自动优化VRA算法参数
+    - **模块**: `farm_ai_decision`, `farm_agri_science`
+    - **优先级**: 💡 待规划
+
+### Epic 79: VRA经济性分析与优化 (VRA Economic Analysis & Optimization)
+- **目标**: 建立VRA作业的成本效益分析模型，优化资源投入与收益平衡
+- **建议User Stories**:
+  - **US-79-01**: VRA成本效益分析引擎 (VRA Cost-Benefit Analysis Engine)
+    - **描述**: 作为财务主管，我希望系统能自动计算VRA作业的成本节省和产量提升
+    - **模块**: `farm_financial`, `farm_agri_science`
+    - **优先级**: 💡 待规划
+
+  - **US-79-02**: 动态经济阈值优化 (Dynamic Economic Threshold Optimization)
+    - **描述**: 作为农场主，我希望系统根据投入品价格和农产品价格动态调整VRA的经济阈值
+    - **模块**: `farm_ai_decision`, `farm_financial`
+    - **优先级**: 💡 待规划
+
+  - **US-79-03**: VRA投资回报预测 (VRA ROI Prediction)
+    - **描述**: 作为决策者，我希望系统能预测不同规模农场实施VRA的预期投资回报
+    - **模块**: `farm_financial`, `farm_ai_decision`
+    - **优先级**: 💡 待规划
+
+### Epic 80: VRA环境影响评估 (VRA Environmental Impact Assessment)
+- **目标**: 量化VRA对环境的影响，支持可持续农业实践
+- **建议User Stories**:
+  - **US-80-01**: VRA碳足迹核算 (VRA Carbon Footprint Calculation)
+    - **描述**: 作为ESG经理，我希望系统能计算VRA作业相比传统方法的碳减排量
+    - **模块**: `farm_esg_compliance`, `farm_agri_science`
+    - **优先级**: 💡 待规划
+
+  - **US-80-02**: 水体保护VRA策略 (Water Body Protection VRA Strategy)
+    - **描述**: 作为环保专员，我希望系统能自动识别靠近水体的区域并调整施肥策略
+    - **模块**: `farm_esg_compliance`, `farm_agri_science`
+    - **优先级**: 💡 待规划
+
+  - **US-80-03**: 土壤健康VRA模型 (Soil Health VRA Model)
+    - **描述**: 作为土壤专家，我希望VRA处方能考虑土壤健康因子，避免过度施用导致土壤退化
+    - **模块**: `farm_esg_compliance`, `farm_agri_science`
+    - **优先级**: 💡 待规划
+
+### Epic 81: VRA设备智能调度与协调 (Smart VRA Equipment Coordination)
+- **目标**: 实现多台农机的协调作业和智能调度，提高作业效率
+- **建议User Stories**:
+  - **US-81-01**: 多机协同作业调度 (Multi-Machine Coordinated Scheduling)
+    - **描述**: 作为农机队长，我希望系统能统筹安排多台VRA设备的作业任务和路径
+    - **模块**: `farm_equipment`, `farm_ai_decision`
+    - **优先级**: 💡 待规划
+
+  - **US-81-02**: 农机作业冲突预防 (Machine Operation Conflict Prevention)
+    - **描述**: 作为调度员，我希望系统能自动检测并避免多设备在同一区域的作业冲突
+    - **模块**: `farm_equipment`, `farm_ai_decision`
+    - **优先级**: 💡 待规划
+
+  - **US-81-03**: 智能加油补给调度 (Smart Refueling Schedule)
+    - **描述**: 作为后勤主管，我希望系统能根据作业进度和设备状态自动规划加油补给时机
+    - **模块**: `farm_equipment`, `farm_operation`
+    - **优先级**: 💡 待规划
+
+## 9. 业务价值
 
 - **资源优化**: 通过变量施用减少投入品浪费
 - **成本控制**: 精准作业降低生产成本
 - **环境友好**: 减少过量施用对环境的影响
 - **数据驱动**: 科学决策提升生产效率
 - **财务闭环**: 自动化成本核算与管理
+
+## 10. 未来发展方向
+
+- **多源数据融合**: 集成更多数据源提升处方精度
+- **经济效益分析**: 量化VRA投资回报率
+- **环境可持续性**: 评估和优化环境影响
+- **设备智能化**: 实现多设备协调作业
+- **AI模型优化**: 基于历史数据持续优化算法
 
 ---
 *汇总时间: 2026-01-28*
