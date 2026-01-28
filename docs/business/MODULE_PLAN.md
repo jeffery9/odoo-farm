@@ -465,6 +465,12 @@
 | - US-83-03 | 碳信用与碳交易管理 | `farm_esg_compliance`, `farm_financial_basic`, `farm_ai_decision` | 💡 待规划 |
 | - US-83-04 | 可持续农业实践认证 | `farm_esg_compliance`, `farm_certification`, `farm_ai_agent` | 💡 待规划 |
 
+| **Epic 84: 农业风险与保险管理** | US-84-01 至 US-84-04 | `farm_risk`, `farm_financial_insurance`, `farm_ai_decision`, `farm_iot` | 💡 待规划 |
+| - US-84-01 | 农业风险识别与评估 | `farm_risk`, `farm_ai_decision`, `farm_iot` | 💡 待规划 |
+| - US-84-02 | 智能风险预警系统 | `farm_risk`, `farm_ai_decision`, `farm_mobile` | 💡 待规划 |
+| - US-84-03 | 农业保险产品管理 | `farm_financial_insurance`, `farm_ai_decision`, `farm_operation` | 💡 待规划 |
+| - US-84-04 | 风险对冲与金融衍生品 | `farm_financial_derivatives`, `farm_risk`, `farm_ai_decision` | 💡 待规划 |
+
 
 ## 5. 开发依赖关系
 
