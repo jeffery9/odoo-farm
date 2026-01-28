@@ -59,7 +59,7 @@
 - **Epic 54**：ISL架构 (ISL Architecture)
 - **Epic 55**：农业网络安全 (Agricultural Cybersecurity)
 - **Epic 56**：ESG合规管理 (ESG Compliance Management)
-- **Epic 57**：智能温室控制 (Smart Greenhouse Control) - *注：此Epic与Epic 42主题重叠，需要整合*
+- **Epic 57**：综合农业物联网平台 (Integrated Agricultural IoT Platform)
 - **Epic 58**：AI决策支持平台 (AI Decision Support Platform)
 - **Epic 59**：AI LLM集成 (AI LLM Integration)
 - **Epic 60**：AI金融分析 (AI Financial Analytics)
@@ -90,7 +90,8 @@
 - **Epic 85**：农业数字孪生与仿真建模 (Digital Twin Simulation Modeling)
 - **Epic 86**：区块链溯源与食品安全保障 (Blockchain Traceability Food Safety)
 - **Epic 87**：数据交换与标准化 (Data Exchange Standardization)
-- **Epic 91**：订单农业与农户结算管理 (Contract Farming Settlement) - *原编号44*
+- **Epic 88**：订单农业与农户结算管理 (Contract Farming Settlement) - *原计划编号44*
+- **Epic 89**：高级温室环境控制 (Advanced Greenhouse Environment Control) - *原计划编号57*
 
 ## 注意事项
 
