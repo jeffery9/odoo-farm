@@ -94,6 +94,10 @@
 - **Epic 89**：高级温室环境控制 (Advanced Greenhouse Environment Control) - *原计划编号57*
 - **Epic 90**：CSA社区支持农业与订单管理 (CSA Subscription & Order Management) - *原计划编号26*
 - **Epic 91**：农用机器人与自动化 (Agricultural Robotics & Automation) - *原计划编号51*
+- **Epic 92**：商户管理与农旅商业平台 (Merchant Management & Agri-tourism Platform) - *原计划编号38*
+- **Epic 93**：蜂业与迁徙养殖管理 (Apiculture & Migration Management) - *原计划编号39*
+- **Epic 94**：中药材与炮制管理 (Medicinal Herbs & TCM Processing) - *原计划编号40*
+- **Epic 95**：食用菌与潮次管理 (Fungi & Multi-flush Harvest Management) - *原计划编号41*
 
 ## 注意事项
 
