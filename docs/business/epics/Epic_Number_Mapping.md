@@ -102,12 +102,15 @@
 - **Epic 97**：生物质能源与外部ESG市场 (Bio-energy & External ESG Marketplace) - *原计划编号43*
 - **Epic 98**：中央厨房运营管理 (Central Kitchen Operations) - *原计划编号45*
 - **Epic 99**：智慧供应链协同 (Smart Supply Chain Collaboration) - *原计划编号54*
+- **Epic 100**：农业循环经济与增值销售平台 (Agricultural Circular Economy & Value-Added Sales Platform) - *新增于2026-01-29*
+- **Epic 101**：农业企业可持续发展与价值创造框架 (Agricultural Business Sustainability & Value Creation Framework) - *新增于2026-01-29*
 
 ## 注意事项
 
 1. **Epic 57** 与 **Epic 42** 存在主题重叠，需要决定是否合并或重新划分职责。
 2. 编号系统目前是连续的，除了一些故意的间隔以保持相关主题的Epic靠近。
-3. 所有 Epic/US 归口分类应遵循《Epic_US_Classification_Guidelines.md》中的规范原则。
+3. 编号系统现已支持3位数及以上的Epic编号，以适应更多业务领域。
+4. 所有 Epic/US 归口分类应遵循《Epic_US_Classification_Guidelines.md》中的规范原则。
 
 ---
 

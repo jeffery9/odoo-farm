@@ -40,7 +40,7 @@
 - [集成供应链](epics/EPIC_09_Integrated_Supply_Chain.md) | [产后加工](epics/EPIC_14_Agri_Processing_Management.md) | [BOM配方](epics/EPIC_04_Agri_Supply_Chain_BOM.md) | [质量控制](epics/EPIC_15_Agri_Quality_Inspection.md)
 
 ### 💰 市场、营销与品牌 (Market & Brand)
-- [品牌营销](epics/EPIC_08_Marketing_Engagement.md) | [溯源体系](epics/EPIC_49_Holistic_Traceability_Marketing.md) | [CSA订阅](epics/EPIC_36_Urban_Community_Farming.md) | [直播电商](epics/EPIC_21_Live_Streaming_Douyin.md)
+- [品牌营销](epics/EPIC_08_Marketing_Engagement.md) | [溯源体系](epics/EPIC_49_Holistic_Traceability_Marketing.md) | [CSA订阅](epics/EPIC_36_Urban_Community_Farming.md) | [直播电商](epics/EPIC_21_Live_Streaming_Douyin.md) | [销售与循环利用综合规划](SALES_MARKETING_COMPREHENSIVE_PLAN.md)
 
 ### 🛡️ 合规、风险与金融 (Compliance & Finance)
 - [认证合规](epics/EPIC_12_Certification_Organic_Farming.md) | [ESG/碳足迹](epics/EPIC_30_Carbon_ESG_Ledger.md) | [农业保险](epics/EPIC_48_Agri_Financial_Credit_Insurance.md) | [合作社协同](epics/EPIC_19_Multi_Entity_Collaboration.md)

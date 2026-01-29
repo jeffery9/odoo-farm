@@ -48,6 +48,8 @@
 - [EPIC 56: ESG 合规与可持续性管理](../business/epics/EPIC_56_ESG_COMPLIANCE_MANAGEMENT.md)
 - [EPIC 66: 全球出口合规审计中枢](../business/epics/EPIC_66_Global_Export_Compliance_Engine.md)
 - [EPIC 67: 产销撮合协同平台](../business/epics/EPIC_67_Market_Direct_Connection_Platform.md)
+- [EPIC 100: 销售营销与零浪费综合平台](../business/epics/EPIC_100_Sales_Marketing_Zero_Waste.md)
+- [EPIC 101: 农业企业可持续发展与价值创造框架](../business/epics/EPIC_101_Business_Sustainability_Framework.md)
 
 ---
 

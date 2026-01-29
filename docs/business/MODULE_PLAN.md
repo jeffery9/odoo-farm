@@ -536,6 +536,25 @@
 | - US-86-03 | 食品安全监控与预警 | `farm_supply_quality`, `farm_ai_decision`, `farm_blockchain` | 💡 待规划 |
 | - US-86-04 | 溯源数据验证与审计 | `farm_supply_quality`, `farm_compliance`, `farm_blockchain` | 💡 待规划 |
 
+| **Epic 100: 农业循环经济与增值销售平台** | US-100-01 至 US-100-10 | `farm_marketing`, `farm_sale_ch`, `farm_processing`, `farm_ai_decision`, `farm_supply_analytics` | 💡 待规划 |
+| - US-100-01 | 动态供需匹配与拍卖平台 | `farm_marketing`, `farm_ai_decision`, `farm_supply_analytics` | 💡 待规划 |
+| - US-100-02 | 分级销售与多渠道管理系统 | `farm_marketing`, `farm_sale_ch`, `farm_ai_decision` | 💡 待规划 |
+| - US-100-03 | 近效期产品促销与零浪费激励 | `farm_marketing`, `farm_supply_analytics`, `farm_ai_agent` | 💡 待规划 |
+| - US-100-04 | 残次品循环利用市场 | `farm_processing`, `farm_supply_analytics`, `farm_ai_decision` | 💡 待规划 |
+| - US-100-05 | 预测驱动的精准生产与预售系统 | `farm_ai_decision`, `farm_supply_analytics`, `farm_operation` | 💡 待规划 |
+| - US-100-06 | 品牌溢价与减少浪费宣传 | `farm_marketing`, `farm_ai_vision`, `farm_esg_compliance` | 💡 待规划 |
+| - US-100-07 | 损耗追踪与价值分析系统 | `farm_supply_analytics`, `farm_ai_agent`, `farm_esg_compliance` | 💡 待规划 |
+| - US-100-08 | 农业循环经济与副产品增值转化系统 | `farm_processing`, `farm_ai_decision`, `farm_supply_analytics` | 💡 待规划 |
+| - US-100-09 | 需求预测与动态定价系统 | `farm_ai_decision`, `farm_supply_analytics`, `farm_sale_ch` | 💡 待规划 |
+| - US-100-10 | 供应链金融与风险管控 | `farm_financial`, `farm_risk`, `farm_ai_decision` | 💡 待规划 |
+
+| **Epic 101: 农业企业可持续发展与价值创造框架** | US-101-01 至 US-101-05 | `farm_esg_compliance`, `farm_financial`, `farm_supply_analytics`, `farm_ai_decision`, `farm_risk` | 💡 待规划 |
+| - US-101-01 | 三重目标指标统一管理 | `farm_esg_compliance`, `farm_supply_analytics`, `farm_ai_decision` | 💡 待规划 |
+| - US-101-02 | 可持续商业模式设计 | `farm_business_planning`, `farm_ai_decision`, `farm_financial` | 💡 待规划 |
+| - US-101-03 | 循环经济价值评估体系 | `farm_financial`, `farm_esg_compliance`, `farm_ai_decision` | 💡 待规划 |
+| - US-101-04 | 可持续供应链管理 | `farm_supply_analytics`, `farm_esg_compliance`, `farm_supply_logistics` | 💡 待规划 |
+| - US-101-05 | 可持续产品全生命周期管理 | `farm_product_mgmt`, `farm_esg_compliance`, `farm_ai_decision` | 💡 待规划 |
+
 
 ## 5. 开发依赖关系
 
