@@ -56,7 +56,7 @@ git commit -m "docs: brief description of the documentation in English"
     git checkout 19.0
     ```
 2.  **筛选并同步 (Cherry-pick)**：
-    使用脚本或手动筛选 `19.0..dev` 之间的提交。仅 cherry-pick 那些不包含 `.md` 或 `docs/` 的 commit。
+    使用脚本或手动筛选 `19.0..dev` 之间的提交。**必须严格按照时间先后顺序（从最早到最新）**进行 cherry-pick，仅 cherry-pick 那些不包含 `.md` 或 `docs/` 的 commit。`git rev-list --reverse` 命令确保了按时间顺序获取提交。
     ```bash
     # 推荐的自动化同步脚本逻辑
     NEW_COMMITS=$(git rev-list --reverse 19.0..dev)
@@ -69,6 +69,17 @@ git commit -m "docs: brief description of the documentation in English"
             echo "Skipping doc commit: $commit"
         fi
     done
+    ```
+
+    **保持原始提交信息（可选）**：
+    如需在发布分支上保持与原始提交相同的时间戳、作者信息，并在提交信息中包含原始提交的hash ID，使用以下命令替代标准的 cherry-pick：
+    ```bash
+    # 手动进行 cherry-pick 并保留原始提交信息
+    git cherry-pick --strategy=recursive -X theirs <commit-hash>
+    # 或在 cherry-pick 后修改提交信息以包含原始hash
+    git cherry-pick --no-commit <commit-hash>
+    # 解决可能的冲突后
+    git commit --author="$(git show --format="%an <%ae>" --no-patch <commit-hash>)" --date="$(git show --format="%ad" --no-patch <commit-hash>)" -m "$(git show --format="%s%n%n[From commit: <commit-hash>]" --no-patch <commit-hash>)"
     ```
 
     **验证同步结果**：
@@ -206,6 +217,12 @@ chmod +x .git/hooks/pre-commit
 
 *   **问：发布分支的提交信息有什么要求？**
     答：发布分支上的提交信息必须使用英文，清晰描述功能变更，不包含文档说明或开发过程记录。
+
+*   **问：cherry-pick 时提交顺序重要吗？**
+    答：**非常重要！** 必须严格按照时间顺序进行 cherry-pick（从最早的提交到最新的提交），以确保提交之间的依赖关系得到正确处理，避免冲突。`git rev-list --reverse` 命令可以按时间顺序返回提交。
+
+*   **问：是否可以保持原始提交的作者和时间戳信息？**
+    答：可以。在发布分支上进行 cherry-pick 时，可以使用特定命令来保持原始提交的作者信息、时间戳，并在提交信息中包含原始提交的hash ID，以保持提交历史的完整性。
 
 ---
 
