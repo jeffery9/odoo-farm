@@ -78,7 +78,7 @@ class ByproductCostShareMixin(models.AbstractModel):
 
     @api.constrains('byproduct_ids', 'byproduct_ids.cost_share')
     def _check_byproduct_cost_share_total(self):
-        """ US-04-03: 确保副产品成本分摊比例不超过100% """
+        """ US-14-03: 确保副产品成本分摊比例不超过100% """
         for record in self:
             if record.byproduct_cost_share_total > 100.0:
                 raise ValidationError(

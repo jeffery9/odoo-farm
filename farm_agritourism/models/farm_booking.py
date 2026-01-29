@@ -23,7 +23,7 @@ class FarmBooking(models.Model):
     partner_id = fields.Many2one('res.partner', string="Customer", required=True)
     booking_date = fields.Date("Activity Date", default=fields.Date.today, required=True)
     
-    # 增加起止时间以支持细粒度预约 [US-02-03]
+    # 增加起止时间以支持细粒度预约 [US-05-03]
     date_start = fields.Datetime("Start Time", required=True, default=fields.Datetime.now)
     date_stop = fields.Datetime("End Time", required=True, default=fields.Datetime.now)
     
@@ -74,7 +74,7 @@ class FarmBooking(models.Model):
 
     @api.constrains('resource_id', 'date_start', 'date_stop')
     def _check_booking_overlap(self):
-        """ 检查同一资源的预约时间冲突 [US-02-03] """
+        """ 检查同一资源的预约时间冲突 [US-05-03] """
         for booking in self:
             if not booking.resource_id:
                 continue

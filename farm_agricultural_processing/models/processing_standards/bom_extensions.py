@@ -34,7 +34,7 @@ class FarmProcessingBomExtension(models.Model):
     # US-14-16: 损耗容差管理
     max_loss_rate = fields.Float("Max Allowable Loss Rate (%)", help="Maximum allowable loss rate for this process. Exceeding this will trigger hard blocking.")
 
-    # US-04-03: 农业副产品价值分摊 - Using mixin
+    # US-14-03: 农业副产品价值分摊 - Using mixin
     byproduct_cost_share_total = fields.Float("Byproduct Cost Share Total (%)", compute='_compute_byproduct_cost_share_total', store=True)
     finished_product_cost_share = fields.Float("Finished Product Cost Share (%)", compute='_compute_finished_product_cost_share', store=True)
 
@@ -50,7 +50,7 @@ class FarmProcessingBomExtension(models.Model):
 
     @api.constrains('byproduct_ids', 'byproduct_ids.cost_share')
     def _check_byproduct_cost_share_total(self):
-        """ US-04-03: 确保副产品成本分摊比例不超过100% """
+        """ US-14-03: 确保副产品成本分摊比例不超过100% """
         for bom in self:
             if bom.byproduct_cost_share_total > 100.0:
                 raise ValidationError(_("Byproduct cost share total cannot exceed 100%%. Current total is %s%%") % bom.byproduct_cost_share_total)
@@ -105,7 +105,7 @@ class FarmProcessingProductionExtension(models.Model):
 
     @api.constrains('bom_id', 'bom_id.byproduct_cost_share_total')
     def _check_byproduct_cost_share_total_mo(self):
-        """ US-04-03: 确保副产品成本分摊比例不超过100% """
+        """ US-14-03: 确保副产品成本分摊比例不超过100% """
         for mo in self:
             if mo.bom_id and mo.bom_id.byproduct_cost_share_total > 100.0:
                 raise ValidationError(_("Byproduct cost share total cannot exceed 100%%. Current total is %s%%") % mo.bom_id.byproduct_cost_share_total)

@@ -306,7 +306,7 @@ class FarmAgriculturalInterventionMixin(models.AbstractModel):
         self.message_post(body=_("Labor: Work stopped and recorded at %s") % now)
 
     def action_confirm(self):
-        """扩展确认逻辑，进行安全拦截 [US-03-04] 并传递任务 ID 到供应端 [US-03-02]"""
+        """扩展确认逻辑，进行安全拦截 [US-03-04] 并传递任务 ID 到供应端 [US-09-01]"""
         for mo in self:
             # US-18-02: Check real-name registration for pesticide/veterinary
             if hasattr(mo, 'intervention_type') and mo.intervention_type in ['protection', 'aerial_spraying', 'medical']:

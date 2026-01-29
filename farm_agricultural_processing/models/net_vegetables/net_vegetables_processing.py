@@ -21,7 +21,7 @@ class FarmProcessingProductionNetVegetablesExtension(models.Model):
         ('sterilization', 'Sterilization')
     ], string="Process Mode", default='standard')
 
-    # Industry parameter fields [US-16-02]
+    # Industry parameter fields [US-14-02]
     vintage_year = fields.Integer("Vintage")
     alcohol_content = fields.Float("Alcohol %")
     brix_level = fields.Float("Brix")
@@ -30,7 +30,7 @@ class FarmProcessingProductionNetVegetablesExtension(models.Model):
     proofing_time = fields.Float("Proofing Duration (Min)")
     process_temperature = fields.Float("Process Temperature (℃)")
 
-    # Quality control fields [US-15-01]
+    # Quality control fields [US-14-01]
     moisture_content = fields.Float("Moisture Content (%)")
     is_haccp_compliant = fields.Boolean("HACCP Checked", default=False)
 
@@ -64,7 +64,7 @@ class FarmProcessingProductionNetVegetablesExtension(models.Model):
     total_loss_qty = fields.Float('Total Loss (kg)')
     yield_rate = fields.Float('Yield Rate (%)')
 
-    # Loss tracking for mass balance [US-04-02, US-14-06]
+    # Loss tracking for mass balance [US-14-02, US-14-06]
     scrap_qty = fields.Float("Process Loss (kg)", help="Physical waste/scraps recorded during process.")
     loss_rate = fields.Float("Loss Rate (%)", compute='_compute_total_output_qty', store=True)
     total_output_qty = fields.Float("Total Output Qty", compute='_compute_total_output_qty', store=True)
@@ -118,7 +118,7 @@ class FarmProcessingProductionNetVegetablesExtension(models.Model):
                 self.brix_level = self.bom_id.target_brix
 
     def button_mark_done(self):
-        """ Quality checks and balance verification [US-04-02, US-14-03, US-14-16, US-14-19] """
+        """ Quality checks and balance verification [US-14-02, US-14-03, US-14-16, US-14-19] """
         for mo in self:
             # 1. Mass balance verification [US-14-06]
             if not mo.is_balanced:
