@@ -282,60 +282,106 @@ class SaleOrder(models.Model):
         # 获取与订单关联的批次
         lot_ids = []
         for line in self.order_line:
-            for move in line.move_ids:
-                lot_ids.extend(move.move_line_ids.lot_ids.ids)
+            # 优先使用已分配的批次
+            if line.lot_id:
+                lot_ids.append(line.lot_id.id)
+            else:
+                # 否则使用库存移动中的批次
+                for move in line.move_ids:
+                    lot_ids.extend(move.move_line_ids.lot_ids.ids)
 
         # 获取批次关联的任务和干预
         intervention_data = []
 
         # 通过批次找到生产任务
         if lot_ids:
-            lots = self.env['stock.lot'].browse(lot_ids)
+            lots = self.env['stock.lot'].sudo().browse(lot_ids)
             for lot in lots:
                 # 获取与批次关联的生产任务（如果有）
-                production_task = self.env['project.task'].search([
+                production_tasks = self.env['project.task'].sudo().search([
                     ('biological_lot_id', '=', lot.id)
-                ], limit=1)
+                ])
 
-                if production_task:
+                for production_task in production_tasks:
                     # 获取与任务关联的所有干预
-                    interventions = self.env['agri.intervention'].search([
+                    interventions = self.env['agri.intervention'].sudo().search([
                         ('agri_task_id', '=', production_task.id)
                     ])
 
                     for intervention in interventions:
+                        # 计算干预的进度状态
+                        progress_state = 'planned'
+                        if intervention.state == 'done':
+                            progress_state = 'completed'
+                        elif intervention.state in ['confirmed', 'progress']:
+                            progress_state = 'in_progress'
+                        elif intervention.state == 'draft':
+                            progress_state = 'pending'
+
                         intervention_data.append({
                             'id': intervention.id,
-                            'name': intervention.name,
+                            'name': intervention.name or f"{intervention.intervention_type} intervention",
                             'intervention_type': intervention.intervention_type,
                             'state': intervention.state,
+                            'progress_state': progress_state,
                             'date_start': intervention.date_start,
                             'date_finished': intervention.date_finished,
                             'task_name': production_task.name,
+                            'task_id': production_task.id,
+                            'color': self._get_intervention_color(intervention.intervention_type),
                         })
 
         # 如果订单直接关联到任务
-        order_tasks = self.env['project.task'].search([
+        order_tasks = self.env['project.task'].sudo().search([
             ('sale_order_id', '=', self.id)
         ])
 
         for task in order_tasks:
-            interventions = self.env['agri.intervention'].search([
+            interventions = self.env['agri.intervention'].sudo().search([
                 ('agri_task_id', '=', task.id)
             ])
 
             for intervention in interventions:
+                # 计算干预的进度状态
+                progress_state = 'planned'
+                if intervention.state == 'done':
+                    progress_state = 'completed'
+                elif intervention.state in ['confirmed', 'progress']:
+                    progress_state = 'in_progress'
+                elif intervention.state == 'draft':
+                    progress_state = 'pending'
+
                 intervention_data.append({
                     'id': intervention.id,
-                    'name': intervention.name,
+                    'name': intervention.name or f"{intervention.intervention_type} intervention",
                     'intervention_type': intervention.intervention_type,
                     'state': intervention.state,
+                    'progress_state': progress_state,
                     'date_start': intervention.date_start,
                     'date_finished': intervention.date_finished,
                     'task_name': task.name,
+                    'task_id': task.id,
+                    'color': self._get_intervention_color(intervention.intervention_type),
                 })
 
         return intervention_data
+
+    def _get_intervention_color(self, intervention_type):
+        """
+        根据干预类型返回对应的颜色
+        """
+        color_map = {
+            'tillage': '#1f77b4',      # 蓝色 - 耕地
+            'sowing': '#2ca02c',       # 绿色 - 播种
+            'fertilizing': '#ff7f0e',  # 橙色 - 施肥
+            'irrigation': '#17becf',   # 青色 - 灌溉
+            'protection': '#d62728',   # 红色 - 植保
+            'aerial_spraying': '#9467bd', # 紫色 - 飞防
+            'harvesting': '#8c564b',   # 棕色 - 收获
+            'feeding': '#e377c2',      # 粉色 - 喂料
+            'medical': '#7f7f7f',      # 灰色 - 医疗
+        }
+        return color_map.get(intervention_type, '#000000')  # 默认黑色
 
     def action_confirm(self):
         """在确认销售订单时检查出口合规性及繁育代次硬拦截 [US-01-05]"""

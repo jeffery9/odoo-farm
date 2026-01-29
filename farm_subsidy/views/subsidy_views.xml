@@ -51,6 +51,8 @@
                                     <field name="handbook_generated_date"/>
                                     <button name="action_collect_compliance_evidence" string="Collect Compliance Evidence" type="object" class="oe_highlight"/>
                                     <button name="action_generate_compliance_handbook" string="Generate Compliance Handbook" type="object" class="oe_highlight"/>
+                                    <button name="action_export_compliance_handbook" string="Export Compliance Handbook (PDF)" type="object" class="btn-secondary"/>
+                                    <button name="action_verify_evidence_integrity" string="Verify Evidence Integrity" type="object" class="btn-secondary"/>
                                 </group>
                             </group>
                         </page>
