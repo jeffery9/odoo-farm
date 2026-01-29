@@ -232,15 +232,19 @@ class FarmSubsidyApplication(models.Model):
             'application_ref': self.name,
             'fiscal_year': self.fiscal_year,
             'program_name': self.program_id.name,
+            'program_requirements': self.program_id.requirements,
             'declared_parcels': [{
                 'name': parcel.name,
                 'area': parcel.land_area,
                 'area_unit': parcel.land_area_unit,
+                'location': {'lat': parcel.gps_lat, 'lng': parcel.gps_lng} if parcel.gps_lat and parcel.gps_lng else None,
             } for parcel in self.land_parcel_ids],
             'total_evidence_count': len(evidence_records),
             'evidence_records': [],
             'generated_at': datetime.now().isoformat(),
             'compliance_status': self.compliance_status,
+            'total_declared_quantity': self.declared_quantity,
+            'estimated_amount': self.estimated_amount,
         }
 
         # Add evidence records to handbook
@@ -253,6 +257,8 @@ class FarmSubsidyApplication(models.Model):
                 'is_on_site': evidence.is_on_site,
                 'note': evidence.note,
                 'taken_by': evidence.worker_id.name if evidence.worker_id else None,
+                'evidence_hash': evidence.evidence_hash,
+                'is_hash_verified': evidence.is_hash_verified,
             })
 
         # Store the handbook data
@@ -275,3 +281,72 @@ class FarmSubsidyApplication(models.Model):
             'domain': [('id', 'in', evidence_records.ids)],
             'context': self.env.context,
         }
+
+    def action_export_compliance_handbook(self):
+        """
+        US-65-04: Export the compliance handbook as a PDF report
+        """
+        self.ensure_one()
+
+        if not self.compliance_handbook_data:
+            self.action_generate_compliance_handbook()
+
+        # Create a report action to generate PDF
+        return self.env.ref('farm_subsidy.action_compliance_handbook_report').report_action(self)
+
+    def action_verify_evidence_integrity(self):
+        """
+        US-65-04: Verify the integrity of all associated evidence records
+        """
+        self.ensure_one()
+
+        # Get all associated evidence records
+        evidence_records = self.env['farm.evidence'].search([
+            ('subsidy_application_id', '=', self.id)
+        ])
+
+        # Verify integrity for all records
+        integrity_issues = []
+        verified_count = 0
+
+        for evidence in evidence_records:
+            evidence.verify_evidence_integrity()
+            if not evidence.is_hash_verified:
+                integrity_issues.append({
+                    'id': evidence.id,
+                    'name': evidence.name,
+                    'taken_at': evidence.taken_at
+                })
+            else:
+                verified_count += 1
+
+        summary = _("Evidence integrity verification completed. %d records verified, %d issues found.") % (
+            verified_count, len(integrity_issues)
+        )
+
+        if integrity_issues:
+            summary += _("\n\nIssues found:\n")
+            for issue in integrity_issues:
+                summary += f"- {issue['name']} ({issue['taken_at']})\n"
+
+        self.message_post(body=summary)
+
+        if integrity_issues:
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Evidence Integrity Issues'),
+                'res_model': 'farm.evidence',
+                'view_mode': 'list,form',
+                'domain': [('id', 'in', [issue['id'] for issue in integrity_issues])],
+                'context': self.env.context,
+            }
+        else:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Integrity Verification Complete'),
+                    'message': _('All evidence records have been successfully verified.'),
+                    'type': 'success',
+                }
+            }
