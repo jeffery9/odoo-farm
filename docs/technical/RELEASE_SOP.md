@@ -108,7 +108,47 @@ git commit -m "docs: brief description of the documentation in English"
     git commit -m "docs: description of the documentation"
     ```
 
-### 场景 C：误操作后的历史清洗
+### 场景 C：改写既有提交以拆分代码和文档
+如果需要对历史中的混合提交进行拆分，使用交互式变基（interactive rebase）：
+
+1. **启动交互式变基**：
+    ```bash
+    # 对特定提交前的N个提交进行变基
+    git rebase -i <目标提交~N的哈希>
+    # 或者对最近10个提交进行变基（如果目标提交比较近）
+    git rebase -i HEAD~10
+    ```
+
+2. **在变基编辑器中**：
+    - 找到需要拆分的提交行
+    - 将该行的 `pick` 改为 `edit`
+    - 保存并退出编辑器
+
+3. **分离提交内容**：
+    ```bash
+    # 当前处于需要拆分的提交，重置为暂存状态
+    git reset HEAD^
+
+    # 重新添加文件并分离提交
+    # 先添加代码文件
+    git add farm_sustainability/models/*.py farm_sustainability/views/*.xml farm_sustainability/security/*.csv
+    git commit -m "feat: description of the feature in English"
+
+    # 再添加文档文件
+    git add docs/**/*.md
+    git commit -m "docs: description of the documentation in English"
+
+    # 继续变基过程
+    git rebase --continue
+    ```
+
+4. **处理冲突**（如有）：
+    - 如果出现冲突，解决后使用 `git add <文件>` 标记冲突已解决
+    - 然后执行 `git rebase --continue`
+
+**警告**：变基会改写历史，在共享分支上操作前请确认没有其他人在使用相关提交。
+
+### 场景 D：误操作后的历史清洗
 如果不慎将文档混入了 `19.0` 的历史，或需要重新基于 `dev` 生成发布版本，使用 `git filter-repo`：
 
 1.  **基于 dev 创建临时分支**：
