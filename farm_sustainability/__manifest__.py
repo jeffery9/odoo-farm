@@ -10,11 +10,26 @@
         - Environmental Impact Dashboards
     """,
     'author': 'Jeffery',
-    'depends': ['farm_operation', 'farm_core'],
+    'depends': [
+        'base',
+        'mail',
+        'board',
+        'web',
+        'farm_core',
+        'farm_operation',
+        'farm_financial',
+        'farm_supply_analytics',
+        'farm_esg_compliance',
+        'farm_ai_decision'
+    ],
     'data': [
         'security/ir.model.access.csv',
         'views/sustainability_views.xml',
         'views/carbon_views.xml',
+        'views/sustainability_metric_views.xml',
+        'views/circular_flow_views.xml',
+        'views/sustainability_dashboard_views.xml',
+        'data/sustainability_data.xml',
     ],
     'installable': True,
     'application': False,
