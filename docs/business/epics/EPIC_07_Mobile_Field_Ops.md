@@ -88,6 +88,20 @@
         - **(Logic)** 扫描后自动执行业务校验并持久化，无需手动点击"保存"。
         - 扫描失败必须触发强烈的全屏视觉红色警告及长鸣提示音。
 
+## 业务价值
+- **核心价值**: 提升现场作业效率，实现移动化数据采集，改善农事操作的准确性和时效性
+- **目标用户**: 农场工人、技术员、仓库管理员、现场主管
+- **量化收益**: 现场作业效率提升40%，数据录入准确性提升至99%，离线作业覆盖率达到100%
+
+## 技术挑战
+- **复杂性**: 需要支持复杂的离线数据同步逻辑和冲突解决
+- **性能要求**: 移动端响应时间需在2秒内，扫码识别需快速准确
+- **安全合规**: 需要确保离线数据安全和操作审计完整性
+- **集成难点**: 与多个后端系统同步，支持多种设备类型
+
+---
+*最后更新：2026-01-28*
+
 <system-reminder>
 Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
 </system-reminder>

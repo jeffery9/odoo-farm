@@ -239,23 +239,23 @@
 
 | 史诗 (Epic) | 包含的 US ID | 承载模块 |
 | :--- | :--- | :--- |
-| **Epic 1: 基础数据** | US-01-01, US-01-02, US-01-03, US-01-04, US-01-08 | `farm_core` |
-| **Epic 2: 种植管理** | US-02-01, US-02-02, US-02-03, US-02-04, US-02-07, US-02-09, US-02-10 | `farm_operation` |
+| **Epic 1: 基础数据** | US-01-01 至 US-01-09 | `farm_core` |
+| **Epic 2: 种植管理** | US-02-01 至 US-02-11 | `farm_operation` |
 | **Epic 3: 养殖管理** | US-03-01, US-03-02, US-03-03, US-03-04 | `farm_livestock`, `farm_iot` |
 | **Epic 4: 供应链 BOM** | US-04-01, US-04-02, US-04-04, US-04-05 | `farm_operation`, `farm_supply_core` |
 | **Epic 5: 农旅体验** | US-05-01, US-05-02, US-05-03, US-05-04 | `farm_agritourism`, `farm_pos` |
 | **Epic 6: 物联控制** | US-06-01, US-06-02, US-06-03, US-06-04, US-06-05, US-06-06, US-06-07 | `farm_iot` |
 | **Epic 7: 移动端友好与现场作业** | US-07-01 至 US-07-17 | `farm_mobile`, `farm_ux`, `farm_core`, `farm_supply_core` |
 | **Epic 8: 营销参与** | US-08-01 至 US-08-05 | `farm_marketing`, `farm_csa` |
-| **Epic 9: 集成供应链** | US-09-01 至 US-09-17 | `farm_supply_core`, `farm_supply_procurement`, `farm_supply_quality`, `farm_supply_logistics`, `farm_supply_analytics` |
-| **Epic 10: 育苗育种** | US-10-01, US-10-02, US-10-03 | `farm_breeding`, `farm_quality` |
-| **Epic 11: 安全防疫** | US-11-01 至 US-11-07 | `farm_safety` |
+| **Epic 9: 集成供应链** | US-09-01 至 US-09-20 | `farm_supply_core`, `farm_supply_procurement`, `farm_supply_quality`, `farm_supply_logistics`, `farm_supply_analytics` |
+| **Epic 10: 育苗育种** | US-10-01 至 US-10-09 | `farm_breeding`, `farm_quality` |
+| **Epic 11: 安全防疫** | US-11-01 至 US-11-08 | `farm_safety` |
 | **Epic 12: 认证合规** | US-12-01 至 US-12-09 | `farm_certification`, `farm_sustainability` |
 | **Epic 13: 劳动力管理** | US-13-01, US-13-02, US-13-03, US-13-04 | `farm_hr` |
-| **Epic 14: 产品加工** | US-14-01 至 US-14-23 | `farm_processing`, `farm_operation`, `farm_iot`, `farm_financial`, `farm_label`, `farm_logistics`, `farm_waste_mgmt`, `farm_marketing` |
-| **Epic 15: 质量控制** | US-15-01 至 US-15-10 | `farm_quality` |
+| **Epic 14: 产品加工** | US-14-01 至 US-14-26 | `farm_processing`, `farm_operation`, `farm_iot`, `farm_financial`, `farm_label`, `farm_logistics`, `farm_waste_mgmt`, `farm_marketing` |
+| **Epic 15: 质量控制** | US-15-01 至 US-15-11 | `farm_quality` |
 | **Epic 16: UX 与术语去工业化** | US-16-01 至 US-16-25 | `farm_ux`, `farm_dashboard`, `farm_mobile`, `farm_iot` | ✅ 完成 |
-| **Epic 19: 多实体协同与合作社管理** | US-19-01 至 US-19-23 | `farm_multi_farm_base`, `farm_multi_farm_financial`, `farm_multi_farm_cooperative`, `farm_equipment` | ✅ 完成 |
+| **Epic 19: 多实体协同与合作社管理** | US-19-01, US-19-02, US-19-03, US-19-04, US-19-05, US-19-06, US-19-07, US-19-08, US-19-09, US-19-22, US-19-23, US-19-24, US-19-25, US-19-26, US-19-27 | `farm_multi_farm_base`, `farm_multi_farm_financial`, `farm_multi_farm_cooperative`, `farm_equipment` | ✅ 完成 |
 
 | **Epic 20: 智能灌溉管理** | US-20-01 至 US-20-04 | `farm_iot`, `farm_ai_decision`, `farm_operation`, `farm_mobile` | 💡 待规划 |
 | - US-20-01 | 土壤湿度监测与分析 | `farm_iot`, `farm_ai_decision`, `farm_mobile` | 💡 待规划 |
@@ -266,7 +266,7 @@
 | **Epic 21: 直播与抖音对接** | US-21-01 至 US-21-11 | `farm_live_streaming`, `farm_marketing`, `farm_financial` | ✅ 完成 |
 | **Epic 26: 高级现场智能** | US-26-01 至 US-26-08 | `farm_core`, `farm_mobile`, `farm_operation` | ✅ 完成 |
 | **Epic 28: AI 预测与智能视觉** | US-28-01 至 US-28-04 | `farm_ai_vision`, `farm_iot`, `farm_mobile` | ✅ 完成 |
-| **Epic 30: 碳足迹与 ESG 账座** | US-30-01 至 US-30-14 | `farm_ecology`, `farm_financial`, `farm_sustainability` | ✅ 完成 |
+| **Epic 30: 碳足迹与 ESG 账座** | US-30-01, US-30-02, US-30-03, US-30-04, US-30-05, US-30-06, US-30-07, US-30-08, US-30-10, US-30-11, US-30-14 | `farm_ecology`, `farm_financial`, `farm_sustainability` | ✅ 完成 |
 | **Epic 37: 农业综合生产效能 (OPE)** | US-37-01 至 US-37-05 | `farm_dashboard`, `farm_financial`, `farm_operation` | ✅ 完成 |
 
 | **Epic 38: 牲畜健康监测与智能管理** | US-38-01 至 US-38-04 | `farm_livestock`, `farm_iot`, `farm_ai_vision`, `farm_ai_decision` | 💡 待规划 |
@@ -318,13 +318,13 @@
 | - US-45-04 | 决策支持与风险评估 | `farm_ai_decision`, `farm_analytics`, `farm_ai_llm_integration` | 💡 待规划 |
 
 | **Epic 46: 精准生产与变量作业** | US-46-01 至 US-46-05 | `farm_iot`, `farm_mobile`, `farm_operation` | ✅ 完成 |
-| **Epic 52: 高级溯源系统** | US-52-01 至 US-52-13 | `farm_processing`, `farm_quality` | ✅ 完成 |
+| **Epic 52: 高级溯源系统** | US-52-01, US-52-02, US-52-03 | `farm_processing`, `farm_quality` | ✅ 完成 |
 | **Epic 54: ISL 行业架构** | US-54-01 至 US-54-14 | `farm_isl`, `farm_processing` | ✅ 完成 |
-| **Epic 58: AI 智能决策支持** | US-58-01 至 US-58-18 | `farm_ai_agent`, `farm_finance_loan` | ✅ 完成 |
+| **Epic 58: AI 智能决策支持** | US-58-01, US-58-02, US-58-03, US-58-15, US-58-16, US-58-17, US-58-18 | `farm_ai_agent`, `farm_finance_loan` | ✅ 完成 |
 | **Epic 59: AI LLM 集成** | US-59-01 至 US-59-07 | `farm_ai_llm_integration`, `farm_knowledge` | ✅ 完成 |
 | **Epic 60: AI 金融分析** | US-60-01 至 US-60-03 | `farm_financial`, `farm_ai_agent` | ✅ 完成 |
 | **Epic 62: AI 协调与工作流** | US-62-01 至 US-62-03 | `farm_ai_agent`, `farm_isl` | ✅ 完成 |
-| **Epic 65: 补贴证据自动化** | US-65-04 | `farm_subsidy` | `farm_mobile` | ✅ 完成 |
+| **Epic 65: 补贴证据自动化** | US-65-04 | `farm_subsidy`, `farm_mobile` | ✅ 完成 |
 | **Epic 67: 订单生产全透明** | US-67-02 | `farm_marketing`, `farm_sale_ch`, `farm_operation` | ✅ 完成 |
 
 ### 供应链模块重组相关 Epic/User Story (2026-01-28)

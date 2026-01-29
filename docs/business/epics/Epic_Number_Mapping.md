@@ -1,6 +1,6 @@
 # Epic 编号映射表 (Epic Number Mapping)
 
-此文件记录了Epic编号与主题的对应关系，用于维护MODULE_PLAN.md的一致性。
+此文件记录了Epic编号与主题的对应关系，用于维护MODULE_PLAN.md的一致性。Epic/US归口分类应遵循《Epic_US_Classification_Guidelines.md》中的规范。
 
 ## 已分配的 Epic 编号
 
@@ -107,6 +107,7 @@
 
 1. **Epic 57** 与 **Epic 42** 存在主题重叠，需要决定是否合并或重新划分职责。
 2. 编号系统目前是连续的，除了一些故意的间隔以保持相关主题的Epic靠近。
+3. 所有 Epic/US 归口分类应遵循《Epic_US_Classification_Guidelines.md》中的规范原则。
 
 ---
 
