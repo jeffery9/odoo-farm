@@ -7,10 +7,10 @@ _logger = logging.getLogger(__name__)
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    # 兽药实名制与监管 [US-10-02]
+    # 兽药实名制与监管 [US-18-02]
     is_regulated_input = fields.Boolean("Is Regulated Input", default=False)
     reg_cert_no = fields.Char("Registration/Approval No.")
-    # 兽药实名制与监管 [US-10-02]
+    # 兽药实名制与监管 [US-18-02]
     is_prohibited_restricted = fields.Boolean("Prohibited/Restricted", default=False)
     prohibited_reason = fields.Text("Prohibited/Restricted Reason")
 
@@ -280,7 +280,7 @@ class InputRegistrationWizard(models.TransientModel):
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    # 农事操作人信息 [US-10-02]
+    # 农事操作人信息 [US-18-02]
     operator_id_card = fields.Char("Operator ID Card No.", copy=False)
     
     @api.constrains('operator_id_card')

@@ -57,7 +57,7 @@ class TestBreedingLogic(TransactionCase):
         self.assertEqual(task.land_parcel_id.id, self.field_loc.id)
 
     def test_02_trait_comparison_wizard(self):
-        """ 测试性状对比向导的数据加载逻辑 [US-10-02] """
+        """ 测试性状对比向导的数据加载逻辑 [US-10-08] """
         # 创建两个带有性状的批次
         lot1 = self.Lot.create({'name': 'LOT-A', 'product_id': self.seed.id})
         lot2 = self.Lot.create({'name': 'LOT-B', 'product_id': self.seed.id})
