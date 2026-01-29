@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class FarmFuturesHedging(models.Model):
     """
     Model for agricultural futures and hedging
-    Implements US-58-07: Agri-Futures & Hedging Management
+    Implements US-29-07: Agri-Futures & Hedging Management
     """
     _name = 'farm.futures.hedging'
     _description = 'Farm Futures Hedging'

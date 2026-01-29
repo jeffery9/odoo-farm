@@ -23,7 +23,7 @@ class TestProcessingLogic(TransactionCase):
         })
 
     def test_mass_balance_validation(self):
-        """ Test that MO cannot be done if mass balance is off [US-04-02] """
+        """ Test that MO cannot be done if mass balance is off [US-14-02] """
         mo = self.Production.create({
             'product_id': self.finished_good.id,
             'bom_id': self.bom.id,

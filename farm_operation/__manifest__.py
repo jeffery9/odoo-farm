@@ -7,7 +7,7 @@
         Multi-Industry Operation Engine for Odoo 19 Farm Management System.
 
         Features:
-        - Production Season Planning (Campaign) [US-01-02] with industry adaptability
+        - Production Season Planning (Campaign) [US-26-01] with industry adaptability
         - Agri-Intervention Records (Interventions) [US-02-02] for different industries
         - Harvest & Grading [US-02-04] with industry-specific variants
         - Product Grading and Batch Management [US-14-05] for multiple sectors

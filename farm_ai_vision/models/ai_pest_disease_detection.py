@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class AIPestDiseaseDetection(models.Model):
     """
     AI model for pest and disease detection from images
-    Implements US-58-05: 病虫害图像识别与诊断
+    Implements US-28-01: 病虫害图像识别与诊断
     """
     _name = 'ai.pest.disease.detection'
     _description = 'AI Pest & Disease Detection'

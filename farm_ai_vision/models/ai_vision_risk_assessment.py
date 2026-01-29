@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class AIVisionRiskAssessment(models.Model):
     """
     AI model for AI vision risk assessment
-    Implements US-58-14: AI视觉风险评估
+    Implements US-28-04: AI视觉风险评估与预警
     """
     _name = 'ai.vision.risk.assessment'
     _description = 'AI Vision Risk Assessment'

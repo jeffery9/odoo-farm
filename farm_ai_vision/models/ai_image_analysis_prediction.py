@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 class AIImageAnalysisPrediction(AIVisionBase):
     """
     AI model for image analysis and predictive analytics
-    Implements US-58-06: 图像分析预测
+    Implements US-28-03: 作物生长监测与产量预测
     """
     _name = 'ai.image.analysis.prediction'
     _description = 'AI Image Analysis Prediction'

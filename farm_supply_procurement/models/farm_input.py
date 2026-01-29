@@ -21,7 +21,7 @@ class ProductTemplate(models.Model):
     p_content = fields.Float("Phosphorus (%)", help="Phosphorus percentage")
     k_content = fields.Float("Potassium (%)", help="Potassium percentage")
 
-    # 安全间隔期 [US-11-03]
+    # 安全间隔期 [US-09-03]
     withdrawal_period_days = fields.Integer("Withdrawal Period (Days)", default=0, help="Days to wait before harvest/slaughter after using this input.")
 
     # 生长周期 [US-03-01]
