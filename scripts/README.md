@@ -14,17 +14,19 @@ The script ensures that:
 ## Prerequisites
 
 - The `dev` and `19.0` branches must exist
-- You should be on the `dev` branch or willing to switch to it
+- **CRITICAL**: Run the script from OUTSIDE the repository directory to prevent branch switches from interrupting script execution
 - Ensure all changes are committed before running the script
 
 ## Usage
 
 ```bash
 # Run the enhanced script (with tracking)
+# CRITICAL: Run this script from OUTSIDE the repository to prevent branch switches from interrupting execution
 ./scripts/enhanced_automated_release.sh
 
 # Or use the simple wrapper
-./release.sh
+# CRITICAL: Run this script from OUTSIDE the repository to prevent branch switches from interrupting execution
+./scripts/release.sh
 
 # The script will guide you through the process with confirmations
 ```
@@ -54,6 +56,7 @@ The script defaults to using the `dev` branch version in case of conflicts. Para
 
 ## Notes
 
+- **CRITICAL**: Always run this script from OUTSIDE the repository to prevent branch switches from interrupting script execution. The script modifies the repository state and switching branches can interrupt access to the script itself.
 - The script creates temporary files (`doc_commits.tmp`, `code_commits.tmp`, `cherry_pick_mapping.txt`, `cherry_pick_tracking.log`) which are automatically cleaned up
 - After running, the script returns to the original branch you were on
 - Documentation files are completely removed from the 19.0 branch as per SOP
