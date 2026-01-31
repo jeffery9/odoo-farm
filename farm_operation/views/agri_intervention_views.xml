@@ -91,7 +91,36 @@
             <xpath expr="//sheet" position="inside">
                 <widget name="agri_action_buttons"/>
                 <notebook>
-                <page string="Soil Nutrient Balance" name="nutrient_balance" invisible="intervention_type not in ['fertilizing', 'tillage']">
+                    <page string="Sustainability &amp; Value" name="sustainability">
+                        <group>
+                            <group string="Carbon &amp; Impact">
+                                <field name="carbon_intensity" widget="gauge" options="{'max_field': '50', 'label': 'kg CO2e'}"/>
+                                <field name="esg_score"/>
+                                <field name="is_eco_blocked" readonly="1"/>
+                            </group>
+                            <group string="Community Clearing">
+                                <field name="impact_credits" decoration-success="impact_credits &gt; 0" widget="monetary"/>
+                                <field name="clearing_status" widget="badge" decoration-info="clearing_status == 'calculated'" decoration-success="clearing_status == 'settled'"/>
+                                <button name="action_finalize_clearing" string="Recalculate Value" type="object" class="btn-secondary" invisible="state != 'done'"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Spatial &amp; Evidence" name="evidence">
+                        <group>
+                            <group string="Physical Grounding">
+                                <field name="geo_point"/>
+                                <field name="spatial_grid_id"/>
+                            </group>
+                            <group string="AI Audit">
+                                <field name="audit_confidence" widget="progressbar"/>
+                                <field name="audit_status" widget="badge" decoration-danger="audit_status == 'fraudulent'" decoration-success="audit_status == 'verified'"/>
+                            </group>
+                        </group>
+                        <group string="Quality Fingerprint (Immutable Proof)">
+                            <field name="quality_fingerprint" widget="ace" options="{'mode': 'json'}"/>
+                        </group>
+                    </page>
+                    <page string="Soil Nutrient Balance" name="nutrient_balance" invisible="intervention_type not in ['fertilizing', 'tillage']">
                     <group>
                         <group string="Current Application (Pure Nutrient)">
                             <field name="pure_n_qty"/>
