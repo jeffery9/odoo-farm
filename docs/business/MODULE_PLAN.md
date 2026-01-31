@@ -1,4 +1,8 @@
-# Odoo 19 农场管理系统：模块规范与进度看板 (V2.1)
+# Odoo 19 农场管理系统：模块规范与进度看板 (V3.0)
+
+> **产品规划律令 (2026)**: 
+> 1. 本文档是产品规划活动的核心载体，任何核心架构的变更、新 Level 的突破必须在代码入库前/后 24 小时内在此文档中完成语义对齐。
+> 2. 只有在此文档中完成“职责定义”的功能才具备物理实现的合法性。
 
 本项目采用高度模块化的架构，将复杂的农业业务拆分为原子化模块，以确保系统的灵活性和 Odoo 19 社区版的兼容性。
 
@@ -32,8 +36,8 @@
 
 ### 2.1 核心规范文档
 - **产品方向规范**: `docs/business/PRODUCT_DIRECTION_SPEC.md` - 定义产品发展方向、治理机制和战略规划
-- **史诗-插件实施规范**: `docs/business/EPIC_ADDON_MAPPING_SPEC.md` - 定义史诗和用户故事在 Odoo 插件中的实施标准
-- **规划维护管理规范**: `docs/business/EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md` - 定义史诗、用户故事、模块规划的维护管理流程
+- **史诗-插件实施规范**: `docs/business/EPIC_ADDON_MAPPING_SPEC.md` - 定义史诗和用户故事在 Odoo 插件中的 实施标准
+- **规划维护管理规范**: `docs/business/EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md` - 定义史诗、用户故事、模 块规划的维护管理流程
 - **模块规范与进度看板**: 本文档 - 定义模块矩阵、职责和开发计划
 
 ### 模块矩阵与职责定义
@@ -47,11 +51,11 @@
 
 | 分类 | 模块目录名 | 核心职责 | 状态 |
 | :--- | :--- | :--- | :--- |
-| **底座** | `farm_core` | 农场基础主数据、地理信息 (GIS)、土质分析、动态属性定义。 | ✅ 完成 |
+| **底座** | `farm_core` | 农场基础主数据、地理信息 (GIS)、土质分析、动态属性定义。 | ✅ L3 DNA 继承完成 |
 | | `farm_isl` | ISL 行业标准层：模型重定向、透明代理继承、行业逻辑物理隔离。 | ✅ 完成 |
 | | `farm_isl_base` | ISL 基础模型：标准化数据模型、外部系统兼容层。 | ✅ 完成 |
 | | `farm_certification` | 有机/绿色认证状态、转换期管理、证书审计。 | ✅ 完成 |
-| **作业** | `farm_operation` | 生产季、干预任务、收获分级、养分平衡。 | ✅ 完成 |
+| **作业** | `farm_operation` | 生产季、干预任务、收获分级、养分平衡。 | ✅ L1 物理反馈完成 |
 | | `farm_planning` | 技术路线 (Cultural Itinerary)、模拟情景、资源预测。 | ✅ 完成 |
 | | `farm_livestock` | 畜牧业管理：个体动物追踪、群体变动、健康记录、繁殖周期管理。 | 💡 待规划 |
 | | `farm_breeding` | 育种管理：系谱记录、遗传追踪、繁育计划、近交系数计算。 | 💡 待规划 |
@@ -62,7 +66,7 @@
 | **安全** | `farm_safety` | 防疫排期、休药期提醒、隔离拦截、合规校验。 | ✅ 完成 |
 | | `farm_quality` | QCP 控制点、质量检查、不合格品告警。 | ✅ 完成 |
 | **供应** | `farm_supply_core` | 供应链基础框架、通用供应链服务。 | ✅ 完成 |
-| | `farm_supply_procurement` | 采购管理、投入品目录、供应商管理。 | ✅ 完成 |
+| | `farm_supply_procurement` | 采购管理、投入品目录、供应商管理。 | ✅ L1 资源引入契约完成 |
 | | `farm_supply_quality` | 质量标准、质量定价、合规认证。 | ✅ 完成 |
 | | `farm_logistics` | 冷链运输、温控标记、多级包装（已重构为 farm_supply_logistics）。 | 🔄 重构中 |
 | | `farm_supply_logistics` | 物流管理、冷链监控、包装管理。 | ✅ 完成 |
@@ -84,11 +88,11 @@
 | | `farm_sustainability` | 可持续指标、养分减量化趋势分析。 | ✅ 完成 |
 | | `farm_exchange` | 行业数据交换 (DAPLOS, EDI)。 | ✅ 完成 |
 | | `farm_dashboard` | 经营驾驶舱、跨模块运营指标看板。 | ✅ 完成 |
-| **智能** | `farm_ai_core` | AI 基础框架、模型接口、通用 AI 服务。 | ✅ 完成 |
-| | `farm_ai_agent` | AI 协调层、决策执行闭环、结果聚合引擎。 | ✅ 完成 |
+| **智能** | `farm_ai_core` | AI 基础框架、模型接口、通用 AI 服务。 | ✅ L2 审计存证完成 |
+| | `farm_ai_agent` | AI 协调层、决策执行闭环、结果聚合引擎。 | ✅ L4 编排器完成 |
 | | `farm_ai_llm_integration` | LLM 农业知识增强、智能报告生成、RAG。 | ✅ 完成 |
 | | `farm_ai_vision` | 计算机视觉病害诊断、边缘端离线识别。 | ✅ 完成 |
-| | `farm_ai_decision` | AI 决策支持、风险评估、策略推荐。 | ✅ 完成 |
+| | `farm_ai_decision` | AI 决策支持、风险评估、策略推荐。 | ✅ L4 触发闭环完成 |
 | **Epic 17: 行业深度与合规** | | | |
 | **合规** | `farm_subsidy` | 补贴申报与合规追踪。 | ✅ 完成 |
 | | `farm_ecology` | 生物多样性与生态指标。 | ✅ 完成 |
@@ -129,7 +133,7 @@
 | **Epic 31: 逆向召回** | `farm_quality`, `farm_logistics` | 一键批次阻断、逆向追溯审计。 | ✅ 完成 (2026-01-14) |
 | **Epic 32: 品牌与有机诚信** | `farm_marketing`, `farm_core` | 产地风土建模、GI 防伪、有机诚信评分。 | ✅ 完成 (2026-01-14) |
 | **Epic 33: 温室与植物工厂** | `farm_iot`, `farm_core` | 立体库位管理、水肥光联动控制。 | ✅ 完成 (2026-01-14) |
-| **Epic 34: 林果与多年生作物** | `farm_core`, `farm_operation` | 单株资产管理、历年产量趋势、成熟度监控。 | ✅ 完成 (2026-01-14) |
+| **Epic 34: 林果与多年生作物** | `farm_core`, `farm_operation` | 单株资产管理、历年产量趋势、成熟度监控 。 | ✅ 完成 (2026-01-14) |
 | **Epic 35: 特种养殖与高密度养殖** | `farm_safety`, `farm_iot` | 生物安全门禁、高密度精准饲喂逻辑。 | ✅ 完成 (2026-01-14) |
 | **Epic 36: 城市农业与共享认养** | `farm_mobile`, `farm_csa` | 认养流程、共享工具管理、微型传感器接入。 | 💡 待规划 |
 | **战略升级 (2026)** | | | |
@@ -144,12 +148,12 @@
 ## 2. 模块职责详细定义
 
 ### Base Modules
-- **`farm_core`**: 系统最基础的数据层，负责农场、地块、品种等核心实体管理；集成 GIS 地理位置服务；提供动态属性扩展机制。
-- **`farm_isl`**: 行业标准层核心，提供基础模型到 ISL 模型的透明重定向机制，支持 `_inherits` 代理继承，实现行业逻辑隔离。
-- **`farm_certification`**: 认证管理体系，处理有机、绿色等各种认证标准；管理认证转换期；维护证书审计链路。
+- **`farm_core`**: 系统最基础的数据层，负责农场、地块、品种等核心实体管理；集成 GIS 地理位置服务；提供动 态属性扩展机制。
+- **`farm_isl`**: 行业标准层核心，提供基础模型到 ISL 模型的透明重定向机制，支持 `_inherits` 代理继承，实 现行业逻辑隔离。
+- **`farm_certification`**: 认证管理体系，处理有机、绿色等各种认证标准；管理认证转换期；维护证书审计链路 。
 
 ### Operation Modules
-- **`farm_operation`**: 核心农业生产活动管理，包括农事干预、作物生长阶段、收获作业等；与其他操作模块形成业务闭环。
+- **`farm_operation`**: 核心农业生产活动管理，包括农事干预、作物生长阶段、收获作业等；与其他操作模块形成 业务闭环。
 - **`farm_planning`**: 生产规划与调度，基于品种特性和环境条件制定生产计划；提供模拟功能评估不同方案。
 - **`farm_livestock`**: 畜牧业专业管理，跟踪个体动物生命周期；管理群体变动记录；监控健康和繁殖状态。
 - **`farm_breeding`**: 育种和遗传管理，建立系谱关系；计算近交系数；规划繁育方案。
@@ -197,7 +201,7 @@
 ### Supply Chain Modules (重构后)
 - **`farm_supply_core`**: 供应链基础框架，定义供应链数据模型的基础结构和通用服务接口。
 - **`farm_supply_procurement`**: 采购与投入品管理，处理采购订单、供应商管理和投入品目录。
-- **`farm_supply_quality`**: 质量与定价管理，处理质量标准定义、基于质量的定价和合规认证。
+- **`farm_supply_quality`**: 质量与定价管理，处理质量标准定义和基于质量的定价和合规认证。
 - **`farm_supply_logistics`**: 物流与冷链管理，处理运输管理、冷链监控和包装管理。
 - **`farm_supply_analytics`**: 供应链分析与风险管理，提供供应链绩效分析、风险监控和预测分析。
 
@@ -264,7 +268,7 @@
 | - US-20-04 | 水资源优化与节水分析 | `farm_ai_decision`, `farm_financial`, `farm_iot` | 💡 待规划 |
 
 | **Epic 21: 直播与抖音对接** | US-21-01 至 US-21-11 | `farm_live_streaming`, `farm_marketing`, `farm_financial` | ✅ 完成 |
-| **Epic 26: 高级现场智能** | US-26-01 至 US-26-08 | `farm_core`, `farm_mobile`, `farm_operation` | ✅ 完成 |
+| **Epic 26: 高级现场智能** | US-26-01 至 US-26-08 | `farm_core`, `farm_mobile`, `farm_operation` | ✅ 完 成 |
 | **Epic 28: AI 预测与智能视觉** | US-28-01 至 US-28-04 | `farm_ai_vision`, `farm_iot`, `farm_mobile` | ✅ 完成 |
 | **Epic 30: 碳足迹与 ESG 账座** | US-30-01, US-30-02, US-30-03, US-30-04, US-30-05, US-30-06, US-30-07, US-30-08, US-30-10, US-30-11, US-30-14 | `farm_ecology`, `farm_financial`, `farm_sustainability` | ✅ 完成 |
 | **Epic 37: 农业综合生产效能 (OPE)** | US-37-01 至 US-37-05 | `farm_dashboard`, `farm_financial`, `farm_operation` | ✅ 完成 |
@@ -296,26 +300,26 @@
 | **Epic 42: 智能温室控制** | US-42-01 至 US-42-04 | `farm_greenhouse`, `farm_iot`, `farm_ai_decision`, `farm_mobile` | 💡 待规划 |
 | - US-42-01 | 温室环境参数监测 | `farm_greenhouse`, `farm_iot`, `farm_mobile` | 💡 待规划 |
 | - US-42-02 | 智能环境控制算法 | `farm_greenhouse`, `farm_ai_decision`, `farm_iot` | 💡 待规划 |
-| - US-42-03 | 作物生长阶段自适应控制 | `farm_greenhouse`, `farm_ai_decision`, `farm_operation` | 💡 待规划 |
+| - US-42-03 | 作物生长阶段自适应控制 | `farm_greenhouse`, `farm_ai_decision`, `farm_operation` | 💡 待规 划 |
 | - US-42-04 | 远程监控与移动管理 | `farm_greenhouse`, `farm_mobile`, `farm_ai_decision` | 💡 待规划 |
 
 | **Epic 43: 杂草识别与智能控制** | US-43-01 至 US-43-04 | `farm_ai_vision`, `farm_ai_decision`, `farm_equipment`, `farm_operation` | 💡 待规划 |
 | - US-43-01 | 杂草种类智能识别 | `farm_ai_vision`, `farm_ai_decision`, `farm_operation` | 💡 待规划 |
 | - US-43-02 | 精准除草作业 | `farm_ai_vision`, `farm_equipment`, `farm_operation` | 💡 待规划 |
-| - US-43-03 | 除草剂使用优化 | `farm_ai_decision`, `farm_operation`, `farm_supply_procurement` | 💡 待规划 |
+| - US-43-03 | 除草剂使用优化 | `farm_ai_decision`, `farm_operation`, `farm_supply_procurement` | 💡 待规 划 |
 | - US-43-04 | 杂草抗性监测与管理 | `farm_ai_decision`, `farm_ai_vision`, `farm_operation` | 💡 待规划 |
 
 | **Epic 44: 产后品质管理与保鲜** | US-44-01 至 US-44-04 | `farm_quality`, `farm_ai_vision`, `farm_ai_decision`, `farm_supply_logistics` | 💡 待规划 |
 | - US-44-01 | 产后品质实时监测 | `farm_quality`, `farm_ai_vision`, `farm_iot` | 💡 待规划 |
 | - US-44-02 | 智能保鲜环境控制 | `farm_iot`, `farm_ai_decision`, `farm_supply_logistics` | 💡 待规划 |
 | - US-44-03 | 保质期预测与库存优化 | `farm_ai_decision`, `farm_supply_analytics`, `farm_supply_logistics` | 💡 待规划 |
-| - US-44-04 | 成品分级与包装优化 | `farm_ai_vision`, `farm_ai_decision`, `farm_supply_quality` | 💡 待规划 |
+| - US-44-04 | 成品分级与包装优化 | `farm_ai_vision`, `farm_ai_decision`, `farm_supply_quality` | 💡 待规 划 |
 
 | **Epic 45: 农业知识管理与智能决策支持** | US-45-01 至 US-45-04 | `farm_knowledge`, `farm_ai_llm_integration`, `farm_ai_decision`, `farm_mobile` | 💡 待规划 |
-| - US-45-01 | 农业知识库构建 | `farm_knowledge`, `farm_ai_llm_integration`, `farm_ai_decision` | 💡 待规划 |
+| - US-45-01 | 农业知识库构建 | `farm_knowledge`, `farm_ai_llm_integration`, `farm_ai_decision` | 💡 待规 划 |
 | - US-45-02 | 智能农事建议系统 | `farm_ai_decision`, `farm_ai_llm_integration`, `farm_mobile` | 💡 待规划 |
 | - US-45-03 | 农业问答系统 | `farm_ai_llm_integration`, `farm_ai_vision`, `farm_mobile` | 💡 待规划 |
-| - US-45-04 | 决策支持与风险评估 | `farm_ai_decision`, `farm_analytics`, `farm_ai_llm_integration` | 💡 待规划 |
+| - US-45-04 | 决策支持与风险评估 | `farm_ai_decision`, `farm_analytics`, `farm_ai_llm_integration` | 💡  待规划 |
 
 | **Epic 46: 精准生产与变量作业** | US-46-01 至 US-46-05 | `farm_iot`, `farm_mobile`, `farm_operation` | ✅ 完成 |
 | **Epic 52: 高级溯源系统** | US-52-01, US-52-02, US-52-03 | `farm_processing`, `farm_quality` | ✅ 完成 |
@@ -482,8 +486,8 @@
 | **Epic 77: 全球供应链治理** | US-77-01 至 US-77-04 | `farm_multi_farm_govern`, `farm_supply_logistics`, `farm_ai_llm_integration`, `farm_compliance` | 💡 待规划 |
 | - US-77-01 | 多国法规合规引擎 | `farm_compliance`, `farm_ai_llm_integration` | 💡 待规划 |
 | - US-77-02 | 跨文化供应链协同 | `farm_ai_llm_integration`, `farm_supply_logistics` | 💡 待规划 |
-| - US-77-03 | 全球供应链透明度管理 | `farm_supply_analytics`, `farm_ai_agent`, `farm_compliance` | 💡 待规划 |
-| - US-77-04 | 国际贸易风险监控 | `farm_ai_decision`, `farm_supply_analytics`, `farm_market_data` | 💡 待规划 |
+| - US-77-03 | 全球供应链透明度管理 | `farm_supply_analytics`, `farm_ai_agent`, `farm_compliance` | 💡 待 规划 |
+| - US-77-04 | 国际贸易风险监控 | `farm_ai_decision`, `farm_supply_analytics`, `farm_market_data` | 💡 待 规划 |
 
 | **Epic 78: 高级VRA算法与多源数据融合** | US-78-01 至 US-78-04 | `farm_agri_science`, `farm_iot`, `farm_ai_decision`, `farm_ai_vision` | 💡 待规划 |
 | - US-78-01 | 土壤传感器数据实时集成 | `farm_iot`, `farm_agri_science` | 💡 待规划 |
@@ -509,7 +513,7 @@
 | **Epic 82: AI驱动的全链路预测性维护** | US-82-01 至 US-82-04 | `farm_equipment`, `farm_ai_decision`, `farm_iot`, `farm_supply_analytics` | 💡 待规划 |
 | - US-82-01 | 农机设备健康监测 | `farm_equipment`, `farm_iot`, `farm_ai_decision` | 💡 待规划 |
 | - US-82-02 | 供应链节点预测性维护 | `farm_supply_analytics`, `farm_iot`, `farm_ai_decision` | 💡 待规划 |
-| - US-82-03 | 维护成本优化 | `farm_supply_analytics`, `farm_ai_decision`, `farm_financial_basic` | 💡 待规划 |
+| - US-82-03 | 维护成本优化 | `farm_supply_analytics`, `farm_ai_decision`, `farm_financial_basic` | 💡 待 规划 |
 | - US-82-04 | 智能维护工单系统 | `farm_equipment`, `farm_ai_agent`, `farm_operation` | 💡 待规划 |
 
 | **Epic 83: 碳中和与可持续发展管理** | US-83-01 至 US-83-04 | `farm_esg_compliance`, `farm_ai_decision`, `farm_supply_analytics`, `farm_iot` | 💡 待规划 |
@@ -522,7 +526,7 @@
 | - US-84-01 | 农业风险识别与评估 | `farm_risk`, `farm_ai_decision`, `farm_iot` | 💡 待规划 |
 | - US-84-02 | 智能风险预警系统 | `farm_risk`, `farm_ai_decision`, `farm_mobile` | 💡 待规划 |
 | - US-84-03 | 农业保险产品管理 | `farm_financial_insurance`, `farm_ai_decision`, `farm_operation` | 💡 待规划 |
-| - US-84-04 | 风险对冲与金融衍生品 | `farm_financial_derivatives`, `farm_risk`, `farm_ai_decision` | 💡 待规划 |
+| - US-84-04 | 风险对冲与金融衍生品 | `farm_financial_derivatives`, `farm_risk`, `farm_ai_decision` | 💡  待规划 |
 
 | **Epic 85: 农业数字孪生与仿真建模** | US-85-01 至 US-85-04 | `farm_agri_science`, `farm_ai_decision`, `farm_iot`, `farm_ai_vision` | 💡 待规划 |
 | - US-85-01 | 农场数字孪生构建 | `farm_agri_science`, `farm_iot`, `farm_ai_vision` | 💡 待规划 |
@@ -534,13 +538,13 @@
 | - US-86-01 | 区块链溯源数据记录 | `farm_supply_quality`, `farm_blockchain`, `farm_iot` | 💡 待规划 |
 | - US-86-02 | 消费者溯源查询系统 | `farm_marketing`, `farm_blockchain`, `farm_ai_vision` | 💡 待规划 |
 | - US-86-03 | 食品安全监控与预警 | `farm_supply_quality`, `farm_ai_decision`, `farm_blockchain` | 💡 待规划 |
-| - US-86-04 | 溯源数据验证与审计 | `farm_supply_quality`, `farm_compliance`, `farm_blockchain` | 💡 待规划 |
+| - US-86-04 | 溯源数据验证与审计 | `farm_supply_quality`, `farm_compliance`, `farm_blockchain` | 💡 待规 划 |
 
 | **Epic 100: 农业循环经济与增值销售平台** | US-100-01 至 US-100-10 | `farm_marketing`, `farm_sale_ch`, `farm_processing`, `farm_ai_decision`, `farm_supply_analytics` | 💡 待规划 |
 | - US-100-01 | 动态供需匹配与拍卖平台 | `farm_marketing`, `farm_ai_decision`, `farm_supply_analytics` | 💡 待规划 |
-| - US-100-02 | 分级销售与多渠道管理系统 | `farm_marketing`, `farm_sale_ch`, `farm_ai_decision` | 💡 待规划 |
+| - US-100-02 | 分级销售与多渠道管理系统 | `farm_marketing`, `farm_sale_ch`, `farm_ai_decision` | 💡 待规 划 |
 | - US-100-03 | 近效期产品促销与零浪费激励 | `farm_marketing`, `farm_supply_analytics`, `farm_ai_agent` | 💡 待规划 |
-| - US-100-04 | 残次品循环利用市场 | `farm_processing`, `farm_supply_analytics`, `farm_ai_decision` | 💡 待规划 |
+| - US-100-04 | 残次品循环利用市场 | `farm_processing`, `farm_supply_analytics`, `farm_ai_decision` | 💡  待规划 |
 | - US-100-05 | 预测驱动的精准生产与预售系统 | `farm_ai_decision`, `farm_supply_analytics`, `farm_operation` | 💡 待规划 |
 | - US-100-06 | 品牌溢价与减少浪费宣传 | `farm_marketing`, `farm_ai_vision`, `farm_esg_compliance` | 💡 待规划 |
 | - US-100-07 | 损耗追踪与价值分析系统 | `farm_supply_analytics`, `farm_ai_agent`, `farm_esg_compliance` | 💡 待规划 |
@@ -550,7 +554,7 @@
 
 | **Epic 101: 农业企业可持续发展与价值创造框架** | US-101-01 至 US-101-05 | `farm_esg_compliance`, `farm_financial`, `farm_supply_analytics`, `farm_ai_decision`, `farm_risk` | 💡 待规划 |
 | - US-101-01 | 三重目标指标统一管理 | `farm_esg_compliance`, `farm_supply_analytics`, `farm_ai_decision` | 💡 待规划 |
-| - US-101-02 | 可持续商业模式设计 | `farm_business_planning`, `farm_ai_decision`, `farm_financial` | 💡 待规划 |
+| - US-101-02 | 可持续商业模式设计 | `farm_business_planning`, `farm_ai_decision`, `farm_financial` | 💡  待规划 |
 | - US-101-03 | 循环经济价值评估体系 | `farm_financial`, `farm_esg_compliance`, `farm_ai_decision` | 💡 待规划 |
 | - US-101-04 | 可持续供应链管理 | `farm_supply_analytics`, `farm_esg_compliance`, `farm_supply_logistics` | 💡 待规划 |
 | - US-101-05 | 可持续产品全生命周期管理 | `farm_product_mgmt`, `farm_esg_compliance`, `farm_ai_decision` | 💡 待规划 |
@@ -630,7 +634,7 @@ graph TD
 ## 6. 实施总结
 
 所有核心模块均已按照 **TDD (测试驱动开发)** 模式完成。
-系统支持从 **"投入品采购 -> 生产规划 -> 现场作业 -> 自动化监控 -> 质量检测 -> 加工溯源 -> 消费者营销"** 的全链路业务闭环。
+系统支持从 **"投入品采购 -> 生产规划 -> 现场作业 -> 自动化监控 -> 质量检测 -> 加工溯源 -> 消费者营销"**  的全链路业务闭环。
 
 权限架构与菜单结构完全集成，确保了数据安全和用户体验的平衡。
 
@@ -671,7 +675,7 @@ graph TD
 - **主实现模块**: farm_subsidy
 - **技术支持模块**: farm_mobile
 - **核心逻辑**:
-    - US-65-04 (Subsidy Evidence Automation): 自动聚合农场活动图片证据生成符合审计标准的合规报告，简化政府补贴申请流程。
+    - US-65-04 (Subsidy Evidence Automation): 自动聚合农场活动图片证据生成符合审计标准的合规报告，简化政 府补贴申请流程。
     - farm_subsidy 负责补贴业务逻辑、证据聚合和合规报告生成
     - farm_mobile 提供移动端基础设施，包括现场证据采集、GPS定位、时间戳等功能
 
@@ -703,8 +707,8 @@ graph TD
     - **LLMConfiguration**: 具体的 LLM 配置实现，通过 `_inherits` 继承自 `farm_ai_core` 的 `AIConfiguration` 接口
     - **LLMService**: LLM 服务实现，提供多提供商支持（OpenAI, Anthropic, Google, HuggingFace, Ollama, Custom）
     - **农业知识增强**: 集成农业领域知识，提供专业领域的提示词工程和上下文增强
-    - **智能报告生成**: 基于 LLM 生成供应链、财务等各类智能分析报告
-    - **模块职责**: 作为 LLM 服务的具体实现，遵循 `farm_ai_core` 定义的接口协议，为其他 AI 模块提供 LLM 服务
+    - **智能报告生成**: 基于 LLM 生成供应链、财务等各类智能 analysis 报告
+    - **模块职责**: 作为 LLM 服务的具体实现，遵循 `farm_ai_core` 定义的接口协议，为其他 AI 模块提供 LLM  服务
 
 - **`farm_ai_vision`** (图像识别模块): 计算机视觉模块，提供：
     - **ai.pest.disease.detection**: 专注植保图像识别和病虫害检测
@@ -1085,7 +1089,7 @@ farm_multi_farm_base (基础框架)
 
 **全链路业务流程**:
 ```
-farm_supply_procurement (采购) → farm_operation (生产) → farm_supply_logistics (物流) → farm_marketing (销售)
+farm_supply_procurement (采购) → farm_operation (生产) → farm_supply_logistics (物流) → farm_marketing ( 销售)
          ↓                              ↓                       ↓                      ↓
    投入品合规检查                  生产计划优化             冷链运输监控           消费者溯源认证
          ↓                              ↓                       ↓                      ↓
@@ -1206,7 +1210,7 @@ farm_marketing (品牌管理)
 5. 协调供应链问题解决 (farm_ai_agent)
 6. 跟踪声誉恢复情况 (farm_ai_decision)
 
-通过这种协同机制，品牌价值与供应链绩效形成良性循环，供应链的优化直接提升品牌价值，而品牌建设也为供应链提供市场导向和价值指引。
+通过这种协同机制，品牌价值与供应链绩效形成良性循环，供应链的优化直接提升品牌价值，而品牌建设也为供应链提 供市场导向和价值指引。
 
 ### 9.14 供应链需求侧管理与扩展 (2026-01-28 增量更新)
 
@@ -1292,7 +1296,7 @@ farm_marketing (需求收集)
 
 **数据收集层**:
 - **多源数据采集**: 支持销售数据、市场数据、社交媒体数据、天气数据等多种数据源 (farm_market_data)
-- **实时数据处理**: 支持实时数据流处理和分析 (farm_supply_analytics)
+- **实时数据处理**: 支持实时数据流处理 and 分析 (farm_supply_analytics)
 - **数据质量控制**: 确保收集数据的准确性和完整性 (farm_supply_analytics)
 
 **智能分析层**:
@@ -1305,8 +1309,46 @@ farm_marketing (需求收集)
 - **人工干预机制**: 支持关键决策的人工确认和调整 (farm_supply_analytics)
 - **异常处理机制**: 对异常情况的自动识别和处理 (farm_ai_agent)
 
-通过深入的需求侧管理，供应链系统不仅能更好地满足现有需求，还能主动引导和创造需求，实现从被动响应到主动引领的转变。
+通过深入的需求侧管理，供应链系统不仅能更好地满足现有需求，还能主动引导和创造需求，实现从被动响应到主动引 领的转变。
+
+## 10. 2026 核心架构：Level 0-4 智能体协作与价值清算 (2026-01-31 增量更新)
+
+本章节记录了 2026 愿景中“去工业化、智能协作、物理存证”架构的完整落地。
+
+### 10.1 语义隔离层 (Level 0)
+- **实现模块**: `farm_ux`
+- **核心逻辑**:
+    - **AgriViewMixin**: 动态拦截 ir.ui.view，将工业化术语（MO, BOM）实时翻译为社区语义（Intervention, Recipe）。
+    - **Deep UI Interception**: 物理隐藏 Manufacturing 菜单，并拦截系统 Exception 翻译为“农事语境”。
+    - **Agri TODO Alert**: 动态注入表单横幅，提醒管理员审核待办的 A2A 社区贡献。
+
+### 10.2 物理存证与反馈层 (Level 1 & 1+)
+- **实现模块**: `farm_core`, `farm_operation`
+- **核心逻辑**:
+    - **GeoSpatialMixin**: 格栅化空间索引（G_LON_LAT），支持 11m 精度邻域发现。
+    - **NutrientMixin**: N/P/K 养分平衡计算与生物转换率评估。
+    - **ActuatorMixin**: 物理反馈执行器，支持通过 AI 建议自动修改 Stock Moves 投入量。
+
+### 10.3 A2A 协议与博弈层 (Level 2 & 2+)
+- **实现模块**: `farm_ai_agent`, `farm_ai_core`
+- **核心逻辑**:
+    - **EvidenceAnalyzerMixin**: 基于双重置信度（Dual Confidence）的物理审计算法。
+    - **A2A Negotiation**: 七状态机驱动的智能体议价议程。
+    - **A2A Arbitrator**: 基于物理证据的博弈死锁仲裁与自动 Slashing（信誉惩戒）。
+
+### 10.4 价值清算与 DNA 溯源 (Level 3 & 3+)
+- **实现模块**: `farm_core`
+- **核心逻辑**:
+    - **Community Clearing Ledger**: 交易模式账本，信誉分与积分由流水实时聚合而成，支持人工审核（Human Audit）红线。
+    - **Stock Lot DNA**: 批次 DNA 继承算法，确保产出批次自动继承所有投入品的物理特性（NPK, Carbon, GIS）。
+    - **AgriValueBridge**: 基于 HMAC-SHA256 签名的跨农场品质指纹交换。
+
+### 10.5 任务编排层 (Level 4)
+- **实现模块**: `farm_ai_agent`, `farm_ai_decision`
+- **核心逻辑**:
+    - **Mission Orchestrator**: 跨模块闭环引擎，支持“发现-议价-执行-审计-清算”的全流程自动化。
+    - **Auto-Triggers**: 养分缺口触发资源引入，作物成熟触发采收博弈。
 
 ---
 
-**最后更新**: 2026-01-28
+**最后更新**: 2026-01-31 (V3.0)
