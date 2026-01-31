@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Decision Base Views -->
     <record id="view_ai_decision_base_form" model="ir.ui.view">
-        <field name="name">ai.decision.base.form</field>
-        <field name="model">ai.decision.base</field>
+        <field name="name">agri.ai.decision.base.form</field>
+        <field name="model">agri.ai.decision.base</field>
         <field name="arch" type="xml">
             <form string="AI Decision Base" create="false" edit="false">
                 <header>
@@ -47,8 +47,8 @@
     </record>
 
     <record id="view_ai_decision_base_tree" model="ir.ui.view">
-        <field name="name">ai.decision.base.tree</field>
-        <field name="model">ai.decision.base</field>
+        <field name="name">agri.ai.decision.base.tree</field>
+        <field name="model">agri.ai.decision.base</field>
         <field name="arch" type="xml">
             <tree string="AI Decision Base">
                 <field name="name"/>

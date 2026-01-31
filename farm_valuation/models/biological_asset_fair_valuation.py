@@ -10,12 +10,12 @@ class BiologicalAssetFairValuation(models.Model):
     Biological Asset Fair Value Real-time Accounting
     US-17-11: Biological Asset Fair Value Real-time Accounting
     """
-    _name = 'farm.biological.asset.fair.valuation'
+    _name = 'agri.biological.asset.fair.valuation'
     _description = 'Biological Asset Fair Value Valuation'
     _order = 'asset_id, valuation_date desc'
 
     name = fields.Char("Valuation Reference", required=True, default=lambda self: _('New'))
-    asset_id = fields.Many2one('farm.biological.asset', string="Biological Asset", required=True)
+    asset_id = fields.Many2one('agri.biological.asset', string="Biological Asset", required=True)
     valuation_date = fields.Date("Valuation Date", default=fields.Date.today, required=True)
 
     # Growth Progress
@@ -72,13 +72,13 @@ class BiologicalAssetFairValuation(models.Model):
         for vals in vals_list:
             if vals.get('name', _('New')) == _('New'):
                 # Generate unique valuation reference
-                asset = self.env['farm.biological.asset'].browse(vals.get('asset_id', False))
+                asset = self.env['agri.biological.asset'].browse(vals.get('asset_id', False))
                 date_str = vals.get('valuation_date', fields.Date.today()).strftime('%Y%m%d')
                 vals['name'] = f"VAL-{asset.name or 'ASSET'}-{date_str}-{len(records)+1}"
 
             # Calculate growth progress if not provided
             if not vals.get('current_growth_progress') and vals.get('asset_id'):
-                asset = self.env['farm.biological.asset'].browse(vals['asset_id'])
+                asset = self.env['agri.biological.asset'].browse(vals['asset_id'])
                 vals['current_growth_progress'] = self._calculate_growth_progress(asset)
 
             record = super().create(vals)
@@ -310,7 +310,7 @@ class BiologicalAssetFairValuation(models.Model):
         _logger.info("Starting monthly biological asset revaluation")
 
         # Get all active biological assets
-        assets = self.env['farm.biological.asset'].search([
+        assets = self.env['agri.biological.asset'].search([
             ('growth_stage', 'in', ['growing', 'mature'])
         ])
 
@@ -335,7 +335,7 @@ class BiologicalAssetFairValuation(models.Model):
 
 class BiologicalAssetExtension(models.Model):
     """Extension to biological asset model to include fair value integration"""
-    _inherit = 'farm.biological.asset'
+    _inherit = 'agri.biological.asset'
 
     # Fair value fields
     current_fair_value = fields.Float("Current Fair Value",
@@ -348,7 +348,7 @@ class BiologicalAssetExtension(models.Model):
                                  help="Date of last fair value calculation")
 
     # One2many field to fair valuations
-    fair_valuation_ids = fields.One2many('farm.biological.asset.fair.valuation', 'asset_id', string="Fair Valuations")
+    fair_valuation_ids = fields.One2many('agri.biological.asset.fair.valuation', 'asset_id', string="Fair Valuations")
 
     # Integration with OPE metrics (Operational Performance Efficiency)
     ope_integration = fields.Float("OPE Integration Score",
@@ -358,7 +358,7 @@ class BiologicalAssetExtension(models.Model):
     def _compute_current_fair_value(self):
         """Compute current fair value based on latest fair valuation"""
         for asset in self:
-            latest_fair_val = self.env['farm.biological.asset.fair.valuation'].search([
+            latest_fair_val = self.env['agri.biological.asset.fair.valuation'].search([
                 ('asset_id', '=', asset.id)
             ], order='valuation_date desc', limit=1)
 
@@ -369,7 +369,7 @@ class BiologicalAssetExtension(models.Model):
         """Manual action to run fair valuation for selected assets"""
         for asset in self:
             # Create a new fair valuation
-            self.env['farm.biological.asset.fair.valuation'].create({
+            self.env['agri.biological.asset.fair.valuation'].create({
                 'asset_id': asset.id,
                 'valuation_date': fields.Date.today(),
                 'valuation_method': 'market_price',

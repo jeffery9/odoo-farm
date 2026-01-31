@@ -5,9 +5,11 @@ from .base_mixins import CreationMethodMixin
 
 class FarmActivity(models.Model):
     """
-    Agricultural Activity Management - replacing the functionality from farm_activity.py
+    Agricultural Activity Management.
+    Domain Role: Physical manifestation of an Agri Domain activity within a specific Farm.
     US-01-01: Agricultural Activity Classification
     US-01-02: Sector-specific attributes
+    Level 4: Agri-Farm Semantic Alignment [US-104-2026]
     """
     _name = 'farm.activity'
     _description = 'Agricultural Activity'
@@ -54,14 +56,20 @@ class FarmActivity(models.Model):
 
 class FarmTask(models.Model):
     """
-    Agricultural Task Management with specialized agricultural features
+    Agricultural Task Management.
+    Domain Role: The atomic execution unit of agricultural physics.
+    Level 4: Agri-Farm Semantic Alignment [US-104-2026]
     """
     _name = 'farm.task'
     _description = 'Agricultural Task'
-    _inherit = ['project.task', 'farm.core.creation.method.mixin']
+    _inherit = [
+        'project.task', 
+        'farm.core.creation.method.mixin',
+        'agri.task.mixin' # [Semantic Refactoring] Inherit domain physics and protocols
+    ]
 
-    # Link to land parcel
-    land_parcel_id = fields.Many2one('farm.location', string="Land Parcel", domain=[('is_land_parcel', '=', True)])
+    # Link to land parcel (Now linked via the Agri Location domain model)
+    land_parcel_id = fields.Many2one('farm.location', string="Physical Container", domain=[('is_land_parcel', '=', True)])
 
     # Agricultural-specific fields
     activity_family = fields.Selection([

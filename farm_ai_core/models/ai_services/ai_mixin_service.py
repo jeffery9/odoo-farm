@@ -10,11 +10,11 @@ from datetime import datetime, timedelta
 _logger = logging.getLogger(__name__)
 
 
-class AIBaseMixinService(models.AbstractModel):
+class AgriAiBaseMixinService(models.AbstractModel):
     """
     AI Base Mixin Service - Provides core AI functionality
     """
-    _name = 'ai.base.mixin.service'
+    _name = 'agri.ai.base.mixin.service'
     _description = 'AI Base Mixin Service'
 
     def action_process_with_ai(self):
@@ -44,17 +44,17 @@ class AIBaseMixinService(models.AbstractModel):
 
     def get_active_ai_config(self):
         """Get the active AI configuration for this record - abstract method"""
-        # Use reflection/self-discovery to find all models that extend ai.configuration
+        # Use reflection/self-discovery to find all models that extend agri.ai.configuration
 
-        # First, try to get the base ai.configuration if it exists
+        # First, try to get the base agri.ai.configuration if it exists
         try:
-            base_config = self.env['ai.configuration'].sudo().search([('is_active', '=', True)], limit=1)
+            base_config = self.env['agri.ai.configuration'].sudo().search([('is_active', '=', True)], limit=1)
             if base_config:
                 return base_config
         except KeyError:
             pass
 
-        # Use reflection to find all models that might inherit or extend ai.configuration
+        # Use reflection to find all models that might inherit or extend agri.ai.configuration
         # Search through the Odoo registry for models that could be AI configurations
         all_models = list(self.env.registry.keys())
 
@@ -68,9 +68,9 @@ class AIBaseMixinService(models.AbstractModel):
                 if (hasattr(model, '_fields') and
                     'is_active' in model._fields and
                     'ai_provider' in model._fields and
-                    model_name != 'ai.configuration'):  # Exclude the base model itself
+                    model_name != 'agri.ai.configuration'):  # Exclude the base model itself
                     ai_config_models.append(model_name)
-            except:
+            except (KeyError, AttributeError, TypeError):
                 # Skip if there's an issue accessing the model
                 continue
 
@@ -104,7 +104,7 @@ class AIBaseMixinService(models.AbstractModel):
                 if (hasattr(model, 'call_llm') or
                     (hasattr(model, '_fields') and 'config_id' in model._fields)):
                     ai_service_models.append(model_name)
-            except:
+            except (KeyError, AttributeError, TypeError):
                 # Skip if there's an issue accessing the model
                 continue
 
@@ -130,9 +130,9 @@ class AIBaseMixinService(models.AbstractModel):
                 if (hasattr(model, '_fields') and
                     'is_active' in model._fields and
                     'ai_provider' in model._fields and
-                    model_name != 'ai.configuration'):
+                    model_name != 'agri.ai.configuration'):
                     ai_config_models.append(model_name)
-            except:
+            except (KeyError, AttributeError, TypeError):
                 continue
 
         # Try to find any active configuration
@@ -189,7 +189,7 @@ class AIBaseMixinService(models.AbstractModel):
                     if hasattr(model, 'call_llm') or hasattr(model, f'call_{service_type}_service'):
                         target_service_model = model_name
                         break
-                except:
+                except (KeyError, AttributeError, TypeError):
                     continue
 
         # If direct service type model not found, look for any service that can handle the request
@@ -202,7 +202,7 @@ class AIBaseMixinService(models.AbstractModel):
                         (hasattr(model, 'call_llm') or hasattr(model, 'call_ai_service'))):
                         target_service_model = model_name
                         break
-                except:
+                except (KeyError, AttributeError, TypeError):
                     continue
 
         if target_service_model and target_service_model in self.env:

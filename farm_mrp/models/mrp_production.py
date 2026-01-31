@@ -12,7 +12,7 @@ class MrpProduction(models.Model):
         """ Compute the ISL record type if one exists """
         for record in self:
             # Use the centralized ISL redirection mechanism from farm_isl
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
             isl_record = redirector.get_isl_record('mrp.production', record.id)
             if isl_record:
                 # Extract human-readable name from model name
@@ -26,7 +26,7 @@ class MrpProduction(models.Model):
                 elif 'crop' in model_name:
                     record.isl_record_type = 'Crop'
                 elif 'mrp' in model_name:
-                    record.isl_record_type = model_name.replace('farm.', '').replace('.production', '').replace('.', ' ').title()
+                    record.isl_record_type = model_name.replace('agri.', '').replace('.production', '').replace('.', ' ').title()
                 else:
                     record.isl_record_type = isl_record._name
             else:
@@ -44,7 +44,7 @@ class MrpProduction(models.Model):
         orders = super(MrpProduction, self).create(vals_list)
         for order in orders:
             # Use farm_isl's redirection mechanism
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
             # The ISL record will be automatically created by the ISL redirection utility
             # if the industry_type is specified
             if order.bom_id and hasattr(order.bom_id, 'industry_type') and order.bom_id.industry_type:
@@ -54,7 +54,7 @@ class MrpProduction(models.Model):
     def get_formview_action(self, access_uid=None):
         """ US-TECH-06-19: Transparently redirect to ISL view if available. """
         # Use the centralized ISL redirection mechanism from farm_isl
-        redirector = self.env['isl.model.redirector']
+        redirector = self.env['agri.isl.model.redirector']
         isl_record = redirector.get_isl_record('mrp.production', self.id)
 
         if isl_record:
@@ -84,7 +84,7 @@ class MrpProduction(models.Model):
         # Check if any records have ISL counterparts and if any protected fields are being modified
         if not self.env.context.get('bypass_isl_restrictions'):
             # Use centralized ISL infrastructure to get corresponding ISL record
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
 
             for record in self:
                 isl_record = redirector.get_isl_record('mrp.production', record.id)
@@ -107,14 +107,14 @@ class MrpProduction(models.Model):
                         if field in vals:
                             raise UserError(_(
                                 "Field '%s' is managed by the specialized ISL interface. Please modify through the %s interface."
-                            ) % (field.replace('_', ' ').title(), isl_model_name.replace('farm.', '').replace('.production', '').replace('.', ' ').title()))
+                            ) % (field.replace('_', ' ').title(), isl_model_name.replace('agri.', '').replace('.production', '').replace('.', ' ').title()))
 
         return super(MrpProduction, self).write(vals)
 
     def unlink(self):
         # Check if any records have ISL counterparts - prevent direct deletion
         if not self.env.context.get('bypass_isl_restrictions'):
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
             for record in self:
                 isl_record = redirector.get_isl_record('mrp.production', record.id)
                 if isl_record:
@@ -125,7 +125,7 @@ class MrpProduction(models.Model):
 
     def _trigger_isl_hook(self, hook_name, base_id):
         """ Helper to route events to ISL sub-models. """
-        redirector = self.env['isl.model.redirector']
+        redirector = self.env['agri.isl.model.redirector']
         isl_rec = redirector.get_isl_record('mrp.production', base_id)
         if isl_rec and hasattr(isl_rec, hook_name):
             getattr(isl_rec, hook_name)()
@@ -134,7 +134,7 @@ class MrpProduction(models.Model):
         """ Action to redirect to the specialized ISL view if one exists """
         self.ensure_one()
         # Use the centralized ISL redirection mechanism
-        redirector = self.env['isl.model.redirector']
+        redirector = self.env['agri.isl.model.redirector']
         isl_record = redirector.get_isl_record('mrp.production', self.id)
 
         if isl_record:

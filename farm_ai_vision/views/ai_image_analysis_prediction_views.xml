@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Image Analysis Prediction Tree View -->
     <record id="view_ai_image_analysis_prediction_tree" model="ir.ui.view">
-        <field name="name">ai.image.analysis.prediction.tree</field>
-        <field name="model">ai.image.analysis.prediction</field>
+        <field name="name">agri.ai.image.analysis.prediction.tree</field>
+        <field name="model">agri.ai.image.analysis.prediction</field>
         <field name="arch" type="xml">
             <tree string="AI Image Analysis Prediction">
                 <field name="name"/>
@@ -20,8 +20,8 @@
 
     <!-- AI Image Analysis Prediction Form View -->
     <record id="view_ai_image_analysis_prediction_form" model="ir.ui.view">
-        <field name="name">ai.image.analysis.prediction.form</field>
-        <field name="model">ai.image.analysis.prediction</field>
+        <field name="name">agri.ai.image.analysis.prediction.form</field>
+        <field name="model">agri.ai.image.analysis.prediction</field>
         <field name="arch" type="xml">
             <form string="AI Image Analysis Prediction">
                 <header>
@@ -93,7 +93,7 @@
     <!-- AI Image Analysis Prediction Action -->
     <record id="action_ai_image_analysis_prediction" model="ir.actions.act_window">
         <field name="name">Image Analysis Prediction</field>
-        <field name="res_model">ai.image.analysis.prediction</field>
+        <field name="res_model">agri.ai.image.analysis.prediction</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

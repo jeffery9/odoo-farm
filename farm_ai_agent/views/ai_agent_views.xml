@@ -3,8 +3,8 @@
 
     <!-- AICoordinationLayer Form View -->
     <record id="view_ai_coordination_layer_form" model="ir.ui.view">
-        <field name="name">ai.coordination.layer.form</field>
-        <field name="model">ai.coordination.layer</field>
+        <field name="name">agri.ai.coordination.layer.form</field>
+        <field name="model">agri.ai.coordination.layer</field>
         <field name="arch" type="xml">
             <form string="AI Coordination Layer">
                 <sheet>
@@ -53,8 +53,8 @@
 
     <!-- AICoordinationLayer Tree View -->
     <record id="view_ai_coordination_layer_tree" model="ir.ui.view">
-        <field name="name">ai.coordination.layer.tree</field>
-        <field name="model">ai.coordination.layer</field>
+        <field name="name">agri.ai.coordination.layer.tree</field>
+        <field name="model">agri.ai.coordination.layer</field>
         <field name="arch" type="xml">
             <tree string="AI Coordination Layers">
                 <field name="name"/>
@@ -68,8 +68,8 @@
 
     <!-- AIAgentWorkflow Form View -->
     <record id="view_ai_agent_workflow_form" model="ir.ui.view">
-        <field name="name">ai.agent.workflow.form</field>
-        <field name="model">ai.agent.workflow</field>
+        <field name="name">agri.ai.agent.workflow.form</field>
+        <field name="model">agri.ai.agent.workflow</field>
         <field name="arch" type="xml">
             <form string="AI Agent Workflow">
                 <header>
@@ -120,8 +120,8 @@
 
     <!-- AIAgentWorkflow Tree View -->
     <record id="view_ai_agent_workflow_tree" model="ir.ui.view">
-        <field name="name">ai.agent.workflow.tree</field>
-        <field name="model">ai.agent.workflow</field>
+        <field name="name">agri.ai.agent.workflow.tree</field>
+        <field name="model">agri.ai.agent.workflow</field>
         <field name="arch" type="xml">
             <tree string="AI Agent Workflows">
                 <field name="name"/>
@@ -135,8 +135,8 @@
 
     <!-- AIAgentWorkflowStep Form View -->
     <record id="view_ai_agent_workflow_step_form" model="ir.ui.view">
-        <field name="name">ai.agent.workflow.step.form</field>
-        <field name="model">ai.agent.workflow.step</field>
+        <field name="name">agri.ai.agent.workflow.step.form</field>
+        <field name="model">agri.ai.agent.workflow.step</field>
         <field name="arch" type="xml">
             <form string="AI Agent Workflow Step">
                 <sheet>
@@ -176,7 +176,7 @@
     <record id="action_ai_coordination_layer" model="ir.actions.act_window">
         <field name="name">Coordination Layers</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">ai.coordination.layer</field>
+        <field name="res_model">agri.ai.coordination.layer</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -191,7 +191,7 @@
     <record id="action_ai_agent_workflow" model="ir.actions.act_window">
         <field name="name">AI Agent Workflows</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">ai.agent.workflow</field>
+        <field name="res_model">agri.ai.agent.workflow</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

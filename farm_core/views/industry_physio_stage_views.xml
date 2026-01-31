@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Physio Stage List View (Odoo 19 Standard) -->
+    <record id="view_agri_industry_physio_stage_list" model="ir.ui.view">
+        <field name="name">agri.industry.physio.stage.list</field>
+        <field name="model">agri.industry.physio.stage</field>
+        <field name="arch" type="xml">
+            <list string="Growth Stages" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="stage_name"/>
+                <field name="package_id"/>
+                <field name="age_days"/>
+                <field name="is_harvest_stage"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Physio Stage Form View (Odoo 19 Standard) -->
+    <record id="view_agri_industry_physio_stage_form" model="ir.ui.view">
+        <field name="name">agri.industry.physio.stage.form</field>
+        <field name="model">agri.industry.physio.stage</field>
+        <field name="arch" type="xml">
+            <form string="Physiological Stage">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="stage_name" class="oe_edit_only" string="Stage Name"/>
+                        <h1><field name="stage_name" placeholder="e.g. Early Flowering"/></h1>
+                    </div>
+                    <group>
+                        <group string="Planning &amp; Alignment">
+                            <field name="package_id"/>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Timing &amp; Thresholds">
+                            <field name="age_days"/>
+                            <field name="accumulated_temp_threshold"/>
+                            <field name="is_harvest_stage"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Growth Targets" name="targets">
+                            <group>
+                                <field name="target_weight"/>
+                                <field name="daily_feed_rate"/>
+                                <field name="related_variety"/>
+                            </group>
+                        </page>
+                        <page string="Standard Description" name="description">
+                            <field name="description" placeholder="Scientific guidelines for this stage..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action & Menu -->
+    <record id="action_agri_industry_physio_stage" model="ir.actions.act_window">
+        <field name="name">Physiological Stages</field>
+        <field name="res_model">agri.industry.physio.stage</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_agri_physio_stage" name="Growth Stages" 
+              parent="menu_agri_standards_root" action="action_agri_industry_physio_stage" sequence="20"/>
+</odoo>

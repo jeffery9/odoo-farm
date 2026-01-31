@@ -10,14 +10,14 @@ import random
 
 _logger = logging.getLogger(__name__)
 
-class AIQualityGrading(models.Model):
+class AgriAiQualityGrading(models.Model):
     """
     AI model for quality grading
     Implements US-58-12: Intelligent quality grading & sorting
     """
-    _name = 'ai.quality.grading'
+    _name = 'agri.ai.quality.grading'
     _description = 'AI Quality Grading'
-    _inherit = ['ai.decision.base']
+    _inherit = ['agri.ai.decision.base']
 
     product_id = fields.Many2one('product.template', string='Product')
     batch_lot_id = fields.Many2one('stock.lot', string='Batch/Lot')

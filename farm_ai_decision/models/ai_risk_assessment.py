@@ -10,14 +10,14 @@ import random
 
 _logger = logging.getLogger(__name__)
 
-class AIRiskAssessment(models.Model):
+class AgriAiRiskAssessment(models.Model):
     """
     AI model for risk assessment
     Implements US-58-14: Intelligent risk assessment & alert
     """
-    _name = 'ai.risk.assessment'
+    _name = 'agri.ai.risk.assessment'
     _description = 'AI Risk Assessment'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'ai.base.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'agri.ai.base.mixin']
 
     risk_category = fields.Selection([
         ('weather', 'Weather'),

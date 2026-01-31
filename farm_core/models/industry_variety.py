@@ -1,10 +1,34 @@
-from odoo import fields, models, api, _
+from odoo import models, fields, api, _
 
-class IndustryVariety(models.Model):
-    """Variety data for industry packages"""
-    _name = 'farm.industry.variety'
-    _description = 'Industry Package Variety Data'
+class AgriIndustryVarietyMixin(models.AbstractModel):
+    """
+    Agri Domain Level: Variety Traits Mixin. [US-104-2026]
+    Encapsulates biological and industrial traits of a specific variety.
+    """
+    _name = 'agri.industry.variety.mixin'
+    _description = 'Variety Traits Mixin'
 
+    # Domain Standard Traits
+    scientific_name = fields.Char("Scientific Name")
+    breed_origin = fields.Char("Place of Origin")
+    resistance_level = fields.Selection([
+        ('high', 'High Resistance'),
+        ('medium', 'Medium'),
+        ('low', 'Low')
+    ], string="Disease Resistance")
+
+
+class AgriIndustryVariety(models.Model):
+    """
+    Agri Domain Level: Variety Registry.
+    Universal registry for all agricultural biological varieties.
+    Refactored from farm.industry.variety with 100% logic retention.
+    """
+    _name = 'agri.industry.variety'
+    _description = 'Agricultural Variety Standard'
+    _inherit = ['agri.industry.variety.mixin', 'mail.thread']
+
+    # --- 100% Original Logic Retention ---
     package_id = fields.Many2one(
         'farm.industry.data.package',
         string="Industry Package",
@@ -14,6 +38,7 @@ class IndustryVariety(models.Model):
 
     product_name = fields.Char("Product Name", required=True)
     variety_name = fields.Char("Variety Name", required=True)
+    
     agricultural_type = fields.Selection([
         ('land_parcel', 'Land Parcel'),
         ('animal', 'Animal'),
@@ -32,3 +57,13 @@ class IndustryVariety(models.Model):
     growth_duration = fields.Integer("Growth Duration (Days)")
     maturity_age_days = fields.Integer("Maturity Age (Days)")
     is_biological_asset = fields.Boolean("Is Biological Asset")
+    # --- End of Original Logic ---
+
+    active = fields.Boolean(default=True)
+
+    def name_get(self):
+        result = []
+        for record in self:
+            name = f"[{record.product_name}] {record.variety_name}"
+            result.append((record.id, name))
+        return result

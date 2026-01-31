@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Crop Growth Prediction Views -->
     <record id="view_ai_crop_growth_prediction_form" model="ir.ui.view">
-        <field name="name">ai.crop.growth.prediction.form</field>
-        <field name="model">ai.crop.growth.prediction</field>
+        <field name="name">agri.ai.crop.growth.prediction.form</field>
+        <field name="model">agri.ai.crop.growth.prediction</field>
         <field name="arch" type="xml">
             <form string="AI Crop Growth Prediction">
                 <header>
@@ -61,8 +61,8 @@
     </record>
 
     <record id="view_ai_crop_growth_prediction_tree" model="ir.ui.view">
-        <field name="name">ai.crop.growth.prediction.tree</field>
-        <field name="model">ai.crop.growth.prediction</field>
+        <field name="name">agri.ai.crop.growth.prediction.tree</field>
+        <field name="model">agri.ai.crop.growth.prediction</field>
         <field name="arch" type="xml">
             <tree string="AI Crop Growth Predictions">
                 <field name="product_id"/>
@@ -78,7 +78,7 @@
 
     <record id="action_ai_crop_growth_prediction" model="ir.actions.act_window">
         <field name="name">AI Crop Growth Predictions</field>
-        <field name="res_model">ai.crop.growth.prediction</field>
+        <field name="res_model">agri.ai.crop.growth.prediction</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Fertilization Decision Views -->
     <record id="view_ai_fertilization_decision_form" model="ir.ui.view">
-        <field name="name">ai.fertilization.decision.form</field>
-        <field name="model">ai.fertilization.decision</field>
+        <field name="name">agri.ai.fertilization.decision.form</field>
+        <field name="model">agri.ai.fertilization.decision</field>
         <field name="arch" type="xml">
             <form string="AI Fertilization Decision">
                 <header>
@@ -68,8 +68,8 @@
     </record>
 
     <record id="view_ai_fertilization_decision_tree" model="ir.ui.view">
-        <field name="name">ai.fertilization.decision.tree</field>
-        <field name="model">ai.fertilization.decision</field>
+        <field name="name">agri.ai.fertilization.decision.tree</field>
+        <field name="model">agri.ai.fertilization.decision</field>
         <field name="arch" type="xml">
             <tree string="AI Fertilization Decisions">
                 <field name="land_location_id"/>
@@ -84,7 +84,7 @@
 
     <record id="action_ai_fertilization_decision" model="ir.actions.act_window">
         <field name="name">AI Fertilization Decisions</field>
-        <field name="res_model">ai.fertilization.decision</field>
+        <field name="res_model">agri.ai.fertilization.decision</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

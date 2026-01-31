@@ -134,7 +134,7 @@ class AIAutonomousOrchestrator(models.Model):
     active = fields.Boolean(default=True)
     
     # Strategy Configuration
-    workflow_id = fields.Many2one('ai.agent.workflow', string="Decision Workflow", 
+    workflow_id = fields.Many2one('agri.ai.agent.workflow', string="Decision Workflow", 
                                  help="The AI workflow used to decide on actions.")
     
     auto_dispatch_threshold = fields.Float("Auto-Dispatch Threshold (Health)", default=60.0,

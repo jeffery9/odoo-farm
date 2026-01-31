@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Operation Path Optimization Views -->
     <record id="view_ai_operation_path_optimization_form" model="ir.ui.view">
-        <field name="name">ai.operation.path.optimization.form</field>
-        <field name="model">ai.operation.path.optimization</field>
+        <field name="name">agri.ai.operation.path.optimization.form</field>
+        <field name="model">agri.ai.operation.path.optimization</field>
         <field name="arch" type="xml">
             <form string="AI Operation Path Optimization">
                 <header>
@@ -58,8 +58,8 @@
     </record>
 
     <record id="view_ai_operation_path_optimization_tree" model="ir.ui.view">
-        <field name="name">ai.operation.path.optimization.tree</field>
-        <field name="model">ai.operation.path.optimization</field>
+        <field name="name">agri.ai.operation.path.optimization.tree</field>
+        <field name="model">agri.ai.operation.path.optimization</field>
         <field name="arch" type="xml">
             <tree string="AI Operation Path Optimization">
                 <field name="operation_type"/>
@@ -73,7 +73,7 @@
 
     <record id="action_ai_operation_path_optimization" model="ir.actions.act_window">
         <field name="name">AI Operation Path Optimization</field>
-        <field name="res_model">ai.operation.path.optimization</field>
+        <field name="res_model">agri.ai.operation.path.optimization</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

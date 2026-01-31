@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Harvest Timing Views -->
     <record id="view_ai_harvest_timing_form" model="ir.ui.view">
-        <field name="name">ai.harvest.timing.form</field>
-        <field name="model">ai.harvest.timing</field>
+        <field name="name">agri.ai.harvest.timing.form</field>
+        <field name="model">agri.ai.harvest.timing</field>
         <field name="arch" type="xml">
             <form string="AI Harvest Timing">
                 <header>
@@ -64,8 +64,8 @@
     </record>
 
     <record id="view_ai_harvest_timing_tree" model="ir.ui.view">
-        <field name="name">ai.harvest.timing.tree</field>
-        <field name="model">ai.harvest.timing</field>
+        <field name="name">agri.ai.harvest.timing.tree</field>
+        <field name="model">agri.ai.harvest.timing</field>
         <field name="arch" type="xml">
             <tree string="AI Harvest Timing">
                 <field name="product_id"/>
@@ -80,7 +80,7 @@
 
     <record id="action_ai_harvest_timing" model="ir.actions.act_window">
         <field name="name">AI Harvest Timing</field>
-        <field name="res_model">ai.harvest.timing</field>
+        <field name="res_model">agri.ai.harvest.timing</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

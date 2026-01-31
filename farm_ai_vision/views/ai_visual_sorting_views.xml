@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Visual Sorting Tree View -->
     <record id="view_ai_visual_sorting_tree" model="ir.ui.view">
-        <field name="name">ai.visual.sorting.tree</field>
-        <field name="model">ai.visual.sorting</field>
+        <field name="name">agri.ai.visual.sorting.tree</field>
+        <field name="model">agri.ai.visual.sorting</field>
         <field name="arch" type="xml">
             <tree string="AI Visual Sorting">
                 <field name="name"/>
@@ -21,8 +21,8 @@
 
     <!-- AI Visual Sorting Form View -->
     <record id="view_ai_visual_sorting_form" model="ir.ui.view">
-        <field name="name">ai.visual.sorting.form</field>
-        <field name="model">ai.visual.sorting</field>
+        <field name="name">agri.ai.visual.sorting.form</field>
+        <field name="model">agri.ai.visual.sorting</field>
         <field name="arch" type="xml">
             <form string="AI Visual Sorting">
                 <header>
@@ -100,7 +100,7 @@
     <!-- AI Visual Sorting Action -->
     <record id="action_ai_visual_sorting" model="ir.actions.act_window">
         <field name="name">Visual Sorting</field>
-        <field name="res_model">ai.visual.sorting</field>
+        <field name="res_model">agri.ai.visual.sorting</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

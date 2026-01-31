@@ -102,7 +102,7 @@ class FarmTraceabilityController(http.Controller):
 
             event = {
                 'id': intervention['id'],
-                'title': f"{dict(self.env['farm.agricultural.intervention.mixin'].fields_get(allfields=['intervention_type'])['intervention_type']['selection']).get(intervention['intervention_type'], intervention['intervention_type'])} - {intervention['task_name']}",
+                'title': f"{dict(self.env['agri.intervention.mixin'].fields_get(allfields=['intervention_type'])['intervention_type']['selection']).get(intervention['intervention_type'], intervention['intervention_type'])} - {intervention['task_name']}",
                 'start': intervention['date_start'].isoformat() if intervention['date_start'] else '',
                 'end': intervention['date_finished'].isoformat() if intervention['date_finished'] else '',
                 'color': color,

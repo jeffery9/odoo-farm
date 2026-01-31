@@ -1,56 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_farm_land_grid_cell_tree" model="ir.ui.view">
-        <name>farm.land.grid.cell.list</name>
-        <model>farm.land.grid.cell</model>
-        <arch type="xml">
-            <list string="Land Grid Cells" create="false">
-                <field name="location_id"/>
+    <!-- Spatial Grid List View (Odoo 19 Standard) -->
+    <record id="view_agri_geospatial_grid_cell_list" model="ir.ui.view">
+        <field name="name">agri.geospatial.grid.cell.list</field>
+        <field name="model">agri.geospatial.grid.cell</field>
+        <field name="arch" type="xml">
+            <list string="Spatial Grid Cells" decoration-info="ndvi_index &gt; 0.5" decoration-warning="water_stress &gt; 0.7">
                 <field name="name"/>
+                <field name="location_id"/>
                 <field name="row"/>
                 <field name="col"/>
-                <field name="ndvi_index" widget="progressbar"/>
-                <field name="soil_moisture"/>
-                <field name="nutrient_level"/>
+                <field name="center_lat" optional="show"/>
+                <field name="center_lng" optional="show"/>
+                <field name="ndvi_index" widget="progressbar" options="{'max_value': 1.0}"/>
+                <field name="soil_ph"/>
             </list>
-        </arch>
+        </field>
     </record>
 
-    <record id="action_farm_land_grid_cell" model="ir.actions.act_window">
-        <name>Land Grid Mapping</name>
-        <res_model>farm.land.grid.cell</res_model>
-        <view_mode>list,form</view_mode>
+    <!-- Grid Cell Form View (Odoo 19 Standard) -->
+    <record id="view_agri_geospatial_grid_cell_form" model="ir.ui.view">
+        <field name="name">agri.geospatial.grid.cell.form</field>
+        <field name="model">agri.geospatial.grid.cell</field>
+        <field name="arch" type="xml">
+            <form string="Spatial Grid Cell">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Spatial Coordinates">
+                            <field name="location_id"/>
+                            <field name="center_lat"/>
+                            <field name="center_lng"/>
+                        </group>
+                        <group string="Grid Index">
+                            <field name="row"/>
+                            <field name="col"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Physics &amp; Indices" name="physics">
+                            <group>
+                                <group string="Vegetation">
+                                    <field name="ndvi_index"/>
+                                    <field name="water_stress"/>
+                                </group>
+                                <group string="Soil Analysis">
+                                    <field name="soil_ph"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Geometry" name="geometry">
+                            <field name="cell_geojson" widget="ace" options="{'mode': 'json'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
     </record>
 
-    <!-- Inherit Location to add GIS Grid Control -->
+    <!-- Location View Enhancement (Odoo 19) -->
     <record id="view_farm_location_form_inherit_grid" model="ir.ui.view">
-        <name>farm.location.form.inherit.grid</name>
-        <model>farm.location</model>
+        <field name="name">farm.location.form.inherit.grid</field>
+        <field name="model">farm.location</field>
         <field name="inherit_id" ref="farm_core.view_farm_location_form"/>
         <field name="arch" type="xml">
-            <header position="inside">
-                <button name="action_generate_precision_grid" string="GIS: Generate Precise Grid" type="object" class="oe_highlight" invisible="grid_generated"/>
-                <button name="action_interpolate_soil_data" string="GIS: Soil Mapping (IDW)" type="object" invisible="not grid_generated"/>
-                <button name="action_fetch_satellite_ndvi" string="GIS: Raster Sync (NDVI)" type="object" invisible="not grid_generated"/>
-            </header>
-            <xpath expr="//group[@name='gis_information']" position="inside">
-                <group string="Spatial Processing">
-                    <field name="grid_resolution" widget="radio" options="{'horizontal': true}"/>
-                    <field name="grid_generated" readonly="1"/>
-                </group>
-            </xpath>
-            <xpath expr="//notebook" position="inside">
-                <page string="Spatial Raster Data" name="spatial_grid">
-                    <field name="grid_cell_ids" readonly="1">
-                        <list>
+            <xpath expr="//page[@name='gis_terroir']" position="after">
+                <page string="Precision Grid" name="spatial_grid">
+                    <header>
+                        <button name="action_generate_precision_grid" type="object" string="Generate Precision Grid" class="oe_highlight" invisible="grid_generated"/>
+                        <button name="action_generate_precision_grid" type="object" string="Regenerate Grid" invisible="not grid_generated"/>
+                        <button name="action_interpolate_soil_data" type="object" string="Interpolate Soil Data" invisible="not grid_generated"/>
+                        <field name="grid_generated" invisible="1"/>
+                    </header>
+                    <group>
+                        <field name="grid_resolution"/>
+                    </group>
+                    <field name="grid_cell_ids">
+                        <list limit="50">
                             <field name="name"/>
                             <field name="row"/>
                             <field name="col"/>
-                            <field name="center_lat" optional="hide"/>
-                            <field name="center_lng" optional="hide"/>
-                            <field name="ndvi_index" widget="progressbar" string="NDVI"/>
-                            <field name="soil_ph" string="pH (Interpolated)"/>
-                            <field name="water_stress" widget="gauge" options="{'max_value': 1}" string="Water Stress"/>
+                            <field name="ndvi_index"/>
+                            <field name="soil_ph"/>
                         </list>
                     </field>
                 </page>

@@ -7,18 +7,18 @@ import logging
 import json
 from datetime import datetime, timedelta
 import base64
-from .ai_vision_base import AIVisionBase
+from .ai_vision_base import AgriAiVisionBase
 
 _logger = logging.getLogger(__name__)
 
-class AIImageBasedPlanning(AIVisionBase):
+class AgriAiImageBasedPlanning(AgriAiVisionBase):
     """
     AI model for image-based planting recommendations
     Implements US-58-04: 基于图像的智能种植方案
     """
-    _name = 'ai.image.based.planning'
+    _name = 'agri.ai.image.based.planning'
     _description = 'AI Image-Based Planning'
-    _inherit = ['ai.vision.base']
+    _inherit = ['agri.ai.vision.base']
 
     land_location_id = fields.Many2one('farm.location', string='Land Location', domain=[('usage', '=', 'internal')])
     crop_type = fields.Many2one('product.template', string='Suggested Crop Type', domain=[('type', '=', 'product')])

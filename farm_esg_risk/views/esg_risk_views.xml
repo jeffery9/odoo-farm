@@ -112,7 +112,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_issue_alert" type="object" string="Issue Alert" states="warning,non_compliant,critical"/>
+                    <button name="action_issue_alert" type="object" string="Issue Alert" invisible="compliance_status not in ['warning','non_compliant','critical']"/>
                 </header>
                 <sheet>
                     <group>

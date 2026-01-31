@@ -10,14 +10,14 @@ import base64
 
 _logger = logging.getLogger(__name__)
 
-class AIVisionBase(models.Model):
+class AgriAiVisionBase(models.Model):
     """
     Base model for AI vision functionality
     Implements core functionality for computer vision in agriculture
     """
-    _name = 'ai.vision.base'
+    _name = 'agri.ai.vision.base'
     _description = 'AI Vision Base Model'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'ai.base.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'agri.ai.base.mixin']
 
     name = fields.Char('Name', required=True)
     image = fields.Binary('Image', attachment=True, help="Input image for AI vision analysis")

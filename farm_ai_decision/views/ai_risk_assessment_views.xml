@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Risk Assessment Views -->
     <record id="view_ai_risk_assessment_form" model="ir.ui.view">
-        <field name="name">ai.risk.assessment.form</field>
-        <field name="model">ai.risk.assessment</field>
+        <field name="name">agri.ai.risk.assessment.form</field>
+        <field name="model">agri.ai.risk.assessment</field>
         <field name="arch" type="xml">
             <form string="AI Risk Assessment">
                 <header>
@@ -58,8 +58,8 @@
     </record>
 
     <record id="view_ai_risk_assessment_tree" model="ir.ui.view">
-        <field name="name">ai.risk.assessment.tree</field>
-        <field name="model">ai.risk.assessment</field>
+        <field name="name">agri.ai.risk.assessment.tree</field>
+        <field name="model">agri.ai.risk.assessment</field>
         <field name="arch" type="xml">
             <tree string="AI Risk Assessment">
                 <field name="risk_category"/>
@@ -74,7 +74,7 @@
 
     <record id="action_ai_risk_assessment" model="ir.actions.act_window">
         <field name="name">AI Risk Assessment</field>
-        <field name="res_model">ai.risk.assessment</field>
+        <field name="res_model">agri.ai.risk.assessment</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

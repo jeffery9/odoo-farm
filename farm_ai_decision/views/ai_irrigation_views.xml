@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Irrigation Decision Views -->
     <record id="view_ai_irrigation_decision_form" model="ir.ui.view">
-        <field name="name">ai.irrigation.decision.form</field>
-        <field name="model">ai.irrigation.decision</field>
+        <field name="name">agri.ai.irrigation.decision.form</field>
+        <field name="model">agri.ai.irrigation.decision</field>
         <field name="arch" type="xml">
             <form string="AI Irrigation Decision">
                 <header>
@@ -69,8 +69,8 @@
     </record>
 
     <record id="view_ai_irrigation_decision_tree" model="ir.ui.view">
-        <field name="name">ai.irrigation.decision.tree</field>
-        <field name="model">ai.irrigation.decision</field>
+        <field name="name">agri.ai.irrigation.decision.tree</field>
+        <field name="model">agri.ai.irrigation.decision</field>
         <field name="arch" type="xml">
             <tree string="AI Irrigation Decisions">
                 <field name="land_location_id"/>
@@ -85,7 +85,7 @@
 
     <record id="action_ai_irrigation_decision" model="ir.actions.act_window">
         <field name="name">AI Irrigation Decisions</field>
-        <field name="res_model">ai.irrigation.decision</field>
+        <field name="res_model">agri.ai.irrigation.decision</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

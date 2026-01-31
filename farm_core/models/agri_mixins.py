@@ -294,6 +294,38 @@ class ClearingEngineMixin(models.AbstractModel):
         self.quality_fingerprint = json.dumps(fingerprint, indent=2)
         return fingerprint
 
+    def calculate_community_value(self):
+        """
+        [US-104-01] Multi-dimensional Valuation Engine.
+        Synthesizes physical attributes and market pegs into a community value score.
+        """
+        self.ensure_one()
+        _logger.info("Calculating community value for %s:%s", self._name, self.id)
+        
+        # 1. Physical Base (NPK Market Pegs)
+        n_peg = self._get_market_peg('nitrogen')
+        p_peg = self._get_market_peg('phosphorus')
+        k_peg = self._get_market_peg('potassium')
+        
+        physical_value = (getattr(self, 'nitrogen_qty', 0) * n_peg +
+                          getattr(self, 'phosphorus_qty', 0) * p_peg +
+                          getattr(self, 'potassium_qty', 0) * k_peg)
+        
+        # 2. ESG Premium/Penalty
+        esg_score = getattr(self, 'esg_score', 100)
+        carbon = getattr(self, 'carbon_intensity', 1.0)
+        
+        # Sustainability multiplier: high ESG and low Carbon increase value
+        multiplier = (esg_score / 100.0) * (1.0 / (carbon + 0.1))
+        
+        total_value = physical_value * multiplier
+        return total_value
+
+    def _get_market_peg(self, substance):
+        """Stubs for dynamic market price fetching."""
+        pegs = {'nitrogen': 1.2, 'phosphorus': 0.8, 'potassium': 0.5}
+        return pegs.get(substance, 1.0)
+
     def apply_slashing(self, reason, penalty_score=50):
         """
         Level 2+: Slashing Mechanism.

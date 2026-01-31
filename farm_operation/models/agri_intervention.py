@@ -8,7 +8,7 @@ class AgriIntervention(models.Model):
     _name = 'mrp.production'
     _inherit = [
         'mrp.production',
-        'farm.agricultural.intervention.mixin',
+        'agri.intervention.mixin',
         'agri.view.mixin',           # Level 0: UI Isolation
         'agri.sustainability.mixin', # Level 0: Value Standard
         'agri.geospatial.mixin',     # Level 1: Spatial Grid

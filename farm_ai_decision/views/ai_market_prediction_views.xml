@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Market Prediction Views -->
     <record id="view_ai_market_prediction_form" model="ir.ui.view">
-        <field name="name">ai.market.prediction.form</field>
-        <field name="model">ai.market.prediction</field>
+        <field name="name">agri.ai.market.prediction.form</field>
+        <field name="model">agri.ai.market.prediction</field>
         <field name="arch" type="xml">
             <form string="AI Market Prediction">
                 <header>
@@ -73,8 +73,8 @@
     </record>
 
     <record id="view_ai_market_prediction_tree" model="ir.ui.view">
-        <field name="name">ai.market.prediction.tree</field>
-        <field name="model">ai.market.prediction</field>
+        <field name="name">agri.ai.market.prediction.tree</field>
+        <field name="model">agri.ai.market.prediction</field>
         <field name="arch" type="xml">
             <list string="AI Market Predictions">
                 <field name="prediction_type"/>
@@ -90,7 +90,7 @@
 
     <record id="action_ai_market_prediction" model="ir.actions.act_window">
         <field name="name">AI Market Predictions</field>
-        <field name="res_model">ai.market.prediction</field>
+        <field name="res_model">agri.ai.market.prediction</field>
         <field name="view_mode">list,form</field>
     </record>
 </odoo>

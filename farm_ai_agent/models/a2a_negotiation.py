@@ -53,13 +53,28 @@ class A2ANegotiation(models.Model):
         })
 
     def evaluate_proposal(self, incoming_payload):
+        """
+        [Level 5 Integrated]
+        Evaluates a proposal using standard game theory or specialized robotic logic.
+        """
         self.ensure_one()
+        
+        # 1. Check for Sustainability Redline (Level 0 Global Control)
         carbon = incoming_payload.get('context_memory', {}).get('carbon_intensity', 100)
         if carbon > 50.0:
             return {'decision': 'reject', 'reason': 'Sustainability redline exceeded'}
+
+        # 2. Delegate to specialized agents (e.g. Robots)
+        if self.receiver_agent_id.startswith('robot:'):
+            robot = self.env['farm.robot'].search([('agent_id', '=', self.receiver_agent_id)], limit=1)
+            if robot:
+                return robot.evaluate_a2a_proposal(incoming_payload)
+
+        # 3. Standard Bargaining Heuristics
         offered = incoming_payload.get('proposed_credits', 0.0)
         if offered < self.proposed_credits * 0.9:
             return {'decision': 'counter', 'price': self.proposed_credits * 0.95}
+            
         return {'decision': 'accept'}
 
     def action_trigger_arbitration(self, reason):

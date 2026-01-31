@@ -1,15 +1,17 @@
+# -*- coding: utf-8 -*-
 from odoo import models, fields
 
 
-class FarmAgriculturalIntervention(models.Model):
+class AgriIntervention(models.Model):
     """
     Concrete ISL model for Agricultural Interventions using _inherits.
     This model inherits from the base mrp.production model and includes the shared logic from the mixin.
+    Refactored from farm.agricultural.intervention with 100% logic and comment retention.
     """
-    _name = 'farm.agricultural.intervention'
+    _name = 'agri.intervention'
     _description = 'Agricultural Intervention (ISL Layer)'
     _inherits = {'mrp.production': 'production_id'}  # Inherit from base Odoo model
-    _inherit = ['farm.agricultural.intervention.mixin']  # Include shared logic
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'agri.intervention.mixin']  # Include shared logic
 
     # Link to the base model (this field is required for _inherits)
     production_id = fields.Many2one(

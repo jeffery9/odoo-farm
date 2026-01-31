@@ -35,18 +35,18 @@
                         </group>
                         <group>
                             <field name="monitoring_frequency"/>
-                            <field name="buffer_distance_km" attrs="{'invisible': [('red_line_type', 'not in', ['protected_area', 'deforestation'])]}"/>
+                            <field name="buffer_distance_km" invisible="red_line_type not in ['protected_area', 'deforestation']"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Threshold Settings" attrs="{'invisible': [('red_line_type', 'in', ['protected_area', 'deforestation'])]}">
+                        <page string="Threshold Settings" invisible="red_line_type in ['protected_area', 'deforestation']">
                             <group>
                                 <field name="threshold_value"/>
                                 <field name="threshold_unit"/>
                                 <field name="threshold_description"/>
                             </group>
                         </page>
-                        <page string="Geofence Settings" attrs="{'invisible': [('red_line_type', 'not in', ['protected_area', 'deforestation'])]}">
+                        <page string="Geofence Settings" invisible="red_line_type not in ['protected_area', 'deforestation']">
                             <group>
                                 <field name="coordinates" placeholder="Enter coordinates in format: lon,lat;lon,lat;..."/>
                             </group>
@@ -93,10 +93,10 @@
             <form>
                 <header>
                     <button name="action_issue_red_line_alert" type="object" string="Issue Alert"
-                            attrs="{'invisible': ['|', ('compliance_status', 'in', ['compliant', 'resolved']), ('alert_issued', '=', True)]}"
+                            invisible="compliance_status in ['compliant', 'resolved'] or alert_issued == True"
                             class="oe_highlight"/>
                     <button name="action_resolve_violation" type="object" string="Resolve Violation"
-                            attrs="{'invisible': [('compliance_status', 'not in', ['warning', 'violation', 'critical'])]}"
+                            invisible="compliance_status not in ['warning', 'violation', 'critical']"
                             class="oe_highlight"/>
                     <field name="compliance_status" widget="statusbar" statusbar_visible="compliant,warning,violation,critical,resolved"/>
                 </header>
@@ -127,7 +127,7 @@
                             <field name="water_usage_m3"/>
                             <field name="land_use_area"/>
                         </group>
-                        <group string="Geofence Check" attrs="{'invisible': [('red_line_config_id.red_line_type', 'not in', ['protected_area', 'deforestation'])]}">
+                        <group string="Geofence Check" invisible="red_line_config_id.red_line_type not in ['protected_area', 'deforestation']">
                             <field name="is_in_protected_area"/>
                             <field name="distance_to_boundary_km"/>
                         </group>
@@ -136,10 +136,10 @@
                         <page string="Detection Details">
                             <field name="detection_details"/>
                         </page>
-                        <page string="Response Actions" attrs="{'invisible': [('compliance_status', 'in', ['compliant', 'resolved'])]}">
+                        <page string="Response Actions" invisible="compliance_status in ['compliant', 'resolved']">
                             <group>
                                 <field name="corrective_actions"/>
-                                <field name="resolution_notes" attrs="{'required': [('compliance_status', 'in', ['warning', 'violation', 'critical'])]}"/>
+                                <field name="resolution_notes" required="compliance_status in ['warning', 'violation', 'critical']"/>
                                 <field name="remediation_date"/>
                             </group>
                         </page>

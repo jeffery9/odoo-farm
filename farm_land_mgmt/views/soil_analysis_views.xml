@@ -2,8 +2,8 @@
 <odoo>
     <!-- Soil Analysis Tree View -->
     <record id="view_soil_analysis_tree" model="ir.ui.view">
-        <field name="name">farm.soil.analysis.tree</field>
-        <field name="model">farm.soil.analysis</field>
+        <field name="name">agri.soil.analysis.tree</field>
+        <field name="model">agri.soil.analysis</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
@@ -21,8 +21,8 @@
 
     <!-- Soil Analysis Form View -->
     <record id="view_soil_analysis_form" model="ir.ui.view">
-        <field name="name">farm.soil.analysis.form</field>
-        <field name="model">farm.soil.analysis</field>
+        <field name="name">agri.soil.analysis.form</field>
+        <field name="model">agri.soil.analysis</field>
         <field name="arch" type="xml">
             <form>
                 <header>
@@ -88,8 +88,8 @@
 
     <!-- Soil Analysis Search View -->
     <record id="view_soil_analysis_search" model="ir.ui.view">
-        <field name="name">farm.soil.analysis.search</field>
-        <field name="model">farm.soil.analysis</field>
+        <field name="name">agri.soil.analysis.search</field>
+        <field name="model">agri.soil.analysis</field>
         <field name="arch" type="xml">
             <search>
                 <field name="name"/>
@@ -111,7 +111,7 @@
     <!-- Soil Analysis Action -->
     <record id="action_soil_analysis" model="ir.actions.act_window">
         <field name="name">Soil Analyses</field>
-        <field name="res_model">farm.soil.analysis</field>
+        <field name="res_model">agri.soil.analysis</field>
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="view_soil_analysis_search"/>
     </record>

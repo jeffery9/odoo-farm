@@ -32,15 +32,15 @@ def rate_limit(calls_per_minute=60):
     return decorator
 
 
-class LLMService(models.Model):
+class AgriAiLlmService(models.Model):
     """
     Service class for calling LLM APIs
     """
-    _name = 'llm.service'
+    _name = 'agri.ai.llm.service'
     _description = 'LLM Service Interface'
 
     name = fields.Char('Service Name', required=True)
-    config_id = fields.Many2one('llm.configuration', string='LLM Configuration', required=True)
+    config_id = fields.Many2one('agri.ai.llm.configuration', string='LLM Configuration', required=True)
     last_call_time = fields.Datetime('Last Call Time')
     call_count = fields.Integer('Call Count', default=0)
     error_count = fields.Integer('Error Count', default=0)

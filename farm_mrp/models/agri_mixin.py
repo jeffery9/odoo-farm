@@ -1,46 +1,39 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class FarmAgriBomMixin(models.AbstractModel):
+    """
+    Farm-specific extension of the agricultural BOM mixin.
+    This ensures backward compatibility while using the new agri.* namespace.
+    """
     _name = 'farm.agri.bom.mixin'
-    _description = 'Agricultural BOM Shared Logic'
+    _description = 'Farm Agricultural BOM Shared Logic (Deprecated - Use agri.bom.mixin)'
+    _inherit = 'agri.bom.mixin'
 
-    # --- Generic Agri Fields ---
-    dilution_ratio = fields.Float("Dilution Ratio", help="1:X ratio for tank mix.")
-    solution_volume_per_hectare = fields.Float("Solution Volume per Hectare")
-    
-    # --- Potency & Standardization ---
-    is_potency_controlled = fields.Boolean("Potency Controlled", default=False)
-    target_active_content = fields.Float("Target Active Content (%)")
-
-    # --- Compliance & Safety ---
-    max_loss_rate = fields.Float("Max Allowed Loss Rate (%)", default=5.0)
-    is_blind_mixing = fields.Boolean("Blind Mixing Mode", default=False)
+    def _register_hook(self):
+        """Display deprecation warning when module is installed."""
+        _logger.warning(
+            "farm.agri.bom.mixin is deprecated. "
+            "Please update your code to use agri.bom.mixin instead."
+        )
+        return super()._register_hook()
 
 class FarmAgriProductionMixin(models.AbstractModel):
+    """
+    Farm-specific extension of the agricultural production mixin.
+    This ensures backward compatibility while using the new agri.* namespace.
+    """
     _name = 'farm.agri.production.mixin'
-    _description = 'Agricultural Production Shared Logic'
+    _description = 'Farm Agricultural Production Shared Logic (Deprecated - Use agri.production.mixin)'
+    _inherit = 'agri.production.mixin'
 
-    # --- Quality & Process Interception ---
-    quality_gate_status = fields.Selection([
-        ('pending', 'Pending'),
-        ('approved', 'Approved'),
-        ('rework', 'Rework'),
-        ('rejected', 'Rejected'),
-    ], string='Quality Gate Status', default='pending', copy=False)
-
-    # --- Common Lifecycle Tracking ---
-    processing_type = fields.Selection([
-        ('primary', 'Primary Processing'),
-        ('deep', 'Deep Processing'),
-        ('fattening', 'Growth/Fattening'),
-        ('breeding', 'Breeding Operations')
-    ], string='Agricultural Process Type')
-
-    def isl_post_confirm(self):
-        """ US-TECH-06-27: Hook triggered after standard MO confirmation. """
-        pass
-
-    def isl_post_done(self):
-        """ US-TECH-06-27: Hook triggered after standard MO completion. """
-        pass
+    def _register_hook(self):
+        """Display deprecation warning when module is installed."""
+        _logger.warning(
+            "farm.agri.production.mixin is deprecated. "
+            "Please update your code to use agri.production.mixin instead."
+        )
+        return super()._register_hook()

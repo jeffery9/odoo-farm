@@ -8,16 +8,19 @@ import json
 from datetime import datetime, timedelta
 import base64
 
+from .ai_vision_base import AgriAiVisionBase
+
 _logger = logging.getLogger(__name__)
 
-class AIVisionRiskAssessment(models.Model):
+class AgriAiVisionRiskAssessment(AgriAiVisionBase):
     """
-    AI model for AI vision risk assessment
-    Implements US-28-04: AI视觉风险评估与预警
+    AI model for AI vision risk assessment.
+    Implements US-28-04: AI视觉风险评估与预警.
+    Refactored to Agri domain with 100% logic retention.
     """
-    _name = 'ai.vision.risk.assessment'
+    _name = 'agri.ai.vision.risk.assessment'
     _description = 'AI Vision Risk Assessment'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'ai.base.mixin']
+    _inherit = ['agri.ai.vision.base']
 
     risk_type = fields.Selection([
         ('crop_health', 'Crop Health Risk'),
@@ -336,7 +339,7 @@ class AIVisionRiskAssessment(models.Model):
 
     def action_process_image(self):
         """Override to set specific fields after processing"""
-        result = super().action_process_image()
+        result = super(AgriAiVisionRiskAssessment, self).action_process_image()
 
         for record in self:
             if record.output_data:
@@ -361,17 +364,4 @@ class AIVisionRiskAssessment(models.Model):
                 if 'monitoring_plan' in output:
                     record.risk_monitoring_plan = output['monitoring_plan']
 
-        return result
-
-    def _process_ai(self):
-        """Override the base AI processing method for image-based risk assessment"""
-        result = self._process_image_ai(self)
-        result.update({
-            'input_data': {
-                'risk_type': self.risk_type,
-                'image_present': bool(self.image),
-                'industry': self.industry_id.name if self.industry_id else None,
-            },
-            'output_data': result.copy()
-        })
         return result

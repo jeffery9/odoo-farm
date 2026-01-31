@@ -3,8 +3,8 @@
 
     <!-- AIDecisionEngine Form View -->
     <record id="view_ai_decision_engine_form" model="ir.ui.view">
-        <field name="name">ai.decision.engine.form</field>
-        <field name="model">ai.decision.engine</field>
+        <field name="name">agri.ai.decision.engine.form</field>
+        <field name="model">agri.ai.decision.engine</field>
         <field name="arch" type="xml">
             <form string="AI Decision Engine">
                 <header>
@@ -90,8 +90,8 @@
 
     <!-- AIDecisionEngine Tree View -->
     <record id="view_ai_decision_engine_tree" model="ir.ui.view">
-        <field name="name">ai.decision.engine.tree</field>
-        <field name="model">ai.decision.engine</field>
+        <field name="name">agri.ai.decision.engine.tree</field>
+        <field name="model">agri.ai.decision.engine</field>
         <field name="arch" type="xml">
             <tree string="AI Decision Engines">
                 <field name="name"/>
@@ -106,8 +106,8 @@
 
     <!-- AIDecisionContext Form View -->
     <record id="view_ai_decision_context_form" model="ir.ui.view">
-        <field name="name">ai.decision.context.form</field>
-        <field name="model">ai.decision.context</field>
+        <field name="name">agri.ai.decision.context.form</field>
+        <field name="model">agri.ai.decision.context</field>
         <field name="arch" type="xml">
             <form string="AI Decision Context">
                 <sheet>
@@ -155,8 +155,8 @@
 
     <!-- AIDecisionContext Tree View -->
     <record id="view_ai_decision_context_tree" model="ir.ui.view">
-        <field name="name">ai.decision.context.tree</field>
-        <field name="model">ai.decision.context</field>
+        <field name="name">agri.ai.decision.context.tree</field>
+        <field name="model">agri.ai.decision.context</field>
         <field name="arch" type="xml">
             <tree string="AI Decision Contexts">
                 <field name="name"/>
@@ -170,8 +170,8 @@
 
     <!-- AIDecisionRule Form View -->
     <record id="view_ai_decision_rule_form" model="ir.ui.view">
-        <field name="name">ai.decision.rule.form</field>
-        <field name="model">ai.decision.rule</field>
+        <field name="name">agri.ai.decision.rule.form</field>
+        <field name="model">agri.ai.decision.rule</field>
         <field name="arch" type="xml">
             <form string="AI Decision Rule">
                 <sheet>
@@ -210,8 +210,8 @@
 
     <!-- AIDecisionRule Tree View -->
     <record id="view_ai_decision_rule_tree" model="ir.ui.view">
-        <field name="name">ai.decision.rule.tree</field>
-        <field name="model">ai.decision.rule</field>
+        <field name="name">agri.ai.decision.rule.tree</field>
+        <field name="model">agri.ai.decision.rule</field>
         <field name="arch" type="xml">
             <tree string="AI Decision Rules">
                 <field name="name"/>
@@ -225,8 +225,8 @@
 
     <!-- AIDecisionWorkflow Form View -->
     <record id="view_ai_decision_workflow_form" model="ir.ui.view">
-        <field name="name">ai.decision.workflow.form</field>
-        <field name="model">ai.decision.workflow</field>
+        <field name="name">agri.ai.decision.workflow.form</field>
+        <field name="model">agri.ai.decision.workflow</field>
         <field name="arch" type="xml">
             <form string="AI Decision Workflow">
                 <header>
@@ -277,8 +277,8 @@
 
     <!-- AIDecisionWorkflow Tree View -->
     <record id="view_ai_decision_workflow_tree" model="ir.ui.view">
-        <field name="name">ai.decision.workflow.tree</field>
-        <field name="model">ai.decision.workflow</field>
+        <field name="name">agri.ai.decision.workflow.tree</field>
+        <field name="model">agri.ai.decision.workflow</field>
         <field name="arch" type="xml">
             <tree string="AI Decision Workflows">
                 <field name="name"/>
@@ -292,8 +292,8 @@
 
     <!-- AIDecisionWorkflowStep Form View -->
     <record id="view_ai_decision_workflow_step_form" model="ir.ui.view">
-        <field name="name">ai.decision.workflow.step.form</field>
-        <field name="model">ai.decision.workflow.step</field>
+        <field name="name">agri.agri.ai.decision.workflow.step.form</field>
+        <field name="model">agri.agri.ai.decision.workflow.step</field>
         <field name="arch" type="xml">
             <form string="AI Decision Workflow Step">
                 <sheet>
@@ -331,7 +331,7 @@
     <record id="action_ai_decision_engine" model="ir.actions.act_window">
         <field name="name">Decision Engines</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">ai.decision.engine</field>
+        <field name="res_model">agri.ai.decision.engine</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -346,7 +346,7 @@
     <record id="action_ai_decision_context" model="ir.actions.act_window">
         <field name="name">Decision Contexts</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">ai.decision.context</field>
+        <field name="res_model">agri.ai.decision.context</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -361,7 +361,7 @@
     <record id="action_ai_decision_rule" model="ir.actions.act_window">
         <field name="name">Decision Rules</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">ai.decision.rule</field>
+        <field name="res_model">agri.ai.decision.rule</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -376,7 +376,7 @@
     <record id="action_ai_decision_workflow" model="ir.actions.act_window">
         <field name="name">Decision Workflows</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">ai.decision.workflow</field>
+        <field name="res_model">agri.ai.decision.workflow</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

@@ -1,0 +1,16 @@
+from odoo import models, fields, api
+
+class AgriEcologicalActivity(models.Model):
+    _name = 'agri.ecological.activity'
+    _description = 'Agricultural Ecological Activity'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
+    name = fields.Char("Activity Name", required=True) # e.g., Buffer zone weeding, Hedge planting
+    date = fields.Date("Date", default=fields.Date.today)
+    location_id = fields.Many2one('farm.location', string="Land Parcel/Zone", domain=[('is_land_parcel', '=', True)])
+    description = fields.Text("Description")
+    impact_category = fields.Selection([
+        ('biodiversity', 'Biodiversity'),
+        ('soil_health', 'Soil Health'),
+        ('water_protection', 'Water Protection')
+    ], string="Impact Category", required=True)

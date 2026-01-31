@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo><record id="circular_flow_example" model="farm.sustainability.circular.flow">
+        <field name="name">农作物秸秆再利用</field>
+        <field name="code">CF-001</field>
+        <field name="flow_type">waste_to_resource</field>
+        <field name="description">将农作物秸秆转化为有机肥料</field>
+        <field name="input_quantity">10.0</field>
+        <field name="output_quantity">7.0</field>
+        <field name="processing_cost">500.0</field>
+        <field name="revenue">1000.0</field>
+        <field name="status">completed</field>
+    </record>
+</odoo>

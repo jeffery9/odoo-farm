@@ -8,10 +8,11 @@
         - Robot Registry and Management [US-61-01]
         - Automated Mission Scheduling [US-61-02]
         - Real-time Operation Monitoring [US-61-03]
+        - Level 5: Robotic A2A Integration [US-70-2026]
     """,
     'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',
     'website': 'http://www.geninit.cn',
-    'depends': ['farm_core', 'farm_iot', 'maintenance'],
+    'depends': ['farm_core', 'farm_iot', 'maintenance', 'farm_ai_agent'],
     'data': [
         'security/ir.model.access.csv',
         'views/farm_robotics_views.xml',

@@ -6,13 +6,14 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class SeasonalBom(models.Model):
+class AgriInterventionSeasonalBom(models.Model):
     """
-    US-04-06: 季节性"版本化"配方管理
+    US-04-06: 季节性"版本化"配方管理 [Refactored to Agri Domain]
     - 管理季节性配方变化
     - 支持为同一产品创建不同季节的配方版本
+    Refactored from farm.seasonal.bom with 100% logic retention.
     """
-    _name = 'farm.seasonal.bom'
+    _name = 'agri.intervention.seasonal.bom'
     _description = 'Seasonal Versioned Recipe Management'
     _order = 'product_tmpl_id, season_start_date'
 
@@ -59,13 +60,13 @@ class SeasonalBom(models.Model):
 
     # Seasonal adjustments to the base BOM
     seasonal_material_ids = fields.One2many(
-        'farm.seasonal.bom.material',
+        'agri.intervention.seasonal.bom.material',
         'seasonal_bom_id',
         string="Seasonal Material Adjustments"
     )
 
     seasonal_parameter_ids = fields.One2many(
-        'farm.seasonal.bom.parameter',
+        'agri.intervention.seasonal.bom.parameter',
         'seasonal_bom_id',
         string="Seasonal Parameter Adjustments"
     )
@@ -184,8 +185,8 @@ class SeasonalBom(models.Model):
         self.ensure_one()
         action = {
             'type': 'ir.actions.act_window',
-            'name': 'Seasonal Material Adjustments',
-            'res_model': 'farm.seasonal.bom.material',
+            'name': _('Seasonal Material Adjustments'),
+            'res_model': 'agri.intervention.seasonal.bom.material',
             'view_mode': 'tree,form',
             'domain': [('seasonal_bom_id', '=', self.id)],
             'context': {'default_seasonal_bom_id': self.id},
@@ -197,8 +198,8 @@ class SeasonalBom(models.Model):
         self.ensure_one()
         action = {
             'type': 'ir.actions.act_window',
-            'name': 'Seasonal Parameter Adjustments',
-            'res_model': 'farm.seasonal.bom.parameter',
+            'name': _('Seasonal Parameter Adjustments'),
+            'res_model': 'agri.intervention.seasonal.bom.parameter',
             'view_mode': 'tree,form',
             'domain': [('seasonal_bom_id', '=', self.id)],
             'context': {'default_seasonal_bom_id': self.id},
@@ -206,15 +207,15 @@ class SeasonalBom(models.Model):
         return action
 
 
-class SeasonalBomMaterial(models.Model):
+class AgriInterventionSeasonalBomMaterial(models.Model):
     """
-    季节性材料调整
+    季节性材料调整 [Refactored to Agri Domain]
     """
-    _name = 'farm.seasonal.bom.material'
+    _name = 'agri.intervention.seasonal.bom.material'
     _description = 'Seasonal BOM Material Adjustment'
 
     seasonal_bom_id = fields.Many2one(
-        'farm.seasonal.bom',
+        'agri.intervention.seasonal.bom',
         string="Seasonal BOM",
         required=True,
         ondelete='cascade'
@@ -249,15 +250,15 @@ class SeasonalBomMaterial(models.Model):
                 self.base_qty = base_bom_line.product_qty
 
 
-class SeasonalBomParameter(models.Model):
+class AgriInterventionSeasonalBomParameter(models.Model):
     """
-    季节性参数调整
+    季节性参数调整 [Refactored to Agri Domain]
     """
-    _name = 'farm.seasonal.bom.parameter'
+    _name = 'agri.intervention.seasonal.bom.parameter'
     _description = 'Seasonal BOM Parameter Adjustment'
 
     seasonal_bom_id = fields.Many2one(
-        'farm.seasonal.bom',
+        'agri.intervention.seasonal.bom',
         string="Seasonal BOM",
         required=True,
         ondelete='cascade'

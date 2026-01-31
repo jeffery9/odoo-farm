@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Quality Grading Views -->
     <record id="view_ai_quality_grading_form" model="ir.ui.view">
-        <field name="name">ai.quality.grading.form</field>
-        <field name="model">ai.quality.grading</field>
+        <field name="name">agri.ai.quality.grading.form</field>
+        <field name="model">agri.ai.quality.grading</field>
         <field name="arch" type="xml">
             <form string="AI Quality Grading">
                 <header>
@@ -57,8 +57,8 @@
     </record>
 
     <record id="view_ai_quality_grading_tree" model="ir.ui.view">
-        <field name="name">ai.quality.grading.tree</field>
-        <field name="model">ai.quality.grading</field>
+        <field name="name">agri.ai.quality.grading.tree</field>
+        <field name="model">agri.ai.quality.grading</field>
         <field name="arch" type="xml">
             <tree string="AI Quality Grading">
                 <field name="product_id"/>
@@ -73,7 +73,7 @@
 
     <record id="action_ai_quality_grading" model="ir.actions.act_window">
         <field name="name">AI Quality Grading</field>
-        <field name="res_model">ai.quality.grading</field>
+        <field name="res_model">agri.ai.quality.grading</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

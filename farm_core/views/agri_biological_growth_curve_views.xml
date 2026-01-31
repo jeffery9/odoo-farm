@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Growth Curve List View (Odoo 19) -->
+    <record id="view_agri_biological_growth_curve_list" model="ir.ui.view">
+        <field name="name">agri.biological.growth.curve.list</field>
+        <field name="model">agri.biological.growth.curve</field>
+        <field name="arch" type="xml">
+            <list string="Biological Growth Curves" editable="bottom">
+                <field name="product_id"/>
+                <field name="age_days"/>
+                <field name="target_weight"/>
+                <field name="daily_feed_rate" widget="percentage"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Growth Curve Action -->
+    <record id="action_agri_biological_growth_curve" model="ir.actions.act_window">
+        <field name="name">Growth Curves</field>
+        <field name="res_model">agri.biological.growth.curve</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!-- Menu under Standards -->
+    <menuitem id="menu_agri_growth_curve" name="Growth Curves" 
+              parent="farm_core.menu_agri_standards_root" 
+              action="action_agri_biological_growth_curve" sequence="30"/>
+</odoo>

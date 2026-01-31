@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Farm Activity Tree View -->
+    <!-- Farm Activity List View (Odoo 19) -->
     <record id="view_farm_activity_tree" model="ir.ui.view">
-        <field name="name">farm.activity.tree</field>
+        <field name="name">farm.activity.list</field>
         <field name="model">farm.activity</field>
         <field name="arch" type="xml">
-            <tree string="Farm Activities">
+            <list string="Farm Activities">
                 <field name="name"/>
                 <field name="is_agri_activity"/>
                 <field name="activity_family"/>
                 <field name="production_cycle"/>
                 <field name="date_start"/>
                 <field name="date"/>
-            </tree>
+            </list>
         </field>
     </record>
 
-    <!-- Farm Activity Form View -->
+    <!-- Farm Activity Form View (Odoo 19) -->
     <record id="view_farm_activity_form" model="ir.ui.view">
         <field name="name">farm.activity.form</field>
         <field name="model">farm.activity</field>
@@ -26,9 +26,12 @@
                     <field name="activity_state" widget="statusbar"/>
                 </header>
                 <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" string="Activity Campaign Name"/>
+                        <h1><field name="name" placeholder="e.g. 2026 Wheat Production"/></h1>
+                    </div>
                     <group>
                         <group>
-                            <field name="name"/>
                             <field name="is_agri_activity"/>
                             <field name="activity_family"/>
                         </group>
@@ -38,132 +41,97 @@
                             <field name="date"/>
                         </group>
                     </group>
-                    <group>
-                        <field name="task_sequence_id"/>
-                    </group>
-                    <group string="Agricultural Properties">
-                        <field name="partner_id"/>
-                        <field name="user_id"/>
-                        <field name="color"/>
-                    </group>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
-                </div>
+                <chatter>
+                    <message/>
+                    <activity/>
+                </chatter>
             </form>
         </field>
     </record>
 
-    <!-- Farm Task Tree View -->
+    <!-- Farm Task List View (Odoo 19) -->
     <record id="view_farm_task_tree" model="ir.ui.view">
-        <field name="name">farm.task.tree</field>
+        <field name="name">farm.task.list</field>
         <field name="model">farm.task</field>
         <field name="arch" type="xml">
-            <tree string="Farm Tasks">
+            <list string="Farm Tasks" decoration-info="agri_status == 'planned'" decoration-success="agri_status == 'finished'" decoration-warning="agri_status == 'active'">
                 <field name="name"/>
-                <field name="activity_family"/>
                 <field name="land_parcel_id"/>
-                <field name="product_id"/>
+                <field name="spatial_grid_id"/>
+                <field name="agri_status"/>
+                <field name="audit_status"/>
                 <field name="date_deadline"/>
-                <field name="kanban_state"/>
-                <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
-    <!-- Farm Task Form View -->
+    <!-- Farm Task Form View (Odoo 19) -->
     <record id="view_farm_task_form" model="ir.ui.view">
         <field name="name">farm.task.form</field>
         <field name="model">farm.task</field>
         <field name="arch" type="xml">
             <form string="Farm Task">
                 <header>
-                    <field name="stage_id" widget="statusbar" clickable="True"/>
+                    <button name="action_start_agri_execution" type="object" string="Mark Active" class="oe_highlight" invisible="agri_status != 'planned'"/>
+                    <button name="action_finalize_agri_execution" type="object" string="Finalize Evidence" class="oe_highlight" invisible="agri_status != 'active'"/>
+                    <field name="agri_status" widget="statusbar" statusbar_visible="planned,active,finished"/>
                 </header>
                 <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. Sowing Sector A"/></h1>
+                    </div>
                     <group>
-                        <group>
-                            <field name="name"/>
-                            <field name="activity_family"/>
-                            <field name="project_id"/>
+                        <group string="Planning">
+                            <field name="project_id" string="Agricultural Activity"/>
+                            <field name="land_parcel_id" string="Physical Container"/>
                         </group>
-                        <group>
-                            <field name="date_deadline"/>
-                            <field name="priority"/>
-                        </group>
-                    </group>
-                    <group>
-                        <field name="land_parcel_id"/>
-                        <field name="product_id"/>
-                        <field name="user_ids" widget="many2many_tags"/>
-                    </group>
-                    <group string="Timing Information">
-                        <group>
-                            <field name="planned_start_date"/>
-                            <field name="planned_end_date"/>
-                        </group>
-                        <group>
-                            <field name="actual_start_date"/>
-                            <field name="actual_end_date"/>
+                        <group string="Physical Context (Agri Domain)">
+                            <field name="spatial_grid_id"/>
+                            <field name="audit_status"/>
                         </group>
                     </group>
-                    <group string="Resources &amp; Costs">
-                        <group>
-                            <field name="required_labor_hours"/>
-                            <field name="required_equipment_ids" widget="many2many_tags"/>
-                        </group>
-                        <group>
-                            <field name="estimated_cost"/>
-                            <field name="actual_cost"/>
-                        </group>
-                    </group>
-                    <group string="Materials &amp; Requirements">
-                        <field name="required_material_ids" widget="many2many_tags"/>
-                    </group>
-                    <group string="Quality &amp; Compliance">
-                        <group>
-                            <field name="safety_protocol_followed"/>
-                            <field name="quality_check_required"/>
-                        </group>
-                        <group>
-                            <field name="quality_check_done"/>
-                        </group>
-                    </group>
-                    <field name="description"/>
+                    <notebook>
+                        <page string="Job Details" name="details">
+                            <group>
+                                <field name="planned_start_date"/>
+                                <field name="required_labor_hours"/>
+                                <field name="user_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                        <page string="Mass &amp; Environment" name="mass_balance">
+                            <group>
+                                <field name="nitrogen_qty"/>
+                                <field name="carbon_intensity"/>
+                            </group>
+                        </page>
+                        <page string="Evidence &amp; Audit" name="evidence">
+                            <group>
+                                <field name="audit_confidence" widget="progressbar"/>
+                                <field name="evidence_ids" widget="many2many_binary"/>
+                            </group>
+                            <field name="quality_fingerprint" widget="ace" options="{'mode': 'json'}"/>
+                        </page>
+                    </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
-                </div>
+                <chatter>
+                    <message/>
+                    <activity/>
+                </chatter>
             </form>
         </field>
     </record>
-
-    <!-- Menu Items -->
-    <menuitem id="menu_activity_operation_root" name="Activities &amp; Operations"
-              parent="farm_core.menu_farm_root"
-              sequence="30">
-        <menuitem id="menu_farm_activities" name="Farm Activities"
-                  action="action_farm_activity_list"
-                  sequence="10"/>
-        <menuitem id="menu_farm_tasks" name="Farm Tasks"
-                  action="action_farm_task_list"
-                  sequence="20"/>
-    </menuitem>
 
     <!-- Actions -->
     <record id="action_farm_activity_list" model="ir.actions.act_window">
         <field name="name">Farm Activities</field>
         <field name="res_model">farm.activity</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_farm_task_list" model="ir.actions.act_window">
         <field name="name">Farm Tasks</field>
         <field name="res_model">farm.task</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

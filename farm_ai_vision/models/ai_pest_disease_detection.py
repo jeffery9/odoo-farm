@@ -8,16 +8,18 @@ import json
 from datetime import datetime, timedelta
 import base64
 
+from .ai_vision_base import AgriAiVisionBase
+
 _logger = logging.getLogger(__name__)
 
-class AIPestDiseaseDetection(models.Model):
+class AgriAiPestDiseaseDetection(AgriAiVisionBase):
     """
     AI model for pest and disease detection from images
     Implements US-28-01: 病虫害图像识别与诊断
     """
-    _name = 'ai.pest.disease.detection'
+    _name = 'agri.ai.pest.disease.detection'
     _description = 'AI Pest & Disease Detection'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'ai.base.mixin']
+    _inherit = ['agri.ai.vision.base']
 
     crop_type = fields.Many2one('product.template', string='Crop Type', domain=[('type', '=', 'product')])
     detection_type = fields.Selection([
@@ -218,7 +220,7 @@ class AIPestDiseaseDetection(models.Model):
 
     def action_process_image(self):
         """Override to set specific fields after processing"""
-        result = super().action_process_image()
+        result = super(AgriAiPestDiseaseDetection, self).action_process_image()
 
         for record in self:
             if record.output_data:
@@ -264,7 +266,7 @@ class AIPestDiseaseDetection(models.Model):
         for record in self:
             if record.detected_pest_disease:
                 # Find matching pest/disease in the knowledge base
-                pest_disease = self.env['farm.pest.disease'].search([
+                pest_disease = self.env['agri.pest.disease'].search([
                     ('name', 'ilike', record.detected_pest_disease),
                 ], limit=1)
 

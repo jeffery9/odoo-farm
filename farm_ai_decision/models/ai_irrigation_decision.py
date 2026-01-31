@@ -10,14 +10,14 @@ import random
 
 _logger = logging.getLogger(__name__)
 
-class AIIrrigationDecision(models.Model):
+class AgriAiIrrigationDecision(models.Model):
     """
     AI model for irrigation decision
     Implements US-58-07: Precise irrigation decision
     """
-    _name = 'ai.irrigation.decision'
+    _name = 'agri.ai.irrigation.decision'
     _description = 'AI Irrigation Decision'
-    _inherit = ['ai.decision.base']
+    _inherit = ['agri.ai.decision.base']
 
     land_location_id = fields.Many2one('farm.location', string='Land Location')
     product_id = fields.Many2one('product.template', string='Crop')

@@ -1,163 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Biological Asset Tree View -->
-    <record id="view_biological_asset_tree" model="ir.ui.view">
-        <field name="name">farm.biological.asset.tree</field>
-        <field name="model">farm.biological.asset</field>
+    <!-- Biological Asset List View (Odoo 19) -->
+    <record id="view_farm_biological_asset_list" model="ir.ui.view">
+        <field name="name">agri.biological.asset.list</field>
+        <field name="model">agri.biological.asset</field>
         <field name="arch" type="xml">
-            <tree string="Biological Assets">
+            <list string="Biological Assets" decoration-success="growth_stage == 'mature'" decoration-info="growth_stage == 'growing'">
                 <field name="name"/>
-                <field name="agricultural_type"/>
-                <field name="birth_date"/>
+                <field name="agricultural_type"/> <!-- From agri.biological.asset -->
+                <field name="lot_id"/>
                 <field name="growth_stage"/>
-                <field name="is_mature"/>
                 <field name="current_valuation"/>
-                <field name="health_state"/>
-            </tree>
+                <field name="is_mature" widget="boolean_toggle"/>
+            </list>
         </field>
     </record>
 
-    <!-- Biological Asset Form View -->
-    <record id="view_biological_asset_form" model="ir.ui.view">
-        <field name="name">farm.biological.asset.form</field>
-        <field name="model">farm.biological.asset</field>
+    <!-- Biological Asset Form View (Odoo 19) -->
+    <record id="view_farm_biological_asset_form" model="ir.ui.view">
+        <field name="name">agri.biological.asset.form</field>
+        <field name="model">agri.biological.asset</field>
         <field name="arch" type="xml">
             <form string="Biological Asset">
                 <header>
-                    <field name="health_state" widget="statusbar"/>
+                    <field name="growth_stage" widget="statusbar" statusbar_visible="newborn,growing,mature,harvested" clickable="True"/>
                 </header>
                 <sheet>
-                    <group>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" string="Operational Name"/>
+                        <h1><field name="name" placeholder="e.g. Heifer #102"/></h1>
                         <group>
-                            <field name="name"/>
+                            <field name="agri_asset_id" readonly="1" groups="base.group_no_one"/>
+                        </group>
+                    </div>
+                    <group>
+                        <group string="Physical Identity (Agri Domain)">
                             <field name="agricultural_type"/>
-                            <field name="growth_stage"/>
-                        </group>
-                        <group>
                             <field name="birth_date"/>
-                            <field name="maturity_date"/>
-                            <field name="is_mature"/>
+                            <field name="dna_marker"/>
+                            <field name="growth_stage_id"/>
                         </group>
-                    </group>
-                    <group string="Physical Attributes">
-                        <group>
-                            <field name="gender"/>
+                        <group string="Farm Management">
+                            <field name="lot_id"/>
                             <field name="generation"/>
+                            <field name="farm_id" groups="base.group_multi_company"/>
                         </group>
-                        <group>
-                            <field name="quality_grade"/>
-                        </group>
-                    </group>
-                    <group string="Parent Information">
-                        <field name="father_id"/>
-                        <field name="mother_id"/>
-                    </group>
-                    <group string="Compliance Information">
-                        <field name="withdrawal_end_datetime"/>
-                        <field name="is_safe_for_harvest"/>
-                        <field name="withdrawal_days_remaining"/>
-                    </group>
-                    <group string="Valuation Information">
-                        <field name="current_valuation"/>
                     </group>
                     <notebook>
-                        <page string="Asset Valuations" name="valuations">
-                            <field name="valuation_ids">
-                                <tree>
-                                    <field name="original_value"/>
-                                    <field name="net_book_value"/>
-                                    <field name="depreciation_years"/>
-                                    <field name="annual_depreciation_rate"/>
-                                    <field name="state"/>
-                                </tree>
-                            </field>
+                        <page string="Pedigree &amp; Biology" name="pedigree">
+                            <group>
+                                <group string="Ancestry">
+                                    <field name="father_id"/>
+                                    <field name="mother_id"/>
+                                </group>
+                                <group string="Traits">
+                                    <field name="gender"/>
+                                    <field name="quality_grade"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Value &amp; Lifecycle" name="valuation">
+                            <group>
+                                <group string="Maturity Tracking">
+                                    <field name="maturity_date"/>
+                                    <field name="is_mature"/>
+                                </group>
+                                <group string="Financial Asset (L3)">
+                                    <field name="current_valuation" widget="monetary"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Sustainability &amp; Evidence" name="evidence">
+                            <group>
+                                <field name="esg_score"/>
+                                <field name="impact_credits"/>
+                                <field name="audit_confidence" widget="progressbar"/>
+                            </group>
                         </page>
                     </notebook>
                 </sheet>
+                <chatter>
+                    <message/>
+                    <activity/>
+                </chatter>
             </form>
         </field>
     </record>
 
-    <!-- Biological Asset Valuation Tree View -->
-    <record id="view_biological_asset_valuation_tree" model="ir.ui.view">
-        <field name="name">farm.biological.asset.valuation.tree</field>
-        <field name="model">farm.biological.asset.valuation</field>
-        <field name="arch" type="xml">
-            <tree string="Biological Asset Valuations">
-                <field name="asset_id"/>
-                <field name="original_value"/>
-                <field name="net_book_value"/>
-                <field name="depreciation_years"/>
-                <field name="annual_depreciation_rate"/>
-                <field name="state"/>
-            </tree>
-        </field>
+    <!-- Actions & Menus -->
+    <record id="action_farm_biological_asset" model="ir.actions.act_window">
+        <field name="name">Biological Assets</field>
+        <field name="res_model">agri.biological.asset</field>
+        <field name="view_mode">list,form</field>
     </record>
 
-    <!-- Biological Asset Valuation Form View -->
-    <record id="view_biological_asset_valuation_form" model="ir.ui.view">
-        <field name="name">farm.biological.asset.valuation.form</field>
-        <field name="model">farm.biological.asset.valuation</field>
-        <field name="arch" type="xml">
-            <form string="Biological Asset Valuation">
-                <header>
-                    <button name="action_create_depreciation_entry" type="object" string="Create Depreciation Entry" class="oe_highlight"/>
-                    <field name="state" widget="statusbar"/>
-                </header>
-                <sheet>
-                    <group>
-                        <group>
-                            <field name="asset_id"/>
-                            <field name="original_value"/>
-                        </group>
-                        <group>
-                            <field name="depreciation_years"/>
-                            <field name="annual_depreciation_rate"/>
-                        </group>
-                    </group>
-                    <group>
-                        <field name="growth_stage_coefficient"/>
-                        <field name="accumulated_depreciation"/>
-                        <field name="net_book_value"/>
-                    </group>
-                    <notebook>
-                        <page string="Stage Coefficients" name="stage_coefficients">
-                            <field name="stage_coefficient_ids">
-                                <tree editable="top">
-                                    <field name="biological_stage"/>
-                                    <field name="coefficient"/>
-                                    <field name="description"/>
-                                </tree>
-                            </field>
-                        </page>
-                    </notebook>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- Menu Items -->
     <menuitem id="menu_biological_asset_root" name="Biological Assets"
               parent="farm_core.menu_farm_root"
-              sequence="10">
-        <menuitem id="menu_biological_assets" name="Biological Assets"
-                  action="action_biological_asset_list"
-                  sequence="10"/>
-        <menuitem id="menu_biological_asset_valuations" name="Asset Valuations"
-                  action="action_biological_asset_valuation_list"
-                  sequence="20"/>
-    </menuitem>
-
-    <!-- Actions -->
-    <record id="action_biological_asset_list" model="ir.actions.act_window">
-        <field name="name">Biological Assets</field>
-        <field name="res_model">farm.biological.asset</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <record id="action_biological_asset_valuation_list" model="ir.actions.act_window">
-        <field name="name">Biological Asset Valuations</field>
-        <field name="res_model">farm.biological.asset.valuation</field>
-        <field name="view_mode">tree,form</field>
-    </record>
+              sequence="40"/>
+    
+    <menuitem id="menu_farm_biological_assets" name="Living Assets"
+              parent="menu_biological_asset_root"
+              action="action_farm_biological_asset"
+              sequence="10"/>
 </odoo>

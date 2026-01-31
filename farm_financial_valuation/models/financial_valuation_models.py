@@ -17,7 +17,7 @@ class FinancialAssetValuation(models.Model):
     _order = 'asset_id, valuation_date desc'
 
     name = fields.Char("Valuation Reference", required=True, default=lambda self: _('New'))
-    asset_id = fields.Many2one('farm.biological.asset', string="Financial Asset", required=True)
+    asset_id = fields.Many2one('agri.biological.asset', string="Financial Asset", required=True)
     valuation_date = fields.Date("Valuation Date", default=fields.Date.today, required=True)
 
     # Valuation Method Selection
@@ -248,7 +248,7 @@ class FinancialAssetValuation(models.Model):
         """Generate unique valuation reference on creation"""
         for vals in vals_list:
             if vals.get('name', _('New')) == _('New'):
-                asset = self.env['farm.biological.asset'].browse(vals.get('asset_id', False))
+                asset = self.env['agri.biological.asset'].browse(vals.get('asset_id', False))
                 date_str = vals.get('valuation_date', fields.Date.today()).strftime('%Y%m%d')
                 vals['name'] = f"FV-{asset.name or 'ASSET'}-{date_str}-{len([v for v in vals_list if 'name' in v]) + 1}"
         return super().create(vals_list)
@@ -329,7 +329,7 @@ class FinancialAsset(models.Model):
     """
     Enhanced financial asset model with valuation integration
     """
-    _inherit = 'farm.biological.asset'  # This extends the core biological asset model
+    _inherit = 'agri.biological.asset'  # This extends the core biological asset model
 
     # Financial valuation integration
     current_financial_valuation = fields.Float("Current Financial Valuation",

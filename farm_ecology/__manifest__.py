@@ -13,7 +13,7 @@
         ESG assessments and reporting are handled by the farm_esg_* modules.
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'farm_sustainability'],
+    'depends': ['farm_core', 'farm_esg_environmental', 'farm_esg'],
     'data': [
         'security/ir.model.access.csv',
         'views/ecology_views.xml',

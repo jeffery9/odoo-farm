@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Agent Tree View -->
     <record id="view_ai_agent_tree" model="ir.ui.view">
-        <field name="name">ai.agent.tree</field>
-        <field name="model">ai.agent</field>
+        <field name="name">agri.ai.agent.tree</field>
+        <field name="model">agri.ai.agent</field>
         <field name="arch" type="xml">
             <tree string="AI Agents">
                 <field name="name"/>
@@ -21,8 +21,8 @@
 
     <!-- AI Agent Form View -->
     <record id="view_ai_agent_form" model="ir.ui.view">
-        <field name="name">ai.agent.form</field>
-        <field name="model">ai.agent</field>
+        <field name="name">agri.ai.agent.form</field>
+        <field name="model">agri.ai.agent</field>
         <field name="arch" type="xml">
             <form string="AI Agent">
                 <header>
@@ -116,7 +116,7 @@
     <!-- AI Agent Action -->
     <record id="action_ai_agent" model="ir.actions.act_window">
         <field name="name">AI Agents</field>
-        <field name="res_model">ai.agent</field>
+        <field name="res_model">agri.ai.agent</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

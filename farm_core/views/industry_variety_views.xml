@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Variety List View (Odoo 19 Standard) -->
+    <record id="view_agri_industry_variety_list" model="ir.ui.view">
+        <field name="name">agri.industry.variety.list</field>
+        <field name="model">agri.industry.variety</field>
+        <field name="arch" type="xml">
+            <list string="Varieties">
+                <field name="product_name"/>
+                <field name="variety_name"/>
+                <field name="package_id"/>
+                <field name="agricultural_type"/>
+                <field name="n_content" optional="show"/>
+                <field name="growth_duration" optional="show"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Variety Form View (Odoo 19 Standard) -->
+    <record id="view_agri_industry_variety_form" model="ir.ui.view">
+        <field name="name">agri.industry.variety.form</field>
+        <field name="model">agri.industry.variety</field>
+        <field name="arch" type="xml">
+            <form string="Variety Standard">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="variety_name" class="oe_edit_only" string="Variety Name"/>
+                        <h1><field name="variety_name" placeholder="e.g. Golden Delicious"/></h1>
+                        <label for="product_name" class="oe_edit_only" string="Base Product Name"/>
+                        <h2><field name="product_name" placeholder="e.g. Apple"/></h2>
+                    </div>
+                    <group>
+                        <group string="Industry Package Link">
+                            <field name="package_id"/>
+                            <field name="agricultural_type"/>
+                            <field name="code"/>
+                        </group>
+                        <group string="Biological Standard">
+                            <field name="scientific_name"/>
+                            <field name="resistance_level"/>
+                            <field name="is_biological_asset"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Nutrient &amp; Dosage" name="nutrients">
+                            <group>
+                                <group string="Standard Mass (L1)">
+                                    <field name="n_content"/>
+                                    <field name="p_content"/>
+                                    <field name="k_content"/>
+                                </group>
+                                <group string="Dosage Standard">
+                                    <field name="standard_dose"/>
+                                    <field name="dose_uom_id"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Growth Cycle" name="growth">
+                            <group>
+                                <field name="growth_duration"/>
+                                <field name="maturity_age_days"/>
+                                <field name="cycle_days" string="Agri-Domain Cycle (Days)"/>
+                                <field name="breed_origin"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter>
+                    <message/>
+                    <activity/>
+                </chatter>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action & Menu -->
+    <record id="action_agri_industry_variety" model="ir.actions.act_window">
+        <field name="name">Biological Varieties</field>
+        <field name="res_model">agri.industry.variety</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_agri_standards_root" name="Agri Standards" 
+              parent="farm_core.menu_farm_root" sequence="50"/>
+    
+    <menuitem id="menu_agri_variety" name="Varieties" 
+              parent="menu_agri_standards_root" action="action_agri_industry_variety" sequence="10"/>
+</odoo>

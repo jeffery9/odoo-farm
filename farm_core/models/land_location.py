@@ -9,16 +9,32 @@ _logger = logging.getLogger(__name__)
 
 class FarmLocation(models.Model):
     """
-    Core Land & Location Management - fundamental agricultural location properties
+    Core Land & Location Management - fundamental agricultural location properties.
+    Level 4: Agri-Farm Semantic Refactoring [US-104-2026]
+    Architecture: Mixin + ISL Implementation.
+    
     US-01-03: Land Parcel Management
     US-TECH-04-01: GIS Core Fields
-    US-32-01: Terroir Profiling (basic attributes only)
+    US-32-01: Terroir Profiling
     US-33-01: Vertical Farming / High-density Storage
-    NOTE: Advanced land features are in farm_land_mgmt module
     """
     _name = 'farm.location'
     _description = 'Farm Location & Land Parcel'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'stock.location', 'farm.core.gis.utils']
+    
+    # [Semantic Refactoring] Inherit domain standards from agri.location
+    _inherits = {'agri.location': 'agri_location_id'}
+    
+    _inherit = [
+        'mail.thread', 
+        'mail.activity.mixin', 
+        'stock.location', 
+        'farm.core.gis.utils',
+        'agri.industry.planting.mixin' # [Mixin Injection] Sector Specific Capability
+    ]
+
+    # Link to the Domain Model
+    agri_location_id = fields.Many2one('agri.location', required=True, ondelete="cascade", 
+                                      string="Agri Domain Entity", help="The underlying physical entity in the Agri domain.")
 
     # Extend stock.location with essential agricultural properties only
     is_land_parcel = fields.Boolean("Is Land Parcel", default=False)
@@ -124,7 +140,3 @@ class FarmLocation(models.Model):
         'Properties',
         definition='location_properties_definition'
     )
-
-
-
-
