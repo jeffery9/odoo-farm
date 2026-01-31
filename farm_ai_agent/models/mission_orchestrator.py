@@ -1,8 +1,94 @@
 from odoo import models, fields, api, _
 import logging
 import json
+import uuid
 
 _logger = logging.getLogger(__name__)
+
+class AgriMissionOrchestrator(models.Model):
+    """
+    Level 4: Mission Orchestrator (Autonomous Coordination).
+    Orchestrates complex A2A workflows including bargaining, execution, and clearing. [US-62-2026]
+    """
+    _name = 'agri.mission.orchestrator'
+    _description = 'Agricultural Mission Orchestrator'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
+    name = fields.Char("Mission ID", required=True, default=lambda self: _('New'))
+    active = fields.Boolean(default=True)
+    
+    mission_type = fields.Selection([
+        ('harvest_clearing', 'Harvest & Value Clearing'),
+        ('input_calibration', 'Input Feedback & Actuation'),
+        ('neighborhood_support', 'Neighborhood Service Exchange')
+    ], string="Mission Type", required=True)
+
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('scouting', 'Discovery (Scouting)'),
+        ('bargaining', 'Bargaining'),
+        ('executing', 'Executing'),
+        ('clearing', 'Value Clearing'),
+        ('done', 'Completed'),
+        ('failed', 'Mission Failed')
+    ], default='draft', tracking=True)
+
+    # Context Data
+    target_location_id = fields.Many2one('farm.location', string="Target Field")
+    spatial_grid_id = fields.Char(related='target_location_id.spatial_grid_id', store=True)
+    
+    # Linked Objects
+    step_ids = fields.One2many('agri.mission.step', 'orchestrator_id', string="Mission Steps")
+    negotiation_ids = fields.One2many('agri.a2a.negotiation', 'orchestrator_id', string="A2A Negotiations")
+
+    def action_start_mission(self):
+        """
+        Triggers Step 1: Discovery.
+        Uses GeoSpatialMixin context to find nearby agents.
+        """
+        self.ensure_one()
+        self.state = 'scouting'
+        
+        # Discover neighbors via registry
+        neighbors = self.env['agri.neighborhood.registry'].get_neighbors(self.spatial_grid_id)
+        if not neighbors:
+            self.message_post(body=_("Mission Scouting: No nearby agents found in grid %s.") % self.spatial_grid_id)
+        else:
+            self.message_post(body=_("Mission Scouting: Found %d potential community agents.") % len(neighbors))
+            if self.mission_type == 'neighborhood_support':
+                self.state = 'bargaining'
+        return True
+
+    def action_next_step(self):
+        """Advances the state machine based on step completion."""
+        self.ensure_one()
+        pass
+
+class AgriMissionStep(models.Model):
+    """Atomic steps within an AI Mission."""
+    _name = 'agri.mission.step'
+    _description = 'Mission Step'
+    _order = 'sequence'
+
+    orchestrator_id = fields.Many2one('agri.mission.orchestrator', ondelete='cascade')
+    sequence = fields.Integer("Sequence", default=10)
+    name = fields.Char("Step Name", required=True)
+    
+    step_type = fields.Selection([
+        ('negotiation', 'A2A Negotiation'),
+        ('intervention', 'Physical Intervention'),
+        ('audit', 'Evidence Audit'),
+        ('clearing', 'Value Clearing')
+    ], string="Type")
+    
+    state = fields.Selection([('pending', 'Pending'), ('progress', 'In Progress'), ('done', 'Done')], default='pending')
+    
+    res_reference = fields.Reference(
+        selection=[('agri.a2a.negotiation', 'Negotiation'), ('mrp.production', 'Intervention')],
+        string="Linked Process"
+    )
+
+# --- Original Level 5 Logic (Preserved for Lossless Mode) ---
 
 class AIAutonomousOrchestrator(models.Model):
     """
@@ -96,3 +182,10 @@ class AIAutonomousMissionLog(models.Model):
     mission_id = fields.Many2one('farm.robot.mission', string="Dispatched Mission")
     status = fields.Selection([('dispatched', 'Dispatched'), ('failed', 'Resource Unavailable')], string="Status")
     detail = fields.Text("Details")
+
+# --- End of Original Level 5 Logic ---
+
+# Add many2one backlink to Negotiation
+class A2ANegotiationInherit(models.Model):
+    _inherit = 'agri.a2a.negotiation'
+    orchestrator_id = fields.Many2one('agri.mission.orchestrator', string="Mission Orchestrator")
