@@ -1,4 +1,5 @@
 from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 import logging
 from lxml import etree
 
@@ -50,3 +51,29 @@ class AgriViewMixin(models.AbstractModel):
                     field_info['help'] = TermMapping.apply_term_mapping_to_text(field_info['help'])
 
         return res
+
+    def translate_exception(self, exception_msg):
+        """
+        Level 0 Deep Interception: Translates standard industrial errors to agricultural ones.
+        Example: "Insufficient Stock for MO" -> "Input evidence missing for Intervention".
+        """
+        mapping = {
+            'manufacturing order': _('agricultural intervention'),
+            'bill of materials': _('cultivation recipe'),
+            'work order': _('field task'),
+            'insufficient stock': _('insufficient physical input evidence'),
+            'inventory': _('resource registry'),
+        }
+        
+        translated_msg = exception_msg.lower()
+        for industrial, agri in mapping.items():
+            translated_msg = translated_msg.replace(industrial, agri)
+            
+        return translated_msg.capitalize()
+
+    def handle_validation_error(self, e):
+        """
+        Hook to be called in models to wrap validation errors with agricultural context.
+        """
+        agri_msg = self.translate_exception(str(e))
+        raise ValidationError(agri_msg)
