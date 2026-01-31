@@ -25,14 +25,37 @@ class SustainabilityMixin(models.AbstractModel):
     )
     credit_score = fields.Integer(
         string="Reputation Credit Score",
-        default=500,
-        help="Community reputation score (0-1000). Used for slashing mechanism."
+        compute="_compute_reputation_credit_score",
+        store=True,
+        help="Community reputation score (0-1000). Derived from confirmed transaction ledger entries."
     )
     is_eco_blocked = fields.Boolean(
         string="Sustainability Block",
         default=False,
         copy=False
     )
+
+    @api.depends('is_eco_blocked') # Dependent on a trigger, effectively recomputed on ledger confirmation
+    def _compute_reputation_credit_score(self):
+        """
+        [Level 3+: Transaction Pattern with Human Audit]
+        Only sums ledger entries in 'confirmed' state.
+        """
+        for record in self:
+            partner = False
+            if record._name == 'res.partner':
+                partner = record
+            elif hasattr(record, 'partner_id') and record.partner_id:
+                partner = record.partner_id
+            
+            if partner:
+                entries = self.env['agri.clearing.ledger'].search([
+                    ('partner_id', '=', partner.id),
+                    ('state', '=', 'confirmed')
+                ])
+                record.credit_score = 500 + sum(entries.mapped('score_change'))
+            else:
+                record.credit_score = 500
 
     def pre_validate_sustainability(self, vals):
         """

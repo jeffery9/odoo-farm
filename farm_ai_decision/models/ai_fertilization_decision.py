@@ -97,3 +97,11 @@ class AIFertilizationDecision(models.Model):
             record.application_timing = "Apply in the early morning or evening, with irrigation following application"
             record.confidence_score = min(90, max(65, 75 + random.uniform(-10, 10)))
             record.status = 'recommended'
+
+            # Level 4+: Automatic Mission Trigger
+            if record.recommended_n > 20.0 and record.land_location_id:
+                _logger.info("Nutrient gap > 20kg detected. Triggering Autonomous Mission Orchestrator.")
+                self.env['agri.mission.orchestrator'].action_trigger_inflow_mission(
+                    record.land_location_id, 
+                    _("%f kg N") % record.recommended_n
+                )

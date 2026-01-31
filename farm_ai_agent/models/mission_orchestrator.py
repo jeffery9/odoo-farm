@@ -55,14 +55,45 @@ class AgriMissionOrchestrator(models.Model):
             self.message_post(body=_("Mission Scouting: No nearby agents found in grid %s.") % self.spatial_grid_id)
         else:
             self.message_post(body=_("Mission Scouting: Found %d potential community agents.") % len(neighbors))
-            if self.mission_type == 'neighborhood_support':
+            if self.mission_type in ['neighborhood_support', 'input_calibration', 'harvest_clearing']:
                 self.state = 'bargaining'
         return True
+
+    def action_trigger_inflow_mission(self, location, nutrient_gap):
+        """
+        [Level 4+: Auto-Trigger]
+        Starts a resource inflow mission based on nutrient deficiency.
+        """
+        mission = self.create({
+            'name': _("Auto-Inflow: %s") % location.name,
+            'mission_type': 'input_calibration',
+            'target_location_id': location.id,
+        })
+        mission.message_post(body=_("Mission Triggered: Nutrient gap detected (%s). Starting A2A resource scouting.") % nutrient_gap)
+        mission.action_start_mission()
+        return mission
+
+    def action_trigger_harvest_mission(self, location, maturity_info):
+        """
+        [Level 4+: Auto-Trigger]
+        Starts a harvest mission based on AI maturity prediction.
+        """
+        mission = self.create({
+            'name': _("Auto-Harvest: %s") % location.name,
+            'mission_type': 'harvest_clearing',
+            'target_location_id': location.id,
+        })
+        mission.message_post(body=_("Mission Triggered: Harvest maturity reached (%s). Starting A2A harvesting coordination.") % maturity_info)
+        mission.action_start_mission()
+        return mission
 
     def action_next_step(self):
         """Advances the state machine based on step completion."""
         self.ensure_one()
-        pass
+        # Logic to transition based on AgriIntervention or A2A message results
+        if self.state == 'bargaining' and any(n.state == 'accepted' for n in self.negotiation_ids):
+            self.state = 'executing'
+        return True
 
 class AgriMissionStep(models.Model):
     """Atomic steps within an AI Mission."""

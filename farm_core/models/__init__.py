@@ -2,6 +2,7 @@ from . import base_mixins
 from . import agri_mixins
 from . import agri_neighborhood
 from . import agri_value_bridge
+from . import agri_clearing_ledger
 from . import common_fields
 from . import res_partner
 from . import agri_stock_lot

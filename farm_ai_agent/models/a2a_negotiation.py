@@ -31,7 +31,8 @@ class A2ANegotiation(models.Model):
         ('accepted', 'Accepted'),
         ('rejected', 'Rejected'),
         ('executed', 'Executed'),
-        ('cleared', 'Value Cleared')
+        ('cleared', 'Value Cleared'),
+        ('disputed', 'In Arbitration') # Level 2+ Arbitration
     ], default='draft', tracking=True)
 
     payload_revision = fields.Integer("Revision", default=1)
@@ -40,6 +41,9 @@ class A2ANegotiation(models.Model):
     # Financial/Value anchors
     proposed_credits = fields.Float("Proposed Credits")
     final_credits = fields.Float("Final Settled Credits")
+    
+    # Backlink to Orchestrator (from mission_orchestrator logic)
+    orchestrator_id = fields.Many2one('agri.mission.orchestrator', string="Mission Orchestrator")
 
     def action_propose(self, payload):
         self.ensure_one()
@@ -57,3 +61,18 @@ class A2ANegotiation(models.Model):
         if offered < self.proposed_credits * 0.9:
             return {'decision': 'counter', 'price': self.proposed_credits * 0.95}
         return {'decision': 'accept'}
+
+    def action_trigger_arbitration(self, reason):
+        """
+        [Level 2+ Arbitration]
+        Transitions the negotiation to disputed state and creates an arbitrator record.
+        """
+        self.ensure_one()
+        self.state = 'disputed'
+        arbitrator = self.env['agri.a2a.arbitrator'].create({
+            'negotiation_id': self.id,
+            'reason': reason,
+            'state': 'pending'
+        })
+        self.message_post(body=_("Negotiation entered Arbitration: %s") % reason)
+        return arbitrator
