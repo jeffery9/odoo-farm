@@ -35,6 +35,11 @@ class EvidenceAnalyzerMixin(models.AbstractModel):
         for record in self:
             analysis = record.perform_evidence_audit()
             record.audit_confidence = analysis.get('positive_confidence', 0.0)
+            record.audit_status = analysis.get('status', 'pending')
+            
+            # Level 2+: Slashing Integration
+            if record.audit_status == 'fraudulent' and hasattr(record, 'apply_slashing'):
+                record.apply_slashing(reason=_("Audit failed: Suspected fraudulent evidence detected."))
 
     def perform_evidence_audit(self):
         """

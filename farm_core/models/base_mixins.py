@@ -23,6 +23,11 @@ class SustainabilityMixin(models.AbstractModel):
         default=100,
         help="Dynamic ESG score (0-1000) calculated by community impact."
     )
+    credit_score = fields.Integer(
+        string="Reputation Credit Score",
+        default=500,
+        help="Community reputation score (0-1000). Used for slashing mechanism."
+    )
     is_eco_blocked = fields.Boolean(
         string="Sustainability Block",
         default=False,
