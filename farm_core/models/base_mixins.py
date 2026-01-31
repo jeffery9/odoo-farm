@@ -1,8 +1,56 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 import logging
 
 _logger = logging.getLogger(__name__)
+
+
+class SustainabilityMixin(models.AbstractModel):
+    """
+    Mixin for Sustainability-First value standard.
+    Level 0: Carbon & ESG Validation
+    """
+    _name = 'agri.sustainability.mixin'
+    _description = 'Sustainability-First Metric Mixin'
+
+    carbon_intensity = fields.Float(
+        string="Carbon Footprint (kg CO2e/kg)",
+        digits=(12, 4),
+        help="Estimated carbon footprint per unit of output."
+    )
+    esg_score = fields.Integer(
+        string="ESG Impact Score",
+        default=100,
+        help="Dynamic ESG score (0-1000) calculated by community impact."
+    )
+    is_eco_blocked = fields.Boolean(
+        string="Sustainability Block",
+        default=False,
+        copy=False
+    )
+
+    def pre_validate_sustainability(self, vals):
+        """
+        Hook to validate sustainability impact before commit.
+        Environmental "negative" actions trigger system-level blocks.
+        """
+        carbon = vals.get('carbon_intensity') or self.carbon_intensity
+        if carbon > 50.0:
+            raise ValidationError(_(
+                "Sustainability Redline: This operation exceeds the maximum carbon intensity "
+                "threshold and has been blocked to protect community ESG standards."
+            ))
+        return True
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            self.pre_validate_sustainability(vals)
+        return super().create(vals_list)
+
+    def write(self, vals):
+        self.pre_validate_sustainability(vals)
+        return super().write(vals)
 
 
 class CreationMethodMixin(models.AbstractModel):
