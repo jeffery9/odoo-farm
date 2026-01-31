@@ -10,14 +10,14 @@ import random
 
 _logger = logging.getLogger(__name__)
 
-class AIHealthMonitoring(models.Model):
+class AgriAiHealthMonitoring(models.Model):
     """
     AI model for health and welfare monitoring
     Implements US-58-13: Intelligent health & welfare monitoring
     """
-    _name = 'ai.health.monitoring'
+    _name = 'agri.ai.health.monitoring'
     _description = 'AI Health and Welfare Monitoring'
-    _inherit = ['ai.decision.base']
+    _inherit = ['agri.ai.decision.base']
 
     animal_id = fields.Char('Animal ID')  # In a full implementation, this would link to livestock models
     species_type = fields.Selection([

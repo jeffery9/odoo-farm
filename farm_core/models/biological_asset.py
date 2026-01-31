@@ -9,44 +9,39 @@ _logger = logging.getLogger(__name__)
 
 class BiologicalAsset(models.Model):
     """
-    Biological Asset Management - Core agricultural asset tracking functionality
-    US-01-04: Biological Asset Management
-    NOTE: Financial valuation functionality has been moved to farm_finance_advanced module
+    DEPRECATED: Biological Asset Management.
+    Domain Role: Site-specific operational management of a living asset.
+    Level 4: Agri-Farm Semantic Refactoring [US-104-2026]
+    This model is maintained for backward compatibility.
+    Use agri.biological.asset for new implementations.
     """
     _name = 'farm.biological.asset'
-    _description = 'Biological Asset'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'farm.core.creation.method.mixin', 'farm.core.computed.field.mixin', 'farm.core.compliance.mixin']
+    _description = 'Biological Asset (Deprecated - Use agri.biological.asset)'
+    _inherit = [
+        'agri.biological.asset',
+        'mail.thread',
+        'mail.activity.mixin',
+        'farm.core.creation.method.mixin',
+        'farm.core.computed.field.mixin',
+        'farm.core.compliance.mixin'
+    ]
 
-    name = fields.Char("Asset Name", required=True, default=lambda self: _('New'))
     lot_id = fields.Many2one('stock.lot', string="Stock Lot", required=True)
 
-    # Inherit common agricultural fields
-    agricultural_type = fields.Selection([
-        ('animal', 'Animal'),
-        ('plant', 'Plant'),
-        ('tree', 'Tree'),
-    ], string="Asset Type", default='animal')
-
-    birth_date = fields.Date("Birth/Germination Date")
-    gender = fields.Selection([
-        ('male', 'Male'),
-        ('female', 'Female'),
-        ('other', 'Other')
-    ], string="Gender")
-
+    # --- 100% Original Logic Retention ---
     # Parent tracking (pedigree)
     father_id = fields.Many2one('farm.biological.asset', string="Father")
     mother_id = fields.Many2one('farm.biological.asset', string="Mother")
 
-    # Growth and maturity
+    # Growth and maturity (Operational selection)
     growth_stage = fields.Selection([
         ('newborn', 'Newborn/Seedling'),
         ('growing', 'Growing'),
         ('mature', 'Mature/Adult'),
         ('harvested', 'Harvested/Culled')
-    ], string="Growth Stage", default='newborn', required=True)
+    ], string="Operational Growth Stage", default='newborn', required=True)
 
-    is_mature = fields.Boolean("Is Mature", compute='_compute_is_mature_from_age', store=True)
+    is_mature = fields.Boolean("Is Mature (Operational)", compute='_compute_is_mature_from_age', store=True)
 
     # Generation tracking
     generation = fields.Selection([
@@ -56,16 +51,15 @@ class BiologicalAsset(models.Model):
         ('g3', 'G3 (Commercial)')
     ], string="Generation")
 
-    # Quality and grade
+    # Operational Grade (e.g. for marketing)
     quality_grade = fields.Selection([
         ('grade_a', 'Grade A'),
         ('grade_b', 'Grade B'),
         ('grade_c', 'Grade C'),
-    ], string="Quality Grade")
+    ], string="Operational Grade")
 
-    # Basic valuation reference (financial valuation now in farm_finance_advanced module)
+    # Basic valuation reference
     current_valuation = fields.Float("Current Valuation", compute='_compute_current_valuation', store=True)
-
     maturity_date = fields.Date("Maturity Date", compute='_compute_maturity_date', store=True)
 
     @api.depends('birth_date', 'lot_id.product_id.maturity_age_days')
@@ -86,9 +80,9 @@ class BiologicalAsset(models.Model):
         for asset in self:
             asset.is_mature = (asset.maturity_date and asset.maturity_date <= today) or False
 
-    @api.depends('current_valuation')  # Simplified - now references valuation from finance module
+    @api.depends('current_valuation', 'growth_stage')
     def _compute_current_valuation(self):
-        """Compute current valuation - now references finance module for complex calculations"""
+        """Compute current valuation using original multiplier logic"""
         for asset in self:
             # For core functionality, use simple growth-stage-based valuation
             # Complex financial valuation is handled in farm_finance_advanced
@@ -101,3 +95,14 @@ class BiologicalAsset(models.Model):
             multiplier = stage_multipliers.get(asset.growth_stage, 1.0)
             base_value = asset.lot_id.product_id.standard_price or 0.0
             asset.current_valuation = base_value * multiplier
+    # --- End of Original Logic ---
+
+    def _register_hook(self):
+        """Display deprecation warning when module is installed."""
+        import logging
+        _logger = logging.getLogger(__name__)
+        _logger.warning(
+            "farm.biological.asset is deprecated. "
+            "Please update your code to use agri.biological.asset instead."
+        )
+        return super()._register_hook()

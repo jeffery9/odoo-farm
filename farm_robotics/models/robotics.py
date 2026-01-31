@@ -1,10 +1,21 @@
 from odoo import models, fields, api, _
 import json
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class FarmRobot(models.Model):
+    """
+    Agricultural Robot: Transformed into an A2A Autonomous Agent.
+    Level 5: Robotic A2A Identity.
+    """
     _name = 'farm.robot'
     _description = 'Agricultural Robot'
-    _inherit = ['maintenance.equipment']
+    _inherit = [
+        'maintenance.equipment',
+        'agri.geospatial.mixin',     # Level 1: Spatial Grid Identity
+        'agri.view.mixin',           # Level 0: UI Isolation
+    ]
 
     robot_type = fields.Selection([
         ('sprayer', 'Spraying Robot'),
@@ -15,6 +26,9 @@ class FarmRobot(models.Model):
     
     device_id = fields.Many2one('iiot.device', string="Connected IoT Device")
     
+    # A2A Identity [US-70-2026]
+    agent_id = fields.Char("Agent Identifier", compute="_compute_agent_id", store=True)
+    
     battery_level = fields.Float("Battery (%)", compute='_compute_iot_status')
     current_mission_id = fields.Many2one('farm.robot.mission', string="Current Mission", compute='_compute_iot_status')
     
@@ -24,6 +38,18 @@ class FarmRobot(models.Model):
         ('charging', 'Charging'),
         ('error', 'Fault/Offline')
     ], default='idle', compute='_compute_iot_status')
+
+    @api.depends('name', 'robot_type')
+    def _compute_agent_id(self):
+        """
+        Generates a unique A2A agent identifier for the robot.
+        Pattern: robot:{type}:{id}
+        """
+        for robot in self:
+            if robot.id:
+                robot.agent_id = f"robot:{robot.robot_type}:{robot.id}"
+            else:
+                robot.agent_id = False
 
     def _compute_iot_status(self):
         """Fetch real status from linked IIoT device"""
@@ -36,10 +62,53 @@ class FarmRobot(models.Model):
                 ('state', '=', 'in_progress')
             ], limit=1)
 
+    def evaluate_a2a_proposal(self, incoming_payload):
+        """
+        [US-61-06] Robotic Self-Preservation Bargaining.
+        Adjusts price based on battery and current load.
+        """
+        self.ensure_one()
+        _logger.info("Robot %s evaluating A2A proposal.", self.name)
+        
+        # 1. Battery Safety Check
+        if self.battery_level < 20.0:
+            return {
+                'decision': 'reject',
+                'reason': _("Battery level too low (%f%%) for safe external mission.") % self.battery_level
+            }
+            
+        # 2. Energy-Aware Pricing
+        base_price_factor = 1.0
+        if self.battery_level < 50.0:
+            # Increase price by 30% if battery is below half to prioritize charging missions
+            base_price_factor = 1.3
+            
+        proposed_credits = incoming_payload.get('proposed_credits', 0.0)
+        market_avg = 10.0 # Stub for real market price
+        
+        expected_min = market_avg * base_price_factor
+        
+        if proposed_credits < expected_min:
+            return {
+                'decision': 'counter',
+                'price': expected_min,
+                'reason': _("Energy scarcity surcharge applied due to medium battery level.")
+            }
+            
+        return {'decision': 'accept'}
+
 class FarmRobotMission(models.Model):
+    """
+    Robot Mission: Now serves as a carrier for automated physical evidence.
+    Level 5: Robotic Evidence Packaging.
+    """
     _name = 'farm.robot.mission'
     _description = 'Robot Operation Mission'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = [
+        'mail.thread', 
+        'mail.activity.mixin',
+        'agri.evidence.mixin',       # Level 2: Automatic Audit/Evidence
+    ]
 
     name = fields.Char("Mission ID", required=True, default=lambda self: _('New'))
     robot_id = fields.Many2one('farm.robot', string="Assigned Robot", required=True)
@@ -78,3 +147,19 @@ class FarmRobotMission(models.Model):
         self.write({'state': 'aborted'})
         if self.robot_id.device_id:
             self.robot_id.device_id.send_command('emergency_stop')
+
+    def action_complete_mission(self):
+        """
+        [Level 5: Automated Evidence Loop]
+        Triggers evidence generation from actual trajectory data.
+        """
+        self.ensure_one()
+        self.state = 'completed'
+        
+        # Logic to package actual trajectory as physical evidence
+        if self.actual_path_geojson:
+            # Simplified: Call the evidence audit logic
+            self.perform_evidence_audit()
+            
+        self.message_post(body=_("Robotic Mission Completed. Physical trajectory data packaged as audit evidence."))
+        return True

@@ -65,7 +65,7 @@ class AgriculturalKnowledge(models.Model):
     view_count = fields.Integer(string='View Count', default=0, readonly=True)
     helpful_count = fields.Integer(string='Helpful Count', default=0, readonly=True)
 
-    pest_disease_id = fields.Many2one('farm.pest.disease', string="Related Pest/Disease")
+    pest_disease_id = fields.Many2one('agri.pest.disease', string="Related Pest/Disease")
 
     @api.model
     def smart_search(self, keywords):
@@ -87,10 +87,10 @@ class AgriculturalKnowledge(models.Model):
         US-17-13: Search for pest/diseases by symptom keywords
         """
         if not symptoms_keywords:
-            return self.env['farm.pest.disease'].browse()
+            return self.env['agri.pest.disease'].browse()
 
         # Search pest/disease database for matching symptoms
-        pest_disease_model = self.env['farm.pest.disease']
+        pest_disease_model = self.env['agri.pest.disease']
         domain = [
             '|', '|', '|',
             ('name', 'ilike', symptoms_keywords),

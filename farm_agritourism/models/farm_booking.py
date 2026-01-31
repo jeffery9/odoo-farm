@@ -22,13 +22,13 @@ class FarmBooking(models.Model):
     name = fields.Char("Booking Reference", required=True)
     partner_id = fields.Many2one('res.partner', string="Customer", required=True)
     booking_date = fields.Date("Activity Date", default=fields.Date.today, required=True)
-    
+
     # 增加起止时间以支持细粒度预约 [US-05-03]
     date_start = fields.Datetime("Start Time", required=True, default=fields.Datetime.now)
     date_stop = fields.Datetime("End Time", required=True, default=fields.Datetime.now)
-    
+
     resource_id = fields.Many2one('farm.resource', string="Booked Resource")
-    
+
     booking_type = fields.Selection([
         ('picking', 'Picking'),
         ('family', 'Family Event'),
@@ -36,22 +36,22 @@ class FarmBooking(models.Model):
         ('visit', 'Farm Visit'),
         ('resource', 'Resource Booking')
     ], string="Type", default='picking', required=True)
-    
+
     land_parcel_id = fields.Many2one(
-        'stock.location', 
-        string="Land Parcel/Area", 
+        'stock.location',
+        string="Land Parcel/Area",
         domain=[('is_land_parcel', '=', True)],
     )
-    
+
     sale_order_id = fields.Many2one('sale.order', string="Linked Sale Order")
-    
+
     state = fields.Selection([
         ('draft', 'Draft'),
         ('confirmed', 'Confirmed'),
         ('done', 'Done'),
         ('cancel', 'Cancelled')
     ], string="Status", default='draft', tracking=True)
-    
+
     notes = fields.Text("Notes")
 
     # QR Code for Check-in [US-02-01]

@@ -10,14 +10,14 @@ import random
 
 _logger = logging.getLogger(__name__)
 
-class AIOperationPathOptimization(models.Model):
+class AgriAiOperationPathOptimization(models.Model):
     """
     AI model for operation path optimization
     Implements US-58-10: Operation path intelligent optimization
     """
-    _name = 'ai.operation.path.optimization'
+    _name = 'agri.ai.operation.path.optimization'
     _description = 'AI Operation Path Optimization'
-    _inherit = ['ai.decision.base']
+    _inherit = ['agri.ai.decision.base']
 
     operation_type = fields.Selection([
         ('spraying', 'Spraying'),

@@ -88,7 +88,7 @@ class FarmLoan(models.Model):
             val = 0.0
             for lot in loan.collateral_lot_ids:
                 # Check if lot has an associated biological asset with valuation
-                bio_asset = self.env['farm.biological.asset'].search([('lot_id', '=', lot.id)], limit=1)
+                bio_asset = self.env['agri.biological.asset'].search([('lot_id', '=', lot.id)], limit=1)
                 if bio_asset:
                     val += bio_asset.current_valuation
                 else:

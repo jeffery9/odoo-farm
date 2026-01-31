@@ -1,4 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agri_esg_red_line_config,agri.esg.red.line.config,model_agri_esg_red_line_config,base.group_user,1,1,1,1
+access_agri_esg_red_line_monitoring,agri.esg.red.line.monitoring,model_agri_esg_red_line_monitoring,base.group_user,1,1,1,1
 access_esg_environmental_report,esg.environmental.report,model_esg_environmental_report,farm_core.group_farm_manager,1,1,1,1
 access_esg_environmental_compliance,esg.environmental.compliance,model_esg_environmental_compliance,farm_core.group_farm_manager,1,1,1,1
 access_esg_environmental_report_user,esg.environmental.report.user,model_esg_environmental_report,farm_core.group_farm_user,1,0,0,0

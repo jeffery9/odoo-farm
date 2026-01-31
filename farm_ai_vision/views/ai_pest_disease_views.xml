@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Pest Disease Detection Tree View -->
     <record id="view_ai_pest_disease_detection_tree" model="ir.ui.view">
-        <field name="name">ai.pest.disease.detection.tree</field>
-        <field name="model">ai.pest.disease.detection</field>
+        <field name="name">agri.ai.pest.disease.detection.tree</field>
+        <field name="model">agri.ai.pest.disease.detection</field>
         <field name="arch" type="xml">
             <tree string="AI Pest &amp; Disease Detection">
                 <field name="name"/>
@@ -20,8 +20,8 @@
 
     <!-- AI Pest Disease Detection Form View -->
     <record id="view_ai_pest_disease_detection_form" model="ir.ui.view">
-        <field name="name">ai.pest.disease.detection.form</field>
-        <field name="model">ai.pest.disease.detection</field>
+        <field name="name">agri.ai.pest.disease.detection.form</field>
+        <field name="model">agri.ai.pest.disease.detection</field>
         <field name="arch" type="xml">
             <form string="AI Pest &amp; Disease Detection">
                 <header>
@@ -90,7 +90,7 @@
     <!-- AI Pest Disease Detection Action -->
     <record id="action_ai_pest_disease_detection" model="ir.actions.act_window">
         <field name="name">Pest & Disease Detection</field>
-        <field name="res_model">ai.pest.disease.detection</field>
+        <field name="res_model">agri.ai.pest.disease.detection</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

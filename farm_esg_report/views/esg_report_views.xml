@@ -22,9 +22,9 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_generate_report_content" type="object" string="Generate Content" states="draft"/>
-                    <button name="action_approve_report" type="object" string="Approve" states="draft,review"/>
-                    <button name="action_publish_report" type="object" string="Publish" states="approved" class="oe_highlight"/>
+                    <button name="action_generate_report_content" type="object" string="Generate Content" invisible="report_status != 'draft'"/>
+                    <button name="action_approve_report" type="object" string="Approve" invisible="report_status not in ['draft','review']"/>
+                    <button name="action_publish_report" type="object" string="Publish" invisible="report_status != 'approved'" class="oe_highlight"/>
                     <field name="report_status" widget="statusbar"/>
                 </header>
                 <sheet>

@@ -8,7 +8,7 @@ class MrpBom(models.Model):
     _name = 'mrp.bom'
     _inherit = [
         'mrp.bom', 
-        'farm.agricultural.bom.mixin',
+        'agri.bom.mixin',
         'agri.view.mixin',           # Level 0: UI Isolation
         'agri.nutrient.mixin',       # Level 1: Nutrient Composition
         'agri.sustainability.mixin', # Level 0: Standard
@@ -22,7 +22,7 @@ class MrpBomLine(models.Model):
     _name = 'mrp.bom.line'
     _inherit = [
         'mrp.bom.line', 
-        'farm.agricultural.bom.line.mixin',
+        'agri.bom.line.mixin',
         'agri.nutrient.mixin', 
     ]
 

@@ -2,8 +2,8 @@
 <odoo>
     <!-- Form view for biological asset valuation -->
     <record id="view_biological_asset_valuation_form" model="ir.ui.view">
-        <field name="name">farm.biological.asset.valuation.form</field>
-        <field name="model">farm.biological.asset.valuation</field>
+        <field name="name">agri.biological.asset.valuation.form</field>
+        <field name="model">agri.biological.asset.valuation</field>
         <field name="arch" type="xml">
             <form string="Biological Asset Valuation">
                 <header>
@@ -76,8 +76,8 @@
 
     <!-- Tree view for biological asset valuation -->
     <record id="view_biological_asset_valuation_tree" model="ir.ui.view">
-        <field name="name">farm.biological.asset.valuation.tree</field>
-        <field name="model">farm.biological.asset.valuation</field>
+        <field name="name">agri.biological.asset.valuation.tree</field>
+        <field name="model">agri.biological.asset.valuation</field>
         <field name="arch" type="xml">
             <tree string="Biological Asset Valuations">
                 <field name="name"/>
@@ -96,7 +96,7 @@
     <!-- Action for biological asset valuation -->
     <record id="action_biological_asset_valuation" model="ir.actions.act_window">
         <field name="name">Biological Asset Valuations</field>
-        <field name="res_model">farm.biological.asset.valuation</field>
+        <field name="res_model">agri.biological.asset.valuation</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

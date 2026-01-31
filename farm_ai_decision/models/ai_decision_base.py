@@ -10,13 +10,13 @@ import random
 
 _logger = logging.getLogger(__name__)
 
-class AIDecisionBase(models.Model):
+class AgriAiDecisionBase(models.Model):
     """
     Base model for AI decision support
     """
-    _name = 'ai.decision.base'
+    _name = 'agri.ai.decision.base'
     _description = 'AI Decision Support Base Model'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'ai.base.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'agri.ai.base.mixin']
 
     name = fields.Char('Name', required=True)
     decision_date = fields.Datetime('Decision Date', default=fields.Datetime.now)

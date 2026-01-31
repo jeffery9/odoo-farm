@@ -9,14 +9,14 @@ import json
 _logger = logging.getLogger(__name__)
 
 
-class AICoordinationLayer(models.Model):
+class AgriAiCoordinationLayer(models.Model):
     """
     AI Coordination Layer - Coordinates between existing AI modules:
-    - farm_ai_decision (existing AI decision models)
-    - farm_ai_vision (computer vision services)
+    - agri.ai.agent (existing AI decision models)
+    - agri.ai.pest.disease.detection (computer vision services)
     - farm_finance_advanced (financial AI services)
     """
-    _name = 'ai.coordination.layer'
+    _name = 'agri.ai.coordination.layer'
     _description = 'AI Coordination Layer for Agricultural Intelligence'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
@@ -34,9 +34,9 @@ class AICoordinationLayer(models.Model):
     ], string='Coordination Type', required=True)
 
     # Relations to coordinate between
-    ai_decision_ids = fields.Many2many('ai.agent', string='AI Decision Agents',
+    ai_decision_ids = fields.Many2many('agri.ai.agent', string='AI Decision Agents',
                                       help="AI agents from farm_ai_decision module to coordinate")
-    ai_vision_ids = fields.Many2many('ai.pest.disease.detection', string='AI Vision Services',
+    ai_vision_ids = fields.Many2many('agri.ai.pest.disease.detection', string='AI Vision Services',
                                     help="Vision AI services to coordinate with")
     ai_financial_ids = fields.Many2many('farm.crop.yield.insurance', string='AI Financial Services',
                                        help="Financial AI services to coordinate with")
@@ -400,11 +400,11 @@ class AICoordinationLayer(models.Model):
         return integration
 
 
-class AIAgentWorkflow(models.Model):
+class AgriAiAgentWorkflow(models.Model):
     """
     AI Agent Workflow - Defines complex workflows that coordinate multiple AI services
     """
-    _name = 'ai.agent.workflow'
+    _name = 'agri.ai.agent.workflow'
     _description = 'AI Agent Workflow for Complex Decision Processes'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
@@ -417,14 +417,14 @@ class AIAgentWorkflow(models.Model):
                                      help="JSON definition of the workflow steps and conditions")
 
     # Coordination reference
-    coordination_layer_id = fields.Many2one('ai.coordination.layer', string='Coordination Layer')
+    coordination_layer_id = fields.Many2one('agri.ai.coordination.layer', string='Coordination Layer')
 
     # Trigger conditions
     trigger_conditions = fields.Text('Trigger Conditions (JSON)',
                                     help="Conditions under which this workflow should be executed")
 
     # Steps in the workflow
-    step_ids = fields.One2many('ai.agent.workflow.step', 'workflow_id', string='Workflow Steps')
+    step_ids = fields.One2many('agri.ai.agent.workflow.step', 'workflow_id', string='Workflow Steps')
 
     # Execution tracking
     execution_count = fields.Integer('Execution Count', default=0)
@@ -449,7 +449,7 @@ class AIAgentWorkflow(models.Model):
             # Parse workflow definition
             try:
                 definition = json.loads(workflow.workflow_definition or '{}')
-            except:
+            except (ValueError, TypeError):
                 definition = {}
 
             # Execute workflow steps
@@ -476,16 +476,16 @@ class AIAgentWorkflow(models.Model):
             }
 
 
-class AIAgentWorkflowStep(models.Model):
+class AgriAiAgentWorkflowStep(models.Model):
     """
     AI Agent Workflow Step - Individual steps in a workflow
     """
-    _name = 'ai.agent.workflow.step'
+    _name = 'agri.ai.agent.workflow.step'
     _description = 'AI Agent Workflow Step'
     _order = 'sequence'
 
     name = fields.Char('Step Name', required=True)
-    workflow_id = fields.Many2one('ai.agent.workflow', string='Workflow', required=True)
+    workflow_id = fields.Many2one('agri.ai.agent.workflow', string='Workflow', required=True)
     sequence = fields.Integer('Sequence', default=10)
 
     step_type = fields.Selection([
@@ -500,9 +500,9 @@ class AIAgentWorkflowStep(models.Model):
     ], string='Step Type', required=True)
 
     # Configuration based on step type
-    coordination_layer_id = fields.Many2one('ai.coordination.layer', string='Coordination Layer')
-    ai_agent_id = fields.Many2one('ai.agent', string='AI Agent')
-    ai_vision_service_id = fields.Many2one('ai.pest.disease.detection', string='AI Vision Service')
+    coordination_layer_id = fields.Many2one('agri.ai.coordination.layer', string='Coordination Layer')
+    ai_agent_id = fields.Many2one('agri.ai.agent', string='AI Agent')
+    ai_vision_service_id = fields.Many2one('agri.ai.pest.disease.detection', string='AI Vision Service')
     ai_financial_service_id = fields.Many2one('farm.crop.yield.insurance', string='AI Financial Service')
 
     # Step configuration

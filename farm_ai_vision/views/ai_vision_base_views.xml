@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Vision Base Tree View -->
     <record id="view_ai_vision_base_tree" model="ir.ui.view">
-        <field name="name">ai.vision.base.tree</field>
-        <field name="model">ai.vision.base</field>
+        <field name="name">agri.ai.vision.base.tree</field>
+        <field name="model">agri.ai.vision.base</field>
         <field name="arch" type="xml">
             <tree string="AI Vision Base">
                 <field name="name"/>
@@ -17,8 +17,8 @@
 
     <!-- AI Vision Base Form View -->
     <record id="view_ai_vision_base_form" model="ir.ui.view">
-        <field name="name">ai.vision.base.form</field>
-        <field name="model">ai.vision.base</field>
+        <field name="name">agri.ai.vision.base.form</field>
+        <field name="model">agri.ai.vision.base</field>
         <field name="arch" type="xml">
             <form string="AI Vision Base">
                 <header>

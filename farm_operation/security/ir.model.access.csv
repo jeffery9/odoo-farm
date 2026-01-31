@@ -1,4 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agri_agricultural_campaign_mixin,agri.agricultural.campaign.mixin,model_agri_agricultural_campaign_mixin,base.group_user,1,1,1,1
+access_farm_agricultural_campaign_mixin,farm.agricultural.campaign.mixin,model_farm_agricultural_campaign_mixin,base.group_user,1,1,1,1
 access_agricultural_campaign_manager,agricultural.campaign.manager,model_agricultural_campaign,farm_core.group_farm_manager,1,1,1,1
 access_agricultural_campaign_user,agricultural.campaign.user,model_agricultural_campaign,farm_core.group_farm_user,1,1,1,0
 access_agri_intervention_manager,agri.intervention.manager,model_mrp_production,farm_core.group_farm_manager,1,1,1,1

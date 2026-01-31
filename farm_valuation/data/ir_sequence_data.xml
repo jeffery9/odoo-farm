@@ -13,7 +13,7 @@
         <!-- Biological Asset Fair Valuation Sequence -->
         <record id="seq_biological_asset_fair_valuation" model="ir.sequence">
             <name>Biological Asset Fair Valuation</name>
-            <code>farm.biological.asset.fair.valuation</code>
+            <code>agri.biological.asset.fair.valuation</code>
             <prefix>VAL/</prefix>
             <padding>5</padding>
             <company_id eval="False"/>

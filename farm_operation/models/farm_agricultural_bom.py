@@ -9,7 +9,7 @@ class FarmAgriculturalBom(models.Model):
     _name = 'farm.agricultural.bom'
     _description = 'Agricultural BOM (ISL Layer)'
     _inherits = {'mrp.bom': 'bom_id'}  # Inherit from base Odoo model
-    _inherit = ['farm.agricultural.bom.mixin']  # Include shared logic
+    _inherit = ['agri.bom.mixin']  # Include shared logic
 
     # Link to the base model (this field is required for _inherits)
     bom_id = fields.Many2one(
@@ -30,7 +30,7 @@ class FarmAgricultulturalBomLine(models.Model):
     _name = 'farm.agricultural.bom.line'
     _description = 'Agricultural BOM Line (ISL Layer)'
     _inherits = {'mrp.bom.line': 'bom_line_id'}  # Inherit from base Odoo model
-    _inherit = ['farm.agricultural.bom.line.mixin']  # Include shared logic
+    _inherit = ['agri.bom.line.mixin']  # Include shared logic
 
     # Link to the base model (this field is required for _inherits)
     bom_line_id = fields.Many2one(

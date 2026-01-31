@@ -10,14 +10,15 @@ import random
 
 _logger = logging.getLogger(__name__)
 
-class AIHarvestTiming(models.Model):
+class AgriAiHarvestTiming(models.Model):
     """
-    AI model for harvest timing decision
-    Implements US-58-09: Intelligent harvest timing decision
+    AI model for harvest timing decision.
+    Level 4: Quality Driven Harvest.
+    Implements [US-58-09]: Intelligent harvest timing & Quality Prediction.
     """
-    _name = 'ai.harvest.timing'
+    _name = 'agri.ai.harvest.timing'
     _description = 'AI Harvest Timing'
-    _inherit = ['ai.decision.base']
+    _inherit = ['agri.ai.decision.base']
 
     product_id = fields.Many2one('product.template', string='Crop')
     land_location_id = fields.Many2one('farm.location', string='Location')
@@ -32,7 +33,7 @@ class AIHarvestTiming(models.Model):
     yield_impact = fields.Float('Yield Impact (%)', help="Expected yield impact of timing decision")
 
     def calculate_optimal_harvest(self):
-        """Calculate optimal harvest timing"""
+        """Calculate optimal harvest timing."""
         for record in self:
             if record.planting_date:
                 # Calculate base harvest date based on crop type
@@ -111,3 +112,15 @@ class AIHarvestTiming(models.Model):
                         record.land_location_id,
                         _("Predicted Quality Score: %f") % record.quality_score
                     )
+
+    def predict_harvest_fingerprint(self):
+        """
+        [US-58-09] Generates a predicted quality fingerprint for the value bridge.
+        """
+        self.ensure_one()
+        metrics = json.loads(self.quality_metrics or '{}')
+        return {
+            'predicted_score': self.quality_score,
+            'metrics': metrics,
+            'forecast_model': 'MultiSpectral-Phenology-V4'
+        }

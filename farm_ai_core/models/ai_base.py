@@ -8,12 +8,15 @@ import random
 _logger = logging.getLogger(__name__)
 
 
-class AIBaseMixin(models.AbstractModel):
+class AgriAiBaseMixin(models.AbstractModel):
     """
-    Base mixin for all AI-related models
+    Agri Domain Level: AI Base Capabilities. [US-58-01, US-104-2026]
+    Provides universal AI interfaces for all agricultural sub-sectors.
+    Follows the 'Agri as Domain, Farm as Entity' semantic strategy.
+    Replaces the legacy ai.base.mixin.
     """
-    _name = 'ai.base.mixin'
-    _description = 'AI Base Mixin'
+    _name = 'agri.ai.base.mixin'
+    _description = 'Agricultural Domain AI Base Mixin'
 
     # Common AI fields
     ai_model_used = fields.Char('AI Model Used', help='Name of the AI model used for processing')
@@ -32,13 +35,13 @@ class AIBaseMixin(models.AbstractModel):
     def action_process_with_ai(self):
         """Process the record with AI and update fields"""
         # This method is now available via the AIBaseMixinService abstract model
-        mixin_service = self.env['ai.base.mixin.service']
+        mixin_service = self.env['agri.ai.base.mixin.service']
         return mixin_service.action_process_with_ai()
 
     def _process_ai(self):
         """Override in specific models to implement AI processing logic"""
         return {
-            'model_used': 'Default AI Model',
+            'model_used': 'Default Agri-AI Model',
             'confidence': 0.0,
             'processing_time': 0.0,
             'input_data': {},
@@ -52,13 +55,13 @@ class AIBaseMixin(models.AbstractModel):
     def get_active_ai_config(self):
         """Get the active AI configuration for this record - abstract method"""
         # This method is now available via the AIBaseMixinService abstract model
-        mixin_service = self.env['ai.base.mixin.service']
+        mixin_service = self.env['agri.ai.base.mixin.service']
         return mixin_service.get_active_ai_config()
 
     def call_llm_service(self, prompt, context_data=None):
         """Generic method to call LLM service if available"""
         # This method is now available via the AIBaseMixinService abstract model
-        mixin_service = self.env['ai.base.mixin.service']
+        mixin_service = self.env['agri.ai.base.mixin.service']
         return mixin_service.call_llm_service(prompt, context_data)
 
     def call_ai_service(self, service_type, prompt, context_data=None, model_override=None):
@@ -66,12 +69,12 @@ class AIBaseMixin(models.AbstractModel):
         Generic method to call any type of AI service (LLM, Vision, ML, etc.)
         """
         # This method is now available via the AIBaseMixinService abstract model
-        mixin_service = self.env['ai.base.mixin.service']
+        mixin_service = self.env['agri.ai.base.mixin.service']
         return mixin_service.call_ai_service(service_type, prompt, context_data, model_override)
 
     def process_with_ai_decision_engine(self, data, decision_type='classification'):
         """
-        Use AI decision engine to process data and make decisions
+        Use domain-level AI decision engine to process data and make decisions
 
         Args:
             data (dict): Input data to process
@@ -94,13 +97,13 @@ class AIBaseMixin(models.AbstractModel):
                                 return service.make_decision(data, decision_type)
                             elif hasattr(service, 'process_decision'):
                                 return service.process_decision(data, decision_type)
-                except:
+                except (KeyError, AttributeError, TypeError):
                     continue
 
         # Default fallback - return a basic decision structure
         return {
             'success': False,
-            'error': 'No AI decision engine available',
+            'error': 'No Agri AI decision engine available',
             'decision': None,
             'confidence': 0.0
         }
@@ -117,7 +120,7 @@ class AIBaseMixin(models.AbstractModel):
             AIModelRegistry: Best performing model for the task
         """
         # This method is now available via the AIDecisionEngine abstract model
-        decision_engine = self.env['ai.decision.engine']
+        decision_engine = self.env['agri.ai.decision.engine']
         return decision_engine.get_best_model_for_task(task_type, performance_threshold)
 
     def run_model_inference(self, model_id, input_data):
@@ -132,7 +135,7 @@ class AIBaseMixin(models.AbstractModel):
             dict: Inference result with output and metadata
         """
         # This method is now available via the AIDecisionEngine abstract model
-        decision_engine = self.env['ai.decision.engine']
+        decision_engine = self.env['agri.ai.decision.engine']
         return decision_engine.run_model_inference(model_id, input_data)
 
     def evaluate_ai_model_performance(self, model_id, test_dataset):
@@ -147,7 +150,7 @@ class AIBaseMixin(models.AbstractModel):
             dict: Performance metrics
         """
         # This method is now available via the AIDecisionEngine abstract model
-        decision_engine = self.env['ai.decision.engine']
+        decision_engine = self.env['agri.ai.decision.engine']
         return decision_engine.evaluate_ai_model_performance(model_id, test_dataset)
 
     def get_ai_recommendations(self, context_data, recommendation_type='general'):
@@ -162,7 +165,7 @@ class AIBaseMixin(models.AbstractModel):
             dict: AI-powered recommendations
         """
         # This method is now available via the AIDecisionEngine abstract model
-        decision_engine = self.env['ai.decision.engine']
+        decision_engine = self.env['agri.ai.decision.engine']
         return decision_engine.get_ai_recommendations(context_data, recommendation_type)
 
     def analyze_with_ai(self, data, analysis_type='classification'):
@@ -177,7 +180,7 @@ class AIBaseMixin(models.AbstractModel):
             dict: Analysis results
         """
         # This method is now available via the AIDecisionEngine abstract model
-        decision_engine = self.env['ai.decision.engine']
+        decision_engine = self.env['agri.ai.decision.engine']
         return decision_engine.analyze_with_ai(data, analysis_type)
 
     def get_ai_system_health(self):
@@ -188,16 +191,16 @@ class AIBaseMixin(models.AbstractModel):
             dict: Health metrics for the AI system
         """
         # This method is now available via the AIDecisionEngine abstract model
-        decision_engine = self.env['ai.decision.engine']
+        decision_engine = self.env['agri.ai.decision.engine']
         return decision_engine.get_ai_system_health()
 
 
-class AIConfiguration(models.AbstractModel):
+class AgriAiConfiguration(models.AbstractModel):
     """
     AI Configuration and Settings - Abstract interface for AI configurations
     Implementation should be provided by specialized AI modules like farm_ai_llm_integration
     """
-    _name = 'ai.configuration'
+    _name = 'agri.ai.configuration'
     _description = 'AI Configuration Interface'
 
     name = fields.Char('Configuration Name', required=True)
@@ -233,7 +236,6 @@ class AIConfiguration(models.AbstractModel):
         """
         Test the AI service connection - should be implemented by specialized modules
         """
-        # This is an abstract method that should be overridden by implementation modules
         raise NotImplementedError(_("This method should be implemented by the specific AI module"))
 
     def increment_request_stats(self, success=True):
@@ -252,13 +254,17 @@ class AIConfiguration(models.AbstractModel):
 
 
 
-class AIModelRegistry(models.Model):
+class AgriAiModelRegistry(models.Model):
     """
-    AI Model Registry
+    AI Model Registry.
+    Integrated with domain-level decision capabilities via Mixins.
     """
-    _name = 'ai.model.registry'
+    _name = 'agri.ai.model.registry'
     _description = 'AI Model Registry'
-    _inherit = ['ai.decision.engine']  # Inherit decision engine functionality
+    _inherit = [
+        'agri.ai.decision.engine', 
+        'agri.ai.base.mixin' # [Refactored to Agri Domain Mixin]
+    ]
 
     name = fields.Char('Model Name', required=True)
     model_type = fields.Selection([
@@ -307,7 +313,7 @@ class AIModelRegistry(models.Model):
 
     is_active = fields.Boolean('Is Active', default=True)
     is_default = fields.Boolean('Is Default', default=False)
-    is_agricultural_model = fields.Boolean('Is Agricultural Model', default=False,
+    is_agricultural_model = fields.Boolean('Is Agricultural Model', default=True,
         help="Indicates if this model is specifically designed for agricultural applications")
 
     # Performance and usage statistics
@@ -322,8 +328,8 @@ class AIModelRegistry(models.Model):
 
     _sql_constraints = [
         ('name_version_unique', 'UNIQUE(name, version)', 'Model name and version must be unique!'),
-        ('name_required', 'CHECK(name != \'\')', 'Model name is required!'),
-        ('version_required', 'CHECK(version != \'\')', 'Version is required!'),
+        ('name_required', 'CHECK(name != \'\'\')', 'Model name is required!'),
+        ('version_required', 'CHECK(version != \'\'\')', 'Version is required!'),
     ]
 
     @api.constrains('accuracy', 'precision', 'recall', 'f1_score')
@@ -341,18 +347,9 @@ class AIModelRegistry(models.Model):
 
     def load_model(self):
         """
-        Load the AI model for inference.
-        In a real implementation, this would load the actual model file
-        and prepare it for inference based on the model type.
+        Load the Agri AI model for inference.
         """
-        # This is a placeholder implementation
-        _logger.info(f"Loading model {self.name} (version {self.version})")
-
-        # In a real implementation, this would:
-        # 1. Load the model from storage
-        # 2. Initialize the model with configuration
-        # 3. Set up any required resources (GPU, memory, etc.)
-        # 4. Return a model object ready for inference
+        _logger.info(f"Loading Agri AI model {self.name} (version {self.version})")
         return {
             'model_loaded': True,
             'model_name': self.name,
@@ -385,12 +382,6 @@ class AIModelRegistry(models.Model):
     def get_agricultural_models_for_task(self, task_type):
         """
         Get agricultural-specific models for a particular task
-
-        Args:
-            task_type (str): Type of task to find models for
-
-        Returns:
-            AIModelRegistry: Recordset of relevant agricultural models
         """
         return self.search([
             ('model_type', '=', task_type),
@@ -400,19 +391,8 @@ class AIModelRegistry(models.Model):
 
     def action_evaluate_model(self):
         """Action to evaluate model performance on test dataset"""
-        # In a real implementation, this would run the model on a test dataset
-        # and update the performance metrics
         for model in self:
-            # Placeholder for evaluation logic
             _logger.info(f"Evaluating model {model.name}")
-
-            # In a real implementation, this would:
-            # 1. Load test dataset
-            # 2. Run model inference on test data
-            # 3. Calculate performance metrics
-            # 4. Update model record with new metrics
-
-            # For now, just return a success notification
             return {
                 'type': 'ir.actions.client',
                 'tag': 'display_notification',

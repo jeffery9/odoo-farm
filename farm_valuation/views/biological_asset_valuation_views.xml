@@ -2,8 +2,8 @@
 <odoo>
     <!-- Biological Asset Fair Valuation Tree View -->
     <record id="view_biological_asset_fair_valuation_tree" model="ir.ui.view">
-        <name>farm.biological.asset.fair.valuation.tree</name>
-        <model>farm.biological.asset.fair.valuation</model>
+        <name>agri.biological.asset.fair.valuation.tree</name>
+        <model>agri.biological.asset.fair.valuation</model>
         <arch type="xml">
             <list string="Biological Asset Fair Valuations"
                   decoration-info="revaluation_type == 'gain'"
@@ -24,8 +24,8 @@
 
     <!-- Biological Asset Fair Valuation Form View -->
     <record id="view_biological_asset_fair_valuation_form" model="ir.ui.view">
-        <name>farm.biological.asset.fair.valuation.form</name>
-        <model>farm.biological.asset.fair.valuation</model>
+        <name>agri.biological.asset.fair.valuation.form</name>
+        <model>agri.biological.asset.fair.valuation</model>
         <arch type="xml">
             <form string="Biological Asset Fair Valuation">
                 <header>
@@ -78,8 +78,8 @@
 
     <!-- Extend Biological Asset Form View to include fair valuation -->
     <record id="view_biological_asset_form_extension" model="ir.ui.view">
-        <name>farm.biological.asset.form.valuation.extension</name>
-        <model>farm.biological.asset</model>
+        <name>agri.biological.asset.form.valuation.extension</name>
+        <model>agri.biological.asset</model>
         <inherit_id="farm_core.view_farm_biological_asset_form"/>
         <arch type="xml">
             <notebook position="inside">
@@ -110,8 +110,8 @@
 
     <!-- Add field to biological asset model to link to fair valuations -->
     <record id="view_biological_asset_form_fair_valuation_field" model="ir.ui.view">
-        <name>farm.biological.asset.form.fair.valuation.field</name>
-        <model>farm.biological.asset</model>
+        <name>agri.biological.asset.form.fair.valuation.field</name>
+        <model>agri.biological.asset</model>
         <inherit_id="farm_core.view_farm_biological_asset_form"/>
         <field name="arch" type="xml">
             <!-- This will be handled by adding the field to the model -->

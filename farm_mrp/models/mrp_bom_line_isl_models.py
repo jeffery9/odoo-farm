@@ -63,7 +63,7 @@ class MrpBomLineIslAbstract(models.AbstractModel):
 
     def _get_isl_record(self):
         """Get associated ISL record for this base record using centralized infrastructure"""
-        redirector = self.env['isl.model.redirector']
+        redirector = self.env['agri.isl.model.redirector']
         return redirector.get_isl_record('mrp.bom.line', self.id)
 
     def action_view_isl_record(self):

@@ -1,44 +1,54 @@
 from odoo import models, fields, api, _
+import logging
 import json
+
+_logger = logging.getLogger(__name__)
 
 class FarmLocation(models.Model):
     _inherit = 'farm.location'
 
     digital_twin_enabled = fields.Boolean("Digital Twin Enabled", default=False)
-    digital_twin_scene_id = fields.Many2one('farm.digital.twin.scene', string="3D Scene")
+    digital_twin_scene_id = fields.Many2one('agri.digital.twin.scene', string="3D Scene")
 
 class FarmDigitalTwinScene(models.Model):
+    """
+    Farm-specific extension of the agricultural digital twin scene model.
+    This ensures backward compatibility while using the new agri.* namespace.
+    """
     _name = 'farm.digital.twin.scene'
-    _description = 'Farm Digital Twin 3D Scene'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _description = 'Digital Twin 3D Scene (Deprecated - Use agri.digital.twin.scene)'
+    _inherit = 'agri.digital.twin.scene'
 
-    name = fields.Char("Scene Name", required=True)
-    location_id = fields.Many2one('farm.location', string="Physical Location")
-    
-    # Scene Assets
-    base_model_url = fields.Char("Base Terrain/Structure Model URL", help="URL to GLB/USDZ file")
-    environment_hdr_url = fields.Char("Environment HDR URL")
-    
-    device_marker_ids = fields.One2many('farm.digital.twin.marker', 'scene_id', string="Device Markers")
-
-    state = fields.Selection([('draft', 'Draft'), ('active', 'Active')], default='draft')
+    def _register_hook(self):
+        """Display deprecation warning when module is installed."""
+        import logging
+        _logger = logging.getLogger(__name__)
+        _logger.warning(
+            "farm.digital.twin.scene is deprecated. "
+            "Please update your code to use agri.digital.twin.scene instead."
+        )
+        return super()._register_hook()
 
 class FarmDigitalTwinMarker(models.Model):
+    """
+    Farm-specific extension of the agricultural digital twin marker model.
+    This ensures backward compatibility while using the new agri.* namespace.
+    """
     _name = 'farm.digital.twin.marker'
-    _description = 'Digital Twin Device Marker'
+    _description = 'Digital Twin Device Marker (Deprecated - Use agri.digital.twin.marker)'
+    _inherit = 'agri.digital.twin.marker'
 
-    scene_id = fields.Many2one('farm.digital.twin.scene', ondelete='cascade')
-    device_id = fields.Many2one('iiot.device', string="Physical Device", required=True)
-    
-    # 3D Coordinates relative to scene center
-    pos_x = fields.Float("X Position")
-    pos_y = fields.Float("Y Position")
-    pos_z = fields.Float("Z Position")
-    
-    rotation_y = fields.Float("Y Rotation")
-    
-    display_telemetry_ids = fields.Many2many('iiot.device.profile.telemetry', string="Telemetries to Display")
+    def _register_hook(self):
+        """Display deprecation warning when module is installed."""
+        import logging
+        _logger = logging.getLogger(__name__)
+        _logger.warning(
+            "farm.digital.twin.marker is deprecated. "
+            "Please update your code to use agri.digital.twin.marker instead."
+        )
+        return super()._register_hook()
 
+# Note: FarmLocation and IiotDevice remain as is since they're only inheritance extensions
 class IiotDevice(models.Model):
     _inherit = 'iiot.device'
 
@@ -49,7 +59,7 @@ class IiotDevice(models.Model):
         """Used by Digital Twin frontend to get live values"""
         for device in self:
             # Fetch latest telemetry data
-            telemetry = self.env['farm.telemetry'].search([
+            telemetry = self.env['agri.telemetry'].search([
                 ('device_id', '=', device.id)
             ], order='timestamp desc', limit=1)
             if telemetry:

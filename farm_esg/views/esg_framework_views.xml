@@ -118,7 +118,7 @@
                     <group string="Framework & Entity">
                         <field name="framework_id"/>
                         <field name="assessed_entity_type"/>
-                        <field name="assessed_entity_id" attrs="{'required': [('assessed_entity_type', '!=', False)]}"/>
+                        <field name="assessed_entity_id" required="assessed_entity_type != False"/>
                     </group>
                     <group string="Scores" col="4">
                         <field name="environmental_score"/>

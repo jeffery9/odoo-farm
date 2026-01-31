@@ -10,11 +10,11 @@ from datetime import datetime, timedelta
 _logger = logging.getLogger(__name__)
 
 
-class AIDecisionEngine(models.AbstractModel):
+class AgriAiDecisionEngine(models.AbstractModel):
     """
     AI Decision Engine - Provides advanced decision-making capabilities
     """
-    _name = 'ai.decision.engine'
+    _name = 'agri.ai.decision.engine'
     _description = 'AI Decision Engine'
 
     def get_ai_recommendations(self, context_data, recommendation_type='general'):
@@ -143,12 +143,12 @@ class AIDecisionEngine(models.AbstractModel):
         """
         try:
             # Get statistics about AI configurations
-            total_configs = self.env['ai.configuration'].sudo().search_count([])
-            active_configs = self.env['ai.configuration'].sudo().search_count([('is_active', '=', True)])
+            total_configs = self.env['agri.ai.configuration'].sudo().search_count([])
+            active_configs = self.env['agri.ai.configuration'].sudo().search_count([('is_active', '=', True)])
 
             # Get statistics about AI models
-            total_models = self.env['ai.model.registry'].sudo().search_count([])
-            active_models = self.env['ai.model.registry'].sudo().search_count([('is_active', '=', True)])
+            total_models = self.env['agri.ai.model.registry'].sudo().search_count([])
+            active_models = self.env['agri.ai.model.registry'].sudo().search_count([('is_active', '=', True)])
 
             # Get recent AI activity
             recent_time = datetime.now() - timedelta(hours=24)
@@ -167,7 +167,7 @@ class AIDecisionEngine(models.AbstractModel):
                             for record in records:
                                 total_requests += getattr(record, 'call_count', 0)
                                 successful_requests += getattr(record, 'call_count', 0) - getattr(record, 'error_count', 0)
-                    except:
+                    except (KeyError, AttributeError, TypeError):
                         continue
 
             health_report = {
@@ -208,7 +208,7 @@ class AIDecisionEngine(models.AbstractModel):
             AIModelRegistry: Best performing model for the task
         """
         # Find the best model for the given task type
-        best_model = self.env['ai.model.registry'].search([
+        best_model = self.env['agri.ai.model.registry'].search([
             ('model_type', '=', task_type),
             ('is_active', '=', True),
             ('accuracy', '>=', performance_threshold)
@@ -216,7 +216,7 @@ class AIDecisionEngine(models.AbstractModel):
 
         if not best_model:
             # If no model meets threshold, find the best available one
-            best_model = self.env['ai.model.registry'].search([
+            best_model = self.env['agri.ai.model.registry'].search([
                 ('model_type', '=', task_type),
                 ('is_active', '=', True)
             ], order='accuracy desc', limit=1)
@@ -235,7 +235,7 @@ class AIDecisionEngine(models.AbstractModel):
             dict: Inference result with output and metadata
         """
         try:
-            model = self.env['ai.model.registry'].browse(model_id)
+            model = self.env['agri.ai.model.registry'].browse(model_id)
             if not model.exists() or not model.is_active:
                 return {
                     'success': False,
@@ -293,7 +293,7 @@ class AIDecisionEngine(models.AbstractModel):
             dict: Performance metrics
         """
         try:
-            model = self.env['ai.model.registry'].browse(model_id)
+            model = self.env['agri.ai.model.registry'].browse(model_id)
             if not model.exists():
                 return {
                     'success': False,

@@ -90,9 +90,9 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_allocate" type="object" string="Allocate" states="draft" class="oe_highlight"/>
-                    <button name="action_approve" type="object" string="Approve" states="allocated" class="oe_highlight"/>
-                    <button name="action_reject" type="object" string="Reject" states="allocated"/>
+                    <button name="action_allocate" type="object" string="Allocate" invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_approve" type="object" string="Approve" invisible="state != 'allocated'" class="oe_highlight"/>
+                    <button name="action_reject" type="object" string="Reject" invisible="state != 'allocated'"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>

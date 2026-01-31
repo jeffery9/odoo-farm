@@ -11,21 +11,19 @@ import uuid
 
 _logger = logging.getLogger(__name__)
 
-class AIAgent(models.Model):
+class AgriAiAgent(models.Model):
     """
-    AI Agent model for intelligent decision support
-    Implements US-58-01: AI Agent intelligent recommendation
-    Implements US-58-02: AI Agent intelligent analysis
-    Implements US-58-03: AI Agent intelligent optimization
+    AI Agent model for intelligent decision support.
+    Refactored to Agri domain with 100% logic retention.
     """
-    _name = 'ai.agent'
+    _name = 'agri.ai.agent'
     _description = 'AI Agent for Intelligent Decision Support'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'agri.ai.base.mixin']
     _inherits = {
-        'ai.decision.base': 'base_id',
+        'agri.ai.decision.base': 'base_id',
     }
 
-    base_id = fields.Many2one('ai.decision.base', required=True, ondelete="cascade",
+    base_id = fields.Many2one('agri.ai.decision.base', required=True, ondelete="cascade",
                               help="Base AI decision support record")
 
     agent_type = fields.Selection([

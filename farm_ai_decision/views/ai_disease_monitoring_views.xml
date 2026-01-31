@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Health Monitoring Views -->
     <record id="view_ai_health_monitoring_form" model="ir.ui.view">
-        <field name="name">ai.health.monitoring.form</field>
-        <field name="model">ai.health.monitoring</field>
+        <field name="name">agri.ai.health.monitoring.form</field>
+        <field name="model">agri.ai.health.monitoring</field>
         <field name="arch" type="xml">
             <form string="AI Health and Welfare Monitoring">
                 <header>
@@ -60,8 +60,8 @@
     </record>
 
     <record id="view_ai_health_monitoring_tree" model="ir.ui.view">
-        <field name="name">ai.health.monitoring.tree</field>
-        <field name="model">ai.health.monitoring</field>
+        <field name="name">agri.ai.health.monitoring.tree</field>
+        <field name="model">agri.ai.health.monitoring</field>
         <field name="arch" type="xml">
             <tree string="AI Health and Welfare Monitoring">
                 <field name="animal_id"/>
@@ -76,7 +76,7 @@
 
     <record id="action_ai_health_monitoring" model="ir.actions.act_window">
         <field name="name">AI Health and Welfare Monitoring</field>
-        <field name="res_model">ai.health.monitoring</field>
+        <field name="res_model">agri.ai.health.monitoring</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

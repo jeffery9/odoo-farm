@@ -7,18 +7,18 @@ import logging
 import json
 from datetime import datetime, timedelta
 import base64
-from .ai_vision_base import AIVisionBase
+from .ai_vision_base import AgriAiVisionBase
 
 _logger = logging.getLogger(__name__)
 
-class AIVisualSorting(AIVisionBase):
+class AgriAiVisualSorting(AgriAiVisionBase):
     """
     AI model for visual sorting and grading of agricultural products
     Implements US-28-02: 视觉智能分拣与质量评估
     """
-    _name = 'ai.visual.sorting'
+    _name = 'agri.ai.visual.sorting'
     _description = 'AI Visual Sorting'
-    _inherit = ['ai.vision.base']
+    _inherit = ['agri.ai.vision.base']
 
     product_id = fields.Many2one('product.template', string='Product Type', domain=[('type', '=', 'product')])
     batch_id = fields.Many2one('stock.lot', string='Batch/Lot')

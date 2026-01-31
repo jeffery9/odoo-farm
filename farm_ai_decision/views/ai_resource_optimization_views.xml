@@ -2,8 +2,8 @@
 <odoo>
     <!-- AI Resource Optimization Views -->
     <record id="view_ai_resource_optimization_form" model="ir.ui.view">
-        <field name="name">ai.resource.optimization.form</field>
-        <field name="model">ai.resource.optimization</field>
+        <field name="name">agri.ai.resource.optimization.form</field>
+        <field name="model">agri.ai.resource.optimization</field>
         <field name="arch" type="xml">
             <form string="AI Resource Optimization">
                 <header>
@@ -52,8 +52,8 @@
     </record>
 
     <record id="view_ai_resource_optimization_tree" model="ir.ui.view">
-        <field name="name">ai.resource.optimization.tree</field>
-        <field name="model">ai.resource.optimization</field>
+        <field name="name">agri.ai.resource.optimization.tree</field>
+        <field name="model">agri.ai.resource.optimization</field>
         <field name="arch" type="xml">
             <tree string="AI Resource Optimization">
                 <field name="resource_type"/>
@@ -68,7 +68,7 @@
 
     <record id="action_ai_resource_optimization" model="ir.actions.act_window">
         <field name="name">AI Resource Optimization</field>
-        <field name="res_model">ai.resource.optimization</field>
+        <field name="res_model">agri.ai.resource.optimization</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

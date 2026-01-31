@@ -4,7 +4,7 @@ class TestFarmKnowledge(TransactionCase):
 
     def setUp(self):
         super(TestFarmKnowledge, self).setUp()
-        self.PestDisease = self.env['farm.pest.disease']
+        self.PestDisease = self.env['agri.pest.disease']
         self.Knowledge = self.env['agricultural.knowledge']
         self.FAQ = self.env['faq.entry']
 

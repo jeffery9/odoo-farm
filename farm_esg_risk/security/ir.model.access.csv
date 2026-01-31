@@ -1,4 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agri_esg_risk_assessment,agri.esg.risk.assessment,model_agri_esg_risk_assessment,base.group_user,1,1,1,1
+access_agri_esg_compliance_monitoring,agri.esg.compliance.monitoring,model_agri_esg_compliance_monitoring,base.group_user,1,1,1,1
+access_agri_esg_kpi,agri.esg.kpi,model_agri_esg_kpi,base.group_user,1,1,1,1
 access_esg_risk_assessment,farm.esg.risk.assessment,model_farm_esg_risk_assessment,farm_core.group_farm_manager,1,1,1,1
 access_esg_compliance_monitoring,farm.esg.compliance.monitoring,model_farm_esg_compliance_monitoring,farm_core.group_farm_manager,1,1,1,1
 access_esg_data_governance,farm.esg.data.governance,model_farm_esg_data_governance,farm_core.group_farm_manager,1,1,1,1

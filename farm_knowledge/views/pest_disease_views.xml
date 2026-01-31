@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_farm_pest_disease_tree" model="ir.ui.view">
-        <field name="name">farm.pest.disease.tree</field>
-        <field name="model">farm.pest.disease</field>
+        <field name="name">agri.pest.disease.tree</field>
+        <field name="model">agri.pest.disease</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
@@ -15,8 +15,8 @@
 
     <!-- Kanban View for Pest & Disease [US-UX] -->
     <record id="view_farm_pest_disease_kanban" model="ir.ui.view">
-        <field name="name">farm.pest.disease.kanban</field>
-        <field name="model">farm.pest.disease</field>
+        <field name="name">agri.pest.disease.kanban</field>
+        <field name="model">agri.pest.disease</field>
         <field name="arch" type="xml">
             <kanban class="o_kanban_mobile">
                 <field name="id"/>
@@ -27,7 +27,7 @@
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
                             <div class="o_kanban_image">
-                                <img t-if="record.photo.raw_value" t-att-src="kanban_image('farm.pest.disease', 'photo', record.id.raw_value)" alt="Photo"/>
+                                <img t-if="record.photo.raw_value" t-att-src="kanban_image('agri.pest.disease', 'photo', record.id.raw_value)" alt="Photo"/>
                                 <div t-else="" class="o_kanban_image_fill_left bg-light d-flex align-items-center justify-content-center">
                                     <i class="fa fa-bug fa-3x text-muted"/>
                                 </div>
@@ -45,8 +45,8 @@
     </record>
 
     <record id="view_farm_pest_disease_form" model="ir.ui.view">
-        <field name="name">farm.pest.disease.form</field>
-        <field name="model">farm.pest.disease</field>
+        <field name="name">agri.pest.disease.form</field>
+        <field name="model">agri.pest.disease</field>
         <field name="arch" type="xml">
             <form>
                 <header>
@@ -127,7 +127,7 @@
 
     <record id="action_farm_pest_disease" model="ir.actions.act_window">
         <field name="name">Pest &amp; Disease Map</field>
-        <field name="res_model">farm.pest.disease</field>
+        <field name="res_model">agri.pest.disease</field>
         <field name="view_mode">kanban,tree,form</field>
     </record>
 </odoo>

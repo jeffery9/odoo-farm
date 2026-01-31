@@ -10,7 +10,7 @@
         - Provides early warnings if usage increases year-over-year.
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'farm_operation', 'farm_supply', 'farm_sustainability'],
+    'depends': ['farm_core', 'farm_operation', 'farm_supply', 'farm_esg', 'farm_esg_report'],
     'data': [
         'security/ir.model.access.csv',
         'report/reduction_report_templates.xml',

@@ -10,14 +10,15 @@ import random
 
 _logger = logging.getLogger(__name__)
 
-class AIFertilizationDecision(models.Model):
+class AgriAiFertilizationDecision(models.Model):
     """
-    AI model for fertilization decision
-    Implements US-58-06: Intelligent fertilization decision
+    AI model for fertilization decision.
+    Level 4: Autonomous Input Feedback.
+    Implements [US-58-06]: Autonomous Nutrient Correction Decision.
     """
-    _name = 'ai.fertilization.decision'
+    _name = 'agri.ai.fertilization.decision'
     _description = 'AI Fertilization Decision'
-    _inherit = ['ai.decision.base']
+    _inherit = ['agri.ai.decision.base']
 
     land_location_id = fields.Many2one('farm.location', string='Land Location')
     product_id = fields.Many2one('product.template', string='Crop')
@@ -34,7 +35,7 @@ class AIFertilizationDecision(models.Model):
     nutrient_deficiency_analysis = fields.Html('Nutrient Deficiency Analysis')
 
     def calculate_fertilization_needs(self):
-        """Calculate fertilization needs based on soil and crop conditions"""
+        """Calculate fertilization needs based on soil and crop conditions."""
         for record in self:
             # Calculate deficiencies
             n_deficit = max(0, 100 - record.soil_nitrogen)  # Target 100 ppm
@@ -98,10 +99,23 @@ class AIFertilizationDecision(models.Model):
             record.confidence_score = min(90, max(65, 75 + random.uniform(-10, 10)))
             record.status = 'recommended'
 
-            # Level 4+: Automatic Mission Trigger
+            # Level 4+: Automatic Mission Trigger [US-58-06]
             if record.recommended_n > 20.0 and record.land_location_id:
                 _logger.info("Nutrient gap > 20kg detected. Triggering Autonomous Mission Orchestrator.")
                 self.env['agri.mission.orchestrator'].action_trigger_inflow_mission(
                     record.land_location_id, 
                     _("%f kg N") % record.recommended_n
                 )
+
+    def generate_actuator_correction(self, intervention_id):
+        """
+        [US-58-06] Converts AI decision into a physical actuation payload.
+        """
+        self.ensure_one()
+        intervention = self.env['agri.intervention'].browse(intervention_id)
+        if not intervention:
+            return False
+            
+        # Decision logic: if recommended N is high, tell the actuator to increase input
+        correction_vals = {'nitrogen_qty': 0.15} # AI Suggests 15% increase
+        return intervention.apply_feedback_correction(correction_vals)

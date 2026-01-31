@@ -51,7 +51,7 @@ class StockPicking(models.Model):
         res = super(StockPicking, self).get_formview_action(access_uid=access_uid)
 
         # Use the centralized redirection utility from farm_isl
-        redirector = self.env['isl.model.redirector']
+        redirector = self.env['agri.isl.model.redirector']
         isl_record = redirector.get_isl_record('stock.picking', self.id)
 
         if isl_record:

@@ -7,18 +7,18 @@ import logging
 import json
 from datetime import datetime, timedelta
 import base64
-from .ai_vision_base import AIVisionBase
+from .ai_vision_base import AgriAiVisionBase
 
 _logger = logging.getLogger(__name__)
 
-class AIImageAnalysisPrediction(AIVisionBase):
+class AgriAiImageAnalysisPrediction(AgriAiVisionBase):
     """
     AI model for image analysis and predictive analytics
     Implements US-28-03: 作物生长监测与产量预测
     """
-    _name = 'ai.image.analysis.prediction'
+    _name = 'agri.ai.image.analysis.prediction'
     _description = 'AI Image Analysis Prediction'
-    _inherit = ['ai.vision.base']
+    _inherit = ['agri.ai.vision.base']
 
     crop_id = fields.Many2one('product.template', string='Crop Type', domain=[('type', '=', 'product')])
     growth_stage = fields.Selection([

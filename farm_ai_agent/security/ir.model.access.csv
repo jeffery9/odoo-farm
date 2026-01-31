@@ -1,8 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ai_coordination_layer,access_ai_coordination_layer,model_ai_coordination_layer,base.group_user,1,1,1,1
-access_ai_agent_workflow,access_ai_agent_workflow,model_ai_agent_workflow,base.group_user,1,1,1,1
-access_ai_agent_workflow_step,access_ai_agent_workflow_step,model_ai_agent_workflow_step,base.group_user,1,1,1,1
-access_ai_decision_engine,access_ai_decision_engine,model_ai_decision_engine,base.group_user,1,1,1,1
+access_ai_coordination_layer,access_ai_coordination_layer,model_agri_ai_coordination_layer,base.group_user,1,1,1,1
+access_ai_agent_workflow,access_ai_agent_workflow,model_agri_ai_agent_workflow,base.group_user,1,1,1,1
+access_ai_agent_workflow_step,access_ai_agent_workflow_step,model_agri_ai_agent_workflow_step,base.group_user,1,1,1,1
+access_ai_decision_engine,access_ai_decision_engine,model_agri_ai_decision_engine,base.group_user,1,1,1,1
 access_ai_decision_context,access_ai_decision_context,model_ai_decision_context,base.group_user,1,1,1,1
 access_ai_decision_rule,access_ai_decision_rule,model_ai_decision_rule,base.group_user,1,1,1,1
 access_ai_decision_workflow,access_ai_decision_workflow,model_ai_decision_workflow,base.group_user,1,1,1,1

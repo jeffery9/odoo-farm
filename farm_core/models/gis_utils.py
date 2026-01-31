@@ -68,7 +68,7 @@ class GISCoordinateUtils(models.AbstractModel):
         """
         try:
             points = [tuple(map(float, p.split(','))) for p in coordinates_str.split(';') if ',' in p]
-        except:
+        except (ValueError, AttributeError):
             return False
 
         n = len(points)

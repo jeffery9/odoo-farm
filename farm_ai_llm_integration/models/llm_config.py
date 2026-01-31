@@ -8,17 +8,17 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class LLMConfiguration(models.Model):
+class AgriAiLlmConfiguration(models.Model):
     """
     Configuration for LLM providers - implements the AI Configuration interface
     """
-    _name = 'llm.configuration'
+    _name = 'agri.ai.llm.configuration'
     _description = 'LLM Provider Configuration'
     # Use delegation inheritance to properly link to the base interface
-    _inherits = {'ai.configuration': 'ai_config_id'}
+    _inherits = {'agri.ai.configuration': 'ai_config_id'}
 
-    # Foreign key to the base ai.configuration
-    ai_config_id = fields.Many2one('ai.configuration', string='AI Configuration', required=True, ondelete='cascade', auto_join=True)
+    # Foreign key to the base agri.ai.configuration
+    ai_config_id = fields.Many2one('agri.ai.configuration', string='AI Configuration', required=True, ondelete='cascade', auto_join=True)
 
     # Provider-specific fields (in addition to inherited ai.configuration fields)
     provider = fields.Selection([
@@ -58,8 +58,8 @@ class LLMConfiguration(models.Model):
         Test the LLM service connection - implementation of abstract method from ai.configuration
         """
         try:
-            # Try a simple test using llm.service
-            llm_service = self.env['llm.service'].sudo().search([('config_id', '=', self.id)], limit=1)
+            # Try a simple test using agri.ai.llm.service
+            llm_service = self.env['agri.ai.llm.service'].sudo().search([('config_id', '=', self.id)], limit=1)
             if llm_service:
                 # Test with a simple prompt
                 result = llm_service.call_llm("Say 'connection test' in one word", {})
@@ -71,7 +71,7 @@ class LLMConfiguration(models.Model):
                     return False
             else:
                 # If no service exists, create a temporary one for testing
-                service = self.env['llm.service'].sudo().create({
+                service = self.env['agri.ai.llm.service'].sudo().create({
                     'name': f'Test Service for {self.name}',
                     'config_id': self.id,
                 })

@@ -1,7 +1,12 @@
+# -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 
-class FarmVraStrategy(models.Model):
-    _name = 'farm.vra.strategy'
+class AgriInterventionVraStrategy(models.Model):
+    """
+    VRA Decision Strategy Standard [Refactored to Agri Domain]
+    Refactored from farm.vra.strategy with 100% logic retention.
+    """
+    _name = 'agri.intervention.vra.strategy'
     _description = 'VRA Decision Strategy'
 
     name = fields.Char("Strategy Name", required=True)
@@ -20,15 +25,19 @@ class FarmVraStrategy(models.Model):
     low_multiplier = fields.Float("Weak Area Multiplier", default=1.3)
     high_multiplier = fields.Float("Strong Area Multiplier", default=0.8)
 
-class FarmVRAPrescription(models.Model):
-    _name = 'farm.vra.prescription'
+class AgriInterventionVraPrescription(models.Model):
+    """
+    Variable Rate Prescription Standard [Refactored to Agri Domain]
+    Refactored from farm.vra.prescription with 100% logic retention.
+    """
+    _name = 'agri.intervention.vra.prescription'
     _description = 'Variable Rate Prescription'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'agri.geospatial.mixin']
 
     name = fields.Char("Prescription Ref", required=True, copy=False, readonly=True, default=lambda self: _('New'))
     location_id = fields.Many2one('farm.location', string="Target Parcel", required=True, domain=[('is_land_parcel', '=', True)])
     product_id = fields.Many2one('product.template', string="Input Material", required=True)
-    strategy_id = fields.Many2one('farm.vra.strategy', string="VRA Strategy", required=True)
+    strategy_id = fields.Many2one('agri.intervention.vra.strategy', string="VRA Strategy", required=True)
     
     target_type = fields.Selection([
         ('fertilizer', 'Fertilizer'),
@@ -38,7 +47,7 @@ class FarmVRAPrescription(models.Model):
     
     base_rate = fields.Float("Base Rate (kg/mu)", required=True, default=10.0)
     
-    line_ids = fields.One2many('farm.vra.prescription.line', 'prescription_id', string="Prescription Grid")
+    line_ids = fields.One2many('agri.intervention.vra.prescription.line', 'prescription_id', string="Prescription Grid")
     state = fields.Selection([
         ('draft', 'Draft'),
         ('generated', 'Grid Generated'),
@@ -50,8 +59,8 @@ class FarmVRAPrescription(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             if vals.get('name', _('New')) == _('New'):
-                vals['name'] = self.env['ir.sequence'].next_by_code('farm.vra.prescription') or _('VRA-NEW')
-        return super().create(vals_list)
+                vals['name'] = self.env['ir.sequence'].next_by_code('agri.intervention.vra.prescription') or _('VRA-NEW')
+        return super(AgriInterventionVraPrescription, self).create(vals_list)
 
     def action_generate_prescription_map(self):
         """
@@ -59,7 +68,7 @@ class FarmVRAPrescription(models.Model):
         """
         for rec in self:
             if not rec.location_id.grid_cell_ids:
-                rec.location_id.action_generate_grid()
+                rec.location_id.action_generate_precision_grid() # Updated to domain method
             
             rec.line_ids.unlink()
             lines = []
@@ -104,12 +113,13 @@ class FarmVRAPrescription(models.Model):
         self.state = 'exported'
         return True
 
-class FarmVRAPrescriptionLine(models.Model):
-    _name = 'farm.vra.prescription.line'
+class AgriInterventionVraPrescriptionLine(models.Model):
+    """VRA Grid Rate [Refactored to Agri Domain]"""
+    _name = 'agri.intervention.vra.prescription.line'
     _description = 'VRA Grid Rate'
 
-    prescription_id = fields.Many2one('farm.vra.prescription', ondelete='cascade')
-    grid_cell_id = fields.Many2one('farm.land.grid.cell', string="Grid Cell", required=True)
+    prescription_id = fields.Many2one('agri.intervention.vra.prescription', ondelete='cascade')
+    grid_cell_id = fields.Many2one('agri.geospatial.grid.cell', string="Grid Cell", required=True)
     target_rate = fields.Float("Target Rate", digits=(10, 3))
     uom_id = fields.Many2one('uom.uom', string="Unit")
     actual_rate = fields.Float("Actual Rate Applied", digits=(10, 3))

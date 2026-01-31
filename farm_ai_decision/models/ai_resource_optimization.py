@@ -10,14 +10,14 @@ import random
 
 _logger = logging.getLogger(__name__)
 
-class AIResourceOptimization(models.Model):
+class AgriAiResourceOptimization(models.Model):
     """
     AI model for resource optimization
     Implements US-58-11: Agri-input intelligent recommendation
     """
-    _name = 'ai.resource.optimization'
+    _name = 'agri.ai.resource.optimization'
     _description = 'AI Resource Optimization'
-    _inherit = ['ai.decision.base']
+    _inherit = ['agri.ai.decision.base']
 
     resource_type = fields.Selection([
         ('labor', 'Labor'),

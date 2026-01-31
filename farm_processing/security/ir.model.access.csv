@@ -1,4 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agri_allergen,agri.allergen,model_agri_allergen,base.group_user,1,1,1,1
 access_storage_env_user,storage.env.user,model_farm_storage_env,farm_core.group_farm_user,1,1,1,1
 access_processing_waste_user,processing.waste.user,model_farm_processing_waste,farm_core.group_farm_user,1,1,1,1
 access_farm_package_level_user,farm.package.level,model_farm_package_level,base.group_user,1,1,1,1
@@ -11,3 +12,7 @@ access_farm_pharma_bom,farm.pharma.bom,model_farm_pharma_bom,,1,1,1,1
 access_farm_pharma_production,farm.pharma.production,model_farm_pharma_production,,1,1,1,1
 access_farm_chemical_bom,farm.chemical.bom,model_farm_chemical_bom,,1,1,1,1
 access_farm_chemical_production,farm.chemical.production,model_farm_chemical_production,,1,1,1,1
+access_agri_health_schedule,agri.health.schedule,model_agri_health_schedule,base.group_user,1,1,1,1
+access_agri_stock_lot_health,agri.stock.lot.health,model_agri_stock_lot_health,base.group_user,1,1,1,1
+access_farm_health_schedule,farm.health.schedule,model_farm_health_schedule,farm_core.group_farm_worker,1,1,1,1
+access_farm_stock_lot_health,farm.stock.lot.health,model_farm_stock_lot_health,farm_core.group_farm_worker,1,1,1,1

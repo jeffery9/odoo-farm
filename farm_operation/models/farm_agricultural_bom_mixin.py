@@ -1,61 +1,41 @@
-from odoo import models, fields, api
+from odoo import models
 
 
-class FarmAgriculturalBomMixin(models.AbstractModel):
+class FarmAgriculturalBomMixin(models.Model):
     """
-    Abstract base model for agricultural BOM functionality.
-    This mixin provides shared logic across different agricultural BOM implementations.
+    Farm-specific extension of the agricultural BOM mixin.
+    This ensures backward compatibility while using the new agri.* namespace.
     """
     _name = 'farm.agricultural.bom.mixin'
-    _description = 'Farm Agricultural BOM Shared Logic'
+    _description = 'Farm Agricultural BOM Shared Logic (Deprecated - Use agri.bom.mixin)'
+    _inherit = 'agri.bom.mixin'
 
-    # Ekylibre Mapping: Recipe Classification
-    agri_activity_type = fields.Selection([
-        ('feed', 'Feed Formula'),
-        ('fertilizer', 'Fertilizer Mix'),
-        ('planting', 'Planting Scheme'),
-        ('protection', 'Protection Mix')
-    ], string="Agri Activity Type", help="Classify BOM as an agricultural recipe.")
-
-    application_stage = fields.Selection([
-        ('seedling', 'Seedling/Nursery'),
-        ('growing', 'Growing'),
-        ('harvest', 'Harvest'),
-        ('finishing', 'Finishing')
-    ], string="Application Stage")
-
-    # Fields for BOM lines (for use in the mixin context)
-    def _get_agri_bom_line_defaults(self):
-        """Get default values for agricultural BOM lines"""
-        return {
-            'dilution_ratio': 0.0,
-            'feeding_ratio': 0.0,
-        }
+    def _register_hook(self):
+        """Display deprecation warning when module is installed."""
+        import logging
+        _logger = logging.getLogger(__name__)
+        _logger.warning(
+            "farm.agricultural.bom.mixin is deprecated. "
+            "Please update your code to use agri.bom.mixin instead."
+        )
+        return super()._register_hook()
 
 
-class FarmAgriculturalBomLineMixin(models.AbstractModel):
+class FarmAgriculturalBomLineMixin(models.Model):
     """
-    Abstract base model for agricultural BOM line functionality.
+    Farm-specific extension of the agricultural BOM line mixin.
+    This ensures backward compatibility while using the new agri.* namespace.
     """
     _name = 'farm.agricultural.bom.line.mixin'
-    _description = 'Farm Agricultural BOM Line Shared Logic'
+    _description = 'Farm Agricultural BOM Line Shared Logic (Deprecated - Use agri.bom.line.mixin)'
+    _inherit = 'agri.bom.line.mixin'
 
-    # Dilution ratio for liquid applications
-    dilution_ratio = fields.Float(
-        "Dilution Ratio (1:N)",
-        default=0.0,
-        help="If set, the component quantity will be calculated as (Finished Qty / Ratio). E.g. 1:500."
-    )
-
-    # Feeding ratio for livestock applications
-    feeding_ratio = fields.Float(
-        "Feeding Ratio (%)",
-        default=0.0,
-        help="Percentage of total biomass (Count * Avg Weight) for daily feeding."
-    )
-
-    @api.onchange('dilution_ratio', 'feeding_ratio')
-    def _onchange_agricultural_ratios(self):
-        """Update based on agricultural ratios"""
-        # Implementation would adjust quantities based on ratios
-        pass
+    def _register_hook(self):
+        """Display deprecation warning when module is installed."""
+        import logging
+        _logger = logging.getLogger(__name__)
+        _logger.warning(
+            "farm.agricultural.bom.line.mixin is deprecated. "
+            "Please update your code to use agri.bom.line.mixin instead."
+        )
+        return super()._register_hook()

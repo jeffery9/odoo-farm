@@ -5,256 +5,52 @@ from datetime import datetime, timedelta
 
 class LandCropRotationHistory(models.Model):
     """
-    US-01-09: 土地健康与轮作档案 (Land Health & Crop Rotation Records)
-    Model to track crop rotation history for land parcels
+    Farm-specific extension of the agricultural land crop rotation history model.
+    This ensures backward compatibility while using the new agri.* namespace.
     """
     _name = 'farm.land.crop.rotation.history'
-    _description = 'Land Crop Rotation History'
-    _order = 'planting_date desc'
+    _description = 'Land Crop Rotation History (Deprecated - Use agri.land.crop.rotation.history)'
+    _inherit = 'agri.land.crop.rotation.history'
 
-    name = fields.Char('Rotation Record', required=True)
-    land_parcel_id = fields.Many2one('farm.location', string='Land Parcel', required=True)
-    product_id = fields.Many2one('product.template', string='Crop Planted', required=True)
-    planting_date = fields.Date('Planting Date', required=True)
-    harvest_date = fields.Date('Harvest Date')
-    yield_amount = fields.Float('Yield Amount')
-    notes = fields.Text('Notes')
-    rotation_date = fields.Date('Rotation Date', default=fields.Date.context_today, required=True)
-    rotation_sequence = fields.Integer('Rotation Sequence', help='Position in the rotation cycle')
-
-    # Continuous cropping obstacle risk assessment (from farm_core implementation)
-    continuous_cropping_risk = fields.Float("Continuous Cropping Risk Score",
-                                           help="Risk score based on crop type and previous planting history")
-    continuous_cropping_warning = fields.Boolean("Continuous Cropping Warning",
-                                                 compute='_compute_continuous_cropping_warning',
-                                                 store=True)
-    warning_reason = fields.Char("Warning Reason", compute='_compute_continuous_cropping_warning', store=True)
-
-    state = fields.Selection([
-        ('planted', 'Planted'),
-        ('harvested', 'Harvested'),
-        ('archived', 'Archived')
-    ], string="Status", default='planted')
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        records = []
-        for vals in vals_list:
-            if vals.get('name', _('New')) == _('New'):
-                vals['name'] = self.env['ir.sequence'].next_by_code('farm.land.crop.rotation.history') or _('CRH')
-
-            # Check for continuous cropping risk during creation
-            if vals.get('land_parcel_id') and vals.get('product_id'):
-                land_parcel_id = self.env['farm.location'].browse(vals['land_parcel_id'])
-                product_id = self.env['product.template'].browse(vals['product_id'])
-                planting_date = vals.get('planting_date', fields.Date.today())
-
-                # Call the risk check method to populate values
-                risk_info = self.check_continuous_cropping_risk(land_parcel_id.id, product_id.id, planting_date)
-                if risk_info['has_risk']:
-                    vals['continuous_cropping_warning'] = True
-                    vals['continuous_cropping_risk'] = risk_info['risk_level']
-                    vals['warning_reason'] = risk_info['message']
-
-            records.append(super().create(vals))
-        return records[0] if len(records) == 1 else records
-
-    @api.depends('product_id', 'land_parcel_id', 'planting_date')
-    def _compute_continuous_cropping_warning(self):
-        """Compute warning for continuous cropping based on crop type and location history"""
-        for record in self:
-            warning = False
-            reason = ""
-
-            if record.product_id and record.land_parcel_id and record.planting_date:
-                # Check if same crop was planted in last 3 years in same location
-                three_years_ago = record.planting_date.replace(year=record.planting_date.year - 3)
-
-                previous_plantings = self.search([
-                    ('land_parcel_id', '=', record.land_parcel_id.id),
-                    ('product_id', '=', record.product_id.id),
-                    ('planting_date', '>=', three_years_ago),
-                    ('id', '!=', record.id),  # Exclude current record
-                    ('state', '!=', 'archived')
-                ])
-
-                if len(previous_plantings) > 0:
-                    # Calculate risk based on frequency
-                    risk_score = len(previous_plantings) * 20  # 20 points per previous planting
-                    record.continuous_cropping_risk = min(100, risk_score)
-
-                    # Check crop family for more sophisticated risk assessment
-                    crop_family = record.product_id.categ_id.name or "Unknown"
-                    if crop_family in ['Solanaceae', 'Legumes', 'Brassicas']:  # Common susceptible families
-                        risk_score += 10
-                        record.continuous_cropping_risk = min(100, risk_score)
-
-                    warning = True
-                    reason = f"Same crop '{record.product_id.display_name}' was previously planted in this location within 3 years ({len(previous_plantings)} times)"
-                else:
-                    record.continuous_cropping_risk = 0.0
-
-            else:
-                record.continuous_cropping_risk = 0.0
-
-            record.continuous_cropping_warning = warning
-            record.warning_reason = reason if warning else ""
-
-    @api.model
-    def check_continuous_cropping_risk(self, land_parcel_id, product_id, planting_date=None):
-        """
-        Check if planting a specific crop in a location poses a continuous cropping risk
-        """
-        if not planting_date:
-            planting_date = fields.Date.today()
-
-        # Check if same crop was planted in last 3 years in same location
-        three_years_ago = planting_date.replace(year=planting_date.year - 3)
-
-        previous_plantings = self.search([
-            ('land_parcel_id', '=', land_parcel_id),
-            ('product_id', '=', product_id),
-            ('planting_date', '>=', three_years_ago),
-            ('state', '!=', 'archived')
-        ])
-
-        if len(previous_plantings) > 0:
-            return {
-                'has_risk': True,
-                'risk_level': min(len(previous_plantings) * 20, 100),
-                'previous_plantings': len(previous_plantings),
-                'message': f"Warning: Same crop '{product_id.display_name if hasattr(product_id, 'display_name') else product_id}' was planted in this location {len(previous_plantings)} time(s) in the last 3 years, which may cause continuous cropping obstacles."
-            }
-        else:
-            return {
-                'has_risk': False,
-                'risk_level': 0,
-                'previous_plantings': 0,
-                'message': "No continuous cropping risks detected for this crop in this location."
-            }
+    def _register_hook(self):
+        """Display deprecation warning when module is installed."""
+        import logging
+        _logger = logging.getLogger(__name__)
+        _logger.warning(
+            "farm.land.crop.rotation.history is deprecated. "
+            "Please update your code to use agri.land.crop.rotation.history instead."
+        )
+        return super()._register_hook()
 
 
 class LandHealthRecord(models.Model):
     """
-    US-01-09: 土地健康与轮作档案 (Land Health & Crop Rotation Records)
-    Model to track land health metrics and soil analysis
+    Farm-specific extension of the agricultural land health record model.
+    This ensures backward compatibility while using the new agri.* namespace.
     """
     _name = 'farm.land.health.record'
-    _description = 'Land Health Record'
-    _order = 'analysis_date desc'
+    _description = 'Land Health Record (Deprecated - Use agri.land.health.record)'
+    _inherit = 'agri.land.health.record'
 
-    name = fields.Char('Health Record', required=True)
-    land_parcel_id = fields.Many2one('farm.location', string='Land Parcel', required=True)
-    analysis_date = fields.Date('Analysis Date', default=fields.Date.context_today, required=True)
-    n_level = fields.Float('Nitrogen Level (N)')
-    p_level = fields.Float('Phosphorus Level (P)')
-    k_level = fields.Float('Potassium Level (K)')
-    ph_level = fields.Float('pH Level')
-    organic_matter = fields.Float('Organic Matter (%)')
-    soil_texture = fields.Char('Soil Texture')
-    moisture_level = fields.Float('Moisture Level (%)')
-    compaction_level = fields.Float('Compaction Level (Bar)')
-    salinity_level = fields.Float('Salinity Level (dS/m)')
-    soil_temperature = fields.Float('Soil Temperature (°C)')
-    pest_disease_incidence = fields.Text('Pest/Disease Incidence')
-    soil_health_score = fields.Float('Soil Health Score (0-100)', compute='_compute_soil_health_score', store=True)
-    health_status = fields.Selection([
-        ('excellent', 'Excellent'),
-        ('good', 'Good'),
-        ('fair', 'Fair'),
-        ('poor', 'Poor'),
-        ('critical', 'Critical')
-    ], string='Health Status', compute='_compute_health_status', store=True)
-    recommendations = fields.Text('Recommendations')
-    next_analysis_date = fields.Date('Next Analysis Date')
-
-    @api.depends('n_level', 'p_level', 'k_level', 'ph_level', 'organic_matter', 'moisture_level')
-    def _compute_soil_health_score(self):
-        """Compute soil health score based on various parameters"""
-        for record in self:
-            score = 0.0
-
-            # Nitrogen level (optimal range 20-40 mg/kg)
-            if 20 <= record.n_level <= 40:
-                score += 15
-            elif 10 <= record.n_level <= 60:
-                score += 10
-            elif 5 <= record.n_level <= 80:
-                score += 5
-
-            # Phosphorus level (optimal range 15-25 mg/kg)
-            if 15 <= record.p_level <= 25:
-                score += 15
-            elif 10 <= record.p_level <= 30:
-                score += 10
-            elif 5 <= record.p_level <= 40:
-                score += 5
-
-            # Potassium level (optimal range 100-200 mg/kg)
-            if 100 <= record.k_level <= 200:
-                score += 15
-            elif 50 <= record.k_level <= 300:
-                score += 10
-            elif 25 <= record.k_level <= 400:
-                score += 5
-
-            # pH level (optimal range 6.0-7.0)
-            if 6.0 <= record.ph_level <= 7.0:
-                score += 15
-            elif 5.5 <= record.ph_level <= 7.5:
-                score += 10
-            elif 5.0 <= record.ph_level <= 8.0:
-                score += 5
-
-            # Organic matter (optimal range 3-6%)
-            if 3 <= record.organic_matter <= 6:
-                score += 15
-            elif 2 <= record.organic_matter <= 8:
-                score += 10
-            elif 1 <= record.organic_matter <= 10:
-                score += 5
-
-            # Moisture level (optimal range 20-30%)
-            if 20 <= record.moisture_level <= 30:
-                score += 10
-            elif 15 <= record.moisture_level <= 35:
-                score += 5
-
-            # Cap the score at 100
-            record.soil_health_score = min(100.0, score)
-
-    @api.depends('soil_health_score')
-    def _compute_health_status(self):
-        """Compute health status based on soil health score"""
-        for record in self:
-            if record.soil_health_score >= 80:
-                record.health_status = 'excellent'
-            elif record.soil_health_score >= 60:
-                record.health_status = 'good'
-            elif record.soil_health_score >= 40:
-                record.health_status = 'fair'
-            elif record.soil_health_score >= 20:
-                record.health_status = 'poor'
-            else:
-                record.health_status = 'critical'
-
-    @api.model
-    def schedule_next_analysis(self):
-        """Schedule the next analysis date based on current analysis"""
-        for record in self:
-            # Default to 6 months from current analysis
-            next_date = fields.Date.from_string(record.analysis_date) + timedelta(days=180)
-            record.next_analysis_date = next_date
+    def _register_hook(self):
+        """Display deprecation warning when module is installed."""
+        import logging
+        _logger = logging.getLogger(__name__)
+        _logger.warning(
+            "farm.land.health.record is deprecated. "
+            "Please update your code to use agri.land.health.record instead."
+        )
+        return super()._register_hook()
 
 
 class FarmLocation(models.Model):
-    _inherit = 'farm.location'  # Inherit from the core farm.location model instead of stock.location
+    _inherit = 'farm.location'  # Inherit from the core farm.location model
 
     # 土地承包权信息 [US-18-01]
     land_contract_no = fields.Char("Land Contract No.")
     contractor_id = fields.Many2one('res.partner', string="Contractor")
 
-    # Land Nature - keep the farm_land_mgmt specific values for compatibility but reference core values
+    # Land Nature - keep the farm_land_mgmt specific values for compatibility
     land_nature = fields.Selection(selection_add=[
         ('general_farmland', 'General Farmland'),
         ('permanent_basic_farmland', 'Permanent Basic Farmland'),
@@ -294,7 +90,7 @@ class FarmLocation(models.Model):
         for record in self:
             if record.crop_rotation_history:
                 current_rotation = max(record.crop_rotation_history, key=lambda r: r.planting_date or datetime.min.date())
-                record.current_crop_type = current_rotation.crop_type
+                record.current_crop_type = current_rotation.product_id.name if current_rotation.product_id else False
             else:
                 record.current_crop_type = False
 
@@ -316,7 +112,7 @@ class FarmLocation(models.Model):
                 latest_record = max(record.land_health_records, key=lambda r: r.analysis_date or datetime.min.date())
                 record.health_status = latest_record.health_status
             else:
-                record.health_status = 'unknown'
+                record.health_status = 'critical'
 
     @api.depends('crop_rotation_history')
     def _compute_rotation_risk(self):
@@ -324,29 +120,22 @@ class FarmLocation(models.Model):
         for record in self:
             risk_score = 0.0
             if record.crop_rotation_history:
-                # Check for consecutive planting of same crop type
                 sorted_rotations = sorted(record.crop_rotation_history, key=lambda r: r.planting_date or datetime.min.date())
-
                 if len(sorted_rotations) >= 2:
-                    # Look at the last few rotations to identify patterns
-                    recent_rotations = sorted_rotations[-5:]  # Last 5 rotations
-                    crop_types = [r.crop_type for r in recent_rotations if r.crop_type]
-
-                    if len(crop_types) >= 2:
-                        # Check if recent crops are the same (monoculture risk)
-                        if len(set(crop_types[-3:])) == 1:  # Same crop in last 3 rotations
-                            risk_score = 80.0  # High risk
-                        elif len(set(crop_types[-2:])) == 1:  # Same crop in last 2 rotations
-                            risk_score = 50.0  # Medium risk
+                    recent_rotations = sorted_rotations[-5:]
+                    product_ids = [r.product_id.id for r in recent_rotations if r.product_id]
+                    if len(product_ids) >= 2:
+                        if len(set(product_ids[-3:])) == 1:
+                            risk_score = 80.0
+                        elif len(set(product_ids[-2:])) == 1:
+                            risk_score = 50.0
                         else:
-                            # Check diversity in recent rotations
-                            unique_crops = len(set(crop_types))
-                            total_crops = len(crop_types)
-                            if unique_crops / total_crops > 0.7:  # High diversity
+                            unique_crops = len(set(product_ids))
+                            total_crops = len(product_ids)
+                            if unique_crops / total_crops > 0.7:
                                 risk_score = 20.0
                             else:
-                                risk_score = 40.0  # Medium risk
-
+                                risk_score = 40.0
             record.rotation_risk_score = risk_score
 
     def action_add_health_record(self):
@@ -391,11 +180,9 @@ class FarmLocation(models.Model):
     def _compute_rotation_info(self):
         """Compute rotation-related information"""
         for location in self:
-            # Get the most recent planting record
             recent_planting = self.env['farm.land.crop.rotation.history'].search([
                 ('land_parcel_id', '=', location.id)
             ], order='planting_date desc', limit=1)
-
             location.last_crop_planted = recent_planting.product_id if recent_planting else False
             location.last_planting_date = recent_planting.planting_date if recent_planting else False
             location.continuous_cropping_risk_alert = recent_planting.continuous_cropping_warning if recent_planting else False
@@ -474,44 +261,22 @@ class FarmLocation(models.Model):
     @api.constrains('land_nature', 'is_land_parcel')
     def _check_land_nature_validity(self):
         for record in self:
-            if record.is_land_parcel and record.land_nature == 'construction_land':
+            if hasattr(record, 'is_land_parcel') and record.is_land_parcel and record.land_nature == 'construction_land':
                 raise ValidationError(_("Land marked as 'Construction Land' cannot be a 'Land Parcel'."))
 
 class SoilAnalysis(models.Model):
     """
-    Soil Analysis Management - moved from farm_core for better responsibility alignment
-    US-01-09: Land Health and Crop Rotation Records - Heavy metals and nutrient tracking
+    DEPRECATED: Soil Analysis Management. [US-104-2026]
+    This model is maintained for backward compatibility.
+    Use agri.soil.analysis for new implementations.
     """
     _name = 'farm.soil.analysis'
-    _description = 'Soil Analysis Report'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _description = 'Soil Analysis Report (Deprecated - Use agri.soil.analysis)'
+    _inherit = ['agri.soil.analysis', 'mail.thread', 'mail.activity.mixin']
     _order = 'analysis_date desc'
 
-    name = fields.Char("Report Reference", required=True, default=lambda self: _('New'))
     location_id = fields.Many2one('farm.location', string="Land Parcel", required=True)
-    analysis_date = fields.Date("Analysis Date", default=fields.Date.today, required=True)
     laboratory_id = fields.Many2one('res.partner', string="Laboratory", domain=[('is_company', '=', True)])
-
-    # Nutrient indicators
-    ph_level = fields.Float("pH Level", digits=(10, 2))
-    organic_matter = fields.Float("Organic Matter (%)")
-    nitrogen_content = fields.Float("Nitrogen (mg/kg)")
-    phosphorus_content = fields.Float("Phosphorus (mg/kg)")
-    potassium_content = fields.Float("Potassium (mg/kg)")
-
-    # Heavy metals indicators (for US-01-09: Land Health and Crop Rotation Records)
-    lead_content = fields.Float("Lead (Pb) (mg/kg)")
-    cadmium_content = fields.Float("Cadmium (Cd) (mg/kg)")
-    mercury_content = fields.Float("Mercury (Hg) (mg/kg)")
-    arsenic_content = fields.Float("Arsenic (As) (mg/kg)")
-    chromium_content = fields.Float("Chromium (Cr) (mg/kg)")
-    copper_content = fields.Float("Copper (Cu) (mg/kg)")
-    zinc_content = fields.Float("Zinc (Zn) (mg/kg)")
-    nickel_content = fields.Float("Nickel (Ni) (mg/kg)")
-
-    # Trace elements
-    magnesium = fields.Float("Magnesium (mg/kg)")
-    calcium = fields.Float("Calcium (mg/kg)")
 
     # Recommendations
     recommendation = fields.Text("Fertilization Recommendations")
@@ -587,6 +352,16 @@ class SoilAnalysis(models.Model):
             trend_data['heavy_metals']['nickel'].append(analysis.nickel_content or 0.0)
 
         return trend_data
+
+    def _register_hook(self):
+        """Display deprecation warning when module is installed."""
+        import logging
+        _logger = logging.getLogger(__name__)
+        _logger.warning(
+            "farm.soil.analysis is deprecated. "
+            "Please update your code to use agri.soil.analysis instead."
+        )
+        return super()._register_hook()
 
 
 class ProductTemplate(models.Model):

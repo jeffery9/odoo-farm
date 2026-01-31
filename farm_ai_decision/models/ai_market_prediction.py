@@ -10,16 +10,16 @@ import random
 
 _logger = logging.getLogger(__name__)
 
-class AIMarketPrediction(models.Model):
+class AgriAiMarketPrediction(models.Model):
     """
     AI model for market price prediction
     Implements US-58-08: Agri-market intelligent prediction
     US-60-04: Revenue Management & Hedging
     US-60-05: Procurement Timing Prediction
     """
-    _name = 'ai.market.prediction'
+    _name = 'agri.ai.market.prediction'
     _description = 'AI Market Prediction'
-    _inherit = ['ai.decision.base']
+    _inherit = ['agri.ai.decision.base']
 
     prediction_type = fields.Selection([
         ('sales', 'Sales/Revenue Optimization'),

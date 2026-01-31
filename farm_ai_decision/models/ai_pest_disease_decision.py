@@ -10,16 +10,16 @@ import random
 
 _logger = logging.getLogger(__name__)
 
-class AIPestDiseaseDecision(models.Model):
+class AgriAiPestDiseaseDecision(models.Model):
     """
     AI model for pest and disease treatment decision making
     Implements decision support for pest and disease management
     """
-    _name = 'ai.pest.disease.decision'
+    _name = 'agri.ai.pest.disease.decision'
     _description = 'AI Pest and Disease Decision Support'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'ai.base.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'agri.ai.base.mixin']
 
-    pest_disease_detection_id = fields.Many2one('ai.pest.disease.detection', string='Original Detection')
+    pest_disease_detection_id = fields.Many2one('agri.ai.pest.disease.detection', string='Original Detection')
     product_id = fields.Many2one('product.template', string='Affected Crop')
     land_location_id = fields.Many2one('farm.location', string='Location')
     detection_date = fields.Datetime('Detection Date', default=fields.Datetime.now)

@@ -10,14 +10,14 @@ import random
 
 _logger = logging.getLogger(__name__)
 
-class AICropGrowthPrediction(models.Model):
+class AgriAiCropGrowthPrediction(models.Model):
     """
     AI model for crop growth prediction
     Implements US-58-04: Intelligent planting scheme recommendation
     """
-    _name = 'ai.crop.growth.prediction'
+    _name = 'agri.ai.crop.growth.prediction'
     _description = 'AI Crop Growth Prediction'
-    _inherit = ['ai.decision.base']
+    _inherit = ['agri.ai.decision.base']
 
     product_id = fields.Many2one('product.template', string='Crop Type')
     land_location_id = fields.Many2one('farm.location', string='Land Location')
@@ -33,8 +33,8 @@ class AICropGrowthPrediction(models.Model):
     def calculate_growth_prediction(self):
         """Calculate crop growth prediction based on various factors"""
         # Check if LLM integration is available
-        llm_service = self.env['llm.service'].search([('config_id.is_active', '=', True),
-                                                      ('config_id.is_default', '=', True)], limit=1)
+        llm_service = self.env['agri.ai.llm.service'].search([('config_id.is_active', '=', True),
+                                                              ('config_id.is_default', '=', True)], limit=1)
 
         for record in self:
             if llm_service:

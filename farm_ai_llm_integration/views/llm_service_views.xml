@@ -2,8 +2,8 @@
 <odoo>
     <!-- LLM Service Tree View -->
     <record id="view_llm_service_tree" model="ir.ui.view">
-        <field name="name">llm.service.tree</field>
-        <field name="model">llm.service</field>
+        <field name="name">agri.ai.llm.service.tree</field>
+        <field name="model">agri.ai.llm.service</field>
         <field name="arch" type="xml">
             <tree string="LLM Services">
                 <field name="name"/>
@@ -18,8 +18,8 @@
 
     <!-- LLM Service Form View -->
     <record id="view_llm_service_form" model="ir.ui.view">
-        <field name="name">llm.service.form</field>
-        <field name="model">llm.service</field>
+        <field name="name">agri.ai.llm.service.form</field>
+        <field name="model">agri.ai.llm.service</field>
         <field name="arch" type="xml">
             <form string="LLM Service">
                 <header>
@@ -65,7 +65,7 @@
     <!-- LLM Service Action -->
     <record id="action_llm_service" model="ir.actions.act_window">
         <field name="name">LLM Services</field>
-        <field name="res_model">llm.service</field>
+        <field name="res_model">agri.ai.llm.service</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
