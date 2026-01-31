@@ -11,32 +11,82 @@ class GeoSpatialMixin(models.AbstractModel):
     """
     Mixin for Grid-based spatial tracking.
     Level 1: Geo-grounding & Spatial Evidence.
+    Level 1+: Neighborhood Discovery Service. [US-70-2026]
     """
     _name = 'agri.geospatial.mixin'
     _description = 'Agricultural GeoSpatial Tracking Mixin'
 
-    geo_point = fields.Char(string="Geo Location (Point)", help="Format: LON,LAT")
-    geo_polygon = fields.Text(string="Geo Boundaries (Polygon)", help="Format: LON,LAT;LON,LAT...")
-    spatial_grid_id = fields.Char(string="Spatial Grid ID", compute="_compute_spatial_grid", store=True)
+    geo_point = fields.Char(
+        string="Geo Location (Point)",
+        help="Format: LON,LAT"
+    )
+    geo_polygon = fields.Text(
+        string="Geo Boundaries (Polygon)",
+        help="Format: LON,LAT;LON,LAT..."
+    )
+    spatial_grid_id = fields.Char(
+        string="Spatial Grid ID",
+        compute="_compute_spatial_grid",
+        index=True,
+        store=True
+    )
 
     @api.depends('geo_point')
     def _compute_spatial_grid(self):
+        """
+        Divide the earth into grids (~11m precision) for neighborhood discovery.
+        """
         for record in self:
             if record.geo_point:
                 try:
                     lon, lat = map(float, record.geo_point.split(','))
                     record.spatial_grid_id = f"G_{round(lon, 4)}_{round(lat, 4)}"
-                except:
+                except Exception:
                     record.spatial_grid_id = False
             else:
                 record.spatial_grid_id = False
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        """
+        Auto-register presence in the neighborhood registry on creation.
+        """
+        records = super(GeoSpatialMixin, self).create(vals_list)
+        for record in records:
+            if record.spatial_grid_id:
+                self.env['agri.neighborhood.registry'].register_presence(
+                    record._name, record.id, record.spatial_grid_id
+                )
+        return records
+
+    def write(self, vals):
+        """
+        Update registry presence if location or grid changes.
+        """
+        res = super(GeoSpatialMixin, self).write(vals)
+        if 'geo_point' in vals or 'spatial_grid_id' in vals:
+            for record in self:
+                if record.spatial_grid_id:
+                    self.env['agri.neighborhood.registry'].register_presence(
+                        record._name, record.id, record.spatial_grid_id
+                    )
+        return res
+
     def get_spatial_context(self):
+        """
+        Returns the environment data including neighborhood agents.
+        Connected to Registry [L1+].
+        """
         self.ensure_one()
+        neighbors = self.env['agri.neighborhood.registry'].search([
+            ('spatial_grid_id', '=', self.spatial_grid_id),
+            ('is_active', '=', True),
+            ('agent_id', '!=', f"{self._name}:{self.id}")
+        ])
         return {
             'grid_id': self.spatial_grid_id,
             'point': self.geo_point,
-            'neighborhood_agents': []
+            'neighborhood_agents': [n.agent_id for n in neighbors]
         }
 
 
@@ -44,31 +94,96 @@ class NutrientMixin(models.AbstractModel):
     """
     Mixin for Bio-mass Balance and Nutrient Tracking.
     Level 1: Qualitative Efficiency Standard.
+    Level 1+: Auto-correction logic.
     """
     _name = 'agri.nutrient.mixin'
     _description = 'Agricultural Nutrient & Mass Balance Mixin'
 
-    nitrogen_qty = fields.Float("Nitrogen (N)", digits=(12, 4))
-    phosphorus_qty = fields.Float("Phosphorus (P)", digits=(12, 4))
-    potassium_qty = fields.Float("Potassium (K)", digits=(12, 4))
-    carbon_content = fields.Float("Organic Carbon", digits=(12, 4))
-    water_footprint = fields.Float("Water Footprint (L)", digits=(12, 2))
+    nitrogen_qty = fields.Float(
+        string="Nitrogen (N)",
+        digits=(12, 4),
+        help="Nitrogen content in kg per unit."
+    )
+    phosphorus_qty = fields.Float(
+        string="Phosphorus (P)",
+        digits=(12, 4),
+        help="Phosphorus content in kg per unit."
+    )
+    potassium_qty = fields.Float(
+        string="Potassium (K)",
+        digits=(12, 4),
+        help="Potassium content in kg per unit."
+    )
+    carbon_content = fields.Float(
+        string="Organic Carbon",
+        digits=(12, 4)
+    )
+    water_footprint = fields.Float(
+        string="Water Footprint (L)",
+        digits=(12, 2)
+    )
 
     def calculate_mass_balance(self, inputs, outputs):
+        """
+        Calculate the efficiency of nutrient conversion.
+        Bio-efficiency = Output Nutrient / Input Nutrient.
+        """
         total_in_n = sum(i.nitrogen_qty for i in inputs)
         total_out_n = sum(o.nitrogen_qty for o in outputs)
+        
         efficiency = (total_out_n / total_in_n) if total_in_n > 0 else 0.0
+        
         return {
             'n_efficiency': efficiency,
             'n_loss': total_in_n - total_out_n,
             'is_sustainable': efficiency > 0.7
         }
 
+    def suggest_nutrient_correction(self, sensor_data):
+        """
+        Feedback Loop: Sensor -> Suggestion.
+        sensor_data example: {'n_soil_level': 20.0, 'moisture': 0.3}
+        """
+        self.ensure_one()
+        current_n = sensor_data.get('n_soil_level', 0.0)
+        target_n = self.nitrogen_qty
+        
+        # If soil nitrogen is higher than 80% of target, reduce input by 20%
+        if current_n > target_n * 0.8:
+            return {'nitrogen_qty': -0.2}
+        return {}
+
     @api.constrains('nitrogen_qty', 'phosphorus_qty', 'potassium_qty')
     def _check_nutrient_sanity(self):
         for record in self:
             if any(val < 0 for val in [record.nitrogen_qty, record.phosphorus_qty, record.potassium_qty]):
                 raise ValidationError(_("Nutrient content cannot be negative. Matter cannot be created from nothing."))
+
+
+class ActuatorMixin(models.AbstractModel):
+    """
+    Mixin for Physical Actuation and Feedback Execution. [Level 1+]
+    Transforms logical suggestions into physical business record updates.
+    """
+    _name = 'agri.actuator.mixin'
+    _description = 'Agricultural Feedback Actuator Mixin'
+
+    def apply_feedback_correction(self, correction_vals):
+        """
+        Executes the correction. 
+        Example: If correction_vals is {'nitrogen_qty': -0.2}, 
+        it finds the corresponding Stock Moves and reduces quantity.
+        """
+        self.ensure_one()
+        _logger.info("Applying feedback actuation for %s: %s", self._name, correction_vals)
+        
+        # Implementation depends on the base model (e.g., mrp.production)
+        if hasattr(self, 'move_raw_ids'):
+            for move in getattr(self, 'move_raw_ids'):
+                if 'nitrogen' in move.product_id.name.lower():
+                    ratio = 1.0 + correction_vals.get('nitrogen_qty', 0.0)
+                    move.write({'product_uom_qty': move.product_uom_qty * ratio})
+        return True
 
 
 class EmbeddingMixin(models.AbstractModel):
@@ -79,7 +194,10 @@ class EmbeddingMixin(models.AbstractModel):
     _name = 'agri.embedding.mixin'
     _description = 'Agricultural Embedding Mixin'
 
-    embedding_vector = fields.Binary("Vector Data", help="Serialized embedding vector.")
+    embedding_vector = fields.Binary(
+        string="Vector Data",
+        help="Serialized embedding vector."
+    )
     embedding_last_updated = fields.Datetime("Vector Updated At")
     is_embedded = fields.Boolean("Has Vector Index", default=False)
 
@@ -93,7 +211,10 @@ class EmbeddingMixin(models.AbstractModel):
         """
         Trigger the embedding generation via llm_service. [US-59-08]
         """
-        llm_service = self.env['llm.service'].search([('config_id.is_active', '=', True)], limit=1)
+        llm_service = self.env['llm.service'].search([
+            ('config_id.is_active', '=', True)
+        ], limit=1)
+        
         if not llm_service:
             _logger.warning("No active LLM service found for embedding.")
             return False
@@ -106,7 +227,6 @@ class EmbeddingMixin(models.AbstractModel):
             _logger.info("Syncing embedding for %s:%s", record._name, record.id)
             vector = llm_service.get_embeddings(content)
             if vector:
-                # Store vector as base64 encoded JSON for portability
                 record.write({
                     'embedding_vector': base64.b64encode(json.dumps(vector).encode()),
                     'is_embedded': True,
@@ -142,6 +262,7 @@ class ClearingEngineMixin(models.AbstractModel):
     def generate_quality_fingerprint(self):
         """
         Gathers all L1/L2 data into a single, verifiable JSON bundle.
+        Used as proof for inter-farm value clearing.
         """
         self.ensure_one()
         fingerprint = {
@@ -159,17 +280,46 @@ class ClearingEngineMixin(models.AbstractModel):
         self.quality_fingerprint = json.dumps(fingerprint, indent=2)
         return fingerprint
 
+    def apply_slashing(self, reason, penalty_score=50):
+        """
+        Level 2+: Slashing Mechanism.
+        Reduces the reputation credit score of the related entity.
+        """
+        self.ensure_one()
+        _logger.warning("Slashing applied to %s: %s (Penalty: -%d)", self.name, reason, penalty_score)
+        
+        # Logic to find the responsible Partner or User
+        target = False
+        if hasattr(self, 'user_id') and self.user_id.partner_id:
+            target = self.user_id.partner_id
+        elif hasattr(self, 'partner_id') and self.partner_id:
+            target = self.partner_id
+            
+        if target and hasattr(target, 'credit_score'):
+            new_score = max(0, target.credit_score - penalty_score)
+            target.write({'credit_score': new_score})
+            
+            # Post notice to Chatter
+            if hasattr(self, 'message_post'):
+                self.message_post(body=_("<b>Reputation Slashing:</b> -%d credits for fraudulent evidence.") % penalty_score)
+        return True
+
     def action_finalize_clearing(self):
         """
         Executes the final value clearing.
+        Converts ESG scores and nutrient efficiency into impact credits.
         """
         for record in self:
             esg_score = getattr(record, 'esg_score', 100)
             carbon = getattr(record, 'carbon_intensity', 0)
             
+            # Simple incentivization logic
             bonus = (esg_score / 100.0) * (10.0 / (carbon + 1.0))
-            record.impact_credits = bonus
+            
+            record.write({
+                'impact_credits': bonus,
+                'clearing_status': 'calculated'
+            })
             record.generate_quality_fingerprint()
-            record.clearing_status = 'calculated'
             
             _logger.info("Value Clearing Finalized for %s: %f credits", record.id, bonus)
