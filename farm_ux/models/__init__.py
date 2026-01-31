@@ -1,4 +1,5 @@
 from . import term_mapping
+from . import agri_view_mixin
 from . import form_layout_template
 from . import visual_status_indicator
 from . import workspace_customization
