@@ -13,6 +13,7 @@ class AgriIntervention(models.Model):
         'agri.sustainability.mixin', # Level 0: Value Standard
         'agri.geospatial.mixin',     # Level 1: Spatial Grid
         'agri.nutrient.mixin',       # Level 1: Mass Balance
+        'agri.actuator.mixin',       # Level 1+: Physical Actuation
         'agri.evidence.mixin',       # Level 2: Audit
         'agri.clearing.mixin',       # Level 3: Clearing
     ]
