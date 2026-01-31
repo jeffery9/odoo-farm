@@ -19,6 +19,7 @@ The Farm Management System is a comprehensive Odoo-based platform designed to ha
 ## Documentation Structure
 
 ### Core Concepts
+- [2026 Agri-Community AI White Paper](business/2026_AGRI_COMMUNITY_AI_WHITE_PAPER.md) - Strategic vision for de-industrialized autonomous coordination
 - [Model Summary](model_summary.md) - Comprehensive list of all models in the system
 - [System Architecture](system_architecture.md) - High-level overview of system components
 - [Configuration Guide](configuration_guide.md) - How to set up and configure the system
@@ -34,6 +35,7 @@ The Farm Management System is a comprehensive Odoo-based platform designed to ha
 - **Cooperative**: Multi-farm operations and cooperatives
 
 ### Technical Reference
+- [2026 Agri-Community AI Technical Spec](technical/2026_AGRI_COMMUNITY_AI_TECHNICAL_SPEC.md) - Specification for A2A protocols, Mixin architecture, and PostGIS logic
 - API Documentation
 - Integration Guides
 - Customization Examples

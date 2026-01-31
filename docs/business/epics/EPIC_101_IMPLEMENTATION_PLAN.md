@@ -1,9 +1,10 @@
-# EPIC_101 企业可持续发展框架 - 实现规划
+# 企业可持续发展框架 - 实现规划 (Sustainability Framework Implementation Plan)
+*目标：实现 EPIC 101 "农业企业可持续发展与价值创造框架"，建立一个统一的可持续发展管理平台。*
 
 ## 1. 概述 (Overview)
 
 ### 1.1 目标
-实现EPIC_101 "农业企业可持续发展与价值创造框架"，建立一个统一的可持续发展管理平台，统筹经济、环境和社会责任三重目标。
+实现 EPIC 101 "农业企业可持续发展与价值创造框架"，建立一个统一的可持续发展管理平台，统筹经济、环境和社会责任三重目标。
 
 ### 1.2 业务价值
 - **经济价值**: 通过循环经济模式提升资源利用效率，降低运营成本
@@ -36,21 +37,34 @@
   - MetricCategory (指标分类)
 - **业务逻辑**: 指标计算、趋势分析、目标设定
 
-#### 2.2.2 循环经济价值评估模块 (Circular Economy Value Assessment)
-- **功能**: 量化评估循环利用和增值转化带来的综合价值
+#### 2.2.2 跨尺度循环经济价值评估模块 (Multi-scale Circular Value Assessment)
+- **功能**: 量化评估内部、跨场、空间及区域尺度的循环利用价值
 - **数据模型**:
-  - CircularFlow (循环流)
+  - CircularFlow (循环流 - 增加 source_entity_id, target_entity_id)
+  - CircularNode (循环节点 - 地理空间定义)
   - ValueAssessment (价值评估)
-  - EconomicImpact (经济影响)
-  - EnvironmentalImpact (环境影响)
-- **业务逻辑**: 价值计算、ROI分析、影响评估
+- **业务逻辑**: 
+  - 基于 PostGIS 的空间邻近寻找算法
+  - 跨组织调拨对账逻辑
+  - 区域宏观平衡计算
 
-#### 2.2.3 可持续发展看板模块 (Sustainability Dashboard)
-- **功能**: 三重底线综合仪表板，展示平衡性分析
+#### 2.2.3 多维可持续发展看板模块 (Multi-dimensional Sustainability Dashboard)
+- **功能**: 三重底线综合仪表板，支持按空间、组织、行政尺度下钻
 - **数据模型**:
   - SustainabilityReport (可持续性报告)
   - DashboardConfig (看板配置)
-- **业务逻辑**: 数据聚合、可视化展示、趋势预测
+- **业务逻辑**: 数据聚合（组织级/空间级/行政级）、可视化展示、趋势预测
+
+#### 2.2.4 自主智能体协同协议 (A2A Coordination Protocol)
+- **功能**: 实现 OpenClaw 风格的自主代理间资源撮合
+- **数据模型**:
+  - AIAgentCapability (代理能力集 - 遵循 Molthub 逻辑)
+  - AgentNegotiation (代理谈判记录)
+  - ResourceOffer (资源报价单 - 自动发布至 A2A 网络)
+- **业务逻辑**:
+  - 基于 LLM 的谈判策略生成
+  - 分布式信用评分系统
+  - 自动化交易契约生成逻辑 (Smart Contracts Lite)
 
 ## 3. 技术实现 (Technical Implementation)
 

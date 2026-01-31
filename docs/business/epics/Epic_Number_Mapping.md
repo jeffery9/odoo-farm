@@ -104,6 +104,9 @@
 - **Epic 99**：智慧供应链协同 (Smart Supply Chain Collaboration) - *原计划编号54*
 - **Epic 100**：农业循环经济与增值销售平台 (Agricultural Circular Economy & Value-Added Sales Platform) - *新增于2026-01-29*
 - **Epic 101**：农业企业可持续发展与价值创造框架 (Agricultural Business Sustainability & Value Creation Framework) - *新增于2026-01-29*
+- **Epic 102**：智能体自主市场与动态定价 (A2A Autonomous Market & Dynamic Pricing) - *新增于2026-01-31*
+- **Epic 103**：物理协同与共享基础设施 (Physical Synergy & Shared Infrastructure) - *新增于2026-01-31*
+- **Epic 104**：跨社区价值结算与清算 (Inter-Community Value Clearing & Settlement) - *新增于2026-01-31*
 
 ## 注意事项
 
