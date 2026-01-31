@@ -1,18 +1,19 @@
 from . import base_mixins
+from . import agri_mixins
 from . import common_fields
-from . import gis_utils
+from . import agri_stock_lot
+from . import product_template_extension
 from . import land_location
+from . import biological_asset
 from . import activity_operation
-from . import (
-    config_settings,
-    industry_data_package,
-    industry_variety,
-    industry_physio_stage,
-    industry_uom_conversion,
-    industry_task_template,
-    industry_product_category,
-    industry_package_wizard,
-    farm_growth_curve,
-    product_template_extension,
-)
+from . import industry_variety
+from . import industry_physio_stage
+from . import industry_product_category
+from . import industry_task_template
+from . import industry_uom_conversion
+from . import industry_data_package
+from . import industry_package_wizard
+from . import config_settings
 from . import geofencing
+from . import gis_utils
+from . import farm_growth_curve
