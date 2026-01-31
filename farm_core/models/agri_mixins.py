@@ -245,8 +245,10 @@ class ClearingEngineMixin(models.AbstractModel):
 
     impact_credits = fields.Float(
         string="Sustainability Credits",
+        compute="_compute_impact_credits",
+        store=True,
         digits=(12, 2),
-        help="Monetized value of environmental/community impact."
+        help="Monetized value derived from confirmed community ledger entries."
     )
     quality_fingerprint = fields.Text(
         string="Quality Fingerprint",
@@ -258,6 +260,18 @@ class ClearingEngineMixin(models.AbstractModel):
         ('settled', 'Settled'),
         ('disputed', 'Disputed')
     ], default='draft', string="Clearing Status")
+
+    def _compute_impact_credits(self):
+        """
+        [Level 3+: Transaction Pattern with Human Audit]
+        Only sums confirmed ledger entries.
+        """
+        for record in self:
+            entries = self.env['agri.clearing.ledger'].search([
+                ('source_ref', '=', '%s,%d' % (record._name, record.id)),
+                ('state', '=', 'confirmed')
+            ])
+            record.impact_credits = sum(entries.mapped('credit_change'))
 
     def generate_quality_fingerprint(self):
         """
@@ -283,43 +297,58 @@ class ClearingEngineMixin(models.AbstractModel):
     def apply_slashing(self, reason, penalty_score=50):
         """
         Level 2+: Slashing Mechanism.
-        Reduces the reputation credit score of the related entity.
+        Creates a ledger entry in 'draft' state. Recomputed only after confirmation.
         """
         self.ensure_one()
-        _logger.warning("Slashing applied to %s: %s (Penalty: -%d)", self.name, reason, penalty_score)
+        _logger.warning("Slashing triggered for %s: %s (Penalty: -%d)", self.name, reason, penalty_score)
         
-        # Logic to find the responsible Partner or User
         target = False
         if hasattr(self, 'user_id') and self.user_id.partner_id:
             target = self.user_id.partner_id
         elif hasattr(self, 'partner_id') and self.partner_id:
             target = self.partner_id
             
-        if target and hasattr(target, 'credit_score'):
-            new_score = max(0, target.credit_score - penalty_score)
-            target.write({'credit_score': new_score})
+        if target:
+            # Entry is PENDING audit (draft)
+            self.env['agri.clearing.ledger'].create({
+                'partner_id': target.id,
+                'score_change': -penalty_score,
+                'source_ref': '%s,%d' % (self._name, self.id),
+                'description': _("PENDING SLASHING: %s") % reason,
+                'state': 'draft'
+            })
             
-            # Post notice to Chatter
             if hasattr(self, 'message_post'):
-                self.message_post(body=_("<b>Reputation Slashing:</b> -%d credits for fraudulent evidence.") % penalty_score)
+                self.message_post(body=_("<b>Reputation Slashing Triggered:</b> -%d credits pending community audit.") % penalty_score)
         return True
 
     def action_finalize_clearing(self):
         """
         Executes the final value clearing.
-        Converts ESG scores and nutrient efficiency into impact credits.
+        Creates a ledger entry in 'draft' state for human approval.
         """
         for record in self:
             esg_score = getattr(record, 'esg_score', 100)
             carbon = getattr(record, 'carbon_intensity', 0)
             
-            # Simple incentivization logic
             bonus = (esg_score / 100.0) * (10.0 / (carbon + 1.0))
             
-            record.write({
-                'impact_credits': bonus,
-                'clearing_status': 'calculated'
-            })
+            record.write({'clearing_status': 'calculated'})
             record.generate_quality_fingerprint()
+
+            target = False
+            if hasattr(record, 'user_id') and record.user_id.partner_id:
+                target = record.user_id.partner_id
+            elif hasattr(record, 'partner_id') and record.partner_id:
+                target = record.partner_id
+
+            if target:
+                self.env['agri.clearing.ledger'].create({
+                    'partner_id': target.id,
+                    'credit_change': bonus,
+                    'source_ref': '%s,%d' % (record._name, record.id),
+                    'description': _("PENDING BONUS for %s") % record.display_name,
+                    'state': 'draft'
+                })
             
-            _logger.info("Value Clearing Finalized for %s: %f credits", record.id, bonus)
+            _logger.info("Value Clearing Calculated for %s: %f credits (Awaiting Audit)", record.id, bonus)

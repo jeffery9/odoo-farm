@@ -103,3 +103,11 @@ class AIHarvestTiming(models.Model):
 
                 record.confidence_score = min(90, max(70, 80 + random.uniform(-5, 5)))
                 record.status = 'recommended'
+
+                # Level 4+: Automatic Harvest Mission Trigger
+                if record.quality_score > 85.0 and record.land_location_id:
+                    _logger.info("High quality score detected. Triggering Harvest & Clearing Mission.")
+                    self.env['agri.mission.orchestrator'].action_trigger_harvest_mission(
+                        record.land_location_id,
+                        _("Predicted Quality Score: %f") % record.quality_score
+                    )
