@@ -614,22 +614,34 @@ Aquaculture models manage fish and aquatic organism farming operations.
   - Relationships:
     - Inherits from: `stock.lot`
 
-- **farm_sustainability.CarbonAsset**: Management of carbon assets
-  - Odoo Model: `class CarbonAsset(models.Model)`
+- **farm_sustainability.CarbonAsset**: Management of carbon assets (Deprecated - Use agri.carbon.asset)
+  - Odoo Model: `class CarbonAsset(models.Model)` (now inherits from agri.carbon.asset)
   - _name: `farm.carbon.asset`
-  - _description: "Carbon Asset Management"
-  - Relationships:
-    - Extends: Base models with carbon asset tracking functionality
+  - _description: "Carbon Sequestration Asset (Deprecated - Use agri.carbon.asset)"
+  - Original logic preserved with deprecation warning
 
-- **farm_sustainability.FarmEcologicalActivity**: Ecological activity management
-  - Odoo Model: `class FarmEcologicalActivity(models.Model)`
-  - _name: `farm.ecological.activity`
-  - _description: "Ecological Activity Management"
+- **agri_sustainability.AgriCarbonAsset**: Agricultural carbon sequestration asset management
+  - Odoo Model: `class AgriCarbonAsset(models.Model)`
+  - _name: `agri.carbon.asset`
+  - _description: "Agricultural Carbon Sequestration Asset"
   - Relationships:
-    - Extends: Base models with ecological activity functionality
+    - location_id (Many2one to farm.location)
+    - Contains original logic for carbon asset tracking
+
+- **farm_sustainability.FarmEcologicalActivity**: Ecological activity management (Deprecated - Use agri.ecological.activity)
+  - Odoo Model: `class FarmEcologicalActivity(models.Model)` (now inherits from agri.ecological.activity)
+  - _name: `farm.ecological.activity`
+  - _description: "Ecological Maintenance Activity (Deprecated - Use agri.ecological.activity)"
+  - Original logic preserved with deprecation warning
+
+- **agri_sustainability.AgriEcologicalActivity**: Agricultural ecological activity management
+  - Odoo Model: `class AgriEcologicalActivity(models.Model)`
+  - _name: `agri.ecological.activity`
+  - _description: "Agricultural Ecological Activity"
+  - Relationships:
+    - location_id (Many2one to farm.location)
 
 - **farm_sustainability.CarbonAsset**: Management of carbon assets
-- **farm_sustainability.FarmEcologicalActivity**: Ecological activity management
 
 ### CSA (Community Supported Agriculture)
 - **farm_csa.FarmCSAPlan**: Community Supported Agriculture plans
