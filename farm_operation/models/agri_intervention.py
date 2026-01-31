@@ -35,8 +35,21 @@ class AgriIntervention(models.Model):
         return self.action_confirm()
 
     def action_complete_intervention(self):
+        """
+        [Level 1+ DNA Traceability] 
+        Finalizes clearing and transfers physical DNA to the output lots.
+        """
         self.ensure_one()
         self.action_finalize_clearing()
+        
+        # 1. Identify output lots
+        output_moves = self.move_finished_ids.filtered(lambda m: m.state == 'done')
+        for move in output_moves:
+            for line in move.move_line_ids:
+                if line.lot_id:
+                    # 2. Trigger DNA inheritance from input moves
+                    line.lot_id.inherit_dna_from_source(self.move_raw_ids)
+                    
         return True
 
 
