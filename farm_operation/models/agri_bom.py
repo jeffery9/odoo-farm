@@ -1,12 +1,30 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 class MrpBom(models.Model):
-    _inherit = ['mrp.bom', 'farm.agricultural.bom.mixin']  # Use the shared BOM logic
+    """
+    Agricultural Recipe (BOM):
+    Injecting Nutrient and View Mixins to transform industrial BOM into Bio-Recipe.
+    """
+    _name = 'mrp.bom'
+    _inherit = [
+        'mrp.bom', 
+        'farm.agricultural.bom.mixin',
+        'agri.view.mixin',           # Level 0: UI Isolation
+        'agri.nutrient.mixin',       # Level 1: Nutrient Composition
+        'agri.sustainability.mixin', # Level 0: Standard
+    ]
 
+    def _get_embedding_content(self):
+        self.ensure_one()
+        return f"Recipe {self.code or self.product_tmpl_id.name}: N={self.nitrogen_qty}, P={self.phosphorus_qty}."
 
 class MrpBomLine(models.Model):
-    _inherit = ['mrp.bom.line', 'farm.agricultural.bom.line.mixin']  # Use the shared BOM line logic
-
+    _name = 'mrp.bom.line'
+    _inherit = [
+        'mrp.bom.line', 
+        'farm.agricultural.bom.line.mixin',
+        'agri.nutrient.mixin', 
+    ]
 
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
@@ -16,20 +34,15 @@ class MrpProduction(models.Model):
         """ 拦截并根据稀释比例和饲喂比例修正物料需求量 """
         res = super()._onchange_bom_id()
         for mo in self:
-            # 尝试获取生物资产信息
             lot = mo.agri_task_id.biological_lot_id if hasattr(mo, 'agri_task_id') else False
-
             for move in mo.move_raw_ids:
                 bom_line = mo.bom_id.bom_line_ids.filtered(lambda l: l.product_id == move.product_id)
                 if not bom_line:
                     continue
-
                 if bom_line.dilution_ratio > 0:
                     move.product_uom_qty = mo.product_qty / bom_line.dilution_ratio
                 elif bom_line.feeding_ratio > 0 and lot:
-                    # 计算生物总量 = 数量 * 平均体重
                     total_biomass = (getattr(lot, 'animal_count', 0) * getattr(lot, 'average_weight', 0.0))
-                    # 投入量 = 总量 * 100
                     move.product_uom_qty = total_biomass * (bom_line.feeding_ratio / 100.0)
         return res
 
@@ -39,6 +52,5 @@ class MrpProduction(models.Model):
         for move_vals in res:
             bom_line = self.env['mrp.bom.line'].browse(move_vals.get('bom_line_id'))
             if bom_line and bom_line.dilution_ratio > 0:
-                # 修正数量
                 move_vals['product_uom_qty'] = self.product_qty / bom_line.dilution_ratio
         return res

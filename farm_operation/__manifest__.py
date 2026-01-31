@@ -16,7 +16,7 @@
         - Flexible operation definitions adaptable to different farming practices
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'mrp', 'project'],
+    'depends': ['farm_core', 'farm_ux', 'farm_ai_core', 'mrp', 'project'],
     'data': [
         'security/ir.model.access.csv',
         'wizard/farm_dispatch_wizard_views.xml',
