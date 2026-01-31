@@ -36,6 +36,14 @@ class AgriClearingLedger(models.Model):
         ('rejected', 'Rejected')
     ], default='draft', tracking=True, string="Transaction State")
 
+    # UI Optimization
+    is_todo = fields.Boolean("Needs Attention", compute="_compute_is_todo", store=True)
+
+    @api.depends('state')
+    def _compute_is_todo(self):
+        for record in self:
+            record.is_todo = record.state == 'draft'
+
     def action_confirm(self):
         """
         [Human Audit Redline]
