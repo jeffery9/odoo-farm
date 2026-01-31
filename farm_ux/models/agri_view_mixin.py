@@ -40,9 +40,27 @@ class AgriViewMixin(models.AbstractModel):
                 if node.get('string'):
                     node.set('string', TermMapping.apply_term_mapping_to_text(node.get('string')))
 
+            # 3. [Level 0+: Agri TODO Alert]
+            # Inject a "Pending Community Contributions" banner into form views if needed
+            if view_type == 'form' and self._name in ['mrp.production', 'stock.lot', 'res.partner']:
+                todo_count = self.env['agri.clearing.ledger'].search_count([('state', '=', 'draft')])
+                if todo_count > 0:
+                    alert_div = etree.Element('div', {
+                        'class': 'alert alert-info',
+                        'role': 'alert',
+                        'style': 'margin-bottom: 10px; font-weight: bold;'
+                    })
+                    alert_div.text = _("🌱 %d Community Contributions are awaiting your confirmation.") % todo_count
+                    
+                    header = doc.xpath("//header")
+                    if header:
+                        header[0].addprevious(alert_div)
+                    else:
+                        doc.insert(0, alert_div)
+
             res['arch'] = etree.tostring(doc, encoding='unicode')
 
-        # 3. Replace strings in fields definitions (Field labels and help texts)
+        # 4. Replace strings in fields definitions (Field labels and help texts)
         if res.get('fields'):
             for field_name, field_info in res['fields'].items():
                 if field_info.get('string'):
