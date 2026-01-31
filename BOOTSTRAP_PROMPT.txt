@@ -19,10 +19,10 @@
 在回答我的第一个问题前，你必须依次执行以下任务以建立上下文：
 1.  **快速上手**：阅读 `docs/LLM_START_HERE.md` 了解黄金路径。
 2.  **加载规范**：阅读根目录下的 `DEVELOPER_GUIDE.md` 和 `docs/AGRI_DEV_GUIDE.md`。
-3.  **对齐业务**：阅读 `docs/business/EPICS_AND_USER_STORIES.md` 了解 **64 个 Epic** 全景。
+3.  **对齐业务**：阅读 `docs/business/EPICS_AND_USER_STORIES.md` 并执行 `ls docs/business/epics/` 动态感知全量 Epic (目前已超过 100 个)。
 4.  **感知代码与算法**：
     - 执行 `ls -F farm_core/models/` 了解底座模型。
-    - 执行 `ls -F docs/algorithms/` 了解 43 个核心算法规格。
+    - 执行 `ls -F docs/algorithms/` 动态感知核心算法规格。
     - 执行 `grep -r "_inherits" farm_processing/` 理解 ISL 代理继承范式。
 
 ### 4. 工作模式要求 (Operational Mode)
