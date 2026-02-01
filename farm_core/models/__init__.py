@@ -28,3 +28,5 @@ from . import config_settings
 from . import geofencing
 from . import gis_utils
 from . import farm_growth_curve
+from . import agri_odoo19_performance_security_mixin
+from . import performance_monitor

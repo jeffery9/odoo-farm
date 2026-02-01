@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Performance Monitor Views -->
+    <record id="view_agri_performance_monitor_tree" model="ir.ui.view">
+        <field name="name">agri.performance.monitor.tree</field>
+        <field name="model">agri.performance.monitor</field>
+        <field name="arch" type="xml">
+            <tree string="Performance Monitor">
+                <field name="name"/>
+                <field name="model_name"/>
+                <field name="operation"/>
+                <field name="duration"/>
+                <field name="record_count"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+                <field name="status"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_agri_performance_monitor_form" model="ir.ui.view">
+        <field name="name">agri.performance.monitor.form</field>
+        <field name="model">agri.performance.monitor</field>
+        <field name="arch" type="xml">
+            <form string="Performance Monitor">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="model_name"/>
+                            <field name="operation"/>
+                            <field name="status"/>
+                        </group>
+                        <group>
+                            <field name="duration"/>
+                            <field name="record_count"/>
+                            <field name="start_time"/>
+                            <field name="end_time"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="details"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Audit Log Views -->
+    <record id="view_agri_audit_log_tree" model="ir.ui.view">
+        <field name="name">agri.audit.log.tree</field>
+        <field name="model">agri.audit.log</field>
+        <field name="arch" type="xml">
+            <tree string="Audit Log">
+                <field name="model_name"/>
+                <field name="operation"/>
+                <field name="user_id"/>
+                <field name="timestamp"/>
+                <field name="severity"/>
+                <field name="details"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_agri_audit_log_form" model="ir.ui.view">
+        <field name="name">agri.audit.log.form</field>
+        <field name="model">agri.audit.log</field>
+        <field name="arch" type="xml">
+            <form string="Audit Log">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="model_name"/>
+                            <field name="operation"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group>
+                            <field name="timestamp"/>
+                            <field name="severity"/>
+                            <field name="ip_address"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="details"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

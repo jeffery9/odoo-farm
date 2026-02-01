@@ -38,3 +38,7 @@ access_farm_land_usage_limit_manager,farm.land.usage.limit.manager,model_farm_la
 access_farm_land_usage_limit_user,farm.land.usage.limit.user,model_farm_land_usage_limit,group_farm_user,1,1,1,0
 access_agri_route_pdca_feedback_manager,agri.route.pdca.feedback.manager,model_agri_route_pdca_feedback,group_farm_manager,1,1,1,1
 access_agri_route_pdca_feedback_user,agri.route.pdca.feedback.user,model_agri_route_pdca_feedback,group_farm_specialist,1,1,1,0
+access_agri_performance_monitor_manager,agri.performance.monitor.manager,model_agri_performance_monitor,group_farm_manager,1,1,1,1
+access_agri_performance_monitor_user,agri.performance.monitor.user,model_agri_performance_monitor,group_farm_user,1,0,0,0
+access_agri_audit_log_manager,agri.audit.log.manager,model_agri_audit_log,group_farm_manager,1,1,1,1
+access_agri_audit_log_user,agri.audit.log.user,model_agri_audit_log,group_farm_user,1,0,0,0

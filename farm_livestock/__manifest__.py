@@ -27,6 +27,7 @@
         'views/livestock_events_views.xml',
         'views/livestock_views.xml',
         'views/livestock_isl_views.xml',
+        'views/updated_livestock_production_view.xml',
         'views/menu.xml',
     ],
     'demo': [
