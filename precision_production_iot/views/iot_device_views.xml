@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Precision IoT Device Views -->
+    <record id="precision_iot_device_view_tree" model="ir.ui.view">
+        <field name="name">precision.iot.device.tree</field>
+        <field name="model">precision.iot.device</field>
+        <field name="arch" type="xml">
+            <tree string="Precision IoT Devices">
+                <field name="name"/>
+                <field name="device_type"/>
+                <field name="iiot_device_id"/>
+                <field name="is_connected"/>
+                <field name="last_seen"/>
+                <field name="production_line_id"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="precision_iot_device_view_form" model="ir.ui.view">
+        <field name="name">precision.iot.device.form</field>
+        <field name="model">precision.iot.device</field>
+        <field name="arch" type="xml">
+            <form string="Precision IoT Device">
+                <header>
+                    <button name="action_refresh_readings" type="object" string="Refresh Readings" class="btn-secondary"/>
+                    <button name="%(iot.control.command.wizard)d" string="Send Command" type="action" class="btn-primary"/>
+                    <field name="is_connected" widget="boolean_toggle"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="device_type"/>
+                            <field name="iiot_device_id" options="{'no_create': True}"/>
+                            <field name="is_active"/>
+                        </group>
+                        <group>
+                            <field name="production_line_id"/>
+                            <field name="last_seen"/>
+                            <field name="firmware_version"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Sensors">
+                            <field name="sensor_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="sensor_type"/>
+                                    <field name="parameter_name"/>
+                                    <field name="unit_of_measure"/>
+                                    <field name="current_value"/>
+                                    <field name="current_uom"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Readings">
+                            <field name="reading_ids">
+                                <tree string="Device Readings">
+                                    <field name="read_datetime"/>
+                                    <field name="sensor_id"/>
+                                    <field name="value"/>
+                                    <field name="uom"/>
+                                    <field name="is_valid"/>
+                                    <field name="deviation_percent"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_precision_iot_device" model="ir.actions.act_window">
+        <field name="name">Precision IoT Devices</field>
+        <field name="res_model">precision.iot.device</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Configure Precision IoT Devices
+            </p>
+            <p>
+                Connect Industrial IoT devices to precision production processes for automatic data collection and remote control.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_precision_iot_device"
+              name="IoT Devices"
+              parent="mrp.menu_mrp_manufacturing"
+              action="action_precision_iot_device"
+              sequence="30"/>
+</odoo>

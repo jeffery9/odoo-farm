@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Precision IoT Sensor Views -->
+    <record id="precision_iot_sensor_view_tree" model="ir.ui.view">
+        <field name="name">precision.iot.sensor.tree</field>
+        <field name="model">precision.iot.sensor</field>
+        <field name="arch" type="xml">
+            <tree string="Precision IoT Sensors">
+                <field name="name"/>
+                <field name="sensor_type"/>
+                <field name="parameter_name"/>
+                <field name="current_value"/>
+                <field name="current_uom"/>
+                <field name="unit_of_measure"/>
+                <field name="device_id"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="precision_iot_sensor_view_form" model="ir.ui.view">
+        <field name="name">precision.iot.sensor.form</field>
+        <field name="model">precision.iot.sensor</field>
+        <field name="arch" type="xml">
+            <form string="Precision IoT Sensor">
+                <header>
+                    <button name="action_refresh_reading" type="object" string="Refresh Reading" class="btn-secondary"/>
+                    <button name="action_calibrate" type="object" string="Calibrate" class="btn-info"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="sensor_id"/>
+                            <field name="device_id" options="{'no_create': True}"/>
+                            <field name="sensor_type"/>
+                            <field name="parameter_name"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                            <field name="is_active"/>
+                            <field name="is_calibrated"/>
+                        </group>
+                    </group>
+                    <group string="Calibration">
+                        <field name="calibration_date"/>
+                        <field name="calibration_next"/>
+                    </group>
+                    <group string="Measurement Range">
+                        <field name="unit_of_measure"/>
+                        <field name="min_range"/>
+                        <field name="max_range"/>
+                        <field name="tolerance_percent"/>
+                    </group>
+                    <group string="Current Reading">
+                        <field name="current_value"/>
+                        <field name="current_uom"/>
+                        <field name="last_read_datetime"/>
+                        <field name="last_reading_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Readings">
+                            <field name="reading_ids">
+                                <tree string="Sensor Readings">
+                                    <field name="read_datetime"/>
+                                    <field name="value"/>
+                                    <field name="uom"/>
+                                    <field name="is_valid"/>
+                                    <field name="deviation_percent"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_precision_iot_sensor" model="ir.actions.act_window">
+        <field name="name">Precision IoT Sensors</field>
+        <field name="res_model">precision.iot.sensor</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Configure Precision IoT Sensors
+            </p>
+            <p>
+                Define sensors for precision production processes with proper calibration and range settings.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_precision_iot_sensor"
+              name="IoT Sensors"
+              parent="mrp.menu_mrp_manufacturing"
+              action="action_precision_iot_sensor"
+              sequence="31"/>
+</odoo>

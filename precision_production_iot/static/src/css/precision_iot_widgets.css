@@ -1,0 +1,81 @@
+/* IoT Enhanced Widget Styles */
+
+/* IoT Device Status Indicators */
+.o_iot_status_indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.o_iot_status_online {
+    background-color: #28a745; /* green */
+}
+
+.o_iot_status_offline {
+    background-color: #6c757d; /* gray */
+}
+
+.o_iot_status_error {
+    background-color: #dc3545; /* red */
+}
+
+.o_iot_status_warning {
+    background-color: #ffc107; /* yellow */
+}
+
+/* IoT Reading Display */
+.o_iot_reading_value {
+    font-weight: bold;
+    color: #495057;
+}
+
+.o_iot_reading_deviation {
+    font-size: 0.8em;
+    color: #6c757d;
+    margin-left: 5px;
+}
+
+.o_iot_reading_deviation.critical {
+    color: #dc3545; /* red for critical deviations */
+    font-weight: bold;
+}
+
+.o_iot_reading_deviation.warning {
+    color: #ffc107; /* yellow for warning deviations */
+}
+
+/* IoT Enhanced Kanban Card */
+.o_kanban_record.o_iot_enhanced {
+    border-left: 4px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.o_kanban_record.o_iot_enhanced.iot_connected {
+    border-left-color: #28a745; /* green for connected */
+}
+
+.o_kanban_record.o_iot_enhanced.iot_disconnected {
+    border-left-color: #6c757d; /* gray for disconnected */
+}
+
+.o_kanban_record.o_iot_enhanced.iot_error {
+    border-left-color: #dc3545; /* red for error */
+}
+
+.o_kanban_record.o_iot_enhanced.iot_warning {
+    border-left-color: #ffc107; /* yellow for warning */
+}
+
+/* IoT Device Icon Animation */
+@keyframes iot-pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+.o_iot_device_icon.active {
+    animation: iot-pulse 2s infinite;
+}
