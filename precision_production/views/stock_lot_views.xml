@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_production_lot_form_inherit_grade" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.grade</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <widget name="web_ribbon" title="Premium" bg_color="bg-success" invisible="quality_grade != 'premium'"/>
+                <widget name="web_ribbon" title="Rejected" bg_color="bg-danger" invisible="quality_grade != 'fail'"/>
+            </xpath>
+            <xpath expr="//group[@name='main_group']" position="inside">
+                <group string="Precision DNA">
+                    <field name="quality_grade" readonly="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

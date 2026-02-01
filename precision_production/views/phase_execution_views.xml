@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Phase Execution Kanban: Generalized Production Optimized -->
+    <record id="precision_recipe_phase_view_kanban" model="ir.ui.view">
+        <field name="name">precision.recipe.phase.kanban</field>
+        <field name="model">precision.recipe.phase</field>
+        <field name="arch" type="xml">
+            <kanban create="false" default_group_by="master_phase_id" class="o_kanban_mobile">
+                <field name="name"/>
+                <field name="production_id"/>
+                <field name="state"/>
+                <field name="master_phase_id"/>
+                <field name="required_workcenter_id"/>
+                <field name="duration_planned"/>
+                <field name="duration_actual"/>
+                <field name="start_datetime"/>
+                <field name="inventory_state"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click card h-100 shadow-sm #{record.state.raw_value == 'progress' ? 'border-start border-info border-4' : (record.state.raw_value == 'done' ? 'border-start border-success border-4' : 'border-start border-light border-4')}">
+                            <div class="card-body p-3">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="card-title mb-0 fw-bold">
+                                        <field name="name"/>
+                                    </h6>
+                                    <field name="state" widget="label_selection"
+                                           options="{'classes': {'pending': 'bg-light text-dark', 'progress': 'bg-info text-light', 'done': 'bg-success text-light'}, 'variant': 'pill'}"/>
+                                </div>
+
+                                <div class="mb-2">
+                                    <small class="text-muted">Production:</small>
+                                    <div class="fw-semibold">
+                                        <field name="production_id"/>
+                                    </div>
+                                </div>
+
+                                <div class="mb-2">
+                                    <small class="text-muted">Equipment:</small>
+                                    <div>
+                                        <i class="fa fa-cube me-1"/> <field name="required_workcenter_id"/>
+                                    </div>
+                                </div>
+
+                                <!-- Duration Progress -->
+                                <div class="mb-2" invisible="not duration_planned">
+                                    <small class="text-muted">Progress:</small>
+                                    <div class="progress" style="height: 6px;">
+                                        <div class="progress-bar"
+                                             t-attf-style="width: #{duration_planned and duration_actual ? min(100, (duration_actual / duration_planned * 100)) : 0}%;"
+                                             t-attf-class="progress-bar #{duration_actual and duration_actual > duration_planned ? 'bg-warning' : 'bg-info'}">
+                                        </div>
+                                    </div>
+                                    <small class="text-muted">
+                                        <field name="duration_actual" widget="float_time"/> / <field name="duration_planned" widget="float_time"/> hrs
+                                    </small>
+                                </div>
+
+                                <div class="d-grid gap-2 mt-3">
+                                    <button name="action_start_phase"
+                                            type="object"
+                                            class="btn btn-sm btn-outline-primary"
+                                            invisible="state != 'pending'"
+                                            title="Start Phase">
+                                        <i class="fa fa-play"/> Start
+                                    </button>
+                                    <button name="action_end_phase"
+                                            type="object"
+                                            class="btn btn-sm btn-success"
+                                            invisible="state != 'progress'"
+                                            title="Finish Phase">
+                                        <i class="fa fa-check"/> Finish
+                                    </button>
+                                </div>
+
+                                <div class="mt-2 pt-2 border-top">
+                                    <field name="inventory_state" widget="badge"
+                                           decoration-success="inventory_state == 'done'"
+                                           decoration-info="inventory_state == 'draft'"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Phase Execution List: Batch Bio-Actions -->
+    <record id="precision_recipe_phase_view_list" model="ir.ui.view">
+        <field name="name">precision.recipe.phase.list</field>
+        <field name="model">precision.recipe.phase</field>
+        <field name="arch" type="xml">
+            <list string="Phase Execution Board" decoration-info="state == 'progress'" decoration-success="state == 'done'">
+                <header>
+                    <button name="action_batch_start" string="🚀 Batch Start" type="object" class="btn-primary"/>
+                    <button name="action_open_batch_metrology" string="📊 Batch Metrology" type="object" class="btn-info"/>
+                    <button name="action_batch_end" string="✅ Batch Finish" type="object" class="btn-success"/>
+                </header>
+                <field name="master_phase_id" optional="show"/>
+                <field name="production_id" string="Production ID" class="fw-bold"/>
+                <field name="name"/>
+                <field name="required_workcenter_id"/>
+                <field name="state" widget="badge" decoration-info="state == 'progress'" decoration-success="state == 'done'"/>
+                <field name="inventory_state" widget="badge" decoration-success="inventory_state == 'done'"/>
+                <field name="start_datetime" widget="remaining_days" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ... (Keep search and action definitions LOSSLESS) -->
+    <record id="precision_recipe_phase_view_search" model="ir.ui.view">
+        <field name="name">precision.recipe.phase.search</field>
+        <field name="model">precision.recipe.phase</field>
+        <field name="arch" type="xml">
+            <search string="Search Phases">
+                <field name="production_id"/>
+                <field name="master_phase_id"/>
+                <field name="required_workcenter_id"/>
+                <filter string="In Progress" name="in_progress" domain="[('state', '=', 'progress')]"/>
+                <filter string="Pending" name="pending" domain="[('state', '=', 'pending')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Master Phase" name="group_by_master" context="{'group_by': 'master_phase_id'}"/>
+                    <filter string="Equipment" name="group_by_workcenter" context="{'group_by': 'required_workcenter_id'}"/>
+                    <filter string="Production / Batch" name="group_by_production" context="{'group_by': 'production_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_precision_phase_execution_board" model="ir.actions.act_window">
+        <field name="name">Phase Execution Board</field>
+        <field name="res_model">precision.recipe.phase</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="precision_recipe_phase_view_search"/>
+        <field name="context">{'search_default_group_by_master': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Parallel Production Processing.
+            </p>
+            <p>Group productions by Master Phase and use <strong>Batch Metrology</strong> to record shared environmental data.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_precision_phase_execution"
+              name="Phase Execution Board"
+              parent="mrp.menu_mrp_manufacturing"
+              action="action_precision_phase_execution_board"
+              sequence="25"/>
+</odoo>

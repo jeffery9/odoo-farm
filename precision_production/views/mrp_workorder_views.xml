@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_production_workorder_form_view_inherit_precision" model="ir.ui.view">
+        <field name="name">mrp.workorder.form.inherit.precision</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="production_drive_type" invisible="1"/>
+                <field name="is_intervention_required" invisible="1"/>
+                <button name="action_trigger_precision_skill" string="Trigger Skill" type="object" class="btn-warning" invisible="not is_intervention_required"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Precision Control" invisible="production_drive_type != 'parameter'">
+                    <group>
+                        <group string="Recipe Reference">
+                            <field name="production_id" invisible="1"/>
+                            <field name="active_execution_phase_id" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
