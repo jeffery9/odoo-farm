@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Cooperative Resource Sharing Action -->
+    <record id="action_cooperative_resource_sharing" model="ir.actions.act_window">
+        <field name="name">Cooperative Resource Sharing</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agri.cooperative.resource.sharing</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Coordinate Resource Sharing in Cooperatives
+            </p>
+            <p>
+                Facilitate A2A protocol-based resource sharing between farms in cooperatives or industrial parks.
+            </p>
+        </field>
+    </record>
+
+    <!-- Cooperative Resource Sharing Tree View -->
+    <record id="view_cooperative_resource_sharing_tree" model="ir.ui.view">
+        <field name="name">agri.cooperative.resource.sharing.tree</field>
+        <field name="model">agri.cooperative.resource.sharing</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="cooperative_id"/>
+                <field name="sharing_type"/>
+                <field name="resource_type"/>
+                <field name="quantity"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Cooperative Resource Sharing Form View -->
+    <record id="view_cooperative_resource_sharing_form" model="ir.ui.view">
+        <field name="name">agri.cooperative.resource.sharing.form</field>
+        <field name="model">agri.cooperative.resource.sharing</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_publish_signal" type="object" string="Publish Signal" class="btn-primary" invisible="status != 'draft'"/>
+                    <button name="action_match_resources" type="object" string="Match Resources" class="btn-info" invisible="status != 'published'"/>
+                    <button name="action_start_transit" type="object" string="In Transit" class="btn-warning" invisible="status != 'matched'"/>
+                    <button name="action_complete_transaction" type="object" string="Complete" class="btn-success" invisible="status != 'in_transit'"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,published,matched,in_transit,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_cooperative_resource_sharing)d" type="action" class="oe_stat_button" icon="fa-exchange">
+                            <field string="Resource Sharing" name="name" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="description" colspan="2"/>
+                        </group>
+                        <group>
+                            <field name="cooperative_id"/>
+                            <field name="sharing_type"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Resource Matching">
+                            <group>
+                                <group string="Supply">
+                                    <field name="supply_farm_id"/>
+                                    <field name="supply_agent_id"/>
+                                </group>
+                                <group string="Demand">
+                                    <field name="demand_farm_id"/>
+                                    <field name="demand_agent_id"/>
+                                </group>
+                            </group>
+                            <group string="Resource Details">
+                                <field name="resource_type"/>
+                                <field name="quantity"/>
+                                <field name="unit_uom"/>
+                                <field name="resource_value"/>
+                            </group>
+                        </page>
+
+                        <page string="A2A Coordination">
+                            <group>
+                                <group>
+                                    <field name="a2a_signal_status"/>
+                                    <field name="netting_transaction_id"/>
+                                </group>
+                                <group>
+                                    <field name="logistics_cost"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Timeline">
+                            <group>
+                                <field name="publish_date"/>
+                                <field name="match_date"/>
+                                <field name="delivery_date"/>
+                                <field name="completion_date"/>
+                            </group>
+                        </page>
+
+                        <page string="Integration">
+                            <group>
+                                <field name="circular_flow_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Internal Netting Engine Action -->
+    <record id="action_internal_netting_engine" model="ir.actions.act_window">
+        <field name="name">Internal Netting Engine</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agri.internal.netting.engine</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Internal Netting Engine Tree View -->
+    <record id="view_internal_netting_engine_tree" model="ir.ui.view">
+        <field name="name">agri.internal.netting.engine.tree</field>
+        <field name="model">agri.internal.netting.engine</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="transaction_id"/>
+                <field name="cooperative_id"/>
+                <field name="supply_farm_id"/>
+                <field name="demand_farm_id"/>
+                <field name="value_amount"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

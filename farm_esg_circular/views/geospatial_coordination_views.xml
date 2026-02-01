@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Geospatial Circular Network Action -->
+    <record id="action_geospatial_circular_network" model="ir.actions.act_window">
+        <field name="name">GIS Circular Network</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agri.geospatial.circular.network</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Analyze Spatial Circular Economy Opportunities
+            </p>
+            <p>
+                Use GIS analysis to find optimal exchange nodes and minimize logistics costs and carbon footprint.
+            </p>
+        </field>
+    </record>
+
+    <!-- Geospatial Circular Network Tree View -->
+    <record id="view_geospatial_circular_network_tree" model="ir.ui.view">
+        <field name="name">agri.geospatial.circular.network.tree</field>
+        <field name="model">agri.geospatial.circular.network</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="geographic_area"/>
+                <field name="location_id"/>
+                <field name="nearest_nodes_count"/>
+                <field name="total_logistics_efficiency"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Geospatial Circular Network Form View -->
+    <record id="view_geospatial_circular_network_form" model="ir.ui.view">
+        <field name="name">agri.geospatial.circular.network.form</field>
+        <field name="model">agri.geospatial.circular.network</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_run_spatial_analysis" type="object" string="Run Analysis" class="btn-primary" invisible="status != 'draft'"/>
+                    <button name="action_optimize_network" type="object" string="Optimize" class="btn-info" invisible="status != 'analyzed'"/>
+                    <button name="action_implement_network" type="object" string="Implement" class="btn-success" invisible="status != 'optimized'"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,analyzed,optimized,implemented"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_geospatial_circular_network)d" type="action" class="oe_stat_button" icon="fa-map">
+                            <field string="GIS Networks" name="name" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="description" colspan="2"/>
+                        </group>
+                        <group>
+                            <field name="geographic_area"/>
+                            <field name="radius_km"/>
+                            <field name="location_id"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Spatial Analysis">
+                            <group>
+                                <group string="Analysis Parameters">
+                                    <field name="analysis_method"/>
+                                    <field name="spatial_analysis_date"/>
+                                </group>
+                                <group string="Analysis Results">
+                                    <field name="nearest_nodes_count"/>
+                                    <field name="total_logistics_efficiency"/>
+                                    <field name="co2_reduction_potential"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Nutrient Balance">
+                            <group>
+                                <group>
+                                    <field name="nutrient_surplus_deficit"/>
+                                    <field name="nitrogen_balance"/>
+                                </group>
+                                <group>
+                                    <field name="phosphorus_balance"/>
+                                    <field name="potassium_balance"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Optimization">
+                            <group string="Optimized Routes">
+                                <field name="optimized_routes" colspan="2" nolabel="1"/>
+                            </group>
+                            <group string="Recommendations">
+                                <field name="recommended_nodes" colspan="2" nolabel="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Nutrient Heatmap Layer Action -->
+    <record id="action_nutrient_heatmap_layer" model="ir.actions.act_window">
+        <field name="name">Nutrient Heatmap Layer</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agri.nutrient.heatmap.layer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Nutrient Heatmap Layer Tree View -->
+    <record id="view_nutrient_heatmap_layer_tree" model="ir.ui.view">
+        <field name="name">agri.nutrient.heatmap.layer.tree</field>
+        <field name="model">agri.nutrient.heatmap.layer</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="nutrient_type"/>
+                <field name="analysis_date"/>
+                <field name="min_value"/>
+                <field name="max_value"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
