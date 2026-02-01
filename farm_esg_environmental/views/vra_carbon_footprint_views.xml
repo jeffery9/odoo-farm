@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- VRA Carbon Footprint Tree View -->
+    <record id="view_vra_carbon_footprint_tree" model="ir.ui.view">
+        <field name="name">agri.vra.carbon.footprint.tree</field>
+        <field name="model">agri.vra.carbon.footprint</field>
+        <field name="arch" type="xml">
+            <tree string="VRA Carbon Footprint">
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="operation_type"/>
+                <field name="carbon_emission_reduction"/>
+                <field name="carbon_reduction_percentage"/>
+                <field name="net_environmental_impact"/>
+                <field name="assessment_status"/>
+                <field name="assessment_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- VRA Carbon Footprint Form View -->
+    <record id="view_vra_carbon_footprint_form" model="ir.ui.view">
+        <field name="name">agri.vra.carbon.footprint.form</field>
+        <field name="model">agri.vra.carbon.footprint</field>
+        <field name="arch" type="xml">
+            <form string="VRA Carbon Footprint">
+                <header>
+                    <button name="action_calculate_assessment" type="object" string="Calculate Assessment"
+                            states="draft" class="oe_highlight"/>
+                    <button name="action_verify_assessment" type="object" string="Verify Assessment"
+                            states="calculated" class="oe_highlight"/>
+                    <button name="action_generate_report" type="object" string="Generate Report"
+                            class="oe_highlight"/>
+                    <field name="assessment_status" widget="statusbar" statusbar_visible="draft,calculated,verified"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="action_generate_report" type="object"
+                                icon="fa-file-text">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Report</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="assessment_date"/>
+                            <field name="location_id"/>
+                            <field name="intervention_id"/>
+                        </group>
+                        <group>
+                            <field name="operation_type"/>
+                            <field name="assessment_status"/>
+                            <field name="environmental_risk_level"/>
+                            <field name="meets_environmental_standards"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Material Comparison">
+                            <group>
+                                <group string="Traditional Method">
+                                    <field name="traditional_material_qty"/>
+                                    <field name="traditional_carbon_emission"/>
+                                </group>
+                                <group string="VRA Method">
+                                    <field name="vra_material_qty"/>
+                                    <field name="vra_carbon_emission"/>
+                                </group>
+                                <group string="Savings">
+                                    <field name="material_savings"/>
+                                    <field name="carbon_emission_reduction"/>
+                                    <field name="carbon_reduction_percentage"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Environmental Impact">
+                            <group>
+                                <group string="Fuel Optimization">
+                                    <field name="fuel_savings_liter"/>
+                                    <field name="fuel_carbon_savings"/>
+                                </group>
+                                <group string="Soil Benefits">
+                                    <field name="soil_carbon_sequestration"/>
+                                </group>
+                                <group string="Overall Impact">
+                                    <field name="net_environmental_impact"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Detailed Report">
+                            <field name="comparison_report" nolabel="1"/>
+                        </page>
+
+                        <page string="ESG Compliance">
+                            <group>
+                                <field name="esg_compliance_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- VRA Carbon Footprint Search View -->
+    <record id="view_vra_carbon_footprint_search" model="ir.ui.view">
+        <field name="name">agri.vra.carbon.footprint.search</field>
+        <field name="model">agri.vra.carbon.footprint</field>
+        <field name="arch" type="xml">
+            <search string="VRA Carbon Footprint">
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="operation_type"/>
+                <field name="assessment_status"/>
+                <field name="assessment_date"/>
+                <field name="environmental_risk_level"/>
+                <filter name="filter_draft" string="Draft" domain="[('assessment_status', '=', 'draft')]"/>
+                <filter name="filter_calculated" string="Calculated" domain="[('assessment_status', '=', 'calculated')]"/>
+                <filter name="filter_compliant" string="Meets Standards" domain="[('meets_environmental_standards', '=', True)]"/>
+                <filter name="filter_high_reduction" string="High Reduction" domain="[('carbon_reduction_percentage', '>', 20)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_location" string="Location" domain="[]" context="{'group_by':'location_id'}"/>
+                    <filter name="group_operation" string="Operation Type" domain="[]" context="{'group_by':'operation_type'}"/>
+                    <filter name="group_status" string="Assessment Status" domain="[]" context="{'group_by':'assessment_status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- VRA Carbon Footprint Action -->
+    <record id="action_vra_carbon_footprint" model="ir.actions.act_window">
+        <field name="name">VRA Carbon Footprint</field>
+        <field name="res_model">agri.vra.carbon.footprint</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add your first VRA Carbon Footprint Assessment!
+            </p>
+            <p>
+                Track and analyze the carbon footprint reduction achieved through Variable Rate Application (VRA) precision agriculture techniques compared to traditional methods.
+            </p>
+        </field>
+    </record>
+</odoo>
