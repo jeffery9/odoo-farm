@@ -32,6 +32,7 @@
         'views/agri_processing_formula_views.xml',
         'views/stock_lot_views.xml',
         'views/agri_processing_packaging_views.xml',
+        'views/industry_isl_views.xml',
         'views/mrp_production_pivot_view.xml',
     ],
     'installable': True,
