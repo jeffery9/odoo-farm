@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Sustainable Business Model Action -->
+    <record id="action_sustainable_business_model" model="ir.actions.act_window">
+        <field name="name">Sustainable Business Model</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agri.sustainable.business.model</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Design Multi-scale Sustainable Business Models
+            </p>
+            <p>
+                Create and manage sustainable business models for single farms, cooperatives, and regional operations.
+            </p>
+        </field>
+    </record>
+
+    <!-- Sustainable Business Model Tree View -->
+    <record id="view_sustainable_business_model_tree" model="ir.ui.view">
+        <field name="name">agri.sustainable.business.model.tree</field>
+        <field name="model">agri.sustainable.business.model</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="scale_level"/>
+                <field name="business_type"/>
+                <field name="economic_performance_score"/>
+                <field name="environmental_impact_score"/>
+                <field name="social_responsibility_score"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Sustainable Business Model Form View -->
+    <record id="view_sustainable_business_model_form" model="ir.ui.view">
+        <field name="name">agri.sustainable.business.model.form</field>
+        <field name="model">agri.sustainable.business.model</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_calculate_triple_bottom_line" type="object" string="Calculate TBL" class="btn-secondary"/>
+                    <button name="action_evaluate_impact" type="object" string="Evaluate Impact" class="btn-secondary"/>
+                    <button name="action_generate_optimization_suggestions" type="object" string="Optimization Sugg." class="btn-secondary"/>
+                    <button name="action_generate_ai_recommendations" type="object" string="AI Recommendations" class="btn-info"/>
+                    <button name="action_implement_model" type="object" string="Implement" class="btn-success" invisible="status != 'in_design'"/>
+                    <button name="action_optimize_model" type="object" string="Optimize" class="btn-primary" invisible="status != 'implemented'"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,in_design,implemented,optimized"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_sustainable_business_model)d" type="action" class="oe_stat_button" icon="fa-briefcase">
+                            <field string="Business Models" name="name" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="scale_level"/>
+                            <field name="business_type"/>
+                        </group>
+                        <group>
+                            <field name="economic_performance_score" widget="percentage"/>
+                            <field name="environmental_impact_score" widget="percentage"/>
+                            <field name="social_responsibility_score" widget="percentage"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Business Design">
+                            <group>
+                                <group string="Performance Targets">
+                                    <field name="expected_roi"/>
+                                    <field name="payback_period_years"/>
+                                    <field name="sales_growth_target"/>
+                                    <field name="resource_efficiency_improvement"/>
+                                </group>
+                                <group string="Integration">
+                                    <field name="circular_economy_integration"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Geographic Coverage">
+                            <group>
+                                <field name="has_geographic_coverage"/>
+                                <field name="geographic_description" colspan="2"/>
+                            </group>
+                            <group string="Related Entities">
+                                <field name="related_farm_ids" widget="many2many_tags"/>
+                                <field name="related_cooperative_id"/>
+                                <field name="related_region_id"/>
+                            </group>
+                        </page>
+
+                        <page string="Impact Assessment">
+                            <group>
+                                <group string="Environmental Impact">
+                                    <field name="environmental_impact_assessment" colspan="2"/>
+                                </group>
+                                <group string="Social Impact">
+                                    <field name="social_impact_assessment" colspan="2"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Optimization">
+                            <group>
+                                <group string="AI Recommendations">
+                                    <field name="ai_recommendations" colspan="2"/>
+                                </group>
+                                <group string="Optimization Suggestions">
+                                    <field name="optimization_suggestions" colspan="2"/>
+                                    <field name="reasoning_path" colspan="2"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+</odoo>

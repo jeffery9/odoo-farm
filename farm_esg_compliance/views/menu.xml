@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Main ESG Compliance Menu -->
+    <menuitem id="menu_farm_esg_compliance_root"
+              name="ESG Compliance"
+              sequence="65"
+              web_icon="farm_esg_compliance,static/description/icon.png"/>
+
+    <!-- Epic 101: Sustainable Business Framework Menu -->
+    <menuitem id="menu_epic_101_sustainability_framework"
+              name="Sustainable Business Framework"
+              parent="menu_farm_esg_compliance_root"
+              sequence="1"/>
+
+    <!-- Triple Bottom Line Metrics Menu -->
+    <menuitem id="menu_triple_bottom_line_metrics"
+              name="Triple Bottom Line Metrics"
+              parent="menu_epic_101_sustainability_framework"
+              action="action_triple_bottom_line_metrics"
+              sequence="10"/>
+
+    <!-- Sustainable Business Model Menu -->
+    <menuitem id="menu_sustainable_business_model"
+              name="Sustainable Business Models"
+              parent="menu_epic_101_sustainability_framework"
+              action="action_sustainable_business_model"
+              sequence="20"/>
+
+    <!-- Sustainable Supply Chain Menu -->
+    <menuitem id="menu_sustainable_supply_chain"
+              name="Sustainable Supply Chain"
+              parent="menu_epic_101_sustainability_framework"
+              action="action_sustainable_supply_chain"
+              sequence="30"/>
+
+    <!-- Sustainable Product Lifecycle Menu -->
+    <menuitem id="menu_sustainable_product_lifecycle"
+              name="Product Lifecycle Management"
+              parent="menu_epic_101_sustainability_framework"
+              action="action_sustainable_product_lifecycle"
+              sequence="40"/>
+
+    <!-- Supplier Evaluation Menu (Sub-menu under Supply Chain) -->
+    <menuitem id="menu_sustainable_supplier_evaluation"
+              name="Supplier Evaluations"
+              parent="menu_sustainable_supply_chain"
+              action="action_sustainable_supplier_evaluation"
+              sequence="10"/>
+
+    <!-- Epic 83: Carbon Neutral Management Menu -->
+    <menuitem id="menu_epic_83_carbon_neutral"
+              name="Carbon Neutral Management"
+              parent="menu_farm_esg_compliance_root"
+              sequence="20"/>
+
+    <!-- Carbon Neutral Goals Menu -->
+    <menuitem id="menu_carbon_neutral_goals"
+              name="Carbon Neutral Goals"
+              parent="menu_epic_83_carbon_neutral"
+              action="action_carbon_neutral_goal"
+              sequence="10"/>
+
+    <!-- Carbon Credits Menu -->
+    <menuitem id="menu_carbon_credits"
+              name="Carbon Credits"
+              parent="menu_epic_83_carbon_neutral"
+              action="action_carbon_credit"
+              sequence="20"/>
+
+    <!-- Bio-energy Products Menu -->
+    <menuitem id="menu_bio_energy_products"
+              name="Bio-energy Products"
+              parent="menu_epic_83_carbon_neutral"
+              action="action_bio_energy_product"
+              sequence="30"/>
+
+    <!-- Epic 97: External ESG Marketplace Menu -->
+    <menuitem id="menu_epic_97_external_esg"
+              name="External ESG Marketplace"
+              parent="menu_farm_esg_compliance_root"
+              sequence="30"/>
+
+    <!-- ESG Marketplaces Menu -->
+    <menuitem id="menu_esg_marketplaces"
+              name="ESG Marketplaces"
+              parent="menu_epic_97_external_esg"
+              action="action_esg_marketplace"
+              sequence="10"/>
+
+    <!-- ESG Marketplace Trades Menu -->
+    <menuitem id="menu_esg_marketplace_trades"
+              name="Marketplace Trades"
+              parent="menu_epic_97_external_esg"
+              action="action_esg_marketplace_trade"
+              sequence="20"/>
+
+    <!-- Waste Resource Trades Menu -->
+    <menuitem id="menu_waste_resource_trades"
+              name="Waste Resource Trades"
+              parent="menu_epic_97_external_esg"
+              action="action_waste_resource_trade"
+              sequence="30"/>
+
+</odoo>
