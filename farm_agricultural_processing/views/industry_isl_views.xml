@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Ham Curing View -->
+    <record id="view_farm_ham_production_form" model="ir.ui.view">
+        <field name="name">farm.ham.production.form</field>
+        <field name="model">farm.ham.production</field>
+        <field name="arch" type="xml">
+            <form string="Ham Curing Cycle">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Cellar Environment">
+                            <field name="cellar_humidity" widget="gauge" options="{'max_field': '100'}"/>
+                            <field name="cellar_temp" widget="gauge" options="{'max_field': '30'}"/>
+                        </group>
+                        <group string="Product Info">
+                            <field name="product_id" string="Ham Variety"/>
+                            <field name="bom_id" string="Curing Protocol"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Aquatic Processing View -->
+    <record id="view_farm_aquatic_processing_form" model="ir.ui.view">
+        <field name="name">farm.aquatic_processing.production.form</field>
+        <field name="model">farm.aquatic_processing.production</field>
+        <field name="arch" type="xml">
+            <form string="Aquatic Processing">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Cold-chain Integrity">
+                            <field name="actual_core_temp" decoration-danger="actual_core_temp > -18"/>
+                            <field name="freezer_exit_time"/>
+                        </group>
+                        <group string="Yield">
+                            <field name="product_qty" string="Finished Weight"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Net Vegetable Prep View -->
+    <record id="view_farm_net_vegetable_production_form" model="ir.ui.view">
+        <field name="name">farm.net_vegetable.production.form</field>
+        <field name="model">farm.net_vegetable.production</field>
+        <field name="arch" type="xml">
+            <form string="Net Veg Prep Order">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Yield Analysis">
+                            <field name="raw_input_weight"/>
+                            <field name="actual_net_yield" widget="progressbar"/>
+                        </group>
+                        <group string="Sanitation">
+                            <field name="actual_chlorine_ppm" decoration-bf="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_farm_ham_production" model="ir.actions.act_window">
+        <field name="name">Ham Curing Orders</field>
+        <field name="res_model">farm.ham.production</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_farm_aquatic_production" model="ir.actions.act_window">
+        <field name="name">Aquatic Processing Orders</field>
+        <field name="res_model">farm.aquatic_processing.production</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_farm_net_vegetable_production" model="ir.actions.act_window">
+        <field name="name">Net Veg Prep Orders</field>
+        <field name="res_model">farm.net_vegetable.production</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
