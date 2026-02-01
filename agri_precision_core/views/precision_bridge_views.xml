@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inject into MRP Production (Intervention) -->
+    <record id="mrp_production_form_view_inherit_precision" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.precision</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_update_yield_estimate" string="Calibrate Yield" type="object" class="btn-secondary"/>
+                <button name="action_apply_agri_intervention" string="Apply Agri Intervention" type="object" class="btn-warning" context="{'default_intervention_type': 'manual', 'default_description': 'Manual intervention applied'}"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" icon="fa-stethoscope">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value"><field name="intervention_count"/></span>
+                        <span class="o_stat_text">Interventions</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" icon="fa-bolt" invisible="not iot_device_ids">
+                    <div class="o_stat_info">
+                        <field name="iot_status" widget="badge"
+                               decoration-success="iot_status == 'normal'"
+                               decoration-info="iot_status == 'monitoring'"
+                               decoration-warning="iot_status == 'warning'"
+                               decoration-danger="iot_status == 'critical'"/>
+                        <span class="o_stat_text">IoT Status</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='product_qty']" position="after">
+                <field name="expected_yield_accuracy" widget="percentage"/>
+            </xpath>
+            <!-- IoT Device Association Section -->
+            <notebook position="inside">
+                <page string="IoT Monitoring" invisible="not iot_device_ids">
+                    <group>
+                        <field name="iot_device_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="last_metrology_date"/>
+                        <field name="is_critical_status"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <!-- Inject into Stock Lot (Grading/Binning) -->
+    <record id="view_production_lot_form_inherit_precision" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.precision</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <widget name="web_ribbon" title="Premium" bg_color="bg-success" invisible="quality_grade != 'premium'"/>
+                <widget name="web_ribbon" title="Substandard" bg_color="bg-danger" invisible="quality_grade != 'substandard'"/>
+            </xpath>
+            <xpath expr="//group[@name='main_group']" position="inside">
+                <group string="Precision DNA">
+                    <field name="quality_grade" widget="radio" options="{'horizontal': true}"/>
+                    <field name="intervention_count"/>
+                </group>
+            </xpath>
+            <!-- IoT Section for Stock Lot -->
+            <xpath expr="//notebook" position="inside">
+                <page string="IoT Monitoring" invisible="not iot_device_ids">
+                    <group>
+                        <field name="iot_device_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="iot_status" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+                    <group string="Quality Tracking">
+                        <field name="last_metrology_date"/>
+                        <field name="is_critical_status"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
