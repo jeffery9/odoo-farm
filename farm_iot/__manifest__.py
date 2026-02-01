@@ -8,8 +8,9 @@
         - Telemetry Data Collection (Temperature, PH, DO, etc.) [US-06-01, US-06-02]
         - Threshold Alerts [US-06-02]
     """,
-    'author': 'Jeffery',
-    'depends': ['farm_core', 'project', 'industrial_iot'],
+    'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',
+    'website': 'http://www.geninit.cn',
+    'depends': ['farm_core', 'project', 'agri_iot'],
     'data': [
         'security/ir.model.access.csv',
         'data/iot_cron_data.xml',
