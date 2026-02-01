@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- [MASTER CONSOLIDATION] Combined Execution, Performance & Process Control View -->
+    <record id="mrp_production_form_view_inherit_precision_ultimate" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.precision.ultimate</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <!-- 1. Header: Command Center & Process Control -->
+            <xpath expr="//header" position="inside">
+                <field name="production_drive_type" invisible="1"/>
+                <field name="is_process_locked" invisible="1"/>
+                
+                <!-- Execution Buttons -->
+                <button name="action_start_recipe" string="🚀 Start Batch Execution" type="object" 
+                        class="btn-primary" invisible="state != 'confirmed' or production_drive_type != 'parameter'"/>
+                <button name="action_next_phase" string="➡️ Advance to Next Phase" type="object" 
+                        class="btn-success" invisible="active_recipe_phase_id == False or is_process_locked == True"/>
+                <button name="action_open_metrology_wizard" string="📊 Record Metrology" type="object" 
+                        class="btn-info" invisible="active_recipe_phase_id == False or is_process_locked == True"/>
+                <button name="action_calibrate_yield" string="⚖️ Calibrate Yield" type="object" 
+                        class="btn-secondary" invisible="production_drive_type != 'parameter' or is_process_locked == True"/>
+                
+                <!-- Safety Controls -->
+                <button name="action_release_hold" string="🔓 Release Hold" type="object" 
+                        class="btn-danger" invisible="is_process_locked == False"
+                        groups="mrp.group_mrp_manager"/>
+                
+                <field name="skill_execution_status" widget="statusbar" invisible="production_drive_type != 'parameter'"/>
+            </xpath>
+
+            <!-- 2. Stat Box: Precision & Performance KPIs -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" icon="fa-crosshairs" invisible="production_drive_type != 'parameter'">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value"><field name="yield_confidence"/>%</span>
+                        <span class="o_stat_text">Precision Index</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" icon="fa-tachometer" invisible="production_drive_type != 'parameter'">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value"><field name="efficiency_index" widget="float" digits="[12,2]"/></span>
+                        <span class="o_stat_text">Efficiency</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" icon="fa-trophy" invisible="production_drive_type != 'parameter'">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value"><field name="quality_score"/></span>
+                        <span class="o_stat_text">Quality Score</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" icon="fa-shield" invisible="production_drive_type != 'parameter'">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value text-success" invisible="process_status != 'stable'">STABLE</span>
+                        <span class="o_stat_value text-warning" invisible="process_status != 'drifting'">DRIFTING</span>
+                        <span class="o_stat_value text-danger" invisible="process_status != 'out_of_control'">O.O.C</span>
+                        <span class="o_stat_text">Stability</span>
+                    </div>
+                </button>
+            </xpath>
+
+            <!-- 3. Top Alerts: Active Phase & Process Hold -->
+            <xpath expr="//sheet" position="before">
+                <!-- Process Hold Alert -->
+                <div class="alert alert-danger d-flex align-items-center mb-0" role="alert" 
+                     invisible="is_process_locked == False">
+                    <i class="fa fa-lock fa-3x me-3"/>
+                    <div>
+                        <h4 class="mb-0">EXECUTION HOLD ACTIVATED</h4>
+                        <p class="mb-0 fw-bold">Reason: <field name="lock_reason" readonly="1"/></p>
+                        <p class="mb-0 small text-muted">A manager must authorize release before production can resume.</p>
+                    </div>
+                </div>
+                <!-- Active Phase Alert -->
+                <div class="alert alert-info d-flex align-items-center mb-0" role="alert" 
+                     invisible="active_recipe_phase_id == False or is_process_locked == True">
+                    <i class="fa fa-info-circle fa-2x me-3"/>
+                    <div>
+                        <h4 class="mb-0">ACTIVE PHASE: <field name="active_recipe_phase_id" readonly="1" class="fw-bold"/></h4>
+                        <p class="mb-0 text-muted">Started at: <field name="phase_start_datetime" readonly="1"/></p>
+                    </div>
+                </div>
+            </xpath>
+
+            <!-- 4. Notebook: Precision Ecosystem -->
+            <xpath expr="//notebook" position="inside">
+                <!-- Tab 1: Performance & Tracking -->
+                <page name="precision_performance" string="🚀 Performance &amp; Control" invisible="production_drive_type != 'parameter'">
+                    <group>
+                        <group string="📡 Live Telemetry &amp; Stability">
+                            <field name="process_status" readonly="1"/>
+                            <field name="last_telemetry_data" widget="ace" readonly="1"/>
+                        </group>
+                        <group string="🤖 APC Decision Engine">
+                            <field name="active_instruction_json" widget="ace" readonly="1"/>
+                        </group>
+                    </group>
+                    <separator string="📦 Multi-Grade Output (Native By-product Sync)"/>
+                    <field name="graded_output_ids" nolabel="1">
+                        <list editable="bottom" decoration-bf="grade == 'premium'" decoration-warning="grade == 'fail'">
+                            <field name="product_id" options="{'no_create': True}"/>
+                            <field name="grade" widget="badge" decoration-success="grade == 'premium'" decoration-info="grade == 'standard'"/>
+                            <field name="quantity"/>
+                            <field name="notes"/>
+                        </list>
+                    </field>
+                </page>
+
+                <!-- Tab 2: Control Recipe (Adaptive) -->
+                <page name="control_recipe" string="📜 Control Recipe (Running)" invisible="production_drive_type != 'parameter'">
+                    <field name="recipe_phase_ids" nolabel="1">
+                        <list decoration-info="state == 'progress'" decoration-muted="state == 'done'" decoration-warning="inventory_state == 'draft'">
+                            <field name="sequence" widget="handle"/>
+                            <field name="name" class="fw-bold"/>
+                            <field name="state" widget="badge" decoration-info="state == 'progress'" decoration-success="state == 'done'"/>
+                            <field name="inventory_state" string="Stock" widget="badge" decoration-success="inventory_state == 'done'"/>
+                            <field name="duration_planned" widget="float_time" string="Adaptive Plan"/>
+                            <field name="duration_actual" widget="float_time" decoration-danger="duration_actual > duration_planned"/>
+                        </list>
+                        <form string="Phase Details">
+                            <sheet>
+                                <group>
+                                    <group string="Phase Resources">
+                                        <field name="required_workcenter_id"/><field name="required_role"/>
+                                    </group>
+                                    <group string="Adaptive Timing">
+                                        <field name="start_datetime" readonly="1"/><field name="end_datetime" readonly="1"/>
+                                        <field name="duration_planned" widget="float_time"/><field name="duration_actual" widget="float_time"/>
+                                    </group>
+                                </group>
+                                <notebook>
+                                    <page string="Parameters">
+                                        <field name="recipe_parameter_ids">
+                                            <list editable="bottom">
+                                                <field name="name"/><field name="target_value" class="fw-bold text-primary"/><field name="uom_id" readonly="1"/>
+                                                <field name="min_value" readonly="1"/><field name="max_value" readonly="1"/>
+                                            </list>
+                                        </field>
+                                    </page>
+                                    <page string="Phase Inventory">
+                                        <field name="recipe_material_ids">
+                                            <list decoration-success="state == 'added'">
+                                                <field name="product_id"/><field name="quantity_planned"/><field name="quantity_actual"/>
+                                                <field name="state" widget="badge"/><field name="move_id" optional="hide"/>
+                                            </list>
+                                        </field>
+                                    </page>
+                                </notebook>
+                            </sheet>
+                        </form>
+                    </field>
+                </page>
+
+                <!-- Tab 3: Intervention Audit Log -->
+                <page name="intervention_audit" string="🛡️ Intervention Audit" invisible="production_drive_type != 'parameter'">
+                    <field name="intervention_ids" readonly="1">
+                        <list decoration-info="intervention_type == 'active'" decoration-bf="intervention_type == 'active'">
+                            <field name="create_date" string="Time"/>
+                            <field name="intervention_type" widget="badge" decoration-info="intervention_type == 'active'" decoration-muted="intervention_type == 'manual'"/>
+                            <field name="name"/><field name="basis_id"/><field name="user_id" widget="many2one_avatar_user"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
