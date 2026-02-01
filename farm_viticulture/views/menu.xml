@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_farm_viticulture_root"
+              name="Viticulture"
+              web_icon="farm_viticulture,static/description/icon.png"
+              sequence="44"/>
+
+    <menuitem id="menu_farm_viticulture_cycles"
+              name="Vineyard Cycles"
+              parent="menu_farm_viticulture_root"
+              action="action_farm_viticulture_cycle"
+              sequence="10"/>
+
+    <menuitem id="menu_farm_viticulture_plots"
+              name="Vineyard Plots"
+              parent="menu_farm_viticulture_root"
+              action="action_farm_viticulture_plot"
+              sequence="20"/>
+</odoo>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Winery Vessel (Barrel/Tank) View -->
+    <record id="view_farm_winery_vessel_form" model="ir.ui.view">
+        <field name="name">farm.winery.vessel.form</field>
+        <field name="model">farm.winery.vessel</field>
+        <field name="arch" type="xml">
+            <form string="Winery Vessel Details">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-tint">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value"><field name="current_fill_level"/>%</span>
+                                <span class="o_stat_text">Fill Level</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" string="Vessel ID"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Vessel Specs">
+                            <field name="vessel_type"/>
+                            <field name="capacity_liters"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vinification Order View (De-industrialized) -->
+    <record id="view_farm_winery_production_form" model="ir.ui.view">
+        <field name="name">farm.winery.production.form</field>
+        <field name="model">farm.winery.production</field>
+        <field name="arch" type="xml">
+            <form string="Vinification Order">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Fermentation Monitoring">
+                            <field name="current_brix" widget="gauge" options="{'max_field': '30'}"/>
+                            <field name="current_temp" widget="gauge" options="{'max_field': '40'}"/>
+                        </group>
+                        <group string="Base Logic">
+                            <field name="product_id" string="Target Wine"/>
+                            <field name="bom_id" string="Enology Recipe"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Wine Lot View -->
+    <record id="view_farm_lot_wine_form" model="ir.ui.view">
+        <field name="name">farm.lot.wine.form</field>
+        <field name="model">farm.lot.wine</field>
+        <field name="arch" type="xml">
+            <form string="Wine Batch DNA">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="lot_id" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Aging Status">
+                            <field name="barrel_entry_date"/>
+                            <field name="aging_months" decoration-bf="1"/>
+                        </group>
+                        <group string="Chemical Profile">
+                            <field name="alcohol_final"/>
+                            <field name="residual_sugar"/>
+                            <field name="free_so2"/>
+                        </group>
+                    </group>
+                    <group string="Valuation">
+                        <field name="total_asset_value" widget="monetary"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_farm_winery_vessel" model="ir.actions.act_window">
+        <field name="name">Vessels &amp; Barrels</field>
+        <field name="res_model">farm.winery.vessel</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_farm_winery_production" model="ir.actions.act_window">
+        <field name="name">Vinification Orders</field>
+        <field name="res_model">farm.winery.production</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_farm_lot_wine" model="ir.actions.act_window">
+        <field name="name">Wine Batches</field>
+        <field name="res_model">farm.lot.wine</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
