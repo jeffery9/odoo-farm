@@ -29,6 +29,7 @@
         'security/ir.model.access.csv',
         'views/aquaculture_operation_views.xml',
         'views/aquaculture_isl_views.xml',
+        'views/updated_aquaculture_production_view.xml',
         'views/menu.xml',
     ],
     'demo': [

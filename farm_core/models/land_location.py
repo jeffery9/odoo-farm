@@ -29,7 +29,8 @@ class FarmLocation(models.Model):
         'mail.activity.mixin', 
         'stock.location', 
         'farm.core.gis.utils',
-        'agri.industry.planting.mixin' # [Mixin Injection] Sector Specific Capability
+        'agri.industry.planting.mixin', # [Mixin Injection] Sector Specific Capability
+        'agri.certification.status.mixin' # [NEW] Level 2: Compliance DNA
     ]
 
     # Link to the Domain Model
