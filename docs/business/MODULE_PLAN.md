@@ -116,6 +116,7 @@
 | | `farm_multi_farm_financial` | 多实体财务、合并报表、内部结算。 | ✅ 完成 |
 | | `farm_multi_farm_cooperative` | 合作社管理、成员管理、协作机制。 | ✅ 完成 |
 | | `farm_multi_farm_government` | 政府监管、统计报告、合规检查。 | ✅ 完成 |
+| **花卉** | `farm_floriculture` | 花卉生产、花期控制、瓶插寿命追踪。 | ✅ 完成 (2026-02-01) |
 
 | **Epic 18: 中国合规与政策适配** | US-18-01 至 US-18-06 | `farm_land_mgmt`, `farm_input_reg`, `farm_cert_ch`, `farm_subsidy_ch`, `farm_waste_mgmt`, `farm_green_monitor` | 💡 待规划 |
 | - US-18-01 | 土地承包与用途管制 | `farm_land_mgmt`, `farm_core` | 💡 待规划 |
@@ -356,6 +357,8 @@
 | **Epic 62: AI 协调与工作流** | US-62-01 至 US-62-03 | `farm_ai_agent`, `farm_isl` | ✅ 完成 |
 | **Epic 65: 补贴证据自动化** | US-65-04 | `farm_subsidy`, `farm_mobile` | ✅ 完成 |
 | **Epic 67: 订单生产全透明** | US-67-02 | `farm_marketing`, `farm_sale_ch`, `farm_operation` | ✅ 完成 |
+| **Epic 105: 花卉管理** | US-105-01 至 US-105-04 | `farm_floriculture` | ✅ 完成 |
+| **Epic 105: 花卉管理** | US-105-05 | `farm_floriculture` | 💡 待规划 |
 
 ### 供应链模块重组相关 Epic/User Story (2026-01-28)
 

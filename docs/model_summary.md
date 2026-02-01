@@ -614,6 +614,379 @@ Aquaculture models manage fish and aquatic organism farming operations.
   - Relationships:
     - Inherits from: `stock.lot`
 
+### ESG Framework (farm_esg module)
+- **esg.ESGFramework** (`esg.framework`): Core ESG framework model
+  - Odoo Model: `class ESGFramework(models.Model)`
+  - _name: `esg.framework`
+  - _description: "ESG Framework"
+  - _inherit: `mail.thread`, `mail.activity.mixin`
+  - Fields:
+    - `name` (Char): Framework name
+    - `code` (Char): Unique framework code
+    - `description` (Text): Framework description
+    - `framework_type` (Selection): Type (environmental, social, governance, combined)
+    - `standards_body` (Char): Standards body maintaining framework
+    - `version` (Char): Framework version
+    - `effective_date` (Date): Effective date
+    - `expiry_date` (Date): Expiry date
+    - `is_active` (Boolean): Active status
+    - `compliance_level` (Selection): Compliance level (basic, intermediate, advanced, leadership)
+    - `indicator_ids` (One2many): Related ESG indicators
+  - Relationships:
+    - One2many: `indicator_ids` → `esg.indicator.framework_id`
+
+- **esg.ESGAssessment** (`esg.assessment`): ESG performance assessment model
+  - Odoo Model: `class ESGAssessment(models.Model)`
+  - _name: `esg.assessment`
+  - _description: "ESG Assessment"
+  - _inherit: `mail.thread`, `mail.activity.mixin`
+  - Fields:
+    - `name` (Char): Assessment name
+    - `assessment_date` (Date): Assessment date
+    - `assessment_type` (Selection): Type (environmental, social, governance, combined)
+    - `framework_id` (Many2one): Associated ESG framework
+    - `assessment_period` (Selection): Period (daily, weekly, monthly, quarterly, annually)
+    - `year` (Integer): Assessment year
+    - `assessed_entity_type` (Selection): Entity type (company, farm, operation, product, process)
+    - `assessed_entity_id` (Reference): Entity being assessed
+    - `overall_esg_score` (Float): Overall ESG score (0-100) (computed, stored)
+    - `assessment_status` (Selection): Status (draft, in_progress, completed, validated, archived)
+    - `environmental_score` (Float): Environmental score (0-100)
+    - `social_score` (Float): Social score (0-100)
+    - `governance_score` (Float): Governance score (0-100)
+    - `assessor_id` (Many2one): Assessor user
+    - `assessment_method` (Selection): Method (self_assessment, third_party, hybrid)
+    - `certification_body` (Char): Certification body
+    - `target_ids` (Many2many): Related ESG targets
+  - Methods:
+    - `_compute_overall_esg_score()`: Computes overall score as weighted average
+    - `action_start_assessment()`: Start assessment process
+    - `action_complete_assessment()`: Complete assessment process
+
+- **esg.ESGIndicator** (`esg.indicator`): ESG indicator model
+  - Odoo Model: `class ESGIndicator(models.Model)`
+  - _name: `esg.indicator`
+  - _description: "ESG Indicator"
+  - _inherit: `mail.thread`, `mail.activity.mixin`
+  - _order: 'category, name'
+  - Fields:
+    - `name` (Char): Indicator name
+    - `code` (Char): Indicator code
+    - `description` (Text): Indicator description
+    - `category` (Selection): Category (environmental, social, governance)
+    - `subcategory` (Selection): Subcategory (carbon_emissions, water_usage, waste_management, biodiversity, energy_efficiency, etc.)
+    - `framework_id` (Many2one): Associated ESG framework
+    - `unit_of_measurement` (Char): Unit of measurement
+    - `data_collection_method` (Selection): Collection method (automated, manual_input, third_party, survey, audit)
+    - `baseline_value` (Float): Baseline value
+    - `target_value` (Float): Target value
+    - `threshold_value` (Float): Threshold value
+    - `weight` (Float): Weight in ESG score calculation
+    - `min_acceptable_value` (Float): Minimum acceptable value
+    - `max_acceptable_value` (Float): Maximum acceptable value
+    - `is_percentage` (Boolean): Whether indicator is percentage
+    - `is_active` (Boolean): Active status
+    - `reporting_frequency` (Selection): Frequency (daily, weekly, monthly, quarterly, annually)
+    - `assessment_line_ids` (One2many): Related assessment lines
+  - Relationships:
+    - Many2one: `framework_id` → `esg.framework`
+    - One2many: `assessment_line_ids` → `esg.assessment.line`
+
+- **esg.ESGAssessmentLine** (`esg.assessment.line`): Individual indicator scores within assessments
+  - Odoo Model: `class ESGAssessmentLine(models.Model)`
+  - _name: `esg.assessment.line`
+  - _description: "ESG Assessment Line"
+  - _inherit: `mail.thread`, `mail.activity.mixin`
+  - Fields:
+    - `assessment_id` (Many2one): Associated ESG assessment
+    - `indicator_id` (Many2one): Associated ESG indicator
+    - `actual_value` (Float): Actual measured value
+    - `target_value` (Float): Target value (related)
+    - `baseline_value` (Float): Baseline value (related)
+    - `variance` (Float): Variance from target (computed, stored)
+    - `performance_score` (Float): Performance score (0-100) (computed, stored)
+    - `achievement_percentage` (Float): Achievement percentage (computed, stored)
+    - `data_source` (Char): Data source
+    - `verification_status` (Selection): Verification status (unverified, self_verified, third_party_verified, certified)
+    - `collection_date` (Date): Data collection date
+    - `collected_by` (Many2one): User who collected data
+  - Methods:
+    - `_compute_variance()`: Computes variance from target
+    - `_compute_performance_score()`: Computes performance score based on achievement
+    - `_compute_achievement_percentage()`: Computes achievement percentage
+
+- **esg.ESGTarget** (`esg.target`): ESG goals and targets model
+  - Odoo Model: `class ESGTarget(models.Model)`
+  - _name: `esg.target`
+  - _description: "ESG Target"
+  - _inherit: `mail.thread`, `mail.activity.mixin`
+  - Fields:
+    - `name` (Char): Target name
+    - `description` (Text): Target description
+    - `category` (Selection): Category (environmental, social, governance)
+    - `target_type` (Selection): Type (reduction, improvement, compliance, certification, benchmark)
+    - `baseline_value` (Float): Baseline value
+    - `target_value` (Float): Target value
+    - `current_value` (Float): Current value (computed, stored)
+    - `unit_of_measurement` (Char): Unit of measurement
+    - `start_date` (Date): Start date
+    - `target_date` (Date): Target date
+    - `achieved_date` (Date): Date achieved (readonly)
+    - `progress_percentage` (Float): Progress percentage (computed, stored)
+    - `is_achieved` (Boolean): Whether target is achieved (computed, stored)
+    - `framework_id` (Many2one): Associated ESG framework
+    - `related_indicator_ids` (Many2many): Related indicators
+    - `responsible_user_id` (Many2one): Responsible user
+    - `priority` (Selection): Priority level (low, medium, high, critical)
+    - `status` (Selection): Status (planned, in_progress, partially_achieved, achieved, deferred, cancelled)
+    - `stakeholder_ids` (Many2many): Related stakeholders
+    - `last_update` (Text): Last update notes
+  - Methods:
+    - `_compute_progress_percentage()`: Computes progress percentage
+    - `_compute_is_achieved()`: Determines if target is achieved
+    - `_compute_current_value()`: Computes current value
+    - `action_update_current_value()`: Manual update of current value
+    - `action_mark_achieved()`: Mark target as achieved
+    - `action_track_progress()`: Track progress function
+
+- **esg.ESGPerformanceReport** (`esg.performance.report`): ESG performance reporting model
+  - Odoo Model: `class ESGPerformanceReport(models.Model)`
+  - _name: `esg.performance.report`
+  - _description: "ESG Performance Report"
+  - _inherit: `mail.thread`, `mail.activity.mixin`
+  - Fields:
+    - `name` (Char): Report name
+    - `report_date` (Date): Report date
+    - `report_period` (Selection): Report period (monthly, quarterly, semi_annually, annually)
+    - `year` (Integer): Report year
+    - `company_id` (Many2one): Associated company
+    - `environmental_score` (Float): Environmental score (0-100)
+    - `social_score` (Float): Social score (0-100)
+    - `governance_score` (Float): Governance score (0-100)
+    - `overall_esg_score` (Float): Overall ESG score (0-100) (computed, stored)
+    - `total_targets` (Integer): Total targets (computed, stored)
+    - `achieved_targets` (Integer): Achieved targets (computed, stored)
+    - `achievement_rate` (Float): Achievement rate percentage (computed, stored)
+    - `compliance_rate` (Float): Compliance rate percentage
+    - `audit_findings` (Integer): Number of audit findings
+    - `corrective_actions` (Integer): Corrective actions required
+    - `executive_summary` (Html): Executive summary
+    - `key_achievements` (Html): Key achievements
+    - `challenges` (Html): Challenges
+    - `improvement_plan` (Html): Improvement plan
+    - `assessment_ids` (Many2many): Related assessments
+    - `target_ids` (Many2many): Related targets
+  - Methods:
+    - `_compute_overall_score()`: Computes overall ESG score
+    - `_compute_target_metrics()`: Computes target-related metrics
+    - `action_generate_report()`: Generate ESG report
+
+### ESG Carbon Module (farm_esg_carbon)
+- **farm_esg_carbon.ProductTemplateExtension**: Extends product templates with carbon emissions
+  - Odoo Model: `class ProductTemplate(models.Model)` (extension)
+  - _inherit: `product.template`
+  - Fields:
+    - `carbon_emission_factor` (Float): Carbon emission factor (kg CO2e per unit)
+
+- **farm_esg_carbon.AgriInterventionExtension**: Extends production orders with carbon calculations
+  - Odoo Model: `class AgriIntervention(models.Model)` (extension)
+  - _inherit: `mrp.production`
+  - Fields:
+    - `calculated_carbon_emission` (Float): Calculated carbon emission (kg CO2e) (computed, stored)
+  - Methods:
+    - `_compute_carbon_emission()`: Computes total carbon emission from raw materials
+
+### ESG Environmental Compliance (farm_esg_environmental)
+- **agri.ESGRedLineConfig** (`agri.esg.red.line.config`): ESG red line configuration model
+  - Odoo Model: `class AgriESGRedLineConfig(models.Model)`
+  - _name: `agri.esg.red.line.config`
+  - _description: "Agri ESG Red Line Configuration"
+  - _inherit: `mail.thread`, `mail.activity.mixin`
+  - Fields:
+    - `name` (Char): Red line name
+    - `red_line_type` (Selection): Type (deforestation, water_extraction, soil_degradation, protected_area, carbon_emission, chemical_runoff, biodiversity_loss)
+    - `coordinates` (Text): Boundary coordinates for geofencing
+    - `buffer_distance_km` (Float): Buffer distance in kilometers
+    - `threshold_value` (Float): Threshold value
+    - `threshold_unit` (Char): Threshold unit
+    - `threshold_description` (Text): Threshold description
+    - `active_monitoring` (Boolean): Active monitoring flag
+    - `monitoring_frequency` (Selection): Frequency (real_time, hourly, daily, weekly)
+    - `description` (Text): Description
+    - `remediation_plan` (Text): Remediation plan
+
+- **agri.ESGRedLineMonitoring** (`agri.esg.red.line.monitoring`): ESG compliance monitoring model
+  - Odoo Model: `class AgriESGRedLineMonitoring(models.Model)`
+  - _name: `agri.esg.red.line.monitoring`
+  - _description: "Agri ESG Red Line Monitoring"
+  - _inherit: `mail.thread`, `mail.activity.mixin`
+  - _order: 'detection_date desc'
+  - Fields:
+    - `name` (Char): Monitoring record name
+    - `red_line_config_id` (Many2one): Red line configuration
+    - `batch_lot_id` (Many2one): Associated batch/lot
+    - `location_id` (Many2one): Location being monitored
+    - `detection_date` (Datetime): Detection date
+    - `compliance_status` (Selection): Status (compliant, warning, violation, critical, resolved)
+    - `current_value` (Float): Current measured value
+    - `threshold_value` (Float): Threshold value (related)
+    - `carbon_footprint_kg` (Float): Carbon footprint
+    - `water_usage_m3` (Float): Water usage in cubic meters
+    - `land_use_area` (Float): Land use area in square meters
+    - `is_in_protected_area` (Boolean): Whether in protected area
+    - `distance_to_boundary_km` (Float): Distance to boundary in kilometers
+    - `detection_method` (Selection): Method (geofence, threshold_monitoring, manual_audit, iot_sensor, telemetry)
+    - `detection_details` (Text): Detection details
+    - `automated_check` (Boolean): Automated check flag
+    - `alert_issued` (Boolean): Alert issued flag
+    - `corrective_actions` (Text): Required corrective actions
+    - `remediation_date` (Datetime): Remediation date
+    - `resolution_notes` (Text): Resolution notes
+  - Methods:
+    - `_check_compliance_status()`: Check compliance status
+    - `action_issue_red_line_alert()`: Issue red line alert
+    - `action_resolve_violation()`: Resolve violation
+    - `action_check_batch_compliance()`: Check batch compliance
+    - `_perform_specific_check()`: Perform specific compliance check
+    - `_check_deforestation_risk()`: Check deforestation risk
+    - `_check_water_usage()`: Check water usage
+    - `_check_carbon_footprint()`: Check carbon footprint
+    - `_check_protected_area_compliance()`: Check protected area compliance
+    - `_cron_check_compliance()`: Scheduled compliance check
+
+- **agri.StockLotESGExtension** (`stock.lot`): ESG compliance extension to stock lots
+  - Odoo Model: `class AgriStockLot(models.Model)` (extension)
+  - _inherit: `stock.lot`
+  - Fields:
+    - `esg_compliance_status` (Selection): ESG compliance status (computed, stored)
+    - `esg_monitoring_ids` (One2many): ESG monitoring records
+    - `last_esg_check` (Datetime): Last ESG check date
+    - `water_usage_m3` (Float): Water usage for this lot
+    - `land_use_area_m2` (Float): Land use area in square meters
+  - Methods:
+    - `_compute_esg_compliance_status()`: Compute ESG compliance status
+    - `action_check_esg_compliance()`: Check ESG compliance
+
+### ESG Circular Economy (farm_esg_circular)
+- **agri.CircularFlow** (`agri.sustainability.circular.flow`): Agricultural circular flow model
+  - Odoo Model: `class AgriSustainabilityCircularFlow(models.Model)`
+  - _name: `agri.sustainability.circular.flow`
+  - _description: "Agricultural Circular Flow"
+  - _inherit: `mail.thread`, `mail.activity.mixin`
+  - _order: 'create_date desc'
+  - Fields:
+    - `name` (Char): Flow name
+    - `code` (Char): Flow code (unique)
+    - `flow_type` (Selection): Type (waste_to_resource, byproduct_to_sale, recycling, energy_recovery, composting, biogas_production)
+    - `description` (Text): Flow description
+    - `input_product_id` (Many2one): Input product/ingredient
+    - `output_product_id` (Many2one): Output product/resource
+    - `input_quantity` (Float): Input quantity
+    - `output_quantity` (Float): Output quantity
+    - `start_date` (Date): Start date
+    - `end_date` (Date): End date
+    - `duration_days` (Integer): Duration in days (computed, stored)
+    - `economic_value` (Float): Economic value (computed, stored)
+    - `environmental_impact` (Float): Environmental impact score (computed, stored)
+    - `social_impact` (Float): Social impact score (computed, stored)
+    - `processing_cost` (Float): Processing cost
+    - `revenue` (Float): Revenue
+    - `net_benefit` (Float): Net benefit (computed, stored)
+    - `status` (Selection): Status (planned, active, completed, suspended, cancelled)
+    - `responsible_person_id` (Many2one): Responsible person
+    - `department_id` (Many2one): Responsible department
+    - `related_production_id` (Many2one): Related production order
+    - `related_sale_order_id` (Many2one): Related sale order
+    - `related_carbon_calculation_id` (Many2one): Related carbon calculation
+    - `created_by` (Many2one): Created by user
+    - `create_date` (Datetime): Creation date (readonly)
+    - `write_date` (Datetime): Last update date (readonly)
+  - Methods:
+    - `_compute_duration()`: Compute duration in days
+    - `_compute_net_benefit()`: Compute net benefit
+    - `_compute_economic_value()`: Compute economic value
+    - `_compute_environmental_impact()`: Compute environmental impact score
+    - `_compute_social_impact()`: Compute social impact score
+    - `action_activate_flow()`: Activate the flow
+    - `action_complete_flow()`: Complete the flow
+    - `action_suspend_flow()`: Suspend the flow
+    - `name_get()`: Custom display name
+
+- **agri.CircularFlowAnalysis** (`agri.sustainability.circular.flow.analysis`): Circular flow analysis view model
+  - Odoo Model: `class AgriSustainabilityCircularFlowAnalysis(models.Model)`
+  - _name: `agri.sustainability.circular.flow.analysis`
+  - _description: "Agricultural Circular Flow Analysis"
+  - _auto: False (database view)
+  - Fields:
+    - `flow_id` (Many2one): Related circular flow
+    - `flow_type` (Selection): Flow type (related)
+    - `input_product_id` (Many2one): Input product (related)
+    - `output_product_id` (Many2one): Output product (related)
+    - `economic_value` (Float): Economic value (related)
+    - `environmental_impact` (Float): Environmental impact (related)
+    - `net_benefit` (Float): Net benefit (related)
+    - `status` (Selection): Status (related)
+    - `month` (Char): Month for reporting
+    - `year` (Char): Year for reporting
+  - Methods:
+    - `init()`: Initialize database view
+
+### ESG Sustainability Reporting (farm_esg_sustainability)
+- **agri.SustainabilityMetric** (`agri.sustainability.metric`): Agricultural sustainability metric model
+  - Odoo Model: `class AgriSustainabilityMetric(models.Model)`
+  - _name: `agri.sustainability.metric`
+  - _description: "Agricultural Sustainability Metric"
+  - _inherit: `mail.thread`, `mail.activity.mixin`
+  - _order: 'category, sequence'
+  - Fields:
+    - `name` (Char): Metric name (translatable)
+    - `code` (Char): Unique metric code
+    - `category` (Selection): Category (economic, environmental, social, governance)
+    - `unit` (Char): Unit of measure
+    - `description` (Text): Description (translatable)
+    - `sequence` (Integer): Display sequence
+    - `target_value` (Float): Target value
+    - `current_value` (Float): Current value (computed, stored)
+    - `progress_rate` (Float): Progress rate percentage (computed, stored)
+    - `is_active` (Boolean): Active status
+    - `calculation_method` (Selection): Method (manual, automatic, formula)
+    - `formula` (Text): Calculation formula
+    - `last_updated` (Datetime): Last updated (readonly)
+    - `value_history_ids` (One2many): Value history
+  - Methods:
+    - `_compute_current_value()`: Compute current value from history
+    - `_compute_progress_rate()`: Compute progress rate
+    - `action_update_value()`: Update metric value action
+    - `name_get()`: Custom display name
+
+- **agri.SustainabilityMetricValue** (`agri.sustainability.metric.value`): Sustainability metric value history
+  - Odoo Model: `class AgriSustainabilityMetricValue(models.Model)`
+  - _name: `agri.sustainability.metric.value`
+  - _description: "Agri Sustainability Metric Value"
+  - _inherit: `mail.thread`, `mail.activity.mixin`
+  - _order: 'date desc'
+  - Fields:
+    - `metric_id` (Many2one): Related metric
+    - `value` (Float): Metric value
+    - `date` (Datetime): Record date
+    - `note` (Text): Notes
+    - `recorded_by` (Many2one): Recorded by user
+  - Methods:
+    - `create()`: Override create to update parent metric timestamp
+
+- **agri.SustainabilityMetricValueWizard** (`agri.sustainability.metric.value.wizard`): Wizard for updating metric values
+  - Odoo Model: `class AgriSustainabilityMetricValueWizard(models.TransientModel)`
+  - _name: `agri.sustainability.metric.value.wizard`
+  - _description: "Agri Sustainability Metric Value Update Wizard"
+  - Fields:
+    - `metric_id` (Many2one): Related metric (readonly)
+    - `value` (Float): New value
+    - `date` (Datetime): Date
+    - `note` (Text): Notes
+  - Methods:
+    - `action_update_value()`: Execute value update
+
+### Carbon Asset Management
 - **farm_sustainability.CarbonAsset**: Management of carbon assets (Deprecated - Use agri.carbon.asset)
   - Odoo Model: `class CarbonAsset(models.Model)` (now inherits from agri.carbon.asset)
   - _name: `farm.carbon.asset`
@@ -640,8 +1013,6 @@ Aquaculture models manage fish and aquatic organism farming operations.
   - _description: "Agricultural Ecological Activity"
   - Relationships:
     - location_id (Many2one to farm.location)
-
-- **farm_sustainability.CarbonAsset**: Management of carbon assets
 
 ### CSA (Community Supported Agriculture)
 - **farm_csa.FarmCSAPlan**: Community Supported Agriculture plans
