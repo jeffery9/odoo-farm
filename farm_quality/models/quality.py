@@ -1,101 +1,61 @@
+# -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
-import logging
 
-_logger = logging.getLogger(__name__)
 
-class FarmQualityPoint(models.Model):
+class FarmHaccpPoint(models.Model):
     """
-    Farm-specific extension of the agricultural quality point model.
-    This ensures backward compatibility while using the new agri.* namespace.
+    [ISL Layer] Critical Control Point (CCP).
+    Proxies quality.point to enforce food safety redlines.
     """
-    _name = 'farm.quality.point'
-    _description = 'Quality Control Point (Deprecated - Use agri.quality.point)'
-    _inherit = 'agri.quality.point'
+    _name = 'farm.haccp.point'
+    _description = 'HACCP Critical Control Point'
+    _inherits = {'quality.point': 'quality_point_id'}
+    
+    quality_point_id = fields.Many2one('quality.point', required=True, ondelete='cascade')
 
-    def _register_hook(self):
-        """Display deprecation warning when module is installed."""
-        import logging
-        _logger = logging.getLogger(__name__)
-        _logger.warning(
-            "farm.quality.point is deprecated. "
-            "Please update your code to use agri.quality.point instead."
-        )
-        return super()._register_hook()
+    # Critical Limits (CL) [US-114-01]
+    is_ccp = fields.Boolean("Is Critical Control Point", default=True)
+    cl_min = fields.Float("Critical Limit Min")
+    cl_max = fields.Float("Critical Limit Max")
+    cl_uom_id = fields.Many2one('uom.uom', string="CL Unit")
+    
+    hazard_description = fields.Text("Identified Hazard")
+    corrective_action_plan = fields.Text("Standard Corrective Action")
 
-class FarmQualityCheck(models.Model):
+class FarmHaccpCheck(models.Model):
     """
-    Farm-specific extension of the agricultural quality check model.
-    This ensures backward compatibility while using the new agri.* namespace.
+    [ISL Layer] HACCP Monitoring Record.
+    Proxies quality.check to handle corrective actions and blocking.
     """
-    _name = 'farm.quality.check'
-    _description = 'Quality Check (Deprecated - Use agri.quality.check)'
-    _inherit = 'agri.quality.check'
+    _name = 'farm.haccp.check'
+    _description = 'HACCP Monitoring Record'
+    _inherits = {'quality.check': 'quality_check_id'}
+    _inherit = ['agri.incident.alert.mixin']
 
-    def _register_hook(self):
-        """Display deprecation warning when module is installed."""
-        import logging
-        _logger = logging.getLogger(__name__)
-        _logger.warning(
-            "farm.quality.check is deprecated. "
-            "Please update your code to use agri.quality.check instead."
-        )
-        return super()._register_hook()
+    quality_check_id = fields.Many2one('quality.check', required=True, ondelete='cascade')
 
-class FarmQualityAlert(models.Model):
-    """
-    Farm-specific extension of the agricultural quality alert model.
-    This ensures backward compatibility while using the new agri.* namespace.
-    """
-    _name = 'farm.quality.alert'
-    _description = 'Quality Alert (Deprecated - Use agri.quality.alert)'
-    _inherit = 'agri.quality.alert'
+    # Monitoring results
+    actual_value = fields.Float("Measured Value")
+    is_violated = fields.Boolean("CL Violation", compute='_compute_violation', store=True)
+    
+    # Corrective Action [US-114-03]
+    corrective_action_taken = fields.Text("Corrective Action Taken")
+    ca_responsible_id = fields.Many2one('res.users', string="Action Done By")
 
-    def _register_hook(self):
-        """Display deprecation warning when module is installed."""
-        import logging
-        _logger = logging.getLogger(__name__)
-        _logger.warning(
-            "farm.quality.alert is deprecated. "
-            "Please update your code to use agri.quality.alert instead."
-        )
-        return super()._register_hook()
-
-# Note: StockPicking and FarmLotQuality remain as is because they inherit from base Odoo models
-class StockPicking(models.Model):
-    _inherit = 'stock.picking'
-
-    def button_validate(self):
-        for picking in self:
-            if picking.picking_type_code in ['outgoing', 'internal']:
-                for move in picking.move_ids:
-                    for lot in move.lot_ids:
-                        if lot.quality_status == 'failed':
-                            raise UserError(_("QUALITY ALERT: Lot %s has failed quality inspection.") % lot.name)
-                        if lot.qc_release_state == 'locked':
-                            raise UserError(_("QC LOCKED: Lot %s is pending release and cannot be moved.") % lot.name)
-        return super().button_validate()
-
-class FarmLotQuality(models.Model):
-    _inherit = 'stock.lot'
-
-    quality_status = fields.Selection([
-        ('none', 'Not Tested'),
-        ('passed', 'Passed'),
-        ('failed', 'Failed')
-    ], string="Quality Status", default='none', tracking=True)
-
-    qc_release_state = fields.Selection([
-        ('locked', 'Locked'),
-        ('released', 'Released'),
-    ], string="QC Release Status", default='locked', tracking=True)
-
-    quality_check_ids = fields.One2many('agri.quality.check', 'lot_id', string="Quality Checks")
-
-    def action_qc_release(self):
-        self.ensure_one()
-        self.write({'qc_release_state': 'released'})
-
-    def action_lock(self):
-        self.ensure_one()
-        self.write({'qc_release_state': 'locked'})
+    @api.depends('actual_value', 'point_id')
+    def _compute_violation(self):
+        for rec in self:
+            # Look up the ISL proxy for the point
+            haccp_point = self.env['farm.haccp.point'].search([('quality_point_id', '=', rec.point_id.id)], limit=1)
+            if haccp_point and rec.actual_value:
+                if (haccp_point.cl_min and rec.actual_value < haccp_point.cl_min) or \
+                   (haccp_point.cl_max and rec.actual_value > haccp_point.cl_max):
+                    rec.is_violated = True
+                    # Trigger Incident DNA (Level 2)
+                    rec.report_incident('high', 'HACCP CL Violation', 
+                                       _("CCP %s violated! Measured: %s") % (haccp_point.name, rec.actual_value))
+                else:
+                    rec.is_violated = False
+            else:
+                rec.is_violated = False
