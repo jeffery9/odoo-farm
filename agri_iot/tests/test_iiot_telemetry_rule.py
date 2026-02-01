@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 import json
 
 
-@tagged('industrial_iot', 'iiot_telemetry_rule', 'post_install', '-at_install')
+@tagged('agri_iot', 'iiot_telemetry_rule', 'post_install', '-at_install')
 class TestIiotTelemetryRule(TransactionCase):
     """Test suite for the IiotTelemetryRule model"""
 

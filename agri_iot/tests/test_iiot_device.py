@@ -6,7 +6,7 @@ import json
 import uuid
 
 
-@tagged('industrial_iot', 'iiot_device', 'post_install', '-at_install')
+@tagged('agri_iot', 'iiot_device', 'post_install', '-at_install')
 class TestIiotDevice(TransactionCase):
     """Test suite for the IiotDevice model"""
 
