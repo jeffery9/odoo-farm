@@ -13,6 +13,7 @@ class AgriInterventionMixin(models.AbstractModel):
     """
     _name = 'agri.intervention.mixin'
     _description = 'Agri Agricultural Intervention Shared Logic'
+    _inherit = ['agri.resource.consumption.mixin', 'agri.incident.alert.mixin']
 
     # Basic intervention fields
     agri_task_id = fields.Many2one(
