@@ -27,7 +27,19 @@ class MrpBomLine(models.Model):
     ]
 
 class MrpProduction(models.Model):
-    _inherit = 'mrp.production'
+    _inherit = ['mrp.production', 'agri.sustainability.mixin', 'agri.weather.sensitive.mixin', 'agri.agent.instruction.mixin']
+
+    def action_confirm(self):
+        """ [Level 0: DNA Gate] Validate ESG and Weather compliance. """
+        self.check_operation_esg_gate()
+        
+        # [NEW] Weather Window Check: Hard block if conditions are unsuitable
+        for mo in self:
+            # Determine activity type from product/routing if possible
+            activity_type = 'spraying' if 'spray' in (mo.product_id.name or '').lower() else 'general'
+            mo.check_weather_window(activity_type)
+            
+        return super(MrpProduction, self).action_confirm()
 
     @api.onchange('bom_id', 'product_qty', 'product_uom_id')
     def _onchange_bom_id(self):

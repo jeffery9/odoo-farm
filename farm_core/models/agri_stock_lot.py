@@ -10,8 +10,10 @@ class StockLot(models.Model):
         'stock.lot',
         'agri.view.mixin',           # Level 0: UI Isolation
         'agri.sustainability.mixin', # Level 0: Carbon Track
+        'agri.traceability.mixin',   # [NEW] Level 1: Traceability Fingerprint
         'agri.geospatial.mixin',     # Level 1: Location Evidence
         'agri.nutrient.mixin',       # Level 1: Mass Balance DNA
+        'agri.certification.status.mixin', # [NEW] Level 2: Compliance Validity
         'agri.evidence.mixin',       # Level 2: Audit
         'agri.clearing.mixin',       # Level 3: Clearing & Fingerprint
     ]
