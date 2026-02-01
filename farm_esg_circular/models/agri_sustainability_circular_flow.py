@@ -67,6 +67,15 @@ class AgriSustainabilityCircularFlow(models.Model):
     # 集成现有碳足迹计算
     related_carbon_calculation_id = fields.Many2one('agri.sustainability.carbon.footprint.calculation', '关联碳足迹计算')
 
+    # 关联到地理空间网络 (US-27-06)
+    geospatial_network_id = fields.Many2one('agri.geospatial.circular.network', string='关联地理空间网络')
+
+    # 关联到区域治理 (US-27-07)
+    regional_governance_id = fields.Many2one('agri.regional.circular.governance', string='关联区域治理')
+
+    # 关联到农场参与 (US-27-07)
+    farm_participation_id = fields.Many2one('agri.farm.circular.participation', string='关联农场参与')
+
     # 记录信息
     created_by = fields.Many2one('res.users', '创建人', default=lambda self: self.env.user)
     create_date = fields.Datetime('创建日期', readonly=True)
@@ -100,27 +109,33 @@ class AgriSustainabilityCircularFlow(models.Model):
             else:
                 flow.economic_value = 0.0
 
-    @api.depends('flow_type', 'output_quantity')
+    @api.depends('related_production_id', 'input_product_id', 'input_quantity')
     def _compute_environmental_impact(self):
-        """计算环境影响评分 (0-100, 分数越高表示越积极的环境影响)"""
+        """[US-101-03] Mass_Balance Recursive Value Flow Algorithm"""
         for flow in self:
-            base_score = 50  # 基础分
-
-            # 根据流程类型调整分数
-            type_multiplier = {
-                'waste_to_resource': 1.2,
-                'byproduct_to_sale': 1.1,
-                'recycling': 1.3,
-                'composting': 1.0,
-                'biogas_production': 1.4,
-            }
-
-            multiplier = type_multiplier.get(flow.flow_type, 1.0)
-
-            # 考虑输出数量的影响
-            quantity_factor = min(flow.output_quantity / 10.0, 2.0) if flow.output_quantity else 0.0
-
-            flow.environmental_impact = min(100, base_score * multiplier + quantity_factor * 10)
+            if flow.related_production_id:
+                # Use Mass Balance Recursive Algorithm
+                algo = self.env['agri.sustainability.algorithms']
+                inputs = []
+                for move in flow.related_production_id.move_raw_ids:
+                    inputs.append({
+                        'qty': move.product_uom_qty,
+                        'env_score': move.product_id.environmental_impact or 50.0,
+                        'soc_score': move.product_id.social_impact or 50.0,
+                        'eco_score': move.product_id.economic_impact or 50.0,
+                        'carbon': move.product_id.carbon_emission_factor or 0.0
+                    })
+                
+                results = algo.calculate_recursive_mass_balance(inputs, flow.output_quantity)
+                flow.environmental_impact = results.get('environmental_score', 50.0)
+                flow.social_impact = results.get('social_score', 50.0)
+                flow.economic_value = flow.output_quantity * (flow.output_product_id.standard_price or 1.0)
+            else:
+                # Fallback to simple multiplier logic
+                base_score = 50.0
+                type_multiplier = {'waste_to_resource': 1.2, 'biogas_production': 1.4}
+                multiplier = type_multiplier.get(flow.flow_type, 1.0)
+                flow.environmental_impact = min(100, base_score * multiplier)
 
     @api.depends('flow_type', 'output_quantity')
     def _compute_social_impact(self):
