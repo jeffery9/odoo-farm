@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- VRA Water Protection Zone Tree View -->
+    <record id="view_vra_water_protection_zone_tree" model="ir.ui.view">
+        <field name="name">agri.vra.water.protection.zone.tree</field>
+        <field name="model">agri.vra.water.protection.zone</field>
+        <field name="arch" type="xml">
+            <tree string="VRA Water Protection Zones">
+                <field name="name"/>
+                <field name="water_body_name"/>
+                <field name="location_id"/>
+                <field name="buffer_zone_type"/>
+                <field name="buffer_distance_meters"/>
+                <field name="compliance_status"/>
+                <field name="environmental_risk_level"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- VRA Water Protection Zone Form View -->
+    <record id="view_vra_water_protection_zone_form" model="ir.ui.view">
+        <field name="name">agri.vra.water.protection.zone.form</field>
+        <field name="model">agri.vra.water.protection.zone</field>
+        <field name="arch" type="xml">
+            <form string="VRA Water Protection Zone">
+                <header>
+                    <button name="action_schedule_inspection" type="object" string="Schedule Inspection"
+                            class="oe_highlight"/>
+                    <button name="action_record_compliance_check" type="object" string="Record Compliance Check"
+                            class="oe_highlight"/>
+                    <button name="action_generate_water_protection_report" type="object" string="Generate Report"
+                            class="oe_highlight"/>
+                    <field name="compliance_status" widget="statusbar" statusbar_visible="compliant,warning,violation"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="action_schedule_inspection" type="object"
+                                icon="fa-calendar">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Schedule</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" name="action_record_compliance_check" type="object"
+                                icon="fa-check-circle">
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_text">Compliance Check</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="zone_code"/>
+                            <field name="water_body_name"/>
+                            <field name="location_id"/>
+                        </group>
+                        <group>
+                            <field name="active"/>
+                            <field name="buffer_zone_type"/>
+                            <field name="buffer_distance_meters"/>
+                            <field name="environmental_risk_level"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Zone Specifications">
+                            <group>
+                                <group>
+                                    <field name="gps_coordinates"/>
+                                    <field name="restricted_operations"/>
+                                    <field name="monitoring_frequency"/>
+                                </group>
+                                <group>
+                                    <field name="seasonal_restrictions"/>
+                                    <field name="restricted_season_start" attrs="{'invisible': [('seasonal_restrictions', '=', False)]}"/>
+                                    <field name="restricted_season_end" attrs="{'invisible': [('seasonal_restrictions', '=', False)]}"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Restrictions">
+                            <group>
+                                <field name="prohibited_materials" widget="many2many_tags"/>
+                            </group>
+                        </page>
+
+                        <page string="VRA Integration">
+                            <group>
+                                <field name="active_prescription_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+
+                        <page string="Monitoring">
+                            <group>
+                                <group>
+                                    <field name="last_inspection_date"/>
+                                    <field name="next_inspection_date"/>
+                                </group>
+                                <group>
+                                    <field name="zone_effectiveness_score"/>
+                                </group>
+                            </group>
+                            <separator string="Compliance History"/>
+                            <field name="compliance_history_ids">
+                                <tree string="Compliance History">
+                                    <field name="check_date"/>
+                                    <field name="compliance_status"/>
+                                    <field name="notes"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- VRA Water Protection Zone Search View -->
+    <record id="view_vra_water_protection_zone_search" model="ir.ui.view">
+        <field name="name">agri.vra.water.protection.zone.search</field>
+        <field name="model">agri.vra.water.protection.zone</field>
+        <field name="arch" type="xml">
+            <search string="VRA Water Protection Zones">
+                <field name="name"/>
+                <field name="water_body_name"/>
+                <field name="location_id"/>
+                <field name="buffer_zone_type"/>
+                <field name="compliance_status"/>
+                <field name="active"/>
+                <filter name="filter_active" string="Active" domain="[('active', '=', True)]"/>
+                <filter name="filter_high_risk" string="High Risk" domain="[('environmental_risk_level', '=', 'high')]"/>
+                <filter name="filter_chemical_buffer" string="Chemical Buffers" domain="[('buffer_zone_type', '=', 'chemical')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_location" string="Location" domain="[]" context="{'group_by':'location_id'}"/>
+                    <filter name="group_type" string="Buffer Type" domain="[]" context="{'group_by':'buffer_zone_type'}"/>
+                    <filter name="group_status" string="Compliance Status" domain="[]" context="{'group_by':'compliance_status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- VRA Water Protection Zone Action -->
+    <record id="action_vra_water_protection_zone" model="ir.actions.act_window">
+        <field name="name">VRA Water Protection Zones</field>
+        <field name="res_model">agri.vra.water.protection.zone</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first VRA Water Protection Zone!
+            </p>
+            <p>
+                Define buffer zones around water bodies to prevent contamination from VRA applications, ensuring environmental protection while maintaining agricultural productivity.
+            </p>
+        </field>
+    </record>
+</odoo>

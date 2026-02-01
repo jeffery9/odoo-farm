@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Data updates for carbon ledger model name change from farm.carbon.ledger to agri.carbon.ledger -->
+    <record id="carbon_ledger_model_update" model="ir.model.data">
+        <field name="module">farm_esg_environmental</field>
+        <field name="name">model_farm_carbon_ledger</field>
+        <field eval="1" name="noupdate"/>
+    </record>
+</odoo>

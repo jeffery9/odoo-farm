@@ -12,3 +12,7 @@ access_esg_red_line_config,farm.esg.red.line.config,model_farm_esg_red_line_conf
 access_esg_red_line_monitoring,farm.esg.red.line.monitoring,model_farm_esg_red_line_monitoring,farm_core.group_farm_manager,1,1,1,1
 access_esg_red_line_config_user,farm.esg.red.line.config.user,model_farm_esg_red_line_config,farm_core.group_farm_user,1,0,0,0
 access_esg_red_line_monitoring_user,farm.esg.red.line.monitoring.user,model_farm_esg_red_line_monitoring,farm_core.group_farm_user,1,1,1,1
+access_vra_carbon_footprint,agri.vra.carbon.footprint,model_agri_vra_carbon_footprint,base.group_user,1,1,1,1
+access_vra_water_protection_zone,agri.vra.water.protection.zone,model_agri_vra_water_protection_zone,base.group_user,1,1,1,1
+access_vra_water_compliance_history,agri.vra.water.compliance.history,model_agri_vra_water_compliance_history,base.group_user,1,1,1,1
+access_vra_soil_health_monitor,agri.vra.soil.health.monitor,model_agri_vra_soil_health_monitor,base.group_user,1,1,1,1
