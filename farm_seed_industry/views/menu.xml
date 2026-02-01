@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_farm_seed_root"
+              name="Seed &amp; R&amp;D"
+              web_icon="farm_seed_industry,static/description/icon.png"
+              sequence="5"/>
+
+    <menuitem id="menu_farm_seed_batches"
+              name="Seed Batches"
+              parent="menu_farm_seed_root"
+              action="action_farm_seed_batch"
+              sequence="10"/>
+
+    <menuitem id="menu_farm_seed_production"
+              name="Propagation Orders"
+              parent="menu_farm_seed_root"
+              action="action_farm_seed_production"
+              sequence="20"/>
+</odoo>
