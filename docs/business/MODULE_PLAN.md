@@ -85,7 +85,16 @@
 | | `farm_financial_insurance` | 农业保险、理赔处理、风险评估。 | ✅ 完成 |
 | | `farm_financial_derivatives` | 金融衍生品、期货期权、风险管理。 | 💡 待规划 |
 | | `farm_financial_government` | 补贴核算、政府专项基金、合规报告。 | ✅ 完成 |
-| | `farm_sustainability` | 可持续指标、养分减量化趋势分析。 | ✅ 完成 |
+| | `farm_esg` | ESG 框架管理、指标体系、评估报告。 | ✅ 完成 |
+| | `farm_esg_carbon` | 产品碳足迹追踪、碳排放计算。 | ✅ 完成 |
+| | `farm_esg_environmental` | 环境合规监控、红线条监测。 | ✅ 完成 |
+| | `farm_esg_circular` | 循环经济流程、资源流转管理。 | ✅ 完成 |
+| | `farm_esg_sustainability` | 可持续性指标管理、报告分析。 | ✅ 完成 |
+| | `farm_esg_compliance` | ESG 合规管理、碳中和认证、可持续农业实践认证。 | ✅ 完成 |
+| | `farm_esg_fair_trade` | 公平贸易认证、社会影响评估、供应链公平性管理。 | ✅ 完成 |
+| | `farm_esg_report` | ESG 报告生成、合规报告、环境绩效报告。 | ✅ 完成 |
+| | `farm_esg_risk` | ESG 风险评估、治理风险、合规风险管理。 | ✅ 完成 |
+| | `farm_esg_social` | 社会影响追踪、社区发展、劳工权益保障。 | ✅ 完成 |
 | | `farm_exchange` | 行业数据交换 (DAPLOS, EDI)。 | ✅ 完成 |
 | | `farm_dashboard` | 经营驾驶舱、跨模块运营指标看板。 | ✅ 完成 |
 | **智能** | `farm_ai_core` | AI 基础框架、模型接口、通用 AI 服务。 | ✅ L2 审计存证完成 |
@@ -126,10 +135,10 @@
 | **Epic 25: 通用证据存证** | `farm_mobile` | 万物皆可取证、自动化地理水印、证据看板。 | ✅ 完成 |
 | **Epic 26: 高级现场服务** | `farm_mobile` | 农业语音输入、离线卫星地图、远程专家连线。 | ✅ 完成 (2026-01-14) |
 | | `farm_core` | GIS 地图化任务派发、电子围栏增强。 | ✅ 完成 (2026-01-14) |
-| **Epic 27: 农业循环经济** | `farm_waste_mgmt` | 废弃物还田、内部投入品转化换算。 | 🚧 正在进行 (2026-01-14) |
+| **Epic 27: 农业循环经济** | `farm_esg_circular` | 废弃物资源化登记、内部转化投入品换算、危废合规处置、沼气能源转化量化、合作社资源协同、地理空间循环网络、区域循环治理。 | ✅ 完成 (2026-02-01) |
 | **Epic 28: AI 预测与视觉** | `farm_ai_vision` | 计算机视觉病害诊断、产量动态预测。 | ✅ 完成 |
 | **Epic 29: 农业金融风险** | `farm_financial`, `farm_iot` | 气象指数保险联动、市场价预警。 | 💡 待规划 |
-| **Epic 30: 碳足迹与 ESG** | `farm_ecology`, `farm_financial` | 碳排放核算、碳汇资产化。 | ✅ 完成 (2026-01-14) |
+| **Epic 30: 碳足迹与 ESG** | `farm_esg`, `farm_esg_carbon`, `farm_esg_environmental`, `farm_esg_circular`, `farm_esg_sustainability`, `farm_esg_compliance`, `farm_esg_fair_trade`, `farm_esg_report`, `farm_esg_risk`, `farm_esg_social` | 碳排放核算、碳汇资产化、ESG框架管理、环境合规监控、ESG合规认证、公平贸易管理、ESG报告、ESG风险评估、社会影响管理。 | ✅ 完成 (2026-01-14) |
 | **Epic 31: 逆向召回** | `farm_quality`, `farm_logistics` | 一键批次阻断、逆向追溯审计。 | ✅ 完成 (2026-01-14) |
 | **Epic 32: 品牌与有机诚信** | `farm_marketing`, `farm_core` | 产地风土建模、GI 防伪、有机诚信评分。 | ✅ 完成 (2026-01-14) |
 | **Epic 33: 温室与植物工厂** | `farm_iot`, `farm_core` | 立体库位管理、水肥光联动控制。 | ✅ 完成 (2026-01-14) |
@@ -176,7 +185,16 @@
 ### Compliance Modules
 - **`farm_safety`**: 安全管理体系，执行防疫排程；管理休药期；设置风险拦截点。
 - **`farm_quality`**: 质量控制体系，定义检测标准；执行质量检验；处理不合格品。
-- **`farm_sustainability`**: 可持续发展管理，监测环境指标；评估资源利用效率；跟踪减排效果。
+- **`farm_esg`**: ESG 框架管理，定义ESG指标体系；管理ESG评估框架；生成ESG合规报告；实现ESG框架、指标、目标的基础数据模型。
+- **`farm_esg_carbon`**: 碳足迹管理，扩展产品、批次、生产订单模型以跟踪碳排放；计算碳减排量；管理碳资产；实现基于投入品的碳排放自动核算。
+- **`farm_esg_environmental`**: 环境合规管理，实现ESG红线路配置与监控；监控环境指标；管理红线条监测；环境风险预警；支持地理围栏合规检查。
+- **`farm_esg_circular`**: 循环经济管理，实现资源循环利用；管理废物到资源的转换流程；优化资源效率；跟踪循环经济价值评估与环境影响。
+- **`farm_esg_sustainability`**: 可持续性指标管理，监测可持续发展指标；评估资源利用效率；跟踪环境绩效；提供可持续性仪表板与报告分析。
+- **`farm_esg_compliance`**: ESG 合规管理，处理碳中和认证流程；管理可持续农业实践认证；确保符合各类ESG合规要求；支持出口合规检查与CBAM标准。
+- **`farm_esg_fair_trade`**: 公平贸易管理，处理公平贸易认证；评估社会影响；管理供应链公平性；支持社区发展指标追踪。
+- **`farm_esg_report`**: ESG 报告管理，生成ESG合规报告；提供环境绩效报告；支持监管报告需求；实现定制化报告与一键披露功能。
+- **`farm_esg_risk`**: ESG 风险管理，进行ESG风险评估；管理治理风险；实施合规风险管理；支持情景分析与预测建模。
+- **`farm_esg_social`**: 社会影响管理，追踪社会影响；促进社区发展；保障劳工权益；记录社会效益指标。
 
 ### Intelligence Modules
 - **`farm_ai_core`**: AI 核心基础模块，提供 AI 基础模型、配置接口、模型注册表和通用 AI 服务框架。作为 AI 生态系统的底层支撑，定义了所有 AI 相关模块的接口和抽象基类。
@@ -254,7 +272,7 @@
 | **Epic 9: 集成供应链** | US-09-01 至 US-09-20 | `farm_supply_core`, `farm_supply_procurement`, `farm_supply_quality`, `farm_supply_logistics`, `farm_supply_analytics` |
 | **Epic 10: 育苗育种** | US-10-01 至 US-10-09 | `farm_breeding`, `farm_quality` |
 | **Epic 11: 安全防疫** | US-11-01 至 US-11-08 | `farm_safety` |
-| **Epic 12: 认证合规** | US-12-01 至 US-12-09 | `farm_certification`, `farm_sustainability` |
+| **Epic 12: 认证合规** | US-12-01 至 US-12-09 | `farm_certification`, `farm_esg` |
 | **Epic 13: 劳动力管理** | US-13-01, US-13-02, US-13-03, US-13-04 | `farm_hr` |
 | **Epic 14: 产品加工** | US-14-01 至 US-14-26 | `farm_processing`, `farm_operation`, `farm_iot`, `farm_financial`, `farm_label`, `farm_logistics`, `farm_waste_mgmt`, `farm_marketing` |
 | **Epic 15: 质量控制** | US-15-01 至 US-15-11 | `farm_quality` |
@@ -269,8 +287,16 @@
 
 | **Epic 21: 直播与抖音对接** | US-21-01 至 US-21-11 | `farm_live_streaming`, `farm_marketing`, `farm_financial` | ✅ 完成 |
 | **Epic 26: 高级现场智能** | US-26-01 至 US-26-08 | `farm_core`, `farm_mobile`, `farm_operation` | ✅ 完 成 |
+| **Epic 27: 农业循环经济** | US-27-01 至 US-27-07 | `farm_esg_circular`, `farm_core`, `farm_operation`, `farm_esg_compliance`, `farm_ai_decision` | ✅ 完成 (2026-02-01) |
+| - US-27-01 | 粪污/秸秆资源化登记 | `farm_esg_circular`, `farm_operation`, `farm_core` | ✅ 完成 |
+| - US-27-02 | 内部转化投入品换算 | `farm_esg_circular`, `farm_operation`, `farm_ai_decision` | ✅ 完成 |
+| - US-27-03 | 危险废弃物合规处置 | `farm_esg_circular`, `farm_core`, `farm_esg_compliance` | ✅ 完成 |
+| - US-27-04 | 沼气/生物质能转化量化 | `farm_esg_circular`, `farm_esg_compliance`, `farm_ai_decision` | ✅ 完成 |
+| - US-27-05 | 合作社/产业园资源跨场协同 | `farm_esg_circular`, `farm_ai_decision`, `farm_core` | ✅ 完成 |
+| - US-27-06 | 基于地理空间的空间循环网络 | `farm_esg_circular`, `farm_ai_decision`, `farm_core` | ✅ 完成 |
+| - US-27-07 | 行政区域级循环治理 | `farm_esg_circular`, `farm_esg_compliance`, `farm_core` | ✅ 完成 |
 | **Epic 28: AI 预测与智能视觉** | US-28-01 至 US-28-04 | `farm_ai_vision`, `farm_iot`, `farm_mobile` | ✅ 完成 |
-| **Epic 30: 碳足迹与 ESG 账座** | US-30-01, US-30-02, US-30-03, US-30-04, US-30-05, US-30-06, US-30-07, US-30-08, US-30-10, US-30-11, US-30-14 | `farm_ecology`, `farm_financial`, `farm_sustainability` | ✅ 完成 |
+| **Epic 30: 碳足迹与 ESG 账座** | US-30-01, US-30-02, US-30-03, US-30-04, US-30-05, US-30-06, US-30-07, US-30-08, US-30-10, US-30-11, US-30-14 | `farm_esg`, `farm_esg_carbon`, `farm_esg_environmental`, `farm_esg_circular`, `farm_esg_sustainability`, `farm_esg_compliance`, `farm_esg_fair_trade`, `farm_esg_report`, `farm_esg_risk`, `farm_esg_social` | ✅ 完成 |
 | **Epic 37: 农业综合生产效能 (OPE)** | US-37-01 至 US-37-05 | `farm_dashboard`, `farm_financial`, `farm_operation` | ✅ 完成 |
 
 | **Epic 38: 牲畜健康监测与智能管理** | US-38-01 至 US-38-04 | `farm_livestock`, `farm_iot`, `farm_ai_vision`, `farm_ai_decision` | 💡 待规划 |
@@ -477,11 +503,11 @@
 | - US-75-03 | 供应链应急预案管理 | `farm_ai_agent`, `farm_supply_logistics` | 💡 待规划 |
 | - US-75-04 | 多源风险数据集成 | `farm_ai_decision`, `farm_supply_analytics`, `farm_weather`, `farm_market_data` | 💡 待规划 |
 
-| **Epic 76: 供应链碳足迹追踪** | US-76-01 至 US-76-04 | `farm_esg_compliance`, `farm_supply_analytics`, `farm_ai_decision`, `farm_supply_logistics` | 💡 待规划 |
-| - US-76-01 | 碳足迹数据采集引擎 | `farm_esg_compliance`, `farm_supply_analytics`, `farm_iot` | 💡 待规划 |
-| - US-76-02 | 智能碳减排策略 | `farm_ai_decision`, `farm_esg_compliance` | 💡 待规划 |
-| - US-76-03 | 供应商碳合规管理 | `farm_esg_compliance`, `farm_supply_procurement` | 💡 待规划 |
-| - US-76-04 | 碳中和认证与报告 | `farm_esg_compliance`, `farm_ai_llm_integration` | 💡 待规划 |
+| **Epic 76: 供应链碳足迹追踪** | US-76-01 至 US-76-04 | `farm_esg_compliance`, `farm_supply_analytics`, `farm_ai_decision`, `farm_supply_logistics` | ✅ 完成 (2026-02-01) |
+| - US-76-01 | 碳足迹数据采集引擎 | `farm_esg_compliance`, `farm_supply_analytics`, `farm_iot` | ✅ 完成 |
+| - US-76-02 | 智能碳减排策略 | `farm_ai_decision`, `farm_esg_compliance` | ✅ 完成 |
+| - US-76-03 | 供应商碳合规管理 | `farm_esg_compliance`, `farm_supply_procurement` | ✅ 完成 |
+| - US-76-04 | 碳中和认证与报告 | `farm_esg_compliance`, `farm_ai_llm_integration` | ✅ 完成 |
 
 | **Epic 77: 全球供应链治理** | US-77-01 至 US-77-04 | `farm_multi_farm_govern`, `farm_supply_logistics`, `farm_ai_llm_integration`, `farm_compliance` | 💡 待规划 |
 | - US-77-01 | 多国法规合规引擎 | `farm_compliance`, `farm_ai_llm_integration` | 💡 待规划 |
@@ -522,6 +548,10 @@
 | - US-83-03 | 碳信用与碳交易管理 | `farm_esg_compliance`, `farm_financial_basic`, `farm_ai_decision` | 💡 待规划 |
 | - US-83-04 | 可持续农业实践认证 | `farm_esg_compliance`, `farm_certification`, `farm_ai_agent` | 💡 待规划 |
 
+| **Epic 97: 生物质能源与外部ESG市场** | US-97-01, US-97-02 | `farm_esg_compliance`, `farm_supply_logistics`, `farm_financial_basic`, `farm_ai_llm_integration` | 💡 待规划 |
+| - US-97-01 | 废弃物衍生品对外贸易 | `farm_supply_logistics`, `farm_financial_basic`, `farm_esg_compliance` | 💡 待规划 |
+| - US-97-02 | 外部ESG交易所数据对接 | `farm_esg_compliance`, `farm_ai_llm_integration`, `farm_supply_logistics` | 💡 待规划 |
+
 | **Epic 84: 农业风险与保险管理** | US-84-01 至 US-84-04 | `farm_risk`, `farm_financial_insurance`, `farm_ai_decision`, `farm_iot` | 💡 待规划 |
 | - US-84-01 | 农业风险识别与评估 | `farm_risk`, `farm_ai_decision`, `farm_iot` | 💡 待规划 |
 | - US-84-02 | 智能风险预警系统 | `farm_risk`, `farm_ai_decision`, `farm_mobile` | 💡 待规划 |
@@ -552,12 +582,12 @@
 | - US-100-09 | 需求预测与动态定价系统 | `farm_ai_decision`, `farm_supply_analytics`, `farm_sale_ch` | 💡 待规划 |
 | - US-100-10 | 供应链金融与风险管控 | `farm_financial`, `farm_risk`, `farm_ai_decision` | 💡 待规划 |
 
-| **Epic 101: 农业企业可持续发展与价值创造框架** | US-101-01 至 US-101-05 | `farm_esg_compliance`, `farm_financial`, `farm_supply_analytics`, `farm_ai_decision`, `farm_risk` | 💡 待规划 |
-| - US-101-01 | 三重目标指标统一管理 | `farm_esg_compliance`, `farm_supply_analytics`, `farm_ai_decision` | 💡 待规划 |
-| - US-101-02 | 可持续商业模式设计 | `farm_business_planning`, `farm_ai_decision`, `farm_financial` | 💡  待规划 |
-| - US-101-03 | 循环经济价值评估体系 | `farm_financial`, `farm_esg_compliance`, `farm_ai_decision` | 💡 待规划 |
-| - US-101-04 | 可持续供应链管理 | `farm_supply_analytics`, `farm_esg_compliance`, `farm_supply_logistics` | 💡 待规划 |
-| - US-101-05 | 可持续产品全生命周期管理 | `farm_product_mgmt`, `farm_esg_compliance`, `farm_ai_decision` | 💡 待规划 |
+| **Epic 101: 农业企业可持续发展与价值创造框架** | US-101-01 至 US-101-05 | `farm_esg_compliance`, `farm_financial`, `farm_supply_analytics`, `farm_ai_decision`, `farm_risk` | ✅ 完成 (2026-02-01) |
+| - US-101-01 | 三重目标指标统一管理 | `farm_esg_compliance`, `farm_supply_analytics`, `farm_ai_decision` | ✅ 完成 |
+| - US-101-02 | 可持续商业模式设计 | `farm_esg_compliance`, `farm_ai_decision`, `farm_financial` | ✅ 完成 |
+| - US-101-03 | 循环经济价值评估体系 | `farm_financial`, `farm_esg_compliance`, `farm_ai_decision` | ✅ 完成 |
+| - US-101-04 | 可持续供应链管理 | `farm_supply_analytics`, `farm_esg_compliance`, `farm_supply_logistics` | ✅ 完成 |
+| - US-101-05 | 可持续产品全生命周期管理 | `farm_esg_compliance`, `farm_esg_compliance`, `farm_ai_decision` | ✅ 完成 |
 
 
 ## 5. 开发依赖关系

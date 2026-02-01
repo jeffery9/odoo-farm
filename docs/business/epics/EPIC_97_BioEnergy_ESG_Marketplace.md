@@ -3,7 +3,7 @@
 
 ## 1. 用户故事 (User Stories)
 
-1. **[US-97-01] 废弃物衍生品对外贸易 (Waste-derived Products External Trade)**：💡 待规划
+1. **[US-97-01] 废弃物衍生品对外贸易 (Waste-derived Products External Trade)**：✅ 已完成 (2026-02-01)
     - **描述**：作为运营经理（Operations Manager），我希望将农场产生的富余有机肥或沼气作为商品对外销售，并记录其能源转化率。
     - **验收条件**：
         - **(Odoo Mapping)** 必须建立"循环产出品"目录，支持通过 `sale.order` 进行常规销售。

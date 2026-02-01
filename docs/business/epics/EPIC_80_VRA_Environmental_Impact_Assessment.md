@@ -3,21 +3,21 @@
 
 ## 1. 用户故事 (User Stories)
 
-1. **[US-80-01] VRA碳足迹核算 (VRA Carbon Footprint Calculation)**：💡 待规划
+1. **[US-80-01] VRA碳足迹核算 (VRA Carbon Footprint Calculation)**：✅ 已完成 (2026-02-01)
     - **描述**：作为ESG经理，我希望系统能计算VRA作业相比传统方法的碳减排量。
     - **验收条件**：
         - **(Input Reduction)** 计算因精准施用减少的投入品（肥料、农药）生产碳排放。
         - **(Fuel Optimization)** 量化因优化农机作业路径减少的燃料碳排放。
         - **(Sequestration Analysis)** 评估精准作业对土壤碳封存的积极影响，并生成碳足迹对比报告。
 
-2. **[US-80-02] 水体保护VRA策略 (Water Body Protection VRA Strategy)**：💡 待规划
+2. **[US-80-02] 水体保护VRA策略 (Water Body Protection VRA Strategy)**：✅ 已完成 (2026-02-01)
     - **描述**：作为环保专员，我希望系统能自动识别靠近水体的区域并调整施肥策略。
     - **验收条件**：
         - **(Water Body Detection)** 自动识别地块附近的河流、湖泊、地下水保护区等敏感区域。
         - **(Buffer Zone Rules)** 在敏感区域周围应用安全距离缓冲区规则，减少或禁止施用。
         - **(Risk Assessment)** 生成环境风险评估报告，量化对水体保护的贡献。
 
-3. **[US-80-03] 土壤健康VRA模型 (Soil Health VRA Model)**：💡 待规划
+3. **[US-80-03] 土壤健康VRA模型 (Soil Health VRA Model)**：✅ 已完成 (2026-02-01)
     - **描述**：作为土壤专家，我希望VRA处方能考虑土壤健康因子，避免过度施用导致土壤退化。
     - **验收条件**：
         - **(Health Monitoring)** 集成土壤健康指标（有机质、微生物活性、pH平衡等）数据。

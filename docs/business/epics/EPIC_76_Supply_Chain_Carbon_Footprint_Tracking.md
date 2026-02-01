@@ -3,28 +3,28 @@
 
 ## 1. 用户故事 (User Stories)
 
-1. **[US-76-01] 碳足迹数据采集引擎 (Carbon Footprint Data Collection Engine)**：💡 待规划
+1. **[US-76-01] 碳足迹数据采集引擎 (Carbon Footprint Data Collection Engine)**：✅ 已完成 (2026-02-01)
     - **描述**：作为ESG合规专员，我希望系统能自动采集供应链各环节的碳排放数据。
     - **验收条件**：
         - **(Data Sources)** 从供应商、物流、生产、仓储等环节采集碳排放相关数据。
         - **(Standard Compliance)** 遵循国际碳足迹计算标准（如ISO 14064、GHG Protocol）。
         - **(Real-time Monitoring)** 提供碳排放的实时监控和报告功能。
 
-2. **[US-76-02] 智能碳减排策略 (AI-driven Carbon Reduction Strategy)**：💡 待规划
+2. **[US-76-02] 智能碳减排策略 (AI-driven Carbon Reduction Strategy)**：✅ 已完成 (2026-02-01)
     - **描述**：作为可持续发展经理，我希望系统基于碳足迹数据提供智能化减排建议。
     - **验收条件**：
         - **(Optimization Algorithm)** 基于AI算法优化运输路径以减少碳排放。
         - **(Alternative Selection)** 推荐低碳供应商、包装材料和运输方式。
         - **(ROI Calculation)** 评估不同减排措施的投资回报率。
 
-3. **[US-76-03] 供应商碳合规管理 (Supplier Carbon Compliance Management)**：💡 待规划
+3. **[US-76-03] 供应商碳合规管理 (Supplier Carbon Compliance Management)**：✅ 已完成 (2026-02-01)
     - **描述**：作为采购经理，我希望管理供应商的碳排放合规情况。
     - **验收条件**：
         - **(Compliance Tracking)** 追踪供应商碳排放达标情况和改进计划。
         - **(Supplier Scorecard)** 建立基于碳表现的供应商评分体系。
         - **(Incentive Programs)** 设计碳减排激励机制，鼓励供应商参与减排。
 
-4. **[US-76-04] 碳中和认证与报告 (Carbon Neutrality Certification & Reporting)**：💡 待规划
+4. **[US-76-04] 碳中和认证与报告 (Carbon Neutrality Certification & Reporting)**：✅ 已完成 (2026-02-01)
     - **描述**：作为ESG报告专员，我希望生成符合标准的碳中和认证报告。
     - **验收条件**：
         - **(Certification Support)** 支持第三方碳中和认证流程。

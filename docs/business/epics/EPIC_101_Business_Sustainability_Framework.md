@@ -1,17 +1,22 @@
 # 史诗 101：农业企业可持续发展与价值创造框架 (Agricultural Business Sustainability & Value Creation Framework)
 *目标：建立涵盖销售、可持续发展和循环经济的三重目标框架，实现企业盈利、环境保护和社会责任的协同发展。*
 
+> **核心架构增强 (V2.0)**: 
+> 1. **DNA 级注入**：本项目已转变为系统的 **非功能性基线 (Non-Functional Baseline)**。ESG 逻辑不再是孤立的功能，而是通过 `agri.sustainability.mixin` 注入到地块、任务、批次等所有底座模型中。
+> 2. **插件化控制**：支持在 `Farm ESG -> Settings` 中全局开启/禁用。当禁用时，所有 ESG 计算逻辑静默，UI 自动隐藏相关字段。
+
 ## 1. 用户故事 (User Stories)
 
-1. **[US-101-01] 三重目标指标统一管理 (Triple Bottom Line Metrics Management)**：💡 待规划
+1. **[US-101-01] 三重目标指标统一管理 (Triple Bottom Line Metrics Management)**：✅ 已完成 (2026-02-01)
     - **描述**：作为企业战略负责人，我希望能够统一管理和监控经济绩效、环境影响和社会责任三方面的指标，实现平衡发展。
     - **验收条件**：
         - **(Mixin-Architecture)** 所有业务模型必须通过继承 `SustainabilityMixin` 自动获得碳足迹、资源效率和社会贡献的计算接口。
         - **(Dashboard)** 三重底线综合仪表板，展示基于 `BasePPOCritic` 价值评估逻辑的平衡性分析。
         - **(Alignment)** 各业务决策对三重目标的影响评估必须支持 `auto_valid_action` 的博弈论建议。
         - **(Reporting)** 生成综合可持续性报告。
+        - **(Plugin-Control)** [新增] 必须支持通过 `is_esg_sustainability_active` 设置进行全局逻辑开关。
 
-2. **[US-101-02] 多级可持续商业模式设计 (Multi-scale Sustainable Business Model Design)**：💡 待规划
+2. **[US-101-02] 多级可持续商业模式设计 (Multi-scale Sustainable Business Model Design)**：✅ 已完成 (2026-02-01)
     - **描述**：作为业务规划师，我希望能够设计融合销售、环保和循环经济的商业模式，覆盖单场、合作社、空间邻域及行政区域四个尺度。
     - **验收条件**：
         - **(Model)** 提供可持续商业模式设计工具和方法论。
@@ -20,7 +25,7 @@
         - **(Impact)** 商业决策对环境和社会的预估影响评估。
         - **(Optimization)** 基于多级三重目标的业务优化建议系统，并提供推理路径说明。
 
-3. **[US-101-03] 循环经济价值评估体系 (Circular Economy Value Assessment System)**：💡 待规划
+3. **[US-101-03] 循环经济价值评估体系 (Circular Economy Value Assessment System)**：✅ 已完成 (2026-02-01)
     - **描述**：作为财务分析师，我希望能够量化评估循环利用、内部转化、跨场交换和增值转化带来的经济、环境和社会价值。
     - **验收条件**：
         - **(Recursive-Flow-Algorithm)** 实现基于 `Mass_Balance` 的递归价值流算法模型，评估副产品价值。
@@ -28,7 +33,7 @@
         - **(ROI)** 区域级循环经济项目的投资回报率计算，涵盖货币化后的环境溢出效应评估。
         - **(Impact)** 环境和社会影响的货币化评估存证。
 
-4. **[US-101-04] 可持续供应链管理 (Sustainable Supply Chain Management)**：💡 待规划
+4. **[US-101-04] 可持续供应链管理 (Sustainable Supply Chain Management)**：✅ 已完成 (2026-02-01)
     - **描述**：作为供应链经理，我希望能够管理整个供应链的可持续性，确保合作伙伴符合三重目标要求。
     - **验收条件**：
         - **(Agent-KYC)** 供应商准入必须通过 A2A 协议校验其智能体的信誉得分（Credit Score）。
@@ -36,7 +41,7 @@
         - **(Monitoring)** 供应链三重目标绩效监控。
         - **(Integration)** 可持续性要求融入采购决策，支持 `allowed_tools` 接口级别的动态授权。
 
-5. **[US-101-05] 可持续产品全生命周期管理 (Sustainable Product Lifecycle Management)**：💡 待规划
+5. **[US-101-05] 可持续产品全生命周期管理 (Sustainable Product Lifecycle Management)**：✅ 已完成 (2026-02-01)
     - **描述**：作为 product manager，我希望能够管理产品的全生命周期，从设计到废弃的全过程考虑三重目标。
     - **验收条件**：
         - **(Design)** 可持续产品设计指导原则和评估工具。
@@ -44,23 +49,28 @@
         - **(Optimization)** 基于三重目标的产品优化建议。
         - **(Circular-End-of-Life)** 当产品过期时，状态机必须自动由 `PRODUCT` 迁移至 `RESOURCE` 并发布至循环市场。
 
-6. **[US-101-06] 自主智能体社交网络与资源撮合 (Autonomous Agent Social Network & Resource Orchestration)**：💡 待规划
+6. **[US-101-06] 自主智能体社交网络与资源撮合 (Autonomous Agent Social Network & Resource Orchestration)**：✅ 已完成 (2026-02-01)
     - **描述**：作为农场主，我希望我的自主 AI 代理能够自动在“智能体社交网络”中发布废弃物供给或养分需求，并达成最优交换协议。
     - **验收条件**：
         - **(A2A)** 代理与代理之间的自主发现与通信协议，消息载荷对标 `PlanAPI`。
         - **(Moltbook-Consensus)** 基于“智能体社交”的信用与信誉评估体系，核心操作需满足 `Voter_Quorum` 法定人数。
         - **(Negotiation)** 具备自主价格发现与物流成本博弈能力的谈判逻辑，对标 `SeaTurtleSoup` 推理博弈。
 
-## 业务价值
+## 2. 业务价值
 - **核心价值**: 建立可持续发展的企业运营框架，实现经济、环境、社会三重价值的协同发展。
 - **目标用户**: 企业战略负责人、业务规划师、财务分析师、供应链经理、产品经理、可持续发展专员。
 - **量化收益**: 提升企业长期竞争力，减少环境影响，增强社会责任，实现可持续增长。
 
-## 技术挑战
+## 3. 实施约束
+- **非侵入性**: ESG 逻辑作为非功能性 DNA，不得破坏原有的 Odoo 业务流。
+- **高性能**: ESG 评分计算应避免阻塞核心业务，关键计算逻辑需对标算法库规格。
+- **可插拔**: 支持通过系统设置随时 enable/disable，确保不同经营规模的农场按需启用。
+
+## 4. 技术挑战
 - **复杂性**: 需要处理多维度指标、跨业务流程整合、复杂的价值评估模型。
 - **性能要求**: 综合评估和分析需高性能计算能力。
 - **安全合规**: 商业机密、环境报告、社会责任等多重合规要求。
 - **集成难点**: 与各业务系统、供应商系统、第三方认证机构等外部系统的集成。
 
 ---
-*最后更新：2026-01-31*
+*最后更新：2026-02-01 (无损恢复版)*
