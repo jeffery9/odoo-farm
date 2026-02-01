@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Main Circular Economy Menu -->
+    <menuitem id="menu_farm_esg_circular_root"
+              name="Circular Economy"
+              sequence="60"
+              web_icon="farm_esg_circular,static/description/icon.png"/>
+
+    <!-- Circular Flow Management -->
+    <menuitem id="menu_circular_flow_management"
+              name="Circular Flow Management"
+              parent="menu_farm_esg_circular_root"
+              sequence="10"/>
+
+    <!-- Hazardous Waste Management (US-27-03) -->
+    <menuitem id="menu_hazardous_waste_management"
+              name="Hazardous Waste Management"
+              parent="menu_farm_esg_circular_root"
+              sequence="20"/>
+
+    <menuitem id="menu_hazardous_waste_records"
+              name="Hazardous Waste Records"
+              parent="menu_hazardous_waste_management"
+              action="action_hazardous_waste_record"
+              sequence="10"/>
+
+    <!-- Biogas/Energy Recovery (US-27-04) -->
+    <menuitem id="menu_biogas_energy_recovery"
+              name="Biogas &amp; Energy Recovery"
+              parent="menu_farm_esg_circular_root"
+              sequence="30"/>
+
+    <menuitem id="menu_biogas_production"
+              name="Biogas Production"
+              parent="menu_biogas_energy_recovery"
+              action="action_biogas_production"
+              sequence="10"/>
+
+    <!-- Cooperative Coordination (US-27-05) -->
+    <menuitem id="menu_cooperative_coordination"
+              name="Cooperative Coordination"
+              parent="menu_farm_esg_circular_root"
+              sequence="40"/>
+
+    <menuitem id="menu_resource_sharing"
+              name="Resource Sharing"
+              parent="menu_cooperative_coordination"
+              action="action_cooperative_resource_sharing"
+              sequence="10"/>
+
+    <menuitem id="menu_netting_engine"
+              name="Netting Engine"
+              parent="menu_cooperative_coordination"
+              action="action_internal_netting_engine"
+              sequence="20"/>
+
+    <!-- Geospatial Coordination (US-27-06) -->
+    <menuitem id="menu_geospatial_coordination"
+              name="GIS Coordination"
+              parent="menu_farm_esg_circular_root"
+              sequence="50"/>
+
+    <menuitem id="menu_geospatial_network"
+              name="Geospatial Networks"
+              parent="menu_geospatial_coordination"
+              action="action_geospatial_circular_network"
+              sequence="10"/>
+
+    <menuitem id="menu_nutrient_heatmap"
+              name="Nutrient Heatmaps"
+              parent="menu_geospatial_coordination"
+              action="action_nutrient_heatmap_layer"
+              sequence="20"/>
+
+    <!-- Regional Governance (US-27-07) -->
+    <menuitem id="menu_regional_governance"
+              name="Regional Governance"
+              parent="menu_farm_esg_circular_root"
+              sequence="60"/>
+
+    <menuitem id="menu_regional_governance_plan"
+              name="Regional Plans"
+              parent="menu_regional_governance"
+              action="action_regional_circular_governance"
+              sequence="10"/>
+
+    <menuitem id="menu_farm_participation"
+              name="Farm Participation"
+              parent="menu_regional_governance"
+              action="action_farm_circular_participation"
+              sequence="20"/>
+
+</odoo>

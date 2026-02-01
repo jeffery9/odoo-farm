@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Regional Circular Governance Action -->
+    <record id="action_regional_circular_governance" model="ir.actions.act_window">
+        <field name="name">Regional Circular Governance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agri.regional.circular.governance</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Manage Regional Circular Economy Governance
+            </p>
+            <p>
+                Govern circular economy activities at administrative levels with spatial aggregation and policy compliance.
+            </p>
+        </field>
+    </record>
+
+    <!-- Regional Circular Governance Tree View -->
+    <record id="view_regional_circular_governance_tree" model="ir.ui.view">
+        <field name="name">agri.regional.circular.governance.tree</field>
+        <field name="model">agri.regional.circular.governance</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="administrative_level"/>
+                <field name="area_name"/>
+                <field name="total_participating_farms"/>
+                <field name="total_waste_processed_ton"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Regional Circular Governance Form View -->
+    <record id="view_regional_circular_governance_form" model="ir.ui.view">
+        <field name="name">agri.regional.circular.governance.form</field>
+        <field name="model">agri.regional.circular.governance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_start_governance" type="object" string="Implement" class="btn-primary" invisible="status != 'planning'"/>
+                    <button name="action_request_audit" type="object" string="Request Audit" class="btn-warning" invisible="status == 'completed'"/>
+                    <button name="action_complete_audit" type="object" string="Complete Audit" class="btn-success" invisible="policy_compliance_status != 'audit_required'"/>
+                    <button name="action_generate_regional_report" type="object" string="Regional Report" class="btn-info"/>
+                    <field name="status" widget="statusbar" statusbar_visible="planning,implemented,auditing,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_regional_circular_governance)d" type="action" class="oe_stat_button" icon="fa-globe">
+                            <field string="Regional Governance" name="name" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="administrative_level"/>
+                            <field name="administrative_area_id"/>
+                        </group>
+                        <group>
+                            <field name="area_name"/>
+                            <field name="area_code"/>
+                            <field name="area_population"/>
+                            <field name="area_area_sqkm"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Performance Metrics">
+                            <group>
+                                <group string="Participation">
+                                    <field name="total_participating_farms"/>
+                                    <field name="waste_collection_points"/>
+                                    <field name="recycling_facilities"/>
+                                </group>
+                                <group string="Impact">
+                                    <field name="total_waste_processed_ton"/>
+                                    <field name="total_resource_created_ton"/>
+                                    <field name="total_co2_reduced_ton"/>
+                                    <field name="total_economic_value_yuan"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Facilities &amp; Logistics">
+                            <group>
+                                <group>
+                                    <field name="regional_logistics_hub"/>
+                                    <field name="cross_entity_transfer_count"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Policy &amp; Subsidies">
+                            <group>
+                                <group>
+                                    <field name="government_subsidy_program"/>
+                                    <field name="subsidy_amount"/>
+                                    <field name="policy_compliance_status"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Spatial Aggregation">
+                            <field name="aggregated_data_by_boundary" colspan="2" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Farm Circular Participation Action -->
+    <record id="action_farm_circular_participation" model="ir.actions.act_window">
+        <field name="name">Farm Circular Participation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agri.farm.circular.participation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Farm Circular Participation Tree View -->
+    <record id="view_farm_circular_participation_tree" model="ir.ui.view">
+        <field name="name">agri.farm.circular.participation.tree</field>
+        <field name="model">agri.farm.circular.participation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="regional_governance_id"/>
+                <field name="farm_location_id"/>
+                <field name="waste_contributed_ton"/>
+                <field name="resources_received_ton"/>
+                <field name="participation_status"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
