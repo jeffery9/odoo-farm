@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_flower_bom,farm.flower.bom,model_farm_flower_bom,farm_core.group_farm_manager,1,1,1,1
+access_farm_lot_flower,farm.lot.flower,model_farm_lot_flower,farm_core.group_farm_manager,1,1,1,1
+access_farm_flower_order,farm.flower.order,model_farm_flower_order,farm_core.group_farm_manager,1,1,1,1

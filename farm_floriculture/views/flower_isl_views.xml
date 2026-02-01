@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Flower Order Form -->
+    <record id="view_farm_flower_order_form" model="ir.ui.view">
+        <field name="name">farm.flower.order.form</field>
+        <field name="model">farm.flower.order</field>
+        <field name="arch" type="xml">
+            <form string="Floral Growing Order">
+                <header>
+                    <button name="action_confirm" string="Confirm Bloom Start" type="object" class="oe_highlight" invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Basic Information">
+                            <field name="product_id" string="Flower Variety"/>
+                            <field name="bom_id" string="Bloom Recipe"/>
+                            <field name="qty_producing" string="Quantity to Harvest"/>
+                        </group>
+                        <group string="Bloom &amp; Environmental Control">
+                            <field name="actual_light_hours"/>
+                            <field name="lighting_intervention_needed" decoration-danger="lighting_intervention_needed"/>
+                            <field name="current_stage_id"/>
+                            <label for="stage_progress" string="Biological Progress"/>
+                            <div class="o_row">
+                                <field name="stage_progress" widget="progressbar"/>
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Flower Lot Form -->
+    <record id="view_farm_lot_flower_form" model="ir.ui.view">
+        <field name="name">farm.lot.flower.form</field>
+        <field name="model">farm.lot.flower</field>
+        <field name="arch" type="xml">
+            <form string="Flower Batch Details">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-thermometer-half">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value"><field name="current_batch_temp"/> ℃</span>
+                                <span class="o_stat_text">Cold-chain Temp</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group string="Batch Info">
+                            <field name="lot_id" readonly="1"/>
+                            <field name="bloom_stage_at_harvest"/>
+                            <field name="floral_fragrance_level"/>
+                        </group>
+                        <group string="Market &amp; Quality">
+                            <field name="predicted_vase_life" decoration-bf="1" decoration-success="predicted_vase_life > 10"/>
+                            <field name="temperature_violation" widget="boolean_toggle" decoration-danger="temperature_violation"/>
+                            <field name="traceability_hash" groups="base.group_no_one"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_farm_flower_order" model="ir.actions.act_window">
+        <field name="name">Floral Growing Orders</field>
+        <field name="res_model">farm.flower.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_farm_lot_flower" model="ir.actions.act_window">
+        <field name="name">Flower Batches</field>
+        <field name="res_model">farm.lot.flower</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
