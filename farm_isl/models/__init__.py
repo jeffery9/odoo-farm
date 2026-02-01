@@ -9,3 +9,4 @@ from . import isl_abstract_models
 from . import isl_concrete_models
 from . import isl_migration
 from . import isl_performance
+from . import agri_isl_bridge
