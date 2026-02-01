@@ -4,7 +4,7 @@ from odoo.tests.common import TransactionCase
 from odoo.exceptions import ValidationError
 
 
-@tagged('industrial_iot', 'iiot_device_profile', 'post_install', '-at_install')
+@tagged('agri_iot', 'iiot_device_profile', 'post_install', '-at_install')
 class TestIiotDeviceProfile(TransactionCase):
     """Test suite for the IiotDeviceProfile model"""
 

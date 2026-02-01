@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "Industrial IoT (IIoT) Integration",
-    "summary": "工业物联网集成模块，支持设备管理、遥测数据处理、指令下发和OTA固件升级",
+    "name": "Agri IoT (AIoT) Integration",
+    "summary": "农业物联网集成模块，支持设备管理、遥测数据处理、指令下发和OTA固件升级",
     "description": """
-Industrial IoT (IIoT) Integration
+Agri IoT (AIoT) Integration
 ===============================
 
-This module provides comprehensive Industrial IoT capabilities including:
+This module provides comprehensive Agricultural IoT capabilities including:
 
 - Device management and profiles
 - MQTT-based telemetry data processing
@@ -47,5 +47,5 @@ avoiding direct MQTT connections from Odoo for better reliability and maintainab
     "application": True,
     "price": 0,
     "currency": "USD",
-    "license": "OPL-1",
+    "license": "AGPL-3",
 }
