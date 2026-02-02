@@ -1,12 +1,13 @@
 {
-    'name': 'Farm IOT',
-    'version': '1.0',
+    'name': 'Farm IoT Management Center',
+    'version': '2.1.0',
     'category': 'Industries/Agriculture',
-    'summary': 'IIOT Telemetry Data and Device Management',
+    'summary': 'IoT Management Center - Digital Twin, Global Mapping & Command Orchestration',
     'description': """
-        IOT module for Odoo 19 Farm Management System.
-        - Telemetry Data Collection (Temperature, PH, DO, etc.) [US-06-01, US-06-02]
-        - Threshold Alerts [US-06-02]
+        Management Center for Odoo 19 Farm IoT Architecture. [US-203]
+        - Centralized IoT Device Mapping & Business Orchestration.
+        - Digital Twin Management for Agricultural Assets.
+        - Global Command Audit Log (Independent Management Audit).
     """,
     'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',
     'website': 'http://www.geninit.cn',
@@ -16,12 +17,12 @@
         'data/iot_cron_data.xml',
         'views/iot_mapping_views.xml',
         'views/farm_telemetry_views.xml',
-        'views/farm_automation_views.xml',
+        'views/farm_automation_rules_views.xml',
         'views/storage_env_views.xml',
         'views/iiot_device_views.xml',
         'views/digital_twin_views.xml',
     ],
     'installable': True,
-    'application': False,
+    'application': True,
     'license': 'AGPL-3',
 }
