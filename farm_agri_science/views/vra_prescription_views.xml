@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_farm_vra_prescription_tree" model="ir.ui.view">
-        <name>farm.vra.prescription.list</name>
-        <model>farm.vra.prescription</model>
+    <record id="view_agri_vra_prescription_list" model="ir.ui.view">
+        <name>agri.intervention.vra.prescription.list</name>
+        <model>agri.intervention.vra.prescription</model>
         <arch type="xml">
             <list decoration-info="state == 'generated'" decoration-success="state == 'executed'">
                 <field name="name"/>
@@ -15,9 +15,9 @@
         </arch>
     </record>
 
-    <record id="view_farm_vra_prescription_form" model="ir.ui.view">
-        <name>farm.vra.prescription.form</name>
-        <model>farm.vra.prescription</model>
+    <record id="view_agri_vra_prescription_form" model="ir.ui.view">
+        <name>agri.intervention.vra.prescription.form</name>
+        <model>agri.intervention.vra.prescription</model>
         <arch type="xml">
             <form>
                 <header>
@@ -38,13 +38,14 @@
                         <group>
                             <field name="target_type"/>
                             <field name="base_rate"/>
-                            <field name="algorithm_id"/>
+                            <field name="intervention_id" placeholder="Select Biological Context..."/>
+                            <field name="actual_biomass" invisible="not intervention_id"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Prescription Grid Details" name="grid_details">
                             <field name="line_ids">
-                                <list editable="bottom">
+                                <list editable="bottom" create="0">
                                     <field name="grid_cell_id"/>
                                     <field name="target_rate"/>
                                     <field name="uom_id"/>
@@ -65,7 +66,7 @@
 
     <record id="action_farm_vra_prescription" model="ir.actions.act_window">
         <name>VRA Prescription Maps</name>
-        <res_model>farm.vra.prescription</res_model>
+        <res_model>agri.intervention.vra.prescription</res_model>
         <view_mode>list,form</view_mode>
     </record>
 </odoo>

@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_farm_vra_strategy_tree" model="ir.ui.view">
-        <name>farm.vra.strategy.list</name>
-        <model>farm.vra.strategy</model>
+    <record id="view_agri_vra_strategy_list" model="ir.ui.view">
+        <name>agri.intervention.vra.strategy.list</name>
+        <model>agri.intervention.vra.strategy</model>
         <arch type="xml">
             <list>
                 <field name="name"/>
                 <field name="type"/>
+                <field name="is_stage_aware"/>
+                <field name="is_kinetics_aware"/>
+                <field name="is_cultivar_aware"/>
             </list>
         </arch>
     </record>
 
-    <record id="view_farm_vra_strategy_form" model="ir.ui.view">
-        <name>farm.vra.strategy.form</name>
-        <model>farm.vra.strategy</model>
+    <record id="view_agri_vra_strategy_form" model="ir.ui.view">
+        <name>agri.intervention.vra.strategy.form</name>
+        <model>agri.intervention.vra.strategy</model>
         <arch type="xml">
             <form>
                 <sheet>
@@ -25,22 +28,50 @@
                             <field name="type"/>
                         </group>
                     </group>
-                    <group string="Linear Parameters" invisible="type != 'inverse_ndvi'">
-                        <group>
-                            <field name="target_ndvi"/>
-                            <field name="correction_slope"/>
-                        </group>
-                    </group>
-                    <group string="Step Parameters" invisible="type != 'fixed_step'">
-                        <group>
-                            <field name="low_threshold"/>
-                            <field name="low_multiplier"/>
-                        </group>
-                        <group>
-                            <field name="high_threshold"/>
-                            <field name="high_multiplier"/>
-                        </group>
-                    </group>
+                    
+                    <notebook>
+                        <page string="Logic Parameters" name="logic_params">
+                            <group string="Linear Parameters" invisible="type != 'inverse_ndvi'">
+                                <group>
+                                    <field name="target_ndvi"/>
+                                    <field name="correction_slope"/>
+                                </group>
+                            </group>
+                            <group string="Step Parameters" invisible="type != 'fixed_step'">
+                                <group>
+                                    <field name="low_threshold"/>
+                                    <field name="low_multiplier"/>
+                                </group>
+                                <group>
+                                    <field name="high_threshold"/>
+                                    <field name="high_multiplier"/>
+                                </group>
+                            </group>
+                            <group string="Biomass Deficit Parameters" invisible="type != 'biomass_deficit'">
+                                <group>
+                                    <field name="deficit_sensitivity"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Scientific Enhancements" name="science_enhancements">
+                            <group>
+                                <group string="Physiological Factors">
+                                    <field name="is_stage_aware"/>
+                                    <field name="is_cultivar_aware"/>
+                                </group>
+                                <group string="Environmental Factors">
+                                    <field name="is_kinetics_aware"/>
+                                </group>
+                            </group>
+                            <separator string="Growth-Stage Sensitivity Weights" invisible="not is_stage_aware"/>
+                            <field name="stage_rule_ids" invisible="not is_stage_aware">
+                                <list editable="bottom">
+                                    <field name="stage_id"/>
+                                    <field name="intensity_multiplier"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </arch>
@@ -48,7 +79,7 @@
 
     <record id="action_farm_vra_strategy" model="ir.actions.act_window">
         <name>VRA Strategies</name>
-        <res_model>farm.vra.strategy</res_model>
+        <res_model>agri.intervention.vra.strategy</res_model>
         <view_mode>list,form</view_mode>
     </record>
 </odoo>
