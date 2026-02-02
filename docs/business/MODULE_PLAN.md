@@ -54,6 +54,7 @@
 | **底座** | `farm_core` | 农场基础主数据、GIS、地块管理。 | ✅ L3 DNA |
 | | `farm_isl` | 行业标准层：透明代理继承、行业隔离。 | ✅ 完成 |
 | | `precision_production` | ISA-88 精密执行引擎、自适应配方、并行处理。 | ✅ V1.5 |
+| **科学** | `farm_agri_science` | **EPIC 206**: 科学底座、生理指纹、逻辑斯蒂增长模型、公式驱动型 VRA。 | 🛠️ 提升中 |
 | | `agri_precision_core` | 桥接标准 Odoo 与精密制造逻辑。 | ✅ 完成 |
 | | `agri_iot` | **底层协议层**：设备注册、MQTT 通信总线、遥测规则引擎、固件管理。 | ✅ 完成 |
 
@@ -85,7 +86,9 @@
 | | `farm_ai_agent` | 多 AI 服务编排、自动化工作流。 | ✅ L4 |
 | | `farm_ai_llm_integration` | RAG 问答、提示词工程。 | ✅ 完成 |
 | | `farm_ai_vision` | AI 视觉识别中枢：物候期真值校准、表型存证。 | ✅ V1.0 完成 |
-| | `farm_ai_decision` | AI 决策支持中枢：基于压力积分的补救决策、采收预测。 | 🛠️ 设计中 |
+| | `farm_ai_decision` | AI 决策支持中枢：基于压力积分的补救决策、采收预测。 | ✅ V1.1 完成 |
+| **信证** | `farm_blockchain_core` | 区块链网关、共识层对接。 | 🛠️ 设计中 |
+| **科学** | `farm_agri_science` | **EPIC 78**: 高级 VRA 算法、生理权重矩阵、生物量亏缺公式增强。 | 🛠️ 提升中 |
 
 
 | **底座** | `farm_core` | 农场基础主数据、地理信息 (GIS)、土质分析、动态属性定义。 | ✅ L3 DNA 继承完成 |

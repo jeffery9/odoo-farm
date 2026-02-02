@@ -1,35 +1,98 @@
-# 史诗 78：高级VRA算法与多源数据融合 (Advanced VRA Algorithms & Multi-source Data Fusion)
-*目标：整合土壤传感器、气象站、无人机遥感等多源数据，提升VRA处方精度，实现更科学的变量作业决策。*
+# 史诗 78：高级VRA算法与生理决策融合 (Advanced VRA Algorithms & Physiological Fusion)
+*目标：整合土壤、气象、无人机多源数据，并注入 [EPIC 201] 的生理钟与生长模型，实现基于第一性原理的精准变量决策。*
 
-## 1. 用户故事 (User Stories)
+## 1. 基础架构层 (Infrastructure Layer)
 
-1. **[US-78-01] 土壤传感器数据实时集成 (Soil Sensor Data Integration)**：💡 待规划
-    - **描述**：作为农技员，我希望系统能实时集成土壤湿度、温度、养分传感器数据，用于VRA处方优化。
-    - **验收条件**：
-        - **(IoT Integration)** 系统需支持主流土壤传感器协议（LoRaWAN, NB-IoT, WiFi）的数据采集。
-        - **(Spatial Mapping)** 传感器数据必须与VRA网格单元自动匹配，实现空间定位。
-        - **(Real-time Processing)** 实现传感器数据的实时处理和更新，确保处方图的时效性。
+### **[US-78-01] 土壤传感器数据实时集成 (Soil Sensor Data Integration)**
+- **描述**: 作为农技员，我希望系统能实时集成土壤湿度、温度、养分传感器数据，用于VRA处方优化。
+- **验收条件**:
+    - **(IoT Integration)** 系统需支持主流土壤传感器协议（LoRaWAN, NB-IoT, WiFi）的数据采集。
+    - **(Spatial Mapping)** 传感器数据必须与VRA网格单元自动匹配，实现空间定位。
+    - **(Real-time Processing)** 实现传感器数据的实时处理和更新，确保处方图的时效性。
 
-2. **[US-78-02] 气象数据动态调整 (Dynamic Weather Adjustment)**：💡 待规划
-    - **描述**：作为农场主，我希望VRA处方能根据短期天气预报动态调整，避免在降雨前施用。
-    - **验收条件**：
-        - **(API Integration)** 集成权威气象预报API，获取3-7天的高精度预报数据。
-        - **(Conditional Logic)** 根据降雨概率、风速、温度等条件自动调整处方执行策略。
-        - **(Notification)** 提供天气风险预警，建议最佳施用时间窗口。
+### **[US-78-02] 气象数据动态调整 (Dynamic Weather Adjustment)**
+- **描述**: 作为农场主，我希望VRA处方能根据短期天气预报动态调整，避免在降雨前施用。
+- **验收条件**:
+    - **(API Integration)** 集成权威气象预报API，获取3-7天的高精度预报数据。
+    - **(Conditional Logic)** 根据降雨概率、风速、温度等条件自动调整处方执行策略。
+    - **(Notification)** 提供天气风险预警，建议最佳施用时间窗口。
 
-3. **[US-78-03] 无人机多光谱数据融合 (UAV Multispectral Data Fusion)**：💡 待规划
-    - **描述**：作为技术员，我希望将无人机获取的高分辨率多光谱数据与卫星NDVI结合，提升局部区域精度。
-    - **验收条件**：
-        - **(Image Processing)** 支持无人机多光谱图像的自动处理和NDVI计算。
-        - **(Data Fusion)** 实现高分辨率无人机数据与低分辨率卫星数据的智能融合算法。
-        - **(Anomaly Detection)** 自动识别田间异常区域并生成重点关注处方。
+### **[US-78-03] 无人机多光谱数据融合 (UAV Multispectral Data Fusion)**
+- **描述**: 作为技术员，我希望将无人机获取的高分辨率多光谱数据与卫星NDVI结合，提升局部区域精度。
+- **验收条件**:
+    - **(Image Processing)** 支持无人机多光谱图像的自动处理 and NDVI计算。
+    - **(Data Fusion)** 实现高分辨率无人机数据与低分辨率卫星数据的智能融合算法。
+    - **(Anomaly Detection)** 自动识别田间异常区域并生成重点关注处方。
 
-4. **[US-78-04] 机器学习VRA模型优化 (ML-based VRA Model Optimization)**：💡 待规划
-    - **描述**：作为数据分析师，我希望系统能基于历史作业效果自动优化VRA算法参数。
-    - **验收条件**：
-        - **(Historical Analysis)** 系统需收集并分析历史VRA作业的产量、成本、环境影响数据。
-        - **(ML Algorithm)** 集成强化学习算法，持续优化VRA策略参数。
-        - **(Performance Tracking)** 提供模型性能评估和改进效果可视化报告。
+### **[US-78-04] 机器学习参数辅助 (Optional ML Assistance)**
+- **描述**: 作为数据分析师，我希望系统能基于历史作业效果辅助优化算法参数。
+- **验收条件**:
+    - **(Historical Analysis)** 系统需收集并分析历史VRA作业的产量、成本、环境影响数据。
+    - **(ML Algorithm)** 集成强化学习算法，持续优化VRA策略参数。
+    - **(Performance Tracking)** 提供模型性能评估和改进效果可视化报告。
+
+## 2. 科学提升层 (Scientific Vertical Enhancement)
+
+### **[US-78-05] 生理阶段敏感性权重 (Growth-Stage Aware Logic)**
+- **描述**: 作为农艺师，我希望根据作物当前的生理阶段（GDD 进度）动态调整处方剂量。
+- **验收标准 (AC)**:
+    - **(Formula)** 最终剂量 = 基准剂量 * 空间系数 (NDVI) * 生理权重 (Stage Multiplier)。
+    - **(Config)** 支持定义 `agri.vra.stage.rule`，为 V1-Vn 及 R1-Rn 阶段设置不同的养分补偿系数。
+
+### **[US-78-06] 公式化生物量亏缺补偿 (Deterministic Biomass Deficit)**
+- **描述**: 作为精准农业专家，我希望基于 Logistic 曲线计算“应有生物量”与“实测生物量”的亏缺，并以此作为处方依据。
+- **验收标准 (AC)**:
+    - **(Calculation)** 亏缺量 $\Delta W = W_{logistic}(GDD) - W_{actual}$。
+    - **(Integration)** 处方生成算法自动调用 `agri.science.mixin` 进行亏缺量到养分需求的转换。
+
+### **[US-78-07] 逆境安全裁剪逻辑 (Stress-based Safety Clipping)**
+- **描述**: 作为安全主管，我希望在极端逆境（高温、干旱）下自动限制高浓度施肥，避免二次伤害。
+- **验收标准 (AC)**:
+    - **(Logic)** 当 `biological_stress_index > 35` 时，强制执行处方上限裁剪 (Clipping)。
+    - **(Audit)** 记录因生物压力触发的“强制减量”审计记录。
+
+## 3. 高维优化层 (High-Dimension Scientific Optimization)
+
+### **[US-78-08] 养分-生物量质能平衡 (Nutrient-Biomass Mass Balance)**
+- **描述**: 作为数据科学家，我希望弃用模糊的 Base Rate，改用基于产出的质能平衡模型。
+- **逻辑**: `Prescription = (Target_Yield - Current_Biomass) * Nutrient_Content_Ratio / Use_Efficiency`。
+- **验收标准 (AC)**:
+    - 实现 `agri.nutrient.balance.model`，将产量目标与实时生物量对齐。
+    - 处方生成算法支持基于干物质积累速率的动态配比。
+
+### **[US-78-09] 动态风险对冲策略 (Dynamic Risk Hedging)**
+- **描述**: 作为风险官，我希望处方能根据“投入产出比”进行概率削减。
+- **逻辑**: 如果未来 10 天降雨概率 < 20% 且灌溉能力受限，自动减少 15% 的追肥，防止投资损失。
+- **验收标准 (AC)**:
+    - 建立“气象-经济”联合惩罚函数。
+    - 处方生成时支持“保守/标准/激进”三种确定性模式切换。
+
+### **[US-78-10] 空间 RUE 差异化补偿 (Spatial RUE Compensation)**
+- **描述**: 基于历史表现，识别地块中不同网格的光能利用率 (RUE) 差异，进行“按能分配”。
+- **逻辑**: 对于 RUE 较高的网格，增加上限阈值；对于由于土壤物理限制导致 RUE 较低的区域，执行减量。
+- **验收标准 (AC)**:
+    - 建立网格级的 RUE 历史档案。
+    - 实现基于光合生产潜力的空间边际收益优化。
+
+## 4. 深度交互层 (Bio-Physical Interaction Layer)
+
+### **[US-78-11] 养分转化动力学实时修正 (Nutrient Transformation Kinetics)**
+- **描述**: 作为土壤物理学家，我希望根据实时土壤温湿度，计算施入氮素的转化速率（矿化/挥发），动态修正有效剂量。
+- **逻辑**: `Actual_Effective_Rate = Applied_Rate * f(Soil_Temp, Soil_Moisture, pH)`。
+- **验收标准 (AC)**:
+    - 实现土壤养分动力学解析器，动态修正 VRA 处方的实际有效载荷。
+
+### **[US-78-12] 叶面积指数 (LAI) 驱动的光合潜力校准 (LAI-Driven Potential Calibration)**
+- **描述**: 基于 AI 视觉或多光谱反演的叶面积指数 (LAI)，计算每个网格的 CO2 固定潜力，而非单纯的 NDVI 绿度。
+- **逻辑**: 利用 Beer-Lambert 定律计算冠层光截获，修正处方中的生产潜力上限。
+- **验收标准 (AC)**:
+    - 建立 LAI 与养分需求上限的非线性映射函数。
+
+### **[US-78-13] 品种响应曲线自适应 (Cultivar-Specific Response - G×E×M)**
+- **描述**: 不同品种对养分的响应曲线（Law of Dimishing Returns）不同。我希望系统能根据品种指纹（Genotype）自动调整处方的边际收益拐点。
+- **逻辑**: 根据 `farm_agri_science` 中的生理指纹，动态加载 Mitscherlich 方程参数。
+- **验收标准 (AC)**:
+    - 处方单支持根据“品种特异性响应系数”进行个性化计算。
 
 ## 业务价值
 - **核心价值**: 整合土壤传感器、气象站、无人机遥感等多源数据，提升VRA处方精度，实现更科学的变量作业决策
@@ -43,4 +106,4 @@
 - **集成难点**: 与土壤传感器、气象API、无人机设备、卫星数据等多源系统的集成
 
 ---
-*最后更新：2026-01-28*
+*V4.0 - Bio-Physical Interaction & Cultivar Response | 2026-02-02*
