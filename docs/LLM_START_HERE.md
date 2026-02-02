@@ -1,36 +1,50 @@
 # 🤖 Odoo 农业生态系统：AI 开发者首席引导手册 (Master Entry)
 
-欢迎。作为本项目的高级 AI 开发者，你必须严格遵循“**规划驱动开发 (Plan-Driven Development)**”流程与架构红线。
+欢迎。作为本项目的高级 AI 开发者，你必须严格遵循 **“文档驱动开发 (Doc-Driven)”** 流程与 **“无损修改律令”**。严禁在没有物理文档支持的情况下直接进入代码实现。
 
-## 1. 核心开发工作流 (The Golden Workflow)
-在执行任何代码修改前，你必须按顺序经过以下检查点：
+---
 
-1.  **业务对齐 (Checkpoint: Epics/US)**: 
-    - 查阅 `docs/business/EPICS_AND_USER_STORIES.md` 定位所属史诗。
-    - 深入阅读具体 User Story 的 **验收标准 (AC)**。
-2.  **模块规划 (Checkpoint: Module Plan)**:
-    - 确认功能归属的 Addon。**严禁**在 `farm_core` 中写垂直业务逻辑。
-3.  **算法对标 (Checkpoint: Algorithms)**:
-    - 必须与 `docs/algorithms/` 中的 Python 参考逻辑保持 100% 一致。
-4.  **技术映射 (Checkpoint: Mapping)**:
-    - 确认 Odoo 原生模型的映射关系（如 Intervention -> `mrp.production`）。
+## 1. 核心开发模式：文档驱动 (The Doc-Driven范式)
+在执行任何代码修改前，你必须严格按物理顺序经过以下“真理检查点”：
 
-## 2. 四大工程律令 (The Four Mandates)
-- **律令一：去工业化 (De-industrialize)**
-    - UI 中严禁暴露 `MO`, `BOM`, `Work Center`。必须使用映射后的农业术语。
-- **律令二：职责分离与 DRY (SoC & DRY)**
-    - **逻辑归位**：核心层（元数据）、行业层（业务规则）、表现层（UI）必须严格物理隔离。
-    - **逻辑复用**：通用计算（如 GDD、养分计算）必须使用 **Mixin (AbstractModel)**，严禁代码克隆。
-- **律令三：ISL 架构 (Industry Standard Layer)**
-    - 优先使用 `_inherits` (代理继承) 扩展原生模型，确保标准逻辑与农业逻辑互不干扰。
-- **律令四：编辑安全性 (Atomic Safety)**
-    - 禁止对超过 5 行的逻辑使用 `replace`。大规模修改必须使用全量回写模式。
+1.  **规划与史诗 (Planning & Epics)**: 
+    - 查阅 `docs/business/EPICS_AND_USER_STORIES.md` 定位业务目标。
+    - **强制动作**：在实现前，必须先在 `docs/business/epics/` 下完善 US 及其验收标准 (AC)。
+2.  **治理对齐 (Governance Sync)**:
+    - 阅读 [docs/governance/MAINTENANCE_SPEC.md](docs/governance/MAINTENANCE_SPEC.md) 确认无损更新的操作要求。
+    - 查阅 [docs/governance/DEVELOPMENT_CONVENTIONS.md](docs/governance/DEVELOPMENT_CONVENTIONS.md) 获取 TDD 与 500 行上限规范。
+3.  **看板同步 (Module Plan)**:
+    - 更新 `docs/business/MODULE_PLAN.md` 标记你的任务归口与进度。
+4.  **算法与实现 (Algorithms & Implementation)**:
+    - 算法必须与 `docs/algorithms/` 下的规格 100% 对标。
+    - 代码中必须引用 US 编号，格式为 `# [US-XX-XX]`。
 
-## 3. 快速感知指令 (Quick Discovery)
+---
+
+## 2. 三大绝对律令 (The Absolute Mandates)
+
+### 2.1 无损更新 (Lossless Update) - 最高红线
+- **禁止精简**：严禁自主简化代码、文档或注释。
+- **锚点保护**：代码中的 `[ISA-88]`, `[LOSSLESS]`, `[US-XXX]` 标记是物理资产，**严禁移除**。
+- **读-改-核**：修改前必须 `read_file` 全文，修改后必须执行 `git diff` 进行锚点计数校验。
+
+### 2.2 去工业化 UX (De-industrialize)
+- **语义隔离**：UI 严禁暴露 `MO`, `BOM`, `Work Center`。
+- **映射驱动**：所有表现层修改必须对标 `farm_ux/models/term_mapping.py` 的农业语义。
+
+### 2.3 职责分离与 ISL 架构 (SoC & ISL)
+- **ISL 模式**：优先使用 `_inherits` (代理继承) 扩展原生模型。
+- **逻辑隔离**：水平层 (Core)、行业层 (Business)、表现层 (UI) 必须物理隔离。通用逻辑强制沉淀为 Mixin。
+
+---
+
+## 3. 快速感知路径 (Quick Path)
+- **项目宪法中心**：`docs/governance/`
 - **业务标准库**：`docs/business/epics/`
 - **逻辑公式库**：`docs/algorithms/`
-- **术语映射表**：`farm_ux/models/term_mapping.py`
 - **底座 Mixin 定义**：`farm_core/models/base_mixins.py`
 
 ---
-**提示**：在开始新任务时，请先回复：“我已确认该任务归属于 [Module Name]，符合职责分离原则，并已对标相关算法 Mixin。”
+**提示**：在开始新任务时，你必须回复：“我已对标相关 US 及治理宪法，任务归属于 [Module]，逻辑符合无损原则。”
+
+*V2.0 - Doc-Driven & Governance Edition | 2026-02-01*

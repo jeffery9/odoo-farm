@@ -1,6 +1,6 @@
 # Epic/US 归口分类与精化规范 (Specific Specification for Epic/US Governance)
 
-> **法律声明**: 本规范受 `docs/business/EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md` (**产品治理宪法**) 约束。所有 Epic 的划分与 User Story 的精化必须严格遵循本规范定义的精化准则与技术映射要求。
+> **法律声明**: 本规范受 `MAINTENANCE_SPEC.md` (**产品治理宪法**) 约束。所有 Epic 的划分与 User Story 的精化必须严格遵循本规范定义的精化准则与技术映射要求。
 
 ## 1. 总体原则 (General Principles)
 
@@ -122,6 +122,9 @@
 | **物联感知安全** | 集成 MQTT 遥测、双人确认逻辑、HACCP 熔断及工业 PDA 硬件按键映射。 | `(IOT)`, `(Hardware)` |
 | **品牌合规背书** | 产出可用于审计的数字化凭证、区块链 Hash 指纹及双语溯源门户。 | `(Compliance)`, `(Branding)` |
 | **社会化协同** | 涵盖合作社统购统配、内部资金拆借、达人带货归因及 ESG 国际披露。 | `(Cooperative)`, `(ESG)` |
+| **ISA-88 级联** | 明确 Master(模板) -> Control(批次) -> Operation(自治) 的三层级执行逻辑。 | `(ISA-88)` |
+| **去工业化审计** | 强制执行术语映射，严禁在 UI 暴露 MO/BOM，必须转换为 Intervention/Recipe。 | `(De-industrialized)` |
+| **科学底座关联** | US 必须指明引用的农学/物理算法规格（如 GDD、NPK、Arrhenius）。 | `(Science-Driven)` |
 
 ### 6.2 现场作业 UX 精化准则 (The "No-Keyboard" Rule)
 针对移动端和 PDA 的现场作业，精化时必须遵循：
@@ -147,6 +150,13 @@
         - **(标签) **条目 2：明确的 Odoo 模型映射（如：使用 stock.lot 承载）。
         - **(标签) **条目 3：明确的交互要求（如：PDA 端支持物理 F1 键保存）。
 ```
+
+
+### 6.5 ISA-88 层次化精化准则 (The ISA-88 Trinity)
+精密执行类 US 必须明确其在 ISA-88 模型中的物理层级，以避免逻辑混淆：
+1.  **Master 层 (蓝图)**：涉及标准定额、Batch Size 基准、可缩放属性的定义。
+2.  **Control 层 (批次)**：涉及实例化、Scaling Factor 计算、自适应参数调整 (Active Adaptation)。
+3.  **Operation 层 (相位)**：涉及独立计时、跨批次并行聚合、相位物料原子化核销。
 
 ## 7. US 编号规范 (US Numbering Specification)
 
@@ -214,6 +224,7 @@
 - **精化**: 对 US 进行深化和完善，增强其实用性和可实现性
 
 ### 10.2 修订记录
+- 2026-02-01: 升级至 V2.0，引入 ISA-88 执行分层、去工业化审计及科学底座关联维度。
 - 2026-01-28: 初始版本发布 (含 US Refinement Strategy V6.0)
 - 2026-01-28: 集成 US Refinement Strategy 内容
 - 2026-01-28: 添加业务价值与技术挑战章节

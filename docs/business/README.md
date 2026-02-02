@@ -8,8 +8,8 @@
 
 | 层级 | 关键文档 | 核心作用 |
 | :--- | :--- | :--- |
-| **🏛️ 治理宪法** | **[EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md](EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md)** | **最高纲领**。定义生命周期、文档即真理原则、同步机制与审计标准。 |
-| **📘 执行规范** | **[Epic_US_Classification_Guidelines.md](Epic_US_Classification_Guidelines.md)** | **操作指南**。定义 US 六维价值模型、归口精化准则与分类标准。 |
+| **🏛️ 治理宪法** | **[MAINTENANCE_SPEC.md](MAINTENANCE_SPEC.md)** | **最高纲领**。定义生命周期、文档即真理原则、同步机制与审计标准。 |
+| **📘 执行规范** | **[CLASSIFICATION_GUIDELINES.md](CLASSIFICATION_GUIDELINES.md)** | **操作指南**。定义 US 六维价值模型、归口精化准则与分类标准。 |
 
 ---
 
@@ -54,9 +54,9 @@
 
 在开始任何代码开发前，必须遵循以下步骤：
 
-1.  **查阅宪法**：确认 `EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md` 中的状态要求。
+1.  **查阅宪法**：确认 `MAINTENANCE_SPEC.md` 中的状态要求。
 2.  **定位需求**：在 `EPICS_AND_USER_STORIES.md` 找到对应的 Epic。
-3.  **精化 US**：依据 `Epic_US_Classification_Guidelines.md` 完善验收标准（AC）。
+3.  **精化 US**：依据 `CLASSIFICATION_GUIDELINES.md` 完善验收标准（AC）。
 4.  **映射模块**：在 `MODULE_PLAN.md` 确认代码归属的 Addon。
 5.  **对齐算法**：查阅 `DOMAIN_LOGIC_ALGORITHMS.md` 确保计算逻辑准确。
 6.  **执行开发**：代码实现与测试。

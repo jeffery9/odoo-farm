@@ -7,19 +7,21 @@
 
 ### 1.2 核心管理原则 (Constitutional Principles)
 - **文档即真理 (Doc as Truth)**: 文档状态落后于代码实现被视为严重的工程事故。
-- **无损更新 (Lossless Update)**: 禁止在任何规划文档中使用省略号，必须全量维护 US 及其验收标准（AC）。
+- **无损更新 (Lossless Update)**: **最高治理律令**。禁止在任何规划文档中使用省略号。必须通过“物理计数法”验证 `[US-XXX]` 锚点数量，确保修改过程中历史条目零损失。
+- **物理资产保护**: 所有的 User Story 记录、历史 AC 和架构注释被视为项目“物理资产”。移除或精简它们即视为破坏代码库完整性。
+- **读-改-核闭环**: 强制执行“先完整读取、精准局部修改、写后 git diff 核对”的操作流。
 - **职责分离 (SoC)**: 规划层（Constitution/Spec）、行业层（Epic/US）、实现层（Module/Code）必须层次分明。
 
 ### 1.3 规范层级
 - **本宪法**: 定义流程、角色与治理框架。
-- **执行规范**: 详见 `docs/business/Epic_US_Classification_Guidelines.md`，定义 US 分类、精化与六维价值模型。
+- **执行规范**: 详见 `CLASSIFICATION_GUIDELINES.md`，定义 US 分类、精化与六维价值模型。
 
 ## 2. 规划文档结构
 
 ### 2.1 核心文档定义
 - **产品方向规范** (docs/business/PRODUCT_DIRECTION_SPEC.md): 定义产品发展方向、治理机制和战略规划。
-- **治理宪法** (EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md): 本文档。
-- **分类与精化规范** (docs/business/Epic_US_Classification_Guidelines.md): **具体执行规范**，定义 US 的技术映射与 UX 准则。
+- **治理宪法** (MAINTENANCE_SPEC.md): 本文档。
+- **分类与精化规范** (CLASSIFICATION_GUIDELINES.md): **具体执行规范**，定义 US 的技术映射与 UX 准则。
 - **史诗文档集** (docs/business/epics/): 每个史诗独立的业务逻辑定义。
 - **模块规划矩阵** (docs/business/MODULE_PLAN.md): 模块职责、用户故事映射与实现状态看板。
 
@@ -255,3 +257,18 @@ EPIC_*.md → US-XX-YY → Module → Implementation
 - **状态同步**: 建立状态快速同步机制
 - **沟通渠道**: 建立紧急沟通协调机制
 - **回滚计划**: 建立文档版本回滚计划
+## 12. AI 协作与执行治理 (AI Collaboration Mandates)
+
+针对 AI Agent 参与的规划与开发活动，强制执行以下红线：
+
+### 12.1 禁止“语义重组”
+AI 在整理 Epic 或 US 时，严禁基于上下文记忆进行“语义重组”或“逻辑精简”。必须保持原有条目的物理顺序和文字细节，仅允许在指定位置进行增量追加。
+
+### 12.2 工具链限制
+- **5 行红线**: 严禁对超过 5 行的规划内容使用 `replace` 工具。必须使用 Python 脚本或全量回写以确保结构稳定性。
+- **写后必核**: 任何 AI 生成的规划更新，必须主动输出“锚点计数校验”报告（例如：确认 9 个 US 依然存在）。
+
+### 12.3 异常回滚
+如果 AI 在更新文档时发生 `git diff` 异常（如意外删除了历史 US），必须立即停止操作并向人工架构师报告，请求指令重置。
+--- 
+*V1.1 - Reinforced with AI Defense Mandates | 2026-02-01*

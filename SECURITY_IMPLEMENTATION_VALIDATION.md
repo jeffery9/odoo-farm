@@ -119,3 +119,36 @@ farm 项目的安全性实现是全面和健全的，包含以下几个关键方
 5. **审计跟踪**: 完整的审计日志记录和操作监控
 
 安全实现符合企业级应用的标准，并且通过新的 `AgriOdoo19PerformanceSecurityMixin` 混入类增强了安全性，包括预计算、性能监控、访问日志、审计日志等高级功能。
+## 7. ISA-88 精密生产执行基座安全性验证 (Precision Production)
+
+### 7.1 模型级权限验证
+- **状态**: ✅ 已验证
+- **实现**: precision_production/security/ir.model.access.csv
+- **详情**: 
+    - Master Recipe (BOM) 模型受控。
+    - Control Recipe (MO) 实例化实体支持细粒度权限。
+    - 审计日志 (precision.intervention.log) 具有不可篡改的写入权限。
+
+### 7.2 角色准入与相位门控 (Role-based Gating)
+- **状态**: ✅ 已验证
+- **实现**: mrp_production.py 中的 _check_phase_readiness 方法。
+- **机制**: 
+    - **Operator (worker)**: 执行普通生产步序。
+    - **Specialist (manager)**: 执行关键工艺步序（标记为 specialist 的 Phase）。非授权人员尝试启动时触发 UserError 物理拦截。
+
+### 7.3 过程控制与安全锁闭 (Process Hold & Release)
+- **状态**: ✅ 已验证
+- **实现**: mrp_production.py 与 mrp_production_views.xml。
+- **机制**:
+    - **自动锁闭**: 当检测数据偏差 > 25% 时，系统自动设置 is_process_locked 为 True。
+    - **物理拦截**: 锁定状态下，所有相位流转按钮自动隐藏，禁止后续物理操作。
+    - **授权释放**: 只有具备 mrp.group_mrp_manager 权限的人员才能看到并点击 Release Hold 按钮。
+
+### 7.4 审计存证一致性 (Audit Integrity)
+- **状态**: ✅ 已验证
+- **机制**: 
+    - 所有的自适应调整 (Active Adaptation) 必须关联 precision.intervention.basis (证据依据)。
+    - 系统自发干预标记为 active 类型，区分于人工操作。
+
+---
+*V1.1 - Added Precision Production Security Validation | 2026-02-01*

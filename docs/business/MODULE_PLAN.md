@@ -37,7 +37,7 @@
 ### 2.1 核心规范文档
 - **产品方向规范**: `docs/business/PRODUCT_DIRECTION_SPEC.md` - 定义产品发展方向、治理机制和战略规划
 - **史诗-插件实施规范**: `docs/business/EPIC_ADDON_MAPPING_SPEC.md` - 定义史诗和用户故事在 Odoo 插件中的 实施标准
-- **规划维护管理规范**: `docs/business/EPIC_US_MODULE_PLAN_MAINTENANCE_SPEC.md` - 定义史诗、用户故事、模 块规划的维护管理流程
+- **规划维护管理规范**: `docs/governance/MAINTENANCE_SPEC.md` - 定义史诗、用户故事、模 块规划的维护管理流程
 - **模块规范与进度看板**: 本文档 - 定义模块矩阵、职责和开发计划
 
 ### 模块矩阵与职责定义
@@ -50,7 +50,43 @@
 - **Compliance Modules**: 合规和质量模块，确保生产过程符合规范要求
 
 | 分类 | 模块目录名 | 核心职责 | 状态 |
-| :--- | :--- | :--- | :--- |
+| **底座** | `precision_production_base` | ISA-88 精密执行引擎、自适应配方、并行相位处理。 | ✅ V1.5 完成 || :--- | :--- | :--- | :--- |
+| **底座** | `farm_core` | 农场基础主数据、GIS、地块管理。 | ✅ L3 DNA |
+| | `farm_isl` | 行业标准层：透明代理继承、行业隔离。 | ✅ 完成 |
+| | `precision_production` | ISA-88 精密执行引擎、自适应配方、并行处理。 | ✅ V1.5 |
+| | `agri_precision_core` | 桥接标准 Odoo 与精密制造逻辑。 | ✅ 完成 |
+| | `agri_iot` | 物联网设备注册、协议解析中枢。 | ✅ 完成 |
+| **作业** | `farm_operation` | 生产季、农事干预、收获记录、养分平衡。 | ✅ L1 |
+| | `farm_planning` | 技术路线规划、资源预测。 | ✅ 完成 |
+| | `farm_livestock` | 畜牧个体/群体管理、繁殖监控。 | 💡 待规划 |
+| | `farm_aquaculture` | 水产养殖、水质监控、生长建模。 | 💡 待规划 |
+| | `farm_mushroom` | 菌菇生产、多潮次控制。 | ✅ 完成 |
+| | `farm_floriculture` | 花卉生产、花期控制。 | ✅ 完成 |
+| | `farm_apiculture` | 蜂群管理、蜜源追踪。 | 💡 待规划 |
+| | `farm_viticulture` | 葡萄种植管理。 | 💡 待规划 |
+| | `farm_orchard_horticulture` | 果树与多年生园艺管理。 | 💡 待规划 |
+| **供应** | `farm_supply_core` | 供应链基础框架。 | ✅ 完成 |
+| | `farm_supply_procurement` | 采购管理、投入品目录、合规检查。 | ✅ 完成 |
+| | `farm_supply_quality` | 质量标准、动态定价、认证。 | ✅ 完成 |
+| | `farm_supply_logistics` | 冷链配送、智能包装、路径优化。 | ✅ 完成 |
+| | `farm_supply_analytics` | 供应链风险分析、控制塔。 | ✅ 完成 |
+| **金融** | `farm_financial_core` | 金融实体抽象、基类定义。 | ✅ 完成 |
+| | `farm_financial_basic` | 日常账务、成本核算。 | ✅ 完成 |
+| | `farm_financial_valuation` | 资产估值、土地/设备估价。 | ✅ 完成 |
+| | `farm_financial_credit` | 信贷风险、还款管理。 | ✅ 完成 |
+| | `farm_financial_insurance` | 农业保险理赔、精算分析。 | ✅ 完成 |
+| | `farm_financial_government` | 补贴核算、专项基金管理。 | ✅ 完成 |
+| **ESG** | `farm_esg` | ESG 框架、指标管理。 | ✅ 完成 |
+| | `farm_esg_carbon` | 碳足迹追踪、自动核算。 | ✅ 完成 |
+| | `farm_esg_circular` | 循环经济、资源转化记录。 | ✅ 完成 |
+| | `farm_esg_compliance` | 全球合规审计、CBAM 适配。 | ✅ 完成 |
+| **智能** | `farm_ai_core` | AI 接口层、模型注册表。 | ✅ 完成 |
+| | `farm_ai_agent` | 多 AI 服务编排、自动化工作流。 | ✅ L4 |
+| | `farm_ai_llm_integration` | RAG 问答、提示词工程。 | ✅ 完成 |
+| | `farm_ai_vision` | 视觉病害诊断、边缘端推理。 | ✅ 完成 |
+| | `farm_ai_decision` | AI 决策支持、风险预测。 | ✅ 完成 |
+
+
 | **底座** | `farm_core` | 农场基础主数据、地理信息 (GIS)、土质分析、动态属性定义。 | ✅ L3 DNA 继承完成 |
 | | `farm_isl` | ISL 行业标准层：模型重定向、透明代理继承、行业逻辑物理隔离。 | ✅ 完成 |
 | | `farm_isl_base` | ISL 基础模型：标准化数据模型、外部系统兼容层。 | ✅ 完成 |
@@ -262,6 +298,19 @@
 
 | 史诗 (Epic) | 包含的 US ID | 承载模块 |
 | :--- | :--- | :--- |
+| **Epic 01: 基础数据** | US-01-01 至 09 | `farm_core` |
+| **Epic 02: 种植管理** | US-02-01 至 11 | `farm_operation` |
+| **Epic 06: 物联控制** | US-06-01 至 07 | `farm_iot`, `agri_iot` |
+| **Epic 09: 供应链** | US-09-01 至 20 | `farm_supply_*` |
+| **Epic 30: 碳足迹/ESG** | US-30-01 至 14 | `farm_esg_*` |
+| **Epic 54: ISL 架构** | US-54-01 至 14 | `farm_isl`, `farm_processing` |
+| **Epic 200: 精密执行** | US-200-01 至 09 | `precision_production`, `agri_precision_core` |
+| **Epic 58: AI 决策** | US-58-01 至 18 | `farm_ai_decision`, `farm_ai_agent` |
+| **Epic 59: LLM 集成** | US-59-01 至 07 | `farm_ai_llm_integration` |
+| **Epic 68: 供应链重组** | US-68-01 至 10 | `farm_supply_core`, `farm_supply_procurement` |
+| **Epic 101: 价值创造** | US-101-01 至 05 | `farm_esg_compliance`, `farm_financial` |
+
+
 | **Epic 1: 基础数据** | US-01-01 至 US-01-09 | `farm_core` |
 | **Epic 2: 种植管理** | US-02-01 至 US-02-11 | `farm_operation` |
 | **Epic 3: 养殖管理** | US-03-01, US-03-02, US-03-03, US-03-04 | `farm_livestock`, `farm_iot` |

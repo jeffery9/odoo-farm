@@ -63,3 +63,12 @@
 
 ---
 *LLM 引导：现在请先读取 `docs/business/EPICS_AND_USER_STORIES.md`，然后根据你被分配的任务开始“探索阶段”。*
+
+---
+
+## 6. 无损修改律令 (Lossless Mandates V1.2)
+- **锚点保护**: 严禁移除 `[ISA-88]`, `[LOSSLESS]` 等物理锚点。
+- **500行原则**: 单个 Python 文件行数上限为 500 行。
+- **原子提交**: 代码变更与文档更新必须分开提交。
+
+*V1.2 - Synchronized with Global Mandates | 2026-02-01*

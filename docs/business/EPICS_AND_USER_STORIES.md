@@ -7,6 +7,7 @@
 ---
 
 ## 🏛️ L1: 数字化感知 (Digital Infrastructure & Perception)
+- [EPIC 200: 精密生产执行基座 (ISA-88)](../business/epics/EPIC_200_Precision_Production_Foundation.md)
 *底层基座：实现农场物理世界的数字化映射。*
 
 - [EPIC 01: 农业基础数据中心](../business/epics/EPIC_01_Agricultural_Master_Data.md)
