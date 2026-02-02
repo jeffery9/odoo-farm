@@ -10,3 +10,5 @@ from . import farm_agricultural_campaign
 from . import farm_agricultural_intervention
 from . import farm_agricultural_bom
 from . import farm_isl_redirection
+from . import procurement_group
+from . import wizard

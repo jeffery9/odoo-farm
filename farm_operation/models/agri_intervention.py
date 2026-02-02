@@ -16,8 +16,28 @@ class AgriIntervention(models.Model):
         'agri.actuator.mixin',       # Level 1+: Physical Actuation
         'agri.evidence.mixin',       # Level 2: Audit
         'agri.clearing.mixin',       # Level 3: Clearing
+        'farm.agri.science.mixin',   # [US-201-08] Scientific DNA
     ]
     _description = 'Agricultural Intervention (De-industrialized View)'
+
+    # [US-201-07] Biological Clock Tracking
+    daily_temp_max = fields.Float("Daily Max Temperature")
+    daily_temp_min = fields.Float("Daily Min Temperature")
+
+    def record_daily_environmental_data(self, t_max, t_min):
+        """ 记录每日温差并累加生理热量 (GDD) """
+        self.ensure_one()
+        increment = self.calculate_gdd_increment(t_max, t_min)
+        self.write({
+            'cumulative_gdd': self.cumulative_gdd + increment,
+            'daily_temp_max': t_max,
+            'daily_temp_min': t_min,
+        })
+        self._action_log_scientific_audit(_("Accumulated %s GDD from environmental sync.") % round(increment, 2))
+
+    def _action_log_scientific_audit(self, message):
+        """ 记录科学审计日志 """
+        self.message_post(body=f"<b>[Scientific Audit]</b> {message}")
 
     def _get_embedding_content(self):
         self.ensure_one()
