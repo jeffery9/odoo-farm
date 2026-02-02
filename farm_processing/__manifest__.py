@@ -1,6 +1,6 @@
 {
     'name': 'Farm Processing Management',
-    'version': '1.1',
+    'version': '1.1.1',
     'category': 'Industries/Agriculture',
     'summary': 'Agricultural Product Processing & Transformation',
     'description': """
@@ -21,7 +21,6 @@
         'stock',
         'farm_core',
         'farm_mrp',
-        'farm_ux',
         'mail',
         'farm_isl'
     ],

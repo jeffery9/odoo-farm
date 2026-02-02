@@ -1,27 +1,31 @@
+# -*- coding: utf-8 -*-
+# [US-16-26] [LOSSLESS] Agricultural Menu & Action Interceptor
 from odoo import models, fields, api, _
 
-class AgriMenuInterceptor(models.Model):
-    """
-    Level 0: Deep Menu Interception.
-    Dynamically hides industrial/manufacturing menus from the UI.
-    """
+class IrUiMenu(models.Model):
     _inherit = 'ir.ui.menu'
 
-    @api.model
-    def search(self, args, offset=0, limit=None, order=None, count=False):
-        """
-        Intercepts menu searches to filter out industrial terms for 2026 de-industrialization.
-        """
-        industrial_keywords = [
-            'Manufacturing', 'MRP', 'Work Centers', 'Bill of Materials', 
-            'Work Orders', 'Master Production Schedule', 'Routing'
-        ]
-        
-        # Add filter to exclude industrial menus by name
-        new_args = list(args) if args else []
-        for keyword in industrial_keywords:
-            new_args.append(('name', 'not ilike', keyword))
-            
-        return super(AgriMenuInterceptor, self).search(
-            new_args, offset=offset, limit=limit, order=order, count=count
-        )
+    def read(self, fields=None, load='_classic_read'):
+        """ 拦截菜单读取，实时替换名称 """
+        res = super(IrUiMenu, self).read(fields=fields, load=load)
+        if not self.env.context.get('skip_agri_mapping'):
+            TermMapping = self.env['term.mapping']
+            for menu in res:
+                if 'name' in menu:
+                    menu['name'] = TermMapping.apply_term_mapping_to_text(menu['name'])
+        return res
+
+class IrActionsActWindow(models.Model):
+    _inherit = 'ir.actions.act.window'
+
+    def read(self, fields=None, load='_classic_read'):
+        """ 拦截动作读取，实时替换标题 """
+        res = super(IrActionsActWindow, self).read(fields=fields, load=load)
+        if not self.env.context.get('skip_agri_mapping'):
+            TermMapping = self.env['term.mapping']
+            for action in res:
+                if 'name' in action:
+                    action['name'] = TermMapping.apply_term_mapping_to_text(action['name'])
+                if 'help' in action and isinstance(action['help'], str):
+                    action['help'] = TermMapping.apply_term_mapping_to_text(action['help'])
+        return res

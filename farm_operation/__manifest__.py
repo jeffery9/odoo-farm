@@ -1,6 +1,6 @@
 {
     'name': 'Farm Operation',
-    'version': '1.2.0',
+    'version': '1.2.1',
     'category': 'Industries/Agriculture',
     'summary': 'Multi-Industry Farm Operations with Agri-Science Synchronization',
     'description': """
@@ -17,7 +17,7 @@
         - [US-201-09] Scientific Performance Dashboard (RUE/WUE)
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'farm_agri_science', 'farm_ux', 'farm_ai_core', 'mrp', 'project'],
+    'depends': ['farm_core', 'farm_agri_science', 'farm_ai_core', 'mrp', 'project'],
     'data': [
         'security/ir.model.access.csv',
         'wizard/farm_dispatch_wizard_views.xml',

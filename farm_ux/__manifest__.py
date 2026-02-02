@@ -1,23 +1,21 @@
 {
     'name': 'Farm UX',
-    'version': '1.0',
+    'version': '1.1.1',
     'category': 'Industries/Agriculture',
-    'summary': 'User Experience & Agricultural Terminology Adaptation',
+    'summary': 'User Experience & Agricultural Terminology Adaptation Framework',
     'description': """
-        User Experience Module for Odoo 19 Farm Management System.
-
+        Base User Experience Framework for Odoo 19 Farm Management System. [US-UX-BASE]
+        
         Features:
         - Agricultural terminology mapping [US-16-01]
         - Industry-specific form layouts [US-16-02]
         - Visual status indicators [US-16-03]
-        - Personalized workspace customization [US-16-04]
-        - Smart contextual help [US-16-05]
-        - Agricultural knowledge base integration [US-16-06]
         - Multi-sensory interaction experience [US-16-07]
-        - Agricultural social & collaboration features [US-16-08]
         - Accessibility & inclusive design [US-16-09]
+        - Provides Base View Mixins for de-industrialization.
     """,
-    'author': 'Jeffery',
+    'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',
+    'website': 'http://www.geninit.cn',
     'depends': [
         'base',
         'web'
@@ -52,8 +50,6 @@
             'farm_ux/static/src/xml/*.xml',
         ],
     },
-    'demo': [
-    ],
     'installable': True,
     'application': False,
     'auto_install': True,
