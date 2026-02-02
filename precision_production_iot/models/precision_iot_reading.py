@@ -205,6 +205,16 @@ class PrecisionIotReading(models.Model):
 
         # Process each sensor value in the telemetry data
         for sensor_key, sensor_value in telemetry_data.items():
+            # [US-81-01] Handle Real-time GPS for Spatial VRA-L3 Link
+            if sensor_key == 'gps_lat' or sensor_key == 'gps_lng':
+                lat = telemetry_data.get('gps_lat')
+                lng = telemetry_data.get('gps_lng')
+                if lat and lng and production_id:
+                    prod = self.env['mrp.production'].browse(production_id)
+                    if prod.vra_prescription_id:
+                        # Trigger Dynamic Spatial Linkage
+                        prod.action_calculate_spatial_setpoint(lat, lng)
+
             # Find the sensor that matches this telemetry key
             sensor = self.env['precision.iot.sensor'].search([
                 ('device_id', '=', precision_device.id),
