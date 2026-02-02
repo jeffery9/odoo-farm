@@ -55,7 +55,8 @@
 | | `farm_isl` | 行业标准层：透明代理继承、行业隔离。 | ✅ 完成 |
 | | `precision_production` | ISA-88 精密执行引擎、自适应配方、并行处理。 | ✅ V1.5 |
 | | `agri_precision_core` | 桥接标准 Odoo 与精密制造逻辑。 | ✅ 完成 |
-| | `agri_iot` | 物联网设备注册、协议解析中枢。 | ✅ 完成 |
+| | `agri_iot` | **底层协议层**：设备注册、MQTT 通信总线、遥测规则引擎、固件管理。 | ✅ 完成 |
+
 | **作业** | `farm_operation` | 生产季、农事干预、收获记录、养分平衡。 | ✅ L1 |
 | | `farm_planning` | 技术路线规划、资源预测。 | ✅ 完成 |
 | | `farm_livestock` | 畜牧个体/群体管理、繁殖监控。 | 💡 待规划 |
@@ -83,8 +84,8 @@
 | **智能** | `farm_ai_core` | AI 接口层、模型注册表。 | ✅ 完成 |
 | | `farm_ai_agent` | 多 AI 服务编排、自动化工作流。 | ✅ L4 |
 | | `farm_ai_llm_integration` | RAG 问答、提示词工程。 | ✅ 完成 |
-| | `farm_ai_vision` | 视觉病害诊断、边缘端推理。 | ✅ 完成 |
-| | `farm_ai_decision` | AI 决策支持、风险预测。 | ✅ 完成 |
+| | `farm_ai_vision` | AI 视觉识别中枢：物候期真值校准、表型存证。 | ✅ V1.0 完成 |
+| | `farm_ai_decision` | AI 决策支持中枢：基于压力积分的补救决策、采收预测。 | 🛠️ 设计中 |
 
 
 | **底座** | `farm_core` | 农场基础主数据、地理信息 (GIS)、土质分析、动态属性定义。 | ✅ L3 DNA 继承完成 |
@@ -97,7 +98,8 @@
 | | `farm_breeding` | 育种管理：系谱记录、遗传追踪、繁育计划、近交系数计算。 | 💡 待规划 |
 | | `farm_processing` | 产后加工：分拣、包装、质量检验、成品入库。 | 💡 待规划 |
 | **物联** | `industrial_iot` | 底层 MQTT 通信桥接（FastAPI + Odoo）。 | ✅ 完成 |
-| | `farm_iot` | 遥测采集、下控指令、自动化联动、视频流。 | ✅ 完成 |
+| | `farm_iot` | **业务应用层**：农场数字孪生、环境监测业务适配、农场自动化联动规则。 | ✅ 完成 |
+| | `precision_production_iot` | **精密执行层**：ISA-88 相位数据对齐、Setpoint 双向绑定、科学底座驱动 (GDD/生物量)。 | ✅ 完成 |
 | | `farm_weather` | 外部天气预报集成、基于天气的作业预警。 | ✅ 完成 |
 | **安全** | `farm_safety` | 防疫排期、休药期提醒、隔离拦截、合规校验。 | ✅ 完成 |
 | | `farm_quality` | QCP 控制点、质量检查、不合格品告警。 | ✅ 完成 |

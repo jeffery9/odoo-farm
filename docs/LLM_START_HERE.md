@@ -32,6 +32,11 @@
 - **语义隔离**：UI 严禁暴露 `MO`, `BOM`, `Work Center`。
 - **映射驱动**：所有表现层修改必须对标 `farm_ux/models/term_mapping.py` 的农业语义。
 
+
+### 2.4 编程语言准则 (Bilingual Policy)
+- **Code in English**: 所有的代码物理命名必须使用 **英文**。
+- **Doc in Chinese**: 所有的代码注释、Docstring 必须使用 **中文**（保留 [ISA-88] 等架构标记）。
+
 ### 2.3 职责分离与 ISL 架构 (SoC & ISL)
 - **ISL 模式**：优先使用 `_inherits` (代理继承) 扩展原生模型。
 - **逻辑隔离**：水平层 (Core)、行业层 (Business)、表现层 (UI) 必须物理隔离。通用逻辑强制沉淀为 Mixin。

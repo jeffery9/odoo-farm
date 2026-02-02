@@ -14,7 +14,9 @@
 - **原子化提交 (Atomic Commit)**：**强制要求**代码修改与文档更新（如 User Story、算法规格、模块计划）分开提交。严禁将逻辑变更与计划说明混在同一个 Git Commit 中。**所有 Git Commit Message 必须使用英文编写**。
 - **模块化架构 (Modular Architecture)**：**强制要求**单个 Python 文件行数不超过 500 行。如果超过 500 行，必须进行拆分。
 - **禁止 Co-author (No Co-author)**：**强制要求**在 Git 提交时不得使用 co-author 标签。
-- **US 引用 (US Citation)**：**强制要求**在代码中添加 US 引用注释，格式为 `# [US-XX-XX]`。
+- **US 引用 (US Citation)**
+- **编码语言规范 (Coding Language)**：**必须**使用英文进行物理编码（模型、字段、方法、变量）。**建议**使用中文编写代码注释与业务说明，以确保对复杂农学逻辑的准确表达。
+：**强制要求**在代码中添加 US 引用注释，格式为 `# [US-XX-XX]`。
 
 ### 3. 上下文加载指令 (Bootstrap Protocol)
 在回答我的第一个问题前，你必须依次执行以下任务以建立上下文：
