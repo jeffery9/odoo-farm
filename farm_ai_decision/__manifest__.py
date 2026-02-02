@@ -20,6 +20,7 @@
     "data": [
         "security/ir.model.access.csv",
         "views/ai_decision_views.xml",
+        "views/ai_cockpit_views.xml",
         "views/ai_crop_growth_views.xml",
         "views/ai_pest_detection_views.xml",
         "views/ai_irrigation_views.xml",
@@ -39,14 +40,8 @@
     "license": "AGPL-3",
     "description": """
 [US-202] AI Decision Support Module.
-1. Active Recovery Decisions based on Biological Stress Index.
-2. Dynamic Harvest Window Prediction using Physiological Age (GDD).
-3. Integrated Active Skill JSON Instruction Dispatch.
-
-Legacy Features Preserved:
-- Crop growth prediction and recommendations
-- Pest and disease identification with solutions
-- Smart irrigation and fertilization decisions
-- Market price prediction and sales strategy
+[US-204] AI Decision Cockpit Integration:
+- Injects AI recommendation banner into Operation MO views.
+- Provides one-tap recovery approval logic.
     """,
 }
