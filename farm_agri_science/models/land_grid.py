@@ -29,6 +29,10 @@ class AgriGeospatialGridCell(models.Model):
     # Raster Attributes (Domain Physics)
     ndvi_index = fields.Float("NDVI (Satellite Index)", digits=(4, 3))
     soil_ph = fields.Float("Soil pH (Interpolated)")
+    soil_moisture = fields.Float("Soil Moisture (%)")
+    soil_nutrient_n = fields.Float("Soil Nitrogen (N) Level")
+    historical_rue = fields.Float("Historical RUE (g/MJ)", default=1.2, help="Historical Radiation Use Efficiency of this cell")
+    lai_index = fields.Float("Leaf Area Index (LAI)", digits=(4, 2), default=1.0)
     water_stress = fields.Float("Water Stress Index", help="Simulated from thermal bands")
     
     # Geometry (GeoJSON)
@@ -146,4 +150,35 @@ class FarmLocation(models.Model):
                 total_weight += weight
             
             cell.soil_ph = weighted_ph / total_weight if total_weight > 0 else 7.0
+
+    def action_sync_iot_telemetry(self):
+        """
+        [US-78-01] IoT Telemetry Mapping.
+        Fetches the latest soil-related telemetry and maps to grid cells by nearest GPS.
+        """
+        self.ensure_one()
+        telemetry_logs = self.env['agri.telemetry'].search([
+            ('land_parcel_id', '=', self.id),
+            ('sensor_type', 'in', ['soil_moisture', 'ph'])
+        ], order='timestamp desc', limit=50)
+
+        if not telemetry_logs or not self.grid_cell_ids:
+            return
+
+        for log in telemetry_logs:
+            # Find the nearest grid cell
+            best_cell = False
+            min_dist = float('inf')
+            for cell in self.grid_cell_ids:
+                dist = math.sqrt((cell.center_lat - log.gps_lat)**2 + (cell.center_lng - log.gps_lng)**2)
+                if dist < min_dist:
+                    min_dist = dist
+                    best_cell = cell
+            
+            if best_cell:
+                if log.sensor_type == 'ph':
+                    best_cell.soil_ph = log.value
+                elif log.sensor_type == 'soil_moisture':
+                    best_cell.soil_moisture = log.value
+
     # --- End of Original Logic ---

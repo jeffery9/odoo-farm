@@ -20,6 +20,11 @@ class AgriPhysiologyProfile(models.Model):
     logistic_k = fields.Float("Growth Rate (k)", default=0.1)
     logistic_gdd0 = fields.Float("Inflexion GDD (GDD0)", default=500.0)
 
+    # [US-78-13] 品种响应曲线参数 (Nutrient Response Parameters - Mitscherlich Equation)
+    # Yield = A * (1 - exp(-c * (Nutrient + b)))
+    response_max_yield = fields.Float("Potential Max Yield (A)", default=800.0, help="Theoretical max yield for this variety under ideal conditions.")
+    response_efficiency_c = fields.Float("Nutrient Efficiency Coefficient (c)", default=0.003, help="Curvature of the response curve (Mitscherlich c).")
+
     stage_ids = fields.One2many('agri.growth.stage', 'profile_id', string="Physiological Stages")
 
 class AgriGrowthStage(models.Model):
