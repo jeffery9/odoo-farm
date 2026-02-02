@@ -7,8 +7,14 @@ class IotDeviceMapping(models.Model):
 
     name = fields.Char(string='Mapping Name', required=True)
     device_id = fields.Many2one('iiot.device', string='Source Device', required=True)
-    mqtt_topic = fields.Char(string='MQTT Telemetry Topic', required=True, help="Topic to listen for (e.g. farm/meter/01/reading)")
+    mqtt_topic = fields.Char(string='MQTT Topic', required=True, help="Topic to listen for or publish to.")
     
+    # [US-203-01] Bi-directional support
+    direction = fields.Selection([
+        ('inbound', 'Inbound (Telemetry)'),
+        ('outbound', 'Outbound (Control/Setpoint)')
+    ], string='Direction', default='inbound', required=True)
+
     mapping_type = fields.Selection([
         ('field', 'Direct Field Update'),
         ('method', 'Method Execution')
@@ -30,20 +36,22 @@ class IotDeviceMapping(models.Model):
     match_field_id = fields.Many2one('ir.model.fields', string='Match Record Field',
                                     help="Field on target model to match device identifier (e.g. device_serial)")
     
+    # [US-203-03] Command Template
+    payload_template = fields.Text("Payload Template (JSON)", help="e.g. {'setpoint': {{value}} }")
+    
     active = fields.Boolean(default=True)
 
     def process_telemetry(self, value, record_id=False):
         """ US-TECH-03-01: Entry point for processing arriving MQTT data. """
         self.ensure_one()
+        if self.direction != 'inbound': return False
         if self.mapping_type == 'field' and self.target_field_id:
-            # Logic to update field
             target_model = self.env[self.target_model_id.model]
             if record_id:
                 record = target_model.browse(record_id)
                 if record.exists():
                     record.write({self.target_field_id.name: value})
         elif self.mapping_type == 'method' and self.method_name:
-            # Logic to call method
             target_model = self.env[self.target_model_id.model]
             if record_id:
                 record = target_model.browse(record_id)
