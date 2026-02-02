@@ -11,6 +11,7 @@
         'mrp',
         'agri_iot',
         'precision_production',
+        'farm_agri_science',
     ],
     'data': [
         'security/ir.model.access.csv',
