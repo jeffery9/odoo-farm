@@ -12,3 +12,4 @@ from . import ai_resource_optimization
 from . import ai_risk_assessment
 from . import ai_agent
 from . import ai_decision_engine
+from . import ai_cockpit_actions
