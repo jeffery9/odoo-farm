@@ -1,4 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agri_physiology_profile,agri.physiology.profile,model_agri_physiology_profile,farm_core.group_farm_specialist,1,1,1,1
+access_agri_growth_stage,agri.growth.stage,model_agri_growth_stage,farm_core.group_farm_specialist,1,1,1,1
+access_agri_science_mixin,farm.agri.science.mixin,model_farm_agri_science_mixin,farm_core.group_farm_worker,1,0,0,0
 access_farm_land_grid_cell,farm.land.grid.cell,model_farm_land_grid_cell,farm_core.group_farm_user,1,1,1,1
 access_farm_vra_strategy,farm.vra.strategy,model_farm_vra_strategy,farm_core.group_farm_user,1,1,1,1
 access_farm_vra_prescription,farm.vra.prescription,model_farm_vra_prescription,farm_core.group_farm_user,1,1,1,1
