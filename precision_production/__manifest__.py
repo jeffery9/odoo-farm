@@ -10,6 +10,7 @@
         "mail",
         "mrp",
         "stock",
+        "farm_agri_science",
     ],
     "data": [
         "security/ir.model.access.csv",

@@ -110,6 +110,7 @@ class PrecisionRecipeParameter(models.Model):
     production_id = fields.Many2one('mrp.production', related='phase_id.production_id', store=True)
     name = fields.Char("Parameter", required=True)
     target_value = fields.Float("Active Target", required=True)
+    is_vra_dynamic = fields.Boolean("VRA Dynamic Setpoint", default=False, help="If true, this setpoint will be updated automatically based on spatial VRA maps.")
     tolerance_percent = fields.Float("Tolerance (%)")
     uom_id = fields.Many2one('uom.uom', string="Unit")
     min_value = fields.Float("Limit Min", compute='_compute_range', store=True)

@@ -11,6 +11,10 @@ class MrpProduction(models.Model):
     
     recipe_phase_ids = fields.One2many('precision.recipe.phase', 'production_id', string="Control Recipe")
     
+    # [US-81-01] VRA Integration
+    vra_prescription_id = fields.Many2one('agri.intervention.vra.prescription', string="VRA Prescription Map",
+                                         help="Link to the scientific VRA map for this production.")
+
     # ---------------------------------------------------------
     # ARCHITECTURAL INTEGRITY: Parallel Support
     # ---------------------------------------------------------
@@ -278,3 +282,47 @@ class MrpProduction(models.Model):
             'res_model': 'precision.metrology.wizard', 'view_mode': 'form', 'target': 'new',
             'context': {'default_production_id': self.id, 'default_phase_id': self.active_recipe_phase_id.id}
         }
+
+    # [US-81-01] Dynamic VRA-L3 Linkage Logic
+    def action_calculate_spatial_setpoint(self, lat, lng):
+        """
+        [DYNAMIC VRA LINK]
+        1. Find matching grid cell in the VRA Prescription.
+        2. Retrieve target rate.
+        3. Update 'is_vra_dynamic' parameters.
+        4. Trigger Hardware Setpoint Command.
+        """
+        self.ensure_one()
+        if not self.vra_prescription_id or not self.active_recipe_phase_id:
+            return False
+
+        # Find nearest grid cell in the prescription
+        best_line = False
+        min_dist = float('inf')
+        
+        # Use simple Euclidean distance for grid matching
+        for line in self.vra_prescription_id.line_ids:
+            cell = line.grid_cell_id
+            dist = (cell.center_lat - lat)**2 + (cell.center_lng - lng)**2
+            if dist < min_dist:
+                min_dist = dist
+                best_line = line
+        
+        if best_line:
+            target_rate = best_line.target_rate
+            
+            # Update all dynamic parameters in the active phase
+            dynamic_params = self.active_recipe_phase_id.recipe_parameter_ids.filtered(lambda p: p.is_vra_dynamic)
+            for param in dynamic_params:
+                if param.target_value != target_rate:
+                    param.write({'target_value': target_rate})
+                    
+                    # [HARDWARE LOOP] Send command to linked IoT devices
+                    for device in self.active_recipe_phase_id.iot_device_ids:
+                        device.send_control_command('set_point', value=target_rate, target_phase_id=self.active_recipe_phase_id)
+            
+            self.action_log_intervention(
+                _("VRA SPATIAL AUTO-ADJUST: Setpoint updated to %s based on GPS [%s, %s]") % (target_rate, lat, lng),
+                intervention_type='active'
+            )
+        return True
