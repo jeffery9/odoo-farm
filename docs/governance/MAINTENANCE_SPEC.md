@@ -6,20 +6,27 @@
 本规范作为项目产品治理的**核心宪法**，定义了史诗(Epic)、用户故事(User Story)和模块规划(Module Plan)的维护管理最高准则。它确立了从需求感知到代码实现的全生命周期治理机制，确保规划文档与实际开发保持物理与逻辑上的绝对同步。
 
 ### 1.2 核心管理原则 (Constitutional Principles)
+- **先查后规 (Search-Before-Plan)**: **[NEW] 最高治理律令**。在创建任何新 EPIC 之前，必须执行全局审计（grep 关键词），确认是否已存在相关史诗。严禁功能重叠。
 - **文档即真理 (Doc as Truth)**: 文档状态落后于代码实现被视为严重的工程事故。
 - **无损更新 (Lossless Update)**: **最高治理律令**。禁止在任何规划文档中使用省略号。必须通过“物理计数法”验证 `[US-XXX]` 锚点数量，确保修改过程中历史条目零损失。
 - **物理资产保护**: 所有的 User Story 记录、历史 AC 和架构注释被视为项目“物理资产”。移除或精简它们即视为破坏代码库完整性。
 - **读-改-核闭环**: 强制执行“先完整读取、精准局部修改、写后 git diff 核对”的操作流。
 - **职责分离 (SoC)**: 规划层（Constitution/Spec）、行业层（Epic/US）、实现层（Module/Code）必须层次分明。
 
-### 1.3 规范层级
+### 1.3 规划生命周期：先查后规 (Search-Before-Plan)
+在启动规划前，必须执行以下物理流程：
+1. **全局审计**: 使用 `grep -r "关键词" docs/business/epics/` 搜索。
+2. **冲突判定**: 如果发现重叠功能（如 VRA 提升已存在于 EPIC 78），严禁创建重复的新史诗。
+3. **垂直集成**: 优先在既有 EPIC 中增加新版本（如 V2.0）进行提升。
+
+### 1.4 规范层级
 - **本宪法**: 定义流程、角色与治理框架。
 - **执行规范**: 详见 `CLASSIFICATION_GUIDELINES.md`，定义 US 分类、精化与六维价值模型。
 
 ## 2. 规划文档结构
 
 ### 2.1 核心文档定义
-- **产品方向规范** (docs/business/PRODUCT_DIRECTION_SPEC.md): 定义产品发展方向、治理机制和战略规划。
+- **产品方向规范** (docs/business/PRODUCT_DIRECTION_SPEC.md): 定义产品发展方向、治理机制 and 战略规划。
 - **治理宪法** (MAINTENANCE_SPEC.md): 本文档。
 - **分类与精化规范** (CLASSIFICATION_GUIDELINES.md): **具体执行规范**，定义 US 的技术映射与 UX 准则。
 - **史诗文档集** (docs/business/epics/): 每个史诗独立的业务逻辑定义。
@@ -257,6 +264,7 @@ EPIC_*.md → US-XX-YY → Module → Implementation
 - **状态同步**: 建立状态快速同步机制
 - **沟通渠道**: 建立紧急沟通协调机制
 - **回滚计划**: 建立文档版本回滚计划
+
 ## 12. AI 协作与执行治理 (AI Collaboration Mandates)
 
 针对 AI Agent 参与的规划与开发活动，强制执行以下红线：
@@ -270,5 +278,6 @@ AI 在整理 Epic 或 US 时，严禁基于上下文记忆进行“语义重组�
 
 ### 12.3 异常回滚
 如果 AI 在更新文档时发生 `git diff` 异常（如意外删除了历史 US），必须立即停止操作并向人工架构师报告，请求指令重置。
+
 --- 
-*V1.1 - Reinforced with AI Defense Mandates | 2026-02-01*
+*V1.2 - Search-Before-Plan Protocol Integrated | 2026-02-02*
