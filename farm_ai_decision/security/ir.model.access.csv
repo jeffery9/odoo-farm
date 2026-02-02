@@ -12,3 +12,4 @@ access_ai_quality_grading,agri.ai.quality.grading,model_agri_ai_quality_grading,
 access_ai_health_monitoring,agri.ai.health.monitoring,model_agri_ai_health_monitoring,farm_security.group_farm_user,1,1,1,1
 access_ai_risk_assessment,agri.ai.risk.assessment,model_agri_ai_risk_assessment,farm_security.group_farm_user,1,1,1,1
 access_ai_agent,agri.ai.agent,model_agri_ai_agent,farm_security.group_farm_user,1,1,1,1
+access_ai_decision_engine,ai.decision.engine,model_ai_decision_engine,farm_core.group_farm_specialist,1,1,1,1

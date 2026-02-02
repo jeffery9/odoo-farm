@@ -1,5 +1,5 @@
 from . import ai_decision_base
-from . import ai_pest_disease_decision  # Changed from ai_pest_disease_detection
+from . import ai_pest_disease_decision
 from . import ai_crop_growth_prediction
 from . import ai_fertilization_decision
 from . import ai_harvest_timing
@@ -11,3 +11,4 @@ from . import ai_quality_grading
 from . import ai_resource_optimization
 from . import ai_risk_assessment
 from . import ai_agent
+from . import ai_decision_engine
