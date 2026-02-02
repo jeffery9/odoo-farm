@@ -1,7 +1,7 @@
 {
     "name": "Farm AI Decision Support System",
-    "summary": "AI Decision Hub - Stress-Driven Recovery & Dynamic Harvest Prediction",
-    "version": "19.0.1.1.0",
+    "summary": "AI Decision Hub - Stress-Driven Recovery & AI Cockpit Interaction",
+    "version": "19.0.1.2.1",
     "category": "Farming",
     "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
     "website": "http://www.geninit.cn",
@@ -11,16 +11,11 @@
         "mail",
         "stock",
         "mrp",
-        "sale",
-        "purchase",
-        "product",
         "farm_core",
         "farm_operation",
-        "farm_supply",
-        "farm_ecology",
         "farm_ai_core",
         "farm_ai_llm_integration",
-        "farm_agri_science",
+        "farm_agri_science"
     ],
     "data": [
         "security/ir.model.access.csv",

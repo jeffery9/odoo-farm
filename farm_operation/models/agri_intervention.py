@@ -9,7 +9,7 @@ class AgriIntervention(models.Model):
     _inherit = [
         'mrp.production',
         'agri.intervention.mixin',
-        'agri.view.mixin',           # Level 0: UI Isolation
+        # 'agri.view.mixin',           # 移除显式继承，改由 farm_ux 模块主动注入
         'agri.sustainability.mixin', # Level 0: Value Standard
         'agri.geospatial.mixin',     # Level 1: Spatial Grid
         'agri.nutrient.mixin',       # Level 1: Mass Balance
