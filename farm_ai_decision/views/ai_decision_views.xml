@@ -1,63 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- AI Decision Base Views -->
-    <record id="view_ai_decision_base_form" model="ir.ui.view">
-        <field name="name">agri.ai.decision.base.form</field>
-        <field name="model">agri.ai.decision.base</field>
+    <record id="view_ai_decision_engine_list" model="ir.ui.view">
+        <field name="name">ai.decision.engine.list</field>
+        <field name="model">ai.decision.engine</field>
         <field name="arch" type="xml">
-            <form string="AI Decision Base" create="false" edit="false">
+            <list>
+                <field name="name"/>
+                <field name="intervention_id"/>
+                <field name="stress_index" widget="progressbar"/>
+                <field name="growth_stage_id"/>
+                <field name="predicted_harvest_date"/>
+                <field name="confidence_score"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_ai_decision_engine_form" model="ir.ui.view">
+        <field name="name">ai.decision.engine.form</field>
+        <field name="model">ai.decision.engine</field>
+        <field name="arch" type="xml">
+            <form>
                 <header>
-                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected"/>
+                    <button name="action_generate_recovery_plan" string="Generate AI Recovery" type="object" class="btn-primary"/>
                 </header>
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <button name="action_apply_recommendation" type="object" string="Apply Recommendation" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'"/>
-                        <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'"/>
-                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'"/>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
                     </div>
                     <group>
-                        <group>
-                            <field name="name"/>
-                            <field name="decision_date"/>
-                            <field name="model_type"/>
+                        <group string="Source Audit">
+                            <field name="intervention_id"/>
+                            <field name="growth_stage_id"/>
+                            <field name="stress_index" widget="progressbar"/>
                         </group>
-                        <group>
+                        <group string="Harvest Prediction">
+                            <field name="predicted_harvest_date"/>
                             <field name="confidence_score"/>
-                            <field name="priority"/>
-                            <field name="status"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="Recommendation">
-                            <field name="recommendation"/>
-                        </page>
-                        <page string="Decision Reasoning">
-                            <field name="decision_reasoning"/>
-                        </page>
-                        <page string="Input/Output Data">
+                        <page string="AI Suggestion" name="suggestion">
                             <group>
-                                <field name="input_data" placeholder="Input data used by AI model (JSON)"/>
-                                <field name="output_data" placeholder="Output data from AI model (JSON)"/>
+                                <field name="recovery_plan" readonly="1"/>
+                                <field name="active_skill_json" widget="ace" options="{'mode': 'json'}"/>
                             </group>
                         </page>
                     </notebook>
                 </sheet>
+                <chatter/>
             </form>
         </field>
     </record>
 
-    <record id="view_ai_decision_base_tree" model="ir.ui.view">
-        <field name="name">agri.ai.decision.base.tree</field>
-        <field name="model">agri.ai.decision.base</field>
-        <field name="arch" type="xml">
-            <tree string="AI Decision Base">
-                <field name="name"/>
-                <field name="model_type"/>
-                <field name="decision_date"/>
-                <field name="confidence_score"/>
-                <field name="priority"/>
-                <field name="status"/>
-            </tree>
-        </field>
+    <record id="action_ai_decision_engine" model="ir.actions.act_window">
+        <field name="name">AI Decision Hub</field>
+        <field name="res_model">ai.decision.engine</field>
+        <field name="view_mode">list,form</field>
     </record>
+
+    <menuitem id="menu_ai_decision_hub" name="AI Decision Hub" parent="farm_ai_core.menu_farm_ai_root" action="action_ai_decision_engine" sequence="10"/>
 </odoo>

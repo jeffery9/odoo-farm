@@ -1,9 +1,10 @@
 {
     "name": "Farm AI Decision Support System",
-    "summary": "AI-powered decision support for agricultural operations",
-    "version": "19.0.1.0.0",
+    "summary": "AI Decision Hub - Stress-Driven Recovery & Dynamic Harvest Prediction",
+    "version": "19.0.1.1.0",
     "category": "Farming",
     "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
+    "website": "http://www.geninit.cn",
     "maintainers": ["jeffery"],
     "depends": [
         "base",
@@ -19,6 +20,7 @@
         "farm_ecology",
         "farm_ai_core",
         "farm_ai_llm_integration",
+        "farm_agri_science",
     ],
     "data": [
         "security/ir.model.access.csv",
@@ -37,32 +39,19 @@
         "views/ai_agent_views.xml",
         "views/menu.xml",
     ],
-    "demo": [
-    ],
     "installable": True,
-    "auto_install": False,
+    "application": False,
     "license": "AGPL-3",
-    "website": "http://www.geninit.cn",
     "description": """
-    AI Decision Support System for Agricultural Operations
-    ============
+[US-202] AI Decision Support Module.
+1. Active Recovery Decisions based on Biological Stress Index.
+2. Dynamic Harvest Window Prediction using Physiological Age (GDD).
+3. Integrated Active Skill JSON Instruction Dispatch.
 
-    This module implements AI-powered decision support for agricultural operations,
-    providing intelligent recommendations and predictive analytics to improve farm productivity.
-
-    Key Features:
-    - Crop growth prediction and recommendations
-    - Pest and disease identification with solutions
-    - Smart irrigation and fertilization decisions
-    - Market price prediction and sales strategy
-    - Harvest timing optimization
-    - Resource allocation optimization
-    - Quality grading automation
-    - Health and welfare monitoring
-    - Risk assessment and insurance recommendations
-    - Knowledge management and technology recommendations
-
-    The AI Decision Support system helps farmers make data-driven decisions to optimize
-    productivity, reduce costs, and improve sustainability.
+Legacy Features Preserved:
+- Crop growth prediction and recommendations
+- Pest and disease identification with solutions
+- Smart irrigation and fertilization decisions
+- Market price prediction and sales strategy
     """,
 }
