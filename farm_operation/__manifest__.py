@@ -1,8 +1,8 @@
 {
     'name': 'Farm Operation',
-    'version': '1.1',
+    'version': '1.2.0',
     'category': 'Industries/Agriculture',
-    'summary': 'Multi-Industry Farm Operations - Production Seasons, Tasks, Agri-Interventions with Industry Adaptability',
+    'summary': 'Multi-Industry Farm Operations with Agri-Science Synchronization',
     'description': """
         Multi-Industry Operation Engine for Odoo 19 Farm Management System.
 
@@ -14,15 +14,18 @@
         - Industry-specific task types and parameterization
         - Support for multiple agricultural sectors (field crops, livestock, aquaculture, etc.)
         - Flexible operation definitions adaptable to different farming practices
+        - [US-201-09] Scientific Performance Dashboard (RUE/WUE)
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'farm_ux', 'farm_ai_core', 'mrp', 'project'],
+    'depends': ['farm_core', 'farm_agri_science', 'farm_ux', 'farm_ai_core', 'mrp', 'project'],
     'data': [
         'security/ir.model.access.csv',
         'wizard/farm_dispatch_wizard_views.xml',
+        'wizard/agri_science_sync_wizard_views.xml',
         'views/agricultural_campaign_views.xml',
         'views/project_task_views.xml',
         'views/agri_intervention_views.xml',
+        'views/agri_science_dashboard_views.xml',
         'views/agri_bom_views.xml',
         'views/menu.xml',
     ],

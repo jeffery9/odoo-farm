@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_agri_science_sync_wizard_form" model="ir.ui.view">
+        <field name="name">agri.science.sync.wizard.form</field>
+        <field name="model">agri.science.sync.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="temp_max"/>
+                    <field name="temp_min"/>
+                </group>
+                <footer>
+                    <button name="action_sync" string="Sync Data" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_agri_science_sync_wizard" model="ir.actions.act_window">
+        <field name="name">Manual Env Sync</field>
+        <field name="res_model">agri.science.sync.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

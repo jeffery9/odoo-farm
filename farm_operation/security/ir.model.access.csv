@@ -11,3 +11,4 @@ access_agri_bom_line_manager,agri.bom.line.manager,model_mrp_bom_line,farm_core.
 access_agri_bom_line_user,agri.bom.line.user,model_mrp_bom_line,farm_core.group_farm_user,1,1,1,0
 access_stock_move_agri_manager,stock.move.agri.manager,model_stock_move,farm_core.group_farm_manager,1,1,1,1
 access_stock_move_agri_user,stock.move.agri.user,model_stock_move,farm_core.group_farm_user,1,1,1,0
+access_agri_science_sync_wizard,agri.science.sync.wizard,model_agri_science_sync_wizard,farm_core.group_farm_user,1,1,1,1
