@@ -19,6 +19,7 @@ The Farm Management System is a comprehensive Odoo-based platform designed to ha
 ## Documentation Structure
 
 ### Core Concepts
+- [AGENTS.md](AGENTS.md) - Agentic AI architecture and matrix
 - [2026 Agri-Community AI White Paper](business/2026_AGRI_COMMUNITY_AI_WHITE_PAPER.md) - Strategic vision for de-industrialized autonomous coordination
 - [Model Summary](model_summary.md) - Comprehensive list of all models in the system
 - [System Architecture](system_architecture.md) - High-level overview of system components
