@@ -10,9 +10,9 @@
         - **(Odoo Mapping)** 汇总数据一键生成加工订单（MO），并自动核算原材料缺口。
 
 2. **[US-98-02] 标准化"大灶配方"与规模化换算 (Standardized "Large-scale Recipe" & Scale Conversion)**： 💡 待规划
-    - **描述**：作为行政总厨，我希望建立标准化的餐食 BOM，支持根据生产批量自动精确换算投料量。
+    - **描述**：作为行政总厨，我希望建立标准化的餐食 Recipe，支持根据生产批量自动精确换算投料量。
     - **验收条件**：
-        - **(Logic)** BOM 具备批量缩放因子计算功能。
+        - **(Logic)** Recipe 具备批量缩放因子计算功能。
         - 投料单支持双语展示，并自动对齐仓库领料规格。
 
 3. **[US-98-03] 净菜与半成品序列化库存管理 (Fresh-cut & Semi-finished Product Serialized Inventory Management)**： 💡 待规划

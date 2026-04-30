@@ -6,7 +6,7 @@
 ## 1. 用户故事 (User Stories)
 
 1. **[US-105-01] DIF 驱动的开花诱导配方 (DIF-Driven Bloom Recipe)**：✅ 已实现 (2026-02-01)
-    - **描述**：作为花艺师，我希望在 Recipe (BOM) 中通过 **昼夜温差 (DIF)** 来控制花茎长度和花期。
+    - **描述**：作为花艺师，我希望在 Recipe (Recipe) 中通过 **昼夜温差 (DIF)** 来控制花茎长度和花期。
     - **验收条件**：
         - **(Logic)** 必须支持 `target_temp_diff` (DIF) 的自动计算：`DIF = Day_Temp - Night_Temp`。
         - **(Horticulture)** 提供正 DIF（促长）与负 DIF（抑长）的参数化配置。

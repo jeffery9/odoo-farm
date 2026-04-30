@@ -20,7 +20,7 @@
     - **描述**：作为实验室主任，我希望在调配（Blending）时，系统自动聚合不同年份、不同地块原酒的 DNA 指纹。
     - **验收条件**：
         - **(Logic)** 产成品哈希必须包含所有参与调配的原酒批次（Parent Lots）的摘要。
-        - **(Recipe)** `farm.winery.recipe` 支持多级嵌套（BOM inside BOM）。
+        - **(Recipe)** `farm.winery.recipe` 支持多级嵌套（Recipe inside Recipe）。
 
 4. **[US-116-04] 理化分析与酿造门控 (Enological Lab Gate)**：💡 待实现
     - **描述**：作为品控专员，我希望在装瓶前强制检查游离二氧化硫（FSO2）、挥发酸及残糖量。

@@ -4,7 +4,7 @@
 ## 1. 用户故事 (User Stories)
 
 1. **[US-112-01] 提取工艺 Recipe 建模 (Extraction Protocol)**：✅ 已实现 (2026-02-01)
-    - **描述**：作为生产工艺师，我希望在 Recipe (BOM) 中定义不同精油（如薰衣草、檀香）的蒸馏温度、压力和冷却时长。
+    - **描述**：作为生产工艺师，我希望在 Recipe (Recipe) 中定义不同精油（如薰衣草、檀香）的蒸馏温度、压力和冷却时长。
     - **验收条件**：
         - **(ISL-Proxy)** `farm.essential_oil.recipe` 代理 `mrp.bom`。
         - **(Parameters)** 包含 `distillation_temp`, `target_yield_percent`, `cooling_duration` 字段。

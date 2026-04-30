@@ -319,7 +319,7 @@
 | **Epic 1: 基础数据** | US-01-01 至 US-01-09 | `farm_core` |
 | **Epic 2: 种植管理** | US-02-01 至 US-02-11 | `farm_operation` |
 | **Epic 3: 养殖管理** | US-03-01, US-03-02, US-03-03, US-03-04 | `farm_livestock`, `farm_iot` |
-| **Epic 4: 供应链 BOM** | US-04-01, US-04-02, US-04-04, US-04-05 | `farm_operation`, `farm_supply_core` |
+| **Epic 4: 供应链 Recipe** | US-04-01, US-04-02, US-04-04, US-04-05 | `farm_operation`, `farm_supply_core` |
 | **Epic 5: 农旅体验** | US-05-01, US-05-02, US-05-03, US-05-04 | `farm_agritourism`, `farm_pos` |
 | **Epic 6: 物联控制** | US-06-01, US-06-02, US-06-03, US-06-04, US-06-05, US-06-06, US-06-07 | `farm_iot` |
 | **Epic 7: 移动端友好与现场作业** | US-07-01 至 US-07-17 | `farm_mobile`, `farm_ux`, `farm_core`, `farm_supply_core` |

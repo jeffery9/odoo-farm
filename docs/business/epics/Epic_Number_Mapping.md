@@ -7,7 +7,7 @@
 - **Epic 01**：农业基础主数据 (Agricultural Master Data)
 - **Epic 02**：种植管理 (Plant Farming)
 - **Epic 03**：养殖管理 (Livestock Aquaculture)
-- **Epic 04**：农业供应链 BOM (Agri Supply Chain BOM)
+- **Epic 04**：农业供应链 Recipe (Agri Supply Chain Recipe)
 - **Epic 05**：农旅体验 (Agritourism Experience)
 - **Epic 06**：物联自动化 (IIOT Automation)
 - **Epic 07**：移动端现场作业 (Mobile Field Operations)
