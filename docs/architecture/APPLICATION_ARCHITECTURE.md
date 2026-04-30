@@ -22,7 +22,20 @@ Farm Management (农场管理)
 ├── Agricultural Families (农业活动家族)
 │   ├── Configurations (配置)
 │   ├── Production Campaigns (生产季)
-│   └── Operations (作业)
+│   └── Operations (作业/干预)
+├── Agri-Science & VRA (农学科学与变量处方) [Level 2]
+│   ├── Precision VRA (精准变量)
+│   │   ├── Prescription Maps (处方图)
+│   │   └── VRA Decision Strategies (变量策略)
+│   ├── Crop Models (作物模型)
+│   │   ├── Physiology Profiles (品种指纹)
+│   │   └── Growth Stages (生理阶段)
+│   └── Land Grid Mapping (地块网格)
+├── Precision Production (精密生产执行) [Level 3]
+│   ├── Production Orders (精密订单)
+│   ├── Control Recipes (控制配方)
+│   ├── Phase Execution (相位执行)
+│   └── IoT Real-time Feedback (物联实时反馈)
 ├── [Industry-Specific Menu] (按启用的行业模块动态显示)
 │   ├── Field Crops Management (大田作物管理) *
 │   ├── Protected Cultivation Management (设施农业管理) *
@@ -48,7 +61,10 @@ Farm Management (农场管理)
 ### 1.2 模块依赖关系 (Module Dependencies)
 ```
 farm_core (基础核心)
-├── farm_operation (通用作业/干预引擎)
+├── farm_operation (通用作业/干预引擎 - L1)
+│   ├── farm_agri_science (农学科学/VRA 引擎 - L2)
+│   │   └── precision_production (精密生产/ISA-88 - L3)
+│   │       └── precision_production_iot (MQTT 实时闭环)
 ├── farm_planning (生产规划)
 ├── farm_iot (通用IoT管理)
 ├── farm_equipment (设备管理)
@@ -78,6 +94,7 @@ farm_core (基础核心)
 ├── farm_entity_reg (实体注册) *
 ├── farm_finance_gov (政府金融) *
 ├── farm_data_security (数据安全) *
+├── farm_ux (去工业化表现层注入)
 └── farm_live_streaming (直播电商) *
 ```
 * - 表示史诗19及以后的模块
@@ -188,6 +205,14 @@ farm_core (基础核心)
 ### 2.13 直播电商组
 - **farm.live.streaming.user**: 直播管理权限
 
+### 2.14 农学科学管理组 (Agri-Science) - [NEW V3.0]
+- **farm.agri.science.user**: 品种指纹、生理模型与 GDD 计算权限
+- **farm.vra.strategy.user**: VRA 变量策略设计权限
+
+### 2.15 精密生产执行组 (Precision Production) - [NEW V3.0]
+- **precision.production.user**: ISA-88 订单与配方执行权限
+- **precision.production.iot.user**: 实时设备参数监控与指令下发权限
+
 ## 3. 应用层级用户组 (Application User Groups)
 
 ### 3.1 农场核心应用组
@@ -253,6 +278,14 @@ farm_core (基础核心)
 - **farm.agritourism.app.user**: 观光农业应用权限组合
   - 组合: farm.agritourism.user + farm.marketing.user + farm.pos.user
 
+### 3.12 农学决策应用组 - [NEW V3.0]
+- **farm.science.app.user**: 科学决策应用权限组合
+  - 组合: farm.agri.science.user + farm.vra.strategy.user + farm.core.user
+
+### 3.13 精密执行应用组 - [NEW V3.0]
+- **farm.precision.app.user**: 精密生产应用权限组合
+  - 组合: precision.production.user + precision.production.iot.user + farm.iot.user
+
 ## 4. 角色层级用户组 (Role User Groups)
 
 ### 4.1 农场主 (Farm Owner) - 配置模式
@@ -260,6 +293,8 @@ farm_core (基础核心)
   - base.group_user (内部用户) - 基础权限
   - farm.core.app.user (农场核心应用)
   - farm.production.app.user (生产管理应用)
+  - farm.science.app.user (科学决策应用) [NEW]
+  - farm.precision.app.user (精密生产应用) [NEW]
   - farm.marketing.app.user (营销应用)
   - farm.finance.app.user (财务应用)
   - farm.compliance.app.user (合规应用)
@@ -272,7 +307,7 @@ farm_core (基础核心)
   - stock.group_stock_manager (仓库经理) - 仓库管理权限
   - hr.group_hr_manager (人力资源经理) - 人力资源管理权限
   - project.group_project_manager (项目经理) - 项目管理权限
-- **职责**: 关注整体经营利润、成本控制及合规性
+- **职责**: 关注整体经营利润、成本控制、科学闭环及合规性
 - **配置权限**: 可在系统配置中启用/禁用行业模块
 
 * - 表示根据启用的行业模块动态添加相应的应用用户组
@@ -282,6 +317,7 @@ farm_core (基础核心)
   - base.group_user (内部用户) - 基础权限
   - farm.core.app.user (农场核心应用)
   - farm.production.app.user (生产管理应用)
+  - farm.science.app.user (科学决策应用) [NEW]
   - farm.iot.app.user (物联网应用)
   - farm.supply.app.user (供应链应用)
   - [Industry-Specific App Groups] (按启用行业模块动态添加) *
@@ -291,17 +327,18 @@ farm_core (基础核心)
   - stock.group_stock_user (仓库用户) - 库存查看权限
 * - 表示根据启用的行业模块动态添加相应的应用用户组
 
-- **职责**: 关注作物生长、土壤养分、动物健康及配方管理
+- **职责**: 数字化专家，关注作物生长、变量处方、土壤养分及品种指纹管理
 
-### 4.3 农场工人 (Farm Worker)
+### 4.3 农场工人 (Farm Worker / Operator)
 - **权限组成**:
   - base.group_user (内部用户) - 基础权限
   - farm.production.app.user (生产管理应用)
+  - precision.production.user (精密生产执行) [NEW]
   - farm.iot.app.user (物联网应用)
   - farm.hr.user (人力资源) - 单独权限
   - project.group_project_user (项目用户) - 任务查看权限
   - stock.group_stock_user (仓库用户) - 库存查看权限
-- **职责**: 负责执行具体作业（干预）并记录投入产出
+- **职责**: 负责执行具体作业（干预）、操作精密设备并对 IoT 反馈进行现场确认
 
 ### 4.4 财务管理员 (Financial Manager)
 - **权限组成**:
@@ -317,23 +354,11 @@ farm_core (基础核心)
 ### 4.5 营销经理 (Marketing Manager)
 - **权限组成**:
   - base.group_user (内部用户) - 基础权限
-  - farm.production.app.user (生产管理应用)
-  - farm.iot.app.user (物联网应用)
-  - farm.hr.user (人力资源) - 单独权限
-  - project.group_project_user (项目用户) - 任务查看权限
-  - stock.group_stock_user (仓库用户) - 库存查看权限
-- **职责**: 负责执行具体作业（干预）并记录投入产出
-
-### 4.4 财务管理员 (Financial Manager)
-- **权限组成**:
-  - base.group_user (内部用户) - 基础权限
-  - farm.finance.app.user (财务应用)
-  - farm.supply.app.user (供应链应用)
   - farm.marketing.app.user (营销应用)
-  - account.group_account_user (会计) - 财务管理权限
-  - purchase.group_purchase_user (采购用户) - 采购管理权限
-  - stock.group_stock_user (仓库用户) - 库存管理权限
-- **职责**: 负责农业成本核算、采购及销售对账
+  - farm.supply.app.user (供应链应用)
+  - farm.pos.user (POS) - 管理权限
+  - sales.group_sale_manager (销售经理)
+- **职责**: 负责品牌推广、CSA 订阅及销售渠道管理
 
 ### 4.6 游客 (Visitor/Tourist)
 - **权限组成**:
@@ -363,7 +388,7 @@ farm_core (基础核心)
   - hr.group_hr_manager (人力资源经理) - 人力资源管理权限
 - **职责**: 负责系统运维、数据安全和权限管理
 
-## 5. 权限继承关系图 (Permission Inheritance Diagram)
+## 5. 权限继承关系图 (Permission Inheritance Diagram - V3.0 Enhanced)
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -386,8 +411,8 @@ farm_core (基础核心)
 │  │     (.user)     │  │     (.user)     │  │     (.user)     │  │
 │  └─────────────────┘  └─────────────────┘  └─────────────────┘  │
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  │
-│  │farm.[industry]. │  │ farm.agritour.  │  │ farm.agric.proc.│  │
-│  │     app.user    │  │    .app.user    │  │    .app.user    │  │
+│  │ farm.science.app│  │ farm.prec.app   │  │ farm.china.comp.│  │
+│  │     (.user)     │  │     (.user)     │  │     app.user    │  │
 │  └─────────────────┘  └─────────────────┘  └─────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
                                     │
@@ -404,7 +429,7 @@ farm_core (基础核心)
 │  └─────────────────┘  └─────────────────┘  └─────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
 ```
-注：farm.[industry].app.user 代表可配置的行业特定应用用户组，如 farm.field.crops.app.user、farm.livestock.app.user 等
+注：farm.science.app.user 和 farm.prec.app.user 为 V3.0 引入的科学与精密执行层权限组合。
 
 ## 6. 实现要点 (Implementation Highlights)
 
@@ -424,6 +449,12 @@ farm_core (基础核心)
 ### 6.4 合规性保障
 - 集成中国农业法规要求的权限控制
 - 支持认证、补贴、环保等合规管理权限
+
+### 6.5 科学驱动权限隔离 - [NEW V3.0]
+科学层 (L2) 的参数修改权限（如修改 Mitscherlich 品种效率系数）仅授予 `Technician` 角色，严禁 `Operator` 或普通 `Worker` 修改，以确保生产过程的科学严肃性。
+
+### 6.6 空间权限安全 - [NEW V3.0]
+VRA 处方图的生成与下发权限与地理围栏 (`agri.geofencing`) 绑定，确保指令仅在合法地理空间内被执行。
 
 ## 7. 可配置行业模块权限模型 (Configurable Industry Module Permission Model)
 
