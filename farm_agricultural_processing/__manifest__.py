@@ -35,6 +35,12 @@
         # 'views/industry_isl_views.xml',
         # 'views/mrp_production_pivot_view.xml',
     ],
+    
+    'assets': {
+        'web.assets_tests': [
+            'farm_agricultural_processing/static/tests/tours/**/*',
+        ],
+    },
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

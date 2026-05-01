@@ -11,7 +11,7 @@ class FarmIndustryPicking(models.Model):
     # Industry specific compliance (US-TECH-05-04 Context)
     # Note: industry_type is already defined in the base ISL model
     # We're adding our specific values to the selection
-    industry_type = fields.Selection(selection_add=[
+    industry_type = fields.Selection(selection=[
         ('livestock', 'Livestock Movement'),
         ('processing', 'Processing Intake/Output'),
         ('crop', 'Field Transfer')

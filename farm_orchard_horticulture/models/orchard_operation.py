@@ -14,7 +14,7 @@ class FarmOrchardCycle(models.Model):
     _description = 'Annual Nurturing Cycle'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
-        'farm.agri.production.mixin',
+        'agri.intervention.mixin',
         'agri.weather.sensitive.mixin',
         'agri.agent.instruction.mixin'
     ]

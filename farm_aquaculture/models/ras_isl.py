@@ -40,7 +40,7 @@ class FarmRasProduction(models.Model):
     _description = 'RAS Culture Order'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
-        'farm.agri.production.mixin',
+        'agri.intervention.mixin',
         'agri.quality.gate.mixin',
         'agri.agent.instruction.mixin'
     ]

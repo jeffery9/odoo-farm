@@ -28,7 +28,7 @@ class FarmSymbioticRecipe(models.Model):
     _name = 'farm.symbiotic.recipe'
     _description = 'Co-culture Recipe'
     _inherits = {'mrp.bom': 'bom_id'}
-    _inherit = ['farm.agri.bom.mixin', 'agri.nutrient.mixin']
+    _inherit = ['agri.bom.mixin', 'agri.nutrient.mixin']
 
     bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
 
@@ -44,7 +44,7 @@ class FarmSymbioticOrder(models.Model):
     _description = 'Symbiotic Cycle'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
-        'farm.agri.production.mixin',
+        'agri.intervention.mixin',
         'agri.quality.gate.mixin',
         'agri.weather.sensitive.mixin'
     ]

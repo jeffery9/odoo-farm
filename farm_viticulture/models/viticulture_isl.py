@@ -37,7 +37,7 @@ class FarmViticultureCycle(models.Model):
     _description = 'Vineyard Annual Cycle'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
-        'farm.agri.production.mixin',
+        'agri.intervention.mixin',
         'agri.growth.cycle.mixin',
         'agri.weather.sensitive.mixin'
     ]

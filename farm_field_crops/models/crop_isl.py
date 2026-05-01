@@ -13,7 +13,7 @@ class FarmCropBom(models.Model):
     _name = 'farm.crop.bom'
     _description = 'Crop Farming Recipe (ISL Layer)'
     _inherits = {'mrp.bom': 'bom_id'}
-    _inherit = ['farm.agri.bom.mixin', 'agri.nutrient.mixin']
+    _inherit = ['agri.bom.mixin', 'agri.nutrient.mixin']
 
     bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
 
@@ -33,7 +33,7 @@ class FarmCropProduction(models.Model):
     _description = 'Crop Farming Task (ISL Layer)'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
-        'farm.agri.production.mixin',
+        'agri.intervention.mixin',
         'agri.weather.sensitive.mixin',
         'agri.agent.instruction.mixin',
         'agri.resource.consumption.mixin'

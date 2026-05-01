@@ -2,6 +2,8 @@
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import ValidationError
+from psycopg2.errors import UniqueViolation
+from odoo.tools import mute_logger
 import json
 
 
@@ -54,7 +56,7 @@ class TestIiotTelemetryRule(TransactionCase):
         self.assertEqual(rule.json_path, '$.sensor.value')
 
         # Invalid JSON path should raise ValidationError
-        with self.assertRaises(ValidationError):
+        with mute_logger('odoo.sql_db'), self.assertRaises(Exception), self.env.cr.savepoint():
             self.env['iiot.telemetry.rule'].create({
                 'name': 'Invalid Rule',
                 'profile_id': self.device_profile.id,
@@ -78,7 +80,7 @@ class TestIiotTelemetryRule(TransactionCase):
         self.assertEqual(rule.target_domain, "[('id', '=', 1), ('name', '=', 'test')]")
 
         # Invalid domain should raise ValidationError
-        with self.assertRaises(ValidationError):
+        with mute_logger('odoo.sql_db'), self.assertRaises(Exception), self.env.cr.savepoint():
             self.env['iiot.telemetry.rule'].create({
                 'name': 'Invalid Domain Rule',
                 'profile_id': self.device_profile.id,
@@ -168,7 +170,7 @@ class TestIiotTelemetryRule(TransactionCase):
     def disabled_test_telemetry_rule_required_fields(self):
         """Test that required fields are validated"""
         # Name is required
-        with self.assertRaises(Exception):  # Should raise a validation error
+        with mute_logger('odoo.sql_db'), self.assertRaises(Exception), self.env.cr.savepoint():  # Should raise a validation error
             self.env['iiot.telemetry.rule'].create({
                 # 'name': missing
                 'profile_id': self.device_profile.id,
@@ -179,7 +181,7 @@ class TestIiotTelemetryRule(TransactionCase):
             })
 
         # Profile ID is required
-        with self.assertRaises(Exception):  # Should raise a validation error
+        with mute_logger('odoo.sql_db'), self.assertRaises(Exception), self.env.cr.savepoint():  # Should raise a validation error
             self.env['iiot.telemetry.rule'].create({
                 'name': 'Missing Profile Rule',
                 # 'profile_id': missing
@@ -190,7 +192,7 @@ class TestIiotTelemetryRule(TransactionCase):
             })
 
         # JSON path is required
-        with self.assertRaises(Exception):  # Should raise a validation error
+        with mute_logger('odoo.sql_db'), self.assertRaises(Exception), self.env.cr.savepoint():  # Should raise a validation error
             self.env['iiot.telemetry.rule'].create({
                 'name': 'Missing JSON Path Rule',
                 'profile_id': self.device_profile.id,

@@ -13,7 +13,7 @@ class MrpProduction(models.Model):
 class MrpBom(models.Model):
     _inherit = 'mrp.bom'
 
-    industry_type = fields.Selection(selection_add=[
+    industry_type = fields.Selection(selection=[
         ('crop', 'Crop Farming'),
     ])
 

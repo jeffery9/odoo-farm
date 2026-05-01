@@ -37,7 +37,7 @@ class FarmFermentationOrder(models.Model):
     _description = 'Fermentation Job'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
-        'farm.agri.production.mixin',
+        'agri.intervention.mixin',
         'agri.agent.instruction.mixin',
         'agri.incident.alert.mixin'
     ]

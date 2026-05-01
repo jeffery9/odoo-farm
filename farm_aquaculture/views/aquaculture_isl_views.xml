@@ -17,7 +17,7 @@
                             <field name="product_uom_id"/>
                         </group>
                         <group string="Aquaculture Standards (ISL)">
-                            <field name="pond_type"/>
+                            <!-- <field name="pond_type"/> -->
                             <field name="target_dissolved_oxygen"/>
                             <field name="target_ph_range"/>
                             <field name="stocking_density_limit"/>

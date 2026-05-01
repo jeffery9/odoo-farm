@@ -8,14 +8,14 @@ class MrpProduction(models.Model):
     # --- Processing Specific Gate Logic ---
     def _get_isl_model(self):
         res = super(MrpProduction, self)._get_isl_model()
-        if self.industry_type == 'food_processing':
+        if getattr(self, 'industry_type', getattr(self.bom_id, 'industry_type', '')) == 'food_processing':
             return 'farm.processing.production'
         return res
 
     def action_confirm(self):
         """ Processing-specific pre-confirmation checks. """
         for order in self:
-            if order.industry_type == 'food_processing':
+            if getattr(order, 'industry_type', getattr(order.bom_id, 'industry_type', '')) == 'food_processing':
                 # [Level 2: DNA Gate] Enforce Quality Gate
                 order.validate_quality_gate()
                 # US-14-09: HACCP / Quality Gate Pre-check
@@ -35,7 +35,7 @@ class MrpProduction(models.Model):
                                 "Critical Limit violations detected in CCP checks: %s") % 
                                 ", ".join(haccp_violations.mapped('point_id.name')))
             
-            if order.industry_type == 'food_processing':
+            if getattr(order, 'industry_type', getattr(order.bom_id, 'industry_type', '')) == 'food_processing':
                 # Energy checks etc.
                 pass
         return super(MrpProduction, self).button_mark_done()

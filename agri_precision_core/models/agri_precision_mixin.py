@@ -28,7 +28,7 @@ class AgriPrecisionMixin(models.AbstractModel):
 
     # 4. IoT Integration: Sensor and Device Tracking
     iot_device_ids = fields.Many2many(
-        'precision.iot.device',
+        'iiot.device',
         string='IoT Devices',
         help='IoT devices associated with this record for environmental monitoring'
     )
@@ -43,11 +43,11 @@ class AgriPrecisionMixin(models.AbstractModel):
         """Get environmental readings from associated IoT devices"""
         self.ensure_one()
         if hasattr(self, 'iot_device_ids') and self.iot_device_ids:
-            return self.env['precision.iot.reading'].search([
+            return self.env['iiot.telemetry'].search([
                 ('device_id', 'in', self.iot_device_ids.ids)
             ], order='read_datetime desc', limit=10)  # Last 10 readings
         else:
-            return self.env['precision.iot.reading'].browse()
+            return self.env['iiot.telemetry'].browse()
 
     def action_apply_corrective_skill(self, action_name, params):
         """ [Skill-Style] Generic reactive intervention logic. """

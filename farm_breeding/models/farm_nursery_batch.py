@@ -51,7 +51,7 @@ class FarmBreedingOrder(models.Model):
     _name = 'farm.breeding.order'
     _description = 'Nursery Growing Order'
     _inherits = {'mrp.production': 'production_id'}
-    _inherit = ['farm.agri.production.mixin', 'agri.quality.gate.mixin']
+    _inherit = ['agri.intervention.mixin', 'agri.quality.gate.mixin']
 
     production_id = fields.Many2one('mrp.production', string='Base Order', required=True, ondelete='cascade')
 
