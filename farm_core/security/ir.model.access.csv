@@ -18,3 +18,4 @@ access_agri_performance_monitor_manager,agri.performance.monitor.manager,model_a
 access_agri_performance_monitor_user,agri.performance.monitor.user,model_agri_performance_monitor,group_farm_worker,1,0,0,0
 access_agri_audit_log_manager,agri.audit.log.manager,model_agri_audit_log,group_farm_manager,1,1,1,1
 access_agri_audit_log_user,agri.audit.log.user,model_agri_audit_log,group_farm_worker,1,0,0,0
+access_agri_industry_variety,agri.industry.variety,model_agri_industry_variety,base.group_user,1,1,1,1

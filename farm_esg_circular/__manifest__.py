@@ -20,7 +20,7 @@ Circular economy module for Odoo 19 Farm Management System - Epic 27 Implementat
         'farm_core',
         'farm_operation',
         'farm_esg',
-        'farm_esg_compliance',  # For integration with ESG compliance
+         # For integration with ESG compliance
         'product',  # For product references
         'uom',      # For unit of measure
     ],
