@@ -12,7 +12,7 @@ class AgriIndustryPhysioStage(models.Model):
 
     # --- 100% Original Logic Retention ---
     package_id = fields.Many2one(
-        'farm.industry.data.package',
+        'agri.industry.data.package',
         string="Industry Package",
         required=True,
         ondelete='cascade'

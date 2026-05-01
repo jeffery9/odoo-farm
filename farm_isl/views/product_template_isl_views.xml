@@ -83,14 +83,14 @@
         <field name="name">farm.product.template.tree</field>
         <field name="model">farm.product.template</field>
         <field name="arch" type="xml">
-            <tree string="ISL Product Templates">
+            <list string="ISL Product Templates">
                 <field name="name"/>
                 <field name="type"/>
                 <field name="list_price"/>
                 <field name="industry_type"/>
                 <field name="industry_category"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 

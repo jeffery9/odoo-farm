@@ -8,7 +8,7 @@ class TestAgriBOM(TransactionCase):
         self.Product = self.env['product.product']
         
         # 1. 创建原药
-        self.pesticide = self.Product.create({'name': 'Pesticide X', 'type': 'product', 'uom_id': self.env.ref('uom.product_uom_litre').id})
+        self.pesticide = self.Product.create({'name': 'Pesticide X', 'type': 'consu', 'uom_id': self.env.ref('uom.product_uom_litre').id})
         
         # 2. 创建作业成品
         self.spraying_liquid = self.Product.create({'name': 'Spraying Liquid', 'type': 'service', 'uom_id': self.env.ref('uom.product_uom_litre').id})

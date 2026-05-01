@@ -41,7 +41,6 @@
                         <field name="command_template" widget="ace" options="{'mode': 'json'}"/>
                     </group>
                     <group string="遥测规则">
-                        <field name="iiot_telemetry_rule_ids" nolabel="1"/>
                     </group>
                 </sheet>
             </form>

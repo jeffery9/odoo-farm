@@ -5,7 +5,7 @@
         <field name="name">farm.sustainability.metric.tree</field>
         <field name="model">farm.sustainability.metric</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="code"/>
                 <field name="category"/>
@@ -13,7 +13,7 @@
                 <field name="target_value"/>
                 <field name="progress_rate"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -60,12 +60,12 @@
                     <notebook>
                         <page string="指标值历史">
                             <field name="value_history_ids">
-                                <tree>
+                                <list>
                                     <field name="date"/>
                                     <field name="value"/>
                                     <field name="note"/>
                                     <field name="recorded_by"/>
-                                </tree>
+                                </list>
                                 <form>
                                     <group>
                                         <field name="date"/>

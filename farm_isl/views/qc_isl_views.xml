@@ -59,12 +59,12 @@
         <field name="name">farm.quality.control.tree</field>
         <field name="model">farm.quality.control</field>
         <field name="arch" type="xml">
-            <tree string="ISL Quality Controls">
+            <list string="ISL Quality Controls">
                 <field name="name"/>
                 <field name="control_point_category"/>
                 <field name="quality_standard"/>
                 <field name="industry_type"/>
-            </tree>
+            </list>
         </field>
     </record>
 

@@ -4,14 +4,14 @@
         <field name="name">farm.storage.env.tree</field>
         <field name="model">farm.storage.env</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="is_alert">
+            <list decoration-danger="is_alert">
                 <field name="timestamp"/>
                 <field name="location_id"/>
                 <field name="temperature"/>
                 <field name="humidity"/>
                 <field name="is_alert" invisible="1"/>
                 <field name="alert_message"/>
-            </tree>
+            </list>
         </field>
     </record>
 

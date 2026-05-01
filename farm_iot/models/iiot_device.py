@@ -5,7 +5,7 @@ class IiotDevice(models.Model):
 
     # 地理围栏安全 [US-23-01] - 在业务集成层实现
     geofence_id = fields.Many2one(
-        'farm.geofence', 
+        'agri.geospatial.geofence', 
         string="Safety Geofence", 
         help="Assigned virtual fence for boundary monitoring."
     )

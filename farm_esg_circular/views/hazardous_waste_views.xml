@@ -22,14 +22,14 @@
         <field name="name">agri.hazardous.waste.record.tree</field>
         <field name="model">agri.hazardous.waste.record</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="waste_type"/>
                 <field name="collection_date"/>
                 <field name="quantity"/>
                 <field name="compliance_status"/>
                 <field name="collection_location_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 

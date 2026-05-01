@@ -91,7 +91,7 @@
         <field name="name">farm.orchard.operation.tree</field>
         <field name="model">farm.orchard.operation</field>
         <field name="arch" type="xml">
-            <tree string="Orchard Operations">
+            <list string="Orchard Operations">
                 <field name="name"/>
                 <field name="tree_id"/>
                 <field name="tree_variety"/>
@@ -99,7 +99,7 @@
                 <field name="pruning_type"/>
                 <field name="stage_id"/>
                 <field name="date_assign"/>
-            </tree>
+            </list>
         </field>
     </record>
 

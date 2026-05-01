@@ -22,14 +22,14 @@
         <field name="name">agri.geospatial.circular.network.tree</field>
         <field name="model">agri.geospatial.circular.network</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="geographic_area"/>
                 <field name="location_id"/>
                 <field name="nearest_nodes_count"/>
                 <field name="total_logistics_efficiency"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -123,13 +123,13 @@
         <field name="name">agri.nutrient.heatmap.layer.tree</field>
         <field name="model">agri.nutrient.heatmap.layer</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="nutrient_type"/>
                 <field name="analysis_date"/>
                 <field name="min_value"/>
                 <field name="max_value"/>
-            </tree>
+            </list>
         </field>
     </record>
 

@@ -55,14 +55,14 @@
         <field name="name">agri.ai.resource.optimization.tree</field>
         <field name="model">agri.ai.resource.optimization</field>
         <field name="arch" type="xml">
-            <tree string="AI Resource Optimization">
+            <list string="AI Resource Optimization">
                 <field name="resource_type"/>
                 <field name="required_quantity"/>
                 <field name="optimized_allocation"/>
                 <field name="allocation_efficiency"/>
                 <field name="confidence_score"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

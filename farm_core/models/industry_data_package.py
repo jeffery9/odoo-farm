@@ -94,7 +94,7 @@ class AgriIndustryDataPackage(models.Model):
         # 2. Import core data
         self._import_varieties()
         self._import_physio_stages()
-        self._import_task_templates(project)
+        self._import_task_templates()
         self._import_product_categories()
 
         return {
@@ -162,13 +162,13 @@ class AgriIndustryDataPackage(models.Model):
 
             for product in products:
                 # Find if this age_days already exists, if not create it
-                existing_curve = self.env['farm.growth.curve'].search([
+                existing_curve = self.env['agri.biological.growth.curve'].search([
                     ('product_id', '=', product.id),
                     ('age_days', '=', stage_data.age_days)
                 ], limit=1)
 
                 if not existing_curve:
-                    self.env['farm.growth.curve'].create({
+                    self.env['agri.biological.growth.curve'].create({
                         'product_id': product.id,
                         'age_days': stage_data.age_days,
                         'target_weight': stage_data.target_weight,

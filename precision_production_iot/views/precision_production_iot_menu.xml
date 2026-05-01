@@ -11,7 +11,7 @@
         <field name="name">precision.iot.command.log.tree</field>
         <field name="model">precision.iot.command.log</field>
         <field name="arch" type="xml">
-            <tree string="Precision IoT Command Logs">
+            <list string="Precision IoT Command Logs">
                 <field name="name"/>
                 <field name="command_type"/>
                 <field name="device_id"/>
@@ -20,7 +20,7 @@
                 <field name="create_date"/>
                 <field name="production_id"/>
                 <field name="phase_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 

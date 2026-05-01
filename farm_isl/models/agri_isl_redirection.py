@@ -33,7 +33,7 @@ class AgriISLModelRedirector(models.AbstractModel):
             'product.template': 'agri.product.template',
             'stock.picking': 'agri.stock.picking',
             'mrp.workorder': 'agri.mrp.workorder',
-            'quality.point': 'agri.quality.control',
+            'agri.quality.point': 'agri.quality.control',
         }
 
         if base_model_name not in isl_model_map:
@@ -64,7 +64,7 @@ class AgriISLModelRedirector(models.AbstractModel):
             'product.template': 'agri.product.template',
             'stock.picking': 'agri.stock.picking',
             'mrp.workorder': 'agri.mrp.workorder',
-            'quality.point': 'agri.quality.control',
+            'agri.quality.point': 'agri.quality.control',
         }
 
         if base_model_name not in isl_model_map:
@@ -112,6 +112,10 @@ class AgriISLIndustryExtension(models.Model):
 
     name = fields.Char('Extension Name', required=True)
     industry_type = fields.Selection([
+        ('food_processing', 'Food Processing'),
+        ('pharmaceutical', 'Pharmaceutical'),
+        ('chemical', 'Chemical'),
+        ('general', 'General Manufacturing'),
         ('food_processing', 'Food Processing'),
         ('pharmaceutical', 'Pharmaceutical'),
         ('chemical', 'Chemical'),

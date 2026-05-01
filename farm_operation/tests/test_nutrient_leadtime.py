@@ -16,7 +16,7 @@ class TestNutrientLeadtime(TransactionCase):
             'agricultural_type': 'input',
             'n_content': 46.0,
             'standard_price': 2.0,
-            'type': 'product'
+            'type': 'consu'
         })
         
         # 2. Create Crop with growth duration
@@ -24,7 +24,7 @@ class TestNutrientLeadtime(TransactionCase):
             'name': 'Wheat',
             'agricultural_type': 'output',
             'growth_duration': 120,
-            'type': 'product'
+            'type': 'consu'
         })
 
     def test_01_nutrient_calculation(self):

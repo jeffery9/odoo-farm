@@ -32,13 +32,13 @@
                     </group>
                     <group string="Breeding Records">
                         <field name="breeding_record_ids" nolabel="1" colspan="2">
-                            <tree string="Breeding Records" editable="bottom">
+                            <list string="Breeding Records" editable="bottom">
                                 <field name="breeding_date"/>
                                 <field name="breeding_method"/>
                                 <field name="sire_id"/>
                                 <field name="gestation_days"/>
                                 <field name="pregnancy_test_result"/>
-                            </tree>
+                            </list>
                         </field>
                     </group>
                     <group string="Pedigree Information">
@@ -125,13 +125,13 @@
         <field name="name">farm.breeding.record.tree</field>
         <field name="model">farm.breeding.record</field>
         <field name="arch" type="xml">
-            <tree string="Breeding Records">
+            <list string="Breeding Records">
                 <field name="animal_id"/>
                 <field name="breeding_date"/>
                 <field name="breeding_method"/>
                 <field name="sire_id"/>
                 <field name="pregnancy_test_result"/>
-            </tree>
+            </list>
         </field>
     </record>
 

@@ -5,14 +5,14 @@
         <field name="name">agri.ai.llm.service.tree</field>
         <field name="model">agri.ai.llm.service</field>
         <field name="arch" type="xml">
-            <tree string="LLM Services">
+            <list string="LLM Services">
                 <field name="name"/>
                 <field name="config_id"/>
                 <field name="last_call_time"/>
                 <field name="call_count"/>
                 <field name="error_count"/>
                 <field name="create_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 

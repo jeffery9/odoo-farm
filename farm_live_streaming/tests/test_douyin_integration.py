@@ -23,7 +23,7 @@ class TestDouyinIntegration(TransactionCase):
         # 2. Create a test product and lot with story
         self.product = self.Product.create({
             'name': 'Organic Tomato',
-            'type': 'product',
+            'type': 'consu',
             'list_price': 10.0
         })
         self.lot = self.Lot.create({

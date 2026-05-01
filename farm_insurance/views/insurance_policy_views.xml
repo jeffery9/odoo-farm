@@ -5,7 +5,7 @@
         <name>farm.crop.yield.insurance.policy.list</name>
         <model>farm.crop.yield.insurance.policy</model>
         <arch type="xml">
-            <tree string="Insurance Policies" decoration-success="state == 'active'" decoration-warning="state == 'expired'">
+            <list string="Insurance Policies" decoration-success="state == 'active'" decoration-warning="state == 'expired'">
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="product_id"/>
@@ -16,7 +16,7 @@
                 <field name="premium_amount"/>
                 <field name="state"/>
                 <field name="claim_status" widget="badge"/>
-            </tree>
+            </list>
         </arch>
     </record>
 
@@ -73,13 +73,13 @@
                         </page>
                         <page string="Claims" name="claims">
                             <field name="claim_ids" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="name"/>
                                     <field name="claim_date"/>
                                     <field name="reported_yield_kg"/>
                                     <field name="assessed_loss_amount"/>
                                     <field name="state"/>
-                                </tree>
+                                </list>
                             </field>
                             <button name="action_file_claim" string="File New Claim" type="object" icon="fa-plus" invisible="claim_status != 'no_claim' or state not in ('active', 'expired')"/>
                         </page>

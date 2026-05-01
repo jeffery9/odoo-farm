@@ -31,7 +31,7 @@ class AgriDigitalTwinMarker(models.Model):
 
     rotation_y = fields.Float("Y Rotation")
 
-    display_telemetry_ids = fields.Many2many('iiot.device.profile.telemetry', string="Telemetries to Display")
+    display_telemetry_ids = fields.Many2many('iiot.telemetry.rule', string="Telemetries to Display")
 
 class AgriLocation(models.Model):
     _inherit = 'farm.location'
@@ -49,7 +49,7 @@ class AgriIiotDevice(models.Model):
         """Used by Digital Twin frontend to get live values"""
         for device in self:
             # Fetch latest telemetry data
-            telemetry = self.env['agri.telemetry'].search([
+            telemetry = self.env['iiot.telemetry'].search([
                 ('device_id', '=', device.id)
             ], order='timestamp desc', limit=1)
             if telemetry:
@@ -58,7 +58,7 @@ class AgriIiotDevice(models.Model):
                 data = {
                     'status': device.connection_status,
                     'timestamp': telemetry.timestamp.isoformat() if telemetry.timestamp else None,
-                    # Add more fields based on agri telemetry
+                    # Add more fields based on iiot.telemetry
                 }
                 device.last_telemetry_json = json.dumps(data)
             else:

@@ -201,9 +201,10 @@ class FinancialCostCategory(models.Model):
     child_ids = fields.One2many('farm.financial.cost.category', 'parent_id', string="Child Categories")
     account_id = fields.Many2one('account.account', string="Financial Account")
 
-    _sql_constraints = [
-        ('code_unique', 'UNIQUE(code)', 'Code must be unique!'),
-    ]
+    _code_unique = models.Constraint(
+        'UNIQUE(code)',
+        'Code must be unique!'
+    )
 
     @api.constrains('parent_id')
     def _check_parent_recursion(self):

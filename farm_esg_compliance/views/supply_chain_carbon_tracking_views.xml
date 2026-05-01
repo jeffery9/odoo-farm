@@ -22,7 +22,7 @@
         <field name="name">agri.supply.chain.carbon.data.engine.tree</field>
         <field name="model">agri.supply.chain.carbon.data.engine</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="data_source_type"/>
                 <field name="partner_id"/>
@@ -30,7 +30,7 @@
                 <field name="calculation_standard"/>
                 <field name="compliance_status"/>
                 <field name="collection_status"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -125,14 +125,14 @@
         <field name="name">agri.supply.chain.carbon.reduction.strategy.tree</field>
         <field name="model">agri.supply.chain.carbon.reduction.strategy</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="strategy_type"/>
                 <field name="potential_reduction"/>
                 <field name="reduction_percentage"/>
                 <field name="roi_percentage"/>
                 <field name="implementation_status"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -233,14 +233,14 @@
         <field name="name">agri.supplier.carbon.compliance.tree</field>
         <field name="model">agri.supplier.carbon.compliance</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="supplier_carbon_score"/>
                 <field name="carbon_performance_rating"/>
                 <field name="compliance_status"/>
                 <field name="incentive_eligible"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -344,7 +344,7 @@
         <field name="name">agri.carbon.neutrality.certification.tree</field>
         <field name="model">agri.carbon.neutrality.certification</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="certification_type"/>
                 <field name="certification_scope"/>
@@ -352,7 +352,7 @@
                 <field name="is_carbon_neutral"/>
                 <field name="certification_status"/>
                 <field name="certification_expires"/>
-            </tree>
+            </list>
         </field>
     </record>
 

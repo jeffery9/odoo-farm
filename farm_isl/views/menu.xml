@@ -12,91 +12,26 @@
               parent="farm_isl_menu_root"
               sequence="10"/>
 
-    <menuitem id="menu_isl_mrp_production"
-              name="ISL Production Orders"
-              parent="farm_isl_manufacturing_menu"
-              action="action_isl_mrp_production"
-              sequence="10"/>
-
-    <menuitem id="menu_isl_mrp_bom"
-              name="ISL Bills of Materials"
-              parent="farm_isl_manufacturing_menu"
-              action="action_isl_mrp_bom"
-              sequence="20"/>
-
-    <menuitem id="menu_isl_mrp_workcenter"
-              name="ISL Work Centers"
-              parent="farm_isl_manufacturing_menu"
-              action="action_isl_mrp_workcenter"
-              sequence="30"/>
-
-    <menuitem id="menu_isl_mrp_workorder"
-              name="ISL Work Orders"
-              parent="farm_isl_manufacturing_menu"
-              action="action_isl_mrp_workorder"
-              sequence="40"/>
-
-    <!-- ISL Inventory Menu -->
     <menuitem id="farm_isl_inventory_menu"
               name="Inventory ISL"
               parent="farm_isl_menu_root"
               sequence="20"/>
 
-    <menuitem id="menu_isl_stock_lot"
-              name="ISL Stock Lots"
-              parent="farm_isl_inventory_menu"
-              action="action_isl_stock_lot"
-              sequence="10"/>
-
-    <menuitem id="menu_isl_stock_picking"
-              name="ISL Stock Pickings"
-              parent="farm_isl_inventory_menu"
-              action="action_isl_stock_picking"
-              sequence="20"/>
-
-    <!-- ISL Sales & Purchase Menu -->
     <menuitem id="farm_isl_sales_purchase_menu"
-              name="Sales & Purchase ISL"
+              name="Sales &amp; Purchase ISL"
               parent="farm_isl_menu_root"
               sequence="30"/>
 
-    <menuitem id="menu_isl_sale_order"
-              name="ISL Sale Orders"
-              parent="farm_isl_sales_purchase_menu"
-              action="action_isl_sale_order"
-              sequence="10"/>
-
-    <menuitem id="menu_isl_purchase_order"
-              name="ISL Purchase Orders"
-              parent="farm_isl_sales_purchase_menu"
-              action="action_isl_purchase_order"
-              sequence="20"/>
-
-    <!-- ISL Product Menu -->
     <menuitem id="farm_isl_product_menu"
               name="Product ISL"
               parent="farm_isl_menu_root"
               sequence="40"/>
 
-    <menuitem id="menu_isl_product_template"
-              name="ISL Product Templates"
-              parent="farm_isl_product_menu"
-              action="action_isl_product_template"
-              sequence="10"/>
-
-    <!-- ISL Quality Menu -->
     <menuitem id="farm_isl_quality_menu"
               name="Quality ISL"
               parent="farm_isl_menu_root"
               sequence="50"/>
 
-    <menuitem id="menu_isl_quality_control"
-              name="ISL Quality Controls"
-              parent="farm_isl_quality_menu"
-              action="action_isl_quality_control"
-              sequence="10"/>
-
-    <!-- ISL Configuration Menu -->
     <menuitem id="farm_isl_config_menu"
               name="Configuration"
               parent="farm_isl_menu_root"
@@ -136,12 +71,12 @@
         <field name="name">farm.isl.extension.tree</field>
         <field name="model">farm.isl.extension</field>
         <field name="arch" type="xml">
-            <tree string="ISL Industry Extensions">
+            <list string="ISL Industry Extensions">
                 <field name="name"/>
                 <field name="industry_type"/>
                 <field name="model_name"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 

@@ -2,6 +2,8 @@ from . import models
 from . import wizards
 
 
-def post_init_hook(cr, registry):
-    from .hooks import post_init_hook as hook
-    return hook(cr, registry)
+def post_init_hook(env):
+    """
+    Initialize default agricultural industry packages after module installation.
+    """
+    env['agri.industry.data.package'].create_default_packages()

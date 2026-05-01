@@ -26,12 +26,12 @@
                     </group>
                     <separator string="Yield History (历年产量趋势)"/>
                     <field name="yield_record_ids">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="harvest_date"/>
                             <field name="campaign_id"/>
                             <field name="quantity"/>
                             <field name="quality_grade"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>

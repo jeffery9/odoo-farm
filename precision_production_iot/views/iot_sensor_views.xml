@@ -5,7 +5,7 @@
         <field name="name">precision.iot.sensor.tree</field>
         <field name="model">precision.iot.sensor</field>
         <field name="arch" type="xml">
-            <tree string="Precision IoT Sensors">
+            <list string="Precision IoT Sensors">
                 <field name="name"/>
                 <field name="sensor_type"/>
                 <field name="parameter_name"/>
@@ -14,7 +14,7 @@
                 <field name="unit_of_measure"/>
                 <field name="device_id"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -63,13 +63,13 @@
                     <notebook>
                         <page string="Readings">
                             <field name="reading_ids">
-                                <tree string="Sensor Readings">
+                                <list string="Sensor Readings">
                                     <field name="read_datetime"/>
                                     <field name="value"/>
                                     <field name="uom"/>
                                     <field name="is_valid"/>
                                     <field name="deviation_percent"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>

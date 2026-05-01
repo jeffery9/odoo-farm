@@ -16,10 +16,14 @@ class FarmBomPackageLine(models.Model):
     quantity = fields.Float(string='Quantity per Package', required=True, default=1.0, help="How many products/inner packages are in this package level.")
     child_package_level_id = fields.Many2one('farm.package.level', string='Contains Package Level', help="This package level contains packages of this type.")
     
-    _sql_constraints = [
-        ('quantity_positive', 'CHECK(quantity > 0)', 'Quantity per package must be positive!'),
-        ('unique_packaging_per_product_level', 'unique(bom_id, product_id, package_level_id)', 'A product can only have one packaging definition per level in a BOM.')
-    ]
+    _quantity_positive = models.Constraint(
+        'CHECK(quantity > 0)',
+        'Quantity per package must be positive!'
+    )
+    _unique_packaging_per_product_level = models.Constraint(
+        'unique(bom_id, product_id, package_level_id)',
+        'A product can only have one packaging definition per level in a BOM.'
+    )
 
 # US-14-03: 副产品成本分摊
 class MrpBomByproduct(models.Model):

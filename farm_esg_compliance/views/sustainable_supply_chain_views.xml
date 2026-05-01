@@ -22,7 +22,7 @@
         <field name="name">agri.sustainable.supply.chain.tree</field>
         <field name="model">agri.sustainable.supply.chain</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="overall_sustainability_score"/>
@@ -30,7 +30,7 @@
                 <field name="environmental_score"/>
                 <field name="social_score"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -130,13 +130,13 @@
         <field name="name">agri.sustainable.supplier.evaluation.tree</field>
         <field name="model">agri.sustainable.supplier.evaluation</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="evaluation_date"/>
                 <field name="supply_chain_id"/>
                 <field name="overall_evaluation_score"/>
                 <field name="is_compliant"/>
-            </tree>
+            </list>
         </field>
     </record>
 

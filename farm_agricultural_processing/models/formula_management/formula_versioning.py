@@ -29,7 +29,7 @@ class FarmProcessingBomFormulaVersionExtension(models.Model):
     # Access control
     authorized_users = fields.Many2many('res.users', 'formula_version_auth_rel', 'bom_id', 'user_id', string='Authorized Users')
 
-    state = fields.Selection(selection_add=[
+    state = fields.Selection(selection=[
         ('draft', 'Draft'),
         ('approved', 'Approved'),
         ('in_use', 'In Use'),

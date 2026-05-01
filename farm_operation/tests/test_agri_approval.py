@@ -8,7 +8,7 @@ class TestAgriApproval(common.TransactionCase):
         cls.mo_model = cls.env['mrp.production']
         cls.product = cls.env['product.product'].create({
             'name': 'Wheat Harvest',
-            'type': 'product',
+            'type': 'consu',
         })
         cls.user_manager = cls.env.ref('mrp.group_mrp_manager').users[0]
         

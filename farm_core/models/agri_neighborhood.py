@@ -26,10 +26,10 @@ class AgriNeighborhoodRegistry(models.Model):
         for record in self:
             record.agent_id = f"{record.res_model}:{record.res_id}"
 
-    _sql_constraints = [
-        ('unique_entity_grid', 'unique(res_model, res_id, spatial_grid_id)', 
-         'An entity can only be registered once in a specific grid at a time.')
-    ]
+    # _sql_constraints = [
+#         (.unique_entity_grid., 'unique(res_model, res_id, spatial_grid_id)', 
+#          .An entity can only be registered once in a specific grid at a time.')
+#     ]
 
     @api.model
     def register_presence(self, res_model, res_id, grid_id):

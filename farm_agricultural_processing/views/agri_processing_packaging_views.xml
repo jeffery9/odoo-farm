@@ -6,14 +6,14 @@
         <field name="name">agri.processing.packaging.tree</field>
         <field name="model">agri.processing.packaging</field>
         <field name="arch" type="xml">
-            <tree string="Processing Packaging Batches">
+            <list string="Processing Packaging Batches">
                 <field name="name"/>
                 <field name="production_id"/>
                 <field name="package_type"/>
                 <field name="box_barcode"/>
                 <field name="total_items"/>
                 <field name="create_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -46,12 +46,12 @@
                     <notebook>
                         <page string="Child Packages" name="child_packages">
                             <field name="child_packages">
-                                <tree>
+                                <list>
                                     <field name="name"/>
                                     <field name="package_type"/>
                                     <field name="box_barcode"/>
                                     <field name="total_items"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>

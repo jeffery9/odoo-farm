@@ -5,14 +5,14 @@
         <field name="name">farm.esg.fair.trade.certificate.tree</field>
         <field name="model">farm.esg.fair.trade.certificate</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="certificate_number"/>
                 <field name="issuing_body"/>
                 <field name="expiry_date"/>
                 <field name="is_active"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -74,13 +74,13 @@
         <field name="name">farm.esg.fair.trade.premium.allocation.tree</field>
         <field name="model">farm.esg.fair.trade.premium.allocation</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="allocation_reference"/>
                 <field name="certificate_id"/>
                 <field name="allocation_type"/>
                 <field name="amount"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -130,13 +130,13 @@
         <field name="name">farm.esg.community.investment.tree</field>
         <field name="model">farm.esg.community.investment</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="investment_type"/>
                 <field name="amount"/>
                 <field name="investment_date"/>
                 <field name="project_status"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -192,14 +192,14 @@
         <field name="name">farm.esg.labor.condition.tree</field>
         <field name="model">farm.esg.labor.condition</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="employee_id"/>
                 <field name="condition_type"/>
                 <field name="expiry_date"/>
                 <field name="is_valid"/>
                 <field name="compliance_status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

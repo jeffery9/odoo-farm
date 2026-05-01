@@ -5,7 +5,11 @@ from odoo.exceptions import UserError
 class MrpBom(models.Model):
     _inherit = 'mrp.bom'
 
-    industry_type = fields.Selection([
+    industry_type = fields.Selection(selection=[
+        ('food_processing', 'Food Processing'),
+        ('pharmaceutical', 'Pharmaceutical'),
+        ('chemical', 'Chemical'),
+        ('general', 'General Manufacturing'),
         ('standard', 'Standard'),
         ('livestock', 'Livestock'),
         ('processing', 'Processing'),

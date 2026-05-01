@@ -5,7 +5,7 @@
         <field name="name">esg.target.tree</field>
         <field name="model">esg.target</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="category"/>
                 <field name="target_type"/>
@@ -15,7 +15,7 @@
                 <field name="progress_percentage"/>
                 <field name="is_achieved"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -95,14 +95,14 @@
         <field name="name">esg.performance.report.tree</field>
         <field name="model">esg.performance.report</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="report_date"/>
                 <field name="report_period"/>
                 <field name="overall_esg_score"/>
                 <field name="achievement_rate"/>
                 <field name="year"/>
-            </tree>
+            </list>
         </field>
     </record>
 

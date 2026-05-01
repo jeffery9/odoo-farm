@@ -18,9 +18,10 @@ class IiotFirmware(models.Model):
     is_active = fields.Boolean('Active', default=True, help='Is this an active version?')
     created_date = fields.Datetime('Created Date', default=fields.Datetime.now)
 
-    _sql_constraints = [
-        ('version_profile_uniq', 'UNIQUE(version, profile_code)', 'Firmware version must be unique for each device type!'),
-    ]
+    _version_profile_uniq = models.Constraint(
+        'UNIQUE(version, profile_code)',
+        'Firmware version must be unique for each device type!'
+    )
 
     @api.depends('version', 'profile_code')
     def _compute_name(self):

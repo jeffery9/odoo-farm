@@ -5,7 +5,7 @@
         <field name="name">agri.ai.llm.configuration.tree</field>
         <field name="model">agri.ai.llm.configuration</field>
         <field name="arch" type="xml">
-            <tree string="LLM Configurations">
+            <list string="LLM Configurations">
                 <field name="name"/>
                 <field name="provider"/>
                 <field name="default_model"/>
@@ -13,7 +13,7 @@
                 <field name="is_default"/>
                 <field name="application_type"/>
                 <field name="create_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 

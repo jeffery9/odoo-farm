@@ -5,14 +5,14 @@
         <field name="name">farm.crop.yield.insurance.tree</field>
         <field name="model">farm.crop.yield.insurance</field>
         <field name="arch" type="xml">
-            <tree string="Crop Yield Insurance">
+            <list string="Crop Yield Insurance">
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="product_id"/>
                 <field name="amount"/>
                 <field name="premium_amount"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -74,12 +74,12 @@
                         </page>
                         <page string="Claims" attrs="{'invisible': [('claim_ids', '=', [])]}">
                             <field name="claim_ids">
-                                <tree>
+                                <list>
                                     <field name="claim_type"/>
                                     <field name="requested_amount"/>
                                     <field name="approved_amount"/>
                                     <field name="state"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -93,12 +93,12 @@
         <field name="name">farm.insurance.index.tree</field>
         <field name="model">farm.insurance.index</field>
         <field name="arch" type="xml">
-            <tree string="Insurance Indices">
+            <list string="Insurance Indices">
                 <field name="name"/>
                 <field name="index_type"/>
                 <field name="threshold_value"/>
                 <field name="payout_factor"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -128,13 +128,13 @@
         <field name="name">farm.insurance.claim.tree</field>
         <field name="model">farm.insurance.claim</field>
         <field name="arch" type="xml">
-            <tree string="Insurance Claims">
+            <list string="Insurance Claims">
                 <field name="insurance_id"/>
                 <field name="claim_type"/>
                 <field name="requested_amount"/>
                 <field name="approved_amount"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 

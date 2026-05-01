@@ -53,7 +53,7 @@ class FarmProcessingProductionHaccpExtension(models.Model):
 
     # HACCP plan fields
     is_haccp_controlled = fields.Boolean('Is HACCP Controlled Process', default=False)
-    haccp_plan_id = fields.Many2one('quality.control.standard', string='HACCP Plan')
+    # haccp_plan_id = fields.Many2one('quality.control.standard', string='HACCP Plan')
     haccp_critical_control_points = fields.Text('HACCP Critical Control Points')
 
     # HACCP compliance tracking

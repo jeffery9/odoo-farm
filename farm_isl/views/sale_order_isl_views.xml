@@ -62,7 +62,7 @@
                         </page>
                         <page string="Order Lines">
                             <field name="order_line" nolabel="1" context="{'partner_id': partner_id, 'pricelist': pricelist_id, 'company_id': company_id}">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="product_id" options="{'no_create_edit': True}"/>
                                     <field name="name" invisible="context.get('show_line_note', True)"/>
                                     <field name="product_uom_qty"/>
@@ -71,7 +71,7 @@
                                     <field name="tax_id" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]" groups="account.group_show_line_subtotals_tax"/>
                                     <field name="discount" groups="sale.group_discount_per_so_line"/>
                                     <field name="price_subtotal" sum="Subtotal" groups="account.group_show_line_subtotals_tax"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -84,14 +84,14 @@
         <field name="name">farm.sale.order.tree</field>
         <field name="model">farm.sale.order</field>
         <field name="arch" type="xml">
-            <tree string="ISL Sale Orders">
+            <list string="ISL Sale Orders">
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="date_order"/>
                 <field name="amount_total"/>
                 <field name="industry_type"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 

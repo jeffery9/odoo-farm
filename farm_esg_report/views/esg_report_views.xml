@@ -5,14 +5,14 @@
         <field name="name">farm.esg.report.tree</field>
         <field name="model">farm.esg.report</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="report_type"/>
                 <field name="report_period"/>
                 <field name="report_year"/>
                 <field name="report_status"/>
                 <field name="language"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -113,13 +113,13 @@
         <field name="name">farm.esg.dashboard.tree</field>
         <field name="model">farm.esg.dashboard</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="dashboard_type"/>
                 <field name="overall_esg_score"/>
                 <field name="display_period"/>
                 <field name="target_audience"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -190,13 +190,13 @@
         <field name="name">farm.esg.sustainability.goal.tree</field>
         <field name="model">farm.esg.sustainability.goal</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="goal_type"/>
                 <field name="goal_status"/>
                 <field name="progress_percentage"/>
                 <field name="target_year"/>
-            </tree>
+            </list>
         </field>
     </record>
 

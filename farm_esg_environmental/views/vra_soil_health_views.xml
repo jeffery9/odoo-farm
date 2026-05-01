@@ -5,7 +5,7 @@
         <field name="name">agri.vra.soil.health.monitor.tree</field>
         <field name="model">agri.vra.soil.health.monitor</field>
         <field name="arch" type="xml">
-            <tree string="VRA Soil Health Monitoring">
+            <list string="VRA Soil Health Monitoring">
                 <field name="name"/>
                 <field name="location_id"/>
                 <field name="soil_health_score"/>
@@ -13,7 +13,7 @@
                 <field name="erosion_risk_level"/>
                 <field name="assessment_date"/>
                 <field name="next_assessment_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 

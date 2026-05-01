@@ -10,7 +10,7 @@ class TestGroupMovements(TransactionCase):
         
         self.pig_product = self.Product.create({
             'name': 'Fattening Pig',
-            'type': 'product',
+            'type': 'consu',
             'tracking': 'lot'
         })
         

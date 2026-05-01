@@ -5,7 +5,7 @@
         <field name="name">farm.land.health.record.tree</field>
         <field name="model">farm.land.health.record</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="land_parcel_id"/>
                 <field name="analysis_date"/>
@@ -16,7 +16,7 @@
                 <field name="k_level"/>
                 <field name="ph_level"/>
                 <field name="organic_matter"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -73,7 +73,7 @@
         <field name="name">farm.land.crop.rotation.history.tree</field>
         <field name="model">farm.land.crop.rotation.history</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="land_parcel_id"/>
                 <field name="product_id"/>
@@ -83,7 +83,7 @@
                 <field name="continuous_cropping_warning"/>
                 <field name="continuous_cropping_risk"/>
                 <field name="yield_amount"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -167,7 +167,7 @@
                     <notebook>
                         <page string="Health Records">
                             <field name="land_health_records" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="analysis_date"/>
                                     <field name="soil_health_score"/>
                                     <field name="health_status"/>
@@ -175,18 +175,18 @@
                                     <field name="p_level"/>
                                     <field name="k_level"/>
                                     <field name="ph_level"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Rotation History">
                             <field name="crop_rotation_history" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="rotation_date"/>
                                     <field name="crop_type"/>
                                     <field name="planting_date"/>
                                     <field name="harvest_date"/>
                                     <field name="rotation_sequence"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>

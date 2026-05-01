@@ -34,7 +34,7 @@ class ProductTemplate(models.Model):
     identification_number = fields.Char("Identification No.")
 
     # Growth curve data
-    growth_curve_ids = fields.One2many('farm.growth.curve', 'product_id', string="Growth Curve")
+    growth_curve_ids = fields.One2many('agri.biological.growth.curve', 'product_id', string="Growth Curve")
 
     def get_expected_weight(self, age_days):
         """Get expected weight based on age"""

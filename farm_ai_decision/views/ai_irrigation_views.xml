@@ -72,14 +72,14 @@
         <field name="name">agri.ai.irrigation.decision.tree</field>
         <field name="model">agri.ai.irrigation.decision</field>
         <field name="arch" type="xml">
-            <tree string="AI Irrigation Decisions">
+            <list string="AI Irrigation Decisions">
                 <field name="land_location_id"/>
                 <field name="product_id"/>
                 <field name="current_soil_moisture"/>
                 <field name="recommended_water_amount"/>
                 <field name="confidence_score"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

@@ -70,14 +70,14 @@
         <field name="name">agri.ai.pest.disease.detection.tree</field>
         <field name="model">agri.ai.pest.disease.detection</field>
         <field name="arch" type="xml">
-            <tree string="AI Pest and Disease Detection">
+            <list string="AI Pest and Disease Detection">
                 <field name="product_id"/>
                 <field name="pest_disease_name"/>
                 <field name="severity_level"/>
                 <field name="affected_area_percentage"/>
                 <field name="confidence_score"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

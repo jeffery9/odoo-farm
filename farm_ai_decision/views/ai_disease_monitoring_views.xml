@@ -63,14 +63,14 @@
         <field name="name">agri.ai.health.monitoring.tree</field>
         <field name="model">agri.ai.health.monitoring</field>
         <field name="arch" type="xml">
-            <tree string="AI Health and Welfare Monitoring">
+            <list string="AI Health and Welfare Monitoring">
                 <field name="animal_id"/>
                 <field name="species_type"/>
                 <field name="welfare_score"/>
                 <field name="health_risk_level"/>
                 <field name="confidence_score"/>
                 <field name="priority"/>
-            </tree>
+            </list>
         </field>
     </record>
 

@@ -34,6 +34,7 @@ class AgriSupplyChainNodeMixin(models.AbstractModel):
         ('critical', 'Critical'),
     ], string='Status', default='active')
 
-    _sql_constraints = [
-        ('node_code_unique', 'UNIQUE(node_code)', 'Node code must be unique!'),
-    ]
+    _node_code_unique = models.Constraint(
+        'UNIQUE(node_code)',
+        'Node code must be unique!'
+    )

@@ -1,0 +1,49 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+    networks:
+      - odoo-network
+
+  web:
+    build: .
+    depends_on:
+      - db
+      - mqtt
+    ports:
+      - "8069:8069"
+    volumes:
+      - .:/mnt/extra-addons
+      - ./config:/etc/odoo
+      - odoo-web-data:/var/lib/odoo
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+    networks:
+      - odoo-network
+
+  mqtt:
+    image: eclipse-mosquitto:latest
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    networks:
+      - odoo-network
+
+networks:
+  odoo-network:
+    driver: bridge
+
+volumes:
+  odoo-db-data:
+  odoo-web-data:

@@ -5,7 +5,7 @@
         <field name="name">contract.farming.agreement.tree</field>
         <field name="model">contract.farming.agreement</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="state=='cancelled'"
+            <list decoration-danger="state=='cancelled'"
                   decoration-info="state in ['draft', 'submitted']"
                   decoration-success="state=='settled'"
                   decoration-warning="state in ['approved', 'in_progress', 'harvest_complete']">
@@ -19,7 +19,7 @@
                 <field name="input_prepayment_total"/>
                 <field name="settlement_amount"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -83,7 +83,7 @@
                     <notebook>
                         <page string="Input Prepayments">
                             <field name="input_prepayment_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="input_type"/>
                                     <field name="product_id"/>
                                     <field name="quantity"/>
@@ -95,7 +95,7 @@
                                     <field name="paid_amount"/>
                                     <field name="remaining_amount"/>
                                     <field name="state"/>
-                                </tree>
+                                </list>
                                 <form>
                                     <group>
                                         <field name="input_type"/>
@@ -124,14 +124,14 @@
                         </page>
                         <page string="Yield Commitments">
                             <field name="yield_commitment_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="expected_yield"/>
                                     <field name="actual_yield"/>
                                     <field name="area"/>
                                     <field name="quality_grade"/>
                                     <field name="harvest_date"/>
                                     <field name="performance_rate"/>
-                                </tree>
+                                </list>
                                 <form>
                                     <group>
                                         <field name="expected_yield"/>
@@ -150,14 +150,14 @@
                         </page>
                         <page string="Settlements">
                             <field name="settlement_ids">
-                                <tree>
+                                <list>
                                     <field name="type"/>
                                     <field name="amount"/>
                                     <field name="settlement_date"/>
                                     <field name="payment_method"/>
                                     <field name="enterprise_share"/>
                                     <field name="farmer_share"/>
-                                </tree>
+                                </list>
                                 <form>
                                     <group>
                                         <field name="type"/>
@@ -192,7 +192,7 @@
         <field name="name">contract.farming.input.prepayment.tree</field>
         <field name="model">contract.farming.input.prepayment</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="agreement_id"/>
                 <field name="input_type"/>
                 <field name="product_id"/>
@@ -202,7 +202,7 @@
                 <field name="paid_amount"/>
                 <field name="remaining_amount"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -211,7 +211,7 @@
         <field name="name">contract.farming.yield.commitment.tree</field>
         <field name="model">contract.farming.yield.commitment</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="agreement_id"/>
                 <field name="expected_yield"/>
                 <field name="actual_yield"/>
@@ -219,7 +219,7 @@
                 <field name="performance_rate"/>
                 <field name="quality_grade"/>
                 <field name="harvest_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -228,7 +228,7 @@
         <field name="name">contract.farming.settlement.tree</field>
         <field name="model">contract.farming.settlement</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="agreement_id"/>
                 <field name="type"/>
                 <field name="amount"/>
@@ -236,7 +236,7 @@
                 <field name="payment_method"/>
                 <field name="enterprise_share"/>
                 <field name="farmer_share"/>
-            </tree>
+            </list>
         </field>
     </record>
 

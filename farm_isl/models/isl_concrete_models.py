@@ -336,15 +336,15 @@ class FarmQualityControl(models.Model):
     """
     _name = 'farm.quality.control'
     _description = 'Farm ISL Quality Control'
-    _inherits = {'quality.point': 'quality_point_id'}
+    # _inherits = {.agri.quality.point.: .agri_quality_point_id.}
     _inherit = ['farm.quality.mixin']
 
-    quality_point_id = fields.Many2one(
-        'quality.point',
-        string='Base Quality Point',
-        required=True,
-        ondelete='cascade'
-    )
+#     # agri_quality_point_id = fields.Many2one(
+#         'agri.quality.point',
+#         string='Base Agri Quality Point',
+#         required=True,
+#         ondelete='cascade'
+#     )
 
     # Industry-specific fields for quality control
     ccp_monitoring = fields.Html('CCP Monitoring')  # Critical Control Points, HACCP

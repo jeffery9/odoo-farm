@@ -77,9 +77,10 @@ class ESGIndicator(models.Model):
     # Related to assessments
     assessment_line_ids = fields.One2many('esg.assessment.line', 'indicator_id', 'Assessment Lines')
 
-    _sql_constraints = [
-        ('code_unique', 'UNIQUE(code, framework_id)', 'Indicator code must be unique per framework.')
-    ]
+    _code_unique = models.Constraint(
+        'UNIQUE(code, framework_id)',
+        'Indicator code must be unique per framework.'
+    )
 
     @api.constrains('min_acceptable_value', 'max_acceptable_value')
     def _check_value_range(self):

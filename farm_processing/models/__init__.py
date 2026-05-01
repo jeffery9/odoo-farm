@@ -2,6 +2,8 @@
 from . import processing_isl
 from . import artisan_log
 from . import lot_isl
+from . import agri_allergen
+from . import allergen
 from . import product_isl
 from . import picking_isl
 from . import mrp_production
@@ -12,6 +14,7 @@ from . import product_product
 from . import stock_lot
 from . import stock_move
 from . import allergen
+from . import agri_health_schedule
 from . import biological_asset_health
 from . import mrp_bom_packaging
 from . import mrp_work

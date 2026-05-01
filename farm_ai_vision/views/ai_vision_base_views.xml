@@ -5,13 +5,13 @@
         <field name="name">agri.ai.vision.base.tree</field>
         <field name="model">agri.ai.vision.base</field>
         <field name="arch" type="xml">
-            <tree string="AI Vision Base">
+            <list string="AI Vision Base">
                 <field name="name"/>
                 <field name="analysis_date"/>
                 <field name="confidence_score"/>
                 <field name="status"/>
                 <field name="model_type"/>
-            </tree>
+            </list>
         </field>
     </record>
 

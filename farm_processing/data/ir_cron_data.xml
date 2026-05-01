@@ -8,8 +8,6 @@
             <field name="code">model._check_expiring_lots()</field>
             <field name="interval_number">1</field>
             <field name="interval_type">days</field>
-            <field name="numbercall">-1</field>
-            <field name="doall">False</field>
         </record>
     </data>
 </odoo>

@@ -16,6 +16,12 @@ class IiotDeviceProfile(models.Model):
         default='telemetry/{device}/data',
         help='Telemetry topic template, e.g. telemetry/{device}/data'
     )
+
+    iiot_telemetry_rule_ids = fields.One2many(
+        'iiot.telemetry.rule',
+        'profile_id',
+        string='Telemetry Rules'
+    )
     command_topic_template = fields.Char(
         'Command Topic Template',
         default='cmd/{device}/request',

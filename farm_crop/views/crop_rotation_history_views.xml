@@ -85,7 +85,7 @@
                         <field name="continuous_cropping_risk_alert"/>
                     </group>
                     <field name="rotation_history_ids" mode="tree">
-                        <tree string="Crop Rotation History"
+                        <list string="Crop Rotation History"
                               decoration-danger="continuous_cropping_warning"
                               decoration-info="state == 'archived'">
                             <field name="planting_date"/>
@@ -93,7 +93,7 @@
                             <field name="harvesting_date"/>
                             <field name="continuous_cropping_risk"/>
                             <field name="continuous_cropping_warning"/>
-                        </tree>
+                        </list>
                     </field>
                     <group col="4">
                         <button name="action_view_rotation_history"

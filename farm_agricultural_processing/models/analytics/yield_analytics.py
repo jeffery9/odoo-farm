@@ -14,7 +14,7 @@ class FarmProcessingProductionAnalyticsExtension(models.Model):
     # Yield analytics tracking
     yield_rate = fields.Float('Yield Rate (%)', compute='_compute_yield_rate', store=True)
 
-    @api.depends('final_output_qty', 'raw_material_qty')
+    # @api.depends('final_output_qty', 'raw_material_qty')
     def _compute_yield_rate(self):
         for record in self:
             if record.raw_material_qty > 0:

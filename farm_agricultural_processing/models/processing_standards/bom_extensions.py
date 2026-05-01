@@ -56,28 +56,8 @@ class FarmProcessingBomExtension(models.Model):
                 raise ValidationError(_("Byproduct cost share total cannot exceed 100%%. Current total is %s%%") % bom.byproduct_cost_share_total)
 
 
-class FarmProcessingBomLineExtension(models.Model):
-    _inherit = 'farm.processing.bom.line'
-
-    ingredient_role = fields.Selection([
-        ('main', 'Main Material'),
-        ('additive', 'Additive'),
-        ('yeast', 'Fermentation Agent'),
-        ('packaging', 'Packaging')
-    ], string="Ingredient Role", default='main')
 
 
-class FarmBomGradeDistribution(models.Model):
-    _name = 'farm.bom.grade.distribution'
-    _description = 'Expected Grade Distribution in BOM'
-
-    bom_id = fields.Many2one('farm.processing.bom', ondelete='cascade')
-    quality_grade = fields.Selection([
-        ('grade_a', 'Grade A'),
-        ('grade_b', 'Grade B'),
-        ('grade_c', 'Grade C'),
-    ], string="Quality Grade", required=True)
-    expected_percentage = fields.Float("Expected %", required=True)
 
 
 # Add the compute and constraint methods to farm.processing.production as well to match test expectations
@@ -87,7 +67,7 @@ class FarmProcessingProductionExtension(models.Model):
     byproduct_cost_share_total = fields.Float("Byproduct Cost Share Total (%)", compute='_compute_byproduct_cost_share_total_mo', store=True)
     finished_product_cost_share = fields.Float("Finished Product Cost Share (%)", compute='_compute_finished_product_cost_share_mo', store=True)
 
-    @api.depends('bom_id', 'bom_id.byproduct_cost_share_total')
+    # @api.depends('bom_id', 'bom_id.byproduct_cost_share_total')
     def _compute_byproduct_cost_share_total_mo(self):
         for mo in self:
             if mo.bom_id:
@@ -95,7 +75,7 @@ class FarmProcessingProductionExtension(models.Model):
             else:
                 mo.byproduct_cost_share_total = 0.0
 
-    @api.depends('bom_id', 'bom_id.finished_product_cost_share')
+    # @api.depends('bom_id', 'bom_id.finished_product_cost_share')
     def _compute_finished_product_cost_share_mo(self):
         for mo in self:
             if mo.bom_id:

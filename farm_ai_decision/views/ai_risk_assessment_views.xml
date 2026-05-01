@@ -61,14 +61,14 @@
         <field name="name">agri.ai.risk.assessment.tree</field>
         <field name="model">agri.ai.risk.assessment</field>
         <field name="arch" type="xml">
-            <tree string="AI Risk Assessment">
+            <list string="AI Risk Assessment">
                 <field name="risk_category"/>
                 <field name="risk_score"/>
                 <field name="risk_level"/>
                 <field name="risk_probability"/>
                 <field name="confidence_score"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

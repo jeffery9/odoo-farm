@@ -5,7 +5,7 @@
         <field name="name">agri.performance.monitor.tree</field>
         <field name="model">agri.performance.monitor</field>
         <field name="arch" type="xml">
-            <tree string="Performance Monitor">
+            <list string="Performance Monitor">
                 <field name="name"/>
                 <field name="model_name"/>
                 <field name="operation"/>
@@ -15,7 +15,7 @@
                 <field name="end_time"/>
                 <field name="status"/>
                 <field name="user_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -52,14 +52,14 @@
         <field name="name">agri.audit.log.tree</field>
         <field name="model">agri.audit.log</field>
         <field name="arch" type="xml">
-            <tree string="Audit Log">
+            <list string="Audit Log">
                 <field name="model_name"/>
                 <field name="operation"/>
                 <field name="user_id"/>
                 <field name="timestamp"/>
                 <field name="severity"/>
                 <field name="details"/>
-            </tree>
+            </list>
         </field>
     </record>
 

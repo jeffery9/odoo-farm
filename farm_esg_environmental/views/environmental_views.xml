@@ -5,14 +5,14 @@
         <field name="name">esg.environmental.report.tree</field>
         <field name="model">esg.environmental.report</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="report_date"/>
                 <field name="report_period"/>
                 <field name="environmental_score"/>
                 <field name="overall_esg_score"/>
                 <field name="year"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -100,14 +100,14 @@
         <field name="name">esg.environmental.compliance.tree</field>
         <field name="model">esg.environmental.compliance</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="assessment_date"/>
                 <field name="compliance_type"/>
                 <field name="assessment_status"/>
                 <field name="overall_esg_score"/>
                 <field name="environmental_risk_level"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -161,13 +161,13 @@
                         </page>
                         <page string="Assessment Lines">
                             <field name="assessment_line_ids" nolabel="1">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="indicator_id"/>
                                     <field name="actual_value"/>
                                     <field name="target_value"/>
                                     <field name="performance_score"/>
                                     <field name="verification_status"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Issues and Actions">

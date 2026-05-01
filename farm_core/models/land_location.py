@@ -51,7 +51,7 @@ class FarmLocation(models.Model):
     ], string="Land Nature", help="Classification based on national land use guidelines.")
 
     land_area = fields.Float("Area (sqm/mu)", digits=(16, 2), help="Surface area of the parcel.")
-    land_area_uom_id = fields.Many2one('uom.uom', string="Area Unit", domain="[('category_id.measure_type', '=', 'area')]")
+    land_area_uom_id = fields.Many2one('uom.uom', string="Area Unit")
 
     # Core GIS Fields [US-01-03, US-TECH-04-01]
     gps_lat = fields.Float("Latitude", digits=(10, 7))
@@ -137,7 +137,12 @@ class FarmLocation(models.Model):
 
     # Dynamic attributes [US-01-02]
     location_properties_definition = fields.PropertiesDefinition('Location Properties Definition')
+    _self_ref = fields.Many2one('farm.location', compute='_compute_self_ref')
     location_properties = fields.Properties(
         'Properties',
-        definition='location_properties_definition'
+        definition='_self_ref.location_properties_definition'
     )
+
+    def _compute_self_ref(self):
+        for rec in self:
+            rec._self_ref = rec.id

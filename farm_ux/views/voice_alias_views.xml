@@ -4,10 +4,10 @@
         <field name="name">farm.voice.recognition.alias.tree</field>
         <field name="model">farm.voice.recognition.alias</field>
         <field name="arch" type="xml">
-            <tree string="Voice Recognition Aliases" editable="bottom">
+            <list string="Voice Recognition Aliases" editable="bottom">
                 <field name="alias"/>
                 <field name="target_term"/>
-            </tree>
+            </list>
         </field>
     </record>
 

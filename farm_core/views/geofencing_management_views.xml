@@ -2,24 +2,24 @@
 <odoo>
     <!-- Farm Geofence Tree View -->
     <record id="view_farm_geofence_tree" model="ir.ui.view">
-        <field name="name">farm.geofence.tree</field>
-        <field name="model">farm.geofence</field>
+        <field name="name">agri.geospatial.geofence.tree</field>
+        <field name="model">agri.geospatial.geofence</field>
         <field name="arch" type="xml">
-            <tree string="Geofences">
+            <list string="Geofences">
                 <field name="name"/>
                 <field name="fence_type"/>
                 <field name="target_category"/>
                 <field name="alert_level"/>
                 <field name="active"/>
                 <field name="company_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <!-- Farm Geofence Form View -->
     <record id="view_farm_geofence_form" model="ir.ui.view">
-        <field name="name">farm.geofence.form</field>
-        <field name="model">farm.geofence</field>
+        <field name="name">agri.geospatial.geofence.form</field>
+        <field name="model">agri.geospatial.geofence</field>
         <field name="arch" type="xml">
             <form string="Geofence">
                 <header>
@@ -46,18 +46,11 @@
     </record>
 
     <!-- Menu Items -->
-    <menuitem id="menu_geofence_root" name="Geofences"
-              parent="farm_core.menu_farm_root"
-              sequence="40">
-        <menuitem id="menu_farm_geofences" name="Farm Geofences"
-                  action="action_farm_geofence_list"
-                  sequence="10"/>
-    </menuitem>
 
     <!-- Actions -->
     <record id="action_farm_geofence_list" model="ir.actions.act_window">
         <field name="name">Farm Geofences</field>
-        <field name="res_model">farm.geofence</field>
+        <field name="res_model">agri.geospatial.geofence</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

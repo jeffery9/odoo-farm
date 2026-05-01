@@ -69,7 +69,7 @@
         <field name="name">farm.field.crop.operation.tree</field>
         <field name="model">farm.field.crop.operation</field>
         <field name="arch" type="xml">
-            <tree string="Field Crop Operations">
+            <list string="Field Crop Operations">
                 <field name="name"/>
                 <field name="crop_type_id"/>
                 <field name="field_parcel_id"/>
@@ -78,7 +78,7 @@
                 <field name="fertilizer_application_rate"/>
                 <field name="stage_id"/>
                 <field name="date_assign"/>
-            </tree>
+            </list>
         </field>
     </record>
 

@@ -11,7 +11,7 @@ class TestNurseryManagement(TransactionCase):
         
         self.seed = self.Product.create({
             'name': 'Tomato Seedlings',
-            'type': 'product',
+            'type': 'consu',
             'is_variety': True,
             'variety_type': 'crop'
         })

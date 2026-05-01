@@ -10,7 +10,7 @@ class TestAgri2026Mixins(TransactionCase):
         self.uom_unit = self.env.ref('uom.product_uom_unit')
         self.product = self.env['product.product'].create({
             'name': '2026 Bio Crop',
-            'type': 'product',
+            'type': 'consu',
             'standard_price': 100.0,
         })
         self.bom = self.env['mrp.bom'].create({

@@ -4,14 +4,14 @@
         <field name="name">agricultural.knowledge.tree</field>
         <field name="model">agricultural.knowledge</field>
         <field name="arch" type="xml">
-            <tree decoration-info="knowledge_type == 'case_study'" decoration-warning="knowledge_type == 'standard'">
+            <list decoration-info="knowledge_type == 'case_study'" decoration-warning="knowledge_type == 'standard'">
                 <field name="name"/>
                 <field name="category"/>
                 <field name="knowledge_type"/>
                 <field name="difficulty_level"/>
                 <field name="view_count"/>
                 <field name="helpful_count"/>
-            </tree>
+            </list>
         </field>
     </record>
 

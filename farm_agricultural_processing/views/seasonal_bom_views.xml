@@ -5,7 +5,7 @@
         <field name="name">farm.seasonal.bom.tree</field>
         <field name="model">farm.seasonal.bom</field>
         <field name="arch" type="xml">
-            <tree string="Seasonal Recipe Management">
+            <list string="Seasonal Recipe Management">
                 <field name="name"/>
                 <field name="product_tmpl_id"/>
                 <field name="season_name"/>
@@ -14,7 +14,7 @@
                 <field name="version_number"/>
                 <field name="state"/>
                 <field name="is_seasonal_adjustment"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -72,25 +72,25 @@
                         </page>
                         <page string="Seasonal Material Adjustments" name="material_adjustments">
                             <field name="seasonal_material_ids" nolabel="1">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="product_id"/>
                                     <field name="base_qty"/>
                                     <field name="seasonal_qty"/>
                                     <field name="qty_difference" readonly="1"/>
                                     <field name="adjustment_reason"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Seasonal Parameter Adjustments" name="parameter_adjustments">
                             <field name="seasonal_parameter_ids" nolabel="1">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="parameter_name"/>
                                     <field name="base_value"/>
                                     <field name="seasonal_value"/>
                                     <field name="value_difference" readonly="1"/>
                                     <field name="unit_of_measure"/>
                                     <field name="adjustment_reason"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -104,14 +104,14 @@
         <field name="name">farm.seasonal.bom.material.tree</field>
         <field name="model">farm.seasonal.bom.material</field>
         <field name="arch" type="xml">
-            <tree string="Seasonal Material Adjustments">
+            <list string="Seasonal Material Adjustments">
                 <field name="seasonal_bom_id"/>
                 <field name="product_id"/>
                 <field name="base_qty"/>
                 <field name="seasonal_qty"/>
                 <field name="qty_difference"/>
                 <field name="adjustment_reason"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -120,7 +120,7 @@
         <field name="name">farm.seasonal.bom.parameter.tree</field>
         <field name="model">farm.seasonal.bom.parameter</field>
         <field name="arch" type="xml">
-            <tree string="Seasonal Parameter Adjustments">
+            <list string="Seasonal Parameter Adjustments">
                 <field name="seasonal_bom_id"/>
                 <field name="parameter_name"/>
                 <field name="base_value"/>
@@ -128,7 +128,7 @@
                 <field name="value_difference"/>
                 <field name="unit_of_measure"/>
                 <field name="adjustment_reason"/>
-            </tree>
+            </list>
         </field>
     </record>
 

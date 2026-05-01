@@ -15,7 +15,7 @@ class FarmIndustryPicking(models.Model):
         ('livestock', 'Livestock Movement'),
         ('processing', 'Processing Intake/Output'),
         ('crop', 'Field Transfer')
-    ], string='Industry Logistics Context')
+    ], string='Industry Logistics Context', ondelete={'livestock': 'cascade', 'processing': 'cascade', 'crop': 'cascade'})
 
     # Specialized Data Points
     compliance_ref = fields.Char("Transport Compliance Ref", help="Regulatory code for livestock or organic goods movement.")

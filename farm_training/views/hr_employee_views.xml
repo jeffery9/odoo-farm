@@ -12,14 +12,14 @@
                             <field name="skill_ids" widget="many2many_tags"/>
                             <field name="certification_ids" widget="many2many_tags"/>
                             <field name="training_record_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="certification_id"/>
                                     <field name="training_date"/>
                                     <field name="expiration_date"/>
                                     <field name="status"/>
                                     <field name="trainer_id"/>
                                     <field name="notes"/>
-                                </tree>
+                                </list>
                             </field>
                         </group>
                     </page>

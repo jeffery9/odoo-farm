@@ -45,13 +45,13 @@
                     </group>
                     <group name="harvest_info" string="Harvest Management">
                         <field name="harvest_schedule_ids" nolabel="1" colspan="2">
-                            <tree string="Harvest Schedule" editable="bottom">
+                            <list string="Harvest Schedule" editable="bottom">
                                 <field name="flush_number"/>
                                 <field name="harvest_date"/>
                                 <field name="yield_amount"/>
                                 <field name="quality_grade"/>
                                 <field name="notes"/>
-                            </tree>
+                            </list>
                         </field>
                         <group>
                             <field name="total_yield"/>
@@ -120,13 +120,13 @@
         <field name="name">farm.mushroom.harvest.tree</field>
         <field name="model">farm.mushroom.harvest</field>
         <field name="arch" type="xml">
-            <tree string="Mushroom Harvests">
+            <list string="Mushroom Harvests">
                 <field name="harvest_date"/>
                 <field name="operation_id"/>
                 <field name="flush_number"/>
                 <field name="yield_amount"/>
                 <field name="quality_grade"/>
-            </tree>
+            </list>
         </field>
     </record>
 

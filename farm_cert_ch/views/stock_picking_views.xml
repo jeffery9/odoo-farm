@@ -13,12 +13,12 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Certificates (China)" invisible="not requires_cert_ch">
                     <field name="certificate_ch_ids">
-                        <tree>
+                        <list>
                             <field name="certificate_no"/>
                             <field name="lot_id"/>
                             <field name="product_id"/>
                             <field name="production_date"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>

@@ -76,7 +76,7 @@ class FarmHamProduction(models.Model):
     _name = 'farm.ham.production'
     _description = 'Ham Curing Order'
     _inherits = {'mrp.production': 'production_id'}
-    _inherit = ['farm.agri.production.mixin', 'agri.quality.gate.mixin', 'agri.incident.alert.mixin']
+    _inherit = ['agri.quality.gate.mixin', 'agri.incident.alert.mixin']
 
     production_id = fields.Many2one('mrp.production', string='Base Order', required=True, ondelete='cascade')
 

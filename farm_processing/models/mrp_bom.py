@@ -5,7 +5,7 @@ class MrpBom(models.Model):
     _inherit = 'mrp.bom'
 
     # Extend selection for Food Processing
-    industry_type = fields.Selection(selection_add=[
+    industry_type = fields.Selection(selection=[
         ('food_processing', 'Food Processing'),
         ('baking', 'Baking'),
         ('winemaking', 'Winemaking'),
@@ -22,3 +22,15 @@ class MrpBom(models.Model):
     grade_distribution_ids = fields.One2many('farm.bom.grade.distribution', 'bom_id', string="Expected Grade Distribution")
     mass_balance_tolerance = fields.Float("Mass Balance Tolerance (%)", default=0.1)
     allergen_ids = fields.Many2many('farm.allergen', string="Allergens Involved")
+class FarmBomGradeDistribution(models.Model):
+    _name = 'farm.bom.grade.distribution'
+    _description = 'Expected Grade Distribution in BOM'
+
+    bom_id = fields.Many2one('mrp.bom', ondelete='cascade')
+    quality_grade = fields.Selection([
+        ('grade_a', 'Grade A'),
+        ('grade_b', 'Grade B'),
+        ('grade_c', 'Grade C'),
+    ], string='Quality Grade', required=True)
+    expected_percentage = fields.Float('Expected %', required=True)
+

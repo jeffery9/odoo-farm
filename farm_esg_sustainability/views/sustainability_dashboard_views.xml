@@ -5,7 +5,7 @@
         <field name="name">farm.sustainability.dashboard.tree</field>
         <field name="model">farm.sustainability.dashboard</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="period_type"/>
                 <field name="economic_score"/>
@@ -13,7 +13,7 @@
                 <field name="social_score"/>
                 <field name="overall_score"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -89,14 +89,14 @@
         <field name="name">farm.sustainability.report.tree</field>
         <field name="model">farm.sustainability.report</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="report_date"/>
                 <field name="period_start"/>
                 <field name="period_end"/>
                 <field name="overall_score"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 

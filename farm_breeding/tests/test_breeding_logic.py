@@ -14,7 +14,7 @@ class TestBreedingLogic(TransactionCase):
         self.seed = self.Product.create({
             'name': 'Hybrid Rice Seed',
             'is_variety': True,
-            'type': 'product'
+            'type': 'consu'
         })
         
         # 2. Locations

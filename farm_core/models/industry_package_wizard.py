@@ -8,7 +8,7 @@ class IndustryPackageWizard(models.TransientModel):
     _description = 'Industry Package Application Wizard'
 
     package_id = fields.Many2one(
-        'farm.industry.data.package',
+        'agri.industry.data.package',
         string="Industry Package",
         required=True
     )

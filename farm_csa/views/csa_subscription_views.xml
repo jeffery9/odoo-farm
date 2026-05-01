@@ -98,17 +98,4 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_farm_shared_tool"
-              name="Shared Community Tools"
-              parent="farm_marketing.menu_agritourism_root"
-              action="action_farm_shared_tool"
-              sequence="30"/>
-
-    <record id="action_farm_csa_subscription" model="ir.actions.act_window">
-        <field name="name">CSA Subscriptions</field>
-        <field name="res_model">farm.csa.subscription</field>
-        <field name="view_mode">list,form</field>
-    </record>
-
-    <menuitem id="menu_farm_marketing_csa" name="CSA Subscriptions" parent="farm_marketing.menu_agritourism_root" action="action_farm_csa_subscription" sequence="20"/>
 </odoo>

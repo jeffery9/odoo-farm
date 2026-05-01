@@ -59,7 +59,7 @@ class IiotDevice(models.Model):
         """Used by Digital Twin frontend to get live values"""
         for device in self:
             # Fetch latest telemetry data
-            telemetry = self.env['agri.telemetry'].search([
+            telemetry = self.env['iiot.telemetry'].search([
                 ('device_id', '=', device.id)
             ], order='timestamp desc', limit=1)
             if telemetry:

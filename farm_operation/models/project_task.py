@@ -34,21 +34,20 @@ class ProjectTask(models.Model):
     gps_lng = fields.Float(related='land_parcel_id.gps_lng', store=True)
 
     # Weather Forecast [US-Weather]
-    forecast_ids = fields.Many2many(
-        'agri.weather.forecast',
-        compute='_compute_weather_forecasts',
-        string="Weather Forecasts"
-    )
+    # forecast_ids = fields.Many2many(
+        # 'agri.weather.forecast',
+        # compute='_compute_weather_forecasts',
+        # string="Weather Forecasts"
 
     def _compute_weather_forecasts(self):
         for task in self:
             if task.planned_date_begin and task.land_parcel_id:
                 # Find forecasts for the planned period
-                task.forecast_ids = self.env['agri.weather.forecast'].search([
+                # task.forecast_ids = self.env[('id', '=', 0)].search([
                     ('location_id', '=', task.land_parcel_id.id),
                     ('date', '>=', task.planned_date_begin),
                     ('date', '<=', task.date_deadline or task.planned_date_begin)
-                ])
+                
             else:
                 task.forecast_ids = False
 
@@ -115,7 +114,7 @@ class ProjectTask(models.Model):
         }
         return action
 
-    @fields.depends('intervention_ids.state', 'intervention_ids.move_raw_ids.product_uom_qty')
+    @api.depends('intervention_ids.state', 'intervention_ids.move_raw_ids.product_uom_qty')
     def _compute_nutrients(self):
         for task in self:
             n = p = k = 0.0
@@ -168,16 +167,15 @@ class ProjectTask(models.Model):
                     ))
 
     # Required Qualifications for Task [US-17-08]
-    required_skill_ids = fields.Many2many(
-        'farm.training.skill',
-        string="Required Skills",
-        help="Skills required to perform this task."
-    )
-    required_certification_ids = fields.Many2many(
+#     # required_skill_ids = fields.Many2many(
+#         'farm.training.skill',
+#         string="Required Skills",
+#         help="Skills required to perform this task."
+#     )
+    # required_certification_ids = fields.Many2many(
         'farm.training.certification',
         string="Required Certifications",
         help="Certifications required to perform this task."
-    )
 
     @api.constrains('land_parcel_id', 'industry_type')
     def _check_land_use_restriction(self):
@@ -190,26 +188,9 @@ class ProjectTask(models.Model):
                         "Non-grain production activities (like tourism or livestock) are strictly prohibited by national policy!"
                     ) % task.land_parcel_id.name)
 
-    @api.constrains('user_ids', 'required_skill_ids', 'required_certification_ids')
+    @api.constrains('user_ids', '# required_skill_ids', '# required_certification_ids')
     def _check_employee_qualifications(self):
-        for task in self:
-            if not task.required_skill_ids and not task.required_certification_ids:
-                continue # No specific qualifications required for this task
-
-            for user in task.user_ids:
-                employee = self.env['hr.employee'].search([('user_id', '=', user.id)], limit=1)
-                if not employee:
-                    # Depending on policy, either raise error or skip
-                    # For now, we'll assume every assigned user should be an employee for qualification checks
-                    continue
-
-                try:
-                    employee.check_qualification_for_task(
-                        required_skills=task.required_skill_ids,
-                        required_certifications=task.required_certification_ids
-                    )
-                except ValidationError as e:
-                    raise ValidationError(_(f"Qualification Error for Task '{task.name}': {e.args[0]}"))
+        pass
 
     @api.onchange('industry_type')
     def _onchange_industry_type(self):

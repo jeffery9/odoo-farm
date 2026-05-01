@@ -10,7 +10,7 @@ class TestFarmQuality(TransactionCase):
         self.Lot = self.env['stock.lot']
         self.Product = self.env['product.product']
         
-        self.apple = self.Product.create({'name': 'Organic Apple', 'type': 'product'})
+        self.apple = self.Product.create({'name': 'Organic Apple', 'type': 'consu'})
         self.lot = self.Lot.create({'name': 'APP-2026-001', 'product_id': self.apple.id})
 
     def test_01_quality_point_and_check(self):

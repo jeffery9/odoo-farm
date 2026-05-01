@@ -5,14 +5,14 @@
         <field name="name">esg.framework.tree</field>
         <field name="model">esg.framework</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="code"/>
                 <field name="framework_type"/>
                 <field name="standards_body"/>
                 <field name="is_active"/>
                 <field name="effective_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -51,14 +51,14 @@
                         </page>
                         <page string="Indicators" name="indicators">
                             <field name="indicator_ids" nolabel="1">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="name"/>
                                     <field name="code"/>
                                     <field name="subcategory"/>
                                     <field name="unit_of_measurement"/>
                                     <field name="target_value"/>
                                     <field name="is_active"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -78,14 +78,14 @@
         <field name="name">esg.assessment.tree</field>
         <field name="model">esg.assessment</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="assessment_date"/>
                 <field name="assessment_type"/>
                 <field name="overall_esg_score"/>
                 <field name="assessment_status"/>
                 <field name="assessor_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -138,14 +138,14 @@
                         <page string="Assessment Lines" name="assessment_lines">
                             <field name="name" invisible="1"/>
                             <field name="assessment_line_ids" nolabel="1">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="indicator_id"/>
                                     <field name="actual_value"/>
                                     <field name="target_value"/>
                                     <field name="performance_score"/>
                                     <field name="achievement_percentage"/>
                                     <field name="verification_status"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>

@@ -13,7 +13,7 @@ class TestRegulationSync(TransactionCase):
             'name': 'Restricted Pesticide A',
             'is_regulated_input': True,
             'reg_cert_no': 'PD20230001',
-            'type': 'product'
+            'type': 'consu'
         })
 
     def test_01_real_name_validation(self):

@@ -25,7 +25,7 @@ class StockLotTraceabilityExtension(models.Model):
     ], string='Quality Grade')
 
     harvest_date = fields.Date('Harvest Date')
-    plot_id = fields.Many2one('farm.land', string='Origin Plot')
+    # plot_id = fields.Many2one('farm.land', string='Origin Plot')
 
     @api.model
     def create(self, vals):

@@ -9,7 +9,7 @@ class TestQualityAlert(TransactionCase):
         self.Lot = self.env['stock.lot']
         self.Product = self.env['product.product']
         
-        self.product = self.Product.create({'name': 'Test Crop', 'type': 'product'})
+        self.product = self.Product.create({'name': 'Test Crop', 'type': 'consu'})
         self.lot = self.Lot.create({'name': 'LOT-QC-001', 'product_id': self.product.id})
         self.point = self.env['farm.quality.point'].create({'name': 'Standard Test'})
 

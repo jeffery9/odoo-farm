@@ -8,10 +8,20 @@ class FarmProcessingBom(models.Model):
     """
     _name = 'farm.processing.bom'
     _description = 'Farm Food Processing BOM (ISL Layer)'
-    _inherit = ['farm.mrp.bom', 'farm.agri.bom.mixin']
+    _inherit = ['farm.mrp.bom']
 
     # Processing Specifics
     is_parameter_required = fields.Boolean('Require Process Parameters', default=False)
+    expected_yield_rate = fields.Float("Expected Yield Rate", default=100.0)
+    raw_material_qty = fields.Float("Raw Material Qty", compute="_compute_material_qtys", store=True)
+    final_output_qty = fields.Float("Final Output Qty", compute="_compute_material_qtys", store=True)
+
+    # @api.depends("move_raw_ids.quantity", "move_finished_ids.quantity")
+    def _compute_material_qtys(self):
+        for mo in self:
+            mo.raw_material_qty = 0
+            mo.final_output_qty = 0
+    process_description = fields.Text("Process Description")
     target_temp = fields.Float('Standard Temperature (℃)')
     target_ph = fields.Float("Target pH")
     target_brix = fields.Float("Target Brix")
@@ -45,7 +55,7 @@ class FarmProcessingProduction(models.Model):
     """
     _name = 'farm.processing.production'
     _description = 'Farm Food Processing Order (ISL Layer)'
-    _inherit = ['farm.mrp.production', 'farm.agri.production.mixin']
+    _inherit = ['farm.mrp.production']
 
     # Energy Tracking (Processing Specific)
     energy_reading_start = fields.Float(string='Energy Reading Start', copy=False)

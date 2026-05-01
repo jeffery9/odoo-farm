@@ -6,7 +6,7 @@
         <field name="name">agri.processing.yield.rate.analytics.tree</field>
         <field name="model">agri.processing.yield.rate.analytics</field>
         <field name="arch" type="xml">
-            <tree string="Yield Rate Analytics">
+            <list string="Yield Rate Analytics">
                 <field name="name"/>
                 <field name="production_id"/>
                 <field name="production_date"/>
@@ -14,7 +14,7 @@
                 <field name="yield_variance"/>
                 <field name="operator_id"/>
                 <field name="season"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -60,7 +60,7 @@
         <field name="name">agri.processing.license.check.tree</field>
         <field name="model">agri.processing.license.check</field>
         <field name="arch" type="xml">
-            <tree string="Production License Checks"
+            <list string="Production License Checks"
                   decoration-danger="compliance_status == 'non_compliant'"
                   decoration-warning="compliance_status == 'warning'"
                   decoration-info="compliance_status == 'compliant'">
@@ -71,7 +71,7 @@
                 <field name="license_active"/>
                 <field name="is_category_permitted"/>
                 <field name="checked_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -124,14 +124,14 @@
         <field name="name">agri.processing.recall.simulation.tree</field>
         <field name="model">agri.processing.recall.simulation</field>
         <field name="arch" type="xml">
-            <tree string="Recall Simulations">
+            <list string="Recall Simulations">
                 <field name="name"/>
                 <field name="simulation_date"/>
                 <field name="simulation_status"/>
                 <field name="total_affected_qty"/>
                 <field name="total_affected_customers"/>
                 <field name="executor"/>
-            </tree>
+            </list>
         </field>
     </record>
 

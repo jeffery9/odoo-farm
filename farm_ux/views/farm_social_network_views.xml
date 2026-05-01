@@ -5,12 +5,12 @@
         <field name="name">farm.social.network.tree</field>
         <field name="model">farm.social.network</field>
         <field name="arch" type="xml">
-            <tree string="Farm Social Networks" decoration-danger="not is_active" decoration-success="is_active">
+            <list string="Farm Social Networks" decoration-danger="not is_active" decoration-success="is_active">
                 <field name="name"/>
                 <field name="network_type"/>
                 <field name="privacy_level"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 

@@ -63,18 +63,18 @@
                         </page>
                         <page string="Automation Linkage" name="automation_linkage">
                             <field name="automation_rule_ids">
-                                <tree>
+                                <list>
                                     <field name="name"/>
                                     <field name="sensor_type"/>
                                     <field name="operator"/>
                                     <field name="threshold"/>
                                     <field name="target_device_id"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Environmental Logs" name="environmental_logs">
                             <field name="environmental_log_ids" nolabel="1">
-                                <tree string="Environmental Logs" editable="bottom">
+                                <list string="Environmental Logs" editable="bottom">
                                     <field name="timestamp"/>
                                     <field name="temperature"/>
                                     <field name="humidity"/>
@@ -82,7 +82,7 @@
                                     <field name="light_intensity"/>
                                     <field name="ph_level"/>
                                     <field name="ec_level"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Description" name="description">
@@ -104,7 +104,7 @@
         <field name="name">farm.protected.cultivation.operation.tree</field>
         <field name="model">farm.protected.cultivation.operation</field>
         <field name="arch" type="xml">
-            <tree string="Protected Cultivation Operations">
+            <list string="Protected Cultivation Operations">
                 <field name="name"/>
                 <field name="crop_type_id"/>
                 <field name="growing_structure_id"/>
@@ -113,7 +113,7 @@
                 <field name="temperature_target_max"/>
                 <field name="stage_id"/>
                 <field name="date_assign"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -154,7 +154,7 @@
         <field name="name">farm.environmental.log.tree</field>
         <field name="model">farm.environmental.log</field>
         <field name="arch" type="xml">
-            <tree string="Environmental Logs" default_order="timestamp desc">
+            <list string="Environmental Logs" default_order="timestamp desc">
                 <field name="timestamp"/>
                 <field name="location_id"/>
                 <field name="protected_operation_id"/>
@@ -163,7 +163,7 @@
                 <field name="co2_level"/>
                 <field name="ph_level"/>
                 <field name="ec_level"/>
-            </tree>
+            </list>
         </field>
     </record>
 

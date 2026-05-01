@@ -27,6 +27,7 @@ class MrpBomLine(models.Model):
     ]
 
 class MrpProduction(models.Model):
+    _name = 'mrp.production'
     _inherit = ['mrp.production', 'agri.sustainability.mixin', 'agri.weather.sensitive.mixin', 'agri.agent.instruction.mixin']
 
     def action_confirm(self):

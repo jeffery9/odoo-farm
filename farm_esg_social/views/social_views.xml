@@ -5,13 +5,13 @@
         <field name="name">farm.esg.social.diversity.metric.tree</field>
         <field name="model">farm.esg.social.diversity.metric</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="reporting_period"/>
                 <field name="total_employees"/>
                 <field name="gender_balance_ratio"/>
                 <field name="local_employment_ratio"/>
-            </tree>
+            </list>
         </field>
     </record>
 

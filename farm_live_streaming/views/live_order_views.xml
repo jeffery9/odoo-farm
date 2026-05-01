@@ -5,7 +5,7 @@
         <field name="name">live.order.tree</field>
         <field name="model">live.order</field>
         <field name="arch" type="xml">
-            <tree string="Live Orders">
+            <list string="Live Orders">
                 <field name="name"/>
                 <field name="douyin_order_id"/>
                 <field name="douyin_account_id"/>
@@ -13,7 +13,7 @@
                 <field name="total_amount"/>
                 <field name="status"/>
                 <field name="create_time"/>
-            </tree>
+            </list>
         </field>
     </record>
 

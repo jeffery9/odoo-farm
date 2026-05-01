@@ -195,9 +195,10 @@ class InputRegistrationDatabase(models.Model):
     # Search index for performance
     search_keywords = fields.Char("Search Keywords", help="Keywords for searching (comma separated)")
 
-    _sql_constraints = [
-        ('registration_no_unique', 'UNIQUE(registration_no)', 'Registration number must be unique!'),
-    ]
+    _registration_no_unique = models.Constraint(
+        'UNIQUE(registration_no)',
+        'Registration number must be unique!'
+    )
 
     @api.constrains('expiration_date', 'registration_date')
     def _check_dates(self):

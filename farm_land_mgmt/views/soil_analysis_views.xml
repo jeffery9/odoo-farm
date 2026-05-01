@@ -5,7 +5,7 @@
         <field name="name">agri.soil.analysis.tree</field>
         <field name="model">agri.soil.analysis</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="location_id"/>
                 <field name="analysis_date"/>
@@ -15,7 +15,7 @@
                 <field name="phosphorus_content"/>
                 <field name="potassium_content"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 

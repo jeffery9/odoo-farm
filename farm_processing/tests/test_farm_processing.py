@@ -25,7 +25,7 @@ class TestFarmProcessing(TransactionCase):
         # Create basic products for testing
         cls.product_apple = cls.env['product.product'].create({
             'name': 'Apple',
-            'type': 'product',
+            'type': 'consu',
             'default_code': 'APP',
             'tracking': 'lot',
             'is_agri_product': True,
@@ -35,7 +35,7 @@ class TestFarmProcessing(TransactionCase):
         })
         cls.product_apple_sweet = cls.env['product.product'].create({
             'name': 'Sweet Apple',
-            'type': 'product',
+            'type': 'consu',
             'default_code': 'APP_SWEET',
             'tracking': 'lot',
             'is_agri_product': True,
@@ -45,7 +45,7 @@ class TestFarmProcessing(TransactionCase):
         })
         cls.product_juice = cls.env['product.product'].create({
             'name': 'Apple Juice',
-            'type': 'product',
+            'type': 'consu',
             'default_code': 'AJ',
             'tracking': 'lot',
             'is_agri_product': True,
@@ -53,38 +53,38 @@ class TestFarmProcessing(TransactionCase):
         })
         cls.product_sugar = cls.env['product.product'].create({
             'name': 'Sugar',
-            'type': 'product',
+            'type': 'consu',
             'default_code': 'SUGAR',
             'tracking': 'none',
         })
         cls.product_pectin = cls.env['product.product'].create({
             'name': 'Pectin',
-            'type': 'product',
+            'type': 'consu',
             'default_code': 'PECT',
             'tracking': 'none',
         })
         cls.product_apple_pulp = cls.env['product.product'].create({
             'name': 'Apple Pulp',
-            'type': 'product',
+            'type': 'consu',
             'default_code': 'APULP',
             'tracking': 'lot',
             'is_agri_product': True,
         })
         cls.product_crate = cls.env['product.product'].create({
             'name': 'Crate',
-            'type': 'product',
+            'type': 'consu',
             'default_code': 'CRATE',
             'tracking': 'none',
         })
         cls.product_bottle = cls.env['product.product'].create({
             'name': 'Bottle',
-            'type': 'product',
+            'type': 'consu',
             'default_code': 'BOTTLE',
             'tracking': 'none',
         })
         cls.product_label = cls.env['product.product'].create({
             'name': 'Label',
-            'type': 'product',
+            'type': 'consu',
             'default_code': 'LABEL',
             'tracking': 'none',
         })
@@ -354,7 +354,7 @@ class TestFarmProcessing(TransactionCase):
         # Create a substitute product
         product_apple_sub = self.env['product.product'].create({
             'name': 'Green Apple (Substitute)',
-            'type': 'product',
+            'type': 'consu',
             'default_code': 'GAPP',
             'tracking': 'lot',
             'is_agri_product': True,
@@ -413,7 +413,7 @@ class TestFarmProcessing(TransactionCase):
         """ Test recall wizard functionality """
         product_recalled = self.env['product.product'].create({
             'name': 'Recalled Product',
-            'type': 'product',
+            'type': 'consu',
             'tracking': 'lot',
         })
         lot_recalled = self.env['stock.lot'].create({
@@ -640,7 +640,7 @@ class TestFarmProcessing(TransactionCase):
         # Product with no license coverage
         product_unlicensed = self.env['product.product'].create({
             'name': 'Unlicensed Product',
-            'type': 'product',
+            'type': 'consu',
             'sc_category_ids': [(6, 0, [self.sc_cat_other.id])],
         })
         bom_unlicensed = self.env['mrp.bom'].create({

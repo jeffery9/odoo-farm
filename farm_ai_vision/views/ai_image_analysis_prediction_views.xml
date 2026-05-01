@@ -5,7 +5,7 @@
         <field name="name">agri.ai.image.analysis.prediction.tree</field>
         <field name="model">agri.ai.image.analysis.prediction</field>
         <field name="arch" type="xml">
-            <tree string="AI Image Analysis Prediction">
+            <list string="AI Image Analysis Prediction">
                 <field name="name"/>
                 <field name="crop_id"/>
                 <field name="growth_stage"/>
@@ -14,7 +14,7 @@
                 <field name="confidence_score"/>
                 <field name="analysis_date"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

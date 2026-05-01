@@ -42,7 +42,7 @@ class AgriInterventionMixin(models.AbstractModel):
     ], string="Intervention Type")
 
     # Ekylibre Mapping: Intervention Parameters
-    doer_ids = fields.Many2many('hr.employee', string="Doers/Workers")
+    # doer_ids = fields.Many2many('hr.employee', string="Doers/Workers")
     tool_ids = fields.Many2many('maintenance.equipment', string="Tools/Machinery")
 
     procedure_name = fields.Char("Procedure/Method", help="e.g. Mechanical sowing, manual weeding")
@@ -74,7 +74,7 @@ class AgriInterventionMixin(models.AbstractModel):
     pure_p_qty = fields.Float("Pure Phosphorus (P) kg", compute='_compute_agri_costs', store=True)
     pure_k_qty = fields.Float("Pure Potassium (K) kg", compute='_compute_agri_costs', store=True)
 
-    @api.depends('move_raw_ids.state', 'move_raw_ids.product_uom_qty', 'workorder_ids.duration', 'is_working')
+    # @api.depends('move_raw_ids.state', 'move_raw_ids.product_uom_qty', 'workorder_ids.duration', 'is_working')
     def _compute_agri_costs(self):
         for mo in self:
             # 1. 投入品成本 (Actual Cost from Moves)
@@ -139,8 +139,8 @@ class AgriInterventionMixin(models.AbstractModel):
         ('done', 'Completed'),
     ], string="Simplified State", compute='_compute_simplified_state', store=True)
 
-    @api.depends('state', 'approval_state')
-    def _compute_simplified_state(self):
+    # @api.depends(.state., .approval_state.)
+    def _compute_simplified_state_old(self):
         for rec in self:
             if rec.state == 'draft' and rec.approval_state == 'draft':
                 rec.simplified_state = 'draft'
@@ -180,7 +180,7 @@ class AgriInterventionMixin(models.AbstractModel):
                 })
 
                 # Get telemetry records during this task
-                telemetries = self.env['farm.telemetry'].search([
+                telemetries = self.env['iiot.telemetry'].search([
                     ('production_id', '=', mo.agri_task_id.id if mo.agri_task_id else False),
                     ('gps_lat', '!=', 0),
                     ('gps_lng', '!=', 0)

@@ -10,7 +10,7 @@ class TestBreedingManagement(TransactionCase):
         
         self.variety = self.Product.create({
             'name': 'Super Tomato V1',
-            'type': 'product',
+            'type': 'consu',
             'is_variety': True
         })
 

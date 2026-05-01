@@ -9,5 +9,5 @@ class FarmLotHarvest(models.Model):
     lot_id = fields.Many2one('stock.lot', string='Base Lot', required=True, ondelete='cascade')
     
     # Harvest Specifics (Moved from Base)
-    plot_id = fields.Many2one('farm.land', string='Origin Plot')
+    # plot_id = fields.Many2one('farm.land', string='Origin Plot')
     terroir_attributes_json = fields.Text("Terroir Attributes (JSON)")

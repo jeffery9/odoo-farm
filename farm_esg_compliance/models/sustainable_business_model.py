@@ -84,9 +84,10 @@ class AgriSustainableBusinessModel(models.Model):
     # Integration with AI decision for optimization
     ai_recommendations = fields.Text('AI Recommendations')
 
-    _sql_constraints = [
-        ('code_unique', 'UNIQUE(code)', 'Business model code must be unique.')
-    ]
+    _code_unique = models.Constraint(
+        'UNIQUE(code)',
+        'Business model code must be unique.'
+    )
 
     @api.model
     def create(self, vals):

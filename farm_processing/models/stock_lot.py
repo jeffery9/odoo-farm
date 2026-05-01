@@ -99,7 +99,7 @@ class StockLot(models.Model):
             return False
 
     # 批次溯源 [US-14-03, US-04-02]
-    parent_lot_ids = fields.Many2many('stock.lot', 'stock_lot_parent_lot_rel', 'child_lot_id', 'parent_id', string="Parent Lots/Origins", help="Trace back to the raw material lots consumed.")
+    parent_lot_ids = fields.Many2many('stock.lot', 'farm_stock_lot_parent_rel_custom', 'child_lot_id', 'parent_id', string="Parent Lots/Origins", help="Trace back to the raw material lots consumed.")
     child_lot_ids = fields.One2many('stock.lot', 'parent_lot_ids', string="Derived Products")
     
     # 性能优化：写入时预计算的全路径 [Pre-calculated Path]
@@ -115,7 +115,7 @@ class StockLot(models.Model):
     ], string='Quality Grade')
     
     harvest_date = fields.Date('Harvest Date')
-    plot_id = fields.Many2one('farm.land', string='Origin Plot')
+    # plot_id = fields.Many2one('farm.land', string='Origin Plot')
 
     # Potency & Attributes [US-14-11, US-14-15, US-14-17]
     active_content = fields.Float("Active Content (%)", help="Actual potency/active ingredient percentage.")

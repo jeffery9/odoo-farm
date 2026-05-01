@@ -5,12 +5,12 @@
         <field name="name">farm.data.classification.tree</field>
         <field name="model">farm.data.classification</field>
         <field name="arch" type="xml">
-            <tree string="Data Classification" editable="bottom">
+            <list string="Data Classification" editable="bottom">
                 <field name="name"/>
                 <field name="level" widget="badge" decoration-danger="level == 'critical'" decoration-warning="level == 'sensitive'"/>
                 <field name="encryption_required"/>
                 <field name="retention_period_years"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -25,7 +25,7 @@
         <field name="name">farm.iot.device.registry.tree</field>
         <field name="model">farm.iot.device.registry</field>
         <field name="arch" type="xml">
-            <tree string="IoT Device Registry">
+            <list string="IoT Device Registry">
                 <field name="name"/>
                 <field name="device_uid"/>
                 <field name="device_type"/>
@@ -33,7 +33,7 @@
                 <field name="firmware_version"/>
                 <field name="is_encrypted_comm" string="TLS"/>
                 <field name="last_security_audit"/>
-            </tree>
+            </list>
         </field>
     </record>
 

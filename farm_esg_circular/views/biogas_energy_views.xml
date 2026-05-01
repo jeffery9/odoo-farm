@@ -22,7 +22,7 @@
         <field name="name">agri.biogas.production.tree</field>
         <field name="model">agri.biogas.production</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="production_date"/>
                 <field name="input_waste_type"/>
@@ -30,7 +30,7 @@
                 <field name="energy_output_kwh"/>
                 <field name="coal_equivalent_ton"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -126,12 +126,12 @@
         <field name="name">agri.energy.recovery.integration.tree</field>
         <field name="model">agri.energy.recovery.integration</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="biogas_production_id"/>
                 <field name="co2_reduction_ton"/>
                 <field name="energy_output_kwh"/>
                 <field name="integration_status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

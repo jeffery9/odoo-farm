@@ -17,7 +17,7 @@
                     </group>
                     <group string="Trace Results">
                         <field name="recall_line_ids" nolabel="1">
-                            <tree create="false" edit="false" delete="false">
+                            <list create="false" edit="false" delete="false">
                                 <field name="sequence" invisible="1"/>
                                 <field name="level" invisible="1"/>
                                 <field name="display_name_indented"/>
@@ -29,7 +29,7 @@
                                 <field name="reference"/>
                                 <field name="partner_id"/>
                                 <field name="date"/>
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </sheet>

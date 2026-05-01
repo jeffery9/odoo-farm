@@ -26,7 +26,7 @@ class AgriMRPProduction(models.Model):
         ondelete='cascade'
     )
 
-    # Industry-specific fields for production orders
+
     haccp_plan = fields.Html('HACCP Plan')  # Food processing
     gmp_compliance = fields.Boolean('GMP Compliance')  # Pharmaceutical
     safety_procedures = fields.Html('Safety Procedures')  # Chemical
@@ -64,6 +64,7 @@ class AgriMRPBom(models.Model):
         ondelete='cascade'
     )
 
+
     # Industry-specific fields for BOMs
     allergen_control = fields.Boolean('Allergen Control')  # Food processing
     active_ingredient = fields.Char('Active Ingredient')  # Pharmaceutical
@@ -100,6 +101,7 @@ class AgriMRPWorkcenter(models.Model):
         ondelete='cascade'
     )
 
+
     # Industry-specific fields for work centers
     cip_required = fields.Boolean('CIP Required')  # Clean-in-place, for food/pharma
     explosion_proof = fields.Boolean('Explosion Proof')  # For chemical industry
@@ -134,6 +136,7 @@ class AgriStockLot(models.Model):
         required=True,
         ondelete='cascade'
     )
+
 
     # Industry-specific fields for lots
     harvest_date = fields.Date('Harvest Date')  # Agriculture
@@ -172,6 +175,7 @@ class AgriSaleOrder(models.Model):
         ondelete='cascade'
     )
 
+
     # Industry-specific fields for sales orders
     delivery_compliance = fields.Html('Delivery Compliance')
     traceability_requirements = fields.Html('Traceability Requirements')
@@ -207,6 +211,7 @@ class AgriPurchaseOrder(models.Model):
         ondelete='cascade'
     )
 
+
     # Industry-specific fields for purchase orders
     supplier_certification = fields.Char('Supplier Certification')
     incoming_inspection = fields.Html('Incoming Inspection')
@@ -240,6 +245,7 @@ class AgriProductTemplate(models.Model):
         required=True,
         ondelete='cascade'
     )
+
 
     # Industry-specific fields for product templates
     allergen_information = fields.Html('Allergen Information')  # Food processing
@@ -280,6 +286,7 @@ class AgriStockPicking(models.Model):
         ondelete='cascade'
     )
 
+
     # Industry-specific fields for stock pickings
     chain_of_custody = fields.Html('Chain of Custody')
     temperature_log = fields.Html('Temperature Log')
@@ -312,6 +319,7 @@ class AgriMRPWorkorder(models.Model):
         ondelete='cascade'
     )
 
+
     # Industry-specific fields for work orders
     operator_certification = fields.Html('Operator Certification')
     equipment_validation = fields.Html('Equipment Validation')
@@ -336,15 +344,14 @@ class AgriQualityControl(models.Model):
     """
     _name = 'agri.quality.control'
     _description = 'Agri ISL Quality Control'
-    _inherits = {'quality.point': 'quality_point_id'}
+    # _inherits = {.agri.quality.point.: .agri_quality_point_id.}
     _inherit = ['agri.quality.mixin']
 
-    quality_point_id = fields.Many2one(
-        'quality.point',
-        string='Base Quality Point',
-        required=True,
-        ondelete='cascade'
-    )
+    # agri_quality_point_id = fields.Many2one(
+#         .agri.quality.point.,
+#         string=.Base Agri Quality Point.,
+#     )
+
 
     # Industry-specific fields for quality control
     ccp_monitoring = fields.Html('CCP Monitoring')  # Critical Control Points, HACCP

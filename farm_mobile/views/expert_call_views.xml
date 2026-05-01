@@ -4,7 +4,7 @@
         <field name="name">farm.expert.call.tree</field>
         <field name="model">farm.expert.call</field>
         <field name="arch" type="xml">
-            <tree string="Expert Calls" decoration-info="status == 'ongoing'" decoration-success="status == 'completed'" decoration-muted="status == 'missed'">
+            <list string="Expert Calls" decoration-info="status == 'ongoing'" decoration-success="status == 'completed'" decoration-muted="status == 'missed'">
                 <field name="name"/>
                 <field name="start_time"/>
                 <field name="worker_id"/>
@@ -13,7 +13,7 @@
                 <field name="call_type"/>
                 <field name="status" widget="badge"/>
                 <field name="duration" string="Duration (s)"/>
-            </tree>
+            </list>
         </field>
     </record>
 

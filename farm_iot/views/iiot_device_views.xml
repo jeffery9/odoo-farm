@@ -11,22 +11,22 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Active Alerts" name="active_alerts">
                     <field name="active_alert_ids" readonly="1">
-                        <tree>
+                        <list>
                             <field name="summary"/>
                             <field name="date_deadline"/>
                             <field name="activity_type_id"/>
                             <field name="user_id"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
                 <page string="Command Logs" name="command_logs">
                     <field name="command_log_ids" readonly="1">
-                        <tree>
+                        <list>
                             <field name="create_date"/>
                             <field name="command"/>
                             <field name="status"/>
                             <field name="operator_id"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>

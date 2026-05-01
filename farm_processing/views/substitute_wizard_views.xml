@@ -14,14 +14,14 @@
                     <notebook>
                         <page string="Suggested Substitutes">
                             <field name="substitute_line_ids" nolabel="1">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="is_selected" widget="radio"/>
                                     <field name="substitute_product_id" readonly="1"/>
                                     <field name="suggested_quantity"/>
                                     <field name="n_content"/>
                                     <field name="p_content"/>
                                     <field name="k_content"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>

@@ -14,12 +14,12 @@
                     </group>
                     <group string="Active Certificates">
                         <field name="certificate_ids" nolabel="1">
-                            <tree>
+                            <list>
                                 <field name="certificate_type_id"/>
                                 <field name="name"/>
                                 <field name="expiry_date"/>
                                 <field name="is_valid"/>
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </page>

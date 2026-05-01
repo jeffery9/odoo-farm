@@ -12,12 +12,12 @@
                     <notebook>
                         <page string="Comparison Table" name="results">
                             <field name="line_ids" readonly="1">
-                                <tree>
+                                <list>
                                     <field name="lot_id"/>
                                     <field name="trait_name"/>
                                     <field name="value"/>
                                     <field name="score" widget="priority"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>

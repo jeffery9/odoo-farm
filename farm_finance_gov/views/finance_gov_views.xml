@@ -44,14 +44,14 @@
         <field name="name">farm.rural.revitalization.project.tree</field>
         <field name="model">farm.rural.revitalization.project</field>
         <field name="arch" type="xml">
-            <tree string="Rural Revitalization Projects">
+            <list string="Rural Revitalization Projects">
                 <field name="name"/>
                 <field name="code"/>
                 <field name="fund_source"/>
                 <field name="budget_amount"/>
                 <field name="total_expenditure"/>
                 <field name="state" widget="badge"/>
-            </tree>
+            </list>
         </field>
     </record>
 

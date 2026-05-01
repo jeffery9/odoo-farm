@@ -4,14 +4,14 @@
         <field name="name">farm.agricultural.processing.waste.tree</field>
         <field name="model">farm.agricultural.processing.waste</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="production_id"/>
                 <field name="product_id"/>
                 <field name="quantity"/>
                 <field name="uom_id"/>
                 <field name="disposal_method"/>
-            </tree>
+            </list>
         </field>
     </record>
 

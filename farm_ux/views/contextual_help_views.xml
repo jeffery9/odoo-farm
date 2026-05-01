@@ -5,14 +5,14 @@
         <field name="name">contextual.help.tree</field>
         <field name="model">contextual.help</field>
         <field name="arch" type="xml">
-            <tree string="Contextual Help" decoration-danger="not is_active" decoration-success="is_active">
+            <list string="Contextual Help" decoration-danger="not is_active" decoration-success="is_active">
                 <field name="name"/>
                 <field name="model_name"/>
                 <field name="field_name"/>
                 <field name="view_type"/>
                 <field name="priority"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 

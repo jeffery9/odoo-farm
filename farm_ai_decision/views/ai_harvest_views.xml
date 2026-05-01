@@ -67,14 +67,14 @@
         <field name="name">agri.ai.harvest.timing.tree</field>
         <field name="model">agri.ai.harvest.timing</field>
         <field name="arch" type="xml">
-            <tree string="AI Harvest Timing">
+            <list string="AI Harvest Timing">
                 <field name="product_id"/>
                 <field name="planting_date"/>
                 <field name="optimal_harvest_date"/>
                 <field name="quality_score"/>
                 <field name="confidence_score"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

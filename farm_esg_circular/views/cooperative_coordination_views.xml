@@ -22,14 +22,14 @@
         <field name="name">agri.cooperative.resource.sharing.tree</field>
         <field name="model">agri.cooperative.resource.sharing</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="cooperative_id"/>
                 <field name="sharing_type"/>
                 <field name="resource_type"/>
                 <field name="quantity"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -133,14 +133,14 @@
         <field name="name">agri.internal.netting.engine.tree</field>
         <field name="model">agri.internal.netting.engine</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="transaction_id"/>
                 <field name="cooperative_id"/>
                 <field name="supply_farm_id"/>
                 <field name="demand_farm_id"/>
                 <field name="value_amount"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

@@ -56,13 +56,13 @@
         <field name="name">agri.ai.coordination.layer.tree</field>
         <field name="model">agri.ai.coordination.layer</field>
         <field name="arch" type="xml">
-            <tree string="AI Coordination Layers">
+            <list string="AI Coordination Layers">
                 <field name="name"/>
                 <field name="coordination_type"/>
                 <field name="active"/>
                 <field name="last_execution"/>
                 <field name="execution_count"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -88,12 +88,12 @@
                     <notebook>
                         <page string="Steps">
                             <field name="step_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="sequence" widget="handle"/>
                                     <field name="name"/>
                                     <field name="step_type"/>
                                     <field name="condition"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Configuration">
@@ -123,13 +123,13 @@
         <field name="name">agri.ai.agent.workflow.tree</field>
         <field name="model">agri.ai.agent.workflow</field>
         <field name="arch" type="xml">
-            <tree string="AI Agent Workflows">
+            <list string="AI Agent Workflows">
                 <field name="name"/>
                 <field name="active"/>
                 <field name="execution_count"/>
                 <field name="success_rate"/>
                 <field name="last_execution"/>
-            </tree>
+            </list>
         </field>
     </record>
 

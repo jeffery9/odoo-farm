@@ -5,14 +5,14 @@
         <field name="name">farm.ecommerce.platform.tree</field>
         <field name="model">farm.ecommerce.platform</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="code"/>
                 <field name="platform_type"/>
                 <field name="active"/>
                 <field name="last_sync"/>
                 <field name="next_sync"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -71,7 +71,7 @@
         <field name="name">farm.ecommerce.sync.log.tree</field>
         <field name="model">farm.ecommerce.sync.log</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="status=='failed'"
+            <list decoration-danger="status=='failed'"
                   decoration-info="status=='in_progress'"
                   decoration-success="status=='completed'">
                 <field name="platform_id"/>
@@ -82,7 +82,7 @@
                 <field name="records_failed"/>
                 <field name="start_time"/>
                 <field name="duration"/>
-            </tree>
+            </list>
         </field>
     </record>
 

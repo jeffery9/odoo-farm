@@ -10,7 +10,7 @@
                     <button name="action_confirm" type="object" string="Confirm" invisible="state not in ('draft', 'waiting', 'confirmed', 'assigned')" class="oe_highlight"/>
                     <button name="action_assign" type="object" string="Check Availability" invisible="state not in ('confirmed', 'waiting', 'assigned')"/>
                     <button name="do_unreserve" type="object" string="Unreserve" invisible="state != 'assigned' or not show_operations"/>
-                    <button name="button_validate" name="action_done" type="object" string="Validate" invisible="state != 'assigned'" class="oe_highlight"/>
+                    <button name="button_validate" type="object" string="Validate" invisible="state != 'assigned'" class="oe_highlight"/>
                     <button name="action_cancel" type="object" string="Cancel" invisible="state not in ('draft', 'waiting', 'confirmed', 'assigned')"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,waiting,confirmed,assigned,done,cancel"/>
                 </header>
@@ -61,7 +61,7 @@
                         </page>
                         <page string="Operations">
                             <field name="move_ids_without_package" nolabel="1" context="{'default_picking_id': id, 'picking_type_code': picking_type_id.code, 'default_state': state}">
-                                <tree editable="top">
+                                <list editable="top">
                                     <field name="product_id"/>
                                     <field name="description_picking"/>
                                     <field name="product_uom_qty"/>
@@ -69,7 +69,7 @@
                                     <field name="location_id" groups="stock.group_stock_multi_locations"/>
                                     <field name="location_dest_id" groups="stock.group_stock_multi_locations"/>
                                     <field name="state"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -82,14 +82,14 @@
         <field name="name">farm.stock.picking.tree</field>
         <field name="model">farm.stock.picking</field>
         <field name="arch" type="xml">
-            <tree string="ISL Stock Pickings">
+            <list string="ISL Stock Pickings">
                 <field name="name"/>
                 <field name="partner_id"/>
                 <field name="picking_type_id"/>
                 <field name="scheduled_date"/>
                 <field name="industry_type"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 

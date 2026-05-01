@@ -5,7 +5,7 @@ class TestAquacultureISL(TransactionCase):
     def setUp(self):
         super(TestAquacultureISL, self).setUp()
         self.Product = self.env['product.product']
-        self.shrimp = self.Product.create({'name': 'White Shrimp', 'type': 'product'})
+        self.shrimp = self.Product.create({'name': 'White Shrimp', 'type': 'consu'})
 
     def test_01_aqua_form_stats(self):
         """ Test Aquaculture Form UI simulation and growth stats. """

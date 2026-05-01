@@ -93,14 +93,14 @@
         <field name="name">agri.ai.decision.engine.tree</field>
         <field name="model">agri.ai.decision.engine</field>
         <field name="arch" type="xml">
-            <tree string="AI Decision Engines">
+            <list string="AI Decision Engines">
                 <field name="name"/>
                 <field name="decision_type"/>
                 <field name="active"/>
                 <field name="confidence_score"/>
                 <field name="decision_count"/>
                 <field name="last_decision"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -158,13 +158,13 @@
         <field name="name">agri.ai.decision.context.tree</field>
         <field name="model">agri.ai.decision.context</field>
         <field name="arch" type="xml">
-            <tree string="AI Decision Contexts">
+            <list string="AI Decision Contexts">
                 <field name="name"/>
                 <field name="crop_type"/>
                 <field name="location_id"/>
                 <field name="date_from"/>
                 <field name="date_to"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -213,13 +213,13 @@
         <field name="name">agri.ai.decision.rule.tree</field>
         <field name="model">agri.ai.decision.rule</field>
         <field name="arch" type="xml">
-            <tree string="AI Decision Rules">
+            <list string="AI Decision Rules">
                 <field name="name"/>
                 <field name="decision_type"/>
                 <field name="active"/>
                 <field name="priority"/>
                 <field name="confidence_threshold"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -245,12 +245,12 @@
                     <notebook>
                         <page string="Steps">
                             <field name="step_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="sequence" widget="handle"/>
                                     <field name="name"/>
                                     <field name="step_type"/>
                                     <field name="condition"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Configuration">
@@ -280,13 +280,13 @@
         <field name="name">agri.ai.decision.workflow.tree</field>
         <field name="model">agri.ai.decision.workflow</field>
         <field name="arch" type="xml">
-            <tree string="AI Decision Workflows">
+            <list string="AI Decision Workflows">
                 <field name="name"/>
                 <field name="active"/>
                 <field name="execution_count"/>
                 <field name="success_rate"/>
                 <field name="last_execution"/>
-            </tree>
+            </list>
         </field>
     </record>
 

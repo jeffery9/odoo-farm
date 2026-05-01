@@ -8,7 +8,7 @@ class TestCropISL(TransactionCase):
         self.Product = self.env['product.product']
         self.Location = self.env['stock.location']
         
-        self.corn = self.Product.create({'name': 'Corn', 'type': 'product'})
+        self.corn = self.Product.create({'name': 'Corn', 'type': 'consu'})
         self.plot = self.Location.create({
             'name': 'East Field 1',
             'usage': 'internal',

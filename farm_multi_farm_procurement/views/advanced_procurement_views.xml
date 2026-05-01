@@ -5,14 +5,14 @@
         <field name="name">joint.procurement.po.tree</field>
         <field name="model">joint.procurement.po</field>
         <field name="arch" type="xml">
-            <tree string="Joint Procurement POs" decoration-info="state=='confirmed'" decoration-success="state=='done'" decoration-muted="state=='cancel'">
+            <list string="Joint Procurement POs" decoration-info="state=='confirmed'" decoration-success="state=='done'" decoration-muted="state=='cancel'">
                 <field name="name"/>
                 <field name="cooperative_id"/>
                 <field name="supplier_id"/>
                 <field name="procurement_date"/>
                 <field name="total_amount"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -45,14 +45,14 @@
                     <notebook>
                         <page string="Member POs" name="member_pos">
                             <field name="child_po_ids">
-                                <tree editable="top">
+                                <list editable="top">
                                     <field name="member_id"/>
                                     <field name="product_id"/>
                                     <field name="quantity"/>
                                     <field name="unit_price"/>
                                     <field name="amount"/>
                                     <field name="state"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -66,14 +66,14 @@
         <field name="name">hub.spoke.distribution.tree</field>
         <field name="model">hub.spoke.distribution</field>
         <field name="arch" type="xml">
-            <tree string="Hub and Spoke Distributions" decoration-info="state=='in_transit'" decoration-success="state=='delivered'" decoration-muted="state=='draft'">
+            <list string="Hub and Spoke Distributions" decoration-info="state=='in_transit'" decoration-success="state=='delivered'" decoration-muted="state=='draft'">
                 <field name="name"/>
                 <field name="cooperative_id"/>
                 <field name="source_location"/>
                 <field name="distribution_date"/>
                 <field name="total_quantity"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -106,13 +106,13 @@
                     <notebook>
                         <page string="Distribution Lines" name="lines">
                             <field name="distribution_lines">
-                                <tree editable="top">
+                                <list editable="top">
                                     <field name="destination_member_id"/>
                                     <field name="product_id"/>
                                     <field name="quantity"/>
                                     <field name="delivery_date"/>
                                     <field name="delivery_confirmed"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -126,7 +126,7 @@
         <field name="name">netting.settlement.tree</field>
         <field name="model">netting.settlement</field>
         <field name="arch" type="xml">
-            <tree string="Netting Settlements" decoration-info="state=='calculated'" decoration-success="state=='processed'" decoration-muted="state=='draft'">
+            <list string="Netting Settlements" decoration-info="state=='calculated'" decoration-success="state=='processed'" decoration-muted="state=='draft'">
                 <field name="name"/>
                 <field name="cooperative_id"/>
                 <field name="member_id"/>
@@ -136,7 +136,7 @@
                 <field name="net_amount"/>
                 <field name="settlement_direction"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -176,20 +176,20 @@
                     <notebook>
                         <page string="Receivable Lines" name="receivables">
                             <field name="receivable_lines">
-                                <tree editable="top">
+                                <list editable="top">
                                     <field name="source_document"/>
                                     <field name="amount"/>
                                     <field name="due_date"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Payable Lines" name="payables">
                             <field name="payable_lines">
-                                <tree editable="top">
+                                <list editable="top">
                                     <field name="source_document"/>
                                     <field name="amount"/>
                                     <field name="due_date"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>

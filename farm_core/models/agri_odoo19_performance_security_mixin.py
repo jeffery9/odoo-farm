@@ -20,8 +20,7 @@ class AgriOdoo19PerformanceSecurityMixin(models.AbstractModel):
     config_settings = fields.Json(
         string="Configuration Settings",
         default=dict,
-        help="Flexible JSON storage for configuration parameters, performance thresholds and security settings",
-        precompute=True  # Use precompute for immediate assignment during creation
+        help="Flexible JSON storage for configuration parameters, performance thresholds and security settings"
     )
 
     # Performance tracking fields

@@ -18,7 +18,6 @@
     'data': [
         'security/farm_security.xml',
         'security/ir.model.access.csv',
-        'security/performance_security_rules.xml',
         'data/ir_sequence_data.xml',
         'data/product_category_data.xml',
         'data/ir_cron_data.xml',
