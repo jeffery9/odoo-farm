@@ -228,9 +228,10 @@ class AgriAiConfiguration(models.AbstractModel):
     failed_requests = fields.Integer('Failed Requests', default=0, readonly=True)
     last_used = fields.Datetime('Last Used', readonly=True)
 
-    _sql_constraints = [
-        ('name_unique', 'UNIQUE(name)', 'Configuration name must be unique!'),
-    ]
+    _name_unique = models.Constraint(
+        'UNIQUE(name)',
+        'Configuration name must be unique!'
+    )
 
     def test_connection(self):
         """
@@ -326,11 +327,18 @@ class AgriAiModelRegistry(models.Model):
     target_conditions = fields.Char('Target Conditions', help='Environmental conditions this model is optimized for')
     recommended_use_cases = fields.Text('Recommended Use Cases', help='Specific use cases this model is recommended for')
 
-    _sql_constraints = [
-        ('name_version_unique', 'UNIQUE(name, version)', 'Model name and version must be unique!'),
-        ('name_required', 'CHECK(name != \'\'\')', 'Model name is required!'),
-        ('version_required', 'CHECK(version != \'\'\')', 'Version is required!'),
-    ]
+    _name_version_unique = models.Constraint(
+        'UNIQUE(name, version)',
+        'Model name and version must be unique!'
+    )
+    _name_required = models.Constraint(
+        'CHECK(name != \'\')',
+        'Model name is required!'
+    )
+    _version_required = models.Constraint(
+        'CHECK(version != \'\')',
+        'Version is required!'
+    )
 
     @api.constrains('accuracy', 'precision', 'recall', 'f1_score')
     def _check_performance_metrics(self):

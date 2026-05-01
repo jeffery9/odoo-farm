@@ -5,7 +5,7 @@
         <field name="name">farm.esg.data.governance.tree</field>
         <field name="model">farm.esg.data.governance</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="data_type"/>
                 <field name="data_source"/>
@@ -16,7 +16,7 @@
                 <field name="data_owner"/>
                 <field name="data_steward"/>
                 <field name="last_updated"/>
-            </tree>
+            </list>
         </field>
     </record>
 

@@ -2,4 +2,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_agri_gi_registry_manager,agri.gi.registry.manager,model_agri_gi_registry,farm_core.group_farm_manager,1,1,1,1
 access_farm_market_connector,farm.market.connector,model_farm_market_connector,farm_core.group_farm_manager,1,1,1,1
 access_farm_market_demand,farm.market.demand,model_farm_market_demand,farm_core.group_farm_manager,1,1,1,1
-access_farm_consumer_feedback,farm.consumer.feedback,model_farm_consumer_feedback,farm_core.group_farm_user,1,1,1,1
+access_farm_consumer_feedback,farm.consumer.feedback,model_farm_consumer_feedback,farm_core.group_farm_worker,1,1,1,1

@@ -5,11 +5,11 @@
         <field name="name">export.country.standard.tree</field>
         <field name="model">export.country.standard</field>
         <field name="arch" type="xml">
-            <tree string="Export Country Standards">
+            <list string="Export Country Standards">
                 <field name="name"/>
                 <field name="code"/>
                 <field name="prohibited_products"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -56,14 +56,14 @@
         <field name="name">export.compliance.log.tree</field>
         <field name="model">export.compliance.log</field>
         <field name="arch" type="xml">
-            <tree string="Compliance Check Logs">
+            <list string="Compliance Check Logs">
                 <field name="order_id"/>
                 <field name="country_code"/>
                 <field name="result"/>
                 <field name="checked_on"/>
                 <field name="checked_by"/>
                 <field name="violations"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -100,7 +100,7 @@
         <field name="name">export.certificate.tree</field>
         <field name="model">export.certificate</field>
         <field name="arch" type="xml">
-            <tree string="Export Certificates">
+            <list string="Export Certificates">
                 <field name="certificate_number"/>
                 <field name="order_id"/>
                 <field name="product_name"/>
@@ -108,7 +108,7 @@
                 <field name="issue_date"/>
                 <field name="valid_until"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 

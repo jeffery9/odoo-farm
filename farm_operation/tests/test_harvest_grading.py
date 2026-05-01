@@ -11,7 +11,7 @@ class TestHarvestGrading(TransactionCase):
         # 创建农产品
         self.apple = self.Product.create({
             'name': 'Fuji Apple',
-            'type': 'product',
+            'type': 'consu',
             'tracking': 'lot'
         })
 

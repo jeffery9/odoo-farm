@@ -6,13 +6,13 @@
         <field name="name">farm.processing.blind.material.tree</field>
         <field name="model">farm.processing.blind.material</field>
         <field name="arch" type="xml">
-            <tree string="Blind Mixing Materials">
+            <list string="Blind Mixing Materials">
                 <field name="formula_bom_id"/>
                 <field name="product_id"/>
                 <field name="actual_qty"/>
                 <field name="instruction_qty"/>
                 <field name="sequence"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -51,13 +51,13 @@
         <field name="name">farm.processing.formula.auto.correction.tree</field>
         <field name="model">farm.processing.formula.auto.correction</field>
         <field name="arch" type="xml">
-            <tree string="Formula Auto Corrections">
+            <list string="Formula Auto Corrections">
                 <field name="name"/>
                 <field name="bom_id"/>
                 <field name="base_attribute"/>
                 <field name="target_attribute_value"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -86,11 +86,11 @@
                     </group>
                     <group string="Affected BOM Lines">
                         <field name="bom_line_corrections">
-                            <tree editable="top">
+                            <list editable="top">
                                 <field name="bom_line_id"/>
                                 <field name="adjustment_type"/>
                                 <field name="adjustment_value"/>
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </sheet>

@@ -157,7 +157,7 @@ class FarmLocation(models.Model):
         Fetches the latest soil-related telemetry and maps to grid cells by nearest GPS.
         """
         self.ensure_one()
-        telemetry_logs = self.env['agri.telemetry'].search([
+        telemetry_logs = self.env['iiot.telemetry'].search([
             ('land_parcel_id', '=', self.id),
             ('sensor_type', 'in', ['soil_moisture', 'ph'])
         ], order='timestamp desc', limit=50)

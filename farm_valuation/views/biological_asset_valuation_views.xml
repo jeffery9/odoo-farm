@@ -95,13 +95,13 @@
                                 class="btn-primary"/>
                     </group>
                     <field name="fair_valuation_ids" mode="tree">
-                        <tree string="Fair Valuations">
+                        <list string="Fair Valuations">
                             <field name="valuation_date"/>
                             <field name="current_growth_progress" widget="percentage"/>
                             <field name="fair_value" widget="monetary"/>
                             <field name="revaluation_amount" widget="monetary"/>
                             <field name="revaluation_type"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </notebook>

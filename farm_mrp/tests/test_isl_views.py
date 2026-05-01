@@ -9,7 +9,7 @@ class TestISLViews(TransactionCase):
         
         self.product_apple = self.Product.create({
             'name': 'Apple',
-            'type': 'product',
+            'type': 'consu',
         })
 
     def test_specialized_views_existence(self):

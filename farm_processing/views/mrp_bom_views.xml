@@ -49,10 +49,10 @@
 
                     <group string="Expected Output Quality" invisible="processing_type != 'primary'">
                         <field name="grade_distribution_ids" nolabel="1">
-                            <tree editable="bottom">
+                            <list editable="bottom">
                                 <field name="quality_grade"/>
                                 <field name="expected_percentage" widget="percentage" sum="Total 100%"/>
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </page>

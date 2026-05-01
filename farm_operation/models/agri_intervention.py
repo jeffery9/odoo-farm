@@ -16,7 +16,7 @@ class AgriIntervention(models.Model):
         'agri.actuator.mixin',       # Level 1+: Physical Actuation
         'agri.evidence.mixin',       # Level 2: Audit
         'agri.clearing.mixin',       # Level 3: Clearing
-        'farm.agri.science.mixin',   # [US-201-08] Scientific DNA
+        # 'farm.agri.science.mixin',   # [US-201-08] Scientific DNA
     ]
     _description = 'Agricultural Intervention (De-industrialized View)'
 
@@ -73,7 +73,4 @@ class AgriIntervention(models.Model):
         return True
 
 
-class ProcurementGroup(models.Model):
-    _inherit = 'procurement.group'
-
-    agri_task_id = fields.Many2one('project.task', string="Agri Task")
+# ProcurementGroup inheritance removed for Odoo 19 compatibility

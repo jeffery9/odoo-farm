@@ -2,22 +2,22 @@
 <odoo>
     <!-- Industry Data Package Tree View -->
     <record id="view_industry_data_package_tree" model="ir.ui.view">
-        <field name="name">farm.industry.data.package.tree</field>
-        <field name="model">farm.industry.data.package</field>
+        <field name="name">agri.industry.data.package.tree</field>
+        <field name="model">agri.industry.data.package</field>
         <field name="arch" type="xml">
-            <tree string="Industry Data Packages">
+            <list string="Industry Data Packages">
                 <field name="name"/>
                 <field name="code"/>
                 <field name="industry_type"/>
                 <field name="description"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <!-- Industry Data Package Form View -->
     <record id="view_industry_data_package_form" model="ir.ui.view">
-        <field name="name">farm.industry.data.package.form</field>
-        <field name="model">farm.industry.data.package</field>
+        <field name="name">agri.industry.data.package.form</field>
+        <field name="model">agri.industry.data.package</field>
         <field name="arch" type="xml">
             <form string="Industry Data Package">
                 <header>
@@ -37,7 +37,7 @@
                     <notebook>
                         <page string="Varieties" name="varieties">
                             <field name="variety_ids">
-                                <tree editable="top">
+                                <list editable="top">
                                     <field name="product_name"/>
                                     <field name="variety_name"/>
                                     <field name="agricultural_type"/>
@@ -45,45 +45,45 @@
                                     <field name="growth_duration"/>
                                     <field name="maturity_age_days"/>
                                     <field name="is_biological_asset"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Physiological Stages" name="physio_stages">
                             <field name="physio_stage_ids">
-                                <tree editable="top">
+                                <list editable="top">
                                     <field name="stage_name"/>
                                     <field name="age_days"/>
                                     <field name="target_weight"/>
                                     <field name="daily_feed_rate"/>
                                     <field name="related_variety"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="UOM Conversions" name="uom_conversions">
                             <field name="uom_conversion_ids">
-                                <tree editable="top">
+                                <list editable="top">
                                     <field name="from_uom_id"/>
                                     <field name="to_uom_id"/>
                                     <field name="factor"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Task Templates" name="task_templates">
                             <field name="task_template_ids">
-                                <tree editable="top">
+                                <list editable="top">
                                     <field name="name"/>
                                     <field name="expected_duration"/>
                                     <field name="required_equipment"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Product Categories" name="product_categories">
                             <field name="product_category_ids">
-                                <tree editable="top">
+                                <list editable="top">
                                     <field name="name"/>
                                     <field name="parent_id"/>
                                     <field name="agricultural_type"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -93,18 +93,11 @@
     </record>
 
     <!-- Menu Items -->
-    <menuitem id="menu_config_setup_root" name="Configuration"
-              parent="farm_core.menu_farm_root"
-              sequence="100">
-        <menuitem id="menu_industry_data_packages" name="Industry Data Packages"
-                  action="action_industry_data_package_list"
-                  sequence="10"/>
-    </menuitem>
 
     <!-- Actions -->
     <record id="action_industry_data_package_list" model="ir.actions.act_window">
         <field name="name">Industry Data Packages</field>
-        <field name="res_model">farm.industry.data.package</field>
+        <field name="res_model">agri.industry.data.package</field>
         <field name="view_mode">tree,form</field>
     </record>
 
@@ -135,7 +128,6 @@
     </record>
 
     <!-- Menu item to apply packages -->
-    <menuitem id="menu_apply_industry_package" name="Apply Industry Package"
               parent="menu_config_setup_root"
               action="action_industry_package_wizard"
               sequence="20"/>

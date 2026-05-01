@@ -4,7 +4,7 @@
     <!-- AI Configuration Action -->
     <record id="action_ai_configuration" model="ir.actions.act_window">
         <field name="name">AI Configuration</field>
-        <field name="res_model">ai.configuration</field>
+        <field name="res_model">agri.ai.configuration</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -18,9 +18,9 @@
     <!-- AI Configuration Tree View -->
     <record id="view_ai_configuration_tree" model="ir.ui.view">
         <field name="name">ai.configuration.tree</field>
-        <field name="model">ai.configuration</field>
+        <field name="model">agri.ai.configuration</field>
         <field name="arch" type="xml">
-            <tree string="AI Configuration">
+            <list string="AI Configuration">
                 <field name="name"/>
                 <field name="ai_provider"/>
                 <field name="default_model"/>
@@ -28,14 +28,14 @@
                 <field name="is_default"/>
                 <field name="total_requests"/>
                 <field name="last_used"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <!-- AI Configuration Form View -->
     <record id="view_ai_configuration_form" model="ir.ui.view">
         <field name="name">ai.configuration.form</field>
-        <field name="model">ai.configuration</field>
+        <field name="model">agri.ai.configuration</field>
         <field name="arch" type="xml">
             <form string="AI Configuration">
                 <header>

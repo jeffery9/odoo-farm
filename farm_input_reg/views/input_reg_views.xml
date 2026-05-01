@@ -57,7 +57,7 @@
         <field name="name">farm.input.registration.database.tree</field>
         <field name="model">farm.input.registration.database</field>
         <field name="arch" type="xml">
-            <tree string="Input Registration Database"
+            <list string="Input Registration Database"
                   decoration-success="registration_status == 'active'"
                   decoration-danger="registration_status in ('expired', 'revoked', 'suspended')"
                   decoration-warning="is_restricted">
@@ -69,7 +69,7 @@
                 <field name="withdrawal_period_days"/>
                 <field name="registration_status"/>
                 <field name="is_restricted"/>
-            </tree>
+            </list>
         </field>
     </record>
 

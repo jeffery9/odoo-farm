@@ -22,17 +22,17 @@ class TestAgriculturalProcessingAdditionalFeatures(TransactionCase):
         cls.product_uom_unit = cls.env.ref('uom.product_uom_unit')
         cls.product_template = cls.ProductTemplate.create({
             'name': 'Seasonal Product',
-            'type': 'product',
+            'type': 'consu',
             'uom_id': cls.product_uom_unit.id,
         })
         cls.product_raw = cls.ProductProduct.create({
             'name': 'Raw Product',
-            'type': 'product',
+            'type': 'consu',
             'uom_id': cls.product_uom_unit.id,
         })
         cls.product_material = cls.ProductProduct.create({
             'name': 'Seasonal Material',
-            'type': 'product',
+            'type': 'consu',
             'uom_id': cls.product_uom_unit.id,
         })
 

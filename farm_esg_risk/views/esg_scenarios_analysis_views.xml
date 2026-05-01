@@ -5,7 +5,7 @@
         <field name="name">farm.esg.scenarios.analysis.tree</field>
         <field name="model">farm.esg.scenarios.analysis</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="scenario_type"/>
                 <field name="analysis_status"/>
@@ -14,7 +14,7 @@
                 <field name="confidence_level"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 

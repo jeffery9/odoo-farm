@@ -5,7 +5,7 @@
         <field name="name">esg.indicator.tree</field>
         <field name="model">esg.indicator</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="code"/>
                 <field name="category"/>
@@ -13,7 +13,7 @@
                 <field name="unit_of_measurement"/>
                 <field name="target_value"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -59,14 +59,14 @@
                         </page>
                         <page string="Assessment Lines" name="assessment_lines">
                             <field name="assessment_line_ids" nolabel="1">
-                                <tree>
+                                <list>
                                     <field name="assessment_id"/>
                                     <field name="actual_value"/>
                                     <field name="performance_score"/>
                                     <field name="achievement_percentage"/>
                                     <field name="collection_date"/>
                                     <field name="verification_status"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -86,14 +86,14 @@
         <field name="name">esg.assessment.line.tree</field>
         <field name="model">esg.assessment.line</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="assessment_id"/>
                 <field name="indicator_id"/>
                 <field name="actual_value"/>
                 <field name="target_value"/>
                 <field name="performance_score"/>
                 <field name="verification_status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

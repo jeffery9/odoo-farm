@@ -60,14 +60,14 @@
         <field name="name">agri.ai.quality.grading.tree</field>
         <field name="model">agri.ai.quality.grading</field>
         <field name="arch" type="xml">
-            <tree string="AI Quality Grading">
+            <list string="AI Quality Grading">
                 <field name="product_id"/>
                 <field name="batch_lot_id"/>
                 <field name="predicted_grade"/>
                 <field name="quality_score"/>
                 <field name="confidence_score"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

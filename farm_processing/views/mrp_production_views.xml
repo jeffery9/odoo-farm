@@ -64,12 +64,12 @@
                         </group>
                         <group string="Checks">
                             <field name="quality_check_ids" nolabel="1">
-                                <tree>
+                                <list>
                                     <field name="check_date"/>
                                     <field name="check_type"/>
                                     <field name="result"/>
                                     <field name="checker_id"/>
-                                </tree>
+                                </list>
                             </field>
                         </group>
                     </group>

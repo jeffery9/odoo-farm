@@ -31,9 +31,10 @@ class ColdStorageFacility(models.Model):
         ('out_of_service', 'Out of Service'),
     ], string='Status', default='operational')
 
-    _sql_constraints = [
-        ('facility_code_unique', 'UNIQUE(facility_code)', 'Facility code must be unique!'),
-    ]
+    _facility_code_unique = models.Constraint(
+        'UNIQUE(facility_code)',
+        'Facility code must be unique!'
+    )
 
     @api.depends('zone_ids.current_volume', 'zone_ids.current_weight', 'capacity_volume', 'capacity_weight')
     def _compute_utilization(self):
@@ -79,9 +80,10 @@ class ColdStorageZone(models.Model):
         ('maintenance', 'Under Maintenance'),
     ], string='Status', default='available')
 
-    _sql_constraints = [
-        ('zone_code_unique', 'UNIQUE(zone_code)', 'Zone code must be unique!'),
-    ]
+    _zone_code_unique = models.Constraint(
+        'UNIQUE(zone_code)',
+        'Zone code must be unique!'
+    )
 
 
 class ColdStorageInventory(models.Model):

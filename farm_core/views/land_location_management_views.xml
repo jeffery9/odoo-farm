@@ -12,7 +12,6 @@
                 <field name="is_land_parcel"/>
                 <field name="land_nature"/>
                 <field name="land_area"/>
-                <field name="impact_credits"/>
             </list>
         </field>
     </record>
@@ -24,8 +23,6 @@
         <field name="arch" type="xml">
             <form string="Farm Location">
                 <header>
-                    <button name="action_view_quality_fingerprint" type="object" string="View Quality Fingerprint" class="oe_highlight"/>
-                    <field name="clearing_status" widget="statusbar"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -77,30 +74,15 @@
                             </group>
                             <field name="boundary_geojson" widget="ace" options="{'mode': 'json'}"/>
                         </page>
-                        <page string="Soil Analyses" name="soil_analyses" invisible="not is_land_parcel">
-                            <field name="soil_analysis_ids">
-                                <list>
-                                    <field name="analysis_date"/>
-                                    <field name="ph_level"/>
-                                    <field name="organic_matter"/>
-                                    <field name="nitrogen_content" optional="show"/>
-                                    <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state == 'draft'"/>
-                                </list>
-                            </field>
-                        </page>
                         <page string="Value &amp; Evidence" name="value_evidence">
                             <group>
                                 <group string="Sustainability">
                                     <field name="carbon_intensity"/>
                                     <field name="esg_score"/>
-                                    <field name="impact_credits"/>
                                 </group>
                                 <group string="Audit Status">
-                                    <field name="audit_status"/>
-                                    <field name="audit_confidence"/>
                                 </group>
                             </group>
-                            <field name="quality_fingerprint" widget="ace" options="{'mode': 'json'}"/>
                         </page>
                     </notebook>
                 </sheet>
@@ -117,13 +99,11 @@
         <field name="name">agri.soil.analysis.list</field>
         <field name="model">agri.soil.analysis</field>
         <field name="arch" type="xml">
-            <list string="Soil Analyses" decoration-info="state == 'draft'" decoration-success="state == 'done'">
+            <list string="Soil Analyses" >
                 <field name="name"/>
-                <field name="location_id"/>
                 <field name="analysis_date"/>
                 <field name="ph_level"/>
                 <field name="organic_matter"/>
-                <field name="state" widget="badge"/>
             </list>
         </field>
     </record>
@@ -134,26 +114,20 @@
         <field name="arch" type="xml">
             <form string="Soil Analysis">
                 <header>
-                    <button name="action_validate" type="object" string="Validate" class="oe_highlight" invisible="state != 'draft'"/>
-                    <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only"/>
                         <h1><field name="name"/></h1>
                         <group>
-                            <field name="agri_analysis_id" readonly="1" groups="base.group_no_one"/>
                         </group>
                     </div>
                     <group>
                         <group string="Analysis Identity">
-                            <field name="location_id"/>
                             <field name="analysis_date"/>
-                            <field name="laboratory_id"/>
                         </group>
                         <group string="Physical Context">
                             <field name="spatial_grid_id"/>
-                            <field name="audit_confidence" widget="progressbar"/>
                         </group>
                     </group>
                     <notebook>
@@ -184,12 +158,6 @@
                                     <field name="zinc_content"/>
                                     <field name="nickel_content"/>
                                 </group>
-                            </group>
-                        </page>
-                        <page string="Advice &amp; Remediation" name="advice">
-                            <group>
-                                <field name="recommendation"/>
-                                <field name="remediation_advice"/>
                             </group>
                         </page>
                     </notebook>

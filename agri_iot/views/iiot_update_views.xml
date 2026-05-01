@@ -12,8 +12,6 @@
                 <field name="status"/>
                 <field name="progress"/>
                 <field name="create_date"/>
-                <field name="date_started"/>
-                <field name="date_completed"/>
             </list>
         </field>
     </record>
@@ -25,8 +23,6 @@
         <field name="arch" type="xml">
             <form string="OTA更新记录">
                 <header>
-                    <button name="action_send_update_command" string="Send Update Command" type="object" class="btn-primary" invisible="status != 'draft'"/>
-                    <button name="action_cancel_update" string="Cancel Update" type="object" invisible="status not in ('draft', 'pending')"/>
                     <field name="status" widget="statusbar" statusbar_visible="draft,pending,in_progress,success,failed"/>
                 </header>
                 <sheet>
@@ -41,19 +37,12 @@
                         </group>
                     </group>
                     <group string="时间信息">
-                        <field name="date_started"/>
-                        <field name="date_completed"/>
                         <field name="create_date"/>
                     </group>
                     <group string="错误信息" invisible="status != 'failed'">
                         <field name="error_message"/>
                     </group>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
-                </div>
             </form>
         </field>
     </record>

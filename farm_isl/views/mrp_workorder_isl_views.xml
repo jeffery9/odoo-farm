@@ -68,14 +68,14 @@
         <field name="name">farm.mrp.workorder.tree</field>
         <field name="model">farm.mrp.workorder</field>
         <field name="arch" type="xml">
-            <tree string="ISL MRP Work Orders">
+            <list string="ISL MRP Work Orders">
                 <field name="name"/>
                 <field name="workcenter_id"/>
                 <field name="production_id"/>
                 <field name="date_start"/>
                 <field name="industry_type"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 

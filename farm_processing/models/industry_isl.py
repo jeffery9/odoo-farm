@@ -6,7 +6,7 @@ class FarmPharmaBom(models.Model):
     _name = 'farm.pharma.bom'
     _description = 'Pharmaceutical Processing BOM (ISL Layer)'
     _inherits = {'mrp.bom': 'bom_id'}
-    _inherit = ['farm.agri.bom.mixin']
+    # _inherit = ['farm.agri.bom.mixin']
 
     bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
     
@@ -20,7 +20,7 @@ class FarmPharmaProduction(models.Model):
     _name = 'farm.pharma.production'
     _description = 'Pharmaceutical Production Order (ISL Layer)'
     _inherits = {'mrp.production': 'production_id'}
-    _inherit = ['farm.agri.production.mixin']
+    # _inherit = ['farm.agri.production.mixin']
 
     production_id = fields.Many2one('mrp.production', string='Base Production Order', required=True, ondelete='cascade')
     
@@ -33,7 +33,7 @@ class FarmChemicalBom(models.Model):
     _name = 'farm.chemical.bom'
     _description = 'Chemical Processing BOM (ISL Layer)'
     _inherits = {'mrp.bom': 'bom_id'}
-    _inherit = ['farm.agri.bom.mixin']
+    # _inherit = ['farm.agri.bom.mixin']
 
     bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
     
@@ -51,7 +51,7 @@ class FarmChemicalProduction(models.Model):
     _name = 'farm.chemical.production'
     _description = 'Chemical Production Order (ISL Layer)'
     _inherits = {'mrp.production': 'production_id'}
-    _inherit = ['farm.agri.production.mixin']
+    # _inherit = ['farm.agri.production.mixin']
 
     production_id = fields.Many2one('mrp.production', string='Base Production Order', required=True, ondelete='cascade')
     

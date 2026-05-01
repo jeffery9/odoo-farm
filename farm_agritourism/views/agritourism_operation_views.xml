@@ -31,13 +31,13 @@
                         </group>
                         <group name="resource_usage" string="Resource Usage">
                             <field name="resource_usage_ids" nolabel="1" colspan="2">
-                                <tree string="Resource Usage" editable="bottom">
+                                <list string="Resource Usage" editable="bottom">
                                     <field name="resource_id"/>
                                     <field name="usage_start_time"/>
                                     <field name="usage_end_time"/>
                                     <field name="assigned_staff"/>
                                     <field name="usage_notes"/>
-                                </tree>
+                                </list>
                             </field>
                         </group>
                     </group>

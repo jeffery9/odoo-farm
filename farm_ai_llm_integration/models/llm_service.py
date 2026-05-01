@@ -213,7 +213,7 @@ class AgriAiLlmService(models.Model):
             'Content-Type': 'application/json'
         }
         data = {
-            "contents": [வைக்{{ "parts": [{{"text": prompt}}]}}],
+            "contents": [{"parts": [{"text": prompt}]}],
             "generationConfig": {
                 "temperature": self.config_id.temperature,
                 "maxOutputTokens": self.config_id.max_tokens

@@ -5,7 +5,7 @@
         <field name="name">cooperative.member.tree</field>
         <field name="model">cooperative.member</field>
         <field name="arch" type="xml">
-            <tree string="Cooperative Members">
+            <list string="Cooperative Members">
                 <field name="code"/>
                 <field name="name"/>
                 <field name="partner_id"/>
@@ -15,7 +15,7 @@
                 <field name="membership_status"/>
                 <field name="credit_limit"/>
                 <field name="available_credit"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -93,7 +93,7 @@
         <field name="name">share.transaction.tree</field>
         <field name="model">share.transaction</field>
         <field name="arch" type="xml">
-            <tree string="Share Transactions" decoration-success="state=='confirmed'" decoration-muted="state=='cancelled'">
+            <list string="Share Transactions" decoration-success="state=='confirmed'" decoration-muted="state=='cancelled'">
                 <field name="name"/>
                 <field name="member_id"/>
                 <field name="transaction_type"/>
@@ -101,7 +101,7 @@
                 <field name="total_amount"/>
                 <field name="transaction_date"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -145,14 +145,14 @@
         <field name="name">dividend.distribution.tree</field>
         <field name="model">dividend.distribution</field>
         <field name="arch" type="xml">
-            <tree string="Dividend Distributions" decoration-success="state=='distributed'" decoration-muted="state=='cancelled'">
+            <list string="Dividend Distributions" decoration-success="state=='distributed'" decoration-muted="state=='cancelled'">
                 <field name="name"/>
                 <field name="cooperative_id"/>
                 <field name="distribution_date"/>
                 <field name="total_dividend_amount"/>
                 <field name="distribution_type"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -189,14 +189,14 @@
                     <notebook>
                         <page string="Dividend Lines" name="lines">
                             <field name="dividend_lines">
-                                <tree editable="top">
+                                <list editable="top">
                                     <field name="member_id"/>
                                     <field name="share_based_amount"/>
                                     <field name="trading_based_amount"/>
                                     <field name="total_amount"/>
                                     <field name="paid_amount"/>
                                     <field name="state"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -210,7 +210,7 @@
         <field name="name">internal.credit.tree</field>
         <field name="model">internal.credit</field>
         <field name="arch" type="xml">
-            <tree string="Internal Credits" decoration-success="state=='active'" decoration-danger="state=='expired'">
+            <list string="Internal Credits" decoration-success="state=='active'" decoration-danger="state=='expired'">
                 <field name="name"/>
                 <field name="member_id"/>
                 <field name="credit_limit"/>
@@ -218,7 +218,7 @@
                 <field name="available_amount"/>
                 <field name="interest_rate"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -267,7 +267,7 @@
         <field name="name">credit.transaction.tree</field>
         <field name="model">credit.transaction</field>
         <field name="arch" type="xml">
-            <tree string="Credit Transactions" decoration-success="state=='confirmed'" decoration-muted="state=='reversed'">
+            <list string="Credit Transactions" decoration-success="state=='confirmed'" decoration-muted="state=='reversed'">
                 <field name="name"/>
                 <field name="member_id"/>
                 <field name="credit_line_id"/>
@@ -275,7 +275,7 @@
                 <field name="amount"/>
                 <field name="transaction_date"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -284,7 +284,7 @@
         <field name="name">shared.machinery.pool.tree</field>
         <field name="model">shared.machinery.pool</field>
         <field name="arch" type="xml">
-            <tree string="Shared Machinery Pool" decoration-info="availability_status=='available'" decoration-success="availability_status=='in_use'" decoration-warning="availability_status=='maintenance'" decoration-danger="availability_status=='out_of_service'">
+            <list string="Shared Machinery Pool" decoration-info="availability_status=='available'" decoration-success="availability_status=='in_use'" decoration-warning="availability_status=='maintenance'" decoration-danger="availability_status=='out_of_service'">
                 <field name="name"/>
                 <field name="code"/>
                 <field name="equipment_id"/>
@@ -292,7 +292,7 @@
                 <field name="availability_status"/>
                 <field name="hourly_rate"/>
                 <field name="daily_rate"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -345,7 +345,7 @@
         <field name="name">machinery.rental.tree</field>
         <field name="model">machinery.rental</field>
         <field name="arch" type="xml">
-            <tree string="Machinery Rentals" decoration-info="state=='confirmed'" decoration-success="state=='completed'" decoration-muted="state=='cancelled'">
+            <list string="Machinery Rentals" decoration-info="state=='confirmed'" decoration-success="state=='completed'" decoration-muted="state=='cancelled'">
                 <field name="name"/>
                 <field name="machinery_id"/>
                 <field name="renter_member_id"/>
@@ -353,7 +353,7 @@
                 <field name="end_date"/>
                 <field name="expected_cost"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 

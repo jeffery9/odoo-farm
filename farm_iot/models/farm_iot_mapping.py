@@ -21,7 +21,7 @@ class IotDeviceMapping(models.Model):
     ], string='Mapping Type', default='field', required=True)
 
     # Dynamic target mapping
-    target_model_id = fields.Many2one('ir.model', string='Target Model', required=True)
+    target_model_id = fields.Many2one('ir.model', string='Target Model', required=True, ondelete='cascade')
     target_field_id = fields.Many2one('ir.model.fields', string='Target Field', 
                                      domain="[('model_id', '=', target_model_id)]")
     

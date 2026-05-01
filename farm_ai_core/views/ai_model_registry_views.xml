@@ -4,7 +4,7 @@
     <!-- AI Model Registry Action -->
     <record id="action_ai_model_registry" model="ir.actions.act_window">
         <field name="name">AI Model Registry</field>
-        <field name="res_model">ai.model.registry</field>
+        <field name="res_model">agri.ai.model.registry</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -18,9 +18,9 @@
     <!-- AI Model Registry Tree View -->
     <record id="view_ai_model_registry_tree" model="ir.ui.view">
         <field name="name">ai.model.registry.tree</field>
-        <field name="model">ai.model.registry</field>
+        <field name="model">agri.ai.model.registry</field>
         <field name="arch" type="xml">
-            <tree string="AI Model Registry">
+            <list string="AI Model Registry">
                 <field name="name"/>
                 <field name="model_type"/>
                 <field name="version"/>
@@ -28,14 +28,14 @@
                 <field name="is_active"/>
                 <field name="is_default"/>
                 <field name="inference_count"/>
-            </tree>
+            </list>
         </field>
     </record>
 
     <!-- AI Model Registry Form View -->
     <record id="view_ai_model_registry_form" model="ir.ui.view">
         <field name="name">ai.model.registry.form</field>
-        <field name="model">ai.model.registry</field>
+        <field name="model">agri.ai.model.registry</field>
         <field name="arch" type="xml">
             <form string="AI Model Registry">
                 <header>

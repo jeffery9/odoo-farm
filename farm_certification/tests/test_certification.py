@@ -21,7 +21,7 @@ class TestFarmCertification(TransactionCase):
 
     def test_01_certification_inheritance(self):
         """ 测试收获批次自动继承地块的认证等级 """
-        apple = self.Product.create({'name': 'Apple', 'type': 'product'})
+        apple = self.Product.create({'name': 'Apple', 'type': 'consu'})
         lot = self.Lot.create({
             'name': 'APPLE-LOT-001',
             'product_id': apple.id,

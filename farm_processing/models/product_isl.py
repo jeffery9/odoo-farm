@@ -9,7 +9,10 @@ class FarmAgriProduct(models.Model):
     _inherit = 'farm.product.template'
 
     # --- Specialized Metadata (Sunk from Base) ---
-    industry_tag = fields.Selection(selection_add=[
+    industry_tag = fields.Selection(selection=[
+        ('material', 'Input Material (Seeds/Fertilizer)'),
+        ('food', 'Processed Food'),
+        ('livestock', 'Live Animal'),
         ('material', 'Input Material (Seeds/Fertilizer)'),
         ('food', 'Processed Food'),
         ('livestock', 'Live Animal'),
@@ -51,3 +54,10 @@ class FarmAgriProduct(models.Model):
                 elif vals.get('industry_tag') in ['material', 'raw_grain']:
                     vals['industry_type'] = 'general'
         return super().create(vals_list)
+class FarmScCategory(models.Model):
+    _name = 'farm.sc.category'
+    _description = 'Food Production Category'
+
+    name = fields.Char('Category Name', required=True)
+    code = fields.Char('Category Code')
+

@@ -53,11 +53,11 @@
 
                         <page string="Growth Stage Coefficients">
                             <field name="stage_coefficient_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="biological_stage"/>
                                     <field name="coefficient"/>
                                     <field name="description"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
 
@@ -79,7 +79,7 @@
         <field name="name">agri.biological.asset.valuation.tree</field>
         <field name="model">agri.biological.asset.valuation</field>
         <field name="arch" type="xml">
-            <tree string="Biological Asset Valuations">
+            <list string="Biological Asset Valuations">
                 <field name="name"/>
                 <field name="asset_id"/>
                 <field name="valuation_date"/>
@@ -89,7 +89,7 @@
                 <field name="revaluation_amount" invisible="valuation_method != 'market_price'"/>
                 <field name="current_growth_progress"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 

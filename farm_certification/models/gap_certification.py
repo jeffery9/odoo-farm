@@ -206,9 +206,10 @@ class FarmGAPRequirement(models.Model):
 
     active = fields.Boolean("Active", default=True)
 
-    _sql_constraints = [
-        ('code_unique', 'UNIQUE(code)', 'Requirement code must be unique.')
-    ]
+    _code_unique = models.Constraint(
+        'UNIQUE(code)',
+        'Requirement code must be unique.'
+    )
 
 
 class FarmGAPComplianceCheck(models.Model):

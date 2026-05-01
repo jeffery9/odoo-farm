@@ -5,14 +5,14 @@
         <field name="name">accessibility.settings.tree</field>
         <field name="model">accessibility.settings</field>
         <field name="arch" type="xml">
-            <tree string="Accessibility Settings">
+            <list string="Accessibility Settings">
                 <field name="name"/>
                 <field name="user_id"/>
                 <field name="screen_reader_enabled"/>
                 <field name="high_contrast_mode"/>
                 <field name="font_scaling"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 

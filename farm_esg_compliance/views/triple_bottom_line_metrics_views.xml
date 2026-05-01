@@ -22,7 +22,7 @@
         <field name="name">agri.triple.bottom.line.metrics.tree</field>
         <field name="model">agri.triple.bottom.line.metrics</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="date"/>
                 <field name="economic_score"/>
@@ -30,7 +30,7 @@
                 <field name="social_score"/>
                 <field name="overall_sustainability_score"/>
                 <field name="farm_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 

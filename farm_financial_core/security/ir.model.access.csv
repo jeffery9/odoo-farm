@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_financial_abstract_user,financial.abstract.user,model_farm_financial_abstract,farm_security.group_farm_user,1,1,1,1
-access_financial_utility_mixin_user,financial.utility.mixin.user,model_farm_financial_utility_mixin,farm_security.group_farm_user,1,1,1,0
-access_financial_cost_category_user,financial.cost.category.user,model_farm_financial_cost_category,farm_security.group_farm_user,1,1,1,1
-access_financial_cost_template_user,financial.cost.template.user,model_farm_financial_cost_template,farm_security.group_farm_user,1,1,1,1
+access_financial_abstract_user,financial.abstract.user,model_farm_financial_abstract,farm_security.group_farm_worker,1,1,1,1
+access_financial_utility_mixin_user,financial.utility.mixin.user,model_farm_financial_utility_mixin,farm_security.group_farm_worker,1,1,1,0
+access_financial_cost_category_user,financial.cost.category.user,model_farm_financial_cost_category,farm_security.group_farm_worker,1,1,1,1
+access_financial_cost_template_user,financial.cost.template.user,model_farm_financial_cost_template,farm_security.group_farm_worker,1,1,1,1

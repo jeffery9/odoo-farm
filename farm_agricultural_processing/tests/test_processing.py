@@ -9,11 +9,11 @@ class TestFarmProcessing(TransactionCase):
         self.Lot = self.env['stock.lot']
         
         # 1. 原始材料：生猪肉
-        self.pork = self.Product.create({'name': 'Raw Pork', 'type': 'product', 'tracking': 'lot'})
+        self.pork = self.Product.create({'name': 'Raw Pork', 'type': 'consu', 'tracking': 'lot'})
         self.raw_lot = self.Lot.create({'name': 'PORK-RAW-01', 'product_id': self.pork.id})
         
         # 2. 加工品：腊肉
-        self.bacon = self.Product.create({'name': 'Farm Bacon', 'type': 'product', 'tracking': 'lot'})
+        self.bacon = self.Product.create({'name': 'Farm Bacon', 'type': 'consu', 'tracking': 'lot'})
         
         # 3. BOM
         self.bom = self.env['mrp.bom'].create({

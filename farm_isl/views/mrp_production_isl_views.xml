@@ -64,14 +64,14 @@
         <field name="name">farm.mrp.production.tree</field>
         <field name="model">farm.mrp.production</field>
         <field name="arch" type="xml">
-            <tree string="ISL MRP Productions">
+            <list string="ISL MRP Productions">
                 <field name="name"/>
                 <field name="product_id"/>
                 <field name="product_qty"/>
                 <field name="date_planned_start"/>
                 <field name="industry_type"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 

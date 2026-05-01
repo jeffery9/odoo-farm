@@ -2,7 +2,7 @@
 <odoo>
     <record id="farm_telemetry_view_tree" model="ir.ui.view">
         <field name="name">farm.telemetry.list</field>
-        <field name="model">farm.telemetry</field>
+        <field name="model">iiot.telemetry</field>
         <field name="arch" type="xml">
             <list string="Telemetry Data" decoration-info="sensor_type == 'temperature'" decoration-success="sensor_type == 'dissolved_oxygen'">
                 <field name="timestamp"/>
@@ -16,7 +16,7 @@
 
     <record id="farm_telemetry_view_graph" model="ir.ui.view">
         <field name="name">farm.telemetry.graph</field>
-        <field name="model">farm.telemetry</field>
+        <field name="model">iiot.telemetry</field>
         <field name="arch" type="xml">
             <graph string="Telemetry Analysis" type="line" sample="1">
                 <field name="timestamp" interval="hour"/>
@@ -28,7 +28,7 @@
 
     <record id="action_farm_telemetry" model="ir.actions.act_window">
         <field name="name">Telemetry History</field>
-        <field name="res_model">farm.telemetry</field>
+        <field name="res_model">iiot.telemetry</field>
         <field name="view_mode">list,graph,form</field>
     </record>
 </odoo>

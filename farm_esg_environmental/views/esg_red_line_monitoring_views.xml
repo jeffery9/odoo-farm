@@ -5,14 +5,14 @@
         <field name="name">farm.esg.red.line.config.tree</field>
         <field name="model">farm.esg.red.line.config</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="red_line_type"/>
                 <field name="threshold_value"/>
                 <field name="threshold_unit"/>
                 <field name="active_monitoring"/>
                 <field name="monitoring_frequency"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -70,7 +70,7 @@
         <field name="name">farm.esg.red.line.monitoring.tree</field>
         <field name="model">farm.esg.red.line.monitoring</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="compliance_status=='violation' or compliance_status=='critical'"
+            <list decoration-danger="compliance_status=='violation' or compliance_status=='critical'"
                   decoration-warning="compliance_status=='warning'"
                   decoration-success="compliance_status=='compliant' or compliance_status=='resolved'">
                 <field name="name"/>
@@ -81,7 +81,7 @@
                 <field name="detection_date"/>
                 <field name="current_value"/>
                 <field name="threshold_value"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -173,13 +173,13 @@
                     </group>
                     <group string="ESG Monitoring Records">
                         <field name="esg_monitoring_ids" nolabel="1" readonly="1">
-                            <tree>
+                            <list>
                                 <field name="red_line_config_id"/>
                                 <field name="compliance_status"/>
                                 <field name="detection_date"/>
                                 <field name="current_value"/>
                                 <field name="detection_details"/>
-                            </tree>
+                            </list>
                             <form>
                                 <group>
                                     <field name="red_line_config_id"/>

@@ -5,14 +5,14 @@
         <field name="name">farm.financial.asset.valuation.tree</field>
         <field name="model">farm.financial.asset.valuation</field>
         <field name="arch" type="xml">
-            <tree string="Financial Asset Valuations">
+            <list string="Financial Asset Valuations">
                 <field name="name"/>
                 <field name="asset_id"/>
                 <field name="valuation_date"/>
                 <field name="valuation_method"/>
                 <field name="valuation_amount"/>
                 <field name="confidence_level"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -97,12 +97,12 @@
         <field name="name">farm.financial.valuation.template.tree</field>
         <field name="model">farm.financial.valuation.template</field>
         <field name="arch" type="xml">
-            <tree string="Financial Valuation Templates">
+            <list string="Financial Valuation Templates">
                 <field name="name"/>
                 <field name="code"/>
                 <field name="default_valuation_method"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 

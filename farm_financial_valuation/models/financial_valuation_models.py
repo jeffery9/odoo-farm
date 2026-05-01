@@ -297,9 +297,10 @@ class FinancialValuationTemplate(models.Model):
     compliance_requirements = fields.Text("Compliance Requirements Template")
     standard_notes = fields.Text("Standard Valuation Notes")
 
-    _sql_constraints = [
-        ('code_unique', 'UNIQUE(code)', 'Template code must be unique!'),
-    ]
+    _code_unique = models.Constraint(
+        'UNIQUE(code)',
+        'Template code must be unique!'
+    )
 
     @api.depends('default_valuation_method')
     def _compute_applicable_asset_types(self):

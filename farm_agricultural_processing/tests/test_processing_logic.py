@@ -10,8 +10,8 @@ class TestProcessingLogic(TransactionCase):
         self.Bom = self.env['mrp.bom']
         
         # Create products
-        self.raw_material = self.Product.create({'name': 'Raw Apple', 'type': 'product'})
-        self.finished_good = self.Product.create({'name': 'Apple Juice', 'type': 'product'})
+        self.raw_material = self.Product.create({'name': 'Raw Apple', 'type': 'consu'})
+        self.finished_good = self.Product.create({'name': 'Apple Juice', 'type': 'consu'})
         
         # Create BOM
         self.bom = self.Bom.create({

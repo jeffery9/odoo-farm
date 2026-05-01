@@ -8,8 +8,8 @@ class TestMassBalance(TransactionCase):
         self.MO = self.env['mrp.production']
         self.Product = self.env['product.product']
         
-        self.raw = self.Product.create({'name': 'Raw Fruit', 'type': 'product'})
-        self.clean = self.Product.create({'name': 'Cleaned Fruit', 'type': 'product'})
+        self.raw = self.Product.create({'name': 'Raw Fruit', 'type': 'consu'})
+        self.clean = self.Product.create({'name': 'Cleaned Fruit', 'type': 'consu'})
         
         self.bom = self.env['mrp.bom'].create({
             'product_tmpl_id': self.clean.product_tmpl_id.id,

@@ -12,7 +12,7 @@ class TestExportCompliance(TransactionCase):
         # 创建一个产品并设置禁用农药记录 (Mock logic)
         self.rice = self.Product.create({
             'name': 'Export Rice',
-            'type': 'product'
+            'type': 'consu'
         })
 
     def test_01_export_restriction(self):

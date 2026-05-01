@@ -60,7 +60,6 @@
                 <field name="land_parcel_id"/>
                 <field name="spatial_grid_id"/>
                 <field name="agri_status"/>
-                <field name="audit_status"/>
                 <field name="date_deadline"/>
             </list>
         </field>
@@ -88,7 +87,6 @@
                         </group>
                         <group string="Physical Context (Agri Domain)">
                             <field name="spatial_grid_id"/>
-                            <field name="audit_status"/>
                         </group>
                     </group>
                     <notebook>
@@ -107,10 +105,8 @@
                         </page>
                         <page string="Evidence &amp; Audit" name="evidence">
                             <group>
-                                <field name="audit_confidence" widget="progressbar"/>
                                 <field name="evidence_ids" widget="many2many_binary"/>
                             </group>
-                            <field name="quality_fingerprint" widget="ace" options="{'mode': 'json'}"/>
                         </page>
                     </notebook>
                 </sheet>

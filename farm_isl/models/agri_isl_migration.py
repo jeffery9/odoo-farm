@@ -21,6 +21,10 @@ class AgriISLMigrationUtility(models.TransientModel):
         ('food_processing', 'Food Processing'),
         ('pharmaceutical', 'Pharmaceutical'),
         ('chemical', 'Chemical'),
+        ('general', 'General Manufacturing'),
+        ('food_processing', 'Food Processing'),
+        ('pharmaceutical', 'Pharmaceutical'),
+        ('chemical', 'Chemical'),
         ('general', 'General Manufacturing')
     ], string='Industry Type', default='general', required=True)
 

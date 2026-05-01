@@ -111,7 +111,7 @@ class CooperativeMember(models.Model):
 
             record.trading_volume = total_volume
 
-    _sql_constraints = [
-        ('partner_cooperative_unique', 'unique(partner_id, cooperative_id)', 
-         'A partner can only be a member of the same cooperative once!')
-    ]
+    _partner_cooperative_unique = models.Constraint(
+        'unique(partner_id, cooperative_id)',
+        'A partner can only be a member of the same cooperative once!'
+    )

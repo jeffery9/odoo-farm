@@ -3,7 +3,7 @@
     <menuitem id="menu_ai_root" name="AI Services" sequence="60" />
 
     <menuitem id="menu_ai_core_config" name="Configuration" parent="menu_ai_root" sequence="10"/>
-    <menuitem id="menu_ai_configuration" name="AI Providers" parent="menu_ai_core_config" action="action_ai_configuration" sequence="10"/>
-    <menuitem id="menu_ai_model_registry" name="AI Models" parent="menu_ai_core_config" action="action_ai_model_registry" sequence="20"/>
+    <!-- <menuitem id="menu_ai_configuration" name="AI Providers" parent="menu_ai_core_config" action="action_ai_configuration" sequence="10"/> -->
+    <!-- <menuitem id="menu_ai_model_registry" name="AI Models" parent="menu_ai_core_config" action="action_ai_model_registry" sequence="20"/> -->
 
 </odoo>

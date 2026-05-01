@@ -33,10 +33,10 @@
             <field name="name">farm.training.skill.tree</field>
             <field name="model">farm.training.skill</field>
             <field name="arch" type="xml">
-                <tree string="Skills">
+                <list string="Skills">
                     <field name="name"/>
                     <field name="description"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -75,10 +75,10 @@
             <field name="name">farm.training.certification.tree</field>
             <field name="model">farm.training.certification</field>
             <field name="arch" type="xml">
-                <tree string="Certifications">
+                <list string="Certifications">
                     <field name="name"/>
                     <field name="validity_period"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -120,13 +120,13 @@
             <field name="name">farm.training.training_record.tree</field>
             <field name="model">farm.training.training_record</field>
             <field name="arch" type="xml">
-                <tree string="Training Records">
+                <list string="Training Records">
                     <field name="employee_id"/>
                     <field name="certification_id"/>
                     <field name="training_date"/>
                     <field name="expiration_date"/>
                     <field name="status"/>
-                </tree>
+                </list>
             </field>
         </record>
 

@@ -5,7 +5,7 @@
         <field name="name">agri.ai.visual.sorting.tree</field>
         <field name="model">agri.ai.visual.sorting</field>
         <field name="arch" type="xml">
-            <tree string="AI Visual Sorting">
+            <list string="AI Visual Sorting">
                 <field name="name"/>
                 <field name="product_id"/>
                 <field name="batch_id"/>
@@ -15,7 +15,7 @@
                 <field name="confidence_score"/>
                 <field name="analysis_date"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

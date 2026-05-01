@@ -5,7 +5,7 @@
         <field name="name">visual.status.indicator.tree</field>
         <field name="model">visual.status.indicator</field>
         <field name="arch" type="xml">
-            <tree string="Visual Status Indicators" decoration-danger="not is_active" decoration-success="is_active">
+            <list string="Visual Status Indicators" decoration-danger="not is_active" decoration-success="is_active">
                 <field name="name"/>
                 <field name="status_type"/>
                 <field name="status_value"/>
@@ -13,7 +13,7 @@
                 <field name="icon_class"/>
                 <field name="badge_style"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 

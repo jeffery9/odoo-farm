@@ -12,7 +12,7 @@ class TestAgriInterventions(TransactionCase):
         self.task = self.Task.create({'name': 'Wheat Sowing - Plot A'})
         self.product = self.Product.create({
             'name': 'Wheat Seed',
-            'type': 'product',
+            'type': 'consu',
         })
         self.bom = self.env['mrp.bom'].create({
             'product_tmpl_id': self.product.product_tmpl_id.id,

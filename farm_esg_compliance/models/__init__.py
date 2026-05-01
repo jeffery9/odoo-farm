@@ -7,4 +7,5 @@ from . import sustainable_supply_chain
 from . import sustainable_product_lifecycle
 from . import supply_chain_carbon_tracking
 from . import carbon_neutral_management
-from . import external_esg_marketplacefrom . import agri_sustainability_algorithms
+from . import external_esg_marketplace
+from . import agri_sustainability_algorithms

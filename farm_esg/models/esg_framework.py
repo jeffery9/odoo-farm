@@ -34,9 +34,10 @@ class ESGFramework(models.Model):
     # Related ESG indicators
     indicator_ids = fields.One2many('esg.indicator', 'framework_id', 'ESG Indicators')
 
-    _sql_constraints = [
-        ('code_unique', 'UNIQUE(code)', 'Framework code must be unique.')
-    ]
+    _code_unique = models.Constraint(
+        'UNIQUE(code)',
+        'Framework code must be unique.'
+    )
 
 
 class ESGAssessment(models.Model):

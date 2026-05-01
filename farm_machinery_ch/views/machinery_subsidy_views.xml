@@ -68,12 +68,12 @@
         <field name="name">farm.machinery.subsidy.application.tree</field>
         <field name="model">farm.machinery.subsidy.application</field>
         <field name="arch" type="xml">
-            <tree string="Machinery Subsidy Applications">
+            <list string="Machinery Subsidy Applications">
                 <field name="name"/>
                 <field name="equipment_id"/>
                 <field name="estimated_subsidy"/>
                 <field name="state" widget="badge"/>
-            </tree>
+            </list>
         </field>
     </record>
 

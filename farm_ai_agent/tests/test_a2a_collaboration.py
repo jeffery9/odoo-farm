@@ -9,7 +9,7 @@ class TestA2ACollaboration(TransactionCase):
         self.A2A = self.env['agri.a2a.message']
         
         # Setup test data
-        self.product = self.env['product.product'].create({'name': 'Organic Tomato', 'type': 'product'})
+        self.product = self.env['product.product'].create({'name': 'Organic Tomato', 'type': 'consu'})
         self.intervention = self.Intervention.create({
             'product_id': self.product.id,
             'product_qty': 100.0,

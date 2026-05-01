@@ -55,7 +55,7 @@ class FarmAgriculturalCampaignBase(models.AbstractModel):
 
             # 1. 从 farm_iot 模块获取该地块的每日均温
             # 简化逻辑：查询该地块关联设备的 'air_temp' 遥测记录
-            telemetries = self.env['farm.telemetry'].search([
+            telemetries = self.env['iiot.telemetry'].search([
                 ('parcel_id', '=', rec.land_parcel_id.id),
                 ('timestamp', '>=', fields.Datetime.to_string(rec.date_start)),
                 ('key', '=', 'air_temp')

@@ -118,13 +118,13 @@
         <field name="name">farm.medicinal.plants.analysis.tree</field>
         <field name="model">farm.medicinal.plants.analysis</field>
         <field name="arch" type="xml">
-            <tree string="Medicinal Plants Analysis">
+            <list string="Medicinal Plants Analysis">
                 <field name="analysis_date"/>
                 <field name="operation_id"/>
                 <field name="target_compound"/>
                 <field name="compound_level"/>
                 <field name="analysis_status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

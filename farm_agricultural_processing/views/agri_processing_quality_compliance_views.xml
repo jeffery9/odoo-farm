@@ -26,14 +26,14 @@
         <field name="name">agri.processing.multi.output.tree</field>
         <field name="model">agri.processing.multi.output</field>
         <field name="arch" type="xml">
-            <tree string="Multi-Output Process">
+            <list string="Multi-Output Process">
                 <field name="name"/>
                 <field name="bom_id"/>
                 <field name="input_qty"/>
                 <field name="total_output_qty"/>
                 <field name="yield_rate"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -61,12 +61,12 @@
                     </group>
                     <group string="Output Products">
                         <field name="output_line_ids">
-                            <tree editable="top">
+                            <list editable="top">
                                 <field name="product_id"/>
                                 <field name="output_qty"/>
                                 <field name="output_percentage"/>
                                 <field name="component_ratio"/>
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </sheet>
@@ -79,14 +79,14 @@
         <field name="name">agri.processing.attribute.inheritance.tree</field>
         <field name="model">agri.processing.attribute.inheritance</field>
         <field name="arch" type="xml">
-            <tree string="Attribute Inheritance Rules">
+            <list string="Attribute Inheritance Rules">
                 <field name="name"/>
                 <field name="source_product_id"/>
                 <field name="target_product_id"/>
                 <field name="inherits_organic"/>
                 <field name="processing_method"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -131,14 +131,14 @@
         <field name="name">agri.processing.active.ingredient.tree</field>
         <field name="model">agri.processing.active.ingredient</field>
         <field name="arch" type="xml">
-            <tree string="Active Ingredient Standardization">
+            <list string="Active Ingredient Standardization">
                 <field name="name"/>
                 <field name="ai_name"/>
                 <field name="product_tmpl_id"/>
                 <field name="target_ai_content"/>
                 <field name="actual_ai_content"/>
                 <field name="is_content_valid"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -183,7 +183,7 @@
         <field name="name">agri.processing.allergen.control.tree</field>
         <field name="model">agri.processing.allergen.control</field>
         <field name="arch" type="xml">
-            <tree string="Allergen Control Records"
+            <list string="Allergen Control Records"
                   decoration-info="cleaning_required"
                   decoration-success="cleaning_performed"
                   decoration-warning="allergen_conflict_detected">
@@ -194,7 +194,7 @@
                 <field name="cleaning_required"/>
                 <field name="cleaning_performed"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -247,7 +247,7 @@
         <field name="name">agri.processing.gmp.monitoring.tree</field>
         <field name="model">agri.processing.gmp.monitoring</field>
         <field name="arch" type="xml">
-            <tree string="GMP Environmental Monitoring">
+            <list string="GMP Environmental Monitoring">
                 <field name="name"/>
                 <field name="production_id"/>
                 <field name="monitoring_date"/>
@@ -255,7 +255,7 @@
                 <field name="humidity_avg"/>
                 <field name="is_environment_compliant"/>
                 <field name="recorded_by"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -309,14 +309,14 @@
         <field name="name">agri.processing.label.compliance.tree</field>
         <field name="model">agri.processing.label.compliance</field>
         <field name="arch" type="xml">
-            <tree string="Label Compliance Records">
+            <list string="Label Compliance Records">
                 <field name="name"/>
                 <field name="product_id"/>
                 <field name="is_approved"/>
                 <field name="is_license_compliant"/>
                 <field name="export_compliant"/>
                 <field name="reviewed_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 

@@ -5,14 +5,14 @@
         <field name="name">product.sync.tree</field>
         <field name="model">product.sync</field>
         <field name="arch" type="xml">
-            <tree string="Product Sync Status" decoration-danger="sync_status=='error'" decoration-info="sync_status=='synced'" decoration-muted="sync_status=='not_synced'">
+            <list string="Product Sync Status" decoration-danger="sync_status=='error'" decoration-info="sync_status=='synced'" decoration-muted="sync_status=='not_synced'">
                 <field name="product_id"/>
                 <field name="douyin_account_id"/>
                 <field name="douyin_product_id"/>
                 <field name="sync_status"/>
                 <field name="last_sync_time"/>
                 <field name="sync_error"/>
-            </tree>
+            </list>
         </field>
     </record>
 

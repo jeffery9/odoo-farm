@@ -5,7 +5,7 @@
         <field name="name">farm.government.platform.config.tree</field>
         <field name="model">farm.government.platform.config</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="code"/>
                 <field name="api_endpoint"/>
@@ -13,7 +13,7 @@
                 <field name="active"/>
                 <field name="last_submission"/>
                 <field name="next_scheduled_submission"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -68,7 +68,7 @@
         <field name="name">farm.government.data.report.tree</field>
         <field name="model">farm.government.data.report</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="submission_status=='failed'"
+            <list decoration-danger="submission_status=='failed'"
                   decoration-warning="submission_status in ['pending', 'submitted']"
                   decoration-success="submission_status in ['approved']">
                 <field name="name"/>
@@ -78,7 +78,7 @@
                 <field name="submission_status"/>
                 <field name="submission_attempts"/>
                 <field name="last_attempt_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 

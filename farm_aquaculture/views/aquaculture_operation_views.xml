@@ -110,7 +110,7 @@
         <field name="name">farm.water.quality.log.tree</field>
         <field name="model">farm.water.quality.log</field>
         <field name="arch" type="xml">
-            <tree string="Water Quality Logs">
+            <list string="Water Quality Logs">
                 <field name="log_date"/>
                 <field name="operation_id"/>
                 <field name="temperature"/>
@@ -119,7 +119,7 @@
                 <field name="ammonia_level"/>
                 <field name="nitrite_level"/>
                 <field name="water_quality_status" invisible="1"/>
-            </tree>
+            </list>
         </field>
     </record>
 

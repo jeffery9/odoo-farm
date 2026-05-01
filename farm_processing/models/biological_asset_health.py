@@ -27,7 +27,7 @@ class StockLotHealth(models.Model):
     Farm-specific extension of the stock lot health model.
     This ensures backward compatibility while using the new agri.* namespace.
     """
-    _name = 'farm.stock.lot.health'
+    # _name = 'farm.stock.lot.health'
     _description = 'Stock Lot Health (Deprecated - Use stock.lot with agri.health.schedule)'
     _inherit = 'stock.lot'
 

@@ -7,13 +7,16 @@ class FarmActivity(models.Model):
     """
     Agricultural Activity Management.
     Domain Role: Physical manifestation of an Agri Domain activity within a specific Farm.
-    US-01-01: Agricultural Activity Classification
-    US-01-02: Sector-specific attributes
-    Level 4: Agri-Farm Semantic Alignment [US-104-2026]
+    Architecture: Delegate Inheritance (_inherits) to project.project to avoid SQL conflicts in Odoo 19.
     """
     _name = 'farm.activity'
     _description = 'Agricultural Activity'
-    _inherit = ['project.project', 'farm.core.creation.method.mixin']
+    
+    # Use delegate inheritance to isolate physical tables and avoid M2M conflicts
+    _inherits = {'project.project': 'project_id'}
+    _inherit = ['farm.core.creation.method.mixin']
+
+    project_id = fields.Many2one('project.project', required=True, ondelete='cascade', string="Project Reference")
 
     # Extend project.project with agricultural properties
     is_agri_activity = fields.Boolean(
@@ -43,7 +46,7 @@ class FarmActivity(models.Model):
         help="Custom sequence for tasks in this project. If empty, the family default will be used."
     )
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals_list):
         """Override to handle sequence generation for agricultural activities"""
         records = super(FarmActivity, self).create(vals_list)
@@ -58,15 +61,19 @@ class FarmTask(models.Model):
     """
     Agricultural Task Management.
     Domain Role: The atomic execution unit of agricultural physics.
-    Level 4: Agri-Farm Semantic Alignment [US-104-2026]
+    Architecture: Delegate Inheritance (_inherits) to project.task to avoid SQL conflicts.
     """
     _name = 'farm.task'
     _description = 'Agricultural Task'
+    
+    # Use delegate inheritance to isolate physical tables
+    _inherits = {'project.task': 'task_id'}
     _inherit = [
-        'project.task', 
         'farm.core.creation.method.mixin',
         'agri.task.mixin' # [Semantic Refactoring] Inherit domain physics and protocols
     ]
+
+    task_id = fields.Many2one('project.task', required=True, ondelete='cascade', string="Project Task Reference")
 
     # Link to land parcel (Now linked via the Agri Location domain model)
     land_parcel_id = fields.Many2one('farm.location', string="Physical Container", domain=[('is_land_parcel', '=', True)])
@@ -78,7 +85,7 @@ class FarmTask(models.Model):
         ('aquaculture', 'Aquaculture'),
         ('harvesting', 'Harvesting'),
         ('processing', 'Processing'),
-    ], string="Activity Family", related='project_id.activity_family', store=True)
+    ], string="Activity Family", store=True)
 
     # Crop or livestock involved
     product_id = fields.Many2one('product.product', string="Crop/Livestock")

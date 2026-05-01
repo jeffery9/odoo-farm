@@ -9,7 +9,7 @@ class AgriIndustryPlantingMixin(models.AbstractModel):
     _description = 'Agricultural Planting Standard Mixin'
 
     # Sector specific physics
-    phenology_stage_id = fields.Many2one('farm.industry.physio.stage', string="Phenology Stage")
+    phenology_stage_id = fields.Many2one('agri.industry.physio.stage', string="Phenology Stage")
     seeding_depth = fields.Float("Target Seeding Depth (cm)")
     target_plant_density = fields.Float("Target Plant Density (plants/ha)")
     

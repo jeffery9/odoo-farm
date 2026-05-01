@@ -49,10 +49,14 @@ class IiotDevice(models.Model):
     created_date = fields.Datetime('Created Date', default=fields.Datetime.now)
     last_update = fields.Datetime('Last Update', default=fields.Datetime.now)
 
-    _sql_constraints = [
-        ('serial_number_uniq', 'UNIQUE(serial_number)', 'Serial number must be unique!'),
-        ('device_id_uniq', 'UNIQUE(device_id)', 'Device ID must be unique!'),
-    ]
+    _serial_number_uniq = models.Constraint(
+        'UNIQUE(serial_number)',
+        'Serial number must be unique!'
+    )
+    _device_id_uniq = models.Constraint(
+        'UNIQUE(device_id)',
+        'Device ID must be unique!'
+    )
 
     @api.model
     def _get_business_models(self):
@@ -194,17 +198,17 @@ class IiotDevice(models.Model):
         vals['last_update'] = fields.Datetime.now()
         return super().write(vals)
 
-    @api.model
-    def create(self, vals):
-        if 'device_id' not in vals:
-            # Generate device ID from serial number or use default
-            serial = vals.get('serial_number', 'device')
-            vals['device_id'] = serial.replace(' ', '_').replace('-', '_').lower()
-
-        if 'config_token' not in vals:
-            # Generate initial config token
-            vals['config_token'] = str(uuid.uuid4())
-
-        record = super().create(vals)
-        return record
+    @api.model_create_multi
+    def create(self, vals_list):
+        if isinstance(vals_list, dict):
+            vals_list = [vals_list]
+        for vals in vals_list:
+            if isinstance(vals, list):
+                vals = vals[0]  # Just in case Odoo passes a nested list
+            if 'device_id' not in vals:
+                serial = vals.get('serial_number', 'device')
+                vals['device_id'] = serial.replace(' ', '_').replace('-', '_').lower()
+            if 'config_token' not in vals:
+                vals['config_token'] = str(uuid.uuid4())
+        return super().create(vals_list)
 

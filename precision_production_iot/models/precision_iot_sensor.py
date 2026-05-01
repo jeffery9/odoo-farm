@@ -48,10 +48,14 @@ class PrecisionIotSensor(models.Model):
     # Relations
     reading_ids = fields.One2many('precision.iot.reading', 'sensor_id', string='Readings')
 
-    _sql_constraints = [
-        ('sensor_id_uniq', 'unique(sensor_id)', 'Sensor ID must be unique!'),
-        ('device_sensor_uniq', 'unique(device_id, sensor_id)', 'Sensor ID must be unique per device!'),
-    ]
+    _sensor_id_uniq = models.Constraint(
+        'unique(sensor_id)',
+        'Sensor ID must be unique!'
+    )
+    _device_sensor_uniq = models.Constraint(
+        'unique(device_id, sensor_id)',
+        'Sensor ID must be unique per device!'
+    )
 
     @api.constrains('min_range', 'max_range')
     def _check_range(self):

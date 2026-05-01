@@ -22,14 +22,14 @@
         <field name="name">agri.regional.circular.governance.tree</field>
         <field name="model">agri.regional.circular.governance</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="administrative_level"/>
                 <field name="area_name"/>
                 <field name="total_participating_farms"/>
                 <field name="total_waste_processed_ton"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -129,14 +129,14 @@
         <field name="name">agri.farm.circular.participation.tree</field>
         <field name="model">agri.farm.circular.participation</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="regional_governance_id"/>
                 <field name="farm_location_id"/>
                 <field name="waste_contributed_ton"/>
                 <field name="resources_received_ton"/>
                 <field name="participation_status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

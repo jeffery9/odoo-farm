@@ -10,8 +10,8 @@ class TestLivestockLogic(TransactionCase):
         self.Bom = self.env['mrp.bom']
         
         # 1. Create animal product
-        self.pig = self.Product.create({'name': 'Pig', 'type': 'product'})
-        self.feed = self.Product.create({'name': 'Pig Feed', 'type': 'product'})
+        self.pig = self.Product.create({'name': 'Pig', 'type': 'consu'})
+        self.feed = self.Product.create({'name': 'Pig Feed', 'type': 'consu'})
         
         # 2. Create feeding recipe
         self.bom = self.Bom.create({

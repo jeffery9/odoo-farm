@@ -5,13 +5,13 @@
         <field name="name">cooperative.entity.tree</field>
         <field name="model">cooperative.entity</field>
         <field name="arch" type="xml">
-            <tree string="Cooperatives">
+            <list string="Cooperatives">
                 <field name="name"/>
                 <field name="code"/>
                 <field name="legal_representative"/>
                 <field name="registration_number"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -49,12 +49,12 @@
                         </page>
                         <page string="Member Farms">
                             <field name="member_farm_ids">
-                                <tree>
+                                <list>
                                     <field name="code"/>
                                     <field name="name"/>
                                     <field name="contact_person"/>
                                     <field name="is_active"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Description">
@@ -71,14 +71,14 @@
         <field name="name">farm.entity.tree</field>
         <field name="model">farm.entity</field>
         <field name="arch" type="xml">
-            <tree string="Farm Entities">
+            <list string="Farm Entities">
                 <field name="code"/>
                 <field name="name"/>
                 <field name="entity_type"/>
                 <field name="parent_entity_id"/>
                 <field name="company_id"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -122,12 +122,12 @@
                         </page>
                         <page string="Child Entities">
                             <field name="child_entity_ids">
-                                <tree>
+                                <list>
                                     <field name="code"/>
                                     <field name="name"/>
                                     <field name="entity_type"/>
                                     <field name="is_active"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Description">
@@ -144,7 +144,7 @@
         <field name="name">resource.sharing.tree</field>
         <field name="model">resource.sharing</field>
         <field name="arch" type="xml">
-            <tree string="Resource Sharing">
+            <list string="Resource Sharing">
                 <field name="name"/>
                 <field name="source_entity_id"/>
                 <field name="target_entity_id"/>
@@ -153,7 +153,7 @@
                 <field name="start_date"/>
                 <field name="end_date"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -203,7 +203,7 @@
         <field name="name">internal.settlement.tree</field>
         <field name="model">internal.settlement</field>
         <field name="arch" type="xml">
-            <tree string="Internal Settlements">
+            <list string="Internal Settlements">
                 <field name="name"/>
                 <field name="from_entity_id"/>
                 <field name="to_entity_id"/>
@@ -211,7 +211,7 @@
                 <field name="amount"/>
                 <field name="settlement_date"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -259,13 +259,13 @@
         <field name="name">franchise.farm.tree</field>
         <field name="model">franchise.farm</field>
         <field name="arch" type="xml">
-            <tree string="Franchise Farms">
+            <list string="Franchise Farms">
                 <field name="code"/>
                 <field name="name"/>
                 <field name="farm_entity_id"/>
                 <field name="compliance_status"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 

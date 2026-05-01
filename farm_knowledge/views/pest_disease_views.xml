@@ -4,12 +4,12 @@
         <field name="name">agri.pest.disease.tree</field>
         <field name="model">agri.pest.disease</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="scientific_name"/>
                 <field name="category"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 

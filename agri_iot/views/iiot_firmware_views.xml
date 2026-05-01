@@ -9,7 +9,6 @@
                 <field name="name"/>
                 <field name="version"/>
                 <field name="profile_code"/>
-                <field name="file_size"/>
                 <field name="checksum"/>
                 <field name="is_active"/>
                 <field name="create_date"/>
@@ -24,7 +23,6 @@
         <field name="arch" type="xml">
             <form string="固件版本">
                 <header>
-                    <button name="action_upload_firmware" string="Upload Firmware" type="object" class="btn-primary"/>
                 </header>
                 <sheet>
                     <group>
@@ -34,8 +32,6 @@
                             <field name="profile_code"/>
                         </group>
                         <group>
-                            <field name="file_url"/>
-                            <field name="file_size"/>
                             <field name="checksum"/>
                         </group>
                     </group>
@@ -45,15 +41,9 @@
                     </group>
                     <notebook>
                         <page string="设备更新记录" name="updates">
-                            <field name="update_ids" nolabel="1"/>
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
-                </div>
             </form>
         </field>
     </record>

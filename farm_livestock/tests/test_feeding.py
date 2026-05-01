@@ -9,8 +9,8 @@ class TestLivestockFeeding(TransactionCase):
         self.Task = self.env['project.task']
         
         # 1. 创建饲料产品
-        self.corn = self.Product.create({'name': 'Corn Feed', 'type': 'product'})
-        self.soybean = self.Product.create({'name': 'Soybean Meal', 'type': 'product'})
+        self.corn = self.Product.create({'name': 'Corn Feed', 'type': 'consu'})
+        self.soybean = self.Product.create({'name': 'Soybean Meal', 'type': 'consu'})
         
         # 2. 创建成品描述（逻辑对象：某次饲喂产出）
         self.feeding_output = self.Product.create({'name': 'Daily Ration', 'type': 'service'})

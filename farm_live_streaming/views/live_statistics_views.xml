@@ -5,7 +5,7 @@
         <field name="name">live.statistics.tree</field>
         <field name="model">live.statistics</field>
         <field name="arch" type="xml">
-            <tree string="Live Statistics">
+            <list string="Live Statistics">
                 <field name="live_session_id"/>
                 <field name="date"/>
                 <field name="view_count"/>
@@ -13,7 +13,7 @@
                 <field name="comment_count"/>
                 <field name="conversion_rate"/>
                 <field name="total_sales"/>
-            </tree>
+            </list>
         </field>
     </record>
 

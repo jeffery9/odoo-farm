@@ -16,7 +16,7 @@ class IrUiMenu(models.Model):
         return res
 
 class IrActionsActWindow(models.Model):
-    _inherit = 'ir.actions.act.window'
+    _inherit = 'ir.actions.act_window'
 
     def read(self, fields=None, load='_classic_read'):
         """ 拦截动作读取，实时替换标题 """

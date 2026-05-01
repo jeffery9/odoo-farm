@@ -13,7 +13,7 @@ class TestISLCore(TransactionCase):
         # Create a basic product
         self.product_pig = self.Product.create({
             'name': 'Angus Pig',
-            'type': 'product',
+            'type': 'consu',
         })
 
     def test_01_auto_isl_creation_on_bom(self):

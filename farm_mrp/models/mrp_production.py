@@ -5,7 +5,19 @@ from odoo.exceptions import UserError
 class MrpProduction(models.Model):
     _inherit = 'mrp.production'
 
-    industry_type = fields.Selection(related='bom_id.industry_type', string="Industry Standard", store=True, readonly=True)
+    industry_type = fields.Selection(selection=[
+        ('food_processing', 'Food Processing'),
+        ('pharmaceutical', 'Pharmaceutical'),
+        ('chemical', 'Chemical'),
+        ('general', 'General Manufacturing'),
+        ('standard', 'Standard'),
+        ('livestock', 'Livestock'),
+        ('processing', 'Processing'),
+        ('aquaculture', 'Aquaculture'),
+        ('crop', 'Crop'),
+        ('pharma', 'Pharmaceutical'),
+        ('chemical', 'Chemical'),
+    ], related='bom_id.industry_type', string="Industry Standard", store=True, readonly=True)
     isl_record_type = fields.Char(string="ISL Record Type", compute='_compute_isl_record_type', store=False)
 
     def _compute_isl_record_type(self):

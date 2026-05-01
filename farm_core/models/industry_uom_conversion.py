@@ -6,7 +6,7 @@ class IndustryUOMConversion(models.Model):
     _description = 'Industry Package UOM Conversion Data'
 
     package_id = fields.Many2one(
-        'farm.industry.data.package',
+        'agri.industry.data.package',
         string="Industry Package",
         required=True,
         ondelete='cascade'

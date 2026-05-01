@@ -5,14 +5,14 @@
         <field name="name">quality.control.standard.tree</field>
         <field name="model">quality.control.standard</field>
         <field name="arch" type="xml">
-            <tree string="Quality Control Standards">
+            <list string="Quality Control Standards">
                 <field name="name"/>
                 <field name="code"/>
                 <field name="cooperative_id"/>
                 <field name="product_category_id"/>
                 <field name="quality_threshold"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -51,7 +51,7 @@
         <field name="name">product.certification.tree</field>
         <field name="model">product.certification</field>
         <field name="arch" type="xml">
-            <tree string="Product Certifications" decoration-success="is_certified==True" decoration-danger="is_certified==False">
+            <list string="Product Certifications" decoration-success="is_certified==True" decoration-danger="is_certified==False">
                 <field name="name"/>
                 <field name="cooperative_id"/>
                 <field name="member_id"/>
@@ -60,7 +60,7 @@
                 <field name="is_certified"/>
                 <field name="expiry_date"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -69,7 +69,7 @@
         <field name="name">joint.procurement.tree</field>
         <field name="model">joint.procurement</field>
         <field name="arch" type="xml">
-            <tree string="Joint Procurements" decoration-info="state=='confirmed'" decoration-success="state=='completed'" decoration-muted="state=='cancelled'">
+            <list string="Joint Procurements" decoration-info="state=='confirmed'" decoration-success="state=='completed'" decoration-muted="state=='cancelled'">
                 <field name="name"/>
                 <field name="cooperative_id"/>
                 <field name="supplier_id"/>
@@ -77,7 +77,7 @@
                 <field name="total_amount"/>
                 <field name="markup_rate"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -114,13 +114,13 @@
                     <notebook>
                         <page string="Procurement Lines" name="lines">
                             <field name="procurement_lines">
-                                <tree editable="top">
+                                <list editable="top">
                                     <field name="member_id"/>
                                     <field name="product_id"/>
                                     <field name="quantity"/>
                                     <field name="unit_price"/>
                                     <field name="member_amount"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Settlement Lines" name="settlements">
@@ -137,7 +137,7 @@
         <field name="name">internal.marketplace.tree</field>
         <field name="model">internal.marketplace</field>
         <field name="arch" type="xml">
-            <tree string="Internal Marketplace" decoration-info="state=='open'" decoration-success="state=='completed'" decoration-muted="state=='cancelled'">
+            <list string="Internal Marketplace" decoration-info="state=='open'" decoration-success="state=='completed'" decoration-muted="state=='cancelled'">
                 <field name="name"/>
                 <field name="supplier_member_id"/>
                 <field name="listing_type"/>
@@ -145,7 +145,7 @@
                 <field name="quantity"/>
                 <field name="unit_price"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -154,14 +154,14 @@
         <field name="name">procurement.planning.tree</field>
         <field name="model">procurement.planning</field>
         <field name="arch" type="xml">
-            <tree string="Procurement Planning" decoration-info="state=='confirmed'" decoration-success="state=='executed'" decoration-muted="state=='cancelled'">
+            <list string="Procurement Planning" decoration-info="state=='confirmed'" decoration-success="state=='executed'" decoration-muted="state=='cancelled'">
                 <field name="name"/>
                 <field name="cooperative_id"/>
                 <field name="planning_date"/>
                 <field name="planning_period"/>
                 <field name="season"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -170,7 +170,7 @@
         <field name="name">agri.service.tree</field>
         <field name="model">agri.service</field>
         <field name="arch" type="xml">
-            <tree string="Agricultural Services" decoration-info="is_active==True" decoration-muted="is_active==False">
+            <list string="Agricultural Services" decoration-info="is_active==True" decoration-muted="is_active==False">
                 <field name="name"/>
                 <field name="code"/>
                 <field name="provider_member_id"/>
@@ -178,7 +178,7 @@
                 <field name="capacity"/>
                 <field name="unit_rate"/>
                 <field name="available_from"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -187,14 +187,14 @@
         <field name="name">service.order.tree</field>
         <field name="model">service.order</field>
         <field name="arch" type="xml">
-            <tree string="Service Orders" decoration-info="state=='confirmed'" decoration-success="state=='completed'" decoration-muted="state=='cancelled'">
+            <list string="Service Orders" decoration-info="state=='confirmed'" decoration-success="state=='completed'" decoration-muted="state=='cancelled'">
                 <field name="name"/>
                 <field name="service_id"/>
                 <field name="requester_member_id"/>
                 <field name="required_date"/>
                 <field name="total_amount"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -203,7 +203,7 @@
         <field name="name">internal.loan.tree</field>
         <field name="model">internal.loan</field>
         <field name="arch" type="xml">
-            <tree string="Internal Loans" decoration-info="state=='disbursed'" decoration-success="state=='repaid'" decoration-danger="state=='defaulted'">
+            <list string="Internal Loans" decoration-info="state=='disbursed'" decoration-success="state=='repaid'" decoration-danger="state=='defaulted'">
                 <field name="name"/>
                 <field name="borrower_member_id"/>
                 <field name="lender_member_id"/>
@@ -212,7 +212,7 @@
                 <field name="loan_date"/>
                 <field name="maturity_date"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -221,14 +221,14 @@
         <field name="name">subsidy.disbursement.tree</field>
         <field name="model">subsidy.disbursement</field>
         <field name="arch" type="xml">
-            <tree string="Subsidy Disbursements" decoration-info="state=='approved'" decoration-success="state=='distributed'" decoration-muted="state=='pending'">
+            <list string="Subsidy Disbursements" decoration-info="state=='approved'" decoration-success="state=='distributed'" decoration-muted="state=='pending'">
                 <field name="name"/>
                 <field name="cooperative_id"/>
                 <field name="subsidy_source"/>
                 <field name="total_amount"/>
                 <field name="disbursement_date"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -237,14 +237,14 @@
         <field name="name">cooperative.decision.tree</field>
         <field name="model">cooperative.decision</field>
         <field name="arch" type="xml">
-            <tree string="Cooperative Decisions" decoration-info="state=='confirmed'" decoration-success="state=='executed'" decoration-muted="state=='cancelled'">
+            <list string="Cooperative Decisions" decoration-info="state=='confirmed'" decoration-success="state=='executed'" decoration-muted="state=='cancelled'">
                 <field name="name"/>
                 <field name="decision_type"/>
                 <field name="meeting_date"/>
                 <field name="actual_majority"/>
                 <field name="voting_result"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -253,13 +253,13 @@
         <field name="name">multi.sign.process.tree</field>
         <field name="model">multi.sign.process</field>
         <field name="arch" type="xml">
-            <tree string="Multi-sign Processes" decoration-info="state=='in_progress'" decoration-success="state=='approved'" decoration-danger="state=='rejected'">
+            <list string="Multi-sign Processes" decoration-info="state=='in_progress'" decoration-success="state=='approved'" decoration-danger="state=='rejected'">
                 <field name="name"/>
                 <field name="process_type"/>
                 <field name="initiator_id"/>
                 <field name="required_signers"/>
                 <field name="state"/>
-            </tree>
+            </list>
         </field>
     </record>
 

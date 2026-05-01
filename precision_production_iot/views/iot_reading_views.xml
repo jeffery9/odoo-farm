@@ -5,7 +5,7 @@
         <field name="name">precision.iot.reading.tree</field>
         <field name="model">precision.iot.reading</field>
         <field name="arch" type="xml">
-            <tree string="Precision IoT Readings" decoration-danger="is_deviation_critical==True" decoration-warning="deviation_percent and deviation_percent>10 and deviation_percent&lt;=25" decoration-info="deviation_percent and deviation_percent&lt;=10">
+            <list string="Precision IoT Readings" decoration-danger="is_deviation_critical==True" decoration-warning="deviation_percent and deviation_percent>10 and deviation_percent&lt;=25" decoration-info="deviation_percent and deviation_percent&lt;=10">
                 <field name="read_datetime"/>
                 <field name="device_id"/>
                 <field name="sensor_id"/>
@@ -16,7 +16,7 @@
                 <field name="is_deviation_critical"/>
                 <field name="production_id"/>
                 <field name="phase_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 

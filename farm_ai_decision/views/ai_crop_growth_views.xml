@@ -64,7 +64,7 @@
         <field name="name">agri.ai.crop.growth.prediction.tree</field>
         <field name="model">agri.ai.crop.growth.prediction</field>
         <field name="arch" type="xml">
-            <tree string="AI Crop Growth Predictions">
+            <list string="AI Crop Growth Predictions">
                 <field name="product_id"/>
                 <field name="land_location_id"/>
                 <field name="planting_date"/>
@@ -72,7 +72,7 @@
                 <field name="predicted_yield"/>
                 <field name="confidence_score"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

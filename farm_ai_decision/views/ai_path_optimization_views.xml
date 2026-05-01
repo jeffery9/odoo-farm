@@ -61,13 +61,13 @@
         <field name="name">agri.ai.operation.path.optimization.tree</field>
         <field name="model">agri.ai.operation.path.optimization</field>
         <field name="arch" type="xml">
-            <tree string="AI Operation Path Optimization">
+            <list string="AI Operation Path Optimization">
                 <field name="operation_type"/>
                 <field name="total_distance"/>
                 <field name="estimated_duration"/>
                 <field name="confidence_score"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

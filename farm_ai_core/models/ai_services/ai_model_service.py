@@ -15,7 +15,7 @@ class AIModelRegistryExtension(models.Model):
     AI Model Registry Extension - Provides extended model management functions
     This model extends the AIModelRegistry functionality without inheriting
     """
-    _inherit = 'ai.model.registry'  # Proper inheritance from the base model
+    _inherit = 'agri.ai.model.registry'  # Proper inheritance from the base model
 
     def action_train_model(self):
         """Action to train or retrain the model"""

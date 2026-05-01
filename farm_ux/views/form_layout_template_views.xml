@@ -5,14 +5,14 @@
         <field name="name">form.layout.template.tree</field>
         <field name="model">form.layout.template</field>
         <field name="arch" type="xml">
-            <tree string="Form Layout Templates" decoration-danger="not is_active" decoration-success="is_active">
+            <list string="Form Layout Templates" decoration-danger="not is_active" decoration-success="is_active">
                 <field name="name"/>
                 <field name="model_name"/>
                 <field name="industry_type"/>
                 <field name="user_role"/>
                 <field name="version"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 

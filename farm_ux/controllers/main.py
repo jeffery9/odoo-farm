@@ -1,6 +1,9 @@
 from odoo import http
 from odoo.http import request
-from odoo.addons.web.controllers.main import Home
+try:
+    from odoo.addons.web.controllers.home import Home
+except ImportError:
+    from odoo.addons.web.controllers.main import Home
 import json
 
 

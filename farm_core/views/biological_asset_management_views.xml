@@ -5,12 +5,9 @@
         <field name="name">agri.biological.asset.list</field>
         <field name="model">agri.biological.asset</field>
         <field name="arch" type="xml">
-            <list string="Biological Assets" decoration-success="growth_stage == 'mature'" decoration-info="growth_stage == 'growing'">
+            <list string="Biological Assets" >
                 <field name="name"/>
                 <field name="agricultural_type"/> <!-- From agri.biological.asset -->
-                <field name="lot_id"/>
-                <field name="growth_stage"/>
-                <field name="current_valuation"/>
                 <field name="is_mature" widget="boolean_toggle"/>
             </list>
         </field>
@@ -23,14 +20,12 @@
         <field name="arch" type="xml">
             <form string="Biological Asset">
                 <header>
-                    <field name="growth_stage" widget="statusbar" statusbar_visible="newborn,growing,mature,harvested" clickable="True"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only" string="Operational Name"/>
                         <h1><field name="name" placeholder="e.g. Heifer #102"/></h1>
                         <group>
-                            <field name="agri_asset_id" readonly="1" groups="base.group_no_one"/>
                         </group>
                     </div>
                     <group>
@@ -41,20 +36,14 @@
                             <field name="growth_stage_id"/>
                         </group>
                         <group string="Farm Management">
-                            <field name="lot_id"/>
-                            <field name="generation"/>
-                            <field name="farm_id" groups="base.group_multi_company"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Pedigree &amp; Biology" name="pedigree">
                             <group>
                                 <group string="Ancestry">
-                                    <field name="father_id"/>
-                                    <field name="mother_id"/>
                                 </group>
                                 <group string="Traits">
-                                    <field name="gender"/>
                                     <field name="quality_grade"/>
                                 </group>
                             </group>
@@ -65,16 +54,10 @@
                                     <field name="maturity_date"/>
                                     <field name="is_mature"/>
                                 </group>
-                                <group string="Financial Asset (L3)">
-                                    <field name="current_valuation" widget="monetary"/>
-                                </group>
                             </group>
                         </page>
                         <page string="Sustainability &amp; Evidence" name="evidence">
                             <group>
-                                <field name="esg_score"/>
-                                <field name="impact_credits"/>
-                                <field name="audit_confidence" widget="progressbar"/>
                             </group>
                         </page>
                     </notebook>
@@ -94,11 +77,9 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_biological_asset_root" name="Biological Assets"
               parent="farm_core.menu_farm_root"
               sequence="40"/>
     
-    <menuitem id="menu_farm_biological_assets" name="Living Assets"
               parent="menu_biological_asset_root"
               action="action_farm_biological_asset"
               sequence="10"/>

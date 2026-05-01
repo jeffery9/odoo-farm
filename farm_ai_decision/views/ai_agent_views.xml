@@ -5,7 +5,7 @@
         <field name="name">agri.ai.agent.tree</field>
         <field name="model">agri.ai.agent</field>
         <field name="arch" type="xml">
-            <tree string="AI Agents">
+            <list string="AI Agents">
                 <field name="name"/>
                 <field name="agent_type"/>
                 <field name="industry_id"/>
@@ -15,7 +15,7 @@
                 <field name="execution_count"/>
                 <field name="last_execution"/>
                 <field name="create_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 

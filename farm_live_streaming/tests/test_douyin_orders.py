@@ -9,7 +9,7 @@ class TestDouyinOrders(TransactionCase):
         self.Account = self.env['douyin.account']
         self.Mapping = self.env['douyin.product']
         self.LiveOrder = self.env['live.order']
-        self.Product = self.env['product.product'].create({'name': 'Organic Rice', 'type': 'product'})
+        self.Product = self.env['product.product'].create({'name': 'Organic Rice', 'type': 'consu'})
         
         # 1. Create account and mapping
         self.account = self.Account.create({

@@ -9,8 +9,8 @@ class TestProcessingISL(TransactionCase):
         self.Bom = self.env['mrp.bom']
         self.Production = self.env['mrp.production']
         
-        self.juice = self.Product.create({'name': 'Apple Juice', 'type': 'product'})
-        self.apple = self.Product.create({'name': 'Apple', 'type': 'product'})
+        self.juice = self.Product.create({'name': 'Apple Juice', 'type': 'consu'})
+        self.apple = self.Product.create({'name': 'Apple', 'type': 'consu'})
 
     def test_01_energy_cost_form_logic(self):
         """ Test energy cost calculation through Form UI simulation. """

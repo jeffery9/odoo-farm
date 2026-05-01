@@ -24,7 +24,7 @@ class AgriManufacturingMixin(models.AbstractModel):
         ('pharmaceutical', 'Pharmaceutical'),
         ('chemical', 'Chemical'),
         ('general', 'General Manufacturing')
-    ], string='Industry Type', default='general', required=True)
+    ], string='Industry Type', default='general', required=True, ondelete={'food_processing': 'cascade', 'pharmaceutical': 'cascade', 'chemical': 'cascade', 'general': 'cascade'})
 
     industry_specialization = fields.Char('Industry Specialization')
     compliance_requirements = fields.Text('Compliance Requirements')
@@ -74,7 +74,7 @@ class AgriInventoryMixin(models.AbstractModel):
         ('pharmaceutical', 'Pharmaceutical'),
         ('chemical', 'Chemical'),
         ('general', 'General Manufacturing')
-    ], string='Industry Type', default='general', required=True)
+    ], string='Industry Type', default='general', required=True, ondelete={'food_processing': 'cascade', 'pharmaceutical': 'cascade', 'chemical': 'cascade', 'general': 'cascade'})
 
     shelf_life_tracking = fields.Boolean('Shelf Life Tracking', default=False)
     batch_tracking = fields.Boolean('Batch Tracking', default=True)
@@ -107,7 +107,7 @@ class AgriSalesPurchaseMixin(models.AbstractModel):
         ('pharmaceutical', 'Pharmaceutical'),
         ('chemical', 'Chemical'),
         ('general', 'General Manufacturing')
-    ], string='Industry Type', default='general', required=True)
+    ], string='Industry Type', default='general', required=True, ondelete={'food_processing': 'cascade', 'pharmaceutical': 'cascade', 'chemical': 'cascade', 'general': 'cascade'})
 
     industry_certification = fields.Char('Industry Certification')
     compliance_requirements = fields.Text('Compliance Requirements')
@@ -136,7 +136,7 @@ class AgriProductMixin(models.AbstractModel):
         ('pharmaceutical', 'Pharmaceutical'),
         ('chemical', 'Chemical'),
         ('general', 'General Manufacturing')
-    ], string='Industry Type', default='general', required=True)
+    ], string='Industry Type', default='general', required=True, ondelete={'food_processing': 'cascade', 'pharmaceutical': 'cascade', 'chemical': 'cascade', 'general': 'cascade'})
 
     industry_category = fields.Char('Industry Category')
     safety_data_sheet = fields.Binary('Safety Data Sheet')
@@ -165,7 +165,7 @@ class AgriQualityMixin(models.AbstractModel):
         ('pharmaceutical', 'Pharmaceutical'),
         ('chemical', 'Chemical'),
         ('general', 'General Manufacturing')
-    ], string='Industry Type', default='general', required=True)
+    ], string='Industry Type', default='general', required=True, ondelete={'food_processing': 'cascade', 'pharmaceutical': 'cascade', 'chemical': 'cascade', 'general': 'cascade'})
 
     quality_standard = fields.Char('Quality Standard')
     quality_procedures = fields.Html('Quality Procedures')

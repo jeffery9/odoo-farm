@@ -17,9 +17,3 @@ class FarmScLicense(models.Model):
         for rec in self:
             rec.is_active = rec.expiry_date and rec.expiry_date >= today
 
-class FarmScCategory(models.Model):
-    _name = 'farm.sc.category'
-    _description = 'Food Production Category'
-
-    name = fields.Char("Category Name", required=True)
-    code = fields.Char("Category Code")

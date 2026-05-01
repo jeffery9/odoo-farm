@@ -5,12 +5,12 @@
         <field name="name">multi.sensory.interaction.tree</field>
         <field name="model">multi.sensory.interaction</field>
         <field name="arch" type="xml">
-            <tree string="Multi-Sensory Interactions" decoration-danger="not is_enabled" decoration-success="is_enabled">
+            <list string="Multi-Sensory Interactions" decoration-danger="not is_enabled" decoration-success="is_enabled">
                 <field name="name"/>
                 <field name="interaction_type"/>
                 <field name="model_name"/>
                 <field name="is_enabled"/>
-            </tree>
+            </list>
         </field>
     </record>
 

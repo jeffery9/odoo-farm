@@ -4,7 +4,7 @@ class TestTelemetry(TransactionCase):
 
     def setUp(self):
         super(TestTelemetry, self).setUp()
-        self.Telemetry = self.env['farm.telemetry']
+        self.Telemetry = self.env['iiot.telemetry']
         self.Task = self.env['project.task']
         self.task = self.Task.create({'name': 'Pond 01 Management'})
 

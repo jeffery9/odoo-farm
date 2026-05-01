@@ -42,12 +42,12 @@
         <field name="name">farm.cooperative.member.tree</field>
         <field name="model">farm.cooperative.member</field>
         <field name="arch" type="xml">
-            <tree string="Cooperative Members">
+            <list string="Cooperative Members">
                 <field name="partner_id"/>
                 <field name="membership_date"/>
                 <field name="share_capital"/>
                 <field name="is_chairman"/>
-            </tree>
+            </list>
         </field>
     </record>
 

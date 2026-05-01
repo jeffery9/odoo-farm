@@ -83,7 +83,7 @@
         <field name="name">farm.gap.certification.tree</field>
         <field name="model">farm.gap.certification</field>
         <field name="arch" type="xml">
-            <tree string="GAP Certifications" decoration-danger="expiry_date &lt; current_date"
+            <list string="GAP Certifications" decoration-danger="expiry_date &lt; current_date"
                   decoration-success="status == 'valid' and expiry_date &gt;= current_date"
                   decoration-muted="status == 'expired'">
                 <field name="name"/>
@@ -93,7 +93,7 @@
                 <field name="issue_date"/>
                 <field name="expiry_date"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -153,7 +153,7 @@
         <field name="name">farm.gap.audit.tree</field>
         <field name="model">farm.gap.audit</field>
         <field name="arch" type="xml">
-            <tree string="GAP Audits" decoration-info="audit_result == 'pass'"
+            <list string="GAP Audits" decoration-info="audit_result == 'pass'"
                   decoration-warning="audit_result == 'conditional'"
                   decoration-danger="audit_result == 'fail'">
                 <field name="certification_id"/>
@@ -163,7 +163,7 @@
                 <field name="audit_type"/>
                 <field name="total_score"/>
                 <field name="audit_result"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -211,14 +211,14 @@
         <field name="name">farm.gap.compliance.check.tree</field>
         <field name="model">farm.gap.compliance.check</field>
         <field name="arch" type="xml">
-            <tree string="GAP Daily Compliance Checks" decoration-success="overall_compliant == True"
+            <list string="GAP Daily Compliance Checks" decoration-success="overall_compliant == True"
                   decoration-danger="overall_compliant == False">
                 <field name="name"/>
                 <field name="location_id"/>
                 <field name="date"/>
                 <field name="checker_id"/>
                 <field name="overall_compliant"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -257,13 +257,13 @@
         <field name="name">farm.gap.requirement.tree</field>
         <field name="model">farm.gap.requirement</field>
         <field name="arch" type="xml">
-            <tree string="GAP Requirements">
+            <list string="GAP Requirements">
                 <field name="code"/>
                 <field name="name"/>
                 <field name="category"/>
                 <field name="mandatory"/>
                 <field name="frequency"/>
-            </tree>
+            </list>
         </field>
     </record>
 

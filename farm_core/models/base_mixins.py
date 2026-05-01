@@ -62,12 +62,13 @@ class SustainabilityMixin(models.AbstractModel):
         Hook to validate sustainability impact before commit.
         Environmental "negative" actions trigger system-level blocks.
         """
-        carbon = vals.get('carbon_intensity') or self.carbon_intensity
-        if carbon > 50.0:
-            raise ValidationError(_(
-                "Sustainability Redline: This operation exceeds the maximum carbon intensity "
-                "threshold and has been blocked to protect community ESG standards."
-            ))
+        for record in self:
+            carbon = vals.get('carbon_intensity') or record.carbon_intensity
+            if carbon > 50.0:
+                raise ValidationError(_(
+                    "Sustainability Redline: This operation exceeds the maximum carbon intensity "
+                    "threshold and has been blocked to protect community ESG standards."
+                ))
         return True
 
     @api.model_create_multi

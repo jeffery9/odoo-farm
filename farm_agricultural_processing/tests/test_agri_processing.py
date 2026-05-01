@@ -23,13 +23,13 @@ class TestFarmAgriculturalProcessing(TransactionCase):
         cls.product_uom_unit = cls.env.ref('uom.product_uom_unit')
         cls.product_finished = cls.ProductProduct.create({
             'name': 'Processed Product',
-            'type': 'product',
+            'type': 'consu',
             'uom_id': cls.product_uom_unit.id,
             'default_code': 'PP-1',
         })
         cls.product_raw = cls.ProductProduct.create({
             'name': 'Raw Product',
-            'type': 'product',
+            'type': 'consu',
             'uom_id': cls.product_uom_unit.id,
             'default_code': 'RP-1',
         })

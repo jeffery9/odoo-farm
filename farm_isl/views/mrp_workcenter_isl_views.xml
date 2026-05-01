@@ -66,14 +66,14 @@
         <field name="name">farm.mrp.workcenter.tree</field>
         <field name="model">farm.mrp.workcenter</field>
         <field name="arch" type="xml">
-            <tree string="ISL MRP Work Centers">
+            <list string="ISL MRP Work Centers">
                 <field name="name"/>
                 <field name="code"/>
                 <field name="working_state"/>
                 <field name="industry_type"/>
                 <field name="costs_hour"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 

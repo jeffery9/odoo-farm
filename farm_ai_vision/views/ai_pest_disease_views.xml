@@ -5,7 +5,7 @@
         <field name="name">agri.ai.pest.disease.detection.tree</field>
         <field name="model">agri.ai.pest.disease.detection</field>
         <field name="arch" type="xml">
-            <tree string="AI Pest &amp; Disease Detection">
+            <list string="AI Pest &amp; Disease Detection">
                 <field name="name"/>
                 <field name="crop_type"/>
                 <field name="detection_type"/>
@@ -14,7 +14,7 @@
                 <field name="confidence_score"/>
                 <field name="analysis_date"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

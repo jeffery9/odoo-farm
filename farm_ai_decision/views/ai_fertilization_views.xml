@@ -71,14 +71,14 @@
         <field name="name">agri.ai.fertilization.decision.tree</field>
         <field name="model">agri.ai.fertilization.decision</field>
         <field name="arch" type="xml">
-            <tree string="AI Fertilization Decisions">
+            <list string="AI Fertilization Decisions">
                 <field name="land_location_id"/>
                 <field name="product_id"/>
                 <field name="soil_nitrogen"/>
                 <field name="recommended_n"/>
                 <field name="confidence_score"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

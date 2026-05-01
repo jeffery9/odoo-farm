@@ -27,7 +27,7 @@
                     </group>
                     <group string="Processing Steps" name="processing_steps">
                         <field name="processing_steps">
-                            <tree editable="top">
+                            <list editable="top">
                                 <field name="sequence"/>
                                 <field name="step_name"/>
                                 <field name="step_type"/>
@@ -37,7 +37,7 @@
                                 <field name="temperature"/>
                                 <field name="humidity"/>
                                 <field name="ph_level"/>
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </page>

@@ -68,7 +68,7 @@ class AgriGeospatialGeofence(models.Model):
     def check_compliance_for_asset(self, asset_id, asset_type='livestock'):
         """Check compliance based on historical telemetry."""
         self.ensure_one()
-        telemetries = self.env['farm.telemetry'].search([
+        telemetries = self.env['iiot.telemetry'].search([
             ('asset_id', '=', asset_id),
             ('gps_lat', '!=', 0),
             ('gps_lng', '!=', 0)

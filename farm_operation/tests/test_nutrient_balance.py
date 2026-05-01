@@ -24,7 +24,7 @@ class TestNutrientBalance(TransactionCase):
         # 3. 创建化肥产品 (N: 20%, P: 10%, K: 10%)
         self.fertilizer = self.Product.create({
             'name': 'Complex Fertilizer',
-            'type': 'product',
+            'type': 'consu',
             'n_content': 20.0,
             'p_content': 10.0,
             'k_content': 10.0

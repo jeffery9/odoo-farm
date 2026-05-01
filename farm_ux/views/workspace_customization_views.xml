@@ -5,13 +5,13 @@
         <field name="name">workspace.customization.tree</field>
         <field name="model">workspace.customization</field>
         <field name="arch" type="xml">
-            <tree string="Workspace Customizations">
+            <list string="Workspace Customizations">
                 <field name="name"/>
                 <field name="user_id"/>
                 <field name="theme_preference"/>
                 <field name="font_size"/>
                 <field name="is_active"/>
-            </tree>
+            </list>
         </field>
     </record>
 

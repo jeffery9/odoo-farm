@@ -9,7 +9,7 @@ class TestLivestockISL(TransactionCase):
         self.Production = self.env['mrp.production']
         self.Lot = self.env['stock.lot']
         
-        self.pig = self.Product.create({'name': 'Pig', 'type': 'product', 'tracking': 'lot'})
+        self.pig = self.Product.create({'name': 'Pig', 'type': 'consu', 'tracking': 'lot'})
         self.feed = self.Product.create({'name': 'Corn Feed', 'type': 'consu'})
 
     def test_01_fcr_logic_and_form(self):

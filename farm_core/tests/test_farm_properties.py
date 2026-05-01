@@ -29,7 +29,7 @@ class TestFarmProperties(TransactionCase):
         """ 测试生物资产的动态属性 [US-01-02] """
         product = self.Product.create({
             'name': 'Tilapia',
-            'type': 'product',
+            'type': 'consu',
             'tracking': 'lot'
         })
         

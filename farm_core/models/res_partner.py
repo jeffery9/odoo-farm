@@ -5,6 +5,7 @@ class ResPartner(models.Model):
     Agricultural Community Identity.
     Injects Sustainability Mixin to track ESG reputation and credit score.
     """
+    _name = 'res.partner'
     _inherit = ['res.partner', 'agri.sustainability.mixin']
     
     # We use credit_score defined in SustainabilityMixin

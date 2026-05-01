@@ -45,13 +45,13 @@
         <field name="name">farm.manure.batch.tree</field>
         <field name="model">farm.manure.batch</field>
         <field name="arch" type="xml">
-            <tree string="Manure Batches">
+            <list string="Manure Batches">
                 <field name="batch_no"/>
                 <field name="production_date"/>
                 <field name="quantity"/>
                 <field name="disposal_method"/>
                 <field name="location_source_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -93,13 +93,13 @@
         <field name="name">farm.manure.ledger.tree</field>
         <field name="model">farm.manure.ledger</field>
         <field name="arch" type="xml">
-            <tree string="Manure Ledgers">
+            <list string="Manure Ledgers">
                 <field name="ledger_no"/>
                 <field name="year"/>
                 <field name="month"/>
                 <field name="total_quantity_disposed"/>
                 <field name="state" widget="badge"/>
-            </tree>
+            </list>
         </field>
     </record>
 

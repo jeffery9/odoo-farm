@@ -5,14 +5,14 @@
         <field name="name">farm.esg.risk.assessment.tree</field>
         <field name="model">farm.esg.risk.assessment</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="assessment_type"/>
                 <field name="overall_esg_score"/>
                 <field name="esg_risk_level"/>
                 <field name="assessment_period"/>
                 <field name="year"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -96,13 +96,13 @@
         <field name="name">farm.esg.compliance.monitoring.tree</field>
         <field name="model">farm.esg.compliance.monitoring</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="compliance_type"/>
                 <field name="compliance_status"/>
                 <field name="current_value"/>
                 <field name="threshold_value"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -157,13 +157,13 @@
         <field name="name">farm.esg.stakeholder.engagement.tree</field>
         <field name="model">farm.esg.stakeholder.engagement</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="stakeholder_id"/>
                 <field name="stakeholder_type"/>
                 <field name="engagement_date"/>
                 <field name="engagement_type"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -232,14 +232,14 @@
         <field name="name">farm.esg.kpi.tree</field>
         <field name="model">farm.esg.kpi</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="kpi_category"/>
                 <field name="kpi_type"/>
                 <field name="current_value"/>
                 <field name="achievement_percentage"/>
                 <field name="performance_status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

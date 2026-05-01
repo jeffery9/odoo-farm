@@ -123,13 +123,13 @@
         <field name="name">farm.hive.inspection.tree</field>
         <field name="model">farm.hive.inspection</field>
         <field name="arch" type="xml">
-            <tree string="Hive Inspections">
+            <list string="Hive Inspections">
                 <field name="inspection_date"/>
                 <field name="operation_id"/>
                 <field name="colony_strength"/>
                 <field name="health_status"/>
                 <field name="bee_population"/>
-            </tree>
+            </list>
         </field>
     </record>
 

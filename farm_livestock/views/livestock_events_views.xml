@@ -5,13 +5,13 @@
         <field name="name">farm.livestock.event.tree</field>
         <field name="model">farm.livestock.event</field>
         <field name="arch" type="xml">
-            <tree string="Livestock Events">
+            <list string="Livestock Events">
                 <field name="event_date"/>
                 <field name="lot_id"/>
                 <field name="event_type" widget="badge" decoration-info="event_type == 'birth'" decoration-warning="event_type == 'death'"/>
                 <field name="responsible_id"/>
                 <field name="notes"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -59,14 +59,14 @@
         <field name="name">farm.livestock.house.env.tree</field>
         <field name="model">farm.livestock.house.env</field>
         <field name="arch" type="xml">
-            <tree string="House Environment">
+            <list string="House Environment">
                 <field name="capture_time"/>
                 <field name="location_id"/>
                 <field name="temperature"/>
                 <field name="humidity"/>
                 <field name="ammonia_level"/>
                 <field name="comfort_index" widget="progressbar"/>
-            </tree>
+            </list>
         </field>
     </record>
 

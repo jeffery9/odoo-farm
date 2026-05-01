@@ -5,7 +5,7 @@
         <field name="name">agri.ai.image.based.planning.tree</field>
         <field name="model">agri.ai.image.based.planning</field>
         <field name="arch" type="xml">
-            <tree string="AI Image-Based Planning">
+            <list string="AI Image-Based Planning">
                 <field name="name"/>
                 <field name="land_location_id"/>
                 <field name="crop_type"/>
@@ -14,7 +14,7 @@
                 <field name="confidence_score"/>
                 <field name="analysis_date"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 

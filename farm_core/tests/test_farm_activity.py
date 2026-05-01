@@ -50,7 +50,7 @@ class TestFarmLot(TransactionCase):
         self.Product = self.env['product.product']
         self.animal_product = self.Product.create({
             'name': 'Holstein Cow',
-            'type': 'product',
+            'type': 'consu',
             'tracking': 'serial'
         })
 

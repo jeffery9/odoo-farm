@@ -10,14 +10,12 @@
         <!-- IIoT User Group -->
         <record id="group_iiot_user" model="res.groups">
             <field name="name">IIoT用户</field>
-            <field name="category_id" ref="ir_module_category_iiot"/>
             <field name="sequence">10</field>
         </record>
 
         <!-- IIoT Admin Group -->
         <record id="group_iiot_admin" model="res.groups">
             <field name="name">IIoT管理员</field>
-            <field name="category_id" ref="ir_module_category_iiot"/>
             <field name="implied_ids" eval="[(4, ref('group_iiot_user'))]"/>
             <field name="sequence">20</field>
         </record>

@@ -4,13 +4,13 @@
         <field name="name">faq.entry.tree</field>
         <field name="model">faq.entry</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="sequence" widget="handle"/>
                 <field name="question"/>
                 <field name="category"/>
                 <field name="target_model"/>
                 <field name="active"/>
-            </tree>
+            </list>
         </field>
     </record>
 

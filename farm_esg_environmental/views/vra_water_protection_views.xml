@@ -5,7 +5,7 @@
         <field name="name">agri.vra.water.protection.zone.tree</field>
         <field name="model">agri.vra.water.protection.zone</field>
         <field name="arch" type="xml">
-            <tree string="VRA Water Protection Zones">
+            <list string="VRA Water Protection Zones">
                 <field name="name"/>
                 <field name="water_body_name"/>
                 <field name="location_id"/>
@@ -13,7 +13,7 @@
                 <field name="buffer_distance_meters"/>
                 <field name="compliance_status"/>
                 <field name="environmental_risk_level"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -102,11 +102,11 @@
                             </group>
                             <separator string="Compliance History"/>
                             <field name="compliance_history_ids">
-                                <tree string="Compliance History">
+                                <list string="Compliance History">
                                     <field name="check_date"/>
                                     <field name="compliance_status"/>
                                     <field name="notes"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
 

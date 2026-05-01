@@ -5,7 +5,7 @@
         <field name="name">agri.vra.carbon.footprint.tree</field>
         <field name="model">agri.vra.carbon.footprint</field>
         <field name="arch" type="xml">
-            <tree string="VRA Carbon Footprint">
+            <list string="VRA Carbon Footprint">
                 <field name="name"/>
                 <field name="location_id"/>
                 <field name="operation_type"/>
@@ -14,7 +14,7 @@
                 <field name="net_environmental_impact"/>
                 <field name="assessment_status"/>
                 <field name="assessment_date"/>
-            </tree>
+            </list>
         </field>
     </record>
 

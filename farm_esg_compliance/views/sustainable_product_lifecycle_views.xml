@@ -22,14 +22,14 @@
         <field name="name">agri.sustainable.product.lifecycle.tree</field>
         <field name="model">agri.sustainable.product.lifecycle</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="product_id"/>
                 <field name="lifecycle_stage"/>
                 <field name="lifecycle_sustainability_score"/>
                 <field name="current_age"/>
                 <field name="status"/>
-            </tree>
+            </list>
         </field>
     </record>
 
