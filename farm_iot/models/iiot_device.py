@@ -1,4 +1,5 @@
-from odoo import models, fields
+from odoo import models, fields, api
+import json
 
 class IiotDevice(models.Model):
     _inherit = 'iiot.device'
@@ -18,3 +19,15 @@ class IiotDevice(models.Model):
         domain=[('res_model', '=', 'iiot.device'), ('state', '!=', 'done')], 
         string="Active Alerts"
     )
+
+    def send_command(self, action, **params):
+        """ Overridden to add business logging in farm_iot layer """
+        res = super(IiotDevice, self).send_command(action, **params)
+        if res:
+            self.env['farm.command.log'].create({
+                'device_id': self.id,
+                'command': action,
+                'payload': json.dumps(params) if params else '{}',
+                'status': 'dispatched'
+            })
+        return res

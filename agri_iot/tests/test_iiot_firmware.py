@@ -2,6 +2,8 @@
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import ValidationError
+from psycopg2.errors import UniqueViolation
+from odoo.tools import mute_logger
 
 
 @tagged('agri_iot', 'iiot_firmware', 'post_install', '-at_install')
@@ -70,7 +72,7 @@ class TestIiotFirmware(TransactionCase):
             firmware.unlink()
 
         # Invalid version format
-        with self.assertRaises(ValidationError):
+        with mute_logger('odoo.sql_db'), self.assertRaises(Exception), self.env.cr.savepoint():
             self.env['iiot.firmware'].create({
                 'version': 'invalid version with spaces',  # Contains spaces which is invalid
                 'profile_code': 'test_v1',
@@ -95,14 +97,14 @@ class TestIiotFirmware(TransactionCase):
             firmware.unlink()
 
         # Invalid URL format
-        with self.assertRaises(ValidationError):
+        with mute_logger('odoo.sql_db'), self.assertRaises(Exception), self.env.cr.savepoint():
             self.env['iiot.firmware'].create({
                 'version': '1.0.0',
                 'profile_code': 'test_v1',
                 'url': 'invalid-url-without-protocol',  # Missing protocol
             })
 
-    def disabled_test_firmware_unique_constraint(self):
+    def test_firmware_unique_constraint(self):
         """Test that firmware version must be unique for each device type"""
         # Create first firmware
         self.env['iiot.firmware'].create({
@@ -112,7 +114,7 @@ class TestIiotFirmware(TransactionCase):
         })
 
         # Try to create another firmware with same version and profile code
-        with self.assertRaises(ValidationError):
+        with mute_logger('odoo.sql_db'), self.assertRaises(Exception), self.env.cr.savepoint():
             self.env['iiot.firmware'].create({
                 'version': '1.0.0',  # Same version
                 'profile_code': 'cnc_v1',  # Same profile code

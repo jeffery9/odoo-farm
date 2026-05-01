@@ -13,7 +13,7 @@ class FarmTeaRecipe(models.Model):
     _name = 'farm.tea.recipe'
     _description = 'Tea Processing Protocol'
     _inherits = {'mrp.bom': 'bom_id'}
-    _inherit = ['farm.agri.bom.mixin']
+    _inherit = ['agri.bom.mixin']
 
     bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
 

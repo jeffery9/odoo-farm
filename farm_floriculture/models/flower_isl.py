@@ -10,7 +10,7 @@ class FarmFlowerBom(models.Model):
     _name = 'farm.flower.bom'
     _description = 'Floral Recipe (ISL Layer)'
     _inherits = {'mrp.bom': 'bom_id'}
-    _inherit = ['farm.agri.bom.mixin']
+    _inherit = ['agri.bom.mixin']
 
     bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
 
@@ -91,7 +91,7 @@ class FarmFlowerOrder(models.Model):
     _description = 'Floral Growing/Treatment Order (ISL Layer)'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
-        'farm.agri.production.mixin', 
+        'agri.intervention.mixin', 
         'agri.growth.cycle.mixin', 
         'agri.quality.gate.mixin', 
         'agri.weather.sensitive.mixin', 

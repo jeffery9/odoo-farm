@@ -12,10 +12,17 @@ class FarmAquacultureOperation(models.Model):
     _description = 'Farm Aquaculture Operation'
     _inherit = 'project.task'  # Inherit from project.task to leverage existing task functionality
 
+    # Fix Odoo 19 Many2many inheritance collision
+    user_ids = fields.Many2many('res.users', relation='farm_aqua_op_user_rel', column1='op_id', column2='user_id', string='Assignees')
+    personal_stage_type_ids = fields.Many2many('project.task.type', relation='farm_aqua_op_personal_stage_rel', column1='op_id', column2='stage_id')
+    depend_on_ids = fields.Many2many('project.task', relation='farm_aqua_op_depend_on_rel', column1='op_id', column2='task_id')
+    dependent_ids = fields.Many2many('project.task', relation='farm_aqua_op_dependent_rel', column1='op_id', column2='task_id')
+
+
     # Pond/Tank Information
     pond_id = fields.Many2one('stock.lot', string='Pond/Tank',
                               domain=[('product_id.categ_id.name', 'ilike', 'pond')])
-    pond_capacity = fields.Float('Pond Capacity (m³)', related='pond_id.volume', store=True)
+    pond_capacity = fields.Float('Pond Capacity (m³)', help='Capacity of the selected pond')
     aquatic_species = fields.Char('Aquatic Species', help='Species name for pond')
     initial_stocking = fields.Integer('Initial Stocking Count')
     current_count = fields.Integer('Current Count', compute='_compute_current_count', store=True)
@@ -69,7 +76,7 @@ class FarmAquacultureOperation(models.Model):
     ], string='Water Treatment Method')
     circulation_rate = fields.Float('Water Circulation Rate (m³/hour)')
 
-    @api.depends('initial_stocking', 'action_record_mortality', 'action_add_stock')
+    @api.depends('initial_stocking')
     def _compute_current_count(self):
         """Compute current stock count"""
         for record in self:

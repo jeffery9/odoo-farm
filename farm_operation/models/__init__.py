@@ -23,3 +23,4 @@ from . import farm_agricultural_bom
 # 4. Auxiliary & Integrations
 from . import farm_isl_redirection
 # from . import wizard
+from . import sale_order

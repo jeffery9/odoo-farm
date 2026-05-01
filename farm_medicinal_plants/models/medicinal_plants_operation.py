@@ -14,7 +14,7 @@ class FarmMedicinalProduction(models.Model):
     _description = 'Medicinal Processing Order'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
-        'farm.agri.production.mixin',
+        'agri.intervention.mixin',
         'agri.growth.cycle.mixin',
         'agri.quality.gate.mixin'
     ]

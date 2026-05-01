@@ -32,6 +32,12 @@
     'demo': [
         'data/farm_operation_demo.xml',
     ],
+    
+    'assets': {
+        'web.assets_tests': [
+            'farm_operation/static/tests/tours/**/*',
+        ],
+    },
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

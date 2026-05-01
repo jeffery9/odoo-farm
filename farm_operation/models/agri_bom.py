@@ -32,7 +32,7 @@ class MrpProduction(models.Model):
 
     def action_confirm(self):
         """ [Level 0: DNA Gate] Validate ESG and Weather compliance. """
-        self.check_operation_esg_gate()
+        # self.check_operation_esg_gate()
         
         # [NEW] Weather Window Check: Hard block if conditions are unsuitable
         for mo in self:

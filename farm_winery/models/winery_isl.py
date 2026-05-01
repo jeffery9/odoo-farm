@@ -48,7 +48,7 @@ class FarmWineryProduction(models.Model):
     _description = 'Vinification Order'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
-        'farm.agri.production.mixin',
+        'agri.intervention.mixin',
         'agri.agent.instruction.mixin',
         'agri.incident.alert.mixin'
     ]

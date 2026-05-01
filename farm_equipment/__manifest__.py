@@ -16,6 +16,12 @@
         'views/farm_equipment_views.xml',
         'views/equipment_checklist_views.xml',
     ],
+    
+    'assets': {
+        'web.assets_tests': [
+            'farm_equipment/static/tests/tours/**/*',
+        ],
+    },
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

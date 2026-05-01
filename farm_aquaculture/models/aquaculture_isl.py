@@ -10,7 +10,7 @@ class FarmAquacultureBom(models.Model):
     _name = 'farm.aquaculture.bom'
     _description = 'Aquaculture Stocking Recipe'
     _inherits = {'mrp.bom': 'bom_id'}
-    _inherit = ['farm.agri.bom.mixin']
+    _inherit = ['agri.bom.mixin']
 
     bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
 
@@ -41,7 +41,7 @@ class FarmAquacultureProduction(models.Model):
     _description = 'Aquaculture Growth Order'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
-        'farm.agri.production.mixin',
+        'agri.intervention.mixin',
         'agri.agent.instruction.mixin',
         'agri.incident.alert.mixin',
         'agri.odoo19.performance.security.mixin'  # Added Odoo 19 performance and security mixin

@@ -2,6 +2,8 @@
 from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import ValidationError
+from psycopg2.errors import UniqueViolation
+from odoo.tools import mute_logger
 
 
 @tagged('agri_iot', 'iiot_device_profile', 'post_install', '-at_install')

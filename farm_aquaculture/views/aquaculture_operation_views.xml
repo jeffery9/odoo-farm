@@ -43,7 +43,7 @@
                         <field name="harvest_readiness"/>
                         <field name="harvest_plan_date"/>
                     </group>
-                    <group name="water_system" string="Water Treatment & Circulation">
+                    <group name="water_system" string="Water Treatment &amp; Circulation">
                         <field name="water_treatment_method"/>
                         <field name="circulation_rate"/>
                     </group>
@@ -118,7 +118,7 @@
                 <field name="dissolved_oxygen"/>
                 <field name="ammonia_level"/>
                 <field name="nitrite_level"/>
-                <field name="water_quality_status" invisible="1"/>
+                <!-- <field name="water_quality_status" invisible="1"/> -->
             </list>
         </field>
     </record>

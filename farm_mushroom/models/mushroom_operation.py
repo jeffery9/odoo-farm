@@ -14,7 +14,7 @@ class FarmMushroomRecipe(models.Model):
     _name = 'farm.mushroom.recipe'
     _description = 'Mushroom Substrate Recipe'
     _inherits = {'mrp.bom': 'bom_id'}
-    _inherit = ['farm.agri.bom.mixin', 'agri.nutrient.mixin']
+    _inherit = ['agri.bom.mixin', 'agri.nutrient.mixin']
 
     bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
 
@@ -52,7 +52,7 @@ class FarmMushroomProduction(models.Model):
     _description = 'Mushroom Fruiting Cycle'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
-        'farm.agri.production.mixin',
+        'agri.intervention.mixin',
         'agri.agent.instruction.mixin',
         'agri.incident.alert.mixin',
         'agri.odoo19.performance.security.mixin'  # Added Odoo 19 performance and security mixin

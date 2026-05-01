@@ -26,12 +26,18 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/field_crop_operation_views.xml',
-        'views/crop_isl_views.xml',
-        'views/menu.xml',
+        # 'views/field_crop_operation_views.xml',
+        # 'views/crop_isl_views.xml',
+        # 'views/menu.xml',
     ],
     'demo': [
     ],
+    
+    'assets': {
+        'web.assets_tests': [
+            'farm_field_crops/static/tests/tours/**/*',
+        ],
+    },
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

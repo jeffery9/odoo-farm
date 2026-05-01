@@ -79,7 +79,7 @@ class FarmLot(models.Model):
     is_health_anomaly = fields.Boolean("Anomaly Detected", default=False)
     last_anomaly_date = fields.Datetime("Last Anomaly Time")
 
-    @api.depends('animal_count', 'location_id.land_area')
+    @api.depends('animal_count')
     def _compute_stocking_density(self):
         for lot in self:
             area = lot.location_id.land_area or 1.0

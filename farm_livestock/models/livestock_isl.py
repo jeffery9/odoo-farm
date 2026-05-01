@@ -9,7 +9,7 @@ class FarmLivestockBom(models.Model):
     _name = 'farm.livestock.bom'
     _description = 'Livestock Breeding BOM (ISL Layer)'
     _inherits = {'mrp.bom': 'bom_id'}
-    _inherit = ['farm.agri.bom.mixin']
+    _inherit = ['agri.bom.mixin']
 
     bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
 
@@ -106,7 +106,7 @@ class FarmLivestockProduction(models.Model):
     _description = 'Livestock Growth Order (ISL Layer)'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
-        'farm.agri.production.mixin',
+        'agri.intervention.mixin',
         'agri.quality.gate.mixin',
         'agri.odoo19.performance.security.mixin'  # Added Odoo 19 performance and security mixin
     ]
