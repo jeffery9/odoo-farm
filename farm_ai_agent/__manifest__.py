@@ -14,7 +14,7 @@
         "farm_ai_vision",
         "farm_ai_decision",
         "farm_ai_llm_integration",
-        "farm_robotics",
+        
         "farm_agri_science"
     ],
     "data": [
