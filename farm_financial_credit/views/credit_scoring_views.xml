@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><record id="view_farm_credit_score_tree" model="ir.ui.view">
+<odoo>
+<record id="view_farm_credit_score_tree" model="ir.ui.view">
         <field name="name">farm.credit.score.tree</field>
         <field name="model">farm.credit.score</field>
         <field name="arch" type="xml">
@@ -108,4 +109,5 @@
         <field name="name">Cooperative Settlements</field>
         <field name="res_model">farm.coop.settlement</field>
         <field name="view_mode">tree,form</field>
-    </record></odoo>
+    </record>
+</odoo>

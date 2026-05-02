@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Fair Trade Certificate Views -->
-    <record id="view_fair_trade_certificate_tree" model="ir.ui.view">
+<record id="view_fair_trade_certificate_tree" model="ir.ui.view">
         <field name="name">farm.esg.fair.trade.certificate.tree</field>
         <field name="model">farm.esg.fair.trade.certificate</field>
         <field name="arch" type="xml">
@@ -69,7 +68,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Fair Trade Premium Allocation Views -->
+    
     <record id="view_fair_trade_premium_allocation_tree" model="ir.ui.view">
         <field name="name">farm.esg.fair.trade.premium.allocation.tree</field>
         <field name="model">farm.esg.fair.trade.premium.allocation</field>
@@ -125,7 +124,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Community Investment Views -->
+    
     <record id="view_community_investment_tree" model="ir.ui.view">
         <field name="name">farm.esg.community.investment.tree</field>
         <field name="model">farm.esg.community.investment</field>
@@ -187,7 +186,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Labor Condition Views -->
+    
     <record id="view_labor_condition_tree" model="ir.ui.view">
         <field name="name">farm.esg.labor.condition.tree</field>
         <field name="model">farm.esg.labor.condition</field>
@@ -252,5 +251,4 @@
         <field name="res_model">farm.esg.labor.condition</field>
         <field name="view_mode">tree,form</field>
     </record>
-
 </odoo>

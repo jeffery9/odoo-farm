@@ -105,6 +105,7 @@ class ESGAssessment(models.Model):
 
     # Related ESG targets
     target_ids = fields.Many2many('esg.target', string='Related Targets')
+    assessment_line_ids = fields.One2many("esg.assessment.line", "assessment_id", string="Assessment Lines")
 
     @api.depends('environmental_score', 'social_score', 'governance_score')
     def _compute_overall_esg_score(self):

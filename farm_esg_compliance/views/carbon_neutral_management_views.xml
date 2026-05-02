@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Carbon Neutral Goal List View -->
-    <record id="view_carbon_neutral_goal_list" model="ir.ui.view">
+<record id="view_carbon_neutral_goal_list" model="ir.ui.view">
         <field name="name">agri.carbon.neutral.goal.list</field>
         <field name="model">agri.carbon.neutral.goal</field>
         <field name="arch" type="xml">
@@ -18,7 +17,7 @@
         </field>
     </record>
 
-    <!-- Carbon Neutral Goal Form View -->
+    
     <record id="view_carbon_neutral_goal_form" model="ir.ui.view">
         <field name="name">agri.carbon.neutral.goal.form</field>
         <field name="model">agri.carbon.neutral.goal</field>
@@ -125,7 +124,7 @@
         </field>
     </record>
 
-    <!-- Carbon Neutral Goal Search View -->
+    
     <record id="view_carbon_neutral_goal_search" model="ir.ui.view">
         <field name="name">agri.carbon.neutral.goal.search</field>
         <field name="model">agri.carbon.neutral.goal</field>
@@ -142,7 +141,7 @@
                 <filter name="filter_on_track" string="On Track" domain="[('status', '=', 'on_track')]"/>
                 <filter name="filter_completed" string="Completed" domain="[('status', '=', 'completed')]"/>
                 <filter name="filter_high_priority" string="High Priority" domain="[('progress_percentage', '&lt;', 50)]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="group_scope" string="Goal Scope" domain="[]" context="{'group_by':'goal_scope'}"/>
                     <filter name="group_status" string="Status" domain="[]" context="{'group_by':'status'}"/>
                     <filter name="group_responsible" string="Responsible Person" domain="[]" context="{'group_by':'responsible_user_id'}"/>
@@ -151,7 +150,7 @@
         </field>
     </record>
 
-    <!-- Carbon Neutral Goal Action -->
+    
     <record id="action_carbon_neutral_goal" model="ir.actions.act_window">
         <field name="name">Carbon Neutral Goals</field>
         <field name="res_model">agri.carbon.neutral.goal</field>
@@ -166,7 +165,7 @@
         </field>
     </record>
 
-    <!-- Carbon Credit List View -->
+    
     <record id="view_carbon_credit_list" model="ir.ui.view">
         <field name="name">agri.carbon.credit.list</field>
         <field name="model">agri.carbon.credit</field>
@@ -185,7 +184,7 @@
         </field>
     </record>
 
-    <!-- Carbon Credit Form View -->
+    
     <record id="view_carbon_credit_form" model="ir.ui.view">
         <field name="name">agri.carbon.credit.form</field>
         <field name="model">agri.carbon.credit</field>
@@ -280,7 +279,7 @@
         </field>
     </record>
 
-    <!-- Carbon Credit Search View -->
+    
     <record id="view_carbon_credit_search" model="ir.ui.view">
         <field name="name">agri.carbon.credit.search</field>
         <field name="model">agri.carbon.credit</field>
@@ -296,7 +295,7 @@
                 <filter name="filter_retired" string="Retired" domain="[('status', '=', 'retired')]"/>
                 <filter name="filter_certified" string="VCS Certified" domain="[('verification_standard', '=', 'vcs')]"/>
                 <filter name="filter_gold_standard" string="Gold Standard" domain="[('verification_standard', '=', 'gold')]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="group_owner" string="Owner" domain="[]" context="{'group_by':'owner_partner_id'}"/>
                     <filter name="group_standard" string="Verification Standard" domain="[]" context="{'group_by':'verification_standard'}"/>
                     <filter name="group_status" string="Status" domain="[]" context="{'group_by':'status'}"/>
@@ -306,7 +305,7 @@
         </field>
     </record>
 
-    <!-- Carbon Credit Action -->
+    
     <record id="action_carbon_credit" model="ir.actions.act_window">
         <field name="name">Carbon Credits</field>
         <field name="res_model">agri.carbon.credit</field>
@@ -321,7 +320,7 @@
         </field>
     </record>
 
-    <!-- Bio-energy Product List View -->
+    
     <record id="view_bio_energy_product_list" model="ir.ui.view">
         <field name="name">agri.bio.energy.product.list</field>
         <field name="model">agri.bio.energy.product</field>
@@ -339,7 +338,7 @@
         </field>
     </record>
 
-    <!-- Bio-energy Product Form View -->
+    
     <record id="view_bio_energy_product_form" model="ir.ui.view">
         <field name="name">agri.bio.energy.product.form</field>
         <field name="model">agri.bio.energy.product</field>
@@ -446,7 +445,7 @@
         </field>
     </record>
 
-    <!-- Bio-energy Product Search View -->
+    
     <record id="view_bio_energy_product_search" model="ir.ui.view">
         <field name="name">agri.bio.energy.product.search</field>
         <field name="model">agri.bio.energy.product</field>
@@ -461,7 +460,7 @@
                 <filter name="filter_biofuel" string="Biofuels" domain="[('product_type', 'in', ['biofuel', 'biodiesel', 'bioethanol', 'biogasoline'])]"/>
                 <filter name="filter_biogas" string="Biogas" domain="[('product_type', '=', 'biogas')]"/>
                 <filter name="filter_high_reduction" string="High CO2 Reduction" domain="[('co2_reduction_percentage', '&gt;', 70)]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="group_type" string="Product Type" domain="[]" context="{'group_by':'product_type'}"/>
                     <filter name="group_source" string="Raw Material Source" domain="[]" context="{'group_by':'raw_material_source'}"/>
                     <filter name="group_location" string="Production Location" domain="[]" context="{'group_by':'production_location_id'}"/>
@@ -470,7 +469,7 @@
         </field>
     </record>
 
-    <!-- Bio-energy Product Action -->
+    
     <record id="action_bio_energy_product" model="ir.actions.act_window">
         <field name="name">Bio-energy Products</field>
         <field name="res_model">agri.bio.energy.product</field>

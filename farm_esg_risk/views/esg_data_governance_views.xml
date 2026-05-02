@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ESG Data Governance Tree View -->
-    <record id="view_esg_data_governance_tree" model="ir.ui.view">
+<record id="view_esg_data_governance_tree" model="ir.ui.view">
         <field name="name">farm.esg.data.governance.tree</field>
         <field name="model">farm.esg.data.governance</field>
         <field name="arch" type="xml">
@@ -20,7 +19,7 @@
         </field>
     </record>
 
-    <!-- ESG Data Governance Form View -->
+    
     <record id="view_esg_data_governance_form" model="ir.ui.view">
         <field name="name">farm.esg.data.governance.form</field>
         <field name="model">farm.esg.data.governance</field>
@@ -120,7 +119,7 @@
         </field>
     </record>
 
-    <!-- ESG Data Governance Search View -->
+    
     <record id="view_esg_data_governance_search" model="ir.ui.view">
         <field name="name">farm.esg.data.governance.search</field>
         <field name="model">farm.esg.data.governance</field>
@@ -147,7 +146,7 @@
         </field>
     </record>
 
-    <!-- ESG Data Governance Action Window -->
+    
     <record id="action_esg_data_governance" model="ir.actions.act_window">
         <field name="name">ESG Data Governance</field>
         <field name="res_model">farm.esg.data.governance</field>
@@ -164,9 +163,8 @@
         </field>
     </record>
 
-    <!-- Menu item for ESG Data Governance -->
+    
     <menuitem id="esg_data_governance_menu" name="Data Governance"
               parent="esg_risk_menu" sequence="50"
               action="action_esg_data_governance"/>
-
 </odoo>

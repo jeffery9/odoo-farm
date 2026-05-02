@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='utf-8'?>
-<odoo><record id="sustainability_metric_economic_target" model="farm.sustainability.metric">
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="sustainability_metric_economic_target" model="farm.sustainability.metric">
         <field name="name">经济目标达成率</field>
         <field name="code">ECONOMIC_TARGET_RATE</field>
         <field name="category">economic</field>
@@ -28,6 +29,4 @@
         <field name="target_value">75.0</field>
         <field name="calculation_method">manual</field>
     </record>
-
-    
-    </odoo>
+</odoo>

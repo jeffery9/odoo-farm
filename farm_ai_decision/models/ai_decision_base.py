@@ -30,7 +30,9 @@ class AgriAiDecisionBase(models.Model):
     ], default='draft', string='Status')
     model_type = fields.Char('Model Type', help="Type of AI model used for decision")
     input_data = fields.Text('Input Data', help="JSON data used for decision making")
+    output_data = fields.Text("Output Data", help="JSON result data from the model")
     decision_reasoning = fields.Html('Decision Reasoning', help="Explanation of AI decision process")
+    confidence_score = fields.Float("Confidence Score (%)", default=85.0)
     priority = fields.Selection([
         ('low', 'Low'),
         ('medium', 'Medium'),

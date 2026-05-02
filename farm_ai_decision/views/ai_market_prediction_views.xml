@@ -27,7 +27,6 @@
                         </group>
                         <group>
                             <field name="confidence_score" widget="gauge" options="{'max_field': 100}"/>
-                            <field name="risk_level"/>
                             <field name="status"/>
                         </group>
                     </group>
@@ -85,7 +84,7 @@
                 <field name="confidence_score"/>
                 <field name="status" widget="badge"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="action_ai_market_prediction" model="ir.actions.act_window">

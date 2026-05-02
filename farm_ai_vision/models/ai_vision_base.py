@@ -32,6 +32,7 @@ class AgriAiVisionBase(models.Model):
     ], default='draft', string='Status')
     model_type = fields.Char('Model Type', help="Type of AI vision model used for analysis")
     input_parameters = fields.Text('Input Parameters', help="JSON parameters used for image analysis")
+    output_data = fields.Text("Output Data")
     analysis_reasoning = fields.Html('Analysis Reasoning', help="Explanation of AI vision analysis process")
     priority = fields.Selection([
         ('low', 'Low'),

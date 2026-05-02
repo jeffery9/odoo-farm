@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Subsidy Views -->
-    <record id="view_farm_subsidy_tree" model="ir.ui.view">
-        <name>farm.subsidy.list</name>
+<record id="view_farm_subsidy_tree" model="ir.ui.view">
+        <field name="name">farm.subsidy.list</field>
         <model>farm.subsidy</model>
         <arch type="xml">
             <list decoration-success="state == 'paid'" decoration-info="state == 'approved'">
@@ -16,14 +15,14 @@
     </record>
 
     <record id="action_farm_subsidy" model="ir.actions.act_window">
-        <name>Agricultural Subsidies</name>
+        <field name="name">Agricultural Subsidies</field>
         <res_model>farm.subsidy</res_model>
         <view_mode>list,form</view_mode>
     </record>
 
-    <!-- Biodiversity Views -->
+    
     <record id="view_farm_biodiversity_tree" model="ir.ui.view">
-        <name>farm.biodiversity.metric.list</name>
+        <field name="name">farm.biodiversity.metric.list</field>
         <model>farm.biodiversity.metric</model>
         <arch type="xml">
             <list>
@@ -37,14 +36,14 @@
     </record>
 
     <record id="action_farm_biodiversity" model="ir.actions.act_window">
-        <name>Biodiversity Monitoring</name>
+        <field name="name">Biodiversity Monitoring</field>
         <res_model>farm.biodiversity.metric</res_model>
         <view_mode>list,form</view_mode>
     </record>
 
-    <!-- Export Compliance Views -->
+    
     <record id="view_farm_export_compliance_tree" model="ir.ui.view">
-        <name>farm.export.compliance.list</name>
+        <field name="name">farm.export.compliance.list</field>
         <model>farm.export.compliance</model>
         <arch type="xml">
             <list decoration-success="compliance_status == 'ready'" decoration-danger="compliance_status == 'blocked'">
@@ -57,7 +56,7 @@
     </record>
 
     <record id="view_farm_export_compliance_form" model="ir.ui.view">
-        <name>farm.export.compliance.form</name>
+        <field name="name">farm.export.compliance.form</field>
         <model>farm.export.compliance</model>
         <arch type="xml">
             <form>
@@ -100,14 +99,14 @@
     </record>
 
     <record id="action_farm_export_compliance" model="ir.actions.act_window">
-        <name>Export Compliance Checker</name>
+        <field name="name">Export Compliance Checker</field>
         <res_model>farm.export.compliance</res_model>
         <view_mode>list,form</view_mode>
     </record>
 
-    <!-- Certification Views -->
+    
     <record id="view_farm_certification_tree" model="ir.ui.view">
-        <name>farm.certification.process.list</name>
+        <field name="name">farm.certification.process.list</field>
         <model>farm.certification.process</model>
         <arch type="xml">
             <list decoration-success="state == 'certified'" decoration-warning="state == 'expired'">
@@ -120,12 +119,12 @@
     </record>
 
     <record id="action_farm_certification" model="ir.actions.act_window">
-        <name>Sustainability Certifications</name>
+        <field name="name">Sustainability Certifications</field>
         <res_model>farm.certification.process</res_model>
         <view_mode>list,form</view_mode>
     </record>
 
-    <!-- Menus -->
+    
     <menuitem id="menu_farm_esg_compliance_root" name="Compliance &amp; Sustainability" 
               parent="farm_esg.esg_base_menu" sequence="25"/>
     

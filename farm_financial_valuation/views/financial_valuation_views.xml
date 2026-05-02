@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><record id="view_financial_asset_valuation_tree" model="ir.ui.view">
+<odoo>
+<record id="view_financial_asset_valuation_tree" model="ir.ui.view">
         <field name="name">farm.financial.asset.valuation.tree</field>
         <field name="model">farm.financial.asset.valuation</field>
         <field name="arch" type="xml">
@@ -148,4 +149,5 @@
         <field name="name">Valuation Templates</field>
         <field name="res_model">farm.financial.valuation.template</field>
         <field name="view_mode">tree,form</field>
-    </record></odoo>
+    </record>
+</odoo>

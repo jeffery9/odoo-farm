@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Wage Rule View -->
-    <record id="farm_wage_rule_view_tree" model="ir.ui.view">
+<record id="farm_wage_rule_view_tree" model="ir.ui.view">
         <field name="name">farm.wage.rule.list</field>
         <field name="model">farm.wage.rule</field>
         <field name="arch" type="xml">
@@ -19,7 +18,7 @@
         <field name="view_mode">list</field>
     </record>
 
-    <!-- Labor Payment View -->
+    
     <record id="farm_labor_payment_view_tree" model="ir.ui.view">
         <field name="name">farm.labor.payment.list</field>
         <field name="model">farm.labor.payment</field>

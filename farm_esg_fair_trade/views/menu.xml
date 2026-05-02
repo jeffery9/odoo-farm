@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="esg_fair_trade_menu" name="ESG Fair Trade" sequence="10" groups="farm_core.group_farm_manager"/>
+<menuitem id="esg_fair_trade_menu" name="ESG Fair Trade" sequence="10" groups="farm_core.group_farm_manager"/>
 
     <menuitem id="esg_fair_trade_certificates_menu" name="Fair Trade Certificates"
               parent="esg_fair_trade_menu" sequence="10"
@@ -17,3 +17,4 @@
     <menuitem id="esg_labor_conditions_menu" name="Labor Conditions"
               parent="esg_fair_trade_menu" sequence="40"
               action="action_labor_condition"/>
+</odoo>

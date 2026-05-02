@@ -3,7 +3,7 @@
     <record id="view_agri_intervention_form_science_inherit" model="ir.ui.view">
         <field name="name">mrp.production.form.science.inherit</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="farm_operation.view_agri_intervention_form"/>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button name="%(farm_operation.action_agri_science_sync_wizard)d" string="Env Sync" type="action" class="btn-secondary" invisible="state != 'progress'"/>

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Cooperative Resource Sharing Action -->
-    <record id="action_cooperative_resource_sharing" model="ir.actions.act_window">
+<record id="action_cooperative_resource_sharing" model="ir.actions.act_window">
         <field name="name">Cooperative Resource Sharing</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.cooperative.resource.sharing</field>
@@ -17,7 +15,7 @@
         </field>
     </record>
 
-    <!-- Cooperative Resource Sharing Tree View -->
+    
     <record id="view_cooperative_resource_sharing_tree" model="ir.ui.view">
         <field name="name">agri.cooperative.resource.sharing.tree</field>
         <field name="model">agri.cooperative.resource.sharing</field>
@@ -33,7 +31,7 @@
         </field>
     </record>
 
-    <!-- Cooperative Resource Sharing Form View -->
+    
     <record id="view_cooperative_resource_sharing_form" model="ir.ui.view">
         <field name="name">agri.cooperative.resource.sharing.form</field>
         <field name="model">agri.cooperative.resource.sharing</field>
@@ -120,7 +118,7 @@
         </field>
     </record>
 
-    <!-- Internal Netting Engine Action -->
+    
     <record id="action_internal_netting_engine" model="ir.actions.act_window">
         <field name="name">Internal Netting Engine</field>
         <field name="type">ir.actions.act_window</field>
@@ -128,7 +126,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Internal Netting Engine Tree View -->
+    
     <record id="view_internal_netting_engine_tree" model="ir.ui.view">
         <field name="name">agri.internal.netting.engine.tree</field>
         <field name="model">agri.internal.netting.engine</field>
@@ -143,5 +141,4 @@
             </list>
         </field>
     </record>
-
 </odoo>

@@ -1,7 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_ai_vision_base,agri.ai.vision.base,model_agri_ai_vision_base,farm_security.group_farm_worker,1,1,1,1
-access_ai_pest_disease_detection,agri.ai.pest.disease.detection,model_agri_ai_pest_disease_detection,farm_security.group_farm_worker,1,1,1,1
-access_ai_visual_sorting,agri.ai.visual.sorting,model_agri_ai_visual_sorting,farm_security.group_farm_worker,1,1,1,1
-access_ai_image_based_planning,agri.ai.image.based.planning,model_agri_ai_image_based_planning,farm_security.group_farm_worker,1,1,1,1
-access_ai_image_analysis_prediction,agri.ai.image.analysis.prediction,model_agri_ai_image_analysis_prediction,farm_security.group_farm_worker,1,1,1,1
-access_ai_vision_risk_assessment,agri.ai.vision.risk.assessment,model_agri_ai_vision_risk_assessment,farm_security.group_farm_worker,1,1,1,1
+access_ai_vision_base,agri.ai.vision.base,model_agri_ai_vision_base,farm_core.group_farm_worker,1,1,1,1
+access_ai_pest_disease_detection,agri.ai.pest.disease.detection,model_agri_ai_pest_disease_detection,farm_core.group_farm_worker,1,1,1,1
+access_ai_visual_sorting,agri.ai.visual.sorting,model_agri_ai_visual_sorting,farm_core.group_farm_worker,1,1,1,1
+access_ai_image_based_planning,agri.ai.image.based.planning,model_agri_ai_image_based_planning,farm_core.group_farm_worker,1,1,1,1
+access_ai_image_analysis_prediction,agri.ai.image.analysis.prediction,model_agri_ai_image_analysis_prediction,farm_core.group_farm_worker,1,1,1,1
+access_ai_vision_risk_assessment,agri.ai.vision.risk.assessment,model_agri_ai_vision_risk_assessment,farm_core.group_farm_worker,1,1,1,1

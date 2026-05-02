@@ -2,12 +2,12 @@
 <odoo>
     <!-- AI Pest Disease Detection Views -->
     <record id="view_ai_pest_disease_detection_form" model="ir.ui.view">
-        <field name="name">agri.ai.pest.disease.detection.form</field>
-        <field name="model">agri.ai.pest.disease.detection</field>
+        <field name="name">agri.ai.pest.disease.decision.form</field>
+        <field name="model">agri.ai.pest.disease.decision</field>
         <field name="arch" type="xml">
             <form string="AI Pest and Disease Detection">
                 <header>
-                    <button name="analyze_pest_disease" type="object" string="Analyze" class="oe_highlight"/>
+                    <button name="analyze_pest_disease_decision" type="object" string="Analyze" class="oe_highlight"/>
                     <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected"/>
                 </header>
                 <sheet>
@@ -67,8 +67,8 @@
     </record>
 
     <record id="view_ai_pest_disease_detection_tree" model="ir.ui.view">
-        <field name="name">agri.ai.pest.disease.detection.tree</field>
-        <field name="model">agri.ai.pest.disease.detection</field>
+        <field name="name">agri.ai.pest.disease.decision.tree</field>
+        <field name="model">agri.ai.pest.disease.decision</field>
         <field name="arch" type="xml">
             <list string="AI Pest and Disease Detection">
                 <field name="product_id"/>
@@ -83,7 +83,7 @@
 
     <record id="action_ai_pest_disease_detection" model="ir.actions.act_window">
         <field name="name">AI Pest and Disease Detection</field>
-        <field name="res_model">agri.ai.pest.disease.detection</field>
+        <field name="res_model">agri.ai.pest.disease.decision</field>
         <field name="view_mode">tree,form</field>
     </record>
 </odoo>

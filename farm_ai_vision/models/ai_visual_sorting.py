@@ -67,7 +67,7 @@ class AgriAiVisualSorting(AgriAiVisionBase):
     sort_into_bin = fields.Char('Sort Into Bin', help="Suggested bin/destination for this item")
 
     # Fields specific to ISL implementation
-    industry_id = fields.Many2one('industry.type', string='Industry',
+    industry_id = fields.Char(string='Industry',
                                   help="Industry to which this sorting applies")
     uses_isl_data = fields.Boolean('Uses ISL Data', default=True,
                                    help="Whether this sorting accesses ISL models")
@@ -98,7 +98,7 @@ class AgriAiVisualSorting(AgriAiVisionBase):
             'image_description': 'product visual sorting image',
             'product_type': record.product_id.name if record.product_id else 'unknown product',
             'sorting_type': record.sorting_type,
-            'industry': record.industry_id.name if record.industry_id else 'General Agriculture'
+            'industry': record.industry_id if record.industry_id else 'General Agriculture'
         }
 
         # Create prompt for LLM

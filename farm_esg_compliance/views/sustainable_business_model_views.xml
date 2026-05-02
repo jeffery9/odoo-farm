@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Sustainable Business Model Action -->
-    <record id="action_sustainable_business_model" model="ir.actions.act_window">
+<record id="action_sustainable_business_model" model="ir.actions.act_window">
         <field name="name">Sustainable Business Model</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.sustainable.business.model</field>
@@ -17,7 +15,7 @@
         </field>
     </record>
 
-    <!-- Sustainable Business Model Tree View -->
+    
     <record id="view_sustainable_business_model_tree" model="ir.ui.view">
         <field name="name">agri.sustainable.business.model.tree</field>
         <field name="model">agri.sustainable.business.model</field>
@@ -34,7 +32,7 @@
         </field>
     </record>
 
-    <!-- Sustainable Business Model Form View -->
+    
     <record id="view_sustainable_business_model_form" model="ir.ui.view">
         <field name="name">agri.sustainable.business.model.form</field>
         <field name="model">agri.sustainable.business.model</field>
@@ -128,5 +126,4 @@
             </form>
         </field>
     </record>
-
 </odoo>

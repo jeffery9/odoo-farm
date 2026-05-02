@@ -73,7 +73,6 @@ class AgriSustainabilityCarbonModel(models.Model):
     verification_requirements = fields.Text('Verification Requirements')
 
     # Related calculation rules
-    calculation_rule_ids = fields.One2many('agri.sustainability.calculation.rule', 'model_id', 'Calculation Rules')
 
     @api.constrains('carbon_intensity_threshold', 'direct_emission_coefficient',
                     'indirect_energy_coefficient', 'supply_chain_coefficient')

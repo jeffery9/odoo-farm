@@ -52,7 +52,7 @@ class AgriAiPestDiseaseDetection(AgriAiVisionBase):
                                              help="Heatmap showing areas of highest detection confidence")
 
     # Fields specific to ISL implementation
-    industry_id = fields.Many2one('industry.type', string='Industry',
+    industry_id = fields.Char(string='Industry',
                                   help="Industry to which this detection applies")
     uses_isl_data = fields.Boolean('Uses ISL Data', default=True,
                                    help="Whether this detection accesses ISL models")
@@ -83,7 +83,7 @@ class AgriAiPestDiseaseDetection(AgriAiVisionBase):
             'image_description': 'pest/disease detection image',
             'crop_type': record.crop_type.name if record.crop_type else 'unknown crop',
             'detection_type': record.detection_type,
-            'industry': record.industry_id.name if record.industry_id else 'General Agriculture'
+            'industry': record.industry_id if record.industry_id else 'General Agriculture'
         }
 
         # Create prompt for LLM
@@ -291,7 +291,7 @@ class AgriAiPestDiseaseDetection(AgriAiVisionBase):
                 'crop_type': self.crop_type.name if self.crop_type else None,
                 'detection_type': self.detection_type,
                 'image_present': bool(self.image),
-                'industry': self.industry_id.name if self.industry_id else None,
+                'industry': self.industry_id if self.industry_id else None,
             },
             'output_data': result.copy()
         })

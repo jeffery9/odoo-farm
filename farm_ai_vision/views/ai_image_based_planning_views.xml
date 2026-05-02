@@ -11,7 +11,7 @@
                 <field name="crop_type"/>
                 <field name="soil_condition"/>
                 <field name="planting_season"/>
-                <field name="confidence_score"/>
+                <field name="ai_confidence_score"/>
                 <field name="analysis_date"/>
                 <field name="status"/>
             </list>
@@ -42,7 +42,7 @@
                         </group>
                         <group>
                             <field name="soil_condition"/>
-                            <field name="confidence_score"/>
+                            <field name="ai_confidence_score"/>
                             <field name="analysis_date"/>
                         </group>
                     </group>

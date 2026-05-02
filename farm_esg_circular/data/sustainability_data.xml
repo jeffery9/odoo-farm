@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='utf-8'?>
-<odoo><record id="circular_flow_example" model="farm.sustainability.circular.flow">
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="circular_flow_example" model="farm.sustainability.circular.flow">
         <field name="name">农作物秸秆再利用</field>
         <field name="code">CF-001</field>
         <field name="flow_type">waste_to_resource</field>

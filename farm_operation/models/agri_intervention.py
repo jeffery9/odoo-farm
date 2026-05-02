@@ -12,6 +12,7 @@ class AgriIntervention(models.Model):
         # 'agri.view.mixin',           # 移除显式继承，改由 farm_ux 模块主动注入
         'agri.sustainability.mixin', # Level 0: Value Standard
         'agri.geospatial.mixin',     # Level 1: Spatial Grid
+        'farm.agri.science.mixin',   # Level 2: Agronomy
         'agri.nutrient.mixin',       # Level 1: Mass Balance
         'agri.actuator.mixin',       # Level 1+: Physical Actuation
         'agri.evidence.mixin',       # Level 2: Audit

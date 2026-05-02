@@ -18,7 +18,7 @@
         'web',
         'farm_core',
         'farm_operation',
-        'farm_financial',
+        'farm_financial_core',
         'farm_esg',
         'farm_esg_carbon',
         'farm_esg_environmental',

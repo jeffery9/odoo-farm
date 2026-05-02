@@ -14,6 +14,7 @@ class AgriAiLlmConfiguration(models.Model):
     """
     _name = 'agri.ai.llm.configuration'
     _description = 'LLM Provider Configuration'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     # Use delegation inheritance to properly link to the base interface
     _inherits = {'agri.ai.configuration': 'ai_config_id'}
 
@@ -37,6 +38,9 @@ class AgriAiLlmConfiguration(models.Model):
     # Agricultural domain-specific settings
     use_agricultural_context = fields.Boolean('Use Agricultural Context', default=True,
         help="Apply agricultural domain knowledge to prompts")
+    temperature = fields.Float("Temperature", default=0.7)
+    max_tokens = fields.Integer("Max Tokens", default=2048)
+    timeout = fields.Integer("Timeout (seconds)", default=60)
     application_type = fields.Selection([
         ('general', 'General Agricultural Queries'),
         ('pest_disease', 'Pest and Disease Diagnosis'),

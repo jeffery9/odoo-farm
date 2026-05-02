@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><record id="action_compliance_handbook_report" model="ir.actions.report">
+<odoo>
+<record id="action_compliance_handbook_report" model="ir.actions.report">
         <field name="name">Compliance Handbook Report</field>
         <field name="model">farm.subsidy.application</field>
         <field name="report_type">qweb-pdf</field>
@@ -119,4 +120,5 @@
                 </t>
             </t>
         </t>
-    </template></odoo>
+    </template>
+</odoo>

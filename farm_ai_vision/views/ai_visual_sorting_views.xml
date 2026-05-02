@@ -12,7 +12,7 @@
                 <field name="sorting_type"/>
                 <field name="grade"/>
                 <field name="size_category"/>
-                <field name="confidence_score"/>
+                <field name="ai_confidence_score"/>
                 <field name="analysis_date"/>
                 <field name="status"/>
             </list>
@@ -55,7 +55,7 @@
                             <field name="defect_severity"/>
                         </group>
                         <group>
-                            <field name="confidence_score"/>
+                            <field name="ai_confidence_score"/>
                             <field name="analysis_date"/>
                         </group>
                     </group>

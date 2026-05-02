@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
-        <!-- Standard Agricultural Skills -->
-        <record id="skill_harvester_operator" model="farm.agri.skill">
-            <name>Harvester Operator</name>
-            <description>Certified to operate heavy harvesting machinery.</description>
+<record id="skill_harvester_operator" model="farm.agri.skill">
+            <field name="name">Harvester Operator</field>
+            <field name="description">Certified to operate heavy harvesting machinery.</field>
         </record>
 
         <record id="skill_veterinarian" model="farm.agri.skill">
-            <name>Veterinarian</name>
-            <description>Qualified for animal health checks and vaccinations.</description>
+            <field name="name">Veterinarian</field>
+            <field name="description">Qualified for animal health checks and vaccinations.</field>
         </record>
 
         <record id="skill_pesticide_applier" model="farm.agri.skill">
-            <name>Pesticide Applier</name>
-            <description>Trained in safe handling and application of crop protection products.</description>
+            <field name="name">Pesticide Applier</field>
+            <field name="description">Trained in safe handling and application of crop protection products.</field>
         </record>
 
         <record id="skill_irrigation_tech" model="farm.agri.skill">
-            <name>Irrigation Technician</name>
-            <description>Management of automated irrigation and fertigation systems.</description>
+            <field name="name">Irrigation Technician</field>
+            <field name="description">Management of automated irrigation and fertigation systems.</field>
         </record>
 
         <record id="skill_nursery_expert" model="farm.agri.skill">
-            <name>Nursery Expert</name>
-            <description>Expertise in seed germination and seedling management.</description>
+            <field name="name">Nursery Expert</field>
+            <field name="description">Expertise in seed germination and seedling management.</field>
         </record>
-    </data>
 </odoo>

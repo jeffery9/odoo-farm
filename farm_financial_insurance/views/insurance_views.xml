@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><record id="view_farm_crop_yield_insurance_tree" model="ir.ui.view">
+<odoo>
+<record id="view_farm_crop_yield_insurance_tree" model="ir.ui.view">
         <field name="name">farm.crop.yield.insurance.tree</field>
         <field name="model">farm.crop.yield.insurance</field>
         <field name="arch" type="xml">
@@ -187,4 +188,5 @@
         <field name="name">Insurance Claims</field>
         <field name="res_model">farm.insurance.claim</field>
         <field name="view_mode">tree,form</field>
-    </record></odoo>
+    </record>
+</odoo>

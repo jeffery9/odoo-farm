@@ -36,7 +36,7 @@
                         <group string="Provider Settings">
                             <field name="provider"/>
                             <field name="api_key" password="True"/>
-                            <field name="api_base_url" placeholder="Leave empty for default URL"/>
+                            <field name="base_url" placeholder="Leave empty for default URL"/>
                             <field name="default_model" placeholder="e.g., gpt-4, claude-3-opus, gemini-pro"/>
                         </group>
                         <group string="Model Parameters">

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><record id="view_cooperative_member_tree" model="ir.ui.view">
+<odoo>
+<record id="view_cooperative_member_tree" model="ir.ui.view">
         <field name="name">cooperative.member.tree</field>
         <field name="model">cooperative.member</field>
         <field name="arch" type="xml">
@@ -473,4 +474,5 @@
         <field name="name">Machinery Rentals</field>
         <field name="res_model">machinery.rental</field>
         <field name="view_mode">tree,form</field>
-    </record></odoo>
+    </record>
+</odoo>

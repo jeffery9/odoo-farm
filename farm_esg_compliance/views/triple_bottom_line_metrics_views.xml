@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Triple Bottom Line Metrics Action -->
-    <record id="action_triple_bottom_line_metrics" model="ir.actions.act_window">
+<record id="action_triple_bottom_line_metrics" model="ir.actions.act_window">
         <field name="name">Triple Bottom Line Metrics</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.triple.bottom.line.metrics</field>
@@ -17,7 +15,7 @@
         </field>
     </record>
 
-    <!-- Triple Bottom Line Metrics Tree View -->
+    
     <record id="view_triple_bottom_line_metrics_tree" model="ir.ui.view">
         <field name="name">agri.triple.bottom.line.metrics.tree</field>
         <field name="model">agri.triple.bottom.line.metrics</field>
@@ -34,7 +32,7 @@
         </field>
     </record>
 
-    <!-- Triple Bottom Line Metrics Form View -->
+    
     <record id="view_triple_bottom_line_metrics_form" model="ir.ui.view">
         <field name="name">agri.triple.bottom.line.metrics.form</field>
         <field name="model">agri.triple.bottom.line.metrics</field>
@@ -107,5 +105,4 @@
             </form>
         </field>
     </record>
-
 </odoo>

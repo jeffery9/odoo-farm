@@ -1,57 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Carbon Factor Views -->
-    <record id="view_farm_carbon_factor_tree" model="ir.ui.view">
-        <name>farm.carbon.factor.list</name>
-        <model>farm.carbon.factor</model>
-        <arch type="xml">
+    <record id="view_agri_carbon_factor_tree" model="ir.ui.view">
+        <field name="name">agri.carbon.factor.list</field>
+        <field name="model">agri.carbon.factor</field>
+        <field name="arch" type="xml">
             <list editable="bottom">
                 <field name="name"/>
                 <field name="category"/>
-                <field name="product_id"/>
                 <field name="emission_factor"/>
-                <field name="uom_id"/>
-                <field name="source"/>
             </list>
-        </arch>
+        </field>
     </record>
 
-    <record id="action_farm_carbon_factor" model="ir.actions.act_window">
-        <name>Carbon Emission Factors</name>
-        <res_model>farm.carbon.factor</res_model>
-        <view_mode>list,form</view_mode>
+    <record id="action_agri_carbon_factor" model="ir.actions.act_window">
+        <field name="name">Carbon Emission Factors</field>
+        <field name="res_model">agri.carbon.factor</field>
+        <field name="view_mode">list,form</field>
     </record>
-
-    <!-- Carbon Ledger Views -->
-    <record id="view_farm_carbon_ledger_tree" model="ir.ui.view">
-        <name>farm.carbon.ledger.list</name>
-        <model>farm.carbon.ledger</model>
-        <arch type="xml">
-            <list decoration-danger="impact_type == 'emission'" decoration-success="impact_type == 'sequestration'">
-                <field name="name"/>
-                <field name="date"/>
-                <field name="location_id"/>
-                <field name="lot_id"/>
-                <field name="factor_id"/>
-                <field name="total_co2e" sum="Total CO2e"/>
-                <field name="impact_type" widget="badge"/>
-            </list>
-        </arch>
-    </record>
-
-    <record id="action_farm_carbon_ledger" model="ir.actions.act_window">
-        <name>Carbon Ledger</name>
-        <res_model>farm.carbon.ledger</res_model>
-        <view_mode>list,form</view_mode>
-    </record>
-
-    <!-- Menu Items -->
-    <menuitem id="menu_carbon_accounting_root" name="Carbon Accounting" 
-              parent="farm_esg.esg_base_menu" sequence="30"/>
-              
-    <menuitem id="menu_farm_carbon_ledger" name="Carbon Ledger" 
-              parent="menu_carbon_accounting_root" action="action_farm_carbon_ledger" sequence="10"/>
-              
-    <menuitem id="menu_farm_carbon_factor" name="Emission Factors" 
-              parent="menu_carbon_accounting_root" action="action_farm_carbon_factor" sequence="20"/>
 </odoo>

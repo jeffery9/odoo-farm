@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ESG Indicator Views -->
-    <record id="view_esg_indicator_tree" model="ir.ui.view">
+<record id="view_esg_indicator_tree" model="ir.ui.view">
         <field name="name">esg.indicator.tree</field>
         <field name="model">esg.indicator</field>
         <field name="arch" type="xml">
@@ -81,7 +80,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- ESG Assessment Line Views -->
+    
     <record id="view_esg_assessment_line_tree" model="ir.ui.view">
         <field name="name">esg.assessment.line.tree</field>
         <field name="model">esg.assessment.line</field>
@@ -135,5 +134,4 @@
         <field name="res_model">esg.assessment.line</field>
         <field name="view_mode">tree,form</field>
     </record>
-
 </odoo>

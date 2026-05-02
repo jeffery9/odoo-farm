@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ESG Marketplace List View -->
-    <record id="view_esg_marketplace_list" model="ir.ui.view">
+<record id="view_esg_marketplace_list" model="ir.ui.view">
         <field name="name">agri.esg.marketplace.list</field>
         <field name="model">agri.esg.marketplace</field>
         <field name="arch" type="xml">
@@ -18,7 +17,7 @@
         </field>
     </record>
 
-    <!-- ESG Marketplace Form View -->
+    
     <record id="view_esg_marketplace_form" model="ir.ui.view">
         <field name="name">agri.esg.marketplace.form</field>
         <field name="model">agri.esg.marketplace</field>
@@ -119,7 +118,7 @@
         </field>
     </record>
 
-    <!-- ESG Marketplace Search View -->
+    
     <record id="view_esg_marketplace_search" model="ir.ui.view">
         <field name="name">agri.esg.marketplace.search</field>
         <field name="model">agri.esg.marketplace</field>
@@ -134,7 +133,7 @@
                 <filter name="filter_carbon_credits" string="Carbon Credit Markets" domain="[('market_type', '=', 'carbon_credits')]"/>
                 <filter name="filter_bio_energy" string="Bio-energy Markets" domain="[('market_type', '=', 'bio_energy')]"/>
                 <filter name="filter_renewable" string="Renewable Energy Markets" domain="[('market_type', '=', 'renewable_energy')]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="group_type" string="Market Type" domain="[]" context="{'group_by':'market_type'}"/>
                     <filter name="group_operator" string="Market Operator" domain="[]" context="{'group_by':'operator_partner_id'}"/>
                     <filter name="group_access" string="Access Level" domain="[]" context="{'group_by':'access_level'}"/>
@@ -143,7 +142,7 @@
         </field>
     </record>
 
-    <!-- ESG Marketplace Action -->
+    
     <record id="action_esg_marketplace" model="ir.actions.act_window">
         <field name="name">ESG Marketplaces</field>
         <field name="res_model">agri.esg.marketplace</field>
@@ -158,7 +157,7 @@
         </field>
     </record>
 
-    <!-- ESG Marketplace Trade List View -->
+    
     <record id="view_esg_marketplace_trade_list" model="ir.ui.view">
         <field name="name">agri.esg.marketplace.trade.list</field>
         <field name="model">agri.esg.marketplace.trade</field>
@@ -178,7 +177,7 @@
         </field>
     </record>
 
-    <!-- ESG Marketplace Trade Form View -->
+    
     <record id="view_esg_marketplace_trade_form" model="ir.ui.view">
         <field name="name">agri.esg.marketplace.trade.form</field>
         <field name="model">agri.esg.marketplace.trade</field>
@@ -307,7 +306,7 @@
         </field>
     </record>
 
-    <!-- ESG Marketplace Trade Search View -->
+    
     <record id="view_esg_marketplace_trade_search" model="ir.ui.view">
         <field name="name">agri.esg.marketplace.trade.search</field>
         <field name="model">agri.esg.marketplace.trade</field>
@@ -324,7 +323,7 @@
                 <filter name="filter_pending" string="Pending Payment" domain="[('trade_status', '=', 'pending_payment')]"/>
                 <filter name="filter_verified" string="Verified Compliance" domain="[('compliance_verification', '=', 'verified')]"/>
                 <filter name="filter_carbon_credits" string="Carbon Credit Trades" domain="[('product_category', '=', 'carbon_offset')]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="group_marketplace" string="Marketplace" domain="[]" context="{'group_by':'marketplace_id'}"/>
                     <filter name="group_status" string="Trade Status" domain="[]" context="{'group_by':'trade_status'}"/>
                     <filter name="group_type" string="Trade Type" domain="[]" context="{'group_by':'trade_type'}"/>
@@ -334,7 +333,7 @@
         </field>
     </record>
 
-    <!-- ESG Marketplace Trade Action -->
+    
     <record id="action_esg_marketplace_trade" model="ir.actions.act_window">
         <field name="name">ESG Marketplace Trades</field>
         <field name="res_model">agri.esg.marketplace.trade</field>
@@ -349,7 +348,7 @@
         </field>
     </record>
 
-    <!-- Waste Resource Trade List View -->
+    
     <record id="view_waste_resource_trade_list" model="ir.ui.view">
         <field name="name">agri.waste.resource.trade.list</field>
         <field name="model">agri.waste.resource.trade</field>
@@ -368,7 +367,7 @@
         </field>
     </record>
 
-    <!-- Waste Resource Trade Form View -->
+    
     <record id="view_waste_resource_trade_form" model="ir.ui.view">
         <field name="name">agri.waste.resource.trade.form</field>
         <field name="model">agri.waste.resource.trade</field>
@@ -505,7 +504,7 @@
         </field>
     </record>
 
-    <!-- Waste Resource Trade Search View -->
+    
     <record id="view_waste_resource_trade_search" model="ir.ui.view">
         <field name="name">agri.waste.resource.trade.search</field>
         <field name="model">agri.waste.resource.trade</field>
@@ -522,7 +521,7 @@
                 <filter name="filter_crop_residue" string="Crop Residue" domain="[('waste_type', '=', 'crop_residue')]"/>
                 <filter name="filter_animal_waste" string="Animal Waste" domain="[('waste_type', '=', 'animal_waste')]"/>
                 <filter name="filter_energy_source" string="Energy Source" domain="[('waste_category', '=', 'energy_source')]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="group_type" string="Waste Type" domain="[]" context="{'group_by':'waste_type'}"/>
                     <filter name="group_category" string="Waste Category" domain="[]" context="{'group_by':'waste_category'}"/>
                     <filter name="group_status" string="Status" domain="[]" context="{'group_by':'status'}"/>
@@ -532,7 +531,7 @@
         </field>
     </record>
 
-    <!-- Waste Resource Trade Action -->
+    
     <record id="action_waste_resource_trade" model="ir.actions.act_window">
         <field name="name">Waste Resource Trades</field>
         <field name="res_model">agri.waste.resource.trade</field>

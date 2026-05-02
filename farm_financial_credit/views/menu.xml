@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><menuitem id="farm_financial_credit_menu_root"
+<odoo>
+<menuitem id="farm_financial_credit_menu_root"
               name="Credit & Risk"
               parent="farm_financial_core.farm_financial_core_menu_root"
               sequence="30"/>
@@ -14,4 +15,5 @@
               name="Cooperative Settlements"
               parent="farm_financial_credit_menu_root"
               action="action_farm_coop_settlement"
-              sequence="20"/></odoo>
+              sequence="20"/>
+</odoo>

@@ -47,7 +47,7 @@ class AgriBiogasProduction(models.Model):
     co2_reduction_ton = fields.Float('CO2 Reduction Equivalent (ton)', compute='_compute_co2_reduction', store=True)
 
     # Equipment and location
-    digester_id = fields.Many2one('farm.equipment', string='Biogas Digester')
+    digester_id = fields.Many2one('maintenance.equipment', string='Biogas Digester')
     production_location_id = fields.Many2one('farm.location', string='Production Location')
 
     # Integration with carbon footprint (Epic 30)

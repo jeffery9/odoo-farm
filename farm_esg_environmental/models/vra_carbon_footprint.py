@@ -82,11 +82,6 @@ class AgriVRACarbonFootprint(models.Model):
     # Related reports
     comparison_report = fields.Text('Comparison Report', compute='_compute_comparison_report')
 
-    # Link to ESG compliance
-    esg_compliance_id = fields.Many2one('agri.supply.chain.carbon.data.engine',
-                                       string='ESG Compliance Record',
-                                       help='Link to broader ESG compliance tracking')
-
     @api.depends('traditional_material_qty', 'vra_material_qty')
     def _compute_material_savings(self):
         for record in self:

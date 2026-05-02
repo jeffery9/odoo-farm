@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Hazardous Waste Record Action -->
-    <record id="action_hazardous_waste_record" model="ir.actions.act_window">
+<record id="action_hazardous_waste_record" model="ir.actions.act_window">
         <field name="name">Hazardous Waste Records</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.hazardous.waste.record</field>
@@ -17,7 +15,7 @@
         </field>
     </record>
 
-    <!-- Hazardous Waste Record Tree View -->
+    
     <record id="view_hazardous_waste_record_tree" model="ir.ui.view">
         <field name="name">agri.hazardous.waste.record.tree</field>
         <field name="model">agri.hazardous.waste.record</field>
@@ -33,7 +31,7 @@
         </field>
     </record>
 
-    <!-- Hazardous Waste Record Form View -->
+    
     <record id="view_hazardous_waste_record_form" model="ir.ui.view">
         <field name="name">agri.hazardous.waste.record.form</field>
         <field name="model">agri.hazardous.waste.record</field>
@@ -105,7 +103,7 @@
         </field>
     </record>
 
-    <!-- Hazardous Waste Compliance Report Action -->
+    
     <record id="action_hazardous_waste_compliance_report" model="ir.actions.act_window">
         <field name="name">Hazardous Waste Compliance Report</field>
         <field name="type">ir.actions.act_window</field>
@@ -113,5 +111,4 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
-
 </odoo>

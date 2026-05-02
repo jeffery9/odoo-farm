@@ -12,7 +12,7 @@
                 <field name="risk_score"/>
                 <field name="affected_area_percentage"/>
                 <field name="potential_loss"/>
-                <field name="confidence_score"/>
+                <field name="ai_confidence_score"/>
                 <field name="analysis_date"/>
                 <field name="status"/>
             </list>
@@ -44,7 +44,7 @@
                         <group>
                             <field name="affected_area_percentage"/>
                             <field name="potential_loss"/>
-                            <field name="confidence_score"/>
+                            <field name="ai_confidence_score"/>
                             <field name="analysis_date"/>
                         </group>
                     </group>

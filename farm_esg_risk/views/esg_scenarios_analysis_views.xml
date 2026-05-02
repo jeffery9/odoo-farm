@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ESG Scenarios Analysis Tree View -->
-    <record id="view_esg_scenarios_analysis_tree" model="ir.ui.view">
+<record id="view_esg_scenarios_analysis_tree" model="ir.ui.view">
         <field name="name">farm.esg.scenarios.analysis.tree</field>
         <field name="model">farm.esg.scenarios.analysis</field>
         <field name="arch" type="xml">
@@ -18,7 +17,7 @@
         </field>
     </record>
 
-    <!-- ESG Scenarios Analysis Form View -->
+    
     <record id="view_esg_scenarios_analysis_form" model="ir.ui.view">
         <field name="name">farm.esg.scenarios.analysis.form</field>
         <field name="model">farm.esg.scenarios.analysis</field>
@@ -129,7 +128,7 @@
         </field>
     </record>
 
-    <!-- ESG Scenarios Analysis Search View -->
+    
     <record id="view_esg_scenarios_analysis_search" model="ir.ui.view">
         <field name="name">farm.esg.scenarios.analysis.search</field>
         <field name="model">farm.esg.scenarios.analysis</field>
@@ -156,7 +155,7 @@
         </field>
     </record>
 
-    <!-- ESG Scenarios Analysis Action Window -->
+    
     <record id="action_esg_scenarios_analysis" model="ir.actions.act_window">
         <field name="name">ESG Scenarios Analysis</field>
         <field name="res_model">farm.esg.scenarios.analysis</field>
@@ -173,9 +172,8 @@
         </field>
     </record>
 
-    <!-- Menu item for ESG Scenarios Analysis -->
+    
     <menuitem id="esg_scenarios_analysis_menu" name="Scenarios Analysis"
               parent="esg_risk_menu" sequence="70"
               action="action_esg_scenarios_analysis"/>
-
 </odoo>

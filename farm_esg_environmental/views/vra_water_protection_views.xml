@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- VRA Water Protection Zone Tree View -->
-    <record id="view_vra_water_protection_zone_tree" model="ir.ui.view">
+<record id="view_vra_water_protection_zone_tree" model="ir.ui.view">
         <field name="name">agri.vra.water.protection.zone.tree</field>
         <field name="model">agri.vra.water.protection.zone</field>
         <field name="arch" type="xml">
@@ -17,7 +16,7 @@
         </field>
     </record>
 
-    <!-- VRA Water Protection Zone Form View -->
+    
     <record id="view_vra_water_protection_zone_form" model="ir.ui.view">
         <field name="name">agri.vra.water.protection.zone.form</field>
         <field name="model">agri.vra.water.protection.zone</field>
@@ -72,8 +71,8 @@
                                 </group>
                                 <group>
                                     <field name="seasonal_restrictions"/>
-                                    <field name="restricted_season_start" attrs="{'invisible': [('seasonal_restrictions', '=', False)]}"/>
-                                    <field name="restricted_season_end" attrs="{'invisible': [('seasonal_restrictions', '=', False)]}"/>
+                                    <field name="restricted_season_start"/>
+                                    <field name="restricted_season_end"/>
                                 </group>
                             </group>
                         </page>
@@ -124,7 +123,7 @@
         </field>
     </record>
 
-    <!-- VRA Water Protection Zone Search View -->
+    
     <record id="view_vra_water_protection_zone_search" model="ir.ui.view">
         <field name="name">agri.vra.water.protection.zone.search</field>
         <field name="model">agri.vra.water.protection.zone</field>
@@ -139,7 +138,7 @@
                 <filter name="filter_active" string="Active" domain="[('active', '=', True)]"/>
                 <filter name="filter_high_risk" string="High Risk" domain="[('environmental_risk_level', '=', 'high')]"/>
                 <filter name="filter_chemical_buffer" string="Chemical Buffers" domain="[('buffer_zone_type', '=', 'chemical')]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="group_location" string="Location" domain="[]" context="{'group_by':'location_id'}"/>
                     <filter name="group_type" string="Buffer Type" domain="[]" context="{'group_by':'buffer_zone_type'}"/>
                     <filter name="group_status" string="Compliance Status" domain="[]" context="{'group_by':'compliance_status'}"/>
@@ -148,7 +147,7 @@
         </field>
     </record>
 
-    <!-- VRA Water Protection Zone Action -->
+    
     <record id="action_vra_water_protection_zone" model="ir.actions.act_window">
         <field name="name">VRA Water Protection Zones</field>
         <field name="res_model">agri.vra.water.protection.zone</field>

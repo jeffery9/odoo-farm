@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Regional Circular Governance Action -->
-    <record id="action_regional_circular_governance" model="ir.actions.act_window">
+<record id="action_regional_circular_governance" model="ir.actions.act_window">
         <field name="name">Regional Circular Governance</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.regional.circular.governance</field>
@@ -17,7 +15,7 @@
         </field>
     </record>
 
-    <!-- Regional Circular Governance Tree View -->
+    
     <record id="view_regional_circular_governance_tree" model="ir.ui.view">
         <field name="name">agri.regional.circular.governance.tree</field>
         <field name="model">agri.regional.circular.governance</field>
@@ -33,7 +31,7 @@
         </field>
     </record>
 
-    <!-- Regional Circular Governance Form View -->
+    
     <record id="view_regional_circular_governance_form" model="ir.ui.view">
         <field name="name">agri.regional.circular.governance.form</field>
         <field name="model">agri.regional.circular.governance</field>
@@ -116,7 +114,7 @@
         </field>
     </record>
 
-    <!-- Farm Circular Participation Action -->
+    
     <record id="action_farm_circular_participation" model="ir.actions.act_window">
         <field name="name">Farm Circular Participation</field>
         <field name="type">ir.actions.act_window</field>
@@ -124,7 +122,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Farm Circular Participation Tree View -->
+    
     <record id="view_farm_circular_participation_tree" model="ir.ui.view">
         <field name="name">agri.farm.circular.participation.tree</field>
         <field name="model">agri.farm.circular.participation</field>
@@ -139,5 +137,4 @@
             </list>
         </field>
     </record>
-
 </odoo>
