@@ -21,8 +21,8 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/entity_views.xml',
         'views/menu.xml',
+        'views/entity_views.xml',
     ],
     'installable': True,
     'application': False,

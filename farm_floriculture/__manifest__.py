@@ -17,8 +17,8 @@ Floriculture Module (ISL Implementation)
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/flower_isl_views.xml',
         'views/menu.xml',
+        'views/flower_isl_views.xml',
     ],
     'installable': True,
     'application': True,

@@ -14,8 +14,8 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "views/credit_scoring_views.xml",
         "views/menu.xml",
+        "views/credit_scoring_views.xml",
     ],
     "demo": [
     ],

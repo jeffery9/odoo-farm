@@ -22,6 +22,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "views/menu.xml",
         "views/ai_decision_views.xml",
         "views/ai_cockpit_views.xml",
         "views/ai_crop_growth_views.xml",
@@ -36,7 +37,6 @@
         "views/ai_disease_monitoring_views.xml",
         "views/ai_risk_assessment_views.xml",
         "views/ai_agent_views.xml",
-        "views/menu.xml",
     ],
     "installable": True,
     "application": False,

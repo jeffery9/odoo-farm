@@ -3,7 +3,7 @@
 <record id="precision_recipe_phase_view_kanban_iot" model="ir.ui.view">
         <field name="name">precision.recipe.phase.kanban.iot</field>
         <field name="model">precision.recipe.phase</field>
-        <field name="inherit_id" ref="precision_production.phase_execution_views.precision_recipe_phase_view_kanban"/>
+        <field name="inherit_id" ref="precision_production.precision_recipe_phase_view_kanban"/>
         <field name="arch" type="xml">
             <xpath expr="//kanban" position="attributes">
                 <attribute name="js_class">precision_iot_phase_kanban</attribute>
@@ -31,7 +31,7 @@
                             <span class="o_iot_reading_deviation"
                                   t-att-class="'critical' if reading.deviation_critical else 'warning' if reading.deviation_warning else ''"
                                   t-esc="f'({reading.deviation_percent}% deviation)'"
-                                  invisible="not reading.deviation_percent"/>
+                                  t-if="reading.deviation_percent"/>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
     <record id="precision_recipe_phase_view_list_iot" model="ir.ui.view">
         <field name="name">precision.recipe.phase.list.iot</field>
         <field name="model">precision.recipe.phase</field>
-        <field name="inherit_id" ref="precision_production.phase_execution_views.precision_recipe_phase_view_list"/>
+        <field name="inherit_id" ref="precision_production.precision_recipe_phase_view_list"/>
         <field name="arch" type="xml">
             <xpath expr="//list" position="attributes">
                 <attribute name="js_class">precision_iot_phase_kanban</attribute>

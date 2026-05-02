@@ -34,12 +34,12 @@ avoiding direct MQTT connections from Odoo for better reliability and maintainab
     "data": [
         "security/iiot_security.xml",
         "security/ir.model.access.csv",
+        "views/menu.xml",
         "views/iiot_device_profile_views.xml",
         "views/iiot_telemetry_rule_views.xml",
         "views/iiot_device_views.xml",
         "views/iiot_firmware_views.xml",
         "views/iiot_update_views.xml",
-        "views/menu.xml",
     ],
     "demo": [],
     "installable": True,

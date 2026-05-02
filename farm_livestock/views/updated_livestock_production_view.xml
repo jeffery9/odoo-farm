@@ -4,9 +4,9 @@
     <record id="view_farm_livestock_production_form_updated" model="ir.ui.view">
         <field name="name">farm.livestock.production.form.updated</field>
         <field name="model">farm.livestock.production</field>
-        <field name="inherit_id" ref="farm_livestock.view_farm_livestock_production_form"/>
+        
         <field name="arch" type="xml">
-            <notebook position="inside">
+            <form><sheet><notebook>
                 <page string="Performance &amp; Security" name="perf_security">
                     <group>
                         <group string="Performance Metrics">
@@ -35,7 +35,7 @@
                         </field>
                     </group>
                 </page>
-            </notebook>
+            </notebook></sheet></form>
         </field>
     </record>
 
@@ -43,9 +43,9 @@
     <record id="view_farm_livestock_bom_form_updated" model="ir.ui.view">
         <field name="name">farm.livestock.bom.form.updated</field>
         <field name="model">farm.livestock.bom</field>
-        <field name="inherit_id" ref="farm_livestock.view_farm_livestock_bom_form"/>
+        
         <field name="arch" type="xml">
-            <notebook position="inside">
+            <form><sheet><notebook>
                 <page string="Performance &amp; Security" name="perf_security">
                     <group string="Nutrient Content">
                         <field name="nitrogen_qty"/>
@@ -56,6 +56,6 @@
                         <field name="config_settings" widget="ace" options="{'mode': 'json'}"/>
                     </group>
                 </page>
-            </notebook>
+            </notebook></sheet></form>
         </field>
     </record>

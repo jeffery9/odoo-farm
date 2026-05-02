@@ -18,9 +18,9 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/menu.xml',
     ],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',
 }
+        'views/menu.xml',
