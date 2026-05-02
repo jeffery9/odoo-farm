@@ -70,9 +70,9 @@
         <field name="model">stock.lot</field>
         <field name="inherit_id" ref="stock.view_production_lot_form"/>
         <field name="arch" type="xml">
-            <header>
+            <xpath expr="//sheet" position="before">\n                <header>
                 <button name="action_generate_gi_code" string="Generate GI Code" type="object" class="oe_highlight" invisible="not gi_registry_id or gi_security_code"/>
-            </header>
+            </header>\n            </xpath>
             <xpath expr="//field[@name='ref']" position="after">
                 <field name="gi_registry_id" options="{'no_create': True}"/>
                 <field name="gi_security_code" invisible="not gi_security_code"/>

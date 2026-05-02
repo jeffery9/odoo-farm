@@ -12,7 +12,8 @@
                     </div>
                 </button>
             </xpath>
-            <xpath expr="//notebook" position="inside">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
                 <page string="Consumer Story" name="marketing_story">
                     <group>
                         <group string="Content">
@@ -38,6 +39,7 @@
                         </group>
                     </group>
                 </page>
+                </notebook>
             </xpath>
         </field>
     </record>

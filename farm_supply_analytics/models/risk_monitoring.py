@@ -129,6 +129,7 @@ class SupplyChainRiskDashboard(models.Model):
     """
     _name = 'supply.chain.risk.dashboard'
     _description = 'Supply Chain Risk Dashboard'
+    currency_id = fields.Many2one("res.currency", string="Currency", default=lambda self: self.env.company.currency_id)
 
     name = fields.Char('Dashboard Name', required=True)
     refresh_date = fields.Datetime('Last Refresh', default=fields.Datetime.now)

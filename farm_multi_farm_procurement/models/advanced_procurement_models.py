@@ -129,7 +129,7 @@ class HubSpokeDistribution(models.Model):
     state = fields.Selection([
         ('draft', 'Draft'),
         ('in_transit', 'In Transit'),
-        'delivered', 'Delivered',
+        ('delivered', 'Delivered'),
         ('confirmed', 'Confirmed'),
         ('completed', 'Completed'),
     ], string='State', default='draft', required=True)

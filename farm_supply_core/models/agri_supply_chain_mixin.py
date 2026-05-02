@@ -17,7 +17,7 @@ class AgriSupplyChainNodeMixin(models.AbstractModel):
         ('processor', 'Processor'),
         ('distributor', 'Distributor'),
         ('retailer', 'Retailer'),
-    ], string='Node Type', required=True)
+    ], string='Node Type', required=True, default='producer', ondelete={'supplier': 'set default', 'producer': 'set default', 'processor': 'set default', 'distributor': 'set default', 'retailer': 'set default'})
 
     partner_id = fields.Many2one('res.partner', string='Associated Partner')
     location_id = fields.Many2one('farm.location', string='Location')

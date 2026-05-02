@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Quality Control Standard Tree View -->
-    <record id="view_quality_control_standard_tree" model="ir.ui.view">
+<record id="view_quality_control_standard_tree" model="ir.ui.view">
         <field name="name">quality.control.standard.tree</field>
         <field name="model">quality.control.standard</field>
         <field name="arch" type="xml">
@@ -16,7 +15,7 @@
         </field>
     </record>
 
-    <!-- Quality Control Standard Form View -->
+    
     <record id="view_quality_control_standard_form" model="ir.ui.view">
         <field name="name">quality.control.standard.form</field>
         <field name="model">quality.control.standard</field>
@@ -46,7 +45,7 @@
         </field>
     </record>
 
-    <!-- Product Certification Tree View -->
+    
     <record id="view_product_certification_tree" model="ir.ui.view">
         <field name="name">product.certification.tree</field>
         <field name="model">product.certification</field>
@@ -64,7 +63,7 @@
         </field>
     </record>
 
-    <!-- Joint Procurement Tree View -->
+    
     <record id="view_joint_procurement_tree" model="ir.ui.view">
         <field name="name">joint.procurement.tree</field>
         <field name="model">joint.procurement</field>
@@ -81,7 +80,7 @@
         </field>
     </record>
 
-    <!-- Joint Procurement Form View -->
+    
     <record id="view_joint_procurement_form" model="ir.ui.view">
         <field name="name">joint.procurement.form</field>
         <field name="model">joint.procurement</field>
@@ -89,9 +88,9 @@
             <form string="Joint Procurement">
                 <header>
                     <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"
-                            states="draft"/>
+                           />
                     <button name="action_complete" type="object" string="Complete"
-                            states="confirmed,in_progress"/>
+                           />
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -132,7 +131,7 @@
         </field>
     </record>
 
-    <!-- Internal Marketplace Tree View -->
+    
     <record id="view_internal_marketplace_tree" model="ir.ui.view">
         <field name="name">internal.marketplace.tree</field>
         <field name="model">internal.marketplace</field>
@@ -149,7 +148,7 @@
         </field>
     </record>
 
-    <!-- Procurement Planning Tree View -->
+    
     <record id="view_procurement_planning_tree" model="ir.ui.view">
         <field name="name">procurement.planning.tree</field>
         <field name="model">procurement.planning</field>
@@ -165,7 +164,7 @@
         </field>
     </record>
 
-    <!-- Agri Service Tree View -->
+    
     <record id="view_agri_service_tree" model="ir.ui.view">
         <field name="name">agri.service.tree</field>
         <field name="model">agri.service</field>
@@ -182,7 +181,7 @@
         </field>
     </record>
 
-    <!-- Service Order Tree View -->
+    
     <record id="view_service_order_tree" model="ir.ui.view">
         <field name="name">service.order.tree</field>
         <field name="model">service.order</field>
@@ -198,7 +197,7 @@
         </field>
     </record>
 
-    <!-- Internal Loan Tree View -->
+    
     <record id="view_internal_loan_tree" model="ir.ui.view">
         <field name="name">internal.loan.tree</field>
         <field name="model">internal.loan</field>
@@ -216,7 +215,7 @@
         </field>
     </record>
 
-    <!-- Subsidy Disbursement Tree View -->
+    
     <record id="view_subsidy_disbursement_tree" model="ir.ui.view">
         <field name="name">subsidy.disbursement.tree</field>
         <field name="model">subsidy.disbursement</field>
@@ -232,7 +231,7 @@
         </field>
     </record>
 
-    <!-- Cooperative Decision Tree View -->
+    
     <record id="view_cooperative_decision_tree" model="ir.ui.view">
         <field name="name">cooperative.decision.tree</field>
         <field name="model">cooperative.decision</field>
@@ -248,7 +247,7 @@
         </field>
     </record>
 
-    <!-- Multi-sign Process Tree View -->
+    
     <record id="view_multi_sign_process_tree" model="ir.ui.view">
         <field name="name">multi.sign.process.tree</field>
         <field name="model">multi.sign.process</field>
@@ -263,8 +262,8 @@
         </field>
     </record>
 
-    <!-- Menu Items -->
-    <menuitem id="menu_quality_certification" name="Quality & Certification"
+    
+    <menuitem id="menu_quality_certification" name="Quality &amp; Certification"
               parent="menu_cooperative_root"
               sequence="50">
         <menuitem id="menu_quality_standards" name="Quality Standards"
@@ -323,7 +322,7 @@
                   sequence="20"/>
     </menuitem>
 
-    <!-- Actions -->
+    
     <record id="action_quality_control_standard_list" model="ir.actions.act_window">
         <field name="name">Quality Control Standards</field>
         <field name="res_model">quality.control.standard</field>

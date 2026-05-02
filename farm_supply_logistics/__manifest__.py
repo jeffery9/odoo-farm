@@ -23,7 +23,6 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/logistics_views.xml',
         'views/menu.xml',
     ],
     'installable': True,

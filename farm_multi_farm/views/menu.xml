@@ -1,41 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Main Multi-Entity Collaboration App Menu -->
-    <!-- This module now serves as the main entry point referencing specialized modules -->
-    <menuitem id="menu_farm_multi_farm_root"
+<menuitem id="farm_core.menu_multi_farm_root"
               name="Multi-Entity Collaboration"
               sequence="120"
               web_icon="farm_multi_farm,static/description/icon.png"
               groups="farm_core.group_farm_manager"/>
 
-    <!-- Reference menu items to the specialized modules that now contain the actual functionality -->
-    <!-- Base functionality -->
+    
+    
     <menuitem id="menu_entity_management"
               name="Entity Management"
-              parent="menu_farm_multi_farm_root"
+              parent="farm_core.menu_multi_farm_root"
               sequence="10"/>
 
     <menuitem id="menu_resource_sharing"
               name="Resource Sharing"
-              parent="menu_farm_multi_farm_root"
+              parent="farm_core.menu_multi_farm_root"
               sequence="20"/>
 
-    <!-- Financial functionality -->
+    
     <menuitem id="menu_financial_management"
               name="Financial Management"
-              parent="menu_farm_multi_farm_root"
+              parent="farm_core.menu_multi_farm_root"
               sequence="30"/>
 
-    <!-- Procurement functionality -->
+    
     <menuitem id="menu_procurement_management"
               name="Procurement Management"
-              parent="menu_farm_multi_farm_root"
+              parent="farm_core.menu_multi_farm_root"
               sequence="40"/>
 
-    <!-- Quality functionality -->
+    
     <menuitem id="menu_quality_management"
               name="Quality Management"
-              parent="menu_farm_multi_farm_root"
+              parent="farm_core.menu_multi_farm_root"
               sequence="50"/>
-
 </odoo>

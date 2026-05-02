@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Contract Farming Agreement Views -->
-    <record id="view_contract_farming_agreement_tree" model="ir.ui.view">
+<record id="view_contract_farming_agreement_tree" model="ir.ui.view">
         <field name="name">contract.farming.agreement.tree</field>
         <field name="model">contract.farming.agreement</field>
         <field name="arch" type="xml">
@@ -30,15 +29,15 @@
             <form>
                 <header>
                     <button name="action_approve_agreement" type="object" string="Approve Agreement"
-                            states="draft,submitted" class="oe_highlight"/>
+                            class="oe_highlight"/>
                     <button name="action_start_farming" type="object" string="Start Farming"
-                            states="approved"/>
+                           />
                     <button name="action_complete_harvest" type="object" string="Complete Harvest"
-                            states="in_progress"/>
+                           />
                     <button name="action_settle_contract" type="object" string="Settle Contract"
-                            states="harvest_complete" class="oe_highlight"/>
+                            class="oe_highlight"/>
                     <button name="action_cancel_agreement" type="object" string="Cancel Agreement"
-                            states="draft,submitted,approved" class="oe_link"/>
+                            class="oe_link"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,approved,in_progress,harvest_complete,settled"/>
                 </header>
                 <sheet>
@@ -63,9 +62,9 @@
                     </group>
                     <group string="Financial Terms">
                         <field name="pricing_method"/>
-                        <field name="fixed_price" attrs="{'invisible': [('pricing_method', '!=', 'fixed')]}"/>
-                        <field name="cost_plus_margin" attrs="{'invisible': [('pricing_method', '!=', 'cost_plus')]}"/>
-                        <field name="revenue_share_percentage" attrs="{'invisible': [('pricing_method', '!=', 'revenue_share')]}"/>
+                        <field name="fixed_price"/>
+                        <field name="cost_plus_margin"/>
+                        <field name="revenue_share_percentage"/>
                     </group>
                     <group string="Financial Summary">
                         <field name="input_prepayment_total"/>
@@ -187,7 +186,7 @@
         </field>
     </record>
 
-    <!-- Input Prepayment Views -->
+    
     <record id="view_contract_farming_input_prepayment_tree" model="ir.ui.view">
         <field name="name">contract.farming.input.prepayment.tree</field>
         <field name="model">contract.farming.input.prepayment</field>
@@ -206,7 +205,7 @@
         </field>
     </record>
 
-    <!-- Yield Commitment Views -->
+    
     <record id="view_contract_farming_yield_commitment_tree" model="ir.ui.view">
         <field name="name">contract.farming.yield.commitment.tree</field>
         <field name="model">contract.farming.yield.commitment</field>
@@ -223,7 +222,7 @@
         </field>
     </record>
 
-    <!-- Settlement Views -->
+    
     <record id="view_contract_farming_settlement_tree" model="ir.ui.view">
         <field name="name">contract.farming.settlement.tree</field>
         <field name="model">contract.farming.settlement</field>
@@ -240,7 +239,7 @@
         </field>
     </record>
 
-    <!-- Actions -->
+    
     <record id="action_contract_farming_agreement" model="ir.actions.act_window">
         <field name="name">Contract Farming Agreements</field>
         <field name="res_model">contract.farming.agreement</field>
@@ -265,7 +264,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Menu Items -->
+    
     <menuitem id="menu_contract_farming_root" name="Contract Farming"
               parent="farm_multi_farm.farm_multi_farm_root" sequence="50"/>
 
@@ -284,5 +283,4 @@
     <menuitem id="menu_contract_farming_settlements" name="Settlements"
               action="action_contract_farming_settlement"
               parent="menu_contract_farming_root" sequence="40"/>
-
 </odoo>

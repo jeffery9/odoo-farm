@@ -6,15 +6,12 @@
               sequence="40"/>
 
     
-    <menuitem id="share_management_menu"
               name="Share Management"
               parent="multi_farm_financial_menu"
               sequence="10"/>
 
     <menuitem id="share_transaction_menu"
               name="Share Transactions"
-              parent="share_management_menu"
-              action="action_share_transaction"
               sequence="10"/>
 
     
@@ -26,25 +23,21 @@
     <menuitem id="dividend_distribution_menu"
               name="Dividend Distribution"
               parent="dividend_management_menu"
-              action="action_dividend_distribution"
               sequence="10"/>
 
     <menuitem id="dividend_line_menu"
               name="Dividend Lines"
               parent="dividend_management_menu"
-              action="action_dividend_line"
               sequence="20"/>
 
     
-    <menuitem id="internal_credit_menu"
               name="Internal Credit"
               parent="multi_farm_financial_menu"
-              action="action_internal_credit"
               sequence="30"/>
 
     
     <menuitem id="treasury_governance_menu"
-              name="Treasury & Governance"
+              name="Treasury &amp; Governance"
               parent="multi_farm_financial_menu"
               sequence="40"/>
 </odoo>

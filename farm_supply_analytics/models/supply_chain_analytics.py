@@ -5,6 +5,7 @@ import json
 
 class FarmSupplyChainNode(models.Model):
     _name = 'farm.supply.chain.node'
+    _inherit = 'agri.supply.chain.node.mixin'
     _description = 'Supply Chain Node (Control Tower)'
     _inherit = ['supply.chain.node.mixin']
 
@@ -15,7 +16,7 @@ class FarmSupplyChainNode(models.Model):
         ('processing', 'Processing Plant'),
         ('warehouse', 'Logistics Center'),
         ('distributor', 'Distributor/Customer')
-    ])
+    ], ondelete={'supplier': 'set default', 'farm': 'set default', 'processing': 'set default', 'warehouse': 'set default', 'distributor': 'set default'})
 
     # Real-time KPIs from the original smart supply chain
     current_inventory_value = fields.Monetary("Inventory Value", related='inventory_value', readonly=False)
@@ -45,6 +46,7 @@ class SupplyChainDashboard(models.Model):
     _description = 'Supply Chain Dashboard'
 
     name = fields.Char('Dashboard Name', required=True)
+    currency_id = fields.Many2one("res.currency", string="Currency", default=lambda self: self.env.company.currency_id)
     description = fields.Text('Description')
 
     # Overall KPIs

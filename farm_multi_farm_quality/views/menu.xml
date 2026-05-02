@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Quality Management Menu (nested under Multi-Entity Collaboration) -->
-    <menuitem id="multi_farm_quality_menu"
+<menuitem id="multi_farm_quality_menu"
               name="Quality Management"
               parent="farm_multi_farm_base.multi_farm_root_menu"
               sequence="70"/>
 
-    <!-- Quality Control Menu -->
+    
     <menuitem id="quality_control_menu"
               name="Quality Control"
               parent="multi_farm_quality_menu"
               sequence="10"/>
 
-    <!-- Certification Management Menu -->
+    
     <menuitem id="certification_management_menu"
               name="Certification Management"
               parent="multi_farm_quality_menu"
               sequence="20"/>
-
 </odoo>

@@ -25,7 +25,7 @@ class FarmMarketDemand(models.Model):
         ('closed', 'Closed/Fulfilled')
     ], default='draft', tracking=True)
 
-    matched_lot_ids = fields.Many2many('farm.lot', string="Matched Farm Lots")
+    matched_lot_ids = fields.Many2many('stock.lot', relation='market_demand_stock_lot_rel', column1='demand_id', column2='lot_id', string="Matched Farm Lots")
 
     def action_match_production(self):
         """
@@ -34,7 +34,7 @@ class FarmMarketDemand(models.Model):
         """
         for rec in self:
             # Simple matching logic: find lots with the same product
-            matching_lots = self.env['farm.lot'].search([
+            matching_lots = self.env['stock.lot'].search([
                 ('product_id', '=', rec.product_id.id),
                 ('state', 'not in', ['sold', 'scrap'])
             ])

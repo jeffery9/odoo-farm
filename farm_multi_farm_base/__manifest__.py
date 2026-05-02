@@ -22,7 +22,6 @@
     'data': [
         'security/ir.model.access.csv',
         'views/entity_views.xml',
-        'views/cooperative_member_views.xml',
         'views/menu.xml',
     ],
     'installable': True,

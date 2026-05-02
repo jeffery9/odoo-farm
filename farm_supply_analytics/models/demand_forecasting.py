@@ -5,7 +5,7 @@ from odoo.exceptions import UserError
 class FarmSupplyDemandForecast(models.Model):
     _name = 'farm.supply.demand.forecast'
     _description = 'Supply Chain Demand Forecast'
-    _inherit = ['ai.decision.base', 'mail.thread', 'mail.activity.mixin']
+    _inherit = ['agri.ai.decision.base', 'mail.thread', 'mail.activity.mixin']
 
     name = fields.Char('Forecast Name', required=True, default=lambda self: _('New'))
     product_id = fields.Many2one('product.product', string="Product", required=True)
@@ -127,6 +127,7 @@ class InventoryOptimization(models.Model):
     """
     _name = 'inventory.optimization'
     _description = 'Inventory Optimization Engine'
+    currency_id = fields.Many2one("res.currency", string="Currency", default=lambda self: self.env.company.currency_id)
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char('Optimization Plan', required=True)
@@ -198,6 +199,7 @@ class InventoryOptimizationLine(models.Model):
     """Line for inventory optimization results"""
     _name = 'inventory.optimization.line'
     _description = 'Inventory Optimization Line'
+    currency_id = fields.Many2one("res.currency", string="Currency", default=lambda self: self.env.company.currency_id)
 
     optimization_id = fields.Many2one('inventory.optimization', string='Optimization', ondelete='cascade')
     product_id = fields.Many2one('product.product', string='Product', required=True)

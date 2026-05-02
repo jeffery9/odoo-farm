@@ -137,6 +137,12 @@ class PurchaseOrderLine(models.Model):
     Extension of purchase order line to support quality-based pricing [US-09-19]
     """
     _inherit = 'purchase.order.line'
+    quality_adjustment_amount = fields.Float("Quality Adjustment Amount", compute="_compute_quality_adjustment", store=True)
+    
+    @api.depends("price_subtotal")
+    def _compute_quality_adjustment(self):
+        for line in self:
+            line.quality_adjustment_amount = 0.0
 
     # Quality metrics fields for acquisition pricing
     quality_protein_content = fields.Float('Protein Content (%)',

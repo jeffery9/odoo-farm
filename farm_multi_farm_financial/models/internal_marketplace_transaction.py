@@ -20,7 +20,6 @@ class InternalMarketplaceTransaction(models.Model):
     unit_price = fields.Float('Unit Price', required=True)
     total_amount = fields.Float('Total Amount', compute='_compute_total_amount', store=True)
     transaction_date = fields.Date('Transaction Date', default=fields.Date.context_today)
-    listing_id = fields.Many2one('internal.marketplace', string='Listing')
     picking_id = fields.Many2one('stock.picking', string='Stock Picking')
     settlement_id = fields.Many2one('internal.settlement', string='Settlement')
     state = fields.Selection([

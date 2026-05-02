@@ -23,7 +23,6 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/procurement_views.xml',
         'views/menu.xml',
     ],
     'installable': True,

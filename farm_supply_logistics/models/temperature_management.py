@@ -81,7 +81,7 @@ class PrecoolingProcess(models.Model):
 
     name = fields.Char('Process Reference', required=True, default='/')
     product_id = fields.Many2one('product.product', string='Product', required=True)
-    lot_id = fields.Many2one('stock.production.lot', string='Harvest Lot', required=True)
+    lot_id = fields.Many2one('stock.lot', string='Harvest Lot', required=True)
     batch_number = fields.Char('Batch Number', related='lot_id.name', store=True)
 
     # Pre-cooling details

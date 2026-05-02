@@ -12,12 +12,11 @@
     'author': 'Jeffery',
     'depends': [
         'farm_multi_farm_base',
-        'quality',
+        'farm_quality',
         'base',
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/quality_views.xml',
         'views/menu.xml',
     ],
     'installable': True,
