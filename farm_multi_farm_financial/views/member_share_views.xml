@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <!-- Cooperative Member Tree View -->
-    <record id="view_cooperative_member_tree" model="ir.ui.view">
+<odoo><record id="view_cooperative_member_tree" model="ir.ui.view">
         <field name="name">cooperative.member.tree</field>
         <field name="model">cooperative.member</field>
         <field name="arch" type="xml">
@@ -19,7 +17,7 @@
         </field>
     </record>
 
-    <!-- Cooperative Member Form View -->
+    
     <record id="view_cooperative_member_form" model="ir.ui.view">
         <field name="name">cooperative.member.form</field>
         <field name="model">cooperative.member</field>
@@ -88,7 +86,7 @@
         </field>
     </record>
 
-    <!-- Share Transaction Tree View -->
+    
     <record id="view_share_transaction_tree" model="ir.ui.view">
         <field name="name">share.transaction.tree</field>
         <field name="model">share.transaction</field>
@@ -105,7 +103,7 @@
         </field>
     </record>
 
-    <!-- Share Transaction Form View -->
+    
     <record id="view_share_transaction_form" model="ir.ui.view">
         <field name="name">share.transaction.form</field>
         <field name="model">share.transaction</field>
@@ -140,7 +138,7 @@
         </field>
     </record>
 
-    <!-- Dividend Distribution Tree View -->
+    
     <record id="view_dividend_distribution_tree" model="ir.ui.view">
         <field name="name">dividend.distribution.tree</field>
         <field name="model">dividend.distribution</field>
@@ -156,7 +154,7 @@
         </field>
     </record>
 
-    <!-- Dividend Distribution Form View -->
+    
     <record id="view_dividend_distribution_form" model="ir.ui.view">
         <field name="name">dividend.distribution.form</field>
         <field name="model">dividend.distribution</field>
@@ -205,7 +203,7 @@
         </field>
     </record>
 
-    <!-- Internal Credit Tree View -->
+    
     <record id="view_internal_credit_tree" model="ir.ui.view">
         <field name="name">internal.credit.tree</field>
         <field name="model">internal.credit</field>
@@ -222,7 +220,7 @@
         </field>
     </record>
 
-    <!-- Internal Credit Form View -->
+    
     <record id="view_internal_credit_form" model="ir.ui.view">
         <field name="name">internal.credit.form</field>
         <field name="model">internal.credit</field>
@@ -262,7 +260,7 @@
         </field>
     </record>
 
-    <!-- Credit Transaction Tree View -->
+    
     <record id="view_credit_transaction_tree" model="ir.ui.view">
         <field name="name">credit.transaction.tree</field>
         <field name="model">credit.transaction</field>
@@ -279,7 +277,7 @@
         </field>
     </record>
 
-    <!-- Shared Machinery Pool Tree View -->
+    
     <record id="view_shared_machinery_pool_tree" model="ir.ui.view">
         <field name="name">shared.machinery.pool.tree</field>
         <field name="model">shared.machinery.pool</field>
@@ -296,7 +294,7 @@
         </field>
     </record>
 
-    <!-- Shared Machinery Pool Form View -->
+    
     <record id="view_shared_machinery_pool_form" model="ir.ui.view">
         <field name="name">shared.machinery.pool.form</field>
         <field name="model">shared.machinery.pool</field>
@@ -340,7 +338,7 @@
         </field>
     </record>
 
-    <!-- Machinery Rental Tree View -->
+    
     <record id="view_machinery_rental_tree" model="ir.ui.view">
         <field name="name">machinery.rental.tree</field>
         <field name="model">machinery.rental</field>
@@ -357,7 +355,7 @@
         </field>
     </record>
 
-    <!-- Machinery Rental Form View -->
+    
     <record id="view_machinery_rental_form" model="ir.ui.view">
         <field name="name">machinery.rental.form</field>
         <field name="model">machinery.rental</field>
@@ -395,7 +393,7 @@
         </field>
     </record>
 
-    <!-- Menu Items -->
+    
     <menuitem id="menu_cooperative_root" name="Cooperative Management"
               parent="farm_multi_farm.menu_multi_farm_root"
               sequence="10"/>
@@ -432,7 +430,7 @@
                   sequence="20"/>
     </menuitem>
 
-    <!-- Actions -->
+    
     <record id="action_cooperative_member_list" model="ir.actions.act_window">
         <field name="name">Cooperative Members</field>
         <field name="res_model">cooperative.member</field>
@@ -475,5 +473,4 @@
         <field name="name">Machinery Rentals</field>
         <field name="res_model">machinery.rental</field>
         <field name="view_mode">tree,form</field>
-    </record>
-</odoo>
+    </record></odoo>

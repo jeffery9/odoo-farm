@@ -1,6 +1,5 @@
-<?xml version="1.0"?>
-<odoo>
-    <record id="seq_farm_crop_yield_insurance_policy" model="ir.sequence">
+<?xml version="1.0" encoding="utf-8"?>
+<odoo><record id="seq_farm_crop_yield_insurance_policy" model="ir.sequence">
         <name>Crop Yield Insurance Policy</name>
         <field name="code">POLICY</field>
         <field name="prefix">POL/%(year)s/</field>
@@ -14,5 +13,4 @@
         <field name="prefix">CLM/%(year)s/</field>
         <field name="padding">5</field>
         <field name="company_id" eval="False"/>
-    </record>
-</odoo>
+    </record></odoo>

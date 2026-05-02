@@ -14,9 +14,9 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'data/ir_sequence_data.xml',
-        'views/insurance_policy_views.xml',
-        'views/menu.xml',
+        # 'data/ir_sequence_data.xml',
+        # 'views/insurance_policy_views.xml',
+        # 'views/menu.xml',
     ],
     'installable': True,
     'application': True,

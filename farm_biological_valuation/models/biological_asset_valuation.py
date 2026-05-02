@@ -13,7 +13,7 @@ class AgriValuationBiologicalAsset(models.Model):
     Combines fair value accounting with cost/depreciation accounting
     Refactored from farm.biological.asset.valuation with 100% logic retention.
     """
-    _name = 'agri.valuation.biological.asset'
+    _name = 'agri.biological.asset.valuation'
     _description = 'Consolidated Biological Asset Valuation'
     _order = 'asset_id, valuation_date desc'
 
@@ -471,7 +471,7 @@ class AgriValuationStageCoefficient(models.Model):
     _description = 'Biological Asset Valuation Stage Coefficient'
 
     valuation_id = fields.Many2one(
-        'agri.valuation.biological.asset',
+        'agri.biological.asset.valuation',
         string="Valuation Record",
         required=True,
         ondelete='cascade'
@@ -524,7 +524,7 @@ class BiologicalAssetExtension(models.Model):
                                  help="Date of last fair value calculation")
 
     # One2many field to consolidated valuations
-    valuation_ids = fields.One2many('agri.valuation.biological.asset', 'asset_id', string="Asset Valuations")
+    valuation_ids = fields.One2many('agri.biological.asset.valuation', 'asset_id', string="Asset Valuations")
 
     # Integration with OPE metrics (Operational Performance Efficiency)
     ope_integration = fields.Float("OPE Integration Score",
@@ -534,7 +534,7 @@ class BiologicalAssetExtension(models.Model):
     def _compute_current_fair_value(self):
         """Compute current fair value based on latest fair valuation"""
         for asset in self:
-            latest_fair_val = self.env['agri.valuation.biological.asset'].search([
+            latest_fair_val = self.env['agri.biological.asset.valuation'].search([
                 ('asset_id', '=', asset.id),
                 ('valuation_method', '=', 'market_price')
             ], order='valuation_date desc', limit=1)
@@ -546,7 +546,7 @@ class BiologicalAssetExtension(models.Model):
     def _compute_current_net_book_value(self):
         """Compute current net book value based on latest cost model valuation"""
         for asset in self:
-            latest_net_book_val = self.env['agri.valuation.biological.asset'].search([
+            latest_net_book_val = self.env['agri.biological.asset.valuation'].search([
                 ('asset_id', '=', asset.id)
             ], order='valuation_date desc', limit=1)
 
@@ -556,7 +556,7 @@ class BiologicalAssetExtension(models.Model):
         """Manual action to run fair valuation for selected assets"""
         for asset in self:
             # Create a new fair valuation with market price method
-            self.env['agri.valuation.biological.asset'].create({
+            self.env['agri.biological.asset.valuation'].create({
                 'asset_id': asset.id,
                 'valuation_date': fields.Date.today(),
                 'valuation_method': 'market_price',
@@ -577,7 +577,7 @@ class BiologicalAssetExtension(models.Model):
         """Manual action to run cost-based valuation for selected assets"""
         for asset in self:
             # Create a new cost valuation
-            self.env['agri.valuation.biological.asset'].create({
+            self.env['agri.biological.asset.valuation'].create({
                 'asset_id': asset.id,
                 'valuation_date': fields.Date.today(),
                 'valuation_method': 'cost_model',

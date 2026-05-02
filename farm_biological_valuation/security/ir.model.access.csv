@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_biological_asset_valuation_user,biological.asset.valuation.user,model_farm_biological_asset_valuation,farm_security.group_farm_worker,1,1,1,1
-access_biological_asset_valuation_stage_coefficient_user,biological.asset.valuation.stage.coefficient.user,model_farm_biological_asset_valuation_stage_coefficient,farm_security.group_farm_worker,1,1,1,1
+access_agri_valuation_biological_asset,agri.biological.asset.valuation,model_agri_biological_asset_valuation,farm_core.group_farm_worker,1,1,1,1
+access_agri_valuation_stage_coefficient,agri.valuation.stage.coefficient,model_agri_valuation_stage_coefficient,farm_core.group_farm_worker,1,1,1,1

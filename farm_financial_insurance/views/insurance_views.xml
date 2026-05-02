@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <!-- Tree view for crop yield insurance -->
-    <record id="view_farm_crop_yield_insurance_tree" model="ir.ui.view">
+<odoo><record id="view_farm_crop_yield_insurance_tree" model="ir.ui.view">
         <field name="name">farm.crop.yield.insurance.tree</field>
         <field name="model">farm.crop.yield.insurance</field>
         <field name="arch" type="xml">
@@ -16,7 +14,7 @@
         </field>
     </record>
 
-    <!-- Form view for crop yield insurance -->
+    
     <record id="view_farm_crop_yield_insurance_form" model="ir.ui.view">
         <field name="name">farm.crop.yield.insurance.form</field>
         <field name="model">farm.crop.yield.insurance</field>
@@ -88,7 +86,7 @@
         </field>
     </record>
 
-    <!-- Tree view for insurance indices -->
+    
     <record id="view_farm_insurance_index_tree" model="ir.ui.view">
         <field name="name">farm.insurance.index.tree</field>
         <field name="model">farm.insurance.index</field>
@@ -102,7 +100,7 @@
         </field>
     </record>
 
-    <!-- Form view for insurance indices -->
+    
     <record id="view_farm_insurance_index_form" model="ir.ui.view">
         <field name="name">farm.insurance.index.form</field>
         <field name="model">farm.insurance.index</field>
@@ -123,7 +121,7 @@
         </field>
     </record>
 
-    <!-- Tree view for claims -->
+    
     <record id="view_farm_insurance_claim_tree" model="ir.ui.view">
         <field name="name">farm.insurance.claim.tree</field>
         <field name="model">farm.insurance.claim</field>
@@ -138,7 +136,7 @@
         </field>
     </record>
 
-    <!-- Form view for claims -->
+    
     <record id="view_farm_insurance_claim_form" model="ir.ui.view">
         <field name="name">farm.insurance.claim.form</field>
         <field name="model">farm.insurance.claim</field>
@@ -172,7 +170,7 @@
         </field>
     </record>
 
-    <!-- Actions -->
+    
     <record id="action_farm_crop_yield_insurance" model="ir.actions.act_window">
         <field name="name">Crop Yield Insurance</field>
         <field name="res_model">farm.crop.yield.insurance</field>
@@ -189,6 +187,4 @@
         <field name="name">Insurance Claims</field>
         <field name="res_model">farm.insurance.claim</field>
         <field name="view_mode">tree,form</field>
-    </record>
-
-</odoo>
+    </record></odoo>

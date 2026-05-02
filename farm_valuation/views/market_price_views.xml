@@ -1,56 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <!-- Market Price Tree View -->
-    <record id="view_market_price_tree" model="ir.ui.view">
-        <name>farm.market.price.tree</name>
-        <model>farm.market.price</model>
-        <arch type="xml">
-            <list string="Market Prices"
-                  decoration-success="confidence_level == 'high'"
-                  decoration-warning="confidence_level == 'medium'"
-                  decoration-danger="confidence_level == 'low'">
-                <field name="name"/>
-                <field name="product_id"/>
-                <field name="date"/>
-                <field name="unit_price"/>
-                <field name="unit_of_measure"/>
-                <field name="source"/>
-                <field name="confidence_level"/>
-            </list>
-        </arch>
-    </record>
-
-    <!-- Market Price Form View -->
-    <record id="view_market_price_form" model="ir.ui.view">
-        <name>farm.market.price.form</name>
-        <model>farm.market.price</model>
-        <arch type="xml">
-            <form string="Market Price">
-                <sheet>
-                    <div class="oe_title">
-                        <h1><field name="name"/></h1>
-                    </div>
-                    <group>
-                        <group string="Product &amp; Date">
-                            <field name="product_id"/>
-                            <field name="date"/>
-                        </group>
-                        <group string="Pricing">
-                            <field name="unit_price"/>
-                            <field name="unit_of_measure"/>
-                            <field name="source"/>
-                        </group>
-                    </group>
-                    <group string="Futures Information" invisible="not futures_contract">
-                        <field name="futures_contract"/>
-                        <field name="futures_price"/>
-                        <field name="price_volatility"/>
-                    </group>
-                    <group string="Data Quality">
-                        <field name="confidence_level"/>
-                    </group>
-                </sheet>
-            </form>
-        </arch>
-    </record>
-</odoo>
+<odoo><record id="view_market_price_tree" model="ir.ui.view">
+<field name="name">farm.market.price.tree</field>
+<field name="model">farm.market.price</field>
+<field name="arch" type="xml">
+<list string="Market Prices">
+<field name="product_id"/>
+<field name="unit_price"/>
+</list>
+</field>
+</record></odoo>
