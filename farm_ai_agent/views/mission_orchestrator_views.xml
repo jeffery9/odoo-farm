@@ -37,7 +37,6 @@
                                 <list>
                                     <field name="create_date"/>
                                     <field name="twin_id"/>
-                                    <field name="mission_id"/>
                                     <field name="status"/>
                                     <field name="detail"/>
                                 </list>
