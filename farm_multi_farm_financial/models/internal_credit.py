@@ -14,6 +14,7 @@ class InternalCredit(models.Model):
 
     name = fields.Char('Credit Reference', required=True, default=lambda self: _('New'))
     member_id = fields.Many2one('cooperative.member', string='Member', required=True)
+    cooperative_id = fields.Many2one("cooperative.entity", string="Cooperative", required=True)
     credit_limit = fields.Float('Credit Limit', required=True)
     utilized_amount = fields.Float('Utilized Amount', default=0.0)
     available_amount = fields.Float('Available Amount', compute='_compute_available_amount', store=True)
