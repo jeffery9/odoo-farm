@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <!-- Financial Management Menu (nested under Multi-Entity Collaboration) -->
-    <menuitem id="multi_farm_financial_menu"
+<odoo><menuitem id="multi_farm_financial_menu"
               name="Financial Management"
               parent="farm_multi_farm_base.multi_farm_root_menu"
               sequence="40"/>
 
-    <!-- Share Management Menu -->
+    
     <menuitem id="share_management_menu"
               name="Share Management"
               parent="multi_farm_financial_menu"
@@ -18,7 +16,7 @@
               action="action_share_transaction"
               sequence="10"/>
 
-    <!-- Dividend Management Menu -->
+    
     <menuitem id="dividend_management_menu"
               name="Dividend Management"
               parent="multi_farm_financial_menu"
@@ -36,17 +34,15 @@
               action="action_dividend_line"
               sequence="20"/>
 
-    <!-- Internal Credit Menu -->
+    
     <menuitem id="internal_credit_menu"
               name="Internal Credit"
               parent="multi_farm_financial_menu"
               action="action_internal_credit"
               sequence="30"/>
 
-    <!-- Treasury & Governance Menu -->
+    
     <menuitem id="treasury_governance_menu"
               name="Treasury & Governance"
               parent="multi_farm_financial_menu"
-              sequence="40"/>
-
-</odoo>
+              sequence="40"/></odoo>

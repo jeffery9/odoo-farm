@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <!-- Tree view for financial asset valuation -->
-    <record id="view_financial_asset_valuation_tree" model="ir.ui.view">
+<odoo><record id="view_financial_asset_valuation_tree" model="ir.ui.view">
         <field name="name">farm.financial.asset.valuation.tree</field>
         <field name="model">farm.financial.asset.valuation</field>
         <field name="arch" type="xml">
@@ -16,7 +14,7 @@
         </field>
     </record>
 
-    <!-- Form view for financial asset valuation -->
+    
     <record id="view_financial_asset_valuation_form" model="ir.ui.view">
         <field name="name">farm.financial.asset.valuation.form</field>
         <field name="model">farm.financial.asset.valuation</field>
@@ -92,7 +90,7 @@
         </field>
     </record>
 
-    <!-- Tree view for valuation templates -->
+    
     <record id="view_financial_valuation_template_tree" model="ir.ui.view">
         <field name="name">farm.financial.valuation.template.tree</field>
         <field name="model">farm.financial.valuation.template</field>
@@ -106,7 +104,7 @@
         </field>
     </record>
 
-    <!-- Form view for valuation templates -->
+    
     <record id="view_financial_valuation_template_form" model="ir.ui.view">
         <field name="name">farm.financial.valuation.template.form</field>
         <field name="model">farm.financial.valuation.template</field>
@@ -130,7 +128,7 @@
                         <field name="requires_professional_valuation"/>
                         <field name="recommended_valuer_ids" widget="many2many_tags"/>
                     </group>
-                    <group string="Compliance & Notes">
+                    <group string="Compliance &amp; Notes">
                         <field name="compliance_requirements" nolabel="1" colspan="2"/>
                         <field name="standard_notes" nolabel="1" colspan="2"/>
                     </group>
@@ -139,7 +137,7 @@
         </field>
     </record>
 
-    <!-- Actions -->
+    
     <record id="action_financial_asset_valuation" model="ir.actions.act_window">
         <field name="name">Financial Asset Valuations</field>
         <field name="res_model">farm.financial.asset.valuation</field>
@@ -150,6 +148,4 @@
         <field name="name">Valuation Templates</field>
         <field name="res_model">farm.financial.valuation.template</field>
         <field name="view_mode">tree,form</field>
-    </record>
-
-</odoo>
+    </record></odoo>

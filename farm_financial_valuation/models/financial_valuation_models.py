@@ -58,7 +58,7 @@ class FinancialAssetValuation(models.Model):
     useful_life_years = fields.Float("Remaining Useful Life (Years)")
 
     # Comparable Sales Parameters
-    comparable_asset_ids = fields.Many2many('farm.financial.asset.valuation', string="Comparable Assets")
+    comparable_asset_ids = fields.Many2many('farm.financial.asset.valuation', relation='farm_financial_asset_valuation_comparable_rel', column1='valuation_id', column2='comparable_id', string="Comparable Assets")
     adjustment_factors = fields.Text("Adjustment Factors for Comparables")
 
     # Valuation Result

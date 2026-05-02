@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <!-- Insurance Policy Views -->
-    <record id="view_crop_yield_policy_tree" model="ir.ui.view">
+<odoo><record id="view_crop_yield_policy_tree" model="ir.ui.view">
         <name>farm.crop.yield.insurance.policy.list</name>
         <model>farm.crop.yield.insurance.policy</model>
         <arch type="xml">
@@ -89,7 +87,7 @@
                             </group>
                             <group string="AI Derived Metrics">
                                 <p>Based on predictive models and historical data.</p>
-                                <!-- Placeholder for more AI-driven risk assessment -->
+                                
                             </group>
                         </page>
                     </notebook>
@@ -104,7 +102,7 @@
         <view_mode>list,form</view_mode>
     </record>
 
-    <!-- Claim Views -->
+    
     <record id="view_farm_insurance_claim_tree" model="ir.ui.view">
         <name>farm.insurance.claim.list</name>
         <model>farm.insurance.claim</model>
@@ -171,7 +169,7 @@
         <view_mode>list,form</view_mode>
     </record>
 
-    <!-- Menu Items -->
+    
     <menuitem id="menu_insurance_root" name="Insurance"
               parent="farm_core.menu_finance_root"
               sequence="50"/>
@@ -184,5 +182,4 @@
     <menuitem id="menu_insurance_claims" name="Claims"
               parent="menu_insurance_root"
               action="action_farm_insurance_claim_form"
-              sequence="20"/>
-</odoo>
+              sequence="20"/></odoo>

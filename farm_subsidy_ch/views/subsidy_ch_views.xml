@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <!-- 扩展补贴申请表单：增加中国特色字段 -->
-    <record id="view_subsidy_application_form_inherit_ch" model="ir.ui.view">
+<?xml version="1.0" encoding="utf-8"?>
+<odoo><record id="view_subsidy_application_form_inherit_ch" model="ir.ui.view">
         <field name="name">farm.subsidy.application.form.inherit.ch</field>
         <field name="model">farm.subsidy.application</field>
         <field name="inherit_id" ref="farm_subsidy.view_subsidy_application_form"/>
@@ -14,5 +12,4 @@
                 <button name="action_generate_moara_report" string="Generate MOARA Report" type="object" class="oe_highlight"/>
             </xpath>
         </field>
-    </record>
-</odoo>
+    </record></odoo>

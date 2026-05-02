@@ -41,9 +41,12 @@ class MarketPrice(models.Model):
         for vals in vals_list:
             if vals.get('name', _('New')) == _('New'):
                 # Generate name as PRODUCT-YYYYMMDD
-                product_name = self.env['product.template'].browse(vals.get('product_id', False))
-                date_str = vals.get('date', fields.Date.today()).strftime('%Y%m%d')
-                vals['name'] = f"{product_name.name or 'COMMODITY'}-{date_str}"
+                product = self.env['product.template'].browse(vals.get('product_id', False))
+                d = vals.get('date', fields.Date.today())
+                if isinstance(d, str):
+                    d = fields.Date.to_date(d)
+                date_str = d.strftime('%Y%m%d')
+                vals['name'] = f"{product.name or 'COMMODITY'}-{date_str}"
 
         return super().create(vals_list)
 

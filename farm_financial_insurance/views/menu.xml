@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <!-- Add to main financial menu -->
-    <menuitem id="farm_financial_insurance_menu_root"
+<odoo><menuitem id="farm_financial_insurance_menu_root"
               name="Insurance"
               parent="farm_financial_core.farm_financial_core_menu_root"
               sequence="40"/>
@@ -22,6 +20,4 @@
               name="Claims Management"
               parent="farm_financial_insurance_menu_root"
               action="action_farm_insurance_claim"
-              sequence="30"/>
-
-</odoo>
+              sequence="30"/></odoo>

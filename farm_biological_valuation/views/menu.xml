@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <!-- Main menu for biological asset valuation -->
-    <menuitem id="biological_valuation_menu_root"
+<odoo><menuitem id="biological_valuation_menu_root"
               name="Biological Asset Valuation"
               sequence="50"
               web_icon="farm_biological_valuation,static/description/icon.png"/>
@@ -17,10 +15,9 @@
               action="action_biological_asset_valuation"
               sequence="10"/>
 
-    <!-- Add biological asset extension actions to farm_core menu -->
+    
     <menuitem id="farm_biological_asset_valuation_action"
               name="Biological Asset Valuation"
-              parent="farm_core.farm_asset_tracking_menu"
+              parent="farm_core.menu_finance_root"
               action="action_biological_asset_valuation"
-              sequence="20"/>
-</odoo>
+              sequence="20"/></odoo>

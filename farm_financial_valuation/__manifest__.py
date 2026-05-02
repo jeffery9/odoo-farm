@@ -16,7 +16,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "views/biological_asset_valuation_views.xml",
+        "views/financial_valuation_views.xml",
         "views/menu.xml",
     ],
     "demo": [
