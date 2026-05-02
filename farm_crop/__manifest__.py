@@ -13,6 +13,7 @@
     "depends": [
         "farm_core",
         "product",
+        "farm_operation",
     ],
     "data": [
         "security/ir.model.access.csv",

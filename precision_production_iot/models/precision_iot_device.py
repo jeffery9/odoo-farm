@@ -34,8 +34,13 @@ class PrecisionIotDevice(models.Model):
 
     # Status fields from Industrial IoT integration
     last_seen = fields.Datetime('Last Communication', related='iiot_device_id.last_telemetry', readonly=True)
-    is_connected = fields.Boolean('Connected', related='iiot_device_id.connection_status', readonly=True)
-    status = fields.Char('Status', related='iiot_device_id.connection_status', readonly=True)
+    is_connected = fields.Boolean('Connected', compute='_compute_is_connected')
+    
+    @api.depends('iiot_device_id.connection_status')
+    def _compute_is_connected(self):
+        for rec in self:
+            rec.is_connected = (rec.iiot_device_id.connection_status == 'online')
+    status = fields.Selection(related='iiot_device_id.connection_status', readonly=True)
     firmware_version = fields.Char('Firmware Version', related='iiot_device_id.firmware_version', readonly=True)
 
     # Relations

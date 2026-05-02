@@ -148,7 +148,7 @@ class AIAutonomousOrchestrator(models.Model):
         L5 Cycle: Scan -> Decide -> Dispatch.
         Runs through all active biological twins.
         """
-        twins = self.env['farm.biological.twin'].search([])
+        twins = self.env['agri.biological.twin'].search([])
         for twin in twins:
             if twin.health_score < self.auto_dispatch_threshold:
                 self._dispatch_remediation_mission(twin)
@@ -209,7 +209,7 @@ class AIAutonomousMissionLog(models.Model):
     _order = 'create_date desc'
 
     orchestrator_id = fields.Many2one('ai.autonomous.orchestrator', ondelete='cascade')
-    twin_id = fields.Many2one('farm.biological.twin', string="Source Twin")
+    twin_id = fields.Many2one('agri.biological.twin', string="Source Twin")
     mission_id = fields.Many2one('farm.robot.mission', string="Dispatched Mission")
     status = fields.Selection([('dispatched', 'Dispatched'), ('failed', 'Resource Unavailable')], string="Status")
     detail = fields.Text("Details")

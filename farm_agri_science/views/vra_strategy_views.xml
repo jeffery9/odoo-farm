@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_agri_vra_strategy_list" model="ir.ui.view">
-        <name>agri.intervention.vra.strategy.list</name>
-        <model>agri.intervention.vra.strategy</model>
-        <arch type="xml">
+        <field name="name">agri.intervention.vra.strategy.list</field>
+        <field name="model">agri.intervention.vra.strategy</field>
+        <field name="arch" type="xml">
             <list>
                 <field name="name"/>
                 <field name="type"/>
@@ -11,13 +11,13 @@
                 <field name="is_kinetics_aware"/>
                 <field name="is_cultivar_aware"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="view_agri_vra_strategy_form" model="ir.ui.view">
-        <name>agri.intervention.vra.strategy.form</name>
-        <model>agri.intervention.vra.strategy</model>
-        <arch type="xml">
+        <field name="name">agri.intervention.vra.strategy.form</field>
+        <field name="model">agri.intervention.vra.strategy</field>
+        <field name="arch" type="xml">
             <form>
                 <sheet>
                     <div class="oe_title">
@@ -74,12 +74,12 @@
                     </notebook>
                 </sheet>
             </form>
-        </arch>
+        </field>
     </record>
 
     <record id="action_farm_vra_strategy" model="ir.actions.act_window">
-        <name>VRA Strategies</name>
-        <res_model>agri.intervention.vra.strategy</res_model>
-        <view_mode>list,form</view_mode>
+        <field name="name">VRA Strategies</field>
+        <field name="res_model">agri.intervention.vra.strategy</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

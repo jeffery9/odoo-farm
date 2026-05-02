@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Updated ISL View for Mushroom Production to include new Odoo 19 features -->
-    <record id="view_farm_mushroom_production_form_updated" model="ir.ui.view">
+<record id="view_farm_mushroom_production_form_updated" model="ir.ui.view">
         <field name="name">farm.mushroom.production.form.updated</field>
         <field name="model">farm.mushroom.production</field>
         <field name="priority" eval="100"/>
@@ -52,3 +51,4 @@
             </form>
         </field>
     </record>
+</odoo>

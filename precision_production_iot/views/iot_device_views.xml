@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Precision IoT Device Views -->
-    <record id="precision_iot_device_view_tree" model="ir.ui.view">
+<record id="precision_iot_device_view_tree" model="ir.ui.view">
         <field name="name">precision.iot.device.tree</field>
         <field name="model">precision.iot.device</field>
         <field name="arch" type="xml">
@@ -24,7 +23,6 @@
             <form string="Precision IoT Device">
                 <header>
                     <button name="action_refresh_readings" type="object" string="Refresh Readings" class="btn-secondary"/>
-                    <button name="%(iot.control.command.wizard)d" string="Send Command" type="action" class="btn-primary"/>
                     <field name="is_connected" widget="boolean_toggle"/>
                 </header>
                 <sheet>

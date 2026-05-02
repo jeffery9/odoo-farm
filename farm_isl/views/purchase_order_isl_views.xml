@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ISL Purchase Order Views -->
-    <record id="view_isl_purchase_order_form" model="ir.ui.view">
+<record id="view_isl_purchase_order_form" model="ir.ui.view">
         <field name="name">farm.purchase.order.form</field>
         <field name="model">farm.purchase.order</field>
         <field name="arch" type="xml">

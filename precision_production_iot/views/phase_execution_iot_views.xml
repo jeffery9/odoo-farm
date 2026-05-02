@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Enhanced Phase Execution Kanban with IoT Integration -->
-    <record id="precision_recipe_phase_view_kanban_iot" model="ir.ui.view">
+<record id="precision_recipe_phase_view_kanban_iot" model="ir.ui.view">
         <field name="name">precision.recipe.phase.kanban.iot</field>
         <field name="model">precision.recipe.phase</field>
         <field name="inherit_id" ref="precision_production.phase_execution_views.precision_recipe_phase_view_kanban"/>
@@ -10,20 +9,20 @@
                 <attribute name="js_class">precision_iot_phase_kanban</attribute>
             </xpath>
             <xpath expr="//field[@name='state']" position="after">
-                <!-- IoT Device Status for the phase -->
+                
                 <field name="iot_device_ids" widget="many2many"/>
             </xpath>
             <xpath expr="//t[@t-name='kanban-box']//div[@class='card-body p-3']//div[@class='mb-2'][1]" position="after">
-                <!-- IoT Status Indicator -->
+                
                 <div class="iot-status-indicator" invisible="not iot_device_ids">
-                    <i class="fa fa-bolt text-success me-1" attrs="{'invisible': [('iot_connected','=',False)]}"/>
-                    <i class="fa fa-bolt text-warning me-1" attrs="{'invisible': [('iot_warning','=',False)]}"/>
-                    <i class="fa fa-bolt text-danger me-1" attrs="{'invisible': [('iot_error','=',False)]}"/>
-                    <i class="fa fa-bolt text-secondary me-1" attrs="{'invisible': [('iot_disconnected','=',False)]}"/>
+                    <i class="fa fa-bolt text-success me-1"/>
+                    <i class="fa fa-bolt text-warning me-1"/>
+                    <i class="fa fa-bolt text-danger me-1"/>
+                    <i class="fa fa-bolt text-secondary me-1"/>
                 </div>
             </xpath>
             <xpath expr="//t[@t-name='kanban-box']//div[@class='d-grid gap-2 mt-3']" position="after">
-                <!-- IoT Readings Display -->
+                
                 <div class="mt-2 pt-2 border-top" invisible="iot_readings_count == 0">
                     <div class="d-flex justify-content-between" t-foreach="iot_latest_readings" t-as="reading">
                         <small class="text-muted" t-esc="reading.sensor_name"/>
@@ -40,7 +39,7 @@
         </field>
     </record>
 
-    <!-- IoT Enhanced Phase List View -->
+    
     <record id="precision_recipe_phase_view_list_iot" model="ir.ui.view">
         <field name="name">precision.recipe.phase.list.iot</field>
         <field name="model">precision.recipe.phase</field>

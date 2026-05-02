@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- LLM Integration Main Menu -->
-    <menuitem id="farm_ai_llm_integration_menu_root"
+<menuitem id="farm_ai_llm_integration_menu_root"
               name="LLM Integration"
               parent="farm_ai_core.menu_ai_root"
               sequence="50"/>

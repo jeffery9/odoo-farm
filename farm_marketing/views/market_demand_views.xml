@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_farm_market_demand_tree" model="ir.ui.view">
-        <name>farm.market.demand.list</name>
-        <model>farm.market.demand</model>
-        <arch type="xml">
+        <field name="name">farm.market.demand.list</field>
+        <field name="model">farm.market.demand</field>
+        <field name="arch" type="xml">
             <list decoration-info="state == 'active'" decoration-success="state == 'matched'">
                 <field name="name"/>
                 <field name="partner_id"/>
@@ -12,13 +12,13 @@
                 <field name="delivery_date"/>
                 <field name="state" widget="badge"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="view_farm_market_demand_form" model="ir.ui.view">
-        <name>farm.market.demand.form</name>
-        <model>farm.market.demand</model>
-        <arch type="xml">
+        <field name="name">farm.market.demand.form</field>
+        <field name="model">farm.market.demand</field>
+        <field name="arch" type="xml">
             <form>
                 <header>
                     <button name="action_match_production" string="Match Production" type="object" class="oe_highlight" invisible="state == 'closed'"/>
@@ -63,13 +63,13 @@
                     <field name="message_ids"/>
                 </div>
             </form>
-        </arch>
+        </field>
     </record>
 
     <record id="action_farm_market_demand" model="ir.actions.act_window">
-        <name>Market Demand</name>
-        <res_model>farm.market.demand</res_model>
-        <view_mode>list,form</view_mode>
+        <field name="name">Market Demand</field>
+        <field name="res_model">farm.market.demand</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_farm_market_demand" name="Market Demand Matching" 

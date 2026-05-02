@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <record id="seq_farm_crop_yield_insurance_policy" model="ir.sequence">
-        <name>Crop Yield Insurance Policy</name>
+        <field name="name">Crop Yield Insurance Policy</field>
         <field name="code">POLICY</field>
         <field name="prefix">POL/%(year)s/</field>
         <field name="padding">5</field>
@@ -9,7 +9,7 @@
     </record>
 
     <record id="seq_farm_insurance_claim" model="ir.sequence">
-        <name>Insurance Claim</name>
+        <field name="name">Insurance Claim</field>
         <field name="code">CLAIM</field>
         <field name="prefix">CLM/%(year)s/</field>
         <field name="padding">5</field>

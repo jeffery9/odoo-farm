@@ -70,7 +70,7 @@
         </field>
     </record>
 
-    <!-- Actions & Menus -->
+    <!-- Actions &amp; Menus -->
     <record id="action_farm_biological_asset" model="ir.actions.act_window">
         <field name="name">Biological Assets</field>
         <field name="res_model">agri.biological.asset</field>

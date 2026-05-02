@@ -74,7 +74,7 @@
         </field>
     </record>
 
-    <!-- Action & Menu -->
+    <!-- Action &amp; Menu -->
     <record id="action_agri_industry_variety" model="ir.actions.act_window">
         <field name="name">Biological Varieties</field>
         <field name="res_model">agri.industry.variety</field>

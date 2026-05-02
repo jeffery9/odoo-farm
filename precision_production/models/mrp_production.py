@@ -251,7 +251,7 @@ class MrpProduction(models.Model):
         self.notify_kpi_update([self.id])
         return True
 
-    def action_calibrate_yield(self, new_qty):
+    def action_calibrate_yield(self, new_qty=0.0):
         self.ensure_one()
         diff = self.product_qty - new_qty
         if diff > 0:

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ISL Product Template Views -->
-    <record id="view_isl_product_template_form" model="ir.ui.view">
+<record id="view_isl_product_template_form" model="ir.ui.view">
         <field name="name">farm.product.template.form</field>
         <field name="model">farm.product.template</field>
         <field name="arch" type="xml">

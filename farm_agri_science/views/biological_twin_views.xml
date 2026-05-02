@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_farm_biological_twin_tree" model="ir.ui.view">
-        <name>farm.biological.twin.list</name>
-        <model>farm.biological.twin</model>
-        <arch type="xml">
+        <field name="name">farm.biological.twin.list</field>
+        <field name="model">farm.biological.twin</field>
+        <field name="arch" type="xml">
             <list decoration-danger="health_score &lt; 60" decoration-success="health_score &gt; 80">
                 <field name="name"/>
                 <field name="product_id"/>
@@ -14,13 +14,13 @@
                 <field name="expected_harvest_date"/>
                 <field name="predicted_yield"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="view_farm_biological_twin_form" model="ir.ui.view">
-        <name>farm.biological.twin.form</name>
-        <model>farm.biological.twin</model>
-        <arch type="xml">
+        <field name="name">farm.biological.twin.form</field>
+        <field name="model">farm.biological.twin</field>
+        <field name="arch" type="xml">
             <form>
                 <header>
                     <button name="action_update_gdd" string="Update GDD (Weather Sync)" type="object" class="oe_highlight"/>
@@ -69,13 +69,13 @@
                     <field name="message_ids"/>
                 </div>
             </form>
-        </arch>
+        </field>
     </record>
 
     <record id="action_farm_biological_twin" model="ir.actions.act_window">
-        <name>Biological Digital Twins</name>
-        <res_model>farm.biological.twin</res_model>
-        <view_mode>list,form</view_mode>
+        <field name="name">Biological Digital Twins</field>
+        <field name="res_model">farm.biological.twin</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_biological_twin"

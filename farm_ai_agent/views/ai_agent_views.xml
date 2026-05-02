@@ -153,10 +153,10 @@
                     <notebook>
                         <page string="Configuration">
                             <group>
-                                <field name="coordination_layer_id" attrs="{'invisible': [('step_type', '!=', 'ai_coordination')], 'required': [('step_type', '=', 'ai_coordination')]}"/>
-                                <field name="ai_agent_id" attrs="{'invisible': [('step_type', '!=', 'ai_decision')], 'required': [('step_type', '=', 'ai_decision')]}"/>
-                                <field name="ai_vision_service_id" attrs="{'invisible': [('step_type', '!=', 'ai_vision')], 'required': [('step_type', '=', 'ai_vision')]}"/>
-                                <field name="ai_financial_service_id" attrs="{'invisible': [('step_type', '!=', 'ai_financial')], 'required': [('step_type', '=', 'ai_financial')]}"/>
+                                <field name="coordination_layer_id"/>
+                                <field name="ai_agent_id"/>
+                                <field name="ai_vision_service_id"/>
+                                <field name="ai_financial_service_id"/>
                                 <field name="step_config" widget="ace" options="{'mode': 'json'}"/>
                             </group>
                         </page>

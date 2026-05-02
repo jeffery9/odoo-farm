@@ -26,9 +26,9 @@
             <form string="Seasonal Recipe">
                 <header>
                     <button name="action_activate" type="object" string="Activate" class="oe_highlight"
-                            states="draft,inactive"/>
+                           />
                     <button name="action_deactivate" type="object" string="Deactivate"
-                            states="active"/>
+                           />
                     <field name="state" widget="statusbar" statusbar_visible="draft,active,inactive"/>
                 </header>
                 <sheet>

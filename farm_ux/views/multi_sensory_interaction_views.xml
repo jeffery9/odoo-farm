@@ -34,13 +34,13 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Voice & Audio">
+                        <page string="Voice &amp; Audio">
                             <group>
                                 <field name="voice_commands" widget="ace" options="{'mode': 'json'}"/>
                                 <field name="audio_notification"/>
                             </group>
                         </page>
-                        <page string="Visual & Touch">
+                        <page string="Visual &amp; Touch">
                             <group>
                                 <field name="visual_enhancement"/>
                                 <field name="large_font_support"/>
@@ -48,7 +48,7 @@
                                 <field name="large_touch_targets"/>
                             </group>
                         </page>
-                        <page string="Gesture & Haptic">
+                        <page string="Gesture &amp; Haptic">
                             <group>
                                 <field name="gesture_mappings" widget="ace" options="{'mode': 'json'}"/>
                                 <field name="haptic_feedback"/>

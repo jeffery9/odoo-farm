@@ -41,7 +41,7 @@
                                     <field name="soil_health_management"/>
                                     <field name="pest_management_plan"/>
                                 </group>
-                                <group string="Safety & Traceability">
+                                <group string="Safety &amp; Traceability">
                                     <field name="worker_health_safety"/>
                                     <field name="traceability_system"/>
                                     <field name="environmental_protection"/>
@@ -61,7 +61,7 @@
                                 <field name="supporting_docs" filename="cert_number"/>
                             </group>
                         </page>
-                        <page string="Certified Locations & Products">
+                        <page string="Certified Locations &amp; Products">
                             <group>
                                 <field name="farm_location_ids" widget="many2many_tags"/>
                                 <field name="product_ids" widget="many2many_tags"/>
@@ -197,7 +197,7 @@
                             <field name="environmental_compliant"/>
                         </group>
                     </group>
-                    <group string="Notes & Actions">
+                    <group string="Notes &amp; Actions">
                         <field name="notes" placeholder="Record any observations or issues..."/>
                         <field name="corrective_actions" placeholder="Define required corrective actions..."/>
                     </group>

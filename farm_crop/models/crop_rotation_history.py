@@ -21,7 +21,7 @@ class CropRotationHistory(models.Model):
     planting_date = fields.Date("Planting Date", required=True)
     harvesting_date = fields.Date("Harvesting Date")
 
-    campaign_id = fields.Many2one('agri.campaign', string="Associated Campaign")
+    campaign_id = fields.Many2one('farm.agricultural.campaign', string="Associated Campaign")
     season = fields.Char("Growing Season", help="e.g. Spring 2026, Autumn 2025")
 
     # Planting details
@@ -200,7 +200,7 @@ class ProductTemplateExtension(models.Model):
 
 class AgriCampaignExtension(models.Model):
     """Extension of agri campaign to check rotation risks during planning"""
-    _inherit = 'agri.campaign'
+    _inherit = 'farm.agricultural.campaign'
 
     def action_plan_campaign(self):
         """Override campaign planning to check for rotation risks"""
@@ -222,3 +222,8 @@ class AgriCampaignExtension(models.Model):
                     campaign.message_post(body=message, subtype_xmlid='mail.mt_note')
 
         return result
+class FarmLocationExtension(models.Model):
+    _inherit = 'farm.location'
+    
+    def action_view_soil_analyses_history(self):
+        return True

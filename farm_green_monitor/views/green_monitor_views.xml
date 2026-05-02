@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 扩展地块表单：减量目标 -->
-    <record id="view_location_form_inherit_green_monitor" model="ir.ui.view">
+<record id="view_location_form_inherit_green_monitor" model="ir.ui.view">
         <field name="name">stock.location.form.inherit.green.monitor</field>
         <field name="model">stock.location</field>
         <field name="inherit_id" ref="farm_core.view_location_form_inherit_farm_gis"/>
@@ -13,7 +12,7 @@
         </field>
     </record>
 
-    <!-- 扩展生产任务表单：减量指标 -->
+    
     <record id="view_project_task_form_inherit_green_monitor" model="ir.ui.view">
         <field name="name">project.task.form.inherit.green.monitor</field>
         <field name="model">project.task</field>
@@ -37,7 +36,7 @@
         </field>
     </record>
 
-    <!-- 扩展产季表单：减量报告按钮 -->
+    
     <record id="view_agricultural_campaign_form_inherit_green_monitor" model="ir.ui.view">
         <field name="name">agricultural.campaign.form.inherit.green.monitor</field>
         <field name="model">farm.agricultural.campaign</field>

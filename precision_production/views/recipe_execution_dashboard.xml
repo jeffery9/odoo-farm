@@ -102,7 +102,9 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp_production_form_view_inherit_precision_ultimate"/>
         <field name="arch" type="xml">
-            <xpath expr="//header" position="inside">
+            <xpath expr="//sheet" position="before">
+<header>
+
                 <!-- Modern Execution Controls -->
                 <div class="o_statusbar_status d-flex align-items-center" style="min-height: 40px;">
                     <div class="d-flex flex-wrap">
@@ -111,7 +113,9 @@
                                invisible="production_drive_type != 'parameter'"/>
                     </div>
                 </div>
-            </xpath>
+            
+</header>
+</xpath>
 
             <!-- Replace the stat box with a more modern version -->
             <xpath expr="//div[@name='button_box']" position="replace">

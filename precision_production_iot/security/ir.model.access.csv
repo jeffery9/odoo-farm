@@ -3,7 +3,7 @@ access_precision_iot_device_all,precision.iot.device,model_precision_iot_device,
 access_precision_iot_sensor_all,precision.iot.sensor,model_precision_iot_sensor,base.group_user,1,1,1,1
 access_precision_iot_reading_all,precision.iot.reading,model_precision_iot_reading,base.group_user,1,1,1,1
 access_precision_iot_command_log_all,precision.iot.command.log,model_precision_iot_command_log,base.group_user,1,1,1,1
-access_iot_control_command_wizard,iot.control.command.wizard,model_iot_control_command_wizard,base.group_user,1,1,1,0
-access_iot_multiple_readings_wizard,iot.multiple.readings.wizard,model_iot_multiple_readings_wizard,base.group_user,1,1,1,0
-access_iot_reading_line_wizard,iot.reading.line.wizard,model_iot_reading_line_wizard,base.group_user,1,1,1,0
-access_precision_recipe_control,precision.recipe.control,model_precision_recipe_control,farm_core.group_farm_specialist,1,1,1,1
+access_iot_control_command_wizard,iot.control.command.wizard,model_precision_iot_control_command_wizard,base.group_user,1,1,1,0
+access_iot_multiple_readings_wizard,iot.multiple.readings.wizard,model_precision_iot_multiple_readings_wizard,base.group_user,1,1,1,0
+access_iot_reading_line_wizard,iot.reading.line.wizard,model_precision_iot_reading_line_wizard,base.group_user,1,1,1,0
+access_precision_recipe_control,precision.recipe.control,model_precision_recipe_control,base.group_user,1,1,1,1

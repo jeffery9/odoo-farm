@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_farm_seed_root"
+<menuitem id="menu_farm_seed_root"
               name="Seed &amp; R&amp;D"
               web_icon="farm_seed_industry,static/description/icon.png"
               sequence="5"/>

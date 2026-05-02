@@ -16,7 +16,7 @@ class ESGReport(models.Model):
 
     name = fields.Char('Report Name', required=True)
     report_type = fields.Selection([
-        'annual', 'quarterly', 'sasb', 'gris', 'tcfd', 'custom', 'compliance', 'investor'
+        ('annual', 'Annual'), ('quarterly', 'Quarterly'), ('sasb', 'SASB'), ('gris', 'GRIS'), ('tcfd', 'TCFD'), ('custom', 'Custom'), ('compliance', 'Compliance'), ('investor', 'Investor')
     ], string='Report Type', required=True)
     report_period = fields.Selection([
         ('q1', 'Q1'),
@@ -317,7 +317,7 @@ class SustainabilityGoal(models.Model):
 
     name = fields.Char('Goal Name', required=True)
     goal_type = fields.Selection([
-        'environmental', 'social', 'governance', 'integrated'
+        ('environmental', 'Environmental'), ('social', 'Social'), ('governance', 'Governance'), ('integrated', 'Integrated')
     ], string='Goal Type', required=True)
     description = fields.Text('Description')
     target_year = fields.Integer('Target Year')
@@ -339,7 +339,7 @@ class SustainabilityGoal(models.Model):
     key_performance_indicators = fields.Text('Key Performance Indicators')
     action_plan = fields.Text('Action Plan')
     monitoring_frequency = fields.Selection([
-        'monthly', 'quarterly', 'semi_annually', 'annually'
+        ('monthly', 'Monthly'), ('quarterly', 'Quarterly'), ('semi_annually', 'Semi Annually'), ('annually', 'Annually')
     ], string='Monitoring Frequency', default='quarterly')
     last_review_date = fields.Date('Last Review Date')
     next_review_date = fields.Date('Next Review Date')
@@ -350,7 +350,7 @@ class SustainabilityGoal(models.Model):
     mitigation_strategies = fields.Text('Mitigation Strategies')
     stakeholder_impact = fields.Text('Stakeholder Impact')
     sustainability_framework = fields.Selection([
-        'un_sdg', 'science_based_targets', 'b_corp', 'other'
+        ('un_sdg', 'UN SDG'), ('science_based_targets', 'Science Based Targets'), ('b_corp', 'B Corp'), ('other', 'Other')
     ], string='Sustainability Framework')
 
     @api.depends('target_value', 'baseline_value')

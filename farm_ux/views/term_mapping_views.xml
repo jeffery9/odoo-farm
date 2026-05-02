@@ -39,7 +39,7 @@
                         <group>
                             <field name="industry_context"/>
                             <field name="region_specific"/>
-                            <field name="region_code" attrs="{'invisible': [('region_specific', '=', False)]}"/>
+                            <field name="region_code"/>
                         </group>
                     </group>
                     <notebook>

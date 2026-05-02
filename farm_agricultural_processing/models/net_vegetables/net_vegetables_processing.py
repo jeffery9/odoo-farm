@@ -34,7 +34,7 @@ class FarmNetVegProduction(models.Model):
     production_id = fields.Many2one('mrp.production', string='Base Order', required=True, ondelete='cascade')
 
     # Yield Analysis [US-113-01]
-    raw_input_weight = fields.Float("Raw Input (kg)", compute='_compute_yield')
+    raw_input_weight = fields.Float("Raw Input (kg)", compute="_compute_yield", store=True)
     actual_net_yield = fields.Float("Actual Yield (%)", compute='_compute_yield', store=True)
     
     # Safety Records [US-113-03]

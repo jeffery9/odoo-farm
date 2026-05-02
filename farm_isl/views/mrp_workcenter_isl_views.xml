@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ISL MRP Work Center Views -->
-    <record id="view_isl_mrp_workcenter_form" model="ir.ui.view">
+<record id="view_isl_mrp_workcenter_form" model="ir.ui.view">
         <field name="name">farm.mrp.workcenter.form</field>
         <field name="model">farm.mrp.workcenter</field>
         <field name="arch" type="xml">

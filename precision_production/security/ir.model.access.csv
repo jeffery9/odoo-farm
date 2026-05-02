@@ -7,4 +7,5 @@ access_precision_recipe_parameter,precision.recipe.parameter,model_precision_rec
 access_precision_recipe_material,precision.recipe.material,model_precision_recipe_material,base.group_user,1,1,1,1
 access_precision_intervention_basis,precision.intervention.basis,model_precision_intervention_basis,base.group_user,1,1,1,1
 access_precision_intervention_log,precision.intervention.log,model_precision_intervention_log,base.group_user,1,1,1,1
-access_precision_graded_output,precision.graded.output,model_precision_graded_output,base.group_user,1,1,1,1access_precision_recipe_phase_board,precision.recipe.phase.board,model_precision_recipe_phase,base.group_user,1,1,1,1
+access_precision_graded_output,precision.graded.output,model_precision_graded_output,base.group_user,1,1,1,1
+access_precision_recipe_phase_board,precision.recipe.phase.board,model_precision_recipe_phase,base.group_user,1,1,1,1

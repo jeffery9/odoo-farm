@@ -14,7 +14,7 @@
         - IoT device security registry and authentication [US-55-03]
     """,
     'author': 'Jeffery',
-    'depends': ['base', 'base_setup', 'farm_core', 'stock', 'auditlog'],
+    'depends': ['base', 'base_setup', 'farm_core', 'stock', 'base'],
     'data': [
         'security/ir.model.access.csv',
         'views/data_security_views.xml',

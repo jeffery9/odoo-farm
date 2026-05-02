@@ -18,8 +18,8 @@
         "views/mrp_production_views.xml",
         "views/mrp_workorder_views.xml",
         "views/stock_lot_views.xml",
-        "views/wizard_views.xml",
         "views/phase_execution_views.xml",
+        "views/wizard_views.xml",
         "views/recipe_execution_dashboard.xml",
     ],
     "assets": {

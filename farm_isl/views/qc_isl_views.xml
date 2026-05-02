@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ISL Quality Control Views -->
-    <record id="view_isl_quality_control_form" model="ir.ui.view">
+<record id="view_isl_quality_control_form" model="ir.ui.view">
         <field name="name">farm.quality.control.form</field>
         <field name="model">farm.quality.control</field>
         <field name="arch" type="xml">

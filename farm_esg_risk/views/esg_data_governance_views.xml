@@ -93,7 +93,7 @@
                                 <field name="data_quality_history"/>
                             </group>
                         </page>
-                        <page string="Retention & Compliance">
+                        <page string="Retention &amp; Compliance">
                             <group>
                                 <field name="data_retention_years"/>
                                 <field name="data_retention_policy_applied"/>
@@ -102,7 +102,7 @@
                                 <field name="data_impact_analysis"/>
                             </group>
                         </page>
-                        <page string="Integrity & Security">
+                        <page string="Integrity &amp; Security">
                             <group>
                                 <field name="checksum"/>
                                 <field name="data_flow_diagram"/>

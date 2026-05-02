@@ -3,37 +3,37 @@
     <data noupdate="1">
         <!-- Common Intervention Templates -->
         <record id="template_tillage_standard" model="agri.intervention.template">
-            <name>Standard Tillage</name>
+            <field name="name">Standard Tillage</field>
             <intervention_type>tillage</intervention_type>
             <estimated_labor_hours>2.0</estimated_labor_hours>
         </record>
 
         <record id="template_sowing_standard" model="agri.intervention.template">
-            <name>Standard Sowing</name>
+            <field name="name">Standard Sowing</field>
             <intervention_type>sowing</intervention_type>
             <estimated_labor_hours>3.0</estimated_labor_hours>
         </record>
 
         <record id="template_fertilizing_base" model="agri.intervention.template">
-            <name>Basal Fertilization</name>
+            <field name="name">Basal Fertilization</field>
             <intervention_type>fertilizing</intervention_type>
             <estimated_labor_hours>1.5</estimated_labor_hours>
         </record>
 
         <record id="template_protection_standard" model="agri.intervention.template">
-            <name>Crop Protection Spray</name>
+            <field name="name">Crop Protection Spray</field>
             <intervention_type>protection</intervention_type>
             <estimated_labor_hours>1.0</estimated_labor_hours>
         </record>
 
         <record id="template_harvesting_manual" model="agri.intervention.template">
-            <name>Manual Harvesting</name>
+            <field name="name">Manual Harvesting</field>
             <intervention_type>harvesting</intervention_type>
             <estimated_labor_hours>8.0</estimated_labor_hours>
         </record>
 
         <record id="template_harvesting_machine" model="agri.intervention.template">
-            <name>Machine Harvesting</name>
+            <field name="name">Machine Harvesting</field>
             <intervention_type>harvesting</intervention_type>
             <estimated_labor_hours>1.5</estimated_labor_hours>
         </record>

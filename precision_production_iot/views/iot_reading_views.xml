@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Precision IoT Reading Views -->
-    <record id="precision_iot_reading_view_tree" model="ir.ui.view">
+<record id="precision_iot_reading_view_tree" model="ir.ui.view">
         <field name="name">precision.iot.reading.tree</field>
         <field name="model">precision.iot.reading</field>
         <field name="arch" type="xml">

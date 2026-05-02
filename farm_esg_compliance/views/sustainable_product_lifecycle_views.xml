@@ -83,7 +83,7 @@
                             </group>
                         </page>
 
-                        <page string="Lineage & Traceability">
+                        <page string="Lineage &amp; Traceability">
                             <group string="Complete Lineage Trace">
                                 <field name="complete_lineage_trace" colspan="2" nolabel="1"/>
                             </group>
@@ -93,7 +93,7 @@
                             </group>
                         </page>
 
-                        <page string="Design & Optimization">
+                        <page string="Design &amp; Optimization">
                             <group>
                                 <group string="Design Principles">
                                     <field name="design_principles" colspan="2"/>

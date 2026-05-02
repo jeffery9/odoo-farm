@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_ai_autonomous_orchestrator_tree" model="ir.ui.view">
-        <name>ai.autonomous.orchestrator.list</name>
-        <model>ai.autonomous.orchestrator</model>
-        <arch type="xml">
+        <field name="name">ai.autonomous.orchestrator.list</field>
+        <field name="model">ai.autonomous.orchestrator</field>
+        <field name="arch" type="xml">
             <list>
                 <field name="name"/>
                 <field name="auto_dispatch_threshold"/>
                 <field name="active"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="view_ai_autonomous_orchestrator_form" model="ir.ui.view">
-        <name>ai.autonomous.orchestrator.form</name>
-        <model>ai.autonomous.orchestrator</model>
-        <arch type="xml">
+        <field name="name">ai.autonomous.orchestrator.form</field>
+        <field name="model">ai.autonomous.orchestrator</field>
+        <field name="arch" type="xml">
             <form>
                 <header>
                     <button name="action_run_autonomous_scan" string="Run Autonomous Scan (Manual)" type="object" class="oe_highlight"/>
@@ -51,13 +51,13 @@
                     <field name="message_ids"/>
                 </div>
             </form>
-        </arch>
+        </field>
     </record>
 
     <record id="action_ai_autonomous_orchestrator" model="ir.actions.act_window">
-        <name>Autonomous Mission Orchestrators</name>
-        <res_model>ai.autonomous.orchestrator</res_model>
-        <view_mode>list,form</view_mode>
+        <field name="name">Autonomous Mission Orchestrators</field>
+        <field name="res_model">ai.autonomous.orchestrator</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_autonomous_dispatch"

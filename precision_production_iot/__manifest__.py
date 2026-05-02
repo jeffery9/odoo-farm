@@ -19,7 +19,6 @@
         'views/iot_sensor_views.xml',
         'views/iot_reading_views.xml',
         'views/precision_production_iot_menu.xml',
-        'data/iot_device_data.xml',
     ],
     'installable': True,
     'application': False,

@@ -134,7 +134,7 @@
         <field name="inherit_id" ref="farm_land_mgmt.view_stock_location_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='location_details']" position="after">
-                <page string="Land Health & Rotation" name="land_health_rotation">
+                <page string="Land Health &amp; Rotation" name="land_health_rotation">
                     <group col="4">
                         <field name="soil_health_score" readonly="1"/>
                         <field name="health_status" readonly="1"/>
@@ -255,7 +255,7 @@
     </record>
 
     <!-- Menu items -->
-    <menuitem id="land_health_rotation_menu" name="Land Health & Rotation"
+    <menuitem id="land_health_rotation_menu" name="Land Health &amp; Rotation"
               parent="farm_land_mgmt.land_management_menu" sequence="20"/>
 
     <menuitem id="land_health_record_menu" name="Health Records"

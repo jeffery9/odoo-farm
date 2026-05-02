@@ -84,7 +84,7 @@
                             <field name="checked_by"/>
                         </group>
                     </group>
-                    <group string="Violations" attrs="{'invisible': [('result', '!=', 'failed')]}">
+                    <group string="Violations">
                         <field name="violations" nolabel="1"/>
                     </group>
                     <group string="Notes">
@@ -140,7 +140,7 @@
                     <group string="Compliance Details">
                         <field name="compliance_details" nolabel="1"/>
                     </group>
-                    <group string="Certificate Document" attrs="{'invisible': [('attachment', '=', False)]}">
+                    <group string="Certificate Document">
                         <field name="attachment" filename="attachment_name"/>
                         <field name="attachment_name" invisible="1"/>
                     </group>

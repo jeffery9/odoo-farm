@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Main IoT Menu -->
-    <menuitem id="menu_precision_iot_main"
+<menuitem id="menu_precision_iot_main"
               name="Precision IoT"
               parent="mrp.menu_mrp_manufacturing"
               sequence="29"/>
 
-    <!-- IoT Command Log Views -->
+    
     <record id="precision_iot_command_log_view_tree" model="ir.ui.view">
         <field name="name">precision.iot.command.log.tree</field>
         <field name="model">precision.iot.command.log</field>
         <field name="arch" type="xml">
             <list string="Precision IoT Command Logs">
-                <field name="name"/>
-                <field name="command_type"/>
+                <!-- field command_type removed -->
                 <field name="device_id"/>
                 <field name="status"/>
-                <field name="command_value"/>
                 <field name="create_date"/>
                 <field name="production_id"/>
                 <field name="phase_id"/>
@@ -38,15 +35,12 @@
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="command_type"/>
+                            <!-- field command_type removed -->
                             <field name="device_id"/>
-                            <field name="command_value"/>
-                            <field name="command_description"/>
+                            <!-- field command_description removed -->
                         </group>
                         <group>
                             <field name="status"/>
-                            <field name="error_message"/>
                             <field name="create_date"/>
                         </group>
                     </group>
@@ -55,9 +49,6 @@
                         <field name="phase_id"/>
                     </group>
                     <group string="Response Tracking">
-                        <field name="response_received"/>
-                        <field name="execution_time"/>
-                        <field name="response_data" widget="ace" options="{'mode': 'json'}"/>
                     </group>
                 </sheet>
             </form>

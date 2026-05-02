@@ -56,7 +56,7 @@
         </field>
     </record>
 
-    <!-- Action & Menu -->
+    <!-- Action &amp; Menu -->
     <record id="action_agri_industry_physio_stage" model="ir.actions.act_window">
         <field name="name">Physiological Stages</field>
         <field name="res_model">agri.industry.physio.stage</field>

@@ -5,11 +5,15 @@
         <field name="model">stock.lot</field>
         <field name="inherit_id" ref="stock.view_production_lot_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//header" position="inside">
+            <xpath expr="//sheet" position="before">
+<header>
+
                 <button name="action_assign_cooperative" string="Assign to Cooperative" type="action" 
                         context="{'default_lot_id': active_id}"
                         invisible="assigned_cooperative_id"/>
-            </xpath>
+            
+</header>
+</xpath>
             <xpath expr="//group[@name='main_group']" position="after">
                 <group string="Cooperative &amp; Governance">
                     <group>

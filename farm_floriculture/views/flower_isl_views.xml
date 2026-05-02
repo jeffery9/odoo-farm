@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Flower Order Form -->
-    <record id="view_farm_flower_order_form" model="ir.ui.view">
+<record id="view_farm_flower_order_form" model="ir.ui.view">
         <field name="name">farm.flower.order.form</field>
         <field name="model">farm.flower.order</field>
         <field name="arch" type="xml">
@@ -23,8 +22,8 @@
                             <field name="qty_producing" string="Quantity to Harvest"/>
                         </group>
                         <group string="Bloom &amp; Environmental Control">
-                            <field name="actual_light_hours"/>
-                            <field name="lighting_intervention_needed" decoration-danger="lighting_intervention_needed"/>
+                            <!-- field actual_light_hours removed -->
+                            <!-- field lighting_intervention_needed removed -->
                             <field name="current_stage_id"/>
                             <label for="stage_progress" string="Biological Progress"/>
                             <div class="o_row">
@@ -41,7 +40,7 @@
         </field>
     </record>
 
-    <!-- Flower Lot Form -->
+    
     <record id="view_farm_lot_flower_form" model="ir.ui.view">
         <field name="name">farm.lot.flower.form</field>
         <field name="model">farm.lot.flower</field>
@@ -59,8 +58,8 @@
                     <group>
                         <group string="Batch Info">
                             <field name="lot_id" readonly="1"/>
-                            <field name="bloom_stage_at_harvest"/>
-                            <field name="floral_fragrance_level"/>
+                            <!-- field bloom_stage_at_harvest removed -->
+                            <!-- field floral_fragrance_level removed -->
                         </group>
                         <group string="Market &amp; Quality">
                             <field name="predicted_vase_life" decoration-bf="1" decoration-success="predicted_vase_life > 10"/>
@@ -73,7 +72,7 @@
         </field>
     </record>
 
-    <!-- Action -->
+    
     <record id="action_farm_flower_order" model="ir.actions.act_window">
         <field name="name">Floral Growing Orders</field>
         <field name="res_model">farm.flower.order</field>

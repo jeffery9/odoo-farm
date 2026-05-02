@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <record id="view_farm_regional_oversight_tree" model="ir.ui.view">
-        <name>farm.regional.oversight.list</name>
-        <model>farm.regional.oversight</model>
-        <arch type="xml">
+        <field name="name">farm.regional.oversight.list</field>
+        <field name="model">farm.regional.oversight</field>
+        <field name="arch" type="xml">
             <list decoration-danger="alert_count > 0">
                 <field name="name"/>
                 <field name="agency_id"/>
@@ -12,13 +12,13 @@
                 <field name="avg_compliance_score" widget="percentage"/>
                 <field name="alert_count"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="view_farm_regional_oversight_form" model="ir.ui.view">
-        <name>farm.regional.oversight.form</name>
-        <model>farm.regional.oversight</model>
-        <arch type="xml">
+        <field name="name">farm.regional.oversight.form</field>
+        <field name="model">farm.regional.oversight</field>
+        <field name="arch" type="xml">
             <form>
                 <header>
                     <button name="action_refresh_regional_data" string="Refresh Regional Data" type="object" class="oe_highlight"/>
@@ -58,13 +58,13 @@
                     <field name="message_ids"/>
                 </div>
             </form>
-        </arch>
+        </field>
     </record>
 
     <record id="action_farm_regional_oversight" model="ir.actions.act_window">
-        <name>Regional Oversight (G2B)</name>
-        <res_model>farm.regional.oversight</res_model>
-        <view_mode>list,form</view_mode>
+        <field name="name">Regional Oversight (G2B)</field>
+        <field name="res_model">farm.regional.oversight</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_regional_oversight"

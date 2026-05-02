@@ -246,11 +246,11 @@ class FarmBreedingRecord(models.Model):
     pregnancy_test_result = fields.Boolean('Pregnancy Test Result')
 
     # Offspring tracking
-    offspring_ids = fields.One2many(
-        'stock.lot',
-        'dam_id',
-        string='Offspring'
-    )
+    # offspring_ids = fields.One2many(
+#        .stock.lot.,
+#        .dam_id.,
+#        string=.Offspring.
+#    )
 
     @api.onchange('sire_id')
     def _onchange_sire_id(self):

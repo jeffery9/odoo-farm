@@ -11,7 +11,7 @@ class PrecisionInterventionBasis(models.Model):
     actual_measured_value = fields.Float("Actual")
     deviation_delta = fields.Float("Delta", compute='_compute_delta', store=True)
     res_model = fields.Char("Related Model", index=True)
-    res_id = fields.Many2one_reference("Related Record", model_field='res_model', index=True)
+    res_id = fields.Many2oneReference("Related Record", model_field='res_model', index=True)
     create_date = fields.Datetime("Captured At", readonly=True, default=fields.Datetime.now)
 
     @api.depends('recipe_standard_value', 'actual_measured_value')
@@ -26,7 +26,7 @@ class PrecisionInterventionLog(models.Model):
     intervention_type = fields.Selection([('manual', 'Manual'), ('active', 'Active')], default='manual')
     basis_id = fields.Many2one('precision.intervention.basis', string="Justification")
     res_model = fields.Char("Related Model", required=True, index=True)
-    res_id = fields.Many2one_reference("Related Record", model_field='res_model', index=True)
+    res_id = fields.Many2oneReference("Related Record", model_field='res_model', index=True)
     user_id = fields.Many2one('res.users', string="Operator")
     create_date = fields.Datetime("Timestamp", readonly=True, default=fields.Datetime.now)
 
@@ -34,7 +34,7 @@ class PrecisionGradedOutput(models.Model):
     _name = 'precision.graded.output'
     _description = 'Graded Output Worklist'
     res_model = fields.Char("Related Model", required=True, index=True)
-    res_id = fields.Many2one_reference("Related Record", model_field='res_model', index=True)
+    res_id = fields.Many2oneReference("Related Record", model_field='res_model', index=True)
     product_id = fields.Many2one('product.product', string="Product", required=True)
     grade = fields.Selection([('premium', 'Premium'), ('standard', 'Standard'), ('fail', 'Rejected')], required=True)
     quantity = fields.Float("Actual Quantity", required=True)

@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <header position="inside">
-                <button name="%(farm_marketing.action_view_order_intervention_calendar)d" type="action" string="Field Operations Calendar" class="oe_highlight" attrs="{'invisible': [('state', 'not in', ['sale', 'done'])]}"/>
+                <button name="%(farm_marketing.action_view_order_intervention_calendar)d" type="action" string="Field Operations Calendar" class="oe_highlight"/>
             </header>
             <xpath expr="//notebook/page[@name='order_lines']" position="before">
                 <page string="Export Compliance" name="export_compliance">
@@ -19,7 +19,7 @@
                             <field name="export_compliance_status"/>
                         </group>
                     </group>
-                    <div attrs="{'invisible': [('export_country_code', '=', False)]}">
+                    <div>
                         <p>When an export country is specified, the system will automatically check product compliance before order confirmation.</p>
                     </div>
                 </page>

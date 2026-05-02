@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <field name="ref" position="after">
                 <field name="agri_task_id"
-                       attrs="{'invisible': [('move_type', 'not in', ['in_invoice', 'out_invoice', 'in_refund', 'out_refund'])]}"/>
+                      />
             </field>
         </field>
     </record>
@@ -20,7 +20,7 @@
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="agri_task_id"
-                       attrs="{'invisible': [('parent.move_type', 'not in', ['in_invoice', 'out_invoice', 'in_refund', 'out_refund'])]}"/>
+                      />
             </field>
         </field>
     </record>

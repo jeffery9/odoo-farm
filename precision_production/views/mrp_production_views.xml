@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- [MASTER CONSOLIDATION] Combined Execution, Performance & Process Control View -->
+    <!-- [MASTER CONSOLIDATION] Combined Execution, Performance &amp; Process Control View -->
     <record id="mrp_production_form_view_inherit_precision_ultimate" model="ir.ui.view">
         <field name="name">mrp.production.form.inherit.precision.ultimate</field>
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
-            <!-- 1. Header: Command Center & Process Control -->
-            <xpath expr="//header" position="inside">
+            <!-- 1. Header: Command Center &amp; Process Control -->
+            <xpath expr="//sheet" position="before">
+<header>
+
                 <field name="production_drive_type" invisible="1"/>
                 <field name="is_process_locked" invisible="1"/>
                 
@@ -27,9 +29,11 @@
                         groups="mrp.group_mrp_manager"/>
                 
                 <field name="skill_execution_status" widget="statusbar" invisible="production_drive_type != 'parameter'"/>
-            </xpath>
+            
+</header>
+</xpath>
 
-            <!-- 2. Stat Box: Precision & Performance KPIs -->
+            <!-- 2. Stat Box: Precision &amp; Performance KPIs -->
             <xpath expr="//div[@name='button_box']" position="inside">
                 <button class="oe_stat_button" icon="fa-crosshairs" invisible="production_drive_type != 'parameter'">
                     <div class="o_stat_info">
@@ -59,7 +63,7 @@
                 </button>
             </xpath>
 
-            <!-- 3. Top Alerts: Active Phase & Process Hold -->
+            <!-- 3. Top Alerts: Active Phase &amp; Process Hold -->
             <xpath expr="//sheet" position="before">
                 <!-- Process Hold Alert -->
                 <div class="alert alert-danger d-flex align-items-center mb-0" role="alert" 
@@ -84,7 +88,7 @@
 
             <!-- 4. Notebook: Precision Ecosystem -->
             <xpath expr="//notebook" position="inside">
-                <!-- Tab 1: Performance & Tracking -->
+                <!-- Tab 1: Performance &amp; Tracking -->
                 <page name="precision_performance" string="🚀 Performance &amp; Control" invisible="production_drive_type != 'parameter'">
                     <group>
                         <group string="📡 Live Telemetry &amp; Stability">

@@ -1,3 +1,4 @@
-"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-access_farm_mushroom_operation,access_farm_mushroom_operation,model_farm_mushroom_operation,base.group_user,1,1,1,1
-access_farm_mushroom_harvest,access_farm_mushroom_harvest,model_farm_mushroom_harvest,base.group_user,1,1,1,1
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_mushroom_recipe,access_farm_mushroom_recipe,model_farm_mushroom_recipe,base.group_user,1,1,1,1
+access_farm_mushroom_batch,access_farm_mushroom_batch,model_farm_mushroom_batch,base.group_user,1,1,1,1
+access_farm_mushroom_production,access_farm_mushroom_production,model_farm_mushroom_production,base.group_user,1,1,1,1
