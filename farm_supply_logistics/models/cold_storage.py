@@ -97,7 +97,7 @@ class ColdStorageInventory(models.Model):
     name = fields.Char('Inventory Reference', required=True, default='/')
     zone_id = fields.Many2one('cold.storage.zone', string='Storage Zone', required=True)
     product_id = fields.Many2one('product.product', string='Product', required=True)
-    lot_id = fields.Many2one('stock.production.lot', string='Lot/Serial Number')
+    lot_id = fields.Many2one('stock.lot', string='Lot/Serial Number')
 
     quantity = fields.Float('Quantity')
     volume = fields.Float('Volume (m3)')

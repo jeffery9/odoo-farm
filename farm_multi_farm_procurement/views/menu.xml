@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Procurement Management Menu (nested under Multi-Entity Collaboration) -->
-    <menuitem id="multi_farm_procurement_menu"
+<menuitem id="multi_farm_procurement_menu"
               name="Procurement Management"
               parent="farm_multi_farm_base.multi_farm_root_menu"
               sequence="50"/>
 
-    <!-- Joint Procurement Menu -->
+    
     <menuitem id="joint_procurement_menu"
               name="Joint Procurement"
               parent="multi_farm_procurement_menu"
@@ -15,25 +14,23 @@
     <menuitem id="joint_procurement_main_menu"
               name="Procurement Orders"
               parent="joint_procurement_menu"
-              action="action_joint_procurement"
               sequence="10"/>
 
-    <!-- Procurement Planning Menu -->
+    
     <menuitem id="procurement_planning_menu"
-              name="Planning & Allocation"
+              name="Planning &amp; Allocation"
               parent="multi_farm_procurement_menu"
               sequence="20"/>
 
-    <!-- Contract Farming Menu -->
+    
     <menuitem id="contract_farming_main_menu"
               name="Contract Farming"
               parent="multi_farm_procurement_menu"
               sequence="30"/>
 
-    <!-- Internal Marketplace Menu -->
+    
     <menuitem id="internal_marketplace_menu"
               name="Internal Marketplace"
               parent="multi_farm_procurement_menu"
               sequence="40"/>
-
 </odoo>

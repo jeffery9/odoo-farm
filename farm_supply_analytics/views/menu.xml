@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_supply_analytics_root" name="Analytics" parent="farm_supply_core.menu_supply_chain_root" sequence="40" />
+<menuitem id="menu_supply_analytics_root" name="Analytics" parent="farm_supply_core.menu_supply_chain_root" sequence="40" />
 </odoo>

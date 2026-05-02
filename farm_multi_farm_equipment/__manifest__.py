@@ -18,7 +18,6 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/machinery_rental_views.xml',
         'views/menu.xml',
     ],
     'installable': True,

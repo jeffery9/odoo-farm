@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Equipment Management Menu (nested under Multi-Entity Collaboration) -->
-    <menuitem id="multi_farm_equipment_menu"
+<menuitem id="multi_farm_equipment_menu"
               name="Equipment Management"
               parent="farm_multi_farm_base.multi_farm_root_menu"
               sequence="60"/>
 
-    <!-- Shared Machinery Menu -->
-    <menuitem id="shared_machinery_menu"
+    
               name="Shared Machinery"
               parent="multi_farm_equipment_menu"
               sequence="10"/>
 
-    <menuitem id="machinery_rental_menu"
               name="Machinery Rental"
-              parent="shared_machinery_menu"
               action="action_machinery_rental"
               sequence="10"/>
 
-    <!-- Equipment Pool Menu -->
+    
     <menuitem id="equipment_pool_menu"
               name="Equipment Pool"
-              parent="shared_machinery_menu"
               sequence="20"/>
-
 </odoo>

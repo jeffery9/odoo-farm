@@ -100,12 +100,12 @@ class FarmLotMarketing(models.Model):
     # Formula: Integrity = Geofence Rate * 0.4 + Input Whitelist Rate * 0.4 + QC Pass Rate * 0.2
     integrity_score = fields.Float("Organic Integrity Score", compute='_compute_integrity_score', store=True)
 
-    @api.depends('quality_status', 'state') # Simplified dependencies
+    @api.depends('quality_status') # Simplified dependencies
     def _compute_integrity_score(self):
         for lot in self:
             # In real system, these would be fetched from actual records
             # For prototype, we simulate based on current state
-            geofence_compliance = 100.0 if lot.state == 'healthy' else 80.0
+            geofence_compliance = 100.0 if lot.quality_status == 'healthy' else 80.0
             input_whitelist_rate = 100.0 if lot.quality_status == 'passed' else 70.0
             qc_pass_rate = 100.0 if lot.quality_status == 'passed' else 0.0
             
@@ -123,7 +123,7 @@ class FarmLotMarketing(models.Model):
     # Marketing Content [US-08-01]
     story_title = fields.Char("Growth Story Title")
     story_content = fields.Html("Growth Story Content")
-    marketing_image_ids = fields.Many2many('ir.attachment', string="Marketing Photos")
+    marketing_image_ids = fields.Many2many('ir.attachment', relation='stock_lot_marketing_image_rel', column1='lot_id', column2='attachment_id', string="Marketing Photos")
     
     # 溯源面板显示的指标快照
     avg_temp = fields.Float("Average Growth Temperature (℃)")
@@ -131,7 +131,7 @@ class FarmLotMarketing(models.Model):
 
     # Expiry & Promotion [US-14-14]
     is_near_expiry = fields.Boolean('Near Expiry', compute='_compute_is_near_expiry')
-    promotion_link_id = fields.Many2one('coupon.program', string="Promotion Program", 
+    promotion_link_id = fields.Many2one('loyalty.program', string="Promotion Program", 
                                        help="Link to a promotion for clearing near-expiry stock")
 
     def _compute_is_near_expiry(self):
@@ -200,3 +200,6 @@ class FarmLotMarketing(models.Model):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         for lot in self:
             lot.traceability_url = f"{base_url}/farm/trace/{lot.name}"
+
+    def action_view_traceability(self):
+        return True

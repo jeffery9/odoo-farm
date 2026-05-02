@@ -36,10 +36,10 @@ class DividendDistribution(models.Model):
 
     dividend_lines = fields.One2many('dividend.line', 'distribution_id', string='Dividend Lines')
 
-    @api.depends('total_dividend_amount', 'cooperative_id.member_farm_ids.cooperative_member_ids.shares_held')
+    @api.depends('total_dividend_amount')
     def _compute_dividend_per_share(self):
         for record in self:
-            total_shares = sum(member.shares_held for member in record.cooperative_id.member_farm_ids.mapped('cooperative_member_ids'))
+            total_shares = sum(member.shares_held for member in record.env['cooperative.member'].search([('cooperative_id', '=', record.cooperative_id.id)]))
             if total_shares > 0:
                 record.dividend_per_share = record.total_dividend_amount / total_shares
             else:
@@ -53,7 +53,7 @@ class DividendDistribution(models.Model):
             distribution.dividend_lines.unlink()
 
             # Calculate dividends for each member
-            for member in distribution.cooperative_id.member_farm_ids.mapped('cooperative_member_ids'):
+            for member in distribution.env['cooperative.member'].search([('cooperative_id', '=', record.cooperative_id.id)]):
                 if not member.dividend_eligibility:
                     continue
 

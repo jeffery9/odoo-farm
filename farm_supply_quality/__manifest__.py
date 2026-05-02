@@ -21,7 +21,6 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/quality_pricing_views.xml',
         'views/menu.xml',
     ],
     'installable': True,

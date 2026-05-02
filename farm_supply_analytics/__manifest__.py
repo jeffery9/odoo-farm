@@ -21,7 +21,6 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/supply_analytics_views.xml',
         'views/menu.xml',
     ],
     'installable': True,

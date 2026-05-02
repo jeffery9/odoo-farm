@@ -19,9 +19,6 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/dividend_views.xml',
-        'views/share_transaction_views.xml',
-        'views/internal_credit_views.xml',
         'views/menu.xml',
     ],
     'installable': True,
