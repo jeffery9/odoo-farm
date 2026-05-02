@@ -23,9 +23,9 @@
     "data": [
         "security/ir.model.access.csv",
         "data/ir_sequence_data.xml",
-        "views/menu.xml",
         "views/biological_asset_valuation_views.xml",
         "views/market_price_views.xml",
+        "views/menu.xml",
     ],
     "installable": True,
     "application": False,

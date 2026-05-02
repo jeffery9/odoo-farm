@@ -19,7 +19,6 @@
     ],
     'data': [
         # 'security/ir.model.access.csv',
-        'views/menu.xml',
         'views/sc_license_views.xml',
         'views/mrp_processing_industry_views.xml',
         'views/seasonal_bom_views.xml',
@@ -34,6 +33,7 @@
         'views/agri_processing_packaging_views.xml',
         'views/industry_isl_views.xml',
         'views/mrp_production_pivot_view.xml',
+        'views/menu.xml',
     ],
     
     'assets': {

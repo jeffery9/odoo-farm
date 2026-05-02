@@ -18,8 +18,8 @@
     "data": [
         "security/ir.model.access.csv",
         "data/ir_sequence_data.xml",
-        "views/menu.xml",
         "views/crop_rotation_history_views.xml",
+        "views/menu.xml",
     ],
     "installable": True,
     "application": False,

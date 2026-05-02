@@ -16,8 +16,8 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "views/menu.xml",
         "views/financial_valuation_views.xml",
+        "views/menu.xml",
     ],
     "demo": [
     ],

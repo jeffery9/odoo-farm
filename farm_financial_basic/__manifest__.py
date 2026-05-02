@@ -16,9 +16,9 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "views/menu.xml",
         "views/cost_template_views.xml",
         "views/farm_accounting_views.xml",
+        "views/menu.xml",
     ],
     "demo": [
     ],

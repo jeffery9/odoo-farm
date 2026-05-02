@@ -14,8 +14,8 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "views/menu.xml",
         "views/esg_report_views.xml",
+        "views/menu.xml",
     ],
     "demo": [
     ],

@@ -19,10 +19,10 @@
     'depends': ['farm_planning'],
     'data': [
         'security/ir.model.access.csv',
-        'views/menu.xml',
         'views/pest_disease_views.xml',
         'views/agricultural_knowledge_views.xml',
         'views/faq_entry_views.xml',
+        'views/menu.xml',
     ],
     'installable': True,
     'application': False,

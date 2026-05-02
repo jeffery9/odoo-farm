@@ -10,9 +10,9 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_confirm" type="object" string="Confirm" class="oe_stat_button" icon="fa-check" invisible="state in ('confirmed', 'progress', 'done', 'cancel')"/>
-                        <button name="action_start" type="object" string="Start" class="oe_stat_button" icon="fa-play" invisible="state != 'confirmed'"/>
-                        <button name="action_cancel" type="object" string="Cancel" class="oe_stat_button" icon="fa-times" invisible="state not in ('confirmed', 'progress')"/>
+                        
+                        
+                        
                     </div>
                     <group>
                         <group>
@@ -20,7 +20,7 @@
                             <field name="product_id"/>
                             <field name="product_qty"/>
                             <field name="product_uom_id"/>
-                            <field name="date_planned_start"/>
+                            
                         </group>
                         <group>
                             <field name="industry_type"/>
@@ -67,7 +67,7 @@
                 <field name="name"/>
                 <field name="product_id"/>
                 <field name="product_qty"/>
-                <field name="date_planned_start"/>
+                
                 <field name="industry_type"/>
                 <field name="state"/>
             </list>

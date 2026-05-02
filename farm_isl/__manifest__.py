@@ -18,7 +18,6 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "views/menu.xml",
         "views/mrp_production_isl_views.xml",
         "views/mrp_bom_isl_views.xml",
         "views/mrp_workcenter_isl_views.xml",
@@ -28,7 +27,8 @@
         "views/product_template_isl_views.xml",
         "views/stock_picking_isl_views.xml",
         "views/mrp_workorder_isl_views.xml",
-        "views/qc_isl_views.xml",
+        "views/menu.xml",
+        
     ],
     "demo": [
     ],

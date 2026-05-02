@@ -22,12 +22,12 @@
         # 'security/ir.model.access.csv',
         'wizard/farm_dispatch_wizard_views.xml',
         'wizard/agri_science_sync_wizard_views.xml',
-        'views/menu.xml',
         'views/agricultural_campaign_views.xml',
         'views/project_task_views.xml',
         'views/agri_intervention_views.xml',
         'views/agri_science_dashboard_views.xml',
         'views/agri_bom_views.xml',
+        'views/menu.xml',
     ],
     'demo': [
         'data/farm_operation_demo.xml',

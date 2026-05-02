@@ -14,9 +14,9 @@
     'data': [
         'security/ir.model.access.csv',
         'data/farm_training_data.xml',
-        'views/menu.xml',
         'views/training_views.xml',
         'views/employee_views.xml',
+        'views/menu.xml',
     ],
     'installable': True,
     'application': False,

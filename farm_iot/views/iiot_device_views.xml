@@ -3,7 +3,7 @@
     <record id="view_iiot_device_form_inherit_farm_iot" model="ir.ui.view">
         <field name="name">iiot.device.form.inherit.farm.iot</field>
         <field name="model">iiot.device</field>
-        <field name="inherit_id" ref="industrial_iot.view_iiot_device_form"/>
+        <field name="inherit_id" ref="agri_iot.view_iiot_device_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='profile_id']" position="after">
                 <field name="geofence_id" options="{'no_create': True}"/>
@@ -25,7 +25,7 @@
                             <field name="create_date"/>
                             <field name="command"/>
                             <field name="status"/>
-                            <field name="operator_id"/>
+                            
                         </list>
                     </field>
                 </page>

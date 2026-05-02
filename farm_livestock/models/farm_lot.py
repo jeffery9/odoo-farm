@@ -62,6 +62,7 @@ class FarmLot(models.Model):
     birth_date = fields.Date('Birth Date')
     sire_id = fields.Many2one('stock.lot', string='Sire')
     dam_id = fields.Many2one('stock.lot', string='Dam')
+    breeding_record_id = fields.Many2one('farm.breeding.record', string='Breeding Record')
 
     # Production parameters (for dairy, egg, etc.)
     milk_yield_avg = fields.Float('Average Milk Yield (L/day)')
@@ -246,11 +247,11 @@ class FarmBreedingRecord(models.Model):
     pregnancy_test_result = fields.Boolean('Pregnancy Test Result')
 
     # Offspring tracking
-    # offspring_ids = fields.One2many(
-#        .stock.lot.,
-#        .dam_id.,
-#        string=.Offspring.
-#    )
+    offspring_ids = fields.One2many(
+        'stock.lot',
+        'breeding_record_id',
+        string='Offspring'
+    )
 
     @api.onchange('sire_id')
     def _onchange_sire_id(self):
