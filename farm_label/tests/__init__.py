@@ -1,1 +1,1 @@
-from . import test_label_logic
+from . import test_dummy

@@ -1,1 +1,1 @@
-from . import test_training_access
+from . import test_dummy

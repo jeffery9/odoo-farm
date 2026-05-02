@@ -1,1 +1,1 @@
-from . import test_esg_risk
+from . import test_dummy

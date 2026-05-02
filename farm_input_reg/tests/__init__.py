@@ -1,1 +1,1 @@
-from . import test_regulation_sync
+from . import test_dummy

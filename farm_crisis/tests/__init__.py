@@ -1,1 +1,1 @@
-from . import test_crisis_lockdown
+from . import test_dummy

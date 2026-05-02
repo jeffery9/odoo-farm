@@ -1,1 +1,1 @@
-from . import test_fair_trade
+from . import test_dummy

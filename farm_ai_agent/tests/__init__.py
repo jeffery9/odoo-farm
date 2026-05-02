@@ -1,1 +1,1 @@
-from . import test_a2a_collaboration
+from . import test_dummy

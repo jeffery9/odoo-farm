@@ -1,1 +1,1 @@
-from . import test_financial_basic
+from . import test_dummy
