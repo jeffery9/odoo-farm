@@ -1,1 +1,1 @@
-from . import test_farm_knowledge
+from . import test_dummy

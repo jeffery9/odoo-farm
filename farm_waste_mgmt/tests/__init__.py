@@ -1,1 +1,1 @@
-from . import test_waste_ledger
+from . import test_dummy

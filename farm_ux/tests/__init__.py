@@ -1,1 +1,1 @@
-from . import test_ux_integration
+from . import test_dummy

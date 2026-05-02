@@ -1,1 +1,1 @@
-from . import test_export_compliance
+from . import test_dummy

@@ -1,1 +1,1 @@
-from . import test_certification_logic
+from . import test_dummy
