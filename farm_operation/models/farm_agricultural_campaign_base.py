@@ -40,7 +40,7 @@ class FarmAgriculturalCampaignBase(models.AbstractModel):
     )
 
     land_parcel_id = fields.Many2one(
-        'stock.location',
+        'farm.location',
         string="Land Parcel",
         domain="[('is_land_parcel', '=', True)]"
     )

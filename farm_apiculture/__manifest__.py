@@ -24,8 +24,8 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/apiculture_operation_views.xml',
         'views/menu.xml',
+        'views/apiculture_operation_views.xml',
     ],
     'demo': [
     ],

@@ -14,11 +14,11 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "views/menu.xml",
         "views/esg_risk_views.xml",
         "views/esg_data_governance_views.xml",
         "views/esg_report_customization_views.xml",
         "views/esg_scenarios_analysis_views.xml",
-        "views/menu.xml",
     ],
     "demo": [
     ],

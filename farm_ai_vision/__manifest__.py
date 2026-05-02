@@ -21,13 +21,13 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "views/menu.xml",
         "views/ai_vision_base_views.xml",
         "views/ai_pest_disease_views.xml",
         "views/ai_visual_sorting_views.xml",
         "views/ai_image_based_planning_views.xml",
         "views/ai_image_analysis_prediction_views.xml",
         "views/ai_vision_risk_assessment_views.xml",
-        "views/menu.xml",
     ],
     "demo": [
     ],

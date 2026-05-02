@@ -22,9 +22,4 @@
               action="action_farm_vra_strategy"
               sequence="15"/>
 
-    <menuitem id="menu_land_grid"
-              name="Land Grid Mapping"
-              parent="menu_vra_parent"
-              action="action_farm_land_grid_cell"
-              sequence="20"/>
 </odoo>
