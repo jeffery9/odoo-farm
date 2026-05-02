@@ -3,11 +3,11 @@
     <data noupdate="1">
         <!-- Input Registration Database Sequence -->
         <record id="seq_input_registration_database" model="ir.sequence">
-            <name>Input Registration Database</name>
-            <code>farm.input.registration.database</code>
-            <prefix>REG/</prefix>
-            <padding>6</padding>
-            <company_id eval="False"/>
+            <field name="name">Input Registration Database</field>
+            <field name="code">farm.input.registration.database</field>
+            <field name="prefix">REG/</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
         </record>
     </data>
 </odoo>

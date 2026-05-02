@@ -95,7 +95,13 @@ class AgriAIDecisionEngine(models.Model):
     performance_metrics = fields.Text('Performance Metrics (JSON)')
 
     # ISL-specific fields for data isolation
-    industry_type = fields.Many2one('industry.type', string='Industry')
+    industry_type = fields.Selection([
+        ('crop', 'Crop Farming'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('orchard', 'Orchard/Horticulture'),
+        ('processing', 'Processing'),
+    ], string='Industry')
     uses_isl_data = fields.Boolean('Uses ISL Data', default=True)
     data_isolation_level = fields.Selection([
         ('none', 'No Isolation'),
@@ -637,7 +643,13 @@ class AgriAIDecisionContext(models.Model):
     pest_conditions = fields.Text('Pest/Disease Conditions (JSON)')
 
     # ISL fields
-    industry_type = fields.Many2one('industry.type', string='Industry')
+    industry_type = fields.Selection([
+        ('crop', 'Crop Farming'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('orchard', 'Orchard/Horticulture'),
+        ('processing', 'Processing'),
+    ], string='Industry')
     uses_isl_data = fields.Boolean('Uses ISL Data', default=True)
 
 
@@ -675,7 +687,13 @@ class AgriAIDecisionRule(models.Model):
     sequence = fields.Integer('Sequence', default=10)
 
     # ISL fields
-    industry_type = fields.Many2one('industry.type', string='Industry')
+    industry_type = fields.Selection([
+        ('crop', 'Crop Farming'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('orchard', 'Orchard/Horticulture'),
+        ('processing', 'Processing'),
+    ], string='Industry')
     applicable_to_all_industries = fields.Boolean('Applicable to All Industries', default=False)
 
     def evaluate_rule(self, context_data):

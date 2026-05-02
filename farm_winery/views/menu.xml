@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_farm_winery_root"
+<menuitem id="menu_farm_winery_root"
               name="Winery"
               web_icon="farm_winery,static/description/icon.png"
               sequence="46"/>

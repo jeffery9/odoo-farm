@@ -5,9 +5,13 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//header" position="inside">
+            <xpath expr="//sheet" position="before">
+<header>
+
                 <button name="%(farm_operation.action_agri_science_sync_wizard)d" string="Env Sync" type="action" class="btn-secondary" invisible="state != 'progress'"/>
-            </xpath>
+            
+</header>
+</xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Agri-Science Audit" name="agri_science">
                     <group>

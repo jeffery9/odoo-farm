@@ -37,7 +37,7 @@
                             <field name="last_sync_time"/>
                         </group>
                     </group>
-                    <group string="Sync Details" attrs="{'invisible': [('sync_error', '=', False)]}">
+                    <group string="Sync Details">
                         <field name="sync_error" nolabel="1"/>
                     </group>
                 </sheet>

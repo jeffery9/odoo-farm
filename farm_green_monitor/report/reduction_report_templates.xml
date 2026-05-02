@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_fertilizer_pesticide_reduction_trend">
+<template id="report_fertilizer_pesticide_reduction_trend">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
                 <t t-call="web.external_layout">
                     <div class="page">
                         <div class="text-center">
-                            <h2>化肥 / Fertilizer & 农药 / Pesticide 减量比例 / Reduction Audit Report</h2>
+                            <h2>化肥 / Fertilizer &amp; 农药 / Pesticide 减量比例 / Reduction Audit Report</h2>
                             <h3>化肥 / Fertilizer &amp; 农药 / Pesticide 减量比例 / Reduction Assessment Report</h3>
                         </div>
 

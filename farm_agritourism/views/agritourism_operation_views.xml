@@ -22,7 +22,7 @@
                             <field name="visitor_special_needs"/>
                         </group>
                     </group>
-                    <group name="scheduling_info" string="Scheduling & Resources">
+                    <group name="scheduling_info" string="Scheduling &amp; Resources">
                         <group name="scheduling" string="Activity Schedule">
                             <field name="activity_date"/>
                             <field name="activity_start_time"/>
@@ -41,13 +41,13 @@
                             </field>
                         </group>
                     </group>
-                    <group name="safety_info" string="Safety & Compliance">
+                    <group name="safety_info" string="Safety &amp; Compliance">
                         <field name="safety_measures"/>
                         <field name="emergency_contact"/>
                         <field name="insurance_coverage"/>
                         <field name="risk_assessment_completed"/>
                     </group>
-                    <group name="membership_info" string="Member & Loyalty Program">
+                    <group name="membership_info" string="Member &amp; Loyalty Program">
                         <field name="member_discount_applied"/>
                         <field name="membership_tier"/>
                         <field name="loyalty_points_earned"/>

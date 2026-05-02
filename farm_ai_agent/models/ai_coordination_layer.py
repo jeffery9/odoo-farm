@@ -57,7 +57,13 @@ class AgriAiCoordinationLayer(models.Model):
     performance_metrics = fields.Text('Performance Metrics (JSON)')
 
     # ISL-specific fields
-    industry_type = fields.Many2one('industry.type', string='Industry',
+    industry_type = fields.Selection([
+        ('crop', 'Crop Farming'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('orchard', 'Orchard/Horticulture'),
+        ('processing', 'Processing'),
+    ], string='Industry',
                                    help="Industry to which this coordination applies")
     uses_isl_data = fields.Boolean('Uses ISL Data', default=True,
                                   help="Whether this coordination accesses ISL models")

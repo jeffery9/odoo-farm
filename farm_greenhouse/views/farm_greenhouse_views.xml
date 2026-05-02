@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Greenhouse Form Extension -->
-    <record id="view_farm_location_form_greenhouse" model="ir.ui.view">
-        <name>farm.location.form.greenhouse</name>
-        <model>farm.location</model>
-        <inherit_id ref="farm_core.view_farm_location_form"/>
-        <arch type="xml">
+<record id="view_farm_location_form_greenhouse" model="ir.ui.view">
+        <field name="name">farm.location.form.greenhouse</field>
+        <field name="model">farm.location</field>
+        <field name="inherit_id" ref="farm_core.view_farm_location_form"/>
+        <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Greenhouse Ops" name="greenhouse" invisible="not is_land_parcel">
                     <group>
@@ -22,27 +21,27 @@
                     </group>
                 </page>
             </xpath>
-        </arch>
+        </field>
     </record>
 
-    <!-- Control Rule Views -->
+    
     <record id="view_farm_greenhouse_rule_tree" model="ir.ui.view">
-        <name>farm.greenhouse.control.rule.list</name>
-        <model>farm.greenhouse.control.rule</model>
-        <arch type="xml">
+        <field name="name">farm.greenhouse.control.rule.list</field>
+        <field name="model">farm.greenhouse.control.rule</field>
+        <field name="arch" type="xml">
             <list>
                 <field name="name"/>
                 <field name="greenhouse_id"/>
                 <field name="parameter"/>
                 <field name="active" widget="boolean_toggle"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="view_farm_greenhouse_rule_form" model="ir.ui.view">
-        <name>farm.greenhouse.control.rule.form</name>
-        <model>farm.greenhouse.control.rule</model>
-        <arch type="xml">
+        <field name="name">farm.greenhouse.control.rule.form</field>
+        <field name="model">farm.greenhouse.control.rule</field>
+        <field name="arch" type="xml">
             <form>
                 <sheet>
                     <div class="oe_title">
@@ -78,36 +77,36 @@
                     </notebook>
                 </sheet>
             </form>
-        </arch>
+        </field>
     </record>
 
     <record id="action_farm_greenhouse_rule" model="ir.actions.act_window">
-        <name>Greenhouse Rules</name>
-        <res_model>farm.greenhouse.control.rule</res_model>
-        <view_mode>list,form</view_mode>
+        <field name="name">Greenhouse Rules</field>
+        <field name="res_model">farm.greenhouse.control.rule</field>
+        <field name="view_mode">list,form</field>
     </record>
 
-    <!-- Energy Views -->
+    
     <record id="view_farm_greenhouse_energy_tree" model="ir.ui.view">
-        <name>farm.greenhouse.energy.log.list</name>
-        <model>farm.greenhouse.energy.log</model>
-        <arch type="xml">
+        <field name="name">farm.greenhouse.energy.log.list</field>
+        <field name="model">farm.greenhouse.energy.log</field>
+        <field name="arch" type="xml">
             <list>
                 <field name="greenhouse_id"/>
                 <field name="date"/>
                 <field name="kwh_consumed" sum="Total kWh"/>
                 <field name="carbon_footprint" sum="Total CO2"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="action_farm_greenhouse_energy" model="ir.actions.act_window">
-        <name>Energy &amp; Carbon Logs</name>
-        <res_model>farm.greenhouse.energy.log</res_model>
-        <view_mode>list,pivot,graph</view_mode>
+        <field name="name">Energy &amp; Carbon Logs</field>
+        <field name="res_model">farm.greenhouse.energy.log</field>
+        <field name="view_mode">list,pivot,graph</field>
     </record>
 
-    <!-- Menus -->
+    
     <menuitem id="menu_farm_greenhouse_root" name="Smart Greenhouse" 
               parent="farm_core.menu_farm_root" sequence="18"/>
     

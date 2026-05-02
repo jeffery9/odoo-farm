@@ -7,7 +7,9 @@
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
             <!-- 1. Header Buttons -->
-            <xpath expr="//header" position="inside">
+            <xpath expr="//sheet" position="before">
+<header>
+
                 <button name="button_recalculate_quantities" string="Recalculate" type="object"
                         invisible="not is_agri_processing or state not in ['draft', 'confirmed']"/>
                 <button name="action_adjust_by_potency" string="Standardize Potency" type="object"
@@ -15,7 +17,9 @@
                         class="btn-secondary" icon="fa-flask"/>
                 <button name="button_substitute_components" string="Substitutes" type="object"
                         invisible="not is_agri_processing or state not in ['draft', 'confirmed']"/>
-            </xpath>
+            
+</header>
+</xpath>
 
             <!-- 2. Header Information -->
             <xpath expr="//field[@name='bom_id']" position="after">
@@ -75,7 +79,7 @@
                     </group>
                 </page>
             </xpath>
-            <!-- 4. Blind Mixing: Column Visibility & Industry Filtering -->
+            <!-- 4. Blind Mixing: Column Visibility &amp; Industry Filtering -->
             <xpath expr="//field[@name='move_raw_ids']/list/field[@name='product_id']" position="attributes">
                 <attribute name="domain">
                     [('is_agri_material', '=', True)] if parent.industry_type == 'livestock' else [('is_processed_food', '=', True)] if parent.industry_type == 'food_processing' else []

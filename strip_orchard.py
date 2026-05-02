@@ -1,0 +1,30 @@
+import re
+
+new_content = """<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_farm_orchard_operation_form" model="ir.ui.view">
+        <field name="name">farm.orchard.operation.form</field>
+        <field name="model">farm.orchard.operation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="tree_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_orchard_operations" model="ir.actions.act_window">
+        <field name="name">Orchard Operations</field>
+        <field name="res_model">farm.orchard.operation</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_farm_orchard_root" name="Orchard Horticulture" parent="farm_core.menu_farm_root" sequence="30"/>
+    <menuitem id="menu_farm_orchard_operations" name="Operations" parent="menu_farm_orchard_root" action="action_farm_orchard_operations" sequence="10"/>
+</odoo>
+"""
+with open('farm_orchard_horticulture/views/orchard_operation_views.xml', 'w') as f:
+    f.write(new_content)

@@ -52,7 +52,9 @@
             <xpath expr="//field[@name='bom_id']" position="attributes">
                 <attribute name="string">Recipe/Formula</attribute>
             </xpath>
-            <xpath expr="//header" position="inside">
+            <xpath expr="//sheet" position="before">
+<header>
+
                 <button name="action_submit_for_approval" string="Submit for Approval" type="object" class="btn-primary" invisible="approval_state != 'draft' or state != 'draft'"/>
                 <button name="action_approve" string="Approve" type="object" class="btn-success" invisible="approval_state != 'to_approve'" groups="mrp.group_mrp_manager"/>
                 <button name="action_reject" string="Reject" type="object" class="btn-danger" invisible="approval_state != 'to_approve'" groups="mrp.group_mrp_manager"/>
@@ -63,7 +65,9 @@
                 <field name="is_working" invisible="1"/>
                 <field name="approval_state" invisible="1"/>
                 <field name="simplified_state" widget="statusbar" statusbar_visible="draft,approval,ready,progress,done"/>
-            </xpath>
+            
+</header>
+</xpath>
             <xpath expr="//field[@name='user_id']" position="after">
                 <field name="agri_task_id" readonly="state != 'draft'"/>
                 <field name="intervention_type"/>

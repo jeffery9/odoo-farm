@@ -2,21 +2,21 @@
 <odoo>
     <!-- Digital Twin Scene Views -->
     <record id="view_farm_digital_twin_scene_tree" model="ir.ui.view">
-        <name>farm.digital.twin.scene.list</name>
-        <model>farm.digital.twin.scene</model>
-        <arch type="xml">
+        <field name="name">farm.digital.twin.scene.list</field>
+        <field name="model">farm.digital.twin.scene</field>
+        <field name="arch" type="xml">
             <list>
                 <field name="name"/>
                 <field name="location_id"/>
                 <field name="state" widget="badge"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="view_farm_digital_twin_scene_form" model="ir.ui.view">
-        <name>farm.digital.twin.scene.form</name>
-        <model>farm.digital.twin.scene</model>
-        <arch type="xml">
+        <field name="name">farm.digital.twin.scene.form</field>
+        <field name="model">farm.digital.twin.scene</field>
+        <field name="arch" type="xml">
             <form>
                 <header>
                     <button name="action_activate" string="Activate Scene" type="object" class="oe_highlight" invisible="state == 'active'"/>
@@ -51,25 +51,29 @@
                 </sheet>
                 <chatter/>
             </form>
-        </arch>
+        </field>
     </record>
 
     <record id="action_farm_digital_twin_scene" model="ir.actions.act_window">
-        <name>Digital Twin Scenes</name>
-        <res_model>farm.digital.twin.scene</res_model>
-        <view_mode>list,form</view_mode>
+        <field name="name">Digital Twin Scenes</field>
+        <field name="res_model">farm.digital.twin.scene</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Location Extension -->
     <record id="view_farm_location_form_digital_twin" model="ir.ui.view">
-        <name>farm.location.form.digital.twin</name>
-        <model>farm.location</model>
-        <inherit_id ref="farm_core.view_farm_location_form"/>
-        <arch type="xml">
-            <xpath expr="//header" position="inside">
+        <field name="name">farm.location.form.digital.twin</field>
+        <field name="model">farm.location</field>
+        <field name="inherit_id" ref="farm_core.view_farm_location_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+<header>
+
                 <button name="action_open_digital_twin" string="Digital Twin Live" type="object" class="btn-primary" 
                         invisible="not digital_twin_enabled or not digital_twin_scene_id"/>
-            </xpath>
+            
+</header>
+</xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Digital Twin Config" name="digital_twin">
                     <group>
@@ -80,7 +84,7 @@
                     </group>
                 </page>
             </xpath>
-        </arch>
+        </field>
     </record>
 
     <!-- Menus -->

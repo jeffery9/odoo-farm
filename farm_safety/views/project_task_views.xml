@@ -5,9 +5,13 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
-            <xpath expr="//header" position="inside">
+            <xpath expr="//sheet" position="before">
+<header>
+
                 <button name="action_apply_prevention_template" string="Apply Prevention Plan" type="object" class="btn-secondary" invisible="not prevention_template_id or child_ids"/>
-            </xpath>
+            
+</header>
+</xpath>
             <xpath expr="//field[@name='user_ids']" position="after">
                 <field name="prevention_template_id" options="{'no_create': True}"/>
             </xpath>

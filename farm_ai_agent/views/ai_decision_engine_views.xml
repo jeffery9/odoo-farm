@@ -310,8 +310,8 @@
                     <notebook>
                         <page string="Configuration">
                             <group>
-                                <field name="decision_engine_id" attrs="{'invisible': [('step_type', '!=', 'ai_decision')], 'required': [('step_type', '=', 'ai_decision')]}"/>
-                                <field name="coordination_layer_id" attrs="{'invisible': [('step_type', '!=', 'ai_coordination')], 'required': [('step_type', '=', 'ai_coordination')]}"/>
+                                <field name="decision_engine_id"/>
+                                <field name="coordination_layer_id"/>
                                 <field name="step_config" widget="ace" options="{'mode': 'json'}"/>
                             </group>
                         </page>

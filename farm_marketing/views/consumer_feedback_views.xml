@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_farm_consumer_feedback_tree" model="ir.ui.view">
-        <name>farm.consumer.feedback.list</name>
-        <model>farm.consumer.feedback</model>
-        <arch type="xml">
+        <field name="name">farm.consumer.feedback.list</field>
+        <field name="model">farm.consumer.feedback</field>
+        <field name="arch" type="xml">
             <list create="false">
                 <field name="create_date" string="Feedback Date"/>
                 <field name="lot_id"/>
@@ -14,25 +14,25 @@
                 <field name="consumer_region"/>
                 <field name="comment"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="view_farm_consumer_feedback_pivot" model="ir.ui.view">
-        <name>farm.consumer.feedback.pivot</name>
-        <model>farm.consumer.feedback</model>
-        <arch type="xml">
+        <field name="name">farm.consumer.feedback.pivot</field>
+        <field name="model">farm.consumer.feedback</field>
+        <field name="arch" type="xml">
             <pivot string="C2M Sentiment Analysis">
                 <field name="product_id" type="row"/>
                 <field name="rating" type="col"/>
                 <field name="taste_score" type="measure"/>
             </pivot>
-        </arch>
+        </field>
     </record>
 
     <record id="action_farm_consumer_feedback" model="ir.actions.act_window">
-        <name>C2M Consumer Feedback</name>
-        <res_model>farm.consumer.feedback</res_model>
-        <view_mode>list,pivot,form</view_mode>
+        <field name="name">C2M Consumer Feedback</field>
+        <field name="res_model">farm.consumer.feedback</field>
+        <field name="view_mode">list,pivot,form</field>
     </record>
 
     <menuitem id="menu_consumer_feedback" name="Consumer Insights (C2M)" 

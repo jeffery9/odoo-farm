@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Crop Rotation History Tree View -->
-    <record id="view_crop_rotation_history_tree" model="ir.ui.view">
-        <name>farm.crop.rotation.history.tree</name>
-        <model>farm.crop.rotation.history</model>
-        <arch type="xml">
+<record id="view_crop_rotation_history_tree" model="ir.ui.view">
+        <field name="name">farm.crop.rotation.history.tree</field>
+        <field name="model">farm.crop.rotation.history</field>
+        <field name="arch" type="xml">
             <list string="Crop Rotation History"
                   decoration-danger="continuous_cropping_warning"
                   decoration-info="state == 'archived'">
@@ -17,14 +16,14 @@
                 <field name="continuous_cropping_warning"/>
                 <field name="state"/>
             </list>
-        </arch>
+        </field>
     </record>
 
-    <!-- Crop Rotation History Form View -->
+    
     <record id="view_crop_rotation_history_form" model="ir.ui.view">
-        <name>farm.crop.rotation.history.form</name>
-        <model>farm.crop.rotation.history</model>
-        <arch type="xml">
+        <field name="name">farm.crop.rotation.history.form</field>
+        <field name="model">farm.crop.rotation.history</field>
+        <field name="arch" type="xml">
             <form string="Crop Rotation History">
                 <header>
                     <field name="state" widget="statusbar" statusbar_visible="planted,harvested,archived"/>
@@ -61,22 +60,22 @@
                     </notebook>
                 </sheet>
             </form>
-        </arch>
+        </field>
     </record>
 
-    <!-- Action for Crop Rotation History -->
+    
     <record id="action_crop_rotation_history" model="ir.actions.act_window">
-        <name>Crop Rotation History</name>
-        <res_model>farm.crop.rotation.history</res_model>
-        <view_mode>list,form</view_mode>
+        <field name="name">Crop Rotation History</field>
+        <field name="res_model">farm.crop.rotation.history</field>
+        <field name="view_mode">list,form</field>
     </record>
 
-    <!-- Add to Farm Location View -->
+    
     <record id="view_farm_location_form_extension" model="ir.ui.view">
-        <name>farm.location.form.rotation.extension</name>
-        <model>farm.location</model>
-        <inherit_id="farm_core.view_farm_location_form"/>
-        <arch type="xml">
+        <field name="name">farm.location.form.rotation.extension</field>
+        <field name="model">farm.location</field>
+        <field name="inherit_id" ref="farm_core.view_farm_location_form"/>
+        <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Rotation History" name="rotation_history">
                     <group>
@@ -107,15 +106,15 @@
                     </group>
                 </page>
             </notebook>
-        </arch>
+        </field>
     </record>
 
-    <!-- Extend product template view -->
+    
     <record id="view_product_template_form_extension" model="ir.ui.view">
-        <name>product.template.form.rotation.extension</name>
-        <model>product.template</model>
-        <inherit_id="product.product_template_form_view"/>
-        <arch type="xml">
+        <field name="name">product.template.form.rotation.extension</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
             <page name="inventory" position="after">
                 <page string="Crop Rotation Info" name="crop_rotation_info" groups="base.group_user">
                     <group>
@@ -127,10 +126,10 @@
                     </group>
                 </page>
             </page>
-        </arch>
+        </field>
     </record>
 
-    <!-- Add menu item -->
+    
     <menuitem id="menu_crop_rotation_root"
               name="Crop Rotation"
               parent="farm_core.menu_farm_root"
@@ -141,5 +140,4 @@
               parent="menu_crop_rotation_root"
               action="action_crop_rotation_history"
               sequence="10"/>
-
 </odoo>

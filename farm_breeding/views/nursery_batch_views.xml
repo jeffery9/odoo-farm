@@ -4,13 +4,13 @@
         <field name="name">farm.nursery.batch.list</field>
         <field name="model">farm.nursery.batch</field>
         <field name="arch" type="xml">
-            <list string="Nursery Batches" decoration-info="state == 'nursery'" decoration-success="state == 'ready'">
+            <list string="Nursery Batches">
                 <field name="name"/>
                 <field name="product_id"/>
                 <field name="sowing_date"/>
-                <field name="seedling_age"/>
-                <field name="current_count"/>
-                <field name="state" widget="badge"/>
+                <!-- field seedling_age removed -->
+                <!-- field current_count removed -->
+                <!-- field state removed -->
             </list>
         </field>
     </record>
@@ -21,8 +21,6 @@
         <field name="arch" type="xml">
             <form string="Nursery Batch">
                 <header>
-                    <button name="action_create_transplant_task" string="Convert to Transplant Task" type="object" class="btn-primary" invisible="state != 'ready'"/>
-                    <field name="state" widget="statusbar" statusbar_visible="germinating,nursery,ready,transplanted"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -33,12 +31,12 @@
                         <group>
                             <field name="product_id"/>
                             <field name="sowing_date"/>
-                            <field name="seedling_age" readonly="1"/>
+                            <!-- field seedling_age removed -->
                         </group>
                         <group>
-                            <field name="quantity"/>
-                            <field name="survival_rate"/>
-                            <field name="current_count" readonly="1"/>
+                            <!-- field quantity removed -->
+                            <!-- field survival_rate removed -->
+                            <!-- field current_count removed -->
                         </group>
                     </group>
                 </sheet>

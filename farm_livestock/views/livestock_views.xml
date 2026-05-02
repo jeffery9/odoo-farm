@@ -55,7 +55,7 @@
                             <field name="withdrawal_end_datetime"/>
                         </group>
                     </group>
-                    <group string="Vaccination & Medication">
+                    <group string="Vaccination &amp; Medication">
                         <field name="vaccination_schedule" nolabel="1" placeholder="Enter vaccination schedule..."/>
                         <field name="medication_records" nolabel="1" placeholder="Enter medication records..."/>
                     </group>

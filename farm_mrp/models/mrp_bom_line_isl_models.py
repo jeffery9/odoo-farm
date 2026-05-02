@@ -9,7 +9,7 @@ class MrpBomLineIslAbstract(models.AbstractModel):
     """
     _name = 'mrp.bom.line.isl.abstract'
     _description = 'Abstract ISL for BOM Line'
-    _inherit = 'mrp.bom.line'
+    # _inherit = 'mrp.bom.line'
 
     def write(self, vals):
         """

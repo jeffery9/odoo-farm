@@ -23,7 +23,7 @@
         <field name="arch" type="xml">
             <form string="Live Order">
                 <header>
-                    <button name="create_sale_order" type="object" string="Create Sale Order" class="oe_highlight" attrs="{'invisible': [('origin_order_id', '!=', False)]}"/>
+                    <button name="create_sale_order" type="object" string="Create Sale Order" class="oe_highlight"/>
                     <field name="status" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -52,7 +52,7 @@
                         <field name="ship_time"/>
                         <field name="receive_time"/>
                     </group>
-                    <group string="Internal Order" attrs="{'invisible': [('origin_order_id', '=', False)]}">
+                    <group string="Internal Order">
                         <field name="origin_order_id"/>
                     </group>
                 </sheet>

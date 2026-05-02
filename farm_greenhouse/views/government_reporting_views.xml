@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Government Platform Configuration Views -->
-    <record id="view_government_platform_config_tree" model="ir.ui.view">
+<record id="view_government_platform_config_tree" model="ir.ui.view">
         <field name="name">farm.government.platform.config.tree</field>
         <field name="model">farm.government.platform.config</field>
         <field name="arch" type="xml">
@@ -63,7 +62,7 @@
         </field>
     </record>
 
-    <!-- Government Data Report Views -->
+    
     <record id="view_government_data_report_tree" model="ir.ui.view">
         <field name="name">farm.government.data.report.tree</field>
         <field name="model">farm.government.data.report</field>
@@ -89,11 +88,11 @@
             <form>
                 <header>
                     <button name="action_prepare_data" type="object" string="Prepare Data"
-                            states="draft" class="oe_highlight"/>
+                            class="oe_highlight"/>
                     <button name="action_submit_to_government" type="object" string="Submit to Government"
-                            states="pending" class="oe_highlight"/>
+                            class="oe_highlight"/>
                     <button name="action_resubmit_failed" type="object" string="Resubmit Failed"
-                            states="failed" class="oe_highlight"/>
+                            class="oe_highlight"/>
                     <field name="submission_status" widget="statusbar" statusbar_visible="draft,pending,submitted,approved"/>
                 </header>
                 <sheet>
@@ -123,14 +122,14 @@
                             <field name="data_summary"/>
                         </page>
                         <page string="Payload">
-                            <field name="data_payload" attrs="{'invisible': [('data_payload', '=', False)]}"
+                            <field name="data_payload"
                                    widget="ace" options="{'mode': 'json'}"/>
                         </page>
                         <page string="Response">
                             <group>
-                                <field name="response_data" attrs="{'invisible': [('response_data', '=', False)]}"
+                                <field name="response_data"
                                        widget="ace" options="{'mode': 'json'}"/>
-                                <field name="error_message" attrs="{'invisible': [('error_message', '=', False)]}"
+                                <field name="error_message"
                                        class="text-danger"/>
                             </group>
                         </page>
@@ -150,7 +149,7 @@
         </field>
     </record>
 
-    <!-- Actions -->
+    
     <record id="action_government_platform_config" model="ir.actions.act_window">
         <field name="name">Government Platform Configurations</field>
         <field name="res_model">farm.government.platform.config</field>
@@ -163,9 +162,9 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Menu Items -->
+    
     <menuitem id="menu_government_reporting" name="Government Reporting"
-              parent="farm_greenhouse.menu_greenhouse_root" sequence="30"/>
+              parent="menu_farm_greenhouse_root" sequence="30"/>
 
     <menuitem id="menu_government_platform_config" name="Platform Configurations"
               action="action_government_platform_config"
@@ -174,5 +173,4 @@
     <menuitem id="menu_government_data_report" name="Data Reports"
               action="action_government_data_report"
               parent="menu_government_reporting" sequence="20"/>
-
 </odoo>

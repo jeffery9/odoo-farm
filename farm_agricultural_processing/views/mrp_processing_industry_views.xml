@@ -8,13 +8,13 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='bom_id']" position="after">
                 <field name="processing_type" widget="radio" options="{'horizontal': true}"
-                       attrs="{'invisible': [('is_agri_processing_enabled', '=', False)]}"/>
+                      />
                 <field name="process_mode" invisible="processing_type != 'deep' or not is_agri_processing_enabled"/>
             </xpath>
             
             <xpath expr="//page[@name='miscellaneous']" position="before">
                 <page string="Agri-Processing" name="agri_processing_industry_page"
-                      attrs="{'invisible': [('is_agri_processing_enabled', '=', False)]}">
+                     >
                     <group>
                         <group string="Industry Parameters">
                             <field name="vintage_year" invisible="process_mode != 'fermentation'"/>
@@ -59,7 +59,7 @@
         <field name="priority">20</field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_qty']" position="after">
-                <field name="sc_category_id" attrs="{'invisible': [('is_agri_processing_enabled', '=', False)]}"/>
+                <field name="sc_category_id"/>
             </xpath>
         </field>
     </record>

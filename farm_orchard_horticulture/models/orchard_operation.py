@@ -35,11 +35,11 @@ class FarmOrchardCycle(models.Model):
         return super(FarmOrchardCycle, self).action_confirm()
 
 class OrchardStockLot(models.Model):
+    _name = 'stock.lot'
+
     """
-    [ISL Layer] Digital Twin of a Single Fruit Tree or Block.
-    """
-    _inherit = 'stock.lot'
-    _inherit = [
+    [ISL Layer] Digital Twin of a Single Fruit Tree or Block."""
+    _inherit = ['stock.lot', 'agri.biological.inventory.mixin', 
         'agri.growth.cycle.mixin', 
         'agri.biological.valuation.mixin', 
         'agri.geospatial.mixin',
@@ -64,7 +64,7 @@ class OrchardStockLot(models.Model):
                 rec.maturity_status = 0.0
 
     def action_update_valuation(self):
-        """ [US-ORCH-04] Dynamic valuation based on age and biomass. """
+        """ US-ORCH-04 Dynamic valuation based on age and biomass. """
         self.ensure_one()
         # Call Level 3 DNA
         self._compute_fair_value()
@@ -93,3 +93,6 @@ class OrchardOperation(models.Model):
         """ Enforce Quality Gate before closing intervention. """
         self.validate_quality_gate()
         return self.operation_id.action_fsm_validate()
+
+    def action_view_tree_details(self):
+        return True

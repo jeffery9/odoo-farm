@@ -37,7 +37,7 @@
         </field>
     </record>
 
-    <!-- Cooperative Member Form & Tree Views -->
+    <!-- Cooperative Member Form &amp; Tree Views -->
     <record id="view_farm_cooperative_member_tree" model="ir.ui.view">
         <field name="name">farm.cooperative.member.tree</field>
         <field name="model">farm.cooperative.member</field>

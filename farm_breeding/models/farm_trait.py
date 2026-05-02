@@ -18,8 +18,8 @@ class FarmLotBreeding(models.Model):
     trait_score_avg = fields.Float("Average Trait Score", compute='_compute_trait_score_avg', store=True)
     
     # Pedigree [US-10-05]
-    sire_id = fields.Many2one('stock.lot', string="Sire", domain="[('gender', '=', 'male')]")
-    dam_id = fields.Many2one('stock.lot', string="Dam", domain="[('gender', '=', 'female')]")
+    father_id = fields.Many2one('stock.lot', string="Sire", domain="[('gender', '=', 'male')]")
+    mother_id = fields.Many2one('stock.lot', string="Dam", domain="[('gender', '=', 'female')]")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('other', 'Mixed/Unknown')], default='other')
 
     def get_ancestors(self, depth=5):
@@ -28,7 +28,7 @@ class FarmLotBreeding(models.Model):
         if depth <= 0:
             return ancestors
         
-        parents = (self.sire_id | self.dam_id).filtered(lambda x: x)
+        parents = (self.father_id | self.mother_id).filtered(lambda x: x)
         for p in parents:
             ancestors.add(p.id)
             ancestors.update(p.get_ancestors(depth - 1))

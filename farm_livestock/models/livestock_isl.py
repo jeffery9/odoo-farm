@@ -125,7 +125,7 @@ class FarmLivestockProduction(models.Model):
         store=True
     )
 
-    avg_daily_gain_recorded = fields.Float("Recorded ADG (kg/day)", compute='_compute_fcr_isl')
+    avg_daily_gain_recorded = fields.Float("Recorded ADG (kg/day)", compute="_compute_fcr_isl", precompute=True, store=True)
 
     # Use JSON for flexible configuration
     livestock_config = fields.Json(

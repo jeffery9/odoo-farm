@@ -118,12 +118,11 @@
                 <field name="required_workcenter_id"/>
                 <filter string="In Progress" name="in_progress" domain="[('state', '=', 'progress')]"/>
                 <filter string="Pending" name="pending" domain="[('state', '=', 'pending')]"/>
-                <group expand="0" string="Group By">
+                <separator/>
                     <filter string="Master Phase" name="group_by_master" context="{'group_by': 'master_phase_id'}"/>
                     <filter string="Equipment" name="group_by_workcenter" context="{'group_by': 'required_workcenter_id'}"/>
                     <filter string="Production / Batch" name="group_by_production" context="{'group_by': 'production_id'}"/>
-                </group>
-            </search>
+                </search>
         </field>
     </record>
 

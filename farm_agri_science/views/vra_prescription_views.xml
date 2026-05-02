@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_agri_vra_prescription_list" model="ir.ui.view">
-        <name>agri.intervention.vra.prescription.list</name>
-        <model>agri.intervention.vra.prescription</model>
-        <arch type="xml">
+        <field name="name">agri.intervention.vra.prescription.list</field>
+        <field name="model">agri.intervention.vra.prescription</field>
+        <field name="arch" type="xml">
             <list decoration-info="state == 'generated'" decoration-success="state == 'executed'">
                 <field name="name"/>
                 <field name="location_id"/>
@@ -12,13 +12,13 @@
                 <field name="base_rate"/>
                 <field name="state" widget="badge"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="view_agri_vra_prescription_form" model="ir.ui.view">
-        <name>agri.intervention.vra.prescription.form</name>
-        <model>agri.intervention.vra.prescription</model>
-        <arch type="xml">
+        <field name="name">agri.intervention.vra.prescription.form</field>
+        <field name="model">agri.intervention.vra.prescription</field>
+        <field name="arch" type="xml">
             <form>
                 <header>
                     <button name="action_generate_prescription_map" string="Generate Prescription Map" type="object" class="oe_highlight" invisible="state != 'draft'"/>
@@ -61,12 +61,12 @@
                     <field name="message_ids"/>
                 </div>
             </form>
-        </arch>
+        </field>
     </record>
 
     <record id="action_farm_vra_prescription" model="ir.actions.act_window">
-        <name>VRA Prescription Maps</name>
-        <res_model>agri.intervention.vra.prescription</res_model>
-        <view_mode>list,form</view_mode>
+        <field name="name">VRA Prescription Maps</field>
+        <field name="res_model">agri.intervention.vra.prescription</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

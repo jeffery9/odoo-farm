@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ISL MRP Production Views -->
-    <record id="view_isl_mrp_production_form" model="ir.ui.view">
+<record id="view_isl_mrp_production_form" model="ir.ui.view">
         <field name="name">farm.mrp.production.form</field>
         <field name="model">farm.mrp.production</field>
         <field name="arch" type="xml">

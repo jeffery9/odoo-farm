@@ -2,8 +2,8 @@
 <odoo>
 <record id="view_farm_subsidy_tree" model="ir.ui.view">
         <field name="name">farm.subsidy.list</field>
-        <model>farm.subsidy</model>
-        <arch type="xml">
+        <field name="model">farm.subsidy</field>
+        <field name="arch" type="xml">
             <list decoration-success="state == 'paid'" decoration-info="state == 'approved'">
                 <field name="name"/>
                 <field name="subsidy_type"/>
@@ -11,20 +11,20 @@
                 <field name="disbursement_date"/>
                 <field name="state" widget="badge"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="action_farm_subsidy" model="ir.actions.act_window">
         <field name="name">Agricultural Subsidies</field>
-        <res_model>farm.subsidy</res_model>
-        <view_mode>list,form</view_mode>
+        <field name="res_model">farm.subsidy</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     
     <record id="view_farm_biodiversity_tree" model="ir.ui.view">
         <field name="name">farm.biodiversity.metric.list</field>
-        <model>farm.biodiversity.metric</model>
-        <arch type="xml">
+        <field name="model">farm.biodiversity.metric</field>
+        <field name="arch" type="xml">
             <list>
                 <field name="name"/>
                 <field name="location_id"/>
@@ -32,33 +32,33 @@
                 <field name="species_count"/>
                 <field name="habitat_quality" widget="priority"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="action_farm_biodiversity" model="ir.actions.act_window">
         <field name="name">Biodiversity Monitoring</field>
-        <res_model>farm.biodiversity.metric</res_model>
-        <view_mode>list,form</view_mode>
+        <field name="res_model">farm.biodiversity.metric</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     
     <record id="view_farm_export_compliance_tree" model="ir.ui.view">
         <field name="name">farm.export.compliance.list</field>
-        <model>farm.export.compliance</model>
-        <arch type="xml">
+        <field name="model">farm.export.compliance</field>
+        <field name="arch" type="xml">
             <list decoration-success="compliance_status == 'ready'" decoration-danger="compliance_status == 'blocked'">
                 <field name="name"/>
                 <field name="target_market_id"/>
                 <field name="product_id"/>
                 <field name="compliance_status" widget="badge"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="view_farm_export_compliance_form" model="ir.ui.view">
         <field name="name">farm.export.compliance.form</field>
-        <model>farm.export.compliance</model>
-        <arch type="xml">
+        <field name="model">farm.export.compliance</field>
+        <field name="arch" type="xml">
             <form>
                 <header>
                     <button name="action_run_compliance_audit" string="Run Compliance Audit" type="object" class="oe_highlight"/>
@@ -95,33 +95,33 @@
                     </notebook>
                 </sheet>
             </form>
-        </arch>
+        </field>
     </record>
 
     <record id="action_farm_export_compliance" model="ir.actions.act_window">
         <field name="name">Export Compliance Checker</field>
-        <res_model>farm.export.compliance</res_model>
-        <view_mode>list,form</view_mode>
+        <field name="res_model">farm.export.compliance</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     
     <record id="view_farm_certification_tree" model="ir.ui.view">
         <field name="name">farm.certification.process.list</field>
-        <model>farm.certification.process</model>
-        <arch type="xml">
+        <field name="model">farm.certification.process</field>
+        <field name="arch" type="xml">
             <list decoration-success="state == 'certified'" decoration-warning="state == 'expired'">
                 <field name="name"/>
                 <field name="cert_type"/>
                 <field name="valid_to"/>
                 <field name="state" widget="badge"/>
             </list>
-        </arch>
+        </field>
     </record>
 
     <record id="action_farm_certification" model="ir.actions.act_window">
         <field name="name">Sustainability Certifications</field>
-        <res_model>farm.certification.process</res_model>
-        <view_mode>list,form</view_mode>
+        <field name="res_model">farm.certification.process</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     

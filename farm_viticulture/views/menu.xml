@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_farm_viticulture_root"
+<menuitem id="menu_farm_viticulture_root"
               name="Viticulture"
               web_icon="farm_viticulture,static/description/icon.png"
               sequence="44"/>

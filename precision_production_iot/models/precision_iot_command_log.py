@@ -23,3 +23,6 @@ class PrecisionIotCommandLog(models.Model):
     
     user_id = fields.Many2one('res.users', string="Triggered By", default=lambda self: self.env.user)
     create_date = fields.Datetime("Timestamp", readonly=True, default=fields.Datetime.now)
+
+    def action_resend_command(self):
+        return True

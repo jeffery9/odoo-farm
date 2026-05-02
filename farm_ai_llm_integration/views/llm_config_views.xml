@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- LLM Configuration Tree View -->
-    <record id="view_llm_config_tree" model="ir.ui.view">
+<record id="view_llm_config_tree" model="ir.ui.view">
         <field name="name">agri.ai.llm.configuration.tree</field>
         <field name="model">agri.ai.llm.configuration</field>
         <field name="arch" type="xml">
@@ -17,7 +16,7 @@
         </field>
     </record>
 
-    <!-- LLM Configuration Form View -->
+    
     <record id="view_llm_config_form" model="ir.ui.view">
         <field name="name">agri.ai.llm.configuration.form</field>
         <field name="model">agri.ai.llm.configuration</field>
@@ -66,7 +65,7 @@
         </field>
     </record>
 
-    <!-- LLM Configuration Action -->
+    
     <record id="action_llm_config" model="ir.actions.act_window">
         <field name="name">LLM Configurations</field>
         <field name="res_model">agri.ai.llm.configuration</field>

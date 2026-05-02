@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Menu Items for Crop Module -->
-    <menuitem id="menu_crop_rotation_root"
+<record id="action_crop_rotation_history" model="ir.actions.act_window">
+        <field name="name">Crop Rotation History</field>
+        <field name="res_model">farm.crop.rotation.history</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+<menuitem id="menu_crop_rotation_root"
               name="Crop Rotation"
               parent="farm_core.menu_farm_root"
               sequence="20"/>
@@ -12,10 +17,6 @@
               action="action_crop_rotation_history"
               sequence="10"/>
 
-    <!-- Action for Crop Rotation History -->
-    <record id="action_crop_rotation_history" model="ir.actions.act_window">
-        <name>Crop Rotation History</name>
-        <res_model>farm.crop.rotation.history</res_model>
-        <view_mode>list,form</view_mode>
-    </record>
+    
+    
 </odoo>

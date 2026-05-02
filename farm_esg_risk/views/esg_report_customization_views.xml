@@ -61,7 +61,7 @@
                                 <field name="executive_summary"/>
                             </group>
                         </page>
-                        <page string="Brand & Design">
+                        <page string="Brand &amp; Design">
                             <group>
                                 <field name="report_logo" widget="image" class="oe_avatar"/>
                                 <field name="brand_colors"/>
@@ -77,7 +77,7 @@
                                 <field name="compliance_data_included"/>
                             </group>
                         </page>
-                        <page string="Access & Recipients">
+                        <page string="Access &amp; Recipients">
                             <group>
                                 <field name="report_access_level"/>
                                 <field name="allowed_users" widget="many2many_tags"/>

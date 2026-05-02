@@ -82,7 +82,7 @@
                             </group>
                         </page>
 
-                        <page string="Assessment & Certifications">
+                        <page string="Assessment &amp; Certifications">
                             <group>
                                 <group string="Last Assessment">
                                     <field name="sustainability_assessment_date"/>

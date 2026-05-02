@@ -13,7 +13,7 @@
         </field>
     </record>
 
-    <!-- Kanban View for Pest & Disease [US-UX] -->
+    <!-- Kanban View for Pest &amp; Disease [US-UX] -->
     <record id="view_farm_pest_disease_kanban" model="ir.ui.view">
         <field name="name">agri.pest.disease.kanban</field>
         <field name="model">agri.pest.disease</field>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- E-commerce Platform Views -->
-    <record id="view_ecommerce_platform_tree" model="ir.ui.view">
+<record id="view_ecommerce_platform_tree" model="ir.ui.view">
         <field name="name">farm.ecommerce.platform.tree</field>
         <field name="model">farm.ecommerce.platform</field>
         <field name="arch" type="xml">
@@ -66,7 +65,7 @@
         </field>
     </record>
 
-    <!-- E-commerce Sync Log Views -->
+    
     <record id="view_ecommerce_sync_log_tree" model="ir.ui.view">
         <field name="name">farm.ecommerce.sync.log.tree</field>
         <field name="model">farm.ecommerce.sync.log</field>
@@ -120,7 +119,7 @@
                             <field name="details" widget="ace" options="{'mode': 'json'}"/>
                         </page>
                         <page string="Errors">
-                            <field name="error_message" attrs="{'invisible': [('error_message', '=', False)]}"
+                            <field name="error_message"
                                    class="text-danger"/>
                         </page>
                     </notebook>
@@ -129,7 +128,7 @@
         </field>
     </record>
 
-    <!-- E-commerce Listing Wizard View -->
+    
     <record id="view_ecommerce_listing_wizard_form" model="ir.ui.view">
         <field name="name">farm.ecommerce.listing.wizard.form</field>
         <field name="model">farm.ecommerce.listing.wizard</field>
@@ -159,7 +158,7 @@
         </field>
     </record>
 
-    <!-- Actions -->
+    
     <record id="action_ecommerce_platform" model="ir.actions.act_window">
         <field name="name">E-commerce Platforms</field>
         <field name="res_model">farm.ecommerce.platform</field>
@@ -172,7 +171,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Menu Items -->
+    
     <menuitem id="menu_ecommerce_integration" name="E-commerce Integration"
               parent="menu_government_reporting" sequence="30"/>
 
@@ -183,5 +182,4 @@
     <menuitem id="menu_ecommerce_sync_log" name="Sync Logs"
               action="action_ecommerce_sync_log"
               parent="menu_ecommerce_integration" sequence="20"/>
-
 </odoo>

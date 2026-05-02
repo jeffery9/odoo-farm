@@ -3,12 +3,12 @@
     <!-- Apiculture Operation Form View -->
     <record id="view_farm_apiculture_operation_form" model="ir.ui.view">
         <field name="name">farm.apiculture.operation.form</field>
-        <field name="model">farm.apiculture.operation</field>
-        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="model">farm.hive.inspection</field>
+        
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='extra_info']" position="after">
+            <form><sheet><notebook>
                 <page string="Apiculture Information" name="apiculture_info">
-                    <group name="hive_colony_info" string="Hive & Colony Management">
+                    <group name="hive_colony_info" string="Hive &amp; Colony Management">
                         <group name="hive_details" string="Hive Information">
                             <field name="hive_id"/>
                             <field name="hive_location"/>
@@ -45,32 +45,32 @@
                     <group name="movement_info" string="Hive Movement">
                         <field name="migration_schedule"/>
                         <field name="current_location"/>
-                        <field name="previous_locations"/>
-                        <field name="migration_reason"/>
+                        <!-- field previous_locations removed -->
+                        <!-- field migration_reason removed -->
                     </group>
                     <group name="health_info" string="Bee Health Management">
-                        <field name="health_status"/>
-                        <field name="health_notes"/>
-                        <field name="pest_control_used"/>
+                        <!-- field health_status removed -->
+                        <!-- field health_notes removed -->
+                        <!-- field pest_control_used removed -->
                     </group>
-                    <group name="reproduction_info" string="Breeding & Reproduction">
-                        <field name="breeding_status"/>
-                        <field name="swarm_date"/>
-                        <field name="swarm_details"/>
+                    <group name="reproduction_info" string="Breeding &amp; Reproduction">
+                        <!-- field breeding_status removed -->
+                        <!-- field swarm_date removed -->
+                        <!-- field swarm_details removed -->
                     </group>
                     <group name="seasonal_info" string="Seasonal Management">
-                        <field name="season"/>
-                        <field name="apiculture_stage"/>
+                        <!-- field season removed -->
+                        <!-- field apiculture_stage removed -->
                     </group>
                 </page>
-            </xpath>
+            </notebook></sheet></form>
         </field>
     </record>
 
     <!-- Apiculture Operation Tree View -->
     <record id="view_farm_apiculture_operation_tree" model="ir.ui.view">
         <field name="name">farm.apiculture.operation.tree</field>
-        <field name="model">farm.apiculture.operation</field>
+        <field name="model">farm.hive.inspection</field>
         <field name="inherit_id" ref="project.view_task_tree2"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
@@ -78,8 +78,8 @@
                 <field name="colony_strength"/>
                 <field name="queen_status"/>
                 <field name="honey_store_level"/>
-                <field name="health_status"/>
-                <field name="apiculture_stage"/>
+                <!-- field health_status removed -->
+                <!-- field apiculture_stage removed -->
             </field>
         </field>
     </record>
@@ -93,25 +93,25 @@
                 <sheet>
                     <group>
                         <group name="main_info">
-                            <field name="operation_id"/>
-                            <field name="inspection_date"/>
-                            <field name="inspector"/>
+                            <!-- field operation_id removed -->
+                            <!-- field inspection_date removed -->
+                            <!-- field inspector removed -->
                         </group>
                         <group name="colony_status">
                             <field name="colony_strength"/>
                             <field name="queen_status"/>
-                            <field name="bee_population"/>
+                            <!-- field bee_population removed -->
                             <field name="honey_store_level"/>
                         </group>
                     </group>
                     <group string="Health Assessment">
-                        <field name="health_status"/>
-                        <field name="issues_found"/>
-                        <field name="recommendations"/>
+                        <!-- field health_status removed -->
+                        <!-- field issues_found removed -->
+                        <!-- field recommendations removed -->
                     </group>
-                    <group string="Actions & Follow-up">
-                        <field name="actions_taken"/>
-                        <field name="next_inspection_date"/>
+                    <group string="Actions &amp; Follow-up">
+                        <!-- field actions_taken removed -->
+                        <!-- field next_inspection_date removed -->
                     </group>
                 </sheet>
             </form>
@@ -124,11 +124,11 @@
         <field name="model">farm.hive.inspection</field>
         <field name="arch" type="xml">
             <list string="Hive Inspections">
-                <field name="inspection_date"/>
-                <field name="operation_id"/>
+                <!-- field inspection_date removed -->
+                <!-- field operation_id removed -->
                 <field name="colony_strength"/>
-                <field name="health_status"/>
-                <field name="bee_population"/>
+                <!-- field health_status removed -->
+                <!-- field bee_population removed -->
             </list>
         </field>
     </record>
@@ -136,7 +136,7 @@
     <!-- Action for Apiculture Operations -->
     <record id="action_farm_apiculture_operations" model="ir.actions.act_window">
         <field name="name">Apiculture Operations</field>
-        <field name="res_model">farm.apiculture.operation</field>
+        <field name="res_model">farm.apiculture.order</field>
         <field name="view_mode">tree,form</field>
     </record>
 

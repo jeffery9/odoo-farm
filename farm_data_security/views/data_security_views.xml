@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Data Classification -->
-    <record id="view_farm_data_classification_tree" model="ir.ui.view">
+<record id="view_farm_data_classification_tree" model="ir.ui.view">
         <field name="name">farm.data.classification.tree</field>
         <field name="model">farm.data.classification</field>
         <field name="arch" type="xml">
@@ -20,7 +19,7 @@
         <field name="view_mode">tree</field>
     </record>
 
-    <!-- IoT Device Registry -->
+    
     <record id="view_farm_iot_device_registry_tree" model="ir.ui.view">
         <field name="name">farm.iot.device.registry.tree</field>
         <field name="model">farm.iot.device.registry</field>
@@ -70,8 +69,8 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Menu Addition (Admin Only) -->
-    <menuitem id="menu_farm_security_root" name="Data Security" parent="farm_core.menu_farm_config_root" sequence="90" groups="base.group_system"/>
+    
+    <menuitem id="menu_farm_security_root" name="Data Security" parent="farm_core.menu_agri_config" sequence="90" groups="base.group_system"/>
     <menuitem id="menu_farm_data_classification" name="Classification Policies" parent="menu_farm_security_root" action="action_farm_data_classification" sequence="10"/>
     <menuitem id="menu_farm_iot_device_registry" name="IoT Device Registry" parent="menu_farm_security_root" action="action_farm_iot_device_registry" sequence="20"/>
 </odoo>

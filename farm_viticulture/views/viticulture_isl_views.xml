@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Vineyard Plot View -->
-    <record id="view_farm_viticulture_plot_form" model="ir.ui.view">
+<record id="view_farm_viticulture_plot_form" model="ir.ui.view">
         <field name="name">farm.viticulture.plot.form</field>
         <field name="model">farm.viticulture.plot</field>
         <field name="arch" type="xml">
@@ -34,7 +33,7 @@
         </field>
     </record>
 
-    <!-- Viticulture Cycle View (De-industrialized) -->
+    
     <record id="view_farm_viticulture_cycle_form" model="ir.ui.view">
         <field name="name">farm.viticulture.cycle.form</field>
         <field name="model">farm.viticulture.cycle</field>
@@ -67,7 +66,7 @@
         </field>
     </record>
 
-    <!-- Actions -->
+    
     <record id="action_farm_viticulture_plot" model="ir.actions.act_window">
         <field name="name">Vineyard Plots</field>
         <field name="res_model">farm.viticulture.plot</field>

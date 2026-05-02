@@ -45,7 +45,7 @@
                         <field name="color_blind_mode"/>
                         <field name="custom_color_scheme"/>
                     </group>
-                    <group string="Audio & Voice">
+                    <group string="Audio &amp; Voice">
                         <field name="voice_navigation"/>
                     </group>
                     <group string="Description">

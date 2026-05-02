@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Winery Vessel (Barrel/Tank) View -->
-    <record id="view_farm_winery_vessel_form" model="ir.ui.view">
+<record id="view_farm_winery_vessel_form" model="ir.ui.view">
         <field name="name">farm.winery.vessel.form</field>
         <field name="model">farm.winery.vessel</field>
         <field name="arch" type="xml">
@@ -30,7 +29,7 @@
         </field>
     </record>
 
-    <!-- Vinification Order View (De-industrialized) -->
+    
     <record id="view_farm_winery_production_form" model="ir.ui.view">
         <field name="name">farm.winery.production.form</field>
         <field name="model">farm.winery.production</field>
@@ -62,7 +61,7 @@
         </field>
     </record>
 
-    <!-- Wine Lot View -->
+    
     <record id="view_farm_lot_wine_form" model="ir.ui.view">
         <field name="name">farm.lot.wine.form</field>
         <field name="model">farm.lot.wine</field>
@@ -91,7 +90,7 @@
         </field>
     </record>
 
-    <!-- Actions -->
+    
     <record id="action_farm_winery_vessel" model="ir.actions.act_window">
         <field name="name">Vessels &amp; Barrels</field>
         <field name="res_model">farm.winery.vessel</field>

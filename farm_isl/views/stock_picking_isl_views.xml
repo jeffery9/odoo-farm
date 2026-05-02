@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ISL Stock Picking Views -->
-    <record id="view_isl_stock_picking_form" model="ir.ui.view">
+<record id="view_isl_stock_picking_form" model="ir.ui.view">
         <field name="name">farm.stock.picking.form</field>
         <field name="model">farm.stock.picking</field>
         <field name="arch" type="xml">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_precision_metrology_wizard_form" model="ir.ui.view">
+<record id="view_precision_metrology_wizard_form" model="ir.ui.view">
         <field name="name">precision.metrology.wizard.form</field>
         <field name="model">precision.metrology.wizard</field>
         <field name="arch" type="xml">
@@ -30,7 +30,7 @@
                         </group>
                     </group>
 
-                    <!-- Batch Selection Section -->
+                    
                     <group string="Batch Processing" invisible="len(phase_ids) &lt; 2">
                         <field name="phase_ids" nolabel="1" widget="many2many_tags"
                                domain="[('production_id', '=', production_id)]"
@@ -40,7 +40,7 @@
                         </div>
                     </group>
 
-                    <!-- Value Validation and Deviation -->
+                    
                     <group string="Validation">
                         <group>
                             <field name="deviation_percent" invisible="1"/>

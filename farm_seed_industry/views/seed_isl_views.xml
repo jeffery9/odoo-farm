@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Seed Batch Form View -->
-    <record id="view_farm_seed_batch_form" model="ir.ui.view">
+<record id="view_farm_seed_batch_form" model="ir.ui.view">
         <field name="name">farm.seed.batch.form</field>
         <field name="model">farm.seed.batch</field>
         <field name="arch" type="xml">
@@ -41,15 +40,13 @@
         </field>
     </record>
 
-    <!-- Seed Production Form View (De-industrialized) -->
+    
     <record id="view_farm_seed_production_form" model="ir.ui.view">
         <field name="name">farm.seed.production.form</field>
         <field name="model">farm.seed.production</field>
         <field name="arch" type="xml">
             <form string="Seed propagation Order">
                 <header>
-                    <button name="action_confirm" string="Confirm Propagation" type="object" class="oe_highlight" invisible="state != 'draft'"/>
-                    <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -62,8 +59,6 @@
                             <field name="product_qty" string="Expected Quantity"/>
                         </group>
                         <group string="Nursery Context">
-                            <field name="location_src_id" string="Nursery/Field Plot"/>
-                            <field name="date_planned_start" string="Sowing Window"/>
                         </group>
                     </group>
                 </sheet>
@@ -71,7 +66,7 @@
         </field>
     </record>
 
-    <!-- Actions -->
+    
     <record id="action_farm_seed_batch" model="ir.actions.act_window">
         <field name="name">Seed Batches</field>
         <field name="res_model">farm.seed.batch</field>
