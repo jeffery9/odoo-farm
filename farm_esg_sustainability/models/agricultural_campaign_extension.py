@@ -4,6 +4,7 @@ class AgriculturalCampaign(models.Model):
     _inherit = 'farm.agricultural.campaign'
 
     # 汇总该生产季下所有任务的养分投入
+    task_ids = fields.One2many("project.task", "campaign_id", string="Tasks")
     total_n = fields.Float("Total Nitrogen (kg)", compute='_compute_campaign_nutrients', store=True)
     total_p = fields.Float("Total Phosphorus (kg)", compute='_compute_campaign_nutrients', store=True)
     total_k = fields.Float("Total Potassium (kg)", compute='_compute_campaign_nutrients', store=True)
@@ -36,7 +37,7 @@ class AgriculturalCampaign(models.Model):
             else:
                 campaign.k_reduction_rate = 0.0
 
-    @api.depends('project_ids.task_ids.total_n', 'project_ids.task_ids.total_p', 'project_ids.task_ids.total_k')
+    @api.depends('task_ids.total_n', 'task_ids.total_p', 'task_ids.total_k')
     def _compute_campaign_nutrients(self):
         for campaign in self:
             tasks = self.env['project.task'].search([('campaign_id', '=', campaign.id)])

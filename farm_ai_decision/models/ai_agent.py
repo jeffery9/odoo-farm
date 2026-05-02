@@ -36,7 +36,7 @@ class AgriAiAgent(models.Model):
         ('planning', 'Planning Agent'),
     ], string='Agent Type', required=True, default='recommendation')
 
-    industry_id = fields.Many2one('industry.type', string='Industry Type',
+    industry_id = fields.Char(string='Industry Type',
                                   help="Industry to which this AI agent applies")
 
     model_architecture = fields.Selection([

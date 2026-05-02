@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- VRA Soil Health Monitor Tree View -->
-    <record id="view_vra_soil_health_monitor_tree" model="ir.ui.view">
+<record id="view_vra_soil_health_monitor_tree" model="ir.ui.view">
         <field name="name">agri.vra.soil.health.monitor.tree</field>
         <field name="model">agri.vra.soil.health.monitor</field>
         <field name="arch" type="xml">
@@ -17,7 +16,7 @@
         </field>
     </record>
 
-    <!-- VRA Soil Health Monitor Form View -->
+    
     <record id="view_vra_soil_health_monitor_form" model="ir.ui.view">
         <field name="name">agri.vra.soil.health.monitor.form</field>
         <field name="model">agri.vra.soil.health.monitor</field>
@@ -140,7 +139,7 @@
         </field>
     </record>
 
-    <!-- VRA Soil Health Monitor Search View -->
+    
     <record id="view_vra_soil_health_monitor_search" model="ir.ui.view">
         <field name="name">agri.vra.soil.health.monitor.search</field>
         <field name="model">agri.vra.soil.health.monitor</field>
@@ -156,7 +155,7 @@
                 <filter name="filter_poor_health" string="Poor Health" domain="[('soil_health_category', '=', 'poor')]"/>
                 <filter name="filter_high_risk" string="High Erosion Risk" domain="[('erosion_risk_level', '=', 'high')]"/>
                 <filter name="filter_urgent_assessment" string="Due for Assessment" domain="[('next_assessment_date', '&lt;', context_today().strftime('%Y-%m-%d'))]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="group_location" string="Location" domain="[]" context="{'group_by':'location_id'}"/>
                     <filter name="group_health" string="Health Category" domain="[]" context="{'group_by':'soil_health_category'}"/>
                     <filter name="group_frequency" string="Assessment Frequency" domain="[]" context="{'group_by':'assessment_frequency'}"/>
@@ -165,7 +164,7 @@
         </field>
     </record>
 
-    <!-- VRA Soil Health Monitor Action -->
+    
     <record id="action_vra_soil_health_monitor" model="ir.actions.act_window">
         <field name="name">VRA Soil Health Monitoring</field>
         <field name="res_model">agri.vra.soil.health.monitor</field>

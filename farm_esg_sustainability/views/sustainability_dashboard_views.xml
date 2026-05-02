@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 可持续发展仪表板树形视图 -->
-    <record id="view_sustainability_dashboard_tree" model="ir.ui.view">
+<record id="view_sustainability_dashboard_tree" model="ir.ui.view">
         <field name="name">farm.sustainability.dashboard.tree</field>
         <field name="model">farm.sustainability.dashboard</field>
         <field name="arch" type="xml">
@@ -17,7 +16,7 @@
         </field>
     </record>
 
-    <!-- 可持续发展仪表板表单视图 -->
+    
     <record id="view_sustainability_dashboard_form" model="ir.ui.view">
         <field name="name">farm.sustainability.dashboard.form</field>
         <field name="model">farm.sustainability.dashboard</field>
@@ -84,7 +83,7 @@
         </field>
     </record>
 
-    <!-- 可持续发展报告树形视图 -->
+    
     <record id="view_sustainability_report_tree" model="ir.ui.view">
         <field name="name">farm.sustainability.report.tree</field>
         <field name="model">farm.sustainability.report</field>
@@ -100,7 +99,7 @@
         </field>
     </record>
 
-    <!-- 可持续发展报告表单视图 -->
+    
     <record id="view_sustainability_report_form" model="ir.ui.view">
         <field name="name">farm.sustainability.report.form</field>
         <field name="model">farm.sustainability.report</field>
@@ -109,7 +108,7 @@
                 <header>
                     <button name="action_confirm" type="object" string="确认" invisible="state != 'draft'"/>
                     <button name="action_approve" type="object" string="批准" invisible="state != 'confirmed'"/>
-                    <button name="action_print_report" type="action" string="打印报告"/>
+                    <button name="action_print_report" type="object" string="打印报告"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -178,14 +177,14 @@
         </field>
     </record>
 
-    <!-- 可持续发展仪表板动作 -->
+    
     <record id="action_sustainability_dashboard" model="ir.actions.act_window">
         <field name="name">可持续发展仪表板</field>
         <field name="res_model">farm.sustainability.dashboard</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- 可持续发展报告动作 -->
+    
     <record id="action_sustainability_report" model="ir.actions.act_window">
         <field name="name">可持续发展报告</field>
         <field name="res_model">farm.sustainability.report</field>

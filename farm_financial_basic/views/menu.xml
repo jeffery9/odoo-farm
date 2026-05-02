@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><menuitem id="farm_financial_basic_menu_root"
+<odoo>
+<menuitem id="farm_financial_basic_menu_root"
               name="Basic Financial"
               parent="farm_core.menu_finance_root"
               sequence="20"/>
@@ -25,4 +26,5 @@
     <menuitem id="farm_financial_basic_operations_menu"
               name="Operations"
               parent="farm_financial_basic_menu_root"
-              sequence="30"/></odoo>
+              sequence="30"/>
+</odoo>

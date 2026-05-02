@@ -82,7 +82,7 @@ class AgriVRAWaterProtectionZone(models.Model):
                                            'protection_zone_id', string='Compliance History')
 
     # VRA prescription integration
-    active_prescription_ids = fields.Many2many('agri.prescription',
+    active_prescription_ids = fields.Many2many('agri.intervention.vra.prescription', relation='agri_water_protection_rx_rel',
                                              string='Active VRA Prescriptions')
 
     # Environmental risk assessment

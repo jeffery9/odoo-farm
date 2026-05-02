@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><menuitem id="multi_farm_financial_menu"
+<odoo>
+<menuitem id="multi_farm_financial_menu"
               name="Financial Management"
               parent="farm_multi_farm_base.multi_farm_root_menu"
               sequence="40"/>
@@ -45,4 +46,5 @@
     <menuitem id="treasury_governance_menu"
               name="Treasury & Governance"
               parent="multi_farm_financial_menu"
-              sequence="40"/></odoo>
+              sequence="40"/>
+</odoo>

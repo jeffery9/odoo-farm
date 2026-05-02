@@ -13,13 +13,13 @@
               sequence="10"/>
 
     <menuitem id="farm_ai_pest_disease_detection"
-              name="Pest & Disease Detection"
+              name="Pest &amp; Disease Detection"
               parent="farm_ai_vision_detection_menu"
               action="action_ai_pest_disease_detection"
               sequence="10"/>
 
     <menuitem id="farm_ai_visual_sorting_menu"
-              name="Sorting & Grading"
+              name="Sorting &amp; Grading"
               parent="farm_ai_vision_menu_root"
               sequence="20"/>
 

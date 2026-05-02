@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><record id="view_crop_yield_policy_tree" model="ir.ui.view">
+<odoo>
+<record id="view_crop_yield_policy_tree" model="ir.ui.view">
         <name>farm.crop.yield.insurance.policy.list</name>
         <model>farm.crop.yield.insurance.policy</model>
         <arch type="xml">
@@ -182,4 +183,5 @@
     <menuitem id="menu_insurance_claims" name="Claims"
               parent="menu_insurance_root"
               action="action_farm_insurance_claim_form"
-              sequence="20"/></odoo>
+              sequence="20"/>
+</odoo>

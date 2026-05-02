@@ -64,7 +64,7 @@ class AgriVRASoilHealthMonitor(models.Model):
     ], string='Soil Health Category', compute='_compute_soil_health_category', store=True)
 
     # VRA prescription integration
-    related_prescription_ids = fields.Many2many('agri.prescription',
+    related_prescription_ids = fields.Many2many('agri.intervention.vra.prescription', relation='agri_soil_health_rx_rel',
                                               string='Related VRA Prescriptions')
     next_vra_recommendations = fields.Text('Recommended VRA Applications', compute='_compute_vra_recommendations')
 

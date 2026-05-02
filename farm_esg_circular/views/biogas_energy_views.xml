@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Biogas Production Action -->
-    <record id="action_biogas_production" model="ir.actions.act_window">
+<record id="action_biogas_production" model="ir.actions.act_window">
         <field name="name">Biogas Production</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.biogas.production</field>
@@ -17,7 +15,7 @@
         </field>
     </record>
 
-    <!-- Biogas Production Tree View -->
+    
     <record id="view_biogas_production_tree" model="ir.ui.view">
         <field name="name">agri.biogas.production.tree</field>
         <field name="model">agri.biogas.production</field>
@@ -34,7 +32,7 @@
         </field>
     </record>
 
-    <!-- Biogas Production Form View -->
+    
     <record id="view_biogas_production_form" model="ir.ui.view">
         <field name="name">agri.biogas.production.form</field>
         <field name="model">agri.biogas.production</field>
@@ -113,7 +111,7 @@
         </field>
     </record>
 
-    <!-- Energy Recovery Integration Action -->
+    
     <record id="action_energy_recovery_integration" model="ir.actions.act_window">
         <field name="name">Energy Recovery Integration</field>
         <field name="type">ir.actions.act_window</field>
@@ -121,7 +119,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Energy Recovery Integration Tree View -->
+    
     <record id="view_energy_recovery_integration_tree" model="ir.ui.view">
         <field name="name">agri.energy.recovery.integration.tree</field>
         <field name="model">agri.energy.recovery.integration</field>
@@ -134,5 +132,4 @@
             </list>
         </field>
     </record>
-
 </odoo>

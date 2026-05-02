@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><menuitem id="menu_insurance_root"
+<odoo>
+<menuitem id="menu_insurance_root"
               name="Insurance"
               parent="farm_core.menu_finance_root"
-              sequence="50"/></odoo>
+              sequence="50"/>
+</odoo>

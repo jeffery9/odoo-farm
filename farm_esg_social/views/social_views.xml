@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Social and Diversity Metrics Views -->
-    <record id="view_social_diversity_metric_tree" model="ir.ui.view">
+<record id="view_social_diversity_metric_tree" model="ir.ui.view">
         <field name="name">farm.esg.social.diversity.metric.tree</field>
         <field name="model">farm.esg.social.diversity.metric</field>
         <field name="arch" type="xml">
@@ -66,5 +65,4 @@
         <field name="res_model">farm.esg.social.diversity.metric</field>
         <field name="view_mode">tree,form</field>
     </record>
-
 </odoo>

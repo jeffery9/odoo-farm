@@ -36,13 +36,13 @@
               sequence="20"/>
 
     <menuitem id="farm_ai_pest_detection"
-              name="Pest & Disease Detection"
+              name="Pest &amp; Disease Detection"
               parent="farm_ai_monitoring_menu"
               action="action_ai_pest_disease_detection"
               sequence="10"/>
 
     <menuitem id="farm_ai_health_monitoring"
-              name="Health & Welfare Monitoring"
+              name="Health &amp; Welfare Monitoring"
               parent="farm_ai_monitoring_menu"
               action="action_ai_health_monitoring"
               sequence="20"/>

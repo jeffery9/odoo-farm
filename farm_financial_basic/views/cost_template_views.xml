@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><record id="view_agri_cost_template_tree" model="ir.ui.view">
+<odoo>
+<record id="view_agri_cost_template_tree" model="ir.ui.view">
         <field name="name">agri.cost.template.tree</field>
         <field name="model">agri.cost.template</field>
         <field name="arch" type="xml">
@@ -126,4 +127,5 @@
         <field name="res_model">agri.cost.calculation</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
-    </record></odoo>
+    </record>
+</odoo>

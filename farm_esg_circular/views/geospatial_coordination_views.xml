@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Geospatial Circular Network Action -->
-    <record id="action_geospatial_circular_network" model="ir.actions.act_window">
+<record id="action_geospatial_circular_network" model="ir.actions.act_window">
         <field name="name">GIS Circular Network</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.geospatial.circular.network</field>
@@ -17,7 +15,7 @@
         </field>
     </record>
 
-    <!-- Geospatial Circular Network Tree View -->
+    
     <record id="view_geospatial_circular_network_tree" model="ir.ui.view">
         <field name="name">agri.geospatial.circular.network.tree</field>
         <field name="model">agri.geospatial.circular.network</field>
@@ -33,7 +31,7 @@
         </field>
     </record>
 
-    <!-- Geospatial Circular Network Form View -->
+    
     <record id="view_geospatial_circular_network_form" model="ir.ui.view">
         <field name="name">agri.geospatial.circular.network.form</field>
         <field name="model">agri.geospatial.circular.network</field>
@@ -110,7 +108,7 @@
         </field>
     </record>
 
-    <!-- Nutrient Heatmap Layer Action -->
+    
     <record id="action_nutrient_heatmap_layer" model="ir.actions.act_window">
         <field name="name">Nutrient Heatmap Layer</field>
         <field name="type">ir.actions.act_window</field>
@@ -118,7 +116,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Nutrient Heatmap Layer Tree View -->
+    
     <record id="view_nutrient_heatmap_layer_tree" model="ir.ui.view">
         <field name="name">agri.nutrient.heatmap.layer.tree</field>
         <field name="model">agri.nutrient.heatmap.layer</field>
@@ -132,5 +130,4 @@
             </list>
         </field>
     </record>
-
 </odoo>

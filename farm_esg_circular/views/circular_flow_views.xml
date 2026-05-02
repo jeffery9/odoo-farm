@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 循环经济流程树形视图 -->
-    <record id="view_circular_flow_tree" model="ir.ui.view">
+<record id="view_circular_flow_tree" model="ir.ui.view">
         <field name="name">farm.sustainability.circular.flow.tree</field>
         <field name="model">farm.sustainability.circular.flow</field>
         <field name="arch" type="xml">
@@ -17,7 +16,7 @@
         </field>
     </record>
 
-    <!-- 循环经济流程表单视图 -->
+    
     <record id="view_circular_flow_form" model="ir.ui.view">
         <field name="name">farm.sustainability.circular.flow.form</field>
         <field name="model">farm.sustainability.circular.flow</field>
@@ -77,7 +76,6 @@
                             <field name="related_sale_order_id"/>
                         </group>
                         <group>
-                            <field name="related_carbon_calculation_id"/>
                         </group>
                     </group>
                     <group>
@@ -93,7 +91,7 @@
         </field>
     </record>
 
-    <!-- 循环经济流程动作 -->
+    
     <record id="action_circular_flow" model="ir.actions.act_window">
         <field name="name">循环经济流程</field>
         <field name="res_model">farm.sustainability.circular.flow</field>

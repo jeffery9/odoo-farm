@@ -47,7 +47,7 @@ class AgriAiVisionRiskAssessment(AgriAiVisionBase):
     risk_monitoring_plan = fields.Html('Risk Monitoring Plan')
 
     # ISL-specific fields
-    industry_id = fields.Many2one('industry.type', string='Industry',
+    industry_id = fields.Char(string='Industry',
                                   help="Industry to which this risk assessment applies")
     uses_isl_data = fields.Boolean('Uses ISL Data', default=True,
                                    help="Whether this risk assessment accesses ISL models")
@@ -94,7 +94,7 @@ class AgriAiVisionRiskAssessment(AgriAiVisionBase):
         context_data = {
             'image_description': f'{record.risk_type} risk assessment image',
             'risk_type': record.risk_type,
-            'industry': record.industry_id.name if record.industry_id else 'General Agriculture'
+            'industry': record.industry_id if record.industry_id else 'General Agriculture'
         }
 
         # Create prompt for LLM
@@ -217,7 +217,7 @@ class AgriAiVisionRiskAssessment(AgriAiVisionBase):
             'input_data': {
                 'risk_type': self.risk_type,
                 'image_present': bool(self.image),
-                'industry': self.industry_id.name if self.industry_id else None,
+                'industry': self.industry_id if self.industry_id else None,
             },
             'output_data': result.copy()
         })

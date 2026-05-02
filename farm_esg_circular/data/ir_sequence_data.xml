@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Sequence for agri sustainability circular flow -->
-    <record id="seq_agri_sustainability_circular_flow" model="ir.sequence">
+<record id="seq_agri_sustainability_circular_flow" model="ir.sequence">
         <field name="name">Agricultural Sustainability Circular Flow</field>
         <field name="code">agri.sustainability.circular.flow</field>
         <field name="prefix">ASC</field>

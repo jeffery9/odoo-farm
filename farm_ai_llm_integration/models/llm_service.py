@@ -38,6 +38,7 @@ class AgriAiLlmService(models.Model):
     """
     _name = 'agri.ai.llm.service'
     _description = 'LLM Service Interface'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char('Service Name', required=True)
     config_id = fields.Many2one('agri.ai.llm.configuration', string='LLM Configuration', required=True)
@@ -454,3 +455,8 @@ class AgriAiLlmService(models.Model):
             }}
         except Exception as e:
             return {{'success': False, 'insights': None, 'error': str(e)}}
+
+    def action_test_api_call(self):
+        for record in self:
+            record.call_llm("Ping! This is a test message from Odoo Farm Management.", context_data={"test": True})
+        return True

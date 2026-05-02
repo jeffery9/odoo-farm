@@ -23,7 +23,7 @@
         <field name="arch" type="xml">
             <form string="LLM Service">
                 <header>
-                    <button name="call_llm" type="object" string="Test API Call" class="oe_highlight"/>
+                    <button name="action_test_api_call" type="object" string="Test API Call" class="oe_highlight"/>
                 </header>
                 <sheet>
                     <div class="oe_title">

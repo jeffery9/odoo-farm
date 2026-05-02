@@ -11,6 +11,8 @@
         "stock",
         "mrp",
         "farm_core",
+        "farm_ai_core",
+        "farm_agri_science",
         "farm_operation",
         "farm_ai_core",
         "farm_quality",

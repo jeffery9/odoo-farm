@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- VRA Carbon Footprint Tree View -->
-    <record id="view_vra_carbon_footprint_tree" model="ir.ui.view">
+<record id="view_vra_carbon_footprint_tree" model="ir.ui.view">
         <field name="name">agri.vra.carbon.footprint.tree</field>
         <field name="model">agri.vra.carbon.footprint</field>
         <field name="arch" type="xml">
@@ -18,7 +17,7 @@
         </field>
     </record>
 
-    <!-- VRA Carbon Footprint Form View -->
+    
     <record id="view_vra_carbon_footprint_form" model="ir.ui.view">
         <field name="name">agri.vra.carbon.footprint.form</field>
         <field name="model">agri.vra.carbon.footprint</field>
@@ -26,9 +25,9 @@
             <form string="VRA Carbon Footprint">
                 <header>
                     <button name="action_calculate_assessment" type="object" string="Calculate Assessment"
-                            states="draft" class="oe_highlight"/>
+                             class="oe_highlight"/>
                     <button name="action_verify_assessment" type="object" string="Verify Assessment"
-                            states="calculated" class="oe_highlight"/>
+                             class="oe_highlight"/>
                     <button name="action_generate_report" type="object" string="Generate Report"
                             class="oe_highlight"/>
                     <field name="assessment_status" widget="statusbar" statusbar_visible="draft,calculated,verified"/>
@@ -97,7 +96,6 @@
 
                         <page string="ESG Compliance">
                             <group>
-                                <field name="esg_compliance_id"/>
                             </group>
                         </page>
                     </notebook>
@@ -111,7 +109,7 @@
         </field>
     </record>
 
-    <!-- VRA Carbon Footprint Search View -->
+    
     <record id="view_vra_carbon_footprint_search" model="ir.ui.view">
         <field name="name">agri.vra.carbon.footprint.search</field>
         <field name="model">agri.vra.carbon.footprint</field>
@@ -127,7 +125,7 @@
                 <filter name="filter_calculated" string="Calculated" domain="[('assessment_status', '=', 'calculated')]"/>
                 <filter name="filter_compliant" string="Meets Standards" domain="[('meets_environmental_standards', '=', True)]"/>
                 <filter name="filter_high_reduction" string="High Reduction" domain="[('carbon_reduction_percentage', '>', 20)]"/>
-                <group expand="0" string="Group By">
+                <group>
                     <filter name="group_location" string="Location" domain="[]" context="{'group_by':'location_id'}"/>
                     <filter name="group_operation" string="Operation Type" domain="[]" context="{'group_by':'operation_type'}"/>
                     <filter name="group_status" string="Assessment Status" domain="[]" context="{'group_by':'assessment_status'}"/>
@@ -136,7 +134,7 @@
         </field>
     </record>
 
-    <!-- VRA Carbon Footprint Action -->
+    
     <record id="action_vra_carbon_footprint" model="ir.actions.act_window">
         <field name="name">VRA Carbon Footprint</field>
         <field name="res_model">agri.vra.carbon.footprint</field>

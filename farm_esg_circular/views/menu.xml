@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Main Circular Economy Menu -->
-    <menuitem id="menu_farm_esg_circular_root"
+<menuitem id="menu_farm_esg_circular_root"
               name="Circular Economy"
               sequence="60"
               web_icon="farm_esg_circular,static/description/icon.png"/>
 
-    <!-- Circular Flow Management -->
+    
     <menuitem id="menu_circular_flow_management"
               name="Circular Flow Management"
               parent="menu_farm_esg_circular_root"
               sequence="10"/>
 
-    <!-- Hazardous Waste Management (US-27-03) -->
+    
     <menuitem id="menu_hazardous_waste_management"
               name="Hazardous Waste Management"
               parent="menu_farm_esg_circular_root"
@@ -25,7 +23,7 @@
               action="action_hazardous_waste_record"
               sequence="10"/>
 
-    <!-- Biogas/Energy Recovery (US-27-04) -->
+    
     <menuitem id="menu_biogas_energy_recovery"
               name="Biogas &amp; Energy Recovery"
               parent="menu_farm_esg_circular_root"
@@ -37,7 +35,7 @@
               action="action_biogas_production"
               sequence="10"/>
 
-    <!-- Cooperative Coordination (US-27-05) -->
+    
     <menuitem id="menu_cooperative_coordination"
               name="Cooperative Coordination"
               parent="menu_farm_esg_circular_root"
@@ -55,7 +53,7 @@
               action="action_internal_netting_engine"
               sequence="20"/>
 
-    <!-- Geospatial Coordination (US-27-06) -->
+    
     <menuitem id="menu_geospatial_coordination"
               name="GIS Coordination"
               parent="menu_farm_esg_circular_root"
@@ -73,7 +71,7 @@
               action="action_nutrient_heatmap_layer"
               sequence="20"/>
 
-    <!-- Regional Governance (US-27-07) -->
+    
     <menuitem id="menu_regional_governance"
               name="Regional Governance"
               parent="menu_farm_esg_circular_root"
@@ -90,5 +88,4 @@
               parent="menu_regional_governance"
               action="action_farm_circular_participation"
               sequence="20"/>
-
 </odoo>

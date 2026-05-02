@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><record id="view_cooperative_treasury_form" model="ir.ui.view">
+<odoo>
+<record id="view_cooperative_treasury_form" model="ir.ui.view">
         <field name="name">cooperative.treasury.form</field>
         <field name="model">cooperative.treasury</field>
         <field name="arch" type="xml">
@@ -44,4 +45,5 @@
         <field name="name">Cooperative Treasury</field>
         <field name="res_model">cooperative.treasury</field>
         <field name="view_mode">tree,form</field>
-    </record></odoo>
+    </record>
+</odoo>

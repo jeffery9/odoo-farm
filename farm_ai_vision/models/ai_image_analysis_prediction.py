@@ -41,7 +41,7 @@ class AgriAiImageAnalysisPrediction(AgriAiVisionBase):
     mitigation_strategies = fields.Html('Mitigation Strategies')
 
     # ISL-specific fields
-    industry_id = fields.Many2one('industry.type', string='Industry',
+    industry_id = fields.Char(string='Industry',
                                   help="Industry to which this prediction applies")
     uses_isl_data = fields.Boolean('Uses ISL Data', default=True,
                                    help="Whether this prediction accesses ISL models")
@@ -71,7 +71,7 @@ class AgriAiImageAnalysisPrediction(AgriAiVisionBase):
         context_data = {
             'image_description': 'crop yield and growth prediction image',
             'crop_type': record.crop_id.name if record.crop_id else 'unknown crop',
-            'industry': record.industry_id.name if record.industry_id else 'General Agriculture'
+            'industry': record.industry_id if record.industry_id else 'General Agriculture'
         }
 
         # Create prompt for LLM

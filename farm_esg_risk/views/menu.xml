@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="esg_risk_menu" name="ESG Risk Management" sequence="20" groups="farm_core.group_farm_manager"/>
+<menuitem id="esg_risk_menu" name="ESG Risk Management" sequence="20" groups="farm_core.group_farm_manager"/>
 
     <menuitem id="esg_risk_assessments_menu" name="Risk Assessments"
               parent="esg_risk_menu" sequence="10"
@@ -17,3 +17,4 @@
     <menuitem id="esg_kpis_menu" name="KPIs"
               parent="esg_risk_menu" sequence="40"
               action="action_esg_kpi"/>
+</odoo>

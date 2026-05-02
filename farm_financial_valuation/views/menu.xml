@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><menuitem id="farm_financial_valuation_menu_root"
+<odoo>
+<menuitem id="farm_financial_valuation_menu_root"
               name="Financial Valuation"
               parent="farm_core.menu_finance_root"
               sequence="50"/>
@@ -14,4 +15,5 @@
               name="Valuation Templates"
               parent="farm_financial_valuation_menu_root"
               action="action_financial_valuation_template"
-              sequence="20"/></odoo>
+              sequence="20"/>
+</odoo>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ESG Target Views -->
-    <record id="view_esg_target_tree" model="ir.ui.view">
+<record id="view_esg_target_tree" model="ir.ui.view">
         <field name="name">esg.target.tree</field>
         <field name="model">esg.target</field>
         <field name="arch" type="xml">
@@ -64,7 +63,7 @@
                         <page string="Description">
                             <field name="description"/>
                         </page>
-                        <page string="Framework & Indicators">
+                        <page string="Framework &amp; Indicators">
                             <group>
                                 <field name="framework_id"/>
                             </group>
@@ -90,7 +89,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- ESG Performance Report Views -->
+    
     <record id="view_esg_performance_report_tree" model="ir.ui.view">
         <field name="name">esg.performance.report.tree</field>
         <field name="model">esg.performance.report</field>
@@ -178,5 +177,4 @@
         <field name="res_model">esg.performance.report</field>
         <field name="view_mode">tree,form</field>
     </record>
-
 </odoo>

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_employee_form_inherit_farm" model="ir.ui.view">
+<record id="view_employee_form_inherit_farm" model="ir.ui.view">
         <field name="name">hr.employee.form.inherit.farm</field>
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='category_ids']" position="after">
+            <xpath expr="//field[@name='category_ids']" position="inside">
                 <field name="is_seasonal"/>
                 <field name="agri_skill_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
             </xpath>
@@ -16,7 +16,7 @@
                     </group>
                 </page>
             </xpath>
-            <xpath expr="//page[@name='public']" position="after">
+            <xpath expr="//notebook" position="inside">
                 <page string="Farm Skills &amp; Certs" name="farm_skills">
                     <group>
                         <field name="is_seasonal"/>

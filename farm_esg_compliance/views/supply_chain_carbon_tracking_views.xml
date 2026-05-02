@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Carbon Footprint Data Collection Engine Action -->
-    <record id="action_supply_chain_carbon_data_engine" model="ir.actions.act_window">
+<record id="action_supply_chain_carbon_data_engine" model="ir.actions.act_window">
         <field name="name">Supply Chain Carbon Data Collection</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.supply.chain.carbon.data.engine</field>
@@ -17,7 +15,7 @@
         </field>
     </record>
 
-    <!-- Carbon Data Collection Tree View -->
+    
     <record id="view_supply_chain_carbon_data_engine_tree" model="ir.ui.view">
         <field name="name">agri.supply.chain.carbon.data.engine.tree</field>
         <field name="model">agri.supply.chain.carbon.data.engine</field>
@@ -34,7 +32,7 @@
         </field>
     </record>
 
-    <!-- Carbon Data Collection Form View -->
+    
     <record id="view_supply_chain_carbon_data_engine_form" model="ir.ui.view">
         <field name="name">agri.supply.chain.carbon.data.engine.form</field>
         <field name="model">agri.supply.chain.carbon.data.engine</field>
@@ -104,7 +102,7 @@
         </field>
     </record>
 
-    <!-- AI Carbon Reduction Strategy Action -->
+    
     <record id="action_supply_chain_carbon_reduction_strategy" model="ir.actions.act_window">
         <field name="name">AI Carbon Reduction Strategy</field>
         <field name="type">ir.actions.act_window</field>
@@ -120,7 +118,7 @@
         </field>
     </record>
 
-    <!-- AI Carbon Reduction Tree View -->
+    
     <record id="view_supply_chain_carbon_reduction_strategy_tree" model="ir.ui.view">
         <field name="name">agri.supply.chain.carbon.reduction.strategy.tree</field>
         <field name="model">agri.supply.chain.carbon.reduction.strategy</field>
@@ -136,7 +134,7 @@
         </field>
     </record>
 
-    <!-- AI Carbon Reduction Form View -->
+    
     <record id="view_supply_chain_carbon_reduction_strategy_form" model="ir.ui.view">
         <field name="name">agri.supply.chain.carbon.reduction.strategy.form</field>
         <field name="model">agri.supply.chain.carbon.reduction.strategy</field>
@@ -212,7 +210,7 @@
         </field>
     </record>
 
-    <!-- Supplier Carbon Compliance Action -->
+    
     <record id="action_supplier_carbon_compliance" model="ir.actions.act_window">
         <field name="name">Supplier Carbon Compliance</field>
         <field name="type">ir.actions.act_window</field>
@@ -228,7 +226,7 @@
         </field>
     </record>
 
-    <!-- Supplier Carbon Compliance Tree View -->
+    
     <record id="view_supplier_carbon_compliance_tree" model="ir.ui.view">
         <field name="name">agri.supplier.carbon.compliance.tree</field>
         <field name="model">agri.supplier.carbon.compliance</field>
@@ -244,7 +242,7 @@
         </field>
     </record>
 
-    <!-- Supplier Carbon Compliance Form View -->
+    
     <record id="view_supplier_carbon_compliance_form" model="ir.ui.view">
         <field name="name">agri.supplier.carbon.compliance.form</field>
         <field name="model">agri.supplier.carbon.compliance</field>
@@ -323,7 +321,7 @@
         </field>
     </record>
 
-    <!-- Carbon Neutrality Certification Action -->
+    
     <record id="action_carbon_neutrality_certification" model="ir.actions.act_window">
         <field name="name">Carbon Neutrality Certification</field>
         <field name="type">ir.actions.act_window</field>
@@ -339,7 +337,7 @@
         </field>
     </record>
 
-    <!-- Carbon Neutrality Certification Tree View -->
+    
     <record id="view_carbon_neutrality_certification_tree" model="ir.ui.view">
         <field name="name">agri.carbon.neutrality.certification.tree</field>
         <field name="model">agri.carbon.neutrality.certification</field>
@@ -356,7 +354,7 @@
         </field>
     </record>
 
-    <!-- Carbon Neutrality Certification Form View -->
+    
     <record id="view_carbon_neutrality_certification_form" model="ir.ui.view">
         <field name="name">agri.carbon.neutrality.certification.form</field>
         <field name="model">agri.carbon.neutrality.certification</field>
@@ -442,5 +440,4 @@
             </form>
         </field>
     </record>
-
 </odoo>

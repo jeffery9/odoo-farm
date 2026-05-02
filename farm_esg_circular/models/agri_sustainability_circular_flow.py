@@ -65,7 +65,6 @@ class AgriSustainabilityCircularFlow(models.Model):
     related_production_id = fields.Many2one('mrp.production', '关联生产单')
     related_sale_order_id = fields.Many2one('sale.order', '关联销售订单')
     # 集成现有碳足迹计算
-    related_carbon_calculation_id = fields.Many2one('agri.sustainability.carbon.footprint.calculation', '关联碳足迹计算')
 
     # 关联到地理空间网络 (US-27-06)
     geospatial_network_id = fields.Many2one('agri.geospatial.circular.network', string='关联地理空间网络')
@@ -191,17 +190,19 @@ class AgriSustainabilityCircularFlow(models.Model):
                 flow.status = 'suspended'
 
     @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """创建时设置默认值和业务逻辑"""
-        if 'code' not in vals or not vals['code']:
-            # Try the new sequence first, fall back to the old one for compatibility
-            new_sequence = self.env['ir.sequence'].next_by_code('agri.sustainability.circular.flow')
-            if new_sequence:
-                vals['code'] = new_sequence
-            else:
-                vals['code'] = self.env['ir.sequence'].next_by_code('farm.sustainability.circular.flow') or '/'
+        for vals in vals_list:
+            if "code" not in vals or not vals['code']:
+                # Try the new sequence first, fall back to the old one for compatibility
+                new_sequence = self.env['ir.sequence'].next_by_code('agri.sustainability.circular.flow')
+                if new_sequence:
+                    vals['code'] = new_sequence
+                else:
+                    vals['code'] = self.env['ir.sequence'].next_by_code('farm.sustainability.circular.flow') or '/'
 
-        record = super().create(vals)
+        record = super().create(vals_list)
 
         # 如果有相关联的生产或销售订单，可在此处添加额外逻辑
         return record

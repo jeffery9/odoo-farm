@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ESG Report Customization Tree View -->
-    <record id="view_esg_report_customization_tree" model="ir.ui.view">
+<record id="view_esg_report_customization_tree" model="ir.ui.view">
         <field name="name">farm.esg.report.customization.tree</field>
         <field name="model">farm.esg.report.customization</field>
         <field name="arch" type="xml">
@@ -18,7 +17,7 @@
         </field>
     </record>
 
-    <!-- ESG Report Customization Form View -->
+    
     <record id="view_esg_report_customization_form" model="ir.ui.view">
         <field name="name">farm.esg.report.customization.form</field>
         <field name="model">farm.esg.report.customization</field>
@@ -96,7 +95,7 @@
         </field>
     </record>
 
-    <!-- ESG Report Customization Search View -->
+    
     <record id="view_esg_report_customization_search" model="ir.ui.view">
         <field name="name">farm.esg.report.customization.search</field>
         <field name="model">farm.esg.report.customization</field>
@@ -122,7 +121,7 @@
         </field>
     </record>
 
-    <!-- ESG Report Customization Action Window -->
+    
     <record id="action_esg_report_customization" model="ir.actions.act_window">
         <field name="name">ESG Report Customization</field>
         <field name="res_model">farm.esg.report.customization</field>
@@ -139,9 +138,8 @@
         </field>
     </record>
 
-    <!-- Menu item for ESG Report Customization -->
+    
     <menuitem id="esg_report_customization_menu" name="Report Customization"
               parent="esg_risk_menu" sequence="60"
               action="action_esg_report_customization"/>
-
 </odoo>

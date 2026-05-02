@@ -97,7 +97,7 @@ class AgriRegionalCircularGovernance(models.Model):
             flows = record.circular_flow_ids.filtered(lambda f: f.status == 'completed')
             record.total_waste_processed_ton = sum(f.input_quantity for f in flows)
             record.total_resource_created_ton = sum(f.output_quantity for f in flows)
-            record.total_co2_reduced_ton = sum(f.related_carbon_calculation_id.total_carbon_footprint if f.related_carbon_calculation_id else 0 for f in flows)
+            record.total_co2_reduced_ton = sum(0 for f in flows)
             record.total_economic_value_yuan = sum(f.economic_value for f in flows)
 
     def _compute_boundary_aggregation(self):
@@ -200,7 +200,7 @@ class AgriFarmCircularParticipation(models.Model):
 
     # Farm information
     farm_location_id = fields.Many2one('farm.location', string='Farm Location', required=True)
-    farm_partner_id = fields.Many2one('res.partner', string='Farm Partner', related='farm_location_id.partner_id', readonly=True)
+    farm_partner_id = fields.Many2one('res.partner', string='Farm Partner', readonly=True)
 
     # Participation metrics
     waste_contributed_ton = fields.Float('Waste Contributed (ton)')

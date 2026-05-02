@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="farm_valuation_menu_root"
+<menuitem id="farm_valuation_menu_root"
               name="Valuation"
               parent="farm_core.menu_finance_root"
               sequence="50"/>

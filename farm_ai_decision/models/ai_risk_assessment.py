@@ -17,7 +17,7 @@ class AgriAiRiskAssessment(models.Model):
     """
     _name = 'agri.ai.risk.assessment'
     _description = 'AI Risk Assessment'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'agri.ai.base.mixin']
+    _inherit = ['agri.ai.decision.base']
 
     risk_category = fields.Selection([
         ('weather', 'Weather'),

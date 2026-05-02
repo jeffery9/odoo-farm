@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="esg_social_menu" name="ESG Social" sequence="40" groups="farm_core.group_farm_manager"/>
+<menuitem id="esg_social_menu" name="ESG Social" sequence="40" groups="farm_core.group_farm_manager"/>
 
     <menuitem id="esg_diversity_metrics_menu" name="Diversity Metrics"
               parent="esg_social_menu" sequence="10"
               action="action_social_diversity_metric"/>
+</odoo>

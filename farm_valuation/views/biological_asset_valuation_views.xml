@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo><record id="view_biological_asset_valuation_tree" model="ir.ui.view">
+<odoo>
+<record id="view_biological_asset_valuation_tree" model="ir.ui.view">
         <field name="name">agri.biological.asset.valuation.tree</field>
         <field name="model">agri.biological.asset.valuation</field>
         <field name="arch" type="xml">
@@ -8,4 +9,5 @@
                 <field name="valuation_date"/>
             </list>
         </field>
-    </record></odoo>
+    </record>
+</odoo>

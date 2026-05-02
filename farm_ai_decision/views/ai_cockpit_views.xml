@@ -3,7 +3,7 @@
     <record id="view_agri_intervention_form_ai_cockpit_inherit" model="ir.ui.view">
         <field name="name">mrp.production.form.ai.cockpit.inherit</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="farm_operation.view_agri_intervention_form"/>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="before">
                 <!-- 科学压力预警 (红色条) -->

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 可持续性指标树形视图 -->
-    <record id="view_sustainability_metric_tree" model="ir.ui.view">
+<record id="view_sustainability_metric_tree" model="ir.ui.view">
         <field name="name">farm.sustainability.metric.tree</field>
         <field name="model">farm.sustainability.metric</field>
         <field name="arch" type="xml">
@@ -17,7 +16,7 @@
         </field>
     </record>
 
-    <!-- 可持续性指标表单视图 -->
+    
     <record id="view_sustainability_metric_form" model="ir.ui.view">
         <field name="name">farm.sustainability.metric.form</field>
         <field name="model">farm.sustainability.metric</field>
@@ -87,7 +86,7 @@
         </field>
     </record>
 
-    <!-- 可持续性指标动作 -->
+    
     <record id="action_sustainability_metric" model="ir.actions.act_window">
         <field name="name">可持续性指标</field>
         <field name="res_model">farm.sustainability.metric</field>

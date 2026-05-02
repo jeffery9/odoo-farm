@@ -22,8 +22,8 @@ class AgriGeospatialCircularNetwork(models.Model):
 
     # Spatial analysis parameters
     location_id = fields.Many2one('farm.location', string='Central Location')
-    location_latitude = fields.Float('Latitude', related='location_id.latitude', readonly=True)
-    location_longitude = fields.Float('Longitude', related='location_id.longitude', readonly=True)
+    location_latitude = fields.Float('Latitude', readonly=True)
+    location_longitude = fields.Float('Longitude', readonly=True)
 
     # Nutrient balance analysis
     nutrient_surplus_deficit = fields.Selection([

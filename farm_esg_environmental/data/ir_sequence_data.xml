@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="seq_farm_carbon_ledger" model="ir.sequence">
-        <name>Carbon Ledger</name>
+<record id="seq_farm_carbon_ledger" model="ir.sequence">
+        <field name="name">Carbon Ledger</field>
         <field name="code">farm.carbon.ledger</field>
         <field name="prefix">CO2/%(year)s/</field>
         <field name="padding">5</field>
@@ -9,14 +9,14 @@
     </record>
 
     <record id="seq_esg_red_line_monitoring" model="ir.sequence">
-        <name>ESG Red Line Monitoring</name>
+        <field name="name">ESG Red Line Monitoring</field>
         <field name="code">farm.esg.red.line.monitoring</field>
         <field name="prefix">ESG-RL/%(year)s/</field>
         <field name="padding">5</field>
         <field name="company_id" eval="False"/>
     </record>
 
-    <!-- Sequence for VRA Water Protection Zones -->
+    
     <record id="seq_vra_water_protection_zone" model="ir.sequence">
         <field name="name">VRA Water Protection Zone</field>
         <field name="code">agri.vra.water.protection.zone</field>

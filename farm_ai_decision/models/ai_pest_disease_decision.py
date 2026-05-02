@@ -17,12 +17,14 @@ class AgriAiPestDiseaseDecision(models.Model):
     """
     _name = 'agri.ai.pest.disease.decision'
     _description = 'AI Pest and Disease Decision Support'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'agri.ai.base.mixin']
+    _inherit = ['agri.ai.decision.base']
 
     pest_disease_detection_id = fields.Many2one('agri.ai.pest.disease.detection', string='Original Detection')
     product_id = fields.Many2one('product.template', string='Affected Crop')
     land_location_id = fields.Many2one('farm.location', string='Location')
     detection_date = fields.Datetime('Detection Date', default=fields.Datetime.now)
+    image_attachment = fields.Binary("Image Evidence", attachment=True)
+    image_name = fields.Char("Image Name")
     pest_disease_name = fields.Char('Pest/Disease Name')
     severity_level = fields.Selection([
         ('low', 'Low'),

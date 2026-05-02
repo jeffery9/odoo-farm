@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ESG Framework Views -->
-    <record id="view_esg_framework_tree" model="ir.ui.view">
+<record id="view_esg_framework_tree" model="ir.ui.view">
         <field name="name">esg.framework.tree</field>
         <field name="model">esg.framework</field>
         <field name="arch" type="xml">
@@ -73,7 +72,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- ESG Assessment Views -->
+    
     <record id="view_esg_assessment_tree" model="ir.ui.view">
         <field name="name">esg.assessment.tree</field>
         <field name="model">esg.assessment</field>
@@ -115,7 +114,7 @@
                             <field name="assessment_method"/>
                         </group>
                     </group>
-                    <group string="Framework & Entity">
+                    <group string="Framework &amp; Entity">
                         <field name="framework_id"/>
                         <field name="assessed_entity_type"/>
                         <field name="assessed_entity_id" required="assessed_entity_type != False"/>
@@ -159,5 +158,4 @@
         <field name="res_model">esg.assessment</field>
         <field name="view_mode">tree,form</field>
     </record>
-
 </odoo>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ESG Risk Assessment Views -->
-    <record id="view_esg_risk_assessment_tree" model="ir.ui.view">
+<record id="view_esg_risk_assessment_tree" model="ir.ui.view">
         <field name="name">farm.esg.risk.assessment.tree</field>
         <field name="model">farm.esg.risk.assessment</field>
         <field name="arch" type="xml">
@@ -91,7 +90,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- ESG Compliance Monitoring Views -->
+    
     <record id="view_esg_compliance_monitoring_tree" model="ir.ui.view">
         <field name="name">farm.esg.compliance.monitoring.tree</field>
         <field name="model">farm.esg.compliance.monitoring</field>
@@ -152,7 +151,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Stakeholder Engagement Views -->
+    
     <record id="view_stakeholder_engagement_tree" model="ir.ui.view">
         <field name="name">farm.esg.stakeholder.engagement.tree</field>
         <field name="model">farm.esg.stakeholder.engagement</field>
@@ -227,7 +226,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- ESG KPI Views -->
+    
     <record id="view_esg_kpi_tree" model="ir.ui.view">
         <field name="name">farm.esg.kpi.tree</field>
         <field name="model">farm.esg.kpi</field>
@@ -300,5 +299,4 @@
         <field name="res_model">farm.esg.kpi</field>
         <field name="view_mode">tree,form</field>
     </record>
-
 </odoo>

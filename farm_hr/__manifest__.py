@@ -18,7 +18,6 @@
         'views/farm_employee_views.xml',
         'views/farm_worklog_views.xml',
         'views/farm_wage_views.xml',
-        'views/farm_training_views.xml', # Add farm_training views here
     ],
     'installable': True,
     'application': False,

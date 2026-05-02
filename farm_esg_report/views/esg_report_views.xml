@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- ESG Report Views -->
-    <record id="view_esg_report_tree" model="ir.ui.view">
+<record id="view_esg_report_tree" model="ir.ui.view">
         <field name="name">farm.esg.report.tree</field>
         <field name="model">farm.esg.report</field>
         <field name="arch" type="xml">
@@ -108,7 +107,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- ESG Dashboard Views -->
+    
     <record id="view_esg_dashboard_tree" model="ir.ui.view">
         <field name="name">farm.esg.dashboard.tree</field>
         <field name="model">farm.esg.dashboard</field>
@@ -185,7 +184,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Sustainability Goal Views -->
+    
     <record id="view_sustainability_goal_tree" model="ir.ui.view">
         <field name="name">farm.esg.sustainability.goal.tree</field>
         <field name="model">farm.esg.sustainability.goal</field>
@@ -277,5 +276,4 @@
         <field name="res_model">farm.esg.sustainability.goal</field>
         <field name="view_mode">tree,form</field>
     </record>
-
 </odoo>

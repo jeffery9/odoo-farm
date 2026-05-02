@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Sustainable Supply Chain Action -->
-    <record id="action_sustainable_supply_chain" model="ir.actions.act_window">
+<record id="action_sustainable_supply_chain" model="ir.actions.act_window">
         <field name="name">Sustainable Supply Chain</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.sustainable.supply.chain</field>
@@ -17,7 +15,7 @@
         </field>
     </record>
 
-    <!-- Sustainable Supply Chain Tree View -->
+    
     <record id="view_sustainable_supply_chain_tree" model="ir.ui.view">
         <field name="name">agri.sustainable.supply.chain.tree</field>
         <field name="model">agri.sustainable.supply.chain</field>
@@ -34,7 +32,7 @@
         </field>
     </record>
 
-    <!-- Sustainable Supply Chain Form View -->
+    
     <record id="view_sustainable_supply_chain_form" model="ir.ui.view">
         <field name="name">agri.sustainable.supply.chain.form</field>
         <field name="model">agri.sustainable.supply.chain</field>
@@ -117,7 +115,7 @@
         </field>
     </record>
 
-    <!-- Sustainable Supplier Evaluation Action -->
+    
     <record id="action_sustainable_supplier_evaluation" model="ir.actions.act_window">
         <field name="name">Sustainable Supplier Evaluation</field>
         <field name="type">ir.actions.act_window</field>
@@ -125,7 +123,7 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Sustainable Supplier Evaluation Tree View -->
+    
     <record id="view_sustainable_supplier_evaluation_tree" model="ir.ui.view">
         <field name="name">agri.sustainable.supplier.evaluation.tree</field>
         <field name="model">agri.sustainable.supplier.evaluation</field>
@@ -140,7 +138,7 @@
         </field>
     </record>
 
-    <!-- Sustainable Supplier Evaluation Form View -->
+    
     <record id="view_sustainable_supplier_evaluation_form" model="ir.ui.view">
         <field name="name">agri.sustainable.supplier.evaluation.form</field>
         <field name="model">agri.sustainable.supplier.evaluation</field>
@@ -179,5 +177,4 @@
             </form>
         </field>
     </record>
-
 </odoo>

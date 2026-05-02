@@ -44,7 +44,7 @@ class AgriAiImageBasedPlanning(AgriAiVisionBase):
     special_considerations = fields.Html('Special Considerations')
 
     # ISL-specific fields
-    industry_id = fields.Many2one('industry.type', string='Industry',
+    industry_id = fields.Char(string='Industry',
                                   help="Industry to which this planning applies")
     uses_isl_data = fields.Boolean('Uses ISL Data', default=True,
                                    help="Whether this planning accesses ISL models")
@@ -74,7 +74,7 @@ class AgriAiImageBasedPlanning(AgriAiVisionBase):
         context_data = {
             'image_description': 'field condition assessment image',
             'land_location': record.land_location_id.name if record.land_location_id else 'unknown field',
-            'industry': record.industry_id.name if record.industry_id else 'General Agriculture'
+            'industry': record.industry_id if record.industry_id else 'General Agriculture'
         }
 
         # Create prompt for LLM

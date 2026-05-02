@@ -37,7 +37,7 @@
         'farm_multi_farm_procurement',
         'farm_equipment',
         'farm_hr',
-        'farm_financial',
+        'farm_financial_core',
         'farm_marketing',
         'project',
         'account',
