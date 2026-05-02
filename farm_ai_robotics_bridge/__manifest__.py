@@ -1,0 +1,13 @@
+{
+    'name': 'Farm AI - Robotics Bridge',
+    'version': '1.0',
+    'category': 'Agriculture/AI',
+    'summary': 'Bridge module to connect Farm AI Agents with Farm Robotics',
+    'depends': ['farm_ai_agent', 'farm_robotics', 'farm_robotics'],
+    'data': [
+        'views/mission_log_views.xml'
+    ],
+    'installable': True,
+    'auto_install': True,
+    'license': 'AGPL-3',
+}

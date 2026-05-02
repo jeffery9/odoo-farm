@@ -628,7 +628,7 @@ class AgriAIDecisionContext(models.Model):
     # Context data
     context_data = fields.Text('Context Data (JSON)')
     decision_engine_id = fields.Many2one('agri.ai.decision.engine', string='Decision Engine')
-    coordination_layer_id = fields.Many2one('ai.coordination.layer', string='Coordination Layer')
+    coordination_layer_id = fields.Many2one('agri.ai.coordination.layer', string='Coordination Layer')
 
     # Context parameters
     location_id = fields.Many2one('res.partner', string='Location/Farm')
@@ -805,7 +805,7 @@ class AgriAIDecisionWorkflowStep(models.Model):
 
     # Step configuration
     decision_engine_id = fields.Many2one('agri.ai.decision.engine', string='Decision Engine')
-    coordination_layer_id = fields.Many2one('ai.coordination.layer', string='Coordination Layer')
+    coordination_layer_id = fields.Many2one('agri.ai.coordination.layer', string='Coordination Layer')
     step_config = fields.Text('Step Configuration (JSON)')
     condition = fields.Text('Execution Condition (Python Expression)')
     action_code = fields.Text('Action Code (Python) for Custom Steps')
