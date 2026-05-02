@@ -23,7 +23,7 @@
                     <button name="action_fail" string="Fail" type="object" class="btn-danger" invisible="quality_state != 'none' or test_type == 'measure'"/>
                     <button name="action_done" string="Validate" type="object" class="btn-primary" invisible="quality_state != 'none' or test_type != 'measure'"/>
                     <button name="action_check_ccp_violations" string="Verify CCP" type="object" class="btn-info" invisible="quality_state != 'none'"/>
-                    <button name="action_open_quality_alert" string="Create Alert" type="object" class="btn-warning" invisible="quality_state != 'fail'"/>
+                    
                     <field name="quality_state" widget="statusbar"/>
                 </header>
                 <sheet>

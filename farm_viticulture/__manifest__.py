@@ -6,8 +6,8 @@
     'depends': ['farm_core', 'farm_isl', 'farm_operation', 'farm_agricultural_processing'],
     'data': [
         'security/ir.model.access.csv',
-        'views/menu.xml',
         'views/viticulture_isl_views.xml',
+        'views/menu.xml',
     ],
     'installable': True,
     'application': True,

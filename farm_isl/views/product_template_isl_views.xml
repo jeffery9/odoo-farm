@@ -7,9 +7,7 @@
             <form string="ISL Product Template">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
-                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                        </button>
+                        
                     </div>
                     <field name="image_1920" widget="image" class="oe_avatar"/>
                     <div class="oe_title">
@@ -64,12 +62,12 @@
                         </page>
                         <page string="Inventory">
                             <group>
-                                <field name="sale_ok"/>
-                                <field name="purchase_ok"/>
-                                <field name="detailed_type"/>
-                                <field name="uom_id" groups="uom.group_uom"/>
-                                <field name="uom_po_id" groups="uom.group_uom"/>
-                                <field name="tracking"/>
+                                
+                                
+                                
+                                
+                                
+                                
                             </group>
                         </page>
                     </notebook>

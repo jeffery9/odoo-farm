@@ -23,8 +23,8 @@
                     </group>
                 </sheet>
                 <footer>
-                    <button name="install_extension" type="object" string="Install Extension" class="oe_highlight" invisible="not active"/>
-                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    
+                    
                 </footer>
             </form>
         </field>
@@ -59,8 +59,8 @@
                     <field name="confirmation" widget="boolean_toggle"/>
                 </group>
                 <footer>
-                    <button name="action_migrate_data" type="object" string="Migrate Data" class="oe_highlight" invisible="not confirmation"/>
-                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    
+                    
                 </footer>
             </form>
         </field>

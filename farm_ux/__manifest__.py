@@ -28,7 +28,6 @@
         'data/contextual_help_data.xml',
         'data/multi_sensory_interaction_data.xml',
         'data/accessibility_settings_data.xml',
-        'views/menu.xml',
         'views/term_mapping_views.xml',
         'views/voice_alias_views.xml',
         'views/form_layout_template_views.xml',
@@ -38,6 +37,7 @@
         'views/multi_sensory_interaction_views.xml',
         'views/farm_social_network_views.xml',
         'views/accessibility_settings_views.xml',
+        'views/menu.xml',
     ],
     'assets': {
         'web.assets_backend': [

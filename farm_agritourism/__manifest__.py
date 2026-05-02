@@ -20,10 +20,10 @@
     'depends': ['farm_core', 'sale', 'project'],
     'data': [
         'security/ir.model.access.csv',
-        'views/menu.xml',
         'views/farm_booking_views.xml',
         'views/sale_order_views.xml',
         'views/agritourism_operation_views.xml',
+        'views/menu.xml',
     ],
     'demo': [
         'data/farm_agritourism_demo.xml',

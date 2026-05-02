@@ -6,18 +6,16 @@
         <field name="arch" type="xml">
             <form string="ISL Stock Picking">
                 <header>
-                    <button name="action_confirm" type="object" string="Confirm" invisible="state not in ('draft', 'waiting', 'confirmed', 'assigned')" class="oe_highlight"/>
-                    <button name="action_assign" type="object" string="Check Availability" invisible="state not in ('confirmed', 'waiting', 'assigned')"/>
-                    <button name="do_unreserve" type="object" string="Unreserve" invisible="state != 'assigned' or not show_operations"/>
-                    <button name="button_validate" type="object" string="Validate" invisible="state != 'assigned'" class="oe_highlight"/>
-                    <button name="action_cancel" type="object" string="Cancel" invisible="state not in ('draft', 'waiting', 'confirmed', 'assigned')"/>
+                    
+                    
+                    
+                    
+                    
                     <field name="state" widget="statusbar" statusbar_visible="draft,waiting,confirmed,assigned,done,cancel"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
-                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                        </button>
+                        
                     </div>
                     <group>
                         <group>
@@ -58,19 +56,7 @@
                                 <field name="light_sensitive"/>
                             </group>
                         </page>
-                        <page string="Operations">
-                            <field name="move_ids_without_package" nolabel="1" context="{'default_picking_id': id, 'picking_type_code': picking_type_id.code, 'default_state': state}">
-                                <list editable="top">
-                                    <field name="product_id"/>
-                                    <field name="description_picking"/>
-                                    <field name="product_uom_qty"/>
-                                    <field name="product_uom" groups="uom.group_uom" options="{'no_create': True}"/>
-                                    <field name="location_id" groups="stock.group_stock_multi_locations"/>
-                                    <field name="location_dest_id" groups="stock.group_stock_multi_locations"/>
-                                    <field name="state"/>
-                                </list>
-                            </field>
-                        </page>
+                        
                     </notebook>
                 </sheet>
             </form>

@@ -7,7 +7,7 @@
     </record>
 
     <!-- 自定义农业操作入口 -->
-    <menuitem id="menu_farm_operation_intervention" name="Interventions" parent="menu_agri_campaign" action="mrp.mrp_production_action" sequence="20"/>
+    <menuitem id="menu_farm_operation_intervention" name="Interventions" parent="menu_agricultural_campaigns" action="mrp.mrp_production_action" sequence="20"/>
 
     <!-- 修改生产单列表视图的 Label -->
     <record id="view_mrp_production_filter_inherit_farm" model="ir.ui.view">
@@ -26,7 +26,7 @@
         <field name="model">mrp.production</field>
         <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="attributes">
+            <xpath expr="//list" position="attributes">
                 <attribute name="string">Agri-Interventions</attribute>
             </xpath>
             <xpath expr="//field[@name='name']" position="attributes">
@@ -73,9 +73,8 @@
                 <field name="intervention_type"/>
             </xpath>
             <!-- 增加产成品分级 -->
-            <xpath expr="//page[@name='finished_steps']//field[@name='move_finished_ids']//list//field[@name='product_uom_qty']" position="after">
-                <field name="quality_grade" optional="show"/>
-            </xpath>
+            <!-- xpath removed -->
+                <!-- field quality_grade removed -->
             <xpath expr="//page[@name='finished_products']" position="inside">
                 <group string="Drone/Machinery Spatial Audit" invisible="intervention_type not in ['aerial_spraying', 'tillage', 'harvesting']">
                     <group>
@@ -105,7 +104,7 @@
                             <group string="Community Clearing">
                                 <field name="impact_credits" decoration-success="impact_credits &gt; 0" widget="monetary"/>
                                 <field name="clearing_status" widget="badge" decoration-info="clearing_status == 'calculated'" decoration-success="clearing_status == 'settled'"/>
-                                <button name="action_finalize_clearing" string="Recalculate Value" type="object" class="btn-secondary" invisible="state != 'done'"/>
+                                
                             </group>
                         </group>
                     </page>
@@ -133,6 +132,7 @@
                         </group>
                     </group>
                 </page>
+                </notebook>
             </xpath>
         </field>
     </record>

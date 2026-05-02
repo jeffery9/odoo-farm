@@ -15,8 +15,8 @@
     "data": [
         "security/ir.model.access.csv",
         "data/ir_sequence_data.xml",
-        "views/menu.xml",
         "views/fair_trade_views.xml",
+        "views/menu.xml",
     ],
     "demo": [
     ],

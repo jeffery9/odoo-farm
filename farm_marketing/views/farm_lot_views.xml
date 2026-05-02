@@ -12,6 +12,7 @@
                         <span class="o_stat_text">Agri-Trace</span>
                     </div>
                 </button>
+                </div>
             </xpath>
             <xpath expr="//sheet" position="inside">
                 <notebook>

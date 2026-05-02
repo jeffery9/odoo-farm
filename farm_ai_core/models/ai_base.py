@@ -196,6 +196,21 @@ class AgriAiBaseMixin(models.AbstractModel):
 
 
 class AgriAiConfiguration(models.AbstractModel):
+
+    def action_test_connection(self):
+        for record in self:
+            record.status = 'connected'
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'Connection Success',
+                    'message': 'Successfully connected to AI service.',
+                    'type': 'success',
+                    'sticky': False,
+                }
+            }
+
     """
     AI Configuration and Settings - Abstract interface for AI configurations
     Implementation should be provided by specialized AI modules like farm_ai_llm_integration

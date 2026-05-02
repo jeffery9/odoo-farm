@@ -26,9 +26,9 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/menu.xml',
         'views/field_crop_operation_views.xml',
         'views/crop_isl_views.xml',
+        'views/menu.xml',
     ],
     'demo': [
     ],

@@ -12,9 +12,9 @@
     ],
     "data": [
         # "security/ir.model.access.csv",
-        "views/menu.xml",
         "views/ai_config_views.xml",
         "views/ai_model_registry_views.xml",
+        "views/menu.xml",
     ],
     "demo": [],
     "installable": True,

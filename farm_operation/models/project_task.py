@@ -167,15 +167,6 @@ class ProjectTask(models.Model):
                     ))
 
     # Required Qualifications for Task [US-17-08]
-#     # required_skill_ids = fields.Many2many(
-#         'farm.training.skill',
-#         string="Required Skills",
-#         help="Skills required to perform this task."
-#     )
-    # required_certification_ids = fields.Many2many(
-        'farm.training.certification',
-        string="Required Certifications",
-        help="Certifications required to perform this task."
 
     @api.constrains('land_parcel_id', 'industry_type')
     def _check_land_use_restriction(self):
@@ -188,9 +179,6 @@ class ProjectTask(models.Model):
                         "Non-grain production activities (like tourism or livestock) are strictly prohibited by national policy!"
                     ) % task.land_parcel_id.name)
 
-    @api.constrains('user_ids', '# required_skill_ids', '# required_certification_ids')
-    def _check_employee_qualifications(self):
-        pass
 
     @api.onchange('industry_type')
     def _onchange_industry_type(self):

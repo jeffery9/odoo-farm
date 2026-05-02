@@ -21,7 +21,6 @@
     'data': [
         # 'security/ir.model.access.csv',
         'data/ir_cron_data.xml',
-        'views/menu.xml',
         'views/livestock_lot_views.xml',
         'views/livestock_advanced_views.xml',
         'views/livestock_feeding_views.xml',
@@ -29,6 +28,7 @@
         'views/livestock_views.xml',
         'views/livestock_isl_views.xml',
         'views/updated_livestock_production_view.xml',
+        'views/menu.xml',
     ],
     'demo': [
         'data/farm_livestock_demo.xml',

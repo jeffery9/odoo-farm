@@ -27,13 +27,13 @@ ESG Environmental Assessment module for Odoo 19 Farm Management System - Epic 80
     "data": [
         "security/ir.model.access.csv",
         "data/ir_sequence_data.xml",
-        "views/menu.xml",
         "views/environmental_views.xml",
         "views/carbon_accounting_views.xml",
         "views/esg_red_line_monitoring_views.xml",
         "views/vra_carbon_footprint_views.xml",
         "views/vra_water_protection_views.xml",
         "views/vra_soil_health_views.xml",
+        "views/menu.xml",
     ],
     "demo": [
     ],

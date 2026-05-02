@@ -24,8 +24,8 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/menu.xml',
         'views/mushroom_operation_views.xml',
+        'views/menu.xml',
     ],
     'demo': [
     ],

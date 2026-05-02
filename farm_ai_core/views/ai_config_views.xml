@@ -61,8 +61,8 @@
                         <group>
                             <field name="is_active"/>
                             <field name="is_default"/>
-                            <field name="requests_per_minute"/>
-                            <field name="requests_per_day"/>
+                            
+                            
                         </group>
                     </group>
                     <group string="Advanced Settings">
@@ -71,8 +71,8 @@
                             <field name="max_retries"/>
                         </group>
                         <group>
-                            <field name="temperature"/>
-                            <field name="max_tokens"/>
+                            
+                            
                         </group>
                     </group>
                     <group string="Statistics">

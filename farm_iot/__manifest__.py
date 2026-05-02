@@ -17,8 +17,8 @@
         # 'data/iot_cron_data.xml',
         'views/iot_mapping_views.xml',
         'views/farm_telemetry_views.xml',
-        'views/farm_automation_rules_views.xml',
-        'views/storage_env_views.xml',
+        'views/farm_automation_views.xml',
+        
         'views/iiot_device_views.xml',
         'views/digital_twin_views.xml',
     ],

@@ -157,7 +157,7 @@ class AgriInterventionMixin(models.AbstractModel):
 
     # Drone and spatial audit fields
     actual_flight_area = fields.Float("Actual Flown Area (mu/ha)")
-    drone_id = fields.Many2one('maintenance.equipment', string="Drone Used", domain="[('is_drone', '=', True)]")
+    drone_id = fields.Many2one('maintenance.equipment', string="Drone Used", )
 
     # 空间审计 [US-23-04]
     out_of_bounds_count = fields.Integer("OOB Point Count", compute='_compute_spatial_audit', help="Number of telemetry points outside the parcel.")
