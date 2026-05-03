@@ -17,12 +17,59 @@ class AgriISLModelRedirector(models.AbstractModel):
     _name = 'agri.isl.model.redirector'
     _description = 'Agri ISL Model Redirection Utility'
 
+
     @api.model
     def get_isl_record(self, base_model_name, base_record_id):
         """
-        Get the corresponding ISL record for a base record
+        Get the corresponding ISL record for a base record, with industry awareness.
         """
-        # Map base models to their ISL counterparts
+        if not base_record_id:
+            return None
+            
+        base_record = self.env[base_model_name].browse(base_record_id)
+        if not base_record.exists():
+            return None
+
+        # 1. Try to find specialized industry ISL models first
+        industry = getattr(base_record, 'industry_type', False)
+        if industry:
+            # Common pattern: farm.{industry}.{base_model_suffix}
+            base_suffix = base_model_name.split('.')[-1]
+            # Specialized mappings for specific industries/models
+            special_mappings = {
+                ('aquaculture', 'production'): 'farm.ras.production',
+                ('livestock', 'bom'): 'farm.livestock.bom',
+                ('livestock', 'production'): 'farm.livestock.production',
+                ('crop', 'production'): 'farm.crop.production',
+                ('processing', 'production'): 'farm.processing.production',
+            }
+            
+            target_model = special_mappings.get((industry, base_suffix))
+            if not target_model:
+                # Try generic pattern
+                potential_model = f'farm.{industry}.{base_suffix}'
+                if potential_model in self.env:
+                    target_model = potential_model
+            
+            if target_model and target_model in self.env:
+                
+            # Try both naming conventions for the link field: mrp_bom_id and bom_id
+            field_name_long = base_model_name.replace('.', '_') + '_id'
+            field_name_short = base_model_name.split('.')[-1] + '_id'
+            
+            domain = []
+            if field_name_long in self.env[target_model]._fields:
+                domain = [(field_name_long, '=', base_record_id)]
+            elif field_name_short in self.env[target_model]._fields:
+                domain = [(field_name_short, '=', base_record_id)]
+                
+            if domain:
+                isl_record = self.env[target_model].search(domain, limit=1)
+                if isl_record:
+                    return isl_record
+
+
+        # 2. Fallback to centralized core ISL models
         isl_model_map = {
             'mrp.production': 'agri.mrp.production',
             'mrp.bom': 'agri.mrp.bom',
@@ -33,20 +80,29 @@ class AgriISLModelRedirector(models.AbstractModel):
             'product.template': 'agri.product.template',
             'stock.picking': 'agri.stock.picking',
             'mrp.workorder': 'agri.mrp.workorder',
-            'agri.quality.point': 'agri.quality.control',
+            'quality.point': 'agri.quality.control',
         }
 
-        if base_model_name not in isl_model_map:
-            return None
+        if base_model_name in isl_model_map:
+            isl_model_name = isl_model_map[base_model_name]
+            if isl_model_name in self.env:
+                
+            field_name_long = base_model_name.replace('.', '_') + '_id'
+            field_name_short = base_model_name.split('.')[-1] + '_id'
+            
+            domain = []
+            if field_name_long in self.env[isl_model_name]._fields:
+                domain = [(field_name_long, '=', base_record_id)]
+            elif field_name_short in self.env[isl_model_name]._fields:
+                domain = [(field_name_short, '=', base_record_id)]
 
-        isl_model_name = isl_model_map[base_model_name]
+            if domain:
+                isl_record = self.env[isl_model_name].search(domain, limit=1)
+                return isl_record
 
-        # Search for the ISL record that inherits from the base record
-        isl_record = self.env[isl_model_name].search([
-            (base_model_name.replace('.', '_') + '_id', '=', base_record_id)
-        ], limit=1)
 
-        return isl_record
+        return None
+
 
     @api.model
     def create_isl_record(self, base_model_name, base_record_id, industry_type='general'):
