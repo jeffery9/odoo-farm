@@ -42,6 +42,7 @@ avoiding direct MQTT connections from Odoo for better reliability and maintainab
         "views/menu.xml",
     ],
     "demo": [],
+    "images": ["static/description/main_screenshot.png"],
     "installable": True,
     "auto_install": False,
     "application": True,

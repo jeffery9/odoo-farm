@@ -16,6 +16,7 @@
         'data/ir_cron_data.xml',
         'views/csa_subscription_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

@@ -17,6 +17,7 @@
         'report/machinery_subsidy_reports.xml',
         'views/machinery_subsidy_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

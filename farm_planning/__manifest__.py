@@ -22,6 +22,7 @@
     'demo': [
         'data/farm_planning_demo.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': True,
     'license': 'AGPL-3',

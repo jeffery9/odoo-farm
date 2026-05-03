@@ -7,6 +7,7 @@
     'data': [
         'views/mission_log_views.xml'
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'auto_install': True,
     'license': 'AGPL-3',

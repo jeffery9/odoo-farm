@@ -16,6 +16,7 @@
         'security/ir.model.access.csv',
         'views/disaster_risk_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

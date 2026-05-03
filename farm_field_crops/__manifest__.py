@@ -38,6 +38,7 @@
             'farm_field_crops/static/tests/tours/**/*',
         ],
     },
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

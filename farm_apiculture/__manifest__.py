@@ -29,6 +29,7 @@
     ],
     'demo': [
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

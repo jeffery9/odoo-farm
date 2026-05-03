@@ -28,6 +28,7 @@
             "precision_production/static/src/js/precision_execution_dashboard.js",
         ],
     },
+    "images": ["static/description/main_screenshot.png"],
     "installable": True,
     "auto_install": False,
     "license": "LGPL-3",

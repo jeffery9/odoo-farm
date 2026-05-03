@@ -20,6 +20,7 @@
         'views/data_security_views.xml',
         'views/res_config_settings_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

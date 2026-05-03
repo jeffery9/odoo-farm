@@ -24,6 +24,7 @@
         'views/faq_entry_views.xml',
         'views/menu.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

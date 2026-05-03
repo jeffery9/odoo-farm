@@ -37,6 +37,7 @@ Circular economy module for Odoo 19 Farm Management System - Epic 27 Implementat
         'views/menu.xml',
         'data/ir_sequence_data.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

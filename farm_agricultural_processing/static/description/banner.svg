@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="628" height="314" viewBox="0 0 628 314" xmlns="http://www.w3.org/2000/svg">
+  <rect width="628" height="314" fill="#FFF9F2" />
+  <rect x="40" y="92" width="130" height="130" rx="20" fill="white" stroke="#C9382B" stroke-width="1" />
+  <g transform="translate(51, 103) scale(0.42)">
+
+    <!-- Manufacturing: Gear + Sprout Cutout -->
+    <circle cx="128" cy="128" r="70" fill="#C9382B"/>
+    <path d="M128,128 m-80,0 a80,80 0 1,0 160,0 a80,80 0 1,0 -160,0" stroke="#C9382B" stroke-width="20" stroke-dasharray="30 32.8"/>
+    <path d="M128,150 L128,110 M110,120 C110,120 128,100 128,120 C128,100 146,120 146,120" stroke="#FFF9F2" stroke-width="10" stroke-linecap="round" fill="none"/>
+    
+  </g>
+  <g transform="translate(190, 150)">
+    <text x="0" y="0" fill="#C9382B" font-family="'PingFang SC', 'Microsoft YaHei', 'SimHei', sans-serif" font-size="26" font-weight="bold">Farm Agricultural Processing (Industry Profile)</text>
+  </g>
+</svg>

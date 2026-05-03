@@ -31,6 +31,7 @@
         'views/sustainability_dashboard_views.xml',
         'data/sustainability_data.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

@@ -20,6 +20,7 @@
         'farm_supply_quality',
         'farm_supply_analytics',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+    <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
+
+    <!-- AI: Stem node with circuit-leaf -->
+    <path d="M128,210 L128,140" stroke="#C9382B" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="128" cy="120" r="45" fill="#C9382B"/>
+    <path d="M110,120 L146,120 M128,102 L128,138" stroke="#FFF9F2" stroke-width="10" stroke-linecap="round"/>
+    
+</svg>

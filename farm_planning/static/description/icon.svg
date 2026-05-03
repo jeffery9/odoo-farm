@@ -1,7 +1,9 @@
-<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100" height="100" rx="20" fill="#3498db"/>
-  <rect x="25" y="30" width="50" height="50" rx="5" fill="none" stroke="white" stroke-width="5"/>
-  <line x1="25" y1="45" x2="75" y2="45" stroke="white" stroke-width="5"/>
-  <line x1="40" y1="20" x2="40" y2="35" stroke="white" stroke-width="5"/>
-  <line x1="60" y1="20" x2="60" y2="35" stroke="white" stroke-width="5"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+    <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
+
+    <!-- Core: Hexagon Shield -->
+    <path d="M128,45 L210,92 L210,188 L128,235 L46,188 L46,92 Z" fill="none" stroke="#C9382B" stroke-width="18" stroke-linejoin="round"/>
+    <path d="M100,140 L120,160 L160,110" stroke="#C9382B" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
 </svg>

@@ -18,6 +18,7 @@
         'views/farm_lot_views.xml',
         'views/biosafety_access_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',
