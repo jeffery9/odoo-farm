@@ -10,10 +10,10 @@
             </header>
             <xpath expr="//field[@name='ref']" position="after">
                 <field name="is_health_anomaly" invisible="not is_health_anomaly" widget="boolean_favorite" decoration-danger="is_health_anomaly"/>
-                <field name="health_index" widget="gauge" options="{'max_value': 100}" invisible="not is_animal"/>
+                <field name="health_index" widget="gauge" options="{'max_value': 100}" />
             </xpath>
             <xpath expr="//notebook" position="inside">
-                <page string="Intensive Management" name="intensive_mgmt" invisible="not is_animal">
+                <page string="Intensive Management" name="intensive_mgmt" >
                     <group>
                         <group string="Precision Feeding">
                             <field name="total_feed_consumed"/>

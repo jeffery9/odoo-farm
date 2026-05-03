@@ -17,7 +17,7 @@
                 </group>
             </xpath>
             <xpath expr="//notebook" position="inside">
-                <page string="Breeding Management" name="breeding_management" invisible="not is_animal">
+                <page string="Breeding Management" name="breeding_management" >
                     <group>
                         <group name="breeding_status" string="Breeding Status">
                             <field name="breeding_status"/>
@@ -45,7 +45,7 @@
                         <field name="pedigree_info" nolabel="1" placeholder="Enter pedigree information..."/>
                     </group>
                 </page>
-                <page string="Health Management" name="health_management" invisible="not is_animal">
+                <page string="Health Management" name="health_management" >
                     <group>
                         <group name="health_status" string="Health Status">
                             <field name="health_status"/>
@@ -66,7 +66,7 @@
                                 class="btn-primary"/>
                     </footer>
                 </page>
-                <page string="Production Data" name="production_data" invisible="not is_animal">
+                <page string="Production Data" name="production_data" >
                     <group>
                         <group name="milk_production" string="Milk Production">
                             <field name="milk_yield_avg"/>
@@ -174,7 +174,7 @@
     </record>
 
     <!-- Menu items for Livestock Management -->
-    <menuitem id="menu_livestock_breeding"
+    <menuitem id="menu_livestock_breeding_records"
               name="Breeding Records"
               parent="farm_livestock.menu_livestock_breeding"
               action="action_breeding_records"
