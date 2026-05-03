@@ -1,3 +1,11 @@
+# 03_ISL_REFERENCE_MATRIX
+
+
+
+---
+
+## 📄 Source Document: isl_architecture_matrix.md
+
 # ISL Architecture Cross-Industry Reusability Matrix
 
 ## Evaluation Criteria
@@ -135,3 +143,4 @@ For example:
 ```
 farm.agri.bom.mixin (Abstract) → farm.processing.bom (Concrete ISL) → farm.livestock.bom (Industry Extension)
 ```
+
