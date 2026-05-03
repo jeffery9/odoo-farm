@@ -37,4 +37,3 @@
     This module should be installed before any specialized financial modules.
     """,
 }
-        "views/menu.xml",

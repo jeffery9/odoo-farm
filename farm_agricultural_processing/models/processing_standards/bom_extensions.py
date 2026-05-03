@@ -4,6 +4,7 @@ from odoo.exceptions import ValidationError
 
 
 class FarmProcessingBomExtension(models.Model):
+    _name = 'farm.processing.bom'
     _inherit = 'farm.processing.bom'
 
     processing_type = fields.Selection([
@@ -12,12 +13,9 @@ class FarmProcessingBomExtension(models.Model):
         ('packaging', 'Packaging')
     ], string='Processing Type', default='primary')
 
-    industry_type = fields.Selection([
-        ('standard', 'Standard'),
-        ('baking', 'Baking'),
-        ('winemaking', 'Winemaking'),
-        ('food_processing', 'Food Processing')
-    ], string="Industry Type", default='standard')
+    industry_type = fields.Selection(selection_add=[
+        ('food_processing', 'Food Processing'),
+    ], ondelete={'food_processing': 'set null'})
 
     # 预期等级分布 [US-14-08]
     grade_distribution_ids = fields.One2many('farm.bom.grade.distribution', 'bom_id', string="Expected Grade Distribution")
@@ -62,6 +60,7 @@ class FarmProcessingBomExtension(models.Model):
 
 # Add the compute and constraint methods to farm.processing.production as well to match test expectations
 class FarmProcessingProductionExtension(models.Model):
+    _name = 'farm.processing.production'
     _inherit = 'farm.processing.production'
 
     byproduct_cost_share_total = fields.Float("Byproduct Cost Share Total (%)", compute='_compute_byproduct_cost_share_total_mo', store=True)

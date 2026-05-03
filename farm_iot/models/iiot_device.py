@@ -2,6 +2,7 @@ from odoo import models, fields, api
 import json
 
 class IiotDevice(models.Model):
+    _name = 'iiot.device'
     _inherit = 'iiot.device'
 
     # 地理围栏安全 [US-23-01] - 在业务集成层实现

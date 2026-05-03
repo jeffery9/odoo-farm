@@ -1,6 +1,7 @@
 from odoo import models, fields
 
 class CooperativeMemberExtensionProcurement(models.Model):
+    _name = 'cooperative.member'
     _inherit = 'cooperative.member'
 
     joint_procurement_po_member_ids = fields.One2many('joint.procurement.po.member', 'member_id', string='Joint Procurement POs')
@@ -8,6 +9,7 @@ class CooperativeMemberExtensionProcurement(models.Model):
     netting_settlement_ids = fields.One2many('netting.settlement', 'member_id', string='Netting Settlements')
 
 class CooperativeEntityExtensionProcurement(models.Model):
+    _name = 'cooperative.entity'
     _inherit = 'cooperative.entity'
 
     joint_procurement_ids = fields.One2many('joint.procurement', 'cooperative_id', string='Joint Procurements')
@@ -17,6 +19,7 @@ class CooperativeEntityExtensionProcurement(models.Model):
     netting_settlement_ids = fields.One2many('netting.settlement', 'cooperative_id', string='Netting Settlements')
 
 class InternalSettlementExtensionProcurement(models.Model):
+    _name = 'internal.settlement'
     _inherit = 'internal.settlement'
     
     joint_procurement_id = fields.Many2one('joint.procurement', string='Joint Procurement')

@@ -23,17 +23,10 @@
                             <field name="bom_id"/>
                             <field name="date_start"/>
                         </group>
-                        <group string="Water Quality (ISL)">
-                            <field name="water_temp"/>
-                            <field name="dissolved_oxygen"/>
-                            <field name="ph_level"/>
-                        </group>
+                        
                     </group>
                     <group>
-                        <group string="Growth Stats (ISL)">
-                            <field name="avg_individual_weight"/>
-                            <field name="survival_rate"/>
-                        </group>
+                        
                         <group string="Security &amp; Performance">
                             <field name="security_level"/>
                             <field name="current_density"/>
@@ -43,21 +36,10 @@
                         <page string="Configuration">
                             <field name="aquaculture_config" widget="ace" options="{'mode': 'json'}"/>
                         </page>
-                        <page string="Performance Monitor">
-                            <group>
-                                <field name="performance_monitor_ids" nolabel="1" colspan="2">
-                                    <list string="Performance Monitors">
-                                        <field name="name"/>
-                                        <field name="duration"/>
-                                        <field name="record_count"/>
-                                        <field name="start_time"/>
-                                        <field name="status"/>
-                                    </list>
-                                </field>
-                            </group>
-                        </page>
+                        
                     </notebook>
                 </sheet>
             </form>
         </field>
     </record>
+</odoo>

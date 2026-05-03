@@ -29,9 +29,9 @@ class FarmEcommercePlatform(models.Model):
 
     api_endpoint = fields.Char('API Endpoint', required=True)
     client_id = fields.Char('Client ID', help='Client ID for API authentication')
-    client_secret = fields.Char('Client Secret', help='Client Secret for API authentication', password=True)
-    access_token = fields.Char('Access Token', password=True)
-    refresh_token = fields.Char('Refresh Token', password=True)
+    client_secret = fields.Char('Client Secret', help='Client Secret for API authentication')
+    access_token = fields.Char('Access Token')
+    refresh_token = fields.Char('Refresh Token')
     token_expiry = fields.Datetime('Token Expiry')
 
     active = fields.Boolean('Active', default=True)

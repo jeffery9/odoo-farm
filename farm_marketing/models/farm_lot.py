@@ -1,11 +1,13 @@
 from odoo import models, fields, api, _
 
 class FarmPartner(models.Model):
+    _name = 'res.partner'
     _inherit = 'res.partner'
 
     loyalty_points = fields.Float("Farm Loyalty Points", default=0.0)
 
 class FarmSaleOrder(models.Model):
+    _name = 'sale.order'
     _inherit = 'sale.order'
 
     # 预订模式 [Order Enhancement]
@@ -54,6 +56,7 @@ class FarmSaleOrder(models.Model):
         return res
 
 class FarmSaleOrderLine(models.Model):
+    _name = 'sale.order.line'
     _inherit = 'sale.order.line'
 
     lot_id = fields.Many2one('stock.lot', string="Reserved Lot") 
@@ -88,6 +91,7 @@ class FarmSaleOrderLine(models.Model):
         }
 
 class FarmLotMarketing(models.Model):
+    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     traceability_url = fields.Char("Traceability URL", compute='_compute_traceability_url')

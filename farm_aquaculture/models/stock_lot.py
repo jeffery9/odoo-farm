@@ -2,6 +2,7 @@
 from odoo import models, fields, api, _
 
 class StockLot(models.Model):
+    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     def _get_isl_summary_parts(self):

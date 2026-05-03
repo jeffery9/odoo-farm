@@ -17,6 +17,7 @@ class FarmIndustryOperation(models.Model):
     tolerance_range = fields.Float("Tolerance (+/-)")
 
 class MrpRoutingWorkcenter(models.Model):
+    _name = 'mrp.routing.workcenter'
     _inherit = 'mrp.routing.workcenter'
 
     def get_formview_action(self, access_uid=None):

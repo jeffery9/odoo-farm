@@ -61,7 +61,7 @@ class AgriProcessingPackaging(models.Model):
     quantity = fields.Float('Quantity')
 
     # Barcode and identification
-    barcode = fields.Char('Barcode', unique=True)
+    barcode = fields.Char('Barcode')
     qr_code = fields.Char('QR Code')
     package_sequence = fields.Char('Package Sequence')
 

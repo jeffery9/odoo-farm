@@ -21,6 +21,7 @@ class AgriHealthSchedule(models.Model):
     days_offset = fields.Integer(string='Days after Stage reached', default=0)
 
 class AgriStockLotHealth(models.Model):
+    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     # Track health activities specifically

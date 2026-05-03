@@ -5,6 +5,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class StockLot(models.Model):
+    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     # --- Industry Context ---
@@ -107,12 +108,12 @@ class StockLot(models.Model):
                                        help="Flattened upstream lot IDs for instant lookup.")
 
     # 分级与元数据 [US-14-05]
-    quality_grade = fields.Selection([
+    quality_grade = fields.Selection(selection_add=[
         ('a', 'Grade A / Premium'),
         ('b', 'Grade B / Standard'),
         ('c', 'Grade C / Processing'),
         ('loss', 'Loss/Waste')
-    ], string='Quality Grade')
+    ], ondelete={'a': 'set null', 'b': 'set null', 'c': 'set null', 'loss': 'set null'})
     
     harvest_date = fields.Date('Harvest Date')
     # plot_id = fields.Many2one('farm.land', string='Origin Plot')

@@ -19,7 +19,7 @@ class AgriAiLlmConfiguration(models.Model):
     _inherits = {'agri.ai.configuration': 'ai_config_id'}
 
     # Foreign key to the base agri.ai.configuration
-    ai_config_id = fields.Many2one('agri.ai.configuration', string='AI Configuration', required=True, ondelete='cascade', auto_join=True)
+    ai_config_id = fields.Many2one('agri.ai.configuration', string='AI Configuration', required=True, ondelete='cascade')
 
     # Provider-specific fields (in addition to inherited ai.configuration fields)
     provider = fields.Selection([

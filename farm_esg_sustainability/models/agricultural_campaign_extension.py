@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 
 class AgriculturalCampaign(models.Model):
+    _name = 'farm.agricultural.campaign'
     _inherit = 'farm.agricultural.campaign'
 
     # 汇总该生产季下所有任务的养分投入

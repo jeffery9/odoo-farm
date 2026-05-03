@@ -5,6 +5,7 @@ import json
 _logger = logging.getLogger(__name__)
 
 class FarmLocation(models.Model):
+    _name = 'farm.location'
     _inherit = 'farm.location'
 
     digital_twin_enabled = fields.Boolean("Digital Twin Enabled", default=False)
@@ -50,6 +51,7 @@ class FarmDigitalTwinMarker(models.Model):
 
 # Note: FarmLocation and IiotDevice remain as is since they're only inheritance extensions
 class IiotDevice(models.Model):
+    _name = 'iiot.device'
     _inherit = 'iiot.device'
 
     digital_twin_model_url = fields.Char("3D Model URL", help="Specific 3D model for this device")

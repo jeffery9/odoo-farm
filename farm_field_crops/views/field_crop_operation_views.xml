@@ -26,7 +26,7 @@
                             <field name="name"/>
                             <field name="crop_type_id"/>
                             <field name="field_parcel_id"/>
-                            <field name="operation_type"/>
+                            
                         </group>
                         <group name="field_crops_data" string="Field Crops Specific Data">
                             <field name="seeding_rate"/>
@@ -44,8 +44,8 @@
                         <page string="Planning" name="planning" invisible="project_id">
                             <group>
                                 <group name="planning_dates">
-                                    <field name="planned_date_begin"/>
-                                    <field name="planned_date_end"/>
+                                    
+                                    
                                 </group>
                                 <group name="actual_dates">
                                     <field name="date_assign"/>

@@ -12,6 +12,7 @@ class FarmComplianceAuditStandard(models.Model):
     active = fields.Boolean(default=True)
 
 class FarmExportCompliance(models.Model):
+    _name = 'farm.export.compliance'
     _inherit = 'farm.export.compliance'
 
     standard_id = fields.Many2one('farm.compliance.audit.standard', string="Compliance Standard")

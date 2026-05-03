@@ -34,21 +34,10 @@
                         <page string="Configuration">
                             <field name="mushroom_config" widget="ace" options="{'mode': 'json'}"/>
                         </page>
-                        <page string="Performance Monitor">
-                            <group>
-                                <field name="performance_monitor_ids" nolabel="1" colspan="2">
-                                    <list string="Performance Monitors">
-                                        <field name="name"/>
-                                        <field name="duration"/>
-                                        <field name="record_count"/>
-                                        <field name="start_time"/>
-                                        <field name="status"/>
-                                    </list>
-                                </field>
-                            </group>
-                        </page>
+                        
                     </notebook>
                 </sheet>
             </form>
         </field>
     </record>
+</odoo>

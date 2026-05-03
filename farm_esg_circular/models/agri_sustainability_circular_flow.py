@@ -17,7 +17,7 @@ class AgriSustainabilityCircularFlow(models.Model):
     _order = 'create_date desc'
 
     name = fields.Char('流程名称', required=True, copy=False)
-    code = fields.Char('流程代码', required=True, unique=True, copy=False)
+    code = fields.Char('流程代码', required=True, copy=False)
     flow_type = fields.Selection([
         ('waste_to_resource', '废料转资源'),
         ('byproduct_to_sale', '副产品转销售'),

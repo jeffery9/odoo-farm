@@ -52,21 +52,20 @@ class AgriISLModelRedirector(models.AbstractModel):
                     target_model = potential_model
             
             if target_model and target_model in self.env:
-                
-            # Try both naming conventions for the link field: mrp_bom_id and bom_id
-            field_name_long = base_model_name.replace('.', '_') + '_id'
-            field_name_short = base_model_name.split('.')[-1] + '_id'
+                # Try both naming conventions for the link field: mrp_bom_id and bom_id
+                field_name_long = base_model_name.replace('.', '_') + '_id'
+                field_name_short = base_model_name.split('.')[-1] + '_id'
             
-            domain = []
-            if field_name_long in self.env[target_model]._fields:
-                domain = [(field_name_long, '=', base_record_id)]
-            elif field_name_short in self.env[target_model]._fields:
-                domain = [(field_name_short, '=', base_record_id)]
+                domain = []
+                if field_name_long in self.env[target_model]._fields:
+                    domain = [(field_name_long, '=', base_record_id)]
+                elif field_name_short in self.env[target_model]._fields:
+                    domain = [(field_name_short, '=', base_record_id)]
                 
-            if domain:
-                isl_record = self.env[target_model].search(domain, limit=1)
-                if isl_record:
-                    return isl_record
+                if domain:
+                    isl_record = self.env[target_model].search(domain, limit=1)
+                    if isl_record:
+                        return isl_record
 
 
         # 2. Fallback to centralized core ISL models
@@ -86,19 +85,18 @@ class AgriISLModelRedirector(models.AbstractModel):
         if base_model_name in isl_model_map:
             isl_model_name = isl_model_map[base_model_name]
             if isl_model_name in self.env:
-                
-            field_name_long = base_model_name.replace('.', '_') + '_id'
-            field_name_short = base_model_name.split('.')[-1] + '_id'
+                field_name_long = base_model_name.replace('.', '_') + '_id'
+                field_name_short = base_model_name.split('.')[-1] + '_id'
             
-            domain = []
-            if field_name_long in self.env[isl_model_name]._fields:
-                domain = [(field_name_long, '=', base_record_id)]
-            elif field_name_short in self.env[isl_model_name]._fields:
-                domain = [(field_name_short, '=', base_record_id)]
+                domain = []
+                if field_name_long in self.env[isl_model_name]._fields:
+                    domain = [(field_name_long, '=', base_record_id)]
+                elif field_name_short in self.env[isl_model_name]._fields:
+                    domain = [(field_name_short, '=', base_record_id)]
 
-            if domain:
-                isl_record = self.env[isl_model_name].search(domain, limit=1)
-                return isl_record
+                if domain:
+                    isl_record = self.env[isl_model_name].search(domain, limit=1)
+                    return isl_record
 
 
         return None

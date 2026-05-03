@@ -1,6 +1,7 @@
 from odoo import models, fields
 
 class CooperativeMemberExtensionFinancial(models.Model):
+    _name = 'cooperative.member'
     _inherit = 'cooperative.member'
 
     share_transaction_ids = fields.One2many('share.transaction', 'member_id', string='Share Transactions')
@@ -14,6 +15,7 @@ class CooperativeMemberExtensionFinancial(models.Model):
     sign_process_ids = fields.One2many('multi.sign.line', 'signer_member_id', string='Sign Processes')
 
 class CooperativeEntityExtensionFinancial(models.Model):
+    _name = 'cooperative.entity'
     _inherit = 'cooperative.entity'
 
     dividend_distribution_ids = fields.One2many('dividend.distribution', 'cooperative_id', string='Dividend Distributions')

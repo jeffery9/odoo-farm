@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 
 class AgriIntervention(models.Model):
+    _name = 'mrp.production'
     _inherit = 'mrp.production'
 
     # US-30-01: Auto-calculated Carbon Emission for this intervention

@@ -5,6 +5,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class FarmLot(models.Model):
+    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     # Livestock specific fields extending the base functionality

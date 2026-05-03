@@ -32,6 +32,7 @@ class FarmRuralRevitalizationProject(models.Model):
             project.total_expenditure = sum(project.account_move_ids.filtered(lambda m: m.move_type in ['in_invoice', 'out_refund', 'in_receipt', 'out_receipt'] and m.state == 'posted').mapped('amount_total_in_currency_dlc'))
 
 class AccountMove(models.Model):
+    _name = 'account.move'
     _inherit = 'account.move'
 
     # 关联乡村振兴项目 [US-18-09]

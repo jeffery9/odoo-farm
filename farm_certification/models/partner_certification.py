@@ -2,6 +2,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 class ResPartner(models.Model):
+    _name = 'res.partner'
     _inherit = 'res.partner'
 
     agri_certification_ids = fields.One2many(
@@ -41,6 +42,7 @@ class FarmPartnerCertification(models.Model):
     ], string="Status", default='valid')
 
 class PurchaseOrder(models.Model):
+    _name = 'purchase.order'
     _inherit = 'purchase.order'
 
     def button_confirm(self):

@@ -1,6 +1,7 @@
 from odoo import models
 
 class MrpProductionExtension(models.Model):
+    _name = 'mrp.production'
     _inherit = 'mrp.production'
 
     def action_update_yield_estimate_btn(self):

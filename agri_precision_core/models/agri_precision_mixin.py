@@ -12,7 +12,7 @@ class AgriPrecisionMixin(models.AbstractModel):
     _description = 'Precision & Agri Bridge DNA'
 
     # 1. Uncertainty: Dynamic Yield Tracking
-    expected_yield_accuracy = fields.Float("Yield Confidence (%)", default=100.0)
+    expected_yield_accuracy = fields.Float("Expected Yield Accuracy (%)", default=100.0)
     last_metrology_date = fields.Datetime("Last Calibration/Sampling")
 
     # 2. Grading: Binning Attributes

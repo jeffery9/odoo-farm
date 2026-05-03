@@ -3,6 +3,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
 class StockLot(models.Model):
+    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     isl_summary_info = fields.Char("ISL Contextual Info", compute='_compute_isl_summary_info')

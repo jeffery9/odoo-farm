@@ -2,6 +2,7 @@
 from odoo import models, fields, api, _
 
 class MrpWorkcenter(models.Model):
+    _name = 'mrp.workcenter'
     _inherit = 'mrp.workcenter'
 
     # US-TECH-05-08: Industry Capability
@@ -14,6 +15,7 @@ class MrpWorkcenter(models.Model):
     ], string='Industry Capability', default='standard', required=True)
 
 class MrpRoutingWorkcenter(models.Model):
+    _name = 'mrp.routing.workcenter'
     _inherit = 'mrp.routing.workcenter'
 
     # Filter logic will be handled at the XML view level via domain

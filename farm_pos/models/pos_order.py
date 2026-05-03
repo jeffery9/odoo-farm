@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 
 class PosOrder(models.Model):
+    _name = 'pos.order'
     _inherit = 'pos.order'
 
     # 关联采摘地块 [US-02-02]
@@ -17,6 +18,7 @@ class PosOrder(models.Model):
         return vals
 
 class PosOrderLine(models.Model):
+    _name = 'pos.order.line'
     _inherit = 'pos.order.line'
 
     # 支持行级别的批次指定

@@ -23,6 +23,7 @@ class FarmProcessingBomLine(models.Model):
         ('packaging', 'Packaging Material'),
     ], string="Processing Role")
 class FarmProcessingBomLineExtension(models.Model):
+    _name = 'farm.processing.bom.line'
     _inherit = 'farm.processing.bom.line'
 
     ingredient_role = fields.Selection([

@@ -73,6 +73,7 @@ class DouyinProduct(models.Model):
             rec.last_sync_time = fields.Datetime.now()
 
 class StockQuant(models.Model):
+    _name = 'stock.quant'
     _inherit = 'stock.quant'
 
     @api.model_create_multi

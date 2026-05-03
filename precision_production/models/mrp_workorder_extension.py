@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 
 class MrpWorkorderExtension(models.Model):
+    _name = 'mrp.workorder'
     _inherit = 'mrp.workorder'
 
     def action_trigger_precision_skill(self):

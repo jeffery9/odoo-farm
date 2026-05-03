@@ -451,6 +451,7 @@ class SaleOrder(models.Model):
 
 
 class SaleOrderLine(models.Model):
+    _name = 'sale.order.line'
     _inherit = 'sale.order.line'
 
     @api.onchange('product_id', 'order_id.export_country_code')

@@ -2,6 +2,7 @@ from odoo import models, fields, api
 
 
 class ProductTemplate(models.Model):
+    _name = 'product.template'
     _inherit = 'product.template'
 
     requires_cold_chain = fields.Boolean("Cold Chain Required", default=False)
@@ -10,6 +11,7 @@ class ProductTemplate(models.Model):
 
 
 class StockPicking(models.Model):
+    _name = 'stock.picking'
     _inherit = 'stock.picking'
 
     is_cold_chain = fields.Boolean("Is Cold Chain Transport", compute='_compute_is_cold_chain', store=True)
