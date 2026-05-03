@@ -1,11 +1,16 @@
-# 🤖 Directory Execution Policy
+# 🤖 Directory Execution Policy: Analysis
 
-> **WARNING**: This directory is governed by global AI agent policies.
+> **WARNING**: This directory is governed by both global AI policies and localized domain rules.
 
+## 0. Chain of Command
 Before modifying or creating any files in this directory, you **MUST**:
-1. Read the global [AGENTS.md](../../AGENTS.md) for strict Git branching and commit separation rules.
-2. Read the master entry [LLM_START_HERE.md](../../docs/LLM_START_HERE.md) for Doc-Driven development paradigms and bilingual policies.
+1. Read the global [AGENTS.md](../../AGENTS.md) for Git branching, commit separation, and Odoo 19 mandates.
+2. Read the master entry [LLM_START_HERE.md](../../docs/LLM_START_HERE.md) for Doc-Driven development paradigms.
 
-## Documentation Rules
-- Code and documentation MUST be committed separately.
-- Maintain the Lossless Update rule: do not delete or simplify existing architectural anchors, requirements, or tracking IDs.
+## 1. Localized Domain Rules
+- **Domain**: Research & Gap Analysis.
+- **Rule**: Document competitor analysis, Odoo version migration gaps, and feasibility studies.
+
+## 2. Documentation Constraints
+- **Separation of Concerns**: Code and documentation MUST be committed separately.
+- **Lossless Update**: Do not delete or simplify existing architectural anchors, requirement tags (`[US-XXX]`), or tracking IDs.
