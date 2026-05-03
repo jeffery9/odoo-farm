@@ -2,6 +2,10 @@
 
 This document defines the operational rules for AI agents and developers working on the Odoo Farm Management System (Odoo 19).
 
+
+## 0. Quick Navigation
+*   **[LLM START HERE](docs/LLM_START_HERE.md)**: The Master Entry Point. Contains core Doc-Driven development paradigms, absolute mandates, and bilingual policy. You MUST align with this document before any logic implementation.
+
 ## 1. Branching Strategy & Release Flow
 
 *   **Development (`dev`)**: All new features, bug fixes, and experiments MUST be performed on the `dev` branch.
