@@ -65,5 +65,5 @@
     </record>
 
     <!-- Menu Item -->
-    <menuitem id="menu_livestock_lot" name="Batches &amp; Groups" parent="menu_livestock_root" action="action_livestock_lot" sequence="5"/>
+    <menuitem id="menu_livestock_lot" name="Batches &amp; Groups" parent="menu_farm_livestock_root" action="action_livestock_lot" sequence="5"/>
 </odoo>

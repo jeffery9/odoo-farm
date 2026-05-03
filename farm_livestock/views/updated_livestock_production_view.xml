@@ -22,7 +22,7 @@
                         <field name="livestock_config" widget="ace" options="{'mode': 'json'}"/>
                     </group>
                 </page>
-                <page string="Performance Monitor" name="perf_monitor">
+                <!--
                     <group>
                         <field name="performance_monitor_ids" nolabel="1" colspan="2">
                             <list string="Performance Monitors">
@@ -34,7 +34,7 @@
                             </list>
                         </field>
                     </group>
-                </page>
+                </page> -->
             </notebook>
         </field>
     </record>
@@ -52,10 +52,8 @@
                         <field name="phosphorus_qty"/>
                         <field name="potassium_qty"/>
                     </group>
-                    <group string="Configuration">
-                        <field name="config_settings" widget="ace" options="{'mode': 'json'}"/>
-                    </group>
-                </page>
+                    
+                </page> -->
             </notebook>
         </field>
     </record>
