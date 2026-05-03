@@ -17,6 +17,7 @@
         'data/ir_sequence_data.xml',
         'views/input_reg_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

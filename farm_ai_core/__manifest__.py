@@ -17,6 +17,7 @@
         "views/menu.xml",
     ],
     "demo": [],
+    "images": ["static/description/main_screenshot.png"],
     "installable": True,
     "auto_install": False,
     "license": "AGPL-3",

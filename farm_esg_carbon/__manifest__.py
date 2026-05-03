@@ -23,6 +23,7 @@
     'data': [
         # No specific model access rights needed since this module only extends existing models
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="628" height="314" viewBox="0 0 628 314" xmlns="http://www.w3.org/2000/svg">
+  <rect width="628" height="314" fill="#FFF9F2" />
+  <rect x="40" y="92" width="130" height="130" rx="20" fill="white" stroke="#C9382B" stroke-width="1" />
+  <g transform="translate(51, 103) scale(0.42)">
+
+    <!-- AI: Stem node with circuit-leaf -->
+    <path d="M128,210 L128,140" stroke="#C9382B" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="128" cy="120" r="45" fill="#C9382B"/>
+    <path d="M110,120 L146,120 M128,102 L128,138" stroke="#FFF9F2" stroke-width="10" stroke-linecap="round"/>
+    
+  </g>
+  <g transform="translate(190, 150)">
+    <text x="0" y="0" fill="#C9382B" font-family="'PingFang SC', 'Microsoft YaHei', 'SimHei', sans-serif" font-size="26" font-weight="bold">Farm Sustainability Reporting</text>
+  </g>
+</svg>

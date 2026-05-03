@@ -18,6 +18,7 @@
         'views/partner_views.xml',
         'views/sale_order_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

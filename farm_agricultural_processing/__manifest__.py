@@ -41,6 +41,7 @@
             'farm_agricultural_processing/static/tests/tours/**/*',
         ],
     },
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

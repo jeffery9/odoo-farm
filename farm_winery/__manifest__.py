@@ -9,6 +9,7 @@
         'views/winery_isl_views.xml',
         'views/menu.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': True,
     'license': 'AGPL-3',

@@ -25,6 +25,7 @@
         'views/live_statistics_views.xml',
         'views/live_promotion_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

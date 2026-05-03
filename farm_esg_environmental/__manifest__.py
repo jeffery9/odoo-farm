@@ -37,6 +37,7 @@ ESG Environmental Assessment module for Odoo 19 Farm Management System - Epic 80
     ],
     "demo": [
     ],
+    "images": ["static/description/main_screenshot.png"],
     "installable": True,
     "auto_install": False,
     "license": "AGPL-3",

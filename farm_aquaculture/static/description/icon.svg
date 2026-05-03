@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+    <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
+
+    <!-- Aqua: Waves + Fish Wedge -->
+    <path d="M60,110 L196,110 M60,150 L196,150 M60,190 L196,190" stroke="#C9382B" stroke-width="14" stroke-linecap="round" stroke-dasharray="1 30"/>
+    <path d="M80,150 L160,100 L160,200 Z" fill="#C9382B"/>
+    <circle cx="175" cy="150" r="10" fill="#C9382B"/>
+    
+</svg>

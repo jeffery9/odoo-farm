@@ -19,6 +19,7 @@
         'views/farm_worklog_views.xml',
         'views/farm_wage_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

@@ -24,6 +24,7 @@ ESG Management Module for Odoo 19 Farm Management System.
         'views/res_config_settings_views.xml',
         'views/menu.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

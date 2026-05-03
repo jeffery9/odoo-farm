@@ -32,6 +32,7 @@
     'demo': [
         'data/farm_demo_data.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',
