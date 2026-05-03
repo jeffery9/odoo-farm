@@ -9,6 +9,7 @@
     'data': [
         'views/precision_bridge_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'license': 'AGPL-3',
 }

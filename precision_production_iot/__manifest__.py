@@ -21,6 +21,7 @@
         'views/phase_execution_iot_views.xml',
         'views/precision_production_iot_menu.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'LGPL-3',

@@ -19,6 +19,7 @@
         'views/quality_alert_views.xml',
         'views/stock_lot_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

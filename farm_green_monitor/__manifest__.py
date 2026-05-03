@@ -17,6 +17,7 @@
         'report/reduction_reports.xml',
         'views/green_monitor_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

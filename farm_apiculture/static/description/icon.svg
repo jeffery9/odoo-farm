@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+    <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
+
+    <!-- Livestock: Geometric Face + Digital Node -->
+    <rect x="60" y="70" width="136" height="110" rx="20" fill="#C9382B"/>
+    <path d="M80,180 L80,210 M176,180 L176,210" stroke="#C9382B" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="165" cy="100" r="12" fill="#FFF9F2"/>
+    
+</svg>

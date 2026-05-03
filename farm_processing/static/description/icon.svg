@@ -1,6 +1,10 @@
-<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100" height="100" rx="20" fill="#f1c40f"/>
-  <circle cx="50" cy="50" r="25" fill="none" stroke="white" stroke-width="6" stroke-dasharray="10 5"/>
-  <path d="M40 30 L50 20 L60 30" fill="none" stroke="white" stroke-width="4"/>
-  <rect x="45" y="45" width="10" height="10" fill="white"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+    <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
+
+    <!-- Manufacturing: Gear + Sprout Cutout -->
+    <circle cx="128" cy="128" r="70" fill="#C9382B"/>
+    <path d="M128,128 m-80,0 a80,80 0 1,0 160,0 a80,80 0 1,0 -160,0" stroke="#C9382B" stroke-width="20" stroke-dasharray="30 32.8"/>
+    <path d="M128,150 L128,110 M110,120 C110,120 128,100 128,120 C128,100 146,120 146,120" stroke="#FFF9F2" stroke-width="10" stroke-linecap="round" fill="none"/>
+    
 </svg>

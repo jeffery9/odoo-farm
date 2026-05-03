@@ -17,6 +17,7 @@
         'views/certification_views.xml',
         'views/certification_report.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

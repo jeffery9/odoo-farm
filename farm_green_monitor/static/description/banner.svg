@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="628" height="314" viewBox="0 0 628 314" xmlns="http://www.w3.org/2000/svg">
+  <rect width="628" height="314" fill="#FFF9F2" />
+  <rect x="40" y="92" width="130" height="130" rx="20" fill="white" stroke="#C9382B" stroke-width="1" />
+  <g transform="translate(51, 103) scale(0.42)">
+
+    <!-- Data: Bar chart with leaf top -->
+    <rect x="70" y="140" width="25" height="70" fill="#C9382B" rx="4"/>
+    <rect x="115" y="100" width="25" height="110" fill="#C9382B" rx="4"/>
+    <rect x="160" y="60" width="25" height="150" fill="#C9382B" rx="4"/>
+    <path d="M172,60 C190,60 200,40 200,20 C180,20 172,40 172,60" fill="#C9382B"/>
+    
+  </g>
+  <g transform="translate(190, 150)">
+    <text x="0" y="0" fill="#C9382B" font-family="'PingFang SC', 'Microsoft YaHei', 'SimHei', sans-serif" font-size="26" font-weight="bold">Farm Green Monitoring (China)</text>
+  </g>
+</svg>

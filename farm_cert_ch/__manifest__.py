@@ -17,6 +17,7 @@
         'views/certificate_views.xml',
         'views/stock_picking_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

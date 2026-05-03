@@ -40,6 +40,7 @@ ESG Compliance module for Odoo 19 Farm Management System - Epic 101 Implementati
         'views/external_esg_marketplace_views.xml',
         'views/menu.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': True,
     'license': 'AGPL-3',

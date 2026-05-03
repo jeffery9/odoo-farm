@@ -21,6 +21,7 @@
         "views/crop_rotation_history_views.xml",
         "views/menu.xml",
     ],
+    "images": ["static/description/main_screenshot.png"],
     "installable": True,
     "application": False,
     "license": "AGPL-3",

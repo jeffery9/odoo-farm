@@ -17,6 +17,7 @@
         'views/land_health_rotation_views.xml',
         'views/soil_analysis_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',

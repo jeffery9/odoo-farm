@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="628" height="314" viewBox="0 0 628 314" xmlns="http://www.w3.org/2000/svg">
+  <rect width="628" height="314" fill="#FFF9F2" />
+  <rect x="40" y="92" width="130" height="130" rx="20" fill="white" stroke="#C9382B" stroke-width="1" />
+  <g transform="translate(51, 103) scale(0.42)">
+
+    <!-- Core: Hexagon Shield -->
+    <path d="M128,45 L210,92 L210,188 L128,235 L46,188 L46,92 Z" fill="none" stroke="#C9382B" stroke-width="18" stroke-linejoin="round"/>
+    <path d="M100,140 L120,160 L160,110" stroke="#C9382B" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+  </g>
+  <g transform="translate(190, 150)">
+    <text x="0" y="0" fill="#C9382B" font-family="'PingFang SC', 'Microsoft YaHei', 'SimHei', sans-serif" font-size="26" font-weight="bold">Farm Protected Cultivation</text>
+  </g>
+</svg>

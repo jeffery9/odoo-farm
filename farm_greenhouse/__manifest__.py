@@ -18,6 +18,7 @@
         'views/farm_greenhouse_views.xml',
         'views/government_reporting_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': True,
     'license': 'AGPL-3',

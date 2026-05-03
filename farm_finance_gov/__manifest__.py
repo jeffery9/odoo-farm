@@ -23,6 +23,7 @@
         'report/project_fund_reports.xml',
         'views/finance_gov_views.xml',
     ],
+    'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',
