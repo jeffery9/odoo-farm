@@ -4,6 +4,9 @@
 
 ---
 
+
+> **Agent Execution Policy**: Please read [../AGENTS.md](../AGENTS.md) for strict Git branching, commit separation, and specific Odoo 19 implementation rules.
+
 ## 1. 核心开发模式：文档驱动 (The Doc-Driven范式)
 在执行任何代码修改前，你必须严格按物理顺序经过以下“真理检查点”：
 
