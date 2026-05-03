@@ -118,7 +118,7 @@
                 <field name="dissolved_oxygen"/>
                 <field name="ammonia_level"/>
                 <field name="nitrite_level"/>
-                <field name="water_quality_status" invisible="1"/>
+                
             </list>
         </field>
     </record>

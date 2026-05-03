@@ -44,6 +44,7 @@ class FarmWorklog(models.Model):
         return True
 
 class ProjectTask(models.Model):
+    _name = 'project.task'
     _inherit = 'project.task'
 
     worklog_ids = fields.One2many('farm.worklog', 'task_id', string="Labor Worklogs")
@@ -103,6 +104,7 @@ class FarmEmployeeCertificate(models.Model):
                 cert.state = 'valid'
 
 class HrEmployee(models.Model):
+    _name = 'hr.employee'
     _inherit = 'hr.employee'
 
     is_seasonal = fields.Boolean("Seasonal Laborer", default=False, help="Identify external or seasonal workers.")

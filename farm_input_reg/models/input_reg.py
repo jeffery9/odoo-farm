@@ -5,6 +5,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class ProductTemplate(models.Model):
+    _name = 'product.template'
     _inherit = 'product.template'
 
     # 兽药实名制与监管 [US-18-02]
@@ -279,6 +280,7 @@ class InputRegistrationWizard(models.TransientModel):
         }
 
 class MrpProduction(models.Model):
+    _name = 'mrp.production'
     _inherit = 'mrp.production'
 
     # 农事操作人信息 [US-18-02]

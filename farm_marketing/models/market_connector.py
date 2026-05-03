@@ -30,6 +30,7 @@ class FarmMarketConnector(models.Model):
         return True
 
 class FarmMarketDemand(models.Model):
+    _name = 'farm.market.demand'
     _inherit = 'farm.market.demand'
 
     connector_id = fields.Many2one('farm.market.connector', string="Source Connector")

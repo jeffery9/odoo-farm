@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 
 class MrpWorkcenter(models.Model):
+    _name = 'mrp.workcenter'
     _inherit = 'mrp.workcenter'
 
     # 能耗核算基础 [US-14-04]
@@ -12,6 +13,7 @@ class MrpWorkcenter(models.Model):
     energy_cost_per_hour = fields.Float("Energy Cost per Hour")
 
 class MrpWorkorder(models.Model):
+    _name = 'mrp.workorder'
     _inherit = 'mrp.workorder'
 
     # 实际工序能耗记录 [US-14-04]

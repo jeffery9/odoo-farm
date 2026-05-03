@@ -67,6 +67,7 @@ class JointProcurement(models.Model):
                 })
                 line.settlement_id = settlement.id
 class InternalSettlementExtension(models.Model):
+    _name = 'internal.settlement'
     _inherit = 'internal.settlement'
     
     joint_procurement_id = fields.Many2one('joint.procurement', string='Joint Procurement')

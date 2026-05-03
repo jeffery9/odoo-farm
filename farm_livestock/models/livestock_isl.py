@@ -88,6 +88,7 @@ class FarmLotLivestock(models.Model):
         return True
 
 class StockPicking(models.Model):
+    _name = 'stock.picking'
     _inherit = 'stock.picking'
 
     def button_validate(self):

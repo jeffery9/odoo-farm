@@ -2,15 +2,13 @@
 from odoo import models, fields, api, _
 
 class MrpBom(models.Model):
+    _name = 'mrp.bom'
     _inherit = 'mrp.bom'
 
     # Extend selection for Food Processing
-    industry_type = fields.Selection(selection=[
+    industry_type = fields.Selection(selection_add=[
         ('food_processing', 'Food Processing'),
-        ('baking', 'Baking'),
-        ('winemaking', 'Winemaking'),
-    ])
-
+    ], ondelete={'food_processing': 'set null'})
     def _get_isl_model(self):
         res = super(MrpBom, self)._get_isl_model()
         if self.industry_type in ['food_processing', 'baking', 'winemaking']:

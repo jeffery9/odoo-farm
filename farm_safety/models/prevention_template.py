@@ -23,6 +23,7 @@ class FarmPreventionLine(models.Model):
     qty = fields.Float("Quantity", default=1.0)
 
 class FarmLotQuarantine(models.Model):
+    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     is_quarantined = fields.Boolean("In Quarantine", default=False, tracking=True)
@@ -88,6 +89,7 @@ class FarmLotQuarantine(models.Model):
             fence.write({'active': False})
 
 class StockPickingQuarantine(models.Model):
+    _name = 'stock.picking'
     _inherit = 'stock.picking'
 
     def button_validate(self):

@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 
 class AccountMove(models.Model):
+    _name = 'account.move'
     _inherit = 'account.move'
 
     agri_task_id = fields.Many2one(
@@ -27,6 +28,7 @@ class AccountMove(models.Model):
         return super().create(vals_list)
 
 class AccountMoveLine(models.Model):
+    _name = 'account.move.line'
     _inherit = 'account.move.line'
 
     @api.onchange('product_id')

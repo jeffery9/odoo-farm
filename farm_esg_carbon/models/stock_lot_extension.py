@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 
 class StockLot(models.Model):
+    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     # US-30-01: Accumulated Carbon Footprint for this batch

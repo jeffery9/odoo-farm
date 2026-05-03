@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 
 class ProjectTask(models.Model):
+    _name = 'project.task'
     _inherit = 'project.task'
 
     analytic_account_id = fields.Many2one(

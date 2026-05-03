@@ -6,6 +6,7 @@ _logger = logging.getLogger(__name__)
 
 
 class ProjectTask(models.Model):
+    _name = 'project.task'
     _inherit = 'project.task'
 
     trust_score = fields.Float("Trust Score", digits=(10, 2), default=0.0,
@@ -110,6 +111,7 @@ class FarmCreditScore(models.Model):
 
 
 class ResPartner(models.Model):
+    _name = 'res.partner'
     _inherit = 'res.partner'
 
     latest_credit_score = fields.Float("Latest Credit Score", compute='_compute_latest_credit_score')

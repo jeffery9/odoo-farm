@@ -2,6 +2,7 @@ from odoo import models, fields, api, _
 from datetime import date
 
 class FarmLocationCert(models.Model):
+    _name = 'stock.location'
     _inherit = 'stock.location'
 
     certification_level = fields.Selection([
@@ -39,6 +40,7 @@ class FarmLocationCert(models.Model):
                 loc.conversion_progress = 0.0
 
 class FarmLotCert(models.Model):
+    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     certification_level = fields.Selection([

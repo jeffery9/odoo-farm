@@ -17,7 +17,7 @@ class DouyinAccount(models.Model):
 
     name = fields.Char("Account Nickname", required=True)
     client_key = fields.Char("Client Key (App ID)", required=True)
-    client_secret = fields.Char("Client Secret", required=True, password=True)
+    client_secret = fields.Char("Client Secret", required=True)
     shop_id = fields.Char("Shop ID (抖音小店ID)")
     
     # OAuth 令牌管理

@@ -62,6 +62,7 @@ class FarmCrisisIncident(models.Model):
         self.write({'state': 'resolved', 'date_end': fields.Datetime.now()})
 
 class StockLot(models.Model):
+    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     is_crisis_locked = fields.Boolean("Locked by Crisis", compute='_compute_crisis_lock', search='_search_crisis_locked')
@@ -89,6 +90,7 @@ class StockLot(models.Model):
         return ['|', ('id', 'in', lot_ids), ('location_id', 'in', all_affected_locations.ids)]
 
 class SaleOrder(models.Model):
+    _name = 'sale.order'
     _inherit = 'sale.order'
 
     def action_confirm(self):

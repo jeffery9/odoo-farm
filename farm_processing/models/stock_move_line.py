@@ -3,6 +3,7 @@ from odoo.exceptions import UserError
 
 
 class StockMoveLine(models.Model):
+    _name = 'stock.move.line'
     _inherit = 'stock.move.line'
 
     def write(self, vals):

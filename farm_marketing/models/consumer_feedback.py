@@ -35,6 +35,7 @@ class FarmConsumerFeedback(models.Model):
         return super().create(vals_list)
 
 class StockLot(models.Model):
+    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     feedback_ids = fields.One2many('farm.consumer.feedback', 'lot_id', string="Consumer Feedbacks")

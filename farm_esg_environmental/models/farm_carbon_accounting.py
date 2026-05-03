@@ -74,6 +74,7 @@ class AgriCarbonLedger(models.Model):
     # --- End of Original Logic ---
 
 class MrpWorkorder(models.Model):
+    _name = 'mrp.workorder'
     _inherit = 'mrp.workorder'
 
     def button_finish(self):

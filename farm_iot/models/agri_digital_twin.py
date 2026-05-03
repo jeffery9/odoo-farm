@@ -34,12 +34,14 @@ class AgriDigitalTwinMarker(models.Model):
     display_telemetry_ids = fields.Many2many('iiot.telemetry.rule', string="Telemetries to Display")
 
 class AgriLocation(models.Model):
+    _name = 'farm.location'
     _inherit = 'farm.location'
 
     digital_twin_enabled = fields.Boolean("Digital Twin Enabled", default=False)
     digital_twin_scene_id = fields.Many2one('agri.digital.twin.scene', string="3D Scene")
 
 class AgriIiotDevice(models.Model):
+    _name = 'iiot.device'
     _inherit = 'iiot.device'
 
     digital_twin_model_url = fields.Char("3D Model URL", help="Specific 3D model for this device")

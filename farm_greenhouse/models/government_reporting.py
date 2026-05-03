@@ -20,8 +20,8 @@ class FarmGovernmentPlatformConfig(models.Model):
     code = fields.Char('Platform Code', required=True, copy=False)
     api_endpoint = fields.Char('API Endpoint', required=True, help='Base URL for the government platform API')
     api_username = fields.Char('API Username', help='Username for API authentication')
-    api_password = fields.Char('API Password', help='Password for API authentication', password=True)
-    api_key = fields.Char('API Key', help='API key for authentication', password=True)
+    api_password = fields.Char('API Password', help='Password for API authentication')
+    api_key = fields.Char('API Key', help='API key for authentication')
     data_format = fields.Selection([
         ('json', 'JSON'),
         ('xml', 'XML'),

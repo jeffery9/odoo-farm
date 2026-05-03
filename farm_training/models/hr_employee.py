@@ -4,6 +4,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 class HrEmployee(models.Model):
+    _name = 'hr.employee'
     _inherit = 'hr.employee'
 
     skill_ids = fields.Many2many(

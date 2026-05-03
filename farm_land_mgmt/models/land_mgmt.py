@@ -377,6 +377,7 @@ class ProductTemplate(models.Model):
                                                    default=3)
 
 class FarmActivity(models.Model):
+    _name = 'project.project'
     _inherit = 'project.project'
 
     @api.constrains('activity_family', 'land_parcel_ids')
@@ -389,6 +390,7 @@ class FarmActivity(models.Model):
                         raise ValidationError(_("Activity Type '%s' is not allowed on 'Permanent Basic Farmland' for parcel '%s'.") % (record.activity_family, parcel.name))
 
 class ProjectTask(models.Model):
+    _name = 'project.task'
     _inherit = 'project.task'
 
     @api.constrains('land_parcel_id', 'project_id')

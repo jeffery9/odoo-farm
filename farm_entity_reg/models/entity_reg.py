@@ -2,6 +2,7 @@ from odoo import models, fields, api, _
 from datetime import date
 
 class ResCompany(models.Model):
+    _name = 'res.company'
     _inherit = 'res.company'
 
     # 合作社备案信息 [US-18-08]

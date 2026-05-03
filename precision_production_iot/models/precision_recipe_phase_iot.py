@@ -3,6 +3,7 @@ from odoo import models, fields, api
 
 
 class PrecisionRecipePhaseIot(models.Model):
+    _name = 'precision.recipe.phase'
     _inherit = 'precision.recipe.phase'
 
     # IoT Device Integration Fields
@@ -18,7 +19,7 @@ class PrecisionRecipePhaseIot(models.Model):
     iot_warning = fields.Boolean('IoT Warning', compute='_compute_iot_status', store=True)
     iot_error = fields.Boolean('IoT Error', compute='_compute_iot_status', store=True)
     iot_device_status = fields.Char('IoT Device Status', compute='_compute_iot_status', store=True)
-    iot_readings_count = fields.Integer('IoT Readings Count', compute='_compute_iot_status')
+    iot_readings_count = fields.Integer('IoT Readings Count', compute='_compute_iot_readings_count')
 
     @api.depends('iot_device_ids', 'iot_device_ids.is_connected', 'iot_device_ids.status')
     def _compute_iot_status(self):
@@ -44,19 +45,14 @@ class PrecisionRecipePhaseIot(models.Model):
                 else:
                     phase.iot_device_status = False
 
-                # Count related readings
-                related_readings = self.env['precision.iot.reading'].search([
-                    ('device_id', 'in', phase.iot_device_ids.ids),
-                    ('phase_id', '=', phase.id)
-                ])
-                phase.iot_readings_count = len(related_readings)
+
             else:
                 phase.iot_connected = False
                 phase.iot_disconnected = False
                 phase.iot_warning = False
                 phase.iot_error = False
                 phase.iot_device_status = False
-                phase.iot_readings_count = 0
+                
 
     def _compute_iot_latest_readings(self):
         """Compute the latest readings from associated IoT devices for this phase"""
@@ -80,3 +76,13 @@ class PrecisionRecipePhaseIot(models.Model):
                                 'read_datetime': latest_reading.read_datetime
                             })
             phase.iot_latest_readings = latest_readings
+    def _compute_iot_readings_count(self):
+        for phase in self:
+            if phase.iot_device_ids:
+                related_readings = self.env['precision.iot.reading'].search([
+                    ('device_id', 'in', phase.iot_device_ids.ids),
+                    ('phase_id', '=', phase.id)
+                ])
+                phase.iot_readings_count = len(related_readings)
+            else:
+                phase.iot_readings_count = 0

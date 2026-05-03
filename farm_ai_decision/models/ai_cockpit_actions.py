@@ -3,6 +3,7 @@
 from odoo import models, fields, api, _
 
 class AgriIntervention(models.Model):
+    _name = 'mrp.production'
     _inherit = 'mrp.production'
 
     # AI 预警与建议计数

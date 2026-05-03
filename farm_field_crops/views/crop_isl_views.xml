@@ -53,9 +53,7 @@
                             <field name="bom_id"/>
                             <field name="location_src_id" string="Field/Plot"/>
                         </group>
-                        <group string="Crop Specifics (ISL)">
-                            <field name="area_to_treat"/>
-                        </group>
+                        
                     </group>
                 </sheet>
             </form>

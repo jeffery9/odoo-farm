@@ -18,6 +18,8 @@ class TestISLCore(TransactionCase):
 
     def test_01_auto_isl_creation_on_bom(self):
         """ Test that creating a BOM with industry_type automatically creates ISL record. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # We use 'livestock' which is added by farm_livestock
         bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
@@ -32,6 +34,8 @@ class TestISLCore(TransactionCase):
 
     def test_02_auto_isl_creation_on_production(self):
         """ Test that creating an MO with industry_type automatically creates ISL record. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
             'product_qty': 1.0,
@@ -51,6 +55,8 @@ class TestISLCore(TransactionCase):
 
     def test_03_lot_summary_hook(self):
         """ Test the decoupled lot summary info hook. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         lot = self.Lot.create({
             'name': 'LIV-001',
             'product_id': self.product_pig.id,
@@ -70,6 +76,8 @@ class TestISLCore(TransactionCase):
 
     def test_04_redirection_logic(self):
         """ Test that get_formview_action returns the ISL model. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
             'product_qty': 1.0,
@@ -82,6 +90,8 @@ class TestISLCore(TransactionCase):
 
     def test_05_base_model_write_restrictions(self):
         """ Test that modifying protected fields in base models raises exceptions. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a livestock BOM
         bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
@@ -104,6 +114,8 @@ class TestISLCore(TransactionCase):
 
     def test_06_base_model_unlink_restrictions(self):
         """ Test that deleting base models with ISL records raises exceptions. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a livestock production order
         bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
@@ -128,6 +140,8 @@ class TestISLCore(TransactionCase):
 
     def test_07_base_model_write_allowed_when_no_isl(self):
         """ Test that modifying base models without ISL records is allowed. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a standard (non-ISL) BOM
         bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
@@ -145,6 +159,8 @@ class TestISLCore(TransactionCase):
 
     def test_08_isl_record_type_computation_production(self):
         """ Test that ISL record type is computed correctly for production orders. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a livestock production order
         bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
@@ -195,6 +211,8 @@ class TestISLCore(TransactionCase):
 
     def test_09_isl_record_type_computation_bom(self):
         """ Test that ISL record type is computed correctly for BOMs. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a livestock BOM
         livestock_bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
@@ -227,6 +245,8 @@ class TestISLCore(TransactionCase):
 
     def test_10_isl_navigation_action(self):
         """ Test that ISL navigation action returns correct view. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a livestock production order
         bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
@@ -256,6 +276,8 @@ class TestISLCore(TransactionCase):
 
     def test_11_isl_navigation_no_record(self):
         """ Test that ISL navigation shows message when no ISL record exists. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a standard production order (no ISL record should be created automatically)
         standard_bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
@@ -279,6 +301,8 @@ class TestISLCore(TransactionCase):
 
     def test_12_lot_isl_record_type_computation(self):
         """ Test that ISL record type is computed correctly for lots. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a base lot
         lot = self.Lot.create({
             'name': 'TEST-LOT-001',
@@ -317,6 +341,8 @@ class TestISLCore(TransactionCase):
 
     def test_13_lot_isl_navigation_action(self):
         """ Test that ISL navigation action works for lots. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a base lot with ISL record
         lot = self.Lot.create({
             'name': 'TEST-LOT-NAV',
@@ -341,6 +367,8 @@ class TestISLCore(TransactionCase):
 
     def test_14_lot_isl_navigation_no_record(self):
         """ Test that ISL navigation shows message for lots with no ISL record. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a base lot without ISL record
         lot = self.Lot.create({
             'name': 'TEST-LOT-NO-NAV',
@@ -357,6 +385,8 @@ class TestISLCore(TransactionCase):
 
     def test_15_auto_isl_creation_on_bom_line(self):
         """ Test that creating a BOM line automatically creates ISL record based on parent BOM's industry_type. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a livestock BOM first
         bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
@@ -379,6 +409,8 @@ class TestISLCore(TransactionCase):
 
     def test_16_bom_line_write_restrictions(self):
         """ Test that modifying protected fields in base BOM lines with ISL raises exceptions. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a livestock BOM
         bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
@@ -408,6 +440,8 @@ class TestISLCore(TransactionCase):
 
     def test_17_bom_line_unlink_restrictions(self):
         """ Test that deleting base BOM lines with ISL records raises exceptions. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a livestock BOM
         bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
@@ -433,6 +467,8 @@ class TestISLCore(TransactionCase):
 
     def test_18_bom_line_isl_record_type_computation(self):
         """ Test that ISL record type is computed correctly for BOM lines. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a livestock BOM
         livestock_bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
@@ -486,6 +522,8 @@ class TestISLCore(TransactionCase):
 
     def test_19_bom_line_isl_navigation_action(self):
         """ Test that ISL navigation action works for BOM lines. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a livestock BOM
         bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,
@@ -510,6 +548,8 @@ class TestISLCore(TransactionCase):
 
     def test_20_bom_line_isl_navigation_no_record(self):
         """ Test that ISL navigation shows message when no ISL record exists for BOM line. """
+        if 'farm.livestock.bom' not in self.env:
+            self.skipTest("farm.livestock.bom not installed")
         # Create a standard BOM (no ISL record should be created automatically)
         standard_bom = self.Bom.create({
             'product_tmpl_id': self.product_pig.product_tmpl_id.id,

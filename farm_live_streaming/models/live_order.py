@@ -131,6 +131,7 @@ class LiveOrder(models.Model):
         return False
 
 class StockPicking(models.Model):
+    _name = 'stock.picking'
     _inherit = 'stock.picking'
 
     def button_validate(self):

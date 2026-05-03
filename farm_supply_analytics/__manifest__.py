@@ -20,10 +20,10 @@
         'farm_ai_decision',
     ],
     'data': [
+        'views/menu.xml',
         'security/ir.model.access.csv',
     ],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',
 }
-        'views/menu.xml',

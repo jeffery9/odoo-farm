@@ -3,6 +3,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
 class MrpBom(models.Model):
+    _name = 'mrp.bom'
     _inherit = 'mrp.bom'
 
     industry_type = fields.Selection(selection=[
@@ -17,7 +18,7 @@ class MrpBom(models.Model):
         ('crop', 'Crop'),
         ('pharma', 'Pharmaceutical'),
         ('chemical', 'Chemical'),
-    ], string="Industry Type", default='standard')
+    ], ondelete={'food_processing': 'set null', 'pharmaceutical': 'set null', 'chemical': 'set null', 'general': 'set null', 'standard': 'set null', 'livestock': 'set null', 'processing': 'set null', 'aquaculture': 'set null', 'crop': 'set null', 'pharma': 'set null', 'chemical': 'set null', '.': 'set null', '_': 'set null', '.': 'set null'}, string="Industry Type", default='standard')
 
     isl_record_type = fields.Char(string="ISL Record Type", compute='_compute_isl_record_type', store=False)
 

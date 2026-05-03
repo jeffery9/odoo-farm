@@ -44,10 +44,9 @@
         'farm_agri_science',
     ],
     'data': [
+        'views/menu.xml',
     ],
     'installable': True,
     'application': False,
     'license': 'AGPL-3',
 }
-
-        'views/menu.xml',

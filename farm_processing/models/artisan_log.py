@@ -40,6 +40,7 @@ class FarmProcessingArtisanLog(models.Model):
                 rec.quality_grade = 'subpar'
 
 class MrpProduction(models.Model):
+    _name = 'mrp.production'
     _inherit = 'mrp.production'
 
     artisan_log_ids = fields.One2many('farm.processing.artisan.log', 'production_id', string="Artisan Precision Logs")

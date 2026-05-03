@@ -18,7 +18,7 @@ class AgriSustainabilityMetric(models.Model):
     _order = 'category, sequence'
 
     name = fields.Char('Metric Name', required=True, translate=True)
-    code = fields.Char('Metric Code', required=True, unique=True, copy=False)
+    code = fields.Char('Metric Code', required=True, copy=False)
     category = fields.Selection([
         ('economic', 'Economic'),
         ('environmental', 'Environmental'),
