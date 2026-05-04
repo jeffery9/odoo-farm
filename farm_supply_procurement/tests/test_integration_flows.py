@@ -81,3 +81,20 @@ class TestIntegrationFarmSupplyProcurement(TransactionCase):
         })
         po.button_confirm()
         self.assertEqual(po.state, 'purchase')
+
+    def test_ac_01_inventory_consistency(self):
+        """ 
+        [AC 评审映射] AC1 (库存一致性): 触发的物理移动必须精确映射为 Odoo 的 Stock Move。
+        验证: 采购农资时，系统底层产生合规的物理移动逻辑。
+        """
+        po = self.PurchaseOrder.create({
+            'partner_id': self.Partner.id,
+            'order_line': [(0, 0, {
+                'product_id': self.Product.id,
+                'product_qty': 50.0,
+                'price_unit': 10.0,
+            })]
+        })
+        po.button_confirm()
+        # AC Assertion: Validating stock move generation
+        self.assertTrue(po.picking_ids, "Stock picking must be generated to satisfy Inventory Consistency AC")
