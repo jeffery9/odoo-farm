@@ -1,0 +1,146 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_knowledge
+#
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "Affected Crops"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
+msgid "Attachments"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Category"
+msgstr ""
+
+msgid "Cause/Etiology"
+msgstr ""
+
+msgid "Comma-separated tags for search"
+msgstr ""
+
+msgid "Compliance Standards"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Conventional Products"
+msgstr ""
+
+msgid "Conventional Treatment"
+msgstr ""
+
+msgid "Crops that are typically affected by this pest/disease"
+msgstr ""
+
+msgid "Detailed Article"
+msgstr ""
+
+msgid "Detailed Description"
+msgstr ""
+
+msgid "Difficulty Level"
+msgstr ""
+
+msgid "Helpful Count"
+msgstr ""
+
+msgid "Industry Specific"
+msgstr ""
+
+msgid "Integrated Treatment"
+msgstr ""
+
+msgid "Knowledge Type"
+msgstr ""
+
+msgid "Monitoring Tips"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Optimal Conditions for Development"
+msgstr ""
+
+msgid "Organic/Green Products"
+msgstr ""
+
+msgid "Organic/Green Treatment"
+msgstr ""
+
+msgid "Prevention Measures"
+msgstr ""
+
+msgid "Prevention Methods"
+msgstr ""
+
+msgid "Question"
+msgstr ""
+
+msgid "Recommended Treatment (Technical Route)"
+msgstr ""
+
+msgid "Recommended conventional products for treatment"
+msgstr ""
+
+msgid "Recommended conventional treatment methods and products"
+msgstr ""
+
+msgid "Recommended integrated pest management approach combining different methods"
+msgstr ""
+
+msgid "Recommended organic or green treatment methods and products"
+msgstr ""
+
+msgid "Recommended organic/green products for treatment"
+msgstr ""
+
+msgid "Reference Photo"
+msgstr ""
+
+msgid "Related Pest/Disease"
+msgstr ""
+
+msgid "Scientific Name"
+msgstr ""
+
+msgid "Seasonality"
+msgstr ""
+
+msgid "Standards that treatments must comply with (e.g., NOP, EU Organic)"
+msgstr ""
+
+msgid "Symptoms Description"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+msgid "Technical name of the model"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Typical Severity Level"
+msgstr ""
+
+msgid "Typical severity level of this pest/disease"
+msgstr ""
+
+msgid "Video URL"
+msgstr ""
+
+msgid "View Count"
+msgstr ""
+

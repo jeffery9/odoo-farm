@@ -1,4 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_farm_product_certificate,farm.product.certificate,model_farm_product_certificate,farm_core.group_farm_worker,1,1,1,1
-access_farm_product_certificate,farm.product.certificate,model_farm_product_certificate,base.group_user,1,1,1,1
-access_stock_picking,stock.picking,model_stock_picking,base.group_user,1,1,1,1

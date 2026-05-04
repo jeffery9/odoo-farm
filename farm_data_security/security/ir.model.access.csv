@@ -1,6 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_farm_data_classification,farm.data.classification,model_farm_data_classification,base.group_system,1,1,1,1
-access_farm_iot_device_registry,farm.iot.device.registry,model_farm_iot_device_registry,base.group_system,1,1,1,1access_res_partner,res.partner,model_res_partner,base.group_user,1,1,1,1
-access_farm_iot_device_registry,farm.iot.device.registry,model_farm_iot_device_registry,base.group_user,1,1,1,1
-access_stock_location,stock.location,model_stock_location,base.group_user,1,1,1,1
-access_farm_data_classification,farm.data.classification,model_farm_data_classification,base.group_user,1,1,1,1

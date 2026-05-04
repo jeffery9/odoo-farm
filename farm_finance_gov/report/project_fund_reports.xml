@@ -9,4 +9,4 @@
         <field name="binding_model_id" ref="model_farm_rural_revitalization_project"/>
         <field name="binding_type">report</field>
     </record>
-</oo>
+</odoo>

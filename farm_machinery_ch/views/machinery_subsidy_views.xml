@@ -85,4 +85,4 @@
 
     <menuitem id="menu_farm_machinery_ch_root" name="Machinery Subsidies (CN)" parent="farm_equipment.menu_farm_machinery_root" sequence="30"/>
     <menuitem id="menu_farm_machinery_subsidy_app" name="Applications" parent="menu_farm_machinery_ch_root" action="action_farm_machinery_subsidy_application" sequence="10"/>
-</oo>
+</odoo>

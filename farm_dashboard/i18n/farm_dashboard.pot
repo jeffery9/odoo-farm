@@ -1,0 +1,31 @@
+# Bruteforce extracted POT
+msgid ""
+msgstr ""
+
+msgid "Farm Cockpit"
+msgstr ""
+
+msgid "Winemaking Dashboard"
+msgstr ""
+
+msgid "[('is_agri_activity', '=', True)]"
+msgstr ""
+
+msgid "[('process_mode', '=', 'fermentation')]"
+msgstr ""
+
+msgid "kanban,list,graph,pivot"
+msgstr ""
+
+msgid "list,graph,pivot"
+msgstr ""
+
+msgid "mrp.production"
+msgstr ""
+
+msgid "project.task"
+msgstr ""
+
+msgid "{'search_default_my_tasks': 1}"
+msgstr ""
+

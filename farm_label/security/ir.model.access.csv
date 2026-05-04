@@ -1,4 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_stock_location,stock.location,model_stock_location,base.group_user,1,1,1,1
-access_stock_lot,stock.lot,model_stock_lot,base.group_user,1,1,1,1
-access_res_company,res.company,model_res_company,base.group_user,1,1,1,1

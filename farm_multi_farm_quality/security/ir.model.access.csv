@@ -1,6 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_quality_control_standard_user,quality.control.standard.user,model_quality_control_standard,base.group_user,1,1,1,1
-access_product_certification_user,product.certification.user,model_product_certification,base.group_user,1,1,1,1
-access_cooperative_entity,cooperative.entity,model_cooperative_entity,base.group_user,1,1,1,1
-access_product_certification,product.certification,model_product_certification,base.group_user,1,1,1,1
-access_quality_control_standard,quality.control.standard,model_quality_control_standard,base.group_user,1,1,1,1

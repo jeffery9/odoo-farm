@@ -9,4 +9,4 @@
         <field name="binding_model_id" ref="model_farm_machinery_subsidy_application"/>
         <field name="binding_type">report</field>
     </record>
-</oo>
+</odoo>

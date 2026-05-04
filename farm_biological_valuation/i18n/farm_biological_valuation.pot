@@ -6,14 +6,104 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 08:26+0000\n"
-"PO-Revision-Date: 2026-05-04 08:26+0000\n"
+"POT-Creation-Date: 2026-05-04 08:40+0000\n"
+"PO-Revision-Date: 2026-05-04 08:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_biological_valuation
+#: model_terms:ir.ui.view,arch_db:farm_biological_valuation.view_biological_asset_valuation_form
+msgid "Accounting"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__is_accounting_entry_created
+msgid "Accounting Entry Created"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__accumulated_depreciation
+msgid "Accumulated Depreciation"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__state__active
+msgid "Active"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model,name:farm_biological_valuation.model_agri_biological_asset
+msgid "Agricultural Biological Asset Standard"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__annual_depreciation_rate
+msgid "Annual Depreciation Rate (%)"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__annual_depreciation_rate
+msgid "Annual depreciation percentage"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset__valuation_ids
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_farm_biological_asset__valuation_ids
+#: model:ir.ui.menu,name:farm_biological_valuation.menu_biological_asset_valuation
+msgid "Asset Valuations"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__asset_id
+msgid "Biological Asset"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.ui.menu,name:farm_biological_valuation.biological_valuation_menu_root
+#: model:ir.ui.menu,name:farm_biological_valuation.farm_biological_asset_valuation_action
+#: model_terms:ir.ui.view,arch_db:farm_biological_valuation.view_biological_asset_valuation_form
+msgid "Biological Asset Valuation"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model,name:farm_biological_valuation.model_agri_valuation_stage_coefficient
+msgid "Biological Asset Valuation Stage Coefficient"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.actions.act_window,name:farm_biological_valuation.action_biological_asset_valuation
+#: model_terms:ir.ui.view,arch_db:farm_biological_valuation.view_biological_asset_valuation_tree
+msgid "Biological Asset Valuations"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_valuation_stage_coefficient__biological_stage
+msgid "Biological Stage"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__fair_value
+msgid "Calculated fair value = (current_yield_potential * market_price)"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model,name:farm_biological_valuation.model_agri_biological_asset_valuation
+msgid "Consolidated Biological Asset Valuation"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__valuation_method__cost_model
+msgid "Cost Model"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model_terms:ir.ui.view,arch_db:farm_biological_valuation.view_biological_asset_valuation_form
+msgid "Cost Model Details"
+msgstr ""
 
 #. module: farm_biological_valuation
 #. odoo-python
@@ -28,9 +118,144 @@ msgid "Cost-based valuation process initiated for selected assets"
 msgstr ""
 
 #. module: farm_biological_valuation
+#: model_terms:ir.ui.view,arch_db:farm_biological_valuation.view_biological_asset_valuation_form
+msgid "Create Accounting Entry"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__create_uid
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_valuation_stage_coefficient__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__create_date
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_valuation_stage_coefficient__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset__current_fair_value
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_farm_biological_asset__current_fair_value
+msgid "Current Fair Value"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__current_growth_progress
+msgid "Current Growth Progress %"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset__current_net_book_value
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_farm_biological_asset__current_net_book_value
+msgid "Current Net Book Value"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__current_yield_potential
+msgid "Current Yield Potential"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__net_book_value
+msgid "Current book value after depreciation"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset__current_fair_value
+#: model:ir.model.fields,help:farm_biological_valuation.field_farm_biological_asset__current_fair_value
+msgid "Current fair value based on market conditions"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__market_price
+msgid "Current market price from external sources"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset__current_net_book_value
+#: model:ir.model.fields,help:farm_biological_valuation.field_farm_biological_asset__current_net_book_value
+msgid "Current net book value after depreciation"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__current_growth_progress
+msgid "Current physiological progress as percentage (0-100)"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__current_yield_potential
+msgid "Current yield potential based on growth progress"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset__fair_value_date
+#: model:ir.model.fields,help:farm_biological_valuation.field_farm_biological_asset__fair_value_date
+msgid "Date of last fair value calculation"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__depreciation_years
+msgid "Depreciation Years"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_valuation_stage_coefficient__description
+msgid "Description"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__revaluation_amount
+msgid "Difference between current and previous valuation"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset__display_name
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__display_name
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_valuation_stage_coefficient__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__state__disposed
+msgid "Disposed"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__efficiency_multiplier
+msgid "Efficiency Multiplier"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__target_yield
+msgid "Expected final yield at maturity"
+msgstr ""
+
+#. module: farm_biological_valuation
 #. odoo-python
 #: code:addons/farm_biological_valuation/models/biological_asset_valuation.py:0
 msgid "Fair Valuation"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__fair_value
+msgid "Fair Value"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__valuation_method__market_price
+msgid "Fair Value - Market Price"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset__fair_value_date
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_farm_biological_asset__fair_value_date
+msgid "Fair Value Date"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model_terms:ir.ui.view,arch_db:farm_biological_valuation.view_biological_asset_valuation_form
+msgid "Fair Value Details"
 msgstr ""
 
 #. module: farm_biological_valuation
@@ -40,9 +265,151 @@ msgid "Fair valuation process initiated for selected assets"
 msgstr ""
 
 #. module: farm_biological_valuation
+#: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__state__depreciated
+msgid "Fully Depreciated"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_valuation_stage_coefficient__biological_stage__growing
+msgid "Growing"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__growth_stage_coefficient
+msgid "Growth Stage Coefficient"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__stage_coefficient_ids
+#: model_terms:ir.ui.view,arch_db:farm_biological_valuation.view_biological_asset_valuation_form
+msgid "Growth Stage Coefficients"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_valuation_stage_coefficient__biological_stage__harvested
+msgid "Harvested/Culled"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__valuation_method__hybrid
+msgid "Hybrid Model"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset__id
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__id
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_valuation_stage_coefficient__id
+msgid "ID"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset__ope_integration
+#: model:ir.model.fields,help:farm_biological_valuation.field_farm_biological_asset__ope_integration
+msgid "Integration with OPE metrics for valuation"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__journal_entry_id
+msgid "Journal Entry"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__write_uid
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_valuation_stage_coefficient__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__write_date
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_valuation_stage_coefficient__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__journal_entry_id
+msgid "Link to created journal entry"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__market_price
+msgid "Market Price (per unit)"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__market_price_source
+msgid "Market Price Source"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_valuation_stage_coefficient__biological_stage__mature
+msgid "Mature/Adult"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__efficiency_multiplier
+msgid "Multiplier based on asset efficiency metrics"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_valuation_stage_coefficient__coefficient
+msgid "Multiplier for asset value based on growth stage"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__net_book_value
+msgid "Net Book Value"
+msgstr ""
+
+#. module: farm_biological_valuation
 #. odoo-python
 #: code:addons/farm_biological_valuation/models/biological_asset_valuation.py:0
 msgid "New"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_valuation_stage_coefficient__biological_stage__newborn
+msgid "Newborn/Seedling"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__depreciation_years
+msgid "Number of years over which the asset is depreciated"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset__ope_integration
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_farm_biological_asset__ope_integration
+msgid "OPE Integration Score"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__ope_score
+msgid "OPE Score"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__ope_score
+msgid "Operational Performance Efficiency score linked to valuation"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__original_value
+msgid "Original Value"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__original_value
+msgid "Original cost/value of the biological asset"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__previous_valuation
+msgid "Previous Valuation"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__previous_valuation
+msgid "Previous fair value for comparison"
 msgstr ""
 
 #. module: farm_biological_valuation
@@ -51,4 +418,74 @@ msgstr ""
 msgid ""
 "REVALUATION ENTRY: Asset revalued from %s to %s (change: %s). Journal entry "
 "%s created for %s %s."
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__revaluation_amount
+msgid "Revaluation Amount"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__revaluation_type__gain
+msgid "Revaluation Gain"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__revaluation_type__loss
+msgid "Revaluation Loss"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__revaluation_type
+msgid "Revaluation Type"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__market_price_source
+msgid "Source of the market price data"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__state
+msgid "Status"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__target_yield
+msgid "Target Yield"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__valuation_date
+msgid "Valuation Date"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__valuation_method
+msgid "Valuation Method"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_valuation_stage_coefficient__valuation_id
+msgid "Valuation Record"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__name
+msgid "Valuation Reference"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.ui.menu,name:farm_biological_valuation.biological_valuation_menu
+msgid "Valuations"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_valuation_stage_coefficient__coefficient
+msgid "Value Coefficient"
+msgstr ""
+
+#. module: farm_biological_valuation
+#: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__growth_stage_coefficient
+msgid "Value coefficient based on biological growth stage"
 msgstr ""

@@ -1,10 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_agri_bom_mixin,agri.bom.mixin,model_agri_bom_mixin,base.group_user,1,1,1,1
-access_agri_production_mixin,agri.production.mixin,model_agri_production_mixin,base.group_user,1,1,1,1
-access_farm_agri_bom_mixin,farm.agri.bom.mixin,model_farm_agri_bom_mixin,,1,1,1,1
-access_farm_agri_production_mixin,farm.agri.production.mixin,model_farm_agri_production_mixin,,1,1,1,1
-access_mrp_bom,mrp.bom,model_mrp_bom,base.group_user,1,1,1,1
-access_mrp_production,mrp.production,model_mrp_production,base.group_user,1,1,1,1
-access_mrp_bom_line_isl_abstract,mrp.bom.line.isl.abstract,model_mrp_bom_line_isl_abstract,base.group_user,1,1,1,1
-access_mrp_bom_line,mrp.bom.line,model_mrp_bom_line,base.group_user,1,1,1,1
-access_stock_lot,stock.lot,model_stock_lot,base.group_user,1,1,1,1

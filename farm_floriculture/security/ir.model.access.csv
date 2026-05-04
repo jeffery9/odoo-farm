@@ -1,9 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_farm_flower_bom,farm.flower.bom,model_farm_flower_bom,base.group_user,1,1,1,1
-access_farm_lot_flower,farm.lot.flower,model_farm_lot_flower,base.group_user,1,1,1,1
-access_farm_flower_order,farm.flower.order,model_farm_flower_order,base.group_user,1,1,1,1
-access_farm_flower_order,farm.flower.order,model_farm_flower_order,base.group_user,1,1,1,1
-access_sale_order_line,sale.order.line,model_sale_order_line,base.group_user,1,1,1,1
-access_farm_flower_bom,farm.flower.bom,model_farm_flower_bom,base.group_user,1,1,1,1
-access_farm_lot_flower,farm.lot.flower,model_farm_lot_flower,base.group_user,1,1,1,1
-access_sale_order,sale.order,model_sale_order,base.group_user,1,1,1,1

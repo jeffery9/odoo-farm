@@ -1,7 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_farm_viticulture_plot,farm.viticulture.plot,model_farm_viticulture_plot,base.group_user,1,1,1,1
-access_farm_viticulture_cycle,farm.viticulture.cycle,model_farm_viticulture_cycle,base.group_user,1,1,1,1
-access_farm_lot_grape,farm.lot.grape,model_farm_lot_grape,base.group_user,1,1,1,1
-access_farm_lot_grape,farm.lot.grape,model_farm_lot_grape,base.group_user,1,1,1,1
-access_farm_viticulture_plot,farm.viticulture.plot,model_farm_viticulture_plot,base.group_user,1,1,1,1
-access_farm_viticulture_cycle,farm.viticulture.cycle,model_farm_viticulture_cycle,base.group_user,1,1,1,1
