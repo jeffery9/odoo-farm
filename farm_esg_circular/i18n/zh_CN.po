@@ -4,12 +4,271 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:02+0000\n"
+"PO-Revision-Date: 2026-05-04 09:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/regional_governance.py:0
+msgid "Area must be positive."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/biogas_energy_recovery.py:0
+msgid "Biogas Production Report"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/biogas_energy_recovery.py:0
+msgid "Biogas production completed. Energy output: %.2f kWh"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/biogas_energy_recovery.py:0
+msgid "Biogas production started"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/biogas_energy_recovery.py:0
+msgid "Biogas volume cannot be negative."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/cooperative_coordination.py:0
+msgid "Both demand and supply farms must be specified."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/biogas_energy_recovery.py:0
+msgid "Carbon impact recorded: %s tons CO2 reduction"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/agri_sustainability_carbon_model.py:0
+msgid "Carbon intensity threshold cannot be negative."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/geospatial_coordination.py:0
+msgid ""
+"Circular network implemented. Created circular flows based on spatial "
+"optimization."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/regional_governance.py:0
+msgid "Compliance audit completed. Program marked as compliant."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/regional_governance.py:0
+msgid "Compliance audit requested for regional governance program"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/agri_sustainability_carbon_model.py:0
+msgid "Direct emission coefficient cannot be negative."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/biogas_energy_recovery.py:0
+msgid "Failed to record carbon impact: %s"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/hazardous_waste_management.py:0
+msgid "Hazardous Waste Compliance Report"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/hazardous_waste_management.py:0
+msgid "Hazardous waste properly disposed through %s"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/hazardous_waste_management.py:0
+msgid "Hazardous waste transferred to %s"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/agri_sustainability_carbon_model.py:0
+msgid "Indirect energy coefficient cannot be negative."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/biogas_energy_recovery.py:0
+msgid "Input quantity must be positive."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/biogas_energy_recovery.py:0
+msgid "Methane content must be between 0 and 100%."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/geospatial_coordination.py:0
+msgid "Network optimization completed. Optimized routes calculated."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/geospatial_coordination.py:0
+msgid "Nutrient heatmap generated for %s. Coverage: %s locations"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/geospatial_coordination.py:0
+msgid "Optimize the network first."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/regional_governance.py:0
+msgid "Population cannot be negative."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/cooperative_coordination.py:0
+#: code:addons/farm_esg_circular/models/hazardous_waste_management.py:0
+msgid "Quantity must be positive."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/geospatial_coordination.py:0
+msgid "Radius must be positive."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/regional_governance.py:0
+msgid "Regional Circular Economy Report"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/regional_governance.py:0
+msgid "Regional circular economy governance implemented for %s level: %s"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/cooperative_coordination.py:0
+msgid "Resource in transit from %s to %s"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/cooperative_coordination.py:0
+msgid "Resource sharing transaction completed. Circular flow created: %s"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/geospatial_coordination.py:0
+msgid "Run spatial analysis first."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/geospatial_coordination.py:0
+msgid ""
+"Spatial analysis completed. Found %d nearby nodes within %skm radius. "
+"Logistics efficiency: %.2f%%. Potential CO2 reduction: %.2f tons."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/cooperative_coordination.py:0
+msgid "Supply and demand matched. Netting transaction: %s"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/agri_sustainability_carbon_model.py:0
+msgid "Supply chain coefficient cannot be negative."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/cooperative_coordination.py:0
+msgid "Supply/demand signal published for A2A coordination"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/cooperative_coordination.py:0
+msgid "Transaction must be reconciled before settlement."
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/cooperative_coordination.py:0
+msgid "Transaction reconciled between %s and %s"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/cooperative_coordination.py:0
+msgid "Transaction settled. Net value: %s"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/hazardous_waste_management.py:0
+msgid "handler"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/hazardous_waste_management.py:0
+msgid "method"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/agri_sustainability_circular_flow.py:0
+msgid "开始日期不能晚于结束日期"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/agri_sustainability_circular_flow.py:0
+msgid "输入数量必须大于0"
+msgstr ""
+
+#. module: farm_esg_circular
+#. odoo-python
+#: code:addons/farm_esg_circular/models/agri_sustainability_circular_flow.py:0
+msgid "输出数量不能为负数"
+msgstr ""

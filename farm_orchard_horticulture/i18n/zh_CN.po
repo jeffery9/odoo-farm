@@ -4,12 +4,23 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+
+msgid "Base Order"
+msgstr ""
+
+msgid "Pruning Category"
+msgstr ""
+
+msgid "Scope"
+msgstr ""
+
+msgid "Target Asset"
+msgstr ""
+
+msgid "Target Trees"
+msgstr ""
+
+msgid "Variety DNA"
+msgstr ""
+

@@ -4,12 +4,32 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+
+msgid "Associated Operational Parcel"
+msgstr ""
+
+msgid "Impact Category"
+msgstr ""
+
+msgid "Indicator Category"
+msgstr ""
+
+msgid "Land Parcel/Zone"
+msgstr ""
+
+msgid "Number of individuals or density observed."
+msgstr ""
+
+msgid "Physical Container"
+msgstr ""
+
+msgid "Surface area of the ecological infrastructure."
+msgstr ""
+
+msgid "Visual proof of the observation."
+msgstr ""
+
+msgid "Zone Category"
+msgstr ""
+

@@ -1,15 +1,91 @@
-# Translation of Odoo Server.
-# This file contains the translation of the following modules:
-# 	* farm_multi_farm
-#
+# Bruteforce extracted POT
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+
+msgid "COOP-"
+msgstr ""
+
+msgid "Cooperative Entity Sequence"
+msgstr ""
+
+msgid "FE-"
+msgstr ""
+
+msgid "FF-"
+msgstr ""
+
+msgid "Farm Entity Sequence"
+msgstr ""
+
+msgid "Franchise Farm Sequence"
+msgstr ""
+
+msgid "Green Field Franchise Farm"
+msgstr ""
+
+msgid "Harvest Agri Cooperative"
+msgstr ""
+
+msgid "IS-"
+msgstr ""
+
+msgid "Internal Settlement Sequence"
+msgstr ""
+
+msgid "Li Si's Family Farm"
+msgstr ""
+
+msgid "ORG-VEG-001"
+msgstr ""
+
+msgid "Organic Vegetable Compliance Check"
+msgstr ""
+
+msgid "Organic Vegetable Planting Standard"
+msgstr ""
+
+msgid "Production Data Sharing"
+msgstr ""
+
+msgid "Standardized workflow for organic vegetable planting"
+msgstr ""
+
+msgid "Zhang San's Farm"
+msgstr ""
+
+msgid "cooperative"
+msgstr ""
+
+msgid "cooperative.entity"
+msgstr ""
+
+msgid "farm"
+msgstr ""
+
+msgid "farm.entity"
+msgstr ""
+
+msgid "franchise"
+msgstr ""
+
+msgid "franchise.farm"
+msgstr ""
+
+msgid "internal.settlement"
+msgstr ""
+
+msgid "membership"
+msgstr ""
+
+msgid "pending"
+msgstr ""
+
+msgid "planting"
+msgstr ""
+
+msgid "production"
+msgstr ""
+
+msgid "read"
+msgstr ""
+

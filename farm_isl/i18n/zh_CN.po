@@ -4,12 +4,203 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:02+0000\n"
+"PO-Revision-Date: 2026-05-04 09:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Chemical production requires safety procedures"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Chemical products require hazard class"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Chemical work centers require explosion-proof equipment"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Food BOM with allergens requires allergen control"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_abstract_models.py:0
+msgid "Food processing industry requires quality control points to be defined"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Food processing lots require kill date"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/_INHERITS_RELATIONSHIP_EXAMPLE.py:0
+msgid "Food processing production requires HACCP instructions"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Food processing production requires HACCP plan"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Food processing purchases require certificate verification"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Food processing quality control requires CCP monitoring"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Food processing sales require traceability requirements"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Food products require allergen information"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Food/pharmaceutical work centers require CIP capability"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Food/pharmaceutical work orders require in-process inspection"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_migration.py:0
+msgid "Migration Complete"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_migration.py:0
+msgid "Migration completed. %d records migrated to ISL architecture."
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Pharmaceutical BOM requires active ingredient specification"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_abstract_models.py:0
+msgid "Pharmaceutical industry requires industry standards to be defined"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Pharmaceutical lots require sterility date"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Pharmaceutical production requires GMP compliance"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Pharmaceutical products require pharmacological class"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Pharmaceutical purchases require quality agreement"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Pharmaceutical quality control requires AQL sampling"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Pharmaceutical sales require temperature monitoring"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Pharmaceutical work orders require batch record"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_migration.py:0
+msgid "Please confirm the migration before proceeding"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
+#: code:addons/farm_isl/models/isl_concrete_models.py:0
+msgid "Temperature-controlled transfers require temperature log"
+msgstr ""
+
+#. module: farm_isl
+#. odoo-python
+#: code:addons/farm_isl/models/agri_isl_migration.py:0
+msgid "Unsupported model for migration"
+msgstr ""
