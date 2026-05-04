@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 08:42+0000\n"
-"PO-Revision-Date: 2026-05-04 08:42+0000\n"
+"POT-Creation-Date: 2026-05-04 09:13+0000\n"
+"PO-Revision-Date: 2026-05-04 09:13+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,74 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: agri_precision_core
+#: model_terms:ir.ui.view,arch_db:agri_precision_core.mrp_production_form_view_inherit_precision
+msgid "<span class=\"o_stat_text\">Interventions</span>"
+msgstr ""
+
+#. module: agri_precision_core
+#: model_terms:ir.ui.view,arch_db:agri_precision_core.mrp_production_form_view_inherit_precision
+msgid "<span class=\"o_stat_text\">IoT Status</span>"
+msgstr ""
+
+#. module: agri_precision_core
 #. odoo-python
 #: code:addons/agri_precision_core/models/odoo_app_bridge.py:0
 msgid "AGRICULTURAL INTERVENTION [%s]: %s"
+msgstr ""
+
+#. module: agri_precision_core
+#: model_terms:ir.ui.view,arch_db:agri_precision_core.mrp_production_form_view_inherit_precision
+msgid "Apply Agri Intervention"
+msgstr ""
+
+#. module: agri_precision_core
+#: model_terms:ir.ui.view,arch_db:agri_precision_core.mrp_production_form_view_inherit_precision
+msgid "Calibrate Yield"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model,name:agri_precision_core.model_precision_recipe_phase
+msgid "Control Recipe Phase (Instance)"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__agri_precision_mixin__iot_status__critical
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__mrp_production__iot_status__critical
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__precision_recipe_phase__iot_status__critical
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__stock_lot__iot_status__critical
+msgid "Critical"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__is_critical_status
+#: model:ir.model.fields,field_description:agri_precision_core.field_mrp_production__is_critical_status
+#: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__is_critical_status
+#: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__is_critical_status
+msgid "Critical Condition"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__display_name
+#: model:ir.model.fields,field_description:agri_precision_core.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__display_name
+#: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__expected_yield_accuracy
+#: model:ir.model.fields,field_description:agri_precision_core.field_mrp_production__expected_yield_accuracy
+#: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__expected_yield_accuracy
+#: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__expected_yield_accuracy
+msgid "Expected Yield Accuracy (%)"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__id
+#: model:ir.model.fields,field_description:agri_precision_core.field_mrp_production__id
+#: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__id
+#: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__id
+msgid "ID"
 msgstr ""
 
 #. module: agri_precision_core
@@ -28,15 +93,154 @@ msgid "INTERVENTION [%s] applied with parameters: %s"
 msgstr ""
 
 #. module: agri_precision_core
+#: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__intervention_count
+#: model:ir.model.fields,field_description:agri_precision_core.field_mrp_production__intervention_count
+#: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__intervention_count
+#: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__intervention_count
+msgid "Intervention Cycles"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields,field_description:agri_precision_core.field_mrp_production__display_name_agri
+msgid "Intervention Label"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__iot_device_ids
+#: model:ir.model.fields,field_description:agri_precision_core.field_mrp_production__iot_device_ids
+#: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__iot_device_ids
+#: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__iot_device_ids
+msgid "IoT Devices"
+msgstr ""
+
+#. module: agri_precision_core
+#: model_terms:ir.ui.view,arch_db:agri_precision_core.mrp_production_form_view_inherit_precision
+#: model_terms:ir.ui.view,arch_db:agri_precision_core.view_production_lot_form_inherit_precision
+msgid "IoT Monitoring"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__iot_status
+#: model:ir.model.fields,field_description:agri_precision_core.field_mrp_production__iot_status
+#: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__iot_status
+#: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__iot_status
+msgid "IoT Status"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields,help:agri_precision_core.field_agri_precision_mixin__iot_device_ids
+#: model:ir.model.fields,help:agri_precision_core.field_mrp_production__iot_device_ids
+#: model:ir.model.fields,help:agri_precision_core.field_precision_recipe_phase__iot_device_ids
+#: model:ir.model.fields,help:agri_precision_core.field_stock_lot__iot_device_ids
+msgid "IoT devices associated with this record for environmental monitoring"
+msgstr ""
+
+#. module: agri_precision_core
 #. odoo-python
 #: code:addons/agri_precision_core/models/agri_precision_mixin.py:0
 msgid "IoT-Based Intervention Triggered: %s"
 msgstr ""
 
 #. module: agri_precision_core
+#: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__last_metrology_date
+#: model:ir.model.fields,field_description:agri_precision_core.field_mrp_production__last_metrology_date
+#: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__last_metrology_date
+#: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__last_metrology_date
+msgid "Last Calibration/Sampling"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model,name:agri_precision_core.model_stock_lot
+msgid "Lot/Serial"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model,name:agri_precision_core.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__agri_precision_mixin__iot_status__monitoring
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__mrp_production__iot_status__monitoring
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__precision_recipe_phase__iot_status__monitoring
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__stock_lot__iot_status__monitoring
+msgid "Monitoring"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__agri_precision_mixin__iot_status__normal
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__mrp_production__iot_status__normal
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__precision_recipe_phase__iot_status__normal
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__stock_lot__iot_status__normal
+msgid "Normal"
+msgstr ""
+
+#. module: agri_precision_core
 #. odoo-python
 #: code:addons/agri_precision_core/models/odoo_app_bridge.py:0
 msgid "PHASE INTERVENTION [%s] on Phase %s: %s"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model,name:agri_precision_core.model_agri_precision_mixin
+msgid "Precision & Agri Bridge DNA"
+msgstr ""
+
+#. module: agri_precision_core
+#: model_terms:ir.ui.view,arch_db:agri_precision_core.view_production_lot_form_inherit_precision
+msgid "Precision DNA"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__quality_grade
+#: model:ir.model.fields,field_description:agri_precision_core.field_mrp_production__quality_grade
+#: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__quality_grade
+#: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__quality_grade
+msgid "Precision Grade"
+msgstr ""
+
+#. module: agri_precision_core
+#: model_terms:ir.ui.view,arch_db:agri_precision_core.view_production_lot_form_inherit_precision
+msgid "Premium"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__agri_precision_mixin__quality_grade__premium
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__mrp_production__quality_grade__premium
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__precision_recipe_phase__quality_grade__premium
+msgid "Premium / Grade A"
+msgstr ""
+
+#. module: agri_precision_core
+#: model_terms:ir.ui.view,arch_db:agri_precision_core.view_production_lot_form_inherit_precision
+msgid "Quality Tracking"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__agri_precision_mixin__quality_grade__standard
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__mrp_production__quality_grade__standard
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__precision_recipe_phase__quality_grade__standard
+msgid "Standard / Grade B"
+msgstr ""
+
+#. module: agri_precision_core
+#: model_terms:ir.ui.view,arch_db:agri_precision_core.view_production_lot_form_inherit_precision
+msgid "Substandard"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__agri_precision_mixin__quality_grade__substandard
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__mrp_production__quality_grade__substandard
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__precision_recipe_phase__quality_grade__substandard
+msgid "Substandard / Fail"
+msgstr ""
+
+#. module: agri_precision_core
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__agri_precision_mixin__iot_status__warning
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__mrp_production__iot_status__warning
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__precision_recipe_phase__iot_status__warning
+#: model:ir.model.fields.selection,name:agri_precision_core.selection__stock_lot__iot_status__warning
+msgid "Warning"
 msgstr ""
 
 #. module: agri_precision_core

@@ -18,11 +18,13 @@ ESG Management Module for Odoo 19 Farm Management System.
     ],
     'data': [
         'security/ir.model.access.csv',
+        
         'views/esg_framework_views.xml',
         'views/esg_indicator_views.xml',
         'views/esg_target_views.xml',
         'views/res_config_settings_views.xml',
         'views/menu.xml',
+        
     ],
     'images': ['static/description/main_screenshot.png'],
     'installable': True,
