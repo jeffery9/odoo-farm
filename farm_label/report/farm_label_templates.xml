@@ -123,7 +123,7 @@
         </t>
     </template>
 
-    <!-- 5. China Agri-Product Certificate of Conformity (食用农产品承诺达标合格证) [US-18-03] -->
+    <!-- 5. China Agri-Product Certificate of Conformity (食用农产品承诺达标合格证) [US-041-03] -->
     <template id="report_china_agri_certificate">
         <t t-call="web.basic_layout">
             <div class="page">

@@ -14,7 +14,7 @@ class FarmIotTelemetry(models.Model):
     # 关联地块
     land_parcel_id = fields.Many2one('farm.location', string="Land Parcel/Pond")
 
-    # US-36-01: Adoption Linkage
+    # US-066-01: Adoption Linkage
     adopted_lot_id = fields.Many2one('stock.lot', string="Adopted Asset", help="If the sensor is attached to a specific adopted tree/animal")
 
     @api.model_create_multi
@@ -29,7 +29,7 @@ class FarmIotTelemetry(models.Model):
             for rule in rules:
                 rule.check_and_trigger(record)
 
-            # 2. 地理围栏越界判定 [US-23-02, US-23-06]
+            # 2. 地理围栏越界判定 [US-053-02, US-053-06]
             if record.device_id and record.device_id.geofence_id and record.gps_lat and record.gps_lng:
                 fence = record.device_id.geofence_id
                 is_inside = fence.is_point_inside(record.gps_lng, record.gps_lat)
@@ -38,7 +38,7 @@ class FarmIotTelemetry(models.Model):
                     # 触发越界告警
                     self._trigger_geofence_alarm(record, fence)
 
-            # 3. 认养推送逻辑 [US-36-01]
+            # 3. 认养推送逻辑 [US-066-01]
             if record.adopted_lot_id:
                 # Find active subscriptions for this lot
                 subs = self.env['farm.csa.subscription'].search([

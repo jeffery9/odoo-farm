@@ -7,14 +7,14 @@
         Livestock Management Module for Odoo 19 Farm Management System.
 
         Features:
-        - Individual animal identification and tracking [US-64-01]
-        - Breeding records and pedigree management [US-64-04]
-        - Health records and veterinary tracking [US-64-10]
-        - Smart Health Monitoring & Anomalies [US-64-02]
-        - House Environment Tracking [US-64-05]
-        - Feeding Plans & Formulas (BOM based) [US-64-03, US-64-09]
-        - Group Movements (Merge, Split, Death) [US-05-04]
-        - Animal lifecycle and age-based management [US-64-01]
+        - Individual animal identification and tracking [US-094-01]
+        - Breeding records and pedigree management [US-094-04]
+        - Health records and veterinary tracking [US-094-10]
+        - Smart Health Monitoring & Anomalies [US-094-02]
+        - House Environment Tracking [US-094-05]
+        - Feeding Plans & Formulas (BOM based) [US-094-03, US-094-09]
+        - Group Movements (Merge, Split, Death) [US-005-04]
+        - Animal lifecycle and age-based management [US-094-01]
     """,
     'author': 'Jeffery',
     'depends': ['farm_operation', 'farm_core', 'farm_mrp', 'project', 'mrp', 'stock'],

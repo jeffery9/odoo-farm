@@ -24,7 +24,7 @@ class FarmSubsidyProgram(models.Model):
 
 class FarmSubsidyApplication(models.Model):
     """
-    US-65-04: 补贴申请业务模型
+    US-095-04: 补贴申请业务模型
     职责：处理补贴申请的业务流程，包括证据自动化收集、合规性验证和报告生成
     业务逻辑：通过farm_evidence基础设施实现补贴证据自动化功能
     """
@@ -51,7 +51,7 @@ class FarmSubsidyApplication(models.Model):
         ('paid', 'Paid')
     ], default='draft', tracking=True)
 
-    # US-65-04: Subsidy Evidence Automation - Compliance Evidence Fields
+    # US-095-04: Subsidy Evidence Automation - Compliance Evidence Fields
     compliance_status = fields.Selection([
         ('pending', 'Pending'),
         ('verified', 'Verified'),
@@ -127,7 +127,7 @@ class FarmSubsidyApplication(models.Model):
 
     def action_collect_compliance_evidence(self):
         """
-        US-65-04: Automatically collect GPS + time + photo evidence for subsidy compliance
+        US-095-04: Automatically collect GPS + time + photo evidence for subsidy compliance
         This method searches for related evidence records based on land parcels and time period
         """
         self.ensure_one()
@@ -191,7 +191,7 @@ class FarmSubsidyApplication(models.Model):
 
     def action_generate_compliance_handbook(self):
         """
-        US-65-04: Generate "Compliance Handbook" with aggregated evidence
+        US-095-04: Generate "Compliance Handbook" with aggregated evidence
         This creates audit-ready documentation with GPS + timestamp + photo evidence
         """
         self.ensure_one()
@@ -284,7 +284,7 @@ class FarmSubsidyApplication(models.Model):
 
     def action_export_compliance_handbook(self):
         """
-        US-65-04: Export the compliance handbook as a PDF report
+        US-095-04: Export the compliance handbook as a PDF report
         """
         self.ensure_one()
 
@@ -296,7 +296,7 @@ class FarmSubsidyApplication(models.Model):
 
     def action_verify_evidence_integrity(self):
         """
-        US-65-04: Verify the integrity of all associated evidence records
+        US-095-04: Verify the integrity of all associated evidence records
         """
         self.ensure_one()
 

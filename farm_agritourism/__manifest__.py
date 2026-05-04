@@ -10,7 +10,7 @@
         - Resource booking and reservation management
         - Activity and experience project management
         - Membership services and loyalty programs
-        - Picking & Family Activity Booking [US-02-01]
+        - Picking & Family Activity Booking [US-002-01]
         - Plot Adoption/Rental Management
         - Integration with Farm Activities
         - Visitor count tracking and management

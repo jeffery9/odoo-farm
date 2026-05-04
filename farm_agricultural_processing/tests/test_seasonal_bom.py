@@ -41,7 +41,7 @@ class TestAgriculturalProcessingAdditionalFeatures(TransactionCase):
             self.skipTest("Missing FarmProcessingBom")
     
     def test_seasonal_bom_creation(self):
-        """Test US-04-06: Seasonal 'Versioned' Recipe Management"""
+        """Test US-004-06: Seasonal 'Versioned' Recipe Management"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create base BOM

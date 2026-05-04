@@ -1,7 +1,7 @@
 from odoo import models, fields, api, _
 
 class StorageEnvironment(models.Model):
-    """US-14-06: Storage Environment Monitoring"""
+    """US-037-06: Storage Environment Monitoring"""
     _name = 'farm.storage.env'
     _description = 'Storage Environment Log'
     _order = 'timestamp desc'
@@ -16,7 +16,7 @@ class StorageEnvironment(models.Model):
     alert_message = fields.Char('Alert Message')
 
 class ProcessingWaste(models.Model):
-    """US-14-12: Waste Management"""
+    """US-037-12: Waste Management"""
     _name = 'farm.processing.waste'
     _description = 'Processing Waste Management'
 

@@ -5,7 +5,7 @@ class FarmWebManifest(WebManifest):
 
     def _get_service_worker_content(self):
         """ 
-        通过继承原生控制器，向 Service Worker 追加自定义逻辑 [US-07-06]
+        通过继承原生控制器，向 Service Worker 追加自定义逻辑 [US-007-06]
         这样做既利用了 Odoo 19 的 PWA 框架，又实现了业务扩展。
         """
         body = super()._get_service_worker_content()

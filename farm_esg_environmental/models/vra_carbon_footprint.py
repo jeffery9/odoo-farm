@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriVRACarbonFootprint(models.Model):
     """
-    US-80-01: VRA Carbon Footprint Calculation
+    US-080-01: VRA Carbon Footprint Calculation
     Calculate carbon footprint reduction from VRA operations compared to traditional methods
     Integrated into ESG framework for environmental impact assessment
     """

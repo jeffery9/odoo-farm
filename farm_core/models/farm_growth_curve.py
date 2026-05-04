@@ -3,7 +3,7 @@ from odoo import fields, models, api, _
 
 class AgriBiologicalGrowthCurve(models.Model):
     """
-    Agri Domain Level: Biological Growth Curve. [US-104-2026]
+    Agri Domain Level: Biological Growth Curve. [US-014-2026]
     Universal biological growth standards for the Agri domain.
     Refactored from farm.growth.curve with 100% logic retention.
     """

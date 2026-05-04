@@ -16,7 +16,7 @@ class TestExportCompliance(TransactionCase):
         })
 
     def test_01_export_restriction(self):
-        """ 测试出口合规性拦截逻辑 [US-17-06] """
+        """ 测试出口合规性拦截逻辑 [US-040-06] """
         # 模拟一份不合规的销售订单
         so = self.SaleOrder.create({
             'partner_id': self.env['res.partner'].create({'name': 'Tokyo Trader'}).id,

@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 
 class AgriGeospatialGeofence(models.Model):
     """
-    Agri Domain Level: Virtual Geofencing. [US-23-01, US-104-2026]
+    Agri Domain Level: Virtual Geofencing. [US-053-01, US-014-2026]
     Standard for planning and alert strategies across the Agri domain.
     Refactored from farm.geofence with 100% logic retention.
     """

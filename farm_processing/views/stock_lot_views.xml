@@ -67,7 +67,7 @@
                                 <field name="parent_lot_ids" widget="many2many_tags" string="Sire/Dam Lots"/>
                             </group>
                         </group>
-                        <group string="Health &amp; Welfare (US-03-03)">
+                        <group string="Health &amp; Welfare (US-003-03)">
                             <field name="health_activity_ids" nolabel="1" readonly="1">
                                 <list>
                                     <field name="activity_type_id"/>

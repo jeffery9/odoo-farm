@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class AgriAiOperationPathOptimization(models.Model):
     """
     AI model for operation path optimization
-    Implements US-58-10: Operation path intelligent optimization
+    Implements US-088-10: Operation path intelligent optimization
     """
     _name = 'agri.ai.operation.path.optimization'
     _description = 'AI Operation Path Optimization'

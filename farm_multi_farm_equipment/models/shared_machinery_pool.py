@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class SharedMachineryPool(models.Model):
     """
-    共享农机池 [US-19-08]
+    共享农机池 [US-042-08]
     """
     _name = 'shared.machinery.pool'
     _description = 'Shared Machinery Pool'

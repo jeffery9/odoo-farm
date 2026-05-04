@@ -17,11 +17,11 @@ class AgriIntervention(models.Model):
         'agri.actuator.mixin',       # Level 1+: Physical Actuation
         'agri.evidence.mixin',       # Level 2: Audit
         'agri.clearing.mixin',       # Level 3: Clearing
-        # 'farm.agri.science.mixin',   # [US-201-08] Scientific DNA
+        # 'farm.agri.science.mixin',   # [US-045-08] Scientific DNA
     ]
     _description = 'Agricultural Intervention (De-industrialized View)'
 
-    # [US-201-07] Biological Clock Tracking
+    # [US-045-07] Biological Clock Tracking
     daily_temp_max = fields.Float("Daily Max Temperature")
     daily_temp_min = fields.Float("Daily Min Temperature")
 

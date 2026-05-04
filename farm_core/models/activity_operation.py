@@ -118,7 +118,7 @@ class FarmTask(models.Model):
         new_records = super(FarmTask, self).create(vals_list)
         for vals, record in zip(vals_list, new_records):
             if record.project_id and record.project_id.is_agri_activity:
-                # Get sequence rule [US-01-01]
+                # Get sequence rule [US-001-01]
                 sequence = record.project_id.task_sequence_id
                 if not sequence and record.project_id.activity_family:
                     seq_code = 'farm.task.%s' % record.project_id.activity_family

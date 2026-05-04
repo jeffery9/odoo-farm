@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class ContextualHelp(models.Model):
     """
-    上下文帮助 [US-16-05]
+    上下文帮助 [US-039-05]
     """
     _name = 'contextual.help'
     _description = 'Smart Contextual Help for Agricultural Operations'

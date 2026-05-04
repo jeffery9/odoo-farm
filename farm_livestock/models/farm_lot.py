@@ -12,7 +12,7 @@ class FarmLot(models.Model):
     animal_count = fields.Integer("Animal Count", default=1)
     average_weight = fields.Float("Average Weight (kg)", help="Current average weight of individuals in this lot.")
 
-    # 生物阶段 [US-05-04]
+    # 生物阶段 [US-005-04]
     biological_stage = fields.Selection([
         ('born', 'Born/Started'),
         ('growing', 'Growing'),
@@ -22,7 +22,7 @@ class FarmLot(models.Model):
         ('harvested', 'Harvested')
     ], string="Biological Stage", default='born')
 
-    # US-03-01: 生长预测与饲喂核销
+    # US-003-01: 生长预测与饲喂核销
     start_weight = fields.Float("Initial Weight (kg)")
     current_predicted_weight = fields.Float("Predicted Weight (kg)", compute='_compute_predicted_weight', store=True)
     average_daily_gain = fields.Float("Average Daily Gain (kg/day)", default=0.5)
@@ -71,12 +71,12 @@ class FarmLot(models.Model):
     days_in_milk = fields.Integer('Days in Milk')
     egg_production_rate = fields.Float('Egg Production Rate (%)')
 
-    # US-35-02: High-density Precision Feeding Logic
+    # US-065-02: High-density Precision Feeding Logic
     stocking_density = fields.Float("Stocking Density (heads/sqm)", compute='_compute_stocking_density')
     total_feed_consumed = fields.Float("Total Feed Consumed (kg)", compute='_compute_feed_stats')
     feed_conversion_ratio = fields.Float("Feed Conversion Ratio (FCR)", compute='_compute_feed_stats', help="Total Feed / Total Weight Gain")
 
-    # US-35-03: Health Anomaly Early Warning
+    # US-065-03: Health Anomaly Early Warning
     health_index = fields.Float("Health Index (0-100)", default=100.0)
     is_health_anomaly = fields.Boolean("Anomaly Detected", default=False)
     last_anomaly_date = fields.Datetime("Last Anomaly Time")
@@ -102,7 +102,7 @@ class FarmLot(models.Model):
             lot.feed_conversion_ratio = total_feed / weight_gain if weight_gain > 0 else 0.0
 
     def action_check_health_anomalies(self):
-        """ US-35-03: Basic anomaly detection based on growth rate vs average """
+        """ US-065-03: Basic anomaly detection based on growth rate vs average """
         for lot in self:
             if lot.average_daily_gain < 0.1: # Threshold for anomaly
                 lot.write({
@@ -128,7 +128,7 @@ class FarmLot(models.Model):
                 lot.current_predicted_weight = lot.average_weight
 
     def _cron_daily_feed_depletion(self):
-        """ 定时任务：每日自动生成饲喂干预并冲减库存 [US-03-01] """
+        """ 定时任务：每日自动生成饲喂干预并冲减库存 [US-003-01] """
         Intervention = self.env['mrp.production']
         active_lots = self.search([('biological_stage', 'in', ['born', 'growing']), ('active_feeding_bom_id', '!=', False)])
 

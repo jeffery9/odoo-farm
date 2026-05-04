@@ -2,7 +2,7 @@ from odoo import models, fields, api, _
 
 class ISLIndustryPlanting(models.Model):
     """
-    Industry Standard Layer: Planting Sector. [US-104-2026]
+    Industry Standard Layer: Planting Sector. [US-014-2026]
     Provides a standardized interface for planting operations.
     Delegates to agri.location or agri.task via mixin injection.
     Refactored to agri namespace for domain alignment.

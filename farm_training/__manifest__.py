@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'Farmer Skill Training and Mandatory Qualification Checks',
     'description': """
-        US-17-08: Farmer training and qualification admission.
+        US-040-08: Farmer training and qualification admission.
         - Training session management and hour tracking.
         - Certificate management with expiry monitoring.
         - Mandatory qualification checks for professional tasks (e.g. Drone, Chemical handling).

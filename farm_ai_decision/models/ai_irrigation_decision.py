@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class AgriAiIrrigationDecision(models.Model):
     """
     AI model for irrigation decision
-    Implements US-58-07: Precise irrigation decision
+    Implements US-088-07: Precise irrigation decision
     """
     _name = 'agri.ai.irrigation.decision'
     _description = 'AI Irrigation Decision'

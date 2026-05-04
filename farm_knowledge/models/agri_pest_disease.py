@@ -2,7 +2,7 @@ from odoo import models, fields, api, _
 
 class AgriPestDisease(models.Model):
     """
-    农业病虫害数据库 [US-17-07]
+    农业病虫害数据库 [US-040-07]
     """
     _name = 'agri.pest.disease'
     _description = 'Agricultural Pest & Disease Database'
@@ -28,7 +28,7 @@ class AgriPestDisease(models.Model):
         string="Recommended Treatment (Technical Route)"
     )
 
-    # New fields to satisfy US-17-13 requirements
+    # New fields to satisfy US-040-13 requirements
     conventional_treatment = fields.Html(string="Conventional Treatment", translate=True,
                                        help="Recommended conventional treatment methods and products")
     organic_treatment = fields.Html(string="Organic/Green Treatment", translate=True,
@@ -95,7 +95,7 @@ class AgriPestDisease(models.Model):
 
     def get_treatment_recommendations(self, treatment_type='integrated'):
         """
-        US-17-13: Get treatment recommendations based on type (conventional, organic, integrated)
+        US-040-13: Get treatment recommendations based on type (conventional, organic, integrated)
         """
         self.ensure_one()
         if treatment_type == 'conventional':

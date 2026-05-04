@@ -28,10 +28,10 @@ class AgriManureBatch(models.Model):
 
     fertilizer_product_id = fields.Many2one('product.product', string="Converted Fertilizer Product", domain=[('input_type', '=', 'fertilizer')])
 
-    # US-27-01: Quality Check Linkage
+    # US-057-01: Quality Check Linkage
     quality_check_id = fields.Many2one('agri.quality.check', string="Quality Check (Maturity)", domain=[('quality_state', '=', 'pass')])
 
-    # Nutrient Return [US-27-01, US-27-02]
+    # Nutrient Return [US-057-01, US-057-02]
     pure_n_qty = fields.Float("Pure Nitrogen (kg)", compute='_compute_nutrients', store=True)
     pure_p_qty = fields.Float("Pure Phosphorus (kg)", compute='_compute_nutrients', store=True)
     pure_k_qty = fields.Float("Pure Potassium (kg)", compute='_compute_nutrients', store=True)
@@ -50,7 +50,7 @@ class AgriManureBatch(models.Model):
     notes = fields.Text("Notes")
 
     def action_convert_to_fertilizer(self):
-        """ US-27-02: Convert manure to fertilizer via Manufacturing Order """
+        """ US-057-02: Convert manure to fertilizer via Manufacturing Order """
         self.ensure_one()
         if not self.fertilizer_product_id:
             raise UserError(_("Please select a Converted Fertilizer Product first!"))
@@ -131,7 +131,7 @@ class AgriManureLedger(models.Model):
             ledger.total_quantity_disposed = sum(ledger.batch_ids.mapped('quantity'))
 
     def action_generate_moara_ledger(self):
-        """ 模拟生成农业农村部畜禽粪污资源化利用台账 [US-18-05] """
+        """ 模拟生成农业农村部畜禽粪污资源化利用台账 [US-041-05] """
         self.ensure_one()
         self.message_post(body=_("MOARA Manure Utilization Ledger generated for %s/%s.") % (self.month, self.year))
         return True

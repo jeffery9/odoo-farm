@@ -19,7 +19,7 @@ class FarmTraceabilityController(http.Controller):
         # 获取质检通过记录
         qc_checks = lot.quality_check_ids.filtered(lambda c: c.quality_state == 'pass')
 
-        # 获取直播流地址 [US-16-01]
+        # 获取直播流地址 [US-039-01]
         video_url = lot.location_id.camera_device_id.live_stream_url if lot.location_id.camera_device_id else False
 
         # 获取干预日历数据
@@ -51,7 +51,7 @@ class FarmTraceabilityController(http.Controller):
 
     @http.route('/farm/order/<int:order_id>/calendar', type='http', auth='public', website=True)
     def order_calendar(self, order_id, **kwargs):
-        """ US-67-02: 订单生产透明度 - 为渠道买家提供实时的田间作业日历视图 """
+        """ US-097-02: 订单生产透明度 - 为渠道买家提供实时的田间作业日历视图 """
         order = request.env['sale.order'].sudo().search([('id', '=', order_id)], limit=1)
         if not order:
             return request.render('website.404')
@@ -71,7 +71,7 @@ class FarmTraceabilityController(http.Controller):
 
     @http.route('/farm/api/order/<int:order_id>/calendar', type='json', auth='public', methods=['POST'])
     def order_calendar_api(self, order_id, **kwargs):
-        """ US-67-02: AJAX API for order calendar data """
+        """ US-097-02: AJAX API for order calendar data """
         order = request.env['sale.order'].sudo().search([('id', '=', order_id)], limit=1)
         if not order:
             return {'error': 'Order not found'}

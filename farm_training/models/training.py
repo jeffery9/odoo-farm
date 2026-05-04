@@ -50,7 +50,7 @@ class FarmTrainingSession(models.Model):
         self.write({'state': 'done'})
 
     def _cron_check_certificate_expiry(self):
-        """ US-17-08: 自动扫描即将过期的证书并提醒负责人 """
+        """ US-040-08: 自动扫描即将过期的证书并提醒负责人 """
         today = fields.Date.today()
         warning_date = today + datetime.timedelta(days=30)
         
@@ -105,14 +105,14 @@ class AgriIntervention(models.Model):
 
     @api.onchange('intervention_type')
     def _onchange_intervention_type_filter_workers(self):
-        """ US-17-08, US-22-02: 根据任务类型动态过滤具备资质的工人 """
+        """ US-040-08, US-052-02: 根据任务类型动态过滤具备资质的工人 """
         if self.intervention_type:
             domain = self.env['farm.certificate.type'].get_qualified_worker_domain(self.intervention_type)
             return {'domain': {'doer_ids': domain}}
 
     def action_confirm(self):
         """ 
-        US-17-08: 资质准入检查逻辑 
+        US-040-08: 资质准入检查逻辑 
         如果该干预任务类型需要特殊资质，检查执行人是否持证
         """
         for mo in self:

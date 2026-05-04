@@ -79,7 +79,7 @@ class TestAgriculturalProcessingISLCompliance(TransactionCase):
         self.assertEqual(production.raw_material_qty, 0.0)  # Default value
 
     def test_02_mass_balance_validation(self):
-        """Test mass balance validation in ISL production model [US-14-13]"""
+        """Test mass balance validation in ISL production model [US-037-13]"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create BOM
@@ -117,7 +117,7 @@ class TestAgriculturalProcessingISLCompliance(TransactionCase):
         self.assertTrue(production.is_balanced, "Production should be balanced with 100 input vs 100 output+loss")
 
     def test_03_loss_rate_interception(self):
-        """Test loss rate interception mechanism [US-14-16]"""
+        """Test loss rate interception mechanism [US-037-16]"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create BOM with maximum allowed loss rate
@@ -146,7 +146,7 @@ class TestAgriculturalProcessingISLCompliance(TransactionCase):
             production.button_mark_done()
 
     def test_04_quality_interception_fermentation(self):
-        """Test quality interception for fermentation process [US-14-19]"""
+        """Test quality interception for fermentation process [US-037-19]"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create BOM for fermentation
@@ -189,7 +189,7 @@ class TestAgriculturalProcessingISLCompliance(TransactionCase):
             pass  # Other validations may still fail
 
     def test_05_traceability_functionality(self):
-        """Test traceability functionality [US-14-03]"""
+        """Test traceability functionality [US-037-03]"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create source lot
@@ -222,7 +222,7 @@ class TestAgriculturalProcessingISLCompliance(TransactionCase):
         self.assertIn(source_lot, production.harvest_lot_ids)
 
     def test_06_sc_license_validation(self):
-        """Test SC license validation [US-14-21]"""
+        """Test SC license validation [US-037-21]"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create BOM with SC category
@@ -320,7 +320,7 @@ class TestAgriculturalProcessingISLCompliance(TransactionCase):
         self.assertEqual(recall_sim.trigger_reason, 'Quality issue detected')
 
     def test_09_processing_steps_model(self):
-        """Test processing steps model for net vegetables [US-14-08]"""
+        """Test processing steps model for net vegetables [US-037-08]"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create processing step
@@ -337,7 +337,7 @@ class TestAgriculturalProcessingISLCompliance(TransactionCase):
         self.assertEqual(step.loss_qty, 5.0)
 
     def test_10_blind_material_functionality(self):
-        """Test blind material functionality for formula management [US-14-09]"""
+        """Test blind material functionality for formula management [US-037-09]"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create BOM
@@ -362,7 +362,7 @@ class TestAgriculturalProcessingISLCompliance(TransactionCase):
         self.assertEqual(blind_material.actual_qty, 10.0)
 
     def test_11_formula_auto_correction_functionality(self):
-        """Test formula auto correction functionality [US-14-11]"""
+        """Test formula auto correction functionality [US-037-11]"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create BOM

@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class FairTradeCertificate(models.Model):
     """
-    US-51-01: 公平贸易认证追踪与溢价管理
+    US-081-01: 公平贸易认证追踪与溢价管理
     Fair Trade Certificate Management for tracking certification and premiums
     """
     _name = 'farm.esg.fair.trade.certificate'
@@ -160,7 +160,7 @@ class FairTradePremiumAllocation(models.Model):
 
 class CommunityInvestment(models.Model):
     """
-    US-51-03: 社区投资与乡村振兴贡献量化
+    US-081-03: 社区投资与乡村振兴贡献量化
     Community Investment tracking for rural revitalization contribution
     """
     _name = 'farm.esg.community.investment'
@@ -219,8 +219,8 @@ class CommunityInvestment(models.Model):
 
 class LaborCondition(models.Model):
     """
-    US-51-02: 农工权益保护与安全合规
-    US-51-04: 劳动条件透明度与供应链可追溯
+    US-081-02: 农工权益保护与安全合规
+    US-081-04: 劳动条件透明度与供应链可追溯
     Labor conditions and worker protection tracking
     """
     _name = 'farm.esg.labor.condition'

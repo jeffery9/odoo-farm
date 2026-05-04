@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'Scientific Ecological Data Collection & Biodiversity Tracking',
     'description': """
-        Pure ecological data collection and environmental monitoring for sustainable farming [US-17-05].
+        Pure ecological data collection and environmental monitoring for sustainable farming [US-040-05].
         - Scientific Biodiversity Indicators (Insects, Birds, Vegetation)
         - Environmental Impact Measurements (pesticide, fertilizer, water, fuel usage)
         - Water Efficiency Data Collection

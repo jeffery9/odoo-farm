@@ -7,12 +7,12 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-# Abstract Base Models for ISL Architecture (US-54-01 through US-54-10)
+# Abstract Base Models for ISL Architecture (US-084-01 through US-084-10)
 
 class AgriManufacturingMixin(models.AbstractModel):
     """
     Abstract base model for manufacturing-related ISL models
-    Implements US-54-01, US-54-02, US-54-03, US-54-09
+    Implements US-084-01, US-084-02, US-084-03, US-084-09
     """
     _name = 'agri.manufacturing.mixin'
     _description = 'Agri Manufacturing ISL Abstract Base Model'
@@ -62,7 +62,7 @@ class AgriManufacturingMixin(models.AbstractModel):
 class AgriInventoryMixin(models.AbstractModel):
     """
     Abstract base model for inventory-related ISL models
-    Implements US-54-04, US-54-08
+    Implements US-084-04, US-084-08
     """
     _name = 'agri.inventory.mixin'
     _description = 'Agri Inventory ISL Abstract Base Model'
@@ -95,7 +95,7 @@ class AgriInventoryMixin(models.AbstractModel):
 class AgriSalesPurchaseMixin(models.AbstractModel):
     """
     Abstract base model for sales/purchase-related ISL models
-    Implements US-54-05, US-54-06
+    Implements US-084-05, US-084-06
     """
     _name = 'agri.sales.purchase.mixin'
     _description = 'Agri Sales/Purchase ISL Abstract Base Model'
@@ -124,7 +124,7 @@ class AgriSalesPurchaseMixin(models.AbstractModel):
 class AgriProductMixin(models.AbstractModel):
     """
     Abstract base model for product-related ISL models
-    Implements US-54-07
+    Implements US-084-07
     """
     _name = 'agri.product.mixin'
     _description = 'Agri Product ISL Abstract Base Model'
@@ -153,7 +153,7 @@ class AgriProductMixin(models.AbstractModel):
 class AgriQualityMixin(models.AbstractModel):
     """
     Abstract base model for quality control ISL models
-    Implements US-54-10
+    Implements US-084-10
     """
     _name = 'agri.quality.mixin'
     _description = 'Agri Quality Control ISL Abstract Base Model'

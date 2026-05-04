@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class ProductCertification(models.Model):
     """
-    产品认证 [US-19-09]
+    产品认证 [US-042-09]
     """
     _name = 'product.certification'
     _description = 'Product Certification'

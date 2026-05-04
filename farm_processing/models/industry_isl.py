@@ -2,7 +2,7 @@
 from odoo import models, fields, api, _
 
 class FarmPharmaBom(models.Model):
-    """ Pharmaceutical Processing BOM [US-14-24] """
+    """ Pharmaceutical Processing BOM [US-037-24] """
     _name = 'farm.pharma.bom'
     _description = 'Pharmaceutical Processing BOM (ISL Layer)'
     _inherits = {'mrp.bom': 'bom_id'}
@@ -16,7 +16,7 @@ class FarmPharmaBom(models.Model):
     safety_data_sheet = fields.Binary("MSDS Document")
 
 class FarmPharmaProduction(models.Model):
-    """ Pharmaceutical Production Order [US-14-24] """
+    """ Pharmaceutical Production Order [US-037-24] """
     _name = 'farm.pharma.production'
     _description = 'Pharmaceutical Production Order (ISL Layer)'
     _inherits = {'mrp.production': 'production_id'}
@@ -29,7 +29,7 @@ class FarmPharmaProduction(models.Model):
     impurity_level = fields.Float("Impurity Level (%)")
 
 class FarmChemicalBom(models.Model):
-    """ Chemical Processing BOM [US-14-25] """
+    """ Chemical Processing BOM [US-037-25] """
     _name = 'farm.chemical.bom'
     _description = 'Chemical Processing BOM (ISL Layer)'
     _inherits = {'mrp.bom': 'bom_id'}
@@ -47,7 +47,7 @@ class FarmChemicalBom(models.Model):
     reaction_temperature_limit = fields.Float("Max Reaction Temp (℃)")
 
 class FarmChemicalProduction(models.Model):
-    """ Chemical Production Order [US-14-25] """
+    """ Chemical Production Order [US-037-25] """
     _name = 'farm.chemical.production'
     _description = 'Chemical Production Order (ISL Layer)'
     _inherits = {'mrp.production': 'production_id'}

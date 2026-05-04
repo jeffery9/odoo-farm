@@ -14,8 +14,8 @@ _logger = logging.getLogger(__name__)
 class FarmCropYieldInsurance(models.Model):
     """
     Model for crop yield insurance
-    Implements US-29-03: Crop Yield Insurance Actuarial & Payout
-    US-29-04: Index-based Insurance Automation
+    Implements US-059-03: Crop Yield Insurance Actuarial & Payout
+    US-059-04: Index-based Insurance Automation
     """
     _name = 'farm.crop.yield.insurance'
     _description = 'Farm Crop Yield Insurance'
@@ -76,7 +76,7 @@ class FarmCropYieldInsurance(models.Model):
     payout_percentage = fields.Float('Payout Percentage (%)', default=0.0, help="Percentage of claim approved")
     adjuster_id = fields.Many2one('res.partner', string='Claims Adjuster')
 
-    # Index based configuration [US-29-04]
+    # Index based configuration [US-059-04]
     weather_index_ids = fields.Many2many('farm.insurance.index', string="Weather Trigger Indices")
 
     @api.depends('application_date', 'duration_months')
@@ -144,7 +144,7 @@ class FarmCropYieldInsurance(models.Model):
 
     def action_check_weather_indices(self):
         """
-        US-29-04: Automated Weather Index Claim Trigger
+        US-059-04: Automated Weather Index Claim Trigger
         Check if any weather indices are triggered based on telemetry/external data
         """
         for record in self:

@@ -85,7 +85,7 @@ class FarmGovernmentPlatformConfig(models.Model):
 class FarmGovernmentDataReport(models.Model):
     """
     Model to track regulatory data submissions to government platforms
-    US-57-04: Government regulatory platform对接
+    US-057-04: Government regulatory platform对接
     """
     _name = 'farm.government.data.report'
     _description = 'Government Data Report'

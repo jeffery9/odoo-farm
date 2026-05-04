@@ -7,11 +7,11 @@
         Epic 14: Agri-Processing Management.
         
         Features:
-        - Primary Processing (Sorting, Cleaning, Packaging) [US-14-01, US-14-08]
-        - Deep Processing (Multi-stage BOM, Recipes) [US-14-02, US-14-09]
+        - Primary Processing (Sorting, Cleaning, Packaging) [US-037-01, US-037-08]
+        - Deep Processing (Multi-stage BOM, Recipes) [US-037-02, US-037-09]
         - One-in-Multi-out support
-        - Full Traceability (Harvest to Final Product) [US-14-03]
-        - Mass Balance & Loss Management [US-04-02]
+        - Full Traceability (Harvest to Final Product) [US-037-03]
+        - Mass Balance & Loss Management [US-004-02]
         - Mobile Optimized Kanban Views
         - Energy & Cost Analytic Pivots
     """,

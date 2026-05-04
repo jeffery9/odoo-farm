@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriCooperativeResourceSharing(models.Model):
     """
-    US-27-05: 合作社/产业园资源跨场协同 (Cooperative/Industrial Park Cycle)
+    US-057-05: 合作社/产业园资源跨场协同 (Cooperative/Industrial Park Cycle)
     Model for coordinating resource sharing between farms in cooperatives/parks
     """
     _name = 'agri.cooperative.resource.sharing'

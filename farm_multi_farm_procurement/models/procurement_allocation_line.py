@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class ProcurementAllocationLine(models.Model):
     """
-    农资分配明细 [US-19-12]
+    农资分配明细 [US-042-12]
     """
     _name = 'procurement.allocation.line'
     _description = 'Procurement Allocation Line'

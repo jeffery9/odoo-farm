@@ -8,7 +8,7 @@ class TestWasteLedger(TransactionCase):
         self.Product = self.env['product.product']
 
     def test_01_waste_disposal_record(self):
-        """ 测试加工废弃物登记逻辑 [US-14-12] """
+        """ 测试加工废弃物登记逻辑 [US-037-12] """
         peel = self.Product.create({'name': 'Apple Peel', 'type': 'consu'})
         waste = self.Waste.create({
             'product_id': peel.id,

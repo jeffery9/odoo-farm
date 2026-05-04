@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class FarmLivestockAssetLoan(models.Model):
     """
     Model for live animal asset lending
-    Implements US-58-02: Live Asset Mortgage Loan Management
+    Implements US-088-02: Live Asset Mortgage Loan Management
     """
     _name = 'farm.livestock.asset.loan'
     _description = 'Farm Livestock Asset Loan'

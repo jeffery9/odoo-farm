@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 class CropRotationHistory(models.Model):
     """
     Crop Rotation History - Track planting history for land health management
-    US-01-09: Land Health and Crop Rotation Records
+    US-001-09: Land Health and Crop Rotation Records
     """
     _name = 'farm.crop.rotation.history'
     _description = 'Crop Rotation History'

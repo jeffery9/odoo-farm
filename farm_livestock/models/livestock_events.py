@@ -33,7 +33,7 @@ class FarmLivestockEvent(models.Model):
     dosage = fields.Float("Dosage")
     uom_id = fields.Many2one('uom.uom', string="Unit")
     
-    # [US-64-02] Anomaly Link
+    # [US-094-02] Anomaly Link
     is_anomaly = fields.Boolean("Anomaly Flag", default=False)
     alert_severity = fields.Selection([('low', 'Low'), ('medium', 'Medium'), ('high', 'High')], string="Alert Severity")
 

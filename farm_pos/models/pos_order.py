@@ -4,7 +4,7 @@ class PosOrder(models.Model):
     _name = 'pos.order'
     _inherit = 'pos.order'
 
-    # 关联采摘地块 [US-02-02]
+    # 关联采摘地块 [US-002-02]
     picking_location_id = fields.Many2one(
         'stock.location', 
         string="Picking Source Plot",

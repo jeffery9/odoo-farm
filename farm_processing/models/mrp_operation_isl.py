@@ -11,7 +11,7 @@ class FarmIndustryOperation(models.Model):
     # --- Specialized Instructions ---
     technical_manual = fields.Html("Technical SOP", help="Detailed industry standard operating procedure.")
     
-    # Critical Control Parameters (US-14-09 sync)
+    # Critical Control Parameters (US-037-09 sync)
     param_monitoring_required = fields.Boolean("Monitor Critical Parameters")
     target_value = fields.Float("Target Value")
     tolerance_range = fields.Float("Tolerance (+/-)")

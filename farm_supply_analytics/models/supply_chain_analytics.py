@@ -40,7 +40,7 @@ class FarmSupplyChainNode(models.Model):
 
 class SupplyChainDashboard(models.Model):
     """
-    Supply Chain Dashboard for Control Tower [US-54-01]
+    Supply Chain Dashboard for Control Tower [US-084-01]
     """
     _name = 'supply.chain.dashboard'
     _description = 'Supply Chain Dashboard'

@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriHazardousWasteRecord(models.Model):
     """
-    US-27-03: 危险废弃物（药瓶/地膜）合规处置
+    US-057-03: 危险废弃物（药瓶/地膜）合规处置
     Model for hazardous waste tracking and compliance
     """
     _name = 'agri.hazardous.waste.record'

@@ -34,7 +34,7 @@ class AgriQualityCheck(models.Model):
                                help="The physical sample used for this check.")
     task_id = fields.Many2one('project.task', string="Production Task")
     purchase_order_line_id = fields.Many2one('purchase.order.line', string="Purchase Order Line",
-                                            help="Link to purchase order line for acquisition quality checks (US-09-19)")
+                                            help="Link to purchase order line for acquisition quality checks (US-009-19)")
 
     test_type = fields.Selection(related='point_id.test_type', store=True)
     measure = fields.Float("Actual Measure")
@@ -47,29 +47,29 @@ class AgriQualityCheck(models.Model):
 
     user_id = fields.Many2one('res.users', string="Responsible", default=lambda self: self.env.user)
 
-    # US-15-07: 现场快速检测 (Quick-Test)
+    # US-038-07: 现场快速检测 (Quick-Test)
     is_quick_test = fields.Boolean("Is Quick Test", default=False)
     quick_test_photo = fields.Binary("Test Strip Photo", attachment=True)
 
-    # US-15-08: 数字化感官评价 (Sensory Profile)
+    # US-038-08: 数字化感官评价 (Sensory Profile)
     appearance_score = fields.Integer("Appearance (1-10)", default=5)
     aroma_score = fields.Integer("Aroma (1-10)", default=5)
     flavor_score = fields.Integer("Flavor (1-10)", default=5)
     texture_score = fields.Integer("Texture (1-10)", default=5)
     sensory_notes = fields.Text("Sensory Notes")
 
-    # US-15-09: 区块链存证指纹 (Blockchain Mock)
+    # US-038-09: 区块链存证指纹 (Blockchain Mock)
     blockchain_hash = fields.Char("Blockchain Hash", readonly=True)
 
-    # US-15-11: LIMS 集成
+    # US-038-11: LIMS 集成
     lims_source_data = fields.Text("LIMS Raw Data")
     lims_device_id = fields.Char("LIMS Device ID")
 
-    # 盲样相关字段 [US-15-06] - 用于测试人员界面控制
+    # 盲样相关字段 [US-038-06] - 用于测试人员界面控制
     is_blind_view = fields.Boolean("Blind View", compute='_compute_blind_view', help="Whether the current user should see masked information")
 
     def _compute_blind_view(self):
-        """ 计算当前用户是否应以盲样视图查看 [US-15-06] """
+        """ 计算当前用户是否应以盲样视图查看 [US-038-06] """
         for record in self:
             if (record.sample_id and record.sample_id.is_blind_test and
                 record.sample_id.blind_tester_id and
@@ -106,7 +106,7 @@ class AgriQualityCheck(models.Model):
             self.action_pass()
 
     def _generate_blockchain_hash(self):
-        """ US-15-09: Generate an immutable hash of the test result """
+        """ US-038-09: Generate an immutable hash of the test result """
         self.ensure_one()
         data = {
             'ref': self.name,
@@ -120,7 +120,7 @@ class AgriQualityCheck(models.Model):
         self.blockchain_hash = hash_str
 
     def action_check_ccp_violations(self):
-        """ US-15-10: CCP Hard-Block check based on IoT/Task time """
+        """ US-038-10: CCP Hard-Block check based on IoT/Task time """
         self.ensure_one()
         if self.task_id and self.task_id.actual_start_date and self.task_id.actual_end_date:
             duration = (self.task_id.actual_end_date - self.task_id.actual_start_date).total_seconds() / 60

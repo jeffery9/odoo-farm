@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# [US-201-04] [ISA-88]
+# [US-045-04] [ISA-88]
 from odoo import models, fields, api
 import math
 
@@ -12,7 +12,7 @@ class AgriScienceMixin(models.AbstractModel):
     cumulative_gdd = fields.Float("Cumulative GDD", default=0.0)
     current_growth_stage_id = fields.Many2one('agri.growth.stage', string="Current Stage", compute='_compute_biological_clock', store=True)
     
-    # [US-201-05] 资源利用效率
+    # [US-045-05] 资源利用效率
     rue_actual = fields.Float("Radiation Use Efficiency (RUE)", compute='_compute_efficiencies')
     wue_actual = fields.Float("Water Use Efficiency (WUE)", compute='_compute_efficiencies')
     biological_stress_index = fields.Float("Stress Index (0-100)", default=0.0)

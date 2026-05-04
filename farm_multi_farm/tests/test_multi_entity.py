@@ -10,7 +10,7 @@ class TestMultiEntity(TransactionCase):
         self.Company = self.env['res.company']
 
     def test_01_entity_recursion_check(self):
-        """ 测试防止实体关系循环引用 [US-19-01] """
+        """ 测试防止实体关系循环引用 [US-042-01] """
         company_a = self.Company.create({'name': 'Company A'})
         company_b = self.Company.create({'name': 'Company B'})
         
@@ -31,7 +31,7 @@ class TestMultiEntity(TransactionCase):
             farm_a.parent_entity_id = farm_b.id
 
     def test_02_data_sharing_logic(self):
-        """ 测试基于租户隔离级别的数据访问 [US-19-02] """
+        """ 测试基于租户隔离级别的数据访问 [US-042-02] """
         # 创建一个部分共享的实体
         farm = self.Farm.create({
             'name': 'Partial Share Farm',

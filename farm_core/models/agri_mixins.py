@@ -11,10 +11,10 @@ _logger = logging.getLogger(__name__)
 
 class GeoSpatialMixin(models.AbstractModel):
     """
-    [US-01-03, US-TECH-04-01]
+    [US-001-03, US-TECH-04-01]
     Mixin for Grid-based spatial tracking.
     Level 1: Geo-grounding & Spatial Evidence.
-    Level 1+: Neighborhood Discovery Service. [US-70-2026]
+    Level 1+: Neighborhood Discovery Service. [US-100-2026]
     """
     _name = 'agri.geospatial.mixin'
     _description = 'Agricultural GeoSpatial Tracking Mixin'
@@ -86,7 +86,7 @@ class GeoSpatialMixin(models.AbstractModel):
 
 class NutrientMixin(models.AbstractModel):
     """
-    [US-02-03, US-27-01]
+    [US-002-03, US-057-01]
     Mixin for Bio-mass Balance and Nutrient Tracking.
     Level 1: Qualitative Efficiency Standard.
     Level 1+: Auto-correction logic.
@@ -101,7 +101,7 @@ class NutrientMixin(models.AbstractModel):
     water_footprint = fields.Float("Water Footprint (L)", digits=(12, 2))
 
     def calculate_mass_balance(self, inputs, outputs):
-        """ [US-27-01] Bio-efficiency = Output Nutrient / Input Nutrient. """
+        """ [US-057-01] Bio-efficiency = Output Nutrient / Input Nutrient. """
         total_in_n = sum(i.nitrogen_qty for i in inputs)
         total_out_n = sum(o.nitrogen_qty for o in outputs)
         efficiency = (total_out_n / total_in_n) if total_in_n > 0 else 0.0
@@ -149,7 +149,7 @@ class ActuatorMixin(models.AbstractModel):
 
 class AgriGrowthCycleMixin(models.AbstractModel):
     """
-    [US-02-02, US-105-02]
+    [US-002-02, US-105-02]
     Growth Cycle & Physiological Stage Mixin based on GDD.
     """
     _name = 'agri.growth.cycle.mixin'
@@ -216,7 +216,7 @@ class AgriBiologicalInventoryMixin(models.AbstractModel):
 
 class AgriTraceabilityMixin(models.AbstractModel):
     """
-    [US-49-01, US-112-03]
+    [US-049-01, US-112-03]
     Mixin for Blockchain-ready Traceability Fingerprint.
     """
     _name = 'agri.traceability.mixin'
@@ -280,7 +280,7 @@ class AgriWeatherSensitiveMixin(models.AbstractModel):
 
 class AgriIncidentAlertMixin(models.AbstractModel):
     """
-    [US-23-05, US-105-04]
+    [US-053-05, US-105-04]
     Mixin for Standardized Incident Reporting and Alerting.
     """
     _name = 'agri.incident.alert.mixin'
@@ -302,7 +302,7 @@ class AgriIncidentAlertMixin(models.AbstractModel):
 
 class AgriQualityGateMixin(models.AbstractModel):
     """
-    [US-15-01, US-114-02]
+    [US-038-01, US-114-02]
     Mixin for Quality Gate Enforcement (HACCP/QCP).
     """
     _name = 'agri.quality.gate.mixin'
@@ -343,7 +343,7 @@ class AgriCertificationStatusMixin(models.AbstractModel):
 class AgriBiologicalValuationMixin(models.AbstractModel):
     """
     [Level 3: Value DNA]
-    Mixin for Dynamic Fair Value Estimation of Biological Assets. [US-58-15]
+    Mixin for Dynamic Fair Value Estimation of Biological Assets. [US-088-15]
     """
     _name = 'agri.biological.valuation.mixin'
     _description = 'Agri Biological Asset Valuation Mixin'
@@ -364,7 +364,7 @@ class AgriBiologicalValuationMixin(models.AbstractModel):
 
 class AgriAgentInstructionMixin(models.AbstractModel):
     """
-    [US-62-01, US-TECH-05-01]
+    [US-092-01, US-TECH-05-01]
     Mixin for Level 4-5 DNA: Orchestration and Feedback Loop.
     """
     _name = 'agri.agent.instruction.mixin'
@@ -377,7 +377,7 @@ class AgriAgentInstructionMixin(models.AbstractModel):
     ], string="Agent Execution Status", default='pending')
 
     def action_receive_agent_feedback(self, status, feedback_log):
-        """ [Level 5 Loop] [US-62-01] """
+        """ [Level 5 Loop] [US-092-01] """
         self.ensure_one()
         self.write({'agent_status_feedback': status})
         if status == 'failed' and hasattr(self, 'report_incident'):
@@ -439,7 +439,7 @@ class ClearingEngineMixin(models.AbstractModel):
         return fingerprint
 
     def calculate_community_value(self):
-        """ [US-104-01] Multi-dimensional Valuation Engine. """
+        """ [US-014-01] Multi-dimensional Valuation Engine. """
         self.ensure_one()
         n_peg = 1.2
         physical_value = getattr(self, 'nitrogen_qty', 0) * n_peg

@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
 
-                                <!-- 风土特征 (Terroir) [US-32-05] -->
+                                <!-- 风土特征 (Terroir) [US-062-05] -->
                                 <h4 class="mb-3"><i class="fa fa-globe text-primary me-2"/>风土特征 / Terroir Profiles</h4>
                                 <div class="card shadow-sm mb-4 border-0">
                                     <div class="card-body">
@@ -83,7 +83,7 @@
                                     </t>
                                 </div>
 
-                                <!-- 实况监控 [US-16-01] -->
+                                <!-- 实况监控 [US-039-01] -->
                                 <t t-if="video_url">
                                     <h4 class="mb-3"><i class="fa fa-video-camera text-danger me-2"/>实况监控 / Live View</h4>
                                     <div class="card shadow-sm mb-4 border-0 bg-dark overflow-hidden" style="aspect-ratio: 16/9;">

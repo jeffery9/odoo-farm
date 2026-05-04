@@ -3,7 +3,7 @@ from odoo.exceptions import UserError
 
 class FarmChecklistSubmission(models.Model):
     """
-    US-26-03: 记录每一次设备启动前的实际点检结果
+    US-056-03: 记录每一次设备启动前的实际点检结果
     """
     _name = 'farm.checklist.submission'
     _description = 'Equipment Checklist Submission'

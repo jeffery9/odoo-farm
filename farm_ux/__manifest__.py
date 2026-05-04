@@ -7,11 +7,11 @@
         Base User Experience Framework for Odoo 19 Farm Management System. [US-UX-BASE]
         
         Features:
-        - Agricultural terminology mapping [US-16-01]
-        - Industry-specific form layouts [US-16-02]
-        - Visual status indicators [US-16-03]
-        - Multi-sensory interaction experience [US-16-07]
-        - Accessibility & inclusive design [US-16-09]
+        - Agricultural terminology mapping [US-039-01]
+        - Industry-specific form layouts [US-039-02]
+        - Visual status indicators [US-039-03]
+        - Multi-sensory interaction experience [US-039-07]
+        - Accessibility & inclusive design [US-039-09]
         - Provides Base View Mixins for de-industrialization.
     """,
     'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',

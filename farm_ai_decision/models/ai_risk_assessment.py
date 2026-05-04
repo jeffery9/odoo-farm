@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class AgriAiRiskAssessment(models.Model):
     """
     AI model for risk assessment
-    Implements US-58-14: Intelligent risk assessment & alert
+    Implements US-088-14: Intelligent risk assessment & alert
     """
     _name = 'agri.ai.risk.assessment'
     _description = 'AI Risk Assessment'

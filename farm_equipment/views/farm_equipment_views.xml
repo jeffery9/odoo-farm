@@ -68,7 +68,7 @@
     <menuitem id="menu_farm_equipment" name="Fleet" parent="menu_farm_machinery_root" action="maintenance.hr_equipment_action" sequence="10"/>
     <menuitem id="menu_farm_equipment_logs" name="Usage Logs" parent="menu_farm_machinery_root" action="action_farm_equipment_log" sequence="20"/>
 
-    <!-- Battery Views [US-22-01] -->
+    <!-- Battery Views [US-052-01] -->
     <record id="farm_battery_view_list" model="ir.ui.view">
         <field name="name">farm.battery.list</field>
         <field name="model">farm.battery</field>

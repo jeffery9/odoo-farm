@@ -1,7 +1,7 @@
 from odoo import models, fields, api, _
 
 class FarmBiosafetyAccessLog(models.Model):
-    """ US-35-01: Bio-safety Access Control (生物安全门禁) """
+    """ US-065-01: Bio-safety Access Control (生物安全门禁) """
     _name = 'farm.biosafety.access.log'
     _description = 'Bio-safety Access Log'
     _inherit = ['mail.thread', 'mail.activity.mixin']

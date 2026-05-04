@@ -19,7 +19,7 @@ class FarmWasteTransformationWizard(models.TransientModel):
     notes = fields.Text('Transformation Notes')
 
     def action_transform(self):
-        """ US-27-01: Execute transformation inventory moves. """
+        """ US-057-01: Execute transformation inventory moves. """
         self.ensure_one()
         if self.transformation_qty > self.available_qty:
             raise UserError(_("Not enough waste quantity available in the source lot."))

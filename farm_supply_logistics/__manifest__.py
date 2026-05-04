@@ -5,12 +5,12 @@
     'summary': 'Cold Chain, Packaging and Farm Direct Logistics',
     'description': """
         Logistics module for Odoo 19 Farm Management System.
-        - Cold Chain Management (Temperature tracking) [US-03-03]
+        - Cold Chain Management (Temperature tracking) [US-003-03]
         - Multi-level Packaging support
         - Integrated Field Delivery
-        - Cold Storage Multi-zone and Humidity Management [US-09-09]
-        - Post-harvest Pre-cooling Process Tracking [US-09-08]
-        - Dynamic Shelf-life Prediction based on IoT Temperature [US-09-07]
+        - Cold Storage Multi-zone and Humidity Management [US-009-09]
+        - Post-harvest Pre-cooling Process Tracking [US-009-08]
+        - Dynamic Shelf-life Prediction based on IoT Temperature [US-009-07]
     """,
     'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',
     'website': 'http://www.geninit.cn',

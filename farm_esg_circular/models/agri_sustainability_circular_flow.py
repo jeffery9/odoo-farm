@@ -66,13 +66,13 @@ class AgriSustainabilityCircularFlow(models.Model):
     related_sale_order_id = fields.Many2one('sale.order', '关联销售订单')
     # 集成现有碳足迹计算
 
-    # 关联到地理空间网络 (US-27-06)
+    # 关联到地理空间网络 (US-057-06)
     geospatial_network_id = fields.Many2one('agri.geospatial.circular.network', string='关联地理空间网络')
 
-    # 关联到区域治理 (US-27-07)
+    # 关联到区域治理 (US-057-07)
     regional_governance_id = fields.Many2one('agri.regional.circular.governance', string='关联区域治理')
 
-    # 关联到农场参与 (US-27-07)
+    # 关联到农场参与 (US-057-07)
     farm_participation_id = fields.Many2one('agri.farm.circular.participation', string='关联农场参与')
 
     # 记录信息

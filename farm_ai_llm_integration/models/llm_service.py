@@ -77,7 +77,7 @@ class AgriAiLlmService(models.Model):
 
     def get_embeddings(self, text):
         """
-        Generate embeddings for the given text. [US-59-08]
+        Generate embeddings for the given text. [US-089-08]
         Uses the configured provider's embedding endpoint.
         """
         if not self.config_id.is_active:
@@ -113,7 +113,7 @@ class AgriAiLlmService(models.Model):
 
     def semantic_search(self, query, res_model=None, limit=5):
         """
-        Perform semantic search across Odoo records using RAG logic. [US-59-09]
+        Perform semantic search across Odoo records using RAG logic. [US-089-09]
         """
         query_vector = self.get_embeddings(query)
         if not query_vector:

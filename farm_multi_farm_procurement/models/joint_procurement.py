@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class JointProcurement(models.Model):
     """
-    统购统销内部清算 [US-19-10]
+    统购统销内部清算 [US-042-10]
     """
     _name = 'joint.procurement'
     _description = 'Joint Procurement'

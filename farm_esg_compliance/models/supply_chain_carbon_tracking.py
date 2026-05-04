@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriSupplyChainCarbonDataEngine(models.Model):
     """
-    US-76-01: 碳足迹数据采集引擎 (Carbon Footprint Data Collection Engine)
+    US-076-01: 碳足迹数据采集引擎 (Carbon Footprint Data Collection Engine)
     Engine for collecting carbon footprint data across supply chain
     """
     _name = 'agri.supply.chain.carbon.data.engine'
@@ -133,7 +133,7 @@ class AgriSupplyChainCarbonDataEngine(models.Model):
 
 class AgriSupplyChainCarbonReductionStrategy(models.Model):
     """
-    US-76-02: 智能碳减排策略 (AI-driven Carbon Reduction Strategy)
+    US-076-02: 智能碳减排策略 (AI-driven Carbon Reduction Strategy)
     AI-based carbon reduction recommendations
     """
     _name = 'agri.supply.chain.carbon.reduction.strategy'
@@ -267,7 +267,7 @@ class AgriSupplyChainCarbonReductionStrategy(models.Model):
 
 class AgriSupplierCarbonCompliance(models.Model):
     """
-    US-76-03: 供应商碳合规管理 (Supplier Carbon Compliance Management)
+    US-076-03: 供应商碳合规管理 (Supplier Carbon Compliance Management)
     Management of supplier carbon compliance
     """
     _name = 'agri.supplier.carbon.compliance'
@@ -474,7 +474,7 @@ class AgriSupplierCarbonHistorical(models.Model):
 
 class AgriCarbonNeutralityCertification(models.Model):
     """
-    US-76-04: 碳中和认证与报告 (Carbon Neutrality Certification & Reporting)
+    US-076-04: 碳中和认证与报告 (Carbon Neutrality Certification & Reporting)
     Carbon neutrality certification and reporting
     """
     _name = 'agri.carbon.neutrality.certification'

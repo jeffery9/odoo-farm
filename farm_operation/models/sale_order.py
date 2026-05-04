@@ -7,7 +7,7 @@ class SaleOrder(models.Model):
     _name = 'sale.order' # Ensure name is present for safer inheritance check
 
     def action_confirm(self):
-        """ US-09-01: Agricultural Lead-time verification """
+        """ US-009-01: Agricultural Lead-time verification """
         for order in self:
             if not hasattr(order, 'order_line'):
                 continue

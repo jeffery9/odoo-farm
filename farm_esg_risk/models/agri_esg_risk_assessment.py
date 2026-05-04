@@ -4,8 +4,8 @@ from odoo.exceptions import ValidationError
 
 class AgriESGRiskAssessment(models.Model):
     """
-    US-52-01: ESG风险自动评估与评级
-    US-52-02: 合规风险自动监控与预警
+    US-082-01: ESG风险自动评估与评级
+    US-082-02: 合规风险自动监控与预警
     ESG Risk Assessment for automatic evaluation and rating
     """
     _name = 'agri.esg.risk.assessment'

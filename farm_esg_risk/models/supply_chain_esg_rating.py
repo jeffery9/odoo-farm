@@ -4,8 +4,8 @@ from odoo.exceptions import ValidationError
 
 class SupplyChainESGRating(models.Model):
     """
-    US-52-07: 供应链ESG风险评估
-    US-61-08: 供应链可持续性评估
+    US-082-07: 供应链ESG风险评估
+    US-091-08: 供应链可持续性评估
     Supply Chain ESG Rating for supplier sustainability assessment
     """
     _name = 'farm.esg.supply.chain.rating'

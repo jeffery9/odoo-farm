@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 class AgriAiImageBasedPlanning(AgriAiVisionBase):
     """
     AI model for image-based planting recommendations
-    Implements US-58-04: 基于图像的智能种植方案
+    Implements US-088-04: 基于图像的智能种植方案
     """
     _name = 'agri.ai.image.based.planning'
     _description = 'AI Image-Based Planning'

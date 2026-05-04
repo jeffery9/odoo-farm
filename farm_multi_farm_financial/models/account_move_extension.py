@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class AccountMove(models.Model):
     """
-    扩展 account.move 以支持在创建供应商账单时自动抵扣信用 [US-48-04]
+    扩展 account.move 以支持在创建供应商账单时自动抵扣信用 [US-078-04]
     """
     _inherit = 'account.move'
 

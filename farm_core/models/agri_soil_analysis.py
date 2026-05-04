@@ -5,7 +5,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriSoilAnalysisMixin(models.AbstractModel):
     """
-    Agri Domain Level: Soil Health Mixin. [US-01-09, US-104-2026]
+    Agri Domain Level: Soil Health Mixin. [US-001-09, US-014-2026]
     Universal soil physics: pH, Organic Matter, NPK, and Heavy Metals.
     """
     _name = 'agri.soil.analysis.mixin'

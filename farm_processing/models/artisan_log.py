@@ -8,7 +8,7 @@ class FarmProcessingArtisanLog(models.Model):
     production_id = fields.Many2one('mrp.production', string="Production Batch", required=True)
     workorder_id = fields.Many2one('mrp.workorder', string="Work Step")
     
-    # 匠心参数 [US-65-02]
+    # 匠心参数 [US-095-02]
     parameter_name = fields.Char("Artisan Parameter", required=True, 
                                help="e.g. Cutting Angle, Fermentation Temp Stability")
     target_value = fields.Float("Target Value (Precise)")

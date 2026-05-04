@@ -13,7 +13,7 @@ class TestAgritourismFlow(TransactionCase):
         self.partner = self.env['res.partner'].create({'name': 'Tourist A'})
 
     def test_01_booking_conflict(self):
-        """ 测试同一资源的预约冲突校验 [US-05-03] """
+        """ 测试同一资源的预约冲突校验 [US-005-03] """
         start = datetime.now()
         end = start + timedelta(hours=2)
         
@@ -39,7 +39,7 @@ class TestAgritourismFlow(TransactionCase):
             })
 
     def test_02_sale_auto_booking(self):
-        """ 测试销售订单确认后自动创建预约 [US-05-04] """
+        """ 测试销售订单确认后自动创建预约 [US-005-04] """
         # 创建一个体验套餐产品
         package = self.env['product.product'].create({
             'name': 'Family Day Package',

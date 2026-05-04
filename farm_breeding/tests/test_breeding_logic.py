@@ -29,7 +29,7 @@ class TestBreedingLogic(TransactionCase):
         })
 
     def test_01_nursery_transplant_flow(self):
-        """ 测试育苗批次移栽自动触发逻辑 [US-10-01] """
+        """ 测试育苗批次移栽自动触发逻辑 [US-020-01] """
         batch = self.NurseryBatch.create({
             'name': 'B-2026-001',
             'product_id': self.seed.id,
@@ -57,7 +57,7 @@ class TestBreedingLogic(TransactionCase):
         self.assertEqual(task.land_parcel_id.id, self.field_loc.id)
 
     def test_02_trait_comparison_wizard(self):
-        """ 测试性状对比向导的数据加载逻辑 [US-10-08] """
+        """ 测试性状对比向导的数据加载逻辑 [US-020-08] """
         # 创建两个带有性状的批次
         lot1 = self.Lot.create({'name': 'LOT-A', 'product_id': self.seed.id})
         lot2 = self.Lot.create({'name': 'LOT-B', 'product_id': self.seed.id})

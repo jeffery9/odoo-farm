@@ -10,7 +10,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriBiologicalTwin(models.Model):
     """
-    Biological Digital Twin Engine. [US-104-2026]
+    Biological Digital Twin Engine. [US-014-2026]
     Domain Role: Universal digital reflection of a living asset's physical state.
     Refactored from farm.biological.twin with 100% logic and comment retention.
     """

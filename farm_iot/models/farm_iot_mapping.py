@@ -9,7 +9,7 @@ class IotDeviceMapping(models.Model):
     device_id = fields.Many2one('iiot.device', string='Source Device', required=True)
     mqtt_topic = fields.Char(string='MQTT Topic', required=True, help="Topic to listen for or publish to.")
     
-    # [US-203-01] Bi-directional support
+    # [US-047-01] Bi-directional support
     direction = fields.Selection([
         ('inbound', 'Inbound (Telemetry)'),
         ('outbound', 'Outbound (Control/Setpoint)')
@@ -36,7 +36,7 @@ class IotDeviceMapping(models.Model):
     match_field_id = fields.Many2one('ir.model.fields', string='Match Record Field',
                                     help="Field on target model to match device identifier (e.g. device_serial)")
     
-    # [US-203-03] Command Template
+    # [US-047-03] Command Template
     payload_template = fields.Text("Payload Template (JSON)", help="e.g. {'setpoint': {{value}} }")
     
     active = fields.Boolean(default=True)

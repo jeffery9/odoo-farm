@@ -2,7 +2,7 @@ from odoo import models, fields, api, _
 
 class FarmEquipmentChecklist(models.Model):
     """
-    US-26-03: 机械启动前安全点检模版
+    US-056-03: 机械启动前安全点检模版
     """
     _name = 'farm.equipment.checklist'
     _description = 'Equipment Pre-op Checklist'

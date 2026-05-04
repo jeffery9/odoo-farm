@@ -22,7 +22,7 @@ class TestCrisisLockdown(TransactionCase):
         })
 
     def test_01_automatic_lockdown(self):
-        """ 测试地块危机自动锁定该区域内的所有批次 [US-17-03] """
+        """ 测试地块危机自动锁定该区域内的所有批次 [US-040-03] """
         # 初始应未锁定
         self.assertFalse(self.lot.is_crisis_locked)
         

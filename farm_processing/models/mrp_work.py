@@ -4,7 +4,7 @@ class MrpWorkcenter(models.Model):
     _name = 'mrp.workcenter'
     _inherit = 'mrp.workcenter'
 
-    # 能耗核算基础 [US-14-04]
+    # 能耗核算基础 [US-037-04]
     energy_type = fields.Selection([
         ('electricity', 'Electricity'),
         ('water', 'Water'),
@@ -16,11 +16,11 @@ class MrpWorkorder(models.Model):
     _name = 'mrp.workorder'
     _inherit = 'mrp.workorder'
 
-    # 实际工序能耗记录 [US-14-04]
+    # 实际工序能耗记录 [US-037-04]
     actual_energy_consumption = fields.Float("Actual Energy Consumption")
     process_parameters = fields.Text("Process Parameters (e.g. Temperature, Pressure)")
 
-    # US-14-08: 单工序物料平衡与损耗
+    # US-037-08: 单工序物料平衡与损耗
     qty_produced_workorder = fields.Float("Produced Qty (Workorder)", default=0.0,
                                          help="Actual quantity produced in this workorder.")
     qty_scrapped_workorder = fields.Float("Scrapped Qty (Workorder)", default=0.0,
