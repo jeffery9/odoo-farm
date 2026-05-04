@@ -1,0 +1,9 @@
+# Odoo Farm Project: Signed Contributors List
+#
+# By adding your name to this file, you hereby agree to the terms
+# of the Contributor License Agreement (CLA) found in CLA.md.
+
+# Format:
+# Name / Organization <Email> (Date of Signing)
+---------------------------------------------------------
+Genin IT, 亘盈信息技术 <jeffery9@gmail.com> (2026-05-04)
