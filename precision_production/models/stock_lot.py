@@ -2,7 +2,8 @@
 from odoo import models, fields
 
 class StockLot(models.Model):
-    _inherit = ['stock.lot', 'precision.production.mixin']
+    _inherit = 'stock.lot'
+    
     quality_grade = fields.Selection([
         ('premium', 'Premium'), ('standard', 'Standard'), ('fail', 'Rejected')
     ], string="Precision Grade", default='standard')
