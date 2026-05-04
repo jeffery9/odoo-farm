@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="628" height="314" viewBox="0 0 628 314" xmlns="http://www.w3.org/2000/svg">
   <rect width="628" height="314" fill="#FFF9F2" />
-  <rect x="40" y="92" width="130" height="130" rx="20" fill="white" stroke="#C9382B" stroke-width="1" />
-  <g transform="translate(51, 103) scale(0.42)">
-
-    <!-- Core: Hexagon Shield -->
-    <path d="M128,45 L210,92 L210,188 L128,235 L46,188 L46,92 Z" fill="none" stroke="#C9382B" stroke-width="18" stroke-linejoin="round"/>
-    <path d="M100,140 L120,160 L160,110" stroke="#C9382B" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    
+  <g transform="translate(320, -50) scale(0.85)" opacity="0.03">
+    <path fill-rule="evenodd" fill="#C9382B" d="M 395,174 58,177 42,184 29,204 25,244 46,266 149,279 315,269 313,252 260,241 87,245 76,230 91,209 243,204 339,220 356,239 360,272 346,297 329,306 169,316 53,301 6,279 12,375 95,388 379,378 391,368 Z M 386,15 375,7 354,3 299,3 298,0 277,0 264,4 127,3 29,8 19,16 13,27 7,55 3,175 7,179 19,164 42,147 110,140 316,137 362,140 392,147 393,61 Z M 342,57 340,60 342,72 340,78 332,87 319,89 260,90 230,97 169,99 167,101 158,100 155,102 141,103 94,102 71,95 63,95 55,91 38,91 29,84 29,74 37,63 45,63 55,58 63,58 82,52 95,53 134,49 197,50 228,47 261,47 311,51 326,50 Z" />
   </g>
+  <rect x="40" y="92" width="130" height="130" rx="20" fill="white" stroke="#C9382B" stroke-width="1" />
+  <g transform="translate(64, 112) scale(0.85)">
+        <g transform="translate(48, 56) scale(1.6)">
+            <!-- Isometric Data Soil -->
+            <path d="M50,15 L90,30 L50,45 L10,30 Z" fill="#8D6E63" opacity="0.3"/>
+            <path d="M50,45 L90,30 L90,45 L50,60 Z" fill="#8D6E63" opacity="0.8"/>
+            <path d="M10,30 L50,45 L50,60 L10,45 Z" fill="#8D6E63" opacity="0.6"/>
+            <path d="M50,30 L90,45 L50,60 L10,45 Z" fill="#C9382B"/>
+            <path d="M50,60 L90,45 L90,55 L50,70 Z" fill="#a0291f"/>
+            <path d="M10,45 L50,60 L50,70 L10,55 Z" fill="#b03025"/>
+            <!-- The Sprout -->
+            <path d="M50,45 C50,20 65,10 80,10 C80,30 65,40 50,45 Z" fill="white" stroke="#C9382B" stroke-width="1.5"/>
+            <path d="M50,45 C50,25 35,15 20,15 C20,35 35,45 50,45 Z" fill="#C9382B" stroke="white" stroke-width="2"/>
+        </g>
+    </g>
   <g transform="translate(190, 150)">
-    <text x="0" y="0" fill="#C9382B" font-family="'PingFang SC', 'Microsoft YaHei', 'SimHei', sans-serif" font-size="26" font-weight="bold">Floriculture & Ornamental Horticulture</text>
+    <text x="0" y="0" fill="#C9382B" font-family="'PingFang SC', 'Microsoft YaHei', 'SimHei', 'Source Han Sans CN', sans-serif" font-size="24" font-weight="bold">Floriculture &amp; Ornamental H...</text>
+    <text x="0" y="42" fill="#8D6E63" font-family="'PingFang SC', 'Microsoft YaHei', 'SimHei', 'Source Han Sans CN', sans-serif" font-size="14">Specialized management for flower production, bloom contr...</text>
+  </g>
+  <g transform="translate(540, 280) scale(0.1)">
+    <path d="M605.1,55.8 L605.1,36.8 L626.6,36.8 L626.6,0 L649.1,0 L649.1,36.8 L681.9,36.8 L681.9,55.8 L649.1,55.8 L649.1,127.5 C649.1,137.2 655.2,142 667.4,142 C667.4,142 667.5,142 667.6,142 C673.2,142 678,140.8 681.9,138.4 L681.9,158.6 C676.3,160.9 670.7,162 665.1,162 C664.9,162 664.7,162 664.5,162 C661.5,162 658.3,161.6 654.9,160.9 C651.6,160.2 647.5,158.8 642.8,156.6 C638.1,154.5 634.2,150.8 631.2,145.5 C628.1,140.3 626.6,133.7 626.6,125.9 L626.6,55.8 L605.1,55.8 Z" fill="#00AC47"></path>
+    <path d="M555.1,13.9 C555.1,6.2 561.3,0 569,0 L569.3,0 C576.9,0 583.1,6.2 583.1,13.9 C583.1,21.5 576.9,27.7 569.3,27.7 L569,27.7 C561.3,27.7 555.1,21.5 555.1,13.9 Z M558.1,167.8 L558.1,43 L581.1,43 L581.1,167.8 L558.1,167.8 Z" fill="#00AC47"></path>
+    <path d="M429.6,168 L429.6,53.9 C446.9,45.3 464.7,41 482.8,41 C498.5,41 510.8,45.1 519.8,53.3 C528.7,61.5 533.1,72.9 533.1,87.5 L533.1,168 L510,168 L510,85.9 C510,78.6 508.2,72.8 504.4,68.6 C500.7,64.4 493.2,62.2 481.8,62.2 C471.7,62.2 461.9,63.7 452.6,66.8 L452.6,168 L429.6,168 Z" fill="#FE2C25"></path>
+    <path d="M379.6,13.9 C379.6,6.2 385.8,0 393.5,0 L393.7,0 C401.4,0 407.6,6.2 407.6,13.9 C407.6,21.5 401.4,27.7 393.7,27.7 L393.5,27.7 C385.8,27.7 379.6,21.5 379.6,13.9 Z M382.6,167.8 L382.6,43 L405.6,43 L405.6,167.8 L382.6,167.8 Z" fill="#FE2C25"></path>
+    <path d="M255.7,167.6 L255.7,55.3 C272.8,46.8 290.2,42.6 308.1,42.6 C323.6,42.6 335.7,46.6 344.4,54.7 C353.2,62.8 357.6,74 357.6,88.4 L357.6,167.6 L334.9,167.6 L334.9,86.8 C334.9,79.6 333.1,73.9 329.4,69.7 C325.7,65.6 318.3,63.5 307.1,63.5 C297.1,63.5 287.5,65 278.3,67.9 L278.3,167.6 L255.7,167.6 Z" fill="#2C83FC"></path>
   </g>
 </svg>

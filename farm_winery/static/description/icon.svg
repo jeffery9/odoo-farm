@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-
-    <!-- Manufacturing: Gear + Sprout Cutout -->
-    <circle cx="128" cy="128" r="70" fill="#C9382B"/>
-    <path d="M128,128 m-80,0 a80,80 0 1,0 160,0 a80,80 0 1,0 -160,0" stroke="#C9382B" stroke-width="20" stroke-dasharray="30 32.8"/>
-    <path d="M128,150 L128,110 M110,120 C110,120 128,100 128,120 C128,100 146,120 146,120" stroke="#FFF9F2" stroke-width="10" stroke-linecap="round" fill="none"/>
+    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
+    
+        <!-- Flat Silhouette: Wheat/Crop -->
+        <circle cx="128" cy="128" r="90" fill="#C9382B"/>
+        <path d="M128,210 L128,50" stroke="white" stroke-width="12" stroke-linecap="round"/>
+        <path d="M128,80 C170,80 180,40 128,20 C76,40 86,80 128,80 Z" fill="white"/>
+        <path d="M128,140 C170,140 180,100 128,80 C76,100 86,140 128,140 Z" fill="white" opacity="0.8"/>
     
 </svg>
