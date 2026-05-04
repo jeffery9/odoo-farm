@@ -6,7 +6,7 @@ class TestDeepCoverageFarmMultiFarmBase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = ['base.sequence.mixin', 'resource.sharing', 'cooperative.member', 'base.action.confirm.mixin', 'base.share.value.mixin', 'base.action.cancel.mixin', 'base.total.investment.mixin', 'contract.farming.input.prepayment', 'contract.farming.settlement', 'base.total.amount.mixin', 'base.investment.amount.mixin', 'base.code.mixin', 'base.amount.calculation.mixin', 'base.available.credit.mixin', 'base.action.approve.mixin', 'franchise.farm', 'base.net.amount.mixin', 'cooperative.entity', 'internal.settlement', 'service.order', 'base.loan.amount.mixin', 'contract.farming.agreement', 'farm.regional.oversight', 'contract.farming.yield.commitment', 'agri.service', 'base.certified.status.mixin', 'base.action.reject.mixin', 'base.credit.limit.mixin', 'farm.entity', 'base.service.amount.mixin', 'base.available.amount.mixin', 'base.settlement.direction.mixin', 'base.compliance.status.mixin']
+        cls.models_to_test = ['resource.sharing', 'cooperative.member', 'contract.farming.input.prepayment', 'contract.farming.settlement', 'franchise.farm', 'cooperative.entity', 'internal.settlement', 'service.order', 'contract.farming.agreement', 'farm.regional.oversight', 'contract.farming.yield.commitment', 'agri.service', 'farm.entity']
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """

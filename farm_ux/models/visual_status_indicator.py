@@ -23,6 +23,11 @@ class VisualStatusIndicator(models.Model):
     ], string='Indicator Type', default='color', required=True)
     # Removed original field definition
     _legacy_status_type = fields.Selection([
+        ('color', 'Color / Signal'),
+        ('icon', 'Icon'),
+        ('badge', 'Badge / Text'),
+    ], default='color', string='Legacy Indicator Type')
+    # original _legacy_status_type = fields.Selection([
         ('task', 'Task Status'),
         ('quality', 'Quality Status'),
         ('safety', 'Safety Status'),

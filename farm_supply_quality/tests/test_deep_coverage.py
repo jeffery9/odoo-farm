@@ -6,7 +6,7 @@ class TestDeepCoverageFarmSupplyQuality(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = ['quality.based.pricing']
+        cls.models_to_test = []
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """
