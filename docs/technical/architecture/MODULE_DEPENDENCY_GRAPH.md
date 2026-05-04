@@ -3,7 +3,6 @@
 > **架构哲学**: 基于有向无环图 (DAG) 的分层设计。底层 (Foundation) 为高内聚原子模块，高层为特定行业解耦应用。
 
 ### 架构层级: Layer 0
-<div style="width: 100%; max-width: 900px; margin: 0 auto; text-align: center; overflow: auto;">
 
 ```mermaid
 graph TD
@@ -13,10 +12,9 @@ graph TD
     farm_core["farm_core"]:::currentLayer
     farm_ux["farm_ux"]:::currentLayer
 ```
-</div>
+
 
 ### 架构层级: Layer 1
-<div style="width: 100%; max-width: 900px; margin: 0 auto; text-align: center; overflow: auto;">
 
 ```mermaid
 graph TD
@@ -52,10 +50,9 @@ graph TD
     farm_sale_ch --> farm_core
     farm_supply_core --> farm_core
 ```
-</div>
+
 
 ### 架构层级: Layer 2
-<div style="width: 100%; max-width: 900px; margin: 0 auto; text-align: center; overflow: auto;">
 
 ```mermaid
 graph TD
@@ -107,10 +104,9 @@ graph TD
     farm_weather --> farm_core
     farm_weather --> farm_iot
 ```
-</div>
+
 
 ### 架构层级: Layer 3
-<div style="width: 100%; max-width: 900px; margin: 0 auto; text-align: center; overflow: auto;">
 
 ```mermaid
 graph TD
@@ -148,10 +144,9 @@ graph TD
     farm_valuation --> farm_financial_valuation
     precision_production --> farm_agri_science
 ```
-</div>
+
 
 ### 架构层级: Layer 4
-<div style="width: 100%; max-width: 900px; margin: 0 auto; text-align: center; overflow: auto;">
 
 ```mermaid
 graph TD
@@ -230,10 +225,9 @@ graph TD
     precision_production_iot --> farm_agri_science
     precision_production_iot --> precision_production
 ```
-</div>
+
 
 ### 架构层级: Layer 5
-<div style="width: 100%; max-width: 900px; margin: 0 auto; text-align: center; overflow: auto;">
 
 ```mermaid
 graph TD
@@ -297,10 +291,9 @@ graph TD
     farm_mobile["farm_mobile"]:::depLayer
     farm_subsidy --> farm_mobile
 ```
-</div>
+
 
 ### 架构层级: Layer 6
-<div style="width: 100%; max-width: 900px; margin: 0 auto; text-align: center; overflow: auto;">
 
 ```mermaid
 graph TD
@@ -359,10 +352,9 @@ graph TD
     farm_subsidy["farm_subsidy"]:::depLayer
     farm_subsidy_ch --> farm_subsidy
 ```
-</div>
+
 
 ### 架构层级: Layer 7
-<div style="width: 100%; max-width: 900px; margin: 0 auto; text-align: center; overflow: auto;">
 
 ```mermaid
 graph TD
@@ -393,10 +385,9 @@ graph TD
     farm_quality["farm_quality"]:::depLayer
     farm_processing --> farm_quality
 ```
-</div>
+
 
 ### 架构层级: Layer 8
-<div style="width: 100%; max-width: 900px; margin: 0 auto; text-align: center; overflow: auto;">
 
 ```mermaid
 graph TD
@@ -437,10 +428,9 @@ graph TD
     farm_waste_mgmt --> farm_livestock
     farm_waste_mgmt --> farm_quality
 ```
-</div>
+
 
 ### 架构层级: Layer 9
-<div style="width: 100%; max-width: 900px; margin: 0 auto; text-align: center; overflow: auto;">
 
 ```mermaid
 graph TD
@@ -475,10 +465,9 @@ graph TD
     farm_viticulture --> farm_isl
     farm_viticulture --> farm_operation
 ```
-</div>
+
 
 ### 架构层级: Layer 10
-<div style="width: 100%; max-width: 900px; margin: 0 auto; text-align: center; overflow: auto;">
 
 ```mermaid
 graph TD
@@ -528,10 +517,9 @@ graph TD
     farm_viticulture["farm_viticulture"]:::depLayer
     farm_winery --> farm_viticulture
 ```
-</div>
+
 
 ### 架构层级: Layer 11
-<div style="width: 100%; max-width: 900px; margin: 0 auto; text-align: center; overflow: auto;">
 
 ```mermaid
 graph TD
@@ -565,10 +553,9 @@ graph TD
     farm_supply_quality["farm_supply_quality"]:::depLayer
     farm_supply --> farm_supply_quality
 ```
-</div>
+
 
 ### 架构层级: Layer 12
-<div style="width: 100%; max-width: 900px; margin: 0 auto; text-align: center; overflow: auto;">
 
 ```mermaid
 graph TD
@@ -620,4 +607,4 @@ graph TD
     farm_live_streaming --> farm_marketing
     farm_live_streaming --> farm_supply
 ```
-</div>
+
