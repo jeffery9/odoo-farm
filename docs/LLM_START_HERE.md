@@ -56,3 +56,4 @@
 **提示**：在开始新任务时，你必须回复：“我已对标相关 US 及治理宪法，任务归属于 [Module]，逻辑符合无损原则。”
 
 *V2.0 - Doc-Driven & Governance Edition | 2026-02-01*
+- **ISL 架构指南**: 查阅 `docs/technical/architecture/ISL_ARCHITECTURE.md` 以了解多态代理拦截机制的设计准则。
