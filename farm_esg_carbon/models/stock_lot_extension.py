@@ -5,7 +5,7 @@ class StockLot(models.Model):
     _inherit = 'stock.lot'
 
     # US-060-01: Accumulated Carbon Footprint for this batch
-    carbon_footprint = fields.Float("Carbon Footprint (kg CO2e)", compute='_compute_carbon_footprint', store=True)
+    carbon_footprint = fields.Float("Carbon Footprint (kg CO2e)", compute='_compute_carbon_footprint', store=True, precompute=True)
 
     @api.depends('create_date') # Simplified trigger
     def _compute_carbon_footprint(self):

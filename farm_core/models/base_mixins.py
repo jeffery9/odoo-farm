@@ -133,8 +133,8 @@ class ComplianceMixin(models.AbstractModel):
 
     # Withdrawal period management
     withdrawal_end_datetime = fields.Datetime("Safe Period End", help="End date for withdrawal period.")
-    is_safe_for_harvest = fields.Boolean("Is Safe", compute='_compute_is_safe', store=True)
-    withdrawal_days_remaining = fields.Integer("Days Remaining", compute='_compute_withdrawal_days', store=True)
+    is_safe_for_harvest = fields.Boolean("Is Safe", compute='_compute_is_safe', store=True, precompute=True)
+    withdrawal_days_remaining = fields.Integer("Days Remaining", compute='_compute_withdrawal_days', store=True, precompute=True)
 
     @api.depends('withdrawal_end_datetime')
     def _compute_is_safe(self):

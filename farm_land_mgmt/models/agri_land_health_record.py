@@ -24,14 +24,14 @@ class AgriLandHealthRecord(models.Model):
     salinity_level = fields.Float('Salinity Level (dS/m)')
     soil_temperature = fields.Float('Soil Temperature (°C)')
     pest_disease_incidence = fields.Text('Pest/Disease Incidence')
-    soil_health_score = fields.Float('Soil Health Score (0-100)', compute='_compute_soil_health_score', store=True)
+    soil_health_score = fields.Float('Soil Health Score (0-100)', compute='_compute_soil_health_score', store=True, precompute=True)
     health_status = fields.Selection([
         ('excellent', 'Excellent'),
         ('good', 'Good'),
         ('fair', 'Fair'),
         ('poor', 'Poor'),
         ('critical', 'Critical')
-    ], string='Health Status', compute='_compute_health_status', store=True)
+    ], string='Health Status', compute='_compute_health_status', store=True, precompute=True)
     recommendations = fields.Text('Recommendations')
     next_analysis_date = fields.Date('Next Analysis Date')
 

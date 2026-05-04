@@ -57,7 +57,7 @@ class AgriProcessingLicenseCheck(models.Model):
     # Product and category checks
     product_category = fields.Many2one('product.category', string='Product Category')
     product_type = fields.Char('Product Type Code')
-    is_category_permitted = fields.Boolean('Category Permitted', compute='_compute_category_check', store=True)
+    is_category_permitted = fields.Boolean('Category Permitted', compute='_compute_category_check', store=True, precompute=True)
 
     # License status checks
     license_active = fields.Boolean('License Active', related='license_id.is_active', store=True)
@@ -68,7 +68,7 @@ class AgriProcessingLicenseCheck(models.Model):
         ('compliant', 'Compliant'),
         ('warning', 'Warning'),
         ('non_compliant', 'Non-Compliant'),
-    ], string='Compliance Status', compute='_compute_compliance_status', store=True)
+    ], string='Compliance Status', compute='_compute_compliance_status', store=True, precompute=True)
 
     # Violation tracking
     violations_found = fields.Text('Violations Found')

@@ -24,7 +24,7 @@ class FarmProcessingProductionLabelComplianceExtension(models.Model):
         ('pending', 'Pending'),
         ('compliant', 'Compliant'),
         ('non_compliant', 'Non-Compliant'),
-    ], string='Label Compliance Status', compute='_compute_label_compliance_status', store=True)
+    ], string='Label Compliance Status', compute='_compute_label_compliance_status', store=True, precompute=True)
 
     # Regulatory compliance
     fda_compliant = fields.Boolean('FDA Compliant', default=False)
@@ -66,7 +66,7 @@ class FarmProcessingProductionHaccpExtension(models.Model):
         ('compliant', 'Compliant'),
         ('non_compliant', 'Non-Compliant'),
         ('action_required', 'Action Required'),
-    ], string='HACCP Compliance Status', compute='_compute_haccp_compliance_status', store=True)
+    ], string='HACCP Compliance Status', compute='_compute_haccp_compliance_status', store=True, precompute=True)
 
     # Critical limits
     haccp_critical_limits = fields.Text('Critical Limits (JSON)')
@@ -113,7 +113,7 @@ class AgriProcessingHaccpMonitoringLine(models.Model):
     measured_value = fields.Float('Measured Value')
     critical_limit_min = fields.Float('Critical Limit Min')
     critical_limit_max = fields.Float('Critical Limit Max')
-    is_in_spec = fields.Boolean('Is In Specification', compute='_compute_is_in_spec', store=True)
+    is_in_spec = fields.Boolean('Is In Specification', compute='_compute_is_in_spec', store=True, precompute=True)
     corrective_action_taken = fields.Text('Corrective Action Taken')
 
     @api.depends('measured_value', 'critical_limit_min', 'critical_limit_max')

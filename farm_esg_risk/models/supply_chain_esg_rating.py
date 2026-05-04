@@ -18,14 +18,14 @@ class SupplyChainESGRating(models.Model):
     environmental_score = fields.Float('Environmental Score (0-100)')
     social_score = fields.Float('Social Score (0-100)')
     governance_score = fields.Float('Governance Score (0-100)')
-    overall_esg_score = fields.Float('Overall ESG Score', compute='_compute_overall_score', store=True)
+    overall_esg_score = fields.Float('Overall ESG Score', compute='_compute_overall_score', store=True, precompute=True)
     esg_risk_level = fields.Selection([
         ('very_low', 'Very Low (90-100)'),
         ('low', 'Low (70-89)'),
         ('medium', 'Medium (50-69)'),
         ('high', 'High (30-49)'),
         ('very_high', 'Very High (0-29)')
-    ], string='ESG Risk Level', compute='_compute_risk_level', store=True)
+    ], string='ESG Risk Level', compute='_compute_risk_level', store=True, precompute=True)
     rating_period = fields.Selection([
         ('q1', 'Q1'),
         ('q2', 'Q2'),

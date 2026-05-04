@@ -13,7 +13,7 @@ class FarmSubsidyApplication(models.Model):
         ('other', '其他')
     ], string="Crop Type (China)")
     
-    declared_area_mu = fields.Float("Declared Area (mu)", compute='_compute_declared_area_mu', store=True)
+    declared_area_mu = fields.Float("Declared Area (mu)", compute='_compute_declared_area_mu', store=True, precompute=True)
 
     @api.depends('land_parcel_ids.land_area')
     def _compute_declared_area_mu(self):

@@ -7,6 +7,7 @@
     'website': 'http://www.geninit.cn',
     'depends': ['mrp', 'stock', 'precision_production', 'agri_iot'],
     'data': [
+        'security/ir.model.access.csv',
         'views/precision_bridge_views.xml',
     ],
     'images': ['static/description/main_screenshot.png'],

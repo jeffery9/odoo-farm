@@ -21,7 +21,7 @@ class PrecisionMetrologyWizard(models.TransientModel):
     actual_value = fields.Float("Measured Value", required=True)
 
     # Calculated deviation
-    deviation_percent = fields.Float("Deviation %", compute="_compute_deviation_percent", store=True)
+    deviation_percent = fields.Float("Deviation %", compute="_compute_deviation_percent", store=True, precompute=True)
 
     @api.onchange('phase_id')
     def _onchange_phase_id(self):

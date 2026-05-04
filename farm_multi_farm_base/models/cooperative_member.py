@@ -23,21 +23,21 @@ class CooperativeMember(models.Model):
         ('withdrawn', 'Withdrawn'),
     ], string='Membership Status', default='active', required=True)
     shares_held = fields.Float('Shares Held', default=0.0)
-    share_value = fields.Float('Share Value', compute='_compute_share_value', store=True)
-    total_investment = fields.Float('Total Investment', compute='_compute_total_investment', store=True)
-    trading_volume = fields.Float('Trading Volume', help='Volume of transactions with cooperative', compute='_compute_trading_volume', store=True)
+    share_value = fields.Float('Share Value', compute='_compute_share_value', store=True, precompute=True)
+    total_investment = fields.Float('Total Investment', compute='_compute_total_investment', store=True, precompute=True)
+    trading_volume = fields.Float('Trading Volume', help='Volume of transactions with cooperative', compute='_compute_trading_volume', store=True, precompute=True)
     dividend_eligibility = fields.Boolean('Eligible for Dividends', default=True)
 
     # Fields for US-042-07 (Internal Credit)
     credit_limit = fields.Float('Credit Limit', help='Internal credit limit for member')
-    credit_used = fields.Float('Credit Used', compute='_compute_credit_usage', store=True)
-    available_credit = fields.Float('Available Credit', compute='_compute_available_credit', store=True)
+    credit_used = fields.Float('Credit Used', compute='_compute_credit_usage', store=True, precompute=True)
+    available_credit = fields.Float('Available Credit', compute='_compute_available_credit', store=True, precompute=True)
 
     # Fields for US-042-14 (Treasury Dashboard)
-    account_balance = fields.Float('Account Balance', compute='_compute_account_balance', store=True)
+    account_balance = fields.Float('Account Balance', compute='_compute_account_balance', store=True, precompute=True)
 
     # Fields for US-042-15 (Loans)
-    loan_balance = fields.Float('Loan Balance', compute='_compute_loan_balance', store=True)
+    loan_balance = fields.Float('Loan Balance', compute='_compute_loan_balance', store=True, precompute=True)
 
     @api.model
     def create(self, vals):

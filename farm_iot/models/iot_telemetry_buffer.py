@@ -14,7 +14,7 @@ class IotTelemetryBuffer(models.Model):
     processed = fields.Boolean(string='Is Processed', default=False, index=True)
     processed_date = fields.Datetime(string='Processed On')
     
-    mapping_id = fields.Many2one('iot.device.mapping', string='Applied Mapping', compute='_compute_mapping', store=True)
+    mapping_id = fields.Many2one('iot.device.mapping', string='Applied Mapping', compute='_compute_mapping', store=True, precompute=True)
 
     @api.depends('mqtt_topic')
     def _compute_mapping(self):

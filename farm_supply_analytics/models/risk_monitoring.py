@@ -28,7 +28,7 @@ class FarmSupplyRiskMonitor(models.Model):
 
     probability = fields.Float("Probability %", help="Estimated probability of this risk occurring")
     impact_score = fields.Float("Impact Score", help="Quantitative impact score (1-10 scale)")
-    risk_score = fields.Float("Risk Score", compute='_compute_risk_score', store=True)
+    risk_score = fields.Float("Risk Score", compute='_compute_risk_score', store=True, precompute=True)
 
     affected_node_ids = fields.Many2many('farm.supply.chain.node', string="Affected Nodes")
     affected_products = fields.Many2many('product.product', string="Affected Products")

@@ -40,7 +40,7 @@ class FarmCarbonCreditFinance(models.Model):
     duration_months = fields.Integer('Duration (months)')
     application_date = fields.Date('Application Date', default=fields.Date.context_today)
     approval_date = fields.Date('Approval Date')
-    maturity_date = fields.Date('Maturity Date', compute='_compute_maturity_date', store=True)
+    maturity_date = fields.Date('Maturity Date', compute='_compute_maturity_date', store=True, precompute=True)
     service_fees = fields.Monetary('Service Fees', currency_field='currency_id')
 
     credit_type = fields.Selection([
@@ -54,9 +54,9 @@ class FarmCarbonCreditFinance(models.Model):
     methodology_id = fields.Char('Methodology ID', help="Standard methodology used for calculation")
     baseline_emissions = fields.Float('Baseline Emissions (tCO2e)', digits=(16, 4))
     projected_reduction = fields.Float('Projected Emission Reduction (tCO2e)', digits=(16, 4))
-    credit_quantity = fields.Float('Credit Quantity (tons CO2e)', digits=(16, 4), compute='_compute_credit_quantity', store=True)
+    credit_quantity = fields.Float('Credit Quantity (tons CO2e)', digits=(16, 4), compute='_compute_credit_quantity', store=True, precompute=True)
     credit_value_per_ton = fields.Float('Credit Value per Ton ($)', digits=(16, 2))
-    total_credit_value = fields.Monetary('Total Credit Value', currency_field='currency_id', compute='_compute_total_credit_value', store=True)
+    total_credit_value = fields.Monetary('Total Credit Value', currency_field='currency_id', compute='_compute_total_credit_value', store=True, precompute=True)
     project_start_date = fields.Date('Project Start Date')
     verification_date = fields.Date('Verification Date')
     credit_validity_years = fields.Integer('Credit Validity (years)', default=5)

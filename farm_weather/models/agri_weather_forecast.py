@@ -21,7 +21,7 @@ class AgriWeatherForecast(models.Model):
     humidity = fields.Float("Humidity (%)")
     wind_speed = fields.Float("Wind Speed (m/s)")
 
-    is_warning = fields.Boolean("Weather Warning", compute='_compute_warning', store=True)
+    is_warning = fields.Boolean("Weather Warning", compute='_compute_warning', store=True, precompute=True)
     warning_type = fields.Selection([
         ('frost', 'Frost Risk'),
         ('storm', 'Heavy Rain/Storm'),

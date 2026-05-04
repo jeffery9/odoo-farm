@@ -13,3 +13,17 @@ access_ai_health_monitoring,agri.ai.health.monitoring,model_agri_ai_health_monit
 access_ai_risk_assessment,agri.ai.risk.assessment,model_agri_ai_risk_assessment,farm_core.group_farm_worker,1,1,1,1
 access_ai_agent,agri.ai.agent,model_agri_ai_agent,farm_core.group_farm_worker,1,1,1,1
 access_ai_decision_engine,agri.ai.decision.engine,farm_ai_core.model_agri_ai_decision_engine,farm_core.group_farm_specialist,1,1,1,1
+access_agri_ai_irrigation_decision,agri.ai.irrigation.decision,model_agri_ai_irrigation_decision,base.group_user,1,1,1,1
+access_agri_ai_market_prediction,agri.ai.market.prediction,model_agri_ai_market_prediction,base.group_user,1,1,1,1
+access_agri_ai_pest_disease_decision,agri.ai.pest.disease.decision,model_agri_ai_pest_disease_decision,base.group_user,1,1,1,1
+access_agri_ai_operation_path_optimization,agri.ai.operation.path.optimization,model_agri_ai_operation_path_optimization,base.group_user,1,1,1,1
+access_agri_ai_quality_grading,agri.ai.quality.grading,model_agri_ai_quality_grading,base.group_user,1,1,1,1
+access_agri_ai_crop_growth_prediction,agri.ai.crop.growth.prediction,model_agri_ai_crop_growth_prediction,base.group_user,1,1,1,1
+access_agri_ai_harvest_timing,agri.ai.harvest.timing,model_agri_ai_harvest_timing,base.group_user,1,1,1,1
+access_agri_ai_risk_assessment,agri.ai.risk.assessment,model_agri_ai_risk_assessment,base.group_user,1,1,1,1
+access_ai_decision_engine,ai.decision.engine,model_ai_decision_engine,base.group_user,1,1,1,1
+access_agri_ai_fertilization_decision,agri.ai.fertilization.decision,model_agri_ai_fertilization_decision,base.group_user,1,1,1,1
+access_agri_ai_health_monitoring,agri.ai.health.monitoring,model_agri_ai_health_monitoring,base.group_user,1,1,1,1
+access_mrp_production,mrp.production,model_mrp_production,base.group_user,1,1,1,1
+access_agri_ai_resource_optimization,agri.ai.resource.optimization,model_agri_ai_resource_optimization,base.group_user,1,1,1,1
+access_agri_ai_agent,agri.ai.agent,model_agri_ai_agent,base.group_user,1,1,1,1

@@ -191,8 +191,8 @@ class AgriBiologicalInventoryMixin(models.AbstractModel):
 
     animal_count = fields.Integer("Animal Count", default=0)
     average_weight = fields.Float("Avg Weight (kg)", default=0.0)
-    total_biomass = fields.Float("Total Biomass (kg)", compute='_compute_biomass', store=True)
-    mortality_rate = fields.Float("Mortality Rate (%)", compute='_compute_mortality', store=True)
+    total_biomass = fields.Float("Total Biomass (kg)", compute='_compute_biomass', store=True, precompute=True)
+    mortality_rate = fields.Float("Mortality Rate (%)", compute='_compute_mortality', store=True, precompute=True)
     dead_count = fields.Integer("Deaths Recorded", default=0)
 
     @api.depends('animal_count', 'average_weight')
@@ -222,7 +222,7 @@ class AgriTraceabilityMixin(models.AbstractModel):
     _name = 'agri.traceability.mixin'
     _description = 'Agri Traceability DNA Mixin'
 
-    traceability_hash = fields.Char("Traceability Fingerprint", compute='_compute_trace_hash', store=True)
+    traceability_hash = fields.Char("Traceability Fingerprint", compute='_compute_trace_hash', store=True, precompute=True)
 
     @api.depends('create_date', 'geo_point')
     def _compute_trace_hash(self):
@@ -348,8 +348,8 @@ class AgriBiologicalValuationMixin(models.AbstractModel):
     _name = 'agri.biological.valuation.mixin'
     _description = 'Agri Biological Asset Valuation Mixin'
 
-    fair_value_unit = fields.Float("Estimated Unit Fair Value", compute='_compute_fair_value', store=True)
-    total_asset_value = fields.Float("Total Asset Fair Value", compute='_compute_fair_value', store=True)
+    fair_value_unit = fields.Float("Estimated Unit Fair Value", compute='_compute_fair_value', store=True, precompute=True)
+    total_asset_value = fields.Float("Total Asset Fair Value", compute='_compute_fair_value', store=True, precompute=True)
     valuation_date = fields.Datetime("Last Valuation Date", default=fields.Datetime.now)
     market_peg_price = fields.Float("Market Price Reference")
 
@@ -417,7 +417,7 @@ class ClearingEngineMixin(models.AbstractModel):
     _name = 'agri.clearing.mixin'
     _description = 'Agricultural Value Clearing Mixin'
 
-    impact_credits = fields.Float("Sustainability Credits", compute="_compute_impact_credits", store=True)
+    impact_credits = fields.Float("Sustainability Credits", compute="_compute_impact_credits", store=True, precompute=True)
     quality_fingerprint = fields.Text("Quality Fingerprint")
     clearing_status = fields.Selection([('draft', 'Drafting'), ('settled', 'Settled')], default='draft')
 

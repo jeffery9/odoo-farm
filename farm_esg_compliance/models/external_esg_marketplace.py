@@ -59,9 +59,9 @@ class AgriESGMarketplace(models.Model):
     withdrawal_fee = fields.Float('Withdrawal Fee ($)', help='Fee for fund withdrawal')
 
     # Trading statistics
-    total_trades = fields.Integer('Total Trades', compute='_compute_trade_stats', store=True)
-    total_volume = fields.Float('Total Trading Volume ($)', compute='_compute_trade_stats', store=True)
-    total_products_listed = fields.Integer('Total Products Listed', compute='_compute_product_stats', store=True)
+    total_trades = fields.Integer('Total Trades', compute='_compute_trade_stats', store=True, precompute=True)
+    total_volume = fields.Float('Total Trading Volume ($)', compute='_compute_trade_stats', store=True, precompute=True)
+    total_products_listed = fields.Integer('Total Products Listed', compute='_compute_product_stats', store=True, precompute=True)
 
     # Security and access
     access_level = fields.Selection([
@@ -155,7 +155,7 @@ class AgriESGMarketplaceTrade(models.Model):
     product_category = fields.Selection(related='product_id.marketplace_category', string='Product Category', store=True)
     quantity = fields.Float('Quantity', required=True)
     unit_price = fields.Float('Unit Price ($)', required=True)
-    total_amount = fields.Float('Total Amount ($)', compute='_compute_total_amount', store=True)
+    total_amount = fields.Float('Total Amount ($)', compute='_compute_total_amount', store=True, precompute=True)
 
     # Trading parties
     buyer_partner_id = fields.Many2one('res.partner', string='Buyer', required=True)
@@ -216,8 +216,8 @@ class AgriESGMarketplaceTrade(models.Model):
         ('carbon_credit', 'Carbon Credit'),
         ('other', 'Other'),
     ], string='Payment Method', default='wire_transfer')
-    marketplace_fee = fields.Float('Marketplace Fee ($)', compute='_compute_marketplace_fee', store=True)
-    net_amount = fields.Float('Net Amount ($)', compute='_compute_net_amount', store=True)
+    marketplace_fee = fields.Float('Marketplace Fee ($)', compute='_compute_marketplace_fee', store=True, precompute=True)
+    net_amount = fields.Float('Net Amount ($)', compute='_compute_net_amount', store=True, precompute=True)
 
     @api.model
     def _generate_trade_ref(self):
@@ -337,14 +337,14 @@ class AgriWasteResourceTrade(models.Model):
 
     # Valuation
     unit_price = fields.Float('Unit Price ($/unit)', required=True)
-    total_value = fields.Float('Total Value ($)', compute='_compute_total_value', store=True)
+    total_value = fields.Float('Total Value ($)', compute='_compute_total_value', store=True, precompute=True)
     market_price_reference = fields.Char('Market Price Reference', help='Reference for the market price')
 
     # Environmental impact
     co2_reduction_potential = fields.Float('CO2 Reduction Potential (tCO2e)',
                                           help='Potential CO2 reduction if waste is properly utilized')
     sustainability_score = fields.Float('Sustainability Score (0-100)',
-                                       compute='_compute_sustainability_score', store=True)
+                                       compute='_compute_sustainability_score', store=True, precompute=True)
 
     # Trading terms
     trade_date = fields.Date('Trade Date', default=fields.Date.context_today)

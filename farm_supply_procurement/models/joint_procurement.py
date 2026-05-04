@@ -26,8 +26,8 @@ class JointProcurementConfiguration(models.Model):
         ('cancelled', 'Cancelled'),
     ], string='Status', default='draft', required=True)
     joint_procurement_orders = fields.One2many('joint.procurement.order', 'coop_config_id', string='Joint Procurement Orders')
-    total_participating_farms = fields.Integer('Total Participating Farms', compute='_compute_total_participating_farms', store=True)
-    is_active = fields.Boolean('Is Active', compute='_compute_is_active', store=True)
+    total_participating_farms = fields.Integer('Total Participating Farms', compute='_compute_total_participating_farms', store=True, precompute=True)
+    is_active = fields.Boolean('Is Active', compute='_compute_is_active', store=True, precompute=True)
 
     @api.model
     def create(self, vals):
@@ -81,7 +81,7 @@ class JointProcurementOrder(models.Model):
     ], string='Status', default='draft', required=True)
     procurement_orders = fields.One2many('purchase.order', 'joint_procurement_order_id', string='Procurement Orders')
     total_cost = fields.Float('Total Cost')
-    cost_per_farm = fields.Float('Cost Per Participating Farm', compute='_compute_cost_per_farm', store=True)
+    cost_per_farm = fields.Float('Cost Per Participating Farm', compute='_compute_cost_per_farm', store=True, precompute=True)
 
     @api.depends('total_cost', 'coop_config_id.total_participating_farms')
     def _compute_cost_per_farm(self):

@@ -47,10 +47,10 @@ class AgriCarbonNeutralGoal(models.Model):
     current_emissions = fields.Float('Current Emissions (tCO2e)',
                                     help='Current emissions level toward the goal')
     emissions_reduction_target = fields.Float('Emissions Reduction Target (tCO2e)',
-                                             compute='_compute_emissions_reduction', store=True)
+                                             compute='_compute_emissions_reduction', store=True, precompute=True)
 
     # Progress tracking
-    progress_percentage = fields.Float('Progress Percentage (%)', compute='_compute_progress', store=True)
+    progress_percentage = fields.Float('Progress Percentage (%)', compute='_compute_progress', store=True, precompute=True)
     status = fields.Selection([
         ('planned', 'Planned'),
         ('in_progress', 'In Progress'),
@@ -59,7 +59,7 @@ class AgriCarbonNeutralGoal(models.Model):
         ('delayed', 'Delayed'),
         ('completed', 'Completed'),
         ('failed', 'Failed'),
-    ], string='Status', compute='_compute_status', store=True)
+    ], string='Status', compute='_compute_status', store=True, precompute=True)
 
     # Carbon offset strategy
     offset_strategy = fields.Selection([
@@ -208,7 +208,7 @@ class AgriCarbonCredit(models.Model):
     # Credit details
     credit_quantity = fields.Float('Credit Quantity (tCO2e)', required=True)
     unit_price = fields.Float('Unit Price ($/tCO2e)')
-    total_value = fields.Float('Total Value ($)', compute='_compute_total_value', store=True)
+    total_value = fields.Float('Total Value ($)', compute='_compute_total_value', store=True, precompute=True)
     vintage_year = fields.Integer('Vintage Year', required=True,
                                  help='Year when the carbon reduction was achieved')
 
@@ -348,7 +348,7 @@ class AgriBioEnergyProduct(models.Model):
                                            help='Percentage of CO2 reduction compared to fossil fuels')
 
     # Sustainability metrics
-    sustainability_score = fields.Float('Sustainability Score (0-100)', compute='_compute_sustainability_score', store=True)
+    sustainability_score = fields.Float('Sustainability Score (0-100)', compute='_compute_sustainability_score', store=True, precompute=True)
     lifecycle_assessment = fields.Text('Lifecycle Assessment Details')
 
     # Production location

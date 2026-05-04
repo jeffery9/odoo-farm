@@ -3,3 +3,8 @@ access_farm_equipment_log,farm.equipment.log,model_farm_equipment_log,farm_core.
 access_farm_battery_user,farm.battery user,model_farm_battery,base.group_user,1,1,1,1
 access_farm_checklist_user,farm.equipment.checklist user,model_farm_equipment_checklist,base.group_user,1,1,1,1
 access_farm_checklist_line_user,farm.equipment.checklist.line user,model_farm_equipment_checklist_line,base.group_user,1,1,1,1
+access_farm_equipment_log,farm.equipment.log,model_farm_equipment_log,base.group_user,1,1,1,1
+access_farm_equipment_checklist,farm.equipment.checklist,model_farm_equipment_checklist,base.group_user,1,1,1,1
+access_maintenance_equipment,maintenance.equipment,model_maintenance_equipment,base.group_user,1,1,1,1
+access_farm_battery,farm.battery,model_farm_battery,base.group_user,1,1,1,1
+access_farm_equipment_checklist_line,farm.equipment.checklist.line,model_farm_equipment_checklist_line,base.group_user,1,1,1,1

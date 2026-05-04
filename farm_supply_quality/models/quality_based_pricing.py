@@ -137,7 +137,7 @@ class PurchaseOrderLine(models.Model):
     Extension of purchase order line to support quality-based pricing [US-009-19]
     """
     _inherit = 'purchase.order.line'
-    quality_adjustment_amount = fields.Float("Quality Adjustment Amount", compute="_compute_quality_adjustment", store=True)
+    quality_adjustment_amount = fields.Float("Quality Adjustment Amount", compute="_compute_quality_adjustment", store=True, precompute=True)
     
     @api.depends("price_subtotal")
     def _compute_quality_adjustment(self):
@@ -156,13 +156,13 @@ class PurchaseOrderLine(models.Model):
         ('standard', 'Standard'),
         ('economy', 'Economy'),
         ('reject', 'Reject'),
-    ], string='Quality Grade', compute='_compute_quality_grade', store=True)
+    ], string='Quality Grade', compute='_compute_quality_grade', store=True, precompute=True)
 
     # Quality-adjusted pricing fields
     base_unit_price = fields.Float('Base Unit Price',
                                  help='Base price before quality adjustments')
     quality_adjusted_unit_price = fields.Float('Quality Adjusted Unit Price',
-                                             compute='_compute_quality_adjusted_price', store=True)
+                                             compute='_compute_quality_adjusted_price', store=True, precompute=True)
     quality_pricing_rule_id = fields.Many2one('quality.based.pricing', string='Quality Pricing Rule')
 
     @api.depends('quality_protein_content', 'quality_moisture_content', 'quality_impurities_rate')

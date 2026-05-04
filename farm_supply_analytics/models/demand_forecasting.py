@@ -24,7 +24,7 @@ class FarmSupplyDemandForecast(models.Model):
 
     # Forecast results
     predicted_demand_qty = fields.Float("Predicted Demand")
-    current_stock_level = fields.Float("Current Stock", compute='_compute_current_stock', store=True)
+    current_stock_level = fields.Float("Current Stock", compute='_compute_current_stock', store=True, precompute=True)
     safety_stock_recommended = fields.Float("Recommended Safety Stock")
 
     # Optimization recommendations
@@ -34,10 +34,10 @@ class FarmSupplyDemandForecast(models.Model):
         ('transfer', 'Internal Transfer Recommended'),
         ('hold', 'Stock Level Optimal'),
         ('monitor', 'Monitor Closely')
-    ], string="Optimization Action", compute='_compute_optimization', store=True)
+    ], string="Optimization Action", compute='_compute_optimization', store=True, precompute=True)
 
     # Performance metrics
-    forecast_accuracy = fields.Float("Forecast Accuracy %", compute='_compute_accuracy', store=True)
+    forecast_accuracy = fields.Float("Forecast Accuracy %", compute='_compute_accuracy', store=True, precompute=True)
     confidence_level = fields.Float("Confidence Level %", default=85.0)
 
     @api.model

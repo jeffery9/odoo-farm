@@ -104,11 +104,11 @@ class ESGAssessmentLine(models.Model):
     actual_value = fields.Float('Actual Value', required=True)
     target_value = fields.Float('Target Value', related='indicator_id.target_value')
     baseline_value = fields.Float('Baseline Value', related='indicator_id.baseline_value')
-    variance = fields.Float('Variance', compute='_compute_variance', store=True)
+    variance = fields.Float('Variance', compute='_compute_variance', store=True, precompute=True)
 
     # Performance metrics
-    performance_score = fields.Float('Performance Score (0-100)', compute='_compute_performance_score', store=True)
-    achievement_percentage = fields.Float('Achievement %', compute='_compute_achievement_percentage', store=True)
+    performance_score = fields.Float('Performance Score (0-100)', compute='_compute_performance_score', store=True, precompute=True)
+    achievement_percentage = fields.Float('Achievement %', compute='_compute_achievement_percentage', store=True, precompute=True)
 
     # Data source and validation
     data_source = fields.Char('Data Source')

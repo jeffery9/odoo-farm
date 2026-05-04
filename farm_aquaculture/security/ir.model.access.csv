@@ -3,4 +3,14 @@ access_farm_aquaculture_operation,access_farm_aquaculture_operation,model_farm_a
 access_farm_water_quality_log,access_farm_water_quality_log,model_farm_water_quality_log,base.group_user,1,1,1,1
 access_farm_aquaculture_bom,farm.aquaculture.bom,model_farm_aquaculture_bom,,1,1,1,1
 access_farm_aquaculture_production,farm.aquaculture.production,model_farm_aquaculture_production,,1,1,1,1
-access_farm_aquaculture_bom_line,farm.aquaculture.bom.line,model_farm_aquaculture_bom_line,,1,1,1,1
+access_farm_aquaculture_bom_line,farm.aquaculture.bom.line,model_farm_aquaculture_bom_line,,1,1,1,1access_farm_lot_aquaculture,farm.lot.aquaculture,model_farm_lot_aquaculture,base.group_user,1,1,1,1
+access_farm_water_quality_log,farm.water.quality.log,model_farm_water_quality_log,base.group_user,1,1,1,1
+access_farm_ras_production,farm.ras.production,model_farm_ras_production,base.group_user,1,1,1,1
+access_farm_aquaculture_bom,farm.aquaculture.bom,model_farm_aquaculture_bom,base.group_user,1,1,1,1
+access_farm_aquaculture_lss,farm.aquaculture.lss,model_farm_aquaculture_lss,base.group_user,1,1,1,1
+access_mrp_bom,mrp.bom,model_mrp_bom,base.group_user,1,1,1,1
+access_farm_aquaculture_production,farm.aquaculture.production,model_farm_aquaculture_production,base.group_user,1,1,1,1
+access_farm_aquaculture_operation,farm.aquaculture.operation,model_farm_aquaculture_operation,base.group_user,1,1,1,1
+access_farm_aquaculture_bom_line,farm.aquaculture.bom.line,model_farm_aquaculture_bom_line,base.group_user,1,1,1,1
+access_mrp_production,mrp.production,model_mrp_production,base.group_user,1,1,1,1
+access_stock_lot,stock.lot,model_stock_lot,base.group_user,1,1,1,1

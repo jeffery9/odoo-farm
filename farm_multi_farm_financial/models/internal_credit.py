@@ -17,7 +17,7 @@ class InternalCredit(models.Model):
     cooperative_id = fields.Many2one("cooperative.entity", string="Cooperative", required=True)
     credit_limit = fields.Float('Credit Limit', required=True)
     utilized_amount = fields.Float('Utilized Amount', default=0.0)
-    available_amount = fields.Float('Available Amount', compute='_compute_available_amount', store=True)
+    available_amount = fields.Float('Available Amount', compute='_compute_available_amount', store=True, precompute=True)
     start_date = fields.Date('Start Date', default=fields.Date.context_today)
     end_date = fields.Date('End Date')
     interest_rate = fields.Float('Interest Rate (%)', default=0.0)

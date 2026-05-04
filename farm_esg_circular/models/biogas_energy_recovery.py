@@ -34,8 +34,8 @@ class AgriBiogasProduction(models.Model):
     methane_content = fields.Float('Methane Content (%)', help='Percentage of methane in biogas')
 
     # Energy calculation
-    energy_output_kwh = fields.Float('Energy Output (kWh)', compute='_compute_energy_output', store=True)
-    coal_equivalent_ton = fields.Float('Coal Equivalent (ton)', compute='_compute_coal_equivalent', store=True,
+    energy_output_kwh = fields.Float('Energy Output (kWh)', compute='_compute_energy_output', store=True, precompute=True)
+    coal_equivalent_ton = fields.Float('Coal Equivalent (ton)', compute='_compute_coal_equivalent', store=True, precompute=True,
                                        help='Standard coal equivalent replacement value')
 
     # Process parameters
@@ -44,7 +44,7 @@ class AgriBiogasProduction(models.Model):
     ph_level = fields.Float('pH Level')
 
     # Environmental benefits
-    co2_reduction_ton = fields.Float('CO2 Reduction Equivalent (ton)', compute='_compute_co2_reduction', store=True)
+    co2_reduction_ton = fields.Float('CO2 Reduction Equivalent (ton)', compute='_compute_co2_reduction', store=True, precompute=True)
 
     # Equipment and location
     digester_id = fields.Many2one('maintenance.equipment', string='Biogas Digester')

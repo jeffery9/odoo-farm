@@ -13,12 +13,12 @@ class ProjectTask(models.Model):
     _inherit = 'project.task'
 
     # 化肥农药使用量汇总 (kg) [US-041-06]
-    total_fertilizer_used = fields.Float("Total Fertilizer Used (kg)", compute='_compute_green_monitor_stats', store=True)
-    total_pesticide_used = fields.Float("Total Pesticide Used (kg)", compute='_compute_green_monitor_stats', store=True)
+    total_fertilizer_used = fields.Float("Total Fertilizer Used (kg)", compute='_compute_green_monitor_stats', store=True, precompute=True)
+    total_pesticide_used = fields.Float("Total Pesticide Used (kg)", compute='_compute_green_monitor_stats', store=True, precompute=True)
     
     # 单位面积使用量 (kg)
-    fertilizer_per_mu = fields.Float("Fertilizer (kg/mu)", compute='_compute_green_monitor_stats', store=True)
-    pesticide_per_mu = fields.Float("Pesticide (kg/mu)", compute='_compute_green_monitor_stats', store=True)
+    fertilizer_per_mu = fields.Float("Fertilizer (kg/mu)", compute='_compute_green_monitor_stats', store=True, precompute=True)
+    pesticide_per_mu = fields.Float("Pesticide (kg/mu)", compute='_compute_green_monitor_stats', store=True, precompute=True)
 
     @api.depends('intervention_ids.move_raw_ids.product_id.input_type', 'intervention_ids.move_raw_ids.product_uom_qty', 'size_value')
     def _compute_green_monitor_stats(self):

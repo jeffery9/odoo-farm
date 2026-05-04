@@ -16,7 +16,7 @@ class FarmExpertCall(models.Model):
     
     start_time = fields.Datetime("Start Time", default=fields.Datetime.now)
     end_time = fields.Datetime("End Time")
-    duration = fields.Integer("Duration (seconds)", compute='_compute_duration', store=True)
+    duration = fields.Integer("Duration (seconds)", compute='_compute_duration', store=True, precompute=True)
     
     call_type = fields.Selection([
         ('video', 'Video Call'),

@@ -80,8 +80,8 @@ class ProductTemplateMarketPrice(models.Model):
     _inherit = 'product.template'
 
     # Market price fields
-    market_price = fields.Float("Market Price", digits=(12, 4), compute='_compute_market_price', store=True)
-    market_price_date = fields.Date("Market Price Date", compute='_compute_market_price', store=True)
+    market_price = fields.Float("Market Price", digits=(12, 4), compute='_compute_market_price', store=True, precompute=True)
+    market_price_date = fields.Date("Market Price Date", compute='_compute_market_price', store=True, precompute=True)
     market_price_uom = fields.Many2one('uom.uom', "Market Price UOM", help="Unit of measure for market price")
 
     # Expected yield for valuation calculation

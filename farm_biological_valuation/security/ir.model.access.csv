@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_agri_valuation_biological_asset,agri.biological.asset.valuation,model_agri_biological_asset_valuation,farm_core.group_farm_worker,1,1,1,1
 access_agri_valuation_stage_coefficient,agri.valuation.stage.coefficient,model_agri_valuation_stage_coefficient,farm_core.group_farm_worker,1,1,1,1
+access_agri_valuation_stage_coefficient,agri.valuation.stage.coefficient,model_agri_valuation_stage_coefficient,base.group_user,1,1,1,1
+access_agri_biological_asset_valuation,agri.biological.asset.valuation,model_agri_biological_asset_valuation,base.group_user,1,1,1,1

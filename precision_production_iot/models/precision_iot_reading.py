@@ -10,12 +10,12 @@ class PrecisionIotReading(models.Model):
     _description = 'Precision Production IoT Reading (Integrated with Industrial IoT)'
     _order = 'read_datetime desc'
 
-    name = fields.Char('Reading Reference', compute='_compute_name', store=True)
+    name = fields.Char('Reading Reference', compute='_compute_name', store=True, precompute=True)
     device_id = fields.Many2one('precision.iot.device', string='IoT Device', required=True, ondelete='cascade')
     sensor_id = fields.Many2one('precision.iot.sensor', string='Sensor', required=True, ondelete='cascade')
     parameter_name = fields.Char(related='sensor_id.parameter_name', string='Parameter', readonly=True)
     value = fields.Float('Value', required=True)
-    uom = fields.Char('Unit of Measure', compute='_compute_uom', store=True)
+    uom = fields.Char('Unit of Measure', compute='_compute_uom', store=True, precompute=True)
     read_datetime = fields.Datetime('Reading Time', default=fields.Datetime.now, required=True)
     is_valid = fields.Boolean('Valid', default=True)
     validation_message = fields.Char('Validation Message')
@@ -28,8 +28,8 @@ class PrecisionIotReading(models.Model):
     workorder_id = fields.Many2one('mrp.workorder', string='Work Order')
 
     # Quality metrics
-    deviation_percent = fields.Float('Deviation (%)', compute='_compute_deviation', store=True)
-    is_deviation_critical = fields.Boolean('Critical Deviation', compute='_compute_deviation', store=True)
+    deviation_percent = fields.Float('Deviation (%)', compute='_compute_deviation', store=True, precompute=True)
+    is_deviation_critical = fields.Boolean('Critical Deviation', compute='_compute_deviation', store=True, precompute=True)
 
     # Raw data for debugging
     raw_data = fields.Text('Raw Data', help="Raw data received from the sensor")

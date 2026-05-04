@@ -7,3 +7,10 @@ access_project_task_land_mgmt,project.task,model_project_task,farm_core.group_fa
 access_land_health_record,farm.land.health.record,model_farm_land_health_record,farm_core.group_farm_manager,1,1,1,1
 access_crop_rotation_history,farm.land.crop.rotation.history,model_farm_land_crop_rotation_history,farm_core.group_farm_manager,1,1,1,1
 access_soil_analysis,agri.soil.analysis,model_farm_soil_analysis,farm_core.group_farm_manager,1,1,1,1
+access_project_project,project.project,model_project_project,base.group_user,1,1,1,1
+access_agri_land_health_record,agri.land.health.record,model_agri_land_health_record,base.group_user,1,1,1,1
+access_project_task,project.task,model_project_task,base.group_user,1,1,1,1
+access_farm_land_health_record,farm.land.health.record,model_farm_land_health_record,base.group_user,1,1,1,1
+access_farm_soil_analysis,farm.soil.analysis,model_farm_soil_analysis,base.group_user,1,1,1,1
+access_agri_land_crop_rotation_history,agri.land.crop.rotation.history,model_agri_land_crop_rotation_history,base.group_user,1,1,1,1
+access_farm_land_crop_rotation_history,farm.land.crop.rotation.history,model_farm_land_crop_rotation_history,base.group_user,1,1,1,1

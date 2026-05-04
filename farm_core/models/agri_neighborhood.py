@@ -16,7 +16,7 @@ class AgriNeighborhoodRegistry(models.Model):
     res_model = fields.Char("Entity Model", required=True)
     res_id = fields.Integer("Entity ID", required=True)
     
-    agent_id = fields.Char("Agent identifier", compute="_compute_agent_id", store=True)
+    agent_id = fields.Char("Agent identifier", compute="_compute_agent_id", store=True, precompute=True)
     last_seen = fields.Datetime("Last Seen", default=fields.Datetime.now)
     
     is_active = fields.Boolean("Is Active", default=True)

@@ -63,16 +63,16 @@ class AgriInterventionMixin(models.AbstractModel):
                 raise UserError(_("Graded quantities cannot be negative."))
 
     # Ekylibre Mapping: Costing [US-Mapping]
-    input_cost = fields.Float("Input Cost", compute='_compute_agri_costs', store=True)
-    tool_cost = fields.Float("Tool/Machinery Cost", compute='_compute_agri_costs', store=True)
-    doer_cost = fields.Float("Labor Cost", compute='_compute_agri_costs', store=True)
-    energy_cost = fields.Float("Energy/Utility Cost", compute='_compute_agri_costs', store=True)
-    total_agri_cost = fields.Float("Total Intervention Cost", compute='_compute_agri_costs', store=True)
+    input_cost = fields.Float("Input Cost", compute='_compute_agri_costs', store=True, precompute=True)
+    tool_cost = fields.Float("Tool/Machinery Cost", compute='_compute_agri_costs', store=True, precompute=True)
+    doer_cost = fields.Float("Labor Cost", compute='_compute_agri_costs', store=True, precompute=True)
+    energy_cost = fields.Float("Energy/Utility Cost", compute='_compute_agri_costs', store=True, precompute=True)
+    total_agri_cost = fields.Float("Total Intervention Cost", compute='_compute_agri_costs', store=True, precompute=True)
 
     # US-002-03: Soil Nutrient Inputs (RESTORED)
-    pure_n_qty = fields.Float("Pure Nitrogen (N) kg", compute='_compute_agri_costs', store=True)
-    pure_p_qty = fields.Float("Pure Phosphorus (P) kg", compute='_compute_agri_costs', store=True)
-    pure_k_qty = fields.Float("Pure Potassium (K) kg", compute='_compute_agri_costs', store=True)
+    pure_n_qty = fields.Float("Pure Nitrogen (N) kg", compute='_compute_agri_costs', store=True, precompute=True)
+    pure_p_qty = fields.Float("Pure Phosphorus (P) kg", compute='_compute_agri_costs', store=True, precompute=True)
+    pure_k_qty = fields.Float("Pure Potassium (K) kg", compute='_compute_agri_costs', store=True, precompute=True)
 
     # @api.depends('move_raw_ids.state', 'move_raw_ids.product_uom_qty', 'workorder_ids.duration', 'is_working')
     def _compute_agri_costs(self):
@@ -137,7 +137,7 @@ class AgriInterventionMixin(models.AbstractModel):
         ('ready', 'Ready'),
         ('progress', 'In Progress'),
         ('done', 'Completed'),
-    ], string="Simplified State", compute='_compute_simplified_state', store=True)
+    ], string="Simplified State", compute='_compute_simplified_state', store=True, precompute=True)
 
     # @api.depends(.state., .approval_state.)
     def _compute_simplified_state_old(self):

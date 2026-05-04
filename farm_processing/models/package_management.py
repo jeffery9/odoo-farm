@@ -15,7 +15,7 @@ class FarmPackage(models.Model):
     _rec_name = 'display_name'
 
     name = fields.Char(string='Package Reference', default=lambda self: _('New'))
-    display_name = fields.Char(string='Display Name', compute='_compute_display_name', store=True)
+    display_name = fields.Char(string='Display Name', compute='_compute_display_name', store=True, precompute=True)
     
     package_level_id = fields.Many2one('farm.package.level', string='Package Level', required=True)
     product_id = fields.Many2one('product.product', string='Contained Product', required=True)
