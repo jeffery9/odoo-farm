@@ -1,63 +1,27 @@
-# Enhanced Automated Release Script
+# Odoo Farm: 核心治理与运维脚本中心 (Operations & Maintenance Hub)
 
-This script automates the release process from the `dev` branch to the `19.0` branch according to the release SOP. It cherry-picks only non-documentation commits while excluding documentation files, and maintains tracking of which commits have been processed.
+本目录包含了用于系统升级、分支同步、代码迁移以及工业化发布的自动化脚本工具链。
 
-## Purpose
+## 目录结构 (Directory Structure)
 
-The script ensures that:
-1. Only code commits (not documentation) are transferred from `dev` to `19.0` branch
-2. Documentation files (`.md` files and `docs/` directory) are excluded from the release branch
-3. Conflicts are resolved by using the `dev` branch version (as per SOP requirement)
-4. The release branch maintains clean separation between code and documentation
-5. Commit tracking is maintained to know which commits have been processed and which remain
+### 1. `migration_tools/` (版本与架构迁移)
+包含用于架构重构和 Odoo 版本升级的补丁程序：
+*   `fix_batch8.sh`: 历史遗留的批量热修复脚本。
+*   `fix_epic_numbering.py`: 用于文档内部序号重塑的工具。
+*   `migrate_sql_constraints.py`: SQL 约束向新版迁移的工具。
+*   `odoo19_api_patch.py`: 应对 Odoo 19 API 签名变更（如 `trans_export`）的自动化注入脚本。
 
-## Prerequisites
+### 2. `release_tools/` (CI/CD 与商业发布)
+包含用于将 `dev` 分支纯净化并推向 `19.0` release 环境的工具：
+*   `release.sh`: 基础版发版工具。
+*   `enhanced_automated_release.sh`: 高级发布管道，执行诸如清理测试桩、剥离文档等纯净代码打包任务。
+*   `release_config.conf`: 发布流水线配置文件。
 
-- The `dev` and `19.0` branches must exist
-- **CRITICAL**: Run the script from OUTSIDE the repository directory to prevent branch switches from interrupting script execution
-- Ensure all changes are committed before running the script
+### 3. `sync_tools/` (分支与 Git 协同)
+包含用于多环境间隔离与同步的 Git 战术脚本：
+*   `BRANCH_SYNC_GUIDE.md`: 分支同步战术指导规范。
+*   `sync_from_clean_dev.sh`: 从稳定版本反向拉取修复。
+*   `sync_from_clean_dev_isolated.sh`: 隔离式环境同步器。
 
-## Usage
-
-```bash
-# Run the enhanced script (with tracking)
-# CRITICAL: Run this script from OUTSIDE the repository to prevent branch switches from interrupting execution
-./scripts/enhanced_automated_release.sh
-
-# Or use the simple wrapper
-# CRITICAL: Run this script from OUTSIDE the repository to prevent branch switches from interrupting execution
-./scripts/release.sh
-
-# The script will guide you through the process with confirmations
-```
-
-## What the script does
-
-1. **Validation**: Checks that required branches exist and validates current state
-2. **Commit Classification**: Identifies documentation commits (only touching `.md` files or `docs/` directory) vs code commits
-3. **Cherry-picking**: Selectively cherry-picks only code commits to the 19.0 branch
-4. **Commit Tracking**: Maintains mapping of original commits to new cherry-picked commits
-5. **Conflict Resolution**: On conflicts, uses the `dev` branch version as per SOP
-6. **Documentation Cleanup**: Removes any documentation files that might have been introduced
-7. **Tracking Report**: Generates a report showing which commits were processed and which remain
-8. **Verification**: Shows the final state and can optionally push to remote
-
-## Tracking Features
-
-The enhanced script provides:
-- **Commit Mapping**: Records the relationship between original commits and cherry-picked commits
-- **Processing Log**: Tracks which commits were successfully processed, failed, or skipped
-- **Unprocessed Report**: Shows which commits remain unprocessed after the operation
-- **Documentation Tracking**: Lists commits that were intentionally skipped as documentation
-
-## Configuration
-
-The script defaults to using the `dev` branch version in case of conflicts. Parameters can be configured in `release_config.conf`.
-
-## Notes
-
-- **CRITICAL**: Always run this script from OUTSIDE the repository to prevent branch switches from interrupting script execution. The script modifies the repository state and switching branches can interrupt access to the script itself.
-- The script creates temporary files (`doc_commits.tmp`, `code_commits.tmp`, `cherry_pick_mapping.txt`, `cherry_pick_tracking.log`) which are automatically cleaned up
-- After running, the script returns to the original branch you were on
-- Documentation files are completely removed from the 19.0 branch as per SOP
-- The tracking log (`cherry_pick_tracking.log`) shows the mapping of original commits to cherry-picked commits
+---
+> **警告 (WARNING)**: 执行上述脚本前，请务必阅读对应目录下的指引或 `POLICY.md`。部分脚本具备全局破坏性（如 AST 重写、Git Hard Reset），非框架维护者请勿随意调用。
