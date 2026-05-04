@@ -20,14 +20,14 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_supply_procurement/models/agri_purchase_covenant.py:0
 msgid "Covenant Blocked: Line %s exceeds carbon threshold."
-msgstr ""
+msgstr "契约被阻止：第 %s 行超过碳阈值。"
 
 #. module: farm_supply_procurement
 #. odoo-python
 #: code:addons/farm_supply_procurement/models/joint_procurement.py:0
 #: code:addons/farm_supply_procurement/models/vmi_management.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_supply_procurement
 #. odoo-python

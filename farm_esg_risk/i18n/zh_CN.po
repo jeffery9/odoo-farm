@@ -20,67 +20,67 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_esg_risk/models/esg_scenarios_analysis.py:0
 msgid "Confidence level must be between 0 and 100."
-msgstr ""
+msgstr "置信度必须介于 0 到 100 之间。"
 
 #. module: farm_esg_risk
 #. odoo-python
 #: code:addons/farm_esg_risk/models/esg_report_customization.py:0
 msgid "Custom metrics must be a valid JSON array or object"
-msgstr ""
+msgstr "自定义指标必须是有效的 JSON 数组或对象"
 
 #. module: farm_esg_risk
 #. odoo-python
 #: code:addons/farm_esg_risk/models/esg_report_customization.py:0
 msgid "Custom metrics must be valid JSON format"
-msgstr ""
+msgstr "自定义指标必须是有效的 JSON 格式"
 
 #. module: farm_esg_risk
 #. odoo-python
 #: code:addons/farm_esg_risk/models/esg_report_customization.py:0
 msgid "Data filters must be a valid JSON object"
-msgstr ""
+msgstr "数据过滤器必须是有效的 JSON 对象"
 
 #. module: farm_esg_risk
 #. odoo-python
 #: code:addons/farm_esg_risk/models/esg_report_customization.py:0
 msgid "Data filters must be valid JSON format"
-msgstr ""
+msgstr "数据过滤器必须是有效的 JSON 格式"
 
 #. module: farm_esg_risk
 #. odoo-python
 #: code:addons/farm_esg_risk/models/esg_scenarios_analysis.py:0
 msgid "End date must be after start date."
-msgstr ""
+msgstr "结束日期必须晚于开始日期。"
 
 #. module: farm_esg_risk
 #. odoo-python
 #: code:addons/farm_esg_risk/models/agri_esg_risk_assessment.py:0
 msgid "Environmental score must be between 0 and 100."
-msgstr ""
+msgstr "环境得分必须介于 0 到 100 之间。"
 
 #. module: farm_esg_risk
 #. odoo-python
 #: code:addons/farm_esg_risk/models/agri_esg_risk_assessment.py:0
 msgid "Governance score must be between 0 and 100."
-msgstr ""
+msgstr "治理得分必须介于 0 到 100 之间。"
 
 #. module: farm_esg_risk
 #. odoo-python
 #: code:addons/farm_esg_risk/models/esg_report_customization.py:0
 msgid "Report sections must be a valid JSON array or object"
-msgstr ""
+msgstr "报表部分必须是有效的 JSON 数组或对象"
 
 #. module: farm_esg_risk
 #. odoo-python
 #: code:addons/farm_esg_risk/models/esg_report_customization.py:0
 msgid "Report sections must be valid JSON format"
-msgstr ""
+msgstr "报告部分必须是有效的 JSON 格式"
 
 #. module: farm_esg_risk
 #. odoo-python
 #: code:addons/farm_esg_risk/models/agri_esg_risk_assessment.py:0
 msgid "Social score must be between 0 and 100."
-msgstr ""
+msgstr "社交分数必须介于 0 到 100 之间。"
 
 #. module: farm_esg_risk
 #. odoo-python

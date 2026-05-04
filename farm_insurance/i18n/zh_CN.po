@@ -20,10 +20,10 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_insurance/models/insurance_policy.py:0
 msgid "CLAIM"
-msgstr ""
+msgstr "宣称"
 
 #. module: farm_insurance
 #. odoo-python
 #: code:addons/farm_insurance/models/insurance_policy.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"

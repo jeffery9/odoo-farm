@@ -20,10 +20,10 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_financial_insurance/models/insurance_models.py:0
 msgid "CYI"
-msgstr ""
+msgstr "CYI"
 
 #. module: farm_financial_insurance
 #. odoo-python
 #: code:addons/farm_financial_insurance/models/insurance_models.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"

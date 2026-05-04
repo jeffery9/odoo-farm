@@ -25,45 +25,45 @@ msgstr "有效"
 #. module: farm_supply_core
 #: model:ir.model,name:farm_supply_core.model_agri_supply_chain_node_mixin
 msgid "Agricultural Supply Chain Node Mixin"
-msgstr ""
+msgstr "农业供应链节点Mixin"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_agri_supply_chain_node_mixin__partner_id
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_chain_node_mixin__partner_id
 msgid "Associated Partner"
-msgstr ""
+msgstr "联营合伙人"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_common_fields_mixin__batch_number
 msgid "Batch Number"
-msgstr ""
+msgstr "批号"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_common_fields_mixin__best_before_date
 msgid "Best Before Date"
-msgstr ""
+msgstr "最佳食用日期"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_common_fields_mixin__is_compliance_approved
 msgid "Compliance Approved"
-msgstr ""
+msgstr "合规性批准"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_common_fields_mixin__compliance_date
 msgid "Compliance Date"
-msgstr ""
+msgstr "合规日期"
 
 #. module: farm_supply_core
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__agri_supply_chain_node_mixin__status__critical
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__supply_chain_node_mixin__status__critical
 msgid "Critical"
-msgstr ""
+msgstr "批判的"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_agri_supply_chain_node_mixin__currency_id
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_chain_node_mixin__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "币种"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_agri_supply_chain_node_mixin__display_name
@@ -76,32 +76,32 @@ msgstr "显示名称"
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__agri_supply_chain_node_mixin__node_type__distributor
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__supply_chain_node_mixin__node_type__distributor
 msgid "Distributor"
-msgstr ""
+msgstr "经销商"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_common_fields_mixin__expiration_date
 msgid "Expiration Date"
-msgstr ""
+msgstr "过期日期"
 
 #. module: farm_supply_core
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__supply_common_fields_mixin__quality_grade__grade_a
 msgid "Grade A (Premium)"
-msgstr ""
+msgstr "A级（高级）"
 
 #. module: farm_supply_core
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__supply_common_fields_mixin__quality_grade__grade_b
 msgid "Grade B (Standard)"
-msgstr ""
+msgstr "B级（标准）"
 
 #. module: farm_supply_core
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__supply_common_fields_mixin__quality_grade__grade_c
 msgid "Grade C (Economy)"
-msgstr ""
+msgstr "C级（经济）"
 
 #. module: farm_supply_core
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__supply_common_fields_mixin__quality_grade__grade_d
 msgid "Grade D (Below Standard)"
-msgstr ""
+msgstr "D级（低于标准）"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_agri_supply_chain_node_mixin__id
@@ -114,103 +114,103 @@ msgstr "ID"
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__agri_supply_chain_node_mixin__status__inactive
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__supply_chain_node_mixin__status__inactive
 msgid "Inactive"
-msgstr ""
+msgstr "不活跃"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_agri_supply_chain_node_mixin__inventory_value
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_chain_node_mixin__inventory_value
 msgid "Inventory Value"
-msgstr ""
+msgstr "库存价值"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_agri_supply_chain_node_mixin__location_id
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_chain_node_mixin__location_id
 msgid "Location"
-msgstr ""
+msgstr "位置"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_agri_supply_chain_node_mixin__node_code
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_chain_node_mixin__node_code
 msgid "Node Code"
-msgstr ""
+msgstr "节点代码"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_agri_supply_chain_node_mixin__name
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_chain_node_mixin__name
 msgid "Node Name"
-msgstr ""
+msgstr "节点名称"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_agri_supply_chain_node_mixin__node_type
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_chain_node_mixin__node_type
 msgid "Node Type"
-msgstr ""
+msgstr "节点类型"
 
 #. module: farm_supply_core
 #: model:ir.model.constraint,message:farm_supply_core.constraint_agri_supply_chain_node_mixin_node_code_unique
 #: model:ir.model.constraint,message:farm_supply_core.constraint_supply_chain_node_mixin_node_code_unique
 msgid "Node code must be unique!"
-msgstr ""
+msgstr "节点代码必须是唯一的！"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_agri_supply_chain_node_mixin__pending_inbound
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_chain_node_mixin__pending_inbound
 msgid "Pending Inbound"
-msgstr ""
+msgstr "待处理的入境"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_agri_supply_chain_node_mixin__pending_outbound
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_chain_node_mixin__pending_outbound
 msgid "Pending Outbound"
-msgstr ""
+msgstr "待出境"
 
 #. module: farm_supply_core
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__agri_supply_chain_node_mixin__node_type__processor
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__supply_chain_node_mixin__node_type__processor
 msgid "Processor"
-msgstr ""
+msgstr "处理器"
 
 #. module: farm_supply_core
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__agri_supply_chain_node_mixin__node_type__producer
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__supply_chain_node_mixin__node_type__producer
 msgid "Producer"
-msgstr ""
+msgstr "制片人"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_common_fields_mixin__production_date
 msgid "Production Date"
-msgstr ""
+msgstr "生产日期"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_common_fields_mixin__quality_grade
 msgid "Quality Grade"
-msgstr ""
+msgstr "质量等级"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_common_fields_mixin__quality_score
 msgid "Quality Score"
-msgstr ""
+msgstr "质量得分"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,help:farm_supply_core.field_supply_common_fields_mixin__quality_score
 msgid "Quality score out of 100"
-msgstr ""
+msgstr "质量得分（满分 100 分）"
 
 #. module: farm_supply_core
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__agri_supply_chain_node_mixin__node_type__retailer
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__supply_chain_node_mixin__node_type__retailer
 msgid "Retailer"
-msgstr ""
+msgstr "零售商"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_common_fields_mixin__safety_check_required
 msgid "Safety Check Required"
-msgstr ""
+msgstr "需要安全检查"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_common_fields_mixin__shelf_life_days
 msgid "Shelf Life (Days)"
-msgstr ""
+msgstr "保质期（天）"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_agri_supply_chain_node_mixin__status
@@ -222,22 +222,22 @@ msgstr "状态"
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__agri_supply_chain_node_mixin__node_type__supplier
 #: model:ir.model.fields.selection,name:farm_supply_core.selection__supply_chain_node_mixin__node_type__supplier
 msgid "Supplier"
-msgstr ""
+msgstr "供应商"
 
 #. module: farm_supply_core
 #: model:ir.model.fields,field_description:farm_supply_core.field_supply_common_fields_mixin__supplier_lot_number
 msgid "Supplier Lot Number"
-msgstr ""
+msgstr "供应商批号"
 
 #. module: farm_supply_core
 #: model:ir.ui.menu,name:farm_supply_core.menu_supply_chain_root
 msgid "Supply Chain"
-msgstr ""
+msgstr "供应链"
 
 #. module: farm_supply_core
 #: model:ir.model,name:farm_supply_core.model_supply_common_fields_mixin
 msgid "Supply Chain Common Fields Mixin"
-msgstr ""
+msgstr "供应链常见字段混入"
 
 #. module: farm_supply_core
 #: model:ir.model,name:farm_supply_core.model_supply_chain_node_mixin

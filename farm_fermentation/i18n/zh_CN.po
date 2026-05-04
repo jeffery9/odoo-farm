@@ -20,4 +20,4 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_fermentation/models/fermentation_isl.py:0
 msgid "Pit %s internal temp critical: %s C"
-msgstr ""
+msgstr "矿坑 %s 内部温度临界：%s C"

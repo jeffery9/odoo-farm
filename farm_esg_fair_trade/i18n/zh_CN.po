@@ -20,10 +20,10 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_esg_fair_trade/models/__init__.py:0
 msgid "End date must be after start date."
-msgstr ""
+msgstr "结束日期必须晚于开始日期。"
 
 #. module: farm_esg_fair_trade
 #. odoo-python
 #: code:addons/farm_esg_fair_trade/models/__init__.py:0
 msgid "Expiry date must be after issue date."
-msgstr ""
+msgstr "到期日必须晚于发行日。"

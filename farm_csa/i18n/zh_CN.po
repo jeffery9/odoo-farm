@@ -20,34 +20,34 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_csa/models/csa_subscription.py:0
 msgid "ADOPTION: This asset has been adopted by %s."
-msgstr ""
+msgstr "采用：该资产已被 %s 采用。"
 
 #. module: farm_csa
 #. odoo-python
 #: code:addons/farm_csa/models/csa_subscription.py:0
 msgid "CSA"
-msgstr ""
+msgstr "CSA"
 
 #. module: farm_csa
 #. odoo-python
 #: code:addons/farm_csa/models/csa_subscription.py:0
 msgid "Delivery task %s generated."
-msgstr ""
+msgstr "已生成交付任务 %s。"
 
 #. module: farm_csa
 #. odoo-python
 #: code:addons/farm_csa/models/csa_subscription.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_csa
 #. odoo-python
 #: code:addons/farm_csa/models/csa_subscription.py:0
 msgid "Tool borrowed by customer %s."
-msgstr ""
+msgstr "客户 %s 借用了工具。"
 
 #. module: farm_csa
 #. odoo-python
 #: code:addons/farm_csa/models/csa_subscription.py:0
 msgid "Tool returned and available for next user."
-msgstr ""
+msgstr "工具已返回并可供下一个用户使用。"

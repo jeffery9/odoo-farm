@@ -29,19 +29,19 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_subsidy/models/subsidy.py:0
 msgid "All evidence records have been successfully verified."
-msgstr ""
+msgstr "所有证据记录均已成功核实。"
 
 #. module: farm_subsidy
 #. odoo-python
 #: code:addons/farm_subsidy/models/subsidy.py:0
 msgid "Compliance Evidence"
-msgstr ""
+msgstr "合规证据"
 
 #. module: farm_subsidy
 #. odoo-python
 #: code:addons/farm_subsidy/models/subsidy.py:0
 msgid "Compliance Handbook"
-msgstr ""
+msgstr "合规手册"
 
 #. module: farm_subsidy
 #. odoo-python
@@ -63,7 +63,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_subsidy/models/subsidy.py:0
 msgid "Evidence Integrity Issues"
-msgstr ""
+msgstr "证据完整性问题"
 
 #. module: farm_subsidy
 #. odoo-python
@@ -77,13 +77,13 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_subsidy/models/subsidy.py:0
 msgid "Integrity Verification Complete"
-msgstr ""
+msgstr "完整性验证完成"
 
 #. module: farm_subsidy
 #. odoo-python
 #: code:addons/farm_subsidy/models/subsidy.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_subsidy
 #. odoo-python
@@ -96,10 +96,10 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_subsidy/models/subsidy.py:0
 msgid "SUB"
-msgstr ""
+msgstr "子系统"
 
 #. module: farm_subsidy
 #. odoo-python
 #: code:addons/farm_subsidy/models/subsidy.py:0
 msgid "id"
-msgstr ""
+msgstr "ID"

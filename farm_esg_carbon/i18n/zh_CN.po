@@ -7,5 +7,5 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
 msgid "CO2 equivalent emissions per unit of this product."
-msgstr ""
+msgstr "每单位该产品的二氧化碳当量排放量。"
 

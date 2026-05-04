@@ -19,57 +19,57 @@ msgstr ""
 #. module: farm_data_security
 #: model:ir.model.fields.selection,name:farm_data_security.selection__farm_iot_device_registry__device_type__actuator
 msgid "Actuator"
-msgstr ""
+msgstr "执行器"
 
 #. module: farm_data_security
 #: model:ir.model,name:farm_data_security.model_farm_data_classification
 msgid "Agricultural Data Classification"
-msgstr ""
+msgstr "农业数据分类"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_iot_device_registry__auth_status
 msgid "Authentication Status"
-msgstr ""
+msgstr "认证状态"
 
 #. module: farm_data_security
 #: model_terms:ir.ui.view,arch_db:farm_data_security.view_farm_iot_device_registry_form
 msgid "Authorize Device"
-msgstr ""
+msgstr "授权设备"
 
 #. module: farm_data_security
 #: model:ir.model.fields.selection,name:farm_data_security.selection__farm_iot_device_registry__auth_status__authorized
 msgid "Authorized"
-msgstr ""
+msgstr "授权"
 
 #. module: farm_data_security
 #: model_terms:ir.ui.view,arch_db:farm_data_security.res_config_settings_view_form_data_security
 msgid "Check Localization Status"
-msgstr ""
+msgstr "检查本地化状态"
 
 #. module: farm_data_security
 #: model:ir.model.fields.selection,name:farm_data_security.selection__res_config_settings__data_storage_region__china_mainland
 msgid "China Mainland"
-msgstr ""
+msgstr "中国大陆"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_data_classification__name
 msgid "Classification Name"
-msgstr ""
+msgstr "分类名称"
 
 #. module: farm_data_security
 #: model:ir.ui.menu,name:farm_data_security.menu_farm_data_classification
 msgid "Classification Policies"
-msgstr ""
+msgstr "分类政策"
 
 #. module: farm_data_security
 #: model:ir.model,name:farm_data_security.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "配置设置"
 
 #. module: farm_data_security
 #: model:ir.model,name:farm_data_security.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "联系人"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_data_classification__create_uid
@@ -86,38 +86,38 @@ msgstr "创建时间"
 #. module: farm_data_security
 #: model:ir.model.fields.selection,name:farm_data_security.selection__farm_data_classification__level__critical
 msgid "Critical (IP)"
-msgstr ""
+msgstr "关键（IP）"
 
 #. module: farm_data_security
 #: model_terms:ir.ui.view,arch_db:farm_data_security.view_farm_data_classification_tree
 msgid "Data Classification"
-msgstr ""
+msgstr "数据分类"
 
 #. module: farm_data_security
 #: model:ir.actions.act_window,name:farm_data_security.action_farm_data_classification
 msgid "Data Classification Policies"
-msgstr ""
+msgstr "数据分类策略"
 
 #. module: farm_data_security
 #. odoo-python
 #: code:addons/farm_data_security/models/data_security.py:0
 msgid "Data Localization Check"
-msgstr ""
+msgstr "数据本地化检查"
 
 #. module: farm_data_security
 #: model:ir.ui.menu,name:farm_data_security.menu_farm_security_root
 msgid "Data Security"
-msgstr ""
+msgstr "数据安全"
 
 #. module: farm_data_security
 #: model_terms:ir.ui.view,arch_db:farm_data_security.res_config_settings_view_form_data_security
 msgid "Data Security &amp; Compliance (CN)"
-msgstr ""
+msgstr "数据安全与合规性（中国）"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_res_config_settings__data_storage_region
 msgid "Data Storage Region"
-msgstr ""
+msgstr "数据存储区域"
 
 #. module: farm_data_security
 #. odoo-python
@@ -136,7 +136,7 @@ msgstr ""
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_res_config_settings__is_dengbao_level3_compliant
 msgid "Dengbao Level 3 Compliant"
-msgstr ""
+msgstr "登堡3级标准"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_data_classification__description
@@ -146,12 +146,12 @@ msgstr "描述"
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_iot_device_registry__name
 msgid "Device Name"
-msgstr ""
+msgstr "设备名称"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_iot_device_registry__device_type
 msgid "Device Type"
-msgstr ""
+msgstr "设备类型"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_data_classification__display_name
@@ -165,27 +165,27 @@ msgstr "显示名称"
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_iot_device_registry__is_encrypted_comm
 msgid "Encrypted Communication (TLS)"
-msgstr ""
+msgstr "加密通信 (TLS)"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_data_classification__encryption_required
 msgid "Encryption Required"
-msgstr ""
+msgstr "需要加密"
 
 #. module: farm_data_security
 #: model_terms:ir.ui.view,arch_db:farm_data_security.res_config_settings_view_form_data_security
 msgid "Ensure data storage complies with China's localization requirements."
-msgstr ""
+msgstr "确保数据存储符合中国本地化要求。"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_iot_device_registry__firmware_version
 msgid "Firmware Version"
-msgstr ""
+msgstr "固件版本"
 
 #. module: farm_data_security
 #: model:ir.model.fields.selection,name:farm_data_security.selection__farm_iot_device_registry__device_type__controller
 msgid "Gateway/Controller"
-msgstr ""
+msgstr "网关/控制器"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_data_classification__id
@@ -199,39 +199,39 @@ msgstr "ID"
 #. module: farm_data_security
 #: model_terms:ir.ui.view,arch_db:farm_data_security.view_farm_iot_device_registry_form
 msgid "Identity"
-msgstr ""
+msgstr "身份"
 
 #. module: farm_data_security
 #: model:ir.model.fields.selection,name:farm_data_security.selection__farm_data_classification__level__internal
 msgid "Internal"
-msgstr ""
+msgstr "内部的"
 
 #. module: farm_data_security
 #: model:ir.model,name:farm_data_security.model_stock_location
 msgid "Inventory Locations"
-msgstr ""
+msgstr "库存地点"
 
 #. module: farm_data_security
 #: model:ir.actions.act_window,name:farm_data_security.action_farm_iot_device_registry
 #: model:ir.ui.menu,name:farm_data_security.menu_farm_iot_device_registry
 #: model_terms:ir.ui.view,arch_db:farm_data_security.view_farm_iot_device_registry_tree
 msgid "IoT Device Registry"
-msgstr ""
+msgstr "物联网设备注册表"
 
 #. module: farm_data_security
 #: model_terms:ir.ui.view,arch_db:farm_data_security.view_farm_iot_device_registry_form
 msgid "IoT Device Security"
-msgstr ""
+msgstr "物联网设备安全"
 
 #. module: farm_data_security
 #: model:ir.model,name:farm_data_security.model_farm_iot_device_registry
 msgid "IoT Device Security Registry"
-msgstr ""
+msgstr "物联网设备安全注册表"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_iot_device_registry__last_security_audit
 msgid "Last Security Audit"
-msgstr ""
+msgstr "上次安全审核"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_data_classification__write_uid
@@ -248,62 +248,62 @@ msgstr "最后更新时间"
 #. module: farm_data_security
 #: model:ir.model.fields.selection,name:farm_data_security.selection__res_config_settings__data_storage_region__overseas
 msgid "Overseas"
-msgstr ""
+msgstr "海外"
 
 #. module: farm_data_security
 #: model:ir.model.fields.selection,name:farm_data_security.selection__farm_iot_device_registry__auth_status__pending
 msgid "Pending Authentication"
-msgstr ""
+msgstr "待验证"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_iot_device_registry__device_uid
 msgid "Physical UID / MAC"
-msgstr ""
+msgstr "物理 UID/MAC"
 
 #. module: farm_data_security
 #: model:ir.model.fields.selection,name:farm_data_security.selection__farm_data_classification__level__public
 msgid "Public"
-msgstr ""
+msgstr "公开"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_data_classification__retention_period_years
 msgid "Retention Period (Years)"
-msgstr ""
+msgstr "保留期限（年）"
 
 #. module: farm_data_security
 #: model:ir.model.fields.selection,name:farm_data_security.selection__farm_iot_device_registry__auth_status__revoked
 msgid "Revoked/Blocked"
-msgstr ""
+msgstr "撤销/阻止"
 
 #. module: farm_data_security
 #: model:ir.model.fields.selection,name:farm_data_security.selection__farm_iot_device_registry__device_type__robot
 msgid "Robotic Unit"
-msgstr ""
+msgstr "机器人单元"
 
 #. module: farm_data_security
 #: model_terms:ir.ui.view,arch_db:farm_data_security.view_farm_iot_device_registry_form
 msgid "Security Params"
-msgstr ""
+msgstr "安全参数"
 
 #. module: farm_data_security
 #: model:ir.model.fields.selection,name:farm_data_security.selection__farm_data_classification__level__sensitive
 msgid "Sensitive (PII)"
-msgstr ""
+msgstr "敏感 (PII)"
 
 #. module: farm_data_security
 #: model:ir.model.fields,field_description:farm_data_security.field_farm_data_classification__level
 msgid "Sensitivity Level"
-msgstr ""
+msgstr "敏感度等级"
 
 #. module: farm_data_security
 #: model:ir.model.fields.selection,name:farm_data_security.selection__farm_iot_device_registry__device_type__sensor
 msgid "Sensor"
-msgstr ""
+msgstr "传感器"
 
 #. module: farm_data_security
 #: model_terms:ir.ui.view,arch_db:farm_data_security.view_farm_iot_device_registry_tree
 msgid "TLS"
-msgstr ""
+msgstr "传输层安全协议"
 
 #. module: farm_data_security
 #. odoo-python

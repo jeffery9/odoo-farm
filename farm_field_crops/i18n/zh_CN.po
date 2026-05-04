@@ -20,10 +20,10 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_field_crops/models/stock_lot.py:0
 msgid "Field: %s"
-msgstr ""
+msgstr "字段：%s"
 
 #. module: farm_field_crops
 #. odoo-python
 #: code:addons/farm_field_crops/models/stock_lot.py:0
 msgid "Unknown"
-msgstr ""
+msgstr "未知"

@@ -30,210 +30,210 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__access_warning
 msgid "Access warning"
-msgstr ""
+msgstr "访问警告"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_needaction
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_needaction
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "需要操作"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_hive_inspection_form
 msgid "Actions & Follow-up"
-msgstr ""
+msgstr "行动与后续行动"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_ids
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_ids
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "活动"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_exception_decoration
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_exception_decoration
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "活动异常装饰"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_state
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_state
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "活动状态"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_type_icon
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_type_icon
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "活动类型图标"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__actual_flight_area
 msgid "Actual Flown Area (mu/ha)"
-msgstr ""
+msgstr "实际飞行面积（亩/公顷）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__agent_status_feedback
 msgid "Agent Execution Status"
-msgstr ""
+msgstr "代理执行状态"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__intervention_ids
 msgid "Agri Interventions"
-msgstr ""
+msgstr "农业干预措施"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__all_move_ids
 msgid "All Move"
-msgstr ""
+msgstr "全部移动"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__all_move_raw_ids
 msgid "All Move Raw"
-msgstr ""
+msgstr "全部移动原始"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__allocated_hours
 msgid "Allocated Time"
-msgstr ""
+msgstr "分配时间"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__allow_workorder_dependencies
 msgid "Allow Work Order Dependencies"
-msgstr ""
+msgstr "允许工作订单依赖性"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__use_create_components_lots
 msgid "Allow to create new lot/serial numbers for the components"
-msgstr ""
+msgstr "允许为组件创建新的批号/序列号"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__allowed_uom_ids
 msgid "Allowed Uom"
-msgstr ""
+msgstr "允许计量单位"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__reserve_visible
 msgid "Allowed to Reserve Production"
-msgstr ""
+msgstr "允许储备生产"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__unreserve_visible
 msgid "Allowed to Unreserve Production"
-msgstr ""
+msgstr "允许取消预留生产"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__animal_count
 msgid "Animal Count"
-msgstr ""
+msgstr "动物计数"
 
 #. module: farm_apiculture
 #: model:ir.ui.menu,name:farm_apiculture.farm_apiculture_menu_root
 #: model:ir.ui.menu,name:farm_apiculture.menu_farm_apiculture_root
 msgid "Apiculture"
-msgstr ""
+msgstr "养蜂业"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
 msgid "Apiculture Information"
-msgstr ""
+msgstr "养蜂信息"
 
 #. module: farm_apiculture
 #: model:ir.actions.act_window,name:farm_apiculture.action_farm_apiculture_operations
 msgid "Apiculture Operations"
-msgstr ""
+msgstr "养蜂业务"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__approval_date
 msgid "Approval Date"
-msgstr ""
+msgstr "批准日期"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__approval_state
 msgid "Approval Status"
-msgstr ""
+msgstr "审批状态"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__approver_id
 msgid "Approver"
-msgstr ""
+msgstr "审批人"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__size_value
 msgid "Area in sqm/mu or quantity of individuals."
-msgstr ""
+msgstr "面积（平方米/亩）或人数。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__user_ids
 msgid "Assignees"
-msgstr ""
+msgstr "受让人"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__date_assign
 msgid "Assigning Date"
-msgstr ""
+msgstr "分配日期"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__evidence_ids
 msgid "Attached GPS logs, IoT sensor data, or site photos."
-msgstr ""
+msgstr "附加 GPS 日志、物联网传感器数据或现场照片。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_attachment_count
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_attachment_count
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "附件数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__attachment_ids
 msgid "Attachments that don't come from a message"
-msgstr ""
+msgstr "非来自邮件的附件"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_variant_attributes
 msgid "Attribute Values"
-msgstr ""
+msgstr "属性值"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__audit_confidence
 msgid "Audit Confidence"
-msgstr ""
+msgstr "审计信心"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__audit_status
 msgid "Audit Status"
-msgstr ""
+msgstr "审核状态"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
 msgid "Available Sources"
-msgstr ""
+msgstr "可用来源"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__avg_cost
 msgid "Average Cost"
-msgstr ""
+msgstr "平均成本"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_avg
 msgid "Average Rating"
-msgstr ""
+msgstr "平均评分"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__average_weight
 msgid "Avg Weight (kg)"
-msgstr ""
+msgstr "平均重量（公斤）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__backorder_sequence
 msgid "Backorder Sequence"
-msgstr ""
+msgstr "延期交货顺序"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__backorder_sequence
@@ -244,32 +244,32 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__lot_id
 msgid "Base Lot"
-msgstr ""
+msgstr "基本地块"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__production_id
 msgid "Base Order"
-msgstr ""
+msgstr "基本订单"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
 msgid "Bee Health Management"
-msgstr ""
+msgstr "蜜蜂健康管理"
 
 #. module: farm_apiculture
 #: model:ir.model,name:farm_apiculture.model_farm_lot_hive
 msgid "Bee Hive Asset"
-msgstr ""
+msgstr "蜂巢资产"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
 msgid "Bee Information"
-msgstr ""
+msgstr "蜜蜂信息"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__bom_id
 msgid "Bill of Material"
-msgstr ""
+msgstr "物料清单"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__bom_id
@@ -281,72 +281,72 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__biological_lot_id
 msgid "Biological Asset/Lot"
-msgstr ""
+msgstr "生物资产/批次"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__depend_on_ids
 msgid "Blocked By"
-msgstr ""
+msgstr "被阻止"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__bee_breed
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__bee_breed
 msgid "Breed"
-msgstr ""
+msgstr "品种"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
 msgid "Breeding & Reproduction"
-msgstr ""
+msgstr "育种与繁殖"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__campaign_id
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__campaign_id
 msgid "Campaign/Season"
-msgstr ""
+msgstr "活动/赛季"
 
 #. module: farm_apiculture
 #: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_hive_inspection__honey_production_stage__capping
 msgid "Capping"
-msgstr ""
+msgstr "封盖"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__carbon_intensity
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__carbon_intensity
 msgid "Carbon Footprint (kg CO2e/kg)"
-msgstr ""
+msgstr "碳足迹（千克CO2e/千克）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__cert_expiry_date
 msgid "Certification Expiry"
-msgstr ""
+msgstr "认证到期"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__clearing_status
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__clearing_status
 msgid "Clearing Status"
-msgstr ""
+msgstr "清算状态"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__closed_depend_on_count
 msgid "Closed Depending on Tasks"
-msgstr ""
+msgstr "根据任务关闭"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__is_closed
 msgid "Closed state"
-msgstr ""
+msgstr "关闭状态"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
 msgid "Colony Status"
-msgstr ""
+msgstr "殖民地状态"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__colony_strength
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__colony_strength
 msgid "Colony Strength"
-msgstr ""
+msgstr "群体强度"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__credit_score
@@ -366,27 +366,27 @@ msgstr "公司"
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__partner_company_name
 msgid "Company Name"
-msgstr ""
+msgstr "公司名称"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__components_availability
 msgid "Component Status"
-msgstr ""
+msgstr "组件状态"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__move_raw_ids
 msgid "Components"
-msgstr ""
+msgstr "成分"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__components_availability_state
 msgid "Components Availability State"
-msgstr ""
+msgstr "组件可用性状态"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__location_src_id
 msgid "Components Location"
-msgstr ""
+msgstr "组件位置"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__priority
@@ -397,42 +397,42 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__consumption
 msgid "Consumption"
-msgstr ""
+msgstr "消耗"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__partner_phone
 msgid "Contact Number"
-msgstr ""
+msgstr "联系电话"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__cooperative_purpose
 msgid "Cooperative Purpose Context"
-msgstr ""
+msgstr "合作目的背景"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__standard_price
 msgid "Cost"
-msgstr ""
+msgstr "成本"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__mrp_production_backorder_count
 msgid "Count of linked backorder"
-msgstr ""
+msgstr "链接的延期交货数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__serial_numbers_count
 msgid "Count of serial numbers"
-msgstr ""
+msgstr "序列号计数"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__displayed_image_id
 msgid "Cover Image"
-msgstr ""
+msgstr "封面图片"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__use_create_components_lots
 msgid "Create New Lots/Serial Numbers for Components"
-msgstr ""
+msgstr "为组件创建新批次/序列号"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__create_uid
@@ -451,58 +451,58 @@ msgstr "创建时间"
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__evidence_hash
 msgid "Cryptographic hash of the evidence for tamper-proof auditing."
-msgstr ""
+msgstr "用于防篡改审计的证据的加密哈希。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__cumulative_gdd
 msgid "Cumulative GDD"
-msgstr ""
+msgstr "累计开发面积"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__current_location
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__current_location
 msgid "Current Location"
-msgstr ""
+msgstr "当前位置"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__current_growth_stage_id
 msgid "Current Stage"
-msgstr ""
+msgstr "当前阶段"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_description_variants
 msgid "Custom Description"
-msgstr ""
+msgstr "定制说明"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__partner_id
 msgid "Customer"
-msgstr ""
+msgstr "客户"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__partner_name
 msgid "Customer Name"
-msgstr ""
+msgstr "客户名称"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__access_url
 msgid "Customer Portal URL"
-msgstr ""
+msgstr "客户门户网址"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__daily_temp_max
 msgid "Daily Max Temperature"
-msgstr ""
+msgstr "每日最高温度"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__daily_temp_min
 msgid "Daily Min Temperature"
-msgstr ""
+msgstr "每日最低温度"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__search_date_category
 msgid "Date Category"
-msgstr ""
+msgstr "日期类别"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__date_last_stage_update
@@ -533,38 +533,38 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__rotting_days
 msgid "Day count since this resource was last updated"
-msgstr ""
+msgstr "自上次更新该资源以来的天数"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rotting_days
 msgid "Days Rotting"
-msgstr ""
+msgstr "腐烂的日子"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__days_to_safety
 msgid "Days to Safety"
-msgstr ""
+msgstr "安全天数"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__date_deadline
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__date_deadline
 msgid "Deadline"
-msgstr ""
+msgstr "截止日期"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__dead_count
 msgid "Deaths Recorded"
-msgstr ""
+msgstr "死亡记录"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__product_uom_id
 msgid "Default unit of measure used for all stock operations."
-msgstr ""
+msgstr "用于所有库存操作的默认计量单位。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__delay_alert_date
 msgid "Delay Alert Date"
-msgstr ""
+msgstr "延迟警报日期"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__milestone_id
@@ -576,17 +576,17 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__delivery_count
 msgid "Delivery Orders"
-msgstr ""
+msgstr "交货单"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__delivery_count
 msgid "Delivery order count"
-msgstr ""
+msgstr "交货单数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__depend_on_count
 msgid "Depending on Tasks"
-msgstr ""
+msgstr "取决于任务"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__description
@@ -597,12 +597,12 @@ msgstr "描述"
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__disease_detected
 msgid "Diseases Found"
-msgstr ""
+msgstr "发现疾病"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__display_complete
 msgid "Display Complete"
-msgstr ""
+msgstr "显示完成"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__display_name
@@ -614,44 +614,44 @@ msgstr "显示名称"
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__show_lot_ids
 msgid "Display the serial number shortcut on the moves"
-msgstr ""
+msgstr "在动作上显示序列号快捷方式"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__drone_id
 msgid "Drone Used"
-msgstr ""
+msgstr "使用无人机"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__esg_score
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__esg_score
 msgid "Dynamic ESG score (0-1000) calculated by community impact."
-msgstr ""
+msgstr "按社区影响计算的动态 ESG 评分（0-1000）。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__esg_score
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__esg_score
 msgid "ESG Impact Score"
-msgstr ""
+msgstr "ESG 影响力评分"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__foraging_radius_km
 msgid "Effective Radius (km)"
-msgstr ""
+msgstr "有效半径（公里）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__electricity_consumed_kwh
 msgid "Electricity Consumed (kWh)"
-msgstr ""
+msgstr "耗电量（千瓦时）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__eligible_worker_ids
 msgid "Eligible Workers"
-msgstr ""
+msgstr "符合资格的工人"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__email_from
 msgid "Email From"
-msgstr ""
+msgstr "电子邮件发件人"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__email_cc
@@ -663,260 +663,260 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__email_cc
 msgid "Email cc"
-msgstr ""
+msgstr "电子邮件抄送"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__date_finished
 msgid "End"
-msgstr ""
+msgstr "结尾"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__repeat_until
 msgid "End Date"
-msgstr ""
+msgstr "结束日期"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__date_end
 msgid "Ending Date"
-msgstr ""
+msgstr "结束日期"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__energy_cost
 msgid "Energy/Utility Cost"
-msgstr ""
+msgstr "能源/公用事业成本"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__product_tracking
 msgid "Ensure the traceability of a storable product in your warehouse."
-msgstr ""
+msgstr "确保仓库中可存储产品的可追溯性。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__carbon_intensity
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__carbon_intensity
 msgid "Estimated carbon footprint per unit of output."
-msgstr ""
+msgstr "每单位产出的估计碳足迹。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__evidence_hash
 msgid "Evidence Hash"
-msgstr ""
+msgstr "证据哈希"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__evidence_source
 msgid "Evidence Source"
-msgstr ""
+msgstr "证据来源"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__is_verified
 msgid "Evidence Verified"
-msgstr ""
+msgstr "证据已验证"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__duration_expected
 msgid "Expected Duration"
-msgstr ""
+msgstr "预计持续时间"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__expected_yield_volume
 msgid "Expected Yield"
-msgstr ""
+msgstr "预期产量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__location_final_id
 msgid "Final Location from procurement"
-msgstr ""
+msgstr "采购最终地点"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__finished_move_line_ids
 msgid "Finished Product"
-msgstr ""
+msgstr "成品"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__move_finished_ids
 msgid "Finished Products"
-msgstr ""
+msgstr "制成品"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__location_dest_id
 msgid "Finished Products Location"
-msgstr ""
+msgstr "成品位置"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__flowering_plants
 msgid "Flowering Plants"
-msgstr ""
+msgstr "开花植物"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_follower_ids
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_follower_ids
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "关注者"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_partner_ids
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_partner_ids
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "关注者（合作伙伴）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__activity_type_icon
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__activity_type_icon
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "字体很棒的图标，例如fa 任务"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__forecasted_issue
 msgid "Forecasted Issue"
-msgstr ""
+msgstr "预测问题"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__geo_point
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__geo_point
 msgid "Format: LON,LAT"
-msgstr ""
+msgstr "格式：经纬度、纬度"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__geo_polygon
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__geo_polygon
 msgid "Format: LON,LAT;LON,LAT..."
-msgstr ""
+msgstr "格式：LON,LAT;LON,LAT..."
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__fuel_consumed_l
 msgid "Fuel Consumed (L)"
-msgstr ""
+msgstr "燃油消耗量（升）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__geo_polygon
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__geo_polygon
 msgid "Geo Boundaries (Polygon)"
-msgstr ""
+msgstr "地理边界（多边形）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__geo_point
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__geo_point
 msgid "Geo Location (Point)"
-msgstr ""
+msgstr "地理位置（点）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__queen_status__good
 msgid "Good"
-msgstr ""
+msgstr "好的"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__is_government_audited
 msgid "Government Audit Passed"
-msgstr ""
+msgstr "政府审核通过"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__grade_a_qty
 msgid "Grade A Quantity"
-msgstr ""
+msgstr "A级数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__grade_b_qty
 msgid "Grade B Quantity"
-msgstr ""
+msgstr "B级数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__grade_c_qty
 msgid "Grade C Quantity"
-msgstr ""
+msgstr "C级数量"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
 msgid "Harvest Information"
-msgstr ""
+msgstr "收获信息"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__has_message
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__has_message
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "有留言"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_hive_inspection_form
 msgid "Health Assessment"
-msgstr ""
+msgstr "健康评估"
 
 #. module: farm_apiculture
 #: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_hive_inspection__nectar_availability__high
 msgid "High"
-msgstr ""
+msgstr "高"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__html_field_history
 msgid "History data"
-msgstr ""
+msgstr "历史数据"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__html_field_history_metadata
 msgid "History metadata"
-msgstr ""
+msgstr "历史元数据"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
 msgid "Hive & Colony Management"
-msgstr ""
+msgstr "蜂巢和蜂群管理"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
 msgid "Hive Information"
-msgstr ""
+msgstr "蜂巢信息"
 
 #. module: farm_apiculture
 #: model:ir.model,name:farm_apiculture.model_farm_hive_inspection
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_hive_inspection_form
 msgid "Hive Inspection"
-msgstr ""
+msgstr "蜂巢检查"
 
 #. module: farm_apiculture
 #: model:ir.actions.act_window,name:farm_apiculture.action_farm_hive_inspections
 #: model:ir.ui.menu,name:farm_apiculture.menu_farm_hive_inspections
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_hive_inspection_tree
 msgid "Hive Inspections"
-msgstr ""
+msgstr "蜂巢检查"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
 msgid "Hive Movement"
-msgstr ""
+msgstr "蜂巢运动"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__hive_id
 msgid "Hive to Inspect"
-msgstr ""
+msgstr "蜂巢检查"
 
 #. module: farm_apiculture
 #: model:ir.model,name:farm_apiculture.model_farm_apiculture_order
 msgid "Honey Flow Production"
-msgstr ""
+msgstr "蜂蜜流程生产"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
 msgid "Honey Production"
-msgstr ""
+msgstr "蜂蜜生产"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__honey_production_rate
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__honey_production_rate
 msgid "Honey Production Rate"
-msgstr ""
+msgstr "蜂蜜生产率"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__honey_store_level
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__honey_store_level
 msgid "Honey Store Level"
-msgstr ""
+msgstr "蜂蜜商店等级"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__humidity
 msgid "Humidity"
-msgstr ""
+msgstr "湿度"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__id
@@ -930,21 +930,21 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_exception_icon
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "图标"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__activity_exception_icon
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__activity_exception_icon
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "指示异常活动的图标。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__message_needaction
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__message_needaction
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "如果选中，则有新消息需要您注意。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__message_has_error
@@ -954,12 +954,12 @@ msgstr ""
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__message_has_error
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "如果检查，则某些消息存在传送错误。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__lot_valuated
 msgid "If checked, the valuation will be specific by Lot/Serial number."
-msgstr ""
+msgstr "如果选中，估价将按批次/序列号进行具体说明。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__propagate_cancel
@@ -972,12 +972,12 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__is_working
 msgid "In Progress"
-msgstr ""
+msgstr "进行中"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__industry_type
 msgid "Industry Type"
-msgstr ""
+msgstr "行业类型"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__date_deadline
@@ -989,12 +989,12 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__input_cost
 msgid "Input Cost"
-msgstr ""
+msgstr "投入成本"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__ref
 msgid "Internal Reference"
-msgstr ""
+msgstr "内部参考"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__ref
@@ -1006,75 +1006,75 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__intervention_type
 msgid "Intervention Type"
-msgstr ""
+msgstr "干预类型"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__is_delayed
 msgid "Is Delayed"
-msgstr ""
+msgstr "延误了"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_is_follower
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_is_follower
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "是追随者"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__is_locked
 msgid "Is Locked"
-msgstr ""
+msgstr "已锁定"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__is_planned
 msgid "Its Operations are Planned"
-msgstr ""
+msgstr "其运营已计划"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__json_popover
 msgid "JSON data for the popover widget"
-msgstr ""
+msgstr "弹出窗口小部件的 JSON 数据"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__duration_tracking
 msgid "JSON that maps ids from a many2one field to seconds spent"
-msgstr ""
+msgstr "JSON 将 ids 从 Many2one 字段映射到花费的秒数"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__k_density
 msgid "K Density (kg/mu)"
-msgstr ""
+msgstr "钾密度（公斤/亩）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__doer_cost
 msgid "Labor Cost"
-msgstr ""
+msgstr "人工成本"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__worklog_ids
 msgid "Labor Worklogs"
-msgstr ""
+msgstr "劳动工作日志"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__land_parcel_id
 msgid "Land Parcel/Pond"
-msgstr ""
+msgstr "地块/池塘"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__last_harvest_date
 msgid "Last Harvest"
-msgstr ""
+msgstr "最后的收获"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__last_harvest_yield
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__last_harvest_yield
 msgid "Last Harvest Yield"
-msgstr ""
+msgstr "最后收获产量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__date_last_stage_update
 msgid "Last Stage Update"
-msgstr ""
+msgstr "最后阶段更新"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__write_uid
@@ -1100,50 +1100,50 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__gps_lat
 msgid "Latitude"
-msgstr ""
+msgstr "纬度"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__campaign_id
 msgid "Link this production task to a specific season."
-msgstr ""
+msgstr "将此生产任务链接到特定季节。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__hive_location
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__hive_location
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__location_id
 msgid "Location"
-msgstr ""
+msgstr "位置"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__location_src_id
 msgid "Location where the system will look for components."
-msgstr ""
+msgstr "系统将查找组件的位置。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__location_dest_id
 msgid "Location where the system will stock the finished products."
-msgstr ""
+msgstr "系统将存放成品的位置。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__gps_lng
 msgid "Longitude"
-msgstr ""
+msgstr "经度"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__lot_producing_ids
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__name
 msgid "Lot/Serial Number"
-msgstr ""
+msgstr "批号/序列号"
 
 #. module: farm_apiculture
 #: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_hive_inspection__nectar_availability__low
 msgid "Low"
-msgstr ""
+msgstr "低"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__reservation_state
 msgid "MO Readiness"
-msgstr ""
+msgstr "军事行动准备就绪"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__reservation_state
@@ -1156,215 +1156,215 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_hive_inspection__nectar_availability__medium
 msgid "Medium"
-msgstr ""
+msgstr "中"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_has_error
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_has_error
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "消息投递错误"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_ids
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_ids
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "消息"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__migration_schedule
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__migration_schedule
 msgid "Migration Schedule"
-msgstr ""
+msgstr "迁移时间表"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__milestone_id
 msgid "Milestone"
-msgstr ""
+msgstr "里程碑"
 
 #. module: farm_apiculture
 #: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__colony_strength__2
 msgid "Moderate"
-msgstr ""
+msgstr "缓和"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__mortality_rate
 msgid "Mortality Rate (%)"
-msgstr ""
+msgstr "死亡率（%）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__move_byproduct_ids
 msgid "Move Byproduct"
-msgstr ""
+msgstr "移动副产品"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__my_activity_date_deadline
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__my_activity_date_deadline
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "我的活动截止日期"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__n_density
 msgid "N Density (kg/mu)"
-msgstr ""
+msgstr "氮密度（公斤/亩）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__nectar_availability
 msgid "Nectar Availability"
-msgstr ""
+msgstr "花蜜供应情况"
 
 #. module: farm_apiculture
 #: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_hive_inspection__honey_production_stage__nectar
 msgid "Nectar Flow"
-msgstr ""
+msgstr "花蜜流"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
 msgid "Nectar Source Management"
-msgstr ""
+msgstr "蜜源管理"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__nectar_sources
 msgid "Nectar Sources"
-msgstr ""
+msgstr "花蜜来源"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__never_product_template_attribute_value_ids
 msgid "Never attribute values"
-msgstr ""
+msgstr "从不赋予值"
 
 #. module: farm_apiculture
 #: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__queen_status__new_queen
 msgid "New Queen"
-msgstr ""
+msgstr "新女王"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_date_deadline
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_date_deadline
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "下一个活动截止日期"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_summary
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_summary
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "下一步活动总结"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_type_id
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_type_id
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "下一个活动类型"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__nitrogen_qty
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__nitrogen_qty
 msgid "Nitrogen (N)"
-msgstr ""
+msgstr "氮 (N)"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_needaction_counter
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_needaction_counter
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "动作数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__unbuild_count
 msgid "Number of Unbuilds"
-msgstr ""
+msgstr "未构建数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_has_error_counter
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_has_error_counter
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "错误数"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__mrp_production_child_count
 msgid "Number of generated MO"
-msgstr ""
+msgstr "生成MO数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__message_needaction_counter
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__message_needaction_counter
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "需要采取行动的消息数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__message_has_error_counter
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__message_has_error_counter
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "发送错误的消息数"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__mrp_production_source_count
 msgid "Number of source MO"
-msgstr ""
+msgstr "源MO数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__out_of_bounds_count
 msgid "Number of telemetry points outside the parcel."
-msgstr ""
+msgstr "地块外部遥测点的数量。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__out_of_bounds_count
 msgid "OOB Point Count"
-msgstr ""
+msgstr "OOB 点计数"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__product_qty
 msgid "On Hand Quantity"
-msgstr ""
+msgstr "现有数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__picking_type_id
 msgid "Operation Type"
-msgstr ""
+msgstr "操作类型"
 
 #. module: farm_apiculture
 #: model:ir.ui.menu,name:farm_apiculture.menu_farm_apiculture_operations
 msgid "Operations"
-msgstr ""
+msgstr "运营"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__operator_id_card
 msgid "Operator ID Card"
-msgstr ""
+msgstr "操作员身份证"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__orderpoint_id
 msgid "Orderpoint"
-msgstr ""
+msgstr "订单点"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__carbon_content
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__carbon_content
 msgid "Organic Carbon"
-msgstr ""
+msgstr "有机碳"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__is_outdated_bom
 msgid "Outdated BoM"
-msgstr ""
+msgstr "过时的物料清单"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__p_density
 msgid "P Density (kg/mu)"
-msgstr ""
+msgstr "磷密度（公斤/亩）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__parent_id
 msgid "Parent Task"
-msgstr ""
+msgstr "父任务"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__partner_ids
@@ -1374,82 +1374,82 @@ msgstr "合作伙伴"
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__personal_stage_type_id
 msgid "Personal Stage"
-msgstr ""
+msgstr "个人舞台"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__personal_stage_id
 msgid "Personal Stage State"
-msgstr ""
+msgstr "个人阶段状态"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__pest_disease_status
 msgid "Pest/Disease Status"
-msgstr ""
+msgstr "病虫害状况"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__product_registration_no
 msgid "Pesticide or veterinary product registration number."
-msgstr ""
+msgstr "农药或兽药产品登记号。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__phosphorus_qty
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__phosphorus_qty
 msgid "Phosphorus (P)"
-msgstr ""
+msgstr "磷（P）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__evidence_ids
 msgid "Photos, IoT sensor logs, or PDF certificates."
-msgstr ""
+msgstr "照片、物联网传感器日志或 PDF 证书。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__evidence_ids
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__evidence_ids
 msgid "Physical Evidence"
-msgstr ""
+msgstr "物证"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__physiology_profile_id
 msgid "Physiology Profile"
-msgstr ""
+msgstr "生理学概况"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__picking_ids
 msgid "Picking associated to this manufacturing order"
-msgstr ""
+msgstr "与此制造订单关联的拣货"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__colony_population
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__colony_population
 msgid "Population"
-msgstr ""
+msgstr "人口"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__access_url
 msgid "Portal Access URL"
-msgstr ""
+msgstr "门户访问网址"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__potassium_qty
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__potassium_qty
 msgid "Potassium (K)"
-msgstr ""
+msgstr "钾 (K)"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__certification_type
 msgid "Primary Certification"
-msgstr ""
+msgstr "初级认证"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__priority
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__priority
 msgid "Priority"
-msgstr ""
+msgstr "优先级"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__procedure_name
 msgid "Procedure/Method"
-msgstr ""
+msgstr "程序/方法"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_id
@@ -1460,62 +1460,62 @@ msgstr "产品"
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_registration_no
 msgid "Product Registration No."
-msgstr ""
+msgstr "产品注册号"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_tmpl_id
 msgid "Product Template"
-msgstr ""
+msgstr "产品模板"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__production_capacity
 msgid "Production Capacity"
-msgstr ""
+msgstr "生产能力"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__production_group_id
 msgid "Production Group"
-msgstr ""
+msgstr "生产组"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__production_location_id
 msgid "Production Location"
-msgstr ""
+msgstr "生产地点"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__size_value
 msgid "Production Size"
-msgstr ""
+msgstr "生产规模"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__honey_production_stage
 msgid "Production Stage"
-msgstr ""
+msgstr "生产阶段"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
 msgid "Production Status"
-msgstr ""
+msgstr "生产状况"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__agri_task_id
 msgid "Production Task"
-msgstr ""
+msgstr "生产任务"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__project_id
 msgid "Project"
-msgstr ""
+msgstr "项目"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__role_ids
 msgid "Project Roles"
-msgstr ""
+msgstr "项目角色"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__project_privacy_visibility
 msgid "Project Visibility"
-msgstr ""
+msgstr "项目可见度"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__project_privacy_visibility
@@ -1539,148 +1539,148 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__propagate_cancel
 msgid "Propagate cancel and split"
-msgstr ""
+msgstr "传播取消和分裂"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__task_properties
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__lot_properties
 msgid "Properties"
-msgstr ""
+msgstr "特性"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__pure_n_qty
 msgid "Pure Nitrogen (N) kg"
-msgstr ""
+msgstr "纯氮 (N) kg"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__pure_p_qty
 msgid "Pure Phosphorus (P) kg"
-msgstr ""
+msgstr "纯磷（P）kg"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__pure_k_qty
 msgid "Pure Potassium (K) kg"
-msgstr ""
+msgstr "纯钾 (K) kg"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__quality_fingerprint
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__quality_fingerprint
 msgid "Quality Fingerprint"
-msgstr ""
+msgstr "品质指纹"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__qty_produced
 msgid "Quantity Produced"
-msgstr ""
+msgstr "生产数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__qty_producing
 msgid "Quantity Producing"
-msgstr ""
+msgstr "数量生产"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_qty
 msgid "Quantity To Produce"
-msgstr ""
+msgstr "生产数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__production_capacity
 msgid "Quantity that can be produced with the current stock of components"
-msgstr ""
+msgstr "当前库存库存可生产的数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__quant_ids
 msgid "Quants"
-msgstr ""
+msgstr "宽客"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__queen_age_months
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__queen_age_months
 msgid "Queen Age (Months)"
-msgstr ""
+msgstr "女王年龄（月）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__queen_status
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__queen_status
 msgid "Queen Status"
-msgstr ""
+msgstr "女王地位"
 
 #. module: farm_apiculture
 #: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__queen_status__queenless
 msgid "Queenless"
-msgstr ""
+msgstr "无女王"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__rue_actual
 msgid "Radiation Use Efficiency (RUE)"
-msgstr ""
+msgstr "辐射利用效率（RUE）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_avg_text
 msgid "Rating Avg Text"
-msgstr ""
+msgstr "平均评分文本"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_last_feedback
 msgid "Rating Last Feedback"
-msgstr ""
+msgstr "评级最后反馈"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_last_image
 msgid "Rating Last Image"
-msgstr ""
+msgstr "评价最后一张图片"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_last_value
 msgid "Rating Last Value"
-msgstr ""
+msgstr "评级最后值"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_percentage_satisfaction
 msgid "Rating Satisfaction"
-msgstr ""
+msgstr "评级满意度"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_last_text
 msgid "Rating Text"
-msgstr ""
+msgstr "评级文本"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_count
 msgid "Rating count"
-msgstr ""
+msgstr "评分数"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__rating_ids
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_ids
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__rating_ids
 msgid "Ratings"
-msgstr ""
+msgstr "评级"
 
 #. module: farm_apiculture
 #: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_hive_inspection__honey_production_stage__ready
 msgid "Ready for Harvest"
-msgstr ""
+msgstr "准备收获"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__duration
 msgid "Real Duration"
-msgstr ""
+msgstr "实际持续时间"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__recurrence_id
 msgid "Recurrence"
-msgstr ""
+msgstr "复发"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__recurring_task
 msgid "Recurrent"
-msgstr ""
+msgstr "复发性"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__name
 msgid "Reference"
-msgstr ""
+msgstr "参考"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__origin
@@ -1691,169 +1691,169 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__reference_ids
 msgid "References"
-msgstr ""
+msgstr "参考"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__repeat_interval
 msgid "Repeat Every"
-msgstr ""
+msgstr "重复每个"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__repeat_unit
 msgid "Repeat Unit"
-msgstr ""
+msgstr "重复单元"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__credit_score
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__credit_score
 msgid "Reputation Credit Score"
-msgstr ""
+msgstr "声誉信用评分"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__required_skill_id
 msgid "Required Skill"
-msgstr ""
+msgstr "所需技能"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__operator_id_card
 msgid "Required for pesticide/veterinary real-name registration."
-msgstr ""
+msgstr "农药/兽药实名登记所需。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__resource_intensity_score
 msgid "Resource Intensity"
-msgstr ""
+msgstr "资源强度"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__user_id
 msgid "Responsible"
-msgstr ""
+msgstr "负责人"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__assigned_cooperative_id
 msgid "Responsible Cooperative"
-msgstr ""
+msgstr "负责任的合作社"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_user_id
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_user_id
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "负责用户"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__is_rotting
 msgid "Rotting"
-msgstr ""
+msgstr "腐烂"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_has_sms_error
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_has_sms_error
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "短信投递错误"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__is_safe_to_harvest
 msgid "Safe to Harvest"
-msgstr ""
+msgstr "安全收获"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__scrap_count
 msgid "Scrap Move"
-msgstr ""
+msgstr "废品移动"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__scrap_ids
 msgid "Scraps"
-msgstr ""
+msgstr "废料"
 
 #. module: farm_apiculture
 #: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
 msgid "Seasonal Management"
-msgstr ""
+msgstr "季节性管理"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__access_token
 msgid "Security Token"
-msgstr ""
+msgstr "保安编码器"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__show_allocation
 msgid "Show Allocation"
-msgstr ""
+msgstr "显示分配"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__show_final_lots
 msgid "Show Final Lots"
-msgstr ""
+msgstr "显示最终拍品"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__show_generate_bom
 msgid "Show Generate BOM"
-msgstr ""
+msgstr "显示生成 BOM"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__show_lock
 msgid "Show Lock/unlock buttons"
-msgstr ""
+msgstr "显示锁定/解锁按钮"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__show_produce
 msgid "Show Produce"
-msgstr ""
+msgstr "展示产品"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__show_produce_all
 msgid "Show Produce All"
-msgstr ""
+msgstr "显示全部生产"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__simplified_state
 msgid "Simplified State"
-msgstr ""
+msgstr "简化状态"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__origin
 msgid "Source"
-msgstr ""
+msgstr "来源"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__sale_order_id
 msgid "Source Sale Order"
-msgstr ""
+msgstr "来源销售订单"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__spatial_compliance_rate
 msgid "Spatial Compliance (%)"
-msgstr ""
+msgstr "空间顺应性 (%)"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__spatial_grid_id
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__spatial_grid_id
 msgid "Spatial Grid ID"
-msgstr ""
+msgstr "空间网格ID"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__bee_species
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__bee_species
 msgid "Species"
-msgstr ""
+msgstr "物种"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__stage_id
 msgid "Stage"
-msgstr ""
+msgstr "阶段"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_active
 msgid "Stage Rating Status"
-msgstr ""
+msgstr "阶段评级状态"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__date_start
 msgid "Start"
-msgstr ""
+msgstr "开始"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__state
@@ -1875,27 +1875,27 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__duration_tracking
 msgid "Status time"
-msgstr ""
+msgstr "状态时间"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__move_dest_ids
 msgid "Stock Movements of Produced Goods"
-msgstr ""
+msgstr "制成品库存变动"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__biological_stress_index
 msgid "Stress Index (0-100)"
-msgstr ""
+msgstr "压力指数（0-100）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__colony_strength__3
 msgid "Strong"
-msgstr ""
+msgstr "强的"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__agent_instruction_json
 msgid "Structured Command (JSON)"
-msgstr ""
+msgstr "结构化命令 (JSON)"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__subtask_allocated_hours
@@ -1908,54 +1908,54 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__queen_status__supersedure
 msgid "Supersedure"
-msgstr ""
+msgstr "取代"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__support_id
 msgid "Support Object"
-msgstr ""
+msgstr "支持对象"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__is_eco_blocked
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__is_eco_blocked
 msgid "Sustainability Block"
-msgstr ""
+msgstr "可持续发展块"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__impact_credits
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__impact_credits
 msgid "Sustainability Credits"
-msgstr ""
+msgstr "可持续发展学分"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__is_swarm_prevented
 msgid "Swarm Control Done"
-msgstr ""
+msgstr "群体控制完成"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__tag_ids
 msgid "Tags"
-msgstr ""
+msgstr "标签"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__honey_moisture_target
 msgid "Target Moisture (%)"
-msgstr ""
+msgstr "目标水分（%）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__target_nectar_source
 msgid "Target Nectar Plant"
-msgstr ""
+msgstr "目标花蜜植物"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__task_id
 msgid "Task"
-msgstr ""
+msgstr "任务"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__recurring_count
 msgid "Tasks in Recurrence"
-msgstr ""
+msgstr "重复任务"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__show_allocation
@@ -1967,52 +1967,52 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__show_produce_all
 msgid "Technical field to check if produce all button can be shown"
-msgstr ""
+msgstr "检查生产全部按钮是否可以显示的技术字段"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__show_produce
 msgid "Technical field to check if produce button can be shown"
-msgstr ""
+msgstr "检查生产按钮是否可以显示的技术领域"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__reserve_visible
 msgid "Technical field to check when we can reserve quantities"
-msgstr ""
+msgstr "技术领域检查我们何时可以预订数量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__unreserve_visible
 msgid "Technical field to check when we can unreserve"
-msgstr ""
+msgstr "技术领域检查我们何时可以取消预订"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__temperature
 msgid "Temperature"
-msgstr ""
+msgstr "温度"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__is_outdated_bom
 msgid "The BoM has been updated since creation of the MO"
-msgstr ""
+msgstr "自 MO 创建以来，BoM 已更新"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__personal_stage_id
 msgid "The current user's personal stage."
-msgstr ""
+msgstr "当前用户的个人阶段。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__personal_stage_type_id
 msgid "The current user's personal task stage."
-msgstr ""
+msgstr "当前用户的个人任务阶段。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__support_id
 msgid "The land parcel, animal or group this task is performed on."
-msgstr ""
+msgstr "执行此任务的地块、动物或群体。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__campaign_id
 msgid "The production season this intervention belongs to."
-msgstr ""
+msgstr "此次干预所属的生产季节。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__assigned_cooperative_id
@@ -2023,150 +2023,150 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__agri_task_id
 msgid "The specific production task this intervention belongs to."
-msgstr ""
+msgstr "此次干预所属的具体生产任务。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__name
 msgid "Title"
-msgstr ""
+msgstr "标题"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__tool_cost
 msgid "Tool/Machinery Cost"
-msgstr ""
+msgstr "工具/机械成本"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__tool_ids
 msgid "Tools/Machinery"
-msgstr ""
+msgstr "工具/机械"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__total_biomass
 msgid "Total Biomass (kg)"
-msgstr ""
+msgstr "总生物质（公斤）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__total_harvested_qty
 msgid "Total Harvested (kg)"
-msgstr ""
+msgstr "总收获量（公斤）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__total_agri_cost
 msgid "Total Intervention Cost"
-msgstr ""
+msgstr "总干预成本"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__total_n
 msgid "Total Nitrogen (kg)"
-msgstr ""
+msgstr "总氮（千克）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__total_p
 msgid "Total Phosphorus (kg)"
-msgstr ""
+msgstr "总磷（千克）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__total_k
 msgid "Total Potassium (kg)"
-msgstr ""
+msgstr "总钾（公斤）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_uom_qty
 msgid "Total Quantity"
-msgstr ""
+msgstr "总量"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__total_value
 msgid "Total Value"
-msgstr ""
+msgstr "总价值"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__duration_expected
 msgid "Total expected duration (in minutes)"
-msgstr ""
+msgstr "预计总持续时间（以分钟为单位）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__duration
 msgid "Total real duration (in minutes)"
-msgstr ""
+msgstr "总实际持续时间（以分钟为单位）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__traceability_hash
 msgid "Traceability Fingerprint"
-msgstr ""
+msgstr "溯源指纹"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_tracking
 msgid "Tracking"
-msgstr ""
+msgstr "追踪"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__delivery_ids
 msgid "Transfers"
-msgstr ""
+msgstr "接送服务"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__treatment_applied
 msgid "Treatment Applied"
-msgstr ""
+msgstr "治疗应用"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__treatment_date
 msgid "Treatment Date"
-msgstr ""
+msgstr "治疗日期"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__industry_type
 msgid "Type of agricultural industry this task belongs to"
-msgstr ""
+msgstr "该任务所属的农业产业类型"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__activity_exception_decoration
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__activity_exception_decoration
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "记录的异常活动的类型。"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__unbuild_ids
 msgid "Unbuilds"
-msgstr ""
+msgstr "取消构建"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__name
 msgid "Unique Lot/Serial Number"
-msgstr ""
+msgstr "唯一批号/序列号"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_uom_id
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__product_uom_id
 msgid "Unit"
-msgstr ""
+msgstr "单元"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__repeat_type
 msgid "Until"
-msgstr ""
+msgstr "直到"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__is_certified
 msgid "Valid Certificate"
-msgstr ""
+msgstr "有效证书"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__valid_product_template_attribute_line_ids
 msgid "Valid Product Attribute Lines"
-msgstr ""
+msgstr "有效的产品属性行"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__company_currency_id
 msgid "Valuation Currency"
-msgstr ""
+msgstr "计价货币"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__lot_valuated
 msgid "Valuation by Lot/Serial"
-msgstr ""
+msgstr "按批次/序列估价"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__standard_price
@@ -2179,66 +2179,66 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__verification_at
 msgid "Verification Timestamp"
-msgstr ""
+msgstr "验证时间戳"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__verified_by_id
 msgid "Verified By"
-msgstr ""
+msgstr "验证者"
 
 #. module: farm_apiculture
 #: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__colony_strength__4
 msgid "Very Strong"
-msgstr ""
+msgstr "非常强"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__warehouse_id
 msgid "Warehouse"
-msgstr ""
+msgstr "仓库"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__water_consumed_m3
 msgid "Water Consumed (m3)"
-msgstr ""
+msgstr "耗水量（立方米）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__water_footprint
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__water_footprint
 msgid "Water Footprint (L)"
-msgstr ""
+msgstr "水足迹（L）"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__wue_actual
 msgid "Water Use Efficiency (WUE)"
-msgstr ""
+msgstr "水分利用效率 (WUE)"
 
 #. module: farm_apiculture
 #: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__colony_strength__1
 msgid "Weak"
-msgstr ""
+msgstr "虚弱的"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__weather_condition
 msgid "Weather Condition"
-msgstr ""
+msgstr "天气状况"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__weather_risk_level
 msgid "Weather Risk"
-msgstr ""
+msgstr "天气风险"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__website_message_ids
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "网站消息"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__website_message_ids
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__website_message_ids
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "网站沟通历史"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__role_ids
@@ -2251,45 +2251,45 @@ msgstr ""
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__workorder_ids
 msgid "Work Orders"
-msgstr ""
+msgstr "工单"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__work_start_datetime
 msgid "Work Start"
-msgstr ""
+msgstr "工作开始"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__workcenter_id
 msgid "Workcenter"
-msgstr ""
+msgstr "工作中心"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__working_days_open
 msgid "Working Days to Assign"
-msgstr ""
+msgstr "分配的工作日"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__working_days_close
 msgid "Working Days to Close"
-msgstr ""
+msgstr "关闭工作日"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__working_hours_open
 msgid "Working Hours to Assign"
-msgstr ""
+msgstr "分配的工作时间"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__working_hours_close
 msgid "Working Hours to Close"
-msgstr ""
+msgstr "关闭工作时间"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__procedure_name
 msgid "e.g. Mechanical sowing, manual weeding"
-msgstr ""
+msgstr "例如机械播种、人工除草"
 
 #. module: farm_apiculture
 #: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__nitrogen_qty
 #: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__nitrogen_qty
 msgid "kg per unit."
-msgstr ""
+msgstr "每单位公斤。"

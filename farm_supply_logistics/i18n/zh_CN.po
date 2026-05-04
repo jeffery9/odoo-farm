@@ -7,59 +7,59 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
 msgid "Allowed Product Categories"
-msgstr ""
+msgstr "允许的产品类别"
 
 msgid "Cooling Equipment"
-msgstr ""
+msgstr "冷却设备"
 
 msgid "Driver"
-msgstr ""
+msgstr "司机"
 
 msgid "Facility"
-msgstr ""
+msgstr "设施"
 
 msgid "Factor by which temperature affects shelf life and demand"
-msgstr ""
+msgstr "温度影响保质期和需求的因素"
 
 msgid "Harvest Lot"
-msgstr ""
+msgstr "收获地段"
 
 msgid "Inventory Item"
-msgstr ""
+msgstr "库存项目"
 
 msgid "Location"
-msgstr ""
+msgstr "位置"
 
 msgid "Lot/Serial Number"
-msgstr ""
+msgstr "批号/序列号"
 
 msgid "Primary Packaging"
-msgstr ""
+msgstr "初级包装"
 
 msgid "Product"
 msgstr "产品"
 
 msgid "Season Period"
-msgstr ""
+msgstr "季节期间"
 
 msgid "Status"
 msgstr "状态"
 
 msgid "Storage Zone"
-msgstr ""
+msgstr "储存区"
 
 msgid "Storage Zones"
-msgstr ""
+msgstr "储存区"
 
 msgid "Temperature History"
-msgstr ""
+msgstr "温度历史记录"
 
 msgid "Temperature Logs"
-msgstr ""
+msgstr "温度记录"
 
 msgid "Type"
 msgstr "类型"
 
 msgid "Vehicle"
-msgstr ""
+msgstr "车辆"
 

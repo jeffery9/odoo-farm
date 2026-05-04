@@ -3,29 +3,29 @@ msgid ""
 msgstr ""
 
 msgid "Farm Cockpit"
-msgstr ""
+msgstr "农场驾驶舱"
 
 msgid "Winemaking Dashboard"
-msgstr ""
+msgstr "酿酒仪表板"
 
 msgid "[('is_agri_activity', '=', True)]"
-msgstr ""
+msgstr "[('is_agri_activity', '=', True)]"
 
 msgid "[('process_mode', '=', 'fermentation')]"
-msgstr ""
+msgstr "[('process_mode', '=', '发酵')]"
 
 msgid "kanban,list,graph,pivot"
-msgstr ""
+msgstr "看板、列表、图表、透视"
 
 msgid "list,graph,pivot"
-msgstr ""
+msgstr "列表、图表、透视"
 
 msgid "mrp.production"
-msgstr ""
+msgstr "mrp.生产"
 
 msgid "project.task"
-msgstr ""
+msgstr "项目.任务"
 
 msgid "{'search_default_my_tasks': 1}"
-msgstr ""
+msgstr "{'search_default_my_tasks'：1}"
 

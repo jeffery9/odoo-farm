@@ -7,140 +7,140 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
 msgid "Affected Crops"
-msgstr ""
+msgstr "受影响的作物"
 
 msgid "Answer"
-msgstr ""
+msgstr "回答"
 
 msgid "Attachments"
-msgstr ""
+msgstr "附件"
 
 msgid "Author"
-msgstr ""
+msgstr "作者"
 
 msgid "Category"
-msgstr ""
+msgstr "类别"
 
 msgid "Cause/Etiology"
-msgstr ""
+msgstr "原因/病因学"
 
 msgid "Comma-separated tags for search"
-msgstr ""
+msgstr "用于搜索的逗号分隔标签"
 
 msgid "Compliance Standards"
-msgstr ""
+msgstr "合规标准"
 
 msgid "Content"
-msgstr ""
+msgstr "内容"
 
 msgid "Conventional Products"
-msgstr ""
+msgstr "常规产品"
 
 msgid "Conventional Treatment"
-msgstr ""
+msgstr "常规治疗"
 
 msgid "Crops that are typically affected by this pest/disease"
-msgstr ""
+msgstr "通常受这种害虫/疾病影响的作物"
 
 msgid "Detailed Article"
-msgstr ""
+msgstr "详细文章"
 
 msgid "Detailed Description"
-msgstr ""
+msgstr "详细说明"
 
 msgid "Difficulty Level"
-msgstr ""
+msgstr "难度等级"
 
 msgid "Helpful Count"
-msgstr ""
+msgstr "有用计数"
 
 msgid "Industry Specific"
-msgstr ""
+msgstr "行业特定"
 
 msgid "Integrated Treatment"
-msgstr ""
+msgstr "综合治疗"
 
 msgid "Knowledge Type"
-msgstr ""
+msgstr "知识类型"
 
 msgid "Monitoring Tips"
-msgstr ""
+msgstr "监控技巧"
 
 msgid "Name"
 msgstr "名称"
 
 msgid "Optimal Conditions for Development"
-msgstr ""
+msgstr "最佳发展条件"
 
 msgid "Organic/Green Products"
-msgstr ""
+msgstr "有机/绿色产品"
 
 msgid "Organic/Green Treatment"
-msgstr ""
+msgstr "有机/绿色处理"
 
 msgid "Prevention Measures"
-msgstr ""
+msgstr "预防措施"
 
 msgid "Prevention Methods"
-msgstr ""
+msgstr "预防方法"
 
 msgid "Question"
-msgstr ""
+msgstr "问题"
 
 msgid "Recommended Treatment (Technical Route)"
-msgstr ""
+msgstr "推荐治疗（技术路线）"
 
 msgid "Recommended conventional products for treatment"
-msgstr ""
+msgstr "推荐常规治疗产品"
 
 msgid "Recommended conventional treatment methods and products"
-msgstr ""
+msgstr "推荐常规治疗方法和产品"
 
 msgid "Recommended integrated pest management approach combining different methods"
-msgstr ""
+msgstr "推荐结合不同方法的害虫综合防治方法"
 
 msgid "Recommended organic or green treatment methods and products"
-msgstr ""
+msgstr "推荐的有机或绿色处理方法和产品"
 
 msgid "Recommended organic/green products for treatment"
-msgstr ""
+msgstr "推荐用于处理的有机/绿色产品"
 
 msgid "Reference Photo"
-msgstr ""
+msgstr "参考照片"
 
 msgid "Related Pest/Disease"
-msgstr ""
+msgstr "相关病虫害"
 
 msgid "Scientific Name"
-msgstr ""
+msgstr "学名"
 
 msgid "Seasonality"
-msgstr ""
+msgstr "季节性"
 
 msgid "Standards that treatments must comply with (e.g., NOP, EU Organic)"
-msgstr ""
+msgstr "处理必须遵守的标准（例如 NOP、EU Organic）"
 
 msgid "Symptoms Description"
-msgstr ""
+msgstr "症状描述"
 
 msgid "Tags"
-msgstr ""
+msgstr "标签"
 
 msgid "Technical name of the model"
-msgstr ""
+msgstr "型号的技术名称"
 
 msgid "Title"
-msgstr ""
+msgstr "标题"
 
 msgid "Typical Severity Level"
-msgstr ""
+msgstr "典型的严重级别"
 
 msgid "Typical severity level of this pest/disease"
-msgstr ""
+msgstr "该害虫/疾病的典型严重程度"
 
 msgid "Video URL"
-msgstr ""
+msgstr "视频网址"
 
 msgid "View Count"
-msgstr ""
+msgstr "查看次数"
 

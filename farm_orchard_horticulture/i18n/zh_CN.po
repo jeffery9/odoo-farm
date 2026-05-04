@@ -7,20 +7,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
 msgid "Base Order"
-msgstr ""
+msgstr "基本订单"
 
 msgid "Pruning Category"
-msgstr ""
+msgstr "修剪类别"
 
 msgid "Scope"
-msgstr ""
+msgstr "范围"
 
 msgid "Target Asset"
-msgstr ""
+msgstr "目标资产"
 
 msgid "Target Trees"
-msgstr ""
+msgstr "目标树"
 
 msgid "Variety DNA"
-msgstr ""
+msgstr "品种DNA"
 
