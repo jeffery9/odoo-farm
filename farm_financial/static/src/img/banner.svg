@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="628" height="314" viewBox="0 0 628 314" xmlns="http://www.w3.org/2000/svg">
+  <rect width="628" height="314" fill="#FFF9F2" />
+  <g transform="translate(320, -50) scale(0.85)" opacity="0.03">
+    <path fill-rule="evenodd" fill="#C9382B" d="M 395,174 58,177 42,184 29,204 25,244 46,266 149,279 315,269 313,252 260,241 87,245 76,230 91,209 243,204 339,220 356,239 360,272 346,297 329,306 169,316 53,301 6,279 12,375 95,388 379,378 391,368 Z M 386,15 375,7 354,3 299,3 298,0 277,0 264,4 127,3 29,8 19,16 13,27 7,55 3,175 7,179 19,164 42,147 110,140 316,137 362,140 392,147 393,61 Z M 342,57 340,60 342,72 340,78 332,87 319,89 260,90 230,97 169,99 167,101 158,100 155,102 141,103 94,102 71,95 63,95 55,91 38,91 29,84 29,74 37,63 45,63 55,58 63,58 82,52 95,53 134,49 197,50 228,47 261,47 311,51 326,50 Z" />
+  </g>
+  <rect x="40" y="92" width="130" height="130" rx="20" fill="white" stroke="#C9382B" stroke-width="1" />
+  <g transform="translate(51, 103) scale(0.42)">
+    <path d="M128,70 L128,170 M90,120 L166,120" stroke="#C9382B" stroke-width="20" stroke-linecap="round"/>
+    <circle cx="128" cy="120" r="40" stroke="#C9382B" stroke-width="12" fill="none"/>
+  </g>
+  <g transform="translate(190, 150)">
+    <text x="0" y="0" fill="#C9382B" font-family="'PingFang SC', 'Microsoft YaHei', 'SimHei', sans-serif" font-size="26" font-weight="bold">农业金融 | Agricultural Finance</text>
+    <text x="0" y="42" fill="#8D6E63" font-family="'PingFang SC', 'Microsoft YaHei', 'SimHei', sans-serif" font-size="14">产融结合与风险穿透 / Industry-Finance Integration</text>
+  </g>
+</svg>

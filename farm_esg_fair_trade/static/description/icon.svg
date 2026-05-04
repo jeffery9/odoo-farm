@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
-    
-        <!-- Target Ring & Red Leaf -->
-        <circle cx="128" cy="128" r="80" stroke="#8D6E63" stroke-width="10" fill="none" stroke-dasharray="20,10"/>
-        <line x1="128" y1="20" x2="128" y2="50" stroke="#C9382B" stroke-width="8" stroke-linecap="round"/>
-        <line x1="128" y1="206" x2="128" y2="236" stroke="#C9382B" stroke-width="8" stroke-linecap="round"/>
-        <line x1="20" y1="128" x2="50" y2="128" stroke="#C9382B" stroke-width="8" stroke-linecap="round"/>
-        <line x1="206" y1="128" x2="236" y2="128" stroke="#C9382B" stroke-width="8" stroke-linecap="round"/>
-        <path d="M128,155 C100,155 80,130 80,110 C80,90 100,80 128,80 C156,80 176,90 176,110 C176,130 156,155 128,155 Z" fill="#C9382B"/>
-        <circle cx="128" cy="110" r="10" fill="white"/>
-    
+    <path d="M128,60 C128,60 80,100 80,140 C80,170 100,190 128,190 C156,190 176,170 176,140 C176,100 128,60 128,60 Z" fill="#C9382B"/>
+    <circle cx="128" cy="140" r="20" fill="#FFF9F2"/>
+    <path d="M128,190 L128,220 M128,60 L128,40" stroke="#C9382B" stroke-width="8" stroke-linecap="round"/>
+    <path d="M176,140 C200,140 220,120 220,100" fill="none" stroke="#C9382B" stroke-width="8" opacity="0.4"/>
 </svg>

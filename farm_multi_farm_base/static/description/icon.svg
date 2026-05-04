@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
     
-    <circle cx="128" cy="128" r="90" fill="#C9382B"/>
-    <g transform="translate(68, 68) scale(1.2)">
-        <g transform="translate(0, 50)">
-            <path d="M5,25 L95,25 L95,45 L5,45 Z" fill="white" opacity="0.2"/>
-            <path d="M5,25 L95,25 L95,45 L5,45 Z" fill="none" stroke="white" stroke-width="2" opacity="0.6"/>
-            <path d="M25,5 L75,5 L75,25 L25,25 Z" fill="white" opacity="0.5"/>
-            <path d="M25,5 L75,5 L75,25 L25,25 Z" fill="none" stroke="white" stroke-width="2" opacity="0.8"/>
-            <line x1="50" y1="5" x2="50" y2="45" stroke="white" stroke-width="2" opacity="0.5"/>
-        </g>
-        <g transform="translate(0, -10)">
-            <path d="M50,60 L50,15" stroke="white" stroke-width="4" stroke-linecap="round"/>
-            <path d="M50,45 C50,20 65,10 80,10 C80,30 65,40 50,45 Z" fill="#C9382B" stroke="white" stroke-width="2"/>
-            <path d="M50,45 C50,25 35,15 20,15 C20,35 35,45 50,45 Z" fill="white"/>
-        </g>
-    </g>
-
+    <!-- 行业应用：六边形矩阵 (象征多行业的组合与坚固的商业模式) -->
+    <!-- 顶部六边形 -->
+    <path d="M128,40 L156,56 L156,88 L128,104 L100,88 L100,56 Z" fill="#C9382B" opacity="0.4"/>
+    <!-- 左下六边形 -->
+    <path d="M96,96 L124,112 L124,144 L96,160 L68,144 L68,112 Z" fill="#C9382B"/>
+    <!-- 右下六边形 -->
+    <path d="M160,96 L188,112 L188,144 L160,160 L132,144 L132,112 Z" fill="#C9382B"/>
+    <!-- 底部大托盘/底座 (象征平台支撑) -->
+    <path d="M80,180 L176,180 L140,210 L116,210 Z" fill="#C9382B" opacity="0.2"/>
+    <path d="M60,180 L196,180 M128,104 L128,160 M96,96 L128,115 M160,96 L128,115" stroke="#C9382B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

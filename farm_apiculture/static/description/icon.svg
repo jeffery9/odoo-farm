@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
-    
-        <g transform="translate(48, 56) scale(1.6)">
-            <!-- Isometric Data Soil -->
-            <path d="M50,15 L90,30 L50,45 L10,30 Z" fill="#8D6E63" opacity="0.3"/>
-            <path d="M50,45 L90,30 L90,45 L50,60 Z" fill="#8D6E63" opacity="0.8"/>
-            <path d="M10,30 L50,45 L50,60 L10,45 Z" fill="#8D6E63" opacity="0.6"/>
-            <path d="M50,30 L90,45 L50,60 L10,45 Z" fill="#C9382B"/>
-            <path d="M50,60 L90,45 L90,55 L50,70 Z" fill="#a0291f"/>
-            <path d="M10,45 L50,60 L50,70 L10,55 Z" fill="#b03025"/>
-            <!-- The Sprout -->
-            <path d="M50,45 C50,20 65,10 80,10 C80,30 65,40 50,45 Z" fill="white" stroke="#C9382B" stroke-width="1.5"/>
-            <path d="M50,45 C50,25 35,15 20,15 C20,35 35,45 50,45 Z" fill="#C9382B" stroke="white" stroke-width="2"/>
-        </g>
-    
+    <path d="M128,50 L168,70 L168,110 L128,130 L88,110 L88,70 Z" fill="#C9382B"/><path d="M128,130 L168,150 L168,190 L128,210 L88,190 L88,150 Z" fill="#C9382B" opacity="0.6"/><path d="M168,110 L208,130 L208,170 L168,190 L128,170 L128,130 Z" fill="#C9382B" opacity="0.4"/><path d="M88,110 L128,130 L128,170 L88,190 L48,170 L48,130 Z" fill="#C9382B" opacity="0.8"/>
 </svg>
