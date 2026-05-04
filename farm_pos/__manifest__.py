@@ -13,8 +13,7 @@
     'depends': ['farm_core', 'point_of_sale'],
     'data': [
         'security/ir.model.access.csv',
-        'views/pos_order_views.xml',
-    ],
+        ],
     'images': ['static/description/main_screenshot.png'],
     'installable': True,
     'application': False,

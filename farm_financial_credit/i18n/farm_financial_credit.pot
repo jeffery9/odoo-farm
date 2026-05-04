@@ -1,0 +1,88 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_financial_credit
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:27+0000\n"
+"PO-Revision-Date: 2026-05-04 08:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_financial_credit
+#. odoo-python
+#: code:addons/farm_financial_credit/models/carbon_credit_finance.py:0
+msgid "CCF"
+msgstr ""
+
+#. module: farm_financial_credit
+#. odoo-python
+#: code:addons/farm_financial_credit/models/agri_supply_chain_finance.py:0
+#: code:addons/farm_financial_credit/models/input_financing.py:0
+msgid "Cannot approve financing for partner with low risk score."
+msgstr ""
+
+#. module: farm_financial_credit
+#. odoo-python
+#: code:addons/farm_financial_credit/models/farm_loan.py:0
+msgid "Cannot approve loan for partner with low credit score."
+msgstr ""
+
+#. module: farm_financial_credit
+#. odoo-python
+#: code:addons/farm_financial_credit/models/futures_hedging.py:0
+msgid "FH"
+msgstr ""
+
+#. module: farm_financial_credit
+#. odoo-python
+#: code:addons/farm_financial_credit/models/industry_initialization_wizard.py:0
+msgid "Industry Initialization Complete"
+msgstr ""
+
+#. module: farm_financial_credit
+#. odoo-python
+#: code:addons/farm_financial_credit/models/livestock_asset_loan.py:0
+msgid "LAL"
+msgstr ""
+
+#. module: farm_financial_credit
+#. odoo-python
+#: code:addons/farm_financial_credit/models/farm_loan.py:0
+msgid "LOAN"
+msgstr ""
+
+#. module: farm_financial_credit
+#. odoo-python
+#: code:addons/farm_financial_credit/models/farm_loan.py:0
+msgid "Loan must be approved before disbursement."
+msgstr ""
+
+#. module: farm_financial_credit
+#. odoo-python
+#: code:addons/farm_financial_credit/models/carbon_credit_finance.py:0
+#: code:addons/farm_financial_credit/models/farm_loan.py:0
+#: code:addons/farm_financial_credit/models/futures_hedging.py:0
+#: code:addons/farm_financial_credit/models/livestock_asset_loan.py:0
+msgid "New"
+msgstr ""
+
+#. module: farm_financial_credit
+#. odoo-python
+#: code:addons/farm_financial_credit/models/credit_scoring.py:0
+msgid "SETL"
+msgstr ""
+
+#. module: farm_financial_credit
+#. odoo-python
+#: code:addons/farm_financial_credit/models/industry_initialization_wizard.py:0
+msgid ""
+"The industry-specific master data package for %s has been successfully "
+"installed."
+msgstr ""

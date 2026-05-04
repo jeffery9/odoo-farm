@@ -1,0 +1,94 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_ai_core
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:26+0000\n"
+"PO-Revision-Date: 2026-05-04 08:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_ai_core
+#. odoo-python
+#: code:addons/farm_ai_core/models/ai_services/ai_mixin_service.py:0
+msgid "AI processing failed: %s"
+msgstr ""
+
+#. module: farm_ai_core
+#. odoo-python
+#: code:addons/farm_ai_core/models/ai_base.py:0
+msgid "Accuracy must be between 0 and 100."
+msgstr ""
+
+#. module: farm_ai_core
+#. odoo-python
+#: code:addons/farm_ai_core/models/evidence_analyzer.py:0
+msgid "Audit failed: Suspected fraudulent evidence detected."
+msgstr ""
+
+#. module: farm_ai_core
+#. odoo-python
+#: code:addons/farm_ai_core/models/ai_base.py:0
+msgid "F1 Score must be between 0 and 100."
+msgstr ""
+
+#. module: farm_ai_core
+#. odoo-python
+#: code:addons/farm_ai_core/models/ai_services/ai_model_service.py:0
+msgid "Model Benchmark"
+msgstr ""
+
+#. module: farm_ai_core
+#. odoo-python
+#: code:addons/farm_ai_core/models/ai_base.py:0
+msgid "Model Evaluation"
+msgstr ""
+
+#. module: farm_ai_core
+#. odoo-python
+#: code:addons/farm_ai_core/models/ai_services/ai_model_service.py:0
+msgid "Model Export"
+msgstr ""
+
+#. module: farm_ai_core
+#. odoo-python
+#: code:addons/farm_ai_core/models/ai_services/ai_model_service.py:0
+msgid "Model Inference"
+msgstr ""
+
+#. module: farm_ai_core
+#. odoo-python
+#: code:addons/farm_ai_core/models/ai_services/ai_model_service.py:0
+msgid "Model Training"
+msgstr ""
+
+#. module: farm_ai_core
+#. odoo-python
+#: code:addons/farm_ai_core/models/ai_services/ai_model_service.py:0
+msgid "Model Visualization"
+msgstr ""
+
+#. module: farm_ai_core
+#. odoo-python
+#: code:addons/farm_ai_core/models/ai_base.py:0
+msgid "Precision must be between 0 and 100."
+msgstr ""
+
+#. module: farm_ai_core
+#. odoo-python
+#: code:addons/farm_ai_core/models/ai_base.py:0
+msgid "Recall must be between 0 and 100."
+msgstr ""
+
+#. module: farm_ai_core
+#. odoo-python
+#: code:addons/farm_ai_core/models/ai_base.py:0
+msgid "This method should be implemented by the specific AI module"
+msgstr ""

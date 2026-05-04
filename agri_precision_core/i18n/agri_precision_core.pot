@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* agri_precision_core
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:27+0000\n"
+"PO-Revision-Date: 2026-05-04 08:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: agri_precision_core
+#. odoo-python
+#: code:addons/agri_precision_core/models/odoo_app_bridge.py:0
+msgid "AGRICULTURAL INTERVENTION [%s]: %s"
+msgstr ""
+
+#. module: agri_precision_core
+#. odoo-python
+#: code:addons/agri_precision_core/models/agri_precision_mixin.py:0
+msgid "INTERVENTION [%s] applied with parameters: %s"
+msgstr ""
+
+#. module: agri_precision_core
+#. odoo-python
+#: code:addons/agri_precision_core/models/agri_precision_mixin.py:0
+msgid "IoT-Based Intervention Triggered: %s"
+msgstr ""
+
+#. module: agri_precision_core
+#. odoo-python
+#: code:addons/agri_precision_core/models/odoo_app_bridge.py:0
+msgid "PHASE INTERVENTION [%s] on Phase %s: %s"
+msgstr ""
+
+#. module: agri_precision_core
+#. odoo-python
+#: code:addons/agri_precision_core/models/odoo_app_bridge.py:0
+msgid "YIELD CALIBRATION: New expected quantity set to %s."
+msgstr ""

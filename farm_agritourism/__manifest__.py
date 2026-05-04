@@ -21,7 +21,6 @@
     'data': [
         'security/ir.model.access.csv',
         'views/farm_booking_views.xml',
-        'views/sale_order_views.xml',
         'views/agritourism_operation_views.xml',
         'views/menu.xml',
     ],
