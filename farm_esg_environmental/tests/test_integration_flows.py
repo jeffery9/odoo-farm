@@ -20,7 +20,8 @@ class TestESGRedLine(TransactionCase):
         self.assertTrue(config.exists())
         self.assertEqual(config.red_line_type, 'deforestation')
 
-    def test_02_red_line_monitoring_breach(self):
+    def test_ac_01_compliance_defense(self):
+        """ [AC 评审映射] AC1 (合规防御): 必须拦截任何违反预设环境/安全红线（Red Line）的操作 """
         """ Test ESG Red Line Monitoring evaluation """
         config = self.RedLineConfig.create({
             'name': 'Water Extraction Limit',
