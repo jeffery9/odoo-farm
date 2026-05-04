@@ -79,3 +79,11 @@
 2.  **多维投影 (Multi-Projection via Actions)**: 
     对于跨 App 使用的全局通用数据（如：员工档案、农产品字典、农场大区），绝对不允许让用户切换到“员工 App”或者“库存 App”去寻找。
     *   **实现方式**: 在各个需要使用到这些数据的 App 的 `Configuration`（配置）菜单下，直接复用 `ir.actions.act_window` 投影对应的视图。确保用户停留在当前的 App 环境中完成闭环操作。
+
+
+## 6. 与 4 层架构的 UI 映射关系 (UI Mapping to 4-Layer Architecture)
+
+我们的 UI 设计完全倒影了后端的 **4-Layer Macro Architecture**：
+*   **L0/L1 层 (底座与引擎)**: 通常在前端**不可见**，或者只作为“开发者模式”下的隐藏配置菜单存在。它们为上层提供驱动力，但不占用顶层 App 图标资源。
+*   **L2 层 (垂直行业)**: 构成了用户桌面上 90% 的 **独立 App 图标**（如：【畜牧】,【深加工】,【大田种植】）。这就是为什么我们强调 Tools Not Trees。
+*   **L3 层 (智能与合规)**: 表现为全局看板（Dashboard）或悬浮在 L2 单据之上的警告横幅（Alerts/Wizards），提供无缝的“降维打击式” UX 体验。

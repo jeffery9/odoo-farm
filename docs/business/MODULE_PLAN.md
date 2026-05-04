@@ -180,9 +180,23 @@
 | **Epic 132: 农光互补与能源微电网 (Agrivoltaics & Energy Microgrids)** | US-132-01 等 4 个 | `farm_iot`, `farm_equipment` | 🔄 敏捷推进中 |
 | **Epic 133: 机器人与无人机“蜂群”协同编队 (Swarm Robotics Coordination)** | US-133-01 等 4 个 | `farm_robotics`, `farm_ai_agent` | 🔄 敏捷推进中 |
 
-### 模块职责边界说明
-- **Base Modules**: 核心数据和基础服务
-- **Operation Modules**: 核心业务操作
-- **Technology Modules**: 技术支撑模块
-- **Business Modules**: 商业功能模块
-- **Compliance Modules**: 合规和质量模块
+### 模块职责边界说明 (4-Layer Macro Architecture)
+为了确保系统的极高解耦性和灵活的商业交付，本套件严格遵循 **4 层扁平架构** 原则：
+
+1. **Layer 0 (Foundation - 基础设施底座层)**
+   - **定位**: 系统的物理根基，无具体行业逻辑。
+   - **包含**: `farm_core`, `agri_iot`, `farm_ux`。
+   - **规则**: 不能依赖任何其他层级。
+2. **Layer 1 (Core Frameworks - 业务核心框架层)**
+   - **定位**: 抽象的业务引擎与中间件。
+   - **包含**: `farm_agri_science`, `farm_supply_core`, `precision_production`。
+   - **规则**: 仅依赖 Layer 0。
+3. **Layer 2 (Industry Apps - 垂直行业应用层)**
+   - **定位**: 具体的商业应用（种植、养殖、深加工等）。
+   - **包含**: `farm_livestock`, `farm_crop`, `farm_processing` 等绝大多数业务模块。
+   - **规则 (绝对红线)**: **本层级的模块之间严禁横向互相依赖**。必须保持完全解耦，支持独立插拔。
+4. **Layer 3 (Intelligence & Compliance - 顶层智能与合规网关)**
+   - **定位**: 全局视角的数据融合、决策与拦截。
+   - **包含**: `farm_ai_agent`, `farm_esg_compliance`, `farm_green_monitor`。
+   - **规则**: 可向下读取数据，但底层绝对不能反向依赖本层。
+
