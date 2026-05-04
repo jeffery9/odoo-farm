@@ -17,6 +17,12 @@ class VisualStatusIndicator(models.Model):
     field_name = fields.Char('Field Name', required=True, help='The field to monitor for status changes')
     evaluation_logic = fields.Text('Evaluation Logic', help='Python lambda function to evaluate status (e.g. lambda record: record.state == "done" and "green" or "red")')
     status_type = fields.Selection([
+        ('color', 'Color / Signal'),
+        ('icon', 'Icon'),
+        ('badge', 'Badge / Text'),
+    ], string='Indicator Type', default='color', required=True)
+    # Removed original field definition
+    _legacy_status_type = fields.Selection([
         ('task', 'Task Status'),
         ('quality', 'Quality Status'),
         ('safety', 'Safety Status'),
