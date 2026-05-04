@@ -48,7 +48,7 @@
 
 
 > **💡 UX 设计哲学: "工具箱, 而非百科全书" (Tools, Not Trees)**
-> 本系统彻底摒弃了传统 ERP 庞大深邃、让农民感到畏惧的“巨石型树状菜单”。我们采用现代 SaaS 的“独立工具化”设计：需要操作温室，就打开【温室应用】；需要分析病虫害，就打开【AI 视觉应用】。所有的 App 层级不超过 3 层，真正的做到了“开箱即用，降低认知负荷”。更多详见 `docs/business/UX_MENU_ARCHITECTURE_PRINCIPLES.md`。
+> 本系统彻底摒弃了传统 ERP 庞大深邃、让农民感到畏惧的“巨石型树状菜单”。我们采用现代 SaaS 的“独立工具化”设计：需要操作温室，就打开【温室应用】；需要分析病虫害，就打开【AI 视觉应用】。所有的 App 层级不超过 3 层，真正的做到了“开箱即用，降低认知负荷”。更多详见 `docs/technical/ux/UX_MENU_ARCHITECTURE_PRINCIPLES.md`。
 
 
 ### 4. 顶级菜单预览 (App Directory)
