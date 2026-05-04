@@ -4,12 +4,45 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:03+0000\n"
+"PO-Revision-Date: 2026-05-04 09:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_training
+#. odoo-python
+#: code:addons/farm_training/models/training.py:0
+msgid "ACCESS DENIED: Worker %s does not have a valid '%s' for this %s task."
+msgstr ""
+
+#. module: farm_training
+#. odoo-python
+#: code:addons/farm_training/models/training.py:0
+msgid "CERTIFICATE EXPIRING: %s for %s"
+msgstr ""
+
+#. module: farm_training
+#. odoo-python
+#: code:addons/farm_training/models/training.py:0
+msgid "The certificate will expire on %s. Please arrange for recertification."
+msgstr ""
+
+#. module: farm_training
+#. odoo-python
+#: code:addons/farm_training/models/training.py:0
+msgid ""
+"This task (%s) requires certified personnel, but no workers are assigned."
+msgstr ""
+
+#. module: farm_training
+#. odoo-python
+#: code:addons/farm_training/models/agri_skill.py:0
+msgid "Training date cannot be after expiration date."
+msgstr ""

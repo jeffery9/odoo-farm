@@ -4,12 +4,576 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:02+0000\n"
+"PO-Revision-Date: 2026-05-04 09:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist__active
+msgid "Active"
+msgstr "有效"
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields.selection,name:farm_equipment.selection__farm_battery__state__aging
+msgid "Aging"
+msgstr ""
+
+#. module: farm_equipment
+#: model_terms:ir.ui.view,arch_db:farm_equipment.hr_equipment_view_form_inherit_farm
+msgid "Agri Specs & Logs"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model,name:farm_equipment.model_farm_battery
+msgid "Agri-Drone Battery"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist__equipment_type
+msgid "Applies To"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__drone_id
+msgid "Assigned Drone"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__battery_ids
+msgid "Associated Batteries"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.ui.menu,name:farm_equipment.menu_farm_battery
+msgid "Batteries"
+msgstr ""
+
+#. module: farm_equipment
+#: model_terms:ir.ui.view,arch_db:farm_equipment.hr_equipment_view_form_inherit_farm
+msgid "Battery Packs"
+msgstr ""
+
+#. module: farm_equipment
+#. odoo-python
+#: code:addons/farm_equipment/models/farm_equipment.py:0
+msgid "Battery cycle recorded. New count: %s"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist__line_ids
+#: model_terms:ir.ui.view,arch_db:farm_equipment.farm_equipment_checklist_view_form
+msgid "Check Items"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist_line__checklist_id
+msgid "Checklist"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model,name:farm_equipment.model_farm_equipment_checklist_line
+msgid "Checklist Item"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist__name
+msgid "Checklist Name"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__create_uid
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist__create_uid
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist_line__create_uid
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__create_date
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist__create_date
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist_line__create_date
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__create_date
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__cycle_count
+msgid "Cycle Count"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields.selection,name:farm_equipment.selection__farm_battery__state__damaged
+msgid "Damaged"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__date
+msgid "Date"
+msgstr "日期"
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__max_cycles
+msgid "Design Life (Cycles)"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields.selection,name:farm_equipment.selection__maintenance_equipment__fuel_type__diesel
+msgid "Diesel"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__display_name
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist__display_name
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist_line__display_name
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__display_name
+#: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: farm_equipment
+#: model:ir.model.fields.selection,name:farm_equipment.selection__farm_equipment_checklist__equipment_type__drone
+msgid "Drone (UAV)"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.actions.act_window,name:farm_equipment.action_farm_battery
+#: model_terms:ir.ui.view,arch_db:farm_equipment.farm_battery_view_list
+msgid "Drone Batteries"
+msgstr ""
+
+#. module: farm_equipment
+#: model_terms:ir.ui.view,arch_db:farm_equipment.farm_battery_view_form
+msgid "Drone Battery"
+msgstr ""
+
+#. module: farm_equipment
+#: model_terms:ir.ui.view,arch_db:farm_equipment.hr_equipment_view_form_inherit_farm
+msgid "Drone Specs"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields.selection,name:farm_equipment.selection__maintenance_equipment__fuel_type__electric
+msgid "Electric"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__horsepower
+msgid "Engine Power (HP)"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model,name:farm_equipment.model_farm_equipment_checklist
+msgid "Equipment Pre-op Checklist"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.ui.menu,name:farm_equipment.menu_farm_equipment
+msgid "Fleet"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,help:farm_equipment.field_farm_battery__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__fuel_consumed
+msgid "Fuel Consumed (L)"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__fuel_tank_capacity
+msgid "Fuel Tank Capacity (L)"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__fuel_type
+msgid "Fuel Type"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields.selection,name:farm_equipment.selection__maintenance_equipment__fuel_type__gasoline
+msgid "Gasoline"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields.selection,name:farm_equipment.selection__farm_equipment_checklist__equipment_type__machinery
+msgid "General Machinery"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields.selection,name:farm_equipment.selection__farm_battery__state__healthy
+msgid "Good"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__current_capacity_health
+msgid "Health (%)"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__engine_hours
+msgid "Hours Used"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields.selection,name:farm_equipment.selection__maintenance_equipment__fuel_type__hybrid
+msgid "Hybrid"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__id
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist__id
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist_line__id
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__id
+#: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__id
+msgid "ID"
+msgstr "ID"
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,help:farm_equipment.field_farm_battery__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,help:farm_equipment.field_farm_battery__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,help:farm_equipment.field_farm_battery__message_has_error
+#: model:ir.model.fields,help:farm_equipment.field_farm_battery__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__is_agri_machinery
+msgid "Is Agricultural Machinery"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__is_drone
+msgid "Is Drone"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__write_uid
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist__write_uid
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist_line__write_uid
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__write_date
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist__write_date
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist_line__write_date
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__write_date
+msgid "Last Updated on"
+msgstr "最后更新时间"
+
+#. module: farm_equipment
+#: model_terms:ir.ui.view,arch_db:farm_equipment.farm_battery_view_form
+msgid "Log Cycle"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__equipment_id
+#: model:ir.ui.menu,name:farm_equipment.menu_farm_machinery_root
+msgid "Machinery"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.actions.act_window,name:farm_equipment.action_farm_equipment_log
+msgid "Machinery Logs"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model,name:farm_equipment.model_farm_equipment_log
+msgid "Machinery Usage & Fuel Log"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model,name:farm_equipment.model_maintenance_equipment
+msgid "Maintenance Equipment"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist_line__is_mandatory
+msgid "Mandatory"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__max_flight_time
+msgid "Max Flight Time (min)"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__payload_capacity
+msgid "Max Payload (kg/L)"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__notes
+msgid "Notes"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,help:farm_equipment.field_farm_battery__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,help:farm_equipment.field_farm_battery__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,help:farm_equipment.field_farm_equipment_log__engine_hours
+msgid "Operating hours for this task"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__operator_id
+msgid "Operator"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__checklist_id
+msgid "Pre-op Checklist"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__task_id
+msgid "Related Task"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist_line__requires_photo
+msgid "Require Photo Evidence"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist_line__name
+msgid "Requirement"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields.selection,name:farm_equipment.selection__farm_battery__state__retired
+msgid "Retired"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: farm_equipment
+#: model_terms:ir.ui.view,arch_db:farm_equipment.farm_equipment_checklist_view_form
+msgid "Safety Checklist"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.actions.act_window,name:farm_equipment.action_farm_equipment_checklist
+#: model:ir.ui.menu,name:farm_equipment.menu_farm_equipment_checklist
+#: model_terms:ir.ui.view,arch_db:farm_equipment.farm_equipment_checklist_view_list
+msgid "Safety Checklists"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__name
+msgid "Serial Number"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,help:farm_equipment.field_maintenance_equipment__working_width
+msgid "Spraying/Working width"
+msgstr ""
+
+#. module: farm_equipment
+#: model_terms:ir.ui.view,arch_db:farm_equipment.hr_equipment_view_form_inherit_farm
+msgid "Statistics"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__state
+msgid "Status"
+msgstr "状态"
+
+#. module: farm_equipment
+#: model:ir.model.fields,help:farm_equipment.field_farm_battery__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,help:farm_equipment.field_maintenance_equipment__payload_capacity
+msgid "Tank or hopper capacity"
+msgstr ""
+
+#. module: farm_equipment
+#: model_terms:ir.ui.view,arch_db:farm_equipment.hr_equipment_view_form_inherit_farm
+msgid "Technical Specs"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__total_engine_hours
+msgid "Total Engine Hours"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,help:farm_equipment.field_farm_battery__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: farm_equipment
+#: model_terms:ir.ui.view,arch_db:farm_equipment.hr_equipment_view_form_inherit_farm
+msgid "UAV Parameters"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__fuel_log_ids
+#: model:ir.ui.menu,name:farm_equipment.menu_farm_equipment_logs
+msgid "Usage Logs"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields.selection,name:farm_equipment.selection__farm_equipment_checklist__equipment_type__vehicle
+msgid "Vehicle"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,help:farm_equipment.field_farm_battery__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: farm_equipment
+#: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__working_width
+msgid "Working Width (m)"
+msgstr ""
+
+#. module: farm_equipment
+#: model_terms:ir.ui.view,arch_db:farm_equipment.farm_equipment_checklist_view_form
+msgid "e.g. UAV Flight Safety Check"
+msgstr ""

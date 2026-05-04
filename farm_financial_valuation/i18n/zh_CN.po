@@ -4,12 +4,58 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:02+0000\n"
+"PO-Revision-Date: 2026-05-04 09:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_financial_valuation
+#. odoo-python
+#: code:addons/farm_financial_valuation/models/financial_valuation_models.py:0
+msgid ""
+"ASSET REVALUATION: Amount %s recorded for %s. Journal entry %s created. "
+"Previous: %s, New: %s"
+msgstr ""
+
+#. module: farm_financial_valuation
+#. odoo-python
+#: code:addons/farm_financial_valuation/models/financial_valuation_models.py:0
+msgid "Financial Valuation"
+msgstr ""
+
+#. module: farm_financial_valuation
+#. odoo-python
+#: code:addons/farm_financial_valuation/models/financial_valuation_models.py:0
+msgid "Financial valuation request created for selected assets"
+msgstr ""
+
+#. module: farm_financial_valuation
+#. odoo-python
+#: code:addons/farm_financial_valuation/models/financial_valuation_models.py:0
+msgid "New"
+msgstr ""
+
+#. module: farm_financial_valuation
+#. odoo-python
+#: code:addons/farm_financial_valuation/models/financial_valuation_models.py:0
+msgid "No general journal found."
+msgstr ""
+
+#. module: farm_financial_valuation
+#. odoo-python
+#: code:addons/farm_financial_valuation/models/financial_valuation_models.py:0
+msgid "No revaluation reserve account found."
+msgstr ""
+
+#. module: farm_financial_valuation
+#. odoo-python
+#: code:addons/farm_financial_valuation/models/financial_valuation_models.py:0
+msgid "No suitable asset account found for valuation entries."
+msgstr ""

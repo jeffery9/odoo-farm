@@ -4,12 +4,86 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:02+0000\n"
+"PO-Revision-Date: 2026-05-04 09:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_greenhouse
+#. odoo-python
+#: code:addons/farm_greenhouse/models/ecommerce_integration.py:0
+msgid "API Endpoint is required"
+msgstr ""
+
+#. module: farm_greenhouse
+#. odoo-python
+#: code:addons/farm_greenhouse/models/government_reporting.py:0
+msgid "Failed to submit report to government platform: %s"
+msgstr ""
+
+#. module: farm_greenhouse
+#. odoo-python
+#: code:addons/farm_greenhouse/models/biological_twin_extension.py:0
+msgid "GDD lagging behind target rate (%.2f < %.2f)"
+msgstr ""
+
+#. module: farm_greenhouse
+#. odoo-python
+#: code:addons/farm_greenhouse/models/government_reporting.py:0
+msgid "Government Data Report"
+msgstr ""
+
+#. module: farm_greenhouse
+#. odoo-python
+#: code:addons/farm_greenhouse/models/biological_twin_extension.py:0
+msgid "L5 AUTONOMOUS: Boosting greenhouse temperature to catch up GDD."
+msgstr ""
+
+#. module: farm_greenhouse
+#. odoo-python
+#: code:addons/farm_greenhouse/models/government_reporting.py:0
+msgid "No data payload prepared. Please prepare data first."
+msgstr ""
+
+#. module: farm_greenhouse
+#. odoo-python
+#: code:addons/farm_greenhouse/models/government_reporting.py:0
+msgid "Only pending reports can be submitted. Current status: %s"
+msgstr ""
+
+#. module: farm_greenhouse
+#. odoo-python
+#: code:addons/farm_greenhouse/models/ecommerce_integration.py:0
+msgid "Please select at least one e-commerce platform"
+msgstr ""
+
+#. module: farm_greenhouse
+#. odoo-python
+#: code:addons/farm_greenhouse/models/ecommerce_integration.py:0
+msgid "Prepare E-commerce Listing"
+msgstr ""
+
+#. module: farm_greenhouse
+#. odoo-python
+#: code:addons/farm_greenhouse/models/government_reporting.py:0
+msgid "Submission failed with error: %s"
+msgstr ""
+
+#. module: farm_greenhouse
+#. odoo-python
+#: code:addons/farm_greenhouse/models/government_reporting.py:0
+msgid "Submission failed. Status: %s, Response: %s"
+msgstr ""
+
+#. module: farm_greenhouse
+#. odoo-python
+#: code:addons/farm_greenhouse/models/government_reporting.py:0
+msgid "Successfully submitted to government platform. Response: %s"
+msgstr ""
