@@ -165,7 +165,7 @@ This report covers all ESG aspects per {self.report_type.upper()} standards.
         """Publish the ESG report"""
         for record in self:
             if record.report_status != 'approved':
-                raise ValidationError("Report must be approved before publishing.")
+                raise ValidationError(_("Report must be approved before publishing."))
 
             record.write({
                 'report_status': 'published',

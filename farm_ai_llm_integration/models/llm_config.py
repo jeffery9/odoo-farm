@@ -55,7 +55,7 @@ class AgriAiLlmConfiguration(models.Model):
         """Ensure only one configuration is set as default"""
         active_defaults = self.search([('is_default', '=', True), ('is_active', '=', True)])
         if len(active_defaults) > 1:
-            raise UserError("Only one LLM configuration can be set as default.")
+            raise UserError(_("Only one LLM configuration can be set as default."))
 
     def test_connection(self):
         """

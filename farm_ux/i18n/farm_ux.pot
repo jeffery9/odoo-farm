@@ -1,0 +1,244 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_ux
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:26+0000\n"
+"PO-Revision-Date: 2026-05-04 08:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "3m ago"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Accessibility Active"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/agri_action_buttons.xml:0
+msgid "Begin recording time and GPS"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Co-op Alert"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Contextual Guidance"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Farm Hub"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Farm Hub: Help & Social"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Farm Social"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/agri_action_buttons.xml:0
+msgid "Finalize intervention"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-python
+#: code:addons/farm_ux/models/accessibility_settings.py:0
+msgid "Font scaling factor must be between 0.5 and 3.0"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Knowledge"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "No specific tips for this view."
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "No weather data for this location."
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/agri_spatial_gauge.xml:0
+msgid "OOB Points"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Operation risks detected. Check safety protocols."
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/agri_action_buttons.xml:0
+msgid "Pause/Finish recording"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/agri_action_buttons.xml:0
+msgid "START WORK"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/agri_action_buttons.xml:0
+msgid "STOP WORK"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Shared harvest equipment available in Zone B."
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Social"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/agri_spatial_gauge.xml:0
+msgid "Spatial Compliance"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-python
+#: code:addons/farm_ux/models/term_mapping.py:0
+msgid "Term mapping already exists for '%s' in this language/region context"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "UX Mode:"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/agri_spatial_gauge.xml:0
+msgid "Verified via GPS Geofencing"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Voice Command"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Warning:"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Watch Video"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Weather"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "Weather Context"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/agri_spatial_gauge.xml:0
+msgid "Within Boundaries"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-python
+#: code:addons/farm_ux/models/agri_view_mixin.py:0
+msgid "agricultural intervention"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-python
+#: code:addons/farm_ux/models/agri_view_mixin.py:0
+msgid "cultivation recipe"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-python
+#: code:addons/farm_ux/models/agri_view_mixin.py:0
+msgid "field task"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-python
+#: code:addons/farm_ux/models/agri_view_mixin.py:0
+msgid "insufficient input evidence"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "m/s"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-python
+#: code:addons/farm_ux/models/agri_view_mixin.py:0
+msgid "resource registry"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-javascript
+#: code:addons/farm_ux/static/src/xml/farm_ux_integration.xml:0
+msgid "°C"
+msgstr ""
+
+#. module: farm_ux
+#. odoo-python
+#: code:addons/farm_ux/models/agri_view_mixin.py:0
+msgid "🌱 %d Agricultural Contributions awaiting verification."
+msgstr ""

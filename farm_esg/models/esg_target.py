@@ -118,9 +118,9 @@ class ESGTarget(models.Model):
         for record in self:
             if record.start_date and record.target_date:
                 if record.start_date >= record.target_date:
-                    raise ValidationError("Target date must be after start date.")
+                    raise ValidationError(_("Target date must be after start date."))
             if record.baseline_value == record.target_value:
-                raise ValidationError("Target value should be different from baseline value to provide meaningful target.")
+                raise ValidationError(_("Target value should be different from baseline value to provide meaningful target."))
 
     def action_update_current_value(self):
         """Manual action to update current value based on related indicators"""

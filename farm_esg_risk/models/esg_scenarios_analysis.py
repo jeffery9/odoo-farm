@@ -260,7 +260,7 @@ class ESGScenariosAnalysis(models.Model):
         """Ensure end date is after start date"""
         for record in self:
             if record.start_date and record.end_date and record.start_date > record.end_date:
-                raise ValidationError("End date must be after start date.")
+                raise ValidationError(_("End date must be after start date."))
 
     @api.constrains('baseline_carbon_emissions', 'target_carbon_emissions')
     def _check_carbon_targets(self):
@@ -268,7 +268,7 @@ class ESGScenariosAnalysis(models.Model):
         for record in self:
             if record.baseline_carbon_emissions and record.target_carbon_emissions:
                 if record.scenario_type == 'carbon_footprint' and record.target_carbon_emissions > record.baseline_carbon_emissions:
-                    raise ValidationError("Target carbon emissions must be lower than baseline for carbon footprint scenarios.")
+                    raise ValidationError(_("Target carbon emissions must be lower than baseline for carbon footprint scenarios."))
 
     @api.constrains('baseline_water_usage', 'target_water_usage')
     def _check_water_targets(self):
@@ -276,14 +276,14 @@ class ESGScenariosAnalysis(models.Model):
         for record in self:
             if record.baseline_water_usage and record.target_water_usage:
                 if record.scenario_type == 'water_efficiency' and record.target_water_usage > record.baseline_water_usage:
-                    raise ValidationError("Target water usage must be lower than baseline for water efficiency scenarios.")
+                    raise ValidationError(_("Target water usage must be lower than baseline for water efficiency scenarios."))
 
     @api.constrains('confidence_level')
     def _check_confidence_level(self):
         """Ensure confidence level is within valid range"""
         for record in self:
             if record.confidence_level and (record.confidence_level < 0 or record.confidence_level > 100):
-                raise ValidationError("Confidence level must be between 0 and 100.")
+                raise ValidationError(_("Confidence level must be between 0 and 100."))
 
     @api.model
     def create(self, vals):

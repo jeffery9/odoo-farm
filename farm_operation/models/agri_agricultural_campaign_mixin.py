@@ -63,4 +63,4 @@ class AgriAgriculturalCampaignMixin(models.AbstractModel):
         """Validate that campaign dates are logical"""
         for record in self:
             if record.date_start and record.date_end and record.date_start > record.date_end:
-                raise ValidationError("Campaign start date must be before end date.")
+                raise ValidationError(_("Campaign start date must be before end date."))

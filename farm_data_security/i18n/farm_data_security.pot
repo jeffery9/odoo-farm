@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_data_security
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:26+0000\n"
+"PO-Revision-Date: 2026-05-04 08:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_data_security
+#. odoo-python
+#: code:addons/farm_data_security/models/data_security.py:0
+msgid "Data Localization Check"
+msgstr ""
+
+#. module: farm_data_security
+#. odoo-python
+#: code:addons/farm_data_security/models/data_security.py:0
+msgid ""
+"Data localization check passed: Configured for China Mainland deployment."
+msgstr ""
+
+#. module: farm_data_security
+#. odoo-python
+#: code:addons/farm_data_security/models/data_security.py:0
+msgid ""
+"WARNING: Data is configured for Overseas storage. May not meet China "
+"localization requirements."
+msgstr ""

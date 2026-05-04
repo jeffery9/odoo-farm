@@ -51,14 +51,14 @@ class AgriAiLlmService(models.Model):
         Main method to call LLM API with the given prompt
         """
         if not self.config_id.is_active:
-            raise UserError("LLM configuration is not active")
+            raise UserError(_("LLM configuration is not active"))
 
         if self.config_id.use_agricultural_context:
             prompt = self._enhance_prompt_with_ag_context(prompt, context_data)
 
         model = model_override or self.config_id.default_model
         if not model:
-            raise UserError("No model specified and no default model configured")
+            raise UserError(_("No model specified and no default model configured"))
 
         if self.config_id.provider == 'openai':
             return self._call_openai_api(prompt, model)
@@ -318,7 +318,7 @@ class AgriAiLlmService(models.Model):
     @rate_limit(calls_per_minute=60)
     def _call_custom_api(self, prompt, model):
         if not self.config_id.api_base_url:
-            raise UserError("Custom API base URL not configured")
+            raise UserError(_("Custom API base URL not configured"))
         headers = {
             'Authorization': f'Bearer {self.config_id.api_key}',
             'Content-Type': 'application/json'

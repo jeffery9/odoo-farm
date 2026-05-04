@@ -88,7 +88,7 @@ class ESGIndicator(models.Model):
         for record in self:
             if (record.min_acceptable_value and record.max_acceptable_value and
                 record.min_acceptable_value > record.max_acceptable_value):
-                raise ValidationError("Minimum acceptable value cannot be greater than maximum acceptable value.")
+                raise ValidationError(_("Minimum acceptable value cannot be greater than maximum acceptable value."))
 
 
 class ESGAssessmentLine(models.Model):

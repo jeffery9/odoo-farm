@@ -100,11 +100,11 @@ class AgriESGRiskAssessment(models.Model):
         """Ensure scores are within 0-100 range"""
         for record in self:
             if record.environmental_score and (record.environmental_score < 0 or record.environmental_score > 100):
-                raise ValidationError("Environmental score must be between 0 and 100.")
+                raise ValidationError(_("Environmental score must be between 0 and 100."))
             if record.social_score and (record.social_score < 0 or record.social_score > 100):
-                raise ValidationError("Social score must be between 0 and 100.")
+                raise ValidationError(_("Social score must be between 0 and 100."))
             if record.governance_score and (record.governance_score < 0 or record.governance_score > 100):
-                raise ValidationError("Governance score must be between 0 and 100.")
+                raise ValidationError(_("Governance score must be between 0 and 100."))
 
     @api.model
     def generate_risk_assessment_report(self, year=None, assessment_period=None):

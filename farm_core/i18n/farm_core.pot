@@ -1,0 +1,144 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_core
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:26+0000\n"
+"PO-Revision-Date: 2026-05-04 08:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/industry_data_package.py:0
+msgid "%s Production Activity"
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/industry_package_wizard.py:0
+msgid ""
+"Apply the '%s' package? This will initialize your system with industry-"
+"specific data."
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/agri_clearing_engine.py:0
+msgid "Community Impact Dividend: %s"
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/agri_mixins.py:0
+msgid "Compliance Block: Certification expired for %s."
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/agri_clearing_engine.py:0
+msgid "Debt Offsetting via Netting Engine Session %s"
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/industry_data_package.py:0
+msgid "Industry Initialized"
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/agri_clearing_engine.py:0
+msgid "NEW_LOCK"
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/agri_clearing_ledger.py:0
+#: code:addons/farm_core/models/agri_value_bridge.py:0
+#: code:addons/farm_core/models/base_mixins.py:0
+msgid "New"
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/agri_mixins.py:0
+msgid ""
+"Nutrient content cannot be negative. Matter cannot be created from nothing."
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/industry_data_package.py:0
+msgid "Package \"%s\" applied. Project \"%s\" created."
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/industry_package_wizard.py:0
+msgid "Please select an industry package to apply."
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/agri_stock_lot.py:0
+msgid "Quality Fingerprint - %s"
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/agri_mixins.py:0
+msgid "Recorded deaths cannot exceed population."
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/base_mixins.py:0
+msgid ""
+"Sustainability Redline: This operation exceeds the maximum carbon intensity "
+"threshold and has been blocked to protect community ESG standards."
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/agri_mixins.py:0
+msgid "Weather Interception: High rain probability."
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/agri_mixins.py:0
+msgid "Weather Interception: Wind speed too high."
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/agri_odoo19_performance_security_mixin.py:0
+msgid "You don't have permission to create records."
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/agri_odoo19_performance_security_mixin.py:0
+msgid "You don't have permission to delete records."
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/agri_odoo19_performance_security_mixin.py:0
+msgid "You don't have permission to modify records."
+msgstr ""
+
+#. module: farm_core
+#. odoo-python
+#: code:addons/farm_core/models/agri_odoo19_performance_security_mixin.py:0
+msgid ""
+"You don't have permission to perform '%s' operation on %s industry records."
+msgstr ""

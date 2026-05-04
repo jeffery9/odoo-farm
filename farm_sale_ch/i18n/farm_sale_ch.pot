@@ -1,0 +1,62 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_sale_ch
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:27+0000\n"
+"PO-Revision-Date: 2026-05-04 08:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_sale_ch
+#. odoo-python
+#: code:addons/farm_sale_ch/models/sale_order.py:0
+msgid "Breeding Generation Compliance Alert：[%s]"
+msgstr ""
+
+#. module: farm_sale_ch
+#. odoo-python
+#: code:addons/farm_sale_ch/models/sale_order.py:0
+msgid ""
+"Detected attempt to sell non-commercial product (%s)。Please verify if this "
+"operation has special authorization."
+msgstr ""
+
+#. module: farm_sale_ch
+#. odoo-python
+#: code:addons/farm_sale_ch/models/sale_order.py:0
+msgid ""
+"Export compliance check failed for the following products:\n"
+"%s\n"
+"\n"
+"Please review the prohibited substances for destination country: %s"
+msgstr ""
+
+#. module: farm_sale_ch
+#. odoo-python
+#: code:addons/farm_sale_ch/models/sale_order.py:0
+msgid ""
+"Hard-block: Batch generation violation.\n"
+"批次 [%s] 的繁育代次为 %s，Strictly prohibited from entering commercial circulation."
+msgstr ""
+
+#. module: farm_sale_ch
+#. odoo-python
+#: code:addons/farm_sale_ch/models/sale_order.py:0
+msgid ""
+"Hard-block: Sales of non-commercial breeding generations prohibited.\n"
+"产品 [%s] 的代次为 %s，belongs to internal R&D or breeding reserves and is strictly prohibited from direct sale."
+msgstr ""
+
+#. module: farm_sale_ch
+#. odoo-python
+#: code:addons/farm_sale_ch/models/compliance.py:0
+msgid "Valid until date must be after issue date."
+msgstr ""

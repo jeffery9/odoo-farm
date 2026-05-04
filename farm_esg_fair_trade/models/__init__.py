@@ -46,7 +46,7 @@ class FairTradeCertificate(models.Model):
         """Ensure expiry date is after issue date"""
         for record in self:
             if record.issue_date and record.expiry_date and record.issue_date > record.expiry_date:
-                raise ValidationError("Expiry date must be after issue date.")
+                raise ValidationError(_("Expiry date must be after issue date."))
 
     def action_check_expiry_alerts(self):
         """Check for certificates that are about to expire and send alerts"""
@@ -191,7 +191,7 @@ class CommunityInvestment(models.Model):
         """Ensure dates are logical"""
         for record in self:
             if record.start_date and record.end_date and record.start_date > record.end_date:
-                raise ValidationError("End date must be after start date.")
+                raise ValidationError(_("End date must be after start date."))
 
     @api.model
     def get_annual_community_investments(self, year=None):

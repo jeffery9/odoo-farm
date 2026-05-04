@@ -1,0 +1,114 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* precision_production_iot
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:26+0000\n"
+"PO-Revision-Date: 2026-05-04 08:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
+msgid ""
+"A critical deviation was detected from the IoT sensor. The production may be"
+" locked for safety."
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
+msgid "Control command sent successfully to device: %s"
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
+msgid "Critical Deviation Detected"
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
+msgid "Critical Deviations Detected"
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
+msgid "Device Refresh"
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
+msgid "Device readings have been refreshed."
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
+msgid "Failed to send command to device."
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
+msgid "IoT Multiple Readings"
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
+msgid "IoT reading has been recorded successfully."
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/models/precision_iot_sensor.py:0
+msgid "Minimum range must be less than maximum range"
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
+msgid "No readings to apply."
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
+msgid "Please select a sensor."
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
+msgid "Selected device is not linked to an Industrial IoT device."
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
+msgid "Send Control Command to Device"
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
+msgid "Success"
+msgstr ""
+
+#. module: precision_production_iot
+#. odoo-python
+#: code:addons/precision_production_iot/models/precision_iot_reading.py:0
+msgid "Value validation failed: %s"
+msgstr ""

@@ -1,0 +1,86 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_marketing
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:26+0000\n"
+"PO-Revision-Date: 2026-05-04 08:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_marketing
+#. odoo-python
+#: code:addons/farm_marketing/models/farm_lot.py:0
+msgid ""
+"CHANNEL PROTECTION: Lot %s is reserved for premium channels. Customer %s is "
+"not in the whitelist!"
+msgstr ""
+
+#. module: farm_marketing
+#. odoo-python
+#: code:addons/farm_marketing/models/farm_lot.py:0
+msgid ""
+"EXPORT BLOCK: Order contains products not compliant with %s regulations."
+msgstr ""
+
+#. module: farm_marketing
+#. odoo-python
+#: code:addons/farm_marketing/models/gi_registry.py:0
+msgid "GI Anti-counterfeit code generated: %s"
+msgstr ""
+
+#. module: farm_marketing
+#. odoo-python
+#: code:addons/farm_marketing/models/farm_lot.py:0
+msgid "Integrity Warning: Low Score (%s)"
+msgstr ""
+
+#. module: farm_marketing
+#. odoo-python
+#: code:addons/farm_marketing/models/farm_lot.py:0
+msgid "LOYALTY: %s points added to customer."
+msgstr ""
+
+#. module: farm_marketing
+#. odoo-python
+#: code:addons/farm_marketing/models/farm_lot.py:0
+msgid ""
+"Lot %s has an integrity score below 60. Please investigate immediately."
+msgstr ""
+
+#. module: farm_marketing
+#. odoo-python
+#: code:addons/farm_marketing/models/farm_lot.py:0
+msgid "No Lot Assigned"
+msgstr ""
+
+#. module: farm_marketing
+#. odoo-python
+#: code:addons/farm_marketing/models/farm_lot.py:0
+msgid "Processing from %s"
+msgstr ""
+
+#. module: farm_marketing
+#. odoo-python
+#: code:addons/farm_marketing/models/farm_lot.py:0
+msgid "QUALITY MISMATCH: Lot %s score (%s) is below required %s."
+msgstr ""
+
+#. module: farm_marketing
+#. odoo-python
+#: code:addons/farm_marketing/models/farm_lot.py:0
+msgid "Traceability is available after delivery confirmation."
+msgstr ""
+
+#. module: farm_marketing
+#. odoo-python
+#: code:addons/farm_marketing/models/farm_lot.py:0
+msgid "Unknown"
+msgstr ""

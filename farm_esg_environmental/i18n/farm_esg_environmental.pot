@@ -1,0 +1,184 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_esg_environmental
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:26+0000\n"
+"PO-Revision-Date: 2026-05-04 08:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_water_protection.py:0
+msgid "Buffer distance must be greater than zero."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
+msgid "CEC cannot be negative."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/farm_carbon_accounting.py:0
+msgid "CO2-NEW"
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_carbon_footprint.py:0
+msgid "Carbon emissions cannot be negative."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/agri_esg_red_line_monitoring.py:0
+msgid "ESG Compliance Monitoring"
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_carbon_footprint.py:0
+msgid "Fuel savings cannot be negative."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_water_protection.py:0
+msgid "Inspection scheduled for %s"
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_carbon_footprint.py:0
+msgid "Material quantities cannot be negative."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/farm_carbon_accounting.py:0
+msgid "New"
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
+msgid "Next soil health assessment scheduled for %s"
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
+msgid "Nitrogen level cannot be negative."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/agri_esg_red_line_monitoring.py:0
+msgid "No notes provided"
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
+msgid "Organic matter content cannot be negative."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
+msgid "Phosphorus level cannot be negative."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
+msgid "Potassium level cannot be negative."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
+msgid "Salinity cannot be negative."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_carbon_footprint.py:0
+msgid "Soil carbon sequestration cannot be negative."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
+msgid "Soil compaction level cannot be negative."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
+msgid "Soil health assessment updated. Current score: %.2f"
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
+msgid "Soil health improvement plan created."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_water_protection.py:0
+msgid "Start season cannot be after end season."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_carbon_footprint.py:0
+msgid "VRA Carbon Footprint Report"
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
+msgid "VRA Soil Health Report"
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_water_protection.py:0
+msgid "VRA Water Protection Report"
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_carbon_footprint.py:0
+msgid "VRA carbon footprint assessment completed."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_carbon_footprint.py:0
+msgid "VRA carbon footprint assessment verified."
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/agri_esg_red_line_monitoring.py:0
+msgid "id"
+msgstr ""
+
+#. module: farm_esg_environmental
+#. odoo-python
+#: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
+msgid "pH level must be between 0 and 14."
+msgstr ""
