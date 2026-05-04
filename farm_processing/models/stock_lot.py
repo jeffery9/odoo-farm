@@ -116,7 +116,7 @@ class StockLot(models.Model):
     ], ondelete={'a': 'set null', 'b': 'set null', 'c': 'set null', 'loss': 'set null'})
     
     harvest_date = fields.Date('Harvest Date')
-    # plot_id = fields.Many2one('farm.land', string='Origin Plot')
+    plot_id = fields.Many2one('farm.location', string='Origin Plot')
 
     # Potency & Attributes [US-14-11, US-14-15, US-14-17]
     active_content = fields.Float("Active Content (%)", help="Actual potency/active ingredient percentage.")

@@ -67,8 +67,11 @@
                             
                         </group>
                         <group string="Mass Balance (US-04-02)">
-                            
-                            
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
     </record>
 
     <!-- 扩展批次视图显示溯源 -->
@@ -78,7 +81,7 @@
         <field name="inherit_id" ref="stock.view_production_lot_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='ref']" position="after">
-                <field name="parent_lot_id" options="{'no_create': True}"/>
+                <field name="parent_lot_ids" widget="many2many_tags"/>
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Traceability Tree" name="traceability">
@@ -94,6 +97,6 @@
         </field>
     </record>
 
-    <menuitem id="menu_farm_processing_root" name="Processing" parent="farm_operation.menu_agri_campaign" sequence="40"/>
+    <menuitem id="menu_farm_processing_root" name="Processing" parent="farm_operation.menu_agricultural_campaigns" sequence="40"/>
     <menuitem id="menu_farm_processing_mo" name="Processing Orders" parent="menu_farm_processing_root" action="mrp.mrp_production_action" sequence="10"/>
 </odoo>

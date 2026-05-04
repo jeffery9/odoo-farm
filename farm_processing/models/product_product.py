@@ -4,6 +4,9 @@ class ProductTemplate(models.Model):
     _name = 'product.template'
     _inherit = 'product.template'
 
+    is_agri_material = fields.Boolean("Is Agri Material")
+    is_processed_food = fields.Boolean("Is Processed Food")
+
     def get_formview_action(self, access_uid=None):
         """ US-TECH-06-23: Transparent redirection to Agri ISL Product View. """
         res = super(ProductTemplate, self).get_formview_action(access_uid=access_uid)

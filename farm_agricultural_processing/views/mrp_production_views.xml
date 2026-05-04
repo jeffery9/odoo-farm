@@ -11,14 +11,14 @@
                 <field name="process_mode" invisible="processing_type != 'deep'"/>
             </xpath>
 
-            <xpath expr="//page[@name='agri_processing']//group[@string='Industry Parameters']" position="inside">
+            <xpath expr="//page[@name='agri_processing']//group[@name='industry_params']" position="inside">
                 <field name="vintage_year" invisible="process_mode != 'fermentation'"/>
                 <field name="brix_level" invisible="process_mode != 'fermentation'"/>
                 <field name="baking_temp" invisible="process_mode != 'baking'"/>
                 <field name="proofing_time" invisible="process_mode != 'baking'"/>
             </xpath>
 
-            <xpath expr="//page[@name='agri_processing']//group[@string='Mass Balance &amp; Energy']" position="inside">
+            <xpath expr="//page[@name='agri_processing']//group[@name='mass_energy']" position="inside">
                 <field name="process_temperature"/>
                 <field name="moisture_content"/>
                 <field name="is_haccp_compliant"/>

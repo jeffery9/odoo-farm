@@ -90,10 +90,13 @@ class AgriProcessingMultiOutputLine(models.Model):
     """
     _name = 'agri.processing.multi.output.line'
     _description = 'Multi-Output Product Lines for Agricultural Processing'
-
+    multi_output_id = fields.Many2one('agri.processing.multi.output', string='Multi-Output Record')
     production_id = fields.Many2one('farm.processing.production', string='Production Order', ondelete='cascade')
     product_id = fields.Many2one('product.product', string='Product', required=True)
     product_qty = fields.Float('Quantity', required=True)
+    output_qty = fields.Float('Output Quantity')
+    output_percentage = fields.Float('Output Percentage')
+    component_ratio = fields.Float('Component Ratio')
     product_uom_id = fields.Many2one('uom.uom', string='Unit of Measure', required=True)
     output_sequence = fields.Integer('Output Sequence')
 

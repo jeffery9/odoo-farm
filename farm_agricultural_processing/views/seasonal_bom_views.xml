@@ -133,24 +133,13 @@
     </record>
 
     <!-- Seasonal BOM Menu Items -->
-    <menuitem id="menu_seasonal_bom_root" name="Seasonal Recipes"
-              parent="farm_agricultural_processing.menu_agricultural_processing_root"
-              sequence="10"/>
+    
 
-    <menuitem id="menu_seasonal_bom" name="Recipe Management"
-              parent="menu_seasonal_bom_root"
-              action="action_seasonal_bom_list"
-              sequence="10"/>
+    
 
-    <menuitem id="menu_seasonal_bom_materials" name="Material Adjustments"
-              parent="menu_seasonal_bom_root"
-              action="action_seasonal_bom_material_list"
-              sequence="20"/>
+    
 
-    <menuitem id="menu_seasonal_bom_parameters" name="Parameter Adjustments"
-              parent="menu_seasonal_bom_root"
-              action="action_seasonal_bom_parameter_list"
-              sequence="30"/>
+    
 
     <!-- Actions -->
     <record id="action_seasonal_bom_list" model="ir.actions.act_window">
@@ -179,4 +168,19 @@
         <field name="res_model">farm.seasonal.bom.parameter</field>
         <field name="view_mode">tree,form</field>
     </record>
+<menuitem id="menu_seasonal_bom_root" name="Seasonal Recipes"
+              parent="farm_agricultural_processing.menu_agricultural_processing_root"
+              sequence="10"/>
+<menuitem id="menu_seasonal_bom" name="Recipe Management"
+              parent="menu_seasonal_bom_root"
+              action="action_seasonal_bom_list"
+              sequence="10"/>
+<menuitem id="menu_seasonal_bom_materials" name="Material Adjustments"
+              parent="menu_seasonal_bom_root"
+              action="action_seasonal_bom_material_list"
+              sequence="20"/>
+<menuitem id="menu_seasonal_bom_parameters" name="Parameter Adjustments"
+              parent="menu_seasonal_bom_root"
+              action="action_seasonal_bom_parameter_list"
+              sequence="30"/>
 </odoo>
