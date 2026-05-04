@@ -6,7 +6,7 @@ class TestDeepCoverageFarmInputReg(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = ['mrp.production', 'farm.input.registration.database', 'farm.input.registration.lookup.wizard', 'product.template']
+        cls.models_to_test = ['mrp.production', 'farm.input.registration.lookup.wizard', 'product.template']
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """

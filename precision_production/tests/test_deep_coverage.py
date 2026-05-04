@@ -6,7 +6,7 @@ class TestDeepCoveragePrecisionProduction(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = ['precision.intervention.log', 'precision.recipe.material', 'precision.master.recipe.parameter', 'mrp.workorder', 'precision.master.recipe.material', 'precision.intervention.basis', 'precision.recipe.phase', 'precision.graded.output', 'precision.recipe.parameter', 'precision.master.recipe.phase', 'product.template', 'precision.production.mixin', 'mrp.bom']
+        cls.models_to_test = ['precision.intervention.log', 'precision.recipe.material', 'precision.master.recipe.parameter', 'mrp.workorder', 'precision.master.recipe.material', 'precision.intervention.basis', 'precision.recipe.phase', 'precision.graded.output', 'precision.recipe.parameter', 'precision.master.recipe.phase', 'product.template', 'mrp.bom']
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """

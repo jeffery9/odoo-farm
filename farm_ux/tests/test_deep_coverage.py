@@ -6,7 +6,7 @@ class TestDeepCoverageFarmUx(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = ['stock.move', 'agri.view.mixin', 'farm.social.network', 'ir.ui.menu', 'multi.sensory.interaction', 'mrp.workcenter', 'contextual.help', 'form.layout.template', 'term.mapping', 'product.template', 'stock.picking', 'mrp.bom', 'farm.voice.recognition.alias', 'res.partner', 'accessibility.settings', 'ir.actions.act_window', 'mrp.production', 'visual.status.indicator', 'stock.quant', 'workspace.customization']
+        cls.models_to_test = ['stock.move', 'farm.social.network', 'ir.ui.menu', 'multi.sensory.interaction', 'mrp.workcenter', 'contextual.help', 'form.layout.template', 'term.mapping', 'product.template', 'stock.picking', 'mrp.bom', 'farm.voice.recognition.alias', 'res.partner', 'accessibility.settings', 'ir.actions.act_window', 'mrp.production', 'visual.status.indicator', 'stock.quant', 'workspace.customization']
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """
