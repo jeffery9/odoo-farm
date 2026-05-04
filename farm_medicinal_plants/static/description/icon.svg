@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
-    
-        <!-- Flat Silhouette: Wheat/Crop -->
-        <circle cx="128" cy="128" r="90" fill="#C9382B"/>
-        <path d="M128,210 L128,50" stroke="white" stroke-width="12" stroke-linecap="round"/>
-        <path d="M128,80 C170,80 180,40 128,20 C76,40 86,80 128,80 Z" fill="white"/>
-        <path d="M128,140 C170,140 180,100 128,80 C76,100 86,140 128,140 Z" fill="white" opacity="0.8"/>
-    
+    <rect x="110" y="60" width="36" height="136" rx="10" fill="#C9382B"/><rect x="60" y="110" width="136" height="36" rx="10" fill="#C9382B"/><path d="M128,128 C160,90 200,90 200,128 C200,160 160,160 128,128 Z" fill="#FFF9F2" opacity="0.9"/>
 </svg>
