@@ -1,6 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_nursery_batch_worker,nursery.batch.worker,model_farm_nursery_batch,farm_core.group_farm_worker,1,1,1,0
-access_farm_trait_value_spec,trait.value.spec,model_farm_trait_value,farm_core.group_farm_manager,1,1,1,1access_farm_trait_value,farm.trait.value,model_farm_trait_value,base.group_user,1,1,1,1
-access_farm_nursery_batch,farm.nursery.batch,model_farm_nursery_batch,base.group_user,1,1,1,1
-access_farm_breeding_order,farm.breeding.order,model_farm_breeding_order,base.group_user,1,1,1,1
-access_stock_lot,stock.lot,model_stock_lot,base.group_user,1,1,1,1

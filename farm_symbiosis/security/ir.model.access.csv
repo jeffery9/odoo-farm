@@ -1,9 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_farm_symbiotic_plot,farm.symbiotic.plot,model_farm_symbiotic_plot,base.group_user,1,1,1,1
-access_farm_symbiotic_recipe,farm.symbiotic.recipe,model_farm_symbiotic_recipe,base.group_user,1,1,1,1
-access_farm_symbiotic_order,farm.symbiotic.order,model_farm_symbiotic_order,base.group_user,1,1,1,1
-access_farm_lot_rice,farm.lot.rice,model_farm_lot_rice,base.group_user,1,1,1,1
-access_farm_symbiotic_order,farm.symbiotic.order,model_farm_symbiotic_order,base.group_user,1,1,1,1
-access_farm_symbiotic_recipe,farm.symbiotic.recipe,model_farm_symbiotic_recipe,base.group_user,1,1,1,1
-access_farm_lot_rice,farm.lot.rice,model_farm_lot_rice,base.group_user,1,1,1,1
-access_farm_symbiotic_plot,farm.symbiotic.plot,model_farm_symbiotic_plot,base.group_user,1,1,1,1

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 08:26+0000\n"
-"PO-Revision-Date: 2026-05-04 08:26+0000\n"
+"POT-Creation-Date: 2026-05-04 08:41+0000\n"
+"PO-Revision-Date: 2026-05-04 08:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,15 +16,357 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: farm_hr
+#: model_terms:ir.ui.view,arch_db:farm_hr.farm_labor_payment_view_form
+msgid "<span>Journal Entry</span>"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_needaction
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_ids
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_state
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_type_icon
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model,name:farm_hr.model_farm_agri_skill
+msgid "Agricultural Skill"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_hr_employee__agri_skill_ids
+msgid "Agricultural Skills"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_attachment_count
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_labor_payment__state__cancel
+msgid "Cancelled"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__certificate_number
+msgid "Cert No."
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_hr_employee__certificate_ids
+msgid "Certificates"
+msgstr ""
+
+#. module: farm_hr
+#: model_terms:ir.ui.view,arch_db:farm_hr.farm_labor_payment_view_form
+msgid "Compute Sheet"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.ui.menu,name:farm_hr.menu_farm_wage_config
+msgid "Configuration"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_labor_payment__state__confirmed
+msgid "Confirmed"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model,website_form_label:farm_hr.model_project_task
+msgid "Create a Task"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__create_uid
+#: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__create_uid
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__create_uid
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__create_uid
+#: model:ir.model.fields,field_description:farm_hr.field_farm_wage_rule__create_uid
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__create_date
+#: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__create_date
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__create_date
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__create_date
+#: model:ir.model.fields,field_description:farm_hr.field_farm_wage_rule__create_date
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__currency_id
+#: model:ir.model.fields,field_description:farm_hr.field_farm_wage_rule__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__date
+msgid "Date"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__date_from
+msgid "Date From"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__date_to
+msgid "Date To"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__description
+msgid "Description"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__line_ids
+msgid "Details"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__display_name
+#: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__display_name
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__display_name
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__display_name
+#: model:ir.model.fields,field_description:farm_hr.field_farm_wage_rule__display_name
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__display_name
+#: model:ir.model.fields,field_description:farm_hr.field_hr_employee__display_name
+#: model:ir.model.fields,field_description:farm_hr.field_project_task__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__quantity
+msgid "Done Quantity"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_labor_payment__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_task__eligible_worker_ids
+#: model:ir.model.fields,field_description:farm_hr.field_project_task__eligible_worker_ids
+msgid "Eligible Workers"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model,name:farm_hr.model_hr_employee
+#: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__employee_id
+msgid "Employee"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model,name:farm_hr.model_farm_employee_certificate
+msgid "Employee Skill Certificate"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_employee_certificate__state__expired
+msgid "Expired"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__date_expiry
+msgid "Expiry Date"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model,name:farm_hr.model_farm_worklog
+msgid "Farm Field Worklog"
+msgstr ""
+
+#. module: farm_hr
+#: model_terms:ir.ui.view,arch_db:farm_hr.view_employee_form_inherit_farm
+msgid "Farm Performance"
+msgstr ""
+
+#. module: farm_hr
+#: model_terms:ir.ui.view,arch_db:farm_hr.view_employee_form_inherit_farm
+msgid "Farm Skills & Certs"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__task_id
+msgid "Farm Task"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_wage_rule__work_type__feeding
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_worklog__work_type__feeding
+msgid "Feeding"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.actions.act_window,name:farm_hr.action_farm_worklog
+#: model:ir.ui.menu,name:farm_hr.menu_farm_worklog
+#: model_terms:ir.ui.view,arch_db:farm_hr.farm_worklog_view_tree
+msgid "Field Worklogs"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_follower_ids
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_partner_ids
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__activity_type_icon
+#: model:ir.model.fields,help:farm_hr.field_farm_worklog__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_wage_rule__work_type__harvesting
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_worklog__work_type__harvesting
+msgid "Harvesting"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__has_message
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_hr_employee__hourly_cost
+msgid "Hourly Cost"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__id
+#: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__id
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__id
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__id
+#: model:ir.model.fields,field_description:farm_hr.field_farm_wage_rule__id
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__id
+#: model:ir.model.fields,field_description:farm_hr.field_hr_employee__id
+#: model:ir.model.fields,field_description:farm_hr.field_project_task__id
+msgid "ID"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__activity_exception_icon
+#: model:ir.model.fields,help:farm_hr.field_farm_worklog__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,help:farm_hr.field_hr_employee__is_seasonal
+msgid "Identify external or seasonal workers."
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__message_needaction
+#: model:ir.model.fields,help:farm_hr.field_farm_worklog__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__message_has_error
+#: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__message_has_sms_error
+#: model:ir.model.fields,help:farm_hr.field_farm_worklog__message_has_error
+#: model:ir.model.fields,help:farm_hr.field_farm_worklog__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_is_follower
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__journal_id
+msgid "Journal"
+msgstr ""
+
+#. module: farm_hr
 #. odoo-python
 #: code:addons/farm_hr/models/farm_wage.py:0
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__move_id
 msgid "Journal Entry"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.ui.menu,name:farm_hr.menu_farm_hr_root
+msgid "Labor & HR"
+msgstr ""
+
+#. module: farm_hr
+#: model_terms:ir.ui.view,arch_db:farm_hr.farm_labor_payment_view_form
+msgid "Labor Payment"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model,name:farm_hr.model_farm_labor_payment_line
+msgid "Labor Payment Line"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.actions.act_window,name:farm_hr.action_farm_labor_payment
+#: model:ir.ui.menu,name:farm_hr.menu_farm_labor_payment
+#: model_terms:ir.ui.view,arch_db:farm_hr.farm_labor_payment_view_tree
+msgid "Labor Payments"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model,name:farm_hr.model_farm_labor_payment
+msgid "Labor Piece-rate Payment"
 msgstr ""
 
 #. module: farm_hr
 #. odoo-python
 #: code:addons/farm_hr/models/farm_wage.py:0
 msgid "Labor Settlement: %s"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_task__worklog_ids
+#: model:ir.model.fields,field_description:farm_hr.field_project_task__worklog_ids
+msgid "Labor Worklogs"
 msgstr ""
 
 #. module: farm_hr
@@ -40,9 +382,99 @@ msgid "Labor: %s on %s"
 msgstr ""
 
 #. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__write_uid
+#: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__write_uid
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__write_uid
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__write_uid
+#: model:ir.model.fields,field_description:farm_hr.field_farm_wage_rule__write_uid
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__write_date
+#: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__write_date
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__write_date
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__write_date
+#: model:ir.model.fields,field_description:farm_hr.field_farm_wage_rule__write_date
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_has_error
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_ids
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model,name:farm_hr.model_project_task
+msgid "Multi-Industry Activity Production"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: farm_hr
 #. odoo-python
 #: code:addons/farm_hr/models/farm_wage.py:0
 msgid "New"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_summary
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_type_id
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__notes
+msgid "Notes"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__message_needaction_counter
+#: model:ir.model.fields,help:farm_hr.field_farm_worklog__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__message_has_error_counter
+#: model:ir.model.fields,help:farm_hr.field_farm_worklog__message_has_error_counter
+msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: farm_hr
@@ -52,7 +484,231 @@ msgid "PAY"
 msgstr ""
 
 #. module: farm_hr
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_wage_rule__work_type__packaging
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_worklog__work_type__packaging
+msgid "Packaging"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_labor_payment__state__paid
+msgid "Paid"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__payment_id
+msgid "Payment"
+msgstr ""
+
+#. module: farm_hr
+#: model_terms:ir.ui.view,arch_db:farm_hr.farm_labor_payment_view_form
+msgid "Payment Lines"
+msgstr ""
+
+#. module: farm_hr
+#: model_terms:ir.ui.view,arch_db:farm_hr.farm_labor_payment_view_form
+msgid "Period"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model,name:farm_hr.model_farm_wage_rule
+msgid "Piece-rate Wage Rule"
+msgstr ""
+
+#. module: farm_hr
 #. odoo-python
 #: code:addons/farm_hr/models/farm_wage.py:0
 msgid "Please select a Journal before posting."
+msgstr ""
+
+#. module: farm_hr
+#: model_terms:ir.ui.view,arch_db:farm_hr.farm_labor_payment_view_form
+msgid "Post to Accounting"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_wage_rule__price_per_unit
+msgid "Price per Unit"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__quantity
+msgid "Quantity"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__rating_ids
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__name
+msgid "Reference"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_task__required_skill_id
+#: model:ir.model.fields,field_description:farm_hr.field_project_task__required_skill_id
+msgid "Required Skill"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__requires_certificate
+msgid "Requires Certificate"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_user_id
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_hr_employee__is_seasonal
+msgid "Seasonal Laborer"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__name
+msgid "Skill Name"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__skill_id
+msgid "Skill/Qualification"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_wage_rule__work_type__sowing
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_worklog__work_type__sowing
+msgid "Sowing"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__state
+msgid "State"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__state
+msgid "Status"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__activity_state
+#: model:ir.model.fields,help:farm_hr.field_farm_worklog__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__subtotal
+msgid "Subtotal"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_wage_rule__work_type__tillage
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_worklog__work_type__tillage
+msgid "Tillage"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__total_amount
+msgid "Total Amount"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_task__total_harvested_qty
+#: model:ir.model.fields,field_description:farm_hr.field_project_task__total_harvested_qty
+msgid "Total Harvested (kg)"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_hr_employee__piece_rate_total
+msgid "Total Piece-rate Performance"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__activity_exception_decoration
+#: model:ir.model.fields,help:farm_hr.field_farm_worklog__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__uom_id
+msgid "Unit"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__price_unit
+msgid "Unit Price"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,help:farm_hr.field_project_task__display_name
+msgid ""
+"Use these keywords in the title to set new tasks:\n"
+"\n"
+"            #tags Set tags on the task\n"
+"            @user Assign the task to a user\n"
+"            ! Set the task a medium priority\n"
+"            !! Set the task a high priority\n"
+"            !!! Set the task a urgent priority\n"
+"\n"
+"            Make sure to use the right format and order e.g. Improve the configuration screen #feature #v16 @Mitchell !"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields.selection,name:farm_hr.selection__farm_employee_certificate__state__valid
+msgid "Valid"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.actions.act_window,name:farm_hr.action_farm_wage_rule
+#: model:ir.ui.menu,name:farm_hr.menu_farm_wage_rule
+#: model_terms:ir.ui.view,arch_db:farm_hr.farm_wage_rule_view_tree
+msgid "Wage Rules"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,help:farm_hr.field_farm_wage_rule__price_per_unit
+msgid "Wage per unit of work (e.g. 0.5 per kg)"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__website_message_ids
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__website_message_ids
+#: model:ir.model.fields,help:farm_hr.field_farm_worklog__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_wage_rule__work_type
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__work_type
+msgid "Work Type"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__employee_id
+#: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__employee_id
+msgid "Worker"
+msgstr ""
+
+#. module: farm_hr
+#: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__worklog_id
+msgid "Worklog"
 msgstr ""

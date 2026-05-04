@@ -1,0 +1,91 @@
+# Bruteforce extracted POT
+msgid ""
+msgstr ""
+
+msgid "COOP-"
+msgstr ""
+
+msgid "Cooperative Entity Sequence"
+msgstr ""
+
+msgid "FE-"
+msgstr ""
+
+msgid "FF-"
+msgstr ""
+
+msgid "Farm Entity Sequence"
+msgstr ""
+
+msgid "Franchise Farm Sequence"
+msgstr ""
+
+msgid "Green Field Franchise Farm"
+msgstr ""
+
+msgid "Harvest Agri Cooperative"
+msgstr ""
+
+msgid "IS-"
+msgstr ""
+
+msgid "Internal Settlement Sequence"
+msgstr ""
+
+msgid "Li Si's Family Farm"
+msgstr ""
+
+msgid "ORG-VEG-001"
+msgstr ""
+
+msgid "Organic Vegetable Compliance Check"
+msgstr ""
+
+msgid "Organic Vegetable Planting Standard"
+msgstr ""
+
+msgid "Production Data Sharing"
+msgstr ""
+
+msgid "Standardized workflow for organic vegetable planting"
+msgstr ""
+
+msgid "Zhang San's Farm"
+msgstr ""
+
+msgid "cooperative"
+msgstr ""
+
+msgid "cooperative.entity"
+msgstr ""
+
+msgid "farm"
+msgstr ""
+
+msgid "farm.entity"
+msgstr ""
+
+msgid "franchise"
+msgstr ""
+
+msgid "franchise.farm"
+msgstr ""
+
+msgid "internal.settlement"
+msgstr ""
+
+msgid "membership"
+msgstr ""
+
+msgid "pending"
+msgstr ""
+
+msgid "planting"
+msgstr ""
+
+msgid "production"
+msgstr ""
+
+msgid "read"
+msgstr ""
+

@@ -1,7 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_farm_fermentation_vessel,farm.fermentation.vessel,model_farm_fermentation_vessel,base.group_user,1,1,1,1
-access_farm_fermentation_order,farm.fermentation.order,model_farm_fermentation_order,base.group_user,1,1,1,1
-access_farm_lot_brew,farm.lot.brew,model_farm_lot_brew,base.group_user,1,1,1,1
-access_farm_lot_brew,farm.lot.brew,model_farm_lot_brew,base.group_user,1,1,1,1
-access_farm_fermentation_vessel,farm.fermentation.vessel,model_farm_fermentation_vessel,base.group_user,1,1,1,1
-access_farm_fermentation_order,farm.fermentation.order,model_farm_fermentation_order,base.group_user,1,1,1,1

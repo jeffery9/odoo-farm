@@ -1,0 +1,3 @@
+# No terms found in farm_finance_loan
+msgid "Module farm_finance_loan"
+msgstr ""

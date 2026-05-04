@@ -1,0 +1,46 @@
+# Bruteforce extracted POT
+msgid ""
+msgstr ""
+
+msgid "Fertilizer Usage"
+msgstr ""
+
+msgid "Green Monitor"
+msgstr ""
+
+msgid "Pesticide Usage"
+msgstr ""
+
+msgid "Print Reduction Report"
+msgstr ""
+
+msgid "Reduction Trend Report"
+msgstr ""
+
+msgid "agricultural.campaign.form.inherit.green.monitor"
+msgstr ""
+
+msgid "farm.agricultural.campaign"
+msgstr ""
+
+msgid "farm_green_monitor.report_fertilizer_pesticide_reduction_trend"
+msgstr ""
+
+msgid "project.task"
+msgstr ""
+
+msgid "project.task.form.inherit.green.monitor"
+msgstr ""
+
+msgid "qweb-pdf"
+msgstr ""
+
+msgid "report"
+msgstr ""
+
+msgid "stock.location"
+msgstr ""
+
+msgid "stock.location.form.inherit.green.monitor"
+msgstr ""
+
