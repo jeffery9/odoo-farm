@@ -20,44 +20,44 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
 msgid "Conversion MO"
-msgstr ""
+msgstr "转换MO"
 
 #. module: farm_waste_mgmt
 #. odoo-python
 #: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
 msgid "MNL"
-msgstr ""
+msgstr "莫尼卡国家实验室"
 
 #. module: farm_waste_mgmt
 #. odoo-python
 #: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
 msgid "MNR"
-msgstr ""
+msgstr "核磁共振"
 
 #. module: farm_waste_mgmt
 #. odoo-python
 #: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
 msgid "MOARA Manure Utilization Ledger generated for %s/%s."
-msgstr ""
+msgstr "为 %s/%s 生成 MOARA 粪便利用分类帐。"
 
 #. module: farm_waste_mgmt
 #. odoo-python
 #: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
 msgid "Manufacturing Order %s created for manure conversion."
-msgstr ""
+msgstr "为肥料转换创建了制造订单 %s。"
 
 #. module: farm_waste_mgmt
 #. odoo-python
 #: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
 #: code:addons/farm_waste_mgmt/models/storage_waste.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_waste_mgmt
 #. odoo-python
 #: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
 msgid "Please select a Converted Fertilizer Product first!"
-msgstr ""
+msgstr "请先选择转化肥产品！"
 
 #. module: farm_waste_mgmt
 #. odoo-python

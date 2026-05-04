@@ -20,26 +20,26 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_agricultural_processing/models/quality_compliance/mass_balance_extension.py:0
 msgid "Active ingredient content must be greater than 0%"
-msgstr ""
+msgstr "有效成分含量必须大于0%"
 
 #. module: farm_agricultural_processing
 #. odoo-python
 #: code:addons/farm_agricultural_processing/models/quality_compliance/mass_balance_extension.py:0
 msgid "Active ingredient variance exceeds tolerance of 5%: %.2f%%"
-msgstr ""
+msgstr "活性成分偏差超过 5% 的公差：%.2f%%"
 
 #. module: farm_agricultural_processing
 #. odoo-python
 #: code:addons/farm_agricultural_processing/models/processing_standards/bom_extensions.py:0
 #: code:addons/farm_agricultural_processing/models/utils/base_compute_methods.py:0
 msgid "Byproduct cost share total cannot exceed 100%%. Current total is %s%%"
-msgstr ""
+msgstr "副产品成本份额合计不能超过100%%。当前总数为 %s%%"
 
 #. module: farm_agricultural_processing
 #. odoo-python
 #: code:addons/farm_agricultural_processing/models/utils/common_validations.py:0
 msgid "Max variance tolerance should be between 0% and 10%"
-msgstr ""
+msgstr "最大方差容差应在 0% 到 10% 之间"
 
 #. module: farm_agricultural_processing
 #. odoo-python
@@ -61,28 +61,28 @@ msgstr ""
 #: code:addons/farm_agricultural_processing/models/seasonal/seasonal_bom_management.py:0
 #: code:addons/farm_agricultural_processing/models/utils/common_validations.py:0
 msgid "Season end date must be after start date."
-msgstr ""
+msgstr "赛季结束日期必须晚于开始日期。"
 
 #. module: farm_agricultural_processing
 #. odoo-python
 #: code:addons/farm_agricultural_processing/models/seasonal/seasonal_bom_management.py:0
 msgid "Seasonal Material Adjustments"
-msgstr ""
+msgstr "季节性材质调整"
 
 #. module: farm_agricultural_processing
 #. odoo-python
 #: code:addons/farm_agricultural_processing/models/seasonal/seasonal_bom_management.py:0
 msgid "Seasonal Parameter Adjustments"
-msgstr ""
+msgstr "季节性参数调整"
 
 #. module: farm_agricultural_processing
 #. odoo-python
 #: code:addons/farm_agricultural_processing/models/formula_management/formula_versioning.py:0
 msgid "Version number %s already exists for this formula."
-msgstr ""
+msgstr "此公式的版本号 %s 已存在。"
 
 #. module: farm_agricultural_processing
 #. odoo-python
 #: code:addons/farm_agricultural_processing/models/seasonal/seasonal_bom_management.py:0
 msgid "seasonal_bom_id"
-msgstr ""
+msgstr "季节性_bom_id"

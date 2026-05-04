@@ -21,186 +21,186 @@ msgstr ""
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Chemical production requires safety procedures"
-msgstr ""
+msgstr "化学品生产需要安全程序"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Chemical products require hazard class"
-msgstr ""
+msgstr "化学品需要危险等级"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Chemical work centers require explosion-proof equipment"
-msgstr ""
+msgstr "化学工作中心需要防爆设备"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Food BOM with allergens requires allergen control"
-msgstr ""
+msgstr "含有过敏原的食品 BOM 需要控制过敏原"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_abstract_models.py:0
 msgid "Food processing industry requires quality control points to be defined"
-msgstr ""
+msgstr "食品加工行业需要明确质量控制点"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Food processing lots require kill date"
-msgstr ""
+msgstr "食品加工批次需要屠宰日期"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/_INHERITS_RELATIONSHIP_EXAMPLE.py:0
 msgid "Food processing production requires HACCP instructions"
-msgstr ""
+msgstr "食品加工生产需要HACCP指令"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Food processing production requires HACCP plan"
-msgstr ""
+msgstr "食品加工生产需要HACCP计划"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Food processing purchases require certificate verification"
-msgstr ""
+msgstr "食品加工采购需要证书验证"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Food processing quality control requires CCP monitoring"
-msgstr ""
+msgstr "食品加工质量控制需要CCP监控"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Food processing sales require traceability requirements"
-msgstr ""
+msgstr "食品加工销售需追溯要求"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Food products require allergen information"
-msgstr ""
+msgstr "食品需要过敏原信息"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Food/pharmaceutical work centers require CIP capability"
-msgstr ""
+msgstr "食品/制药工作中心需要 CIP 能力"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Food/pharmaceutical work orders require in-process inspection"
-msgstr ""
+msgstr "食品/药品工单需要进行过程检验"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_migration.py:0
 msgid "Migration Complete"
-msgstr ""
+msgstr "迁移完成"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_migration.py:0
 msgid "Migration completed. %d records migrated to ISL architecture."
-msgstr ""
+msgstr "迁移完成。 %d 条记录已迁移到 ISL 架构。"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Pharmaceutical BOM requires active ingredient specification"
-msgstr ""
+msgstr "药品 BOM 需要活性成分规格"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_abstract_models.py:0
 msgid "Pharmaceutical industry requires industry standards to be defined"
-msgstr ""
+msgstr "医药行业需要制定行业标准"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Pharmaceutical lots require sterility date"
-msgstr ""
+msgstr "药品批次需要无菌日期"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Pharmaceutical production requires GMP compliance"
-msgstr ""
+msgstr "药品生产需要符合 GMP 要求"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Pharmaceutical products require pharmacological class"
-msgstr ""
+msgstr "药品需要药理等级"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Pharmaceutical purchases require quality agreement"
-msgstr ""
+msgstr "药品采购需要质量协议"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Pharmaceutical quality control requires AQL sampling"
-msgstr ""
+msgstr "药品质量控制需要 AQL 抽样"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Pharmaceutical sales require temperature monitoring"
-msgstr ""
+msgstr "药品销售需要温度监控"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Pharmaceutical work orders require batch record"
-msgstr ""
+msgstr "药品工单需要批次记录"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_migration.py:0
 msgid "Please confirm the migration before proceeding"
-msgstr ""
+msgstr "请在继续之前确认迁移"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_concrete_models.py:0
 #: code:addons/farm_isl/models/isl_concrete_models.py:0
 msgid "Temperature-controlled transfers require temperature log"
-msgstr ""
+msgstr "温控传输需要温度日志"
 
 #. module: farm_isl
 #. odoo-python
 #: code:addons/farm_isl/models/agri_isl_migration.py:0
 msgid "Unsupported model for migration"
-msgstr ""
+msgstr "不支持的迁移模型"

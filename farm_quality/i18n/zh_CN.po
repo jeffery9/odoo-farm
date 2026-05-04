@@ -20,65 +20,65 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_quality/models/agri_quality.py:0
 msgid "Alert closed: Asset marked for scrapping."
-msgstr ""
+msgstr "警报关闭：资产标记为报废。"
 
 #. module: farm_quality
 #. odoo-python
 #: code:addons/farm_quality/models/agri_quality_sample.py:0
 msgid "Blind Sample Batch"
-msgstr ""
+msgstr "盲样批次"
 
 #. module: farm_quality
 #. odoo-python
 #: code:addons/farm_quality/models/agri_quality_sample.py:0
 msgid "Blind Sample Product"
-msgstr ""
+msgstr "盲样产品"
 
 #. module: farm_quality
 #. odoo-python
 #: code:addons/farm_quality/models/quality.py:0
 msgid "CCP %s violated! Measured: %s"
-msgstr ""
+msgstr "中共%s违规了！测量值：%s"
 
 #. module: farm_quality
 #. odoo-python
 #: code:addons/farm_quality/models/agri_quality.py:0
 msgid "CCP VIOLATION: Pasteurization time too short (%s mins)."
-msgstr ""
+msgstr "CCP 违规：巴氏灭菌时间太短（%s 分钟）。"
 
 #. module: farm_quality
 #. odoo-python
 #: code:addons/farm_quality/models/agri_quality.py:0
 #: code:addons/farm_quality/models/agri_quality_sample.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_quality
 #. odoo-python
 #: code:addons/farm_quality/models/agri_quality.py:0
 msgid "QC"
-msgstr ""
+msgstr "质量控制"
 
 #. module: farm_quality
 #. odoo-python
 #: code:addons/farm_quality/models/agri_quality.py:0
 msgid "QC LOCKED: Lot %s is pending release and cannot be moved."
-msgstr ""
+msgstr "QC 已锁定：批次 %s 待发布且无法移动。"
 
 #. module: farm_quality
 #. odoo-python
 #: code:addons/farm_quality/models/agri_quality.py:0
 msgid "QUALITY ALERT: Lot %s has failed quality inspection."
-msgstr ""
+msgstr "质量警报：批次 %s 未通过质量检验。"
 
 #. module: farm_quality
 #. odoo-python
 #: code:addons/farm_quality/models/agri_quality_sample.py:0
 msgid "SMP"
-msgstr ""
+msgstr "表面活性剂"
 
 #. module: farm_quality
 #. odoo-python
 #: code:addons/farm_quality/models/agri_quality_sample.py:0
 msgid "Sample disposed on %s"
-msgstr ""
+msgstr "样本已于 %s 处理"

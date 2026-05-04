@@ -20,16 +20,16 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_protected_cultivation/models/protected_cultivation_operation.py:0
 msgid "Please link at least one automation rule before starting!"
-msgstr ""
+msgstr "开始之前请至少链接一条自动化规则！"
 
 #. module: farm_protected_cultivation
 #. odoo-python
 #: code:addons/farm_protected_cultivation/models/protected_cultivation_operation.py:0
 msgid "SYSTEM: Environmental automation started for this greenhouse batch."
-msgstr ""
+msgstr "系统：该温室批次开始环境自动化。"
 
 #. module: farm_protected_cultivation
 #. odoo-python
 #: code:addons/farm_protected_cultivation/models/protected_cultivation_operation.py:0
 msgid "SYSTEM: Environmental automation stopped."
-msgstr ""
+msgstr "系统：环境自动化停止。"

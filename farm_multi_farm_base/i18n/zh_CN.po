@@ -19,12 +19,12 @@ msgstr ""
 #. module: farm_multi_farm_base
 #: model:ir.model.constraint,message:farm_multi_farm_base.constraint_cooperative_member_partner_cooperative_unique
 msgid "A partner can only be a member of the same cooperative once!"
-msgstr ""
+msgstr "一个合作伙伴只能成为同一合作社的成员一次！"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__account_balance
 msgid "Account Balance"
-msgstr ""
+msgstr "账户余额"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__message_needaction
@@ -38,7 +38,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__message_needaction
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "需要操作"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__cooperative_member__membership_status__active
@@ -48,7 +48,7 @@ msgstr "有效"
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_regional_oversight__alert_count
 msgid "Active Compliance Alerts"
-msgstr ""
+msgstr "主动合规警报"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__activity_ids
@@ -62,7 +62,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__activity_ids
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "活动"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__activity_exception_decoration
@@ -76,7 +76,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__activity_exception_decoration
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "活动异常装饰"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__activity_state
@@ -90,7 +90,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__activity_state
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "活动状态"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__activity_type_icon
@@ -104,18 +104,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__activity_type_icon
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "活动类型图标"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__actual_revenue
 msgid "Actual Revenue"
-msgstr ""
+msgstr "实际收入"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__actual_yield
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_yield_commitment__actual_yield
 msgid "Actual Yield (kg)"
-msgstr ""
+msgstr "实际产量（公斤）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__address
@@ -123,76 +123,76 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_cooperative_entity_form
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_farm_entity_form
 msgid "Address"
-msgstr ""
+msgstr "地址"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_settlement__type__advance
 msgid "Advance Payment"
-msgstr ""
+msgstr "预付款"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_input_prepayment__agreement_id
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_settlement__agreement_id
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_yield_commitment__agreement_id
 msgid "Agreement"
-msgstr ""
+msgstr "协议"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__name
 msgid "Agreement Reference"
-msgstr ""
+msgstr "协议参考"
 
 #. module: farm_multi_farm_base
 #. odoo-python
 #: code:addons/farm_multi_farm_base/models/contract_farming_agreement.py:0
 msgid "Agreement approved by %s"
-msgstr ""
+msgstr "协议已被 %s 批准"
 
 #. module: farm_multi_farm_base
 #. odoo-python
 #: code:addons/farm_multi_farm_base/models/contract_farming_agreement.py:0
 msgid "Agreement cancelled by %s"
-msgstr ""
+msgstr "协议已被 %s 取消"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__company_id
 msgid "Agricultural Enterprise"
-msgstr ""
+msgstr "农业企业"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_agri_service
 msgid "Agricultural Service"
-msgstr ""
+msgstr "农业服务"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__agri_service_ids
 msgid "Agricultural Services"
-msgstr ""
+msgstr "农业服务"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_internal_settlement__amount
 msgid "Amount"
-msgstr ""
+msgstr "金额"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_agreement__state__approved
 msgid "Approved"
-msgstr ""
+msgstr "已批准"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_yield_commitment__area
 msgid "Area (mu)"
-msgstr ""
+msgstr "面积（亩）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_contract_farming_yield_commitment__area
 msgid "Area for this specific yield commitment"
-msgstr ""
+msgstr "这一特定收益承诺的领域"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_contract_farming_agreement__planting_area
 msgid "Area in mu (Chinese acre)"
-msgstr ""
+msgstr "面积（亩）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__message_attachment_count
@@ -206,169 +206,169 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__message_attachment_count
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "附件数量"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_franchise_farm__audit_notes
 msgid "Audit Notes"
-msgstr ""
+msgstr "审计笔记"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__available_credit
 msgid "Available Credit"
-msgstr ""
+msgstr "可用信用"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__available_from
 msgid "Available From"
-msgstr ""
+msgstr "可从"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__available_to
 msgid "Available To"
-msgstr ""
+msgstr "可用于"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_settlement__payment_method__bank_transfer
 msgid "Bank Transfer"
-msgstr ""
+msgstr "银行转账"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_action_approve_mixin
 msgid "Base Action Approve Mixin"
-msgstr ""
+msgstr "基本操作批准 Mixin"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_action_cancel_mixin
 msgid "Base Action Cancel Mixin"
-msgstr ""
+msgstr "基本操作取消 Mixin"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_action_confirm_mixin
 msgid "Base Action Confirm Mixin"
-msgstr ""
+msgstr "基本操作确认 Mixin"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_action_reject_mixin
 msgid "Base Action Reject Mixin"
-msgstr ""
+msgstr "基本动作拒绝混合"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_amount_calculation_mixin
 msgid "Base Amount Calculation Mixin"
-msgstr ""
+msgstr "基础量计算 Mixin"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_available_amount_mixin
 msgid "Base Available Amount Mixin"
-msgstr ""
+msgstr "基础可用量混合"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_available_credit_mixin
 msgid "Base Available Credit Mixin"
-msgstr ""
+msgstr "基础可用信用混合"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_certified_status_mixin
 msgid "Base Certified Status Mixin"
-msgstr ""
+msgstr "基础认证状态 Mixin"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_code_mixin
 msgid "Base Code Mixin"
-msgstr ""
+msgstr "基本代码混合"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_compliance_status_mixin
 msgid "Base Compliance Status Mixin"
-msgstr ""
+msgstr "基础合规状态 Mixin"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_credit_limit_mixin
 msgid "Base Credit Limit Mixin"
-msgstr ""
+msgstr "基础信用额度 Mixin"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_investment_amount_mixin
 msgid "Base Investment Amount Mixin"
-msgstr ""
+msgstr "基础投资金额混合"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_loan_amount_mixin
 msgid "Base Loan Amount Mixin"
-msgstr ""
+msgstr "基本贷款金额混合"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_net_amount_mixin
 msgid "Base Net Amount Mixin"
-msgstr ""
+msgstr "基础净量 Mixin"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_sequence_mixin
 msgid "Base Sequence Mixin"
-msgstr ""
+msgstr "碱基序列混合"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_service_amount_mixin
 msgid "Base Service Amount Mixin"
-msgstr ""
+msgstr "基础服务量混合"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_settlement_direction_mixin
 msgid "Base Settlement Direction Mixin"
-msgstr ""
+msgstr "基础沉降方向混合"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_share_value_mixin
 msgid "Base Share Value Mixin"
-msgstr ""
+msgstr "基础份额价值混合"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_total_amount_mixin
 msgid "Base Total Amount Mixin"
-msgstr ""
+msgstr "基础总量混合"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_base_total_investment_mixin
 msgid "Base Total Investment Mixin"
-msgstr ""
+msgstr "基础总投资混合"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_yield_commitment__quality_grade__basic
 msgid "Basic"
-msgstr ""
+msgstr "基本的"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_franchise_farm__brand_usage_rights
 msgid "Brand Usage Rights"
-msgstr ""
+msgstr "品牌使用权"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_agreement__state__cancelled
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__internal_settlement__state__cancelled
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__service_order__state__cancelled
 msgid "Cancelled"
-msgstr ""
+msgstr "已取消"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__capacity
 msgid "Capacity"
-msgstr ""
+msgstr "产能"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__capacity_unit
 msgid "Capacity Unit"
-msgstr ""
+msgstr "容量单位"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_settlement__payment_method__cash
 msgid "Cash"
-msgstr ""
+msgstr "现金"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_cooperative_entity__is_subsidy_hub
 msgid "Check if this cooperative distributes government subsidies to members."
-msgstr ""
+msgstr "检查该合作社是否向成员发放政府补贴。"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_cooperative_entity__compliance_audit_authority
@@ -380,13 +380,13 @@ msgstr ""
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_stock_picking_type__is_advancing_distribution
 msgid "Check if this operation type is for advancing distribution to members"
-msgstr ""
+msgstr "检查该操作类型是否为向会员提前分发"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_entity__child_entity_ids
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_farm_entity_form
 msgid "Child Entities"
-msgstr ""
+msgstr "子实体"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__code
@@ -394,12 +394,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_franchise_farm__code
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_internal_settlement__code
 msgid "Code"
-msgstr ""
+msgstr "代码"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__cooperative_entity__purpose_type__commercial
 msgid "Commercial (Business oriented)"
-msgstr ""
+msgstr "商业（商业导向）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_entity__company_id
@@ -409,80 +409,80 @@ msgstr "公司"
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__service_order__state__completed
 msgid "Completed"
-msgstr ""
+msgstr "完全的"
 
 #. module: farm_multi_farm_base
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_franchise_farm_form
 msgid "Compliance"
-msgstr ""
+msgstr "合规"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_franchise_farm__compliance_status
 msgid "Compliance Status"
-msgstr ""
+msgstr "合规状态"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__franchise_farm__compliance_status__compliant
 msgid "Compliant"
-msgstr ""
+msgstr "合规"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__state__confirmed
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__internal_settlement__state__confirmed
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__service_order__state__confirmed
 msgid "Confirmed"
-msgstr ""
+msgstr "确认的"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "联系人"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_entity__contact_person
 msgid "Contact Person"
-msgstr ""
+msgstr "联络人"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__end_date
 msgid "Contract End Date"
-msgstr ""
+msgstr "合同结束日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_contract_farming_agreement
 msgid "Contract Farming Agreement"
-msgstr ""
+msgstr "合同农业协议"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_contract_farming_input_prepayment
 msgid "Contract Farming Input Prepayment"
-msgstr ""
+msgstr "订单农业投入预付"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_contract_farming_settlement
 msgid "Contract Farming Settlement"
-msgstr ""
+msgstr "合同农业结算"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_contract_farming_yield_commitment
 msgid "Contract Farming Yield Commitment"
-msgstr ""
+msgstr "合同农业产量承诺"
 
 #. module: farm_multi_farm_base
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_farm_entity_form
 msgid "Contract Period"
-msgstr ""
+msgstr "合约期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__start_date
 msgid "Contract Start Date"
-msgstr ""
+msgstr "合同开始日期"
 
 #. module: farm_multi_farm_base
 #. odoo-python
 #: code:addons/farm_multi_farm_base/models/contract_farming_agreement.py:0
 msgid "Contract fully settled"
-msgstr ""
+msgstr "合同已全部结算"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__cooperative_id
@@ -491,42 +491,42 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__farm_entity__entity_type__cooperative
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_cooperative_entity_form
 msgid "Cooperative"
-msgstr ""
+msgstr "合作社"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_cooperative_entity
 msgid "Cooperative Entity"
-msgstr ""
+msgstr "合作单位"
 
 #. module: farm_multi_farm_base
 #: model:ir.ui.menu,name:farm_multi_farm_base.menu_cooperative_management
 msgid "Cooperative Management"
-msgstr ""
+msgstr "合作经营"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_cooperative_member
 msgid "Cooperative Member"
-msgstr ""
+msgstr "合作会员"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_entity__cooperative_member_ids
 msgid "Cooperative Members"
-msgstr ""
+msgstr "合作社成员"
 
 #. module: farm_multi_farm_base
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_cooperative_entity_form
 msgid "Cooperative Name"
-msgstr ""
+msgstr "合作单位名称"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__purpose_type
 msgid "Cooperative Purpose"
-msgstr ""
+msgstr "合作目的"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_stock_lot__cooperative_purpose
 msgid "Cooperative Purpose Context"
-msgstr ""
+msgstr "合作目的背景"
 
 #. module: farm_multi_farm_base
 #: model:ir.actions.act_window,name:farm_multi_farm_base.action_cooperative_entities
@@ -534,27 +534,27 @@ msgstr ""
 #: model:ir.ui.menu,name:farm_multi_farm_base.menu_cooperative_entities
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_cooperative_entity_tree
 msgid "Cooperatives"
-msgstr ""
+msgstr "合作社"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_agreement__pricing_method__cost_plus
 msgid "Cost Plus"
-msgstr ""
+msgstr "成本加成"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__cost_plus_margin
 msgid "Cost Plus Margin (%)"
-msgstr ""
+msgstr "成本加成利润 (%)"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_resource_sharing__sharing_cost
 msgid "Cost per unit time or usage"
-msgstr ""
+msgstr "每单位时间或使用量的成本"
 
 #. module: farm_multi_farm_base
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_resource_sharing_form
 msgid "Create Settlement"
-msgstr ""
+msgstr "创建结算"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__create_uid
@@ -593,17 +593,17 @@ msgstr "创建时间"
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__credit_limit
 msgid "Credit Limit"
-msgstr ""
+msgstr "信用额度"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__credit_used
 msgid "Credit Used"
-msgstr ""
+msgstr "使用的信用"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__crop_type
 msgid "Crop Type"
-msgstr ""
+msgstr "作物类型"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__currency_id
@@ -612,38 +612,38 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_settlement__currency_id
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_internal_settlement__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "币种"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_entity__data_isolation_level
 msgid "Data Isolation Level"
-msgstr ""
+msgstr "数据隔离级别"
 
 #. module: farm_multi_farm_base
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_farm_entity_form
 msgid "Data Sharing"
-msgstr ""
+msgstr "数据共享"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__resource_sharing__sharing_unit__day
 msgid "Day"
-msgstr ""
+msgstr "天"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__state__delivered
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__verification_status__delivered
 msgid "Delivered"
-msgstr ""
+msgstr "发表"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_input_prepayment__delivered_quantity
 msgid "Delivered Quantity"
-msgstr ""
+msgstr "交货数量"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_input_prepayment__delivery_date
 msgid "Delivery Date"
-msgstr ""
+msgstr "交付日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__description
@@ -712,7 +712,7 @@ msgstr "草稿"
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__cooperative_entity__purpose_type__both
 msgid "Dual Purpose (Commercial & Government)"
-msgstr ""
+msgstr "双重用途（商业和政府）"
 
 #. module: farm_multi_farm_base
 #. odoo-python
@@ -726,65 +726,65 @@ msgstr ""
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__dividend_eligibility
 msgid "Eligible for Dividends"
-msgstr ""
+msgstr "有资格获得股息"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__email
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_entity__email
 msgid "Email"
-msgstr ""
+msgstr "邮件"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_entity__end_date
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__end_date
 msgid "End Date"
-msgstr ""
+msgstr "结束日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_settlement__enterprise_share
 msgid "Enterprise Share"
-msgstr ""
+msgstr "企业分享"
 
 #. module: farm_multi_farm_base
 #: model:ir.ui.menu,name:farm_multi_farm_base.multi_farm_entities_menu
 msgid "Entity Management"
-msgstr ""
+msgstr "实体管理"
 
 #. module: farm_multi_farm_base
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_farm_entity_form
 msgid "Entity Name"
-msgstr ""
+msgstr "实体名称"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_entity__entity_type
 msgid "Entity Type"
-msgstr ""
+msgstr "实体类型"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__input_type__equipment
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__resource_sharing__resource_type__equipment
 msgid "Equipment"
-msgstr ""
+msgstr "设备"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__harvest_date
 msgid "Expected Harvest Date"
-msgstr ""
+msgstr "预计收获日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__planting_date
 msgid "Expected Planting Date"
-msgstr ""
+msgstr "预计种植日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_yield_commitment__expected_yield
 msgid "Expected Yield (kg/mu)"
-msgstr ""
+msgstr "预计产量（公斤/亩）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_contract_farming_agreement__yield_commitment
 msgid "Expected yield per mu"
-msgstr ""
+msgstr "预计亩产"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__farm_entity__entity_type__farm
@@ -797,49 +797,49 @@ msgstr "农场"
 #: model:ir.ui.menu,name:farm_multi_farm_base.menu_farm_entities
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_farm_entity_tree
 msgid "Farm Entities"
-msgstr ""
+msgstr "农场实体"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_farm_entity
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_franchise_farm__farm_entity_id
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_farm_entity_form
 msgid "Farm Entity"
-msgstr ""
+msgstr "农场实体"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_settlement__farmer_share
 msgid "Farmer Share"
-msgstr ""
+msgstr "农民分享"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__farmer_id
 msgid "Farmer/Contractor"
-msgstr ""
+msgstr "农民/承包商"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__input_type__fertilizer
 msgid "Fertilizer"
-msgstr ""
+msgstr "肥料"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_settlement__type__final
 msgid "Final Settlement"
-msgstr ""
+msgstr "最终结算"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_agreement__pricing_method__fixed
 msgid "Fixed Price"
-msgstr ""
+msgstr "定价"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__fixed_price
 msgid "Fixed Price (per kg)"
-msgstr ""
+msgstr "固定价格（每公斤）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__repayment_method__fixed_schedule
 msgid "Fixed Schedule"
-msgstr ""
+msgstr "固定时间表"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__message_follower_ids
@@ -853,7 +853,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__message_follower_ids
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "关注者"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__message_partner_ids
@@ -867,7 +867,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__message_partner_ids
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "关注者（合作伙伴）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_agri_service__activity_type_icon
@@ -881,39 +881,39 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_base.field_resource_sharing__activity_type_icon
 #: model:ir.model.fields,help:farm_multi_farm_base.field_service_order__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "字体很棒的图标，例如fa 任务"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_farm_entity__end_date
 msgid "For franchise agreements or membership periods"
-msgstr ""
+msgstr "对于特许经营协议或会员期限"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_franchise_farm__franchise_agreement_date
 msgid "Franchise Agreement Date"
-msgstr ""
+msgstr "特许经营协议日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_franchise_farm__franchise_expiry_date
 msgid "Franchise Expiry Date"
-msgstr ""
+msgstr "特许经营到期日"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__farm_entity__entity_type__franchise
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_franchise_farm_form
 msgid "Franchise Farm"
-msgstr ""
+msgstr "特许经营农场"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_franchise_farm
 msgid "Franchise Farm Management"
-msgstr ""
+msgstr "特许经营农场管理"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_franchise_farm__name
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_franchise_farm_form
 msgid "Franchise Farm Name"
-msgstr ""
+msgstr "特许经营农场名称"
 
 #. module: farm_multi_farm_base
 #: model:ir.actions.act_window,name:farm_multi_farm_base.action_franchise_farms
@@ -921,78 +921,78 @@ msgstr ""
 #: model:ir.ui.menu,name:farm_multi_farm_base.menu_franchise_farms
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_franchise_farm_tree
 msgid "Franchise Farms"
-msgstr ""
+msgstr "特许经营农场"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_franchise_farm__franchise_fee
 msgid "Franchise Fee"
-msgstr ""
+msgstr "特许经营费"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_internal_settlement__from_entity_id
 msgid "From Entity"
-msgstr ""
+msgstr "来自实体"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__farm_entity__data_isolation_level__full
 msgid "Full Isolation"
-msgstr ""
+msgstr "完全隔离"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__internal_settlement__settlement_type__general
 msgid "General"
-msgstr ""
+msgstr "一般的"
 
 #. module: farm_multi_farm_base
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_internal_settlement_form
 msgid "Generate Invoice"
-msgstr ""
+msgstr "生成发票"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__cooperative_entity__purpose_type__government
 msgid "Government (Regulatory/Policy oriented)"
-msgstr ""
+msgstr "政府（监管/政策导向）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_stock_lot__is_government_audited
 msgid "Government Audit Passed"
-msgstr ""
+msgstr "政府审核通过"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_agreement__state__harvest_complete
 msgid "Harvest Complete"
-msgstr ""
+msgstr "收获完成"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_yield_commitment__harvest_date
 msgid "Harvest Date"
-msgstr ""
+msgstr "收获日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_yield_commitment__notes
 msgid "Harvest Notes"
-msgstr ""
+msgstr "收获笔记"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__repayment_method__harvest_proceeds
 msgid "Harvest Proceeds"
-msgstr ""
+msgstr "收获收益"
 
 #. module: farm_multi_farm_base
 #. odoo-python
 #: code:addons/farm_multi_farm_base/models/contract_farming_agreement.py:0
 msgid "Harvest completed, ready for settlement"
-msgstr ""
+msgstr "收获完成，准备结算"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__agri_service__service_category__harvesting
 msgid "Harvesting"
-msgstr ""
+msgstr "收获"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__compliance_audit_authority
 msgid "Has Audit Authority"
-msgstr ""
+msgstr "拥有审计权"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__has_message
@@ -1006,12 +1006,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__has_message
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "有留言"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__resource_sharing__sharing_unit__hour
 msgid "Hour"
-msgstr ""
+msgstr "小时"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__id
@@ -1056,7 +1056,7 @@ msgstr "ID"
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_resource_sharing__resource_id
 msgid "ID of the shared resource (e.g., equipment ID, employee ID)"
-msgstr ""
+msgstr "共享资源的ID（例如设备ID、员工ID）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__activity_exception_icon
@@ -1070,7 +1070,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__activity_exception_icon
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "图标"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_agri_service__activity_exception_icon
@@ -1084,7 +1084,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_base.field_resource_sharing__activity_exception_icon
 #: model:ir.model.fields,help:farm_multi_farm_base.field_service_order__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "指示异常活动的图标。"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_agri_service__message_needaction
@@ -1098,7 +1098,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_base.field_resource_sharing__message_needaction
 #: model:ir.model.fields,help:farm_multi_farm_base.field_service_order__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "如果选中，则有新消息需要您注意。"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_agri_service__message_has_error
@@ -1122,85 +1122,85 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_base.field_service_order__message_has_error
 #: model:ir.model.fields,help:farm_multi_farm_base.field_service_order__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "如果检查，则某些消息存在传送错误。"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_agreement__state__in_progress
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__service_order__state__in_progress
 msgid "In Progress"
-msgstr ""
+msgstr "进行中"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__input_prepayment_paid
 msgid "Input Prepayment Paid"
-msgstr ""
+msgstr "输入预付款已付"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__input_prepayment_remaining
 msgid "Input Prepayment Remaining"
-msgstr ""
+msgstr "输入预付款剩余"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__input_prepayment_ids
 msgid "Input Prepayments"
-msgstr ""
+msgstr "输入预付款"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_input_prepayment__product_id
 msgid "Input Product"
-msgstr ""
+msgstr "输入产品"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_input_prepayment__input_type
 msgid "Input Type"
-msgstr ""
+msgstr "输入类型"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_settlement__type__interim
 msgid "Interim Settlement"
-msgstr ""
+msgstr "临时结算"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_res_partner__internal_credit_balance
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_res_users__internal_credit_balance
 msgid "Internal Credit Balance"
-msgstr ""
+msgstr "内部信用余额"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_internal_settlement
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__internal_settlement_id
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_internal_settlement_form
 msgid "Internal Settlement"
-msgstr ""
+msgstr "内部结算"
 
 #. module: farm_multi_farm_base
 #: model:ir.actions.act_window,name:farm_multi_farm_base.action_internal_settlements
 #: model:ir.ui.menu,name:farm_multi_farm_base.menu_internal_settlements
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_internal_settlement_tree
 msgid "Internal Settlements"
-msgstr ""
+msgstr "内部定居点"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__internal_settlement__settlement_type__internal_transaction
 msgid "Internal Transaction"
-msgstr ""
+msgstr "内部交易"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_res_partner__internal_credit_balance
 #: model:ir.model.fields,help:farm_multi_farm_base.field_res_users__internal_credit_balance
 msgid "Internal credit balance for cooperative transactions"
-msgstr ""
+msgstr "合作交易内部贷方余额"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_cooperative_member__credit_limit
 msgid "Internal credit limit for member"
-msgstr ""
+msgstr "会员内部信用额度"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_internal_settlement__invoice_id
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_internal_settlement_form
 msgid "Invoice"
-msgstr ""
+msgstr "发票"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__is_active
@@ -1209,12 +1209,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_franchise_farm__is_active
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__is_active
 msgid "Is Active"
-msgstr ""
+msgstr "处于活动状态"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_stock_picking_type__is_advancing_distribution
 msgid "Is Advancing Distribution"
-msgstr ""
+msgstr "正在推进分销"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__message_is_follower
@@ -1228,27 +1228,27 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__message_is_follower
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "是追随者"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__join_date
 msgid "Join Date"
-msgstr ""
+msgstr "加入日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__internal_settlement__settlement_type__joint_procurement
 msgid "Joint Procurement"
-msgstr ""
+msgstr "联合采购"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__resource_sharing__resource_type__land
 msgid "Land"
-msgstr ""
+msgstr "土地"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_franchise_farm__last_audit_date
 msgid "Last Audit Date"
-msgstr ""
+msgstr "最后审核日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__write_uid
@@ -1287,65 +1287,65 @@ msgstr "最后更新时间"
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__legal_representative
 msgid "Legal Representative"
-msgstr ""
+msgstr "法定代表人"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__loan_balance
 msgid "Loan Balance"
-msgstr ""
+msgstr "贷款余额"
 
 #. module: farm_multi_farm_base
 #. odoo-python
 #: code:addons/farm_multi_farm_base/models/utils.py:0
 msgid "Loan amount must be positive."
-msgstr ""
+msgstr "贷款金额必须为正数。"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_stock_lot
 msgid "Lot/Serial"
-msgstr ""
+msgstr "批次/序列号"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__internal_settlement__settlement_type__management_fee
 msgid "Management Fee"
-msgstr ""
+msgstr "管理费"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_agreement__pricing_method__market
 msgid "Market-Based Price"
-msgstr ""
+msgstr "市场价格"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__internal_settlement__settlement_type__marketing_fee
 msgid "Marketing Fee"
-msgstr ""
+msgstr "营销费"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__code
 msgid "Member Code"
-msgstr ""
+msgstr "会员代码"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__member_farm_ids
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_cooperative_entity_form
 msgid "Member Farms"
-msgstr ""
+msgstr "会员农场"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__name
 msgid "Member Name"
-msgstr ""
+msgstr "会员姓名"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__member_ids
 #: model:ir.ui.menu,name:farm_multi_farm_base.cooperative_member_menu
 msgid "Members"
-msgstr ""
+msgstr "会员"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__membership_status
 msgid "Membership Status"
-msgstr ""
+msgstr "会员资格"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__message_has_error
@@ -1359,7 +1359,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__message_has_error
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "消息投递错误"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__message_ids
@@ -1373,17 +1373,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__message_ids
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "消息"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_regional_oversight__cooperative_ids
 msgid "Monitored Cooperatives"
-msgstr ""
+msgstr "受监控的合作社"
 
 #. module: farm_multi_farm_base
 #: model:ir.ui.menu,name:farm_multi_farm_base.multi_farm_root_menu
 msgid "Multi-Entity Collaboration"
-msgstr ""
+msgstr "多实体协作"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__my_activity_date_deadline
@@ -1397,7 +1397,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__my_activity_date_deadline
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "我的活动截止日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__name
@@ -1409,7 +1409,7 @@ msgstr "名称"
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__internal_settlement__settlement_type__netting_settlement
 msgid "Netting Settlement"
-msgstr ""
+msgstr "净额结算"
 
 #. module: farm_multi_farm_base
 #. odoo-python
@@ -1418,7 +1418,7 @@ msgstr ""
 #: code:addons/farm_multi_farm_base/models/service_order.py:0
 #: code:addons/farm_multi_farm_base/models/utils.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__activity_date_deadline
@@ -1432,7 +1432,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__activity_date_deadline
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "下一个活动截止日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__activity_summary
@@ -1446,7 +1446,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__activity_summary
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "下一步活动总结"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__activity_type_id
@@ -1460,17 +1460,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__activity_type_id
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "下一个活动类型"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_franchise_farm__next_audit_date
 msgid "Next Audit Date"
-msgstr ""
+msgstr "下次审核日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__franchise_farm__compliance_status__non_compliant
 msgid "Non-Compliant"
-msgstr ""
+msgstr "不合规"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__message_needaction_counter
@@ -1484,7 +1484,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__message_needaction_counter
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "动作数量"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__message_has_error_counter
@@ -1498,7 +1498,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__message_has_error_counter
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "错误数"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_agri_service__message_needaction_counter
@@ -1512,7 +1512,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_base.field_resource_sharing__message_needaction_counter
 #: model:ir.model.fields,help:farm_multi_farm_base.field_service_order__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "需要采取行动的消息数量"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_agri_service__message_has_error_counter
@@ -1526,64 +1526,64 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_base.field_resource_sharing__message_has_error_counter
 #: model:ir.model.fields,help:farm_multi_farm_base.field_service_order__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "发送错误的消息数"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_settlement__payment_method__offset
 msgid "Offset Against Prepayment"
-msgstr ""
+msgstr "预付款抵消"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__farm_entity__data_isolation_level__open
 msgid "Open Sharing"
-msgstr ""
+msgstr "开放共享"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_franchise_farm__operational_standards
 msgid "Operational Standards"
-msgstr ""
+msgstr "操作标准"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__order_date
 msgid "Order Date"
-msgstr ""
+msgstr "订购日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__name
 msgid "Order Reference"
-msgstr ""
+msgstr "订单参考"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__agri_service__service_category__other
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__input_type__other
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__resource_sharing__resource_type__other
 msgid "Other"
-msgstr ""
+msgstr "其他"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__overseeing_agency_id
 msgid "Overseeing Government Agency"
-msgstr ""
+msgstr "监督政府机构"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__internal_settlement__state__paid
 msgid "Paid"
-msgstr ""
+msgstr "有薪酬的"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_input_prepayment__paid_amount
 msgid "Paid Amount"
-msgstr ""
+msgstr "支付金额"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_entity__parent_entity_id
 msgid "Parent Entity"
-msgstr ""
+msgstr "父实体"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__farm_entity__data_isolation_level__partial
 msgid "Partial Sharing"
-msgstr ""
+msgstr "部分共享"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__partner_id
@@ -1593,114 +1593,114 @@ msgstr "合作伙伴"
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_settlement__payment_method
 msgid "Payment Method"
-msgstr ""
+msgstr "付款方式"
 
 #. module: farm_multi_farm_base
 #. odoo-python
 #: code:addons/farm_multi_farm_base/models/contract_farming_agreement.py:0
 msgid "Payment amount exceeds remaining amount"
-msgstr ""
+msgstr "付款金额超过剩余金额"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__verification_status__pending
 msgid "Pending Delivery"
-msgstr ""
+msgstr "待发货"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_franchise_farm__royalty_rate
 msgid "Percentage of sales as royalty"
-msgstr ""
+msgstr "销售额占特许权使用费的百分比"
 
 #. module: farm_multi_farm_base
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_franchise_farm_form
 msgid "Perform Compliance Check"
-msgstr ""
+msgstr "执行合规性检查"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_yield_commitment__performance_rate
 msgid "Performance Rate (%)"
-msgstr ""
+msgstr "绩效率（%）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__resource_sharing__resource_type__personnel
 msgid "Personnel"
-msgstr ""
+msgstr "人员"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__input_type__pesticide
 msgid "Pesticide"
-msgstr ""
+msgstr "农药"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__phone
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_entity__phone
 msgid "Phone"
-msgstr ""
+msgstr "电话"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_stock_picking_type
 msgid "Picking Type"
-msgstr ""
+msgstr "拣货类型"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__planting_area
 msgid "Planting Area (mu)"
-msgstr ""
+msgstr "种植面积（亩）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_yield_commitment__quality_grade__premium
 msgid "Premium"
-msgstr ""
+msgstr "优质的"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__pricing_method
 msgid "Pricing Method"
-msgstr ""
+msgstr "定价方式"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__internal_settlement__settlement_type__profit_sharing
 msgid "Profit Sharing"
-msgstr ""
+msgstr "利润分享"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__projected_revenue
 msgid "Projected Revenue"
-msgstr ""
+msgstr "预计收入"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__provider_member_id
 msgid "Provider Member"
-msgstr ""
+msgstr "提供者会员"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__agri_service__service_category__pruning
 msgid "Pruning"
-msgstr ""
+msgstr "修剪"
 
 #. module: farm_multi_farm_base
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_franchise_farm_form
 msgid "Push Standards"
-msgstr ""
+msgstr "推动标准"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_yield_commitment__quality_compliance
 msgid "Quality Compliance"
-msgstr ""
+msgstr "质量合规性"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_yield_commitment__quality_grade
 msgid "Quality Grade"
-msgstr ""
+msgstr "质量等级"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__quality_standards
 msgid "Quality Standards & Specifications"
-msgstr ""
+msgstr "质量标准和规范"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_input_prepayment__quantity
 msgid "Quantity"
-msgstr ""
+msgstr "数量"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__rating_ids
@@ -1714,98 +1714,98 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__rating_ids
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__rating_ids
 msgid "Ratings"
-msgstr ""
+msgstr "评级"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_regional_oversight__name
 msgid "Region/Zone Name"
-msgstr ""
+msgstr "地区/区域名称"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_farm_regional_oversight
 msgid "Regional Agricultural Oversight Dashboard"
-msgstr ""
+msgstr "区域农业监督仪表板"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_regional_oversight__avg_compliance_score
 msgid "Regional Compliance Avg (%)"
-msgstr ""
+msgstr "地区平均合规性 (%)"
 
 #. module: farm_multi_farm_base
 #: model:ir.ui.menu,name:farm_multi_farm_base.regional_oversight_menu
 msgid "Regional Oversight"
-msgstr ""
+msgstr "区域监督"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_regional_oversight__total_predicted_yield
 msgid "Regional Yield Forecast (kg)"
-msgstr ""
+msgstr "区域产量预测（公斤）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__registration_date
 msgid "Registration Date"
-msgstr ""
+msgstr "报名日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__registration_number
 msgid "Registration Number"
-msgstr ""
+msgstr "注册号"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_regional_oversight__agency_id
 msgid "Regulatory Body"
-msgstr ""
+msgstr "监管机构"
 
 #. module: farm_multi_farm_base
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_internal_settlement_form
 msgid "Related Documents"
-msgstr ""
+msgstr "相关文件"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_input_prepayment__remaining_amount
 msgid "Remaining Amount"
-msgstr ""
+msgstr "剩余金额"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__state__repaid
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__verification_status__repaid
 msgid "Repaid"
-msgstr ""
+msgstr "已偿还"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_input_prepayment__repayment_due_date
 msgid "Repayment Due Date"
-msgstr ""
+msgstr "还款到期日"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_input_prepayment__repayment_method
 msgid "Repayment Method"
-msgstr ""
+msgstr "还款方式"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__requester_member_id
 msgid "Requester Member"
-msgstr ""
+msgstr "请求者会员"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__required_date
 msgid "Required Date"
-msgstr ""
+msgstr "所需日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__resource_id
 msgid "Resource ID"
-msgstr ""
+msgstr "资源ID"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__resource_name
 msgid "Resource Name"
-msgstr ""
+msgstr "资源名称"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__internal_settlement__settlement_type__resource_rental
 msgid "Resource Rental"
-msgstr ""
+msgstr "资源租赁"
 
 #. module: farm_multi_farm_base
 #: model:ir.actions.act_window,name:farm_multi_farm_base.action_resource_sharing
@@ -1815,22 +1815,22 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_resource_sharing_form
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_resource_sharing_tree
 msgid "Resource Sharing"
-msgstr ""
+msgstr "资源共享"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_resource_sharing
 msgid "Resource Sharing Between Entities"
-msgstr ""
+msgstr "实体之间的资源共享"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__resource_type
 msgid "Resource Type"
-msgstr ""
+msgstr "资源类型"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_stock_lot__assigned_cooperative_id
 msgid "Responsible Cooperative"
-msgstr ""
+msgstr "负责任的合作社"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__activity_user_id
@@ -1844,33 +1844,33 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__activity_user_id
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "负责用户"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_settlement__type__revenue_share
 msgid "Revenue Share"
-msgstr ""
+msgstr "收入分成"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__revenue_share_percentage
 msgid "Revenue Share (%)"
-msgstr ""
+msgstr "收入份额 (%)"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_agreement__pricing_method__revenue_share
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__repayment_method__revenue_sharing
 msgid "Revenue Sharing"
-msgstr ""
+msgstr "收益分享"
 
 #. module: farm_multi_farm_base
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_franchise_farm_form
 msgid "Rights & Standards"
-msgstr ""
+msgstr "权利与标准"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_franchise_farm__royalty_rate
 msgid "Royalty Rate (%)"
-msgstr ""
+msgstr "特许权使用费率（%）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__message_has_sms_error
@@ -1884,162 +1884,162 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__message_has_sms_error
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "短信投递错误"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__input_type__seed
 msgid "Seed"
-msgstr ""
+msgstr "种子"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__service_id
 msgid "Service"
-msgstr ""
+msgstr "服务"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__service_category
 msgid "Service Category"
-msgstr ""
+msgstr "服务类别"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__code
 msgid "Service Code"
-msgstr ""
+msgstr "服务代码"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__description
 msgid "Service Description"
-msgstr ""
+msgstr "服务说明"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__internal_settlement__settlement_type__service_fee
 msgid "Service Fee"
-msgstr ""
+msgstr "服务费"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__location
 msgid "Service Location"
-msgstr ""
+msgstr "服务地点"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__name
 msgid "Service Name"
-msgstr ""
+msgstr "服务名称"
 
 #. module: farm_multi_farm_base
 #: model:ir.model,name:farm_multi_farm_base.model_service_order
 msgid "Service Order"
-msgstr ""
+msgstr "服务订单"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__service_order_ids
 msgid "Service Orders"
-msgstr ""
+msgstr "服务订单"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__service_quantity
 msgid "Service Quantity"
-msgstr ""
+msgstr "服务数量"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_agri_service__capacity
 msgid "Service capacity per unit time"
-msgstr ""
+msgstr "单位时间服务能力"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_agreement__state__settled
 msgid "Settled"
-msgstr ""
+msgstr "已定居"
 
 #. module: farm_multi_farm_base
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_resource_sharing_form
 msgid "Settlement"
-msgstr ""
+msgstr "沉降"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__settlement_amount
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_settlement__amount
 msgid "Settlement Amount"
-msgstr ""
+msgstr "结算金额"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_settlement__settlement_date
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_internal_settlement__settlement_date
 msgid "Settlement Date"
-msgstr ""
+msgstr "结算日期"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__settlement_ids
 msgid "Settlement Records"
-msgstr ""
+msgstr "结算记录"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_internal_settlement__name
 msgid "Settlement Reference"
-msgstr ""
+msgstr "结算参考"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_settlement__type
 msgid "Settlement Type"
-msgstr ""
+msgstr "结算类型"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__share_value
 msgid "Share Value"
-msgstr ""
+msgstr "股票价值"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_entity__shared_data_types
 msgid "Shared Data Types"
-msgstr ""
+msgstr "共享数据类型"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__shares_held
 msgid "Shares Held"
-msgstr ""
+msgstr "持有股份"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__sharing_cost
 msgid "Sharing Cost"
-msgstr ""
+msgstr "分担成本"
 
 #. module: farm_multi_farm_base
 #: model_terms:ir.ui.view,arch_db:farm_multi_farm_base.view_resource_sharing_form
 msgid "Sharing Terms"
-msgstr ""
+msgstr "共享条款"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__sharing_unit
 msgid "Sharing Unit"
-msgstr ""
+msgstr "共享单位"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__source_entity_id
 msgid "Source Entity"
-msgstr ""
+msgstr "源实体"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__agri_service__service_category__spraying
 msgid "Spraying/Flying"
-msgstr ""
+msgstr "喷射/飞行"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_yield_commitment__quality_grade__standard
 msgid "Standard"
-msgstr ""
+msgstr "标准"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_entity__start_date
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__start_date
 msgid "Start Date"
-msgstr ""
+msgstr "开始日期"
 
 #. module: farm_multi_farm_base
 #. odoo-python
 #: code:addons/farm_multi_farm_base/models/contract_farming_agreement.py:0
 #: code:addons/farm_multi_farm_base/models/entity_models.py:0
 msgid "Start date must be earlier than end date."
-msgstr ""
+msgstr "开始日期必须早于结束日期。"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_input_prepayment__state
@@ -2074,37 +2074,37 @@ msgstr ""
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_agreement__state__submitted
 msgid "Submitted"
-msgstr ""
+msgstr "已提交"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__farm_entity__entity_type__subsidiary
 msgid "Subsidiary"
-msgstr ""
+msgstr "子公司"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__internal_settlement__settlement_type__subsidy_distribution
 msgid "Subsidy Distribution"
-msgstr ""
+msgstr "补贴发放"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_entity__is_subsidy_hub
 msgid "Subsidy Distribution Hub"
-msgstr ""
+msgstr "补贴分配中心"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__cooperative_member__membership_status__suspended
 msgid "Suspended"
-msgstr ""
+msgstr "暂停"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__target_entity_id
 msgid "Target Entity"
-msgstr ""
+msgstr "目标实体"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_cooperative_entity__overseeing_agency_id
 msgid "The government body this cooperative reports to."
-msgstr ""
+msgstr "该合作社向其报告的政府机构。"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_stock_lot__assigned_cooperative_id
@@ -2115,48 +2115,48 @@ msgstr ""
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__agri_service__service_category__tillage
 msgid "Tillage"
-msgstr ""
+msgstr "耕作"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_internal_settlement__to_entity_id
 msgid "To Entity"
-msgstr ""
+msgstr "至实体"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_input_prepayment__amount
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__total_amount
 msgid "Total Amount"
-msgstr ""
+msgstr "总金额"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__input_prepayment_total
 msgid "Total Input Prepayment"
-msgstr ""
+msgstr "总投入预付款"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__total_investment
 msgid "Total Investment"
-msgstr ""
+msgstr "总投资"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_farm_regional_oversight__total_land_area
 msgid "Total Monitored Area (Ha)"
-msgstr ""
+msgstr "总监测面积（公顷）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_cooperative_member__trading_volume
 msgid "Trading Volume"
-msgstr ""
+msgstr "交易量"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__agri_service__service_category__transport
 msgid "Transport"
-msgstr ""
+msgstr "运输"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__resource_sharing__sharing_unit__trip
 msgid "Trip"
-msgstr ""
+msgstr "旅行"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_internal_settlement__settlement_type
@@ -2175,54 +2175,54 @@ msgstr "类型"
 #: model:ir.model.fields,help:farm_multi_farm_base.field_resource_sharing__activity_exception_decoration
 #: model:ir.model.fields,help:farm_multi_farm_base.field_service_order__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "记录的异常活动的类型。"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_farm_entity__shared_data_types
 msgid "Types of data that can be shared with parent entity"
-msgstr ""
+msgstr "可以与父实体共享的数据类型"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__resource_sharing__sharing_unit__unit
 msgid "Unit"
-msgstr ""
+msgstr "单元"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_input_prepayment__unit_price
 msgid "Unit Price"
-msgstr ""
+msgstr "单价"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_agri_service__unit_rate
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__unit_rate
 msgid "Unit Rate"
-msgstr ""
+msgstr "单位费率"
 
 #. module: farm_multi_farm_base
 #. odoo-python
 #: code:addons/farm_multi_farm_base/models/utils.py:0
 msgid "Utilized amount cannot exceed credit limit."
-msgstr ""
+msgstr "使用金额不能超过信用额度。"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_input_prepayment__verification_status
 msgid "Verification Status"
-msgstr ""
+msgstr "验证状态"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__contract_farming_input_prepayment__verification_status__verified
 msgid "Verified Used"
-msgstr ""
+msgstr "已验证使用"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_cooperative_member__trading_volume
 msgid "Volume of transactions with cooperative"
-msgstr ""
+msgstr "合作社交易额"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__resource_sharing__resource_type__warehouse
 msgid "Warehouse"
-msgstr ""
+msgstr "仓库"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__franchise_farm__compliance_status__warning
@@ -2241,7 +2241,7 @@ msgstr "警告"
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_resource_sharing__website_message_ids
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_service_order__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "网站消息"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,help:farm_multi_farm_base.field_agri_service__website_message_ids
@@ -2255,30 +2255,30 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_base.field_resource_sharing__website_message_ids
 #: model:ir.model.fields,help:farm_multi_farm_base.field_service_order__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "网站沟通历史"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields.selection,name:farm_multi_farm_base.selection__cooperative_member__membership_status__withdrawn
 msgid "Withdrawn"
-msgstr ""
+msgstr "撤回"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__yield_commitment
 msgid "Yield Commitment (kg/mu)"
-msgstr ""
+msgstr "产量承诺（公斤/亩）"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__yield_commitment_ids
 msgid "Yield Commitments"
-msgstr ""
+msgstr "产量承诺"
 
 #. module: farm_multi_farm_base
 #: model:ir.model.fields,field_description:farm_multi_farm_base.field_contract_farming_agreement__yield_performance
 msgid "Yield Performance (%)"
-msgstr ""
+msgstr "产量表现（%）"
 
 #. module: farm_multi_farm_base
 #. odoo-python
 #: code:addons/farm_multi_farm_base/models/entity_models.py:0
 msgid "You cannot create recursive entity relationships."
-msgstr ""
+msgstr "您无法创建递归实体关系。"

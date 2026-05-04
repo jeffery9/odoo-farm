@@ -83,43 +83,43 @@ msgstr ""
 #: code:addons/farm_mrp/models/mrp_production.py:0
 #: code:addons/farm_mrp/models/stock_lot.py:0
 msgid "No ISL Record"
-msgstr ""
+msgstr "无 ISL 记录"
 
 #. module: farm_mrp
 #. odoo-python
 #: code:addons/farm_mrp/models/mrp_bom_line_isl.py:0
 msgid "No specialized ISL record exists for this BOM line."
-msgstr ""
+msgstr "此 BOM 行不存在专门的 ISL 记录。"
 
 #. module: farm_mrp
 #. odoo-python
 #: code:addons/farm_mrp/models/mrp_bom.py:0
 msgid "No specialized ISL record exists for this BOM."
-msgstr ""
+msgstr "此 BOM 不存在专门的 ISL 记录。"
 
 #. module: farm_mrp
 #. odoo-python
 #: code:addons/farm_mrp/models/stock_lot.py:0
 msgid "No specialized ISL record exists for this lot."
-msgstr ""
+msgstr "该批次不存在专门的 ISL 记录。"
 
 #. module: farm_mrp
 #. odoo-python
 #: code:addons/farm_mrp/models/mrp_production.py:0
 msgid "No specialized ISL record exists for this production order."
-msgstr ""
+msgstr "此生产订单不存在专门的 ISL 记录。"
 
 #. module: farm_mrp
 #. odoo-python
 #: code:addons/farm_mrp/models/mrp_bom_line_isl_models.py:0
 msgid "This record does not have an associated ISL record."
-msgstr ""
+msgstr "该记录没有关联的 ISL 记录。"
 
 #. module: farm_mrp
 #. odoo-python
 #: code:addons/farm_mrp/models/mrp_bom_line_isl.py:0
 msgid "View ISL BOM Line"
-msgstr ""
+msgstr "查看 ISL BOM 行"
 
 #. module: farm_mrp
 #. odoo-python
@@ -127,4 +127,4 @@ msgstr ""
 #: code:addons/farm_mrp/models/mrp_production.py:0
 #: code:addons/farm_mrp/models/stock_lot.py:0
 msgid "View ISL Record"
-msgstr ""
+msgstr "查看 ISL 记录"

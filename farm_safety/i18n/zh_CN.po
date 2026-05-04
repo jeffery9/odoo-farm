@@ -20,31 +20,31 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_safety/models/prevention_template.py:0
 msgid "BIO-SAFETY ALERT: Asset put into quarantine. Reason: %s"
-msgstr ""
+msgstr "生物安全警报：资产已被隔离。原因：%s"
 
 #. module: farm_safety
 #. odoo-python
 #: code:addons/farm_safety/models/prevention_template.py:0
 msgid "BIO-SAFETY BLOCK: Lot %s is in QUARANTINE. Movement forbidden!"
-msgstr ""
+msgstr "生物安全区：批次 %s 处于隔离状态。禁止移动！"
 
 #. module: farm_safety
 #. odoo-python
 #: code:addons/farm_safety/models/prevention_template.py:0
 msgid "BIO-SAFETY: Asset released from quarantine."
-msgstr ""
+msgstr "生物安全：资产解除隔离。"
 
 #. module: farm_safety
 #. odoo-python
 #: code:addons/farm_safety/models/prevention_template.py:0
 msgid "EPIDEMIC BUFFER: %s"
-msgstr ""
+msgstr "流行病缓冲区：%s"
 
 #. module: farm_safety
 #. odoo-python
 #: code:addons/farm_safety/models/project_task.py:0
 msgid "Prevention: %s"
-msgstr ""
+msgstr "预防：%s"
 
 #. module: farm_safety
 #. odoo-python
@@ -58,10 +58,10 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_safety/models/project_task.py:0
 msgid "SAFETY: Withdrawal period updated to %s due to medication."
-msgstr ""
+msgstr "安全：由于药物原因，停药期更新为 %s。"
 
 #. module: farm_safety
 #. odoo-python
 #: code:addons/farm_safety/models/biosafety_access.py:0
 msgid "WARNING: Bio-safety entry without confirmed sanitization!"
-msgstr ""
+msgstr "警告：未经确认消毒即可生物安全进入！"

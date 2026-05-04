@@ -7,8 +7,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
 msgid "Related Account Moves"
-msgstr ""
+msgstr "相关账户变动"
 
 msgid "Rural Revitalization Project"
-msgstr ""
+msgstr "乡村振兴工程"
 

@@ -20,37 +20,37 @@ msgstr ""
 #. odoo-python
 #: code:addons/precision_production/models/precision_mixin.py:0
 msgid "ACTIVE SKILL: %s"
-msgstr ""
+msgstr "主动技能：%s"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/mrp_production.py:0
 msgid "ADAPTIVE MATERIAL: Scaling %s"
-msgstr ""
+msgstr "自适应材质：缩放 %s"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/mrp_production.py:0
 msgid "ADAPTIVE SETPOINT: %s to %s"
-msgstr ""
+msgstr "自适应设定值：%s 至 %s"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/mrp_production.py:0
 msgid "ADAPTIVE TIMING: +%s hrs"
-msgstr ""
+msgstr "自适应计时：+%s 小时"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/mrp_production.py:0
 msgid "Adaptation Triggered: %s"
-msgstr ""
+msgstr "适配已触发：%s"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/recipe_execution.py:0
 msgid "Batch Metrology Entry"
-msgstr ""
+msgstr "批量计量输入"
 
 #. module: precision_production
 #. odoo-python
@@ -63,76 +63,76 @@ msgstr ""
 #. odoo-python
 #: code:addons/precision_production/models/mrp_production.py:0
 msgid "CRITICAL DEVIATION: %s%% in %s"
-msgstr ""
+msgstr "严重偏差：%s%%，位于 %s"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/mrp_production.py:0
 msgid "EQUIPMENT BLOCK: Stage '%s' requires %s."
-msgstr ""
+msgstr "设备块：阶段“%s”需要%s。"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/recipe_execution.py:0
 msgid "EXECUTION BLOCKED: The batch is on HOLD due to: %s"
-msgstr ""
+msgstr "执行被阻止：批次被暂停，原因是：%s"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/mrp_production.py:0
 msgid "Input Measurement"
-msgstr ""
+msgstr "输入测量"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/wizards/precision_metrology_wizard.py:0
 msgid "No target productions/phases selected for data entry."
-msgstr ""
+msgstr "没有选择用于数据输入的目标生产/阶段。"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/mrp_production.py:0
 msgid "PERSONNEL BLOCK: Stage '%s' requires Specialist."
-msgstr ""
+msgstr "人员封锁：阶段“%s”需要专家。"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/recipe_execution.py:0
 msgid "PHASE FINISHED: %s"
-msgstr ""
+msgstr "阶段已完成：%s"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/recipe_execution.py:0
 msgid "PHASE STARTED: %s"
-msgstr ""
+msgstr "阶段开始：%s"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/precision_mixin.py:0
 msgid "PROCESS HOLD: %s"
-msgstr ""
+msgstr "进程暂停：%s"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/precision_mixin.py:0
 msgid "PROCESS RELEASED"
-msgstr ""
+msgstr "流程发布"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/mrp_production.py:0
 msgid "Param: %s | Val: %s | Status: %s"
-msgstr ""
+msgstr "参数：%s |瓦尔：%s |状态：%s"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/mrp_production.py:0
 msgid "Recipe Phase: %s"
-msgstr ""
+msgstr "配方阶段：%s"
 
 #. module: precision_production
 #. odoo-python
 #: code:addons/precision_production/models/mrp_production.py:0
 msgid "VRA SPATIAL AUTO-ADJUST: Setpoint updated to %s based on GPS [%s, %s]"
-msgstr ""
+msgstr "VRA 空间自动调整：根据 GPS [%s，%s]，设定值已更新为 %s"

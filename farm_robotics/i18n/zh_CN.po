@@ -20,25 +20,25 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_robotics/models/robotics.py:0
 msgid "Battery level too low (%f%%) for safe external mission."
-msgstr ""
+msgstr "电池电量太低 (%f%%)，无法安全执行外部任务。"
 
 #. module: farm_robotics
 #. odoo-python
 #: code:addons/farm_robotics/models/robotics.py:0
 msgid "Energy scarcity surcharge applied due to medium battery level."
-msgstr ""
+msgstr "由于电池电量中等，适用能源短缺附加费。"
 
 #. module: farm_robotics
 #. odoo-python
 #: code:addons/farm_robotics/models/robotics.py:0
 msgid "MIS"
-msgstr ""
+msgstr "管理信息系统"
 
 #. module: farm_robotics
 #. odoo-python
 #: code:addons/farm_robotics/models/robotics.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_robotics
 #. odoo-python

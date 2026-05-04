@@ -20,4 +20,4 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_mushroom/models/mushroom_operation.py:0
 msgid "Room %s CO2 (%s) exceeds threshold."
-msgstr ""
+msgstr "%s 房间的二氧化碳 (%s) 超过阈值。"

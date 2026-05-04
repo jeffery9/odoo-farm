@@ -20,52 +20,52 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_financial_basic/models/farm_accounting.py:0
 msgid "CORE-CLOSURE: Absorbed %s cost from deceased asset [%s]."
-msgstr ""
+msgstr "核心关闭：从已失效的资产[%s]中吸收了%s成本。"
 
 #. module: farm_financial_basic
 #. odoo-python
 #: code:addons/farm_financial_basic/models/agri_cost_template.py:0
 msgid "Fertilizer category must have a fertilizer type specified."
-msgstr ""
+msgstr "肥料类别必须指定肥料类型。"
 
 #. module: farm_financial_basic
 #. odoo-python
 #: code:addons/farm_financial_basic/models/agri_cost_template.py:0
 msgid "Labor category must have a labor type specified."
-msgstr ""
+msgstr "劳动类别必须指定劳动类型。"
 
 #. module: farm_financial_basic
 #. odoo-python
 #: code:addons/farm_financial_basic/models/agri_cost_template.py:0
 msgid "Machinery category must have a machinery type specified."
-msgstr ""
+msgstr "机械类别必须指定机械类型。"
 
 #. module: farm_financial_basic
 #. odoo-python
 #: code:addons/farm_financial_basic/models/farm_accounting.py:0
 msgid "Mortality Cost Absorption: %s"
-msgstr ""
+msgstr "死亡成本吸收：%s"
 
 #. module: farm_financial_basic
 #. odoo-python
 #: code:addons/farm_financial_basic/models/farm_accounting.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_financial_basic
 #. odoo-python
 #: code:addons/farm_financial_basic/models/agri_cost_template.py:0
 msgid "Pesticide category must have a pesticide type specified."
-msgstr ""
+msgstr "农药类别必须指定农药类型。"
 
 #. module: farm_financial_basic
 #. odoo-python
 #: code:addons/farm_financial_basic/models/farm_accounting.py:0
 msgid "Processing Overhead: %s"
-msgstr ""
+msgstr "处理开销：%s"
 
 #. module: farm_financial_basic
 #. odoo-python
 #: code:addons/farm_financial_basic/models/farm_accounting.py:0
 msgid "WIP COST TRANSFERRED: %s total cost absorbed from task %s"
-msgstr ""
+msgstr "转移的 WIP 成本：从任务 %s 吸收的 %s 总成本"

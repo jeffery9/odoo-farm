@@ -20,28 +20,28 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_machinery_ch/models/machinery_subsidy.py:0
 msgid "AMS"
-msgstr ""
+msgstr "自动化管理系统"
 
 #. module: farm_machinery_ch
 #. odoo-python
 #: code:addons/farm_machinery_ch/models/machinery_subsidy.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_machinery_ch
 #. odoo-python
 #: code:addons/farm_machinery_ch/models/machinery_subsidy.py:0
 msgid "No matching entry found in National Subsidy Catalog for model %s."
-msgstr ""
+msgstr "在国家补贴目录中未找到型号 %s 的匹配条目。"
 
 #. module: farm_machinery_ch
 #. odoo-python
 #: code:addons/farm_machinery_ch/models/machinery_subsidy.py:0
 msgid "Subsidy Catalog Matched: %s. Estimated Subsidy: %s."
-msgstr ""
+msgstr "匹配的补贴目录：%s。预计补贴：%s。"
 
 #. module: farm_machinery_ch
 #. odoo-python
 #: code:addons/farm_machinery_ch/models/machinery_subsidy.py:0
 msgid "category"
-msgstr ""
+msgstr "类别"

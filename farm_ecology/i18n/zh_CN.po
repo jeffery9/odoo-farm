@@ -7,29 +7,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
 msgid "Associated Operational Parcel"
-msgstr ""
+msgstr "相关运营地块"
 
 msgid "Impact Category"
-msgstr ""
+msgstr "影响类别"
 
 msgid "Indicator Category"
-msgstr ""
+msgstr "指标类别"
 
 msgid "Land Parcel/Zone"
-msgstr ""
+msgstr "地块/区域"
 
 msgid "Number of individuals or density observed."
-msgstr ""
+msgstr "观察到的个体数量或密度。"
 
 msgid "Physical Container"
-msgstr ""
+msgstr "物理容器"
 
 msgid "Surface area of the ecological infrastructure."
-msgstr ""
+msgstr "生态基础设施的表面积。"
 
 msgid "Visual proof of the observation."
-msgstr ""
+msgstr "观察结果的视觉证明。"
 
 msgid "Zone Category"
-msgstr ""
+msgstr "区域类别"
 

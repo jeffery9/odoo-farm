@@ -20,28 +20,28 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_crisis/models/crisis.py:0
 msgid "CRISIS LOCKDOWN: %s"
-msgstr ""
+msgstr "危机封锁：%s"
 
 #. module: farm_crisis
 #. odoo-python
 #: code:addons/farm_crisis/models/crisis.py:0
 msgid "CRISIS MODE ACTIVATED: Assets have been quarantined."
-msgstr ""
+msgstr "危机模式激活：资产已被隔离。"
 
 #. module: farm_crisis
 #. odoo-python
 #: code:addons/farm_crisis/models/crisis.py:0
 msgid "INCIDENT"
-msgstr ""
+msgstr "事件"
 
 #. module: farm_crisis
 #. odoo-python
 #: code:addons/farm_crisis/models/crisis.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_crisis
 #. odoo-python
 #: code:addons/farm_crisis/models/crisis.py:0
 msgid "SALE BLOCK: Lot '%s' is under CRISIS LOCKDOWN and cannot be sold."
-msgstr ""
+msgstr "销售块：地块“%s”处于危机封锁状态，无法出售。"

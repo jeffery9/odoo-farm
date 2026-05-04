@@ -19,33 +19,33 @@ msgstr ""
 #. module: agri_precision_core
 #: model_terms:ir.ui.view,arch_db:agri_precision_core.mrp_production_form_view_inherit_precision
 msgid "<span class=\"o_stat_text\">Interventions</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">干预</span>"
 
 #. module: agri_precision_core
 #: model_terms:ir.ui.view,arch_db:agri_precision_core.mrp_production_form_view_inherit_precision
 msgid "<span class=\"o_stat_text\">IoT Status</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">物联网状态</span>"
 
 #. module: agri_precision_core
 #. odoo-python
 #: code:addons/agri_precision_core/models/odoo_app_bridge.py:0
 msgid "AGRICULTURAL INTERVENTION [%s]: %s"
-msgstr ""
+msgstr "农业干预[%s]：%s"
 
 #. module: agri_precision_core
 #: model_terms:ir.ui.view,arch_db:agri_precision_core.mrp_production_form_view_inherit_precision
 msgid "Apply Agri Intervention"
-msgstr ""
+msgstr "应用农业干预"
 
 #. module: agri_precision_core
 #: model_terms:ir.ui.view,arch_db:agri_precision_core.mrp_production_form_view_inherit_precision
 msgid "Calibrate Yield"
-msgstr ""
+msgstr "校准产量"
 
 #. module: agri_precision_core
 #: model:ir.model,name:agri_precision_core.model_precision_recipe_phase
 msgid "Control Recipe Phase (Instance)"
-msgstr ""
+msgstr "控制配方阶段（实例）"
 
 #. module: agri_precision_core
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__agri_precision_mixin__iot_status__critical
@@ -53,7 +53,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__precision_recipe_phase__iot_status__critical
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__stock_lot__iot_status__critical
 msgid "Critical"
-msgstr ""
+msgstr "批判的"
 
 #. module: agri_precision_core
 #: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__is_critical_status
@@ -61,7 +61,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__is_critical_status
 #: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__is_critical_status
 msgid "Critical Condition"
-msgstr ""
+msgstr "危急情况"
 
 #. module: agri_precision_core
 #: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__display_name
@@ -77,7 +77,7 @@ msgstr "显示名称"
 #: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__expected_yield_accuracy
 #: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__expected_yield_accuracy
 msgid "Expected Yield Accuracy (%)"
-msgstr ""
+msgstr "预期产量准确度 (%)"
 
 #. module: agri_precision_core
 #: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__id
@@ -91,7 +91,7 @@ msgstr "ID"
 #. odoo-python
 #: code:addons/agri_precision_core/models/agri_precision_mixin.py:0
 msgid "INTERVENTION [%s] applied with parameters: %s"
-msgstr ""
+msgstr "应用干预 [%s]，参数为：%s"
 
 #. module: agri_precision_core
 #: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__intervention_count
@@ -99,12 +99,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__intervention_count
 #: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__intervention_count
 msgid "Intervention Cycles"
-msgstr ""
+msgstr "干预周期"
 
 #. module: agri_precision_core
 #: model:ir.model.fields,field_description:agri_precision_core.field_mrp_production__display_name_agri
 msgid "Intervention Label"
-msgstr ""
+msgstr "干预标签"
 
 #. module: agri_precision_core
 #: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__iot_device_ids
@@ -112,13 +112,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__iot_device_ids
 #: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__iot_device_ids
 msgid "IoT Devices"
-msgstr ""
+msgstr "物联网设备"
 
 #. module: agri_precision_core
 #: model_terms:ir.ui.view,arch_db:agri_precision_core.mrp_production_form_view_inherit_precision
 #: model_terms:ir.ui.view,arch_db:agri_precision_core.view_production_lot_form_inherit_precision
 msgid "IoT Monitoring"
-msgstr ""
+msgstr "物联网监控"
 
 #. module: agri_precision_core
 #: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__iot_status
@@ -126,7 +126,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__iot_status
 #: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__iot_status
 msgid "IoT Status"
-msgstr ""
+msgstr "物联网现状"
 
 #. module: agri_precision_core
 #: model:ir.model.fields,help:agri_precision_core.field_agri_precision_mixin__iot_device_ids
@@ -134,13 +134,13 @@ msgstr ""
 #: model:ir.model.fields,help:agri_precision_core.field_precision_recipe_phase__iot_device_ids
 #: model:ir.model.fields,help:agri_precision_core.field_stock_lot__iot_device_ids
 msgid "IoT devices associated with this record for environmental monitoring"
-msgstr ""
+msgstr "与此记录关联的物联网设备用于环境监测"
 
 #. module: agri_precision_core
 #. odoo-python
 #: code:addons/agri_precision_core/models/agri_precision_mixin.py:0
 msgid "IoT-Based Intervention Triggered: %s"
-msgstr ""
+msgstr "已触发基于物联网的干预：%s"
 
 #. module: agri_precision_core
 #: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__last_metrology_date
@@ -148,17 +148,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__last_metrology_date
 #: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__last_metrology_date
 msgid "Last Calibration/Sampling"
-msgstr ""
+msgstr "最后一次校准/采样"
 
 #. module: agri_precision_core
 #: model:ir.model,name:agri_precision_core.model_stock_lot
 msgid "Lot/Serial"
-msgstr ""
+msgstr "批次/序列号"
 
 #. module: agri_precision_core
 #: model:ir.model,name:agri_precision_core.model_mrp_production
 msgid "Manufacturing Order"
-msgstr ""
+msgstr "制造订单"
 
 #. module: agri_precision_core
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__agri_precision_mixin__iot_status__monitoring
@@ -166,7 +166,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__precision_recipe_phase__iot_status__monitoring
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__stock_lot__iot_status__monitoring
 msgid "Monitoring"
-msgstr ""
+msgstr "监控"
 
 #. module: agri_precision_core
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__agri_precision_mixin__iot_status__normal
@@ -174,23 +174,23 @@ msgstr ""
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__precision_recipe_phase__iot_status__normal
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__stock_lot__iot_status__normal
 msgid "Normal"
-msgstr ""
+msgstr "正常"
 
 #. module: agri_precision_core
 #. odoo-python
 #: code:addons/agri_precision_core/models/odoo_app_bridge.py:0
 msgid "PHASE INTERVENTION [%s] on Phase %s: %s"
-msgstr ""
+msgstr "阶段 %s 的阶段干预 [%s]：%s"
 
 #. module: agri_precision_core
 #: model:ir.model,name:agri_precision_core.model_agri_precision_mixin
 msgid "Precision & Agri Bridge DNA"
-msgstr ""
+msgstr "精准与农业桥梁 DNA"
 
 #. module: agri_precision_core
 #: model_terms:ir.ui.view,arch_db:agri_precision_core.view_production_lot_form_inherit_precision
 msgid "Precision DNA"
-msgstr ""
+msgstr "精密DNA"
 
 #. module: agri_precision_core
 #: model:ir.model.fields,field_description:agri_precision_core.field_agri_precision_mixin__quality_grade
@@ -198,43 +198,43 @@ msgstr ""
 #: model:ir.model.fields,field_description:agri_precision_core.field_precision_recipe_phase__quality_grade
 #: model:ir.model.fields,field_description:agri_precision_core.field_stock_lot__quality_grade
 msgid "Precision Grade"
-msgstr ""
+msgstr "精密级"
 
 #. module: agri_precision_core
 #: model_terms:ir.ui.view,arch_db:agri_precision_core.view_production_lot_form_inherit_precision
 msgid "Premium"
-msgstr ""
+msgstr "优质的"
 
 #. module: agri_precision_core
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__agri_precision_mixin__quality_grade__premium
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__mrp_production__quality_grade__premium
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__precision_recipe_phase__quality_grade__premium
 msgid "Premium / Grade A"
-msgstr ""
+msgstr "特级/A级"
 
 #. module: agri_precision_core
 #: model_terms:ir.ui.view,arch_db:agri_precision_core.view_production_lot_form_inherit_precision
 msgid "Quality Tracking"
-msgstr ""
+msgstr "质量追踪"
 
 #. module: agri_precision_core
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__agri_precision_mixin__quality_grade__standard
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__mrp_production__quality_grade__standard
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__precision_recipe_phase__quality_grade__standard
 msgid "Standard / Grade B"
-msgstr ""
+msgstr "标准/B级"
 
 #. module: agri_precision_core
 #: model_terms:ir.ui.view,arch_db:agri_precision_core.view_production_lot_form_inherit_precision
 msgid "Substandard"
-msgstr ""
+msgstr "不合格"
 
 #. module: agri_precision_core
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__agri_precision_mixin__quality_grade__substandard
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__mrp_production__quality_grade__substandard
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__precision_recipe_phase__quality_grade__substandard
 msgid "Substandard / Fail"
-msgstr ""
+msgstr "不合格/不合格"
 
 #. module: agri_precision_core
 #: model:ir.model.fields.selection,name:agri_precision_core.selection__agri_precision_mixin__iot_status__warning
@@ -248,4 +248,4 @@ msgstr "警告"
 #. odoo-python
 #: code:addons/agri_precision_core/models/odoo_app_bridge.py:0
 msgid "YIELD CALIBRATION: New expected quantity set to %s."
-msgstr ""
+msgstr "产量校准：新的预期数量设置为 %s。"

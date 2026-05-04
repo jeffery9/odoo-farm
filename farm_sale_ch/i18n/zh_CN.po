@@ -20,7 +20,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_sale_ch/models/sale_order.py:0
 msgid "Breeding Generation Compliance Alert：[%s]"
-msgstr ""
+msgstr "育种世代合规警报：[%s]"
 
 #. module: farm_sale_ch
 #. odoo-python
@@ -60,4 +60,4 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_sale_ch/models/compliance.py:0
 msgid "Valid until date must be after issue date."
-msgstr ""
+msgstr "有效截止日期必须晚于签发日期。"

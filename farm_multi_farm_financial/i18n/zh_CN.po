@@ -19,7 +19,7 @@ msgstr ""
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__related_document__account_move
 msgid "Account Move"
-msgstr ""
+msgstr "账户转移"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_needaction
@@ -33,7 +33,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_needaction
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "需要操作"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_credit__state__active
@@ -52,7 +52,7 @@ msgstr "有效"
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_ids
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "活动"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_exception_decoration
@@ -66,7 +66,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_exception_decoration
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "活动异常装饰"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_state
@@ -80,7 +80,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_state
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "活动状态"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_type_icon
@@ -94,23 +94,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_type_icon
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "活动类型图标"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__actual_majority
 msgid "Actual Majority (%)"
-msgstr ""
+msgstr "实际多数 (%)"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__amount
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__amount
 msgid "Amount"
-msgstr ""
+msgstr "金额"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__repayment_schedule__annual
 msgid "Annual"
-msgstr ""
+msgstr "年度的"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__state__approved
@@ -118,18 +118,18 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__state__approved
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__subsidy_disbursement__state__approved
 msgid "Approved"
-msgstr ""
+msgstr "已批准"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__related_document__account_asset
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__document_reference__account_asset
 msgid "Asset"
-msgstr ""
+msgstr "资产"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__process_type__asset_disposal
 msgid "Asset Disposal"
-msgstr ""
+msgstr "资产处置"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_attachment_count
@@ -143,82 +143,82 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_attachment_count
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "附件数量"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__attachment_name
 msgid "Attachment Name"
-msgstr ""
+msgstr "附件名称"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__attachments
 msgid "Attachments"
-msgstr ""
+msgstr "附件"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__audit_date
 msgid "Audit Date"
-msgstr ""
+msgstr "审核日期"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__audit_notes
 msgid "Audit Notes"
-msgstr ""
+msgstr "审计笔记"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__audit_result
 msgid "Audit Result"
-msgstr ""
+msgstr "审核结果"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__audit_result__authorized
 msgid "Authorized"
-msgstr ""
+msgstr "授权"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__available_amount
 msgid "Available Amount"
-msgstr ""
+msgstr "可用数量"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__basis_for_allocation
 msgid "Basis for Allocation"
-msgstr ""
+msgstr "分配依据"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__decision_type__board
 msgid "Board Meeting"
-msgstr ""
+msgstr "董事会会议"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__transaction_type__bonus
 msgid "Bonus Share"
-msgstr ""
+msgstr "红利份额"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__borrower_loan_ids
 msgid "Borrowed Loans"
-msgstr ""
+msgstr "借入贷款"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__borrower_member_id
 msgid "Borrower Member"
-msgstr ""
+msgstr "借款会员"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__repayment_schedule__bullet
 msgid "Bullet Payment"
-msgstr ""
+msgstr "子弹支付"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__process_type__bylaw_change
 msgid "Bylaw Change"
-msgstr ""
+msgstr "章程变更"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_distribution__state__calculated
 msgid "Calculated"
-msgstr ""
+msgstr "已计算"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__state__cancelled
@@ -227,39 +227,39 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__state__cancelled
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__state__cancelled
 msgid "Cancelled"
-msgstr ""
+msgstr "已取消"
 
 #. module: farm_multi_farm_financial
 #. odoo-python
 #: code:addons/farm_multi_farm_financial/models/internal_credit.py:0
 msgid "Cannot close credit with outstanding balance."
-msgstr ""
+msgstr "无法关闭未结余额的信用。"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_distribution__distribution_type__cash
 msgid "Cash Dividend"
-msgstr ""
+msgstr "现金分红"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_credit__state__closed
 msgid "Closed"
-msgstr ""
+msgstr "关闭"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__comments
 msgid "Comments"
-msgstr ""
+msgstr "评论"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_marketplace_transaction__state__completed
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__subsidy_disbursement__state__completed
 msgid "Completed"
-msgstr ""
+msgstr "完全的"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__compliance_status
 msgid "Compliance Status"
-msgstr ""
+msgstr "合规状态"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__state__confirmed
@@ -267,12 +267,12 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_marketplace_transaction__state__confirmed
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__state__confirmed
 msgid "Confirmed"
-msgstr ""
+msgstr "确认的"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__related_document__contract_contract
 msgid "Contract"
-msgstr ""
+msgstr "合同"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__cooperative_id
@@ -283,32 +283,32 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__cooperative_id
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__cooperative_id
 msgid "Cooperative"
-msgstr ""
+msgstr "合作社"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_cooperative_decision
 msgid "Cooperative Decision"
-msgstr ""
+msgstr "合作决策"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__cooperative_decision_ids
 msgid "Cooperative Decisions"
-msgstr ""
+msgstr "合作决策"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_cooperative_entity
 msgid "Cooperative Entity"
-msgstr ""
+msgstr "合作单位"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_cooperative_member
 msgid "Cooperative Member"
-msgstr ""
+msgstr "合作会员"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_cooperative_treasury
 msgid "Cooperative Treasury"
-msgstr ""
+msgstr "合作金库"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__create_uid
@@ -349,79 +349,79 @@ msgstr "创建时间"
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__credit_limit
 msgid "Credit Limit"
-msgstr ""
+msgstr "信用额度"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__credit_line_id
 msgid "Credit Line"
-msgstr ""
+msgstr "信用额度"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__name
 msgid "Credit Reference"
-msgstr ""
+msgstr "信用参考"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_credit_transaction
 msgid "Credit Transaction"
-msgstr ""
+msgstr "信用交易"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__credit_transaction_ids
 msgid "Credit Transactions"
-msgstr ""
+msgstr "信用交易"
 
 #. module: farm_multi_farm_financial
 #. odoo-python
 #: code:addons/farm_multi_farm_financial/models/credit_transaction.py:0
 msgid "Credit transaction would exceed limit. Approval required."
-msgstr ""
+msgstr "信用交易将超出限额。需要批准。"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "币种"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__current_balance
 msgid "Current Balance"
-msgstr ""
+msgstr "当前余额"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__decision_id
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__document_reference__cooperative_decision
 msgid "Decision"
-msgstr ""
+msgstr "决定"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_decision_audit
 msgid "Decision Audit"
-msgstr ""
+msgstr "决策审核"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__description
 msgid "Decision Description"
-msgstr ""
+msgstr "决策描述"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__name
 msgid "Decision Title"
-msgstr ""
+msgstr "决定标题"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__decision_type
 msgid "Decision Type"
-msgstr ""
+msgstr "决策类型"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__state__defaulted
 msgid "Defaulted"
-msgstr ""
+msgstr "违约"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_marketplace_transaction__state__delivered
 msgid "Delivered"
-msgstr ""
+msgstr "发表"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__description
@@ -438,22 +438,22 @@ msgstr "描述"
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__state__disbursed
 msgid "Disbursed"
-msgstr ""
+msgstr "已支付"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__disbursement_id
 msgid "Disbursement"
-msgstr ""
+msgstr "支出"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__disbursement_date
 msgid "Disbursement Date"
-msgstr ""
+msgstr "付款日期"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__disbursement_lines
 msgid "Disbursement Lines"
-msgstr ""
+msgstr "付款行"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_account_move__display_name
@@ -480,60 +480,60 @@ msgstr "显示名称"
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_distribution__state__distributed
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__subsidy_disbursement__state__distributed
 msgid "Distributed"
-msgstr ""
+msgstr "分布式"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__distribution_id
 msgid "Distribution"
-msgstr ""
+msgstr "分配"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__distribution_date
 msgid "Distribution Date"
-msgstr ""
+msgstr "分发日期"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__name
 msgid "Distribution Name"
-msgstr ""
+msgstr "发行版名称"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__distribution_type
 msgid "Distribution Type"
-msgstr ""
+msgstr "分销类型"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_dividend_distribution
 #: model:ir.ui.menu,name:farm_multi_farm_financial.dividend_distribution_menu
 msgid "Dividend Distribution"
-msgstr ""
+msgstr "股利分配"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_dividend_line
 msgid "Dividend Distribution Line"
-msgstr ""
+msgstr "股息分配线"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__dividend_distribution_ids
 msgid "Dividend Distributions"
-msgstr ""
+msgstr "股息分配"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__dividend_line_ids
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__dividend_lines
 #: model:ir.ui.menu,name:farm_multi_farm_financial.dividend_line_menu
 msgid "Dividend Lines"
-msgstr ""
+msgstr "股息线"
 
 #. module: farm_multi_farm_financial
 #: model:ir.ui.menu,name:farm_multi_farm_financial.dividend_management_menu
 msgid "Dividend Management"
-msgstr ""
+msgstr "股息管理"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__dividend_per_share
 msgid "Dividend per Share"
-msgstr ""
+msgstr "每股股息"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__state__draft
@@ -547,27 +547,27 @@ msgstr "草稿"
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement_line__basis_for_allocation
 msgid "E.g., certified area, production volume"
-msgstr ""
+msgstr "例如，认证面积、产量"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__end_date
 msgid "End Date"
-msgstr ""
+msgstr "结束日期"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__state__executed
 msgid "Executed"
-msgstr ""
+msgstr "执行"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_credit__state__expired
 msgid "Expired"
-msgstr ""
+msgstr "已到期"
 
 #. module: farm_multi_farm_financial
 #: model:ir.ui.menu,name:farm_multi_farm_financial.multi_farm_financial_menu
 msgid "Financial Management"
-msgstr ""
+msgstr "财务管理"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_follower_ids
@@ -581,7 +581,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_follower_ids
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "关注者"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_partner_ids
@@ -595,7 +595,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_partner_ids
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "关注者（合作伙伴）"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__activity_type_icon
@@ -609,17 +609,17 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__activity_type_icon
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "字体很棒的图标，例如fa 任务"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__decision_type__general_assembly
 msgid "General Assembly"
-msgstr ""
+msgstr "大会"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__grace_period_days
 msgid "Grace Period (Days)"
-msgstr ""
+msgstr "宽限期（天）"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__has_message
@@ -633,12 +633,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__has_message
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "有留言"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_distribution__distribution_type__hybrid
 msgid "Hybrid (Cash + Stock)"
-msgstr ""
+msgstr "混合（现金+股票）"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_account_move__id
@@ -673,7 +673,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_exception_icon
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "图标"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__activity_exception_icon
@@ -687,7 +687,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__activity_exception_icon
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "指示异常活动的图标。"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__message_needaction
@@ -701,7 +701,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__message_needaction
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "如果选中，则有新消息需要您注意。"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__message_has_error
@@ -725,76 +725,76 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__message_has_error
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "如果检查，则某些消息存在传送错误。"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__state__in_progress
 msgid "In Progress"
-msgstr ""
+msgstr "进行中"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_marketplace_transaction__state__in_transit
 msgid "In Transit"
-msgstr ""
+msgstr "在途中"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__state__initiated
 msgid "Initiated"
-msgstr ""
+msgstr "发起"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__initiator_id
 msgid "Initiator"
-msgstr ""
+msgstr "引发者"
 
 #. module: farm_multi_farm_financial
 #. odoo-python
 #: code:addons/farm_multi_farm_financial/models/share_transaction.py:0
 msgid "Insufficient shares to redeem/transfer"
-msgstr ""
+msgstr "股份不足，无法赎回/转让"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__transaction_type__interest
 msgid "Interest Charge"
-msgstr ""
+msgstr "利息费用"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__interest_rate
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__interest_rate
 msgid "Interest Rate (%)"
-msgstr ""
+msgstr "利率 （％）"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_internal_credit
 msgid "Internal Credit"
-msgstr ""
+msgstr "内部信用"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__internal_credit_ids
 msgid "Internal Credits"
-msgstr ""
+msgstr "内部学分"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_internal_loan
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__related_document__internal_loan
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__document_reference__internal_loan
 msgid "Internal Loan"
-msgstr ""
+msgstr "内部贷款"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__internal_loan_ids
 msgid "Internal Loans"
-msgstr ""
+msgstr "内部贷款"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_internal_marketplace_transaction
 msgid "Internal Marketplace Transaction"
-msgstr ""
+msgstr "内部市场交易"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__is_completed
 msgid "Is Completed"
-msgstr ""
+msgstr "已完成"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_is_follower
@@ -808,17 +808,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_is_follower
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "是追随者"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "日记条目"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__process_type__large_purchase
 msgid "Large Purchase"
-msgstr ""
+msgstr "大额采购"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__write_uid
@@ -859,63 +859,63 @@ msgstr "最后更新时间"
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__lender_member_id
 msgid "Lender Member"
-msgstr ""
+msgstr "贷款人会员"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__lender_loan_ids
 msgid "Lent Loans"
-msgstr ""
+msgstr "借出贷款"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__loan_amount
 msgid "Loan Amount"
-msgstr ""
+msgstr "贷款金额"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__loan_date
 msgid "Loan Date"
-msgstr ""
+msgstr "贷款日期"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__process_type__loan_guarantee
 msgid "Loan Guarantee"
-msgstr ""
+msgstr "贷款担保"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__name
 msgid "Loan Reference"
-msgstr ""
+msgstr "贷款参考"
 
 #. module: farm_multi_farm_financial
 #. odoo-python
 #: code:addons/farm_multi_farm_financial/models/finance_governance_models.py:0
 msgid "Loan amount must be positive."
-msgstr ""
+msgstr "贷款金额必须为正数。"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__internal_marketplace_transaction_requester_ids
 msgid "Marketplace Transactions (Requester)"
-msgstr ""
+msgstr "市场交易（请求者）"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__internal_marketplace_transaction_supplier_ids
 msgid "Marketplace Transactions (Supplier)"
-msgstr ""
+msgstr "市场交易（供应商）"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__maturity_date
 msgid "Maturity Date"
-msgstr ""
+msgstr "到期日"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__meeting_date
 msgid "Meeting Date"
-msgstr ""
+msgstr "会议日期"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__attachments
 msgid "Meeting minutes, photos, etc."
-msgstr ""
+msgstr "会议记录、照片等"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__member_id
@@ -924,7 +924,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__member_id
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__member_id
 msgid "Member"
-msgstr ""
+msgstr "成员"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_has_error
@@ -938,7 +938,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_has_error
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "消息投递错误"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_ids
@@ -952,27 +952,27 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_ids
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "消息"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__repayment_schedule__monthly
 msgid "Monthly"
-msgstr ""
+msgstr "每月"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_multi_sign_line
 msgid "Multi-sign Line"
-msgstr ""
+msgstr "多标志线"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_multi_sign_process
 msgid "Multi-sign Process"
-msgstr ""
+msgstr "多重签名流程"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__multi_sign_process_ids
 msgid "Multi-sign Processes"
-msgstr ""
+msgstr "多重签名流程"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__my_activity_date_deadline
@@ -986,7 +986,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__my_activity_date_deadline
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "我的活动截止日期"
 
 #. module: farm_multi_farm_financial
 #. odoo-python
@@ -996,7 +996,7 @@ msgstr ""
 #: code:addons/farm_multi_farm_financial/models/internal_marketplace_transaction.py:0
 #: code:addons/farm_multi_farm_financial/models/share_transaction.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_date_deadline
@@ -1010,7 +1010,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_date_deadline
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "下一个活动截止日期"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_summary
@@ -1024,7 +1024,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_summary
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "下一步活动总结"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_type_id
@@ -1038,7 +1038,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_type_id
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "下一个活动类型"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_needaction_counter
@@ -1052,12 +1052,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_needaction_counter
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "动作数量"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__attendees_count
 msgid "Number of Attendees"
-msgstr ""
+msgstr "出席人数"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_has_error_counter
@@ -1071,7 +1071,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_has_error_counter
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "错误数"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__message_needaction_counter
@@ -1085,7 +1085,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__message_needaction_counter
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "需要采取行动的消息数量"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__message_has_error_counter
@@ -1099,45 +1099,45 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__message_has_error_counter
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "发送错误的消息数"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__decision_type__other
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__process_type__other
 msgid "Other"
-msgstr ""
+msgstr "其他"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_line__state__paid
 msgid "Paid"
-msgstr ""
+msgstr "有薪酬的"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__paid_amount
 msgid "Paid Amount"
-msgstr ""
+msgstr "支付金额"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__paid_date
 msgid "Paid Date"
-msgstr ""
+msgstr "付费日期"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__voting_result__passed
 msgid "Passed"
-msgstr ""
+msgstr "通过"
 
 #. module: farm_multi_farm_financial
 #. odoo-python
 #: code:addons/farm_multi_farm_financial/models/dividend_line.py:0
 msgid "Payment amount exceeds total dividend amount"
-msgstr ""
+msgstr "支付金额超过股息总额"
 
 #. module: farm_multi_farm_financial
 #. odoo-python
 #: code:addons/farm_multi_farm_financial/models/dividend_line.py:0
 msgid "Payment amount must be positive"
-msgstr ""
+msgstr "付款金额必须为正数"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_line__state__pending
@@ -1145,47 +1145,47 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_line__approval_status__pending
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__subsidy_disbursement__state__pending
 msgid "Pending"
-msgstr ""
+msgstr "待办的"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__required_majority
 msgid "Percentage needed for decision to pass"
-msgstr ""
+msgstr "决定通过所需的百分比"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__actual_majority
 msgid "Percentage that voted in favor"
-msgstr ""
+msgstr "投赞成票的百分比"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__voting_result__postponed
 msgid "Postponed"
-msgstr ""
+msgstr "推迟"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__share_price
 msgid "Price per share at transaction time"
-msgstr ""
+msgstr "交易时的每股价格"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__process_id
 msgid "Process"
-msgstr ""
+msgstr "过程"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__description
 msgid "Process Description"
-msgstr ""
+msgstr "流程说明"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__name
 msgid "Process Title"
-msgstr ""
+msgstr "流程标题"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__process_type
 msgid "Process Type"
-msgstr ""
+msgstr "工艺类型"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__product_id
@@ -1195,29 +1195,29 @@ msgstr "产品"
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_dividend_distribution__share_ratio
 msgid "Proportion of dividend based on shares held"
-msgstr ""
+msgstr "股息占持股比例"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_dividend_distribution__trading_volume_ratio
 msgid "Proportion of dividend based on trading volume"
-msgstr ""
+msgstr "根据交易量分红的比例"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__related_document__purchase_order
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__related_document__purchase_order
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__document_reference__purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "采购订单"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__quantity
 msgid "Quantity"
-msgstr ""
+msgstr "数量"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__repayment_schedule__quarterly
 msgid "Quarterly"
-msgstr ""
+msgstr "季刊"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__rating_ids
@@ -1231,76 +1231,76 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__rating_ids
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__rating_ids
 msgid "Ratings"
-msgstr ""
+msgstr "评级"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__receipt_confirmed
 msgid "Receipt Confirmed"
-msgstr ""
+msgstr "已确认收货"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__receipt_date
 msgid "Receipt Date"
-msgstr ""
+msgstr "收据日期"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__transaction_type__redemption
 msgid "Redemption"
-msgstr ""
+msgstr "赎回"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__voting_result__rejected
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_line__approval_status__rejected
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__state__rejected
 msgid "Rejected"
-msgstr ""
+msgstr "已拒绝"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__related_document
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__related_document
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__document_reference
 msgid "Related Document"
-msgstr ""
+msgstr "相关文件"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__state__repaid
 msgid "Repaid"
-msgstr ""
+msgstr "已偿还"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__transaction_type__repayment
 msgid "Repayment"
-msgstr ""
+msgstr "还款"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__repayment_schedule
 msgid "Repayment Schedule"
-msgstr ""
+msgstr "还款时间表"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__requester_member_id
 msgid "Requester Member"
-msgstr ""
+msgstr "请求者会员"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__required_majority
 msgid "Required Majority (%)"
-msgstr ""
+msgstr "所需多数 (%)"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__required_signers
 msgid "Required Signers"
-msgstr ""
+msgstr "所需签名者"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__audit_result__requires_review
 msgid "Requires Review"
-msgstr ""
+msgstr "需要审查"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__resolution_text
 msgid "Resolution Text"
-msgstr ""
+msgstr "分辨率文本"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_user_id
@@ -1314,12 +1314,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_user_id
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "负责用户"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__state__reversed
 msgid "Reversed"
-msgstr ""
+msgstr "反转"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_has_sms_error
@@ -1333,73 +1333,73 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_has_sms_error
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "短信投递错误"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__related_document__sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "销售订单"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__settlement_id
 msgid "Settlement"
-msgstr ""
+msgstr "沉降"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__share_price
 msgid "Share Price"
-msgstr ""
+msgstr "股价"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__share_ratio
 msgid "Share Ratio"
-msgstr ""
+msgstr "持股比例"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_share_transaction
 msgid "Share Transaction"
-msgstr ""
+msgstr "股份交易"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__share_transaction_ids
 #: model:ir.ui.menu,name:farm_multi_farm_financial.share_transaction_menu
 msgid "Share Transactions"
-msgstr ""
+msgstr "股票交易"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__share_based_amount
 msgid "Share-based Amount"
-msgstr ""
+msgstr "股份金额"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__shares_count
 msgid "Shares Count"
-msgstr ""
+msgstr "股数"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__sign_lines
 msgid "Sign Lines"
-msgstr ""
+msgstr "标志线"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__sign_process_ids
 msgid "Sign Processes"
-msgstr ""
+msgstr "签署流程"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__signature_date
 msgid "Signature Date"
-msgstr ""
+msgstr "签名日期"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__signer_member_id
 msgid "Signer"
-msgstr ""
+msgstr "西格纳"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__start_date
 msgid "Start Date"
-msgstr ""
+msgstr "开始日期"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__state
@@ -1441,140 +1441,140 @@ msgstr ""
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_distribution__distribution_type__stock
 msgid "Stock Dividend"
-msgstr ""
+msgstr "股票股息"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__picking_id
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__related_document__stock_picking
 msgid "Stock Picking"
-msgstr ""
+msgstr "选股"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__transaction_type__subscription
 msgid "Subscription"
-msgstr ""
+msgstr "订阅"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_subsidy_disbursement
 msgid "Subsidy Disbursement"
-msgstr ""
+msgstr "补贴发放"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model,name:farm_multi_farm_financial.model_subsidy_disbursement_line
 msgid "Subsidy Disbursement Line"
-msgstr ""
+msgstr "补贴拨付线"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__subsidy_disbursement_ids
 msgid "Subsidy Disbursements"
-msgstr ""
+msgstr "补贴发放"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__subsidy_line_ids
 msgid "Subsidy Lines"
-msgstr ""
+msgstr "补贴额度"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__name
 msgid "Subsidy Name"
-msgstr ""
+msgstr "补贴名称"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__subsidy_source
 msgid "Subsidy Source"
-msgstr ""
+msgstr "补贴来源"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__decision_type__supervisory
 msgid "Supervisory Committee"
-msgstr ""
+msgstr "监事会"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__supplier_member_id
 msgid "Supplier Member"
-msgstr ""
+msgstr "供应商会员"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_credit__state__suspended
 msgid "Suspended"
-msgstr ""
+msgstr "暂停"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__total_amount
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__total_amount
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__total_amount
 msgid "Total Amount"
-msgstr ""
+msgstr "总金额"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__total_dividend_amount
 msgid "Total Dividend Amount"
-msgstr ""
+msgstr "股息总额"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__total_members_count
 msgid "Total Members"
-msgstr ""
+msgstr "会员总数"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__total_amount
 msgid "Total Subsidy Amount"
-msgstr ""
+msgstr "资助总额"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__trading_volume_ratio
 msgid "Trading Volume Ratio"
-msgstr ""
+msgstr "交易量比例"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__trading_based_amount
 msgid "Trading-based Amount"
-msgstr ""
+msgstr "交易金额"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__transaction_date
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__transaction_date
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__transaction_date
 msgid "Transaction Date"
-msgstr ""
+msgstr "交易日期"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__name
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__name
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__name
 msgid "Transaction Reference"
-msgstr ""
+msgstr "交易参考"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__transaction_type
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__transaction_type
 msgid "Transaction Type"
-msgstr ""
+msgstr "交易类型"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__transaction_type__transfer_in
 msgid "Transfer In"
-msgstr ""
+msgstr "转入"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__transaction_type__transfer_out
 msgid "Transfer Out"
-msgstr ""
+msgstr "转出"
 
 #. module: farm_multi_farm_financial
 #: model:ir.ui.menu,name:farm_multi_farm_financial.treasury_governance_menu
 msgid "Treasury & Governance"
-msgstr ""
+msgstr "财务与治理"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__cooperative_treasury_ids
 msgid "Treasury Accounts"
-msgstr ""
+msgstr "国库账户"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__name
 msgid "Treasury Name"
-msgstr ""
+msgstr "库房名称"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__activity_exception_decoration
@@ -1588,38 +1588,38 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__activity_exception_decoration
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "记录的异常活动的类型。"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__audit_result__unauthorized
 msgid "Unauthorized"
-msgstr ""
+msgstr "未经授权"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__unit_price
 msgid "Unit Price"
-msgstr ""
+msgstr "单价"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__transaction_type__usage
 msgid "Usage"
-msgstr ""
+msgstr "用法"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__utilized_amount
 msgid "Utilized Amount"
-msgstr ""
+msgstr "已使用金额"
 
 #. module: farm_multi_farm_financial
 #. odoo-python
 #: code:addons/farm_multi_farm_financial/models/internal_credit.py:0
 msgid "Utilized amount cannot exceed credit limit."
-msgstr ""
+msgstr "使用金额不能超过信用额度。"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__voting_result
 msgid "Voting Result"
-msgstr ""
+msgstr "投票结果"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__website_message_ids
@@ -1633,7 +1633,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__website_message_ids
 #: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "网站消息"
 
 #. module: farm_multi_farm_financial
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__website_message_ids
@@ -1647,4 +1647,4 @@ msgstr ""
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__website_message_ids
 #: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "网站沟通历史"
