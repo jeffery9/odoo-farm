@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_supply_analytics
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:26+0000\n"
+"PO-Revision-Date: 2026-05-04 08:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_supply_analytics
+#. odoo-python
+#: code:addons/farm_supply_analytics/models/demand_forecasting.py:0
+msgid "Applied optimization action: %s"
+msgstr ""
+
+#. module: farm_supply_analytics
+#. odoo-python
+#: code:addons/farm_supply_analytics/models/demand_forecasting.py:0
+msgid "Demand forecast executed. Predicted demand: %s units."
+msgstr ""
+
+#. module: farm_supply_analytics
+#. odoo-python
+#: code:addons/farm_supply_analytics/models/demand_forecasting.py:0
+msgid "Inventory optimization completed."
+msgstr ""
+
+#. module: farm_supply_analytics
+#. odoo-python
+#: code:addons/farm_supply_analytics/models/demand_forecasting.py:0
+msgid "New"
+msgstr ""
+
+#. module: farm_supply_analytics
+#. odoo-python
+#: code:addons/farm_supply_analytics/models/risk_monitoring.py:0
+msgid "Probability must be between 0 and 100."
+msgstr ""
+
+#. module: farm_supply_analytics
+#. odoo-python
+#: code:addons/farm_supply_analytics/models/risk_monitoring.py:0
+msgid ""
+"RISK ALERT: '%s' impact detected on this node. Risk level: %s, Score: %.2f"
+msgstr ""
+
+#. module: farm_supply_analytics
+#. odoo-python
+#: code:addons/farm_supply_analytics/models/risk_monitoring.py:0
+msgid "Risk alert sent to mitigation owner: %s"
+msgstr ""

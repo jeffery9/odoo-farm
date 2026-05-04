@@ -1,0 +1,68 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_multi_farm_financial
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:27+0000\n"
+"PO-Revision-Date: 2026-05-04 08:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_multi_farm_financial
+#. odoo-python
+#: code:addons/farm_multi_farm_financial/models/internal_credit.py:0
+msgid "Cannot close credit with outstanding balance."
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#. odoo-python
+#: code:addons/farm_multi_farm_financial/models/credit_transaction.py:0
+msgid "Credit transaction would exceed limit. Approval required."
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#. odoo-python
+#: code:addons/farm_multi_farm_financial/models/share_transaction.py:0
+msgid "Insufficient shares to redeem/transfer"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#. odoo-python
+#: code:addons/farm_multi_farm_financial/models/finance_governance_models.py:0
+msgid "Loan amount must be positive."
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#. odoo-python
+#: code:addons/farm_multi_farm_financial/models/credit_transaction.py:0
+#: code:addons/farm_multi_farm_financial/models/finance_governance_models.py:0
+#: code:addons/farm_multi_farm_financial/models/internal_credit.py:0
+#: code:addons/farm_multi_farm_financial/models/internal_marketplace_transaction.py:0
+#: code:addons/farm_multi_farm_financial/models/share_transaction.py:0
+msgid "New"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#. odoo-python
+#: code:addons/farm_multi_farm_financial/models/dividend_line.py:0
+msgid "Payment amount exceeds total dividend amount"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#. odoo-python
+#: code:addons/farm_multi_farm_financial/models/dividend_line.py:0
+msgid "Payment amount must be positive"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#. odoo-python
+#: code:addons/farm_multi_farm_financial/models/internal_credit.py:0
+msgid "Utilized amount cannot exceed credit limit."
+msgstr ""

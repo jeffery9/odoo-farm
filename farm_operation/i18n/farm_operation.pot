@@ -1,0 +1,182 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_operation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:27+0000\n"
+"PO-Revision-Date: 2026-05-04 08:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/wizard/farm_dispatch_wizard.py:0
+msgid "%s - Batch Dispatch %s"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention.py:0
+msgid "Accumulated %s GDD from environmental sync."
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Auto-recorded from intervention %s"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "COMPLIANCE ERROR: Invalid ID Card format for operator!"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid ""
+"COMPLIANCE ERROR: Operator ID Card is required for real-name registration of"
+" %s!"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid ""
+"COMPLIANCE ERROR: Product %s is not approved for organic production on "
+"parcel %s!"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_agricultural_campaign_mixin.py:0
+#: code:addons/farm_operation/models/farm_agricultural_campaign_base.py:0
+msgid "Campaign start date must be before end date."
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/project_task.py:0
+msgid ""
+"DAILY FEED PROPOSAL: Age %s days. Estimated Biomass: %s kg. Suggested Feed: "
+"%s kg."
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Graded quantities cannot be negative."
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/project_task.py:0
+msgid ""
+"HARD-BLOCK COMPLIANCE: Land parcel '%s' is marked as Permanent Basic "
+"Farmland. Non-grain production activities (like tourism or livestock) are "
+"strictly prohibited by national policy!"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Harvest Output (%s)"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Harvest QC: %s"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Harvest QC: %s for Grade %s"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/sale_order.py:0
+msgid ""
+"Insufficient lead-time for product '%s'. Required: %s days, Available: %d "
+"days."
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid ""
+"Intervention %s was blocked. Wind speed exceeds level 4. Review required by "
+"Technical Director."
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Intervention approved by %s"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Intervention rejected."
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Intervention submitted for supervisor approval."
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Labor: Work started at %s"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Labor: Work stopped and recorded at %s"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "New"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "No GIS boundaries defined for the selected land parcel!"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/wizard/farm_dispatch_wizard.py:0
+msgid "Production Task"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "WEATHER BLOCK: High Wind Speed (%s km/h)"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid ""
+"WEATHER WINDOW BLOCK: Wind speed too high (%s km/h > 16 km/h). Risk detected"
+" for spray operation. Technical director has been notified."
+msgstr ""

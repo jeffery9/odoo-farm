@@ -1,0 +1,487 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_esg_compliance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:26+0000\n"
+"PO-Revision-Date: 2026-05-04 08:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/export_compliance_engine.py:0
+msgid "--- TECHNICAL PRODUCTION DOSSIER ---"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "AI Carbon Reduction Strategy generated: %s"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Achieved reduction cannot be negative."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Available quantity cannot be negative."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Bio-energy Product Sustainability Report"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "CO2 reduction percentage must be between 0 and 100."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Cannot issue certification: entity is not carbon neutral."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Carbon Neutral Goal Progress Report"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Carbon Neutrality Compliance Report"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Carbon credits retired for use."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Carbon credits transferred."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Carbon credits verified by %s on %s"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Carbon data verified. Awaiting final certification decision."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Carbon data verified. Quality score: %.1f"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Carbon footprint cannot be negative."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid ""
+"Carbon footprint data collection completed. Total emissions: %.2f tCO2e"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Carbon footprint data collection started."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Carbon intensity cannot be negative."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Carbon neutral goal marked as completed."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Carbon neutrality certification application submitted."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Carbon neutrality certification has expired."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Carbon neutrality certification issued. Number: %s"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Carbon neutrality certification review started."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Carbon reduction strategy implementation completed."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid ""
+"Carbon reduction strategy implementation started. Expected reduction: %.2f "
+"tCO2e"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Carbon reduction target cannot be negative."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Compliance status updated. Current status: %s"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Contamination level must be between 0 and 100%."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Cost and savings values cannot be negative."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Credit quantity must be positive."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Current emissions should be updated from carbon tracking systems."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/export_compliance_engine.py:0
+msgid "Dossier Generated"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Emissions values cannot be negative."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Energy content cannot be negative."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/agri_sustainability_mixin.py:0
+msgid "Environmental impact score must be between 0 and 100."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Improvement plan created for supplier carbon compliance."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Incentive programs generated for compliant supplier."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Marketplace activated."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Marketplace deactivated."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Moisture content must be between 0 and 100%."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/agri_sustainability_mixin.py:0
+msgid ""
+"Operation blocked: Sustainability score (%s) is below the minimum threshold "
+"(20)."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Payment confirmed for trade."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Product listed in ESG marketplace."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Product removed from ESG marketplace."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/export_compliance_engine.py:0
+msgid "Product: %s"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Production capacity cannot be negative."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Quantity must be positive."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Real-time carbon monitoring activated for this data collection task."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Start date must be before target completion date."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/sustainable_supply_chain.py:0
+msgid "Supplier approved after A2A protocol Agent-KYC check. Score: %s"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/sustainable_supply_chain.py:0
+msgid "Supplier must have at least one sustainability certification."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/sustainable_supply_chain.py:0
+msgid "Supplier's A2A Agent Credit Score (%s) is below threshold."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Synchronization with external platform initiated."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid ""
+"Target emissions should be less than or equal to baseline emissions for "
+"reduction goals."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/export_compliance_engine.py:0
+msgid "Technical production dossier is now available in the audit log."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Total emissions cannot be negative."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Total emissions must be specified before verification."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/supply_chain_carbon_tracking.py:0
+msgid "Total removals cannot be negative."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Trade cancelled."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Trade completed successfully."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Trade compliance verified."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Trade marked as delivered."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Transaction fee percentage must be between 0 and 100."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/triple_bottom_line_metrics.py:0
+msgid "Triple Bottom Line Report"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/triple_bottom_line_metrics.py:0
+msgid "Triple Bottom Line metrics recorded for %s"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Unit price cannot be negative."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Unknown Body"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/carbon_neutral_management.py:0
+msgid "Vintage year cannot be in the future."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Waste resource contracted with buyer."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Waste resource delivered to destination."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Waste resource listed for trade."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Waste resource trade completed successfully."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/external_esg_marketplace.py:0
+msgid "Waste resource trade compliance verified."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/export_compliance_engine.py:0
+msgid "[AI] Biological Twin monitored. Total GDD: %s C. Health Score: %s"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/export_compliance_engine.py:0
+msgid "[ESG] Carbon Intensity: %s kg CO2e / kg"
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/export_compliance_engine.py:0
+msgid "[QC] MRL (Pesticide Residue) compliant with EU/US standards."
+msgstr ""
+
+#. module: farm_esg_compliance
+#. odoo-python
+#: code:addons/farm_esg_compliance/models/export_compliance_engine.py:0
+msgid "[VRA] Precision Variable Application enabled. Avg Rate: %s kg/mu"
+msgstr ""

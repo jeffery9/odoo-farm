@@ -179,9 +179,9 @@ class ESGReportCustomization(models.Model):
                 try:
                     sections = json.loads(record.report_sections)
                     if not isinstance(sections, list) and not isinstance(sections, dict):
-                        raise ValidationError("Report sections must be a valid JSON array or object")
+                        raise ValidationError(_("Report sections must be a valid JSON array or object"))
                 except json.JSONDecodeError:
-                    raise ValidationError("Report sections must be valid JSON format")
+                    raise ValidationError(_("Report sections must be valid JSON format"))
 
     @api.constrains('custom_metrics')
     def _check_custom_metrics(self):
@@ -192,9 +192,9 @@ class ESGReportCustomization(models.Model):
                 try:
                     metrics = json.loads(record.custom_metrics)
                     if not isinstance(metrics, list) and not isinstance(metrics, dict):
-                        raise ValidationError("Custom metrics must be a valid JSON array or object")
+                        raise ValidationError(_("Custom metrics must be a valid JSON array or object"))
                 except json.JSONDecodeError:
-                    raise ValidationError("Custom metrics must be valid JSON format")
+                    raise ValidationError(_("Custom metrics must be valid JSON format"))
 
     @api.constrains('data_filters')
     def _check_data_filters(self):
@@ -205,6 +205,6 @@ class ESGReportCustomization(models.Model):
                 try:
                     filters = json.loads(record.data_filters)
                     if not isinstance(filters, dict):
-                        raise ValidationError("Data filters must be a valid JSON object")
+                        raise ValidationError(_("Data filters must be a valid JSON object"))
                 except json.JSONDecodeError:
-                    raise ValidationError("Data filters must be valid JSON format")
+                    raise ValidationError(_("Data filters must be valid JSON format"))
