@@ -5,6 +5,7 @@ class FarmSubstituteWizard(models.TransientModel):
     _name = 'farm.substitute.wizard'
     _description = 'Substitute Product Suggestion Wizard'
 
+    # TODO: [DE-INDUSTRIAL] Replace 'Manufacturing Order' with 'Processing Order' or 'Intervention'
     mrp_production_id = fields.Many2one('mrp.production', string='Manufacturing Order', required=True)
     original_product_id = fields.Many2one('product.product', string='Original Product (Out of Stock)', required=True)
     original_quantity = fields.Float(string='Original Quantity Needed', required=True)

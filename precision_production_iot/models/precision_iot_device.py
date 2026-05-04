@@ -30,6 +30,7 @@ class PrecisionIotDevice(models.Model):
     is_active = fields.Boolean('Active', default=True)
 
     # Link to production
+    # TODO: [DE-INDUSTRIAL] Rename 'Production Line/Work Center' to 'IoT Facility Location' for Agri/Semiconductor use cases
     production_line_id = fields.Many2one('mrp.workcenter', string='Production Line/Work Center')
 
     # Status fields from Industrial IoT integration
