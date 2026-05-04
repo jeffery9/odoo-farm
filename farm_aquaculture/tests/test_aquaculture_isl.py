@@ -1,36 +1,46 @@
 # -*- coding: utf-8 -*-
-from odoo.tests.common import TransactionCase, Form
+from odoo.tests.common import TransactionCase
 
 class TestAquacultureISL(TransactionCase):
-    def setUp(self):
-        super(TestAquacultureISL, self).setUp()
-        self.Product = self.env['product.product']
-        self.shrimp = self.Product.create({'name': 'White Shrimp', 'type': 'consu'})
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Product = cls.env['product.product']
+        cls.AquaLot = cls.env['farm.lot.aquaculture']
+        cls.AquaBom = cls.env['farm.aquaculture.bom']
+        
+        cls.fish_product = cls.Product.create({
+            'name': 'Atlantic Salmon',
+            'type': 'consu'
+        })
 
-    def test_01_aqua_form_stats(self):
-        """ Test Aquaculture Form UI simulation and growth stats. """
-        try:
-            isl_mo = self.env['farm.aquaculture.production'].create({
-                'product_id': self.shrimp.id,
-                'product_qty': 5000.0,
-                'water_temp': 28.5,
-                'dissolved_oxygen': 6.5,
-                'survival_rate': 95.0,
-                'bom_id': False,
-            })
-        except Exception:
-            return
-        self.assertEqual(isl_mo.water_temp, 28.5)
-        self.assertEqual(isl_mo.state, 'draft')
-        self.assertEqual(isl_mo.production_id.product_id, self.shrimp)
+    def test_01_stocking_density_kpi(self):
+        """ Test calculation of stocking density KPI """
+        pond_batch = self.AquaLot.create({
+            'name': 'POND-A1-2026',
+            'product_id': self.fish_product.id,
+            'water_volume_m3': 2000.0,
+            'total_biomass': 500.0, # 500kg
+        })
+        
+        pond_batch._compute_aquaculture_kpi()
+        # Density should be 500 / 2000 = 0.25 kg/m3
+        self.assertEqual(pond_batch.current_density, 0.25)
+        
+        pond_batch.total_biomass = 1000.0
+        pond_batch._compute_aquaculture_kpi()
+        self.assertEqual(pond_batch.current_density, 0.5)
 
-    def test_02_aqua_bom_form(self):
-        """ Test specialized Aquaculture BOM Form. """
-        try:
-            isl_bom = self.env['farm.aquaculture.bom'].create({
-                'product_tmpl_id': self.shrimp.product_tmpl_id.id,
-                'stocking_density_limit': 50.0,
-            })
-        except Exception:
-            return
-        self.assertTrue(isl_bom.bom_id)
+    def test_02_aquaculture_recipe_setpoints(self):
+        """ Test aquaculture specific recipe (BOM) setpoints """
+        bom = self.AquaBom.create({
+            'product_tmpl_id': self.fish_product.product_tmpl_id.id,
+            'product_qty': 1.0,
+            'min_dissolved_oxygen': 5.5,
+            'max_stocking_density': 15.0
+        })
+        
+        self.assertTrue(bom.exists())
+        self.assertEqual(bom.min_dissolved_oxygen, 5.5)
+        self.assertEqual(bom.max_stocking_density, 15.0)
+        self.assertTrue(bom.bom_id.exists())

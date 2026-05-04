@@ -1,24 +1,54 @@
+# -*- coding: utf-8 -*-
 from odoo.tests.common import TransactionCase
-import json
+from odoo.exceptions import UserError
 
 class TestA2ACollaboration(TransactionCase):
-
-    def setUp(self):
-        super().setUp()
-        self.product = self.env['product.product'].create({'name': 'AI Tomato', 'type': 'consu'})
-        self.intervention = self.env['mrp.production'].create({
-            'product_id': self.product.id,
-            'product_qty': 10.0,
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Coordination = cls.env['agri.ai.coordination.layer']
+        
+    def test_01_coordination_layer_creation(self):
+        """ Test basic coordination layer setup """
+        coord = self.Coordination.create({
+            'name': 'Pest-Irrigation Sync',
+            'coordination_type': 'vision_decision_integration',
+            'result_aggregation_method': 'weighted_average',
         })
-
-    def test_01_message_construction(self):
-        """ Test A2A Message logic """
-        if 'agri.a2a.message' not in self.env:
-            return
-        msg = self.env['agri.a2a.message'].create({
-            'sender_agent': 'agent_scout',
-            'receiver_agent': 'agent_planner',
-            'intent': 'task_request',
-            'content': 'Check pest levels in sector 5'
+        self.assertTrue(coord.exists())
+        self.assertEqual(coord.status, 'draft')
+        
+    def test_02_multi_service_linkage(self):
+        """ Test linking multiple AI services to the coordination layer """
+        coord = self.Coordination.create({
+            'name': 'Full Automation Loop',
+            'coordination_type': 'cross_module_workflow',
         })
-        self.assertEqual(msg.sender_agent, 'agent_scout')
+        
+        # Link a decision agent if available
+        agent = self.env['agri.ai.agent'].create({
+            'name': 'Planner Agent',
+            'agent_type': 'planning',
+        })
+        coord.ai_decision_ids = [(4, agent.id)]
+        
+        # Link a vision service if available
+        vision = self.env['agri.ai.pest.disease.detection'].create({
+            'name': 'Pest Detector',
+            'detection_type': 'pest',
+        })
+        coord.ai_vision_ids = [(4, vision.id)]
+        
+        self.assertEqual(len(coord.ai_decision_ids), 1)
+        self.assertEqual(len(coord.ai_vision_ids), 1)
+
+    def test_03_coordination_execution_workflow(self):
+        """ Test coordination execution state changes """
+        coord = self.Coordination.create({
+            'name': 'Workflow Test',
+            'coordination_type': 'cross_module_workflow',
+        })
+        
+        if hasattr(coord, 'action_execute_coordination'):
+            coord.action_execute_coordination()
+            self.assertEqual(coord.status, 'completed')

@@ -1,47 +1,54 @@
 # -*- coding: utf-8 -*-
 from odoo.tests.common import TransactionCase
-from odoo.exceptions import UserError, ValidationError
-import psycopg2
+from odoo.exceptions import ValidationError
 
 class TestCropISL(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.Product = self.env['product.product']
-        self.Location = self.env['farm.location']
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.Product = cls.env['product.product']
+        cls.CropBom = cls.env['farm.crop.bom']
+        cls.CropProduction = cls.env['farm.crop.production']
+        cls.Location = cls.env['farm.location']
         
-        self.corn = self.Product.create({'name': 'Corn', 'type': 'consu'})
-        
-        agri_loc = self.env['agri.location'].create({
-            'name': 'East Field 1',
-            'location_type': 'field'
+        cls.wheat_product = cls.Product.create({
+            'name': 'Winter Wheat v1',
+            'type': 'consu'
         })
-        self.plot = self.Location.create({
-            'name': 'East Field 1',
-            'agri_location_id': agri_loc.id,
-            'usage': 'internal',
-            'land_area': 100000.0
+        
+        cls.field_a = cls.Location.create({
+            'name': 'Block A1',
+            'usage': 'internal'
         })
 
-    def test_01_gis_form_validation(self):
-        """ Test GIS area validation. """
+    def test_01_crop_recipe_setup(self):
+        """ Test crop-specific recipe (BOM) attributes """
+        bom = self.CropBom.create({
+            'product_tmpl_id': self.wheat_product.product_tmpl_id.id,
+            'product_qty': 1.0,
+            'target_yield_mu': 550.0,
+            'growing_season': 'winter',
+            'phi_days': 14
+        })
         
-        # Odoo 19 direct ORM simulation
-        try:
-            isl_mo = self.env['farm.crop.production'].create({
-                'product_id': self.corn.id,
-                'location_src_id': self.plot.id,
-                'area_to_treat': 9.0,
-                'product_qty': 100.0,
-                'bom_id': False
-            })
-        except Exception:
-            return
-            
-        self.assertEqual(isl_mo.area_to_treat, 9.0)
+        self.assertTrue(bom.exists())
+        self.assertEqual(bom.target_yield_mu, 550.0)
+        self.assertEqual(bom.growing_season, 'winter')
+        self.assertEqual(bom.phi_days, 14)
+        # Check parent link
+        self.assertTrue(bom.bom_id.exists())
+
+    def test_02_crop_production_vra(self):
+        """ Test crop production VRA (Variable Rate Application) integration """
+        mo = self.CropProduction.create({
+            'product_id': self.wheat_product.id,
+            'product_qty': 100.0,
+            'is_vra_enabled': True,
+            'prescription_json': '{"N": 15.5, "P": 10.0, "K": 8.0}'
+        })
         
-        # Test Constraint directly on the ISL record
-        from odoo.tools import mute_logger
-        with mute_logger('odoo.sql_db'), self.assertRaises((UserError, ValidationError, Exception)), self.env.cr.savepoint():
-            isl_mo.area_to_treat = 12.0
-            if hasattr(isl_mo, '_check_spatial_limit'):
-                isl_mo._check_spatial_limit()
+        self.assertTrue(mo.exists())
+        self.assertTrue(mo.is_vra_enabled)
+        self.assertIn('"N": 15.5', mo.prescription_json)
+        # Check standard MO link
+        self.assertTrue(mo.production_id.exists())
