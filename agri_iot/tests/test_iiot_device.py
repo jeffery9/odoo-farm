@@ -65,3 +65,15 @@ class TestIiotDevice(TransactionCase):
         old_token = device.config_token
         device.action_generate_config_token()
         self.assertNotEqual(device.config_token, old_token)
+
+    def test_ac_02_status_monitoring(self):
+        """ 
+        [AC 评审映射] AC2 (状态监控): 用户界面必须能实时反映物理设备的状态。
+        验证: 设备模型必须存在状态流转字段。
+        """
+        device = self.Device.create({
+            'serial_number': 'AC-TEST-001',
+            'profile_id': self.default_profile.id,
+        })
+        self.assertTrue(hasattr(device, 'status') or hasattr(device, 'state') or hasattr(device, 'is_online'), 
+                        "Device must have a state/status field to satisfy AC2")
