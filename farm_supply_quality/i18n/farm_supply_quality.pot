@@ -1,0 +1,80 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_supply_quality
+#
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "Acquisition Pricing Rules"
+msgstr ""
+
+msgid "Base price before quality adjustments"
+msgstr ""
+
+msgid "Coefficient to apply per percentage point of impurities (usually negative)"
+msgstr ""
+
+msgid "Coefficient to apply per percentage point of moisture content (usually negative)"
+msgstr ""
+
+msgid "Coefficient to apply per percentage point of protein content"
+msgstr ""
+
+msgid "Custom formula for complex pricing calculations"
+msgstr ""
+
+msgid "Enable quality-based pricing adjustments for this order"
+msgstr ""
+
+msgid "Impurities rate for quality-based pricing"
+msgstr ""
+
+msgid "Maximum value for this quality grading"
+msgstr ""
+
+msgid "Minimum quality value required for acceptance"
+msgstr ""
+
+msgid "Minimum value for this quality grading"
+msgstr ""
+
+msgid "Moisture content percentage for quality-based pricing"
+msgstr ""
+
+msgid "Percentage to add to base price for each unit above threshold"
+msgstr ""
+
+msgid "Percentage to subtract from base price for each unit below threshold"
+msgstr ""
+
+msgid "Product Category"
+msgstr ""
+
+msgid "Protein content percentage for quality-based pricing"
+msgstr ""
+
+msgid "Purchase Order"
+msgstr ""
+
+msgid "Quality Grade"
+msgstr ""
+
+msgid "Quality Grade Label"
+msgstr ""
+
+msgid "Quality Pricing Rule"
+msgstr ""
+
+msgid "Specific purchase order this rule applies to"
+msgstr ""
+
+msgid "Total adjustments based on quality metrics"
+msgstr ""
+
+msgid "Unit of measure for quality attribute (e.g., %, g/kg, etc.)"
+msgstr ""
+
+msgid "e.g., protein_content, moisture_content, impurities_rate, sugar_content, fat_content"
+msgstr ""
+

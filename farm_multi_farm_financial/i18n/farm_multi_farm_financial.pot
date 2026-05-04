@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 08:27+0000\n"
-"PO-Revision-Date: 2026-05-04 08:27+0000\n"
+"POT-Creation-Date: 2026-05-04 08:42+0000\n"
+"PO-Revision-Date: 2026-05-04 08:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,358 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__related_document__account_move
+msgid "Account Move"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_credit__state__active
+msgid "Active"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__actual_majority
+msgid "Actual Majority (%)"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__amount
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__amount
+msgid "Amount"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__repayment_schedule__annual
+msgid "Annual"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__state__approved
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_line__approval_status__approved
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__state__approved
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__subsidy_disbursement__state__approved
+msgid "Approved"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__related_document__account_asset
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__document_reference__account_asset
+msgid "Asset"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__process_type__asset_disposal
+msgid "Asset Disposal"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__attachment_name
+msgid "Attachment Name"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__attachments
+msgid "Attachments"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__audit_date
+msgid "Audit Date"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__audit_notes
+msgid "Audit Notes"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__audit_result
+msgid "Audit Result"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__audit_result__authorized
+msgid "Authorized"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__available_amount
+msgid "Available Amount"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__basis_for_allocation
+msgid "Basis for Allocation"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__decision_type__board
+msgid "Board Meeting"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__transaction_type__bonus
+msgid "Bonus Share"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__borrower_loan_ids
+msgid "Borrowed Loans"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__borrower_member_id
+msgid "Borrower Member"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__repayment_schedule__bullet
+msgid "Bullet Payment"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__process_type__bylaw_change
+msgid "Bylaw Change"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_distribution__state__calculated
+msgid "Calculated"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__state__cancelled
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_distribution__state__cancelled
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_line__state__cancelled
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__state__cancelled
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__state__cancelled
+msgid "Cancelled"
+msgstr ""
+
+#. module: farm_multi_farm_financial
 #. odoo-python
 #: code:addons/farm_multi_farm_financial/models/internal_credit.py:0
 msgid "Cannot close credit with outstanding balance."
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_distribution__distribution_type__cash
+msgid "Cash Dividend"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_credit__state__closed
+msgid "Closed"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__comments
+msgid "Comments"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_marketplace_transaction__state__completed
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__subsidy_disbursement__state__completed
+msgid "Completed"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__compliance_status
+msgid "Compliance Status"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__state__confirmed
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__state__confirmed
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_marketplace_transaction__state__confirmed
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__state__confirmed
+msgid "Confirmed"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__related_document__contract_contract
+msgid "Contract"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__cooperative_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__cooperative_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__cooperative_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__cooperative_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__cooperative_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__cooperative_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__cooperative_id
+msgid "Cooperative"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_cooperative_decision
+msgid "Cooperative Decision"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__cooperative_decision_ids
+msgid "Cooperative Decisions"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_cooperative_entity
+msgid "Cooperative Entity"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_cooperative_member
+msgid "Cooperative Member"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_cooperative_treasury
+msgid "Cooperative Treasury"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__credit_limit
+msgid "Credit Limit"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__credit_line_id
+msgid "Credit Line"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__name
+msgid "Credit Reference"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_credit_transaction
+msgid "Credit Transaction"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__credit_transaction_ids
+msgid "Credit Transactions"
 msgstr ""
 
 #. module: farm_multi_farm_financial
@@ -28,15 +377,614 @@ msgid "Credit transaction would exceed limit. Approval required."
 msgstr ""
 
 #. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__current_balance
+msgid "Current Balance"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__decision_id
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__document_reference__cooperative_decision
+msgid "Decision"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_decision_audit
+msgid "Decision Audit"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__description
+msgid "Decision Description"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__name
+msgid "Decision Title"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__decision_type
+msgid "Decision Type"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__state__defaulted
+msgid "Defaulted"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_marketplace_transaction__state__delivered
+msgid "Delivered"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__description
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__description
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__description
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__description
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__description
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__description
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__description
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__description
+msgid "Description"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__state__disbursed
+msgid "Disbursed"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__disbursement_id
+msgid "Disbursement"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__disbursement_date
+msgid "Disbursement Date"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__disbursement_lines
+msgid "Disbursement Lines"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_account_move__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_distribution__state__distributed
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__subsidy_disbursement__state__distributed
+msgid "Distributed"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__distribution_id
+msgid "Distribution"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__distribution_date
+msgid "Distribution Date"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__name
+msgid "Distribution Name"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__distribution_type
+msgid "Distribution Type"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_dividend_distribution
+#: model:ir.ui.menu,name:farm_multi_farm_financial.dividend_distribution_menu
+msgid "Dividend Distribution"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_dividend_line
+msgid "Dividend Distribution Line"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__dividend_distribution_ids
+msgid "Dividend Distributions"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__dividend_line_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__dividend_lines
+#: model:ir.ui.menu,name:farm_multi_farm_financial.dividend_line_menu
+msgid "Dividend Lines"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.ui.menu,name:farm_multi_farm_financial.dividend_management_menu
+msgid "Dividend Management"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__dividend_per_share
+msgid "Dividend per Share"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__state__draft
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__state__draft
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_distribution__state__draft
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__state__draft
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement_line__basis_for_allocation
+msgid "E.g., certified area, production volume"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__end_date
+msgid "End Date"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__state__executed
+msgid "Executed"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_credit__state__expired
+msgid "Expired"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.ui.menu,name:farm_multi_farm_financial.multi_farm_financial_menu
+msgid "Financial Management"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_treasury__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_credit_transaction__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_dividend_distribution__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_credit__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_loan__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_marketplace_transaction__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_multi_sign_process__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__decision_type__general_assembly
+msgid "General Assembly"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__grace_period_days
+msgid "Grace Period (Days)"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_distribution__distribution_type__hybrid
+msgid "Hybrid (Cash + Stock)"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_account_move__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__id
+msgid "ID"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_treasury__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_credit_transaction__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_dividend_distribution__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_credit__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_loan__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_marketplace_transaction__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_multi_sign_process__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_treasury__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_credit_transaction__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_dividend_distribution__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_credit__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_loan__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_marketplace_transaction__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_multi_sign_process__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_treasury__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_treasury__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_credit_transaction__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_credit_transaction__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_dividend_distribution__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_dividend_distribution__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_credit__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_credit__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_loan__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_loan__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_marketplace_transaction__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_marketplace_transaction__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_multi_sign_process__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_multi_sign_process__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__state__in_progress
+msgid "In Progress"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_marketplace_transaction__state__in_transit
+msgid "In Transit"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__state__initiated
+msgid "Initiated"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__initiator_id
+msgid "Initiator"
+msgstr ""
+
+#. module: farm_multi_farm_financial
 #. odoo-python
 #: code:addons/farm_multi_farm_financial/models/share_transaction.py:0
 msgid "Insufficient shares to redeem/transfer"
 msgstr ""
 
 #. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__transaction_type__interest
+msgid "Interest Charge"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__interest_rate
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__interest_rate
+msgid "Interest Rate (%)"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_internal_credit
+msgid "Internal Credit"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__internal_credit_ids
+msgid "Internal Credits"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_internal_loan
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__related_document__internal_loan
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__document_reference__internal_loan
+msgid "Internal Loan"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__internal_loan_ids
+msgid "Internal Loans"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_internal_marketplace_transaction
+msgid "Internal Marketplace Transaction"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__is_completed
+msgid "Is Completed"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__process_type__large_purchase
+msgid "Large Purchase"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__lender_member_id
+msgid "Lender Member"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__lender_loan_ids
+msgid "Lent Loans"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__loan_amount
+msgid "Loan Amount"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__loan_date
+msgid "Loan Date"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__process_type__loan_guarantee
+msgid "Loan Guarantee"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__name
+msgid "Loan Reference"
+msgstr ""
+
+#. module: farm_multi_farm_financial
 #. odoo-python
 #: code:addons/farm_multi_farm_financial/models/finance_governance_models.py:0
 msgid "Loan amount must be positive."
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__internal_marketplace_transaction_requester_ids
+msgid "Marketplace Transactions (Requester)"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__internal_marketplace_transaction_supplier_ids
+msgid "Marketplace Transactions (Supplier)"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__maturity_date
+msgid "Maturity Date"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__meeting_date
+msgid "Meeting Date"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__attachments
+msgid "Meeting minutes, photos, etc."
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__member_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__member_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__member_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__member_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__member_id
+msgid "Member"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__repayment_schedule__monthly
+msgid "Monthly"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_multi_sign_line
+msgid "Multi-sign Line"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_multi_sign_process
+msgid "Multi-sign Process"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__multi_sign_process_ids
+msgid "Multi-sign Processes"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__my_activity_date_deadline
+msgid "My Activity Deadline"
 msgstr ""
 
 #. module: farm_multi_farm_financial
@@ -47,6 +995,135 @@ msgstr ""
 #: code:addons/farm_multi_farm_financial/models/internal_marketplace_transaction.py:0
 #: code:addons/farm_multi_farm_financial/models/share_transaction.py:0
 msgid "New"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__attendees_count
+msgid "Number of Attendees"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_treasury__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_credit_transaction__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_dividend_distribution__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_credit__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_loan__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_marketplace_transaction__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_multi_sign_process__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_treasury__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_credit_transaction__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_dividend_distribution__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_credit__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_loan__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_marketplace_transaction__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_multi_sign_process__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__decision_type__other
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__process_type__other
+msgid "Other"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_line__state__paid
+msgid "Paid"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__paid_amount
+msgid "Paid Amount"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__paid_date
+msgid "Paid Date"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__voting_result__passed
+msgid "Passed"
 msgstr ""
 
 #. module: farm_multi_farm_financial
@@ -62,7 +1139,511 @@ msgid "Payment amount must be positive"
 msgstr ""
 
 #. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_line__state__pending
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_marketplace_transaction__state__pending
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_line__approval_status__pending
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__subsidy_disbursement__state__pending
+msgid "Pending"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__required_majority
+msgid "Percentage needed for decision to pass"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__actual_majority
+msgid "Percentage that voted in favor"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__voting_result__postponed
+msgid "Postponed"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__share_price
+msgid "Price per share at transaction time"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__process_id
+msgid "Process"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__description
+msgid "Process Description"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__name
+msgid "Process Title"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__process_type
+msgid "Process Type"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__product_id
+msgid "Product"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_dividend_distribution__share_ratio
+msgid "Proportion of dividend based on shares held"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_dividend_distribution__trading_volume_ratio
+msgid "Proportion of dividend based on trading volume"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__related_document__purchase_order
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__related_document__purchase_order
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__document_reference__purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__quantity
+msgid "Quantity"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__repayment_schedule__quarterly
+msgid "Quarterly"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__receipt_confirmed
+msgid "Receipt Confirmed"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement_line__receipt_date
+msgid "Receipt Date"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__transaction_type__redemption
+msgid "Redemption"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__voting_result__rejected
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_line__approval_status__rejected
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__multi_sign_process__state__rejected
+msgid "Rejected"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__related_document
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_decision_audit__related_document
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__document_reference
+msgid "Related Document"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_loan__state__repaid
+msgid "Repaid"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__transaction_type__repayment
+msgid "Repayment"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__repayment_schedule
+msgid "Repayment Schedule"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__requester_member_id
+msgid "Requester Member"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__required_majority
+msgid "Required Majority (%)"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__required_signers
+msgid "Required Signers"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__audit_result__requires_review
+msgid "Requires Review"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__resolution_text
+msgid "Resolution Text"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__state__reversed
+msgid "Reversed"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__related_document__sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__settlement_id
+msgid "Settlement"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__share_price
+msgid "Share Price"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__share_ratio
+msgid "Share Ratio"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_share_transaction
+msgid "Share Transaction"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__share_transaction_ids
+#: model:ir.ui.menu,name:farm_multi_farm_financial.share_transaction_menu
+msgid "Share Transactions"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__share_based_amount
+msgid "Share-based Amount"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__shares_count
+msgid "Shares Count"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__sign_lines
+msgid "Sign Lines"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__sign_process_ids
+msgid "Sign Processes"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__signature_date
+msgid "Signature Date"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__signer_member_id
+msgid "Signer"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__start_date
+msgid "Start Date"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__state
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__state
+msgid "State"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_line__approval_status
+msgid "Status"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_treasury__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_credit_transaction__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_dividend_distribution__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_credit__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_loan__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_marketplace_transaction__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_multi_sign_process__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__dividend_distribution__distribution_type__stock
+msgid "Stock Dividend"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__picking_id
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__related_document__stock_picking
+msgid "Stock Picking"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__transaction_type__subscription
+msgid "Subscription"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_subsidy_disbursement
+msgid "Subsidy Disbursement"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model,name:farm_multi_farm_financial.model_subsidy_disbursement_line
+msgid "Subsidy Disbursement Line"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__subsidy_disbursement_ids
+msgid "Subsidy Disbursements"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_member__subsidy_line_ids
+msgid "Subsidy Lines"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__name
+msgid "Subsidy Name"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__subsidy_source
+msgid "Subsidy Source"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__cooperative_decision__decision_type__supervisory
+msgid "Supervisory Committee"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__supplier_member_id
+msgid "Supplier Member"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__internal_credit__state__suspended
+msgid "Suspended"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__total_amount
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__total_amount
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__total_amount
+msgid "Total Amount"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__total_dividend_amount
+msgid "Total Dividend Amount"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__total_members_count
+msgid "Total Members"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__total_amount
+msgid "Total Subsidy Amount"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__trading_volume_ratio
+msgid "Trading Volume Ratio"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_line__trading_based_amount
+msgid "Trading-based Amount"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__transaction_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__transaction_date
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__transaction_date
+msgid "Transaction Date"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__name
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__name
+msgid "Transaction Reference"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__transaction_type
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__transaction_type
+msgid "Transaction Type"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__transaction_type__transfer_in
+msgid "Transfer In"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__share_transaction__transaction_type__transfer_out
+msgid "Transfer Out"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.ui.menu,name:farm_multi_farm_financial.treasury_governance_menu
+msgid "Treasury & Governance"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_entity__cooperative_treasury_ids
+msgid "Treasury Accounts"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__name
+msgid "Treasury Name"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_treasury__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_credit_transaction__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_dividend_distribution__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_credit__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_loan__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_marketplace_transaction__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_multi_sign_process__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__decision_audit__audit_result__unauthorized
+msgid "Unauthorized"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__unit_price
+msgid "Unit Price"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields.selection,name:farm_multi_farm_financial.selection__credit_transaction__transaction_type__usage
+msgid "Usage"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__utilized_amount
+msgid "Utilized Amount"
+msgstr ""
+
+#. module: farm_multi_farm_financial
 #. odoo-python
 #: code:addons/farm_multi_farm_financial/models/internal_credit.py:0
 msgid "Utilized amount cannot exceed credit limit."
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__voting_result
+msgid "Voting Result"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_decision__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_cooperative_treasury__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_credit_transaction__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_dividend_distribution__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_credit__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_loan__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_internal_marketplace_transaction__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_multi_sign_process__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_share_transaction__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_financial.field_subsidy_disbursement__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: farm_multi_farm_financial
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_decision__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_cooperative_treasury__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_credit_transaction__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_dividend_distribution__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_credit__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_loan__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_internal_marketplace_transaction__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_multi_sign_process__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_share_transaction__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_financial.field_subsidy_disbursement__website_message_ids
+msgid "Website communication history"
 msgstr ""

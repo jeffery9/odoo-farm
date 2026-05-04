@@ -1,0 +1,65 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_supply_logistics
+#
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "Allowed Product Categories"
+msgstr ""
+
+msgid "Cooling Equipment"
+msgstr ""
+
+msgid "Driver"
+msgstr ""
+
+msgid "Facility"
+msgstr ""
+
+msgid "Factor by which temperature affects shelf life and demand"
+msgstr ""
+
+msgid "Harvest Lot"
+msgstr ""
+
+msgid "Inventory Item"
+msgstr ""
+
+msgid "Location"
+msgstr ""
+
+msgid "Lot/Serial Number"
+msgstr ""
+
+msgid "Primary Packaging"
+msgstr ""
+
+msgid "Product"
+msgstr ""
+
+msgid "Season Period"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Storage Zone"
+msgstr ""
+
+msgid "Storage Zones"
+msgstr ""
+
+msgid "Temperature History"
+msgstr ""
+
+msgid "Temperature Logs"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Vehicle"
+msgstr ""
+

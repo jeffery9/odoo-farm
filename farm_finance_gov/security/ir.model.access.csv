@@ -1,4 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_farm_rural_revitalization_project,farm.rural.revitalization.project,model_farm_rural_revitalization_project,farm_core.group_farm_manager,1,1,1,1
-access_account_move,account.move,model_account_move,base.group_user,1,1,1,1
-access_farm_rural_revitalization_project,farm.rural.revitalization.project,model_farm_rural_revitalization_project,base.group_user,1,1,1,1

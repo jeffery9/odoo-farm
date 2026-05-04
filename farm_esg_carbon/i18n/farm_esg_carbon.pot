@@ -1,0 +1,11 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_esg_carbon
+#
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "CO2 equivalent emissions per unit of this product."
+msgstr ""
+
