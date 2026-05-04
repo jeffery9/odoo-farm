@@ -1,73 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="view_mrp_bom_form_inherit_farm_v2" model="ir.ui.view">
         <field name="name">mrp.bom.form.inherit.farm.v2</field>
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
         <field name="arch" type="xml">
-            <!-- 1. Purpose Selector in Header -->
             <xpath expr="//field[@name='type']" position="after">
-                <field name="industry_type" string="Industry Standard"/>
-                <field name="processing_type" invisible="industry_type == 'standard'"/>
-            </xpath>
-
-            <!-- 2. Agri-Specific Group -->
-            <xpath expr="//group[@name='main_group']" position="after">
-                <group name="agri_logistics" string="Agricultural Logistics" invisible="industry_type == 'standard'">
-                    <group>
-                        <field name="dilution_ratio"/>
-                        <field name="solution_volume_per_hectare"/>
-                    </group>
-                    <group>
-                        <field name="is_seasonal_bom"/>
-                        <field name="season_name" invisible="not is_seasonal_bom" required="is_seasonal_bom"/>
-                    </group>
-                </group>
-            </xpath>
-
-            <!-- 3. Industry-Driven Process Parameters -->
-            <xpath expr="//notebook" position="inside">
-                <page string="Process Standards" name="agri_standards" invisible="industry_type == 'standard'">
-                    <group>
-                        <group string="Core Targets">
-                            <field name="target_temp"/>
-                            <field name="target_ph" invisible="industry_type not in ['winemaking', 'food_processing']"/>
-                            <field name="target_brix" invisible="industry_type != 'winemaking'"/>
-                            <field name="target_proofing_time" invisible="industry_type != 'baking'"/>
-                            <field name="standard_duration"/>
-                        </group>
-                        <group string="Yield &amp; Balance">
-                            <field name="max_loss_rate" widget="percentage"/>
-                            <field name="mass_balance_tolerance" widget="percentage"/>
-                            <field name="is_blind_mixing" groups="mrp.group_mrp_manager"/>
-                        </group>
-                    </group>
-                    
-                    <group string="HACCP Instructions">
-                        <field name="haccp_instructions" nolabel="1" placeholder="Critical Control Points instructions..."/>
-                    </group>
-
-                    <group string="Expected Output Quality" invisible="processing_type != 'primary'">
-                        <field name="grade_distribution_ids" nolabel="1">
-                            <list editable="bottom">
-                                <field name="quality_grade"/>
-                                <field name="expected_percentage" widget="percentage" sum="Total 100%"/>
-                            </list>
-                        </field>
-                    </group>
-                </page>
-            </xpath>
-
-            <!-- 4. Dynamic Column Visibility in Lines -->
-            <xpath expr="//field[@name='bom_line_ids']/tree/field[@name='product_id']" position="after">
-                <field name="ingredient_role" column_invisible="parent.industry_type == 'standard'"/>
-            </xpath>
-
-            <!-- 5. Workcenter Capability Isolation -->
-            <xpath expr="//field[@name='operation_ids']/tree/field[@name='workcenter_id']" position="attributes">
-                <attribute name="domain">
-                    [('industry_capability', '=', 'agri_machinery')] if parent.industry_type == 'standard' else [('industry_capability', '=', 'food_line')] if parent.industry_type == 'food_processing' else [('industry_capability', '=', 'livestock_pen')] if parent.industry_type == 'livestock' else []
-                </attribute>
+                <field name="haccp_instructions" invisible="1"/>
             </xpath>
         </field>
     </record>

@@ -14,6 +14,14 @@ class MrpWorkcenter(models.Model):
         ('lab', 'Laboratory / Testing')
     ], string='Industry Capability', default='standard', required=True)
 
+    energy_type = fields.Selection([
+        ('electricity', 'Electricity'),
+        ('gas', 'Natural Gas'),
+        ('steam', 'Steam'),
+        ('water', 'Water')
+    ], string='Energy Type')
+    energy_cost_per_hour = fields.Float("Energy Cost per Hour")
+
 class MrpRoutingWorkcenter(models.Model):
     _name = 'mrp.routing.workcenter'
     _inherit = 'mrp.routing.workcenter'
