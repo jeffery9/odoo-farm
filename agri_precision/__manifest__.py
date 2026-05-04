@@ -1,8 +1,8 @@
 {
-    'name': 'Agri-Precision Bridge Core',
-    'version': '1.0',
-    'summary': 'Bridges Odoo Standard Apps with Agriculture & Semiconductor logic (Uncertainty, Grading, Intervention).',
-    'category': 'Manufacturing',
+    'name': 'Agri-Precision',
+    'version': '19.0.1.0.0',
+    'summary': 'Agricultural specialization for Precision Production (GDD, Nutrients, Agri-Intervention).',
+    'category': 'Agriculture',
     'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',
     'website': 'http://www.geninit.cn',
     'depends': ['mrp', 'stock', 'precision_production', 'agri_iot'],

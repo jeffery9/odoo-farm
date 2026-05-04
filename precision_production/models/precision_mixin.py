@@ -69,11 +69,16 @@ class PrecisionProductionMixin(models.AbstractModel):
             'basis_id': basis_id, 'user_id': self.env.user.id
         })
 
+    def _get_quality_weights(self):
+        """ [ISL Hook] Returns scoring weights for quality grading. Override in specific industries. """
+        return {'premium': 100, 'standard': 80, 'fail': 0}
+
     def action_generate_graded_lots(self):
         """ [Product Logic] Uses Odoo Native By-products for Grading. """
         self.ensure_one()
         total_score = 0
         total_qty = 0
+        weights = self._get_quality_weights()
         for line in self.graded_output_ids:
             move = self.move_finished_ids.filtered(lambda m: m.product_id == line.product_id and m.state not in ['done', 'cancel'])[:1]
             if not move:
@@ -86,9 +91,8 @@ class PrecisionProductionMixin(models.AbstractModel):
             else:
                 move.write({'product_uom_qty': line.quantity})
             
-            # KPI: Quality Scoring (Premium=100, Standard=80, Fail=0)
-            weight = {'premium': 100, 'standard': 80, 'fail': 0}
-            total_score += line.quantity * weight.get(line.grade, 0)
+            # KPI: Quality Scoring via ISL Hook
+            total_score += line.quantity * weights.get(line.grade, 0)
             total_qty += line.quantity
 
             lot = self.env['stock.lot'].create({
