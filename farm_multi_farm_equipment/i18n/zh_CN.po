@@ -30,4 +30,4 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_multi_farm_equipment/models/machinery_rental.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"

@@ -3,26 +3,26 @@ msgid ""
 msgstr ""
 
 msgid "Age Distribution"
-msgstr ""
+msgstr "年龄分布"
 
 msgid "Employment Types"
-msgstr ""
+msgstr "就业类型"
 
 msgid "Gender Distribution"
-msgstr ""
+msgstr "性别分布"
 
 msgid "Social &amp; Diversity Metrics"
-msgstr ""
+msgstr "社交与多样性指标"
 
 msgid "farm.esg.social.diversity.metric"
-msgstr ""
+msgstr "farm.esg.social.diversity.metric"
 
 msgid "farm.esg.social.diversity.metric.form"
-msgstr ""
+msgstr "farm.esg.social.diversity.metric.form"
 
 msgid "farm.esg.social.diversity.metric.tree"
-msgstr ""
+msgstr "farm.esg.social.diversity.metric.tree"
 
 msgid "tree,form"
-msgstr ""
+msgstr "树，表格"
 

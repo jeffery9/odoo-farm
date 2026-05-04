@@ -3,89 +3,89 @@ msgid ""
 msgstr ""
 
 msgid "COOP-"
-msgstr ""
+msgstr "合作社-"
 
 msgid "Cooperative Entity Sequence"
-msgstr ""
+msgstr "合作实体序列"
 
 msgid "FE-"
-msgstr ""
+msgstr "FE-"
 
 msgid "FF-"
-msgstr ""
+msgstr "FF-"
 
 msgid "Farm Entity Sequence"
-msgstr ""
+msgstr "农场实体序列"
 
 msgid "Franchise Farm Sequence"
-msgstr ""
+msgstr "特许经营农场序列"
 
 msgid "Green Field Franchise Farm"
-msgstr ""
+msgstr "绿地特许经营农场"
 
 msgid "Harvest Agri Cooperative"
-msgstr ""
+msgstr "丰收农业合作社"
 
 msgid "IS-"
-msgstr ""
+msgstr "是-"
 
 msgid "Internal Settlement Sequence"
-msgstr ""
+msgstr "内部结算顺序"
 
 msgid "Li Si's Family Farm"
-msgstr ""
+msgstr "李斯家庭农场"
 
 msgid "ORG-VEG-001"
-msgstr ""
+msgstr "ORG-VEG-001"
 
 msgid "Organic Vegetable Compliance Check"
-msgstr ""
+msgstr "有机蔬菜合规性检查"
 
 msgid "Organic Vegetable Planting Standard"
-msgstr ""
+msgstr "有机蔬菜种植标准"
 
 msgid "Production Data Sharing"
-msgstr ""
+msgstr "生产数据共享"
 
 msgid "Standardized workflow for organic vegetable planting"
-msgstr ""
+msgstr "有机蔬菜种植标准化工作流程"
 
 msgid "Zhang San's Farm"
-msgstr ""
+msgstr "张三的农场"
 
 msgid "cooperative"
-msgstr ""
+msgstr "合作社"
 
 msgid "cooperative.entity"
-msgstr ""
+msgstr "合作实体"
 
 msgid "farm"
-msgstr ""
+msgstr "农场"
 
 msgid "farm.entity"
-msgstr ""
+msgstr "农场实体"
 
 msgid "franchise"
-msgstr ""
+msgstr "特许经营权"
 
 msgid "franchise.farm"
-msgstr ""
+msgstr "特许经营农场"
 
 msgid "internal.settlement"
-msgstr ""
+msgstr "内部结算"
 
 msgid "membership"
-msgstr ""
+msgstr "会员资格"
 
 msgid "pending"
-msgstr ""
+msgstr "待办的"
 
 msgid "planting"
-msgstr ""
+msgstr "种植"
 
 msgid "production"
-msgstr ""
+msgstr "生产"
 
 msgid "read"
-msgstr ""
+msgstr "读"
 

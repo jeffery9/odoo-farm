@@ -7,155 +7,155 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
 msgid "Batch/Lot"
-msgstr ""
+msgstr "批次/批次"
 
 msgid "Color Grade"
-msgstr ""
+msgstr "颜色等级"
 
 msgid "Crop Type"
-msgstr ""
+msgstr "作物类型"
 
 msgid "Data Isolation Level"
-msgstr ""
+msgstr "数据隔离级别"
 
 msgid "Defect Severity"
-msgstr ""
+msgstr "缺陷严重程度"
 
 msgid "Detection Type"
-msgstr ""
+msgstr "检测类型"
 
 msgid "Estimated percentage of loss if risk materializes"
-msgstr ""
+msgstr "风险发生时的预计损失百分比"
 
 msgid "Explanation of AI vision analysis process"
-msgstr ""
+msgstr "AI视觉分析流程讲解"
 
 msgid "Growth Stage"
-msgstr ""
+msgstr "成长期"
 
 msgid "Heatmap showing areas of highest detection confidence"
-msgstr ""
+msgstr "显示检测置信度最高区域的热图"
 
 msgid "Industry"
-msgstr ""
+msgstr "行业"
 
 msgid "Industry to which this detection applies"
-msgstr ""
+msgstr "本检测适用行业"
 
 msgid "Industry to which this planning applies"
-msgstr ""
+msgstr "本规划适用行业"
 
 msgid "Industry to which this prediction applies"
-msgstr ""
+msgstr "该预测适用的行业"
 
 msgid "Industry to which this risk assessment applies"
-msgstr ""
+msgstr "本风险评估适用的行业"
 
 msgid "Industry to which this sorting applies"
-msgstr ""
+msgstr "此排序适用的行业"
 
 msgid "Input image for AI vision analysis"
-msgstr ""
+msgstr "用于AI视觉分析的输入图像"
 
 msgid "JSON data of similar cases for reference"
-msgstr ""
+msgstr "类似案例的JSON数据可供参考"
 
 msgid "JSON parameters used for image analysis"
-msgstr ""
+msgstr "用于图像分析的 JSON 参数"
 
 msgid "Land Location"
-msgstr ""
+msgstr "土地位置"
 
 msgid "Name of the detected pest or disease"
-msgstr ""
+msgstr "发现的病虫害名称"
 
 msgid "Numerical risk score from 0-100"
-msgstr ""
+msgstr "数字风险评分从 0 到 100"
 
 msgid "Percentage of area at risk"
-msgstr ""
+msgstr "面临风险的地区百分比"
 
 msgid "Percentage of plant/leaf affected"
-msgstr ""
+msgstr "受影响的植物/叶子的百分比"
 
 msgid "Plants per square meter"
-msgstr ""
+msgstr "每平方米植物数量"
 
 msgid "Predicted yield per unit area"
-msgstr ""
+msgstr "单位面积预测产量"
 
 msgid "Priority"
-msgstr ""
+msgstr "优先级"
 
 msgid "Product Type"
-msgstr ""
+msgstr "产品类型"
 
 msgid "Quality grade assigned by AI vision system"
-msgstr ""
+msgstr "AI视觉系统赋予质量等级"
 
 msgid "Recommended spacing between plants"
-msgstr ""
+msgstr "建议植物间距"
 
 msgid "Ripeness Level"
-msgstr ""
+msgstr "成熟度"
 
 msgid "Risk Level"
-msgstr ""
+msgstr "风险等级"
 
 msgid "Risk Type"
-msgstr ""
+msgstr "风险类型"
 
 msgid "Severity Level"
-msgstr ""
+msgstr "严重程度"
 
 msgid "Size Category"
-msgstr ""
+msgstr "尺码分类"
 
 msgid "Soil Condition"
-msgstr ""
+msgstr "土壤状况"
 
 msgid "Sorting Type"
-msgstr ""
+msgstr "排序类型"
 
 msgid "Status"
 msgstr "状态"
 
 msgid "Suggested Crop Type"
-msgstr ""
+msgstr "建议作物类型"
 
 msgid "Suggested Planting Season"
-msgstr ""
+msgstr "建议种植季节"
 
 msgid "Suggested bin/destination for this item"
-msgstr ""
+msgstr "该物品的建议垃圾箱/目的地"
 
 msgid "Treatment Priority"
-msgstr ""
+msgstr "治疗优先顺序"
 
 msgid "Type of AI vision model used for analysis"
-msgstr ""
+msgstr "用于分析的 AI 视觉模型类型"
 
 msgid "Type of defect detected by AI vision"
-msgstr ""
+msgstr "AI视觉检测到的缺陷类型"
 
 msgid "What to do with this item based on classification"
-msgstr ""
+msgstr "根据分类如何处理该项目"
 
 msgid "Whether this detection accesses ISL models"
-msgstr ""
+msgstr "此检测是否访问 ISL 模型"
 
 msgid "Whether this planning accesses ISL models"
-msgstr ""
+msgstr "此规划是否访问 ISL 模型"
 
 msgid "Whether this prediction accesses ISL models"
-msgstr ""
+msgstr "此预测是否访问 ISL 模型"
 
 msgid "Whether this risk assessment accesses ISL models"
-msgstr ""
+msgstr "此风险评估是否访问 ISL 模型"
 
 msgid "Whether this sorting accesses ISL models"
-msgstr ""
+msgstr "此排序是否访问 ISL 模型"
 
 msgid "Yield Unit"
-msgstr ""
+msgstr "产量单位"
 

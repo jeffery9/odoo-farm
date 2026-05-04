@@ -20,13 +20,13 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_live_streaming/models/douyin_product.py:0
 msgid "Account not authorized!"
-msgstr ""
+msgstr "账号未授权！"
 
 #. module: farm_live_streaming
 #. odoo-python
 #: code:addons/farm_live_streaming/models/douyin_account.py:0
 msgid "Action Required: Douyin Auth"
-msgstr ""
+msgstr "需要操作：抖音认证"
 
 #. module: farm_live_streaming
 #. odoo-python
@@ -40,43 +40,43 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_live_streaming/models/douyin_account.py:0
 msgid "Douyin authorization has expired. Integration is suspended."
-msgstr ""
+msgstr "抖音授权已过期。整合已暂停。"
 
 #. module: farm_live_streaming
 #. odoo-python
 #: code:addons/farm_live_streaming/models/douyin_account.py:0
 msgid "Douyin token for %s will expire within 24 hours. Please re-authorize."
-msgstr ""
+msgstr "%s 的抖音令牌将在 24 小时内过期。请重新授权。"
 
 #. module: farm_live_streaming
 #. odoo-python
 #: code:addons/farm_live_streaming/models/douyin_account.py:0
 msgid "Health Check: Connection Successful. Account: %s"
-msgstr ""
+msgstr "健康检查：连接成功。帐户：%s"
 
 #. module: farm_live_streaming
 #. odoo-python
 #: code:addons/farm_live_streaming/models/live_order.py:0
 msgid "Import Exception: %s"
-msgstr ""
+msgstr "导入异常：%s"
 
 #. module: farm_live_streaming
 #. odoo-python
 #: code:addons/farm_live_streaming/models/live_order.py:0
 msgid "Import Failed: Product mapping not found for Item %s"
-msgstr ""
+msgstr "导入失败：找不到项目 %s 的产品映射"
 
 #. module: farm_live_streaming
 #. odoo-python
 #: code:addons/farm_live_streaming/models/douyin_account.py:0
 msgid "Order sync completed: %s downloaded, %s imported."
-msgstr ""
+msgstr "订单同步已完成：已下载 %s，已导入 %s。"
 
 #. module: farm_live_streaming
 #. odoo-python
 #: code:addons/farm_live_streaming/models/douyin_qualification.py:0
 msgid "Pre-audit failed: <br/>"
-msgstr ""
+msgstr "预审核失败：<br/>"
 
 #. module: farm_live_streaming
 #. odoo-python

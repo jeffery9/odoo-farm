@@ -20,70 +20,70 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_greenhouse/models/ecommerce_integration.py:0
 msgid "API Endpoint is required"
-msgstr ""
+msgstr "需要 API 端点"
 
 #. module: farm_greenhouse
 #. odoo-python
 #: code:addons/farm_greenhouse/models/government_reporting.py:0
 msgid "Failed to submit report to government platform: %s"
-msgstr ""
+msgstr "未能向政府平台提交报告：%s"
 
 #. module: farm_greenhouse
 #. odoo-python
 #: code:addons/farm_greenhouse/models/biological_twin_extension.py:0
 msgid "GDD lagging behind target rate (%.2f < %.2f)"
-msgstr ""
+msgstr "GDD 落后于目标率 (%.2f < %.2f)"
 
 #. module: farm_greenhouse
 #. odoo-python
 #: code:addons/farm_greenhouse/models/government_reporting.py:0
 msgid "Government Data Report"
-msgstr ""
+msgstr "政府数据报告"
 
 #. module: farm_greenhouse
 #. odoo-python
 #: code:addons/farm_greenhouse/models/biological_twin_extension.py:0
 msgid "L5 AUTONOMOUS: Boosting greenhouse temperature to catch up GDD."
-msgstr ""
+msgstr "L5 自主：提高温室温度以赶上广州开发区。"
 
 #. module: farm_greenhouse
 #. odoo-python
 #: code:addons/farm_greenhouse/models/government_reporting.py:0
 msgid "No data payload prepared. Please prepare data first."
-msgstr ""
+msgstr "未准备数据有效负载。请先准备好数据。"
 
 #. module: farm_greenhouse
 #. odoo-python
 #: code:addons/farm_greenhouse/models/government_reporting.py:0
 msgid "Only pending reports can be submitted. Current status: %s"
-msgstr ""
+msgstr "只能提交待处理的报告。当前状态：%s"
 
 #. module: farm_greenhouse
 #. odoo-python
 #: code:addons/farm_greenhouse/models/ecommerce_integration.py:0
 msgid "Please select at least one e-commerce platform"
-msgstr ""
+msgstr "请至少选择一个电商平台"
 
 #. module: farm_greenhouse
 #. odoo-python
 #: code:addons/farm_greenhouse/models/ecommerce_integration.py:0
 msgid "Prepare E-commerce Listing"
-msgstr ""
+msgstr "准备电子商务列表"
 
 #. module: farm_greenhouse
 #. odoo-python
 #: code:addons/farm_greenhouse/models/government_reporting.py:0
 msgid "Submission failed with error: %s"
-msgstr ""
+msgstr "提交失败，错误：%s"
 
 #. module: farm_greenhouse
 #. odoo-python
 #: code:addons/farm_greenhouse/models/government_reporting.py:0
 msgid "Submission failed. Status: %s, Response: %s"
-msgstr ""
+msgstr "提交失败。状态：%s，响应：%s"
 
 #. module: farm_greenhouse
 #. odoo-python
 #: code:addons/farm_greenhouse/models/government_reporting.py:0
 msgid "Successfully submitted to government platform. Response: %s"
-msgstr ""
+msgstr "已成功提交至政府平台。回复：%s"

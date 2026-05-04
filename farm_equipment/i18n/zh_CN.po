@@ -19,7 +19,7 @@ msgstr ""
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "需要操作"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist__active
@@ -29,94 +29,94 @@ msgstr "有效"
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "活动"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "活动异常装饰"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "活动状态"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "活动类型图标"
 
 #. module: farm_equipment
 #: model:ir.model.fields.selection,name:farm_equipment.selection__farm_battery__state__aging
 msgid "Aging"
-msgstr ""
+msgstr "老化"
 
 #. module: farm_equipment
 #: model_terms:ir.ui.view,arch_db:farm_equipment.hr_equipment_view_form_inherit_farm
 msgid "Agri Specs & Logs"
-msgstr ""
+msgstr "农业规格和原木"
 
 #. module: farm_equipment
 #: model:ir.model,name:farm_equipment.model_farm_battery
 msgid "Agri-Drone Battery"
-msgstr ""
+msgstr "农业无人机电池"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist__equipment_type
 msgid "Applies To"
-msgstr ""
+msgstr "适用于"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__drone_id
 msgid "Assigned Drone"
-msgstr ""
+msgstr "指定无人机"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__battery_ids
 msgid "Associated Batteries"
-msgstr ""
+msgstr "相关电池"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "附件数量"
 
 #. module: farm_equipment
 #: model:ir.ui.menu,name:farm_equipment.menu_farm_battery
 msgid "Batteries"
-msgstr ""
+msgstr "电池"
 
 #. module: farm_equipment
 #: model_terms:ir.ui.view,arch_db:farm_equipment.hr_equipment_view_form_inherit_farm
 msgid "Battery Packs"
-msgstr ""
+msgstr "电池组"
 
 #. module: farm_equipment
 #. odoo-python
 #: code:addons/farm_equipment/models/farm_equipment.py:0
 msgid "Battery cycle recorded. New count: %s"
-msgstr ""
+msgstr "记录电池循环。新计数：%s"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist__line_ids
 #: model_terms:ir.ui.view,arch_db:farm_equipment.farm_equipment_checklist_view_form
 msgid "Check Items"
-msgstr ""
+msgstr "检查项目"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist_line__checklist_id
 msgid "Checklist"
-msgstr ""
+msgstr "清单"
 
 #. module: farm_equipment
 #: model:ir.model,name:farm_equipment.model_farm_equipment_checklist_line
 msgid "Checklist Item"
-msgstr ""
+msgstr "检查清单项目"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist__name
 msgid "Checklist Name"
-msgstr ""
+msgstr "清单名称"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__create_uid
@@ -137,12 +137,12 @@ msgstr "创建时间"
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__cycle_count
 msgid "Cycle Count"
-msgstr ""
+msgstr "循环计数"
 
 #. module: farm_equipment
 #: model:ir.model.fields.selection,name:farm_equipment.selection__farm_battery__state__damaged
 msgid "Damaged"
-msgstr ""
+msgstr "损坏的"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__date
@@ -152,12 +152,12 @@ msgstr "日期"
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__max_cycles
 msgid "Design Life (Cycles)"
-msgstr ""
+msgstr "设计寿命（循环）"
 
 #. module: farm_equipment
 #: model:ir.model.fields.selection,name:farm_equipment.selection__maintenance_equipment__fuel_type__diesel
 msgid "Diesel"
-msgstr ""
+msgstr "柴油机"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__display_name
@@ -171,108 +171,108 @@ msgstr "显示名称"
 #. module: farm_equipment
 #: model:ir.model.fields.selection,name:farm_equipment.selection__farm_equipment_checklist__equipment_type__drone
 msgid "Drone (UAV)"
-msgstr ""
+msgstr "无人机（无人机）"
 
 #. module: farm_equipment
 #: model:ir.actions.act_window,name:farm_equipment.action_farm_battery
 #: model_terms:ir.ui.view,arch_db:farm_equipment.farm_battery_view_list
 msgid "Drone Batteries"
-msgstr ""
+msgstr "无人机电池"
 
 #. module: farm_equipment
 #: model_terms:ir.ui.view,arch_db:farm_equipment.farm_battery_view_form
 msgid "Drone Battery"
-msgstr ""
+msgstr "无人机电池"
 
 #. module: farm_equipment
 #: model_terms:ir.ui.view,arch_db:farm_equipment.hr_equipment_view_form_inherit_farm
 msgid "Drone Specs"
-msgstr ""
+msgstr "无人机规格"
 
 #. module: farm_equipment
 #: model:ir.model.fields.selection,name:farm_equipment.selection__maintenance_equipment__fuel_type__electric
 msgid "Electric"
-msgstr ""
+msgstr "电的"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__horsepower
 msgid "Engine Power (HP)"
-msgstr ""
+msgstr "发动机功率（马力）"
 
 #. module: farm_equipment
 #: model:ir.model,name:farm_equipment.model_farm_equipment_checklist
 msgid "Equipment Pre-op Checklist"
-msgstr ""
+msgstr "设备操作前检查表"
 
 #. module: farm_equipment
 #: model:ir.ui.menu,name:farm_equipment.menu_farm_equipment
 msgid "Fleet"
-msgstr ""
+msgstr "舰队"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "关注者"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "关注者（合作伙伴）"
 
 #. module: farm_equipment
 #: model:ir.model.fields,help:farm_equipment.field_farm_battery__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "字体很棒的图标，例如fa 任务"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__fuel_consumed
 msgid "Fuel Consumed (L)"
-msgstr ""
+msgstr "燃油消耗量（升）"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__fuel_tank_capacity
 msgid "Fuel Tank Capacity (L)"
-msgstr ""
+msgstr "油箱容量（L）"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__fuel_type
 msgid "Fuel Type"
-msgstr ""
+msgstr "燃料类型"
 
 #. module: farm_equipment
 #: model:ir.model.fields.selection,name:farm_equipment.selection__maintenance_equipment__fuel_type__gasoline
 msgid "Gasoline"
-msgstr ""
+msgstr "汽油"
 
 #. module: farm_equipment
 #: model:ir.model.fields.selection,name:farm_equipment.selection__farm_equipment_checklist__equipment_type__machinery
 msgid "General Machinery"
-msgstr ""
+msgstr "通用机械"
 
 #. module: farm_equipment
 #: model:ir.model.fields.selection,name:farm_equipment.selection__farm_battery__state__healthy
 msgid "Good"
-msgstr ""
+msgstr "好的"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "有留言"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__current_capacity_health
 msgid "Health (%)"
-msgstr ""
+msgstr "健康 （％）"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__engine_hours
 msgid "Hours Used"
-msgstr ""
+msgstr "使用小时数"
 
 #. module: farm_equipment
 #: model:ir.model.fields.selection,name:farm_equipment.selection__maintenance_equipment__fuel_type__hybrid
 msgid "Hybrid"
-msgstr ""
+msgstr "杂交种"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__id
@@ -286,38 +286,38 @@ msgstr "ID"
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "图标"
 
 #. module: farm_equipment
 #: model:ir.model.fields,help:farm_equipment.field_farm_battery__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "指示异常活动的图标。"
 
 #. module: farm_equipment
 #: model:ir.model.fields,help:farm_equipment.field_farm_battery__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "如果选中，则有新消息需要您注意。"
 
 #. module: farm_equipment
 #: model:ir.model.fields,help:farm_equipment.field_farm_battery__message_has_error
 #: model:ir.model.fields,help:farm_equipment.field_farm_battery__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "如果检查，则某些消息存在传送错误。"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__is_agri_machinery
 msgid "Is Agricultural Machinery"
-msgstr ""
+msgstr "是农业机械"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__is_drone
 msgid "Is Drone"
-msgstr ""
+msgstr "是无人机"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "是追随者"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__write_uid
@@ -338,175 +338,175 @@ msgstr "最后更新时间"
 #. module: farm_equipment
 #: model_terms:ir.ui.view,arch_db:farm_equipment.farm_battery_view_form
 msgid "Log Cycle"
-msgstr ""
+msgstr "日志周期"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__equipment_id
 #: model:ir.ui.menu,name:farm_equipment.menu_farm_machinery_root
 msgid "Machinery"
-msgstr ""
+msgstr "机械"
 
 #. module: farm_equipment
 #: model:ir.actions.act_window,name:farm_equipment.action_farm_equipment_log
 msgid "Machinery Logs"
-msgstr ""
+msgstr "机械日志"
 
 #. module: farm_equipment
 #: model:ir.model,name:farm_equipment.model_farm_equipment_log
 msgid "Machinery Usage & Fuel Log"
-msgstr ""
+msgstr "机械使用和燃油日志"
 
 #. module: farm_equipment
 #: model:ir.model,name:farm_equipment.model_maintenance_equipment
 msgid "Maintenance Equipment"
-msgstr ""
+msgstr "维修设备"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist_line__is_mandatory
 msgid "Mandatory"
-msgstr ""
+msgstr "强制的"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__max_flight_time
 msgid "Max Flight Time (min)"
-msgstr ""
+msgstr "最大飞行时间（分钟）"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__payload_capacity
 msgid "Max Payload (kg/L)"
-msgstr ""
+msgstr "最大有效负载（公斤/升）"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "消息投递错误"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "消息"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "我的活动截止日期"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "下一个活动截止日期"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "下一步活动总结"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "下一个活动类型"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__notes
 msgid "Notes"
-msgstr ""
+msgstr "备注"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "动作数量"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "错误数"
 
 #. module: farm_equipment
 #: model:ir.model.fields,help:farm_equipment.field_farm_battery__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "需要采取行动的消息数量"
 
 #. module: farm_equipment
 #: model:ir.model.fields,help:farm_equipment.field_farm_battery__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "发送错误的消息数"
 
 #. module: farm_equipment
 #: model:ir.model.fields,help:farm_equipment.field_farm_equipment_log__engine_hours
 msgid "Operating hours for this task"
-msgstr ""
+msgstr "该任务的运行时间"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__operator_id
 msgid "Operator"
-msgstr ""
+msgstr "操作员"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__checklist_id
 msgid "Pre-op Checklist"
-msgstr ""
+msgstr "术前检查表"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__rating_ids
 msgid "Ratings"
-msgstr ""
+msgstr "评级"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_log__task_id
 msgid "Related Task"
-msgstr ""
+msgstr "相关任务"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist_line__requires_photo
 msgid "Require Photo Evidence"
-msgstr ""
+msgstr "需要照片证据"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_equipment_checklist_line__name
 msgid "Requirement"
-msgstr ""
+msgstr "要求"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "负责用户"
 
 #. module: farm_equipment
 #: model:ir.model.fields.selection,name:farm_equipment.selection__farm_battery__state__retired
 msgid "Retired"
-msgstr ""
+msgstr "退休"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "短信投递错误"
 
 #. module: farm_equipment
 #: model_terms:ir.ui.view,arch_db:farm_equipment.farm_equipment_checklist_view_form
 msgid "Safety Checklist"
-msgstr ""
+msgstr "安全检查表"
 
 #. module: farm_equipment
 #: model:ir.actions.act_window,name:farm_equipment.action_farm_equipment_checklist
 #: model:ir.ui.menu,name:farm_equipment.menu_farm_equipment_checklist
 #: model_terms:ir.ui.view,arch_db:farm_equipment.farm_equipment_checklist_view_list
 msgid "Safety Checklists"
-msgstr ""
+msgstr "安全检查表"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__name
 msgid "Serial Number"
-msgstr ""
+msgstr "序列号"
 
 #. module: farm_equipment
 #: model:ir.model.fields,help:farm_equipment.field_maintenance_equipment__working_width
 msgid "Spraying/Working width"
-msgstr ""
+msgstr "喷涂/工作宽度"
 
 #. module: farm_equipment
 #: model_terms:ir.ui.view,arch_db:farm_equipment.hr_equipment_view_form_inherit_farm
 msgid "Statistics"
-msgstr ""
+msgstr "统计数据"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__state
@@ -525,55 +525,55 @@ msgstr ""
 #. module: farm_equipment
 #: model:ir.model.fields,help:farm_equipment.field_maintenance_equipment__payload_capacity
 msgid "Tank or hopper capacity"
-msgstr ""
+msgstr "罐或料斗容量"
 
 #. module: farm_equipment
 #: model_terms:ir.ui.view,arch_db:farm_equipment.hr_equipment_view_form_inherit_farm
 msgid "Technical Specs"
-msgstr ""
+msgstr "技术规格"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__total_engine_hours
 msgid "Total Engine Hours"
-msgstr ""
+msgstr "发动机总小时数"
 
 #. module: farm_equipment
 #: model:ir.model.fields,help:farm_equipment.field_farm_battery__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "记录的异常活动的类型。"
 
 #. module: farm_equipment
 #: model_terms:ir.ui.view,arch_db:farm_equipment.hr_equipment_view_form_inherit_farm
 msgid "UAV Parameters"
-msgstr ""
+msgstr "无人机参数"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__fuel_log_ids
 #: model:ir.ui.menu,name:farm_equipment.menu_farm_equipment_logs
 msgid "Usage Logs"
-msgstr ""
+msgstr "使用日志"
 
 #. module: farm_equipment
 #: model:ir.model.fields.selection,name:farm_equipment.selection__farm_equipment_checklist__equipment_type__vehicle
 msgid "Vehicle"
-msgstr ""
+msgstr "车辆"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_farm_battery__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "网站消息"
 
 #. module: farm_equipment
 #: model:ir.model.fields,help:farm_equipment.field_farm_battery__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "网站沟通历史"
 
 #. module: farm_equipment
 #: model:ir.model.fields,field_description:farm_equipment.field_maintenance_equipment__working_width
 msgid "Working Width (m)"
-msgstr ""
+msgstr "工作宽度（米）"
 
 #. module: farm_equipment
 #: model_terms:ir.ui.view,arch_db:farm_equipment.farm_equipment_checklist_view_form
 msgid "e.g. UAV Flight Safety Check"
-msgstr ""
+msgstr "例如无人机飞行安全检查"

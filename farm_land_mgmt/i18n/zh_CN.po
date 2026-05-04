@@ -28,53 +28,53 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_land_mgmt/models/land_mgmt.py:0
 msgid "Add Crop Rotation Record"
-msgstr ""
+msgstr "添加轮作记录"
 
 #. module: farm_land_mgmt
 #. odoo-python
 #: code:addons/farm_land_mgmt/models/land_mgmt.py:0
 msgid "Add Land Health Record"
-msgstr ""
+msgstr "添加土地健康记录"
 
 #. module: farm_land_mgmt
 #. odoo-python
 #: code:addons/farm_land_mgmt/models/agri_land_crop_rotation_history.py:0
 msgid "CRH"
-msgstr ""
+msgstr "CRH"
 
 #. module: farm_land_mgmt
 #. odoo-python
 #: code:addons/farm_land_mgmt/models/land_mgmt.py:0
 msgid "Health History"
-msgstr ""
+msgstr "健康史"
 
 #. module: farm_land_mgmt
 #. odoo-python
 #: code:addons/farm_land_mgmt/models/land_mgmt.py:0
 msgid "Land marked as 'Construction Land' cannot be a 'Land Parcel'."
-msgstr ""
+msgstr "标记为“建设用地”的土地不能是“地块”。"
 
 #. module: farm_land_mgmt
 #. odoo-python
 #: code:addons/farm_land_mgmt/models/agri_land_crop_rotation_history.py:0
 #: code:addons/farm_land_mgmt/models/land_mgmt.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_land_mgmt
 #. odoo-python
 #: code:addons/farm_land_mgmt/models/land_mgmt.py:0
 msgid "Rotation Timeline"
-msgstr ""
+msgstr "轮换时间线"
 
 #. module: farm_land_mgmt
 #. odoo-python
 #: code:addons/farm_land_mgmt/models/land_mgmt.py:0
 msgid "SOIL"
-msgstr ""
+msgstr "土壤"
 
 #. module: farm_land_mgmt
 #. odoo-python
 #: code:addons/farm_land_mgmt/models/land_mgmt.py:0
 msgid "land_parcel_id"
-msgstr ""
+msgstr "土地地块 ID"

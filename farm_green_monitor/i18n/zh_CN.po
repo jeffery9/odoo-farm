@@ -3,44 +3,44 @@ msgid ""
 msgstr ""
 
 msgid "Fertilizer Usage"
-msgstr ""
+msgstr "肥料用量"
 
 msgid "Green Monitor"
-msgstr ""
+msgstr "绿色监视器"
 
 msgid "Pesticide Usage"
-msgstr ""
+msgstr "农药使用"
 
 msgid "Print Reduction Report"
-msgstr ""
+msgstr "打印减少报告"
 
 msgid "Reduction Trend Report"
-msgstr ""
+msgstr "减少趋势报告"
 
 msgid "agricultural.campaign.form.inherit.green.monitor"
-msgstr ""
+msgstr "农业.活动.形式.继承.绿色.监测"
 
 msgid "farm.agricultural.campaign"
-msgstr ""
+msgstr "农场.农业.活动"
 
 msgid "farm_green_monitor.report_fertilizer_pesticide_reduction_trend"
-msgstr ""
+msgstr "farm_green_monitor.report_ifer_pesticide_reduction_trend"
 
 msgid "project.task"
-msgstr ""
+msgstr "项目.任务"
 
 msgid "project.task.form.inherit.green.monitor"
-msgstr ""
+msgstr "项目.任务.表单.继承.green.monitor"
 
 msgid "qweb-pdf"
-msgstr ""
+msgstr "qweb-pdf"
 
 msgid "report"
-msgstr ""
+msgstr "报告"
 
 msgid "stock.location"
-msgstr ""
+msgstr "库存地点"
 
 msgid "stock.location.form.inherit.green.monitor"
-msgstr ""
+msgstr "stock.location.form.inherit.green.monitor"
 

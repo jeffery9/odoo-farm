@@ -1,3 +1,3 @@
 # No terms found in farm_supply
 msgid "Module farm_supply"
-msgstr ""
+msgstr "模块 farm_supply"

@@ -28,4 +28,4 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_planning/models/planning.py:0
 msgid "[%s] %s"
-msgstr ""
+msgstr "[%s] %s"

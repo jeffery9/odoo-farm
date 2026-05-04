@@ -31,24 +31,24 @@ msgstr "ID"
 #. module: farm_pos
 #: model:ir.model.fields,field_description:farm_pos.field_pos_order__picking_location_id
 msgid "Picking Source Plot"
-msgstr ""
+msgstr "选择源图"
 
 #. module: farm_pos
 #: model:ir.model,name:farm_pos.model_pos_order_line
 msgid "Point of Sale Order Lines"
-msgstr ""
+msgstr "销售点订单行"
 
 #. module: farm_pos
 #: model:ir.model,name:farm_pos.model_pos_order
 msgid "Point of Sale Orders"
-msgstr ""
+msgstr "销售点订单"
 
 #. module: farm_pos
 #: model:ir.model.fields,field_description:farm_pos.field_pos_order_line__lot_id
 msgid "Production Lot"
-msgstr ""
+msgstr "生产批次"
 
 #. module: farm_pos
 #: model:ir.model.fields,help:farm_pos.field_pos_order__picking_location_id
 msgid "The specific land parcel where these products were picked."
-msgstr ""
+msgstr "采摘这些产品的特定地块。"

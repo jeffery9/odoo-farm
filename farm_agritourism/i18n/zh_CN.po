@@ -20,55 +20,55 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_agritourism/models/agritourism_operation.py:0
 msgid "ACTIVITY SCHEDULED: %s from %.2f to %.2f. Expected visitors: %s"
-msgstr ""
+msgstr "预定活动：%s，从 %.2f 到 %.2f。预计访客：%s"
 
 #. module: farm_agritourism
 #. odoo-python
 #: code:addons/farm_agritourism/models/agritourism_operation.py:0
 msgid "Activity completed. Ready for feedback collection."
-msgstr ""
+msgstr "活动完成。准备收集反馈。"
 
 #. module: farm_agritourism
 #. odoo-python
 #: code:addons/farm_agritourism/models/sale_order.py:0
 msgid "Auto-generated from Sale Order %s. Quantity: %s"
-msgstr ""
+msgstr "从销售订单 %s 自动生成。数量：%s"
 
 #. module: farm_agritourism
 #. odoo-python
 #: code:addons/farm_agritourism/models/sale_order.py:0
 msgid "Booking for %s"
-msgstr ""
+msgstr "为 %s 预订"
 
 #. module: farm_agritourism
 #. odoo-python
 #: code:addons/farm_agritourism/models/farm_booking.py:0
 msgid "CHECK-IN: Visitor has arrived and booking is validated."
-msgstr ""
+msgstr "登记入住：访客已抵达且预订已验证。"
 
 #. module: farm_agritourism
 #. odoo-python
 #: code:addons/farm_agritourism/models/farm_booking.py:0
 msgid "CONFLICT: The resource %s is already booked for this period."
-msgstr ""
+msgstr "冲突：此期间资源 %s 已被预订。"
 
 #. module: farm_agritourism
 #. odoo-python
 #: code:addons/farm_agritourism/models/farm_booking.py:0
 msgid "Check-in failed: Booking is not confirmed."
-msgstr ""
+msgstr "入住失败：预订未确认。"
 
 #. module: farm_agritourism
 #. odoo-python
 #: code:addons/farm_agritourism/models/sale_order.py:0
 msgid "Demand: %s for %s"
-msgstr ""
+msgstr "需求：%s 要求 %s"
 
 #. module: farm_agritourism
 #. odoo-python
 #: code:addons/farm_agritourism/models/agritourism_operation.py:0
 msgid "FEEDBACK RECORDED: Quality score %s/5. Feedback: %s %s"
-msgstr ""
+msgstr "已记录反馈：质量得分 %s/5。反馈：%s %s"
 
 #. module: farm_agritourism
 #. odoo-python
@@ -82,10 +82,10 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_agritourism/models/agritourism_operation.py:0
 msgid "Loyalty points awarded: %s points"
-msgstr ""
+msgstr "授予的忠诚度积分：%s 积分"
 
 #. module: farm_agritourism
 #. odoo-python
 #: code:addons/farm_agritourism/models/agritourism_operation.py:0
 msgid "Visitor count updated to: %s"
-msgstr ""
+msgstr "访客计数更新为：%s"

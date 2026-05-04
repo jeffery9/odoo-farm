@@ -35,19 +35,19 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_marketing/models/gi_registry.py:0
 msgid "GI Anti-counterfeit code generated: %s"
-msgstr ""
+msgstr "生成的 GI 防伪代码：%s"
 
 #. module: farm_marketing
 #. odoo-python
 #: code:addons/farm_marketing/models/farm_lot.py:0
 msgid "Integrity Warning: Low Score (%s)"
-msgstr ""
+msgstr "完整性警告：低分（%s）"
 
 #. module: farm_marketing
 #. odoo-python
 #: code:addons/farm_marketing/models/farm_lot.py:0
 msgid "LOYALTY: %s points added to customer."
-msgstr ""
+msgstr "忠诚度：%s 积分已添加至客户。"
 
 #. module: farm_marketing
 #. odoo-python
@@ -60,28 +60,28 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_marketing/models/farm_lot.py:0
 msgid "No Lot Assigned"
-msgstr ""
+msgstr "没有分配批次"
 
 #. module: farm_marketing
 #. odoo-python
 #: code:addons/farm_marketing/models/farm_lot.py:0
 msgid "Processing from %s"
-msgstr ""
+msgstr "处理来自 %s"
 
 #. module: farm_marketing
 #. odoo-python
 #: code:addons/farm_marketing/models/farm_lot.py:0
 msgid "QUALITY MISMATCH: Lot %s score (%s) is below required %s."
-msgstr ""
+msgstr "质量不匹配：批次 %s 分数 (%s) 低于要求的 %s。"
 
 #. module: farm_marketing
 #. odoo-python
 #: code:addons/farm_marketing/models/farm_lot.py:0
 msgid "Traceability is available after delivery confirmation."
-msgstr ""
+msgstr "交货确认后可追溯。"
 
 #. module: farm_marketing
 #. odoo-python
 #: code:addons/farm_marketing/models/farm_lot.py:0
 msgid "Unknown"
-msgstr ""
+msgstr "未知"

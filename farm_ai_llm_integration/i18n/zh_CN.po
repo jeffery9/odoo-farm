@@ -19,88 +19,88 @@ msgstr ""
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__ai_config_id
 msgid "AI Configuration"
-msgstr ""
+msgstr "人工智能配置"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__ai_provider
 msgid "AI Provider Type"
-msgstr ""
+msgstr "人工智能提供商类型"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__api_key
 msgid "API Key"
-msgstr ""
+msgstr "API密钥"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_configuration__api_key
 msgid "API key for the AI service"
-msgstr ""
+msgstr "AI 服务的 API 密钥"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__message_needaction
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "需要操作"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__activity_ids
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "活动"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__activity_exception_decoration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "活动异常装饰"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__activity_state
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "活动状态"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__activity_type_icon
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "活动类型图标"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields.selection,name:farm_ai_llm_integration.selection__agri_ai_llm_configuration__provider__anthropic
 msgid "Anthropic"
-msgstr ""
+msgstr "人择"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__application_type
 msgid "Application Type"
-msgstr ""
+msgstr "应用类型"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_configuration__use_agricultural_context
 msgid "Apply agricultural domain knowledge to prompts"
-msgstr ""
+msgstr "将农业领域知识应用于提示"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__message_attachment_count
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "附件数量"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__base_url
 msgid "Base URL"
-msgstr ""
+msgstr "基本网址"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_configuration__base_url
 msgid "Base URL for the AI service API"
-msgstr ""
+msgstr "AI服务API的基本URL"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__call_count
 msgid "Call Count"
-msgstr ""
+msgstr "通话次数"
 
 #. module: farm_ai_llm_integration
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_service_form
@@ -118,17 +118,17 @@ msgstr "配置"
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__name
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_config_form
 msgid "Configuration Name"
-msgstr ""
+msgstr "配置名称"
 
 #. module: farm_ai_llm_integration
 #: model_terms:ir.actions.act_window,help:farm_ai_llm_integration.action_llm_config
 msgid "Configure your LLM provider settings!"
-msgstr ""
+msgstr "配置您的 LLM 提供商设置！"
 
 #. module: farm_ai_llm_integration
 #: model_terms:ir.actions.act_window,help:farm_ai_llm_integration.action_llm_service
 msgid "Configure your LLM services!"
-msgstr ""
+msgstr "配置您的 LLM 服务！"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__create_uid
@@ -145,28 +145,28 @@ msgstr "创建时间"
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields.selection,name:farm_ai_llm_integration.selection__agri_ai_llm_configuration__application_type__crop_recommendation
 msgid "Crop Recommendation"
-msgstr ""
+msgstr "作物推荐"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields.selection,name:farm_ai_llm_integration.selection__agri_ai_llm_configuration__provider__custom
 msgid "Custom API"
-msgstr ""
+msgstr "定制API"
 
 #. module: farm_ai_llm_integration
 #. odoo-python
 #: code:addons/farm_ai_llm_integration/models/llm_service.py:0
 msgid "Custom API base URL not configured"
-msgstr ""
+msgstr "未配置自定义 API 基本 URL"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__default_model
 msgid "Default Model"
-msgstr ""
+msgstr "默认型号"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_configuration__default_model
 msgid "Default model to use"
-msgstr ""
+msgstr "使用的默认模型"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__display_name
@@ -177,51 +177,51 @@ msgstr "显示名称"
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__error_count
 msgid "Error Count"
-msgstr ""
+msgstr "错误计数"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__failed_requests
 msgid "Failed Requests"
-msgstr ""
+msgstr "失败的请求"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__message_follower_ids
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "关注者"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__message_partner_ids
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "关注者（合作伙伴）"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_configuration__activity_type_icon
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_service__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "字体很棒的图标，例如fa 任务"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields.selection,name:farm_ai_llm_integration.selection__agri_ai_llm_configuration__application_type__general
 msgid "General Agricultural Queries"
-msgstr ""
+msgstr "一般农业查询"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields.selection,name:farm_ai_llm_integration.selection__agri_ai_llm_configuration__provider__google
 msgid "Google"
-msgstr ""
+msgstr "谷歌"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__has_message
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "有留言"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields.selection,name:farm_ai_llm_integration.selection__agri_ai_llm_configuration__provider__huggingface
 msgid "Hugging Face"
-msgstr ""
+msgstr "抱脸"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__id
@@ -233,19 +233,19 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__activity_exception_icon
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "图标"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_configuration__activity_exception_icon
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_service__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "指示异常活动的图标。"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_configuration__message_needaction
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_service__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "如果选中，则有新消息需要您注意。"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_configuration__message_has_error
@@ -253,74 +253,74 @@ msgstr ""
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_service__message_has_error
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_service__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "如果检查，则某些消息存在传送错误。"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__is_active
 msgid "Is Active"
-msgstr ""
+msgstr "处于活动状态"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__is_default
 msgid "Is Default"
-msgstr ""
+msgstr "是默认值"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__message_is_follower
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "是追随者"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__config_id
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_config_form
 msgid "LLM Configuration"
-msgstr ""
+msgstr "法学硕士配置"
 
 #. module: farm_ai_llm_integration
 #: model:ir.actions.act_window,name:farm_ai_llm_integration.action_llm_config
 #: model:ir.ui.menu,name:farm_ai_llm_integration.farm_llm_config_menu
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_config_tree
 msgid "LLM Configurations"
-msgstr ""
+msgstr "法学硕士配置"
 
 #. module: farm_ai_llm_integration
 #: model:ir.ui.menu,name:farm_ai_llm_integration.farm_ai_llm_integration_menu_root
 msgid "LLM Integration"
-msgstr ""
+msgstr "法学硕士整合"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__provider
 msgid "LLM Provider"
-msgstr ""
+msgstr "法学硕士提供者"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model,name:farm_ai_llm_integration.model_agri_ai_llm_configuration
 msgid "LLM Provider Configuration"
-msgstr ""
+msgstr "LLM提供者配置"
 
 #. module: farm_ai_llm_integration
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_service_form
 msgid "LLM Service"
-msgstr ""
+msgstr "法学硕士服务"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model,name:farm_ai_llm_integration.model_agri_ai_llm_service
 msgid "LLM Service Interface"
-msgstr ""
+msgstr "法学硕士服务接口"
 
 #. module: farm_ai_llm_integration
 #: model:ir.actions.act_window,name:farm_ai_llm_integration.action_llm_service
 #: model:ir.ui.menu,name:farm_ai_llm_integration.farm_llm_service_menu
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_service_tree
 msgid "LLM Services"
-msgstr ""
+msgstr "法学硕士服务"
 
 #. module: farm_ai_llm_integration
 #. odoo-python
 #: code:addons/farm_ai_llm_integration/models/llm_service.py:0
 msgid "LLM configuration is not active"
-msgstr ""
+msgstr "LLM 配置未激活"
 
 #. module: farm_ai_llm_integration
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_service_form
@@ -340,7 +340,7 @@ msgstr ""
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__last_call_time
 msgid "Last Call Time"
-msgstr ""
+msgstr "最后通话时间"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__write_uid
@@ -357,178 +357,178 @@ msgstr "最后更新时间"
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__last_used
 msgid "Last Used"
-msgstr ""
+msgstr "最后使用"
 
 #. module: farm_ai_llm_integration
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_config_form
 msgid "Leave empty for default URL"
-msgstr ""
+msgstr "默认 URL 留空"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields.selection,name:farm_ai_llm_integration.selection__agri_ai_llm_configuration__application_type__market_prediction
 msgid "Market Prediction"
-msgstr ""
+msgstr "市场预测"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__max_retries
 msgid "Max Retries"
-msgstr ""
+msgstr "最大重试次数"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__max_tokens
 msgid "Max Tokens"
-msgstr ""
+msgstr "最大代币数"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__message_has_error
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "消息投递错误"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__message_ids
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "消息"
 
 #. module: farm_ai_llm_integration
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_config_form
 msgid "Model Parameters"
-msgstr ""
+msgstr "型号参数"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__my_activity_date_deadline
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "我的活动截止日期"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__activity_date_deadline
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "下一个活动截止日期"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__activity_summary
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "下一步活动总结"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__activity_type_id
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "下一个活动类型"
 
 #. module: farm_ai_llm_integration
 #. odoo-python
 #: code:addons/farm_ai_llm_integration/models/llm_service.py:0
 msgid "No model specified and no default model configured"
-msgstr ""
+msgstr "未指定型号且未配置默认型号"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__message_needaction_counter
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "动作数量"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__message_has_error_counter
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "错误数"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_configuration__message_needaction_counter
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_service__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "需要采取行动的消息数量"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_configuration__message_has_error_counter
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_service__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "发送错误的消息数"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_configuration__max_retries
 msgid "Number of retries on failure"
-msgstr ""
+msgstr "失败重试次数"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields.selection,name:farm_ai_llm_integration.selection__agri_ai_llm_configuration__provider__ollama
 msgid "Ollama"
-msgstr ""
+msgstr "奥拉玛"
 
 #. module: farm_ai_llm_integration
 #. odoo-python
 #: code:addons/farm_ai_llm_integration/models/llm_config.py:0
 msgid "Only one LLM configuration can be set as default."
-msgstr ""
+msgstr "只能将一种 LLM 配置设置为默认值。"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields.selection,name:farm_ai_llm_integration.selection__agri_ai_llm_configuration__provider__openai
 msgid "OpenAI"
-msgstr ""
+msgstr "开放人工智能"
 
 #. module: farm_ai_llm_integration
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_config_form
 msgid "Performance Settings"
-msgstr ""
+msgstr "性能设置"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields.selection,name:farm_ai_llm_integration.selection__agri_ai_llm_configuration__application_type__pest_disease
 msgid "Pest and Disease Diagnosis"
-msgstr ""
+msgstr "病虫害诊断"
 
 #. module: farm_ai_llm_integration
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_config_form
 msgid "Provider Settings"
-msgstr ""
+msgstr "提供商设置"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__rate_limit_requests
 msgid "Rate Limit (requests/min)"
-msgstr ""
+msgstr "速率限制（请求/分钟）"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__rate_limit_period
 msgid "Rate Limit Period (seconds)"
-msgstr ""
+msgstr "速率限制期限（秒）"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__rating_ids
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__rating_ids
 msgid "Ratings"
-msgstr ""
+msgstr "评级"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields.selection,name:farm_ai_llm_integration.selection__agri_ai_llm_configuration__application_type__resource_optimization
 msgid "Resource Optimization"
-msgstr ""
+msgstr "资源优化"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__activity_user_id
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "负责用户"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields.selection,name:farm_ai_llm_integration.selection__agri_ai_llm_configuration__application_type__risk_assessment
 msgid "Risk Assessment"
-msgstr ""
+msgstr "风险评估"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__message_has_sms_error
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "短信投递错误"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__name
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_service_form
 msgid "Service Name"
-msgstr ""
+msgstr "服务名称"
 
 #. module: farm_ai_llm_integration
 #: model_terms:ir.actions.act_window,help:farm_ai_llm_integration.action_llm_config
@@ -541,7 +541,7 @@ msgstr ""
 #. module: farm_ai_llm_integration
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_service_form
 msgid "Statistics"
-msgstr ""
+msgstr "统计数据"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_configuration__activity_state
@@ -556,62 +556,62 @@ msgstr ""
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__successful_requests
 msgid "Successful Requests"
-msgstr ""
+msgstr "成功请求"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__temperature
 msgid "Temperature"
-msgstr ""
+msgstr "温度"
 
 #. module: farm_ai_llm_integration
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_service_form
 msgid "Test API"
-msgstr ""
+msgstr "测试接口"
 
 #. module: farm_ai_llm_integration
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_service_form
 msgid "Test API Call"
-msgstr ""
+msgstr "测试API调用"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__timeout
 msgid "Timeout (seconds)"
-msgstr ""
+msgstr "超时（秒）"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__total_requests
 msgid "Total Requests"
-msgstr ""
+msgstr "请求总数"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_configuration__activity_exception_decoration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_service__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "记录的异常活动的类型。"
 
 #. module: farm_ai_llm_integration
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_service_form
 msgid "Usage"
-msgstr ""
+msgstr "用法"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__use_agricultural_context
 msgid "Use Agricultural Context"
-msgstr ""
+msgstr "使用农业环境"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_configuration__website_message_ids
 #: model:ir.model.fields,field_description:farm_ai_llm_integration.field_agri_ai_llm_service__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "网站消息"
 
 #. module: farm_ai_llm_integration
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_configuration__website_message_ids
 #: model:ir.model.fields,help:farm_ai_llm_integration.field_agri_ai_llm_service__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "网站沟通历史"
 
 #. module: farm_ai_llm_integration
 #: model_terms:ir.ui.view,arch_db:farm_ai_llm_integration.view_llm_config_form
 msgid "e.g., gpt-4, claude-3-opus, gemini-pro"
-msgstr ""
+msgstr "例如，gpt-4、claude-3-opus、gemini-pro"

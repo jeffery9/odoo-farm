@@ -19,17 +19,17 @@ msgstr ""
 #. module: farm_biological_valuation
 #: model_terms:ir.ui.view,arch_db:farm_biological_valuation.view_biological_asset_valuation_form
 msgid "Accounting"
-msgstr ""
+msgstr "会计"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__is_accounting_entry_created
 msgid "Accounting Entry Created"
-msgstr ""
+msgstr "会计分录已创建"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__accumulated_depreciation
 msgid "Accumulated Depreciation"
-msgstr ""
+msgstr "累计折旧"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__state__active
@@ -39,89 +39,89 @@ msgstr "有效"
 #. module: farm_biological_valuation
 #: model:ir.model,name:farm_biological_valuation.model_agri_biological_asset
 msgid "Agricultural Biological Asset Standard"
-msgstr ""
+msgstr "农业生物资产标准"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__annual_depreciation_rate
 msgid "Annual Depreciation Rate (%)"
-msgstr ""
+msgstr "年折旧率 (%)"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__annual_depreciation_rate
 msgid "Annual depreciation percentage"
-msgstr ""
+msgstr "年折旧百分比"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset__valuation_ids
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_farm_biological_asset__valuation_ids
 #: model:ir.ui.menu,name:farm_biological_valuation.menu_biological_asset_valuation
 msgid "Asset Valuations"
-msgstr ""
+msgstr "资产估值"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__asset_id
 msgid "Biological Asset"
-msgstr ""
+msgstr "生物资产"
 
 #. module: farm_biological_valuation
 #: model:ir.ui.menu,name:farm_biological_valuation.biological_valuation_menu_root
 #: model:ir.ui.menu,name:farm_biological_valuation.farm_biological_asset_valuation_action
 #: model_terms:ir.ui.view,arch_db:farm_biological_valuation.view_biological_asset_valuation_form
 msgid "Biological Asset Valuation"
-msgstr ""
+msgstr "生物资产估值"
 
 #. module: farm_biological_valuation
 #: model:ir.model,name:farm_biological_valuation.model_agri_valuation_stage_coefficient
 msgid "Biological Asset Valuation Stage Coefficient"
-msgstr ""
+msgstr "生物资产估值阶段系数"
 
 #. module: farm_biological_valuation
 #: model:ir.actions.act_window,name:farm_biological_valuation.action_biological_asset_valuation
 #: model_terms:ir.ui.view,arch_db:farm_biological_valuation.view_biological_asset_valuation_tree
 msgid "Biological Asset Valuations"
-msgstr ""
+msgstr "生物资产估值"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_valuation_stage_coefficient__biological_stage
 msgid "Biological Stage"
-msgstr ""
+msgstr "生物阶段"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__fair_value
 msgid "Calculated fair value = (current_yield_potential * market_price)"
-msgstr ""
+msgstr "计算出的公允价值 = (当前收益率潜力 * 市场价格)"
 
 #. module: farm_biological_valuation
 #: model:ir.model,name:farm_biological_valuation.model_agri_biological_asset_valuation
 msgid "Consolidated Biological Asset Valuation"
-msgstr ""
+msgstr "综合生物资产估值"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__valuation_method__cost_model
 msgid "Cost Model"
-msgstr ""
+msgstr "成本模型"
 
 #. module: farm_biological_valuation
 #: model_terms:ir.ui.view,arch_db:farm_biological_valuation.view_biological_asset_valuation_form
 msgid "Cost Model Details"
-msgstr ""
+msgstr "成本模型详细信息"
 
 #. module: farm_biological_valuation
 #. odoo-python
 #: code:addons/farm_biological_valuation/models/biological_asset_valuation.py:0
 msgid "Cost Valuation"
-msgstr ""
+msgstr "成本估价"
 
 #. module: farm_biological_valuation
 #. odoo-python
 #: code:addons/farm_biological_valuation/models/biological_asset_valuation.py:0
 msgid "Cost-based valuation process initiated for selected assets"
-msgstr ""
+msgstr "针对选定资产启动基于成本的评估流程"
 
 #. module: farm_biological_valuation
 #: model_terms:ir.ui.view,arch_db:farm_biological_valuation.view_biological_asset_valuation_form
 msgid "Create Accounting Entry"
-msgstr ""
+msgstr "创建会计分录"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__create_uid
@@ -139,66 +139,66 @@ msgstr "创建时间"
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset__current_fair_value
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_farm_biological_asset__current_fair_value
 msgid "Current Fair Value"
-msgstr ""
+msgstr "当前公允价值"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__current_growth_progress
 msgid "Current Growth Progress %"
-msgstr ""
+msgstr "当前增长进度%"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset__current_net_book_value
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_farm_biological_asset__current_net_book_value
 msgid "Current Net Book Value"
-msgstr ""
+msgstr "当前账面净值"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__current_yield_potential
 msgid "Current Yield Potential"
-msgstr ""
+msgstr "目前的产量潜力"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__net_book_value
 msgid "Current book value after depreciation"
-msgstr ""
+msgstr "折旧后的当前账面价值"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset__current_fair_value
 #: model:ir.model.fields,help:farm_biological_valuation.field_farm_biological_asset__current_fair_value
 msgid "Current fair value based on market conditions"
-msgstr ""
+msgstr "基于市场状况的当前公允价值"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__market_price
 msgid "Current market price from external sources"
-msgstr ""
+msgstr "来自外部来源的当前市场价格"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset__current_net_book_value
 #: model:ir.model.fields,help:farm_biological_valuation.field_farm_biological_asset__current_net_book_value
 msgid "Current net book value after depreciation"
-msgstr ""
+msgstr "当前折旧后账面净值"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__current_growth_progress
 msgid "Current physiological progress as percentage (0-100)"
-msgstr ""
+msgstr "当前生理进展百分比 (0-100)"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__current_yield_potential
 msgid "Current yield potential based on growth progress"
-msgstr ""
+msgstr "基于生长进度的当前产量潜力"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset__fair_value_date
 #: model:ir.model.fields,help:farm_biological_valuation.field_farm_biological_asset__fair_value_date
 msgid "Date of last fair value calculation"
-msgstr ""
+msgstr "最后一次公允价值计算日期"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__depreciation_years
 msgid "Depreciation Years"
-msgstr ""
+msgstr "折旧年限"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_valuation_stage_coefficient__description
@@ -208,7 +208,7 @@ msgstr "描述"
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__revaluation_amount
 msgid "Difference between current and previous valuation"
-msgstr ""
+msgstr "当前估值与之前估值之间的差异"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset__display_name
@@ -220,81 +220,81 @@ msgstr "显示名称"
 #. module: farm_biological_valuation
 #: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__state__disposed
 msgid "Disposed"
-msgstr ""
+msgstr "处置"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__efficiency_multiplier
 msgid "Efficiency Multiplier"
-msgstr ""
+msgstr "效率倍增器"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__target_yield
 msgid "Expected final yield at maturity"
-msgstr ""
+msgstr "预期到期最终收益率"
 
 #. module: farm_biological_valuation
 #. odoo-python
 #: code:addons/farm_biological_valuation/models/biological_asset_valuation.py:0
 msgid "Fair Valuation"
-msgstr ""
+msgstr "公平估值"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__fair_value
 msgid "Fair Value"
-msgstr ""
+msgstr "公允价值"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__valuation_method__market_price
 msgid "Fair Value - Market Price"
-msgstr ""
+msgstr "公允价值 - 市场价格"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset__fair_value_date
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_farm_biological_asset__fair_value_date
 msgid "Fair Value Date"
-msgstr ""
+msgstr "公允价值日期"
 
 #. module: farm_biological_valuation
 #: model_terms:ir.ui.view,arch_db:farm_biological_valuation.view_biological_asset_valuation_form
 msgid "Fair Value Details"
-msgstr ""
+msgstr "公允价值详情"
 
 #. module: farm_biological_valuation
 #. odoo-python
 #: code:addons/farm_biological_valuation/models/biological_asset_valuation.py:0
 msgid "Fair valuation process initiated for selected assets"
-msgstr ""
+msgstr "为选定的资产启动公平估值流程"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__state__depreciated
 msgid "Fully Depreciated"
-msgstr ""
+msgstr "全额折旧"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_valuation_stage_coefficient__biological_stage__growing
 msgid "Growing"
-msgstr ""
+msgstr "生长"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__growth_stage_coefficient
 msgid "Growth Stage Coefficient"
-msgstr ""
+msgstr "生长阶段系数"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__stage_coefficient_ids
 #: model_terms:ir.ui.view,arch_db:farm_biological_valuation.view_biological_asset_valuation_form
 msgid "Growth Stage Coefficients"
-msgstr ""
+msgstr "生长阶段系数"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_valuation_stage_coefficient__biological_stage__harvested
 msgid "Harvested/Culled"
-msgstr ""
+msgstr "收获/宰杀"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__valuation_method__hybrid
 msgid "Hybrid Model"
-msgstr ""
+msgstr "混合模型"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset__id
@@ -307,12 +307,12 @@ msgstr "ID"
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset__ope_integration
 #: model:ir.model.fields,help:farm_biological_valuation.field_farm_biological_asset__ope_integration
 msgid "Integration with OPE metrics for valuation"
-msgstr ""
+msgstr "与 OPE 指标集成进行评估"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__journal_entry_id
 msgid "Journal Entry"
-msgstr ""
+msgstr "日记条目"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__write_uid
@@ -329,89 +329,89 @@ msgstr "最后更新时间"
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__journal_entry_id
 msgid "Link to created journal entry"
-msgstr ""
+msgstr "链接到创建的日记条目"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__market_price
 msgid "Market Price (per unit)"
-msgstr ""
+msgstr "市场价格（每单位）"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__market_price_source
 msgid "Market Price Source"
-msgstr ""
+msgstr "市场价格来源"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_valuation_stage_coefficient__biological_stage__mature
 msgid "Mature/Adult"
-msgstr ""
+msgstr "成熟/成人"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__efficiency_multiplier
 msgid "Multiplier based on asset efficiency metrics"
-msgstr ""
+msgstr "基于资产效率指标的乘数"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_valuation_stage_coefficient__coefficient
 msgid "Multiplier for asset value based on growth stage"
-msgstr ""
+msgstr "基于成长阶段的资产价值乘数"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__net_book_value
 msgid "Net Book Value"
-msgstr ""
+msgstr "账面净值"
 
 #. module: farm_biological_valuation
 #. odoo-python
 #: code:addons/farm_biological_valuation/models/biological_asset_valuation.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_valuation_stage_coefficient__biological_stage__newborn
 msgid "Newborn/Seedling"
-msgstr ""
+msgstr "新生儿/幼苗"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__depreciation_years
 msgid "Number of years over which the asset is depreciated"
-msgstr ""
+msgstr "资产折旧年数"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset__ope_integration
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_farm_biological_asset__ope_integration
 msgid "OPE Integration Score"
-msgstr ""
+msgstr "OPE综合分数"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__ope_score
 msgid "OPE Score"
-msgstr ""
+msgstr "OPE分数"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__ope_score
 msgid "Operational Performance Efficiency score linked to valuation"
-msgstr ""
+msgstr "与估值相关的运营绩效效率得分"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__original_value
 msgid "Original Value"
-msgstr ""
+msgstr "原值"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__original_value
 msgid "Original cost/value of the biological asset"
-msgstr ""
+msgstr "生物资产的原始成本/价值"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__previous_valuation
 msgid "Previous Valuation"
-msgstr ""
+msgstr "之前的估值"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__previous_valuation
 msgid "Previous fair value for comparison"
-msgstr ""
+msgstr "用于比较的先前公允价值"
 
 #. module: farm_biological_valuation
 #. odoo-python
@@ -424,27 +424,27 @@ msgstr ""
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__revaluation_amount
 msgid "Revaluation Amount"
-msgstr ""
+msgstr "重估金额"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__revaluation_type__gain
 msgid "Revaluation Gain"
-msgstr ""
+msgstr "重估收益"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields.selection,name:farm_biological_valuation.selection__agri_biological_asset_valuation__revaluation_type__loss
 msgid "Revaluation Loss"
-msgstr ""
+msgstr "重估损失"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__revaluation_type
 msgid "Revaluation Type"
-msgstr ""
+msgstr "重估类型"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__market_price_source
 msgid "Source of the market price data"
-msgstr ""
+msgstr "市场价格数据来源"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__state
@@ -454,39 +454,39 @@ msgstr "状态"
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__target_yield
 msgid "Target Yield"
-msgstr ""
+msgstr "目标产量"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__valuation_date
 msgid "Valuation Date"
-msgstr ""
+msgstr "估价日期"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__valuation_method
 msgid "Valuation Method"
-msgstr ""
+msgstr "计价方法"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_valuation_stage_coefficient__valuation_id
 msgid "Valuation Record"
-msgstr ""
+msgstr "估值记录"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_biological_asset_valuation__name
 msgid "Valuation Reference"
-msgstr ""
+msgstr "估值参考"
 
 #. module: farm_biological_valuation
 #: model:ir.ui.menu,name:farm_biological_valuation.biological_valuation_menu
 msgid "Valuations"
-msgstr ""
+msgstr "估值"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,field_description:farm_biological_valuation.field_agri_valuation_stage_coefficient__coefficient
 msgid "Value Coefficient"
-msgstr ""
+msgstr "价值系数"
 
 #. module: farm_biological_valuation
 #: model:ir.model.fields,help:farm_biological_valuation.field_agri_biological_asset_valuation__growth_stage_coefficient
 msgid "Value coefficient based on biological growth stage"
-msgstr ""
+msgstr "基于生物生长阶段的价值系数"

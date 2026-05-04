@@ -20,4 +20,4 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_winery/models/winery_isl.py:0
 msgid "Tank %s temp too high!"
-msgstr ""
+msgstr "%s 罐温度太高！"

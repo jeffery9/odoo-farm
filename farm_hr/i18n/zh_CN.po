@@ -19,73 +19,73 @@ msgstr ""
 #. module: farm_hr
 #: model_terms:ir.ui.view,arch_db:farm_hr.farm_labor_payment_view_form
 msgid "<span>Journal Entry</span>"
-msgstr ""
+msgstr "<span>日记条目</span>"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_needaction
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "需要操作"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_ids
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "活动"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_exception_decoration
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "活动异常装饰"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_state
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "活动状态"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_type_icon
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "活动类型图标"
 
 #. module: farm_hr
 #: model:ir.model,name:farm_hr.model_farm_agri_skill
 msgid "Agricultural Skill"
-msgstr ""
+msgstr "农业技能"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_hr_employee__agri_skill_ids
 msgid "Agricultural Skills"
-msgstr ""
+msgstr "农业技能"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_attachment_count
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "附件数量"
 
 #. module: farm_hr
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_labor_payment__state__cancel
 msgid "Cancelled"
-msgstr ""
+msgstr "已取消"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__certificate_number
 msgid "Cert No."
-msgstr ""
+msgstr "证书编号"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_hr_employee__certificate_ids
 msgid "Certificates"
-msgstr ""
+msgstr "证书"
 
 #. module: farm_hr
 #: model_terms:ir.ui.view,arch_db:farm_hr.farm_labor_payment_view_form
 msgid "Compute Sheet"
-msgstr ""
+msgstr "计算表"
 
 #. module: farm_hr
 #: model:ir.ui.menu,name:farm_hr.menu_farm_wage_config
@@ -95,12 +95,12 @@ msgstr "配置"
 #. module: farm_hr
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_labor_payment__state__confirmed
 msgid "Confirmed"
-msgstr ""
+msgstr "确认的"
 
 #. module: farm_hr
 #: model:ir.model,website_form_label:farm_hr.model_project_task
 msgid "Create a Task"
-msgstr ""
+msgstr "创建任务"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__create_uid
@@ -126,7 +126,7 @@ msgstr "创建时间"
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__currency_id
 #: model:ir.model.fields,field_description:farm_hr.field_farm_wage_rule__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "币种"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__date
@@ -136,12 +136,12 @@ msgstr "日期"
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__date_from
 msgid "Date From"
-msgstr ""
+msgstr "日期从"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__date_to
 msgid "Date To"
-msgstr ""
+msgstr "日期至"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__description
@@ -151,7 +151,7 @@ msgstr "描述"
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__line_ids
 msgid "Details"
-msgstr ""
+msgstr "详情"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__display_name
@@ -168,7 +168,7 @@ msgstr "显示名称"
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__quantity
 msgid "Done Quantity"
-msgstr ""
+msgstr "完成数量"
 
 #. module: farm_hr
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_labor_payment__state__draft
@@ -179,96 +179,96 @@ msgstr "草稿"
 #: model:ir.model.fields,field_description:farm_hr.field_farm_task__eligible_worker_ids
 #: model:ir.model.fields,field_description:farm_hr.field_project_task__eligible_worker_ids
 msgid "Eligible Workers"
-msgstr ""
+msgstr "符合资格的工人"
 
 #. module: farm_hr
 #: model:ir.model,name:farm_hr.model_hr_employee
 #: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__employee_id
 msgid "Employee"
-msgstr ""
+msgstr "员工"
 
 #. module: farm_hr
 #: model:ir.model,name:farm_hr.model_farm_employee_certificate
 msgid "Employee Skill Certificate"
-msgstr ""
+msgstr "员工技能证书"
 
 #. module: farm_hr
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_employee_certificate__state__expired
 msgid "Expired"
-msgstr ""
+msgstr "已到期"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__date_expiry
 msgid "Expiry Date"
-msgstr ""
+msgstr "到期日"
 
 #. module: farm_hr
 #: model:ir.model,name:farm_hr.model_farm_worklog
 msgid "Farm Field Worklog"
-msgstr ""
+msgstr "农田工作日志"
 
 #. module: farm_hr
 #: model_terms:ir.ui.view,arch_db:farm_hr.view_employee_form_inherit_farm
 msgid "Farm Performance"
-msgstr ""
+msgstr "农场表演"
 
 #. module: farm_hr
 #: model_terms:ir.ui.view,arch_db:farm_hr.view_employee_form_inherit_farm
 msgid "Farm Skills & Certs"
-msgstr ""
+msgstr "农场技能和证书"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__task_id
 msgid "Farm Task"
-msgstr ""
+msgstr "农场任务"
 
 #. module: farm_hr
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_wage_rule__work_type__feeding
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_worklog__work_type__feeding
 msgid "Feeding"
-msgstr ""
+msgstr "喂养"
 
 #. module: farm_hr
 #: model:ir.actions.act_window,name:farm_hr.action_farm_worklog
 #: model:ir.ui.menu,name:farm_hr.menu_farm_worklog
 #: model_terms:ir.ui.view,arch_db:farm_hr.farm_worklog_view_tree
 msgid "Field Worklogs"
-msgstr ""
+msgstr "现场工作日志"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_follower_ids
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "关注者"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_partner_ids
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "关注者（合作伙伴）"
 
 #. module: farm_hr
 #: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__activity_type_icon
 #: model:ir.model.fields,help:farm_hr.field_farm_worklog__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "字体很棒的图标，例如fa 任务"
 
 #. module: farm_hr
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_wage_rule__work_type__harvesting
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_worklog__work_type__harvesting
 msgid "Harvesting"
-msgstr ""
+msgstr "收获"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__has_message
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "有留言"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_hr_employee__hourly_cost
 msgid "Hourly Cost"
-msgstr ""
+msgstr "每小时成本"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__id
@@ -286,24 +286,24 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_exception_icon
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "图标"
 
 #. module: farm_hr
 #: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__activity_exception_icon
 #: model:ir.model.fields,help:farm_hr.field_farm_worklog__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "指示异常活动的图标。"
 
 #. module: farm_hr
 #: model:ir.model.fields,help:farm_hr.field_hr_employee__is_seasonal
 msgid "Identify external or seasonal workers."
-msgstr ""
+msgstr "识别外部或季节性工人。"
 
 #. module: farm_hr
 #: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__message_needaction
 #: model:ir.model.fields,help:farm_hr.field_farm_worklog__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "如果选中，则有新消息需要您注意。"
 
 #. module: farm_hr
 #: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__message_has_error
@@ -311,76 +311,76 @@ msgstr ""
 #: model:ir.model.fields,help:farm_hr.field_farm_worklog__message_has_error
 #: model:ir.model.fields,help:farm_hr.field_farm_worklog__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "如果检查，则某些消息存在传送错误。"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_is_follower
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "是追随者"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__journal_id
 msgid "Journal"
-msgstr ""
+msgstr "日记账"
 
 #. module: farm_hr
 #. odoo-python
 #: code:addons/farm_hr/models/farm_wage.py:0
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__move_id
 msgid "Journal Entry"
-msgstr ""
+msgstr "日记条目"
 
 #. module: farm_hr
 #: model:ir.ui.menu,name:farm_hr.menu_farm_hr_root
 msgid "Labor & HR"
-msgstr ""
+msgstr "劳工与人力资源"
 
 #. module: farm_hr
 #: model_terms:ir.ui.view,arch_db:farm_hr.farm_labor_payment_view_form
 msgid "Labor Payment"
-msgstr ""
+msgstr "劳务报酬"
 
 #. module: farm_hr
 #: model:ir.model,name:farm_hr.model_farm_labor_payment_line
 msgid "Labor Payment Line"
-msgstr ""
+msgstr "人工付款线"
 
 #. module: farm_hr
 #: model:ir.actions.act_window,name:farm_hr.action_farm_labor_payment
 #: model:ir.ui.menu,name:farm_hr.menu_farm_labor_payment
 #: model_terms:ir.ui.view,arch_db:farm_hr.farm_labor_payment_view_tree
 msgid "Labor Payments"
-msgstr ""
+msgstr "劳务报酬"
 
 #. module: farm_hr
 #: model:ir.model,name:farm_hr.model_farm_labor_payment
 msgid "Labor Piece-rate Payment"
-msgstr ""
+msgstr "计件工资"
 
 #. module: farm_hr
 #. odoo-python
 #: code:addons/farm_hr/models/farm_wage.py:0
 msgid "Labor Settlement: %s"
-msgstr ""
+msgstr "劳务安置：%s"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_task__worklog_ids
 #: model:ir.model.fields,field_description:farm_hr.field_project_task__worklog_ids
 msgid "Labor Worklogs"
-msgstr ""
+msgstr "劳动工作日志"
 
 #. module: farm_hr
 #. odoo-python
 #: code:addons/farm_hr/models/farm_wage.py:0
 msgid "Labor: %s - %s"
-msgstr ""
+msgstr "人工：%s - %s"
 
 #. module: farm_hr
 #. odoo-python
 #: code:addons/farm_hr/models/farm_worklog.py:0
 msgid "Labor: %s on %s"
-msgstr ""
+msgstr "人工：%s，%s"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__write_uid
@@ -406,190 +406,190 @@ msgstr "最后更新时间"
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_has_error
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "消息投递错误"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_ids
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "消息"
 
 #. module: farm_hr
 #: model:ir.model,name:farm_hr.model_project_task
 msgid "Multi-Industry Activity Production"
-msgstr ""
+msgstr "多行业活动制作"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__my_activity_date_deadline
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "我的活动截止日期"
 
 #. module: farm_hr
 #. odoo-python
 #: code:addons/farm_hr/models/farm_wage.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_date_deadline
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "下一个活动截止日期"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_summary
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "下一步活动总结"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_type_id
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "下一个活动类型"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__notes
 msgid "Notes"
-msgstr ""
+msgstr "备注"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_needaction_counter
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "动作数量"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_has_error_counter
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "错误数"
 
 #. module: farm_hr
 #: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__message_needaction_counter
 #: model:ir.model.fields,help:farm_hr.field_farm_worklog__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "需要采取行动的消息数量"
 
 #. module: farm_hr
 #: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__message_has_error_counter
 #: model:ir.model.fields,help:farm_hr.field_farm_worklog__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "发送错误的消息数"
 
 #. module: farm_hr
 #. odoo-python
 #: code:addons/farm_hr/models/farm_wage.py:0
 msgid "PAY"
-msgstr ""
+msgstr "支付"
 
 #. module: farm_hr
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_wage_rule__work_type__packaging
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_worklog__work_type__packaging
 msgid "Packaging"
-msgstr ""
+msgstr "包装"
 
 #. module: farm_hr
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_labor_payment__state__paid
 msgid "Paid"
-msgstr ""
+msgstr "有薪酬的"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__payment_id
 msgid "Payment"
-msgstr ""
+msgstr "付款"
 
 #. module: farm_hr
 #: model_terms:ir.ui.view,arch_db:farm_hr.farm_labor_payment_view_form
 msgid "Payment Lines"
-msgstr ""
+msgstr "付款线路"
 
 #. module: farm_hr
 #: model_terms:ir.ui.view,arch_db:farm_hr.farm_labor_payment_view_form
 msgid "Period"
-msgstr ""
+msgstr "期间"
 
 #. module: farm_hr
 #: model:ir.model,name:farm_hr.model_farm_wage_rule
 msgid "Piece-rate Wage Rule"
-msgstr ""
+msgstr "计件工资规则"
 
 #. module: farm_hr
 #. odoo-python
 #: code:addons/farm_hr/models/farm_wage.py:0
 msgid "Please select a Journal before posting."
-msgstr ""
+msgstr "发帖前请选择期刊。"
 
 #. module: farm_hr
 #: model_terms:ir.ui.view,arch_db:farm_hr.farm_labor_payment_view_form
 msgid "Post to Accounting"
-msgstr ""
+msgstr "发布到会计"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_wage_rule__price_per_unit
 msgid "Price per Unit"
-msgstr ""
+msgstr "每单位价格"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__quantity
 msgid "Quantity"
-msgstr ""
+msgstr "数量"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__rating_ids
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__rating_ids
 msgid "Ratings"
-msgstr ""
+msgstr "评级"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__name
 msgid "Reference"
-msgstr ""
+msgstr "参考"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_task__required_skill_id
 #: model:ir.model.fields,field_description:farm_hr.field_project_task__required_skill_id
 msgid "Required Skill"
-msgstr ""
+msgstr "所需技能"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__requires_certificate
 msgid "Requires Certificate"
-msgstr ""
+msgstr "需要证书"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__activity_user_id
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "负责用户"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__message_has_sms_error
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "短信投递错误"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_hr_employee__is_seasonal
 msgid "Seasonal Laborer"
-msgstr ""
+msgstr "帮工"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_agri_skill__name
 msgid "Skill Name"
-msgstr ""
+msgstr "技能名称"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__skill_id
 msgid "Skill/Qualification"
-msgstr ""
+msgstr "技能/资格"
 
 #. module: farm_hr
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_wage_rule__work_type__sowing
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_worklog__work_type__sowing
 msgid "Sowing"
-msgstr ""
+msgstr "播种"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_employee_certificate__state
@@ -614,45 +614,45 @@ msgstr ""
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__subtotal
 msgid "Subtotal"
-msgstr ""
+msgstr "小计"
 
 #. module: farm_hr
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_wage_rule__work_type__tillage
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_worklog__work_type__tillage
 msgid "Tillage"
-msgstr ""
+msgstr "耕作"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__total_amount
 msgid "Total Amount"
-msgstr ""
+msgstr "总金额"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_task__total_harvested_qty
 #: model:ir.model.fields,field_description:farm_hr.field_project_task__total_harvested_qty
 msgid "Total Harvested (kg)"
-msgstr ""
+msgstr "总收获量（公斤）"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_hr_employee__piece_rate_total
 msgid "Total Piece-rate Performance"
-msgstr ""
+msgstr "计件工资总绩效"
 
 #. module: farm_hr
 #: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__activity_exception_decoration
 #: model:ir.model.fields,help:farm_hr.field_farm_worklog__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "记录的异常活动的类型。"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__uom_id
 msgid "Unit"
-msgstr ""
+msgstr "单元"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__price_unit
 msgid "Unit Price"
-msgstr ""
+msgstr "单价"
 
 #. module: farm_hr
 #: model:ir.model.fields,help:farm_hr.field_project_task__display_name
@@ -671,45 +671,45 @@ msgstr ""
 #. module: farm_hr
 #: model:ir.model.fields.selection,name:farm_hr.selection__farm_employee_certificate__state__valid
 msgid "Valid"
-msgstr ""
+msgstr "有效的"
 
 #. module: farm_hr
 #: model:ir.actions.act_window,name:farm_hr.action_farm_wage_rule
 #: model:ir.ui.menu,name:farm_hr.menu_farm_wage_rule
 #: model_terms:ir.ui.view,arch_db:farm_hr.farm_wage_rule_view_tree
 msgid "Wage Rules"
-msgstr ""
+msgstr "工资规则"
 
 #. module: farm_hr
 #: model:ir.model.fields,help:farm_hr.field_farm_wage_rule__price_per_unit
 msgid "Wage per unit of work (e.g. 0.5 per kg)"
-msgstr ""
+msgstr "每单位工作的工资（例如每公斤0.5）"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__website_message_ids
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "网站消息"
 
 #. module: farm_hr
 #: model:ir.model.fields,help:farm_hr.field_farm_labor_payment__website_message_ids
 #: model:ir.model.fields,help:farm_hr.field_farm_worklog__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "网站沟通历史"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_wage_rule__work_type
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__work_type
 msgid "Work Type"
-msgstr ""
+msgstr "工作类型"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment__employee_id
 #: model:ir.model.fields,field_description:farm_hr.field_farm_worklog__employee_id
 msgid "Worker"
-msgstr ""
+msgstr "工人"
 
 #. module: farm_hr
 #: model:ir.model.fields,field_description:farm_hr.field_farm_labor_payment_line__worklog_id
 msgid "Worklog"
-msgstr ""
+msgstr "工作日志"

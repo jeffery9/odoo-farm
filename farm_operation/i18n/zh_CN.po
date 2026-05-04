@@ -31,29 +31,29 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_operation/wizard/farm_dispatch_wizard.py:0
 msgid "%s - Batch Dispatch %s"
-msgstr ""
+msgstr "%s - 批量发送 %s"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "<strong>Agricultural Intervention Record</strong>"
-msgstr ""
+msgstr "<strong>农业干预记录</strong>"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "AI Audit"
-msgstr ""
+msgstr "人工智能审计"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention.py:0
 msgid "Accumulated %s GDD from environmental sync."
-msgstr ""
+msgstr "环境同步累计 %s GDD。"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_needaction
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "需要操作"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__is_active
@@ -68,22 +68,22 @@ msgstr "有效"
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "活动"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "活动异常装饰"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "活动状态"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "活动类型图标"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__actual_flight_area
@@ -91,7 +91,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__actual_flight_area
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__actual_flight_area
 msgid "Actual Flown Area (mu/ha)"
-msgstr ""
+msgstr "实际飞行面积（亩/公顷）"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__aerial_spraying
@@ -101,13 +101,13 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_dispatch_wizard__intervention_type__aerial_spraying
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__aerial_spraying
 msgid "Aerial Spraying"
-msgstr ""
+msgstr "空中喷洒"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__agent_status_feedback
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__agent_status_feedback
 msgid "Agent Execution Status"
-msgstr ""
+msgstr "代理执行状态"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_bom_mixin__agri_activity_type
@@ -115,103 +115,103 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_mixin__agri_activity_type
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__agri_activity_type
 msgid "Agri Activity Type"
-msgstr ""
+msgstr "农业活动类型"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_agri_bom_line_mixin
 msgid "Agri Agricultural BOM Line Shared Logic"
-msgstr ""
+msgstr "农业 BOM 线共享逻辑"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_agri_bom_mixin
 msgid "Agri Agricultural BOM Shared Logic"
-msgstr ""
+msgstr "农业BOM共享逻辑"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_agri_agricultural_campaign_mixin
 msgid "Agri Agricultural Campaign Shared Logic"
-msgstr ""
+msgstr "农业运动共享逻辑"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_agri_intervention_mixin
 msgid "Agri Agricultural Intervention Shared Logic"
-msgstr ""
+msgstr "农业 农业干预共享逻辑"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__intervention_ids
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__intervention_ids
 msgid "Agri Interventions"
-msgstr ""
+msgstr "农业干预措施"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_stock_move__agri_loss_reason
 msgid "Agri Loss Reason"
-msgstr ""
+msgstr "农业损失原因"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_tree_view_inherit_farm
 msgid "Agri-Interventions"
-msgstr ""
+msgstr "农业干预措施"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.view_agri_intervention_form_science_inherit
 msgid "Agri-Science Audit"
-msgstr ""
+msgstr "农业科学审计"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_farm_agricultural_bom
 msgid "Agricultural BOM (ISL Layer)"
-msgstr ""
+msgstr "农业 BOM（ISL 层）"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_farm_agricultural_bom_line
 msgid "Agricultural BOM Line (ISL Layer)"
-msgstr ""
+msgstr "农业 BOM 行（ISL 层）"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_farm_agricultural_campaign
 msgid "Agricultural Campaign (ISL Layer)"
-msgstr ""
+msgstr "农业战役（ISL 层）"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_mrp_production
 msgid "Agricultural Intervention (De-industrialized View)"
-msgstr ""
+msgstr "农业干预（去工业化视角）"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_agri_intervention
 msgid "Agricultural Intervention (ISL Layer)"
-msgstr ""
+msgstr "农业干预（ISL层）"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__agricultural_processing
 msgid "Agricultural Processing"
-msgstr ""
+msgstr "农产品加工"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_agricultural_campaign
 msgid "Agricultural Production Season"
-msgstr ""
+msgstr "农业生产季节"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_farm_dispatch_wizard
 msgid "Agricultural Task Dispatch Wizard"
-msgstr ""
+msgstr "农业任务调度向导"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__agritourism
 msgid "Agritourism"
-msgstr ""
+msgstr "农业旅游"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__all_move_ids
 msgid "All Move"
-msgstr ""
+msgstr "全部移动"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__all_move_raw_ids
 msgid "All Move Raw"
-msgstr ""
+msgstr "全部移动原始"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__batch_size
@@ -223,32 +223,32 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__allow_workorder_dependencies
 msgid "Allow Work Order Dependencies"
-msgstr ""
+msgstr "允许工作订单依赖性"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__use_create_components_lots
 msgid "Allow to create new lot/serial numbers for the components"
-msgstr ""
+msgstr "允许为组件创建新的批号/序列号"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__allowed_uom_ids
 msgid "Allowed Uom"
-msgstr ""
+msgstr "允许计量单位"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__reserve_visible
 msgid "Allowed to Reserve Production"
-msgstr ""
+msgstr "允许储备生产"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__unreserve_visible
 msgid "Allowed to Unreserve Production"
-msgstr ""
+msgstr "允许取消预留生产"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__apiculture
 msgid "Apiculture"
-msgstr ""
+msgstr "养蜂业"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_bom_mixin__application_stage
@@ -256,12 +256,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_mixin__application_stage
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__application_stage
 msgid "Application Stage"
-msgstr ""
+msgstr "申请阶段"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__bom_product_template_attribute_value_ids
 msgid "Apply on Variants"
-msgstr ""
+msgstr "适用于变体"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__simplified_state__approval
@@ -270,7 +270,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__simplified_state__approval
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__simplified_state__approval
 msgid "Approval"
-msgstr ""
+msgstr "审批"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__approval_date
@@ -278,7 +278,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__approval_date
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__approval_date
 msgid "Approval Date"
-msgstr ""
+msgstr "批准日期"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__approval_state
@@ -286,12 +286,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__approval_state
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__approval_state
 msgid "Approval Status"
-msgstr ""
+msgstr "审批状态"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Approve"
-msgstr ""
+msgstr "批准"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__approval_state__approved
@@ -300,7 +300,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__approval_state__approved
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__approval_state__approved
 msgid "Approved"
-msgstr ""
+msgstr "已批准"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__approver_id
@@ -308,7 +308,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__approver_id
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__approver_id
 msgid "Approver"
-msgstr ""
+msgstr "审批人"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__aquaculture
@@ -319,53 +319,53 @@ msgstr "水产"
 #: model:ir.model.fields,help:farm_operation.field_farm_task__size_value
 #: model:ir.model.fields,help:farm_operation.field_project_task__size_value
 msgid "Area in sqm/mu or quantity of individuals."
-msgstr ""
+msgstr "面积（平方米/亩）或人数。"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__project_task_ids
 #: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_form
 msgid "Associated Tasks"
-msgstr ""
+msgstr "相关任务"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__evidence_ids
 #: model:ir.model.fields,help:farm_operation.field_mrp_production__evidence_ids
 msgid "Attached GPS logs, IoT sensor data, or site photos."
-msgstr ""
+msgstr "附加 GPS 日志、物联网传感器数据或现场照片。"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_attachment_count
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "附件数量"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__attachments_count
 msgid "Attachments Count"
-msgstr ""
+msgstr "附件数量"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_variant_attributes
 msgid "Attribute Values"
-msgstr ""
+msgstr "属性值"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__audit_confidence
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__audit_confidence
 msgid "Audit Confidence"
-msgstr ""
+msgstr "审计信心"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__audit_status
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__audit_status
 msgid "Audit Status"
-msgstr ""
+msgstr "审核状态"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention_mixin.py:0
 msgid "Auto-recorded from intervention %s"
-msgstr ""
+msgstr "从干预 %s 自动记录"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__produce_delay
@@ -383,22 +383,22 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__approval_state__to_approve
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__approval_state__to_approve
 msgid "Awaiting Approval"
-msgstr ""
+msgstr "等待批准"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_line__bom_product_template_attribute_value_ids
 msgid "BOM Product Variants needed to apply this line."
-msgstr ""
+msgstr "应用此行需要 BOM 产品变体。"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__child_line_ids
 msgid "BOM lines of the referred bom"
-msgstr ""
+msgstr "参考物料清单的物料清单行"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__backorder_sequence
 msgid "Backorder Sequence"
-msgstr ""
+msgstr "延期交货顺序"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__backorder_sequence
@@ -409,17 +409,17 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__bom_id
 msgid "Base BOM"
-msgstr ""
+msgstr "基础物料清单"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__bom_line_id
 msgid "Base BOM Line"
-msgstr ""
+msgstr "基本 BOM 行"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__production_id
 msgid "Base Production Order"
-msgstr ""
+msgstr "基本生产订单"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__base_temperature
@@ -428,28 +428,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__base_temperature
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__base_temperature
 msgid "Base Temp (℃)"
-msgstr ""
+msgstr "基础温度(℃)"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_form
 msgid "Basic Info"
-msgstr ""
+msgstr "基本信息"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__batch_size
 msgid "Batch Size"
-msgstr ""
+msgstr "批量大小"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_mrp_bom
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__bom_id
 msgid "Bill of Material"
-msgstr ""
+msgstr "物料清单"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_mrp_bom_line
 msgid "Bill of Material Line"
-msgstr ""
+msgstr "物料清单行"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__bom_id
@@ -462,38 +462,38 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__biological_lot_id
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__biological_lot_id
 msgid "Biological Asset/Lot"
-msgstr ""
+msgstr "生物资产/批次"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.view_agri_intervention_form_science_inherit
 msgid "Biological Clock"
-msgstr ""
+msgstr "生物钟"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__bom_line_ids
 msgid "BoM Lines"
-msgstr ""
+msgstr "物料清单线"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__type
 msgid "BoM Type"
-msgstr ""
+msgstr "物料清单类型"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Boundary Compliance"
-msgstr ""
+msgstr "边界合规性"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__byproduct_ids
 msgid "By-products"
-msgstr ""
+msgstr "副产品"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention_mixin.py:0
 msgid "COMPLIANCE ERROR: Invalid ID Card format for operator!"
-msgstr ""
+msgstr "合规性错误：操作员身份证格式无效！"
 
 #. module: farm_operation
 #. odoo-python
@@ -516,7 +516,7 @@ msgstr ""
 #: code:addons/farm_operation/models/agri_agricultural_campaign_mixin.py:0
 #: code:addons/farm_operation/models/farm_agricultural_campaign_base.py:0
 msgid "Campaign start date must be before end date."
-msgstr ""
+msgstr "活动开始日期必须早于结束日期。"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__campaign_id
@@ -527,12 +527,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__campaign_id
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__campaign_id
 msgid "Campaign/Season"
-msgstr ""
+msgstr "活动/赛季"
 
 #. module: farm_operation
 #: model:ir.ui.menu,name:farm_operation.menu_agricultural_campaigns
 msgid "Campaigns"
-msgstr ""
+msgstr "活动"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.view_agri_science_sync_wizard_form
@@ -543,7 +543,7 @@ msgstr "取消"
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Carbon & Impact"
-msgstr ""
+msgstr "碳与影响"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__carbon_intensity
@@ -551,7 +551,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__carbon_intensity
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__carbon_intensity
 msgid "Carbon Footprint (kg CO2e/kg)"
-msgstr ""
+msgstr "碳足迹（千克CO2e/千克）"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_bom_mixin__agri_activity_type
@@ -559,18 +559,18 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_mixin__agri_activity_type
 #: model:ir.model.fields,help:farm_operation.field_mrp_bom__agri_activity_type
 msgid "Classify BOM as an agricultural recipe."
-msgstr ""
+msgstr "将 BOM 分类为农业配方。"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__clearing_status
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__clearing_status
 msgid "Clearing Status"
-msgstr ""
+msgstr "清算状态"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Community Clearing"
-msgstr ""
+msgstr "社区清理"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__credit_score
@@ -596,32 +596,32 @@ msgstr "公司"
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__simplified_state__done
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__simplified_state__done
 msgid "Completed"
-msgstr ""
+msgstr "完全的"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__product_id
 msgid "Component"
-msgstr ""
+msgstr "组件"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__components_availability
 msgid "Component Status"
-msgstr ""
+msgstr "组件状态"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__move_raw_ids
 msgid "Components"
-msgstr ""
+msgstr "成分"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__components_availability_state
 msgid "Components Availability State"
-msgstr ""
+msgstr "组件可用性状态"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__location_src_id
 msgid "Components Location"
-msgstr ""
+msgstr "组件位置"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__priority
@@ -632,32 +632,32 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__operation_id
 msgid "Consumed in Operation"
-msgstr ""
+msgstr "运行中消耗"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__consumption
 msgid "Consumption"
-msgstr ""
+msgstr "消耗"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__mrp_production_backorder_count
 msgid "Count of linked backorder"
-msgstr ""
+msgstr "链接的延期交货数量"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__serial_numbers_count
 msgid "Count of serial numbers"
-msgstr ""
+msgstr "序列号计数"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__use_create_components_lots
 msgid "Create New Lots/Serial Numbers for Components"
-msgstr ""
+msgstr "为组件创建新批次/序列号"
 
 #. module: farm_operation
 #: model:ir.model,website_form_label:farm_operation.model_project_task
 msgid "Create a Task"
-msgstr ""
+msgstr "创建任务"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__days_to_prepare_mo
@@ -711,18 +711,18 @@ msgstr "创建时间"
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_dispatch_wizard__intervention_type__protection
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__protection
 msgid "Crop Protection"
-msgstr ""
+msgstr "作物保护"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__cumulative_gdd
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__cumulative_gdd
 msgid "Cumulative GDD"
-msgstr ""
+msgstr "累计开发面积"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Current Application (Pure Nutrient)"
-msgstr ""
+msgstr "当前应用（纯营养）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__accumulated_gdd
@@ -731,18 +731,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__accumulated_gdd
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__accumulated_gdd
 msgid "Current GDD"
-msgstr ""
+msgstr "当前广州开发区"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__current_growth_stage_id
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__current_growth_stage_id
 msgid "Current Stage"
-msgstr ""
+msgstr "当前阶段"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_description_variants
 msgid "Custom Description"
-msgstr ""
+msgstr "定制说明"
 
 #. module: farm_operation
 #. odoo-python
@@ -756,18 +756,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__daily_temp_max
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__daily_temp_max
 msgid "Daily Max Temperature"
-msgstr ""
+msgstr "每日最高温度"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__daily_temp_min
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__daily_temp_min
 msgid "Daily Min Temperature"
-msgstr ""
+msgstr "每日最低温度"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__search_date_category
 msgid "Date Category"
-msgstr ""
+msgstr "日期类别"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__date_finished
@@ -785,22 +785,22 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__days_to_safety
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__days_to_safety
 msgid "Days to Safety"
-msgstr ""
+msgstr "安全天数"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__days_to_prepare_mo
 msgid "Days to prepare Manufacturing Order"
-msgstr ""
+msgstr "准备制造订单的天数"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__date_deadline
 msgid "Deadline"
-msgstr ""
+msgstr "截止日期"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__agri_loss_reason__decay
 msgid "Decay/Rot"
-msgstr ""
+msgstr "腐烂/腐烂"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__consumption
@@ -815,12 +815,12 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__delay_alert_date
 msgid "Delay Alert Date"
-msgstr ""
+msgstr "延迟警报日期"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__delivery_count
 msgid "Delivery Orders"
-msgstr ""
+msgstr "交货单"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__description
@@ -837,18 +837,18 @@ msgstr "描述"
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line_mixin__dilution_ratio
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__dilution_ratio
 msgid "Dilution Ratio (1:N)"
-msgstr ""
+msgstr "稀释比例（1：N）"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.view_farm_dispatch_wizard_form
 msgid "Dispatch"
-msgstr ""
+msgstr "派遣"
 
 #. module: farm_operation
 #: model:ir.actions.act_window,name:farm_operation.action_farm_dispatch_wizard
 #: model_terms:ir.ui.view,arch_db:farm_operation.view_farm_dispatch_wizard_form
 msgid "Dispatch Tasks"
-msgstr ""
+msgstr "调度任务"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__display_name
@@ -879,7 +879,7 @@ msgstr "显示名称"
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__show_lot_ids
 msgid "Display the serial number shortcut on the moves"
-msgstr ""
+msgstr "在动作上显示序列号快捷方式"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__approval_state__draft
@@ -901,12 +901,12 @@ msgstr "草稿"
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__drone_id
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__drone_id
 msgid "Drone Used"
-msgstr ""
+msgstr "使用无人机"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Drone/Machinery Spatial Audit"
-msgstr ""
+msgstr "无人机/机械空间审计"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__esg_score
@@ -914,7 +914,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_mrp_bom__esg_score
 #: model:ir.model.fields,help:farm_operation.field_mrp_production__esg_score
 msgid "Dynamic ESG score (0-1000) calculated by community impact."
-msgstr ""
+msgstr "按社区影响计算的动态 ESG 评分（0-1000）。"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__esg_score
@@ -922,7 +922,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__esg_score
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__esg_score
 msgid "ESG Impact Score"
-msgstr ""
+msgstr "ESG 影响力评分"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__electricity_consumed_kwh
@@ -930,17 +930,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__electricity_consumed_kwh
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__electricity_consumed_kwh
 msgid "Electricity Consumed (kWh)"
-msgstr ""
+msgstr "耗电量（千瓦时）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__enable_batch_size
 msgid "Enable Batch Size"
-msgstr ""
+msgstr "启用批量大小"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__date_finished
 msgid "End"
-msgstr ""
+msgstr "结尾"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__date_end
@@ -949,7 +949,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__date_end
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__date_end
 msgid "End Date"
-msgstr ""
+msgstr "结束日期"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__energy_cost
@@ -957,28 +957,28 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__energy_cost
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__energy_cost
 msgid "Energy/Utility Cost"
-msgstr ""
+msgstr "能源/公用事业成本"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__product_tracking
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_line__tracking
 msgid "Ensure the traceability of a storable product in your warehouse."
-msgstr ""
+msgstr "确保仓库中可存储产品的可追溯性。"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.view_agri_intervention_form_science_inherit
 msgid "Env Sync"
-msgstr ""
+msgstr "环境同步"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_agri_science_sync_wizard
 msgid "Environmental Data Sync Wizard"
-msgstr ""
+msgstr "环境数据同步向导"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_kanban
 msgid "Est. Harvest:"
-msgstr ""
+msgstr "预计。收成："
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__carbon_intensity
@@ -986,17 +986,17 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_mrp_bom__carbon_intensity
 #: model:ir.model.fields,help:farm_operation.field_mrp_production__carbon_intensity
 msgid "Estimated carbon footprint per unit of output."
-msgstr ""
+msgstr "每单位产出的估计碳足迹。"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__duration_expected
 msgid "Expected Duration"
-msgstr ""
+msgstr "预计持续时间"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Export Drone Route"
-msgstr ""
+msgstr "出口无人机路线"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_farm_agricultural_bom_line_mixin
@@ -1008,12 +1008,12 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_farm_agricultural_bom_mixin
 msgid "Farm Agricultural BOM Shared Logic (Deprecated - Use agri.bom.mixin)"
-msgstr ""
+msgstr "农场农业 BOM 共享逻辑（已弃用 - 使用 agri.bom.mixin）"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_farm_agricultural_campaign_base
 msgid "Farm Agricultural Campaign Base Logic"
-msgstr ""
+msgstr "农场农业战役基础逻辑"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_farm_agricultural_campaign_mixin
@@ -1035,7 +1035,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__agri_activity_type__feed
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__agri_activity_type__feed
 msgid "Feed Formula"
-msgstr ""
+msgstr "饲料配方"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__feeding
@@ -1044,7 +1044,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__intervention_type__feeding
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__feeding
 msgid "Feeding"
-msgstr ""
+msgstr "喂养"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_bom_line_mixin__feeding_ratio
@@ -1052,7 +1052,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line_mixin__feeding_ratio
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__feeding_ratio
 msgid "Feeding Ratio (%)"
-msgstr ""
+msgstr "投料率(%)"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__agri_activity_type__fertilizer
@@ -1060,7 +1060,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__agri_activity_type__fertilizer
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__agri_activity_type__fertilizer
 msgid "Fertilizer Mix"
-msgstr ""
+msgstr "肥料混合"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__fertilizing
@@ -1070,32 +1070,32 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_dispatch_wizard__intervention_type__fertilizing
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__fertilizing
 msgid "Fertilizing"
-msgstr ""
+msgstr "施肥"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__field_crops
 msgid "Field Crops"
-msgstr ""
+msgstr "大田作物"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__location_final_id
 msgid "Final Location from procurement"
-msgstr ""
+msgstr "采购最终地点"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__finished_move_line_ids
 msgid "Finished Product"
-msgstr ""
+msgstr "成品"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__move_finished_ids
 msgid "Finished Products"
-msgstr ""
+msgstr "制成品"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__location_dest_id
 msgid "Finished Products Location"
-msgstr ""
+msgstr "成品位置"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__application_stage__finishing
@@ -1103,51 +1103,51 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__application_stage__finishing
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__application_stage__finishing
 msgid "Finishing"
-msgstr ""
+msgstr "精加工"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__consumption
 msgid "Flexible Consumption"
-msgstr ""
+msgstr "灵活消费"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_follower_ids
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "关注者"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_partner_ids
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "关注者（合作伙伴）"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "字体很棒的图标，例如fa 任务"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__forecasted_issue
 msgid "Forecasted Issue"
-msgstr ""
+msgstr "预测问题"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__geo_point
 #: model:ir.model.fields,help:farm_operation.field_mrp_production__geo_point
 msgid "Format: LON,LAT"
-msgstr ""
+msgstr "格式：经纬度、纬度"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__geo_polygon
 #: model:ir.model.fields,help:farm_operation.field_mrp_production__geo_polygon
 msgid "Format: LON,LAT;LON,LAT..."
-msgstr ""
+msgstr "格式：LON,LAT;LON,LAT..."
 
 #. module: farm_operation
 #: model:ir.ui.menu,name:farm_operation.menu_agri_boms
 msgid "Formulas (BOM)"
-msgstr ""
+msgstr "公式（物料清单）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__fuel_consumed_l
@@ -1155,17 +1155,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__fuel_consumed_l
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__fuel_consumed_l
 msgid "Fuel Consumed (L)"
-msgstr ""
+msgstr "燃油消耗量（升）"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_form
 msgid "GDD Growth Model (US-002-05)"
-msgstr ""
+msgstr "GDD 增长模型 (US-002-05)"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_kanban
 msgid "GDD Progress:"
-msgstr ""
+msgstr "广州开发区进展："
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_agricultural_campaign_mixin__target_gdd
@@ -1174,29 +1174,29 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_campaign_base__target_gdd
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_campaign_mixin__target_gdd
 msgid "GDD required for harvest."
-msgstr ""
+msgstr "收获所需的 GDD。"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__geo_polygon
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__geo_polygon
 msgid "Geo Boundaries (Polygon)"
-msgstr ""
+msgstr "地理边界（多边形）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__geo_point
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__geo_point
 msgid "Geo Location (Point)"
-msgstr ""
+msgstr "地理位置（点）"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_line__sequence
 msgid "Gives the sequence order when displaying."
-msgstr ""
+msgstr "给出显示时的顺序。"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__quality_grade__grade_a
 msgid "Grade A"
-msgstr ""
+msgstr "A级"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__grade_a_qty
@@ -1204,12 +1204,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__grade_a_qty
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__grade_a_qty
 msgid "Grade A Quantity"
-msgstr ""
+msgstr "A级数量"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__quality_grade__grade_b
 msgid "Grade B"
-msgstr ""
+msgstr "B级"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__grade_b_qty
@@ -1217,12 +1217,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__grade_b_qty
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__grade_b_qty
 msgid "Grade B Quantity"
-msgstr ""
+msgstr "B级数量"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__quality_grade__grade_c
 msgid "Grade C"
-msgstr ""
+msgstr "C级"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__grade_c_qty
@@ -1230,13 +1230,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__grade_c_qty
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__grade_c_qty
 msgid "Grade C Quantity"
-msgstr ""
+msgstr "C级数量"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention_mixin.py:0
 msgid "Graded quantities cannot be negative."
-msgstr ""
+msgstr "分级数量不能为负数。"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__application_stage__growing
@@ -1244,7 +1244,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__application_stage__growing
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__application_stage__growing
 msgid "Growing"
-msgstr ""
+msgstr "生长"
 
 #. module: farm_operation
 #. odoo-python
@@ -1258,7 +1258,7 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__agri_loss_reason__handling
 msgid "Handling Damage"
-msgstr ""
+msgstr "处理损坏"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__application_stage__harvest
@@ -1266,30 +1266,30 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__application_stage__harvest
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__application_stage__harvest
 msgid "Harvest"
-msgstr ""
+msgstr "收成"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Harvest Grading"
-msgstr ""
+msgstr "收获分级"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention_mixin.py:0
 msgid "Harvest Output (%s)"
-msgstr ""
+msgstr "收获产量（%s）"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention_mixin.py:0
 msgid "Harvest QC: %s"
-msgstr ""
+msgstr "收获质量控制：%s"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention_mixin.py:0
 msgid "Harvest QC: %s for Grade %s"
-msgstr ""
+msgstr "收获 QC：%s，等级 %s"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__harvesting
@@ -1299,13 +1299,13 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_dispatch_wizard__intervention_type__harvesting
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__harvesting
 msgid "Harvesting"
-msgstr ""
+msgstr "收获"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__has_message
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "有留言"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__id
@@ -1336,27 +1336,27 @@ msgstr "ID"
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__isl_campaign_code
 msgid "ISL Campaign Code"
-msgstr ""
+msgstr "ISL 活动代码"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__farm_location_id
 msgid "ISL Farm Location"
-msgstr ""
+msgstr "ISL 农场位置"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_campaign__isl_campaign_code
 msgid "ISL-specific campaign identifier"
-msgstr ""
+msgstr "ISL 特定的活动标识符"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "图标"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "指示异常活动的图标。"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__product_id
@@ -1368,7 +1368,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__message_needaction
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "如果选中，则有新消息需要您注意。"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__message_has_error
@@ -1376,7 +1376,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__message_has_error
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "如果检查，则某些消息存在传送错误。"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__propagate_cancel
@@ -1407,13 +1407,13 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__simplified_state__progress
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__simplified_state__progress
 msgid "In Progress"
-msgstr ""
+msgstr "进行中"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__industry_type
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__industry_type
 msgid "Industry Type"
-msgstr ""
+msgstr "行业类型"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__date_deadline
@@ -1428,7 +1428,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__input_cost
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__input_cost
 msgid "Input Cost"
-msgstr ""
+msgstr "投入成本"
 
 #. module: farm_operation
 #. odoo-python
@@ -1441,7 +1441,7 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_science_sync_wizard__intervention_id
 msgid "Intervention"
-msgstr ""
+msgstr "干涉"
 
 #. module: farm_operation
 #. odoo-python
@@ -1454,17 +1454,17 @@ msgstr ""
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_pivot_view_inherit_farm
 msgid "Intervention Analysis"
-msgstr ""
+msgstr "干预分析"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_tree_view_inherit_farm
 msgid "Intervention No."
-msgstr ""
+msgstr "干预编号"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_calendar_view_inherit_farm
 msgid "Intervention Schedule"
-msgstr ""
+msgstr "干预时间表"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__intervention_type
@@ -1473,31 +1473,31 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__intervention_type
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__intervention_type
 msgid "Intervention Type"
-msgstr ""
+msgstr "干预类型"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention_mixin.py:0
 msgid "Intervention approved by %s"
-msgstr ""
+msgstr "%s 批准干预"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention_mixin.py:0
 msgid "Intervention rejected."
-msgstr ""
+msgstr "干预被拒绝。"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention_mixin.py:0
 msgid "Intervention submitted for supervisor approval."
-msgstr ""
+msgstr "干预已提交主管批准。"
 
 #. module: farm_operation
 #: model:ir.ui.menu,name:farm_operation.menu_agri_interventions
 #: model:ir.ui.menu,name:farm_operation.menu_farm_operation_intervention
 msgid "Interventions"
-msgstr ""
+msgstr "干预措施"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__irrigation
@@ -1507,39 +1507,39 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_dispatch_wizard__intervention_type__irrigation
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__irrigation
 msgid "Irrigation"
-msgstr ""
+msgstr "灌溉"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__is_delayed
 msgid "Is Delayed"
-msgstr ""
+msgstr "延误了"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_is_follower
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "是追随者"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__is_locked
 msgid "Is Locked"
-msgstr ""
+msgstr "已锁定"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__is_planned
 msgid "Its Operations are Planned"
-msgstr ""
+msgstr "其运营已计划"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__json_popover
 msgid "JSON data for the popover widget"
-msgstr ""
+msgstr "弹出窗口小部件的 JSON 数据"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__k_density
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__k_density
 msgid "K Density (kg/mu)"
-msgstr ""
+msgstr "钾密度（公斤/亩）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__doer_cost
@@ -1547,19 +1547,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__doer_cost
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__doer_cost
 msgid "Labor Cost"
-msgstr ""
+msgstr "人工成本"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention_mixin.py:0
 msgid "Labor: Work started at %s"
-msgstr ""
+msgstr "工时：工作于 %s 开始"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention_mixin.py:0
 msgid "Labor: Work stopped and recorded at %s"
-msgstr ""
+msgstr "工时：工作于 %s 停止并记录"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__land_parcel_id
@@ -1568,12 +1568,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__land_parcel_id
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__land_parcel_id
 msgid "Land Parcel"
-msgstr ""
+msgstr "地块"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__land_parcel_id
 msgid "Land Parcel/Pond"
-msgstr ""
+msgstr "地块/池塘"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__write_uid
@@ -1614,18 +1614,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__gps_lat
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__gps_lat
 msgid "Latitude"
-msgstr ""
+msgstr "纬度"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_task__campaign_id
 #: model:ir.model.fields,help:farm_operation.field_project_task__campaign_id
 msgid "Link this production task to a specific season."
-msgstr ""
+msgstr "将此生产任务链接到特定季节。"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_campaign__farm_location_id
 msgid "Link to standardized farm location model"
-msgstr ""
+msgstr "链接到标准化农场选址模型"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__livestock
@@ -1635,23 +1635,23 @@ msgstr "畜牧"
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__location_src_id
 msgid "Location where the system will look for components."
-msgstr ""
+msgstr "系统将查找组件的位置。"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__location_dest_id
 msgid "Location where the system will stock the finished products."
-msgstr ""
+msgstr "系统将存放成品的位置。"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__gps_lng
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__gps_lng
 msgid "Longitude"
-msgstr ""
+msgstr "经度"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__lot_producing_ids
 msgid "Lot/Serial Number"
-msgstr ""
+msgstr "批号/序列号"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_agricultural_campaign_mixin__base_temperature
@@ -1660,27 +1660,27 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_campaign_base__base_temperature
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_campaign_mixin__base_temperature
 msgid "Lower threshold for crop growth."
-msgstr ""
+msgstr "作物生长门槛较低。"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__reservation_state
 msgid "MO Readiness"
-msgstr ""
+msgstr "军事行动准备就绪"
 
 #. module: farm_operation
 #: model:ir.actions.act_window,name:farm_operation.action_agri_science_sync_wizard
 msgid "Manual Env Sync"
-msgstr ""
+msgstr "手动环境同步"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__produce_delay
 msgid "Manufacturing Lead Time"
-msgstr ""
+msgstr "制造交货时间"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__ready_to_produce
 msgid "Manufacturing Readiness"
-msgstr ""
+msgstr "制造准备"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__reservation_state
@@ -1693,7 +1693,7 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_science_sync_wizard__temp_max
 msgid "Max Temperature"
-msgstr ""
+msgstr "最高温度"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__medical
@@ -1702,91 +1702,91 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__intervention_type__medical
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__medical
 msgid "Medical/Prevention"
-msgstr ""
+msgstr "医疗/预防"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__medicinal_plants
 msgid "Medicinal Plants"
-msgstr ""
+msgstr "药用植物"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_has_error
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "消息投递错误"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_ids
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "消息"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_science_sync_wizard__temp_min
 msgid "Min Temperature"
-msgstr ""
+msgstr "最低温度"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__mixed
 msgid "Mixed Operations"
-msgstr ""
+msgstr "混合操作"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__move_byproduct_ids
 msgid "Move Byproduct"
-msgstr ""
+msgstr "移动副产品"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_project_task
 msgid "Multi-Industry Activity Production"
-msgstr ""
+msgstr "多行业活动制作"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__mushroom
 msgid "Mushroom Cultivation"
-msgstr ""
+msgstr "蘑菇种植"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "我的活动截止日期"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__n_density
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__n_density
 msgid "N Density (kg/mu)"
-msgstr ""
+msgstr "氮密度（公斤/亩）"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__agri_loss_reason__natural
 msgid "Natural Dehydration"
-msgstr ""
+msgstr "自然脱水"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__never_product_template_attribute_value_ids
 msgid "Never attribute values"
-msgstr ""
+msgstr "从不赋予值"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention_mixin.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "下一个活动截止日期"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "下一步活动总结"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "下一个活动类型"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__nitrogen_qty
@@ -1796,57 +1796,57 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__nitrogen_qty
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__nitrogen_qty
 msgid "Nitrogen (N)"
-msgstr ""
+msgstr "氮 (N)"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention_mixin.py:0
 msgid "No GIS boundaries defined for the selected land parcel!"
-msgstr ""
+msgstr "没有为所选地块定义 GIS 边界！"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_form
 msgid "Notes"
-msgstr ""
+msgstr "备注"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_needaction_counter
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "动作数量"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__unbuild_count
 msgid "Number of Unbuilds"
-msgstr ""
+msgstr "未构建数量"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_has_error_counter
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "错误数"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__mrp_production_child_count
 msgid "Number of generated MO"
-msgstr ""
+msgstr "生成MO数量"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__message_needaction_counter
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "需要采取行动的消息数量"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__message_has_error_counter
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "发送错误的消息数"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__mrp_production_source_count
 msgid "Number of source MO"
-msgstr ""
+msgstr "源MO数量"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__out_of_bounds_count
@@ -1854,7 +1854,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_intervention_mixin__out_of_bounds_count
 #: model:ir.model.fields,help:farm_operation.field_mrp_production__out_of_bounds_count
 msgid "Number of telemetry points outside the parcel."
-msgstr ""
+msgstr "地块外部遥测点的数量。"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__out_of_bounds_count
@@ -1862,30 +1862,30 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__out_of_bounds_count
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__out_of_bounds_count
 msgid "OOB Point Count"
-msgstr ""
+msgstr "OOB 点计数"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__allow_operation_dependencies
 msgid "Operation Dependencies"
-msgstr ""
+msgstr "操作依赖"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__picking_type_id
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__picking_type_id
 msgid "Operation Type"
-msgstr ""
+msgstr "操作类型"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__operation_ids
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__allowed_operation_ids
 #: model:ir.ui.menu,name:farm_operation.menu_farm_operation_root
 msgid "Operations"
-msgstr ""
+msgstr "运营"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__operation_count
 msgid "Operations Count"
-msgstr ""
+msgstr "操作次数"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__operator_id_card
@@ -1893,17 +1893,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__operator_id_card
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__operator_id_card
 msgid "Operator ID Card"
-msgstr ""
+msgstr "操作员身份证"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__orchard_horticulture
 msgid "Orchard Horticulture"
-msgstr ""
+msgstr "果园园艺"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__orderpoint_id
 msgid "Orderpoint"
-msgstr ""
+msgstr "订单点"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__carbon_content
@@ -1913,33 +1913,33 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__carbon_content
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__carbon_content
 msgid "Organic Carbon"
-msgstr ""
+msgstr "有机碳"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__is_outdated_bom
 msgid "Outdated BoM"
-msgstr ""
+msgstr "过时的物料清单"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_tree_view_inherit_farm
 msgid "Output/Harvest"
-msgstr ""
+msgstr "输出/收获"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__p_density
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__p_density
 msgid "P Density (kg/mu)"
-msgstr ""
+msgstr "磷密度（公斤/亩）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__bom_id
 msgid "Parent BoM"
-msgstr ""
+msgstr "母公司BoM"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__parent_product_tmpl_id
 msgid "Parent Product Template"
-msgstr ""
+msgstr "父产品模板"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_bom_line_mixin__feeding_ratio
@@ -1947,17 +1947,17 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_line_mixin__feeding_ratio
 #: model:ir.model.fields,help:farm_operation.field_mrp_bom_line__feeding_ratio
 msgid "Percentage of total biomass (Count * Avg Weight) for daily feeding."
-msgstr ""
+msgstr "每日饲喂的总生物量百分比（计数 * 平均重量）。"
 
 #. module: farm_operation
 #: model:ir.ui.menu,name:farm_operation.menu_agri_science_performance
 msgid "Performance Board"
-msgstr ""
+msgstr "绩效委员会"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__agri_loss_reason__pest_damage
 msgid "Pest/Rodent Damage"
-msgstr ""
+msgstr "害虫/啮齿动物损害"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__product_registration_no
@@ -1965,7 +1965,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_intervention_mixin__product_registration_no
 #: model:ir.model.fields,help:farm_operation.field_mrp_production__product_registration_no
 msgid "Pesticide or veterinary product registration number."
-msgstr ""
+msgstr "农药或兽药产品登记号。"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__phosphorus_qty
@@ -1975,29 +1975,29 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__phosphorus_qty
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__phosphorus_qty
 msgid "Phosphorus (P)"
-msgstr ""
+msgstr "磷（P）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__evidence_ids
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__evidence_ids
 msgid "Physical Evidence"
-msgstr ""
+msgstr "物证"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Physical Grounding"
-msgstr ""
+msgstr "物理接地"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__physiology_profile_id
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__physiology_profile_id
 msgid "Physiology Profile"
-msgstr ""
+msgstr "生理学概况"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__picking_ids
 msgid "Picking associated to this manufacturing order"
-msgstr ""
+msgstr "与此制造订单关联的拣货"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__agri_activity_type__planting
@@ -2005,13 +2005,13 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__agri_activity_type__planting
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__agri_activity_type__planting
 msgid "Planting Scheme"
-msgstr ""
+msgstr "种植方案"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__possible_product_template_attribute_value_ids
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__possible_bom_product_template_attribute_value_ids
 msgid "Possible Product Template Attribute Value"
-msgstr ""
+msgstr "可能的产品模板属性值"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__potassium_qty
@@ -2021,7 +2021,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__potassium_qty
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__potassium_qty
 msgid "Potassium (K)"
-msgstr ""
+msgstr "钾 (K)"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__predicted_harvest_date
@@ -2030,12 +2030,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__predicted_harvest_date
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__predicted_harvest_date
 msgid "Predicted Harvest"
-msgstr ""
+msgstr "预计收获"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__priority
 msgid "Priority"
-msgstr ""
+msgstr "优先级"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__procedure_name
@@ -2043,12 +2043,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__procedure_name
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__procedure_name
 msgid "Procedure/Method"
-msgstr ""
+msgstr "程序/方法"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__agri_loss_reason__processing
 msgid "Processing Waste"
-msgstr ""
+msgstr "处理废物"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_id
@@ -2062,50 +2062,50 @@ msgstr "产品"
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__product_registration_no
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__product_registration_no
 msgid "Product Registration No."
-msgstr ""
+msgstr "产品注册号"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_tmpl_id
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__product_tmpl_id
 msgid "Product Template"
-msgstr ""
+msgstr "产品模板"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__product_id
 msgid "Product Variant"
-msgstr ""
+msgstr "产品变型"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__production_capacity
 msgid "Production Capacity"
-msgstr ""
+msgstr "生产能力"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__production_group_id
 msgid "Production Group"
-msgstr ""
+msgstr "生产组"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__production_location_id
 msgid "Production Location"
-msgstr ""
+msgstr "生产地点"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_form
 msgid "Production Season"
-msgstr ""
+msgstr "生产季节"
 
 #. module: farm_operation
 #: model:ir.actions.act_window,name:farm_operation.action_agricultural_campaign
 #: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_tree
 msgid "Production Seasons"
-msgstr ""
+msgstr "生产季节"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__size_value
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__size_value
 msgid "Production Size"
-msgstr ""
+msgstr "生产规模"
 
 #. module: farm_operation
 #. odoo-python
@@ -2115,17 +2115,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__agri_task_id
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__agri_task_id
 msgid "Production Task"
-msgstr ""
+msgstr "生产任务"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__propagate_cancel
 msgid "Propagate cancel and split"
-msgstr ""
+msgstr "传播取消和分裂"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__protected_cultivation
 msgid "Protected Cultivation"
-msgstr ""
+msgstr "保护地栽培"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__agri_activity_type__protection
@@ -2133,7 +2133,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__agri_activity_type__protection
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__agri_activity_type__protection
 msgid "Protection Mix"
-msgstr ""
+msgstr "保护组合"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__pure_n_qty
@@ -2141,7 +2141,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__pure_n_qty
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__pure_n_qty
 msgid "Pure Nitrogen (N) kg"
-msgstr ""
+msgstr "纯氮 (N) kg"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__pure_p_qty
@@ -2149,7 +2149,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__pure_p_qty
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__pure_p_qty
 msgid "Pure Phosphorus (P) kg"
-msgstr ""
+msgstr "纯磷（P）kg"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__pure_k_qty
@@ -2157,61 +2157,61 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__pure_k_qty
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__pure_k_qty
 msgid "Pure Potassium (K) kg"
-msgstr ""
+msgstr "纯钾 (K) kg"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__quality_fingerprint
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__quality_fingerprint
 msgid "Quality Fingerprint"
-msgstr ""
+msgstr "品质指纹"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Quality Fingerprint (Immutable Proof)"
-msgstr ""
+msgstr "质量指纹（不可变证明）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_stock_move__quality_grade
 msgid "Quality Grade"
-msgstr ""
+msgstr "质量等级"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__product_qty
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__product_qty
 msgid "Quantity"
-msgstr ""
+msgstr "数量"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__qty_produced
 msgid "Quantity Produced"
-msgstr ""
+msgstr "生产数量"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__qty_producing
 msgid "Quantity Producing"
-msgstr ""
+msgstr "数量生产"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_qty
 msgid "Quantity To Produce"
-msgstr ""
+msgstr "生产数量"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__production_capacity
 msgid "Quantity that can be produced with the current stock of components"
-msgstr ""
+msgstr "当前库存库存可生产的数量"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__rue_actual
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__rue_actual
 msgid "Radiation Use Efficiency (RUE)"
-msgstr ""
+msgstr "辐射利用效率（RUE）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__rating_ids
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__rating_ids
 msgid "Ratings"
-msgstr ""
+msgstr "评级"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__simplified_state__ready
@@ -2220,23 +2220,23 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__simplified_state__ready
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__simplified_state__ready
 msgid "Ready"
-msgstr ""
+msgstr "准备好"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__duration
 msgid "Real Duration"
-msgstr ""
+msgstr "实际持续时间"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Recipe/Formula"
-msgstr ""
+msgstr "配方/配方"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__name
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__code
 msgid "Reference"
-msgstr ""
+msgstr "参考"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__origin
@@ -2247,12 +2247,12 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__reference_ids
 msgid "References"
-msgstr ""
+msgstr "参考"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Reject"
-msgstr ""
+msgstr "拒绝"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__approval_state__rejected
@@ -2261,7 +2261,7 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__approval_state__rejected
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__approval_state__rejected
 msgid "Rejected"
-msgstr ""
+msgstr "已拒绝"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__credit_score
@@ -2269,7 +2269,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__credit_score
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__credit_score
 msgid "Reputation Credit Score"
-msgstr ""
+msgstr "声誉信用评分"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__operator_id_card
@@ -2277,12 +2277,12 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_intervention_mixin__operator_id_card
 #: model:ir.model.fields,help:farm_operation.field_mrp_production__operator_id_card
 msgid "Required for pesticide/veterinary real-name registration."
-msgstr ""
+msgstr "农药/兽药实名登记所需。"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.view_agri_intervention_form_science_inherit
 msgid "Resource Efficiency"
-msgstr ""
+msgstr "资源效率"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__resource_intensity_score
@@ -2290,54 +2290,54 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__resource_intensity_score
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__resource_intensity_score
 msgid "Resource Intensity"
-msgstr ""
+msgstr "资源强度"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__user_id
 msgid "Responsible"
-msgstr ""
+msgstr "负责人"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "负责用户"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_has_sms_error
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "短信投递错误"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__is_safe_to_harvest
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__is_safe_to_harvest
 msgid "Safe to Harvest"
-msgstr ""
+msgstr "安全收获"
 
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "销售订单"
 
 #. module: farm_operation
 #: model:ir.actions.act_window,name:farm_operation.action_agri_science_performance
 msgid "Scientific Performance"
-msgstr ""
+msgstr "科学表现"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__scrap_count
 msgid "Scrap Move"
-msgstr ""
+msgstr "废品移动"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__scrap_ids
 msgid "Scraps"
-msgstr ""
+msgstr "废料"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_pivot
 msgid "Season Analytics"
-msgstr ""
+msgstr "季节分析"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__name
@@ -2346,7 +2346,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__name
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__name
 msgid "Season Name"
-msgstr ""
+msgstr "季节名称"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__application_stage__seedling
@@ -2354,13 +2354,13 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__application_stage__seedling
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__application_stage__seedling
 msgid "Seedling/Nursery"
-msgstr ""
+msgstr "苗/苗圃"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__location_ids
 #: model_terms:ir.ui.view,arch_db:farm_operation.view_farm_dispatch_wizard_form
 msgid "Selected Parcels"
-msgstr ""
+msgstr "精选包裹"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__sequence
@@ -2371,42 +2371,42 @@ msgstr "序号"
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__show_allocation
 msgid "Show Allocation"
-msgstr ""
+msgstr "显示分配"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__show_copy_operations_button
 msgid "Show Copy Operations Button"
-msgstr ""
+msgstr "显示复制操作按钮"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__show_final_lots
 msgid "Show Final Lots"
-msgstr ""
+msgstr "显示最终拍品"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__show_generate_bom
 msgid "Show Generate BOM"
-msgstr ""
+msgstr "显示生成 BOM"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__show_lock
 msgid "Show Lock/unlock buttons"
-msgstr ""
+msgstr "显示锁定/解锁按钮"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__show_produce
 msgid "Show Produce"
-msgstr ""
+msgstr "展示产品"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__show_produce_all
 msgid "Show Produce All"
-msgstr ""
+msgstr "显示全部生产"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__show_set_bom_button
 msgid "Show Set Bom Button"
-msgstr ""
+msgstr "显示设置物料清单按钮"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__simplified_state
@@ -2414,12 +2414,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__simplified_state
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__simplified_state
 msgid "Simplified State"
-msgstr ""
+msgstr "简化状态"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Soil Nutrient Balance"
-msgstr ""
+msgstr "土壤养分平衡"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__tillage
@@ -2429,18 +2429,18 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_dispatch_wizard__intervention_type__tillage
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__tillage
 msgid "Soil Preparation"
-msgstr ""
+msgstr "整地"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__origin
 msgid "Source"
-msgstr ""
+msgstr "来源"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__sale_order_id
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__sale_order_id
 msgid "Source Sale Order"
-msgstr ""
+msgstr "来源销售订单"
 
 #. module: farm_operation
 #: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__sowing
@@ -2450,12 +2450,12 @@ msgstr ""
 #: model:ir.model.fields.selection,name:farm_operation.selection__farm_dispatch_wizard__intervention_type__sowing
 #: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__sowing
 msgid "Sowing/Planting"
-msgstr ""
+msgstr "播种/种植"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Spatial & Evidence"
-msgstr ""
+msgstr "空间与证据"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__spatial_compliance_rate
@@ -2463,18 +2463,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__spatial_compliance_rate
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__spatial_compliance_rate
 msgid "Spatial Compliance (%)"
-msgstr ""
+msgstr "空间顺应性 (%)"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__spatial_grid_id
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__spatial_grid_id
 msgid "Spatial Grid ID"
-msgstr ""
+msgstr "空间网格ID"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__date_start
 msgid "Start"
-msgstr ""
+msgstr "开始"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__date_start
@@ -2483,12 +2483,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__date_start
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__date_start
 msgid "Start Date"
-msgstr ""
+msgstr "开始日期"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Start Work"
-msgstr ""
+msgstr "动手"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__state
@@ -2507,50 +2507,50 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model,name:farm_operation.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "库存变动"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__move_dest_ids
 msgid "Stock Movements of Produced Goods"
-msgstr ""
+msgstr "制成品库存变动"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Stop Work"
-msgstr ""
+msgstr "停工"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__biological_stress_index
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__biological_stress_index
 msgid "Stress Index (0-100)"
-msgstr ""
+msgstr "压力指数（0-100）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__agent_instruction_json
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__agent_instruction_json
 msgid "Structured Command (JSON)"
-msgstr ""
+msgstr "结构化命令 (JSON)"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__child_bom_id
 msgid "Sub BoM"
-msgstr ""
+msgstr "子物料清单"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Submit for Approval"
-msgstr ""
+msgstr "提交审批"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__support_id
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__support_id
 msgid "Support Object"
-msgstr ""
+msgstr "支持对象"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
 msgid "Sustainability & Value"
-msgstr ""
+msgstr "可持续性与价值"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__is_eco_blocked
@@ -2558,18 +2558,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__is_eco_blocked
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__is_eco_blocked
 msgid "Sustainability Block"
-msgstr ""
+msgstr "可持续发展块"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__impact_credits
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__impact_credits
 msgid "Sustainability Credits"
-msgstr ""
+msgstr "可持续发展学分"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.view_agri_science_sync_wizard_form
 msgid "Sync Data"
-msgstr ""
+msgstr "同步数据"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__target_gdd
@@ -2578,12 +2578,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__target_gdd
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__target_gdd
 msgid "Target GDD"
-msgstr ""
+msgstr "目标开发面积"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__product_id
 msgid "Target Product (Crop)"
-msgstr ""
+msgstr "目标产品（作物）"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__show_allocation
@@ -2595,22 +2595,22 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__show_produce_all
 msgid "Technical field to check if produce all button can be shown"
-msgstr ""
+msgstr "检查生产全部按钮是否可以显示的技术字段"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__show_produce
 msgid "Technical field to check if produce button can be shown"
-msgstr ""
+msgstr "检查生产按钮是否可以显示的技术领域"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__reserve_visible
 msgid "Technical field to check when we can reserve quantities"
-msgstr ""
+msgstr "技术领域检查我们何时可以预订数量"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__unreserve_visible
 msgid "Technical field to check when we can unreserve"
-msgstr ""
+msgstr "技术领域检查我们何时可以取消预订"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__show_copy_operations_button
@@ -2622,18 +2622,18 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__is_outdated_bom
 msgid "The BoM has been updated since creation of the MO"
-msgstr ""
+msgstr "自 MO 创建以来，BoM 已更新"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_dispatch_wizard__product_id
 msgid "The crop or output product."
-msgstr ""
+msgstr "作物或产出产品。"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_task__support_id
 #: model:ir.model.fields,help:farm_operation.field_project_task__support_id
 msgid "The land parcel, animal or group this task is performed on."
-msgstr ""
+msgstr "执行此任务的地块、动物或群体。"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_line__operation_id
@@ -2648,7 +2648,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_intervention_mixin__campaign_id
 #: model:ir.model.fields,help:farm_operation.field_mrp_production__campaign_id
 msgid "The production season this intervention belongs to."
-msgstr ""
+msgstr "此次干预所属的生产季节。"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__agri_task_id
@@ -2656,7 +2656,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_intervention_mixin__agri_task_id
 #: model:ir.model.fields,help:farm_operation.field_mrp_production__agri_task_id
 msgid "The specific production task this intervention belongs to."
-msgstr ""
+msgstr "此次干预所属的具体生产任务。"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__product_qty
@@ -2669,7 +2669,7 @@ msgstr ""
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.view_mrp_production_filter_inherit_farm
 msgid "To Do"
-msgstr ""
+msgstr "待办事项"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__tool_cost
@@ -2677,7 +2677,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__tool_cost
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__tool_cost
 msgid "Tool/Machinery Cost"
-msgstr ""
+msgstr "工具/机械成本"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__tool_ids
@@ -2685,12 +2685,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__tool_ids
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__tool_ids
 msgid "Tools/Machinery"
-msgstr ""
+msgstr "工具/机械"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__total_area
 msgid "Total Area (mu)"
-msgstr ""
+msgstr "总面积（亩）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__total_agri_cost
@@ -2698,69 +2698,69 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__total_agri_cost
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__total_agri_cost
 msgid "Total Intervention Cost"
-msgstr ""
+msgstr "总干预成本"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__total_n
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__total_n
 msgid "Total Nitrogen (kg)"
-msgstr ""
+msgstr "总氮（千克）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__total_p
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__total_p
 msgid "Total Phosphorus (kg)"
-msgstr ""
+msgstr "总磷（千克）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_farm_task__total_k
 #: model:ir.model.fields,field_description:farm_operation.field_project_task__total_k
 msgid "Total Potassium (kg)"
-msgstr ""
+msgstr "总钾（公斤）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_uom_qty
 msgid "Total Quantity"
-msgstr ""
+msgstr "总量"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__duration_expected
 msgid "Total expected duration (in minutes)"
-msgstr ""
+msgstr "预计总持续时间（以分钟为单位）"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__duration
 msgid "Total real duration (in minutes)"
-msgstr ""
+msgstr "总实际持续时间（以分钟为单位）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_tracking
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__tracking
 msgid "Tracking"
-msgstr ""
+msgstr "追踪"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_task__industry_type
 #: model:ir.model.fields,help:farm_operation.field_project_task__industry_type
 msgid "Type of agricultural industry this task belongs to"
-msgstr ""
+msgstr "该任务所属的农业产业类型"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "记录的异常活动的类型。"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__unbuild_ids
 msgid "Unbuilds"
-msgstr ""
+msgstr "取消构建"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_uom_id
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__product_uom_id
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__product_uom_id
 msgid "Unit"
-msgstr ""
+msgstr "单元"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__product_uom_id
@@ -2786,13 +2786,13 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__valid_product_template_attribute_line_ids
 msgid "Valid Product Attribute Lines"
-msgstr ""
+msgstr "有效的产品属性行"
 
 #. module: farm_operation
 #. odoo-python
 #: code:addons/farm_operation/models/agri_intervention_mixin.py:0
 msgid "WEATHER BLOCK: High Wind Speed (%s km/h)"
-msgstr ""
+msgstr "天气块：高风速 (%s km/h)"
 
 #. module: farm_operation
 #. odoo-python
@@ -2805,7 +2805,7 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__warehouse_id
 msgid "Warehouse"
-msgstr ""
+msgstr "仓库"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__water_consumed_m3
@@ -2813,7 +2813,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__water_consumed_m3
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__water_consumed_m3
 msgid "Water Consumed (m3)"
-msgstr ""
+msgstr "耗水量（立方米）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__water_footprint
@@ -2823,31 +2823,31 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__water_footprint
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__water_footprint
 msgid "Water Footprint (L)"
-msgstr ""
+msgstr "水足迹（L）"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__wue_actual
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__wue_actual
 msgid "Water Use Efficiency (WUE)"
-msgstr ""
+msgstr "水分利用效率 (WUE)"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__weather_risk_level
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__weather_risk_level
 msgid "Weather Risk"
-msgstr ""
+msgstr "天气风险"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__website_message_ids
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "网站消息"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__website_message_ids
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "网站沟通历史"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__picking_type_id
@@ -2862,7 +2862,7 @@ msgstr ""
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__workorder_ids
 msgid "Work Orders"
-msgstr ""
+msgstr "工单"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__work_start_datetime
@@ -2870,17 +2870,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__work_start_datetime
 #: model:ir.model.fields,field_description:farm_operation.field_mrp_production__work_start_datetime
 msgid "Work Start"
-msgstr ""
+msgstr "工作开始"
 
 #. module: farm_operation
 #: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__workcenter_id
 msgid "Workcenter"
-msgstr ""
+msgstr "工作中心"
 
 #. module: farm_operation
 #: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_form
 msgid "e.g. 2026 Spring"
-msgstr ""
+msgstr "例如2026年春季"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__procedure_name
@@ -2888,7 +2888,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_farm_agricultural_intervention_mixin__procedure_name
 #: model:ir.model.fields,help:farm_operation.field_mrp_production__procedure_name
 msgid "e.g. Mechanical sowing, manual weeding"
-msgstr ""
+msgstr "例如机械播种、人工除草"
 
 #. module: farm_operation
 #: model:ir.model.fields,help:farm_operation.field_agri_intervention__nitrogen_qty
@@ -2898,4 +2898,4 @@ msgstr ""
 #: model:ir.model.fields,help:farm_operation.field_mrp_bom_line__nitrogen_qty
 #: model:ir.model.fields,help:farm_operation.field_mrp_production__nitrogen_qty
 msgid "kg per unit."
-msgstr ""
+msgstr "每单位公斤。"

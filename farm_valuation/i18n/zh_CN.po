@@ -20,20 +20,20 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_valuation/models/biological_asset_fair_valuation.py:0
 msgid "Fair Valuation"
-msgstr ""
+msgstr "公平估值"
 
 #. module: farm_valuation
 #. odoo-python
 #: code:addons/farm_valuation/models/biological_asset_fair_valuation.py:0
 msgid "Fair valuation process initiated for selected assets"
-msgstr ""
+msgstr "为选定的资产启动公平估值流程"
 
 #. module: farm_valuation
 #. odoo-python
 #: code:addons/farm_valuation/models/biological_asset_fair_valuation.py:0
 #: code:addons/farm_valuation/models/market_price.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_valuation
 #. odoo-python
