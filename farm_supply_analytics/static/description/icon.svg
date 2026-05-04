@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
-    
-    <!-- Flat Silhouette: Supply/Inventory (Box) -->
-    <circle cx="128" cy="128" r="90" fill="#C9382B"/>
-    <!-- Minimalist Box Outline in White -->
-    <path d="M80,80 L176,80 L176,176 L80,176 Z" fill="none" stroke="white" stroke-width="12" stroke-linejoin="round"/>
-    <path d="M80,110 L176,110" stroke="white" stroke-width="12" stroke-linecap="round"/>
-    <path d="M128,110 L128,176" stroke="white" stroke-width="12" stroke-linecap="round"/>
-    <!-- Checkmark / Delivery Success -->
-    <path d="M110,135 L120,145 L145,120" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-
+    <path d="M40,160 L180,160 L200,100 L230,100 L230,170 C230,180 220,190 210,190 L60,190 C50,190 40,180 40,170 Z" fill="#C9382B"/>
+    <circle cx="80" cy="190" r="20" fill="#FFF9F2" stroke="#C9382B" stroke-width="4"/>
+    <circle cx="180" cy="190" r="20" fill="#FFF9F2" stroke="#C9382B" stroke-width="4"/>
+    <rect x="50" y="80" width="110" height="70" rx="5" fill="#C9382B" opacity="0.4"/>
 </svg>

@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
-    
-        <!-- Flat Silhouette: Livestock/Pig -->
-        <circle cx="128" cy="128" r="90" fill="#C9382B"/>
-        <path d="M80,100 C60,60 100,20 128,40 C156,20 196,60 176,100" fill="none" stroke="white" stroke-width="12" stroke-linecap="round"/>
-        <circle cx="128" cy="140" r="45" fill="white"/>
-        <circle cx="108" cy="135" r="6" fill="#C9382B"/>
-        <circle cx="148" cy="135" r="6" fill="#C9382B"/>
-        <!-- Tag -->
-        <rect x="180" y="60" width="30" height="20" rx="4" fill="#8D6E63" transform="rotate(15 180 60)"/>
-    
+    <path d="M80,60 C120,120 136,136 176,196" stroke="#C9382B" stroke-width="12" fill="none" stroke-linecap="round"/><path d="M176,60 C136,120 120,136 80,196" stroke="#C9382B" stroke-width="12" fill="none" stroke-linecap="round"/><circle cx="80" cy="60" r="15" fill="#C9382B"/><circle cx="176" cy="60" r="15" fill="#C9382B"/><circle cx="80" cy="196" r="15" fill="#C9382B"/><circle cx="176" cy="196" r="15" fill="#C9382B"/>
 </svg>

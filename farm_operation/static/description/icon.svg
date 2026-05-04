@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
-    
-        <!-- Flat Silhouette: People/Collaboration -->
-        <circle cx="128" cy="128" r="90" fill="#C9382B"/>
-        <circle cx="128" cy="80" r="25" fill="white"/>
-        <path d="M70,180 C70,140 186,140 186,180" fill="white"/>
-    
+    <path d="M128,40 L60,80 L128,120 L196,80 Z M60,100 L128,140 L196,100 L196,180 L128,220 L60,180 Z" fill="#C9382B"/>
+    <path d="M128,120 L128,220 M60,80 L60,180 M196,80 L196,180" stroke="#FFF9F2" stroke-width="4" fill="none"/>
 </svg>

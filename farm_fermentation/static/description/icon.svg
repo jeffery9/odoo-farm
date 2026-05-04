@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
-    
-        <!-- Flat Silhouette: Gear -->
-        <circle cx="128" cy="128" r="90" fill="#C9382B"/>
-        <circle cx="128" cy="128" r="70" fill="none" stroke="white" stroke-width="12" stroke-dasharray="25,12"/>
-        <circle cx="128" cy="128" r="25" fill="white"/>
-        <path d="M128,70 L128,186 M70,128 L186,128" stroke="white" stroke-width="8" stroke-linecap="round"/>
-    
+    <path d="M110,60 L146,60 L146,100 L180,180 L180,210 C180,220 170,230 156,230 L100,230 C86,230 76,220 76,210 L76,180 L110,100 Z" fill="#C9382B" opacity="0.5"/><path d="M76,160 L180,160 L180,210 C180,220 170,230 156,230 L100,230 C86,230 76,220 76,210 Z" fill="#C9382B"/><circle cx="128" cy="120" r="8" fill="#C9382B"/><circle cx="106" cy="140" r="5" fill="#C9382B"/><circle cx="146" cy="130" r="6" fill="#C9382B"/>
 </svg>

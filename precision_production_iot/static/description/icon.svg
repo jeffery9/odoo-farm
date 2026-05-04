@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
-    
-        <!-- Target Ring & Red Leaf -->
-        <circle cx="128" cy="128" r="80" stroke="#8D6E63" stroke-width="10" fill="none" stroke-dasharray="20,10"/>
-        <line x1="128" y1="20" x2="128" y2="50" stroke="#C9382B" stroke-width="8" stroke-linecap="round"/>
-        <line x1="128" y1="206" x2="128" y2="236" stroke="#C9382B" stroke-width="8" stroke-linecap="round"/>
-        <line x1="20" y1="128" x2="50" y2="128" stroke="#C9382B" stroke-width="8" stroke-linecap="round"/>
-        <line x1="206" y1="128" x2="236" y2="128" stroke="#C9382B" stroke-width="8" stroke-linecap="round"/>
-        <path d="M128,155 C100,155 80,130 80,110 C80,90 100,80 128,80 C156,80 176,90 176,110 C176,130 156,155 128,155 Z" fill="#C9382B"/>
-        <circle cx="128" cy="110" r="10" fill="white"/>
-    
+    <rect x="60" y="60" width="136" height="136" rx="20" fill="none" stroke="#C9382B" stroke-width="12"/>
+    <rect x="90" y="90" width="76" height="76" rx="10" fill="#C9382B"/>
+    <path d="M128,40 L128,60 M128,196 L128,216 M40,128 L60,128 M196,128 L216,128" stroke="#C9382B" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="200" cy="56" r="10" fill="#C9382B"/>
+    <path d="M180,76 L200,56" stroke="#C9382B" stroke-width="4" opacity="0.4"/>
 </svg>
