@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 
 class StakeholderEngagement(models.Model):
     """
-    US-52-04: 利益相关者参与度追踪
+    US-082-04: 利益相关者参与度追踪
     Stakeholder Engagement tracking for ESG reporting
     """
     _name = 'farm.esg.stakeholder.engagement'

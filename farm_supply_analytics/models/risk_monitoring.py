@@ -89,7 +89,7 @@ class FarmSupplyRiskMonitor(models.Model):
         })
 
     def action_trigger_alert(self):
-        """US-54-03: Real-time Risk Alerting"""
+        """US-084-03: Real-time Risk Alerting"""
         self.ensure_one()
         for node in self.affected_node_ids:
             node.message_post(body=_("RISK ALERT: '%s' impact detected on this node. Risk level: %s, Score: %.2f") % (
@@ -125,7 +125,7 @@ class FarmSupplyRiskMonitor(models.Model):
 
 class SupplyChainRiskDashboard(models.Model):
     """
-    Supply Chain Risk Dashboard [US-54-03]
+    Supply Chain Risk Dashboard [US-084-03]
     """
     _name = 'supply.chain.risk.dashboard'
     _description = 'Supply Chain Risk Dashboard'

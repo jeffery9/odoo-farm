@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class InternalCredit(models.Model):
     """
-    内部信用额度管理 [US-19-07]
+    内部信用额度管理 [US-042-07]
     """
     _name = 'internal.credit'
     _description = 'Internal Credit'

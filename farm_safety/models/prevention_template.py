@@ -30,7 +30,7 @@ class FarmLotQuarantine(models.Model):
     quarantine_reason = fields.Text("Quarantine Reason")
     quarantine_start_date = fields.Date("Quarantine Start")
     
-    # 休药期管理 [US-11-03]
+    # 休药期管理 [US-031-03]
     withdrawal_end_datetime = fields.Datetime("Withdrawal End", tracking=True)
     withdrawal_status = fields.Selection([
         ('safe', 'Safe'),
@@ -59,7 +59,7 @@ class FarmLotQuarantine(models.Model):
                 lot.withdrawal_remaining_days = 0
 
     def action_quarantine(self, reason, is_epidemic=False):
-        """ 隔离资产并自动生成缓冲区围栏 [US-23-05] """
+        """ 隔离资产并自动生成缓冲区围栏 [US-053-05] """
         self.write({
             'is_quarantined': True,
             'quarantine_reason': reason,
@@ -67,7 +67,7 @@ class FarmLotQuarantine(models.Model):
         })
         self.message_post(body=_("BIO-SAFETY ALERT: Asset put into quarantine. Reason: %s") % reason)
         
-        # 如果是疫情，自动在地块周围生成电子围栏 [US-23-05]
+        # 如果是疫情，自动在地块周围生成电子围栏 [US-053-05]
         if is_epidemic:
             # 获取资产当前地块坐标
             location = self.env['stock.quant'].search([('lot_id', '=', self.id)], limit=1).location_id
@@ -93,7 +93,7 @@ class StockPickingQuarantine(models.Model):
     _inherit = 'stock.picking'
 
     def button_validate(self):
-        """ 隔离拦截与休药期强制拦截逻辑 [US-11-02, US-11-03] """
+        """ 隔离拦截与休药期强制拦截逻辑 [US-031-02, US-031-03] """
         for picking in self:
             for move in picking.move_ids:
                 for lot in move.lot_ids:

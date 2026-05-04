@@ -7,12 +7,12 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-# ISL Model Redirection Mechanism (US-54-11)
+# ISL Model Redirection Mechanism (US-084-11)
 
 class AgriISLModelRedirector(models.AbstractModel):
     """
     ISL model redirection mechanism to automatically redirect from base models to ISL models
-    Implements US-54-11: ISL model redirection mechanism
+    Implements US-084-11: ISL model redirection mechanism
     """
     _name = 'agri.isl.model.redirector'
     _description = 'Agri ISL Model Redirection Utility'
@@ -154,12 +154,12 @@ class AgriISLModelRedirector(models.AbstractModel):
         return base_record
 
 
-# Industry-Specific Extension Mechanism (US-54-12)
+# Industry-Specific Extension Mechanism (US-084-12)
 
 class AgriISLIndustryExtension(models.Model):
     """
     Model for managing industry-specific extensions
-    Implements US-54-12: Industry-specific extension mechanism
+    Implements US-084-12: Industry-specific extension mechanism
     """
     _name = 'agri.isl.extension'
     _description = 'Agri ISL Extension'

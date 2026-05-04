@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 class AgriMissionOrchestrator(models.Model):
     """
     Level 4: Mission Orchestrator (Autonomous Coordination).
-    Orchestrates complex A2A workflows including bargaining, execution, and clearing. [US-62-2026]
+    Orchestrates complex A2A workflows including bargaining, execution, and clearing. [US-092-2026]
     """
     _name = 'agri.mission.orchestrator'
     _description = 'Agricultural Mission Orchestrator'

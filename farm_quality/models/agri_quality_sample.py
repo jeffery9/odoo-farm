@@ -21,7 +21,7 @@ class AgriQualitySample(models.Model):
         ('disposed', 'Disposed')
     ], default='active', tracking=True)
 
-    # 盲样相关字段 [US-15-06]
+    # 盲样相关字段 [US-038-06]
     blind_code = fields.Char("Blind Sample Code", copy=False, help="Anonymous reference for blind testing")
     is_blind_test = fields.Boolean("Blind Test", default=False, help="When checked, hides source details from testers")
     blind_tester_id = fields.Many2one('res.users', string="Blind Tester", help="User who should only see blind code, not source details")
@@ -42,7 +42,7 @@ class AgriQualitySample(models.Model):
         return super().create(vals_list)
 
     def get_blind_sample_info(self):
-        """ 获取盲样测试信息，不暴露实际来源 [US-15-06] """
+        """ 获取盲样测试信息，不暴露实际来源 [US-038-06] """
         self.ensure_one()
         if self.is_blind_test:
             return {

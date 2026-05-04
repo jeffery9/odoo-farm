@@ -14,7 +14,7 @@ class FarmSaleOrder(models.Model):
     is_preorder = fields.Boolean("Pre-order Reservation", help="Check to lock lots before confirmation.")
     reservation_expiry = fields.Datetime("Reservation Expiry")
 
-    # 跨境合规 [US-17-06]
+    # 跨境合规 [US-040-06]
     export_country_id = fields.Many2one('res.country', string="Export Destination")
     is_export_compliant = fields.Boolean("Export Compliant", compute='_compute_export_compliance', store=True)
 
@@ -34,7 +34,7 @@ class FarmSaleOrder(models.Model):
                 from odoo.exceptions import UserError
                 raise UserError(_("EXPORT BLOCK: Order contains products not compliant with %s regulations.") % order.export_country_id.name)
             
-            # US-32-03: Channel Protection Whitelist check
+            # US-062-03: Channel Protection Whitelist check
             for line in order.order_line:
                 if line.lot_id and line.lot_id.is_premium_brand:
                     if order.partner_id not in line.lot_id.allowed_partner_ids:
@@ -96,11 +96,11 @@ class FarmLotMarketing(models.Model):
 
     traceability_url = fields.Char("Traceability URL", compute='_compute_traceability_url')
     
-    # US-32-03: Channel Protection
+    # US-062-03: Channel Protection
     is_premium_brand = fields.Boolean("Premium Brand Lot", default=False)
     allowed_partner_ids = fields.Many2many('res.partner', string="Allowed Premium Channels")
 
-    # US-32-04: Organic Integrity Scoring
+    # US-062-04: Organic Integrity Scoring
     # Formula: Integrity = Geofence Rate * 0.4 + Input Whitelist Rate * 0.4 + QC Pass Rate * 0.2
     integrity_score = fields.Float("Organic Integrity Score", compute='_compute_integrity_score', store=True)
 
@@ -124,7 +124,7 @@ class FarmLotMarketing(models.Model):
                     user_id=self.env.user.id # Should be quality manager
                 )
 
-    # Marketing Content [US-08-01]
+    # Marketing Content [US-008-01]
     story_title = fields.Char("Growth Story Title")
     story_content = fields.Html("Growth Story Content")
     marketing_image_ids = fields.Many2many('ir.attachment', relation='stock_lot_marketing_image_rel', column1='lot_id', column2='attachment_id', string="Marketing Photos")
@@ -133,7 +133,7 @@ class FarmLotMarketing(models.Model):
     avg_temp = fields.Float("Average Growth Temperature (℃)")
     water_purity = fields.Char("Water Purity Grade")
 
-    # Expiry & Promotion [US-14-14]
+    # Expiry & Promotion [US-037-14]
     is_near_expiry = fields.Boolean('Near Expiry', compute='_compute_is_near_expiry')
     promotion_link_id = fields.Many2one('loyalty.program', string="Promotion Program", 
                                        help="Link to a promotion for clearing near-expiry stock")
@@ -149,7 +149,7 @@ class FarmLotMarketing(models.Model):
 
     def get_full_traceability_data(self):
         """
-        核心溯源算法：聚合该批次从种子到餐桌的全生命周期数据 [US-15-03, US-08-01]
+        核心溯源算法：聚合该批次从种子到餐桌的全生命周期数据 [US-038-03, US-008-01]
         """
         self.ensure_one()
         

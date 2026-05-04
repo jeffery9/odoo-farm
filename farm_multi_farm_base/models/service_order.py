@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class ServiceOrder(models.Model):
     """
-    服务订单 [US-19-13]
+    服务订单 [US-042-13]
     """
     _name = 'service.order'
     _description = 'Service Order'

@@ -5,8 +5,8 @@
     'summary': 'Quality-based Pricing for Agricultural Procurement',
     'description': """
         Supply Quality module for Odoo 19 Farm Management System.
-        - Quality-based Procurement Pricing [US-09-11]
-        - Acquisition Pricing with Multiple Quality Metrics [US-09-19]
+        - Quality-based Procurement Pricing [US-009-11]
+        - Acquisition Pricing with Multiple Quality Metrics [US-009-19]
         - Quality grading and adjustment algorithms
     """,
     'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',

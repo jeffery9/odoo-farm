@@ -5,10 +5,10 @@
     'summary': 'Multi-Entity Financial Management Module',
     'description': """
         Financial management module for Multi-Entity Collaboration System.
-        - Member shares and dividend management [US-19-06]
-        - Internal credit and lending management [US-19-07]
-        - Dividend distribution and tracking [US-19-06]
-        - Share transaction recording [US-19-06]
+        - Member shares and dividend management [US-042-06]
+        - Internal credit and lending management [US-042-07]
+        - Dividend distribution and tracking [US-042-06]
+        - Share transaction recording [US-042-06]
     """,
     'author': 'Jeffery',
     'depends': [

@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class ResPartner(models.Model):
     """
-    扩展 res.partner 以支持内部信用余额 [US-48-04]
+    扩展 res.partner 以支持内部信用余额 [US-078-04]
     """
     _inherit = 'res.partner'
 

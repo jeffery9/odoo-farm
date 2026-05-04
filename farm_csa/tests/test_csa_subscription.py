@@ -15,7 +15,7 @@ class TestCSASubscription(TransactionCase):
         })
 
     def test_01_delivery_generation(self):
-        """ 测试订阅周期性配送单生成逻辑 [US-08-02] """
+        """ 测试订阅周期性配送单生成逻辑 [US-008-02] """
         sub = self.Subscription.create({
             'name': 'SUB-001',
             'partner_id': self.Partner.id,

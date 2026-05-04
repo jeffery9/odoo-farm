@@ -7,7 +7,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-# Abstract Base Models for ISL Architecture (US-54-01 through US-54-10)
+# Abstract Base Models for ISL Architecture (US-084-01 through US-084-10)
 
 class FarmManufacturingMixin(models.AbstractModel):
     """

@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriSustainabilityMetric(models.Model):
     """
-    Agri Domain Level: Sustainability Metric. [US-101-01, US-104-2026]
+    Agri Domain Level: Sustainability Metric. [US-101-01, US-014-2026]
     Universal sustainability standards for the Agri domain.
     Refactored from farm.sustainability.metric with 100% logic and English i18n.
     """

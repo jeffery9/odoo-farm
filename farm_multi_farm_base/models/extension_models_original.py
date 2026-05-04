@@ -3,14 +3,14 @@ from odoo import models, fields, _
 
 class CooperativeMemberExtension(models.Model):
     """
-    扩展合作社会员模型以关联新的功能 [US-19-06 through US-19-22]
+    扩展合作社会员模型以关联新的功能 [US-042-06 through US-042-22]
     """
     _inherit = 'cooperative.member'
 
-    # US-19-06 fields - already in base model
-    # US-19-07 fields - already in base model
-    # US-19-14 fields - already in base model
-    # US-19-15 fields - already in base model
+    # US-042-06 fields - already in base model
+    # US-042-07 fields - already in base model
+    # US-042-14 fields - already in base model
+    # US-042-15 fields - already in base model
 
     # Add One2many relationships for new models
     share_transaction_ids = fields.One2many('share.transaction', 'member_id', string='Share Transactions')
@@ -31,7 +31,7 @@ class CooperativeMemberExtension(models.Model):
 
 class InternalSettlementExtension(models.Model):
     """
-    扩展内部结算模型以支持新的功能 [US-19-10, US-19-20, US-19-22]
+    扩展内部结算模型以支持新的功能 [US-042-10, US-042-20, US-042-22]
     """
     _inherit = 'internal.settlement'
 
@@ -48,7 +48,7 @@ class InternalSettlementExtension(models.Model):
         ('netting_settlement', 'Netting Settlement'),
     ])
 
-    # US-19-10 and US-19-20 related fields
+    # US-042-10 and US-042-20 related fields
     joint_procurement_id = fields.Many2one('joint.procurement', string='Joint Procurement')
     joint_po_member_id = fields.Many2one('joint.procurement.po.member', string='Joint PO Member')
 
@@ -61,7 +61,7 @@ class InternalSettlementExtension(models.Model):
 
 class CooperativeEntityExtension(models.Model):
     """
-    扩展合作社实体模型以支持新功能 [US-19-06 through US-19-22]
+    扩展合作社实体模型以支持新功能 [US-042-06 through US-042-22]
     """
     _inherit = 'cooperative.entity'
 
@@ -94,7 +94,7 @@ class CooperativeEntityExtension(models.Model):
 
 class FarmEntityExtension(models.Model):
     """
-    扩展农场实体模型以支持新功能 [US-19-06 through US-19-22]
+    扩展农场实体模型以支持新功能 [US-042-06 through US-042-22]
     """
     _inherit = 'farm.entity'
 
@@ -103,7 +103,7 @@ class FarmEntityExtension(models.Model):
 
     def _get_all_related_documents(self):
         """
-        获取实体相关的所有文档 [US-19-19]
+        获取实体相关的所有文档 [US-042-19]
         This method would be used to retrieve all documents related to this entity
         for audit and compliance checking purposes.
         """
@@ -117,7 +117,7 @@ class FarmEntityExtension(models.Model):
 
 class StockLotExtension(models.Model):
     """
-    US-19-27: 产品/批次单社归属唯一性
+    US-042-27: 产品/批次单社归属唯一性
     Ensures a lot is managed by only one cooperative for traceability/subsidy integrity.
     """
     _inherit = 'stock.lot'

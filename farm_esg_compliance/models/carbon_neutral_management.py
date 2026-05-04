@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriCarbonNeutralGoal(models.Model):
     """
-    US-83-01: 碳中和目标管理 (Carbon Neutral Goal Management)
+    US-083-01: 碳中和目标管理 (Carbon Neutral Goal Management)
     Management of carbon neutral goals and targets across the organization
     """
     _name = 'agri.carbon.neutral.goal'
@@ -194,7 +194,7 @@ class AgriCarbonNeutralGoal(models.Model):
 
 class AgriCarbonCredit(models.Model):
     """
-    US-83-02: 碳信用管理 (Carbon Credit Management)
+    US-083-02: 碳信用管理 (Carbon Credit Management)
     Management of carbon credits for trading and offsetting
     """
     _name = 'agri.carbon.credit'
@@ -311,7 +311,7 @@ class AgriCarbonCredit(models.Model):
 
 class AgriBioEnergyProduct(models.Model):
     """
-    US-97-01: 生物能源产品管理 (Bio-energy Product Management)
+    US-097-01: 生物能源产品管理 (Bio-energy Product Management)
     Management of bio-energy products for external ESG marketplace
     """
     _name = 'agri.bio.energy.product'

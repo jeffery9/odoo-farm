@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 种植业特定表单布局 - 农业干预 [US-16-02] -->
+    <!-- 种植业特定表单布局 - 农业干预 [US-039-02] -->
     <record id="form_layout_planting_intervention" model="form.layout.template">
         <field name="name">Planting Agricultural Intervention Layout</field>
         <field name="model_name">mrp.production</field>
@@ -51,7 +51,7 @@
         }</field>
     </record>
 
-    <!-- 畜牧业特定表单布局 - 农业干预 [US-16-02] -->
+    <!-- 畜牧业特定表单布局 - 农业干预 [US-039-02] -->
     <record id="form_layout_livestock_intervention" model="form.layout.template">
         <field name="name">Livestock Agricultural Intervention Layout</field>
         <field name="model_name">mrp.production</field>
@@ -96,7 +96,7 @@
         }</field>
     </record>
 
-    <!-- 加工业特定表单布局 - 农业干预 [US-16-02] -->
+    <!-- 加工业特定表单布局 - 农业干预 [US-039-02] -->
     <record id="form_layout_processing_intervention" model="form.layout.template">
         <field name="name">Processing Agricultural Intervention Layout</field>
         <field name="model_name">mrp.production</field>
@@ -141,7 +141,7 @@
         }</field>
     </record>
 
-    <!-- 酿酒业特定表单布局 - 农业干预 [US-16-02] -->
+    <!-- 酿酒业特定表单布局 - 农业干预 [US-039-02] -->
     <record id="form_layout_winemaking_intervention" model="form.layout.template">
         <field name="name">Winemaking Agricultural Intervention Layout</field>
         <field name="model_name">mrp.production</field>
@@ -180,7 +180,7 @@
         }</field>
     </record>
 
-    <!-- 通用农业干预布局 [US-16-02] -->
+    <!-- 通用农业干预布局 [US-039-02] -->
     <record id="form_layout_general_intervention" model="form.layout.template">
         <field name="name">General Agricultural Intervention Layout</field>
         <field name="model_name">mrp.production</field>

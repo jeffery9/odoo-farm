@@ -14,11 +14,11 @@ class AiDecisionEngine(models.Model):
     stress_index = fields.Float(related='intervention_id.biological_stress_index', string="Current Stress Index")
     growth_stage_id = fields.Many2one(related='intervention_id.current_growth_stage_id', string="Current Stage")
     
-    # [US-202-01] 自动补救决策
+    # [US-046-01] 自动补救决策
     recovery_plan = fields.Text("Suggested Recovery Plan (AI)")
     active_skill_json = fields.Text("Active Skill Directive (JSON)")
     
-    # [US-202-02] 采收窗口预测
+    # [US-046-02] 采收窗口预测
     predicted_harvest_date = fields.Date("Predicted Harvest Date", compute='_compute_harvest_prediction', store=True)
     confidence_score = fields.Float("Confidence Score (%)", default=85.0)
 

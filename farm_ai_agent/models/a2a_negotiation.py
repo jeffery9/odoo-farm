@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class A2ANegotiation(models.Model):
     """
-    State machine for Agent-to-Agent negotiation and bargaining. [US-62-2026]
+    State machine for Agent-to-Agent negotiation and bargaining. [US-092-2026]
     Level 2+: Coordination & Game Theory.
     """
     _name = 'agri.a2a.negotiation'

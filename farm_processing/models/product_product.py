@@ -20,7 +20,7 @@ class ProductTemplate(models.Model):
             })
         return res
 
-    # US-04-05: 替代品关系 (Maintained at Base level for cross-industry visibility)
+    # US-004-05: 替代品关系 (Maintained at Base level for cross-industry visibility)
     substitute_product_ids = fields.Many2many(
         'product.template',
         'product_template_substitute_rel',

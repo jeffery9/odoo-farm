@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# [US-203-02] 配方边缘：工艺参数到 MQTT Setpoint 的下发（独立于管理中心）
+# [US-047-02] 配方边缘：工艺参数到 MQTT Setpoint 的下发（独立于管理中心）
 from odoo import models, fields, api, _
 
 class PrecisionRecipeControl(models.Model):

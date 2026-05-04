@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class AgriAiCropGrowthPrediction(models.Model):
     """
     AI model for crop growth prediction
-    Implements US-58-04: Intelligent planting scheme recommendation
+    Implements US-088-04: Intelligent planting scheme recommendation
     """
     _name = 'agri.ai.crop.growth.prediction'
     _description = 'AI Crop Growth Prediction'

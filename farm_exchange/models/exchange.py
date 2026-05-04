@@ -33,7 +33,7 @@ class FarmDataExchanger(models.Model):
 
     def action_perform_exchange(self):
         """ 
-        US-20-02: 执行标准化数据交换
+        US-050-02: 执行标准化数据交换
         根据协议类型调用具体的 Parser
         """
         self.ensure_one()

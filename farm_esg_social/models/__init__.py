@@ -7,8 +7,8 @@ _logger = logging.getLogger(__name__)
 
 class SocialDiversityMetric(models.Model):
     """
-    US-51-07: 工作场所多样性与包容性指标
-    US-51-09: 社会责任指标跟踪
+    US-081-07: 工作场所多样性与包容性指标
+    US-081-09: 社会责任指标跟踪
     Social and diversity metrics tracking
     """
     _name = 'farm.esg.social.diversity.metric'

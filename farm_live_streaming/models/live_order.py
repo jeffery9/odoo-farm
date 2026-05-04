@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class LiveOrder(models.Model):
     """
-    US-21-04: 直播来源订单追踪
+    US-051-04: 直播来源订单追踪
     职责：
     1. 下载：存储抖音原始报文快照。
     2. 导入：解析快照并转化为 Odoo 销售订单。

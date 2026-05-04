@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class CreditTransaction(models.Model):
     """
-    信用交易记录 [US-19-07]
+    信用交易记录 [US-042-07]
     """
     _name = 'credit.transaction'
     _description = 'Credit Transaction'

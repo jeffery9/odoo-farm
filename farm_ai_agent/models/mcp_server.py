@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class MCPServer(models.AbstractModel):
     """
-    Odoo-based MCP (Model Context Protocol) Server. [US-62-04]
+    Odoo-based MCP (Model Context Protocol) Server. [US-092-04]
     Exposes Odoo Mixins and Resources to AI Agents via a standardized protocol.
     """
     _name = 'agri.mcp.server'

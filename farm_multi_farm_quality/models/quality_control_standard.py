@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class QualityControlStandard(models.Model):
     """
-    统一质检与品牌准入 [US-19-09]
+    统一质检与品牌准入 [US-042-09]
     """
     _name = 'quality.control.standard'
     _description = 'Quality Control Standard'

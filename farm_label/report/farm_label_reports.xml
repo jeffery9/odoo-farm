@@ -33,7 +33,7 @@
         <field name="binding_type">report</field>
     </record>
 
-    <!-- China Agri-Product Certificate of Conformity [US-18-03] -->
+    <!-- China Agri-Product Certificate of Conformity [US-041-03] -->
     <record id="action_report_china_agri_certificate" model="ir.actions.report">
         <field name="name">Agri-Product Certificate of Conformity (合格证)</field>
         <field name="model">stock.lot</field>

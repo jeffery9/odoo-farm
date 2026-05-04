@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class DouyinProduct(models.Model):
     """
-    US-21-02: 抖音商品同步管理
+    US-051-02: 抖音商品同步管理
     职责：处理产品映射、库存同步、溯源内容推送
     """
     _name = 'douyin.product'
@@ -25,7 +25,7 @@ class DouyinProduct(models.Model):
     last_sync_time = fields.Datetime("Last Sync")
 
     def action_sync_to_douyin(self):
-        """ 执行同步：推送产品信息与溯源故事 [US-21-02, US-21-03] """
+        """ 执行同步：推送产品信息与溯源故事 [US-051-02, US-051-03] """
         for rec in self:
             if rec.account_id.state != 'authorized':
                 raise UserError(_("Account not authorized!"))
@@ -59,7 +59,7 @@ class DouyinProduct(models.Model):
                 rec.sync_state = 'error'
 
     def action_sync_stock_only(self):
-        """ 仅同步库存量：供库存变动钩子调用 [US-21-08] """
+        """ 仅同步库存量：供库存变动钩子调用 [US-051-08] """
         for rec in self:
             if not rec.douyin_item_id or rec.account_id.state != 'authorized':
                 continue

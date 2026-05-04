@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 通用农业术语映射 [US-16-01] -->
+    <!-- 通用农业术语映射 [US-039-01] -->
     <record id="term_mapping_mrp_production" model="term.mapping">
         <field name="name">Manufacturing Order - Intervention</field>
         <field name="source_term">Manufacturing Order</field>

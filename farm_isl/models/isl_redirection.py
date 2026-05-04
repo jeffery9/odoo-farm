@@ -7,7 +7,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-# ISL Model Redirection Mechanism (US-54-11)
+# ISL Model Redirection Mechanism (US-084-11)
 
 class ISLModelRedirector(models.AbstractModel):
     """
@@ -27,7 +27,7 @@ class ISLModelRedirector(models.AbstractModel):
         return super()._register_hook()
 
 
-# Industry-Specific Extension Mechanism (US-54-12)
+# Industry-Specific Extension Mechanism (US-084-12)
 
 class ISLIndustryExtension(models.Model):
     """

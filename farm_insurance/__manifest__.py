@@ -5,7 +5,7 @@
     'summary': 'Crop Yield Insurance Policies and Claims Management',
     'description': """
         Manages crop yield insurance policies, actuarial calculations, and claims processing.
-        - US-58-16: Yield Insurance Actuarial Analysis and Claims
+        - US-088-16: Yield Insurance Actuarial Analysis and Claims
     """,
     'author': 'Gemini',
     'depends': [

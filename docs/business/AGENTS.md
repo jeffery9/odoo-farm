@@ -14,3 +14,8 @@ Before modifying or creating any files in this directory, you **MUST**:
 ## 2. Documentation Constraints
 - **Separation of Concerns**: Code and documentation MUST be committed separately.
 - **Lossless Update**: Do not delete or simplify existing architectural anchors, requirement tags (`[US-XXX]`), or tracking IDs.
+
+## 3. Product Governance & Traceability
+- **Total Epic Audit**: The backlog has evolved to a strict 001-129 sequential structure. Always refer to `Epic_Number_Mapping.md` and `EPICS_AND_USER_STORIES.md` before generating new requirements.
+- **Acceptance Criteria (AC)**: ALL User Stories must have a strict BDD-style Acceptance Criteria block. Code tests MUST implement Assertions mapped back to these ACs using `test_ac_xx_name` conventions.
+- **US Tagging**: In the codebase (XML, Python, Models, Tests), refer to stories using the new `[US-XXX-YY]` standard where XXX is the 3-digit Epic number. Do NOT use legacy 1-or-2 digit variants.

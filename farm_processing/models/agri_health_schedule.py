@@ -31,7 +31,7 @@ class AgriStockLotHealth(models.Model):
 
     @api.onchange('life_stage')
     def _onchange_life_stage_health(self):
-        """ US-03-03: Auto-schedule health activities when life stage changes. """
+        """ US-003-03: Auto-schedule health activities when life stage changes. """
         for lot in self:
             if lot.lot_purpose == 'biological_asset' and lot.life_stage:
                 schedules = self.env['agri.health.schedule'].search([

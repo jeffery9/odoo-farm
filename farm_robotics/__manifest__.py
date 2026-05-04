@@ -5,10 +5,10 @@
     'summary': 'Agricultural Robotics and Automation Management',
     'description': """
         Robotics module for Odoo 19.
-        - Robot Registry and Management [US-61-01]
-        - Automated Mission Scheduling [US-61-02]
-        - Real-time Operation Monitoring [US-61-03]
-        - Level 5: Robotic A2A Integration [US-70-2026]
+        - Robot Registry and Management [US-091-01]
+        - Automated Mission Scheduling [US-091-02]
+        - Real-time Operation Monitoring [US-091-03]
+        - Level 5: Robotic A2A Integration [US-100-2026]
     """,
     'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',
     'website': 'http://www.geninit.cn',

@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class DividendDistribution(models.Model):
     """
-    分红分配 [US-19-06]
+    分红分配 [US-042-06]
     """
     _name = 'dividend.distribution'
     _description = 'Dividend Distribution'

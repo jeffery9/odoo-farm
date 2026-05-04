@@ -5,7 +5,7 @@ import json
 
 class ESGScenariosAnalysis(models.Model):
     """
-    US-56-09: 可持续发展情景分析与预测 (Sustainability Scenarios Analysis & Prediction)
+    US-086-09: 可持续发展情景分析与预测 (Sustainability Scenarios Analysis & Prediction)
     Model for analyzing different sustainability scenarios and predicting outcomes
     """
     _name = 'farm.esg.scenarios.analysis'

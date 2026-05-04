@@ -4,10 +4,10 @@ from odoo.exceptions import ValidationError
 
 class ESGReport(models.Model):
     """
-    US-61-03: 统一ESG披露报告
-    US-61-11: ESG合规报告一键生成
-    US-61-21: ESG风险评级与披露报告
-    US-61-22: ESG合规数据综合披露
+    US-091-03: 统一ESG披露报告
+    US-091-11: ESG合规报告一键生成
+    US-091-21: ESG风险评级与披露报告
+    US-091-22: ESG合规数据综合披露
     ESG Report for unified disclosure and compliance reporting
     """
     _name = 'farm.esg.report'
@@ -201,9 +201,9 @@ This report covers all ESG aspects per {self.report_type.upper()} standards.
 
 class ESGDashboard(models.Model):
     """
-    US-61-01: 综合ESG绩效仪表板
-    US-52-11: ESG绩效仪表板
-    US-52-09: 董事会ESG治理与决策支持
+    US-091-01: 综合ESG绩效仪表板
+    US-082-11: ESG绩效仪表板
+    US-082-09: 董事会ESG治理与决策支持
     ESG Dashboard for comprehensive performance visualization
     """
     _name = 'farm.esg.dashboard'
@@ -308,7 +308,7 @@ class ESGDashboard(models.Model):
 
 class SustainabilityGoal(models.Model):
     """
-    US-61-07: 可持续发展目标追踪与管理
+    US-091-07: 可持续发展目标追踪与管理
     Sustainability Goals for tracking and managing overall objectives
     """
     _name = 'farm.esg.sustainability.goal'

@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriIndustryInitializationWizard(models.TransientModel):
     """
-    US-01-08: "One-Click Initialization" Industry Master Data Package
+    US-001-08: "One-Click Initialization" Industry Master Data Package
     Provides one-click initialization of industry-specific master data.
     Refactored to agri domain with 100% logic and data retention.
     """

@@ -10,7 +10,7 @@ class ProjectTask(models.Model):
     _inherit = 'project.task'
 
     trust_score = fields.Float("Trust Score", digits=(10, 2), default=0.0,
-                               help="Evidence-based trust score (0-100) [US-48-01]")
+                               help="Evidence-based trust score (0-100) [US-078-01]")
     trust_verification_status = fields.Selection([
         ('pending', 'Pending Verification'),
         ('verified', 'Verified'),
@@ -20,7 +20,7 @@ class ProjectTask(models.Model):
 
     def action_calculate_trust_score(self):
         """
-        US-48-01: Task Evidence Scoring Algorithm
+        US-078-01: Task Evidence Scoring Algorithm
         """
         for task in self:
             score = 100.0
@@ -75,7 +75,7 @@ class FarmCreditScore(models.Model):
 
     total_score = fields.Float("Total Credit Score", compute='_compute_credit_score', store=True)
 
-    # Weight components [US-48-02]
+    # Weight components [US-078-02]
     gap_compliance_rate = fields.Float("GAP Compliance (%)", help="Weight: 30%")
     yield_consistency_rate = fields.Float("Yield Consistency (%)", help="Weight: 30%")
     input_reduction_rate = fields.Float("Input Reduction (%)", help="Weight: 20%")
@@ -84,7 +84,7 @@ class FarmCreditScore(models.Model):
     @api.depends('gap_compliance_rate', 'yield_consistency_rate', 'input_reduction_rate', 'avg_trust_score')
     def _compute_credit_score(self):
         """
-        US-48-02: Farm Credit Score Algorithm
+        US-078-02: Farm Credit Score Algorithm
         Score = [GAP (30%)] + [Yield (30%)] + [Input Red (20%)] + [Trust (20%)]
         """
         for rec in self:
@@ -147,7 +147,7 @@ class FarmCoopSettlement(models.Model):
 
     @api.depends('input_debt_amount', 'harvest_credit_amount')
     def _compute_net_amount(self):
-        """US-48-04: Automated Netting Algorithm"""
+        """US-078-04: Automated Netting Algorithm"""
         for rec in self:
             rec.net_settlement_amount = rec.harvest_credit_amount - rec.input_debt_amount
 

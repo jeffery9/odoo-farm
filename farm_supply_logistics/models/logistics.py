@@ -17,7 +17,7 @@ class StockPicking(models.Model):
     is_cold_chain = fields.Boolean("Is Cold Chain Transport", compute='_compute_is_cold_chain', store=True)
     actual_transport_temp = fields.Float("Actual Transport Temp (℃)")
 
-    # Transport Details [US-03-03]
+    # Transport Details [US-003-03]
     vehicle_id = fields.Many2one('farm.vehicle', string="Vehicle")
     driver_id = fields.Many2one('res.partner', string="Driver", domain="[('is_company', '=', False)]")
 

@@ -5,9 +5,9 @@
     'summary': 'Multi-Entity Procurement Management Module',
     'description': """
         Procurement management module for Multi-Entity Collaboration System.
-        - Joint procurement and internal clearing [US-19-10]
-        - Procurement planning and allocation [US-19-12]
-        - Internal marketplace for resource sharing [US-19-11]
+        - Joint procurement and internal clearing [US-042-10]
+        - Procurement planning and allocation [US-042-12]
+        - Internal marketplace for resource sharing [US-042-11]
     """,
     'author': 'Jeffery',
     'depends': [

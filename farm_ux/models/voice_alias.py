@@ -10,7 +10,7 @@ class VoiceRecognitionAlias(models.Model):
     
     @api.model
     def normalize_voice_text(self, text):
-        """ US-26-02: Normalize voice-to-text output using registered aliases. """
+        """ US-056-02: Normalize voice-to-text output using registered aliases. """
         if not text or not isinstance(text, str):
             return text
             

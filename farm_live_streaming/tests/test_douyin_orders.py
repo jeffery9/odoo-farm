@@ -27,7 +27,7 @@ class TestDouyinOrders(TransactionCase):
 
     @patch('odoo.addons.farm_live_streaming.models.douyin_account.DouyinAccount._do_douyin_request')
     def test_01_two_stage_sync(self, mock_request):
-        """ Test the Download -> Import two-stage flow [US-21-04] """
+        """ Test the Download -> Import two-stage flow [US-051-04] """
         # 1. Mock the API response for order list
         mock_request.return_value = {
             'data': {

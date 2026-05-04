@@ -1,7 +1,7 @@
 from odoo import models, fields, api, _
 
 class AgriGIRegistry(models.Model):
-    """ US-32-02: Geographical Indication (GI) Registry """
+    """ US-062-02: Geographical Indication (GI) Registry """
     _name = 'agri.gi.registry'
     _description = 'Geographical Indication Registry'
     _inherit = ['mail.thread', 'mail.activity.mixin']
@@ -26,7 +26,7 @@ class StockLot(models.Model):
     gi_security_code = fields.Char("GI Anti-counterfeit Code", readonly=True, copy=False)
 
     def action_generate_gi_code(self):
-        """ US-32-02: Simulate generation of unique GI anti-counterfeit code """
+        """ US-062-02: Simulate generation of unique GI anti-counterfeit code """
         for lot in self:
             if lot.gi_registry_id and not lot.gi_security_code:
                 # In real scenario, call national API

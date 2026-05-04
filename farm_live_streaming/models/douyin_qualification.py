@@ -4,7 +4,7 @@ import re
 
 class DouyinQualification(models.Model):
     """
-    US-21-01: 抖音入驻资质预审
+    US-051-01: 抖音入驻资质预审
     职责：小店所需的法定资料
     """
     _name = 'douyin.qualification'

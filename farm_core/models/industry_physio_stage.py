@@ -2,7 +2,7 @@ from odoo import models, fields, api, _
 
 class AgriIndustryPhysioStage(models.Model):
     """
-    Agri Domain Level: Physiological Growth Stage. [US-104-2026]
+    Agri Domain Level: Physiological Growth Stage. [US-014-2026]
     Defines universal growth stages for biological assets.
     Refactored from farm.industry.physio.stage with 100% logic retention.
     """

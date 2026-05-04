@@ -3,7 +3,7 @@ from odoo import models, fields, api
 
 class ColdStorageFacility(models.Model):
     """
-    Cold Storage Management [US-09-09]
+    Cold Storage Management [US-009-09]
     """
     _name = 'cold.storage.facility'
     _description = 'Cold Storage Facility'
@@ -48,7 +48,7 @@ class ColdStorageFacility(models.Model):
 
 class ColdStorageZone(models.Model):
     """
-    Cold Storage Zone [US-09-09]
+    Cold Storage Zone [US-009-09]
     """
     _name = 'cold.storage.zone'
     _description = 'Cold Storage Zone'
@@ -88,7 +88,7 @@ class ColdStorageZone(models.Model):
 
 class ColdStorageInventory(models.Model):
     """
-    Cold Storage Inventory Tracking [US-09-09]
+    Cold Storage Inventory Tracking [US-009-09]
     """
     _name = 'cold.storage.inventory'
     _description = 'Cold Storage Inventory'
@@ -136,7 +136,7 @@ class ColdStorageInventory(models.Model):
 
 class ColdStorageTemperatureLog(models.Model):
     """
-    Cold Storage Temperature Log [US-09-07 & US-09-09]
+    Cold Storage Temperature Log [US-009-07 & US-009-09]
     """
     _name = 'cold.storage.temperature.log'
     _description = 'Cold Storage Temperature Log'

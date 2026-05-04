@@ -8,8 +8,8 @@
         - Agricultural Input Catalog (Seeds, Fertilizers, Pesticides, Feed)
         - Purchase Order Integration with Safety Checks
         - Input Usage Forecasting and Stock Alerts
-        - Joint Procurement for Cooperatives [US-09-15]
-        - VMI (Vendor Managed Inventory) Automation [US-09-14]
+        - Joint Procurement for Cooperatives [US-009-15]
+        - VMI (Vendor Managed Inventory) Automation [US-009-14]
     """,
     'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',
     'website': 'http://www.geninit.cn',

@@ -30,7 +30,7 @@ class TestTrainingAccess(TransactionCase):
         })
 
     def test_01_qualification_check(self):
-        """ Test that only qualified workers can confirm protection tasks [US-17-08] """
+        """ Test that only qualified workers can confirm protection tasks [US-040-08] """
         # Create a protection intervention
         mo = self.Intervention.create({
             'product_id': self.env.ref('product.product_delivery_01', raise_if_not_found=False).id or 1,

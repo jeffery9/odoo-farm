@@ -8,7 +8,7 @@ class TestCertificationLogic(TransactionCase):
         self.Location = self.env['stock.location']
 
     def test_01_organic_conversion_progress(self):
-        """ 测试有机转换进度计算与自动升级 [US-12-02] """
+        """ 测试有机转换进度计算与自动升级 [US-035-02] """
         today = date.today()
         # 创建一个 2 年前（约 730 天）开始转换的地块，目标 1095 天（3年）
         start_date = today - timedelta(days=730)

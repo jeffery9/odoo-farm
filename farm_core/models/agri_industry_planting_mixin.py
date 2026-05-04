@@ -2,7 +2,7 @@ from odoo import models, fields, api, _
 
 class AgriIndustryPlantingMixin(models.AbstractModel):
     """
-    Agri Domain Level: Planting Physics. [US-02-01, US-104-2026]
+    Agri Domain Level: Planting Physics. [US-002-01, US-014-2026]
     Defines the biological and physical standards for the planting sector.
     """
     _name = 'agri.industry.planting.mixin'

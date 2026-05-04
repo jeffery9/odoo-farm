@@ -5,7 +5,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriLocation(models.Model):
     """
-    Agri Domain Level: Physical Location. [US-104-2026]
+    Agri Domain Level: Physical Location. [US-014-2026]
     The primary physical entity representing a geographic container in the Agri domain.
     Used by all sub-sectors (Farming, Forestry, Aquaculture, etc.)
     """

@@ -13,9 +13,9 @@ _logger = logging.getLogger(__name__)
 class AgriAiMarketPrediction(models.Model):
     """
     AI model for market price prediction
-    Implements US-58-08: Agri-market intelligent prediction
-    US-60-04: Revenue Management & Hedging
-    US-60-05: Procurement Timing Prediction
+    Implements US-088-08: Agri-market intelligent prediction
+    US-090-04: Revenue Management & Hedging
+    US-090-05: Procurement Timing Prediction
     """
     _name = 'agri.ai.market.prediction'
     _description = 'AI Market Prediction'
@@ -39,13 +39,13 @@ class AgriAiMarketPrediction(models.Model):
         ('volatile', 'High Volatility'),
     ], string='Price Trend')
 
-    # US-60-04: Hedging & Revenue Management
+    # US-090-04: Hedging & Revenue Management
     futures_price = fields.Float('Futures Price (Target Month)')
     basis_value = fields.Float('Basis (Spot - Futures)', compute='_compute_basis')
     hedging_recommendation = fields.Html('Hedging Strategy')
     optimal_sales_ratio = fields.Float('Recommended Sales Ratio (%)', help="Percentage of inventory to sell now vs hold/hedge")
     
-    # US-60-05: Procurement Timing
+    # US-090-05: Procurement Timing
     procurement_action = fields.Selection([
         ('buy_now', 'Strong Buy (Bottom Price)'),
         ('wait', 'Hold/Wait (Price Peak)'),
@@ -92,7 +92,7 @@ class AgriAiMarketPrediction(models.Model):
             record.status = 'recommended'
 
     def _calculate_sales_strategy(self, record, base_change):
-        """US-60-04: Revenue Management & Hedging"""
+        """US-090-04: Revenue Management & Hedging"""
         record.futures_price = record.current_price * (1 + base_change * 1.1)
         
         if base_change > 0.05:
@@ -121,7 +121,7 @@ class AgriAiMarketPrediction(models.Model):
             record.hedging_recommendation = "<p>Market stable. Maintain balanced sales approach.</p>"
 
     def _calculate_procurement_strategy(self, record, base_change):
-        """US-60-05: Input Procurement Optimization"""
+        """US-090-05: Input Procurement Optimization"""
         if base_change < -0.08:
             record.procurement_action = 'buy_now'
             record.price_trend = 'down' # Good for buying

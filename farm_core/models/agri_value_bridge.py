@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriValueBridge(models.Model):
     """
-    Bridge for exporting and ingesting Quality Fingerprints across farms. [US-104-2026]
+    Bridge for exporting and ingesting Quality Fingerprints across farms. [US-014-2026]
     Level 3+: Inter-Community Value Exchange.
     """
     _name = 'agri.value.bridge'

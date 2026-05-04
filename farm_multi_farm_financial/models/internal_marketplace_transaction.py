@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class InternalMarketplaceTransaction(models.Model):
     """
-    市场平台交易 [US-19-11]
+    市场平台交易 [US-042-11]
     """
     _name = 'internal.marketplace.transaction'
     _description = 'Internal Marketplace Transaction'

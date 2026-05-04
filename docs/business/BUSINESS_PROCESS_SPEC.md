@@ -189,3 +189,36 @@ graph LR
 - **供应链优化**：
     - 分析供应链各环节的成本和效率。
     - 识别瓶颈和改进机会。
+
+## 8. ISA-88 精密生产与控制体系 (Precision Production & Control)
+
+本系统采用彻底的“配方/参数双驱动”模式取代传统制造业的“物料驱动”模式。
+
+### 8.1 主配方与执行配方分离 (Master vs Control Recipe)
+- **主配方 (Master Recipe)**：跨越具体数量的独立知识资产，定义了生产步骤（Phases）及其理化参数标准（如最适温度、pH值、GDD积温阈值）。
+- **执行配方 (Control Recipe)**：订单下达后克隆出的不可变快照。操作员对执行配方的批次缩放 (Batch Scaling) 仅影响可缩放物料（如饲料、肥料），物理环境变量（如水温、日照需求）保持刚性。
+
+### 8.2 相位并行与自治执行 (Phase Autonomy)
+- 生产不再是严格的线性流转。各个执行相位 (Phase) 拥有独立的生命周期（Start/Pause/Complete）。
+- 跨订单的同类型作业可以在“相位看板 (Phase Board)”中被批量选中并一次性操作完成，库存核销在相位完成时原子级触发。
+
+## 9. 智能感知与主动干预 (AI, IoT & Active Intervention)
+
+### 9.1 数字孪生与遥测聚合 (Digital Twin & Telemetry)
+- 农场的物理设备 (IoT Sensors/Actuators) 通过 MQTT 协议被映射为系统中的 `iiot.device`。
+- 传感器采集的数据被实时注入数字孪生环境 (3D Scene) 和数据总线，若监控值脱离配方公差 (Tolerance)，自动触发“漂移 (Drifting)” 或 “失控 (Out of Control)” 状态。
+
+### 9.2 多智能体协作与自动纠偏 (A2A Collaboration & Auto-Correction)
+- **发现偏差**：视觉模型 (Vision Agent) 或 物联探针发现病害或温湿度异常。
+- **决策仲裁**：决策中心 (Decision Agent) 结合历史 GDD 和天气预报，下发“主动干预指令 (Intervention)”。
+- **闭环控制**：指令通过边缘网关下发至硬件（如自动打开遮阳棚或调整滴灌浓度），若发生硬件执行超时，自动将状态转回人工核验。
+
+## 10. 全球合规与碳账本 (Global Compliance & Carbon Ledger)
+
+### 10.1 出口准入硬核查 (Export Compliance Hard-Block)
+- 在销售订单确认 (Sale Order Confirmation) 时，系统依据目标市场（如欧盟、美国）的法规字典，逆向扫描该批次及其所有父代批次的种植档案。
+- 若查出农残 (MRL) 超标、安全休药期 (PHI) 未满、或缺乏有效的植物检疫证书，系统直接锁死销售单并标记为 `Compliance Blocked`。
+
+### 10.2 碳足迹追踪与双账本 (Carbon Footprint Dual-Ledger)
+- **排放核算**：从化肥/农药的投入（Scope 3 隐含碳）到农机作业的燃油消耗，系统根据设定的碳排因子自动折算 CO2e。
+- **碳汇管理**：林果资产、免耕覆盖等生态行为被转化为碳汇资产。财务账本与碳账本双线并行，最终输出支持双语的 ESG GRI 国际披露报告。

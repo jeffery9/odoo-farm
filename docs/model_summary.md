@@ -1,3938 +1,5305 @@
-# Farm Management System - Model Summary
-
-This document provides a comprehensive overview of all the models in the farm management system, organized by functional module with detailed field definitions and relationships.
-
-
-## Table of Contents
-1. [Core Models](#core-models)
-2. [Land Management Models](#land-management-models)
-3. [Planning Models](#planning-models)
-4. [Operation Models](#operation-models)
-5. [Equipment Models](#equipment-models)
-6. [HR Models](#hr-models)
-7. [MRP Models](#mrp-models)
-8. [Field Crops Models](#field-crops-models)
-9. [Livestock Models](#livestock-models)
-10. [Aquaculture Models](#aquaculture-models)
-11. [Specialized Farming Models](#specialized-farming-models)
-12. [Processing Models](#processing-models)
-13. [Quality Models](#quality-models)
-14. [Safety Models](#safety-models)
-15. [Certification Models](#certification-models)
-16. [Weather Models](#weather-models)
-17. [IoT Models](#iot-models)
-18. [Mobile Models](#mobile-models)
-19. [Supply Models](#supply-models)
-20. [Logistics Models](#logistics-models)
-21. [Multi-Farm Models](#multi-farm-models)
-22. [Marketing Models](#marketing-models)
-23. [Financial Models](#financial-models)
-24. [Waste Management Models](#waste-management-models)
-25. [Support Models](#support-models)
-26. [Abstract and Mixin Models](#abstract-and-mixin-models)
-
-## Core Models
-
-The core models form the foundation of the farm management system, providing essential functionality for tracking farm locations, activities, and biological assets.
-
-### Basic Farm Management
-- **farm_core.FarmLocation** (`farm.location`): Represents farm locations and land parcels
-  - Odoo Model: `class FarmLocation(models.Model)`
-  - _name: `farm.location`
-  - _description: "Farm Location & Land Parcel"
-  - Fields:
-    - `is_land_parcel` (Boolean): Is Land Parcel flag
-    - `land_nature` (Selection): Classification based on land use guidelines
-    - `land_area` (Float): Surface area of the parcel
-    - `land_area_uom_id` (Many2one): Area unit of measure (uom.uom)
-    - `gps_lat` (Float): Latitude coordinates
-    - `gps_lng` (Float): Longitude coordinates
-    - `boundary_geojson` (Text): GeoJSON polygon for boundaries
-    - `calculated_area_ha` (Float): Area calculated from GeoJSON (computed)
-    - `soil_type` (Selection): Type of soil
-    - `slope` (Float): Slope gradient percentage
-    - `aspect` (Selection): Aspect/orientation
-    - `water_source` (Selection): Primary water source
-    - `micro_climate_notes` (Text): Local climate characteristics
-    - `soil_mineral_composition` (Text): Mineral composition of soil
-    - `is_vertical_location` (Boolean): Is vertical/shelf location
-    - `shelf_id` (Char): Shelf identifier
-    - `shelf_level` (Integer): Level/row number
-    - `shelf_slot` (Char): Slot/position identifier
-    - `gis_map_url` (Char): Computed map URL (computed)
-    - `soil_analysis_ids` (One2many): Linked soil analyses (farm.soil.analysis)
-    - `latest_ph` (Float): Latest pH level from analyses (computed, stored)
-    - `latest_organic_matter` (Float): Latest organic matter percentage (computed, stored)
-    - `water_depth` (Float): Water depth in meters
-    - `water_depth_dm` (Float): Water depth in decimeters (computed/inverse)
-    - `is_vessel` (Boolean): Is vessel/tank flag
-    - `vessel_capacity` (Float): Vessel capacity in liters
-    - `vessel_material` (Selection): Material type of vessel
-    - `farm_id` (Many2one): Belonging farm (res.company)
-    - `location_properties_definition` (PropertiesDefinition): Properties definition
-    - `location_properties` (Properties): Dynamic properties
-    - `total_n_input` (Float): Accumulated nitrogen in kg (computed)
-    - `total_p_input` (Float): Accumulated phosphorus in kg (computed)
-    - `total_k_input` (Float): Accumulated potassium in kg (computed)
-    - `target_n_per_mu` (Float): Target nitrogen per mu
-    - `target_p_per_mu` (Float): Target phosphorus per mu
-    - `target_k_per_mu` (Float): Target potassium per mu
-    - `n_balance_status` (Float): Nitrogen surplus/deficit (computed)
-    - `p_balance_status` (Float): Phosphorus surplus/deficit (computed)
-    - `k_balance_status` (Float): Potassium surplus/deficit (computed)
-  - Methods:
-    - `_compute_gis_map_url()`: Computes GIS map URL from coordinates
-    - `_compute_latest_soil_stats()`: Computes latest soil statistics
-    - `_compute_water_depth_dm()`: Computes water depth in decimeters
-    - `_inverse_water_depth_dm()`: Inverse function for water depth
-    - `_compute_nutrient_balance()`: Computes accumulated nutrient balance
-    - `_compute_balance_status()`: Computes nutrient surplus/deficit status
-  - Relationships:
-    - One2many: `soil_analysis_ids` → `farm.soil.analysis.location_id`
-    - Many2one: `land_area_uom_id` → `uom.uom`
-    - Many2one: `farm_id` → `res.company`
-    - Inherits from: `mail.thread`, `mail.activity.mixin`, `stock.location`, `farm.core.gis.utils`
-
-- **farm_core.SoilAnalysis** (`farm.soil.analysis`): Manages soil analysis data for farm locations
-  - Odoo Model: `class SoilAnalysis(models.Model)`
-  - _name: `farm.soil.analysis`
-  - _description: "Soil Analysis Report"
-  - _order: "analysis_date desc"
-  - Fields:
-    - `name` (Char): Report reference (required, default: New)
-    - `location_id` (Many2one): Land parcel the analysis belongs to (required)
-    - `analysis_date` (Date): Date of analysis (default: today)
-    - `laboratory_id` (Many2one): Laboratory that performed the analysis
-    - `ph_level` (Float): pH level with 2 decimal digits
-    - `organic_matter` (Float): Organic matter percentage
-    - `nitrogen_content` (Float): Nitrogen content in mg/kg
-    - `phosphorus_content` (Float): Phosphorus content in mg/kg
-    - `potassium_content` (Float): Potassium content in mg/kg
-    - `magnesium` (Float): Magnesium content in mg/kg
-    - `calcium` (Float): Calcium content in mg/kg
-    - `recommendation` (Text): Fertilization recommendations
-    - `state` (Selection): Status (draft, done, cancel)
-  - Methods:
-    - `create()`: Creates new soil analysis with sequence code
-    - `action_validate()`: Validates the soil analysis
-  - Relationships:
-    - Many2one: `location_id` → `farm.location`
-    - Many2one: `laboratory_id` → `res.partner`
-    - Inherits from: `mail.thread`, `mail.activity.mixin`
-
-- **farm_core.FarmActivity**: Represents farm activities and operations
-- **farm_core.FarmTask**: Represents tasks related to farm activities
-
-### Configuration and Setup
-- **farm_core.IndustryDataPackage**: Configuration model for industry data packages
-- **farm_core.IndustryVariety**: Configuration model for industry varieties
-- **farm_core.IndustryPhysioStage**: Configuration model for industry physiological stages
-- **farm_core.IndustryUOMConversion**: Configuration model for unit of measure conversions
-- **farm_core.IndustryTaskTemplate**: Configuration model for industry task templates
-- **farm_core.IndustryProductCategory**: Configuration model for industry product categories
-- **farm_core.FarmGrowthCurve**: Configuration model for farm growth curves
-
-### Biological Assets
-- **farm_core.BiologicalAsset** (`farm.biological.asset`): Represents biological assets in farming operations
-  - Odoo Model: `class BiologicalAsset(models.Model)`
-  - _name: `farm.biological.asset`
-  - _description: "Biological Asset"
-  - Fields:
-    - `name` (Char): Asset name (required, default: New)
-    - `lot_id` (Many2one): Stock lot for the biological asset (required)
-    - `agricultural_type` (Selection): Asset type (animal, plant, tree)
-    - `birth_date` (Date): Birth/germination date
-    - `gender` (Selection): Gender (male, female, other)
-    - `father_id` (Many2one): Father biological asset
-    - `mother_id` (Many2one): Mother biological asset
-    - `growth_stage` (Selection): Growth stage (newborn, growing, mature, harvested)
-    - `is_mature` (Boolean): Is mature flag (computed, stored)
-    - `generation` (Selection): Generation (G0-G3)
-    - `quality_grade` (Selection): Quality grade (A, B, C)
-    - `valuation_ids` (One2many): Asset valuations (farm.biological.asset.valuation)
-    - `current_valuation` (Float): Current valuation (computed, stored)
-    - `maturity_date` (Date): Maturity date (computed, stored)
-  - Methods:
-    - `_compute_maturity_date()`: Computes maturity date based on birth date and product maturity age
-    - `_compute_is_mature_from_age()`: Computes if asset is mature based on actual dates
-    - `_compute_current_valuation()`: Computes current valuation from active valuation records
-    - `_cron_check_maturity_and_transfer_asset()`: Cron method to check maturity and transfer asset costs
-    - `_process_maturity_transfer()`: Processes cost transfer when biological asset reaches maturity
-  - Relationships:
-    - Many2one: `lot_id` → `stock.lot`
-    - Many2one: `father_id` → `farm.biological.asset`
-    - Many2one: `mother_id` → `farm.biological.asset`
-    - One2many: `valuation_ids` → `farm.biological.asset.valuation.asset_id`
-    - Inherits from: `mail.thread`, `mail.activity.mixin`, `farm.core.creation.method.mixin`, `farm.core.computed.field.mixin`, `farm.core.compliance.mixin`
-
-- **farm_core.BiologicalAssetValuation** (`farm.biological.asset.valuation`): Manages valuation of biological assets
-  - Odoo Model: `class BiologicalAssetValuation(models.Model)`
-  - _name: `farm.biological.asset.valuation`
-  - _description: "Biological Asset Valuation and Depreciation"
-  - _order: "create_date desc"
-  - Fields:
-    - `asset_id` (Many2one): Biological asset being valued (required)
-    - `original_value` (Float): Original cost/value (required)
-    - `growth_stage_coefficient` (Float): Value coefficient based on growth stage
-    - `depreciation_years` (Float): Number of years for depreciation
-    - `annual_depreciation_rate` (Float): Annual depreciation percentage
-    - `accumulated_depreciation` (Float): Total depreciation accumulated (computed, stored)
-    - `net_book_value` (Float): Current book value after depreciation (computed, stored)
-    - `stage_coefficient_ids` (One2many): Growth stage coefficients (farm.biological.asset.stage.coefficient)
-    - `state` (Selection): Status (active, disposed, depreciated)
-  - Methods:
-    - `action_create_depreciation_entry()`: Creates depreciation journal entry for the biological asset
-    - `_compute_accumulated_depreciation()`: Calculates accumulated depreciation based on time passed and depreciation rate
-    - `_compute_net_book_value()`: Calculates net book value after depreciation
-    - `_onchange_asset_id()`: Auto-populates valuation parameters based on product settings
-  - Relationships:
-    - Many2one: `asset_id` → `farm.biological.asset`
-    - One2many: `stage_coefficient_ids` → `farm.biological.asset.stage.coefficient.valuation_id`
-    - Inherits from: Ordered by create date
-
-- **farm_core.BiologicalAssetStageCoefficient** (`farm.biological.asset.stage.coefficient`): Defines stage coefficients for biological asset valuation
-  - Odoo Model: `class BiologicalAssetStageCoefficient(models.Model)`
-  - _name: `farm.biological.asset.stage.coefficient`
-  - _description: "Biological Asset Stage Coefficient"
-  - Fields:
-    - `valuation_id` (Many2one): Valuation record (required, ondelete=cascade)
-    - `biological_stage` (Selection): Growth stage (newborn, growing, mature, harvested)
-    - `coefficient` (Float): Value coefficient multiplier
-    - `description` (Char): Description of coefficient
-  - Methods:
-    - `_onchange_biological_stage()`: Sets default coefficient based on growth stage
-  - Relationships:
-    - Many2one: `valuation_id` → `farm.biological.asset.valuation` with cascade delete
-
-### Geographic and Spatial
-- **farm_core.FarmGeofence**: Geofencing management for farm locations
-- **farm_core.GISCoordinateUtils** (Abstract): Provides GIS coordinate utilities
-
-### Common Utilities
-- **farm_core.CommonAgriculturalFields** (Abstract): Provides common agricultural fields across models
-- **farm_core.CreationMethodMixin** (Abstract): Provides creation method utilities
-- **farm_core.ComputedFieldMixin** (Abstract): Provides computed field utilities
-- **farm_core.ComplianceMixin** (Abstract): Provides compliance utilities
-
-## Land Management Models
-
-Land management models handle the tracking and management of farm locations and land use.
-
-- **farm_land_mgmt.FarmLocation**: Represents farm locations and land management
-- **farm_land_mgmt.FarmActivity**: Represents farm activities in land management
-- **farm_land_mgmt.ProjectTask**: Project tasks for land management operations
-
-## Planning Models
-
-Planning models handle agricultural planning and scenario management.
-
-- **farm_planning.AgriInterventionTemplate** (`agri.intervention.template`): Templates for agricultural interventions
-  - Odoo Model: `class AgriInterventionTemplate(models.Model)`
-  - _name: `agri.intervention.template`
-  - _description: "Agricultural Intervention Template"
-  - Fields:
-    - `name` (Char): Operation name (required)
-    - `intervention_type` (Selection): Category (tillage, sowing, fertilizing, protection, harvesting)
-    - `input_ids` (One2many): Estimated inputs (agri.intervention.template.input)
-    - `estimated_labor_hours` (Float): Estimated labor in hours (default: 1.0)
-  - Relationships:
-    - One2many: `input_ids` → `agri.intervention.template.input.template_id`
-
-- **farm_planning.AgriInterventionTemplateInput** (`agri.intervention.template.input`): Input templates for interventions
-  - Odoo Model: `class AgriInterventionTemplateInput(models.Model)`
-  - _name: `agri.intervention.template.input`
-  - _description: "Agricultural Intervention Template Input"
-  - Fields:
-    - `template_id` (Many2one): Template reference (ondelete=cascade)
-    - `product_id` (Many2one): Product/material reference (required) (product.product)
-    - `quantity` (Float): Quantity per unit area (default: 1.0) or `qty_per_unit` depending on context
-  - Relationships:
-    - Many2one: `template_id` → `agri.intervention.template`
-    - Many2one: `product_id` → `product.product`
-
-- **farm_planning.AgriTechnicalRoute** (`agri.technical.route`): Technical routes for agricultural operations (cultural itinerary)
-  - Odoo Model: `class AgriTechnicalRoute(models.Model)`
-  - _name: `agri.technical.route`
-  - _description: "Agricultural Technical Route"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Route name (required)
-    - `activity_family` (Selection): Activity family (planting, livestock, aquaculture)
-    - `line_ids` (One2many): Intervention sequence (agri.technical.route.line)
-  - Relationships:
-    - One2many: `line_ids` → `agri.technical.route.line.route_id`
-    - Inherits from: `mail.thread`, `mail.activity.mixin`
-
-- **farm_planning.AgriTechnicalRouteLine** (`agri.technical.route.line`): Line items for technical routes
-  - Odoo Model: `class AgriTechnicalRouteLine(models.Model)`
-  - _name: `agri.technical.route.line`
-  - _description: "Agricultural Technical Route Line"
-  - Fields:
-    - `route_id` (Many2one): Technical route reference (required) (agri.technical.route)
-    - `sequence` (Integer): Execution sequence order
-    - `intervention_template_id` (Many2one): Template for this step (agri.intervention.template)
-    - `estimated_days` (Float): Estimated days to complete this step
-  - Relationships:
-    - Many2one: `route_id` → `agri.technical.route`
-    - Many2one: `intervention_template_id` → `agri.intervention.template`
-
-- **farm_planning.AgriScenario**: Agricultural scenario planning
-  - Odoo Model: `class AgriScenario(models.Model)`
-  - _name: `agri.scenario`
-  - _description: "Agricultural Scenario Planning"
-  - Relationships:
-    - Extends: Base models with scenario planning functionality
-
-- **farm_planning.AgriScenarioInputForecast**: Forecast inputs for scenarios
-  - Odoo Model: `class AgriScenarioInputForecast(models.Model)`
-  - _name: `agri.scenario.input.forecast`
-  - _description: "Agricultural Scenario Input Forecast"
-  - Relationships:
-    - Extends: Base models with scenario input forecast functionality
-
-- **farm_planning.AgriTechnicalRouteLine** (`agri.technical.route.line`): Line items for technical routes
-  - (This model would be found in the actual file but was not fully shown in the grep results)
-
-- **farm_planning.AgriScenario**: Agricultural scenario planning
-- **farm_planning.AgriScenarioInputForecast**: Forecast inputs for scenarios
-
-## Operation Models
-
-Operation models manage the planning, execution, and tracking of farming operations.
-
-### Campaign and Intervention Management
-- **farm_operation.FarmAgriculturalCampaign** (`farm.agricultural.campaign`): Manages agricultural campaigns and planning
-  - Odoo Model: `class FarmAgriculturalCampaign(models.Model)`
-  - _name: `farm.agricultural.campaign`
-  - _description: "Agricultural Campaign (ISL Layer)"
-  - Fields:
-    - `isl_campaign_code` (Char): ISL-specific campaign identifier
-    - `farm_location_id` (Many2one): ISL Farm location link
-  - Relationships:
-    - Many2one: `farm_location_id` → `farm.location`
-    - Inherits from: `farm.agricultural.campaign.mixin`
-
-- **farm_operation.AgriculturalCampaign**: Alternative campaign model for agricultural operations
-  - Odoo Model: `class AgriculturalCampaign(models.Model)`
-  - _name: `agricultural.campaign`
-  - _inherit: `farm.agricultural.campaign.base`
-  - Relationship: Extends and specializes the base agricultural campaign functionality
-
-- **farm_operation.FarmAgriculturalIntervention** (`farm.agricultural.intervention`): Represents agricultural interventions and treatments
-  - Odoo Model: `class FarmAgriculturalIntervention(models.Model)`
-  - _name: `farm.agricultural.intervention`
-  - _description: "Agricultural Intervention (ISL Layer)"
-  - _inherits: `mrp.production`
-  - _inherit: `farm.agricultural.intervention.mixin`
-  - Fields:
-    - `production_id` (Many2one): Base production order (required, ondelete=cascade)
-  - Relationships:
-    - _inherits: `mrp.production` via `production_id` field
-    - _inherit: `farm.agricultural.intervention.mixin`
-    - Links to base Odoo MRP production model
-
-- **farm_operation.AgriIntervention** (`mrp.production`): Alternative intervention model for agricultural operations
-  - Odoo Model: `class AgriIntervention(models.Model)`
-  - _name: `mrp.production` (Extends existing model)
-  - _inherit: `mrp.production` and `farm.agricultural.intervention.mixin`
-  - Fields:
-    - Inherits all fields from `mrp.production` (Odoo's native manufacturing order)
-    - Additional functionality from `farm.agricultural.intervention.mixin`
-  - Relationships:
-    - _inherit: `mrp.production` and `farm.agricultural.intervention.mixin`
-    - Provides agricultural-specific functionality while maintaining compatibility with Odoo MRP system
-
-- **farm_operation.MrpProduction**: Manufacturing resource planning production orders for operations
-  - Odoo Model: `class MrpProduction(models.Model)`
-  - _name: `mrp.production` (Extends existing model)
-  - _inherit: `mrp.production`
-  - Methods:
-    - `_get_isl_model()`: Returns specialized model based on industry type
-    - `action_confirm()`: Processing-specific pre-confirmation checks
-    - `button_mark_done()`: Processing-specific pre-done checks
-  - Relationships:
-    - Extends: `mrp.production` (Odoo's native manufacturing order model)
-
-### Manufacturing Resource Planning
-- **farm_operation.MrpBom**: Manufacturing resource planning bill of materials for operations
-- **farm_operation.MrpBomLine**: Line items for manufacturing resource planning
-- **farm_operation.MrpProduction**: Manufacturing resource planning production orders
-- **farm_operation.FarmAgriculturalBom**: Bill of materials for agricultural operations
-- **farm_operation.FarmAgriculturalBomLine**: Line items for agricultural bill of materials
-
-### Project Management
-- **farm_operation.ProjectTask**: Tasks associated with farming projects
-- **farm_operation.StockMove**: Tracks movement of stock in operations
-
-### Mixins
-- **farm_operation.FarmAgriculturalCampaignMixin** (Abstract): Provides agricultural campaign utilities
-- **farm_operation.FarmAgriculturalInterventionMixin** (Abstract): Provides agricultural intervention utilities
-- **farm_operation.FarmAgriculturalBomMixin** (Abstract): Provides agricultural BOM utilities
-- **farm_operation.FarmAgriculturalBomLineMixin** (Abstract): Provides agricultural BOM line utilities
-- **farm_operation.FarmAgriculturalCampaignBase** (Abstract): Provides base functionality for agricultural campaigns
-
-## Equipment Models
-
-Equipment models manage farm machinery and equipment operations.
-
-- **farm_equipment.FarmEquipment**: Equipment management for farming
-  - Odoo Model: `class FarmEquipment(models.Model)`
-  - _name: `farm.equipment`
-  - _description: "Farm Equipment Management"
-  - Relationships:
-    - Extends: Base models with equipment management functionality
-
-- **farm_equipment.FarmEquipmentLog**: Log of equipment usage and maintenance
-  - Odoo Model: `class FarmEquipmentLog(models.Model)`
-  - _name: `farm.equipment.log`
-  - _description: "Farm Equipment Usage and Maintenance Log"
-  - Relationships:
-    - Extends: Base models with equipment log functionality
-
-- **farm_equipment.FarmBattery**: Battery management for equipment
-  - Odoo Model: `class FarmBattery(models.Model)`
-  - _name: `farm.battery`
-  - _description: "Farm Equipment Battery Management"
-  - Relationships:
-    - Extends: Base models with battery management functionality
-
-- **farm_equipment.FarmEquipmentChecklist**: Checklists for equipment maintenance
-  - Odoo Model: `class FarmEquipmentChecklist(models.Model)`
-  - _name: `farm.equipment.checklist`
-  - _description: "Farm Equipment Maintenance Checklists"
-  - Relationships:
-    - Extends: Base models with equipment checklist functionality
-
-- **farm_equipment.FarmEquipmentChecklistLine**: Line items for equipment checklists
-  - Odoo Model: `class FarmEquipmentChecklistLine(models.Model)`
-  - _name: `farm.equipment.checklist.line`
-  - _description: "Farm Equipment Checklist Line Items"
-  - Relationships:
-    - Extends: Base models with equipment checklist line functionality
-
-## HR Models
-
-HR models manage human resources for farming operations.
-
-- **farm_hr.FarmWageRule**: Wage rules for farm workers
-  - Odoo Model: `class FarmWageRule(models.Model)`
-  - _name: `farm.wage.rule`
-  - _description: "Farm Worker Wage Rules"
-  - Relationships:
-    - Extends: Base models with wage rule functionality
-
-- **farm_hr.FarmLaborPayment**: Labor payment management
-  - Odoo Model: `class FarmLaborPayment(models.Model)`
-  - _name: `farm.labor.payment`
-  - _description: "Farm Labor Payment Management"
-  - Relationships:
-    - Extends: Base models with labor payment functionality
-
-- **farm_hr.FarmLaborPaymentLine**: Line items for labor payments
-  - Odoo Model: `class FarmLaborPaymentLine(models.Model)`
-  - _name: `farm.labor.payment.line`
-  - _description: "Farm Labor Payment Line Items"
-  - Relationships:
-    - Extends: Base models with labor payment line functionality
-
-- **farm_hr.FarmWorklog**: Work log tracking
-  - Odoo Model: `class FarmWorklog(models.Model)`
-  - _name: `farm.worklog`
-  - _description: "Farm Work Log Tracking"
-  - Relationships:
-    - Extends: Base models with work log functionality
-
-- **farm_hr.ProjectTask**: HR-enhanced project task management
-  - Odoo Model: `class ProjectTask(models.Model)`
-  - _name: `project.task`
-  - _description: "HR-Enhanced Project Task Management"
-  - _inherit: `project.task`
-  - Relationships:
-    - Extends: `project.task` (Odoo's native project task model) with HR enhancements
-
-- **farm_hr.AgriSkill**: Agricultural skill tracking
-  - Odoo Model: `class AgriSkill(models.Model)`
-  - _name: `farm.agri.skill`
-  - _description: "Agricultural Skill Tracking"
-  - Relationships:
-    - Extends: Base models with agricultural skill functionality
-
-- **farm_hr.FarmEmployeeCertificate**: Employee certificate management
-  - Odoo Model: `class FarmEmployeeCertificate(models.Model)`
-  - _name: `farm.employee.certificate`
-  - _description: "Farm Employee Certificate Management"
-  - Relationships:
-    - Extends: Base models with employee certificate functionality
-
-- **farm_hr.HrEmployee**: Enhanced employee records for agriculture
-  - Odoo Model: `class HrEmployee(models.Model)`
-  - _name: `hr.employee`
-  - _description: "Agricultural Employee Records Enhancement"
-  - _inherit: `hr.employee`
-  - Relationships:
-    - Extends: `hr.employee` (Odoo's native employee model) with agricultural enhancements
-
-## MRP Models
-
-MRP (Manufacturing Resource Planning) models handle production planning and bill of materials management.
-
-### Production Management
-- **farm_mrp.MrpProduction** (`mrp.production`): Manufacturing resource planning production orders
-  - Relationships:
-    - Inherits from: `mrp.production` (Odoo's native model)
-    - Method: `_get_isl_model()` - returns specialized model based on industry type
-    - Method: `action_confirm()` - processing-specific pre-confirmation checks
-    - Method: `button_mark_done()` - processing-specific pre-done checks
-
-- **farm_mrp.MrpBom**: Manufacturing resource planning bill of materials
-- **farm_mrp.MrpBomLine**: Line items for manufacturing bills of materials
-
-### Stock Management
-- **farm_mrp.StockLot**: Stock lots for manufacturing processes
-
-### Mixins
-- **farm_mrp.FarmAgriBomMixin** (Abstract): Provides agricultural BOM utilities for MRP
-- **farm_mrp.FarmAgriProductionMixin** (Abstract): Provides agricultural production utilities for MRP
-
-## Field Crops Models
-
-Field crops models manage grain and field crop production operations.
-
-### Operations
-- **farm_field_crops.FieldCropOperation**: Operations for field crop management
-
-### Production and Planning
-- **farm_field_crops.MrpProduction**: Manufacturing resource planning for field crops
-- **farm_field_crops.MrpBom**: Manufacturing resource planning BOM for field crops
-- **farm_field_crops.FarmCropBom**: Field crop-specific BOM
-- **farm_field_crops.FarmCropProduction**: Field crop production management
-- **farm_field_crops.FarmCropLot**: Field crop lot management
-- **farm_field_crops.FarmCropBomLine**: Line items for field crop BOM
-
-### Stock Management
-- **farm_field_crops.StockLot**: Stock lots for field crop management
-
-## Livestock Models
-
-Livestock models manage animal husbandry and livestock-related operations.
-
-### Core Livestock Management
-- **farm_livestock.FarmLot**: Livestock lot management
-- **farm_livestock.StockLot**: Stock lots for livestock management
-- **farm_livestock.FarmBreedingRecord**: Records of livestock breeding activities
-
-### Production and Planning
-- **farm_livestock.MrpProduction**: Manufacturing resource planning for livestock
-- **farm_livestock.MrpBom**: Manufacturing resource planning BOM for livestock
-- **farm_livestock.FarmLivestockBom**: Livestock-specific BOM
-- **farm_livestock.FarmLivestockProduction**: Livestock production management
-- **farm_livestock.FarmLivestockBomLine**: Line items for livestock BOM
-
-### Health Management
-- **farm_livestock.FarmAnimalHealthWizard**: Wizard for livestock health management
-
-## Aquaculture Models
-
-Aquaculture models manage fish and aquatic organism farming operations.
-
-### Operations
-- **farm_aquaculture.FarmAquacultureOperation**: Operations for aquaculture management
-- **farm_aquaculture.FarmWaterQualityLog**: Logs for water quality in aquaculture
-
-### Production and Planning
-- **farm_aquaculture.MrpProduction**: Manufacturing resource planning for aquaculture
-- **farm_aquaculture.MrpBom**: Manufacturing resource planning BOM for aquaculture
-- **farm_aquaculture.FarmAquacultureBom**: Aquaculture-specific BOM
-- **farm_aquaculture.FarmAquacultureProduction**: Aquaculture production management
-- **farm_aquaculture.FarmAquacultureBomLine**: Line items for aquaculture BOM
-
-### Stock Management
-- **farm_aquaculture.StockLot**: Stock lots for aquaculture management
-
-## Specialized Farming Models
-
-### AgriTourism
-- **farm_agritourism.FarmAgritourismOperation**: Operations for agritourism
-- **farm_agritourism.FarmResourceUsage**: Resource usage tracking for agritourism
-- **farm_agritourism.FarmResource**: Resource management for agritourism
-- **farm_agritourism.FarmBooking**: Booking management for agritourism
-- **farm_agritourism.SaleOrder**: Agritourism-enhanced sale orders
-- **farm_agritourism.ProductTemplate**: Agritourism-enhanced product templates
-- **farm_agritourism.SaleOrderLine**: Line items for agritourism sale orders
-
-### Orchard/Horticulture
-- **farm_orchard_horticulture.OrchardOperation**: Operations for orchard and horticulture
-- **farm_orchard_horticulture.FruitTree**: Management of fruit trees
-- **farm_orchard_horticulture.PlantYieldRecord**: Record of plant yields
-
-### Apiculture
-- **farm_apiculture.FarmApicultureOperation**: Operations for apiculture (beekeeping)
-- **farm_apiculture.FarmHiveInspection**: Inspection records for beehives
-
-### Mushroom
-- **farm_mushroom.FarmMushroomOperation**: Operations for mushroom production
-- **farm_mushroom.FarmMushroomHarvest**: Harvest management for mushrooms
-
-### Medicinal Plants
-- **farm_medicinal_plants.FarmMedicinalPlantsOperation**: Operations for medicinal plant production
-- **farm_medicinal_plants.FarmMedicinalPlantsAnalysis**: Analysis of medicinal plants
-
-### Protected Cultivation
-- **farm_protected_cultivation.ProtectedCultivationOperation**: Operations for protected cultivation
-- **farm_protected_cultivation.FarmEnvironmentalLog**: Environmental logging for protected cultivation
-
-### Breeding
-- **farm_breeding.FarmTraitValue**: Management of trait values for breeding
-- **farm_breeding.FarmLotBreeding**: Breeding management for lots
-- **farm_breeding.FarmNurseryBatch**: Management of nursery batches for breeding
-- **farm_breeding.FarmTraitComparisonWizard**: Wizard for comparing traits
-- **farm_breeding.FarmTraitComparisonLine**: Line items for trait comparisons
-
-### Sustainability
-- **farm_sustainability.AgriculturalCampaign**: Sustainability-enhanced agricultural campaigns
-- **farm_sustainability.ProductTemplate**: Sustainability-enhanced product templates
-- **farm_sustainability.AgriIntervention** (`mrp.production`): Sustainability-enhanced interventions (extends mrp.production)
-  - Odoo Model: `class AgriIntervention(models.Model)`
-  - _name: `mrp.production` (Extends existing model)
-  - _inherit: `mrp.production`
-  - Fields:
-    - `calculated_carbon_emission` (Float): Calculated carbon emission in kg CO2e (computed, stored)
-  - Methods:
-    - `_compute_carbon_emission()`: Computes carbon emission based on raw material inputs and their emission factors
-  - Relationships:
-    - Inherits from: `mrp.production`
-    - Computes emission from `move_raw_ids.product_uom_qty` and `move_raw_ids.product_id.carbon_emission_factor`
-
-- **farm_sustainability.StockLot** (`stock.lot`): Sustainability-enhanced stock lots (extends stock.lot)
-  - Odoo Model: `class StockLot(models.Model)`
-  - _name: `stock.lot` (Extends existing model)
-  - _inherit: `stock.lot`
-  - Fields:
-    - `carbon_footprint` (Float): Carbon footprint in kg CO2e (computed, stored)
-  - Methods:
-    - `_compute_carbon_footprint()`: Computes carbon footprint for the lot
-  - Relationships:
-    - Inherits from: `stock.lot`
-
-### ESG Framework (farm_esg module)
-- **esg.ESGFramework** (`esg.framework`): Core ESG framework model
-  - Odoo Model: `class ESGFramework(models.Model)`
-  - _name: `esg.framework`
-  - _description: "ESG Framework"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Framework name
-    - `code` (Char): Unique framework code
-    - `description` (Text): Framework description
-    - `framework_type` (Selection): Type (environmental, social, governance, combined)
-    - `standards_body` (Char): Standards body maintaining framework
-    - `version` (Char): Framework version
-    - `effective_date` (Date): Effective date
-    - `expiry_date` (Date): Expiry date
-    - `is_active` (Boolean): Active status
-    - `compliance_level` (Selection): Compliance level (basic, intermediate, advanced, leadership)
-    - `indicator_ids` (One2many): Related ESG indicators
-  - Relationships:
-    - One2many: `indicator_ids` → `esg.indicator.framework_id`
-
-- **esg.ESGAssessment** (`esg.assessment`): ESG performance assessment model
-  - Odoo Model: `class ESGAssessment(models.Model)`
-  - _name: `esg.assessment`
-  - _description: "ESG Assessment"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Assessment name
-    - `assessment_date` (Date): Assessment date
-    - `assessment_type` (Selection): Type (environmental, social, governance, combined)
-    - `framework_id` (Many2one): Associated ESG framework
-    - `assessment_period` (Selection): Period (daily, weekly, monthly, quarterly, annually)
-    - `year` (Integer): Assessment year
-    - `assessed_entity_type` (Selection): Entity type (company, farm, operation, product, process)
-    - `assessed_entity_id` (Reference): Entity being assessed
-    - `overall_esg_score` (Float): Overall ESG score (0-100) (computed, stored)
-    - `assessment_status` (Selection): Status (draft, in_progress, completed, validated, archived)
-    - `environmental_score` (Float): Environmental score (0-100)
-    - `social_score` (Float): Social score (0-100)
-    - `governance_score` (Float): Governance score (0-100)
-    - `assessor_id` (Many2one): Assessor user
-    - `assessment_method` (Selection): Method (self_assessment, third_party, hybrid)
-    - `certification_body` (Char): Certification body
-    - `target_ids` (Many2many): Related ESG targets
-  - Methods:
-    - `_compute_overall_esg_score()`: Computes overall score as weighted average
-    - `action_start_assessment()`: Start assessment process
-    - `action_complete_assessment()`: Complete assessment process
-
-- **esg.ESGIndicator** (`esg.indicator`): ESG indicator model
-  - Odoo Model: `class ESGIndicator(models.Model)`
-  - _name: `esg.indicator`
-  - _description: "ESG Indicator"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - _order: 'category, name'
-  - Fields:
-    - `name` (Char): Indicator name
-    - `code` (Char): Indicator code
-    - `description` (Text): Indicator description
-    - `category` (Selection): Category (environmental, social, governance)
-    - `subcategory` (Selection): Subcategory (carbon_emissions, water_usage, waste_management, biodiversity, energy_efficiency, etc.)
-    - `framework_id` (Many2one): Associated ESG framework
-    - `unit_of_measurement` (Char): Unit of measurement
-    - `data_collection_method` (Selection): Collection method (automated, manual_input, third_party, survey, audit)
-    - `baseline_value` (Float): Baseline value
-    - `target_value` (Float): Target value
-    - `threshold_value` (Float): Threshold value
-    - `weight` (Float): Weight in ESG score calculation
-    - `min_acceptable_value` (Float): Minimum acceptable value
-    - `max_acceptable_value` (Float): Maximum acceptable value
-    - `is_percentage` (Boolean): Whether indicator is percentage
-    - `is_active` (Boolean): Active status
-    - `reporting_frequency` (Selection): Frequency (daily, weekly, monthly, quarterly, annually)
-    - `assessment_line_ids` (One2many): Related assessment lines
-  - Relationships:
-    - Many2one: `framework_id` → `esg.framework`
-    - One2many: `assessment_line_ids` → `esg.assessment.line`
-
-- **esg.ESGAssessmentLine** (`esg.assessment.line`): Individual indicator scores within assessments
-  - Odoo Model: `class ESGAssessmentLine(models.Model)`
-  - _name: `esg.assessment.line`
-  - _description: "ESG Assessment Line"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `assessment_id` (Many2one): Associated ESG assessment
-    - `indicator_id` (Many2one): Associated ESG indicator
-    - `actual_value` (Float): Actual measured value
-    - `target_value` (Float): Target value (related)
-    - `baseline_value` (Float): Baseline value (related)
-    - `variance` (Float): Variance from target (computed, stored)
-    - `performance_score` (Float): Performance score (0-100) (computed, stored)
-    - `achievement_percentage` (Float): Achievement percentage (computed, stored)
-    - `data_source` (Char): Data source
-    - `verification_status` (Selection): Verification status (unverified, self_verified, third_party_verified, certified)
-    - `collection_date` (Date): Data collection date
-    - `collected_by` (Many2one): User who collected data
-  - Methods:
-    - `_compute_variance()`: Computes variance from target
-    - `_compute_performance_score()`: Computes performance score based on achievement
-    - `_compute_achievement_percentage()`: Computes achievement percentage
-
-- **esg.ESGTarget** (`esg.target`): ESG goals and targets model
-  - Odoo Model: `class ESGTarget(models.Model)`
-  - _name: `esg.target`
-  - _description: "ESG Target"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Target name
-    - `description` (Text): Target description
-    - `category` (Selection): Category (environmental, social, governance)
-    - `target_type` (Selection): Type (reduction, improvement, compliance, certification, benchmark)
-    - `baseline_value` (Float): Baseline value
-    - `target_value` (Float): Target value
-    - `current_value` (Float): Current value (computed, stored)
-    - `unit_of_measurement` (Char): Unit of measurement
-    - `start_date` (Date): Start date
-    - `target_date` (Date): Target date
-    - `achieved_date` (Date): Date achieved (readonly)
-    - `progress_percentage` (Float): Progress percentage (computed, stored)
-    - `is_achieved` (Boolean): Whether target is achieved (computed, stored)
-    - `framework_id` (Many2one): Associated ESG framework
-    - `related_indicator_ids` (Many2many): Related indicators
-    - `responsible_user_id` (Many2one): Responsible user
-    - `priority` (Selection): Priority level (low, medium, high, critical)
-    - `status` (Selection): Status (planned, in_progress, partially_achieved, achieved, deferred, cancelled)
-    - `stakeholder_ids` (Many2many): Related stakeholders
-    - `last_update` (Text): Last update notes
-  - Methods:
-    - `_compute_progress_percentage()`: Computes progress percentage
-    - `_compute_is_achieved()`: Determines if target is achieved
-    - `_compute_current_value()`: Computes current value
-    - `action_update_current_value()`: Manual update of current value
-    - `action_mark_achieved()`: Mark target as achieved
-    - `action_track_progress()`: Track progress function
-
-- **esg.ESGPerformanceReport** (`esg.performance.report`): ESG performance reporting model
-  - Odoo Model: `class ESGPerformanceReport(models.Model)`
-  - _name: `esg.performance.report`
-  - _description: "ESG Performance Report"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Report name
-    - `report_date` (Date): Report date
-    - `report_period` (Selection): Report period (monthly, quarterly, semi_annually, annually)
-    - `year` (Integer): Report year
-    - `company_id` (Many2one): Associated company
-    - `environmental_score` (Float): Environmental score (0-100)
-    - `social_score` (Float): Social score (0-100)
-    - `governance_score` (Float): Governance score (0-100)
-    - `overall_esg_score` (Float): Overall ESG score (0-100) (computed, stored)
-    - `total_targets` (Integer): Total targets (computed, stored)
-    - `achieved_targets` (Integer): Achieved targets (computed, stored)
-    - `achievement_rate` (Float): Achievement rate percentage (computed, stored)
-    - `compliance_rate` (Float): Compliance rate percentage
-    - `audit_findings` (Integer): Number of audit findings
-    - `corrective_actions` (Integer): Corrective actions required
-    - `executive_summary` (Html): Executive summary
-    - `key_achievements` (Html): Key achievements
-    - `challenges` (Html): Challenges
-    - `improvement_plan` (Html): Improvement plan
-    - `assessment_ids` (Many2many): Related assessments
-    - `target_ids` (Many2many): Related targets
-  - Methods:
-    - `_compute_overall_score()`: Computes overall ESG score
-    - `_compute_target_metrics()`: Computes target-related metrics
-    - `action_generate_report()`: Generate ESG report
-
-### ESG Carbon Module (farm_esg_carbon)
-- **farm_esg_carbon.ProductTemplateExtension**: Extends product templates with carbon emissions
-  - Odoo Model: `class ProductTemplate(models.Model)` (extension)
-  - _inherit: `product.template`
-  - Fields:
-    - `carbon_emission_factor` (Float): Carbon emission factor (kg CO2e per unit)
-
-- **farm_esg_carbon.AgriInterventionExtension**: Extends production orders with carbon calculations
-  - Odoo Model: `class AgriIntervention(models.Model)` (extension)
-  - _inherit: `mrp.production`
-  - Fields:
-    - `calculated_carbon_emission` (Float): Calculated carbon emission (kg CO2e) (computed, stored)
-  - Methods:
-    - `_compute_carbon_emission()`: Computes total carbon emission from raw materials
-
-### ESG Environmental Compliance (farm_esg_environmental)
-- **agri.ESGRedLineConfig** (`agri.esg.red.line.config`): ESG red line configuration model
-  - Odoo Model: `class AgriESGRedLineConfig(models.Model)`
-  - _name: `agri.esg.red.line.config`
-  - _description: "Agri ESG Red Line Configuration"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Red line name
-    - `red_line_type` (Selection): Type (deforestation, water_extraction, soil_degradation, protected_area, carbon_emission, chemical_runoff, biodiversity_loss)
-    - `coordinates` (Text): Boundary coordinates for geofencing
-    - `buffer_distance_km` (Float): Buffer distance in kilometers
-    - `threshold_value` (Float): Threshold value
-    - `threshold_unit` (Char): Threshold unit
-    - `threshold_description` (Text): Threshold description
-    - `active_monitoring` (Boolean): Active monitoring flag
-    - `monitoring_frequency` (Selection): Frequency (real_time, hourly, daily, weekly)
+# 农场管理系统：领域模型全局字典 (Global Domain Model Dictionary - V8.0)
+> **自动生成**: 基于 Python 抽象语法树 (AST) 静态解析。
+> **涵盖范围**: 全量 101 个微服务模块中的物理表定义与继承关系。
+
+## 1. 核心与主数据域 (Core & Master Data)
+### `agri.audit.log` (Defined in `farm_core`)
+  - **Class**: `AgriAuditLog`
+  - **描述**: Agricultural Audit Log
+
+  - **核心字段**:
+    - `model_name` (Char): model_name
+    - `record_id` (Integer): record_id
+    - `operation` (Char): operation
+    - `user_id` (Many2one): res.users
+    - `timestamp` (Datetime): timestamp
+    - `details` (Text): details
+    - `severity` (Selection): severity
+    - `ip_address` (Char): ip_address
+    - `session_id` (Char): session_id
+
+### `agri.biological.asset` (Defined in `farm_core`)
+  - **Class**: `AgriBiologicalAsset`
+  - **描述**: Agricultural Biological Asset Standard
+  - _inherit_: `agri.biological.asset.mixin, agri.sustainability.mixin, agri.evidence.mixin, mail.thread`
+  - **核心字段**:
+    - `name` (Char): Standard Identity
+    - `active` (Boolean): active
+    - `parent_asset_id` (Many2one): agri.biological.asset
+    - `sub_asset_ids` (One2many): agri.biological.asset
+
+### `agri.biological.asset` (Defined in `farm_valuation`)
+  - **Class**: `BiologicalAssetExtension`
+  - **描述**: 
+  - _inherit_: `agri.biological.asset`
+  - **核心字段**:
+    - `current_fair_value` (Float): Current Fair Value
+    - `fair_value_date` (Date): Fair Value Date
+    - `fair_valuation_ids` (One2many): agri.biological.asset.fair.valuation
+    - `ope_integration` (Float): OPE Integration Score
+
+### `agri.biological.growth.curve` (Defined in `farm_core`)
+  - **Class**: `AgriBiologicalGrowthCurve`
+  - **描述**: Agricultural Biological Growth Curve
+
+  - **核心字段**:
+    - `product_id` (Many2one): product.template
+    - `age_days` (Integer): Physiological Age (Days)
+    - `target_weight` (Float): Target Weight (kg)
+    - `daily_feed_rate` (Float): Daily Feeding Rate (%)
+
+### `agri.geospatial.geofence` (Defined in `farm_core`)
+  - **Class**: `AgriGeospatialGeofence`
+  - **描述**: Agricultural Geofence Standard
+  - _inherit_: `mail.thread, mail.activity.mixin, farm.core.gis.utils`
+  - **核心字段**:
+    - `name` (Char): Fence Name
+    - `fence_type` (Selection): fence_type
+    - `coordinates` (Text): Polygon Coordinates
+    - `active` (Boolean): active
+    - `company_id` (Many2one): res.company
+    - `target_category` (Selection): target_category
+    - `alert_level` (Selection): alert_level
+
+### `agri.industry.data.package` (Defined in `farm_core`)
+  - **Class**: `AgriIndustryDataPackage`
+  - **描述**: Industry Data Package for One-Click Initialization
+
+  - **核心字段**:
+    - `name` (Char): Package Name
+    - `code` (Char): Package Code
+    - `industry_type` (Selection): industry_type
     - `description` (Text): Description
-    - `remediation_plan` (Text): Remediation plan
+    - `variety_ids` (One2many): agri.industry.variety
+    - `physio_stage_ids` (One2many): agri.industry.physio.stage
+    - `uom_conversion_ids` (One2many): farm.industry.uom.conversion
+    - `task_template_ids` (One2many): farm.industry.task.template
+    - `product_category_ids` (One2many): farm.industry.product.category
 
-- **agri.ESGRedLineMonitoring** (`agri.esg.red.line.monitoring`): ESG compliance monitoring model
-  - Odoo Model: `class AgriESGRedLineMonitoring(models.Model)`
-  - _name: `agri.esg.red.line.monitoring`
-  - _description: "Agri ESG Red Line Monitoring"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - _order: 'detection_date desc'
-  - Fields:
-    - `name` (Char): Monitoring record name
-    - `red_line_config_id` (Many2one): Red line configuration
-    - `batch_lot_id` (Many2one): Associated batch/lot
-    - `location_id` (Many2one): Location being monitored
-    - `detection_date` (Datetime): Detection date
-    - `compliance_status` (Selection): Status (compliant, warning, violation, critical, resolved)
-    - `current_value` (Float): Current measured value
-    - `threshold_value` (Float): Threshold value (related)
-    - `carbon_footprint_kg` (Float): Carbon footprint
-    - `water_usage_m3` (Float): Water usage in cubic meters
-    - `land_use_area` (Float): Land use area in square meters
-    - `is_in_protected_area` (Boolean): Whether in protected area
-    - `distance_to_boundary_km` (Float): Distance to boundary in kilometers
-    - `detection_method` (Selection): Method (geofence, threshold_monitoring, manual_audit, iot_sensor, telemetry)
-    - `detection_details` (Text): Detection details
-    - `automated_check` (Boolean): Automated check flag
-    - `alert_issued` (Boolean): Alert issued flag
-    - `corrective_actions` (Text): Required corrective actions
-    - `remediation_date` (Datetime): Remediation date
-    - `resolution_notes` (Text): Resolution notes
-  - Methods:
-    - `_check_compliance_status()`: Check compliance status
-    - `action_issue_red_line_alert()`: Issue red line alert
-    - `action_resolve_violation()`: Resolve violation
-    - `action_check_batch_compliance()`: Check batch compliance
-    - `_perform_specific_check()`: Perform specific compliance check
-    - `_check_deforestation_risk()`: Check deforestation risk
-    - `_check_water_usage()`: Check water usage
-    - `_check_carbon_footprint()`: Check carbon footprint
-    - `_check_protected_area_compliance()`: Check protected area compliance
-    - `_cron_check_compliance()`: Scheduled compliance check
+### `agri.industry.physio.stage` (Defined in `farm_core`)
+  - **Class**: `AgriIndustryPhysioStage`
+  - **描述**: Agricultural Physiological Stage
 
-- **agri.StockLotESGExtension** (`stock.lot`): ESG compliance extension to stock lots
-  - Odoo Model: `class AgriStockLot(models.Model)` (extension)
-  - _inherit: `stock.lot`
-  - Fields:
-    - `esg_compliance_status` (Selection): ESG compliance status (computed, stored)
-    - `esg_monitoring_ids` (One2many): ESG monitoring records
-    - `last_esg_check` (Datetime): Last ESG check date
-    - `water_usage_m3` (Float): Water usage for this lot
-    - `land_use_area_m2` (Float): Land use area in square meters
-  - Methods:
-    - `_compute_esg_compliance_status()`: Compute ESG compliance status
-    - `action_check_esg_compliance()`: Check ESG compliance
+  - **核心字段**:
+    - `package_id` (Many2one): agri.industry.data.package
+    - `stage_name` (Char): Stage Name
+    - `age_days` (Integer): Age (Days)
+    - `target_weight` (Float): Target Weight (kg)
+    - `daily_feed_rate` (Float): Daily Feed Rate (%)
+    - `related_variety` (Char): Related Variety
+    - `sequence` (Integer): Sequence
+    - `is_harvest_stage` (Boolean): Is Harvest Stage
+    - `accumulated_temp_threshold` (Float): Target Accumulated Temp (°C)
+    - `description` (Text): Standard Description
+    - `active` (Boolean): active
 
-### ESG Circular Economy (farm_esg_circular)
-- **agri.CircularFlow** (`agri.sustainability.circular.flow`): Agricultural circular flow model
-  - Odoo Model: `class AgriSustainabilityCircularFlow(models.Model)`
-  - _name: `agri.sustainability.circular.flow`
-  - _description: "Agricultural Circular Flow"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - _order: 'create_date desc'
-  - Fields:
-    - `name` (Char): Flow name
-    - `code` (Char): Flow code (unique)
-    - `flow_type` (Selection): Type (waste_to_resource, byproduct_to_sale, recycling, energy_recovery, composting, biogas_production)
-    - `description` (Text): Flow description
-    - `input_product_id` (Many2one): Input product/ingredient
-    - `output_product_id` (Many2one): Output product/resource
-    - `input_quantity` (Float): Input quantity
-    - `output_quantity` (Float): Output quantity
-    - `start_date` (Date): Start date
-    - `end_date` (Date): End date
-    - `duration_days` (Integer): Duration in days (computed, stored)
-    - `economic_value` (Float): Economic value (computed, stored)
-    - `environmental_impact` (Float): Environmental impact score (computed, stored)
-    - `social_impact` (Float): Social impact score (computed, stored)
-    - `processing_cost` (Float): Processing cost
-    - `revenue` (Float): Revenue
-    - `net_benefit` (Float): Net benefit (computed, stored)
-    - `status` (Selection): Status (planned, active, completed, suspended, cancelled)
-    - `responsible_person_id` (Many2one): Responsible person
-    - `department_id` (Many2one): Responsible department
-    - `related_production_id` (Many2one): Related production order
-    - `related_sale_order_id` (Many2one): Related sale order
-    - `related_carbon_calculation_id` (Many2one): Related carbon calculation
-    - `created_by` (Many2one): Created by user
-    - `create_date` (Datetime): Creation date (readonly)
-    - `write_date` (Datetime): Last update date (readonly)
-  - Methods:
-    - `_compute_duration()`: Compute duration in days
-    - `_compute_net_benefit()`: Compute net benefit
-    - `_compute_economic_value()`: Compute economic value
-    - `_compute_environmental_impact()`: Compute environmental impact score
-    - `_compute_social_impact()`: Compute social impact score
-    - `action_activate_flow()`: Activate the flow
-    - `action_complete_flow()`: Complete the flow
-    - `action_suspend_flow()`: Suspend the flow
-    - `name_get()`: Custom display name
+### `agri.industry.variety` (Defined in `farm_core`)
+  - **Class**: `AgriIndustryVariety`
+  - **描述**: Agricultural Variety Standard
+  - _inherit_: `agri.industry.variety.mixin, mail.thread`
+  - **核心字段**:
+    - `package_id` (Many2one): agri.industry.data.package
+    - `product_name` (Char): Product Name
+    - `variety_name` (Char): Variety Name
+    - `agricultural_type` (Selection): agricultural_type
+    - `standard_dose` (Float): Standard Dose
+    - `dose_uom_id` (Many2one): uom.uom
+    - `n_content` (Float): Nitrogen (N) %
+    - `p_content` (Float): Phosphorus (P) %
+    - `k_content` (Float): Potassium (K) %
+    - `growth_duration` (Integer): Growth Duration (Days)
+    - `maturity_age_days` (Integer): Maturity Age (Days)
+    - `is_biological_asset` (Boolean): Is Biological Asset
+    - `active` (Boolean): active
 
-- **agri.CircularFlowAnalysis** (`agri.sustainability.circular.flow.analysis`): Circular flow analysis view model
-  - Odoo Model: `class AgriSustainabilityCircularFlowAnalysis(models.Model)`
-  - _name: `agri.sustainability.circular.flow.analysis`
-  - _description: "Agricultural Circular Flow Analysis"
-  - _auto: False (database view)
-  - Fields:
-    - `flow_id` (Many2one): Related circular flow
-    - `flow_type` (Selection): Flow type (related)
-    - `input_product_id` (Many2one): Input product (related)
-    - `output_product_id` (Many2one): Output product (related)
-    - `economic_value` (Float): Economic value (related)
-    - `environmental_impact` (Float): Environmental impact (related)
-    - `net_benefit` (Float): Net benefit (related)
-    - `status` (Selection): Status (related)
-    - `month` (Char): Month for reporting
-    - `year` (Char): Year for reporting
-  - Methods:
-    - `init()`: Initialize database view
+### `agri.location` (Defined in `farm_core`)
+  - **Class**: `AgriLocation`
+  - **描述**: Agricultural Physical Location
+  - _inherit_: `agri.geospatial.mixin, agri.sustainability.mixin, agri.embedding.mixin, mail.thread`
+  - **核心字段**:
+    - `name` (Char): Location ID/Name
+    - `location_type` (Selection): location_type
+    - `parent_id` (Many2one): agri.location
+    - `child_ids` (One2many): agri.location
+    - `active` (Boolean): active
 
-### ESG Sustainability Reporting (farm_esg_sustainability)
-- **agri.SustainabilityMetric** (`agri.sustainability.metric`): Agricultural sustainability metric model
-  - Odoo Model: `class AgriSustainabilityMetric(models.Model)`
-  - _name: `agri.sustainability.metric`
-  - _description: "Agricultural Sustainability Metric"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - _order: 'category, sequence'
-  - Fields:
-    - `name` (Char): Metric name (translatable)
-    - `code` (Char): Unique metric code
-    - `category` (Selection): Category (economic, environmental, social, governance)
-    - `unit` (Char): Unit of measure
-    - `description` (Text): Description (translatable)
-    - `sequence` (Integer): Display sequence
-    - `target_value` (Float): Target value
-    - `current_value` (Float): Current value (computed, stored)
-    - `progress_rate` (Float): Progress rate percentage (computed, stored)
-    - `is_active` (Boolean): Active status
-    - `calculation_method` (Selection): Method (manual, automatic, formula)
-    - `formula` (Text): Calculation formula
-    - `last_updated` (Datetime): Last updated (readonly)
-    - `value_history_ids` (One2many): Value history
-  - Methods:
-    - `_compute_current_value()`: Compute current value from history
-    - `_compute_progress_rate()`: Compute progress rate
-    - `action_update_value()`: Update metric value action
-    - `name_get()`: Custom display name
+### `agri.neighborhood.registry` (Defined in `farm_core`)
+  - **Class**: `AgriNeighborhoodRegistry`
+  - **描述**: Agricultural Neighborhood Registry
 
-- **agri.SustainabilityMetricValue** (`agri.sustainability.metric.value`): Sustainability metric value history
-  - Odoo Model: `class AgriSustainabilityMetricValue(models.Model)`
-  - _name: `agri.sustainability.metric.value`
-  - _description: "Agri Sustainability Metric Value"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - _order: 'date desc'
-  - Fields:
-    - `metric_id` (Many2one): Related metric
-    - `value` (Float): Metric value
-    - `date` (Datetime): Record date
-    - `note` (Text): Notes
-    - `recorded_by` (Many2one): Recorded by user
-  - Methods:
-    - `create()`: Override create to update parent metric timestamp
+  - **核心字段**:
+    - `spatial_grid_id` (Char): Grid ID
+    - `res_model` (Char): Entity Model
+    - `res_id` (Integer): Entity ID
+    - `agent_id` (Char): Agent identifier
+    - `last_seen` (Datetime): Last Seen
+    - `is_active` (Boolean): Is Active
 
-- **agri.SustainabilityMetricValueWizard** (`agri.sustainability.metric.value.wizard`): Wizard for updating metric values
-  - Odoo Model: `class AgriSustainabilityMetricValueWizard(models.TransientModel)`
-  - _name: `agri.sustainability.metric.value.wizard`
-  - _description: "Agri Sustainability Metric Value Update Wizard"
-  - Fields:
-    - `metric_id` (Many2one): Related metric (readonly)
-    - `value` (Float): New value
+### `agri.soil.analysis` (Defined in `farm_core`)
+  - **Class**: `AgriSoilAnalysis`
+  - **描述**: Agricultural Soil Analysis Standard
+  - _inherit_: `agri.soil.analysis.mixin, agri.sustainability.mixin, agri.evidence.mixin, mail.thread`
+  - **核心字段**:
+    - `name` (Char): Analysis Identity
+    - `analysis_date` (Date): Analysis Date
+    - `spatial_grid_id` (Char): Target Grid ID
+
+### `farm.activity` (Defined in `farm_core`)
+  - **Class**: `FarmActivity`
+  - **描述**: Agricultural Activity
+  - _inherit_: `farm.core.creation.method.mixin`
+  - **核心字段**:
+    - `project_id` (Many2one): project.project
+    - `is_agri_activity` (Boolean): is_agri_activity
+    - `activity_family` (Selection): activity_family
+    - `production_cycle` (Selection): production_cycle
+    - `task_sequence_id` (Many2one): ir.sequence
+
+### `farm.biological.asset` (Defined in `farm_core`)
+  - **Class**: `BiologicalAsset`
+  - **描述**: Biological Asset (Deprecated - Use agri.biological.asset)
+  - _inherit_: `agri.biological.asset, mail.thread, mail.activity.mixin, farm.core.creation.method.mixin, farm.core.computed.field.mixin, farm.core.compliance.mixin`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `father_id` (Many2one): farm.biological.asset
+    - `mother_id` (Many2one): farm.biological.asset
+    - `growth_stage` (Selection): growth_stage
+    - `is_mature` (Boolean): Is Mature (Operational)
+    - `generation` (Selection): generation
+    - `quality_grade` (Selection): quality_grade
+    - `current_valuation` (Float): Current Valuation
+    - `maturity_date` (Date): Maturity Date
+
+### `farm.industry.package.wizard` (Defined in `farm_core`)
+  - **Class**: `IndustryPackageWizard`
+  - **描述**: Industry Package Application Wizard
+
+  - **核心字段**:
+    - `package_id` (Many2one): agri.industry.data.package
+    - `confirmation_message` (Char): confirmation_message
+
+### `farm.industry.product.category` (Defined in `farm_core`)
+  - **Class**: `IndustryProductCategory`
+  - **描述**: Industry Package Product Category Data
+
+  - **核心字段**:
+    - `package_id` (Many2one): agri.industry.data.package
+    - `name` (Char): Category Name
+    - `parent_id` (Many2one): product.category
+    - `agricultural_type` (Selection): agricultural_type
+
+### `farm.industry.task.template` (Defined in `farm_core`)
+  - **Class**: `IndustryTaskTemplate`
+  - **描述**: Industry Package Task Template Data
+
+  - **核心字段**:
+    - `package_id` (Many2one): agri.industry.data.package
+    - `name` (Char): Template Name
+    - `description` (Text): Description
+    - `fold` (Boolean): Folded in Kanban
+    - `project_id` (Many2one): project.project
+    - `expected_duration` (Integer): Expected Duration (Days)
+    - `required_equipment` (Char): Required Equipment
+    - `required_inputs` (Char): Required Inputs
+
+### `farm.industry.uom.conversion` (Defined in `farm_core`)
+  - **Class**: `IndustryUOMConversion`
+  - **描述**: Industry Package UOM Conversion Data
+
+  - **核心字段**:
+    - `package_id` (Many2one): agri.industry.data.package
+    - `from_uom_id` (Many2one): uom.uom
+    - `to_uom_id` (Many2one): uom.uom
+    - `factor` (Float): Conversion Factor
+    - `description` (Text): Description
+
+### `farm.location` (Defined in `farm_agri_science`)
+  - **Class**: `FarmLocation`
+  - **描述**: 
+  - _inherit_: `farm.location`
+  - **核心字段**:
+    - `grid_resolution` (Selection): grid_resolution
+    - `grid_cell_ids` (One2many): agri.geospatial.grid.cell
+    - `grid_generated` (Boolean): Grid Layout Generated
+
+### `farm.location` (Defined in `farm_core`)
+  - **Class**: `FarmLocation`
+  - **描述**: Farm Location & Land Parcel
+  - _inherit_: `mail.thread, mail.activity.mixin, stock.location, farm.core.gis.utils, agri.industry.planting.mixin, agri.certification.status.mixin`
+  - **核心字段**:
+    - `agri_location_id` (Many2one): agri.location
+    - `is_land_parcel` (Boolean): Is Land Parcel
+    - `land_nature` (Selection): land_nature
+    - `land_area` (Float): Area (sqm/mu)
+    - `land_area_uom_id` (Many2one): uom.uom
+    - `gps_lat` (Float): Latitude
+    - `gps_lng` (Float): Longitude
+    - `boundary_geojson` (Text): Boundary Coordinates (GeoJSON)
+    - `calculated_area_ha` (Float): Calculated Area (Ha)
+    - `gis_map_url` (Char): Map Link
+    - `soil_type` (Selection): soil_type
+    - `slope` (Float): Slope Gradient (%)
+    - `aspect` (Selection): aspect
+    - `water_source` (Selection): water_source
+    - `micro_climate_notes` (Text): Micro-climate Characteristics
+    - *... 以及其他 13 个业务字段*
+
+### `farm.location` (Defined in `farm_greenhouse`)
+  - **Class**: `FarmLocation`
+  - **描述**: 
+  - _inherit_: `farm.location`
+  - **核心字段**:
+    - `is_greenhouse` (Boolean): Is Greenhouse
+    - `greenhouse_type` (Selection): greenhouse_type
+    - `current_temp` (Float): Internal Temp (°C)
+    - `current_humidity` (Float): Humidity (%)
+    - `current_co2` (Float): CO2 (ppm)
+    - `current_light` (Float): Light Intensity (Lux)
+    - `current_ec` (Float): Nutrient EC (mS/cm)
+    - `current_ph` (Float): Nutrient pH
+
+### `farm.location` (Defined in `farm_iot`)
+  - **Class**: `FarmLocation`
+  - **描述**: 
+  - _inherit_: `farm.location`
+  - **核心字段**:
+    - `digital_twin_enabled` (Boolean): Digital Twin Enabled
+    - `digital_twin_scene_id` (Many2one): agri.digital.twin.scene
+
+### `farm.task` (Defined in `farm_core`)
+  - **Class**: `FarmTask`
+  - **描述**: Agricultural Task
+  - _inherit_: `farm.core.creation.method.mixin, agri.task.mixin`
+  - **核心字段**:
+    - `task_id` (Many2one): project.task
+    - `land_parcel_id` (Many2one): farm.location
+    - `activity_family` (Selection): activity_family
+    - `product_id` (Many2one): product.product
+    - `variety_id` (Many2one): product.template
+    - `planned_start_date` (Date): Planned Start Date
+    - `planned_end_date` (Date): Planned End Date
+    - `actual_start_date` (Date): Actual Start Date
+    - `actual_end_date` (Date): Actual End Date
+    - `required_equipment_ids` (Many2many): product.product
+    - `required_material_ids` (Many2many): product.product
+    - `required_labor_hours` (Float): Required Labor Hours
+    - `estimated_cost` (Float): Estimated Cost
+    - `actual_cost` (Float): Actual Cost
+    - `safety_protocol_followed` (Boolean): Safety Protocol Followed
+    - *... 以及其他 2 个业务字段*
+
+### `procurement.allocation.line` (Defined in `farm_multi_farm_procurement`)
+  - **Class**: `ProcurementAllocationLine`
+  - **描述**: Procurement Allocation Line
+
+  - **核心字段**:
+    - `planning_line_id` (Many2one): procurement.planning.line
+    - `member_id` (Many2one): cooperative.member
+    - `quantity` (Float): Quantity
+    - `priority_score` (Float): Priority Score
+    - `allocation_date` (Date): Allocation Date
+
+### `product.template` (Defined in `farm_core`)
+  - **Class**: `ProductTemplate`
+  - **描述**: 
+  - _inherit_: `product.template`
+  - **核心字段**:
+    - `agricultural_type` (Selection): agricultural_type
+    - `agri_variety` (Char): Variety/Species
+    - `breed_certificate_no` (Char): Breed Registration/Certificate No.
+    - `breeder_id` (Many2one): res.partner
+    - `genetic_traits` (Text): Genetic Traits
+    - `is_transgenic` (Boolean): GMO / Transgenic
+    - `best_sowing_month_start` (Selection): best_sowing_month_start
+    - `best_sowing_month_end` (Selection): best_sowing_month_end
+    - `harvest_season_notes` (Char): Harvest Season Description
+    - `born_at` (Datetime): Born At/Started At
+    - `dead_at` (Datetime): Dead At/Terminated At
+    - `identification_number` (Char): Identification No.
+    - `growth_curve_ids` (One2many): agri.biological.growth.curve
+    - `lot_properties_definition` (PropertiesDefinition): Lot Properties Definition
+    - `n_content` (Float): Nitrogen (N) %
+    - *... 以及其他 8 个业务字段*
+
+### `res.company` (Defined in `farm_core`)
+  - **Class**: `ResCompany`
+  - **描述**: 
+  - _inherit_: `res.company`
+  - **核心字段**:
+    - `properties_definition` (PropertiesDefinition): Farm Properties Definition
+
+### `res.config.settings` (Defined in `farm_core`)
+  - **Class**: `ResConfigSettings`
+  - **描述**: 
+  - _inherit_: `res.config.settings`
+  - **核心字段**:
+    - `module_farm_field_crops` (Boolean): module_farm_field_crops
+    - `module_farm_protected_cultivation` (Boolean): module_farm_protected_cultivation
+    - `module_farm_orchard_horticulture` (Boolean): module_farm_orchard_horticulture
+    - `module_farm_livestock` (Boolean): module_farm_livestock
+    - `module_farm_aquaculture` (Boolean): module_farm_aquaculture
+    - `module_farm_medicinal_plants` (Boolean): module_farm_medicinal_plants
+    - `module_farm_mushroom` (Boolean): module_farm_mushroom
+    - `module_farm_apiculture` (Boolean): module_farm_apiculture
+    - `module_farm_agricultural_processing` (Boolean): module_farm_agricultural_processing
+    - `module_farm_agritourism` (Boolean): module_farm_agritourism
+
+### `res.partner` (Defined in `farm_core`)
+  - **Class**: `ResPartner`
+  - **描述**: 
+  - _inherit_: `res.partner, agri.sustainability.mixin`
+
+
+### `stock.location` (Defined in `farm_certification`)
+  - **Class**: `FarmLocationCert`
+  - **描述**: 
+  - _inherit_: `stock.location`
+  - **核心字段**:
+    - `certification_level` (Selection): certification_level
+    - `conversion_start_date` (Date): Conversion Start Date
+    - `last_prohibited_substance_date` (Date): Last Prohibited Substance Date
+    - `conversion_target_days` (Integer): Target Conversion Days
+    - `conversion_progress` (Float): Conversion Progress (%)
+
+### `stock.location` (Defined in `farm_green_monitor`)
+  - **Class**: `StockLocation`
+  - **描述**: 
+  - _inherit_: `stock.location`
+  - **核心字段**:
+    - `fertilizer_reduction_target` (Float): Fertilizer Reduction Target (%)
+    - `pesticide_reduction_target` (Float): Pesticide Reduction Target (%)
+
+### `stock.location` (Defined in `farm_iot`)
+  - **Class**: `FarmLocation`
+  - **描述**: 
+  - _inherit_: `stock.location`
+  - **核心字段**:
+    - `camera_device_id` (Many2one): iiot.device
+
+### `stock.location` (Defined in `farm_label`)
+  - **Class**: `StockLocation`
+  - **描述**: 
+  - _inherit_: `stock.location`
+
+
+### `stock.lot` (Defined in `farm_core`)
+  - **Class**: `StockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot, agri.view.mixin, agri.sustainability.mixin, agri.traceability.mixin, agri.geospatial.mixin, agri.nutrient.mixin, agri.certification.status.mixin, agri.evidence.mixin, agri.clearing.mixin`
+
+
+### `stock.move.line` (Defined in `farm_core`)
+  - **Class**: `AgriStockMoveLine`
+  - **描述**: 
+  - _inherit_: `stock.move.line, agri.nutrient.mixin`
+
+
+### `stock.move` (Defined in `farm_core`)
+  - **Class**: `AgriStockMove`
+  - **描述**: 
+  - _inherit_: `stock.move, agri.nutrient.mixin, agri.sustainability.mixin`
+
+
+## 2. 生产与作业流域 (Operations & Interventions)
+### `agri.intervention.template.input` (Defined in `farm_planning`)
+  - **Class**: `AgriInterventionTemplateInput`
+  - **描述**: Intervention Template Input
+
+  - **核心字段**:
+    - `template_id` (Many2one): agri.intervention.template
+    - `product_id` (Many2one): product.product
+    - `qty_per_unit` (Float): Qty per Area/Unit
+
+### `agri.intervention.template.input` (Defined in `farm_planning`)
+  - **Class**: `AgriInterventionTemplateInput`
+  - **描述**: Template Input Requirement
+
+  - **核心字段**:
+    - `template_id` (Many2one): agri.intervention.template
+    - `product_id` (Many2one): product.product
+    - `quantity` (Float): Quantity per Unit Area
+
+### `agri.intervention.template` (Defined in `farm_planning`)
+  - **Class**: `AgriInterventionTemplate`
+  - **描述**: Agricultural Intervention Template
+
+  - **核心字段**:
+    - `name` (Char): Operation Name
+    - `intervention_type` (Selection): intervention_type
+    - `input_ids` (One2many): agri.intervention.template.input
+    - `estimated_labor_hours` (Float): Estimated Labor (Hours)
+
+### `agri.intervention.template` (Defined in `farm_planning`)
+  - **Class**: `AgriInterventionTemplate`
+  - **描述**: Intervention Template
+
+  - **核心字段**:
+    - `name` (Char): Operation Name
+    - `intervention_type` (Selection): intervention_type
+    - `labor_hours_per_unit` (Float): Labor Hours per Hectare/Group
+    - `input_ids` (One2many): agri.intervention.template.input
+
+### `agri.intervention` (Defined in `farm_operation`)
+  - **Class**: `AgriIntervention`
+  - **描述**: Agricultural Intervention (ISL Layer)
+  - _inherit_: `mail.thread, mail.activity.mixin, agri.intervention.mixin`
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+
+### `agricultural.campaign` (Defined in `farm_operation`)
+  - **Class**: `AgriculturalCampaign`
+  - **描述**: 
+  - _inherit_: `agricultural.campaign`
+
+
+### `agricultural.campaign` (Defined in `farm_operation`)
+  - **Class**: `AgriculturalCampaign`
+  - **描述**: Agricultural Production Season
+  - _inherit_: `farm.agricultural.campaign.base`
+  - **核心字段**:
+    - `project_task_ids` (One2many): project.task
+
+### `farm.agricultural.bom.line` (Defined in `farm_operation`)
+  - **Class**: `FarmAgricultulturalBomLine`
+  - **描述**: Agricultural BOM Line (ISL Layer)
+  - _inherit_: `agri.bom.line.mixin`
+  - **核心字段**:
+    - `bom_line_id` (Many2one): mrp.bom.line
+
+### `farm.agricultural.bom` (Defined in `farm_operation`)
+  - **Class**: `FarmAgriculturalBom`
+  - **描述**: Agricultural BOM (ISL Layer)
+  - _inherit_: `agri.bom.mixin`
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+
+### `farm.agricultural.campaign` (Defined in `farm_esg_sustainability`)
+  - **Class**: `AgriculturalCampaign`
+  - **描述**: 
+  - _inherit_: `farm.agricultural.campaign`
+  - **核心字段**:
+    - `task_ids` (One2many): project.task
+    - `total_n` (Float): Total Nitrogen (kg)
+    - `total_p` (Float): Total Phosphorus (kg)
+    - `total_k` (Float): Total Potassium (kg)
+    - `n_reduction_rate` (Float): N Reduction %
+    - `p_reduction_rate` (Float): P Reduction %
+    - `k_reduction_rate` (Float): K Reduction %
+
+### `farm.agricultural.campaign` (Defined in `farm_operation`)
+  - **Class**: `FarmAgriculturalCampaign`
+  - **描述**: Agricultural Campaign (ISL Layer)
+  - _inherit_: `farm.agricultural.campaign.mixin`
+  - **核心字段**:
+    - `isl_campaign_code` (Char): ISL Campaign Code
+    - `farm_location_id` (Many2one): farm.location
+
+### `farm.agritourism.operation` (Defined in `farm_agritourism`)
+  - **Class**: `FarmAgritourismOperation`
+  - **描述**: Farm Agritourism Operation
+  - _inherit_: `project.task`
+  - **核心字段**:
+    - `activity_type` (Selection): activity_type
+    - `activity_code` (Char): Activity Code
+    - `visitor_count` (Integer): Planned Visitor Count
+    - `actual_visitor_count` (Integer): Actual Visitor Count
+    - `visitor_age_distribution` (Text): Visitor Age Distribution
+    - `visitor_special_needs` (Text): Special Needs/Requirements
+    - `resource_usage_ids` (One2many): farm.resource.usage
+    - `activity_date` (Date): Activity Date
+    - `activity_start_time` (Float): Start Time
+    - `activity_end_time` (Float): End Time
+    - `requires_reservation` (Boolean): Requires Reservation
+    - `safety_measures` (Text): Safety Measures
+    - `emergency_contact` (Char): Emergency Contact
+    - `insurance_coverage` (Char): Insurance Coverage Information
+    - `risk_assessment_completed` (Boolean): Risk Assessment Completed
+    - *... 以及其他 14 个业务字段*
+
+### `farm.industry.operation` (Defined in `farm_processing`)
+  - **Class**: `FarmIndustryOperation`
+  - **描述**: Industry-Specific Process Operation (ISL Layer)
+
+  - **核心字段**:
+    - `operation_id` (Many2one): mrp.routing.workcenter
+    - `technical_manual` (Html): Technical SOP
+    - `param_monitoring_required` (Boolean): Monitor Critical Parameters
+    - `target_value` (Float): Target Value
+    - `tolerance_range` (Float): Tolerance (+/-)
+
+### `farm.orchard.operation` (Defined in `farm_orchard_horticulture`)
+  - **Class**: `OrchardOperation`
+  - **描述**: Orchard Manual Operation
+  - _inherit_: `mail.thread, mail.activity.mixin, agri.quality.gate.mixin`
+  - **核心字段**:
+    - `operation_id` (Many2one): project.task
+    - `tree_id` (Many2one): stock.lot
+    - `pruning_type` (Selection): pruning_type
+
+### `mrp.bom.line` (Defined in `farm_operation`)
+  - **Class**: `MrpBomLine`
+  - **描述**: 
+  - _inherit_: `mrp.bom.line, agri.bom.line.mixin, agri.nutrient.mixin`
+
+
+### `mrp.bom` (Defined in `farm_operation`)
+  - **Class**: `MrpBom`
+  - **描述**: 
+  - _inherit_: `mrp.bom, agri.bom.mixin, agri.view.mixin, agri.nutrient.mixin, agri.sustainability.mixin`
+
+
+### `mrp.bom` (Defined in `farm_operation`)
+  - **Class**: `MrpBom`
+  - **描述**: 
+  - _inherit_: `mrp.bom`
+
+
+### `mrp.production` (Defined in `farm_operation`)
+  - **Class**: `AgriIntervention`
+  - **描述**: Agricultural Intervention (De-industrialized View)
+  - _inherit_: `mrp.production, agri.intervention.mixin, agri.sustainability.mixin, agri.geospatial.mixin, farm.agri.science.mixin, agri.nutrient.mixin, agri.actuator.mixin, agri.evidence.mixin, agri.clearing.mixin`
+  - **核心字段**:
+    - `daily_temp_max` (Float): Daily Max Temperature
+    - `daily_temp_min` (Float): Daily Min Temperature
+
+### `mrp.production` (Defined in `farm_operation`)
+  - **Class**: `MrpProduction`
+  - **描述**: 
+  - _inherit_: `mrp.production, agri.sustainability.mixin, agri.weather.sensitive.mixin, agri.agent.instruction.mixin`
+
+
+### `mrp.production` (Defined in `farm_operation`)
+  - **Class**: `MrpProduction`
+  - **描述**: 
+  - _inherit_: `mrp.production`
+
+
+### `project.task` (Defined in `farm_operation`)
+  - **Class**: `ProjectTask`
+  - **描述**: Multi-Industry Activity Production
+  - _inherit_: `project.task`
+  - **核心字段**:
+    - `industry_type` (Selection): industry_type
+    - `campaign_id` (Many2one): farm.agricultural.campaign
+    - `land_parcel_id` (Many2one): farm.location
+    - `gps_lat` (Float): gps_lat
+    - `gps_lng` (Float): gps_lng
+    - `biological_lot_id` (Many2one): stock.lot
+    - `support_id` (Many2one): product.product
+    - `size_value` (Float): Production Size
+    - `sale_order_id` (Many2one): sale.order
+    - `intervention_ids` (One2many): mrp.production
+    - `total_n` (Float): Total Nitrogen (kg)
+    - `total_p` (Float): Total Phosphorus (kg)
+    - `total_k` (Float): Total Potassium (kg)
+    - `n_density` (Float): N Density (kg/mu)
+    - `p_density` (Float): P Density (kg/mu)
+    - *... 以及其他 3 个业务字段*
+
+### `sale.order` (Defined in `farm_operation`)
+  - **Class**: `SaleOrder`
+  - **描述**: 
+  - _inherit_: `sale.order`
+
+
+### `stock.move` (Defined in `farm_operation`)
+  - **Class**: `StockMove`
+  - **描述**: 
+  - _inherit_: `stock.move`
+  - **核心字段**:
+    - `quality_grade` (Selection): quality_grade
+    - `agri_loss_reason` (Selection): agri_loss_reason
+
+## 3. 行业标准代理层 (Industry Standard Layer - ISL)
+### `agri.isl.extension` (Defined in `farm_isl`)
+  - **Class**: `AgriISLIndustryExtension`
+  - **描述**: Agri ISL Extension
+
+  - **核心字段**:
+    - `name` (Char): Extension Name
+    - `industry_type` (Selection): industry_type
+    - `model_name` (Char): Model Name
+    - `extension_fields` (Text): Extension Fields (JSON)
+    - `extension_methods` (Text): Extension Methods
+    - `active` (Boolean): Active
+    - `description` (Text): Description
+
+### `agri.isl.industry.planting` (Defined in `farm_isl`)
+  - **Class**: `ISLIndustryPlanting`
+  - **描述**: ISL Planting Specification
+  - _inherit_: `agri.industry.planting.mixin`
+  - **核心字段**:
+    - `name` (Char): Spec Name
+    - `standard_id` (Char): Global Standard ID
+    - `is_organic_compatible` (Boolean): Organic Compatible
+    - `min_buffer_zone_meters` (Float): Min Buffer Zone (m)
+
+### `agri.isl.migration.utility` (Defined in `farm_isl`)
+  - **Class**: `AgriISLMigrationUtility`
+  - **描述**: Agri ISL Data Migration Utility
+
+  - **核心字段**:
+    - `industry_type` (Selection): industry_type
+    - `model_to_migrate` (Selection): model_to_migrate
+    - `confirmation` (Boolean): Confirm Migration
+
+### `agri.mrp.bom` (Defined in `farm_isl`)
+  - **Class**: `AgriMRPBom`
+  - **描述**: Agri ISL MRP Bill of Materials
+  - _inherit_: `agri.manufacturing.mixin`
+  - **核心字段**:
+    - `mrp_bom_id` (Many2one): mrp.bom
+    - `allergen_control` (Boolean): Allergen Control
+    - `active_ingredient` (Char): Active Ingredient
+    - `safety_coefficient` (Float): Safety Coefficient
+    - `recipe_validation` (Html): Recipe Validation
+    - `ingredient_compliance` (Text): Ingredient Compliance
+
+### `agri.mrp.production` (Defined in `farm_isl`)
+  - **Class**: `AgriMRPProduction`
+  - **描述**: Agri ISL MRP Production Order
+  - _inherit_: `agri.manufacturing.mixin`
+  - **核心字段**:
+    - `mrp_production_id` (Many2one): mrp.production
+    - `haccp_plan` (Html): HACCP Plan
+    - `gmp_compliance` (Boolean): GMP Compliance
+    - `safety_procedures` (Html): Safety Procedures
+    - `quality_gate_checks` (Text): Quality Gate Checks
+
+### `agri.mrp.workcenter` (Defined in `farm_isl`)
+  - **Class**: `AgriMRPWorkcenter`
+  - **描述**: Agri ISL MRP Work Center
+  - _inherit_: `agri.manufacturing.mixin`
+  - **核心字段**:
+    - `workcenter_id` (Many2one): mrp.workcenter
+    - `cip_required` (Boolean): CIP Required
+    - `explosion_proof` (Boolean): Explosion Proof
+    - `clean_room_class` (Char): Clean Room Class
+    - `capacity_uom` (Char): Capacity Unit of Measure
+    - `efficiency_factor` (Float): Efficiency Factor
+
+### `agri.mrp.workorder` (Defined in `farm_isl`)
+  - **Class**: `AgriMRPWorkorder`
+  - **描述**: Agri ISL MRP Work Order
+  - _inherit_: `agri.manufacturing.mixin`
+  - **核心字段**:
+    - `workorder_id` (Many2one): mrp.workorder
+    - `operator_certification` (Html): Operator Certification
+    - `equipment_validation` (Html): Equipment Validation
+    - `in_process_inspection` (Html): In-Process Inspection
+    - `batch_record` (Html): Batch Record
+
+### `agri.product.template` (Defined in `farm_isl`)
+  - **Class**: `AgriProductTemplate`
+  - **描述**: Agri ISL Product Template
+  - _inherit_: `agri.product.mixin`
+  - **核心字段**:
+    - `product_template_id` (Many2one): product.template
+    - `allergen_information` (Html): Allergen Information
+    - `pharmacological_class` (Char): Pharmacological Class
+    - `safety_data_sheet` (Binary): Safety Data Sheet
+    - `safety_data_sheet_name` (Char): SDS Name
+    - `hazard_class` (Char): Hazard Class
+    - `regulatory_class` (Char): Regulatory Class
+
+### `agri.purchase.order` (Defined in `farm_isl`)
+  - **Class**: `AgriPurchaseOrder`
+  - **描述**: Agri ISL Purchase Order
+  - _inherit_: `agri.sales.purchase.mixin`
+  - **核心字段**:
+    - `purchase_order_id` (Many2one): purchase.order
+    - `supplier_certification` (Char): Supplier Certification
+    - `incoming_inspection` (Html): Incoming Inspection
+    - `certificate_verification` (Html): Certificate Verification
+    - `quality_agreement` (Html): Quality Agreement
+
+### `agri.sale.order` (Defined in `farm_isl`)
+  - **Class**: `AgriSaleOrder`
+  - **描述**: Agri ISL Sale Order
+  - _inherit_: `agri.sales.purchase.mixin`
+  - **核心字段**:
+    - `sale_order_id` (Many2one): sale.order
+    - `delivery_compliance` (Html): Delivery Compliance
+    - `traceability_requirements` (Html): Traceability Requirements
+    - `shipping_conditions` (Html): Shipping Conditions
+    - `certificate_requirements` (Html): Certificate Requirements
+    - `temperature_monitoring` (Boolean): Temperature Monitoring
+
+### `agri.stock.lot` (Defined in `farm_isl`)
+  - **Class**: `AgriStockLot`
+  - **描述**: Agri ISL Stock Lot
+  - _inherit_: `agri.inventory.mixin`
+  - **核心字段**:
+    - `stock_lot_id` (Many2one): stock.lot
+    - `harvest_date` (Date): Harvest Date
+    - `kill_date` (Date): Kill Date
+    - `sterility_date` (Date): Sterility Date
+    - `certificate_of_analysis` (Binary): Certificate of Analysis
+    - `certificate_of_analysis_name` (Char): COA Name
+    - `stability_data` (Html): Stability Data
+    - `storage_conditions` (Html): Storage Conditions
+
+### `agri.stock.picking` (Defined in `farm_isl`)
+  - **Class**: `AgriStockPicking`
+  - **描述**: Agri ISL Stock Picking
+  - _inherit_: `agri.inventory.mixin`
+  - **核心字段**:
+    - `picking_id` (Many2one): stock.picking
+    - `chain_of_custody` (Html): Chain of Custody
+    - `temperature_log` (Html): Temperature Log
+    - `humidity_log` (Html): Humidity Log
+    - `security_seal` (Char): Security Seal
+    - `compliance_verification` (Html): Compliance Verification
+
+### `farm.isl.extension` (Defined in `farm_isl`)
+  - **Class**: `ISLIndustryExtension`
+  - **描述**: Farm ISL Extension (Deprecated - Use agri.isl.extension)
+  - _inherit_: `agri.isl.extension`
+
+
+### `farm.mrp.bom` (Defined in `farm_isl`)
+  - **Class**: `FarmMRPBom`
+  - **描述**: Farm ISL MRP Bill of Materials
+  - _inherit_: `farm.manufacturing.mixin`
+  - **核心字段**:
+    - `mrp_bom_id` (Many2one): mrp.bom
+    - `allergen_control` (Boolean): Allergen Control
+    - `active_ingredient` (Char): Active Ingredient
+    - `safety_coefficient` (Float): Safety Coefficient
+    - `recipe_validation` (Html): Recipe Validation
+    - `ingredient_compliance` (Text): Ingredient Compliance
+
+### `farm.mrp.production` (Defined in `farm_isl`)
+  - **Class**: `FarmMRPProduction`
+  - **描述**: Farm ISL MRP Production Order
+  - _inherit_: `farm.manufacturing.mixin`
+  - **核心字段**:
+    - `mrp_production_id` (Many2one): mrp.production
+    - `haccp_plan` (Html): HACCP Plan
+    - `gmp_compliance` (Boolean): GMP Compliance
+    - `safety_procedures` (Html): Safety Procedures
+    - `quality_gate_checks` (Text): Quality Gate Checks
+
+### `farm.mrp.workcenter` (Defined in `farm_isl`)
+  - **Class**: `FarmMRPWorkcenter`
+  - **描述**: Farm ISL MRP Work Center
+  - _inherit_: `farm.manufacturing.mixin`
+  - **核心字段**:
+    - `workcenter_id` (Many2one): mrp.workcenter
+    - `cip_required` (Boolean): CIP Required
+    - `explosion_proof` (Boolean): Explosion Proof
+    - `clean_room_class` (Char): Clean Room Class
+    - `capacity_uom` (Char): Capacity Unit of Measure
+    - `efficiency_factor` (Float): Efficiency Factor
+
+### `farm.mrp.workorder` (Defined in `farm_isl`)
+  - **Class**: `FarmMRPWorkorder`
+  - **描述**: Farm ISL MRP Work Order
+  - _inherit_: `farm.manufacturing.mixin`
+  - **核心字段**:
+    - `workorder_id` (Many2one): mrp.workorder
+    - `operator_certification` (Html): Operator Certification
+    - `equipment_validation` (Html): Equipment Validation
+    - `in_process_inspection` (Html): In-Process Inspection
+    - `batch_record` (Html): Batch Record
+
+### `farm.product.template` (Defined in `farm_isl`)
+  - **Class**: `FarmProductTemplate`
+  - **描述**: Farm ISL Product Template
+  - _inherit_: `farm.product.mixin`
+  - **核心字段**:
+    - `product_template_id` (Many2one): product.template
+    - `allergen_information` (Html): Allergen Information
+    - `pharmacological_class` (Char): Pharmacological Class
+    - `safety_data_sheet` (Binary): Safety Data Sheet
+    - `safety_data_sheet_name` (Char): SDS Name
+    - `hazard_class` (Char): Hazard Class
+    - `regulatory_class` (Char): Regulatory Class
+
+### `farm.purchase.order` (Defined in `farm_isl`)
+  - **Class**: `FarmPurchaseOrder`
+  - **描述**: Farm ISL Purchase Order
+  - _inherit_: `farm.sales.purchase.mixin`
+  - **核心字段**:
+    - `purchase_order_id` (Many2one): purchase.order
+    - `supplier_certification` (Char): Supplier Certification
+    - `incoming_inspection` (Html): Incoming Inspection
+    - `certificate_verification` (Html): Certificate Verification
+    - `quality_agreement` (Html): Quality Agreement
+
+### `farm.sale.order` (Defined in `farm_isl`)
+  - **Class**: `FarmSaleOrder`
+  - **描述**: Farm ISL Sale Order
+  - _inherit_: `farm.sales.purchase.mixin`
+  - **核心字段**:
+    - `sale_order_id` (Many2one): sale.order
+    - `delivery_compliance` (Html): Delivery Compliance
+    - `traceability_requirements` (Html): Traceability Requirements
+    - `shipping_conditions` (Html): Shipping Conditions
+    - `certificate_requirements` (Html): Certificate Requirements
+    - `temperature_monitoring` (Boolean): Temperature Monitoring
+
+### `farm.stock.lot` (Defined in `farm_isl`)
+  - **Class**: `FarmStockLot`
+  - **描述**: Farm ISL Stock Lot
+  - _inherit_: `farm.inventory.mixin`
+  - **核心字段**:
+    - `stock_lot_id` (Many2one): stock.lot
+    - `harvest_date` (Date): Harvest Date
+    - `kill_date` (Date): Kill Date
+    - `sterility_date` (Date): Sterility Date
+    - `certificate_of_analysis` (Binary): Certificate of Analysis
+    - `certificate_of_analysis_name` (Char): COA Name
+    - `stability_data` (Html): Stability Data
+    - `storage_conditions` (Html): Storage Conditions
+
+### `farm.stock.picking` (Defined in `farm_isl`)
+  - **Class**: `FarmStockPicking`
+  - **描述**: Farm ISL Stock Picking
+  - _inherit_: `farm.inventory.mixin`
+  - **核心字段**:
+    - `picking_id` (Many2one): stock.picking
+    - `chain_of_custody` (Html): Chain of Custody
+    - `temperature_log` (Html): Temperature Log
+    - `humidity_log` (Html): Humidity Log
+    - `security_seal` (Char): Security Seal
+    - `compliance_verification` (Html): Compliance Verification
+
+### `isl.migration.utility` (Defined in `farm_isl`)
+  - **Class**: `ISLMigrationUtility`
+  - **描述**: ISL Data Migration Utility (Deprecated - Use agri.isl.migration.utility)
+  - _inherit_: `agri.isl.migration.utility`
+
+
+### `stock.lot` (Defined in `farm_isl`)
+  - **Class**: `StockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+
+
+### `stock.move` (Defined in `farm_isl`)
+  - **Class**: `StockMove`
+  - **描述**: 
+  - _inherit_: `stock.move`
+
+
+## 4. 智能决策与视觉感知域 (AI & Perception)
+### `agri.a2a.negotiation` (Defined in `farm_ai_robotics_bridge`)
+  - **Class**: `A2ANegotiationMessageExtension`
+  - **描述**: 
+  - _inherit_: `agri.a2a.negotiation`
+
+
+### `agri.ai.agent.workflow.step` (Defined in `farm_ai_agent`)
+  - **Class**: `AgriAiAgentWorkflowStep`
+  - **描述**: AI Agent Workflow Step
+
+  - **核心字段**:
+    - `name` (Char): Step Name
+    - `workflow_id` (Many2one): agri.ai.agent.workflow
+    - `sequence` (Integer): Sequence
+    - `step_type` (Selection): step_type
+    - `coordination_layer_id` (Many2one): agri.ai.coordination.layer
+    - `ai_agent_id` (Many2one): agri.ai.agent
+    - `ai_vision_service_id` (Many2one): agri.ai.pest.disease.detection
+    - `ai_financial_service_id` (Many2one): farm.crop.yield.insurance
+    - `step_config` (Text): Step Configuration (JSON)
+    - `condition` (Text): Execution Condition (Python Expression)
+    - `action_code` (Text): Action Code (Python) for Custom Steps
+
+### `agri.ai.agent.workflow` (Defined in `farm_ai_agent`)
+  - **Class**: `AgriAiAgentWorkflow`
+  - **描述**: AI Agent Workflow for Complex Decision Processes
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Workflow Name
+    - `description` (Text): Workflow Description
+    - `active` (Boolean): Active
+    - `workflow_definition` (Text): Workflow Definition (JSON)
+    - `coordination_layer_id` (Many2one): agri.ai.coordination.layer
+    - `trigger_conditions` (Text): Trigger Conditions (JSON)
+    - `step_ids` (One2many): agri.ai.agent.workflow.step
+    - `execution_count` (Integer): Execution Count
+    - `last_execution` (Datetime): Last Execution
+    - `success_rate` (Float): Success Rate
+
+### `agri.ai.agent` (Defined in `farm_ai_decision`)
+  - **Class**: `AgriAiAgent`
+  - **描述**: AI Agent for Intelligent Decision Support
+  - _inherit_: `mail.thread, mail.activity.mixin, agri.ai.base.mixin`
+  - **核心字段**:
+    - `base_id` (Many2one): agri.ai.decision.base
+    - `agent_type` (Selection): agent_type
+    - `industry_id` (Char): industry_id
+    - `model_architecture` (Selection): model_architecture
+    - `training_data_source` (Char): Training Data Source
+    - `training_accuracy` (Float): Training Accuracy
+    - `last_trained` (Datetime): Last Trained
+    - `training_samples` (Integer): Training Samples Count
+    - `parameters` (Text): Model Parameters
+    - `precision_score` (Float): Precision Score
+    - `recall_score` (Float): Recall Score
+    - `f1_score` (Float): F1 Score
+    - `mse_score` (Float): MSE Score
+    - `input_schema` (Text): Input Schema
+    - `output_schema` (Text): Output Schema
+    - *... 以及其他 6 个业务字段*
+
+### `agri.ai.coordination.layer` (Defined in `farm_ai_agent`)
+  - **Class**: `AgriAiCoordinationLayer`
+  - **描述**: AI Coordination Layer for Agricultural Intelligence
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Coordination Name
+    - `description` (Text): Description
+    - `active` (Boolean): Active
+    - `coordination_type` (Selection): coordination_type
+    - `ai_decision_ids` (Many2many): agri.ai.agent
+    - `ai_vision_ids` (Many2many): agri.ai.pest.disease.detection
+    - `ai_financial_ids` (Many2many): farm.crop.yield.insurance
+    - `coordination_config` (Text): Coordination Configuration (JSON)
+    - `execution_context` (Text): Execution Context (JSON)
+    - `result_aggregation_method` (Selection): result_aggregation_method
+    - `last_execution` (Datetime): Last Execution
+    - `execution_count` (Integer): Execution Count
+    - `performance_metrics` (Text): Performance Metrics (JSON)
+    - `industry_type` (Selection): industry_type
+    - `uses_isl_data` (Boolean): Uses ISL Data
+    - *... 以及其他 1 个业务字段*
+
+### `agri.ai.crop.growth.prediction` (Defined in `farm_ai_decision`)
+  - **Class**: `AgriAiCropGrowthPrediction`
+  - **描述**: AI Crop Growth Prediction
+  - _inherit_: `agri.ai.decision.base`
+  - **核心字段**:
+    - `product_id` (Many2one): product.template
+    - `land_location_id` (Many2one): farm.location
+    - `planting_date` (Date): Planting Date
+    - `expected_harvest_date` (Date): Expected Harvest Date
+    - `current_growth_stage` (Char): Current Growth Stage
+    - `predicted_yield` (Float): Predicted Yield
+    - `growth_deviation` (Float): Growth Deviation
+    - `environmental_factors` (Text): Environmental Factors Analysis
+    - `growth_curve_data` (Text): Growth Curve Data
+    - `growth_recommendation` (Html): Growth Optimization Recommendation
+
+### `agri.ai.decision.context` (Defined in `farm_ai_agent`)
+  - **Class**: `AgriAIDecisionContext`
+  - **描述**: AI Decision Context for Agricultural Intelligence
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Context Name
+    - `description` (Text): Context Description
+    - `context_data` (Text): Context Data (JSON)
+    - `decision_engine_id` (Many2one): agri.ai.decision.engine
+    - `coordination_layer_id` (Many2one): agri.ai.coordination.layer
+    - `location_id` (Many2one): res.partner
+    - `crop_type` (Many2one): product.template
+    - `season` (Char): Season
+    - `date_from` (Date): From Date
+    - `date_to` (Date): To Date
+    - `weather_conditions` (Text): Weather Conditions (JSON)
+    - `soil_conditions` (Text): Soil Conditions (JSON)
+    - `pest_conditions` (Text): Pest/Disease Conditions (JSON)
+    - `industry_type` (Selection): industry_type
+    - `uses_isl_data` (Boolean): Uses ISL Data
+
+### `agri.ai.decision.engine` (Defined in `farm_ai_agent`)
+  - **Class**: `AgriAIDecisionEngine`
+  - **描述**: AI Decision Engine for Agricultural Intelligence
+  - _inherit_: `mail.thread, mail.activity.mixin, agri.ai.base.mixin`
+  - **核心字段**:
+    - `name` (Char): Engine Name
+    - `description` (Text): Description
+    - `active` (Boolean): Active
+    - `decision_type` (Selection): decision_type
+    - `vision_service_ids` (Many2many): agri.ai.pest.disease.detection
+    - `decision_service_ids` (Many2many): agri.ai.agent
+    - `financial_service_ids` (Many2many): farm.crop.yield.insurance
+    - `decision_config` (Text): Decision Configuration (JSON)
+    - `decision_weights` (Text): Model Weights Configuration (JSON)
+    - `decision_logic` (Text): Decision Logic (Python Code)
+    - `execution_context` (Text): Execution Context (JSON)
+    - `input_data` (Text): Input Data (JSON)
+    - `output_format` (Selection): output_format
+    - `workflow_enabled` (Boolean): Enable Workflow
+    - `coordination_layer_id` (Many2one): agri.ai.coordination.layer
+    - *... 以及其他 11 个业务字段*
+
+### `agri.ai.decision.rule` (Defined in `farm_ai_agent`)
+  - **Class**: `AgriAIDecisionRule`
+  - **描述**: AI Decision Rule for Agricultural Intelligence
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Rule Name
+    - `description` (Text): Rule Description
+    - `active` (Boolean): Active
+    - `decision_type` (Selection): decision_type
+    - `condition_expression` (Text): Condition Expression (Python)
+    - `action_code` (Text): Action Code (Python)
+    - `priority` (Integer): Priority
+    - `sequence` (Integer): Sequence
+    - `industry_type` (Selection): industry_type
+    - `applicable_to_all_industries` (Boolean): Applicable to All Industries
+
+### `agri.ai.decision.workflow.step` (Defined in `farm_ai_agent`)
+  - **Class**: `AgriAIDecisionWorkflowStep`
+  - **描述**: AI Decision Workflow Step
+
+  - **核心字段**:
+    - `name` (Char): Step Name
+    - `workflow_id` (Many2one): agri.ai.decision.workflow
+    - `sequence` (Integer): Sequence
+    - `step_type` (Selection): step_type
+    - `decision_engine_id` (Many2one): agri.ai.decision.engine
+    - `coordination_layer_id` (Many2one): agri.ai.coordination.layer
+    - `step_config` (Text): Step Configuration (JSON)
+    - `condition` (Text): Execution Condition (Python Expression)
+    - `action_code` (Text): Action Code (Python) for Custom Steps
+
+### `agri.ai.decision.workflow` (Defined in `farm_ai_agent`)
+  - **Class**: `AgriAIDecisionWorkflow`
+  - **描述**: AI Decision Workflow for Agricultural Intelligence
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Workflow Name
+    - `description` (Text): Workflow Description
+    - `active` (Boolean): Active
+    - `workflow_definition` (Text): Workflow Definition (JSON)
+    - `decision_engine_id` (Many2one): agri.ai.decision.engine
+    - `trigger_conditions` (Text): Trigger Conditions (JSON)
+    - `step_ids` (One2many): agri.ai.decision.workflow.step
+    - `execution_count` (Integer): Execution Count
+    - `last_execution` (Datetime): Last Execution
+    - `success_rate` (Float): Success Rate
+
+### `agri.ai.fertilization.decision` (Defined in `farm_ai_decision`)
+  - **Class**: `AgriAiFertilizationDecision`
+  - **描述**: AI Fertilization Decision
+  - _inherit_: `agri.ai.decision.base`
+  - **核心字段**:
+    - `land_location_id` (Many2one): farm.location
+    - `product_id` (Many2one): product.template
+    - `soil_nitrogen` (Float): Soil Nitrogen (ppm)
+    - `soil_phosphorus` (Float): Soil Phosphorus (ppm)
+    - `soil_potassium` (Float): Soil Potassium (ppm)
+    - `soil_ph` (Float): Soil pH
+    - `crop_growth_stage` (Char): Crop Growth Stage
+    - `recommended_n` (Float): Recommended N (kg/ha)
+    - `recommended_p` (Float): Recommended P (kg/ha)
+    - `recommended_k` (Float): Recommended K (kg/ha)
+    - `fertilizer_recommendation` (Html): Fertilizer Recommendation
+    - `application_timing` (Char): Application Timing
+    - `nutrient_deficiency_analysis` (Html): Nutrient Deficiency Analysis
+
+### `agri.ai.harvest.timing` (Defined in `farm_ai_decision`)
+  - **Class**: `AgriAiHarvestTiming`
+  - **描述**: AI Harvest Timing
+  - _inherit_: `agri.ai.decision.base`
+  - **核心字段**:
+    - `product_id` (Many2one): product.template
+    - `land_location_id` (Many2one): farm.location
+    - `planting_date` (Date): Planting Date
+    - `expected_harvest_date` (Date): Expected Harvest Date
+    - `optimal_harvest_date` (Date): Optimal Harvest Date
+    - `quality_metrics` (Text): Quality Metrics
+    - `weather_impact` (Text): Weather Impact Assessment
+    - `market_price_factor` (Float): Market Price Factor
+    - `harvest_recommendation` (Html): Harvest Recommendation
+    - `quality_score` (Float): Quality Score
+    - `yield_impact` (Float): Yield Impact (%)
+
+### `agri.ai.health.monitoring` (Defined in `farm_ai_decision`)
+  - **Class**: `AgriAiHealthMonitoring`
+  - **描述**: AI Health and Welfare Monitoring
+  - _inherit_: `agri.ai.decision.base`
+  - **核心字段**:
+    - `animal_id` (Char): Animal ID
+    - `species_type` (Selection): species_type
+    - `behavioral_metrics` (Text): Behavioral Metrics
+    - `health_indicators` (Text): Health Indicators
+    - `welfare_score` (Float): Welfare Score (0-100)
+    - `health_risk_level` (Selection): health_risk_level
+    - `monitoring_alert` (Html): Monitoring Alert
+    - `health_recommendation` (Html): Health Recommendation
+    - `welfare_improvements` (Html): Welfare Improvements
+
+### `agri.ai.irrigation.decision` (Defined in `farm_ai_decision`)
+  - **Class**: `AgriAiIrrigationDecision`
+  - **描述**: AI Irrigation Decision
+  - _inherit_: `agri.ai.decision.base`
+  - **核心字段**:
+    - `land_location_id` (Many2one): farm.location
+    - `product_id` (Many2one): product.template
+    - `current_soil_moisture` (Float): Current Soil Moisture (%)
+    - `weather_forecast` (Text): Weather Forecast Data
+    - `irrigation_system` (Char): Irrigation System Type
+    - `irrigation_method` (Selection): irrigation_method
+    - `recommended_water_amount` (Float): Recommended Water Amount (mm)
+    - `recommended_irrigation_time` (Datetime): Recommended Time
+    - `evapotranspiration_rate` (Float): Evapotranspiration Rate (mm/day)
+    - `irrigation_efficiency` (Float): Irrigation Efficiency (%)
+    - `irrigation_advice` (Html): Irrigation Advice
+    - `soil_analysis` (Text): Soil Analysis
+
+### `agri.ai.llm.configuration` (Defined in `farm_ai_llm_integration`)
+  - **Class**: `AgriAiLlmConfiguration`
+  - **描述**: LLM Provider Configuration
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `ai_config_id` (Many2one): agri.ai.configuration
+    - `provider` (Selection): provider
+    - `rate_limit_requests` (Integer): Rate Limit (requests/min)
+    - `rate_limit_period` (Integer): Rate Limit Period (seconds)
+    - `use_agricultural_context` (Boolean): Use Agricultural Context
+    - `temperature` (Float): Temperature
+    - `max_tokens` (Integer): Max Tokens
+    - `timeout` (Integer): Timeout (seconds)
+    - `application_type` (Selection): application_type
+
+### `agri.ai.llm.service` (Defined in `farm_ai_llm_integration`)
+  - **Class**: `AgriAiLlmService`
+  - **描述**: LLM Service Interface
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Service Name
+    - `config_id` (Many2one): agri.ai.llm.configuration
+    - `last_call_time` (Datetime): Last Call Time
+    - `call_count` (Integer): Call Count
+    - `error_count` (Integer): Error Count
+
+### `agri.ai.market.prediction` (Defined in `farm_ai_decision`)
+  - **Class**: `AgriAiMarketPrediction`
+  - **描述**: AI Market Prediction
+  - _inherit_: `agri.ai.decision.base`
+  - **核心字段**:
+    - `prediction_type` (Selection): prediction_type
+    - `product_id` (Many2one): product.template
+    - `current_price` (Float): Current Market Price
+    - `predicted_price_7d` (Float): Predicted Price (7 days)
+    - `predicted_price_30d` (Float): Predicted Price (30 days)
+    - `predicted_price_90d` (Float): Predicted Price (90 days)
+    - `price_trend` (Selection): price_trend
+    - `futures_price` (Float): Futures Price (Target Month)
+    - `basis_value` (Float): Basis (Spot - Futures)
+    - `hedging_recommendation` (Html): Hedging Strategy
+    - `optimal_sales_ratio` (Float): Recommended Sales Ratio (%)
+    - `procurement_action` (Selection): procurement_action
+    - `market_factors` (Text): Market Factors Analysis
+    - `decision_summary` (Html): AI Decision Summary
+
+### `agri.ai.operation.path.optimization` (Defined in `farm_ai_decision`)
+  - **Class**: `AgriAiOperationPathOptimization`
+  - **描述**: AI Operation Path Optimization
+  - _inherit_: `agri.ai.decision.base`
+  - **核心字段**:
+    - `operation_type` (Selection): operation_type
+    - `land_location_ids` (Many2many): farm.location
+    - `vehicle_type` (Char): Vehicle Type
+    - `fuel_consumption_rate` (Float): Fuel Consumption (L/ha)
+    - `estimated_duration` (Float): Estimated Duration (hours)
+    - `total_distance` (Float): Total Distance (km)
+    - `optimized_path` (Text): Optimized Path
+    - `efficiency_gains` (Html): Efficiency Gains
+    - `path_recommendation` (Html): Path Recommendation
+
+### `agri.ai.pest.disease.decision` (Defined in `farm_ai_decision`)
+  - **Class**: `AgriAiPestDiseaseDecision`
+  - **描述**: AI Pest and Disease Decision Support
+  - _inherit_: `agri.ai.decision.base`
+  - **核心字段**:
+    - `pest_disease_detection_id` (Many2one): agri.ai.pest.disease.detection
+    - `product_id` (Many2one): product.template
+    - `land_location_id` (Many2one): farm.location
+    - `detection_date` (Datetime): Detection Date
+    - `image_attachment` (Binary): Image Evidence
+    - `image_name` (Char): Image Name
+    - `pest_disease_name` (Char): Pest/Disease Name
+    - `severity_level` (Selection): severity_level
+    - `affected_area_percentage` (Float): Affected Area (%)
+    - `detection_method` (Selection): detection_method
+    - `prevention_advice` (Html): Prevention Advice
+    - `treatment_options` (Html): Treatment Options
+    - `risk_assessment` (Html): Risk Assessment
+    - `economic_impact` (Float): Economic Impact ($)
+    - `treatment_cost` (Float): Treatment Cost ($)
+    - *... 以及其他 1 个业务字段*
+
+### `agri.ai.quality.grading` (Defined in `farm_ai_decision`)
+  - **Class**: `AgriAiQualityGrading`
+  - **描述**: AI Quality Grading
+  - _inherit_: `agri.ai.decision.base`
+  - **核心字段**:
+    - `product_id` (Many2one): product.template
+    - `batch_lot_id` (Many2one): stock.lot
+    - `sample_size` (Integer): Sample Size
+    - `quality_attributes` (Text): Quality Attributes
+    - `predicted_grade` (Selection): predicted_grade
+    - `quality_score` (Float): Quality Score (0-100)
+    - `grading_criteria` (Html): Grading Criteria Applied
+    - `sorting_recommendation` (Html): Sorting Recommendation
+    - `market_suggestion` (Html): Market Suggestion
+
+### `agri.ai.resource.optimization` (Defined in `farm_ai_decision`)
+  - **Class**: `AgriAiResourceOptimization`
+  - **描述**: AI Resource Optimization
+  - _inherit_: `agri.ai.decision.base`
+  - **核心字段**:
+    - `resource_type` (Selection): resource_type
+    - `required_quantity` (Float): Required Quantity
+    - `available_quantity` (Float): Available Quantity
+    - `optimized_allocation` (Float): Optimized Allocation
+    - `allocation_efficiency` (Float): Allocation Efficiency (%)
+    - `resource_conflicts` (Html): Resource Conflicts
+    - `optimization_recommendation` (Html): Optimization Recommendation
+    - `cost_impact` (Float): Cost Impact
+
+### `agri.ai.risk.assessment` (Defined in `farm_ai_decision`)
+  - **Class**: `AgriAiRiskAssessment`
+  - **描述**: AI Risk Assessment
+  - _inherit_: `agri.ai.decision.base`
+  - **核心字段**:
+    - `risk_category` (Selection): risk_category
+    - `risk_location_id` (Many2one): farm.location
+    - `risk_probability` (Float): Risk Probability (%)
+    - `risk_impact` (Float): Risk Impact (%)
+    - `risk_score` (Float): Risk Score
+    - `risk_level` (Selection): risk_level
+    - `risk_factors` (Text): Risk Factors
+    - `mitigation_strategies` (Html): Mitigation Strategies
+    - `contingency_plans` (Html): Contingency Plans
+    - `monitoring_frequency` (Selection): monitoring_frequency
+
+### `ai.autonomous.mission.log` (Defined in `farm_ai_robotics_bridge`)
+  - **Class**: `AIAutonomousMissionLogExtension`
+  - **描述**: 
+  - _inherit_: `ai.autonomous.mission.log`
+  - **核心字段**:
+    - `mission_id` (Many2one): farm.robot.mission
+
+### `ai.autonomous.orchestrator` (Defined in `farm_ai_robotics_bridge`)
+  - **Class**: `AIAutonomousOrchestratorExtension`
+  - **描述**: 
+  - _inherit_: `ai.autonomous.orchestrator`
+
+
+### `ai.decision.engine` (Defined in `farm_ai_decision`)
+  - **Class**: `AiDecisionEngine`
+  - **描述**: AI Decision Engine
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Decision Ref
+    - `intervention_id` (Many2one): mrp.production
+    - `stress_index` (Float): stress_index
+    - `growth_stage_id` (Many2one): growth_stage_id
+    - `recovery_plan` (Text): Suggested Recovery Plan (AI)
+    - `active_skill_json` (Text): Active Skill Directive (JSON)
+    - `predicted_harvest_date` (Date): Predicted Harvest Date
+    - `confidence_score` (Float): Confidence Score (%)
+
+### `mrp.production` (Defined in `farm_ai_decision`)
+  - **Class**: `AgriIntervention`
+  - **描述**: 
+  - _inherit_: `mrp.production`
+  - **核心字段**:
+    - `ai_recommendation_count` (Integer): AI Recommendations
+    - `has_critical_stress` (Boolean): Critical Stress Alert
+
+## 5. 工业物联与边缘控制域 (IIoT & Edge)
+### `iiot.device.profile` (Defined in `agri_iot`)
+  - **Class**: `IiotDeviceProfile`
+  - **描述**: Industrial IoT Device Profile
+
+  - **核心字段**:
+    - `name` (Char): Name
+    - `code` (Char): Code
+    - `telemetry_topic_template` (Char): Telemetry Topic Template
+    - `iiot_telemetry_rule_ids` (One2many): iiot.telemetry.rule
+    - `command_topic_template` (Char): Command Topic Template
+    - `ota_notify_topic_template` (Char): OTA Notify Topic Template
+    - `ota_status_topic_template` (Char): OTA Status Topic Template
+    - `command_template` (Text): Command Template
+
+### `iiot.device` (Defined in `farm_iot`)
+  - **Class**: `IiotDevice`
+  - **描述**: 
+  - _inherit_: `iiot.device`
+  - **核心字段**:
+    - `digital_twin_model_url` (Char): 3D Model URL
+    - `last_telemetry_json` (Text): Last Telemetry JSON
+
+### `iiot.device` (Defined in `farm_iot`)
+  - **Class**: `IiotDevice`
+  - **描述**: 
+  - _inherit_: `iiot.device`
+  - **核心字段**:
+    - `geofence_id` (Many2one): agri.geospatial.geofence
+    - `command_log_ids` (One2many): farm.command.log
+    - `active_alert_ids` (One2many): mail.activity
+
+### `iiot.telemetry.rule` (Defined in `agri_iot`)
+  - **Class**: `IiotTelemetryRule`
+  - **描述**: Industrial IoT Telemetry Rule
+
+  - **核心字段**:
+    - `name` (Char): Name
+    - `sequence` (Integer): Sequence
+    - `active` (Boolean): Active
+    - `profile_id` (Many2one): iiot.device.profile
+    - `json_path` (Char): JSON Path
+    - `target_model` (Char): Target Model
+    - `target_domain` (Char): Target Domain
+    - `target_field` (Char): Target Field
+
+### `iiot.telemetry` (Defined in `agri_iot`)
+  - **Class**: `IiotTelemetry`
+  - **描述**: IIoT Telemetry Data
+
+  - **核心字段**:
+    - `name` (Char): Sensor Name
+    - `sensor_type` (Selection): sensor_type
+    - `value` (Float): Value
+    - `timestamp` (Datetime): Timestamp
+    - `device_id` (Many2one): iiot.device
+    - `gps_lat` (Float): Latitude
+    - `gps_lng` (Float): Longitude
+
+### `iiot.telemetry` (Defined in `farm_iot`)
+  - **Class**: `FarmIotTelemetry`
+  - **描述**: 
+  - _inherit_: `iiot.telemetry`
+  - **核心字段**:
+    - `production_id` (Many2one): project.task
+    - `drone_id` (Many2one): maintenance.equipment
+    - `land_parcel_id` (Many2one): farm.location
+    - `adopted_lot_id` (Many2one): stock.lot
+
+## 6. 数字孪生与遥测域 (Digital Twin & Telemetry)
+### `agri.telemetry` (Defined in `farm_iot`)
+  - **Class**: `AgriTelemetry`
+  - **描述**: Agricultural Telemetry Data
+
+  - **核心字段**:
+    - `name` (Char): Sensor Name
+    - `sensor_type` (Selection): sensor_type
+    - `value` (Float): Value
+    - `timestamp` (Datetime): Timestamp
+    - `production_id` (Many2one): project.task
+    - `drone_id` (Many2one): maintenance.equipment
+    - `device_id` (Many2one): iiot.device
+    - `land_parcel_id` (Many2one): farm.location
+    - `adopted_lot_id` (Many2one): stock.lot
+    - `gps_lat` (Float): Latitude
+    - `gps_lng` (Float): Longitude
+
+### `farm.automation.rule` (Defined in `farm_iot`)
+  - **Class**: `FarmAutomationRule`
+  - **描述**: Farm IOT Automation Rule
+
+  - **核心字段**:
+    - `name` (Char): Rule Name
+    - `active` (Boolean): active
+    - `sensor_type` (Selection): sensor_type
+    - `operator` (Selection): operator
+    - `threshold` (Float): Threshold
+    - `target_device_id` (Many2one): iiot.device
+    - `command_to_send` (Char): Command/Action
+    - `command_params` (Char): Params (JSON)
+
+### `farm.digital.twin.marker` (Defined in `farm_iot`)
+  - **Class**: `FarmDigitalTwinMarker`
+  - **描述**: Digital Twin Device Marker (Deprecated - Use agri.digital.twin.marker)
+  - _inherit_: `agri.digital.twin.marker`
+
+
+### `farm.digital.twin.scene` (Defined in `farm_iot`)
+  - **Class**: `FarmDigitalTwinScene`
+  - **描述**: Digital Twin 3D Scene (Deprecated - Use agri.digital.twin.scene)
+  - _inherit_: `agri.digital.twin.scene`
+
+
+### `farm.telemetry` (Defined in `farm_iot`)
+  - **Class**: `FarmTelemetry`
+  - **描述**: Agricultural Telemetry Data (Deprecated - Use agri.telemetry)
+  - _inherit_: `agri.telemetry`
+
+
+### `iot.device.mapping` (Defined in `farm_iot`)
+  - **Class**: `IotDeviceMapping`
+  - **描述**: IoT Device to Business Field Mapper
+
+  - **核心字段**:
+    - `name` (Char): name
+    - `device_id` (Many2one): iiot.device
+    - `mqtt_topic` (Char): mqtt_topic
+    - `direction` (Selection): direction
+    - `mapping_type` (Selection): mapping_type
+    - `target_model_id` (Many2one): ir.model
+    - `target_field_id` (Many2one): ir.model.fields
+    - `method_name` (Char): method_name
+    - `match_record_by` (Selection): match_record_by
+    - `match_field_id` (Many2one): ir.model.fields
+    - `payload_template` (Text): Payload Template (JSON)
+    - `active` (Boolean): active
+
+### `iot.telemetry.buffer` (Defined in `farm_iot`)
+  - **Class**: `IotTelemetryBuffer`
+  - **描述**: IoT Raw Telemetry Buffer
+
+  - **核心字段**:
+    - `mqtt_topic` (Char): mqtt_topic
+    - `raw_value` (Char): raw_value
+    - `processed` (Boolean): processed
+    - `processed_date` (Datetime): processed_date
+    - `mapping_id` (Many2one): iot.device.mapping
+
+## 7. ESG合规与碳账本域 (ESG & Carbon Ledger)
+### `agri.carbon.factor` (Defined in `farm_esg_environmental`)
+  - **Class**: `AgriCarbonFactor`
+  - **描述**: Agricultural Carbon Emission Factors
+
+  - **核心字段**:
+    - `name` (Char): Factor Name
+    - `product_id` (Many2one): product.template
+    - `category` (Selection): category
+    - `emission_factor` (Float): Emission Factor (kg CO2e / unit)
+    - `uom_id` (Many2one): uom.uom
+    - `source` (Char): Data Source
+
+### `agri.carbon.ledger` (Defined in `farm_esg_environmental`)
+  - **Class**: `AgriCarbonLedger`
+  - **描述**: Agricultural Carbon Transaction Ledger
+  - _inherit_: `mail.thread, mail.activity.mixin, agri.evidence.mixin`
+  - **核心字段**:
+    - `name` (Char): Transaction Ref
+    - `date` (Date): Transaction Date
+    - `location_id` (Many2one): farm.location
+    - `lot_id` (Many2one): stock.lot
+    - `operation_id` (Many2one): mrp.workorder
+    - `factor_id` (Many2one): agri.carbon.factor
+    - `quantity` (Float): Quantity Used
+    - `uom_id` (Many2one): uom.uom
+    - `total_co2e` (Float): Total CO2e (kg)
+    - `impact_type` (Selection): impact_type
+
+### `agri.esg.compliance.monitoring` (Defined in `farm_esg_risk`)
+  - **Class**: `AgriESGComplianceMonitoring`
+  - **描述**: Agricultural ESG Compliance Monitoring
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Compliance Check Name
+    - `compliance_type` (Selection): compliance_type
+    - `regulation_reference` (Char): Regulation Reference
+    - `threshold_value` (Float): Threshold Value
+    - `current_value` (Float): Current Value
+    - `compliance_status` (Selection): compliance_status
+    - `last_check_date` (Date): Last Check Date
+    - `next_check_date` (Date): Next Check Date
+    - `compliance_owner` (Many2one): res.users
+    - `alert_issued` (Boolean): Alert Issued
+    - `last_alert_date` (Date): Last Alert Date
+    - `corrective_actions` (Text): Corrective Actions Required
+    - `implementation_status` (Selection): implementation_status
+    - `notes` (Text): Notes
+
+### `agri.esg.kpi` (Defined in `farm_esg_risk`)
+  - **Class**: `AgriESGKPI`
+  - **描述**: Agricultural ESG KPI
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): KPI Name
+    - `kpi_category` (Selection): kpi_category
+    - `kpi_type` (Selection): kpi_type
+    - `reporting_period` (Selection): reporting_period
+    - `target_value` (Float): Target Value
+    - `current_value` (Float): Current Value
+    - `unit_of_measurement` (Char): Unit of Measurement
+    - `baseline_value` (Float): Baseline Value
+    - `achievement_percentage` (Float): Achievement %
+    - `trend_indicator` (Selection): trend_indicator
+    - `year` (Integer): Year
+    - `responsible_department` (Many2one): hr.department
+    - `data_source` (Char): Data Source
+    - `calculation_method` (Text): Calculation Method
+    - `benchmark_value` (Float): Benchmark Value
+    - *... 以及其他 4 个业务字段*
+
+### `agri.sustainability.carbon.model` (Defined in `farm_esg_circular`)
+  - **Class**: `AgriSustainabilityCarbonModel`
+  - **描述**: Agricultural Industry Specific Carbon Model
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Model Name
+    - `industry_type` (Selection): industry_type
+    - `description` (Text): Description
+    - `model_version` (Char): Model Version
+    - `active` (Boolean): Active
+    - `calculation_method` (Selection): calculation_method
+    - `scope_1_supported` (Boolean): Scope 1 Supported
+    - `scope_2_supported` (Boolean): Scope 2 Supported
+    - `scope_3_supported` (Boolean): Scope 3 Supported
+    - `emission_factors` (Text): Emission Factors JSON
+    - `carbon_intensity_threshold` (Float): Carbon Intensity Threshold (kgCO2e/unit)
+    - `reporting_standard` (Selection): reporting_standard
+    - `compliance_requirements` (Text): Compliance Requirements
+    - `audit_frequency` (Selection): audit_frequency
+    - `direct_emission_coefficient` (Float): Direct Emission Coefficient
+    - *... 以及其他 4 个业务字段*
+
+### `agri.sustainability.metric.value.wizard` (Defined in `farm_esg_sustainability`)
+  - **Class**: `AgriSustainabilityMetricValueWizard`
+  - **描述**: Agri Sustainability Metric Value Update Wizard
+
+  - **核心字段**:
+    - `metric_id` (Many2one): agri.sustainability.metric
+    - `value` (Float): New Value
     - `date` (Datetime): Date
-    - `note` (Text): Notes
-  - Methods:
-    - `action_update_value()`: Execute value update
+    - `note` (Text): Note
 
-### Carbon Asset Management
-- **farm_sustainability.CarbonAsset**: Management of carbon assets (Deprecated - Use agri.carbon.asset)
-  - Odoo Model: `class CarbonAsset(models.Model)` (now inherits from agri.carbon.asset)
-  - _name: `farm.carbon.asset`
-  - _description: "Carbon Sequestration Asset (Deprecated - Use agri.carbon.asset)"
-  - Original logic preserved with deprecation warning
+### `agri.sustainability.metric.value` (Defined in `farm_esg_sustainability`)
+  - **Class**: `AgriSustainabilityMetricValue`
+  - **描述**: Agri Sustainability Metric Value
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `metric_id` (Many2one): agri.sustainability.metric
+    - `value` (Float): Value
+    - `date` (Datetime): Record Date
+    - `note` (Text): Note
+    - `recorded_by` (Many2one): res.users
 
-- **agri_sustainability.AgriCarbonAsset**: Agricultural carbon sequestration asset management
-  - Odoo Model: `class AgriCarbonAsset(models.Model)`
-  - _name: `agri.carbon.asset`
-  - _description: "Agricultural Carbon Sequestration Asset"
-  - Relationships:
-    - location_id (Many2one to farm.location)
-    - Contains original logic for carbon asset tracking
-
-- **farm_sustainability.FarmEcologicalActivity**: Ecological activity management (Deprecated - Use agri.ecological.activity)
-  - Odoo Model: `class FarmEcologicalActivity(models.Model)` (now inherits from agri.ecological.activity)
-  - _name: `farm.ecological.activity`
-  - _description: "Ecological Maintenance Activity (Deprecated - Use agri.ecological.activity)"
-  - Original logic preserved with deprecation warning
-
-- **agri_sustainability.AgriEcologicalActivity**: Agricultural ecological activity management
-  - Odoo Model: `class AgriEcologicalActivity(models.Model)`
-  - _name: `agri.ecological.activity`
-  - _description: "Agricultural Ecological Activity"
-  - Relationships:
-    - location_id (Many2one to farm.location)
-
-### CSA (Community Supported Agriculture)
-- **farm_csa.FarmCSAPlan**: Community Supported Agriculture plans
-- **farm_csa.FarmCSASubscription**: CSA subscription management
-- **farm_csa.FarmSharedTool**: Shared tool management for CSA
-
-### Subsidy Management
-- **farm_subsidy.FarmSubsidyProgram**: Management of subsidy programs
-- **farm_subsidy.FarmSubsidyApplication**: Application management for subsidies
-
-## Processing Models
-
-Processing models handle post-harvest activities, manufacturing, and value-added processing operations.
-
-### Production and BOM
-- **farm_processing.MrpProduction** (`mrp.production`): Processing production orders
-  - Odoo Model: `class MrpProduction(models.Model)`
-  - _name: `mrp.production` (Extends existing model)
-  - _inherit: `mrp.production`
-  - Methods:
-    - `_get_isl_model()`: Returns 'farm.processing.production' for food_processing industry type
-    - `action_confirm()`: Processing-specific pre-confirmation checks
-    - `button_mark_done()`: Processing-specific pre-done checks
-  - Relationships:
-    - Inherits from: `mrp.production` (Odoo's native model)
-
-- **farm_processing.MrpBom**: Manufacturing resource planning bill of materials for processing
-  - Odoo Model: `class MrpBom(models.Model)`
-  - _name: `mrp.bom` (Extends existing model)
-  - _inherit: `mrp.bom`
-  - Relationships:
-    - Extends: `mrp.bom` (Odoo's native BOM model)
-
-- **farm_processing.FarmProcessingBom**: Processing bills of materials
-  - Odoo Model: `class FarmProcessingBom(models.Model)`
-  - _name: `farm.processing.bom`
-  - _description: "Processing Bill of Materials (ISL Layer)"
-  - _inherits: `mrp.bom`
-  - Relationships:
-    - _inherits: `mrp.bom` via inherited field
-    - Links to base Odoo MRP BOM model
-
-- **farm_processing.FarmProcessingProduction**: Processing production orders
-  - Odoo Model: `class FarmProcessingProduction(models.Model)`
-  - _name: `farm.processing.production`
-  - _description: "Processing Production Order (ISL Layer)"
-  - _inherits: `mrp.production`
-  - Relationships:
-    - _inherits: `mrp.production` via inherited field
-    - Links to base Odoo MRP production model
-
-- **farm_processing.FarmProcessingBomLine**: Processing BOM line items
-  - Odoo Model: `class FarmProcessingBomLine(models.Model)`
-  - _name: `farm.processing.bom.line`
-  - _description: "Processing BOM Line (ISL Layer)"
-  - _inherits: `mrp.bom.line`
-  - Relationships:
-    - _inherits: `mrp.bom.line` via inherited field
-    - Links to base Odoo MRP BOM line model
-
-### Work Centers and Operations
-- **farm_processing.MrpWorkcenter**: Work centers for processing operations
-  - Odoo Model: `class MrpWorkcenter(models.Model)`
-  - _name: `mrp.workcenter` (Extends existing model)
-  - _inherit: `mrp.workcenter`
-  - Relationships:
-    - Extends: `mrp.workcenter` (Odoo's native work center model)
-
-- **farm_processing.MrpRoutingWorkcenter**: Routing for work centers in processing
-  - Odoo Model: `class MrpRoutingWorkcenter(models.Model)`
-  - _name: `mrp.routing.workcenter` (Extends existing model)
-  - _inherit: `mrp.routing.workcenter`
-  - Relationships:
-    - Extends: `mrp.routing.workcenter` (Odoo's native routing work center model)
-
-- **farm_processing.MrpWorkorder**: Work orders for processing operations
-  - Odoo Model: `class MrpWorkorder(models.Model)`
-  - _name: `mrp.workorder` (Extends existing model)
-  - _inherit: `mrp.workorder`
-  - Relationships:
-    - Extends: `mrp.workorder` (Odoo's native work order model)
-
-- **farm_processing.FarmIndustryWorkcenter**: Industry-specific work centers for processing
-  - Odoo Model: `class FarmIndustryWorkcenter(models.Model)`
-  - _name: `farm.industry.workcenter`
-  - _description: "Industry-Specific Work Center for Processing"
-  - Relationships:
-    - Extends: `mrp.workcenter` with industry-specific features
-
-- **farm_processing.FarmIndustryOperation**: Industry-specific operations for processing
-  - Odoo Model: `class FarmIndustryOperation(models.Model)`
-  - _name: `farm.industry.operation`
-  - _description: "Industry-Specific Operation for Processing"
-  - Relationships:
-    - Extends: `mrp.routing.workcenter` with industry-specific features
-
-### Stock and Logistics
-- **farm_processing.StockLot**: Stock lots for processing operations
-  - Odoo Model: `class StockLot(models.Model)`
-  - _name: `stock.lot` (Extends existing model)
-  - _inherit: `stock.lot`
-  - Relationships:
-    - Extends: `stock.lot` (Odoo's native stock lot model)
-
-- **farm_processing.StockMove**: Stock movement in processing operations
-  - Odoo Model: `class StockMove(models.Model)`
-  - _name: `stock.move` (Extends existing model)
-  - _inherit: `stock.move`
-  - Relationships:
-    - Extends: `stock.move` (Odoo's native stock move model)
-
-- **farm_processing.StockPicking**: Stock picking for processing operations
-  - Odoo Model: `class StockPicking(models.Model)`
-  - _name: `stock.picking` (Extends existing model)
-  - _inherit: `stock.picking`
-  - Relationships:
-    - Extends: `stock.picking` (Odoo's native stock picking model)
-
-- **farm_processing.FarmIndustryPicking**: Industry-specific picking for processing
-  - Odoo Model: `class FarmIndustryPicking(models.Model)`
-  - _name: `farm.industry.picking`
-  - _description: "Industry-Specific Picking for Processing"
-  - Relationships:
-    - Extends: `stock.picking` with industry-specific features
-
-### Product and Packaging
-- **farm_processing.ProductTemplate**: Product templates for processing
-  - Odoo Model: `class ProductTemplate(models.Model)`
-  - _name: `product.template` (Extends existing model)
-  - _inherit: `product.template`
-  - Relationships:
-    - Extends: `product.template` (Odoo's native product template model)
-
-- **farm_processing.FarmPackage**: Packaging management for processing
-  - Odoo Model: `class FarmPackage(models.Model)`
-  - _name: `farm.package`
-  - _description: "Packaging Management for Processing"
-  - Relationships:
-    - Extends: `product.template` with packaging-specific features
-
-- **farm_processing.FarmPackageLevel**: Package level management for processing
-  - Odoo Model: `class FarmPackageLevel(models.Model)`
-  - _name: `farm.package.level`
-  - _description: "Package Level Management for Processing"
-  - Relationships:
-    - Extends: `product.product` with packaging level features
-
-### Health and Safety
-- **farm_processing.FarmHealthSchedule**: Health scheduling for biological assets
-  - Odoo Model: `class FarmHealthSchedule(models.Model)`
-  - _name: `farm.health.schedule`
-  - _description: "Health Schedule for Biological Assets"
-  - Relationships:
-    - Extends: Base models with health scheduling functionality
-
-- **farm_processing.StockLotHealth**: Health tracking for stock lots
-  - Odoo Model: `class StockLotHealth(models.Model)`
-  - _name: `stock.lot.health`
-  - _description: "Health Tracking for Stock Lots"
-  - _inherit: `stock.lot`
-  - Relationships:
-    - Extends: `stock.lot` with health tracking features
-
-### Lot Variants
-- **farm_processing.FarmLotHarvest**: Harvest lot tracking for processing
-  - Odoo Model: `class FarmLotHarvest(models.Model)`
-  - _name: `farm.lot.harvest`
-  - _description: "Harvest Lot Tracking"
-  - Relationships:
-    - Extends: `stock.lot` with harvest-specific features
-
-- **farm_processing.FarmLotLivestock**: Livestock lot tracking for processing
-  - Odoo Model: `class FarmLotLivestock(models.Model)`
-  - _name: `farm.lot.livestock`
-  - _description: "Livestock Lot Tracking"
-  - Relationships:
-    - Extends: `stock.lot` with livestock-specific features
-
-- **farm_processing.FarmLotAquaculture**: Aquaculture lot tracking for processing
-  - Odoo Model: `class FarmLotAquaculture(models.Model)`
-  - _name: `farm.lot.aquaculture`
-  - _description: "Aquaculture Lot Tracking"
-  - Relationships:
-    - Extends: `stock.lot` with aquaculture-specific features
-
-### Specialized Functionality
-- **farm_processing.FarmAllergen**: Allergen management for processing
-  - Odoo Model: `class FarmAllergen(models.Model)`
-  - _name: `farm.allergen`
-  - _description: "Allergen Management"
-  - Relationships:
-    - Extends: Product and manufacturing models with allergen tracking
-
-- **farm_processing.FarmScLicense**: SC license management for processing
-  - Odoo Model: `class FarmScLicense(models.Model)`
-  - _name: `farm.sc.license`
-  - _description: "SC License Management"
-  - Relationships:
-    - Extends: Company and product models with license tracking
-
-- **farm_processing.FarmScCategory**: SC category management for processing
-  - Odoo Model: `class FarmScCategory(models.Model)`
-  - _name: `farm.sc.category`
-  - _description: "SC Category Management"
-  - Relationships:
-    - Extends: Product models with category management
-
-### Wizards
-- **farm_processing.FarmRecallWizard**: Wizard for product recall operations
-  - Odoo Model: `class FarmRecallWizard(models.TransientModel)`
-  - _name: `farm.recall.wizard`
-  - _description: "Product Recall Wizard"
-  - Relationships:
-    - Extends: Transient model for recall operations
-
-- **farm_processing.FarmRecallLine**: Recall line items
-  - Odoo Model: `class FarmRecallLine(models.TransientModel)`
-  - _name: `farm.recall.line`
-  - _description: "Product Recall Line Items"
-  - Relationships:
-    - Extends: Transient model for recall line items
-
-- **farm_processing.FarmSubstituteWizard**: Wizard for material substitution
-  - Odoo Model: `class FarmSubstituteWizard(models.TransientModel)`
-  - _name: `farm.substitute.wizard`
-  - _description: "Material Substitute Wizard"
-  - Relationships:
-    - Extends: Transient model for substitution operations
-
-- **farm_processing.FarmSubstituteLine**: Substitute line items
-  - Odoo Model: `class FarmSubstituteLine(models.TransientModel)`
-  - _name: `farm.substitute.line`
-  - _description: "Substitute Line Items"
-  - Relationships:
-    - Extends: Transient model for substitution line items
-
-- **farm_processing.FarmWasteTransformationWizard**: Wizard for waste transformation
-  - Odoo Model: `class FarmWasteTransformationWizard(models.TransientModel)`
-  - _name: `farm.waste.transformation.wizard`
-  - _description: "Waste Transformation Wizard"
-  - Relationships:
-    - Extends: Transient model for waste transformation operations
-
-## Quality Models
-
-Quality models ensure product quality and compliance throughout the farming process.
-
-- **farm_quality.FarmQualityPoint** (`farm.quality.point`): Quality control points for farming operations
-  - Odoo Model: `class FarmQualityPoint(models.Model)`
-  - _name: `farm.quality.point`
-  - _description: "Quality Control Point"
-  - Fields:
-    - `name` (Char): Title of the quality point (required)
-    - `product_id` (Many2one): Associated product/variety (product.product)
-    - `test_type` (Selection): Test type (pass_fail, measure)
-    - `norm` (Float): Measurement norm
-    - `tolerance_min` (Float): Minimum tolerance
-    - `tolerance_max` (Float): Maximum tolerance
-    - `active` (Boolean): Active status
-  - Relationships:
-    - Many2one: `product_id` → `product.product`
-
-- **farm_quality.FarmQualityCheck** (`farm.quality.check`): Quality checks for farming operations
-  - Odoo Model: `class FarmQualityCheck(models.Model)`
-  - _name: `farm.quality.check`
-  - _description: "Quality Check"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Reference (required, default: New)
-    - `point_id` (Many2one): Control point (farm.quality.point)
-    - `lot_id` (Many2one): Lot/Batch (required) (stock.lot)
-    - `sample_id` (Many2one): Linked sample (farm.quality.sample)
-    - `task_id` (Many2one): Production task (project.task)
-    - `test_type` (Selection): Test type (related to point_id.test_type)
-    - `measure` (Float): Actual measure
-    - `quality_state` (Selection): Status (none, pass, fail)
-    - `user_id` (Many2one): Responsible user (res.users)
-    - `is_blind_view` (Boolean): Whether to show masked information (computed)
-  - Properties:
-    - `display_lot_name`: Returns lot name to display (with masking if blind view)
-    - `display_product_name`: Returns product name to display (with masking if blind view)
-  - Methods:
-    - `_compute_blind_view()`: Computes whether the current user should see masked information
-    - `create()`: Creates new quality check with sequence number
-    - `action_pass()`: Marks the check as passed
-    - `action_fail()`: Marks the check as failed
-    - `action_done()`: Processes measure-type checks based on tolerance range
-    - `action_open_quality_alert()`: Creates and returns quality alert record
-  - Relationships:
-    - Many2one: `point_id` → `farm.quality.point`
-    - Many2one: `lot_id` → `stock.lot`
-    - Many2one: `sample_id` → `farm.quality.sample`
-    - Many2one: `task_id` → `project.task`
-    - Many2one: `user_id` → `res.users`
-    - Inherits from: `mail.thread`, `mail.activity.mixin`
-
-- **farm_quality.FarmQualityAlert** (`farm.quality.alert`): Quality alerts for farming operations
-  - Odoo Model: `class FarmQualityAlert(models.Model)`
-  - _name: `farm.quality.alert`
-  - _description: "Quality Alert"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Title (required)
-    - `check_id` (Many2one): Source check (farm.quality.check)
-    - `lot_id` (Many2one): Lot/Batch (required) (stock.lot)
-    - `product_id` (Many2one): Product (product.product)
-    - `user_id` (Many2one): Responsible user (res.users)
-    - `priority` (Selection): Priority (low, normal, high)
+### `agri.sustainability.metric` (Defined in `farm_esg_sustainability`)
+  - **Class**: `AgriSustainabilityMetric`
+  - **描述**: Agricultural Sustainability Metric
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Metric Name
+    - `code` (Char): Metric Code
+    - `category` (Selection): category
+    - `unit` (Char): Unit of Measure
     - `description` (Text): Description
-    - `cause` (Text): Root cause
-    - `action_taken` (Text): Action taken
-    - `state` (Selection): Status (new, confirmed, action_proposed, closed)
-  - Methods:
-    - `action_confirm()`: Confirms the quality alert
-    - `action_close_scrapped()`: Closes alert and marks asset for scrapping
-  - Relationships:
-    - Many2one: `check_id` → `farm.quality.check`
-    - Many2one: `lot_id` → `stock.lot`
-    - Many2one: `product_id` → `product.product`
-    - Many2one: `user_id` → `res.users`
-    - Inherits from: `mail.thread`, `mail.activity.mixin`
-
-- **farm_quality.FarmLotQuality** (`stock.lot`): Quality tracking for lots (extends stock.lot)
-  - Odoo Model: `class FarmLotQuality(models.Model)`
-  - _name: `stock.lot` (Extends existing model)
-  - _inherit: `stock.lot`
-  - Fields:
-    - `quality_status` (Selection): Quality status (none, passed, failed)
-    - `qc_release_state` (Selection): QC release status (locked, released)
-    - `quality_check_ids` (One2many): Quality checks (farm.quality.check)
-  - Methods:
-    - `action_qc_release()`: Manually releases the lot
-    - `action_lock()`: Manually locks the lot
-  - Relationships:
-    - One2many: `quality_check_ids` → `farm.quality.check.lot_id`
-    - Inherits from: `stock.lot`
-
-- **farm_quality.FarmQualitySample**: Quality samples for testing
-  - Odoo Model: `class FarmQualitySample(models.Model)`
-  - _name: `farm.quality.sample`
-  - _description: "Quality Sample"
-  - Relationships:
-    - Extends: Base models with quality sample functionality
-
-- **farm_quality.StockPicking**: Quality-enhanced stock picking (extends stock.picking)
-  - Odoo Model: `class StockPicking(models.Model)`
-  - _name: `stock.picking` (Extends existing model)
-  - _inherit: `stock.picking`
-  - Methods:
-    - `button_validate()`: Quality and release interception logic
-  - Relationships:
-    - Inherits from: `stock.picking`
-
-## Safety Models
-
-Safety models handle biosafety and prevention management.
-
-- **farm_safety.FarmPreventionTemplate**: Prevention templates for safety
-  - Odoo Model: `class FarmPreventionTemplate(models.Model)`
-  - _name: `farm.prevention.template`
-  - _description: "Agri-Prevention Template"
-  - Fields:
-    - `name` (Char): Template Name (required)
-    - `active` (Boolean): Active status (default: True)
-    - `line_ids` (One2many): Operations (farm.prevention.line)
-    - `company_id` (Many2one): Company (res.company)
-  - Relationships:
-    - One2many: `line_ids` → `farm.prevention.line.template_id`
-    - Many2one: `company_id` → `res.company` (default: current company)
-
-- **farm_safety.FarmPreventionLine**: Line items for prevention measures
-  - Odoo Model: `class FarmPreventionLine(models.Model)`
-  - _name: `farm.prevention.line`
-  - _description: "Prevention Operation Line"
-  - _order: "delay_days asc"
-  - Fields:
-    - `template_id` (Many2one): Template (farm.prevention.template, ondelete=cascade)
-    - `name` (Char): Operation Name (required)
-    - `delay_days` (Integer): Delay Days (T+N) (default: 0)
-    - `product_id` (Many2one): Vaccine/Medicine (product.product)
-    - `qty` (Float): Quantity (default: 1.0)
-  - Relationships:
-    - Many2one: `template_id` → `farm.prevention.template` with cascade delete
-    - Many2one: `product_id` → `product.product`
-
-- **farm_safety.FarmLotQuarantine**: Quarantine management for lots
-  - Odoo Model: `class FarmLotQuarantine(models.Model)`
-  - _name: `stock.lot`
-  - _inherit: `stock.lot`
-  - Fields:
-    - `is_quarantined` (Boolean): In Quarantine (default: False, tracking=True)
-    - `quarantine_reason` (Text): Quarantine Reason
-    - `quarantine_start_date` (Date): Quarantine Start
-    - `withdrawal_end_datetime` (Datetime): Withdrawal End (tracking=True)
-    - `withdrawal_status` (Selection): Safety Status (safe, warning) (computed, stored)
-    - `withdrawal_remaining_days` (Integer): Safe Harvest Countdown (computed)
-  - Methods:
-    - `_compute_withdrawal_status()`: Computes withdrawal safety status
-    - `_compute_withdrawal_remaining()`: Computes withdrawal remaining days
-    - `action_quarantine(reason, is_epidemic)`: Quarantines asset and generates buffer fence
-    - `action_release_quarantine()`: Releases asset from quarantine
-  - Relationships:
-    - Inherits: `stock.lot` (Odoo's stock lot model) with quarantine functionality
-
-- **farm_safety.StockPickingQuarantine**: Quarantine management for stock picking
-  - Odoo Model: `class StockPickingQuarantine(models.Model)`
-  - _name: `stock.picking`
-  - _inherit: `stock.picking`
-  - Methods:
-    - `button_validate()`: Quarantine and withdrawal period interception logic
-  - Relationships:
-    - Inherits: `stock.picking` (Odoo's stock picking model) with safety validation
-
-- **farm_safety.ProjectTask**: Safety-enhanced project task management
-  - Odoo Model: `class ProjectTask(models.Model)`
-  - _name: `project.task`
-  - _inherit: `project.task`
-  - Fields:
-    - `prevention_template_id` (Many2one): Prevention Plan (farm.prevention.template)
-  - Methods:
-    - `action_confirm_intervention_safety(product_ids)`: Updates withdrawal period for medication interventions
-    - `action_apply_prevention_template()`: Generates subtasks from prevention template
-  - Relationships:
-    - Many2one: `prevention_template_id` → `farm.prevention.template`
-    - Inherits: `project.task` (Odoo's project task model) with safety features
-
-- **farm_safety.FarmBiosafetyAccessLog**: Biosafety access logging
-  - Odoo Model: `class FarmBiosafetyAccessLog(models.Model)`
-  - _name: `farm.biosafety.access.log`
-  - _description: "Bio-safety Access Log"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - _order: "access_time desc"
-  - Fields:
-    - `location_id` (Many2one): Restricted Area (stock.location, usage=internal, required)
-    - `person_id` (Many2one): Person/Visitor (res.partner)
-    - `employee_id` (Many2one): Employee (hr.employee)
-    - `access_time` (Datetime): Access Time (default: now)
-    - `access_type` (Selection): Type (entry, exit) (required, default: entry)
-    - `sanitization_confirmed` (Boolean): Sanitization Performed (default: False)
-    - `quarantine_period_passed` (Boolean): Quarantine Period Passed (default: True)
-    - `vehicle_plate` (Char): Vehicle Plate
-    - `purpose` (Text): Purpose of Entry
-  - Methods:
-    - `create()`: Creates access log and warns on missing sanitization
-  - Relationships:
-    - Many2one: `location_id` → `stock.location`
-    - Many2one: `person_id` → `res.partner`
-    - Many2one: `employee_id` → `hr.employee`
-
-## Certification Models
-
-Certification models handle compliance and certification requirements.
-
-- **farm_certification.FarmLocationCert**: Certification for farm locations
-  - Odoo Model: `class FarmLocationCert(models.Model)`
-  - _name: `farm.location.cert`
-  - _description: "Farm Location Certification"
-  - Relationships:
-    - Extends: Base models with location certification functionality
-
-- **farm_certification.FarmLotCert**: Certification for lots
-  - Odoo Model: `class FarmLotCert(models.Model)`
-  - _name: `farm.lot.cert`
-  - _description: "Farm Lot Certification"
-  - Relationships:
-    - Extends: Base models with lot certification functionality
-
-- **farm_certification.FarmGAPCertification**: Good Agricultural Practices certification
-  - Odoo Model: `class FarmGAPCertification(models.Model)`
-  - _name: `farm.gap.certification`
-  - _description: "Good Agricultural Practices Certification"
-  - Fields:
-    - `name` (Char): Certification reference
-    - `location_id` (Many2one): Associated farm location (farm.location)
-    - `certifying_body_id` (Many2one): Certifying organization (res.partner)
-    - `certification_date` (Date): Date of certification
-    - `valid_from` (Date): Start date of validity
-    - `valid_to` (Date): End date of validity
-    - `status` (Selection): Certification status (active, suspended, expired)
-    - `scope` (Text): Scope of certification
-    - `standards` (Text): Standards applied
-  - Methods:
-    - `action_renew()`: Renew the certification
-    - `action_suspend()`: Suspend the certification
-    - `action_cancel()`: Cancel the certification
-  - Relationships:
-    - Many2one: `location_id` → `farm.location`
-    - Many2one: `certifying_body_id` → `res.partner`
-
-- **farm_certification.FarmGAPAudit**: GAP audit management
-  - Odoo Model: `class FarmGAPAudit(models.Model)`
-  - _name: `farm.gap.audit`
-  - _description: "GAP Audit Management"
-  - Fields:
-    - `name` (Char): Audit reference
-    - `certification_id` (Many2one): Associated certification (farm.gap.certification)
-    - `audit_date` (Date): Date of audit
-    - `auditor_id` (Many2one): Assigned auditor (res.partner)
-    - `audit_type` (Selection): Type of audit (initial, surveillance, recertification)
-    - `findings` (Text): Audit findings
-    - `status` (Selection): Audit status (planned, in_progress, completed, failed)
-    - `recommendations` (Text): Recommendations
-  - Methods:
-    - `action_start_audit()`: Start the audit
-    - `action_complete_audit()`: Complete the audit
-  - Relationships:
-    - Many2one: `certification_id` → `farm.gap.certification`
-    - Many2one: `auditor_id` → `res.partner`
-
-- **farm_certification.FarmGAPRequirement**: GAP requirements management
-  - Odoo Model: `class FarmGAPRequirement(models.Model)`
-  - _name: `farm.gap.requirement`
-  - _description: "GAP Requirements Management"
-  - Relationships:
-    - Extends: Base models with GAP requirement functionality
-
-- **farm_certification.FarmGAPComplianceCheck**: GAP compliance checks
-  - Odoo Model: `class FarmGAPComplianceCheck(models.Model)`
-  - _name: `farm.gap.compliance.check`
-  - _description: "GAP Compliance Checks"
-  - Relationships:
-    - Extends: Base models with compliance check functionality
-
-- **farm_certification.FarmCertificationDashboard**: Dashboard for certification management
-  - Odoo Model: `class FarmCertificationDashboard(models.Model)`
-  - _name: `farm.certification.dashboard`
-  - _description: "Certification Management Dashboard"
-  - Relationships:
-    - Extends: Base models with dashboard functionality
-
-- **farm_certification.ResPartner**: Certification-enhanced partner records
-  - Odoo Model: `class ResPartner(models.Model)`
-  - _name: `res.partner`
-  - _description: "Certification-Enhanced Partner Records"
-  - _inherit: `res.partner`
-  - Relationships:
-    - Extends: `res.partner` (Odoo's native partner model) with certification enhancements
-
-- **farm_certification.FarmPartnerCertification**: Partner certification management
-  - Odoo Model: `class FarmPartnerCertification(models.Model)`
-  - _name: `farm.partner.certification`
-  - _description: "Partner Certification Management"
-  - Relationships:
-    - Extends: Base models with partner certification functionality
-
-- **farm_certification.PurchaseOrder**: Certification-enhanced purchase orders
-  - Odoo Model: `class PurchaseOrder(models.Model)`
-  - _name: `purchase.order`
-  - _description: "Certification-Enhanced Purchase Orders"
-  - _inherit: `purchase.order`
-  - Relationships:
-    - Extends: `purchase.order` (Odoo's native purchase order model) with certification enhancements
-
-## Weather Models
-
-Weather models provide environmental data and forecasting capabilities.
-
-- **farm_weather.FarmWeatherForecast**: Weather forecasting for farming operations
-- **farm_weather.ResConfigSettings**: Configuration settings for weather features
-
-## IoT Models
-
-IoT models handle telemetry, automation, and device management for smart farming.
-
-- **farm_iot.FarmTelemetry**: Telemetry data collection for farming
-- **farm_iot.FarmLocation**: IoT-enhanced farm location tracking
-- **farm_iot.FarmAutomationRule**: Automation rules for IoT devices
-- **farm_iot.FarmCommandLog**: Logging of commands sent to IoT devices
-- **farm_iot.IotDeviceMapping**: Mapping of IoT devices to farm assets
-- **farm_iot.IotTelemetryBuffer**: Buffer for incoming telemetry data
-- **farm_iot.FarmDeviceCommand**: Commands for IoT devices
-
-## Mobile Models
-
-Mobile models handle mobile app functionality for field operations.
-
-- **farm_mobile.FarmEvidence**: Evidence collection for mobile operations
-  - Odoo Model: `class FarmEvidence(models.Model)`
-  - _name: `farm.evidence`
-  - _description: "Mobile Evidence Collection"
-  - Relationships:
-    - Extends: Base models with mobile evidence functionality
-
-- **farm_mobile.FarmSyncQueue**: Synchronization queue for mobile operations
-  - Odoo Model: `class FarmSyncQueue(models.Model)`
-  - _name: `farm.sync.queue`
-  - _description: "Mobile Synchronization Queue"
-  - Relationships:
-    - Extends: Base models with sync queue functionality
-
-- **farm_mobile.FarmCheckIn**: Check-in functionality for mobile operations
-  - Odoo Model: `class FarmCheckIn(models.Model)`
-  - _name: `farm.checkin`
-  - _description: "Mobile Check-in Functionality"
-  - Relationships:
-    - Extends: Base models with check-in functionality
-
-- **farm_mobile.FarmChecklistSubmission**: Checklist submissions from mobile
-  - Odoo Model: `class FarmChecklistSubmission(models.Model)`
-  - _name: `farm.checklist.submission`
-  - _description: "Mobile Checklist Submission"
-  - Relationships:
-    - Extends: Base models with checklist submission functionality
-
-- **farm_mobile.FarmChecklistSubmissionLine**: Line items for checklist submissions
-  - Odoo Model: `class FarmChecklistSubmissionLine(models.Model)`
-  - _name: `farm.checklist.submission.line`
-  - _description: "Mobile Checklist Submission Line Items"
-  - Relationships:
-    - Extends: Base models with checklist submission line functionality
-
-- **farm_mobile.FarmExpertCall**: Expert call functionality for mobile
-  - Odoo Model: `class FarmExpertCall(models.Model)`
-  - _name: `farm.expert.call`
-  - _description: "Mobile Expert Call Functionality"
-  - Relationships:
-    - Extends: Base models with expert call functionality
-
-- **farm_mobile.AgriIntervention** (`mrp.production`): Mobile-enhanced agricultural interventions (extends mrp.production)
-  - Odoo Model: `class AgriIntervention(models.Model)`
-  - _name: `mrp.production` (Extends existing model)
-  - _inherit: `mrp.production`
-  - Fields:
-    - `check_in_ids` (One2many): Check-in history (farm.checkin)
-    - `evidence_ids` (One2many): Site evidence records (farm.evidence)
-    - `current_check_in_id` (Many2one): Active check-in (computed) (farm.checkin)
-  - Methods:
-    - `action_mobile_capture_evidence(lat, lng, photo_base64, note)`: Mobile-specific evidence capture
-  - Relationships:
-    - Inherits from: `mrp.production`
-    - One2many: `check_in_ids` → `farm.checkin.intervention_id`
-    - One2many: `evidence_ids` → `farm.evidence` with domain filter
-    - Many2one: `current_check_in_id` → `farm.checkin`
-
-## Supply Models
-
-Supply models handle inventory, procurement, and supply chain management.
-
-### Basic Supply Management
-- **farm_supply.FarmSeasonalStockRule**: Seasonal stock rules for supply management
-- **farm_supply.ProductTemplate**: Supply-specific product templates
-- **farm_supply.SaleOrder**: Supply-specific sale orders
-- **farm_supply.PurchaseOrder**: Supply-specific purchase orders
-- **farm_supply.PurchaseOrderLine**: Line items for purchase orders
-
-### Risk and Planning
-- **farm_supply.SupplyRiskRadar**: Risk radar for supply management
-
-### Advanced Supply Features
-- **farm_supply.InputVMIConfiguration**: Vendor-managed inventory configuration
-- **farm_supply.VMISensorReading**: Sensor readings for VMI
-- **farm_supply.QualityBasedPricing**: Quality-based pricing models
-- **farm_supply.JointProcurementConfiguration**: Configuration for joint procurement
-- **farm_supply.JointProcurementOrder**: Joint procurement orders
-- **farm_supply.CircularAssetTracking**: Tracking of circular assets
-- **farm_supply.AssetRentalAgreement**: Rental agreements for assets
-
-### Storage Management
-- **farm_supply.StockLocationExtension**: Extensions to stock locations for supply
-- **farm_supply.ColdStorageReading**: Cold storage monitoring
-- **farm_supply.StockMoveExtension**: Extensions to stock moves for supply
-- **farm_supply.ProductTemplateExtension**: Extensions to product templates for supply
-
-### Logistics and Compliance
-- **farm_supply.SafePODConfiguration**: POD configuration for safe delivery
-- **farm_supply.DeliveryTrackingRecord**: Records of delivery tracking
-- **farm_supply.ExportDocumentHub**: Export documentation hub
-- **farm_supply.ExportGeneratedDocument**: Generated export documents
-
-### Temperature Management
-- **farm_supply.ShelfLifePrediction**: Shelf life prediction models
-- **farm_supply.TemperatureReading**: Temperature readings for supply chain
-- **farm_supply.PrecoolingProcess**: Precooling process management
-- **farm_supply.PrecoolingTemperature**: Temperature management for precooling
-
-### Abstract Utilities
-- **farm_supply.CommonFieldMixin** (Abstract): Provides common fields
-- **farm_supply.CreationMethodMixin** (Abstract): Provides creation method utilities
-- **farm_supply.ComputedFieldMixin** (Abstract): Provides computed field utilities
-- **farm_supply.ComplianceMixin** (Abstract): Provides compliance utilities
-- **farm_supply.StorageManagementMixin** (Abstract): Provides storage management utilities
-- **farm_supply.QualityManagementMixin** (Abstract): Provides quality management utilities
-
-## Logistics Models
-
-Logistics models handle transportation and logistics.
-
-- **farm_logistics.ProductTemplate**: Logistics-enhanced product templates
-- **farm_logistics.StockPicking**: Logistics-enhanced stock picking
-- **farm_logistics.FarmVehicle**: Vehicle management for logistics
-- **farm_logistics.FarmTransportTemperature**: Temperature management for transport
-
-## Multi-Farm Models
-
-Multi-farm models handle cooperative farming, shared resources, and multi-farm operations.
-
-### Cooperative Management
-- **farm_multi_farm.CooperativeMember**: Members of farming cooperatives
-  - Odoo Model: `class CooperativeMember(models.Model)`
-  - _name: `farm.cooperative.member`
-  - _description: "Cooperative Member Management"
-  - Relationships:
-    - Extends: Base models with cooperative member functionality
-
-- **farm_multi_farm.CooperativeEntity**: Cooperative entity management
-  - Odoo Model: `class CooperativeEntity(models.Model)`
-  - _name: `farm.cooperative.entity`
-  - _description: "Cooperative Entity Management"
-  - Relationships:
-    - Extends: Base models with cooperative entity functionality
-
-- **farm_multi_farm.FarmEntity**: Farm entity management
-  - Odoo Model: `class FarmEntity(models.Model)`
-  - _name: `farm.entity`
-  - _description: "Farm Entity Management"
-  - Relationships:
-    - Extends: Base models with farm entity functionality
-
-- **farm_multi_farm.FranchiseFarm**: Franchise farm management
-  - Odoo Model: `class FranchiseFarm(models.Model)`
-  - _name: `farm.franchise.farm`
-  - _description: "Franchise Farm Management"
-  - Relationships:
-    - Extends: Base models with franchise farm functionality
-
-### Financial Management
-- **farm_multi_farm.ShareTransaction**: Share transaction management
-  - Odoo Model: `class ShareTransaction(models.Model)`
-  - _name: `farm.share.transaction`
-  - _description: "Share Transaction Management"
-  - Relationships:
-    - Extends: Base models with share transaction functionality
-
-- **farm_multi_farm.DividendDistribution**: Dividend distribution for cooperatives
-  - Odoo Model: `class DividendDistribution(models.Model)`
-  - _name: `farm.dividend.distribution`
-  - _description: "Dividend Distribution for Cooperatives"
-  - Relationships:
-    - Extends: Base models with dividend distribution functionality
-
-- **farm_multi_farm.DividendLine**: Line items for dividend distributions
-  - Odoo Model: `class DividendLine(models.Model)`
-  - _name: `farm.dividend.line`
-  - _description: "Dividend Distribution Line Items"
-  - Relationships:
-    - Extends: Base models with dividend line functionality
-
-- **farm_multi_farm.InternalCredit**: Internal credit management
-  - Odoo Model: `class InternalCredit(models.Model)`
-  - _name: `farm.internal.credit`
-  - _description: "Internal Credit Management"
-  - Relationships:
-    - Extends: Base models with internal credit functionality
-
-- **farm_multi_farm.CreditTransaction**: Credit transaction management
-  - Odoo Model: `class CreditTransaction(models.Model)`
-  - _name: `farm.credit.transaction`
-  - _description: "Credit Transaction Management"
-  - Relationships:
-    - Extends: Base models with credit transaction functionality
-
-- **farm_multi_farm.CooperativeTreasury**: Treasury management for cooperatives
-  - Odoo Model: `class CooperativeTreasury(models.Model)`
-  - _name: `farm.cooperative.treasury`
-  - _description: "Treasury Management for Cooperatives"
-  - Relationships:
-    - Extends: Base models with treasury functionality
-
-- **farm_multi_farm.InternalLoan**: Internal loan management
-  - Odoo Model: `class InternalLoan(models.Model)`
-  - _name: `farm.internal.loan`
-  - _description: "Internal Loan Management"
-  - Relationships:
-    - Extends: Base models with internal loan functionality
-
-### Subsidy and Governance
-- **farm_multi_farm.SubsidyDisbursement**: Subsidy disbursement management
-  - Odoo Model: `class SubsidyDisbursement(models.Model)`
-  - _name: `farm.subsidy.disbursement`
-  - _description: "Subsidy Disbursement Management"
-  - Relationships:
-    - Extends: Base models with subsidy disbursement functionality
-
-- **farm_multi_farm.SubsidyDisbursementLine**: Line items for subsidy disbursements
-  - Odoo Model: `class SubsidyDisbursementLine(models.Model)`
-  - _name: `farm.subsidy.disbursement.line`
-  - _description: "Subsidy Disbursement Line Items"
-  - Relationships:
-    - Extends: Base models with subsidy disbursement line functionality
-
-- **farm_multi_farm.CooperativeDecision**: Cooperative decision management
-  - Odoo Model: `class CooperativeDecision(models.Model)`
-  - _name: `farm.cooperative.decision`
-  - _description: "Cooperative Decision Management"
-  - Relationships:
-    - Extends: Base models with cooperative decision functionality
-
-### Machinery and Resource Sharing
-- **farm_multi_farm.SharedMachineryPool**: Shared machinery pool management
-  - Odoo Model: `class SharedMachineryPool(models.Model)`
-  - _name: `farm.shared.machinery.pool`
-  - _description: "Shared Machinery Pool Management"
-  - Relationships:
-    - Extends: Base models with shared machinery functionality
-
-- **farm_multi_farm.MachineryRental**: Machinery rental management
-  - Odoo Model: `class MachineryRental(models.Model)`
-  - _name: `farm.machinery.rental`
-  - _description: "Machinery Rental Management"
-  - Relationships:
-    - Extends: Base models with machinery rental functionality
-
-- **farm_multi_farm.ResourceSharing**: Resource sharing management
-  - Odoo Model: `class ResourceSharing(models.Model)`
-  - _name: `farm.resource.sharing`
-  - _description: "Resource Sharing Management"
-  - Relationships:
-    - Extends: Base models with resource sharing functionality
-
-### Procurement and Distribution
-- **farm_multi_farm.JointProcurementPO**: Joint procurement purchase orders
-  - Odoo Model: `class JointProcurementPO(models.Model)`
-  - _name: `farm.joint.procurement.po`
-  - _description: "Joint Procurement Purchase Orders"
-  - Relationships:
-    - Extends: `purchase.order` with joint procurement functionality
-
-- **farm_multi_farm.JointProcurementPOMember**: Member relationships for joint procurement
-  - Odoo Model: `class JointProcurementPOMember(models.Model)`
-  - _name: `farm.joint.procurement.po.member`
-  - _description: "Joint Procurement PO Member Relationships"
-  - Relationships:
-    - Extends: Base models with joint procurement member functionality
-
-- **farm_multi_farm.HubSpokeDistribution**: Hub-and-spoke distribution model
-  - Odoo Model: `class HubSpokeDistribution(models.Model)`
-  - _name: `farm.hub.spoke.distribution`
-  - _description: "Hub-and-Spoke Distribution Model"
-  - Relationships:
-    - Extends: Base models with hub-and-spoke distribution functionality
-
-- **farm_multi_farm.HubSpokeDistributionLine**: Line items for hub-and-spoke distribution
-  - Odoo Model: `class HubSpokeDistributionLine(models.Model)`
-  - _name: `farm.hub.spoke.distribution.line`
-  - _description: "Hub-and-Spoke Distribution Line Items"
-  - Relationships:
-    - Extends: Base models with hub-and-spoke distribution line functionality
-
-- **farm_multi_farm.JointProcurement**: Joint procurement management
-  - Odoo Model: `class JointProcurement(models.Model)`
-  - _name: `farm.joint.procurement`
-  - _description: "Joint Procurement Management"
-  - Relationships:
-    - Extends: Base models with joint procurement functionality
-
-- **farm_multi_farm.JointProcurementLine**: Line items for joint procurement
-  - Odoo Model: `class JointProcurementLine(models.Model)`
-  - _name: `farm.joint.procurement.line`
-  - _description: "Joint Procurement Line Items"
-  - Relationships:
-    - Extends: Base models with joint procurement line functionality
-
-### Settlement and Transactions
-- **farm_multi_farm.NettingSettlement**: Netting settlement for transactions
-  - Odoo Model: `class NettingSettlement(models.Model)`
-  - _name: `farm.netting.settlement`
-  - _description: "Netting Settlement for Transactions"
-  - Relationships:
-    - Extends: Base models with netting settlement functionality
-
-- **farm_multi_farm.NettingReceivableLine**: Receivable line items for netting
-  - Odoo Model: `class NettingReceivableLine(models.Model)`
-  - _name: `farm.netting.receivable.line`
-  - _description: "Netting Receivable Line Items"
-  - Relationships:
-    - Extends: Base models with netting receivable functionality
-
-- **farm_multi_farm.NettingPayableLine**: Payable line items for netting
-  - Odoo Model: `class NettingPayableLine(models.Model)`
-  - _name: `farm.netting.payable.line`
-  - _description: "Netting Payable Line Items"
-  - Relationships:
-    - Extends: Base models with netting payable functionality
-
-### Marketplace and Services
-- **farm_multi_farm.InternalMarketplace**: Internal marketplace management
-  - Odoo Model: `class InternalMarketplace(models.Model)`
-  - _name: `farm.internal.marketplace`
-  - _description: "Internal Marketplace Management"
-  - Relationships:
-    - Extends: Base models with internal marketplace functionality
-
-- **farm_multi_farm.MarketplaceDemandMatch**: Demand matching for marketplace
-  - Odoo Model: `class MarketplaceDemandMatch(models.Model)`
-  - _name: `farm.marketplace.demand.match`
-  - _description: "Marketplace Demand Matching"
-  - Relationships:
-    - Extends: Base models with marketplace demand matching functionality
-
-- **farm_multi_farm.InternalMarketplaceTransaction**: Transactions in internal marketplace
-  - Odoo Model: `class InternalMarketplaceTransaction(models.Model)`
-  - _name: `farm.internal.marketplace.transaction`
-  - _description: "Internal Marketplace Transactions"
-  - Relationships:
-    - Extends: Base models with internal marketplace transaction functionality
-
-- **farm_multi_farm.AgriService**: Agricultural service management
-  - Odoo Model: `class AgriService(models.Model)`
-  - _name: `farm.agri.service`
-  - _description: "Agricultural Service Management"
-  - Relationships:
-    - Extends: Base models with agricultural service functionality
-
-- **farm_multi_farm.ServiceOrder**: Service order management
-  - Odoo Model: `class ServiceOrder(models.Model)`
-  - _name: `farm.service.order`
-  - _description: "Service Order Management"
-  - Relationships:
-    - Extends: `sale.order` with service order functionality
-
-### Quality and Certification
-- **farm_multi_farm.QualityControlStandard**: Quality control standards
-  - Odoo Model: `class QualityControlStandard(models.Model)`
-  - _name: `farm.quality.control.standard`
-  - _description: "Quality Control Standards"
-  - Relationships:
-    - Extends: Base models with quality control standard functionality
-
-- **farm_multi_farm.ProductCertification**: Product certification management
-  - Odoo Model: `class ProductCertification(models.Model)`
-  - _name: `farm.product.certification`
-  - _description: "Product Certification Management"
-  - Relationships:
-    - Extends: Base models with product certification functionality
-
-### Procurement Planning
-- **farm_multi_farm.ProcurementPlanning**: Procurement planning management
-  - Odoo Model: `class ProcurementPlanning(models.Model)`
-  - _name: `farm.procurement.planning`
-  - _description: "Procurement Planning Management"
-  - Relationships:
-    - Extends: Base models with procurement planning functionality
-
-- **farm_multi_farm.ProcurementPlanningLine**: Line items for procurement planning
-  - Odoo Model: `class ProcurementPlanningLine(models.Model)`
-  - _name: `farm.procurement.planning.line`
-  - _description: "Procurement Planning Line Items"
-  - Relationships:
-    - Extends: Base models with procurement planning line functionality
-
-- **farm_multi_farm.ProcurementAllocationLine**: Allocation line items for procurement
-  - Odoo Model: `class ProcurementAllocationLine(models.Model)`
-  - _name: `farm.procurement.allocation.line`
-  - _description: "Procurement Allocation Line Items"
-  - Relationships:
-    - Extends: Base models with procurement allocation line functionality
-
-### Governance and Audit
-- **farm_multi_farm.MultiSignProcess**: Multi-signature process management
-  - Odoo Model: `class MultiSignProcess(models.Model)`
-  - _name: `farm.multi.sign.process`
-  - _description: "Multi-Signature Process Management"
-  - Relationships:
-    - Extends: Base models with multi-signature process functionality
-
-- **farm_multi_farm.MultiSignLine**: Line items for multi-signature processes
-  - Odoo Model: `class MultiSignLine(models.Model)`
-  - _name: `farm.multi.sign.line`
-  - _description: "Multi-Signature Process Line Items"
-  - Relationships:
-    - Extends: Base models with multi-signature line functionality
-
-- **farm_multi_farm.DecisionAudit**: Audit trail for decisions
-  - Odoo Model: `class DecisionAudit(models.Model)`
-  - _name: `farm.decision.audit`
-  - _description: "Decision Audit Trail"
-  - Relationships:
-    - Extends: Base models with decision audit functionality
-
-### Extensions
-- **farm_multi_farm.CooperativeMemberExtension**: Extensions to cooperative members
-  - Odoo Model: `class CooperativeMemberExtension(models.Model)`
-  - _name: `farm.cooperative.member.extension`
-  - _description: "Cooperative Member Extensions"
-  - Relationships:
-    - Extends: `farm.cooperative.member` with additional functionality
-
-- **farm_multi_farm.InternalSettlementExtension**: Extensions to internal settlements
-  - Odoo Model: `class InternalSettlementExtension(models.Model)`
-  - _name: `farm.internal.settlement.extension`
-  - _description: "Internal Settlement Extensions"
-  - Relationships:
-    - Extends: Base models with internal settlement extensions
-
-- **farm_multi_farm.CooperativeEntityExtension**: Extensions to cooperative entities
-  - Odoo Model: `class CooperativeEntityExtension(models.Model)`
-  - _name: `farm.cooperative.entity.extension`
-  - _description: "Cooperative Entity Extensions"
-  - Relationships:
-    - Extends: `farm.cooperative.entity` with additional functionality
-
-- **farm_multi_farm.FarmEntityExtension**: Extensions to farm entities
-  - Odoo Model: `class FarmEntityExtension(models.Model)`
-  - _name: `farm.entity.extension`
-  - _description: "Farm Entity Extensions"
-  - Relationships:
-    - Extends: `farm.entity` with additional functionality
-
-### Finance and Management Utilities (Abstract)
-- **farm_multi_farm.BaseSequenceMixin** (Abstract): Provides sequence utilities for multi-farm
-  - Odoo Model: `class BaseSequenceMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.sequence.mixin`
-  - _description: "Base Sequence Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseCodeMixin** (Abstract): Provides code utilities for multi-farm
-  - Odoo Model: `class BaseCodeMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.code.mixin`
-  - _description: "Base Code Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseTotalAmountMixin** (Abstract): Provides total amount utilities for multi-farm
-  - Odoo Model: `class BaseTotalAmountMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.total.amount.mixin`
-  - _description: "Base Total Amount Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseInvestmentAmountMixin** (Abstract): Provides investment amount utilities for multi-farm
-  - Odoo Model: `class BaseInvestmentAmountMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.investment.amount.mixin`
-  - _description: "Base Investment Amount Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseServiceAmountMixin** (Abstract): Provides service amount utilities for multi-farm
-  - Odoo Model: `class BaseServiceAmountMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.service.amount.mixin`
-  - _description: "Base Service Amount Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseActionConfirmMixin** (Abstract): Provides action confirmation utilities for multi-farm
-  - Odoo Model: `class BaseActionConfirmMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.action.confirm.mixin`
-  - _description: "Base Action Confirmation Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseActionApproveMixin** (Abstract): Provides action approval utilities for multi-farm
-  - Odoo Model: `class BaseActionApproveMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.action.approve.mixin`
-  - _description: "Base Action Approval Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseActionRejectMixin** (Abstract): Provides action rejection utilities for multi-farm
-  - Odoo Model: `class BaseActionRejectMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.action.reject.mixin`
-  - _description: "Base Action Rejection Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseActionCancelMixin** (Abstract): Provides action cancellation utilities for multi-farm
-  - Odoo Model: `class BaseActionCancelMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.action.cancel.mixin`
-  - _description: "Base Action Cancellation Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseCreditLimitMixin** (Abstract): Provides credit limit utilities for multi-farm
-  - Odoo Model: `class BaseCreditLimitMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.credit.limit.mixin`
-  - _description: "Base Credit Limit Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseLoanAmountMixin** (Abstract): Provides loan amount utilities for multi-farm
-  - Odoo Model: `class BaseLoanAmountMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.loan.amount.mixin`
-  - _description: "Base Loan Amount Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseAvailableAmountMixin** (Abstract): Provides available amount utilities for multi-farm
-  - Odoo Model: `class BaseAvailableAmountMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.available.amount.mixin`
-  - _description: "Base Available Amount Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseShareValueMixin** (Abstract): Provides share value utilities for multi-farm
-  - Odoo Model: `class BaseShareValueMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.share.value.mixin`
-  - _description: "Base Share Value Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseTotalInvestmentMixin** (Abstract): Provides total investment utilities for multi-farm
-  - Odoo Model: `class BaseTotalInvestmentMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.total.investment.mixin`
-  - _description: "Base Total Investment Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseAvailableCreditMixin** (Abstract): Provides available credit utilities for multi-farm
-  - Odoo Model: `class BaseAvailableCreditMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.available.credit.mixin`
-  - _description: "Base Available Credit Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseComplianceStatusMixin** (Abstract): Provides compliance status utilities for multi-farm
-  - Odoo Model: `class BaseComplianceStatusMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.compliance.status.mixin`
-  - _description: "Base Compliance Status Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseCertifiedStatusMixin** (Abstract): Provides certified status utilities for multi-farm
-  - Odoo Model: `class BaseCertifiedStatusMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.certified.status.mixin`
-  - _description: "Base Certified Status Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseNetAmountMixin** (Abstract): Provides net amount utilities for multi-farm
-  - Odoo Model: `class BaseNetAmountMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.net.amount.mixin`
-  - _description: "Base Net Amount Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseSettlementDirectionMixin** (Abstract): Provides settlement direction utilities for multi-farm
-  - Odoo Model: `class BaseSettlementDirectionMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.settlement.direction.mixin`
-  - _description: "Base Settlement Direction Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_multi_farm.BaseAmountCalculationMixin** (Abstract): Provides amount calculation utilities for multi-farm
-  - Odoo Model: `class BaseAmountCalculationMixin(models.AbstractModel)`
-  - _name: `farm.multi.farm.base.amount.calculation.mixin`
-  - _description: "Base Amount Calculation Mixin for Multi-Farm"
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-## Marketing Models
-
-Marketing models handle sales and customer relationships.
-
-- **farm_marketing.FarmPartner**: Partners for marketing operations
-- **farm_marketing.FarmSaleOrder**: Sale orders for marketing operations
-- **farm_marketing.FarmSaleOrderLine**: Line items for marketing sale orders
-- **farm_marketing.FarmLotMarketing**: Marketing-specific lot management
-- **farm_marketing.AgriGIRegistry**: Geographic indication registry for marketing
-- **farm_marketing.StockLot**: Marketing-enhanced stock lot management
-
-## Financial Models
-
-Financial models handle accounting and financial operations for farms.
-
-- **farm_financial.AccountMove**: Financial accounting entries
-  - Odoo Model: `class AccountMove(models.Model)`
-  - _name: `account.move`
-  - _description: "Financial Accounting Entries"
-  - _inherit: `account.move`
-  - Relationships:
-    - Extends: `account.move` (Odoo's native accounting entry model)
-
-- **farm_financial.AccountMoveLine**: Line items for accounting entries
-  - Odoo Model: `class AccountMoveLine(models.Model)`
-  - _name: `account.move.line`
-  - _description: "Financial Accounting Entry Line Items"
-  - _inherit: `account.move.line`
-  - Relationships:
-    - Extends: `account.move.line` (Odoo's native accounting line model)
-
-- **farm_financial.ProcessingCostAllocation**: Allocation of processing costs
-  - Odoo Model: `class ProcessingCostAllocation(models.Model)`
-  - _name: `farm.processing.cost.allocation`
-  - _description: "Processing Cost Allocation"
-  - Relationships:
-    - Extends: Base models with processing cost allocation functionality
-
-- **farm_financial.AgriCostWIPTransfer** (Abstract): Work-in-progress cost transfers for agriculture
-  - Odoo Model: `class AgriCostWIPTransfer(models.AbstractModel)`
-  - _name: `farm.agri.cost.wip.transfer`
-  - _description: "Work-in-Progress Cost Transfer for Agriculture"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_financial.AgriMortalityAmortization** (Abstract): Amortization of mortality costs
-  - Odoo Model: `class AgriMortalityAmortization(models.AbstractModel)`
-  - _name: `farm.agri.mortality.amortization`
-  - _description: "Mortality Cost Amortization for Agriculture"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
-
-- **farm_financial.ProjectTask**: Financial aspects of project tasks
-  - Odoo Model: `class ProjectTask(models.Model)`
-  - _name: `project.task`
-  - _description: "Financial Project Task Aspects"
-  - _inherit: `project.task`
-  - Relationships:
-    - Extends: `project.task` (Odoo's native project task model)
-
-## Waste Management Models
-
-Waste management models handle waste processing and manure management.
-
-- **farm_waste_mgmt.FarmManureBatch**: Management of manure batches
-- **farm_waste_mgmt.FarmManureLedger**: Ledger of manure transactions
-- **farm_waste_mgmt.StorageEnvironment**: Environment monitoring for storage
-- **farm_waste_mgmt.ProcessingWaste**: Management of processing waste
-
-## Support Models
-
-### Training and Education
-- **farm_training.FarmCertificateType**: Types of farm certificates
-  - Odoo Model: `class FarmCertificateType(models.Model)`
-  - _name: `farm.certificate.type`
-  - _description: "Agricultural Certificate Type"
-  - Fields:
-    - `name` (Char): Certificate Name (required, translatable)
-    - `code` (Char): Code (required)
-    - `required_for_intervention_types` (Selection): Mandatory for Task Type (crop protection, aerial spraying, medical, harvesting)
-  - Relationships:
-    - Used by: `farm.certificate.certificate_type_id` → `farm.certificate.type`
-
-- **farm_training.FarmCertificate**: Management of farm certificates
-  - Odoo Model: `class FarmCertificate(models.Model)`
-  - _name: `farm.certificate`
-  - _description: "Farmer Certificate"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Certificate No. (required)
-    - `employee_id` (Many2one): Employee (hr.employee, required)
-    - `certificate_type_id` (Many2one): Type (farm.certificate.type, required)
+    - `sequence` (Integer): Sequence
+    - `target_value` (Float): Target Value
+    - `current_value` (Float): Current Value
+    - `progress_rate` (Float): Progress Rate (%)
+    - `is_active` (Boolean): Active
+    - `calculation_method` (Selection): calculation_method
+    - `formula` (Text): Calculation Formula
+    - `last_updated` (Datetime): Last Updated
+    - `value_history_ids` (One2many): agri.sustainability.metric.value
+
+### `agri.triple.bottom.line.metrics` (Defined in `farm_esg_compliance`)
+  - **Class**: `AgriTripleBottomLineMetrics`
+  - **描述**: Agricultural Triple Bottom Line Metrics
+  - _inherit_: `mail.thread, mail.activity.mixin, agri.sustainability.mixin`
+  - **核心字段**:
+    - `name` (Char): Metric Set Name
+    - `date` (Date): Date
+    - `revenue` (Float): Revenue
+    - `profit` (Float): Profit
+    - `profit_margin` (Float): Profit Margin (%)
+    - `roi` (Float): Return on Investment (%)
+    - `carbon_footprint_tco2e` (Float): Carbon Footprint (tCO2e)
+    - `water_usage_m3` (Float): Water Usage (m3)
+    - `land_use_efficiency` (Float): Land Use Efficiency
+    - `resource_efficiency` (Float): Resource Efficiency (%)
+    - `jobs_created` (Integer): Jobs Created
+    - `community_investment` (Float): Community Investment
+    - `safety_incidents` (Integer): Safety Incidents
+    - `employee_satisfaction` (Float): Employee Satisfaction (0-10)
+    - `economic_score` (Float): Economic Score (0-100)
+    - *... 以及其他 5 个业务字段*
+
+### `agri.vra.soil.health.monitor` (Defined in `farm_esg_environmental`)
+  - **Class**: `AgriVRASoilHealthMonitor`
+  - **描述**: VRA Soil Health Monitoring and Analytics
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Soil Health Assessment
+    - `assessment_date` (Date): Assessment Date
+    - `location_id` (Many2one): farm.location
+    - `sampling_method` (Selection): sampling_method
+    - `organic_matter_content` (Float): Organic Matter Content (%)
+    - `ph_level` (Float): pH Level
+    - `nitrogen_level` (Float): Nitrogen Level (ppm)
+    - `phosphorus_level` (Float): Phosphorus Level (ppm)
+    - `potassium_level` (Float): Potassium Level (ppm)
+    - `cation_exchange_capacity` (Float): CEC (cmol/kg)
+    - `base_saturation_calcium` (Float): Base Saturation - Calcium (%)
+    - `base_saturation_magnesium` (Float): Base Saturation - Magnesium (%)
+    - `base_saturation_potassium` (Float): Base Saturation - Potassium (%)
+    - `base_saturation_sodium` (Float): Base Saturation - Sodium (%)
+    - `total_salinity` (Float): Total Salinity (dS/m)
+    - *... 以及其他 21 个业务字段*
+
+### `esg.environmental.report` (Defined in `farm_esg_environmental`)
+  - **Class**: `ESGEnvironmentalReport`
+  - **描述**: ESG Environmental Report
+  - _inherit_: `esg.performance.report`
+  - **核心字段**:
+    - `carbon_footprint_tco2e` (Float): Carbon Footprint (tCO2e)
+    - `water_stress_score` (Float): Water Stress Score (0-100)
+    - `biodiversity_risk_score` (Float): Biodiversity Risk Score (0-100)
+
+### `export.compliance.log` (Defined in `farm_sale_ch`)
+  - **Class**: `ExportComplianceLog`
+  - **描述**: Export Compliance Check Log
+
+  - **核心字段**:
+    - `order_id` (Many2one): sale.order
+    - `country_code` (Char): Country Code
+    - `violations` (Char): Violations
+    - `checked_on` (Datetime): Checked On
+    - `result` (Selection): result
+    - `notes` (Text): Notes
+    - `checked_by` (Many2one): res.users
+
+### `farm.compliance.audit.standard` (Defined in `farm_esg_compliance`)
+  - **Class**: `FarmComplianceAuditStandard`
+  - **描述**: Compliance Audit Standard
+
+  - **核心字段**:
+    - `name` (Char): Standard Name
+    - `country_id` (Many2one): res.country
+    - `code` (Char): Standard Code
+    - `active` (Boolean): active
+
+### `farm.esg.community.investment` (Defined in `farm_esg_fair_trade`)
+  - **Class**: `CommunityInvestment`
+  - **描述**: Community Investment
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Investment Name
+    - `investment_type` (Selection): investment_type
+    - `amount` (Float): Amount
+    - `beneficiaries_count` (Integer): Number of Beneficiaries
+    - `location` (Char): Location
+    - `investment_date` (Date): Investment Date
+    - `description` (Text): Description
+    - `impact_assessment` (Text): Impact Assessment
+    - `evidence_attachments` (Binary): Evidence Attachments
+    - `reported_by` (Many2one): res.users
+    - `project_status` (Selection): project_status
+    - `start_date` (Date): Start Date
+    - `end_date` (Date): End Date
+    - `annual_recurring` (Boolean): Annual Recurring
+
+### `farm.esg.compliance.monitoring` (Defined in `farm_esg_risk`)
+  - **Class**: `ESGComplianceMonitoring`
+  - **描述**: ESG Compliance Monitoring (Deprecated - Use agri.esg.compliance.monitoring)
+  - _inherit_: `agri.esg.compliance.monitoring`
+
+
+### `farm.esg.dashboard` (Defined in `farm_esg_report`)
+  - **Class**: `ESGDashboard`
+  - **描述**: ESG Dashboard
+
+  - **核心字段**:
+    - `name` (Char): Dashboard Name
+    - `dashboard_type` (Selection): dashboard_type
+    - `display_period` (Selection): display_period
+    - `start_date` (Date): Start Date
+    - `end_date` (Date): End Date
+    - `environmental_score` (Float): Environmental Score
+    - `social_score` (Float): Social Score
+    - `governance_score` (Float): Governance Score
+    - `overall_esg_score` (Float): Overall ESG Score
+    - `key_metrics` (Text): Key Metrics
+    - `trend_analysis` (Text): Trend Analysis
+    - `risk_indicators` (Text): Risk Indicators
+    - `compliance_status` (Text): Compliance Status
+    - `last_updated` (Datetime): Last Updated
+    - `refresh_frequency` (Selection): refresh_frequency
+    - *... 以及其他 1 个业务字段*
+
+### `farm.esg.fair.trade.certificate` (Defined in `farm_esg_fair_trade`)
+  - **Class**: `FairTradeCertificate`
+  - **描述**: Fair Trade Certificate
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Certificate Name
+    - `certificate_number` (Char): Certificate Number
+    - `issuing_body` (Char): Issuing Body
     - `issue_date` (Date): Issue Date
     - `expiry_date` (Date): Expiry Date
-    - `is_valid` (Boolean): Is Valid (computed, stored)
-    - `attachment_ids` (Many2many): Certificate Photos (ir.attachment)
-  - Methods:
-    - `_compute_is_valid()`: Computes whether the certificate is valid based on expiry date
-  - Relationships:
-    - Many2one: `employee_id` → `hr.employee`
-    - Many2one: `certificate_type_id` → `farm.certificate.type`
-    - Many2many: `attachment_ids` → `ir.attachment`
+    - `is_active` (Boolean): Is Active
+    - `fair_trade_premium` (Float): Fair Trade Premium (%)
+    - `covered_products` (Many2many): product.product
+    - `covered_farms` (Many2many): res.partner
+    - `certificate_type` (Selection): certificate_type
+    - `status` (Selection): status
+    - `annual_audit_date` (Date): Annual Audit Date
+    - `next_audit_date` (Date): Next Audit Date
+    - `compliance_score` (Float): Compliance Score
+    - `assigned_to_user_id` (Many2one): res.users
 
-- **farm_training.FarmTrainingSession**: Training session management
-  - Odoo Model: `class FarmTrainingSession(models.Model)`
-  - _name: `farm.training.session`
-  - _description: "Farmer Training Session"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Topic (required)
-    - `date` (Date): Date (default: today)
-    - `hours` (Float): Duration (Hours)
-    - `trainer_id` (Many2one): Trainer/Expert (res.partner)
-    - `trainee_ids` (Many2many): Trainees (hr.employee)
-    - `content` (Html): Training Content
-    - `state` (Selection): State (draft, done)
-  - Methods:
-    - `action_complete()`: Marks the session as completed
-    - `_cron_check_certificate_expiry()`: Automatic scan for expiring certificates
-    - `get_qualified_worker_domain(intervention_type)`: Returns domain for qualified workers
-  - Relationships:
-    - Many2one: `trainer_id` → `res.partner`
-    - Many2many: `trainee_ids` → `hr.employee`
-
-- **farm_training.HrEmployee**: Training-enhanced employee records
-  - Odoo Model: `class HrEmployee(models.Model)`
-  - _name: `hr.employee`
-  - _inherit: `hr.employee`
-  - Fields:
-    - `certificate_ids` (One2many): Certificates (farm.certificate)
-    - `training_session_ids` (Many2many): Training History (farm.training.session)
-    - `total_training_hours` (Float): Total Training Hours (computed)
-  - Methods:
-    - `_compute_training_hours()`: Computes total training hours from completed sessions
-  - Relationships:
-    - One2many: `certificate_ids` → `farm.certificate.employee_id`
-    - Many2many: `training_session_ids` → `farm.training.session`
-    - Inherits: `hr.employee` (Odoo's employee model)
-
-- **farm_training.AgriIntervention**: Training-enhanced interventions
-  - Odoo Model: `class AgriIntervention(models.Model)`
-  - _name: `mrp.production`
-  - _inherit: `mrp.production`
-  - Methods:
-    - `_onchange_intervention_type_filter_workers()`: Filters workers by certificate requirements
-    - `action_confirm()`: Certification compliance check logic
-  - Relationships:
-    - Inherits: `mrp.production` (Odoo's manufacturing order model) with certification checks
-
-- **farm_training.FarmTrainingSkill**: Skills management for training
-  - Odoo Model: `class FarmTrainingSkill(models.Model)`
-  - _name: `farm.training.skill`
-  - _description: "Farm Training Skill"
-  - Fields:
-    - `name` (Char): Skill Name (required)
+### `farm.esg.fair.trade.premium.allocation` (Defined in `farm_esg_fair_trade`)
+  - **Class**: `FairTradePremiumAllocation`
+  - **描述**: Fair Trade Premium Allocation
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `certificate_id` (Many2one): farm.esg.fair.trade.certificate
+    - `allocation_date` (Date): Allocation Date
+    - `amount` (Float): Amount
+    - `allocation_type` (Selection): allocation_type
     - `description` (Text): Description
-  - Relationships:
-    - Used by: `farm.training.certification.required_skills_ids` → `farm.training.skill`
+    - `beneficiaries` (Text): Beneficiaries
+    - `impact_measure` (Text): Impact Measure
+    - `allocated_by` (Many2one): res.users
+    - `approved_by` (Many2one): res.users
+    - `approval_date` (Date): Approval Date
+    - `state` (Selection): state
+    - `allocation_reference` (Char): Allocation Reference
 
-- **farm_training.FarmTrainingCertification**: Training certification management
-  - Odoo Model: `class FarmTrainingCertification(models.Model)`
-  - _name: `farm.training.certification`
-  - _description: "Farm Training Certification"
-  - Fields:
-    - `name` (Char): Certification Name (required)
-    - `description` (Text): Description
-    - `validity_period` (Integer): Validity Period in Years
-    - `required_skills_ids` (Many2many): Required Skills (farm.training.skill)
-  - Relationships:
-    - Many2many: `required_skills_ids` → `farm.training.skill`
+### `farm.esg.kpi` (Defined in `farm_esg_risk`)
+  - **Class**: `ESGKPI`
+  - **描述**: ESG KPI (Deprecated - Use agri.esg.kpi)
+  - _inherit_: `agri.esg.kpi`
 
-- **farm_training.FarmTrainingTrainingRecord**: Training record management
-  - Odoo Model: `class FarmTrainingTrainingRecord(models.Model)`
-  - _name: `farm.training.training_record`
-  - _description: "Farm Training Record"
-  - _rec_name: "display_name"
-  - Fields:
-    - `employee_id` (Many2one): Employee (hr.employee, required)
-    - `certification_id` (Many2one): Certification (farm.training.certification, required)
-    - `training_date` (Date): Training Date (default: today)
-    - `expiration_date` (Date): Expiration Date (computed, stored)
-    - `status` (Selection): Status (valid, expired, upcoming_expire, pending, revoked)
-    - `trainer_id` (Many2one): Trainer/Issued By (res.partner)
+
+### `farm.esg.labor.condition` (Defined in `farm_esg_fair_trade`)
+  - **Class**: `LaborCondition`
+  - **描述**: Labor Condition
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Condition Name
+    - `employee_id` (Many2one): hr.employee
+    - `condition_type` (Selection): condition_type
+    - `issue_date` (Date): Issue Date
+    - `expiry_date` (Date): Expiry Date
+    - `is_valid` (Boolean): Is Valid
+    - `compliance_status` (Selection): compliance_status
+    - `training_record` (Many2one): hr.training
+    - `certification` (Char): Certification Number
+    - `issuing_body` (Char): Issuing Body
     - `notes` (Text): Notes
-    - `display_name` (Char): Display Name (computed, stored)
-  - Methods:
-    - `_compute_display_name()`: Computes display name
-    - `_compute_expiration_date()`: Computes expiration date from validity period
-    - `_compute_status()`: Computes status based on expiration date
-    - `_check_dates()`: Validates that training date is not after expiration date
-  - Relationships:
-    - Many2one: `employee_id` → `hr.employee`
-    - Many2one: `certification_id` → `farm.training.certification`
-    - Many2one: `trainer_id` → `res.partner`
+    - `last_inspection_date` (Date): Last Inspection Date
+    - `next_inspection_date` (Date): Next Inspection Date
+    - `safety_score` (Float): Safety Score
 
-### Financial Support
-- **farm_finance_loan.FarmLoan**: Management of farm loans
-  - Odoo Model: `class FarmLoan(models.Model)`
-  - _name: `farm.loan`
-  - _description: "Agricultural Loan"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Loan Reference (default: "New")
-    - `partner_id` (Many2one): Lender (Bank/Co-op) (res.partner, required)
-    - `loan_type` (Selection): Loan Type (operational, equipment, biological)
-    - `amount_principal` (Monetary): Principal Amount (currency_field: currency_id)
-    - `amount_interest` (Monetary): Projected Interest (currency_field: currency_id)
-    - `currency_id` (Many2one): Currency (res.currency)
-    - `date_start` (Date): Start Date
-    - `date_maturity` (Date): Maturity Date
-    - `collateral_lot_ids` (Many2many): Collateral Assets (stock.lot)
-    - `collateral_value` (Monetary): Collateral Valuation (computed)
-    - `state` (Selection): State (draft, submitted, active, paid, defaulted)
-  - Methods:
-    - `_compute_collateral_value()`: Computes collateral valuation
-    - `create()`: Creates loan with sequence code
-  - Relationships:
-    - Many2one: `partner_id` → `res.partner`
-    - Many2many: `collateral_lot_ids` → `stock.lot`
+### `farm.esg.red.line.config` (Defined in `farm_esg_environmental`)
+  - **Class**: `ESGRedLineConfig`
+  - **描述**: ESG Red Line Configuration (Deprecated - Use agri.esg.red.line.config)
+  - _inherit_: `agri.esg.red.line.config`
 
-- **farm_finance_gov.FarmRuralRevitalizationProject**: Management of rural revitalization projects
-  - Odoo Model: `class FarmRuralRevitalizationProject(models.Model)`
-  - _name: `farm.rural.revitalization.project`
-  - _description: "Rural Revitalization Project"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Project Name (required)
-    - `code` (Char): Project Code (required)
-    - `fund_source` (Char): Fund Source
-    - `budget_amount` (Monetary): Budget Amount (currency_field: currency_id)
-    - `currency_id` (Many2one): Currency (res.currency)
+
+### `farm.esg.red.line.monitoring` (Defined in `farm_esg_environmental`)
+  - **Class**: `ESGRedLineMonitoring`
+  - **描述**: ESG Red Line Monitoring (Deprecated - Use agri.esg.red.line.monitoring)
+  - _inherit_: `agri.esg.red.line.monitoring`
+
+
+### `farm.esg.report.customization` (Defined in `farm_esg_risk`)
+  - **Class**: `ESGReportCustomization`
+  - **描述**: ESG Report Customization for Stakeholders
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Report Template Name
+    - `report_type` (Selection): report_type
+    - `stakeholder_group` (Selection): stakeholder_group
+    - `report_format` (Selection): report_format
+    - `report_language` (Selection): report_language
+    - `report_sections` (Text): Included Sections
+    - `custom_metrics` (Text): Custom Metrics
+    - `data_filters` (Text): Data Filters
+    - `report_logo` (Binary): Custom Logo
+    - `brand_colors` (Char): Brand Colors
+    - `report_recipients` (Many2many): res.partner
+    - `auto_generation` (Boolean): Auto Generation
+    - `generation_frequency` (Selection): generation_frequency
+    - `last_generated` (Datetime): Last Generated
+    - `next_scheduled_generation` (Datetime): Next Scheduled Generation
+    - *... 以及其他 12 个业务字段*
+
+### `farm.esg.report` (Defined in `farm_esg_report`)
+  - **Class**: `ESGReport`
+  - **描述**: ESG Report
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Report Name
+    - `report_type` (Selection): report_type
+    - `report_period` (Selection): report_period
+    - `report_year` (Integer): Report Year
+    - `language` (Selection): language
+    - `environmental_section` (Text): Environmental Section
+    - `social_section` (Text): Social Section
+    - `governance_section` (Text): Governance Section
+    - `executive_summary` (Text): Executive Summary
+    - `carbon_footprint_data` (Text): Carbon Footprint Data
+    - `biodiversity_data` (Text): Biodiversity Data
+    - `community_impact_data` (Text): Community Impact Data
+    - `governance_metrics` (Text): Governance Metrics
+    - `compliance_status` (Text): Compliance Status
+    - `risk_assessment_summary` (Text): Risk Assessment Summary
+    - *... 以及其他 15 个业务字段*
+
+### `farm.esg.risk.assessment` (Defined in `farm_esg_risk`)
+  - **Class**: `ESGRiskAssessment`
+  - **描述**: ESG Risk Assessment (Deprecated - Use agri.esg.risk.assessment)
+  - _inherit_: `agri.esg.risk.assessment`
+
+
+### `farm.esg.social.diversity.metric` (Defined in `farm_esg_social`)
+  - **Class**: `SocialDiversityMetric`
+  - **描述**: Social and Diversity Metrics
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Metric Name
+    - `reporting_period` (Date): Reporting Period
+    - `gender_male_count` (Integer): Male Count
+    - `gender_female_count` (Integer): Female Count
+    - `gender_other_count` (Integer): Other Gender Count
+    - `age_under_30` (Integer): Under 30 Years
+    - `age_30_to_50` (Integer): 30-50 Years
+    - `age_over_50` (Integer): Over 50 Years
+    - `disability_employment` (Integer): Disability Employment Count
+    - `local_community_employment` (Integer): Local Community Employment
+    - `temporary_contract_count` (Integer): Temporary Contract Count
+    - `full_time_count` (Integer): Full Time Count
+    - `total_employees` (Integer): Total Employees
+    - `gender_balance_ratio` (Float): Gender Balance Ratio
+    - `local_employment_ratio` (Float): Local Employment Ratio
+
+### `farm.esg.stakeholder.engagement` (Defined in `farm_esg_risk`)
+  - **Class**: `StakeholderEngagement`
+  - **描述**: Stakeholder Engagement
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Engagement Activity
+    - `stakeholder_id` (Many2one): res.partner
+    - `stakeholder_type` (Selection): stakeholder_type
+    - `engagement_date` (Date): Engagement Date
+    - `engagement_type` (Selection): engagement_type
+    - `engagement_topic` (Selection): engagement_topic
+    - `communication_channel` (Selection): communication_channel
+    - `participants_count` (Integer): Participants Count
+    - `outcome_summary` (Text): Outcome Summary
+    - `feedback_received` (Text): Feedback Received
+    - `action_items` (Text): Action Items
+    - `action_owner` (Many2one): res.users
+    - `action_deadline` (Date): Action Deadline
+    - `action_status` (Selection): action_status
+    - `satisfaction_rating` (Selection): satisfaction_rating
+    - *... 以及其他 4 个业务字段*
+
+### `farm.esg.sustainability.goal` (Defined in `farm_esg_report`)
+  - **Class**: `SustainabilityGoal`
+  - **描述**: Sustainability Goal
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Goal Name
+    - `goal_type` (Selection): goal_type
+    - `description` (Text): Description
+    - `target_year` (Integer): Target Year
+    - `baseline_year` (Integer): Baseline Year
+    - `baseline_value` (Float): Baseline Value
+    - `target_value` (Float): Target Value
+    - `current_value` (Float): Current Value
+    - `progress_percentage` (Float): Progress %
+    - `goal_status` (Selection): goal_status
+    - `responsible_team` (Many2one): hr.department
+    - `key_performance_indicators` (Text): Key Performance Indicators
+    - `action_plan` (Text): Action Plan
+    - `monitoring_frequency` (Selection): monitoring_frequency
+    - `last_review_date` (Date): Last Review Date
+    - *... 以及其他 8 个业务字段*
+
+### `farm.export.compliance` (Defined in `farm_esg_compliance`)
+  - **Class**: `FarmExportCompliance`
+  - **描述**: 
+  - _inherit_: `farm.export.compliance`
+  - **核心字段**:
+    - `standard_id` (Many2one): farm.compliance.audit.standard
+    - `last_audit_run` (Datetime): Last Audit Run
+    - `audit_log` (Text): Audit Log Details
+    - `missing_records` (Boolean): Missing Required Records
+    - `withdrawal_violation` (Boolean): Withdrawal Period Violation
+
+### `farm.sustainability.circular.flow.analysis` (Defined in `farm_esg_circular`)
+  - **Class**: `CircularFlowAnalysis`
+  - **描述**: Farm Circular Flow Analysis (Deprecated - Use agri.sustainability.circular.flow.analysis)
+  - _inherit_: `agri.sustainability.circular.flow.analysis`
+
+
+### `farm.sustainability.circular.flow` (Defined in `farm_esg_circular`)
+  - **Class**: `CircularFlow`
+  - **描述**: Farm Circular Flow (Deprecated - Use agri.sustainability.circular.flow)
+  - _inherit_: `agri.sustainability.circular.flow`
+
+
+### `farm.sustainability.dashboard` (Defined in `farm_esg_sustainability`)
+  - **Class**: `FarmSustainabilityDashboard`
+  - **描述**: Sustainability Dashboard (Deprecated - Use agri.sustainability.dashboard)
+  - _inherit_: `agri.sustainability.dashboard`
+
+
+### `farm.sustainability.dashboard` (Defined in `farm_esg_sustainability`)
+  - **Class**: `SustainabilityDashboard`
+  - **描述**: Sustainability Dashboard (Deprecated - Use agri.sustainability.dashboard)
+  - _inherit_: `agri.sustainability.dashboard`
+
+
+### `farm.sustainability.industry.carbon.model` (Defined in `farm_esg_circular`)
+  - **Class**: `IndustryCarbonModel`
+  - **描述**: Industry Specific Carbon Model (Deprecated - Use agri.sustainability.carbon.model)
+  - _inherit_: `agri.sustainability.carbon.model`
+
+
+### `farm.sustainability.metric.value.wizard` (Defined in `farm_esg_sustainability`)
+  - **Class**: `FarmSustainabilityMetricValueWizard`
+  - **描述**: Sustainability Metric Value Update Wizard (Deprecated - Use agri.sustainability.metric.value.wizard)
+  - _inherit_: `agri.sustainability.metric.value.wizard`
+
+
+### `farm.sustainability.metric.value` (Defined in `farm_esg_sustainability`)
+  - **Class**: `FarmSustainabilityMetricValue`
+  - **描述**: Sustainability Metric Value (Deprecated - Use agri.sustainability.metric.value)
+  - _inherit_: `agri.sustainability.metric.value`
+
+
+### `farm.sustainability.metric` (Defined in `farm_esg_sustainability`)
+  - **Class**: `FarmSustainabilityMetric`
+  - **描述**: Sustainability Metric (Deprecated - Use agri.sustainability.metric)
+  - _inherit_: `agri.sustainability.metric`
+
+
+### `farm.sustainability.report` (Defined in `farm_esg_sustainability`)
+  - **Class**: `FarmSustainabilityReport`
+  - **描述**: Sustainability Report (Deprecated - Use agri.sustainability.report)
+  - _inherit_: `agri.sustainability.report`
+
+
+### `farm.sustainability.report` (Defined in `farm_esg_sustainability`)
+  - **Class**: `SustainabilityReport`
+  - **描述**: Sustainability Report (Deprecated - Use agri.sustainability.report)
+  - _inherit_: `agri.sustainability.report`
+
+
+### `mrp.production` (Defined in `farm_esg_carbon`)
+  - **Class**: `AgriIntervention`
+  - **描述**: 
+  - _inherit_: `mrp.production`
+  - **核心字段**:
+    - `calculated_carbon_emission` (Float): Calculated Carbon Emission (kg CO2e)
+
+### `mrp.workorder` (Defined in `farm_esg_environmental`)
+  - **Class**: `MrpWorkorder`
+  - **描述**: 
+  - _inherit_: `mrp.workorder`
+
+
+### `product.template` (Defined in `farm_esg_carbon`)
+  - **Class**: `ProductTemplate`
+  - **描述**: 
+  - _inherit_: `product.template`
+  - **核心字段**:
+    - `carbon_emission_factor` (Float): Carbon Emission Factor (kg CO2e / unit)
+
+### `res.config.settings` (Defined in `farm_esg`)
+  - **Class**: `ResConfigSettings`
+  - **描述**: 
+  - _inherit_: `res.config.settings`
+  - **核心字段**:
+    - `is_esg_sustainability_active` (Boolean): Activate ESG Sustainability DNA
+
+### `stock.lot` (Defined in `farm_esg_carbon`)
+  - **Class**: `StockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+  - **核心字段**:
+    - `carbon_footprint` (Float): Carbon Footprint (kg CO2e)
+
+### `stock.lot` (Defined in `farm_esg_environmental`)
+  - **Class**: `StockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+
+
+## 8. 质量控制与溯源域 (Quality & Traceability)
+### `agri.quality.control` (Defined in `farm_isl`)
+  - **Class**: `AgriQualityControl`
+  - **描述**: Agri ISL Quality Control
+  - _inherit_: `agri.quality.mixin`
+  - **核心字段**:
+    - `ccp_monitoring` (Html): CCP Monitoring
+    - `aql_sampling` (Html): AQL Sampling
+    - `testing_procedures` (Html): Testing Procedures
+    - `acceptance_criteria` (Html): Acceptance Criteria
+    - `deviation_handling` (Html): Deviation Handling
+
+### `cooperative.entity` (Defined in `farm_multi_farm_quality`)
+  - **Class**: `CooperativeEntityExtensionQuality`
+  - **描述**: 
+  - _inherit_: `cooperative.entity`
+  - **核心字段**:
+    - `quality_control_standard_ids` (One2many): quality.control.standard
+
+### `farm.haccp.check` (Defined in `farm_quality`)
+  - **Class**: `FarmHaccpCheck`
+  - **描述**: HACCP Monitoring Record
+  - _inherit_: `agri.incident.alert.mixin`
+  - **核心字段**:
+    - `quality_check_id` (Many2one): quality.check
+    - `actual_value` (Float): Measured Value
+    - `is_violated` (Boolean): CL Violation
+    - `corrective_action_taken` (Text): Corrective Action Taken
+    - `ca_responsible_id` (Many2one): res.users
+
+### `farm.haccp.point` (Defined in `farm_quality`)
+  - **Class**: `FarmHaccpPoint`
+  - **描述**: HACCP Critical Control Point
+
+  - **核心字段**:
+    - `quality_point_id` (Many2one): quality.point
+    - `is_ccp` (Boolean): Is Critical Control Point
+    - `cl_min` (Float): Critical Limit Min
+    - `cl_max` (Float): Critical Limit Max
+    - `cl_uom_id` (Many2one): uom.uom
+    - `hazard_description` (Text): Identified Hazard
+    - `corrective_action_plan` (Text): Standard Corrective Action
+
+### `farm.quality.control` (Defined in `farm_isl`)
+  - **Class**: `FarmQualityControl`
+  - **描述**: Farm ISL Quality Control
+  - _inherit_: `farm.quality.mixin`
+  - **核心字段**:
+    - `ccp_monitoring` (Html): CCP Monitoring
+    - `aql_sampling` (Html): AQL Sampling
+    - `testing_procedures` (Html): Testing Procedures
+    - `acceptance_criteria` (Html): Acceptance Criteria
+    - `deviation_handling` (Html): Deviation Handling
+
+### `farm.quality.sample` (Defined in `farm_quality`)
+  - **Class**: `FarmQualitySample`
+  - **描述**: Quality Sample (Deprecated - Use agri.quality.sample)
+  - _inherit_: `agri.quality.sample`
+
+
+### `quality.control.standard` (Defined in `farm_multi_farm_quality`)
+  - **Class**: `QualityControlStandard`
+  - **描述**: Quality Control Standard
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Standard Name
+    - `code` (Char): Standard Code
+    - `cooperative_id` (Many2one): cooperative.entity
+    - `product_category_id` (Many2one): product.category
+    - `quality_threshold` (Float): Quality Threshold (%)
+    - `inspection_criteria` (Text): Inspection Criteria
+    - `certification_required` (Boolean): Certification Required
+    - `certification_standard` (Char): Certification Standard
+    - `is_active` (Boolean): Is Active
+    - `description` (Text): Description
+
+## 9. 农业特色供应链域 (Supply Chain & Procurement)
+### `farm.transport.temperature` (Defined in `farm_supply_logistics`)
+  - **Class**: `FarmTransportTemperature`
+  - **描述**: Transport Temperature Log
+
+  - **核心字段**:
+    - `picking_id` (Many2one): stock.picking
+    - `timestamp` (Datetime): Timestamp
+    - `temperature` (Float): Temperature (℃)
+    - `location_name` (Char): Location/Milestone
+
+### `farm.vehicle` (Defined in `farm_supply_logistics`)
+  - **Class**: `FarmVehicle`
+  - **描述**: Farm Transport Vehicle
+
+  - **核心字段**:
+    - `name` (Char): License Plate
+    - `model` (Char): Model
+    - `vehicle_type` (Selection): vehicle_type
+    - `capacity_weight` (Float): Max Payload (kg)
+
+### `product.template` (Defined in `farm_supply_logistics`)
+  - **Class**: `ProductTemplate`
+  - **描述**: 
+  - _inherit_: `product.template`
+  - **核心字段**:
+    - `requires_cold_chain` (Boolean): Cold Chain Required
+    - `target_temperature_min` (Float): Min Temp (℃)
+    - `target_temperature_max` (Float): Max Temp (℃)
+
+### `product.template` (Defined in `farm_supply_procurement`)
+  - **Class**: `ProductTemplate`
+  - **描述**: 
+  - _inherit_: `product.template`
+  - **核心字段**:
+    - `is_agri_input` (Boolean): Is Agri Input
+    - `input_type` (Selection): input_type
+    - `is_safety_approved` (Boolean): Safety Approved
+    - `active_ingredient` (Char): Active Ingredient
+    - `n_content` (Float): Nitrogen (%)
+    - `p_content` (Float): Phosphorus (%)
+    - `k_content` (Float): Potassium (%)
+    - `withdrawal_period_days` (Integer): Withdrawal Period (Days)
+    - `growth_cycle_days` (Integer): Growth Cycle (Days)
+
+### `purchase.order.line` (Defined in `farm_supply_procurement`)
+  - **Class**: `AgriPurchaseOrderLine`
+  - **描述**: Covenant Line
+  - _inherit_: `purchase.order.line, agri.nutrient.mixin, agri.sustainability.mixin`
+
+
+### `purchase.order.line` (Defined in `farm_supply_procurement`)
+  - **Class**: `PurchaseOrderLine`
+  - **描述**: 
+  - _inherit_: `purchase.order.line`
+  - **核心字段**:
+    - `is_compliance_warning` (Boolean): Compliance Warning
+
+### `purchase.order.line` (Defined in `farm_supply_quality`)
+  - **Class**: `PurchaseOrderLine`
+  - **描述**: 
+  - _inherit_: `purchase.order.line`
+  - **核心字段**:
+    - `quality_adjustment_amount` (Float): Quality Adjustment Amount
+    - `quality_protein_content` (Float): Protein Content (%)
+    - `quality_moisture_content` (Float): Moisture Content (%)
+    - `quality_impurities_rate` (Float): Impurities Rate (%)
+    - `quality_grade` (Selection): quality_grade
+    - `base_unit_price` (Float): Base Unit Price
+    - `quality_adjusted_unit_price` (Float): Quality Adjusted Unit Price
+    - `quality_pricing_rule_id` (Many2one): quality.based.pricing
+
+### `purchase.order` (Defined in `farm_supply_procurement`)
+  - **Class**: `AgriPurchaseOrder`
+  - **描述**: Resource Input Covenant
+  - _inherit_: `purchase.order, agri.sustainability.mixin, agri.view.mixin`
+
+
+### `purchase.order` (Defined in `farm_supply_procurement`)
+  - **Class**: `PurchaseOrder`
+  - **描述**: 
+  - _inherit_: `purchase.order`
+  - **核心字段**:
+    - `joint_procurement_order_id` (Many2one): joint.procurement.order
+    - `agri_task_id` (Many2one): project.task
+
+### `purchase.order` (Defined in `farm_supply_quality`)
+  - **Class**: `PurchaseOrder`
+  - **描述**: 
+  - _inherit_: `purchase.order`
+  - **核心字段**:
+    - `quality_based_pricing_enabled` (Boolean): Quality-Based Pricing Enabled
+    - `acquisition_pricing_rules` (One2many): quality.based.pricing
+    - `total_pricing_adjustments` (Float): Total Quality Adjustments
+
+### `sale.order` (Defined in `farm_supply_procurement`)
+  - **Class**: `SaleOrder`
+  - **描述**: 
+  - _inherit_: `sale.order`
+
+
+### `stock.picking` (Defined in `farm_supply_logistics`)
+  - **Class**: `StockPicking`
+  - **描述**: 
+  - _inherit_: `stock.picking`
+  - **核心字段**:
+    - `is_cold_chain` (Boolean): Is Cold Chain Transport
+    - `actual_transport_temp` (Float): Actual Transport Temp (℃)
+    - `vehicle_id` (Many2one): farm.vehicle
+    - `driver_id` (Many2one): res.partner
+    - `packaging_level` (Selection): packaging_level
+    - `temperature_log_ids` (One2many): farm.transport.temperature
+
+## 10. 金融、估值与结算域 (Financial & Valuation)
+### `account.move` (Defined in `farm_multi_farm_financial`)
+  - **Class**: `AccountMove`
+  - **描述**: 
+  - _inherit_: `account.move`
+
+
+### `agri.biological.asset.fair.valuation` (Defined in `farm_valuation`)
+  - **Class**: `BiologicalAssetFairValuation`
+  - **描述**: Biological Asset Fair Value Valuation
+
+  - **核心字段**:
+    - `name` (Char): Valuation Reference
+    - `asset_id` (Many2one): agri.biological.asset
+    - `valuation_date` (Date): Valuation Date
+    - `current_growth_progress` (Float): Current Growth Progress %
+    - `target_yield` (Float): Target Yield
+    - `current_yield_potential` (Float): Current Yield Potential
+    - `market_price` (Float): Market Price (per unit)
+    - `market_price_source` (Char): Market Price Source
+    - `fair_value` (Float): Fair Value
+    - `valuation_method` (Selection): valuation_method
+    - `previous_valuation` (Float): Previous Valuation
+    - `revaluation_amount` (Float): Revaluation Amount
+    - `revaluation_type` (Selection): revaluation_type
+    - `journal_entry_id` (Many2one): account.move
+    - `is_accounting_entry_created` (Boolean): Accounting Entry Created
+    - *... 以及其他 2 个业务字段*
+
+### `agri.cost.calculation.line` (Defined in `farm_financial_basic`)
+  - **Class**: `AgriCostCalculationLine`
+  - **描述**: Agricultural Cost Calculation Line
+
+  - **核心字段**:
+    - `calculation_id` (Many2one): agri.cost.calculation
+    - `template_id` (Many2one): agri.cost.template
+    - `quantity` (Float): Quantity
+    - `unit_cost` (Float): Unit Cost
+    - `total_cost` (Float): Total Cost
+
+### `agri.cost.calculation` (Defined in `farm_financial_basic`)
+  - **Class**: `AgriCostCalculation`
+  - **描述**: Agricultural Cost Calculation
+
+  - **核心字段**:
+    - `task_id` (Many2one): project.task
+    - `land_parcel_id` (Many2one): farm.location
+    - `area_value` (Float): Area Value
+    - `area_unit` (Selection): area_unit
+    - `total_seedling_cost` (Float): Total Seedling Cost
+    - `total_fertilizer_cost` (Float): Total Fertilizer Cost
+    - `total_pesticide_cost` (Float): Total Pesticide Cost
+    - `total_labor_cost` (Float): Total Labor Cost
+    - `total_machinery_cost` (Float): Total Machinery Cost
+    - `total_irrigation_cost` (Float): Total Irrigation Cost
+    - `total_other_cost` (Float): Total Other Cost
+    - `total_cost` (Float): Total Calculated Cost
+    - `cost_line_ids` (One2many): agri.cost.calculation.line
+
+### `agri.cost.template` (Defined in `farm_financial_basic`)
+  - **Class**: `AgriCostTemplate`
+  - **描述**: Agricultural Cost Template
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Template Name
+    - `code` (Char): Template Code
+    - `category` (Selection): category
+    - `unit_type` (Selection): unit_type
+    - `unit_cost` (Float): Unit Cost
+    - `description` (Text): Description
+    - `is_active` (Boolean): Active
+    - `labor_type` (Selection): labor_type
+    - `machinery_type` (Selection): machinery_type
+    - `fertilizer_type` (Selection): fertilizer_type
+    - `pesticide_type` (Selection): pesticide_type
+
+### `agri.industry.initialization.wizard` (Defined in `farm_financial_credit`)
+  - **Class**: `AgriIndustryInitializationWizard`
+  - **描述**: Industry Initialization Wizard
+
+  - **核心字段**:
+    - `industry_type` (Selection): industry_type
+    - `include_varieties` (Boolean): Include Common Varieties
+    - `include_growth_stages` (Boolean): Include Growth Stages
+    - `include_agri_uom` (Boolean): Include Agricultural UOM
+    - `include_task_templates` (Boolean): Include Task Templates
+    - `include_quality_standards` (Boolean): Include Quality Standards
+
+### `cooperative.entity` (Defined in `farm_multi_farm_financial`)
+  - **Class**: `CooperativeEntityExtensionFinancial`
+  - **描述**: 
+  - _inherit_: `cooperative.entity`
+  - **核心字段**:
+    - `dividend_distribution_ids` (One2many): dividend.distribution
+    - `internal_credit_ids` (One2many): internal.credit
+    - `cooperative_treasury_ids` (One2many): cooperative.treasury
+    - `internal_loan_ids` (One2many): internal.loan
+    - `subsidy_disbursement_ids` (One2many): subsidy.disbursement
+    - `cooperative_decision_ids` (One2many): cooperative.decision
+    - `multi_sign_process_ids` (One2many): multi.sign.process
+
+### `cooperative.member` (Defined in `farm_multi_farm_financial`)
+  - **Class**: `CooperativeMemberExtensionFinancial`
+  - **描述**: 
+  - _inherit_: `cooperative.member`
+  - **核心字段**:
+    - `share_transaction_ids` (One2many): share.transaction
+    - `dividend_line_ids` (One2many): dividend.line
+    - `credit_transaction_ids` (One2many): credit.transaction
+    - `internal_marketplace_transaction_supplier_ids` (One2many): internal.marketplace.transaction
+    - `internal_marketplace_transaction_requester_ids` (One2many): internal.marketplace.transaction
+    - `borrower_loan_ids` (One2many): internal.loan
+    - `lender_loan_ids` (One2many): internal.loan
+    - `subsidy_line_ids` (One2many): subsidy.disbursement.line
+    - `sign_process_ids` (One2many): multi.sign.line
+
+### `farm.industry.initialization` (Defined in `farm_financial_credit`)
+  - **Class**: `FarmIndustryInitialization`
+  - **描述**: Farm Industry Initialization
+
+  - **核心字段**:
+    - `name` (Char): Package Name
+    - `industry_code` (Char): Industry Code
+    - `description` (Text): Description
+    - `is_active` (Boolean): Is Active
+    - `version` (Char): Version
+    - `has_varieties` (Boolean): Has Varieties
+    - `has_growth_stages` (Boolean): Has Growth Stages
+    - `has_agri_uom` (Boolean): Has Agricultural UOM
+    - `has_task_templates` (Boolean): Has Task Templates
+    - `has_quality_standards` (Boolean): Has Quality Standards
+    - `varieties_count` (Integer): Varieties Count
+    - `tasks_count` (Integer): Task Templates Count
+    - `stages_count` (Integer): Growth Stages Count
+
+### `project.task` (Defined in `farm_financial_basic`)
+  - **Class**: `ProjectTask`
+  - **描述**: 
+  - _inherit_: `project.task`
+  - **核心字段**:
+    - `analytic_account_id` (Many2one): account.analytic.account
+    - `total_production_costs` (Float): total_production_costs
+
+## 11. 精密制造与变量控制域 (Precision Production & VRA)
+### `mrp.bom` (Defined in `precision_production`)
+  - **Class**: `MrpBom`
+  - **描述**: 
+  - _inherit_: `mrp.bom, mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `master_recipe_version` (Integer): Master Recipe Version
+    - `master_recipe_phase_ids` (One2many): precision.master.recipe.phase
+    - `required_workcenter_id` (Many2one): mrp.workcenter
+    - `ambient_requirement` (Text): Ambient Constraints
+    - `recipe_batch_size` (Float): Recipe Batch Size
+    - `production_drive_type` (Selection): production_drive_type
+
+### `mrp.production` (Defined in `agri_precision_core`)
+  - **Class**: `MrpProductionExtension`
+  - **描述**: 
+  - _inherit_: `mrp.production`
+
+
+### `mrp.production` (Defined in `agri_precision_core`)
+  - **Class**: `MrpProduction`
+  - **描述**: 
+  - _inherit_: `mrp.production, agri.precision.mixin`
+  - **核心字段**:
+    - `display_name_agri` (Char): Intervention Label
+
+### `mrp.production` (Defined in `precision_production`)
+  - **Class**: `MrpProduction`
+  - **描述**: 
+  - _inherit_: `mrp.production, precision.production.mixin`
+  - **核心字段**:
+    - `production_drive_type` (Selection): production_drive_type
+    - `assigned_workcenter_id` (Many2one): mrp.workcenter
+    - `recipe_phase_ids` (One2many): precision.recipe.phase
+    - `vra_prescription_id` (Many2one): agri.intervention.vra.prescription
+    - `active_recipe_phase_ids` (Many2many): precision.recipe.phase
+    - `active_recipe_phase_id` (Many2one): precision.recipe.phase
+    - `phase_start_datetime` (Datetime): Global Recipe Start
+    - `progress_percentage` (Float): Progress %
+
+### `mrp.workorder` (Defined in `precision_production`)
+  - **Class**: `MrpWorkorderExtension`
+  - **描述**: 
+  - _inherit_: `mrp.workorder`
+  - **核心字段**:
+    - `active_execution_phase_id` (Many2one): precision.recipe.phase
+
+### `mrp.workorder` (Defined in `precision_production`)
+  - **Class**: `MrpWorkorder`
+  - **描述**: 
+  - _inherit_: `mrp.workorder, precision.production.mixin`
+  - **核心字段**:
+    - `production_drive_type` (Selection): production_drive_type
+    - `is_intervention_required` (Boolean): Intervention Needed
+
+### `precision.graded.output` (Defined in `precision_production`)
+  - **Class**: `PrecisionGradedOutput`
+  - **描述**: Graded Output Worklist
+
+  - **核心字段**:
+    - `res_model` (Char): Related Model
+    - `res_id` (Many2oneReference): Related Record
+    - `product_id` (Many2one): product.product
+    - `grade` (Selection): grade
+    - `quantity` (Float): Actual Quantity
+    - `move_id` (Many2one): stock.move
+    - `notes` (Text): Notes
+
+### `precision.intervention.basis` (Defined in `precision_production`)
+  - **Class**: `PrecisionInterventionBasis`
+  - **描述**: Intervention Rationale
+
+  - **核心字段**:
+    - `name` (Char): Evidence Summary
+    - `source_type` (Selection): source_type
+    - `parameter_name` (Char): Parameter
+    - `recipe_standard_value` (Float): Standard
+    - `actual_measured_value` (Float): Actual
+    - `deviation_delta` (Float): Delta
+    - `res_model` (Char): Related Model
+    - `res_id` (Many2oneReference): Related Record
+    - `create_date` (Datetime): Captured At
+
+### `precision.intervention.log` (Defined in `precision_production`)
+  - **Class**: `PrecisionInterventionLog`
+  - **描述**: Intervention Audit Log
+
+  - **核心字段**:
+    - `name` (Char): Action
+    - `intervention_type` (Selection): intervention_type
+    - `basis_id` (Many2one): precision.intervention.basis
+    - `res_model` (Char): Related Model
+    - `res_id` (Many2oneReference): Related Record
+    - `user_id` (Many2one): res.users
+    - `create_date` (Datetime): Timestamp
+
+### `precision.iot.device` (Defined in `precision_production_iot`)
+  - **Class**: `PrecisionIotDevice`
+  - **描述**: Precision Production IoT Device (Integrated with Industrial IoT)
+
+  - **核心字段**:
+    - `iiot_device_id` (Many2one): iiot.device
+    - `name` (Char): Device Name
+    - `device_type` (Selection): device_type
+    - `description` (Text): Description
+    - `is_active` (Boolean): Active
+    - `production_line_id` (Many2one): mrp.workcenter
+    - `last_seen` (Datetime): Last Communication
+    - `is_connected` (Boolean): Connected
+    - `status` (Selection): status
+    - `firmware_version` (Char): Firmware Version
+    - `sensor_ids` (One2many): precision.iot.sensor
+    - `reading_ids` (One2many): precision.iot.reading
+
+### `precision.iot.reading` (Defined in `precision_production_iot`)
+  - **Class**: `PrecisionIotReading`
+  - **描述**: Precision Production IoT Reading (Integrated with Industrial IoT)
+
+  - **核心字段**:
+    - `name` (Char): Reading Reference
+    - `device_id` (Many2one): precision.iot.device
+    - `sensor_id` (Many2one): precision.iot.sensor
+    - `parameter_name` (Char): parameter_name
+    - `value` (Float): Value
+    - `uom` (Char): Unit of Measure
+    - `read_datetime` (Datetime): Reading Time
+    - `is_valid` (Boolean): Valid
+    - `validation_message` (Char): Validation Message
+    - `production_id` (Many2one): mrp.production
+    - `phase_id` (Many2one): precision.recipe.phase
+    - `workorder_id` (Many2one): mrp.workorder
+    - `deviation_percent` (Float): Deviation (%)
+    - `is_deviation_critical` (Boolean): Critical Deviation
+    - `raw_data` (Text): Raw Data
+
+### `precision.iot.sensor` (Defined in `precision_production_iot`)
+  - **Class**: `PrecisionIotSensor`
+  - **描述**: Precision Production IoT Sensor (Integrated with Industrial IoT)
+
+  - **核心字段**:
+    - `name` (Char): Sensor Name
+    - `sensor_id` (Char): Sensor ID
+    - `device_id` (Many2one): precision.iot.device
+    - `sensor_type` (Selection): sensor_type
+    - `parameter_name` (Char): Parameter Name
+    - `description` (Text): Description
+    - `is_active` (Boolean): Active
+    - `is_calibrated` (Boolean): Calibrated
+    - `calibration_date` (Date): Last Calibration Date
+    - `calibration_next` (Date): Next Calibration Due
+    - `unit_of_measure` (Char): Unit of Measure
+    - `min_range` (Float): Minimum Range
+    - `max_range` (Float): Maximum Range
+    - `tolerance_percent` (Float): Tolerance (%)
+    - `current_value` (Float): Current Value
+    - *... 以及其他 4 个业务字段*
+
+### `precision.master.recipe.material` (Defined in `precision_production`)
+  - **Class**: `PrecisionMasterRecipeMaterial`
+  - **描述**: Master Recipe Material Template
+
+  - **核心字段**:
+    - `phase_id` (Many2one): precision.master.recipe.phase
+    - `product_id` (Many2one): product.product
+    - `quantity` (Float): Qty (per Batch Size)
+    - `uom_id` (Many2one): uom.uom
+
+### `precision.master.recipe.parameter` (Defined in `precision_production`)
+  - **Class**: `PrecisionMasterRecipeParameter`
+  - **描述**: Master Recipe Parameter Template
+
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `phase_id` (Many2one): precision.master.recipe.phase
+    - `name` (Char): Parameter Name
+    - `target_value` (Float): Target Setpoint
+    - `is_scalable` (Boolean): Scales with Batch Size
+    - `tolerance_percent` (Float): Tolerance (%)
+    - `uom_id` (Many2one): uom.uom
+
+### `precision.master.recipe.phase` (Defined in `precision_production`)
+  - **Class**: `PrecisionMasterRecipePhase`
+  - **描述**: Master Recipe Phase Template
+
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `name` (Char): Phase Name
+    - `sequence` (Integer): Sequence
+    - `master_parameter_ids` (One2many): precision.master.recipe.parameter
+    - `master_material_ids` (One2many): precision.master.recipe.material
+    - `duration_expected` (Float): Planned Duration (Hours)
+    - `sampling_plan` (Char): Sampling Plan
+    - `required_workcenter_id` (Many2one): mrp.workcenter
+    - `required_role` (Selection): required_role
+
+### `precision.recipe.control` (Defined in `precision_production_iot`)
+  - **Class**: `PrecisionRecipeControl`
+  - **描述**: Recipe-specific IoT Edge
+
+  - **核心字段**:
+    - `name` (Char): Bridge Name
+    - `iiot_device_id` (Many2one): iiot.device
+    - `mqtt_topic` (Char): MQTT Setpoint Topic
+    - `recipe_parameter_id` (Many2one): precision.recipe.parameter
+    - `last_sync_value` (Float): Last Value
+
+### `precision.recipe.phase` (Defined in `agri_precision_core`)
+  - **Class**: `PrecisionRecipePhase`
+  - **描述**: 
+  - _inherit_: `precision.recipe.phase, agri.precision.mixin`
+
+
+### `precision.recipe.phase` (Defined in `precision_production_iot`)
+  - **Class**: `PrecisionRecipePhaseIot`
+  - **描述**: 
+  - _inherit_: `precision.recipe.phase`
+  - **核心字段**:
+    - `iot_device_ids` (Many2many): precision.iot.device
+    - `iot_connected` (Boolean): IoT Connected
+    - `iot_disconnected` (Boolean): IoT Disconnected
+    - `iot_warning` (Boolean): IoT Warning
+    - `iot_error` (Boolean): IoT Error
+    - `iot_device_status` (Char): IoT Device Status
+    - `iot_readings_count` (Integer): IoT Readings Count
+
+### `product.template` (Defined in `precision_production`)
+  - **Class**: `ProductTemplate`
+  - **描述**: 
+  - _inherit_: `product.template`
+  - **核心字段**:
+    - `production_drive_type` (Selection): production_drive_type
+
+### `stock.lot` (Defined in `agri_precision_core`)
+  - **Class**: `StockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot, agri.precision.mixin`
+
+
+### `stock.lot` (Defined in `precision_production`)
+  - **Class**: `StockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot, precision.production.mixin`
+  - **核心字段**:
+    - `quality_grade` (Selection): quality_grade
+
+## 12. 畜牧与动物资产域 (Livestock Management)
+### `farm.livestock.bom.line` (Defined in `farm_livestock`)
+  - **Class**: `FarmLivestockBomLine`
+  - **描述**: Livestock BOM Component (ISL Layer)
+
+  - **核心字段**:
+    - `bom_line_id` (Many2one): mrp.bom.line
+    - `dilution_ratio` (Float): Dilution Ratio (1:N)
+    - `feeding_ratio` (Float): Feeding Ratio (%)
+    - `feed_purpose` (Selection): feed_purpose
+
+### `farm.livestock.event` (Defined in `farm_livestock`)
+  - **Class**: `FarmLivestockEvent`
+  - **描述**: Livestock Lifecycle Event
+
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `event_type` (Selection): event_type
+    - `event_date` (Datetime): Event Date
+    - `location_id` (Many2one): farm.location
+    - `responsible_id` (Many2one): res.users
+    - `notes` (Text): Notes
+    - `measured_weight` (Float): Measured Weight (kg)
+    - `medicine_id` (Many2one): product.product
+    - `dosage` (Float): Dosage
+    - `uom_id` (Many2one): uom.uom
+    - `is_anomaly` (Boolean): Anomaly Flag
+    - `alert_severity` (Selection): alert_severity
+
+### `farm.livestock.house.env` (Defined in `farm_livestock`)
+  - **Class**: `FarmLivestockHouseEnv`
+  - **描述**: Livestock House Environment Log
+
+  - **核心字段**:
+    - `location_id` (Many2one): farm.location
+    - `capture_time` (Datetime): Capture Time
+    - `temperature` (Float): Temperature (℃)
+    - `humidity` (Float): Humidity (%)
+    - `ammonia_level` (Float): Ammonia (ppm)
+    - `co2_level` (Float): CO2 (ppm)
+    - `comfort_index` (Float): Comfort Index
+
+### `mrp.bom` (Defined in `farm_livestock`)
+  - **Class**: `MrpBom`
+  - **描述**: 
+  - _inherit_: `mrp.bom`
+  - **核心字段**:
+    - `industry_type` (Selection): industry_type
+
+### `mrp.production` (Defined in `farm_livestock`)
+  - **Class**: `MrpProduction`
+  - **描述**: 
+  - _inherit_: `mrp.production`
+
+
+### `stock.lot` (Defined in `farm_livestock`)
+  - **Class**: `StockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+
+
+## 13. 水产与高密度养殖域 (Aquaculture)
+### `farm.aquaculture.bom.line` (Defined in `farm_aquaculture`)
+  - **Class**: `FarmAquacultureBomLine`
+  - **描述**: Aquaculture BOM Component (ISL Layer)
+
+  - **核心字段**:
+    - `bom_line_id` (Many2one): mrp.bom.line
+    - `dose_rate_ppm` (Float): Dose Rate (ppm)
+    - `application_method` (Selection): application_method
+    - `water_condition` (Selection): water_condition
+
+### `farm.aquaculture.bom` (Defined in `farm_aquaculture`)
+  - **Class**: `FarmAquacultureBom`
+  - **描述**: Aquaculture Stocking Recipe
+  - _inherit_: `agri.bom.mixin`
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `min_dissolved_oxygen` (Float): Min Dissolved Oxygen (mg/L)
+    - `optimal_temp_range` (Char): Optimal Temp Range (℃)
+    - `max_stocking_density` (Float): Max Density (kg/m³)
+
+### `farm.aquaculture.lss` (Defined in `farm_aquaculture`)
+  - **Class**: `FarmAquacultureLSS`
+  - **描述**: Life Support System Unit
+  - _inherit_: `agri.resource.consumption.mixin`
+  - **核心字段**:
+    - `workcenter_id` (Many2one): mrp.workcenter
+    - `lss_type` (Selection): lss_type
+    - `last_service_date` (Date): Last Maintenance
+    - `uv_bulb_hours` (Integer): UV Bulb Hours
+    - `filter_backwash_frequency` (Integer): Backwash Frequency (Daily)
+
+### `farm.aquaculture.production` (Defined in `farm_aquaculture`)
+  - **Class**: `FarmAquacultureProduction`
+  - **描述**: Aquaculture Growth Order
+  - _inherit_: `agri.intervention.mixin, agri.agent.instruction.mixin, agri.incident.alert.mixin, agri.odoo19.performance.security.mixin`
+  - **核心字段**:
+    - `current_density` (Float): Current Density (kg/m³)
+    - `aquaculture_config` (Json): Aquaculture Configuration
+    - `production_id` (Many2one): mrp.production
+    - `latest_do_level` (Float): Latest Dissolved Oxygen (mg/L)
+    - `latest_water_temp` (Float): Latest Temp (℃)
+
+### `farm.lot.aquaculture` (Defined in `farm_aquaculture`)
+  - **Class**: `FarmLotAquaculture`
+  - **描述**: Aquaculture Asset Batch
+  - _inherit_: `agri.biological.inventory.mixin, agri.geospatial.mixin`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `water_volume_m3` (Float): Water Volume (m³)
+    - `current_density` (Float): Current Density (kg/m³)
+
+### `farm.ras.production` (Defined in `farm_aquaculture`)
+  - **Class**: `FarmRasProduction`
+  - **描述**: RAS Culture Order
+  - _inherit_: `agri.intervention.mixin, agri.quality.gate.mixin, agri.agent.instruction.mixin`
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+    - `predicted_ammonia_load` (Float): Predicted TAN Load (mg/L)
+    - `total_energy_kwh` (Float): Total Energy Used (kWh)
+
+### `mrp.bom` (Defined in `farm_aquaculture`)
+  - **Class**: `MrpBom`
+  - **描述**: 
+  - _inherit_: `mrp.bom`
+  - **核心字段**:
+    - `industry_type` (Selection): industry_type
+
+### `mrp.production` (Defined in `farm_aquaculture`)
+  - **Class**: `MrpProduction`
+  - **描述**: 
+  - _inherit_: `mrp.production`
+
+
+### `stock.lot` (Defined in `farm_aquaculture`)
+  - **Class**: `StockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+
+
+## 14. 大田作物域 (Field Crops)
+### `farm.crop.bom.line` (Defined in `farm_field_crops`)
+  - **Class**: `FarmCropBomLine`
+  - **描述**: Crop BOM Component (ISL Layer)
+
+  - **核心字段**:
+    - `bom_line_id` (Many2one): mrp.bom.line
+    - `application_rate` (Float): Application Rate (per Ha/Liter)
+    - `spray_volume` (Float): Spray Volume (L/Ha)
+    - `weather_condition` (Selection): weather_condition
+    - `safety_interval_days` (Integer): Safety Interval (Days)
+
+### `farm.crop.bom` (Defined in `farm_field_crops`)
+  - **Class**: `FarmCropBom`
+  - **描述**: Crop Farming Recipe (ISL Layer)
+  - _inherit_: `agri.bom.mixin, agri.nutrient.mixin`
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `target_yield_mu` (Float): Target Yield per Mu (kg)
+    - `growing_season` (Selection): growing_season
+    - `phi_days` (Integer): Pre-Harvest Interval (PHI) Days
+
+### `farm.crop.lot` (Defined in `farm_field_crops`)
+  - **Class**: `FarmCropLot`
+  - **描述**: Crop Harvest Batch (ISL Layer)
+  - _inherit_: `agri.traceability.mixin, agri.nutrient.mixin`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `plot_origin_id` (Many2one): farm.location
+    - `moisture_content` (Float): Grain Moisture (%)
+    - `protein_content` (Float): Protein Content (%)
+
+### `farm.crop.production` (Defined in `farm_field_crops`)
+  - **Class**: `FarmCropProduction`
+  - **描述**: Crop Farming Task (ISL Layer)
+  - _inherit_: `agri.intervention.mixin, agri.weather.sensitive.mixin, agri.agent.instruction.mixin, agri.resource.consumption.mixin`
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+    - `is_vra_enabled` (Boolean): Enable Variable Rate Application
+    - `prescription_json` (Text): Prescription Map (JSON)
+
+### `farm.field.crop.operation` (Defined in `farm_field_crops`)
+  - **Class**: `FieldCropOperation`
+  - **描述**: Field Crop Operation
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `operation_id` (Many2one): project.task
+    - `seeding_rate` (Float): seeding_rate
+    - `fertilizer_application_rate` (Float): fertilizer_application_rate
+    - `irrigation_schedule` (Char): irrigation_schedule
+    - `crop_rotation_sequence` (Integer): crop_rotation_sequence
+    - `planting_density` (Float): planting_density
+    - `crop_type_id` (Many2one): product.template
+    - `field_parcel_id` (Many2one): stock.location
+    - `expected_yield` (Float): expected_yield
+
+### `mrp.bom` (Defined in `farm_field_crops`)
+  - **Class**: `MrpBom`
+  - **描述**: 
+  - _inherit_: `mrp.bom`
+  - **核心字段**:
+    - `industry_type` (Selection): industry_type
+
+### `mrp.production` (Defined in `farm_field_crops`)
+  - **Class**: `MrpProduction`
+  - **描述**: 
+  - _inherit_: `mrp.production`
+
+
+### `stock.lot` (Defined in `farm_field_crops`)
+  - **Class**: `StockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+
+
+## 15. 系统级抽象特性 (Abstract Mixins)
+### `agri.agricultural.campaign.mixin` (Defined in `farm_operation`)
+  - **Class**: `AgriAgriculturalCampaignMixin`
+  - **描述**: Agri Agricultural Campaign Shared Logic
+
+  - **核心字段**:
+    - `name` (Char): Season Name
     - `date_start` (Date): Start Date
     - `date_end` (Date): End Date
-    - `state` (Selection): State (draft, approved, in_progress, completed, cancelled)
-    - `account_move_ids` (One2many): Related Account Moves (account.move)
-    - `total_expenditure` (Monetary): Total Expenditure (computed)
-  - Methods:
-    - `_compute_total_expenditure()`: Computes total expenditure from related moves
-  - Relationships:
-    - One2many: `account_move_ids` → `account.move.rural_project_id`
+    - `is_active` (Boolean): Active
+    - `description` (Text): Description
+    - `base_temperature` (Float): Base Temp (℃)
+    - `target_gdd` (Float): Target GDD
+    - `accumulated_gdd` (Float): Current GDD
+    - `predicted_harvest_date` (Float): Predicted Harvest
+    - `land_parcel_id` (Many2one): farm.location
 
-- **farm_finance_gov.AccountMove**: Government finance-enhanced accounting entries
-  - Odoo Model: `class AccountMove(models.Model)`
-  - _name: `account.move`
-  - _inherit: `account.move`
-  - Fields:
-    - `rural_project_id` (Many2one): Rural Revitalization Project (farm.rural.revitalization.project)
-  - Methods:
-    - `_check_rural_project_funds()`: Validates project fund compliance
-  - Relationships:
-    - Many2one: `rural_project_id` → `farm.rural.revitalization.project`
-    - Inherits: `account.move` (Odoo's accounting entry model)
+### `agri.batch.operation.mixin` (Defined in `farm_core`)
+  - **Class**: `AgriBatchOperationMixin`
+  - **描述**: Agricultural Batch Operation Mixin
 
-### Crisis and Risk Management
-- **farm_crisis.FarmEmergencyProtocol**: Emergency protocols for crisis management
-  - Odoo Model: `class FarmEmergencyProtocol(models.Model)`
-  - _name: `farm.emergency.protocol`
-  - _description: "Emergency Response Protocol (SOP)"
-  - Fields:
-    - `name` (Char): Protocol Name (required)
-    - `crisis_type` (Selection): Crisis Type (disease, pest, contamination, disaster, security)
-    - `steps` (Html): Action Steps (SOP)
-    - `required_asset_lockdown` (Boolean): Requires Asset Lockdown
-    - `notify_authorities` (Boolean): Notify Authorities
-  - Relationships:
-    - Used by: `farm.crisis.incident.protocol_id` → `farm.emergency.protocol`
 
-- **farm_crisis.FarmCrisisIncident**: Management of crisis incidents
-  - Odoo Model: `class FarmCrisisIncident(models.Model)`
-  - _name: `farm.crisis.incident`
-  - _description: "Crisis Incident Record"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Incident Ref (default: "New")
-    - `protocol_id` (Many2one): Active Protocol (farm.emergency.protocol, required)
-    - `date_start` (Datetime): Detected At (default: now)
-    - `date_end` (Datetime): Resolved At
-    - `affected_location_ids` (Many2many): Affected Zones (stock.location)
-    - `affected_lot_ids` (Many2many): Affected Assets/Batches (stock.lot)
-    - `state` (Selection): State (draft, active, contained, resolved)
-  - Methods:
-    - `create()`: Creates incident with sequence code
-    - `action_activate_crisis()`: Activates crisis mode and locks assets
-    - `action_resolve()`: Resolves the crisis incident
-  - Relationships:
-    - Many2one: `protocol_id` → `farm.emergency.protocol`
-    - Many2many: `affected_location_ids` → `stock.location`
-    - Many2many: `affected_lot_ids` → `stock.lot`
 
-- **farm_crisis.StockLot**: Crisis-enhanced stock lot management
-  - Odoo Model: `class StockLot(models.Model)`
-  - _name: `stock.lot`
-  - _inherit: `stock.lot`
-  - Fields:
-    - `is_crisis_locked` (Boolean): Locked by Crisis (computed, searchable)
-  - Methods:
-    - `_compute_crisis_lock()`: Computes if the lot is locked by active crisis
-    - `_search_crisis_locked()`: Search method for locked status
-  - Relationships:
-    - Inherits: `stock.lot` (Odoo's stock lot model) with crisis lock functionality
+### `agri.biological.asset.mixin` (Defined in `farm_core`)
+  - **Class**: `AgriBiologicalAssetMixin`
+  - **描述**: Agricultural Biological Traits Mixin
 
-- **farm_crisis.SaleOrder**: Crisis-enhanced sale orders
-  - Odoo Model: `class SaleOrder(models.Model)`
-  - _name: `sale.order`
-  - _inherit: `sale.order`
-  - Methods:
-    - `action_confirm()`: Validates sale orders against crisis-locked lots
-  - Relationships:
-    - Inherits: `sale.order` (Odoo's sale order model) with crisis validation
+  - **核心字段**:
+    - `agricultural_type` (Selection): agricultural_type
+    - `birth_date` (Date): Birth/Germination Date
+    - `maturity_date` (Date): Target Maturity Date
+    - `is_mature` (Boolean): Physiological Maturity
+    - `growth_stage_id` (Many2one): agri.industry.physio.stage
+    - `dna_marker` (Char): Genetic Marker / DNA ID
+    - `quality_grade` (Selection): quality_grade
 
-- **farm_disaster_risk.FarmDisasterIncident**: Management of disaster incidents
-  - Odoo Model: `class FarmDisasterIncident(models.Model)`
-  - _name: `farm.disaster.incident`
-  - _description: "Meteorological Disaster Incident"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Incident Ref (default: "New")
-    - `disaster_type` (Selection): Disaster Type (hail, frost, flood, drought, gale, high_temp, other)
-    - `date_start` (Date): Start Date (default: today)
-    - `date_end` (Date): End Date
-    - `affected_location_ids` (Many2many): Affected Land Parcels (stock.location)
-    - `intensity` (Selection): Intensity (minor, moderate, severe)
-    - `description` (Text): Description of Damage
-    - `crisis_incident_id` (Many2one): Linked Crisis Incident (farm.crisis.incident)
-    - `loss_assessment_ids` (One2many): Loss Assessments (farm.loss.assessment)
-    - `total_estimated_loss` (Monetary): Total Estimated Loss (computed)
-    - `currency_id` (Many2one): Currency (res.currency)
-  - Methods:
-    - `_compute_total_estimated_loss()`: Computes total estimated loss
-    - `create()`: Creates incident with sequence code
-    - `action_create_crisis_incident()`: Creates linked crisis incident
-  - Relationships:
-    - Many2many: `affected_location_ids` → `stock.location`
-    - Many2one: `crisis_incident_id` → `farm.crisis.incident`
-    - One2many: `loss_assessment_ids` → `farm.loss.assessment`
+### `agri.bom.line.mixin` (Defined in `farm_operation`)
+  - **Class**: `AgriBomLineMixin`
+  - **描述**: Agri Agricultural BOM Line Shared Logic
 
-- **farm_disaster_risk.FarmLossAssessment**: Assessment of losses from disasters
-  - Odoo Model: `class FarmLossAssessment(models.Model)`
-  - _name: `farm.loss.assessment`
-  - _description: "Disaster Loss Assessment"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Assessment Ref (default: "New")
-    - `disaster_incident_id` (Many2one): Disaster Incident (farm.disaster.incident, required)
-    - `assessment_date` (Date): Assessment Date (default: today)
-    - `assessor_id` (Many2one): Assessor (res.partner)
-    - `affected_parcel_id` (Many2one): Affected Land Parcel (stock.location, required)
-    - `crop_id` (Many2one): Affected Crop (product.product)
-    - `estimated_loss_amount` (Monetary): Estimated Loss Amount (currency_field: currency_id)
-    - `currency_id` (Many2one): Currency (res.currency)
-    - `loss_description` (Text): Detailed Loss Description
-    - `insurance_claim_id` (Many2one): Linked Insurance Claim (account.move)
-    - `state` (Selection): State (draft, submitted, approved, rejected)
-  - Methods:
-    - `create()`: Creates assessment with sequence code
-  - Relationships:
-    - Many2one: `disaster_incident_id` → `farm.disaster.incident`
-    - Many2one: `assessor_id` → `res.partner`
-    - Many2one: `affected_parcel_id` → `stock.location`
-    - Many2one: `crop_id` → `product.product`
-    - Many2one: `insurance_claim_id` → `account.move`
+  - **核心字段**:
+    - `dilution_ratio` (Float): Dilution Ratio (1:N)
+    - `feeding_ratio` (Float): Feeding Ratio (%)
 
-### Registration and Knowledge
-- **farm_entity_reg.ResCompany**: Company registration for farming entities
-  - Odoo Model: `class ResCompany(models.Model)`
-  - _name: `res.company`
-  - _inherit: `res.company`
-  - Fields:
-    - `unified_social_credit_code` (Char): Unified Social Credit Code
-    - `registration_no` (Char): Registration No.
-    - `entity_type` (Selection): Entity Type (family_farm, cooperative, enterprise)
-    - `license_attachment_ids` (Many2many): Electronic Licenses (ir.attachment)
-    - `license_expiry_date` (Date): License Expiry Date
-    - `is_license_expired` (Boolean): License Expired (computed)
-  - Methods:
-    - `_compute_license_status()`: Computes license expiry status
-  - Relationships:
-    - Many2many: `license_attachment_ids` → `ir.attachment`
-    - Inherits: `res.company` (Odoo's company model)
+### `agri.bom.mixin` (Defined in `farm_operation`)
+  - **Class**: `AgriBomMixin`
+  - **描述**: Agri Agricultural BOM Shared Logic
 
-- **farm_entity_reg.FarmCooperativeMember**: Cooperative member registration
-  - Odoo Model: `class FarmCooperativeMember(models.Model)`
-  - _name: `farm.cooperative.member`
-  - _description: "Cooperative Member"
-  - Fields:
-    - `company_id` (Many2one): Cooperative (res.company, required)
-    - `partner_id` (Many2one): Member Name (res.partner, required)
-    - `membership_date` (Date): Membership Date (default: today)
-    - `share_capital` (Float): Share Capital
-    - `is_chairman` (Boolean): Is Chairman
-  - Relationships:
-    - Many2one: `company_id` → `res.company`
-    - Many2one: `partner_id` → `res.partner`
+  - **核心字段**:
+    - `agri_activity_type` (Selection): agri_activity_type
+    - `application_stage` (Selection): application_stage
 
-- **farm_input_reg.ProductTemplate**: Input registration-enhanced product templates
-  - Odoo Model: `class ProductTemplate(models.Model)`
-  - _name: `product.template`
-  - _inherit: `product.template`
-  - Relationships:
-    - Inherits: `product.template` (Odoo's product template model) with input registration enhancements
+### `agri.evidence.mixin` (Defined in `farm_core`)
+  - **Class**: `AgriEvidenceMixin`
+  - **描述**: Agri Evidence & Audit Mixin
 
-- **farm_input_reg.MrpProduction**: Input registration-enhanced production orders
-  - Odoo Model: `class MrpProduction(models.Model)`
-  - _name: `mrp.production`
-  - _inherit: `mrp.production`
-  - Relationships:
-    - Inherits: `mrp.production` (Odoo's manufacturing order model) with input registration enhancements
+  - **核心字段**:
+    - `evidence_ids` (Many2many): ir.attachment
+    - `evidence_hash` (Char): Evidence Hash
+    - `evidence_source` (Selection): evidence_source
+    - `is_verified` (Boolean): Evidence Verified
+    - `verified_by_id` (Many2one): res.users
+    - `verification_at` (Datetime): Verification Timestamp
 
-- **farm_knowledge.FarmPestDisease**: Management of pest and disease information
-  - Odoo Model: `class FarmPestDisease(models.Model)`
-  - _name: `farm.pest.disease`
-  - _description: "Pest & Disease Database"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Name (required, translatable)
+### `agri.industry.planting.mixin` (Defined in `farm_core`)
+  - **Class**: `AgriIndustryPlantingMixin`
+  - **描述**: Agricultural Planting Standard Mixin
+
+  - **核心字段**:
+    - `phenology_stage_id` (Many2one): agri.industry.physio.stage
+    - `seeding_depth` (Float): Target Seeding Depth (cm)
+    - `target_plant_density` (Float): Target Plant Density (plants/ha)
+    - `optimal_moisture_range` (Char): Optimal Moisture Range (%)
+
+### `agri.industry.variety.mixin` (Defined in `farm_core`)
+  - **Class**: `AgriIndustryVarietyMixin`
+  - **描述**: Variety Traits Mixin
+
+  - **核心字段**:
     - `scientific_name` (Char): Scientific Name
-    - `category` (Selection): Category (pest, disease, weed)
-    - `symptoms` (Html): Symptoms Description (translatable)
-    - `cause` (Text): Cause/Etiology (translatable)
-    - `prevention` (Html): Prevention Measures (translatable)
-    - `photo` (Binary): Reference Photo
-    - `image_name` (Char): Image Name
-    - `recommended_intervention_id` (Many2one): Recommended Treatment (agri.intervention.template)
-    - `description` (Text): Detailed Description (translatable)
-    - `active` (Boolean): Active status
-  - Methods:
-    - `action_view_treatment()`: Opens treatment view for the pest/disease
-  - Relationships:
-    - Many2one: `recommended_intervention_id` → `agri.intervention.template`
+    - `breed_origin` (Char): Place of Origin
+    - `resistance_level` (Selection): resistance_level
 
-- **farm_knowledge.FAQEntry**: FAQ entries for agricultural knowledge
-  - Odoo Model: `class FAQEntry(models.Model)`
-  - _name: `faq.entry`
-  - _description: "Frequently Asked Questions"
-  - _order: "sequence, id"
-  - Fields:
-    - `sequence` (Integer): Sequence (default: 10)
-    - `question` (Char): Question (required, translatable)
-    - `answer` (Html): Answer (required, translatable)
-    - `category` (Selection): Category (general, planting, livestock, equipment, quality, safety)
-    - `active` (Boolean): Active status
-    - `tags` (Char): Tags
-    - `target_model` (Char): Target Model
-    - `knowledge_id` (Many2one): Detailed Article (agricultural.knowledge)
-  - Relationships:
-    - Many2one: `knowledge_id` → `agricultural.knowledge`
+### `agri.inventory.mixin` (Defined in `farm_isl`)
+  - **Class**: `AgriInventoryMixin`
+  - **描述**: Agri Inventory ISL Abstract Base Model
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `industry_type` (Selection): industry_type
+    - `shelf_life_tracking` (Boolean): Shelf Life Tracking
+    - `batch_tracking` (Boolean): Batch Tracking
+    - `lot_tracking` (Boolean): Lot Tracking
+    - `expiry_tracking` (Boolean): Expiry Tracking
+    - `inventory_compliance` (Text): Inventory Compliance
+    - `storage_requirements` (Text): Storage Requirements
+    - `temperature_control` (Boolean): Temperature Control
+    - `humidity_control` (Boolean): Humidity Control
+    - `light_sensitive` (Boolean): Light Sensitive
+    - `is_isl_model` (Boolean): Is ISL Model
 
-- **farm_knowledge.AgriculturalKnowledge**: General agricultural knowledge management
-  - Odoo Model: `class AgriculturalKnowledge(models.Model)`
-  - _name: `agricultural.knowledge`
-  - _description: "Agricultural Knowledge Base"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Title (required, translatable)
-    - `content` (Html): Content (translatable)
-    - `category` (Selection): Category (crop_varieties, cultivation, pest_disease, fertilization, irrigation, harvesting, processing, marketing, regulations, best_practices)
-    - `knowledge_type` (Selection): Knowledge Type (article, case_study, standard)
-    - `tags` (Char): Tags
-    - `active` (Boolean): Active status
-    - `author_id` (Many2one): Author (res.users)
-    - `difficulty_level` (Selection): Difficulty Level (beginner, intermediate, expert)
-    - `industry_specific` (Selection): Industry Specific (general, planting, livestock, aquaculture, winemaking, bakery, dairy, processing)
-    - `seasonality` (Selection): Seasonality (spring, summer, autumn, winter, year_round)
-    - `video_url` (Char): Video URL
-    - `attachment_ids` (Many2many): Attachments (ir.attachment)
-    - `view_count` (Integer): View Count (default: 0, readonly)
-    - `helpful_count` (Integer): Helpful Count (default: 0, readonly)
-    - `pest_disease_id` (Many2one): Related Pest/Disease (farm.pest.disease)
-  - Methods:
-    - `smart_search(keywords)`: Intelligent search for knowledge articles
-    - `action_mark_helpful()`: Marks article as helpful
-  - Relationships:
-    - Many2one: `author_id` → `res.users`
-    - Many2one: `pest_disease_id` → `farm.pest.disease`
-    - Many2many: `attachment_ids` → `ir.attachment`
+### `agri.isl.model.redirector` (Defined in `farm_isl`)
+  - **Class**: `AgriISLModelRedirector`
+  - **描述**: Agri ISL Model Redirection Utility
 
-### Label and UX
-- **farm_label.ProductTemplate**: Label-enhanced product templates
-  - Odoo Model: `class ProductTemplate(models.Model)`
-  - _name: `product.template`
-  - _inherit: `product.template`
-  - Fields:
-    - `ingredient_list` (Text): Ingredients (translatable)
-    - `storage_condition` (Char): Storage Condition (translatable, default: "Store in cool and dry place")
+
+
+### `agri.isl.optimization.mixin` (Defined in `farm_isl`)
+  - **Class**: `AgriISLOptimizationMixin`
+  - **描述**: Agri ISL Optimization Mixin
+
+
+
+### `agri.manufacturing.mixin` (Defined in `farm_isl`)
+  - **Class**: `AgriManufacturingMixin`
+  - **描述**: Agri Manufacturing ISL Abstract Base Model
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `industry_type` (Selection): industry_type
+    - `industry_specialization` (Char): Industry Specialization
+    - `compliance_requirements` (Text): Compliance Requirements
+    - `industry_standards` (Char): Industry Standards
+    - `safety_requirements` (Text): Safety Requirements
+    - `quality_control_points` (Text): Quality Control Points
+    - `industry_notes` (Html): Industry Notes
+    - `industry_attachments` (Binary): Industry Attachments
+    - `is_isl_model` (Boolean): Is ISL Model
+
+### `agri.mcp.server` (Defined in `farm_ai_agent`)
+  - **Class**: `MCPServer`
+  - **描述**: Odoo MCP Service Provider
+
+
+
+### `agri.odoo19.performance.security.mixin` (Defined in `farm_core`)
+  - **Class**: `AgriOdoo19PerformanceSecurityMixin`
+  - **描述**: Agricultural Odoo 19 Performance and Security Mixin
+
+  - **核心字段**:
+    - `config_settings` (Json): config_settings
+    - `performance_metrics` (Json): performance_metrics
+    - `security_level` (Selection): security_level
+    - `access_log` (Json): access_log
+    - `industry_access_control` (Json): industry_access_control
+
+### `agri.product.mixin` (Defined in `farm_isl`)
+  - **Class**: `AgriProductMixin`
+  - **描述**: Agri Product ISL Abstract Base Model
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `industry_type` (Selection): industry_type
+    - `industry_category` (Char): Industry Category
+    - `safety_data_sheet` (Binary): Safety Data Sheet
+    - `safety_data_sheet_name` (Char): SDS Name
+    - `regulatory_compliance` (Text): Regulatory Compliance
+    - `shelf_life` (Float): Shelf Life (Days)
+    - `storage_temperature` (Float): Storage Temperature (°C)
+    - `storage_humidity` (Float): Storage Humidity (%)
+    - `is_isl_model` (Boolean): Is ISL Model
+
+### `agri.quality.mixin` (Defined in `farm_isl`)
+  - **Class**: `AgriQualityMixin`
+  - **描述**: Agri Quality Control ISL Abstract Base Model
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `industry_type` (Selection): industry_type
+    - `quality_standard` (Char): Quality Standard
+    - `quality_procedures` (Html): Quality Procedures
+    - `inspection_frequency` (Char): Inspection Frequency
+    - `critical_control_points` (Text): Critical Control Points
+    - `quality_metrics` (Text): Quality Metrics
+    - `is_isl_model` (Boolean): Is ISL Model
+
+### `agri.sales.purchase.mixin` (Defined in `farm_isl`)
+  - **Class**: `AgriSalesPurchaseMixin`
+  - **描述**: Agri Sales/Purchase ISL Abstract Base Model
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `industry_type` (Selection): industry_type
+    - `industry_certification` (Char): Industry Certification
+    - `compliance_requirements` (Text): Compliance Requirements
+    - `sales_compliance` (Text): Sales Compliance
+    - `purchase_compliance` (Text): Purchase Compliance
+    - `quality_assurance` (Boolean): Quality Assurance
+    - `is_isl_model` (Boolean): Is ISL Model
+
+### `agri.soil.analysis.mixin` (Defined in `farm_core`)
+  - **Class**: `AgriSoilAnalysisMixin`
+  - **描述**: Agricultural Soil Health Mixin
+
+  - **核心字段**:
+    - `ph_level` (Float): pH Level
+    - `organic_matter` (Float): Organic Matter (%)
+    - `nitrogen_content` (Float): Nitrogen (mg/kg)
+    - `phosphorus_content` (Float): Phosphorus (mg/kg)
+    - `potassium_content` (Float): Potassium (mg/kg)
+    - `lead_content` (Float): Lead (Pb) (mg/kg)
+    - `cadmium_content` (Float): Cadmium (Cd) (mg/kg)
+    - `mercury_content` (Float): Mercury (Hg) (mg/kg)
+    - `arsenic_content` (Float): Arsenic (As) (mg/kg)
+    - `chromium_content` (Float): Chromium (Cr) (mg/kg)
+    - `copper_content` (Float): Copper (Cu) (mg/kg)
+    - `zinc_content` (Float): Zinc (Zn) (mg/kg)
+    - `nickel_content` (Float): Nickel (Ni) (mg/kg)
+    - `magnesium` (Float): Magnesium (mg/kg)
+    - `calcium` (Float): Calcium (mg/kg)
+
+### `agri.sustainability.algorithms` (Defined in `farm_esg_compliance`)
+  - **Class**: `AgriSustainabilityAlgorithms`
+  - **描述**: Sustainability Algorithms DNA
+
+
+
+### `agri.view.mixin` (Defined in `farm_core`)
+  - **Class**: `AgriViewMixin`
+  - **描述**: Agri UI/UX View Adaptation Mixin
+
+
+
+### `agri.view.mixin` (Defined in `farm_ux`)
+  - **Class**: `AgriViewMixin`
+  - **描述**: Global UI De-industrialization Injector
+
+
+
+### `base.action.approve.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseActionApproveMixin`
+  - **描述**: Base Action Approve Mixin
+
+
+
+### `base.action.cancel.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseActionCancelMixin`
+  - **描述**: Base Action Cancel Mixin
+
+
+
+### `base.action.confirm.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseActionConfirmMixin`
+  - **描述**: Base Action Confirm Mixin
+
+
+
+### `base.action.reject.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseActionRejectMixin`
+  - **描述**: Base Action Reject Mixin
+
+
+
+### `base.amount.calculation.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseAmountCalculationMixin`
+  - **描述**: Base Amount Calculation Mixin
+
+
+
+### `base.available.amount.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseAvailableAmountMixin`
+  - **描述**: Base Available Amount Mixin
+
+
+
+### `base.available.credit.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseAvailableCreditMixin`
+  - **描述**: Base Available Credit Mixin
+
+
+
+### `base.certified.status.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseCertifiedStatusMixin`
+  - **描述**: Base Certified Status Mixin
+
+
+
+### `base.code.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseCodeMixin`
+  - **描述**: Base Code Mixin
+
+
+
+### `base.compliance.status.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseComplianceStatusMixin`
+  - **描述**: Base Compliance Status Mixin
+
+
+
+### `base.credit.limit.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseCreditLimitMixin`
+  - **描述**: Base Credit Limit Mixin
+
+
+
+### `base.investment.amount.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseInvestmentAmountMixin`
+  - **描述**: Base Investment Amount Mixin
+
+
+
+### `base.loan.amount.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseLoanAmountMixin`
+  - **描述**: Base Loan Amount Mixin
+
+
+
+### `base.net.amount.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseNetAmountMixin`
+  - **描述**: Base Net Amount Mixin
+
+
+
+### `base.sequence.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseSequenceMixin`
+  - **描述**: Base Sequence Mixin
+
+
+
+### `base.service.amount.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseServiceAmountMixin`
+  - **描述**: Base Service Amount Mixin
+
+
+
+### `base.settlement.direction.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseSettlementDirectionMixin`
+  - **描述**: Base Settlement Direction Mixin
+
+
+
+### `base.share.value.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseShareValueMixin`
+  - **描述**: Base Share Value Mixin
+
+
+
+### `base.total.amount.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseTotalAmountMixin`
+  - **描述**: Base Total Amount Mixin
+
+
+
+### `base.total.investment.mixin` (Defined in `farm_multi_farm_base`)
+  - **Class**: `BaseTotalInvestmentMixin`
+  - **描述**: Base Total Investment Mixin
+
+
+
+### `farm.agri.science.mixin` (Defined in `farm_agri_science`)
+  - **Class**: `AgriScienceMixin`
+  - **描述**: Agri-Science Calculation Kernel
+
+  - **核心字段**:
+    - `physiology_profile_id` (Many2one): agri.physiology.profile
+    - `cumulative_gdd` (Float): Cumulative GDD
+    - `current_growth_stage_id` (Many2one): agri.growth.stage
+    - `rue_actual` (Float): Radiation Use Efficiency (RUE)
+    - `wue_actual` (Float): Water Use Efficiency (WUE)
+    - `biological_stress_index` (Float): Stress Index (0-100)
+
+### `farm.agricultural.bom.line.mixin` (Defined in `farm_operation`)
+  - **Class**: `FarmAgriculturalBomLineMixin`
+  - **描述**: Farm Agricultural BOM Line Shared Logic (Deprecated - Use agri.bom.line.mixin)
+  - _inherit_: `agri.bom.line.mixin`
+
+
+### `farm.agricultural.bom.mixin` (Defined in `farm_operation`)
+  - **Class**: `FarmAgriculturalBomMixin`
+  - **描述**: Farm Agricultural BOM Shared Logic (Deprecated - Use agri.bom.mixin)
+  - _inherit_: `agri.bom.mixin`
+
+
+### `farm.agricultural.campaign.base` (Defined in `farm_operation`)
+  - **Class**: `FarmAgriculturalCampaignBase`
+  - **描述**: Farm Agricultural Campaign Base Logic
+
+  - **核心字段**:
+    - `name` (Char): Season Name
+    - `date_start` (Date): Start Date
+    - `date_end` (Date): End Date
+    - `is_active` (Boolean): Active
+    - `description` (Text): Description
+    - `base_temperature` (Float): Base Temp (℃)
+    - `target_gdd` (Float): Target GDD
+    - `accumulated_gdd` (Float): Current GDD
+    - `predicted_harvest_date` (Date): Predicted Harvest
+    - `land_parcel_id` (Many2one): farm.location
+
+### `farm.agricultural.campaign.mixin` (Defined in `farm_operation`)
+  - **Class**: `FarmAgriculturalCampaignMixin`
+  - **描述**: Farm Agricultural Campaign Shared Logic (Deprecated - Use agri.agricultural.campaign.mixin)
+  - _inherit_: `agri.agricultural.campaign.mixin`
+
+
+### `farm.agricultural.intervention.mixin` (Defined in `farm_operation`)
+  - **Class**: `FarmAgriculturalInterventionMixin`
+  - **描述**: Farm Agricultural Intervention Shared Logic (Deprecated - Use agri.intervention.mixin)
+  - _inherit_: `agri.intervention.mixin`
+
+
+### `farm.core.common.fields` (Defined in `farm_core`)
+  - **Class**: `CommonAgriculturalFields`
+  - **描述**: Farm Core Common Fields
+
+  - **核心字段**:
+    - `agricultural_type` (Selection): agricultural_type
+    - `identification_number` (Char): Identification No.
+    - `batch_number` (Char): Batch Number
+    - `growth_stage` (Selection): growth_stage
+    - `generation` (Selection): generation
+    - `n_content` (Float): Nitrogen (N) %
+    - `p_content` (Float): Phosphorus (P) %
+    - `k_content` (Float): Potassium (K) %
+    - `growth_duration` (Integer): Growth Duration (Days)
+    - `maturity_age_days` (Integer): Maturity Age (Days)
+    - `quality_grade` (Selection): quality_grade
+    - `withdrawal_period_days` (Integer): Withdrawal Period (Days)
+    - `production_cycle` (Selection): production_cycle
+    - `properties_definition` (PropertiesDefinition): Properties Definition
+    - `company_id` (Many2one): res.company
+    - *... 以及其他 1 个业务字段*
+
+### `farm.core.gis.utils` (Defined in `farm_core`)
+  - **Class**: `GISCoordinateUtils`
+  - **描述**: Farm Core GIS Utilities
+
+
+
+### `farm.inventory.mixin` (Defined in `farm_isl`)
+  - **Class**: `FarmInventoryMixin`
+  - **描述**: Farm Inventory ISL Abstract Base Model (Deprecated - Use agri.inventory.mixin)
+  - _inherit_: `agri.inventory.mixin`
+
+
+### `farm.manufacturing.mixin` (Defined in `farm_isl`)
+  - **Class**: `FarmManufacturingMixin`
+  - **描述**: Farm Manufacturing ISL Abstract Base Model (Deprecated - Use agri.manufacturing.mixin)
+  - _inherit_: `agri.manufacturing.mixin`
+
+
+### `farm.product.mixin` (Defined in `farm_isl`)
+  - **Class**: `FarmProductMixin`
+  - **描述**: Farm Product ISL Abstract Base Model (Deprecated - Use agri.product.mixin)
+  - _inherit_: `agri.product.mixin`
+
+
+### `farm.quality.mixin` (Defined in `farm_isl`)
+  - **Class**: `FarmQualityMixin`
+  - **描述**: Farm Quality Control ISL Abstract Base Model (Deprecated - Use agri.quality.mixin)
+  - _inherit_: `agri.quality.mixin`
+
+
+### `farm.sales.purchase.mixin` (Defined in `farm_isl`)
+  - **Class**: `FarmSalesPurchaseMixin`
+  - **描述**: Farm Sales/Purchase ISL Abstract Base Model (Deprecated - Use agri.sales.purchase.mixin)
+  - _inherit_: `agri.sales.purchase.mixin`
+
+
+### `isl.model.redirector` (Defined in `farm_isl`)
+  - **Class**: `ISLModelRedirector`
+  - **描述**: ISL Model Redirection Utility (Deprecated - Use agri.isl.model.redirector)
+  - _inherit_: `agri.isl.model.redirector`
+
+
+### `isl.optimization.mixin` (Defined in `farm_isl`)
+  - **Class**: `ISLOptimizationMixin`
+  - **描述**: ISL Optimization Mixin (Deprecated - Use agri.isl.optimization.mixin)
+  - _inherit_: `agri.isl.optimization.mixin`
+
+
+### `mrp.bom.line.isl.abstract` (Defined in `farm_mrp`)
+  - **Class**: `MrpBomLineIslAbstract`
+  - **描述**: Abstract ISL for BOM Line
+
+
+
+### `quality.based.pricing` (Defined in `farm_supply_quality`)
+  - **Class**: `QualityBasedPricing`
+  - **描述**: Quality-Based Pricing Rules
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Pricing Rule Name
+    - `product_category_id` (Many2one): product.category
+    - `quality_attribute` (Char): Quality Attribute
+    - `base_price` (Float): Base Price
+    - `min_value` (Float): Minimum Value for Premium
+    - `max_value` (Float): Maximum Value for Premium
+    - `premium_rate` (Float): Premium Rate (%)
+    - `discount_rate` (Float): Discount Rate (%)
+    - `active` (Boolean): Active
+    - `purchase_order_id` (Many2one): purchase.order
+    - `quality_min_threshold` (Float): Minimum Quality Threshold
+    - `quality_max_threshold` (Float): Maximum Quality Threshold
+    - `quality_grade_label` (Selection): quality_grade_label
+    - `protein_content_coefficient` (Float): Protein Content Coefficient
+    - `moisture_content_coefficient` (Float): Moisture Content Coefficient
+    - *... 以及其他 4 个业务字段*
+
+### `report.farm_green_monitor.reduction_trend_report` (Defined in `farm_green_monitor`)
+  - **Class**: `FarmGreenMonitorReport`
+  - **描述**: Fertilizer/Pesticide Reduction Trend Report
+
+
+
+### `supply.chain.node.mixin` (Defined in `farm_supply_core`)
+  - **Class**: `SupplyChainNodeMixin`
+  - **描述**: Supply Chain Node Mixin (Deprecated - Use agri.supply.chain.node.mixin)
+  - _inherit_: `agri.supply.chain.node.mixin`
+
+
+### `supply.common.fields.mixin` (Defined in `farm_supply_core`)
+  - **Class**: `SupplyCommonFieldsMixin`
+  - **描述**: Supply Chain Common Fields Mixin
+
+  - **核心字段**:
+    - `is_compliance_approved` (Boolean): Compliance Approved
+    - `compliance_date` (Date): Compliance Date
+    - `safety_check_required` (Boolean): Safety Check Required
+    - `quality_grade` (Selection): quality_grade
+    - `quality_score` (Float): Quality Score
     - `shelf_life_days` (Integer): Shelf Life (Days)
-    - `food_standard_code` (Char): Executive Standard Code (default: "GB/T ...")
-    - `production_license_no` (Char): Production License No (SC)
-  - Relationships:
-    - Inherits: `product.template` (Odoo's product template model) with label compliance fields
+    - `expiration_date` (Date): Expiration Date
+    - `best_before_date` (Date): Best Before Date
+    - `batch_number` (Char): Batch Number
+    - `production_date` (Date): Production Date
+    - `supplier_lot_number` (Char): Supplier Lot Number
 
-- **farm_label.StockLot**: Label-enhanced stock lot management
-  - Odoo Model: `class StockLot(models.Model)`
-  - _name: `stock.lot`
-  - _inherit: `stock.lot`
-  - Fields:
-    - `producer_id` (Many2one): Producer (res.partner, default: company partner)
-    - `net_content` (Char): Net Content (e.g. 500g, 1L)
-  - Methods:
-    - `get_qr_quoted_traceability_url()`: Gets URL-encoded traceability URL
-  - Relationships:
-    - Many2one: `producer_id` → `res.partner`
-    - Inherits: `stock.lot` (Odoo's stock lot model) with label fields
+## 16. 其他特定领域模型 (Other Domain Models)
+### `accessibility.settings` (Defined in `farm_ux`)
+  - **Class**: `AccessibilitySettings`
+  - **描述**: Accessibility & Inclusive Design Settings
 
-- **farm_label.StockLocation**: Label-enhanced stock location management
-  - Odoo Model: `class StockLocation(models.Model)`
-  - _name: `stock.location`
-  - _inherit: `stock.location`
-  - Methods:
-    - `get_qr_quoted_name()`: Gets URL-encoded location name
-  - Relationships:
-    - Inherits: `stock.location` (Odoo's stock location model) with label utilities
+  - **核心字段**:
+    - `name` (Char): Setting Name
+    - `user_id` (Many2one): res.users
+    - `screen_reader_enabled` (Boolean): Screen Reader Enabled
+    - `keyboard_navigation` (Boolean): Keyboard Navigation
+    - `font_scaling` (Float): Font Scaling Factor
+    - `high_contrast_mode` (Boolean): High Contrast Mode
+    - `large_touch_targets` (Boolean): Large Touch Targets
+    - `reduced_motion` (Boolean): Reduced Motion
+    - `color_blind_mode` (Boolean): Color Blind Mode
+    - `inclusive_mode` (Boolean): Inclusive/Elder Mode
+    - `voice_entry_enabled` (Boolean): Voice-First Entry
+    - `voice_navigation` (Boolean): Voice Navigation
+    - `hide_advanced_menus` (Boolean): Hide Advanced Menus
+    - `simplified_kanban` (Boolean): Simplified Kanban Cards
 
-- **farm_label.ResCompany**: Label-enhanced company records
-  - Odoo Model: `class ResCompany(models.Model)`
-  - _name: `res.company`
-  - _inherit: `res.company`
-  - Relationships:
-    - Inherits: `res.company` (Odoo's company model) with label enhancements
+### `agri.allergen` (Defined in `farm_processing`)
+  - **Class**: `AgriAllergen`
+  - **描述**: Agricultural Food Allergen
 
-- **farm_label.ResConfigSettings**: Label configuration settings
-  - Odoo Model: `class ResConfigSettings(models.TransientModel)`
-  - _name: `res.config.settings`
-  - _inherit: `res.config.settings`
-  - Relationships:
-    - Inherits: `res.config.settings` (Odoo's configuration settings model) with label settings
+  - **核心字段**:
+    - `name` (Char): Allergen Name
+    - `code` (Char): Code
+    - `description` (Text): Description
 
-- **farm_ux.VoiceRecognitionAlias**: Voice recognition aliases for UX
-  - Odoo Model: `class VoiceRecognitionAlias(models.Model)`
-  - _name: `farm.voice.recognition.alias`
-  - _description: "Voice Recognition Alias for Agricultural Terms"
-  - _order: "alias"
-  - Fields:
-    - `alias` (Char): Spoken Alias / Phonetic (required)
-    - `target_term` (Char): Standard Term (required)
-  - Methods:
-    - `normalize_voice_text(text)`: Normalizes voice-to-text output using registered aliases
-  - Relationships:
-    - Provides voice recognition functionality for agricultural terms
+### `agri.biological.twin` (Defined in `farm_agri_science`)
+  - **Class**: `AgriBiologicalTwin`
+  - **描述**: Biological Digital Twin Engine
+  - _inherit_: `mail.thread, mail.activity.mixin, agri.biological.asset.mixin`
+  - **核心字段**:
+    - `name` (Char): Twin Ref
+    - `product_id` (Many2one): product.template
+    - `location_id` (Many2one): farm.location
+    - `start_date` (Date): Sowing/Start Date
+    - `expected_harvest_date` (Date): Target Harvest Date
+    - `accumulated_gdd` (Float): Accumulated GDD (℃)
+    - `base_temp` (Float): Base Temperature (℃)
+    - `target_gdd_harvest` (Float): Target GDD for Harvest
+    - `current_stage_id` (Many2one): agri.industry.physio.stage
+    - `health_score` (Float): Growth Health Score (0-100)
+    - `predicted_yield` (Float): Predicted Yield (kg)
+    - `confidence_level` (Selection): confidence_level
+    - `accumulated_carbon` (Float): Accumulated Carbon (kg CO2e)
+    - `carbon_intensity` (Float): Carbon Intensity (kg CO2e/kg yield)
 
-- **farm_ux.FormLayoutTemplate**: Form layout templates for UX
-  - Odoo Model: `class FormLayoutTemplate(models.Model)`
-  - _name: `form.layout.template`
-  - _description: "Form Layout Template for Industry-Specific Views"
-  - Fields:
-    - `name` (Char): Template Name (required, translatable)
-    - `model_name` (Char): Model Name (required)
-    - `industry_type` (Selection): Industry Type (planting, livestock, aquaculture, winemaking, bakery, dairy, processing, general)
-    - `layout_definition` (Text): Layout Definition (JSON)
-    - `is_active` (Boolean): Is Active (default: True)
-    - `description` (Text): Description (translatable)
-    - `user_role` (Selection): User Role (farmer, technician, worker, manager)
-    - `version` (Char): Version (default: "1.0")
-    - `created_by` (Many2one): Created By (res.users)
-    - `created_date` (Datetime): Created Date (default: now)
-  - Methods:
-    - `apply_layout_to_view(view_id)`: Applies layout template to view
-  - Relationships:
-    - Many2one: `created_by` → `res.users`
+### `agri.biological.twin` (Defined in `farm_greenhouse`)
+  - **Class**: `FarmBiologicalTwin`
+  - **描述**: 
+  - _inherit_: `agri.biological.twin`
 
-- **farm_ux.ContextualHelp**: Contextual help for UX
-  - Odoo Model: `class ContextualHelp(models.Model)`
-  - _name: `contextual.help`
-  - _description: "Smart Contextual Help for Agricultural Operations"
-  - Fields:
-    - `name` (Char): Help Topic (required, translatable)
-    - `model_name` (Char): Model Name (required)
+
+### `agri.ecological.activity` (Defined in `farm_ecology`)
+  - **Class**: `AgriEcologicalActivity`
+  - **描述**: Agricultural Ecological Activity
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Activity Name
+    - `date` (Date): Date
+    - `location_id` (Many2one): farm.location
+    - `description` (Text): Description
+    - `impact_category` (Selection): impact_category
+
+### `agri.evidence` (Defined in `farm_mobile`)
+  - **Class**: `AgriEvidence`
+  - **描述**: Agricultural Field Evidence
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Evidence Label
+    - `res_model` (Char): Related Model
+    - `res_id` (Many2one_reference): Related ID
+    - `photo` (Binary): Evidence Photo
+    - `gps_lat` (Float): Latitude
+    - `gps_lng` (Float): Longitude
+    - `taken_at` (Datetime): Captured Time
+    - `worker_id` (Many2one): hr.employee
+    - `note` (Text): Field Notes
+    - `is_on_site` (Boolean): Location Verified
+    - `evidence_hash` (Char): Evidence Hash
+    - `is_hash_verified` (Boolean): Hash Verified
+    - `subsidy_application_id` (Many2one): farm.subsidy.application
+
+### `agri.geospatial.grid.cell` (Defined in `farm_agri_science`)
+  - **Class**: `AgriGeospatialGridCell`
+  - **描述**: Agricultural Spatial Grid Cell
+
+  - **核心字段**:
+    - `location_id` (Many2one): farm.location
+    - `name` (Char): Grid UID
+    - `row` (Integer): Row Index
+    - `col` (Integer): Column Index
+    - `center_lat` (Float): Center Latitude
+    - `center_lng` (Float): Center Longitude
+    - `ndvi_index` (Float): NDVI (Satellite Index)
+    - `soil_ph` (Float): Soil pH (Interpolated)
+    - `soil_moisture` (Float): Soil Moisture (%)
+    - `soil_nutrient_n` (Float): Soil Nitrogen (N) Level
+    - `historical_rue` (Float): Historical RUE (g/MJ)
+    - `lai_index` (Float): Leaf Area Index (LAI)
+    - `water_stress` (Float): Water Stress Index
+    - `cell_geojson` (Text): Cell Geometry (Polygon)
+
+### `agri.gi.registry` (Defined in `farm_marketing`)
+  - **Class**: `AgriGIRegistry`
+  - **描述**: Geographical Indication Registry
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): GI Name
+    - `code` (Char): GI Code
+    - `product_template_id` (Many2one): product.template
+    - `protection_area_id` (Many2one): farm.location
+    - `authority_name` (Char): Issuing Authority
+    - `certificate_attachment_ids` (Many2many): ir.attachment
+    - `is_active` (Boolean): Active
+    - `description` (Text): GI Description
+
+### `agri.growth.stage` (Defined in `farm_agri_science`)
+  - **Class**: `AgriGrowthStage`
+  - **描述**: Crop Growth Stage
+
+  - **核心字段**:
+    - `name` (Char): Stage Name
+    - `profile_id` (Many2one): agri.physiology.profile
+    - `gdd_threshold` (Float): GDD Threshold (Cumulative)
+    - `stage_code` (Char): Stage Code (e.g. VE, V1, R1)
+    - `description` (Text): Description
+
+### `agri.health.schedule` (Defined in `farm_processing`)
+  - **Class**: `AgriHealthSchedule`
+  - **描述**: Agricultural Livestock Vaccination & Health Schedule
+
+  - **核心字段**:
+    - `name` (Char): name
+    - `product_tmpl_id` (Many2one): product.template
+    - `target_life_stage` (Selection): target_life_stage
+    - `activity_summary` (Char): activity_summary
+    - `activity_note` (Text): activity_note
+    - `days_offset` (Integer): days_offset
+
+### `agri.pest.disease` (Defined in `farm_knowledge`)
+  - **Class**: `AgriPestDisease`
+  - **描述**: Agricultural Pest & Disease Database
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): name
+    - `scientific_name` (Char): scientific_name
+    - `category` (Selection): category
+    - `symptoms` (Html): symptoms
+    - `cause` (Text): cause
+    - `prevention` (Html): prevention
+    - `photo` (Binary): photo
+    - `image_name` (Char): Image Name
+    - `recommended_intervention_id` (Many2one): agri.intervention.template
+    - `conventional_treatment` (Html): conventional_treatment
+    - `organic_treatment` (Html): organic_treatment
+    - `integrated_treatment` (Html): integrated_treatment
+    - `conventional_products` (Many2many): product.template
+    - `organic_products` (Many2many): product.template
+    - `compliance_standards` (Char): compliance_standards
+    - *... 以及其他 7 个业务字段*
+
+### `agri.physiology.profile` (Defined in `farm_agri_science`)
+  - **Class**: `AgriPhysiologyProfile`
+  - **描述**: Crop Physiology Fingerprint
+
+  - **核心字段**:
+    - `name` (Char): Variety Name
+    - `product_id` (Many2one): product.product
+    - `temp_base` (Float): Base Temperature (T-base)
+    - `temp_opt` (Float): Optimum Temperature (T-opt)
+    - `temp_max` (Float): Maximum Temperature (T-max)
+    - `logistic_l` (Float): Max Biomass (L)
+    - `logistic_k` (Float): Growth Rate (k)
+    - `logistic_gdd0` (Float): Inflexion GDD (GDD0)
+    - `response_max_yield` (Float): Potential Max Yield (A)
+    - `response_efficiency_c` (Float): Nutrient Efficiency Coefficient (c)
+    - `stage_ids` (One2many): agri.growth.stage
+
+### `agri.scenario.input.forecast` (Defined in `farm_planning`)
+  - **Class**: `AgriScenarioInputForecast`
+  - **描述**: Scenario Input Forecast
+
+  - **核心字段**:
+    - `scenario_id` (Many2one): agri.scenario
+    - `product_id` (Many2one): product.product
+    - `quantity` (Float): Forecasted Quantity
+
+### `agri.scenario` (Defined in `farm_planning`)
+  - **Class**: `AgriScenario`
+  - **描述**: Planning Scenario (Simulation)
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Scenario Name
+    - `route_id` (Many2one): agri.technical.route
+    - `planned_area` (Float): Planned Area (Hectares)
+    - `total_labor_forecast` (Float): Total Labor Forecast (Hours)
+    - `input_forecast_ids` (One2many): agri.scenario.input.forecast
+
+### `agri.service` (Defined in `farm_multi_farm_base`)
+  - **Class**: `AgriService`
+  - **描述**: Agricultural Service
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Service Name
+    - `code` (Char): Service Code
+    - `cooperative_id` (Many2one): cooperative.entity
+    - `provider_member_id` (Many2one): cooperative.member
+    - `service_category` (Selection): service_category
+    - `capacity` (Float): Capacity
+    - `capacity_unit` (Char): Capacity Unit
+    - `unit_rate` (Float): Unit Rate
+    - `currency_id` (Many2one): res.currency
+    - `available_from` (Datetime): Available From
+    - `available_to` (Datetime): Available To
+    - `location` (Char): Service Location
+    - `description` (Text): Description
+    - `is_active` (Boolean): Is Active
+
+### `agri.sustainability.biodiversity.indicator` (Defined in `farm_ecology`)
+  - **Class**: `AgriBiodiversityIndicator`
+  - **描述**: Biodiversity Observation Log
+  - _inherit_: `mail.thread, mail.activity.mixin, agri.sustainability.mixin, agri.evidence.mixin`
+  - **核心字段**:
+    - `date` (Date): Observation Date
+    - `location_id` (Many2one): farm.location
+    - `indicator_type` (Selection): indicator_type
+    - `species_name` (Char): Species/Common Name
+    - `count_observed` (Integer): Population Abundance
+    - `photo` (Binary): Photo Evidence
+    - `notes` (Text): Contextual Notes
+
+### `agri.sustainability.ecological.zone` (Defined in `farm_ecology`)
+  - **Class**: `AgriEcologicalZone`
+  - **描述**: Agricultural Ecological Infrastructure
+  - _inherit_: `mail.thread, mail.activity.mixin, agri.geospatial.mixin`
+  - **核心字段**:
+    - `name` (Char): Ecological Zone Name
+    - `zone_type` (Selection): zone_type
+    - `area` (Float): Area (sqm)
+    - `location_id` (Many2one): farm.location
+    - `active` (Boolean): active
+
+### `agri.technical.route.line` (Defined in `farm_planning`)
+  - **Class**: `AgriTechnicalRouteLine`
+  - **描述**: Route Sequence Line
+
+  - **核心字段**:
+    - `route_id` (Many2one): agri.technical.route
+    - `sequence` (Integer): Sequence
+    - `template_id` (Many2one): agri.intervention.template
+    - `delay_days` (Integer): Delay from Start (Days)
+
+### `agri.technical.route.line` (Defined in `farm_planning`)
+  - **Class**: `AgriTechnicalRouteLine`
+  - **描述**: Technical Route Sequence
+
+  - **核心字段**:
+    - `route_id` (Many2one): agri.technical.route
+    - `sequence` (Integer): Sequence
+    - `template_id` (Many2one): agri.intervention.template
+    - `delay_from_start` (Integer): Delay Days (T+N)
+
+### `agri.technical.route` (Defined in `farm_planning`)
+  - **Class**: `AgriTechnicalRoute`
+  - **描述**: 
+  - _inherit_: `agri.technical.route`
+
+
+### `agri.technical.route` (Defined in `farm_planning`)
+  - **Class**: `AgriTechnicalRoute`
+  - **描述**: Technical Route (Cultural Itinerary)
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Route Name
+    - `activity_family` (Selection): activity_family
+    - `line_ids` (One2many): agri.technical.route.line
+
+### `agri.technical.route` (Defined in `farm_planning`)
+  - **Class**: `AgriTechnicalRoute`
+  - **描述**: Technical Route (Itinéraire Cultural)
+
+  - **核心字段**:
+    - `name` (Char): Route Name
+    - `family` (Selection): family
+    - `line_ids` (One2many): agri.technical.route.line
+
+### `agri.weather.forecast` (Defined in `farm_weather`)
+  - **Class**: `AgriWeatherForecast`
+  - **描述**: Agricultural Weather Forecast
+
+  - **核心字段**:
+    - `date` (Date): Date
+    - `location_id` (Many2one): farm.location
+    - `temp_max` (Float): Max Temp (℃)
+    - `temp_min` (Float): Min Temp (℃)
+    - `precipitation` (Float): Precipitation (mm)
+    - `condition` (Char): Condition
+    - `icon` (Char): Icon ID
+    - `humidity` (Float): Humidity (%)
+    - `wind_speed` (Float): Wind Speed (m/s)
+    - `is_warning` (Boolean): Weather Warning
+    - `warning_type` (Selection): warning_type
+
+### `agricultural.knowledge` (Defined in `farm_knowledge`)
+  - **Class**: `AgriculturalKnowledge`
+  - **描述**: Agricultural Knowledge Base
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): name
+    - `content` (Html): content
+    - `category` (Selection): category
+    - `knowledge_type` (Selection): knowledge_type
+    - `tags` (Char): tags
+    - `active` (Boolean): active
+    - `author_id` (Many2one): res.users
+    - `difficulty_level` (Selection): difficulty_level
+    - `industry_specific` (Selection): industry_specific
+    - `seasonality` (Selection): seasonality
+    - `video_url` (Char): video_url
+    - `attachment_ids` (Many2many): ir.attachment
+    - `view_count` (Integer): view_count
+    - `helpful_count` (Integer): helpful_count
+    - `pest_disease_id` (Many2one): agri.pest.disease
+
+### `contextual.help` (Defined in `farm_ux`)
+  - **Class**: `ContextualHelp`
+  - **描述**: Smart Contextual Help for Agricultural Operations
+
+  - **核心字段**:
+    - `name` (Char): Help Topic
+    - `model_name` (Char): Model Name
     - `field_name` (Char): Field Name
-    - `view_type` (Selection): View Type (form, list, kanban, calendar, graph, pivot)
-    - `help_content` (Html): Help Content (translatable)
+    - `view_type` (Selection): view_type
+    - `help_content` (Html): Help Content
     - `help_video_url` (Char): Video Tutorial URL
     - `help_image` (Binary): Help Image
     - `image_name` (Char): Image Name
-    - `is_active` (Boolean): Is Active (default: True)
-    - `priority` (Integer): Priority (default: 10)
-    - `target_roles` (Many2many): Target Roles (res.groups)
-    - `industry_context` (Selection): Industry Context (general, planting, livestock, etc.)
-    - `difficulty_level` (Selection): Difficulty Level (beginner, intermediate, advanced)
-  - Methods:
-    - `get_contextual_help(model_name, field_name, view_type)`: Gets contextual help for specific context
-  - Relationships:
-    - Many2many: `target_roles` → `res.groups`
+    - `is_active` (Boolean): Is Active
+    - `priority` (Integer): Priority
+    - `target_roles` (Many2many): res.groups
+    - `industry_context` (Selection): industry_context
+    - `difficulty_level` (Selection): difficulty_level
 
-- **farm_ux.VisualStatusIndicator**: Visual status indicators for UX
-  - Odoo Model: `class VisualStatusIndicator(models.Model)`
-  - _name: `visual.status.indicator`
-  - _description: "Visual Status Indicator Configuration"
-  - Fields:
-    - `name` (Char): Indicator Name (required, translate=True)
-    - `model_name` (Char): Model Name (required, help="The model this indicator applies to (e.g. mrp.production)")
-    - `field_name` (Char): Field Name (required, help="The field to monitor for status changes")
-    - `evaluation_logic` (Text): Evaluation Logic (help="Python lambda function to evaluate status (e.g. lambda record: record.state == "done" and "green" or "red")")
-    - `status_type` (Selection): Status Type (task, quality, safety, compliance, weather, equipment) (required)
-    - `status_value` (Char): Status Value (required, help="Value to match (e.g. "pending", "in_progress", "done")")
-    - `color_code` (Char): Color Code (default="#000000", help="CSS color code for the indicator")
-    - `icon` (Char): Icon (help="Font Awesome icon (e.g. fa-check, fa-warning)")
-    - `badge_style` (Selection): Badge Style (primary, secondary, success, danger, warning, info) (default="secondary")
-    - `notification_sound` (Char): Notification Sound (help="Sound file for audio notifications")
-    - `vibration_pattern` (Char): Vibration Pattern (help="Pattern for mobile vibration feedback")
-    - `animation_effect` (Char): Animation Effect (help="CSS animation for status transitions")
-    - `is_active` (Boolean): Is Active (default=True)
-    - `display_on_mobile` (Boolean): Display on Mobile (default=True)
-    - `description` (Text): Description (translate=True)
-  - Methods:
-    - `evaluate_status(self, record)`: Dynamically evaluates record status
-  - Relationships: Inherits mail.thread, mail.activity.mixin
+### `cooperative.entity` (Defined in `farm_multi_farm_base`)
+  - **Class**: `CooperativeEntityExtension`
+  - **描述**: 
+  - _inherit_: `cooperative.entity`
+  - **核心字段**:
+    - `member_ids` (One2many): cooperative.member
+    - `agri_service_ids` (One2many): agri.service
 
-- **farm_ux.FarmSocialNetwork**: Social network functionality for farming
-  - Odoo Model: `class FarmSocialNetwork(models.Model)`
-  - _name: `farm.social.network`
-  - _description: "Farm Social Network & Collaboration Platform"
-  - Fields:
-    - `name` (Char): Network Name (required, translate=True)
-    - `network_type` (Selection): Network Type (coop_members, regional_farmers, specialty_crops, knowledge_sharing, resource_sharing) (required)
-    - `member_ids` (Many2many): Members (res.partner)
-    - `admin_ids` (Many2many): Administrators (res.users)
-    - `description` (Text): Description (translate=True)
-    - `is_active` (Boolean): Is Active (default=True)
-    - `created_by` (Many2one): Created By (res.users, default=lambda self: self.env.user)
-    - `created_date` (Datetime): Created Date (default=fields.Datetime.now)
-    - `privacy_level` (Selection): Privacy Level (public, private, invite_only) (default="private")
-    - `message_board` (Text): Message Board (help="Public message board content")
-    - `shared_resources` (Text): Shared Resources (help="Shared resources and experiences")
-  - Relationships: Inherits mail.thread, mail.activity.mixin
+### `cooperative.entity` (Defined in `farm_multi_farm_base`)
+  - **Class**: `CooperativeEntityExtension`
+  - **描述**: 
+  - _inherit_: `cooperative.entity`
+  - **核心字段**:
+    - `member_ids` (One2many): cooperative.member
+    - `share_transaction_ids` (One2many): share.transaction
+    - `dividend_distribution_ids` (One2many): dividend.distribution
+    - `internal_credit_ids` (One2many): internal.credit
+    - `shared_machinery_ids` (One2many): shared.machinery.pool
+    - `quality_control_standard_ids` (One2many): quality.control.standard
+    - `joint_procurement_ids` (One2many): joint.procurement
+    - `procurement_planning_ids` (One2many): procurement.planning
+    - `agri_service_ids` (One2many): agri.service
+    - `cooperative_treasury_ids` (One2many): cooperative.treasury
+    - `internal_loan_ids` (One2many): internal.loan
+    - `subsidy_disbursement_ids` (One2many): subsidy.disbursement
+    - `cooperative_decision_ids` (One2many): cooperative.decision
+    - `multi_sign_process_ids` (One2many): multi.sign.process
+    - `joint_procurement_po_ids` (One2many): joint.procurement.po
+    - *... 以及其他 2 个业务字段*
 
-- **farm_ux.AccessibilitySettings**: Accessibility settings for UX
-  - Odoo Model: `class AccessibilitySettings(models.Model)`
-  - _name: `accessibility.settings`
-  - _description: "Accessibility & Inclusive Design Settings"
-  - Fields:
-    - `name` (Char): Setting Name (required, translate=True)
-    - `user_id` (Many2one): User (res.users, required, default=lambda self: self.env.user)
-    - `screen_reader_enabled` (Boolean): Screen Reader Enabled (help="Enable screen reader compatibility")
-    - `keyboard_navigation` (Boolean): Keyboard Navigation (help="Enable keyboard-only navigation")
-    - `font_scaling` (Float): Font Scaling Factor (default=1.0, help="Scale factor for all fonts (1.0 = normal)")
-    - `high_contrast_mode` (Boolean): High Contrast Mode (help="Enable high contrast color scheme")
-    - `large_touch_targets` (Boolean): Large Touch Targets (help="Enable larger touch targets for easier interaction")
-    - `reduced_motion` (Boolean): Reduced Motion (help="Reduce animations and motion effects")
-    - `color_blind_mode` (Boolean): Color Blind Mode (help="Adjust colors for color blindness")
-    - `voice_navigation` (Boolean): Voice Navigation (help="Enable voice-based navigation")
-    - `font_family_preference` (Char): Font Family Preference (help="Preferred font family for accessibility")
-    - `alternative_input_method` (Selection): Alternative Input Method (none, voice, switch, eye_tracking) (default="none")
-    - `voice_control_enabled` (Boolean): Voice Control Enabled (help="Enable voice commands")
-    - `custom_color_scheme` (Char): Custom Color Scheme (help="Custom CSS for color adjustments")
-    - `is_active` (Boolean): Is Active (default=True)
-    - `last_updated` (Datetime): Last Updated (default=fields.Datetime.now)
-  - Methods:
-    - `_check_font_scaling_range(self)`: Checks font scaling range constraint (0.5-3.0)
-  - Relationships: Inherits mail.thread, mail.activity.mixin
+### `cooperative.entity` (Defined in `farm_multi_farm_equipment`)
+  - **Class**: `CooperativeEntityExtensionEquipment`
+  - **描述**: 
+  - _inherit_: `cooperative.entity`
+  - **核心字段**:
+    - `shared_machinery_ids` (One2many): shared.machinery.pool
 
-- **farm_ux.WorkspaceCustomization**: Workspace customization for UX
-  - Odoo Model: `class WorkspaceCustomization(models.Model)`
-  - _name: `workspace.customization`
-  - _description: "Personalized Workspace Customization"
-  - Fields:
-    - `name` (Char): Customization Name (required, translate=True)
-    - `user_id` (Many2one): User (res.users, required, default=lambda self: self.env.user)
-    - `dashboard_widgets` (Text): Dashboard Widgets (help="JSON configuration of dashboard widgets")
-    - `theme_preference` (Selection): Theme Preference (light, dark, eye_care, high_contrast) (default="light")
-    - `quick_actions` (Text): Quick Actions (help="JSON configuration of quick action bar")
-    - `language_preference` (Char): Language Preference (default="zh_CN")
-    - `timezone_preference` (Char): Timezone Preference (default="Asia/Shanghai")
-    - `font_size` (Selection): Font Size (small, normal, large, extra_large) (default="normal")
-    - `layout_preference` (Text): Layout Preferences (help="JSON configuration of UI layouts")
-    - `is_active` (Boolean): Is Active (default=True)
-    - `last_updated` (Datetime): Last Updated (default=fields.Datetime.now)
-  - Methods:
-    - `save_customization(self)`: Saves user customization settings
-    - `get_user_customization(self, user_id=None)`: Gets user customization settings
-  - Relationships: Inherits mail.thread, mail.activity.mixin
+### `cooperative.entity` (Defined in `farm_multi_farm_procurement`)
+  - **Class**: `CooperativeEntityExtensionProcurement`
+  - **描述**: 
+  - _inherit_: `cooperative.entity`
+  - **核心字段**:
+    - `joint_procurement_ids` (One2many): joint.procurement
+    - `procurement_planning_ids` (One2many): procurement.planning
+    - `joint_procurement_po_ids` (One2many): joint.procurement.po
+    - `hub_spoke_distribution_ids` (One2many): hub.spoke.distribution
+    - `netting_settlement_ids` (One2many): netting.settlement
 
-- **farm_ux.TermMapping**: Term mapping for UX
-  - Odoo Model: `class TermMapping(models.Model)`
-  - _name: `term.mapping`
-  - _description: "Term Mapping for Agricultural Terminology"
-  - _order: `source_term asc`
-  - Fields:
-    - `name` (Char): Mapping Name (required, translate=True)
-    - `source_term` (Char): Source Term (Industrial) (required, help="Original industrial term (e.g. Manufacturing Order)")
-    - `target_term` (Char): Target Term (Agricultural) (required, help="Agricultural equivalent term (e.g. Intervention)")
-    - `language_code` (Char): Language Code (default="zh_CN", help="Language code for localization")
-    - `industry_context` (Selection): Industry Context (general, planting, livestock, aquaculture, winemaking, bakery, dairy, processing) (default="general")
-    - `region_specific` (Boolean): Region Specific (help="Is this term specific to certain regions?")
-    - `region_code` (Char): Region Code (help="Specific region code if region-specific")
-    - `is_active` (Boolean): Is Active (default=True)
-    - `description` (Text): Description (translate=True)
-    - `example_usage` (Text): Example Usage (translate=True)
-  - Methods:
-    - `_check_unique_mapping(self)`: Ensures term mapping uniqueness constraint
-    - `apply_term_mapping_to_text(self, text)`: Applies term mapping to text
-    - `apply_term_mapping(self, text)`: Compatibility method for term mapping
-  - Relationships: Inherits mail.thread, mail.activity.mixin
+### `cooperative.member` (Defined in `farm_multi_farm_base`)
+  - **Class**: `CooperativeMemberExtension`
+  - **描述**: 
+  - _inherit_: `cooperative.member`
+  - **核心字段**:
+    - `service_order_ids` (One2many): service.order
 
-- **farm_ux.MultiSensoryInteraction**: Multi-sensory interaction for UX
-  - Odoo Model: `class MultiSensoryInteraction(models.Model)`
-  - _name: `multi.sensory.interaction`
-  - _description: "Multi-Sensory Interaction Configuration"
-  - Fields:
-    - `name` (Char): Feature Name (required, translate=True)
-    - `interaction_type` (Selection): Interaction Type (voice_input, gesture_control, audio_feedback, haptic_feedback, visual_enhancement, large_touch_target) (required)
-    - `model_name` (Char): Model Name (help="Model this feature applies to")
-    - `field_name` (Char): Field Name (help="Field this feature applies to")
-    - `is_enabled` (Boolean): Is Enabled (default=True)
-    - `voice_commands` (Text): Voice Commands (help="JSON configuration of voice commands")
-    - `gesture_mappings` (Text): Gesture Mappings (help="JSON configuration of gesture mappings")
-    - `audio_notification` (Boolean): Audio Notification (help="Enable audio feedback")
-    - `haptic_feedback` (Boolean): Haptic Feedback (help="Enable vibration feedback")
-    - `visual_enhancement` (Boolean): Visual Enhancement (help="Enable visual enhancements")
-    - `large_font_support` (Boolean): Large Font Support (help="Support large font mode")
-    - `high_contrast_mode` (Boolean): High Contrast Mode (help="Support high contrast mode")
-    - `screen_reader_compatible` (Boolean): Screen Reader Compatible (help="Compatible with screen readers")
-    - `keyboard_shortcuts` (Text): Keyboard Shortcuts (help="JSON configuration of keyboard shortcuts")
-    - `description` (Text): Description (translate=True)
-  - Relationships: Inherits mail.thread, mail.activity.mixin
+### `cooperative.member` (Defined in `farm_multi_farm_base`)
+  - **Class**: `CooperativeMemberExtension`
+  - **描述**: 
+  - _inherit_: `cooperative.member`
+  - **核心字段**:
+    - `share_transaction_ids` (One2many): share.transaction
+    - `dividend_line_ids` (One2many): dividend.line
+    - `credit_transaction_ids` (One2many): credit.transaction
+    - `machinery_rental_ids` (One2many): machinery.rental
+    - `internal_marketplace_transaction_supplier_ids` (One2many): internal.marketplace.transaction
+    - `internal_marketplace_transaction_requester_ids` (One2many): internal.marketplace.transaction
+    - `service_order_ids` (One2many): service.order
+    - `borrower_loan_ids` (One2many): internal.loan
+    - `lender_loan_ids` (One2many): internal.loan
+    - `subsidy_line_ids` (One2many): subsidy.disbursement.line
+    - `sign_process_ids` (One2many): multi.sign.line
+    - `joint_procurement_po_member_ids` (One2many): joint.procurement.po.member
+    - `hub_spoke_distribution_line_ids` (One2many): hub.spoke.distribution.line
+    - `netting_settlement_ids` (One2many): netting.settlement
 
-- **farm_ux.IrUiView**: Customized views for UX
-  - Odoo Model: `class IrUiView(models.Model)`
-  - _name: `ir.ui.view`
-  - _inherit: `ir.ui.view`
-  - Methods:
-    - `get_view(self, view_id=None, view_type='form', **options)`: Unified view customization handling (term mapping + layout templates)
-  - Relationships: Inherits ir.ui.view
+### `cooperative.member` (Defined in `farm_multi_farm_equipment`)
+  - **Class**: `CooperativeMemberExtensionEquipment`
+  - **描述**: 
+  - _inherit_: `cooperative.member`
+  - **核心字段**:
+    - `machinery_rental_ids` (One2many): machinery.rental
 
-- **farm_ux.IrHttp**: HTTP handling for UX
-  - Odoo Model: `class IrHttp(models.AbstractModel)`
-  - _name: `ir.http`
-  - _inherit: `ir.http`
-  - Methods:
-    - `session_info(self)`: Injects accessibility features and UX customization into session_info
-  - Relationships: Inherits ir.http
+### `cooperative.member` (Defined in `farm_multi_farm_procurement`)
+  - **Class**: `CooperativeMemberExtensionProcurement`
+  - **描述**: 
+  - _inherit_: `cooperative.member`
+  - **核心字段**:
+    - `joint_procurement_po_member_ids` (One2many): joint.procurement.po.member
+    - `hub_spoke_distribution_line_ids` (One2many): hub.spoke.distribution.line
+    - `netting_settlement_ids` (One2many): netting.settlement
 
-- **farm_ux.AccessibilityIntegration**: Accessibility integration for UX
-  - Odoo Model: `class AccessibilityIntegration(models.AbstractModel)`
-  - _name: `accessibility.integration`
-  - _description: "Accessibility Integration RPC"
-  - Methods:
-    - `get_accessibility_features(self, user_id=None)`: Gets user accessibility features
-    - `get_contextual_help_data(self, model_name, view_type='form', field_name=None)`: Gets contextual help data
-  - Relationships: Abstract model for frontend RPC interfaces
+### `export.certificate` (Defined in `farm_sale_ch`)
+  - **Class**: `ExportCertificate`
+  - **描述**: Export Compliance Certificate
 
-- **farm_ux.MailThread**: Mail thread handling for UX
-  - Odoo Model: `class MailThread(models.AbstractModel)`
-  - _name: `mail.thread`
-  - _inherit: `mail.thread`
-  - Methods:
-    - `message_post(self, **kwargs)`: Overridden message_post to support social networking
-  - Relationships: Inherits mail.thread
-
-- **farm_ux.FarmSocialNetworkIntegration**: Social network integration for farming
-  - Odoo Model: `class FarmSocialNetworkIntegration(models.AbstractModel)`
-  - _name: `farm.social.network.integration`
-  - _description: "Farm Social Network Integration"
-  - Methods:
-    - `post_message_to_network(self, record, message)`: Implements specific posting logic
-  - Relationships: Abstract model for social network integration
-
-### Live Streaming and E-commerce
-- **farm_live_streaming.LiveStreamingSession**: Management of live streaming sessions
-  - Odoo Model: `class LiveStreamingSession(models.Model)`
-  - _name: `live.streaming.session`
-  - _description: "Live Streaming Session"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Session Title (required)
-    - `account_id` (Many2one): Douyin Account (douyin.account, required)
-    - `start_time` (Datetime): Scheduled Start
-    - `end_time` (Datetime): Actual End
-    - `state` (Selection): State (planned, live, ended, archived) (default="planned", tracking=True)
-    - `product_ids` (Many2many): Featured Products (product.product)
-    - `view_count` (Integer): View Count (readonly=True)
-    - `like_count` (Integer): Likes (readonly=True)
-    - `comment_count` (Integer): Comments (readonly=True)
-    - `total_sales` (Float): Sales Generated (readonly=True)
-    - `archive_url` (Char): Replay Link
-    - `video_binary` (Binary): Clip Archive
-    - `dy_room_id` (Char): Douyin Room ID (help="Actual ID of the live room on Douyin")
-  - Methods:
-    - `action_start_live()`: Starts live session
-    - `action_end_live()`: Ends live session and fetches final stats/replay
-    - `action_refresh_stats()`: Refreshes live streaming statistics
-    - `action_fetch_replay_link()`: Fetches and stores replay link
-  - Relationships: Inherits mail.thread, mail.activity.mixin
-
-- **farm_live_streaming.LiveOrder**: Management of live streaming orders
-  - Odoo Model: `class LiveOrder(models.Model)`
-  - _name: `live.order`
-  - _description: "Live Stream Sales Order"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Order Reference (required)
-    - `dy_order_id` (Char): Douyin Order ID (required, index=True)
-    - `account_id` (Many2one): Account (douyin.account, required)
-    - `session_id` (Many2one): Live Session (live.streaming.session)
-    - `raw_data` (Text): Raw Data JSON
-    - `odoo_so_id` (Many2one): Odoo Sales Order (sale.order, readonly=True)
-    - `buyer_nick` (Char): Buyer Name
-    - `amount_total` (Float): Order Amount
-    - `state` (Selection): State (draft, imported, failed, shipped) (default="draft", tracking=True)
-  - Methods:
-    - `action_view_odoo_so()`: Views associated Odoo sales order
-    - `action_download_from_douyin(self, account_id)`: Downloads orders from Douyin
-    - `action_import_to_odoo(self)`: Imports downloaded orders to Odoo
-    - `_create_sale_order(self, dy_order, product)`: Creates sales order from Douyin order
-    - `action_sync_shipping_to_douyin(self, carrier_name, tracking_ref)`: Syncs shipping status to Douyin
-  - Relationships: Inherits mail.thread, mail.activity.mixin
-
-- **farm_live_streaming.StockPicking**: Live streaming-enhanced stock picking
-  - Odoo Model: `class StockPicking(models.Model)`
-  - _name: `stock.picking`
-  - _inherit: `stock.picking`
-  - Methods:
-    - `button_validate(self)`: Enhanced to sync shipping to Douyin on validation
-  - Relationships: Inherits stock.picking
-
-- **farm_live_streaming.DouyinAccount**: Douyin account management
-  - Odoo Model: `class DouyinAccount(models.Model)`
-  - _name: `douyin.account`
-  - _description: "Douyin Enterprise Account"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Account Nickname (required)
-    - `client_key` (Char): Client Key (App ID) (required)
-    - `client_secret` (Char): Client Secret (required, password=True)
-    - `shop_id` (Char): Shop ID (抖音小店ID)
-    - `access_token` (Char): Access Token (readonly=True)
-    - `refresh_token` (Char): Refresh Token (readonly=True)
-    - `token_expiry` (Datetime): Token Expiry (readonly=True)
-    - `state` (Selection): State (draft, authorized, expired) (default="draft", tracking=True)
-    - `health_status` (Selection): Health Status (healthy, warning, error) (computed, store=True)
-    - `last_health_check` (Datetime): Last Check
-    - `responsible_user_id` (Many2one): Responsible (res.users, default=lambda self: self.env.user)
-  - Methods:
-    - `_compute_health_status(self)`: Computes health status based on token expiry
-    - `action_verify_connection(self)`: Verifies API connection
-    - `_cron_monitor_accounts(self)`: Cron job to monitor account health
-    - `_create_expiry_activity(self, note=False)`: Creates expiry activity notification
-    - `action_authorize(self)`: Generates Douyin OAuth authorization link
-    - `_exchange_code_for_token(self, code)`: Exchanges code for access token
-    - `_refresh_access_token(self)`: Refreshes access token
-    - `_process_token_response(self, response)`: Processes token response
-    - `_execute_request(self, endpoint, params=None, method='POST')`: Executes HTTP request
-    - `_do_douyin_request(self, endpoint, params=None, method='POST')`: Handles request orchestration
-    - `action_confirm_shipping(self, dy_order_id, logistics_code, tracking_no)`: Confirms shipping on Douyin
-    - `action_get_live_stats(self, room_id)`: Gets live streaming statistics
-    - `action_get_live_replay(self, room_id)`: Gets live streaming replay
-    - `action_sync_orders(self)`: Syncs orders from Douyin
-  - Relationships: Inherits mail.thread, mail.activity.mixin
-
-- **farm_live_streaming.DouyinQualification**: Douyin qualification management
-  - Odoo Model: `class DouyinQualification(models.Model)`
-  - _name: `douyin.qualification`
-  - _description: "Douyin Onboarding Qualification"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Application Title (required, default="New Douyin Application")
-    - `company_id` (Many2one): Farm Company (res.company, default=lambda self: self.env.company)
-    - `business_license` (Binary): Business License (required)
-    - `uscc` (Char): Unified Social Credit Code (required)
-    - `legal_person_name` (Char): Legal Representative (required)
-    - `id_card_front` (Binary): ID Card Front
-    - `id_card_back` (Binary): ID Card Back
-    - `food_license` (Binary): Food Business License
-    - `cert_expiry_date` (Date): License Expiry Date
-    - `state` (Selection): State (draft, validating, passed, rejected) (default="draft", tracking=True)
-  - Methods:
-    - `_check_uscc_format(self)`: Validates USCC format (18 characters)
-    - `action_perform_pre_audit(self)`: Performs system automation pre-audit logic
-    - `action_go_to_douyin_register(self)`: Guides to Douyin enterprise account opening website
-  - Relationships: Inherits mail.thread, mail.activity.mixin
-
-- **farm_live_streaming.DouyinProduct**: Douyin product management
-  - Odoo Model: `class DouyinProduct(models.Model)`
-  - _name: `douyin.product`
-  - _description: "Douyin Shop Product Sync"
-  - Fields:
-    - `account_id` (Many2one): Douyin Account (douyin.account, required)
-    - `product_id` (Many2one): Odoo Product (product.product, required)
-    - `douyin_item_id` (Char): Douyin Item ID (help="ID in Douyin Shop")
-    - `sync_state` (Selection): Sync State (pending, synced, error) (default="pending", tracking=True)
-    - `last_sync_time` (Datetime): Last Sync
-  - Methods:
-    - `action_sync_to_douyin(self)`: Syncs product information and traceability story to Douyin
-    - `action_sync_stock_only(self)`: Syncs only stock quantity to Douyin
-  - Relationships: Links Odoo products to Douyin shop items
-
-- **farm_live_streaming.StockQuant**: Live streaming-enhanced stock quant management
-  - Odoo Model: `class StockQuant(models.Model)`
-  - _name: `stock.quant`
-  - _inherit: `stock.quant`
-  - Methods:
-    - `create(self, vals_list)`: Creates quant and triggers Douyin stock sync
-    - `write(self, vals)`: Updates quant and triggers Douyin stock sync if changes affect stock
-    - `_trigger_douyin_stock_sync(self)`: Triggers Douyin stock sync for related products
-  - Relationships: Inherits stock.quant
-
-### Monitoring and Specialized Services
-- **farm_green_monitor.StockLocation**: Green monitoring-enhanced stock locations
-  - Odoo Model: `class StockLocation(models.Model)`
-  - _name: `stock.location` (inherited)
-  - _inherit: `stock.location`
-  - Fields:
-    - `fertilizer_reduction_target` (Float): Fertilizer Reduction Target (%) (default=0.0)
-    - `pesticide_reduction_target` (Float): Pesticide Reduction Target (%) (default=0.0)
-  - Relationships: Inherits stock.location
-
-- **farm_green_monitor.ProjectTask**: Green monitoring-enhanced project tasks
-  - Odoo Model: `class ProjectTask(models.Model)`
-  - _name: `project.task` (inherited)
-  - _inherit: `project.task`
-  - Fields:
-    - `total_fertilizer_used` (Float): Total Fertilizer Used (kg) (computed, store=True)
-    - `total_pesticide_used` (Float): Total Pesticide Used (kg) (computed, store=True)
-    - `fertilizer_per_mu` (Float): Fertilizer (kg/mu) (computed, store=True)
-    - `pesticide_per_mu` (Float): Pesticide (kg/mu) (computed, store=True)
-  - Methods:
-    - `_compute_green_monitor_stats(self)`: Computes green monitoring statistics
-  - Relationships: Inherits project.task
-
-- **farm_green_monitor.FarmGreenMonitorReport** (Abstract): Reports for green monitoring
-  - Odoo Model: `class FarmGreenMonitorReport(models.AbstractModel)`
-  - _name: `report.farm_green_monitor.reduction_trend_report`
-  - _description: "Fertilizer/Pesticide Reduction Trend Report"
-  - Methods:
-    - `_get_report_values(self, docids, data=None)`: Gets report values
-    - `_get_reduction_data(self, campaign)`: Gets reduction data for report
-  - Relationships: Abstract report model
-
-- **farm_data_security.ResConfigSettings**: Data security configuration settings
-  - Odoo Model: `class ResConfigSettings(models.TransientModel)`
-  - _name: `res.config.settings`
-  - _inherit: `res.config.settings`
-  - Fields:
-    - `data_storage_region` (Selection): Data Storage Region (china_mainland, overseas) (config_parameter="farm_data_security.data_storage_region")
-    - `is_dengbao_level3_compliant` (Boolean): Dengbao Level 3 Compliant (config_parameter="farm_data_security.is_dengbao_level3_compliant")
-  - Methods:
-    - `action_check_data_localization(self)`: Checks data localization compliance
-  - Relationships: Inherits res.config.settings
-
-- **farm_data_security.FarmLocation**: Data security-enhanced farm location management
-  - Odoo Model: `class FarmLocation(models.Model)`
-  - _name: `stock.location` (inherited)
-  - _inherit: `stock.location`
-  - Methods:
-    - `unlink(self)`: Audit logging for location deletion
-  - Relationships: Inherits stock.location
-
-- **farm_data_security.ResPartner**: Data security-enhanced partner records
-  - Odoo Model: `class ResPartner(models.Model)`
-  - _name: `res.partner` (inherited)
-  - _inherit: `res.partner`
-  - Methods:
-    - `write(self, vals)`: Audit logging for partner modifications
-  - Relationships: Inherits res.partner
-
-- **farm_exchange.FarmDataExchanger**: Data exchange management
-  - Odoo Model: `class FarmDataExchanger(models.Model)`
-  - _name: `farm.data.exchanger`
-  - _description: "Agricultural Data Exchanger"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Exchange Reference (required)
-    - `format_type` (Selection): Data Format (daplos, telepac, edi) (default="daplos", required)
-    - `exchange_type` (Selection): Exchange Type (export, import) (default="export", required)
-    - `date` (Datetime): Exchange Date (default=fields.Datetime.now)
-    - `data_file` (Binary): Data File
-    - `file_name` (Char): File Name
-    - `state` (Selection): State (draft, done, error) (default="draft", tracking=True)
-  - Methods:
-    - `action_perform_exchange(self)`: Performs standardized data exchange
-    - `_export_daplos_xml(self)`: Exports DAPLOS (ISO 11783-10) XML format
-    - `_export_telepac_csv(self)`: Exports TELEPAC CSV format
-  - Relationships: Inherits mail.thread, mail.activity.mixin
-
-### Sales and Certification Compliance
-- **farm_pos.PosOrder**: Point of sale order management
-  - Odoo Model: `class PosOrder(models.Model)`
-  - _name: `pos.order` (inherited)
-  - _inherit: `pos.order`
-  - Fields:
-    - `picking_location_id` (Many2one): Picking Source Plot (stock.location, domain=[('is_land_parcel', '=', True)], help="The specific land parcel where these products were picked.")
-  - Methods:
-    - `_prepare_invoice_vals(self)`: Prepares invoice values with location information
-  - Relationships: Inherits pos.order
-
-- **farm_pos.PosOrderLine**: Line items for POS orders
-  - Odoo Model: `class PosOrderLine(models.Model)`
-  - _name: `pos.order.line` (inherited)
-  - _inherit: `pos.order.line`
-  - Fields:
-    - `lot_id` (Many2one): Production Lot (stock.lot)
-  - Relationships: Inherits pos.order.line
-
-- **farm_sale_ch.ExportCountryStandard**: Export country standards management
-  - Odoo Model: `class ExportCountryStandard(models.Model)`
-  - _name: `export.country.standard`
-  - _description: "Export Country Standard"
-  - Fields:
-    - `name` (Char): Country Name (required)
-    - `code` (Char): Country Code (required, help="ISO国家代码")
-    - `prohibited_products` (Many2many): Prohibited Products/Pesticides (product.template, help="该国家禁止使用的农药或其他产品清单")
-    - `compliance_requirements` (Text): Compliance Requirements (help="其他合规要求")
-    - `active` (Boolean): Active (default=True)
-    - `import_date` (Datetime): Import Date (help="Date when this standard was imported")
-    - `imported_by` (Many2one): Imported By (res.users, help="User who imported this standard")
-    - `custom_rules` (Text): Custom Rules (help="Custom compliance rules for this country")
-    - `last_updated` (Datetime): Last Updated (help="Last time this standard was updated")
-    - `update_frequency` (Selection): Update Frequency (daily, weekly, monthly, quarterly, annually) (default="annually", help="How often this standard should be reviewed")
-    - `contact_person` (Char): Contact Person (help="Contact person for this country's regulations")
-    - `official_source` (Char): Official Source (help="Official source for this country's regulations")
-    - `next_review_date` (Date): Next Review Date (help="When to next review this standard")
-  - Methods:
-    - `batch_import_standards(self, standards_data)`: Batch imports standards
-    - `update_standard(self)`: Updates standard
-    - `schedule_next_review(self)`: Schedules next review
-  - Relationships: Base export country standard model that can be inherited
-
-- **farm_sale_ch.StockLot**: Sale CH-enhanced stock lot management
-  - Odoo Model: `class StockLot(models.Model)`
-  - _name: `stock.lot` (inherited)
-  - _inherit: `stock.lot`
-  - Fields:
-    - `input_history_ids` (Many2many): Input History (product.template, computed, help="该批次产品生产过程中使用的所有投入品")
-  - Methods:
-    - `_compute_input_history(self)`: Computes input history for the lot
-    - `check_export_compliance(self, country_code)`: Checks export compliance against country standards
-    - `_get_input_history(self)`: Gets input history for the lot
-    - `_get_related_inputs_for_product(self, product)`: Gets related inputs for a product
-  - Relationships: Inherits stock.lot
-
-- **farm_sale_ch.SaleOrder**: Sale CH-enhanced sale orders
-  - Odoo Model: `class SaleOrder(models.Model)`
-  - _name: `sale.order` (inherited)
-  - _inherit: `sale.order`
-  - Fields:
-    - `export_country_code` (Char): Export Country Code (help="如果此订单是出口订单，请输入目标国家代码")
-    - `export_compliance_status` (Selection): Export Compliance Status (unknown, compliant, non_compliant) (default="unknown", readonly=True)
-  - Methods:
-    - `generate_compliance_report(self, country_code)`: Generates compliance report for export
-    - `_get_compliance_recommendations(self, standard, violations)`: Gets compliance recommendations
-    - `auto_check_compliance_before_sale(self)`: Auto-checks compliance before sale
-    - `generate_certificate_of_compliance(self)`: Generates compliance certificate
-    - `_generate_certificate_number(self)`: Generates certificate number
-    - `action_confirm(self)`: Confirms sale with export compliance checks
-    - `_onchange_product_export_compliance(self)`: Onchange for product export compliance
-  - Relationships: Inherits sale.order
-
-- **farm_sale_ch.SaleOrderLine**: Line items for sale CH orders
-  - Odoo Model: `class SaleOrderLine(models.Model)`
-  - _name: `sale.order.line` (inherited)
-  - _inherit: `sale.order.line`
-  - Methods:
-    - `_onchange_product_export_compliance(self)`: Onchange for export compliance checking
-  - Relationships: Inherits sale.order.line
-
-- **farm_sale_ch.ExportComplianceLog**: Export compliance logging
-  - Odoo Model: `class ExportComplianceLog(models.Model)`
-  - _name: `export.compliance.log`
-  - _description: "Export Compliance Check Log"
-  - _order: `checked_on desc`
-  - Fields:
-    - `order_id` (Many2one): Sale Order (sale.order, required)
-    - `country_code` (Char): Country Code (required)
-    - `violations` (Char): Violations (help="Compliance violations found")
-    - `checked_on` (Datetime): Checked On (required, default=fields.Datetime.now)
-    - `result` (Selection): Result (passed, failed) (required)
-    - `notes` (Text): Notes (help="Additional notes about the compliance check")
-    - `checked_by` (Many2one): Checked By (res.users, default=lambda self: self.env.user)
-  - Relationships: Links sale orders to compliance check logs
-
-- **farm_sale_ch.ExportCertificate**: Export certificate management
-  - Odoo Model: `class ExportCertificate(models.Model)`
-  - _name: `export.certificate`
-  - _description: "Export Compliance Certificate"
-  - _rec_name: `certificate_number`
-  - Fields:
-    - `order_id` (Many2one): Sale Order (sale.order, required)
-    - `product_name` (Char): Product Name (required)
-    - `destination_country` (Char): Destination Country (required)
-    - `certificate_number` (Char): Certificate Number (required, copy=False)
-    - `issue_date` (Date): Issue Date (required, default=fields.Date.today)
-    - `valid_until` (Date): Valid Until (required)
-    - `inspector` (Char): Inspector (required)
-    - `compliance_details` (Text): Compliance Details (help="Detailed compliance information")
-    - `is_active` (Boolean): Is Active (default=True)
-    - `attachment` (Binary): Certificate Attachment (help="Certificate file")
+  - **核心字段**:
+    - `order_id` (Many2one): sale.order
+    - `product_name` (Char): Product Name
+    - `destination_country` (Char): Destination Country
+    - `certificate_number` (Char): Certificate Number
+    - `issue_date` (Date): Issue Date
+    - `valid_until` (Date): Valid Until
+    - `inspector` (Char): Inspector
+    - `compliance_details` (Text): Compliance Details
+    - `is_active` (Boolean): Is Active
+    - `attachment` (Binary): Certificate Attachment
     - `attachment_name` (Char): Attachment Name
-  - Methods:
-    - `_check_valid_until(self)`: Checks valid until date constraint
-    - `action_generate_certificate_document(self)`: Generates certificate document
-    - `_create_certificate_document(self, certificate)`: Creates certificate document content
-    - `check_certificate_validity(self, certificate_number)`: Checks certificate validity
-  - Relationships: Links sale orders to export certificates
 
-- **farm_cert_ch.FarmProductCertificate**: Product certification for CH
-  - Odoo Model: `class FarmProductCertificate(models.Model)`
-  - _name: `farm.product.certificate`
-  - _description: "Edible Agri-Product Certificate"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - _rec_name: `certificate_no`
-  - Fields:
-    - `certificate_no` (Char): Certificate No. (default=lambda self: _('New'))
-    - `picking_id` (Many2one): Source Dispatch (stock.picking, required)
-    - `lot_id` (Many2one): Product Lot (stock.lot, required)
-    - `product_id` (Many2one): Product (product.product, related='lot_id.product_id', store=True)
-    - `producer_name` (Char): Producer Name (default=lambda self: self.env.company.name)
-    - `origin_location_id` (Many2one): Origin/Farm (stock.location, domain=[('is_land_parcel', '=', True)])
-    - `production_date` (Date): Production Date (related='lot_id.create_date', store=True)
-    - `commitment_statement` (Html): Commitment Statement (default HTML content)
-    - `quality_check_ids` (Many2many): Related Quality Checks (farm.quality.check)
-    - `certificate_qr_code` (Char): Certificate QR Code (computed, store=True)
-  - Methods:
-    - `_compute_qr_code(self)`: Computes certificate QR code
-    - `create(self, vals_list)`: Creates certificate with sequence number
-  - Relationships: Inherits mail.thread, mail.activity.mixin
+### `export.country.standard` (Defined in `farm_sale_ch`)
+  - **Class**: `ExportCountryStandard`
+  - **描述**: 
+  - _inherit_: `export.country.standard`
+  - **核心字段**:
+    - `import_date` (Datetime): Import Date
+    - `imported_by` (Many2one): res.users
+    - `custom_rules` (Text): Custom Rules
+    - `last_updated` (Datetime): Last Updated
+    - `update_frequency` (Selection): update_frequency
+    - `contact_person` (Char): Contact Person
+    - `official_source` (Char): Official Source
+    - `next_review_date` (Date): Next Review Date
 
-- **farm_cert_ch.StockPicking**: Certification CH-enhanced stock picking
-  - Odoo Model: `class StockPicking(models.Model)`
-  - _name: `stock.picking` (inherited)
-  - _inherit: `stock.picking`
-  - Fields:
-    - `requires_cert_ch` (Boolean): Requires Cert. (China) (computed, store=True)
-    - `certificate_ch_ids` (One2many): Certificates (China) (farm.product.certificate, 'picking_id')
-  - Methods:
-    - `_compute_requires_cert_ch(self)`: Computes if certification is required
-    - `action_generate_cert_ch(self)`: Generates edible agricultural product certificate
-  - Relationships: Inherits stock.picking
+### `faq.entry` (Defined in `farm_knowledge`)
+  - **Class**: `FAQEntry`
+  - **描述**: Frequently Asked Questions
 
-### Machinery and Subsidy Support
-- **farm_machinery_ch.FarmEquipment**: Machinery CH-enhanced equipment management
-  - Odoo Model: `class FarmEquipment(models.Model)`
-  - _name: `maintenance.equipment` (inherited)
-  - _inherit: `maintenance.equipment`
-  - Fields:
-    - `is_subsidized_machinery` (Boolean): Eligible for Subsidy (default=False)
-    - `subsidy_category` (Char): Subsidy Category (e.g. "耕整地机械-拖拉机")
-    - `subsidy_model_no` (Char): Subsidy Model No.
-    - `subsidy_grade_params` (Char): Subsidy Grading Parameters
-    - `estimated_subsidy_amount` (Monetary): Estimated Subsidy Amount (currency_field='currency_id')
-    - `currency_id` (Many2one): Currency (res.currency, default=lambda self: self.env.company.currency_id)
-    - `invoice_attachment_ids` (Many2many): Invoice Attachments (ir.attachment, 'machinery_invoice_rel', 'equipment_id', 'attachment_id')
-    - `photo_attachment_ids` (Many2many): Machinery Photos (ir.attachment, 'machinery_photo_rel', 'equipment_id', 'attachment_id')
-  - Methods:
-    - `action_match_subsidy_catalog(self)`: Matches national machinery subsidy catalog
-  - Relationships: Inherits maintenance.equipment
+  - **核心字段**:
+    - `sequence` (Integer): sequence
+    - `question` (Char): question
+    - `answer` (Html): answer
+    - `category` (Selection): category
+    - `active` (Boolean): active
+    - `tags` (Char): tags
+    - `target_model` (Char): Target Model
+    - `knowledge_id` (Many2one): agricultural.knowledge
 
-- **farm_machinery_ch.FarmMachinerySubsidyApplication**: Machinery subsidy application management
-  - Odoo Model: `class FarmMachinerySubsidyApplication(models.Model)`
-  - _name: `farm.machinery.subsidy.application`
-  - _description: "Agricultural Machinery Subsidy Application"
-  - _inherit: `mail.thread`, `mail.activity.mixin`
-  - Fields:
-    - `name` (Char): Application Ref (default=lambda self: _('New'))
-    - `equipment_id` (Many2one): Machinery (maintenance.equipment, required)
-    - `applicant_id` (Many2one): Applicant (res.partner, default=lambda self: self.env.company.partner_id)
-    - `application_date` (Date): Application Date (default=fields.Date.today)
-    - `estimated_subsidy` (Monetary): Estimated Subsidy (related='equipment_id.estimated_subsidy_amount')
-    - `currency_id` (Many2one): Currency (res.currency, related='equipment_id.currency_id')
-    - `state` (Selection): State (draft, submitted, approved, paid, rejected) (default="draft", tracking=True)
-  - Methods:
-    - `create(self, vals_list)`: Creates application with sequence number
-  - Relationships: Inherits mail.thread, mail.activity.mixin
+### `farm.allergen` (Defined in `farm_processing`)
+  - **Class**: `FarmAllergen`
+  - **描述**: Food Allergen (Deprecated - Use agri.allergen)
+  - _inherit_: `agri.allergen`
 
-- **farm_subsidy_ch.FarmSubsidyApplication**: Subsidy CH-enhanced subsidy application management
-  - Odoo Model: `class FarmSubsidyApplication(models.Model)`
-  - _name: `farm.subsidy.application` (inherited)
-  - _inherit: `farm.subsidy.application`
-  - Fields:
-    - `crop_type_china` (Selection): Crop Type (China) (early_rice, wheat, corn, soybean, other) (required)
-    - `declared_area_mu` (Float): Declared Area (mu) (computed, store=True)
-  - Methods:
-    - `_compute_declared_area_mu(self)`: Computes declared area in mu (1 mu = 666.67 sqm)
-    - `action_generate_moara_report(self)`: Generates MOARA subsidy report
-  - Relationships: Inherits farm.subsidy.application
 
-### Industrial IoT
-- **industrial_iot.IiotDevice**: Industrial IoT device management
-  - Odoo Model: `class IiotDevice(models.Model)`
-  - _name: `iiot.device`
-  - _description: "Industrial IoT Device"
-  - _order: "serial_number"
-  - Fields:
-    - `name` (Char): Name (computed field based on serial_number and device_id, store=True)
-    - `serial_number` (Char): Serial Number (required, unique, copy=False, help: "Physical serial number (unique)")
-    - `device_id` (Char): Device ID (required, unique, copy=False, help: "Logical ID for Topics")
-    - `profile_id` (Many2one): Communication Profile (iiot.device.profile, required, help: "Associated communication profile")
-    - `business_ref` (Reference): Business Reference (dynamic selection of business entities, help: "Associated business entity (equipment/workcenter/location)")
-    - `config_token` (Char): Config Token (copy=False, help: "One-time configuration download token")
-    - `firmware_version` (Char): Firmware Version (help: "Current firmware version")
-    - `is_camera` (Boolean): Is Camera (video stream integration [US-16-01], default: False)
-    - `live_stream_url` (Char): Live Stream URL (help: "HLS/HTTP/RTSP stream URL for the camera")
-    - `is_active` (Boolean): Active (default: True)
-    - `last_telemetry` (Datetime): Last Telemetry
-    - `last_command` (Datetime): Last Command
-    - `connection_status` (Selection): Connection Status (selection: offline/online/error, default: 'offline')
-    - `created_date` (Datetime): Created Date (default: fields.Datetime.now)
-    - `last_update` (Datetime): Last Update (default: fields.Datetime.now)
-  - SQL Constraints:
-    - serial_number_uniq: Serial number must be unique
-    - device_id_uniq: Device ID must be unique
-  - Methods:
-    - `_get_business_models()`: Returns list of models that can be referenced in business_ref field
-    - `_compute_name()`: Computes device name as "{serial_number} ({device_id})"
-    - `_check_device_id_format()`: Validates device_id format (letters, numbers, underscores, hyphens)
-    - `action_generate_config_token()`: Generates pairing token
-    - `get_topic_map()`: Generates complete topic list with SaaS isolation (company_id prefix)
-    - `send_command(action, **params)`: Sends command with SaaS isolation via HTTP-to-MQTT bridge
-    - `process_telemetry_data(telemetry_data)`: Processes incoming telemetry data based on rules
-    - `create(vals)`: Handles device creation with default device_id and config_token generation
-    - `write(vals)`: Updates last_update timestamp
+### `farm.biosafety.access.log` (Defined in `farm_safety`)
+  - **Class**: `FarmBiosafetyAccessLog`
+  - **描述**: Bio-safety Access Log
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `location_id` (Many2one): farm.location
+    - `person_id` (Many2one): res.partner
+    - `employee_id` (Many2one): hr.employee
+    - `access_time` (Datetime): Access Time
+    - `access_type` (Selection): access_type
+    - `sanitization_confirmed` (Boolean): Sanitization Performed
+    - `quarantine_period_passed` (Boolean): Quarantine Period Passed
+    - `vehicle_plate` (Char): Vehicle Plate
+    - `purpose` (Text): Purpose of Entry
 
-- **industrial_iot.IiotTelemetryRule**: Telemetry rules for industrial IoT
-  - Odoo Model: `class IiotTelemetryRule(models.Model)`
-  - _name: `iiot.telemetry.rule`
-  - _description: "Industrial IoT Telemetry Rule"
-  - _order: "profile_id, sequence"
-  - Fields:
-    - `name` (Char): Name (required)
-    - `sequence` (Integer): Sequence (default: 10)
-    - `active` (Boolean): Active (default: True)
-    - `profile_id` (Many2one): Profile (iiot.device.profile, required, help: "Associated device profile")
-    - `json_path` (Char): JSON Path (required, help: "Path to extract value from telemetry payload, e.g. $.temperature", default: "$.value")
-    - `target_model` (Char): Target Model (required, help: "Target model, e.g. maintenance.equipment")
-    - `target_domain` (Char): Target Domain (required, help: "Domain to find target records, e.g. [('iot_device_id', '=', '{{ device_id }}')]", default: "[('id', '!=', 0)]")
-    - `target_field` (Char): Target Field (required, help: "Target field to write to, e.g. x_temperature")
-  - Methods:
-    - `_check_json_path()`: Validates JSON Path format
-    - `_check_target_domain()`: Validates target domain format
-    - `evaluate_domain(device_id)`: Evaluates the target domain with device_id context
+### `farm.bom.grade.distribution` (Defined in `farm_processing`)
+  - **Class**: `FarmBomGradeDistribution`
+  - **描述**: Expected Grade Distribution in BOM
 
-- **industrial_iot.IiotFirmware**: Firmware management for industrial IoT devices
-  - Odoo Model: `class IiotFirmware(models.Model)`
-  - _name: `iiot.firmware`
-  - _description: "Industrial IoT Firmware"
-  - _order: "version DESC"
-  - Fields:
-    - `name` (Char): Name (computed field based on version and profile_code, store=True)
-    - `version` (Char): Version (required, help: "Firmware version number")
-    - `profile_code` (Char): Device Type (required, help: "Applicable device type code")
-    - `url` (Char): Download URL (required, help: "Firmware download URL")
-    - `checksum` (Char): Checksum (help: "Firmware file checksum")
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `quality_grade` (Selection): quality_grade
+    - `expected_percentage` (Float): Expected %
+
+### `farm.bom.package.line` (Defined in `farm_processing`)
+  - **Class**: `FarmBomPackageLine`
+  - **描述**: BOM Finished Product Packaging Line
+
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `product_id` (Many2one): product.product
+    - `package_level_id` (Many2one): farm.package.level
+    - `quantity` (Float): quantity
+    - `child_package_level_id` (Many2one): farm.package.level
+
+### `farm.breeding.order` (Defined in `farm_breeding`)
+  - **Class**: `FarmBreedingOrder`
+  - **描述**: Nursery Growing Order
+  - _inherit_: `agri.intervention.mixin, agri.quality.gate.mixin`
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+    - `target_germination_rate` (Float): Target Germination (%)
+    - `actual_germination_rate` (Float): Actual Germination (%)
+
+### `farm.certification.dashboard` (Defined in `farm_certification`)
+  - **Class**: `FarmCertificationDashboard`
+  - **描述**: Certification Compliance Dashboard
+
+  - **核心字段**:
+    - `total_cert_count` (Integer): total_cert_count
+    - `valid_cert_count` (Integer): valid_cert_count
+    - `expired_cert_count` (Integer): expired_cert_count
+    - `gap_cert_count` (Integer): gap_cert_count
+    - `organic_cert_count` (Integer): organic_cert_count
+    - `gap_compliant_count` (Integer): gap_compliant_count
+    - `gap_audit_score_avg` (Float): gap_audit_score_avg
+    - `expiring_cert_count` (Integer): expiring_cert_count
+    - `expiring_certs` (Many2many): farm.gap.certification
+
+### `farm.checkin` (Defined in `farm_mobile`)
+  - **Class**: `FarmCheckIn`
+  - **描述**: Agri Site Check-in
+  - _inherit_: `mail.thread`
+  - **核心字段**:
+    - `name` (Char): Check-in ID
+    - `worker_id` (Many2one): hr.employee
+    - `intervention_id` (Many2one): mrp.production
+    - `check_in_time` (Datetime): Check-in Time
+    - `check_out_time` (Datetime): Check-out Time
+    - `gps_lat` (Float): Check-in Latitude
+    - `gps_lng` (Float): Check-in Longitude
+    - `checkin_photo` (Binary): Site Photo
+    - `is_on_site` (Boolean): On-site Verified
+    - `site_distance` (Float): Distance to Site (m)
+
+### `farm.chemical.bom` (Defined in `farm_processing`)
+  - **Class**: `FarmChemicalBom`
+  - **描述**: Chemical Processing BOM (ISL Layer)
+
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `hazard_class` (Selection): hazard_class
+    - `reaction_temperature_limit` (Float): Max Reaction Temp (℃)
+
+### `farm.chemical.production` (Defined in `farm_processing`)
+  - **Class**: `FarmChemicalProduction`
+  - **描述**: Chemical Production Order (ISL Layer)
+
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+    - `leak_test_passed` (Boolean): Leak Test Passed
+    - `solvent_recovery_qty` (Float): Solvent Recovered (L)
+
+### `farm.consumer.feedback` (Defined in `farm_marketing`)
+  - **Class**: `FarmConsumerFeedback`
+  - **描述**: Consumer C2M Feedback
+
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `product_id` (Many2one): product.template
+    - `location_id` (Many2one): farm.location
+    - `rating` (Selection): rating
+    - `taste_score` (Integer): Taste/Sweetness Score (1-10)
+    - `freshness_score` (Integer): Freshness Score (1-10)
+    - `comment` (Text): Consumer Comments
+    - `consumer_region` (Char): Consumer Region (City/Country)
+    - `analysis_tag_ids` (Many2many): res.config.settings
+
+### `farm.cooperative.member` (Defined in `farm_entity_reg`)
+  - **Class**: `FarmCooperativeMember`
+  - **描述**: Cooperative Member
+
+  - **核心字段**:
+    - `company_id` (Many2one): res.company
+    - `partner_id` (Many2one): res.partner
+    - `membership_date` (Date): Membership Date
+    - `share_capital` (Float): Share Capital
+    - `is_chairman` (Boolean): Is Chairman
+
+### `farm.ecological.activity` (Defined in `farm_ecology`)
+  - **Class**: `FarmEcologicalActivity`
+  - **描述**: Ecological Maintenance Activity (Deprecated - Use agri.ecological.activity)
+  - _inherit_: `agri.ecological.activity`
+
+
+### `farm.entity` (Defined in `farm_multi_farm_base`)
+  - **Class**: `FarmEntityExtension`
+  - **描述**: 
+  - _inherit_: `farm.entity`
+  - **核心字段**:
+    - `cooperative_member_ids` (One2many): cooperative.member
+
+### `farm.entity` (Defined in `farm_multi_farm_base`)
+  - **Class**: `FarmEntityExtension`
+  - **描述**: 
+  - _inherit_: `farm.entity`
+  - **核心字段**:
+    - `cooperative_member_ids` (One2many): cooperative.member
+
+### `farm.equipment.checklist.line` (Defined in `farm_equipment`)
+  - **Class**: `FarmEquipmentChecklistLine`
+  - **描述**: Checklist Item
+
+  - **核心字段**:
+    - `checklist_id` (Many2one): farm.equipment.checklist
+    - `name` (Char): Requirement
+    - `is_mandatory` (Boolean): Mandatory
+    - `requires_photo` (Boolean): Require Photo Evidence
+
+### `farm.equipment.checklist` (Defined in `farm_equipment`)
+  - **Class**: `FarmEquipmentChecklist`
+  - **描述**: Equipment Pre-op Checklist
+
+  - **核心字段**:
+    - `name` (Char): Checklist Name
+    - `equipment_type` (Selection): equipment_type
+    - `line_ids` (One2many): farm.equipment.checklist.line
+    - `active` (Boolean): active
+
+### `farm.evidence` (Defined in `farm_mobile`)
+  - **Class**: `FarmEvidence`
+  - **描述**: Field Evidence (Deprecated - Use agri.evidence)
+  - _inherit_: `agri.evidence`
+
+
+### `farm.fermentation.order` (Defined in `farm_fermentation`)
+  - **Class**: `FarmFermentationOrder`
+  - **描述**: Fermentation Job
+  - _inherit_: `agri.intervention.mixin, agri.agent.instruction.mixin, agri.incident.alert.mixin`
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+    - `internal_temperature` (Float): Pit Temperature (℃)
+    - `acidity_level` (Float): Current Acidity (pH)
+
+### `farm.fermentation.vessel` (Defined in `farm_fermentation`)
+  - **Class**: `FarmFermentationVessel`
+  - **描述**: Fermentation Pit/Vessel
+  - _inherit_: `agri.geospatial.mixin`
+  - **核心字段**:
+    - `workcenter_id` (Many2one): mrp.workcenter
+    - `vessel_type` (Selection): vessel_type
+    - `start_service_year` (Integer): Enable Year
+    - `microbial_health_index` (Float): Microbial Health (0-100)
+
+### `farm.flower.bom` (Defined in `farm_floriculture`)
+  - **Class**: `FarmFlowerBom`
+  - **描述**: Floral Recipe (ISL Layer)
+  - _inherit_: `agri.bom.mixin`
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `recipe_type` (Selection): recipe_type
+    - `target_light_hours` (Float): Target Light Hours
+    - `target_temp_day` (Float): Target Day Temp
+    - `target_temp_night` (Float): Target Night Temp
+    - `target_temp_diff` (Float): Target DIF
+    - `target_hydration_hours` (Float): Required Hydration (Hours)
+    - `preservative_formula_notes` (Text): Preservative Formula Notes
+    - `target_storage_temp` (Float): Target Storage Temp (℃)
+
+### `farm.flower.order` (Defined in `farm_floriculture`)
+  - **Class**: `FarmFlowerOrder`
+  - **描述**: Floral Growing/Treatment Order (ISL Layer)
+  - _inherit_: `agri.intervention.mixin, agri.growth.cycle.mixin, agri.quality.gate.mixin, agri.weather.sensitive.mixin, agri.agent.instruction.mixin`
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+    - `source_nursery_batch_id` (Many2one): farm.nursery.batch
+    - `actual_hydration_hours` (Float): Actual Hydration Duration
+
+### `farm.greenhouse.control.action` (Defined in `farm_greenhouse`)
+  - **Class**: `FarmGreenhouseControlAction`
+  - **描述**: Greenhouse Control Action
+
+  - **核心字段**:
+    - `rule_id` (Many2one): farm.greenhouse.control.rule
+    - `device_id` (Many2one): iiot.device
+    - `command` (Char): MQTT Command
+    - `value` (Char): Value/Setting
+
+### `farm.greenhouse.control.rule` (Defined in `farm_greenhouse`)
+  - **Class**: `FarmGreenhouseControlRule`
+  - **描述**: Greenhouse Automation Rule
+
+  - **核心字段**:
+    - `name` (Char): Rule Name
+    - `greenhouse_id` (Many2one): farm.location
+    - `parameter` (Selection): parameter
+    - `threshold_low` (Float): Low Threshold
+    - `threshold_high` (Float): High Threshold
+    - `action_ids` (One2many): farm.greenhouse.control.action
+    - `active` (Boolean): active
+    - `is_ai_controlled` (Boolean): AI/Twin Controlled
+    - `ai_adjustment_log` (Text): AI Adjustment History
+
+### `farm.greenhouse.energy.log` (Defined in `farm_greenhouse`)
+  - **Class**: `FarmGreenhouseEnergyLog`
+  - **描述**: Greenhouse Energy Consumption
+
+  - **核心字段**:
+    - `greenhouse_id` (Many2one): farm.location
+    - `date` (Date): Date
+    - `kwh_consumed` (Float): Electricity (kWh)
+    - `water_consumed` (Float): Water (L)
+    - `carbon_footprint` (Float): Estimated Carbon (kg CO2e)
+
+### `farm.health.schedule` (Defined in `farm_processing`)
+  - **Class**: `FarmHealthSchedule`
+  - **描述**: Livestock Vaccination & Health Schedule (Deprecated - Use agri.health.schedule)
+  - _inherit_: `agri.health.schedule`
+
+
+### `farm.industry.workcenter` (Defined in `farm_processing`)
+  - **Class**: `FarmIndustryWorkcenter`
+  - **描述**: Specialized Production Facility (ISL Layer)
+
+  - **核心字段**:
+    - `workcenter_id` (Many2one): mrp.workcenter
+    - `facility_type` (Selection): facility_type
+    - `surface_area` (Float): Surface Area (sqm)
+    - `volume_capacity` (Float): Volume Capacity (m3)
+    - `has_climate_control` (Boolean): Climate Controlled
+    - `main_sensor_topic` (Char): Primary Telemetry Topic
+
+### `farm.lot.brew` (Defined in `farm_fermentation`)
+  - **Class**: `FarmLotBrew`
+  - **描述**: Brewed Batch
+  - _inherit_: `agri.traceability.mixin, agri.biological.valuation.mixin`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `vintage_start_date` (Date): Aging Start
+    - `is_aged_product` (Boolean): Aged Product
+
+### `farm.lot.flower` (Defined in `farm_floriculture`)
+  - **Class**: `FarmLotFlower`
+  - **描述**: Floral Batch (ISL Layer)
+  - _inherit_: `agri.traceability.mixin, agri.incident.alert.mixin`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `bloom_stage_at_harvest` (Selection): bloom_stage_at_harvest
+    - `predicted_vase_life` (Integer): Predicted Vase-life (Days)
+    - `is_preserved` (Boolean): Preservation Completed
+    - `hydration_end_time` (Datetime): Hydration Completed At
+    - `preservative_used` (Char): Preservative Agent
+    - `max_transport_temp` (Float): Cold-chain Redline
+    - `current_batch_temp` (Float): Latest Recorded Temp (℃)
+    - `temperature_violation` (Boolean): Violation Detected
+
+### `farm.lot.grape` (Defined in `farm_viticulture`)
+  - **Class**: `FarmLotGrape`
+  - **描述**: Grape Batch
+  - _inherit_: `agri.traceability.mixin, agri.quality.gate.mixin`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `brix_level` (Float): Brix (Sugar)
+    - `titratable_acidity` (Float): TA (g/L)
+    - `ph_level` (Float): Juice pH
+    - `juice_yield_volume` (Float): Extracted Juice (L)
+    - `pressing_ratio` (Float): Pressing Ratio (L/kg)
+
+### `farm.lot.harvest` (Defined in `farm_processing`)
+  - **Class**: `FarmLotHarvest`
+  - **描述**: Land Harvest Lot (ISL Layer)
+
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `terroir_attributes_json` (Text): Terroir Attributes (JSON)
+
+### `farm.lot.medicinal` (Defined in `farm_medicinal_plants`)
+  - **Class**: `FarmLotMedicinal`
+  - **描述**: Medicinal Asset/Batch
+  - _inherit_: `agri.traceability.mixin`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `altitude_meters` (Float): Harvest Altitude (m)
+    - `soil_ph_at_origin` (Float): Origin Soil pH
+    - `analysis_date` (Date): Last Analysis
+    - `certified_compound_level` (Float): Certified Active Compound (%)
+
+### `farm.lot.rice` (Defined in `farm_symbiosis`)
+  - **Class**: `FarmLotRice`
+  - **描述**: Symbiotic Rice Batch
+  - _inherit_: `agri.traceability.mixin`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `linked_fish_lot_id` (Many2one): stock.lot
+
+### `farm.lot.wine` (Defined in `farm_winery`)
+  - **Class**: `FarmLotWine`
+  - **描述**: Wine Batch
+  - _inherit_: `agri.traceability.mixin, agri.biological.valuation.mixin`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `barrel_entry_date` (Date): Barrel Entry
+    - `aging_months` (Integer): Months in Wood
+    - `alcohol_final` (Float): Alcohol (%)
+    - `residual_sugar` (Float): RS (g/L)
+    - `free_so2` (Float): Free SO2 (mg/L)
+
+### `farm.manure.batch` (Defined in `farm_waste_mgmt`)
+  - **Class**: `FarmManureBatch`
+  - **描述**: Manure Batch Record (Deprecated - Use agri.manure.batch)
+  - _inherit_: `agri.manure.batch`
+
+
+### `farm.manure.ledger` (Defined in `farm_waste_mgmt`)
+  - **Class**: `FarmManureLedger`
+  - **描述**: Monthly Manure Resource Utilization Ledger (Deprecated - Use agri.manure.ledger)
+  - _inherit_: `agri.manure.ledger`
+
+
+### `farm.market.price` (Defined in `farm_valuation`)
+  - **Class**: `MarketPrice`
+  - **描述**: Market Price Reference
+
+  - **核心字段**:
+    - `name` (Char): Price Reference
+    - `product_id` (Many2one): product.template
+    - `date` (Date): Price Date
+    - `unit_price` (Float): Unit Price
+    - `unit_of_measure` (Many2one): uom.uom
+    - `source` (Char): Source
+    - `futures_contract` (Char): Futures Contract
+    - `futures_price` (Float): Futures Price
+    - `price_volatility` (Float): Volatility Index
+    - `confidence_level` (Selection): confidence_level
+
+### `farm.medicinal.production` (Defined in `farm_medicinal_plants`)
+  - **Class**: `FarmMedicinalProduction`
+  - **描述**: Medicinal Processing Order
+  - _inherit_: `agri.intervention.mixin, agri.growth.cycle.mixin, agri.quality.gate.mixin`
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+    - `current_compound_level` (Float): Active Compound (%)
+    - `target_compound_level` (Float): Standard Threshold (%)
+    - `is_daodi_verified` (Boolean): Daodi Origin Verified
+
+### `farm.medicinal.recipe` (Defined in `farm_medicinal_plants`)
+  - **Class**: `FarmMedicinalRecipe`
+  - **描述**: Medicinal Processing Protocol
+
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `drying_temperature` (Float): Drying Target Temp (℃)
+    - `max_humidity_threshold` (Float): Max Humidity (%)
+
+### `farm.mrp.bom` (Defined in `farm_processing`)
+  - **Class**: `FarmMrpBomExtension`
+  - **描述**: 
+  - _inherit_: `farm.mrp.bom`
+  - **核心字段**:
+    - `is_parameter_required` (Boolean): Parameter Required
+    - `target_temp` (Float): Target Temp
+    - `target_ph` (Float): Target pH
+    - `target_brix` (Float): Target Brix
+    - `target_proofing_time` (Float): Target Proofing Time
+
+### `farm.mushroom.batch` (Defined in `farm_mushroom`)
+  - **Class**: `FarmMushroomBatch`
+  - **描述**: Mushroom Fruiting Batch
+  - _inherit_: `agri.biological.inventory.mixin, agri.growth.cycle.mixin, agri.traceability.mixin`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `contamination_rate` (Float): Contamination Rate (%)
+    - `is_cleared_for_fruiting` (Boolean): Cleared for Fruiting
+
+### `farm.mushroom.production` (Defined in `farm_mushroom`)
+  - **Class**: `FarmMushroomProduction`
+  - **描述**: Mushroom Fruiting Cycle
+  - _inherit_: `agri.intervention.mixin, agri.agent.instruction.mixin, agri.incident.alert.mixin, agri.odoo19.performance.security.mixin`
+  - **核心字段**:
+    - `biological_efficiency` (Float): Biological Efficiency (%)
+    - `mushroom_config` (Json): Mushroom Configuration
+    - `production_id` (Many2one): mrp.production
+    - `current_flush_number` (Integer): Current Flush
+    - `biological_efficiency` (Float): Biological Efficiency (%)
+
+### `farm.mushroom.recipe` (Defined in `farm_mushroom`)
+  - **Class**: `FarmMushroomRecipe`
+  - **描述**: Mushroom Substrate Recipe
+  - _inherit_: `agri.bom.mixin, agri.nutrient.mixin`
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `target_co2_level` (Float): Max CO2 Threshold (ppm)
+    - `target_humidity` (Float): Target Humidity (%)
+    - `sterilization_temp` (Float): Sterilization Temp (℃)
+
+### `farm.nursery.batch` (Defined in `farm_breeding`)
+  - **Class**: `FarmNurseryBatch`
+  - **描述**: Breeding Nursery Batch
+  - _inherit_: `mail.thread, mail.activity.mixin, agri.growth.cycle.mixin, agri.biological.inventory.mixin, agri.traceability.mixin`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `parent_p1_id` (Many2one): stock.lot
+    - `parent_p2_id` (Many2one): stock.lot
+    - `sowing_date` (Date): Sowing Date
+    - `estimated_transplant_gdd` (Float): Target GDD for Transplant
+    - `target_land_area` (Float): Target Field Area (mu/ha)
+    - `target_density` (Float): Target Planting Density
+
+### `farm.orchard.cycle` (Defined in `farm_orchard_horticulture`)
+  - **Class**: `FarmOrchardCycle`
+  - **描述**: Annual Nurturing Cycle
+  - _inherit_: `agri.intervention.mixin, agri.weather.sensitive.mixin, agri.agent.instruction.mixin`
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+    - `intervention_scope` (Selection): intervention_scope
+    - `target_tree_ids` (Many2many): stock.lot
+
+### `farm.package.level` (Defined in `farm_processing`)
+  - **Class**: `FarmPackageLevel`
+  - **描述**: Farm Package Level (e.g., Item, Inner Carton, Pallet)
+
+  - **核心字段**:
+    - `name` (Char): name
+    - `code` (Char): code
+    - `parent_level_id` (Many2one): farm.package.level
+    - `child_level_ids` (One2many): farm.package.level
+
+### `farm.package` (Defined in `farm_processing`)
+  - **Class**: `FarmPackage`
+  - **描述**: Farm Package Instance
+
+  - **核心字段**:
+    - `name` (Char): name
+    - `display_name` (Char): display_name
+    - `package_level_id` (Many2one): farm.package.level
+    - `product_id` (Many2one): product.product
+    - `lot_id` (Many2one): stock.lot
+    - `quantity` (Float): quantity
+    - `parent_package_id` (Many2one): farm.package
+    - `child_package_ids` (One2many): farm.package
+    - `location_id` (Many2one): farm.location
+    - `create_date` (Datetime): create_date
+    - `barcode` (Char): barcode
+
+### `farm.pest.disease` (Defined in `farm_knowledge`)
+  - **Class**: `FarmPestDisease`
+  - **描述**: Pest & Disease Database (Deprecated - Use agri.pest.disease)
+  - _inherit_: `agri.pest.disease`
+
+
+### `farm.pharma.bom` (Defined in `farm_processing`)
+  - **Class**: `FarmPharmaBom`
+  - **描述**: Pharmaceutical Processing BOM (ISL Layer)
+
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `gmp_standard` (Char): GMP Standard Reference
+    - `active_ingredient_id` (Many2one): product.product
+    - `concentration_target` (Float): Target Concentration (%)
+    - `safety_data_sheet` (Binary): MSDS Document
+
+### `farm.pharma.production` (Defined in `farm_processing`)
+  - **Class**: `FarmPharmaProduction`
+  - **描述**: Pharmaceutical Production Order (ISL Layer)
+
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+    - `batch_record_ref` (Char): Electronic Batch Record (EBR) ID
+    - `potency_verified` (Boolean): Potency Verified
+    - `impurity_level` (Float): Impurity Level (%)
+
+### `farm.processing.artisan.log` (Defined in `farm_processing`)
+  - **Class**: `FarmProcessingArtisanLog`
+  - **描述**: Artisan-Level Processing Precision Log
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+    - `workorder_id` (Many2one): mrp.workorder
+    - `parameter_name` (Char): Artisan Parameter
+    - `target_value` (Float): Target Value (Precise)
+    - `actual_value` (Float): Actual Value
+    - `tolerance` (Float): Allowed Tolerance (+/-)
+    - `measured_by` (Many2one): res.users
+    - `deviation` (Float): Deviation
+    - `quality_grade` (Selection): quality_grade
+
+### `farm.processing.bom.line` (Defined in `farm_processing`)
+  - **Class**: `FarmProcessingBomLineExtension`
+  - **描述**: 
+  - _inherit_: `farm.processing.bom.line`
+  - **核心字段**:
+    - `ingredient_role` (Selection): ingredient_role
+
+### `farm.processing.bom.line` (Defined in `farm_processing`)
+  - **Class**: `FarmProcessingBomLine`
+  - **描述**: Processing BOM Component (ISL Layer)
+
+  - **核心字段**:
+    - `bom_line_id` (Many2one): mrp.bom.line
+    - `blend_ratio` (Float): Blend Ratio
+    - `additive_type` (Selection): additive_type
+    - `processing_role` (Selection): processing_role
+
+### `farm.processing.bom` (Defined in `farm_processing`)
+  - **Class**: `FarmProcessingBom`
+  - **描述**: Food Processing BOM (ISL Layer)
+
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `target_moisture_content` (Float): Target Moisture (%)
+    - `target_temperature` (Float): Storage Temp (℃)
+    - `allergen_ids` (Many2many): farm.allergen
+    - `expected_yield_rate` (Float): Expected Yield Rate
+    - `industry_type` (Selection): industry_type
+
+### `farm.processing.production` (Defined in `farm_processing`)
+  - **Class**: `FarmProcessingProduction`
+  - **描述**: Farm Food Processing Order (ISL Layer)
+  - _inherit_: `farm.mrp.production`
+  - **核心字段**:
+    - `energy_reading_start` (Float): energy_reading_start
+    - `energy_reading_end` (Float): energy_reading_end
+    - `energy_cost_total` (Float): energy_cost_total
+    - `water_consumption` (Float): Water Consumption
+    - `electricity_consumption` (Float): Electricity Consumption
+    - `total_energy_cost` (Float): Total Energy Cost (Measure)
+    - `current_moisture_content` (Float): Current Moisture (%)
+    - `current_weight_loss_ratio` (Float): Current Weight Loss (%)
+    - `is_ready_for_harvest` (Boolean): Ready for Collection
+    - `processing_bom_id` (Many2one): farm.processing.bom
+
+### `farm.processing.waste` (Defined in `farm_waste_mgmt`)
+  - **Class**: `ProcessingWaste`
+  - **描述**: Processing Waste Management
+
+  - **核心字段**:
+    - `name` (Char): Waste Reference
+    - `production_id` (Many2one): mrp.production
+    - `product_id` (Many2one): product.product
+    - `quantity` (Float): Quantity
+    - `uom_id` (Many2one): uom.uom
+    - `disposal_method` (Selection): disposal_method
+    - `notes` (Text): Disposal Details
+
+### `farm.product.certificate` (Defined in `farm_cert_ch`)
+  - **Class**: `FarmProductCertificate`
+  - **描述**: Edible Agri-Product Certificate
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `certificate_no` (Char): Certificate No.
+    - `picking_id` (Many2one): stock.picking
+    - `lot_id` (Many2one): stock.lot
+    - `product_id` (Many2one): product.product
+    - `producer_name` (Char): Producer Name
+    - `origin_location_id` (Many2one): farm.location
+    - `production_date` (Date): Production Date
+    - `commitment_statement` (Html): Commitment Statement
+    - `quality_check_ids` (Many2many): farm.quality.check
+    - `certificate_qr_code` (Char): Certificate QR Code
+
+### `farm.product.template` (Defined in `farm_processing`)
+  - **Class**: `FarmAgriProduct`
+  - **描述**: 
+  - _inherit_: `farm.product.template`
+  - **核心字段**:
+    - `industry_tag` (Selection): industry_tag
+    - `n_content` (Float): Nitrogen (N) %
+    - `p_content` (Float): Phosphorus (P) %
+    - `k_content` (Float): Potassium (K) %
+    - `sc_category_ids` (Many2many): farm.sc.category
+    - `allergen_ids` (Many2many): farm.allergen
+    - `nutrition_table` (Text): Nutrition Data (JSON/Text)
+    - `is_potency_standardized` (Boolean): Standardize by Potency
+    - `target_purity` (Float): Target Purity %
+
+### `farm.regional.oversight` (Defined in `farm_multi_farm_base`)
+  - **Class**: `FarmRegionalOversight`
+  - **描述**: Regional Agricultural Oversight Dashboard
+  - _inherit_: `mail.thread, mail.activity.mixin`
+  - **核心字段**:
+    - `name` (Char): Region/Zone Name
+    - `agency_id` (Many2one): res.partner
+    - `cooperative_ids` (Many2many): cooperative.entity
+    - `total_land_area` (Float): Total Monitored Area (Ha)
+    - `total_predicted_yield` (Float): Regional Yield Forecast (kg)
+    - `avg_compliance_score` (Float): Regional Compliance Avg (%)
+    - `alert_count` (Integer): Active Compliance Alerts
+
+### `farm.resource.usage` (Defined in `farm_agritourism`)
+  - **Class**: `FarmResourceUsage`
+  - **描述**: Farm Resource Usage for Agritourism
+
+  - **核心字段**:
+    - `agritourism_operation_id` (Many2one): farm.agritourism.operation
+    - `resource_id` (Many2one): farm.resource
+    - `usage_start_time` (Float): Usage Start Time
+    - `usage_end_time` (Float): Usage End Time
+    - `assigned_staff` (Many2one): hr.employee
+    - `usage_notes` (Text): Usage Notes
+
+### `farm.sc.category` (Defined in `farm_processing`)
+  - **Class**: `FarmScCategory`
+  - **描述**: Food Production Category
+
+  - **核心字段**:
+    - `name` (Char): Category Name
+    - `code` (Char): Category Code
+
+### `farm.seed.batch` (Defined in `farm_seed_industry`)
+  - **Class**: `FarmSeedBatch`
+  - **描述**: Seed Inventory Batch
+  - _inherit_: `agri.traceability.mixin, agri.biological.inventory.mixin, agri.certification.status.mixin`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `parent_p1_hash` (Char): P1 (Sire) Hash
+    - `parent_p2_hash` (Char): P2 (Dam) Hash
+    - `germination_rate` (Float): Germination Rate (%)
+    - `purity_rate` (Float): Purity Rate (%)
+    - `clarity_rate` (Float): Clarity Rate (%)
+    - `moisture_content` (Float): Moisture Content (%)
+    - `thousand_seed_weight` (Float): Thousand Seed Weight (g)
+    - `pvp_certificate_id` (Char): PVP Certificate No.
+    - `is_pvp_compliant` (Boolean): PVP Status OK
+
+### `farm.seed.production` (Defined in `farm_seed_industry`)
+  - **Class**: `FarmSeedProduction`
+  - **描述**: Seed Propagation Order
+  - _inherit_: `agri.intervention.mixin, agri.quality.gate.mixin`
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+
+### `farm.seed.recipe` (Defined in `farm_seed_industry`)
+  - **Class**: `FarmSeedRecipe`
+  - **描述**: Seed Treatment Recipe
+  - _inherit_: `agri.bom.mixin, agri.nutrient.mixin`
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `film_forming_ratio` (Float): Film-forming Ratio (%)
+    - `target_moisture_content` (Float): Target Moisture (%)
+
+### `farm.social.network` (Defined in `farm_ux`)
+  - **Class**: `FarmSocialNetwork`
+  - **描述**: Farm Social Network & Collaboration Platform
+
+  - **核心字段**:
+    - `name` (Char): Network Name
+    - `network_type` (Selection): network_type
+    - `member_ids` (Many2many): res.partner
+    - `admin_ids` (Many2many): res.users
     - `description` (Text): Description
-    - `is_active` (Boolean): Active (default: True, help: "Is this an active version?")
-    - `created_date` (Datetime): Created Date (default: fields.Datetime.now)
-  - SQL Constraints:
-    - version_profile_uniq: Firmware version must be unique for each device type
-  - Methods:
-    - `_compute_name()`: Computes firmware name as "{profile_code} v{version}"
-    - `_check_version_format()`: Validates version format (letters, numbers, dots, underscores, hyphens)
-    - `_check_url_format()`: Validates URL format (requires http://, https:// or ftp:// prefix)
-    - `action_deactivate()`: Deactivates firmware version
-    - `action_activate()`: Activates firmware version
+    - `is_active` (Boolean): Is Active
+    - `created_by` (Many2one): res.users
+    - `created_date` (Datetime): Created Date
+    - `privacy_level` (Selection): privacy_level
+    - `message_board` (Text): Message Board
+    - `shared_resources` (Text): Shared Resources
 
-- **industrial_iot.IiotUpdate**: Update management for industrial IoT devices
-  - Odoo Model: `class IiotUpdate(models.Model)`
-  - _name: `iiot.update`
-  - _description: "Industrial IoT Firmware Update"
-  - _order: "create_date DESC"
-  - Fields:
-    - `name` (Char): Update Name (computed field based on device_id and firmware_id, store=True)
-    - `device_id` (Many2one): Target Device (iiot.device, required)
-    - `firmware_id` (Many2one): Firmware Version (iiot.firmware, required)
-    - `update_id` (Char): Update ID (default: auto-generated UUID, readonly)
-    - `status` (Selection): Status (selection: pending/sent/downloading/installing/success/failed/cancelled, default: 'pending')
-    - `start_time` (Datetime): Start Time
-    - `end_time` (Datetime): End Time
-    - `error_message` (Text): Error Message
-    - `progress` (Float): Progress (default: 0.0, help: "Update progress percentage (0.0-100.0)")
+### `farm.storage.env` (Defined in `farm_waste_mgmt`)
+  - **Class**: `StorageEnvironment`
+  - **描述**: Storage Environment Log
+
+  - **核心字段**:
+    - `location_id` (Many2one): farm.location
+    - `timestamp` (Datetime): Timestamp
+    - `temperature` (Float): Temperature (℃)
+    - `humidity` (Float): Humidity (%)
+    - `co2_level` (Float): CO2 Level (ppm)
+    - `is_alert` (Boolean): Is Alert
+    - `alert_message` (Char): Alert Message
+
+### `farm.subsidy.application` (Defined in `farm_subsidy_ch`)
+  - **Class**: `FarmSubsidyApplication`
+  - **描述**: 
+  - _inherit_: `farm.subsidy.application`
+  - **核心字段**:
+    - `crop_type_china` (Selection): crop_type_china
+    - `declared_area_mu` (Float): Declared Area (mu)
+
+### `farm.symbiotic.order` (Defined in `farm_symbiosis`)
+  - **Class**: `FarmSymbioticOrder`
+  - **描述**: Symbiotic Cycle
+  - _inherit_: `agri.intervention.mixin, agri.quality.gate.mixin, agri.weather.sensitive.mixin`
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+    - `contains_aquatic_toxins` (Boolean): High Aquatic Toxicity Detected
+
+### `farm.symbiotic.plot` (Defined in `farm_symbiosis`)
+  - **Class**: `FarmSymbioticPlot`
+  - **描述**: Symbiotic Field
+  - _inherit_: `agri.geospatial.mixin`
+  - **核心字段**:
+    - `location_id` (Many2one): farm.location
+    - `trench_area_ratio` (Float): Trench Area Ratio (%)
+    - `target_water_depth_cm` (Float): Target Water Depth (cm)
+
+### `farm.symbiotic.recipe` (Defined in `farm_symbiosis`)
+  - **Class**: `FarmSymbioticRecipe`
+  - **描述**: Co-culture Recipe
+  - _inherit_: `agri.bom.mixin, agri.nutrient.mixin`
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `fish_manure_nitrogen_credit` (Float): Fertilizer Credit from Fish (kg/mu)
+
+### `farm.training.certification` (Defined in `farm_training`)
+  - **Class**: `FarmTrainingCertification`
+  - **描述**: Farm Training Certification (Deprecated - Use agri.training.certification)
+  - _inherit_: `agri.training.certification`
+
+
+### `farm.training.skill` (Defined in `farm_training`)
+  - **Class**: `FarmTrainingSkill`
+  - **描述**: Farm Training Skill (Deprecated - Use agri.training.skill)
+  - _inherit_: `agri.training.skill`
+
+
+### `farm.training.training_record` (Defined in `farm_training`)
+  - **Class**: `FarmTrainingTrainingRecord`
+  - **描述**: Farm Training Record (Deprecated - Use agri.training.training_record)
+  - _inherit_: `agri.training.training_record`
+
+
+### `farm.trait.value` (Defined in `farm_breeding`)
+  - **Class**: `FarmTraitValue`
+  - **描述**: Breeding Trait Value
+
+  - **核心字段**:
+    - `name` (Char): Trait Name
+    - `value` (Char): Measured Value
+    - `score` (Float): Score (0-10)
+    - `lot_id` (Many2one): stock.lot
+    - `company_id` (Many2one): res.company
+
+### `farm.viticulture.cycle` (Defined in `farm_viticulture`)
+  - **Class**: `FarmViticultureCycle`
+  - **描述**: Vineyard Annual Cycle
+  - _inherit_: `agri.intervention.mixin, agri.growth.cycle.mixin, agri.weather.sensitive.mixin`
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+    - `pruned_buds_per_vine` (Integer): Pruned Buds per Vine
+    - `target_brix` (Float): Target Ripeness (Brix)
+
+### `farm.viticulture.plot` (Defined in `farm_viticulture`)
+  - **Class**: `FarmViticulturePlot`
+  - **描述**: Vineyard Plot
+  - _inherit_: `agri.geospatial.mixin`
+  - **核心字段**:
+    - `location_id` (Many2one): farm.location
+    - `trellis_system` (Selection): trellis_system
+    - `vine_spacing` (Float): Vine Spacing (m)
+    - `row_orientation` (Float): Row Azimuth (Degree)
+
+### `farm.voice.recognition.alias` (Defined in `farm_ux`)
+  - **Class**: `VoiceRecognitionAlias`
+  - **描述**: Voice Recognition Alias for Agricultural Terms
+
+  - **核心字段**:
+    - `alias` (Char): Spoken Alias / Phonetic
+    - `target_term` (Char): Standard Term
+
+### `farm.weather.forecast` (Defined in `farm_weather`)
+  - **Class**: `FarmWeatherForecast`
+  - **描述**: Farm Weather Forecast (Deprecated - Use agri.weather.forecast)
+  - _inherit_: `agri.weather.forecast`
+
+
+### `farm.winery.production` (Defined in `farm_winery`)
+  - **Class**: `FarmWineryProduction`
+  - **描述**: Vinification Order
+  - _inherit_: `agri.intervention.mixin, agri.agent.instruction.mixin, agri.incident.alert.mixin`
+  - **核心字段**:
+    - `production_id` (Many2one): mrp.production
+    - `current_brix` (Float): Current Brix
+    - `current_temp` (Float): Current Temp (℃)
+
+### `farm.winery.recipe` (Defined in `farm_winery`)
+  - **Class**: `FarmWineryRecipe`
+  - **描述**: Winery Protocol
+
+  - **核心字段**:
+    - `bom_id` (Many2one): mrp.bom
+    - `target_alcohol_pct` (Float): Target Alcohol (%)
+    - `fermentation_temp_target` (Float): Target Temp (℃)
+
+### `farm.winery.vessel` (Defined in `farm_winery`)
+  - **Class**: `FarmWineryVessel`
+  - **描述**: Winery Vessel/Barrel
+
+  - **核心字段**:
+    - `workcenter_id` (Many2one): mrp.workcenter
+    - `vessel_type` (Selection): vessel_type
+    - `capacity_liters` (Float): Volume Capacity (L)
+    - `current_fill_level` (Float): Current Fill (%)
+
+### `form.layout.template` (Defined in `farm_ux`)
+  - **Class**: `FormLayoutTemplate`
+  - **描述**: Form Layout Template for Industry-Specific Views
+
+  - **核心字段**:
+    - `name` (Char): Template Name
+    - `model_name` (Char): Model Name
+    - `industry_type` (Selection): industry_type
+    - `layout_definition` (Text): Layout Definition
+    - `is_active` (Boolean): Is Active
     - `description` (Text): Description
-  - Methods:
-    - `_compute_name()`: Computes update name as "{device_id.device_id} -> {firmware_id.version}"
-    - `_generate_update_id()`: Generates UUID for update ID
-    - `action_send_ota()`: Sends OTA update command to device
-    - `update_status_from_device(new_status, progress, error_message)`: Updates status from device
-    - `action_cancel_update()`: Cancels update task
+    - `user_role` (Selection): user_role
+    - `version` (Char): Version
+    - `created_by` (Many2one): res.users
+    - `created_date` (Datetime): Created Date
 
-- **industrial_iot.IiotDeviceProfile**: Device profiles for industrial IoT
-  - Odoo Model: `class IiotDeviceProfile(models.Model)`
-  - _name: `iiot.device.profile`
-  - _description: "Industrial IoT Device Profile"
-  - _order: "code"
-  - Fields:
-    - `name` (Char): Name (required)
-    - `code` (Char): Code (required, help: "Device type code, e.g. cnc_v1")
-    - `telemetry_topic_template` (Char): Telemetry Topic Template (default: "telemetry/{device}/data", help: "Telemetry topic template, e.g. telemetry/{device}/data")
-    - `command_topic_template` (Char): Command Topic Template (default: "cmd/{device}/request", help: "Command topic template, e.g. cmd/{device}/request")
-    - `ota_notify_topic_template` (Char): OTA Notify Topic Template (default: "ota/{device}/notify", help: "OTA notify topic template, e.g. ota/{device}/notify")
-    - `ota_status_topic_template` (Char): OTA Status Topic Template (default: "ota/{device}/status", help: "OTA status topic template, e.g. ota/{device}/status")
-    - `command_template` (Text): Command Template (default: '{"action": "{{ action }}", "params": {{ params | tojson }}}', help: "Command message template (Jinja2)")
-  - Methods:
-    - `_check_topic_templates()`: Validates that topic templates contain {device} placeholder
-    - `_check_code()`: Validates code format (letters, numbers, underscores, hyphens)
+### `hr.employee` (Defined in `farm_training`)
+  - **Class**: `HrEmployee`
+  - **描述**: 
+  - _inherit_: `hr.employee`
+  - **核心字段**:
+    - `skill_ids` (Many2many): farm.training.skill
+    - `certification_ids` (Many2many): farm.training.certification
+    - `training_record_ids` (One2many): farm.training.training_record
 
-### Agricultural Processing
-- **farm_agricultural_processing.SeasonalBom**: Seasonal bills of materials for processing
-  - Odoo Model: `class SeasonalBom(models.Model)`
-  - _name: `farm.seasonal.bom`
-  - _description: "Seasonal Versioned Recipe Management"
-  - _order: "product_tmpl_id, season_start_date"
-  - Fields:
-    - `name` (Char): Seasonal Recipe Name (required, default from _default_name)
-    - `product_tmpl_id` (Many2one): Product (product.template)
-    - `bom_id` (Many2one): Base BOM (mrp.bom)
-    - `season_name` (Char): Season Name (required)
-    - `season_description` (Text): Season Description
-    - `season_start_date` (Date): Season Start Date (required)
-    - `season_end_date` (Date): Season End Date (required)
-    - `seasonal_material_ids` (One2many): Seasonal Material Adjustments (farm.seasonal.bom.material)
-    - `seasonal_parameter_ids` (One2many): Seasonal Parameter Adjustments (farm.seasonal.bom.parameter)
-    - `version_number` (Integer): Version (default: 1)
-    - `version_name` (Char): Version Name
-    - `state` (Selection): Status (draft, active, inactive)
-    - `is_seasonal_adjustment` (Boolean): Has Seasonal Adjustment (computed, stored)
-    - `base_yield_factor` (Float): Base Yield Factor (default: 1.0)
-    - `seasonal_yield_factor` (Float): Seasonal Yield Factor (computed, stored)
-  - Methods:
-    - `_default_name()`: Default name for seasonal recipe
-    - `_check_season_dates()`: Ensures season end date is after start date
-    - `_check_overlapping_seasons()`: Ensures no overlapping seasons for the same product
-    - `_compute_has_seasonal_adjustment()`: Computes if has seasonal adjustment
-    - `_compute_seasonal_yield_factor()`: Computes seasonal yield factor
-    - `action_activate()`: Activate this seasonal recipe
-    - `action_deactivate()`: Deactivate this seasonal recipe
-    - `get_applicable_seasonal_bom(product_id, date)`: Get applicable seasonal BOM for product on date
-    - `apply_seasonal_adjustments(base_bom)`: Apply seasonal adjustments to base BOM
-    - `action_view_seasonal_materials()`: Open view to see seasonal material adjustments
-    - `action_view_seasonal_parameters()`: Open view to see seasonal parameter adjustments
-  - Relationships:
-    - Many2one: `product_tmpl_id` → `product.template`
-    - Many2one: `bom_id` → `mrp.bom`
-    - One2many: `seasonal_material_ids` → `farm.seasonal.bom.material.seasonal_bom_id`
-    - One2many: `seasonal_parameter_ids` → `farm.seasonal.bom.parameter.seasonal_bom_id`
+### `internal.settlement` (Defined in `farm_multi_farm_base`)
+  - **Class**: `InternalSettlementExtension`
+  - **描述**: 
+  - _inherit_: `internal.settlement`
+  - **核心字段**:
+    - `settlement_type` (Selection): settlement_type
 
-- **farm_agricultural_processing.SeasonalBomMaterial**: Materials for seasonal BOMs
-  - Odoo Model: `class SeasonalBomMaterial(models.Model)`
-  - _name: `farm.seasonal.bom.material`
-  - _description: "Seasonal BOM Material Adjustment"
-  - Fields:
-    - `seasonal_bom_id` (Many2one): Seasonal BOM (farm.seasonal.bom, ondelete=cascade)
-    - `product_id` (Many2one): Material (product.product, required)
-    - `base_qty` (Float): Base Quantity (required)
-    - `seasonal_qty` (Float): Seasonal Quantity (required)
-    - `qty_difference` (Float): Quantity Difference (computed, stored)
-    - `adjustment_reason` (Text): Adjustment Reason
-  - Methods:
-    - `_compute_qty_difference()`: Computes quantity difference
-    - `_onchange_product_id()`: Sets base quantity from original BOM
-  - Relationships:
-    - Many2one: `seasonal_bom_id` → `farm.seasonal.bom` with cascade delete
-    - Many2one: `product_id` → `product.product`
+### `internal.settlement` (Defined in `farm_multi_farm_base`)
+  - **Class**: `InternalSettlementExtension`
+  - **描述**: 
+  - _inherit_: `internal.settlement`
+  - **核心字段**:
+    - `settlement_type` (Selection): settlement_type
+    - `joint_procurement_id` (Many2one): joint.procurement
+    - `joint_po_member_id` (Many2one): joint.procurement.po.member
 
-- **farm_agricultural_processing.SeasonalBomParameter**: Parameters for seasonal BOMs
-  - Odoo Model: `class SeasonalBomParameter(models.Model)`
-  - _name: `farm.seasonal.bom.parameter`
-  - _description: "Seasonal BOM Parameter Adjustment"
-  - Fields:
-    - `seasonal_bom_id` (Many2one): Seasonal BOM (farm.seasonal.bom, ondelete=cascade)
-    - `parameter_name` (Char): Parameter Name (required)
-    - `base_value` (Float): Base Value (required)
-    - `seasonal_value` (Float): Seasonal Value (required)
-    - `value_difference` (Float): Value Difference (computed, stored)
-    - `unit_of_measure` (Char): Unit of Measure
-    - `adjustment_reason` (Text): Adjustment Reason
-  - Methods:
-    - `_compute_value_difference()`: Computes value difference
-  - Relationships:
-    - Many2one: `seasonal_bom_id` → `farm.seasonal.bom` with cascade delete
+### `internal.settlement` (Defined in `farm_multi_farm_procurement`)
+  - **Class**: `InternalSettlementExtensionProcurement`
+  - **描述**: 
+  - _inherit_: `internal.settlement`
+  - **核心字段**:
+    - `joint_procurement_id` (Many2one): joint.procurement
+    - `joint_po_member_id` (Many2one): joint.procurement.po.member
 
-- **farm_agricultural_processing.FarmProcessingProductionAnalyticsExtension**: Analytics extensions for processing production
-  - Odoo Model: `class FarmProcessingProductionAnalyticsExtension(models.Model)`
-  - _name: `farm.processing.production.analytics.extension`
-  - _description: "Analytics Extensions for Processing Production"
-  - Relationships:
-    - Extends: Base models with analytics extension functionality
+### `ir.actions.act_window` (Defined in `farm_ux`)
+  - **Class**: `IrActionsActWindow`
+  - **描述**: 
+  - _inherit_: `ir.actions.act_window`
 
-- **farm_agricultural_processing.AgriProcessingYieldRateAnalytics**: Yield rate analytics for agriculture processing
-  - Odoo Model: `class AgriProcessingYieldRateAnalytics(models.Model)`
-  - _name: `agri.processing.yield.rate.analytics`
-  - _description: "Yield Rate Analytics for Agriculture Processing"
-  - Relationships:
-    - Extends: Base models with yield rate analytics functionality
 
-- **farm_agricultural_processing.AgriProcessingRecallSimulation**: Recall simulation for agriculture processing
-  - Odoo Model: `class AgriProcessingRecallSimulation(models.Model)`
-  - _name: `agri.processing.recall.simulation`
-  - _description: "Recall Simulation for Agriculture Processing"
-  - Relationships:
-    - Extends: Base models with recall simulation functionality
+### `ir.ui.menu` (Defined in `farm_ux`)
+  - **Class**: `IrUiMenu`
+  - **描述**: 
+  - _inherit_: `ir.ui.menu`
 
-- **farm_agricultural_processing.AgriProcessingPerformanceAnalytics**: Performance analytics for agriculture processing
-  - Odoo Model: `class AgriProcessingPerformanceAnalytics(models.Model)`
-  - _name: `agri.processing.performance.analytics`
-  - _description: "Performance Analytics for Agriculture Processing"
-  - Relationships:
-    - Extends: Base models with performance analytics functionality
 
-- **farm_agricultural_processing.FarmProcessingProductionNetVegetablesExtension**: Net vegetables extensions for processing production
-  - Odoo Model: `class FarmProcessingProductionNetVegetablesExtension(models.Model)`
-  - _name: `farm.processing.production.net.vegetables.extension`
-  - _description: "Net Vegetables Extensions for Processing Production"
-  - Relationships:
-    - Extends: Base models with net vegetables extension functionality
+### `joint.procurement.line` (Defined in `farm_multi_farm_procurement`)
+  - **Class**: `JointProcurementLine`
+  - **描述**: Joint Procurement Line
 
-- **farm_agricultural_processing.FarmProcessingBomNetVegetablesExtension**: Net vegetables extensions for processing BOM
-  - Odoo Model: `class FarmProcessingBomNetVegetablesExtension(models.Model)`
-  - _name: `farm.processing.bom.net.vegetables.extension`
-  - _description: "Net Vegetables Extensions for Processing BOM"
-  - Relationships:
-    - Extends: Base models with net vegetables BOM extension functionality
+  - **核心字段**:
+    - `procurement_id` (Many2one): joint.procurement
+    - `member_id` (Many2one): cooperative.member
+    - `product_id` (Many2one): product.product
+    - `quantity` (Float): Quantity
+    - `unit_price` (Float): Unit Price
+    - `member_amount` (Float): Member Amount
+    - `markup_amount` (Float): Markup Amount
+    - `settlement_id` (Many2one): internal.settlement
 
-- **farm_agricultural_processing.FarmProcessingStepNetVegetables**: Net vegetables processing steps
-  - Odoo Model: `class FarmProcessingStepNetVegetables(models.Model)`
-  - _name: `farm.processing.step.net.vegetables`
-  - _description: "Net Vegetables Processing Steps"
-  - Relationships:
-    - Extends: Base models with net vegetables processing steps
+### `maintenance.equipment` (Defined in `farm_equipment`)
+  - **Class**: `FarmEquipment`
+  - **描述**: 
+  - _inherit_: `maintenance.equipment`
+  - **核心字段**:
+    - `checklist_id` (Many2one): farm.equipment.checklist
 
-- **farm_agricultural_processing.FarmProcessingBomExtension**: Extensions for processing BOMs
-  - Odoo Model: `class FarmProcessingBomExtension(models.Model)`
-  - _name: `farm.processing.bom.extension`
-  - _description: "Extensions for Processing BOMs"
-  - Relationships:
-    - Extends: Base models with processing BOM extension functionality
+### `marketplace.demand.match` (Defined in `farm_multi_farm_procurement`)
+  - **Class**: `MarketplaceDemandMatch`
+  - **描述**: Marketplace Demand Match
 
-- **farm_agricultural_processing.FarmProcessingBomLineExtension**: Extensions for processing BOM lines
-  - Odoo Model: `class FarmProcessingBomLineExtension(models.Model)`
-  - _name: `farm.processing.bom.line.extension`
-  - _description: "Extensions for Processing BOM Lines"
-  - Relationships:
-    - Extends: Base models with processing BOM line extension functionality
+  - **核心字段**:
+    - `listing_id` (Many2one): internal.marketplace
+    - `member_id` (Many2one): cooperative.member
+    - `quantity` (Float): Quantity
+    - `priority` (Integer): Priority
+    - `match_date` (Date): Match Date
 
-- **farm_agricultural_processing.FarmBomGradeDistribution**: Grade distribution for BOMs
-  - Odoo Model: `class FarmBomGradeDistribution(models.Model)`
-  - _name: `farm.bom.grade.distribution`
-  - _description: "Grade Distribution for BOMs"
-  - Relationships:
-    - Extends: Base models with grade distribution functionality
+### `mrp.bom.byproduct` (Defined in `farm_processing`)
+  - **Class**: `MrpBomByproduct`
+  - **描述**: 
+  - _inherit_: `mrp.bom.byproduct`
+  - **核心字段**:
+    - `cost_share` (Float): Cost Share (%)
 
-- **farm_agricultural_processing.FarmProcessingProductionExtension**: Extensions for processing production
-  - Odoo Model: `class FarmProcessingProductionExtension(models.Model)`
-  - _name: `farm.processing.production.extension`
-  - _description: "Extensions for Processing Production"
-  - Relationships:
-    - Extends: Base models with processing production extension functionality
+### `mrp.bom.line` (Defined in `farm_mrp`)
+  - **Class**: `MrpBomLine`
+  - **描述**: 
+  - _inherit_: `mrp.bom.line`
+  - **核心字段**:
+    - `isl_record_type` (Char): isl_record_type
 
-- **farm_agricultural_processing.FarmProcessingProductionMassBalanceExtension**: Mass balance extensions for processing production
-  - Odoo Model: `class FarmProcessingProductionMassBalanceExtension(models.Model)`
-  - _name: `farm.processing.production.mass.balance.extension`
-  - _description: "Mass Balance Extensions for Processing Production"
-  - Relationships:
-    - Extends: Base models with mass balance extension functionality
+### `mrp.bom.line` (Defined in `farm_processing`)
+  - **Class**: `MrpBomLine`
+  - **描述**: 
+  - _inherit_: `mrp.bom.line`
+  - **核心字段**:
+    - `ingredient_role` (Selection): ingredient_role
 
-- **farm_agricultural_processing.FarmProcessingProductionMultiOutputExtension**: Multi-output extensions for processing production
-  - Odoo Model: `class FarmProcessingProductionMultiOutputExtension(models.Model)`
-  - _name: `farm.processing.production.multi.output.extension`
-  - _description: "Multi-Output Extensions for Processing Production"
-  - Relationships:
-    - Extends: Base models with multi-output extension functionality
+### `mrp.bom` (Defined in `farm_mrp`)
+  - **Class**: `MrpBom`
+  - **描述**: 
+  - _inherit_: `mrp.bom`
+  - **核心字段**:
+    - `industry_type` (Selection): industry_type
+    - `isl_record_type` (Char): isl_record_type
 
-- **farm_agricultural_processing.AgriProcessingMultiOutputLine**: Multi-output line items for agriculture processing
-  - Odoo Model: `class AgriProcessingMultiOutputLine(models.Model)`
-  - _name: `agri.processing.multi.output.line`
-  - _description: "Multi-Output Line Items for Agriculture Processing"
-  - Relationships:
-    - Extends: Base models with multi-output line functionality
+### `mrp.bom` (Defined in `farm_processing`)
+  - **Class**: `MrpBom`
+  - **描述**: 
+  - _inherit_: `mrp.bom`
+  - **核心字段**:
+    - `industry_type` (Selection): industry_type
+    - `expected_yield_rate` (Float): Expected Yield Rate
+    - `process_description` (Text): Process Description
+    - `target_temp` (Float): Target Temp
+    - `target_ph` (Float): Target pH
+    - `target_brix` (Float): Target Brix
+    - `target_proofing_time` (Float): Target Proofing Time
+    - `standard_duration` (Float): Standard Duration
+    - `haccp_instructions` (Html): HACCP Instructions
+    - `processing_type` (Selection): processing_type
+    - `dilution_ratio` (Float): Dilution Ratio
+    - `sc_category_id` (Many2one): farm.sc.category
+    - `grade_distribution_ids` (One2many): farm.bom.grade.distribution
+    - `mass_balance_tolerance` (Float): Mass Balance Tolerance (%)
+    - `allergen_ids` (Many2many): farm.allergen
 
-- **farm_agricultural_processing.FarmProcessingProductionAttributeInheritanceExtension**: Attribute inheritance extensions for processing production
-  - Odoo Model: `class FarmProcessingProductionAttributeInheritanceExtension(models.Model)`
-  - _name: `farm.processing.production.attribute.inheritance.extension`
-  - _description: "Attribute Inheritance Extensions for Processing Production"
-  - Relationships:
-    - Extends: Base models with attribute inheritance extension functionality
+### `mrp.bom` (Defined in `farm_processing`)
+  - **Class**: `MrpBom`
+  - **描述**: 
+  - _inherit_: `mrp.bom`
+  - **核心字段**:
+    - `packaging_line_ids` (One2many): farm.bom.package.line
 
-- **farm_agricultural_processing.FarmProcessingProductionActiveIngredientExtension**: Active ingredient extensions for processing production
-  - Odoo Model: `class FarmProcessingProductionActiveIngredientExtension(models.Model)`
-  - _name: `farm.processing.production.active.ingredient.extension`
-  - _description: "Active Ingredient Extensions for Processing Production"
-  - Relationships:
-    - Extends: Base models with active ingredient extension functionality
+### `mrp.bom` (Defined in `farm_ux`)
+  - **Class**: `BomInjection`
+  - **描述**: 
+  - _inherit_: `mrp.bom, agri.view.mixin`
 
-- **farm_agricultural_processing.FarmProcessingProductionAllergenExtension**: Allergen extensions for processing production
-  - Odoo Model: `class FarmProcessingProductionAllergenExtension(models.Model)`
-  - _name: `farm.processing.production.allergen.extension`
-  - _description: "Allergen Extensions for Processing Production"
-  - Relationships:
-    - Extends: Base models with allergen extension functionality
 
-- **farm_agricultural_processing.FarmProcessingProductionGmpExtension**: GMP extensions for processing production
-  - Odoo Model: `class FarmProcessingProductionGmpExtension(models.Model)`
-  - _name: `farm.processing.production.gmp.extension`
-  - _description: "GMP Extensions for Processing Production"
-  - Relationships:
-    - Extends: Base models with GMP extension functionality
+### `mrp.production` (Defined in `farm_mobile`)
+  - **Class**: `AgriIntervention`
+  - **描述**: 
+  - _inherit_: `mrp.production`
+  - **核心字段**:
+    - `check_in_ids` (One2many): farm.checkin
+    - `evidence_ids` (One2many): farm.evidence
+    - `current_check_in_id` (Many2one): farm.checkin
 
-- **farm_agricultural_processing.AgriProcessingEnvironmentalMonitoringLine**: Environmental monitoring line items for agriculture processing
-  - Odoo Model: `class AgriProcessingEnvironmentalMonitoringLine(models.Model)`
-  - _name: `agri.processing.environmental.monitoring.line`
-  - _description: "Environmental Monitoring Line Items for Agriculture Processing"
-  - Relationships:
-    - Extends: Base models with environmental monitoring line functionality
+### `mrp.production` (Defined in `farm_mrp`)
+  - **Class**: `MrpProduction`
+  - **描述**: 
+  - _inherit_: `mrp.production`
+  - **核心字段**:
+    - `industry_type` (Selection): industry_type
+    - `isl_record_type` (Char): isl_record_type
 
-- **farm_agricultural_processing.FarmProcessingProductionLabelComplianceExtension**: Label compliance extensions for processing production
-  - Odoo Model: `class FarmProcessingProductionLabelComplianceExtension(models.Model)`
-  - _name: `farm.processing.production.label.compliance.extension`
-  - _description: "Label Compliance Extensions for Processing Production"
-  - Relationships:
-    - Extends: Base models with label compliance extension functionality
+### `mrp.production` (Defined in `farm_processing`)
+  - **Class**: `MrpProduction`
+  - **描述**: 
+  - _inherit_: `mrp.production`
+  - **核心字段**:
+    - `artisan_log_ids` (One2many): farm.processing.artisan.log
+    - `is_artisan_batch` (Boolean): Artisan/Premium Batch
 
-- **farm_agricultural_processing.FarmProcessingProductionHaccpExtension**: HACCP extensions for processing production
-  - Odoo Model: `class FarmProcessingProductionHaccpExtension(models.Model)`
-  - _name: `farm.processing.production.haccp.extension`
-  - _description: "HACCP Extensions for Processing Production"
-  - Relationships:
-    - Extends: Base models with HACCP extension functionality
+### `mrp.production` (Defined in `farm_ux`)
+  - **Class**: `ProductionInjection`
+  - **描述**: 
+  - _inherit_: `mrp.production, agri.view.mixin`
 
-- **farm_agricultural_processing.AgriProcessingHaccpMonitoringLine**: HACCP monitoring line items for agriculture processing
-  - Odoo Model: `class AgriProcessingHaccpMonitoringLine(models.Model)`
-  - _name: `agri.processing.haccp.monitoring.line`
-  - _description: "HACCP Monitoring Line Items for Agriculture Processing"
-  - Relationships:
-    - Extends: Base models with HACCP monitoring line functionality
 
-- **farm_agricultural_processing.AgriProcessingHaccpVerificationLine**: HACCP verification line items for agriculture processing
-  - Odoo Model: `class AgriProcessingHaccpVerificationLine(models.Model)`
-  - _name: `agri.processing.haccp.verification.line`
-  - _description: "HACCP Verification Line Items for Agriculture Processing"
-  - Relationships:
-    - Extends: Base models with HACCP verification line functionality
+### `mrp.routing.workcenter` (Defined in `farm_processing`)
+  - **Class**: `MrpRoutingWorkcenter`
+  - **描述**: 
+  - _inherit_: `mrp.routing.workcenter`
 
-- **farm_agricultural_processing.FarmProcessingProductionSCExtension**: SC extensions for processing production
-  - Odoo Model: `class FarmProcessingProductionSCExtension(models.Model)`
-  - _name: `farm.processing.production.sc.extension`
-  - _description: "SC Extensions for Processing Production"
-  - Relationships:
-    - Extends: Base models with SC extension functionality
 
-- **farm_agricultural_processing.FarmProcessingBomSCExtension**: SC extensions for processing BOM
-  - Odoo Model: `class FarmProcessingBomSCExtension(models.Model)`
-  - _name: `farm.processing.bom.sc.extension`
-  - _description: "SC Extensions for Processing BOM"
-  - Relationships:
-    - Extends: Base models with SC BOM extension functionality
+### `mrp.routing.workcenter` (Defined in `farm_processing`)
+  - **Class**: `MrpRoutingWorkcenter`
+  - **描述**: 
+  - _inherit_: `mrp.routing.workcenter`
 
-- **farm_agricultural_processing.AgriProcessingLicenseCheck**: License checks for agriculture processing
-  - Odoo Model: `class AgriProcessingLicenseCheck(models.Model)`
-  - _name: `agri.processing.license.check`
-  - _description: "License Checks for Agriculture Processing"
-  - Relationships:
-    - Extends: Base models with license check functionality
 
-- **farm_agricultural_processing.FarmProcessingProductionPackagingExtension**: Packaging extensions for processing production
-  - Odoo Model: `class FarmProcessingProductionPackagingExtension(models.Model)`
-  - _name: `farm.processing.production.packaging.extension`
-  - _description: "Packaging Extensions for Processing Production"
-  - Relationships:
-    - Extends: Base models with packaging extension functionality
+### `mrp.workcenter` (Defined in `farm_processing`)
+  - **Class**: `MrpWorkcenter`
+  - **描述**: 
+  - _inherit_: `mrp.workcenter`
 
-- **farm_agricultural_processing.AgriProcessingPackaging**: Packaging management for agriculture processing
-  - Odoo Model: `class AgriProcessingPackaging(models.Model)`
-  - _name: `agri.processing.packaging`
-  - _description: "Packaging Management for Agriculture Processing"
-  - Relationships:
-    - Extends: Base models with packaging management functionality
 
-- **farm_agricultural_processing.FarmProcessingBomFormulaVersionExtension**: Formula version extensions for processing BOM
-  - Odoo Model: `class FarmProcessingBomFormulaVersionExtension(models.Model)`
-  - _name: `farm.processing.bom.formula.version.extension`
-  - _description: "Formula Version Extensions for Processing BOM"
-  - Relationships:
-    - Extends: Base models with formula version extension functionality
+### `mrp.workcenter` (Defined in `farm_processing`)
+  - **Class**: `MrpWorkcenter`
+  - **描述**: 
+  - _inherit_: `mrp.workcenter`
+  - **核心字段**:
+    - `energy_type` (Selection): energy_type
+    - `energy_cost_per_hour` (Float): Energy Cost per Hour
 
-- **farm_agricultural_processing.FarmProcessingBlindMaterial**: Blind material management for processing
-  - Odoo Model: `class FarmProcessingBlindMaterial(models.Model)`
-  - _name: `farm.processing.blind.material`
-  - _description: "Blind Material Management for Processing"
-  - Relationships:
-    - Extends: Base models with blind material management functionality
+### `mrp.workcenter` (Defined in `farm_processing`)
+  - **Class**: `MrpWorkcenter`
+  - **描述**: 
+  - _inherit_: `mrp.workcenter`
+  - **核心字段**:
+    - `industry_capability` (Selection): industry_capability
+    - `energy_type` (Selection): energy_type
+    - `energy_cost_per_hour` (Float): Energy Cost per Hour
 
-- **farm_agricultural_processing.FarmProcessingFormulaAutoCorrection**: Formula auto-correction for processing
-  - Odoo Model: `class FarmProcessingFormulaAutoCorrection(models.Model)`
-  - _name: `farm.processing.formula.auto.correction`
-  - _description: "Formula Auto-Correction for Processing"
-  - Relationships:
-    - Extends: Base models with formula auto-correction functionality
+### `mrp.workcenter` (Defined in `farm_ux`)
+  - **Class**: `WorkcenterInjection`
+  - **描述**: 
+  - _inherit_: `mrp.workcenter, agri.view.mixin`
 
-- **farm_agricultural_processing.StockLotTraceabilityExtension**: Traceability extensions for stock lots
-  - Odoo Model: `class StockLotTraceabilityExtension(models.Model)`
-  - _name: `stock.lot.traceability.extension`
-  - _description: "Traceability Extensions for Stock Lots"
-  - _inherit: `stock.lot`
-  - Relationships:
-    - Extends: `stock.lot` with traceability extension functionality
 
-- **farm_agricultural_processing.AgriProcessingLotTracking**: Lot tracking for agriculture processing
-  - Odoo Model: `class AgriProcessingLotTracking(models.Model)`
-  - _name: `agri.processing.lot.tracking`
-  - _description: "Lot Tracking for Agriculture Processing"
-  - Relationships:
-    - Extends: Base models with lot tracking functionality
+### `mrp.workorder` (Defined in `farm_processing`)
+  - **Class**: `MrpWorkorder`
+  - **描述**: 
+  - _inherit_: `mrp.workorder`
+  - **核心字段**:
+    - `actual_energy_consumption` (Float): Actual Energy Consumption
+    - `process_parameters` (Text): Process Parameters (e.g. Temperature, Pressure)
+    - `qty_produced_workorder` (Float): Produced Qty (Workorder)
+    - `qty_scrapped_workorder` (Float): Scrapped Qty (Workorder)
+    - `qty_input_workorder` (Float): Input Qty (Workorder)
+    - `loss_rate_workorder` (Float): Loss Rate (Workorder) (%)
 
-- **farm_agricultural_processing.FarmWorkcenterExtension**: Extensions for work centers in processing
-  - Odoo Model: `class FarmWorkcenterExtension(models.Model)`
-  - _name: `farm.workcenter.extension`
-  - _description: "Extensions for Work Centers in Processing"
-  - _inherit: `mrp.workcenter`
-  - Relationships:
-    - Extends: `mrp.workcenter` with processing extension functionality
+### `multi.sensory.interaction` (Defined in `farm_ux`)
+  - **Class**: `MultiSensoryInteraction`
+  - **描述**: Multi-Sensory Interaction Configuration
 
-- **farm_agricultural_processing.FarmWorkorderEnergyExtension**: Energy extensions for work orders in processing
-  - Odoo Model: `class FarmWorkorderEnergyExtension(models.Model)`
-  - _name: `farm.workorder.energy.extension`
-  - _description: "Energy Extensions for Work Orders in Processing"
-  - _inherit: `mrp.workorder`
-  - Relationships:
-    - Extends: `mrp.workorder` with energy extension functionality
+  - **核心字段**:
+    - `name` (Char): Feature Name
+    - `interaction_type` (Selection): interaction_type
+    - `model_name` (Char): Model Name
+    - `field_name` (Char): Field Name
+    - `is_enabled` (Boolean): Is Enabled
+    - `voice_commands` (Text): Voice Commands
+    - `gesture_mappings` (Text): Gesture Mappings
+    - `audio_notification` (Boolean): Audio Notification
+    - `haptic_feedback` (Boolean): Haptic Feedback
+    - `visual_enhancement` (Boolean): Visual Enhancement
+    - `large_font_support` (Boolean): Large Font Support
+    - `high_contrast_mode` (Boolean): High Contrast Mode
+    - `screen_reader_compatible` (Boolean): Screen Reader Compatible
+    - `keyboard_shortcuts` (Text): Keyboard Shortcuts
+    - `description` (Text): Description
 
-### Ecology
-- **farm_ecology.FarmBiodiversityIndicator**: Biodiversity indicators for ecological management
-- **farm_ecology.FarmEcologicalZone**: Ecological zone management
+### `pos.order.line` (Defined in `farm_pos`)
+  - **Class**: `PosOrderLine`
+  - **描述**: 
+  - _inherit_: `pos.order.line`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
 
-## Abstract and Mixin Models
+### `pos.order` (Defined in `farm_pos`)
+  - **Class**: `PosOrder`
+  - **描述**: 
+  - _inherit_: `pos.order`
+  - **核心字段**:
+    - `picking_location_id` (Many2one): stock.location
 
-Abstract and mixin models provide reusable functionality across the system:
+### `procurement.planning.line` (Defined in `farm_multi_farm_procurement`)
+  - **Class**: `ProcurementPlanningLine`
+  - **描述**: Procurement Planning Line
 
-### System Utilities
-- **CommonValidationsMixin** (Abstract): Provides common validation utilities
-  - Odoo Model: `class CommonValidationsMixin(models.AbstractModel)`
-  - _name: `farm.core.common.validations.mixin`
-  - _description: "Common Validation Utilities Mixin"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+  - **核心字段**:
+    - `planning_id` (Many2one): procurement.planning
+    - `product_id` (Many2one): product.product
+    - `total_required` (Float): Total Required
+    - `total_available` (Float): Total Available
+    - `total_allocated` (Float): Total Allocated
+    - `remaining_quantity` (Float): Remaining Quantity
+    - `allocation_lines` (One2many): procurement.allocation.line
 
-- **CommonComputeMethodsMixin** (Abstract): Provides common compute method utilities
-  - Odoo Model: `class CommonComputeMethodsMixin(models.AbstractModel)`
-  - _name: `farm.core.common.compute.methods.mixin`
-  - _description: "Common Compute Method Utilities Mixin"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `product.template` (Defined in `farm_agritourism`)
+  - **Class**: `ProductTemplate`
+  - **描述**: 
+  - _inherit_: `product.template`
+  - **核心字段**:
+    - `is_experience_package` (Boolean): Is Experience Package
 
-- **ByproductCostShareMixin** (Abstract): Provides byproduct cost sharing utilities
-  - Odoo Model: `class ByproductCostShareMixin(models.AbstractModel)`
-  - _name: `farm.core.byproduct.cost.share.mixin`
-  - _description: "Byproduct Cost Share Mixin"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `product.template` (Defined in `farm_processing`)
+  - **Class**: `ProductTemplate`
+  - **描述**: 
+  - _inherit_: `product.template`
+  - **核心字段**:
+    - `is_agri_material` (Boolean): Is Agri Material
+    - `is_processed_food` (Boolean): Is Processed Food
+    - `substitute_product_ids` (Many2many): product.template
 
-### Core Reusable Functionality
-- **CommonAgriculturalFields** (Abstract): Provides common agricultural fields across models
-  - Odoo Model: `class CommonAgriculturalFields(models.AbstractModel)`
-  - _name: `farm.core.common.agricultural.fields`
-  - _description: "Common Agricultural Fields Mixin"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `product.template` (Defined in `farm_ux`)
+  - **Class**: `ProductInjection`
+  - **描述**: 
+  - _inherit_: `product.template, agri.view.mixin`
 
-- **CreationMethodMixin** (Abstract): Provides creation method utilities
-  - Odoo Model: `class CreationMethodMixin(models.AbstractModel)`
-  - _name: `farm.core.creation.method.mixin`
-  - _description: "Creation Method Utilities Mixin"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
 
-- **ComputedFieldMixin** (Abstract): Provides computed field utilities
-  - Odoo Model: `class ComputedFieldMixin(models.AbstractModel)`
-  - _name: `farm.core.computed.field.mixin`
-  - _description: "Computed Field Utilities Mixin"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `product.template` (Defined in `farm_valuation`)
+  - **Class**: `ProductTemplateMarketPrice`
+  - **描述**: 
+  - _inherit_: `product.template`
+  - **核心字段**:
+    - `market_price` (Float): Market Price
+    - `market_price_date` (Date): Market Price Date
+    - `market_price_uom` (Many2one): uom.uom
+    - `expected_yield_per_unit` (Float): Expected Yield per Unit
 
-- **ComplianceMixin** (Abstract): Provides compliance utilities
-  - Odoo Model: `class ComplianceMixin(models.AbstractModel)`
-  - _name: `farm.core.compliance.mixin`
-  - _description: "Compliance Utilities Mixin"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `project.task` (Defined in `farm_green_monitor`)
+  - **Class**: `ProjectTask`
+  - **描述**: 
+  - _inherit_: `project.task`
+  - **核心字段**:
+    - `total_fertilizer_used` (Float): Total Fertilizer Used (kg)
+    - `total_pesticide_used` (Float): Total Pesticide Used (kg)
+    - `fertilizer_per_mu` (Float): Fertilizer (kg/mu)
+    - `pesticide_per_mu` (Float): Pesticide (kg/mu)
 
-- **GISCoordinateUtils** (Abstract): Provides GIS coordinate utilities
-  - Odoo Model: `class GISCoordinateUtils(models.AbstractModel)`
-  - _name: `farm.core.gis.utils`
-  - _description: "GIS Coordinate Utilities Mixin"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `project.task` (Defined in `farm_safety`)
+  - **Class**: `ProjectTask`
+  - **描述**: 
+  - _inherit_: `project.task`
+  - **核心字段**:
+    - `prevention_template_id` (Many2one): farm.prevention.template
 
-### Operation Utilities
-- **FarmAgriculturalCampaignMixin** (Abstract): Provides agricultural campaign utilities
-  - Odoo Model: `class FarmAgriculturalCampaignMixin(models.AbstractModel)`
-  - _name: `farm.agricultural.campaign.mixin`
-  - _description: "Agricultural Campaign Utilities Mixin"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `res.company` (Defined in `farm_entity_reg`)
+  - **Class**: `ResCompany`
+  - **描述**: 
+  - _inherit_: `res.company`
+  - **核心字段**:
+    - `unified_social_credit_code` (Char): Unified Social Credit Code
+    - `registration_no` (Char): Registration No.
+    - `entity_type` (Selection): entity_type
+    - `license_attachment_ids` (Many2many): ir.attachment
+    - `license_expiry_date` (Date): License Expiry Date
+    - `is_license_expired` (Boolean): License Expired
 
-- **FarmAgriculturalInterventionMixin** (Abstract): Provides agricultural intervention utilities
-  - Odoo Model: `class FarmAgriculturalInterventionMixin(models.AbstractModel)`
-  - _name: `farm.agricultural.intervention.mixin`
-  - _description: "Agricultural Intervention Utilities Mixin"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `res.company` (Defined in `farm_label`)
+  - **Class**: `ResCompany`
+  - **描述**: 
+  - _inherit_: `res.company`
+  - **核心字段**:
+    - `label_background_image` (Binary): Label Background Image
 
-- **FarmAgriculturalBomMixin** (Abstract): Provides agricultural BOM utilities
-  - Odoo Model: `class FarmAgriculturalBomMixin(models.AbstractModel)`
-  - _name: `farm.agricultural.bom.mixin`
-  - _description: "Agricultural BOM Utilities Mixin"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `res.config.settings` (Defined in `farm_label`)
+  - **Class**: `ResConfigSettings`
+  - **描述**: 
+  - _inherit_: `res.config.settings`
+  - **核心字段**:
+    - `label_background_image` (Binary): label_background_image
 
-- **FarmAgriculturalBomLineMixin** (Abstract): Provides agricultural BOM line utilities
-  - Odoo Model: `class FarmAgriculturalBomLineMixin(models.AbstractModel)`
-  - _name: `farm.agricultural.bom.line.mixin`
-  - _description: "Agricultural BOM Line Utilities Mixin"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `res.config.settings` (Defined in `farm_weather`)
+  - **Class**: `ResConfigSettings`
+  - **描述**: 
+  - _inherit_: `res.config.settings`
+  - **核心字段**:
+    - `weather_api_key` (Char): weather_api_key
 
-- **FarmAgriculturalCampaignBase** (Abstract): Provides base functionality for agricultural campaigns
-  - Odoo Model: `class FarmAgriculturalCampaignBase(models.AbstractModel)`
-  - _name: `farm.agricultural.campaign.base`
-  - _description: "Agricultural Campaign Base Functionality"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `res.partner` (Defined in `farm_marketing`)
+  - **Class**: `FarmPartner`
+  - **描述**: 
+  - _inherit_: `res.partner`
+  - **核心字段**:
+    - `loyalty_points` (Float): Farm Loyalty Points
 
-### MRP Utilities
-- **FarmAgriBomMixin** (Abstract): Provides agricultural BOM utilities for MRP
-  - Odoo Model: `class FarmAgriBomMixin(models.AbstractModel)`
-  - _name: `farm.agri.bom.mixin`
-  - _description: "Agricultural BOM Utilities for MRP"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `res.partner` (Defined in `farm_multi_farm_base`)
+  - **Class**: `ResPartner`
+  - **描述**: 
+  - _inherit_: `res.partner`
+  - **核心字段**:
+    - `internal_credit_balance` (Float): Internal Credit Balance
 
-- **FarmAgriProductionMixin** (Abstract): Provides agricultural production utilities for MRP
-  - Odoo Model: `class FarmAgriProductionMixin(models.AbstractModel)`
-  - _name: `farm.agri.production.mixin`
-  - _description: "Agricultural Production Utilities for MRP"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `res.partner` (Defined in `farm_ux`)
+  - **Class**: `PartnerInjection`
+  - **描述**: 
+  - _inherit_: `res.partner, agri.view.mixin`
 
-- **MrpBomLineIslAbstract** (Abstract): Abstract base for MRP BOM line ISL models
-  - Odoo Model: `class MrpBomLineIslAbstract(models.AbstractModel)`
-  - _name: `mrp.bom.line.isl.abstract`
-  - _description: "Abstract Base for MRP BOM Line ISL Models"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
 
-### Supply Chain Utilities
-- **StorageManagementMixin** (Abstract): Provides storage management utilities
-  - Odoo Model: `class StorageManagementMixin(models.AbstractModel)`
-  - _name: `farm.storage.management.mixin`
-  - _description: "Storage Management Utilities Mixin"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `sale.order.line` (Defined in `farm_agritourism`)
+  - **Class**: `SaleOrderLine`
+  - **描述**: 
+  - _inherit_: `sale.order.line`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
 
-- **QualityManagementMixin** (Abstract): Provides quality management utilities
-  - Odoo Model: `class QualityManagementMixin(models.AbstractModel)`
-  - _name: `farm.quality.management.mixin`
-  - _description: "Quality Management Utilities Mixin"
-  - _inherit: `models.AbstractModel`
-  - Relationships:
-    - Inherits: `models.AbstractModel`
+### `sale.order.line` (Defined in `farm_floriculture`)
+  - **Class**: `SaleOrderLine`
+  - **描述**: 
+  - _inherit_: `sale.order.line`
 
-This comprehensive model summary represents the full scope of the farm management system, covering all aspects of agricultural operations from planning and production to processing, marketing, and financial management.
+
+### `sale.order.line` (Defined in `farm_marketing`)
+  - **Class**: `FarmSaleOrderLine`
+  - **描述**: 
+  - _inherit_: `sale.order.line`
+  - **核心字段**:
+    - `lot_id` (Many2one): stock.lot
+    - `required_integrity_score` (Float): Required Integrity
+    - `is_reserved` (Boolean): Is Locked
+
+### `sale.order` (Defined in `farm_agritourism`)
+  - **Class**: `SaleOrder`
+  - **描述**: 
+  - _inherit_: `sale.order`
+  - **核心字段**:
+    - `agri_task_ids` (One2many): project.task
+    - `booking_ids` (One2many): farm.booking
+    - `booking_count` (Integer): booking_count
+
+### `sale.order` (Defined in `farm_floriculture`)
+  - **Class**: `SaleOrder`
+  - **描述**: 
+  - _inherit_: `sale.order`
+
+
+### `sale.order` (Defined in `farm_marketing`)
+  - **Class**: `FarmSaleOrder`
+  - **描述**: 
+  - _inherit_: `sale.order`
+  - **核心字段**:
+    - `is_preorder` (Boolean): Pre-order Reservation
+    - `reservation_expiry` (Datetime): Reservation Expiry
+    - `export_country_id` (Many2one): res.country
+    - `is_export_compliant` (Boolean): Export Compliant
+
+### `stock.lot` (Defined in `farm_breeding`)
+  - **Class**: `FarmLotBreeding`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+  - **核心字段**:
+    - `trait_value_ids` (One2many): farm.trait.value
+    - `trait_score_avg` (Float): Average Trait Score
+    - `father_id` (Many2one): stock.lot
+    - `mother_id` (Many2one): stock.lot
+    - `gender` (Selection): gender
+
+### `stock.lot` (Defined in `farm_breeding`)
+  - **Class**: `StockLotExtensionBreeding`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+  - **核心字段**:
+    - `father_id` (Many2one): stock.lot
+    - `mother_id` (Many2one): stock.lot
+    - `trait_score_avg` (Selection): trait_score_avg
+    - `trait_value_ids` (One2many): farm.trait.value
+
+### `stock.lot` (Defined in `farm_certification`)
+  - **Class**: `FarmLotCert`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+  - **核心字段**:
+    - `certification_level` (Selection): certification_level
+
+### `stock.lot` (Defined in `farm_label`)
+  - **Class**: `StockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+
+
+### `stock.lot` (Defined in `farm_marketing`)
+  - **Class**: `FarmLotMarketing`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+  - **核心字段**:
+    - `traceability_url` (Char): Traceability URL
+    - `is_premium_brand` (Boolean): Premium Brand Lot
+    - `allowed_partner_ids` (Many2many): res.partner
+    - `integrity_score` (Float): Organic Integrity Score
+    - `story_title` (Char): Growth Story Title
+    - `story_content` (Html): Growth Story Content
+    - `marketing_image_ids` (Many2many): ir.attachment
+    - `avg_temp` (Float): Average Growth Temperature (℃)
+    - `water_purity` (Char): Water Purity Grade
+    - `is_near_expiry` (Boolean): Near Expiry
+    - `promotion_link_id` (Many2one): loyalty.program
+
+### `stock.lot` (Defined in `farm_marketing`)
+  - **Class**: `StockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+  - **核心字段**:
+    - `feedback_ids` (One2many): farm.consumer.feedback
+    - `avg_consumer_rating` (Float): Avg Consumer Rating
+
+### `stock.lot` (Defined in `farm_marketing`)
+  - **Class**: `StockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+  - **核心字段**:
+    - `gi_registry_id` (Many2one): agri.gi.registry
+    - `gi_security_code` (Char): GI Anti-counterfeit Code
+
+### `stock.lot` (Defined in `farm_mrp`)
+  - **Class**: `StockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+  - **核心字段**:
+    - `isl_summary_info` (Char): ISL Contextual Info
+    - `isl_record_type` (Char): isl_record_type
+
+### `stock.lot` (Defined in `farm_multi_farm_base`)
+  - **Class**: `StockLotExtension`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+  - **核心字段**:
+    - `assigned_cooperative_id` (Many2one): cooperative.entity
+    - `cooperative_purpose` (Selection): cooperative_purpose
+    - `is_government_audited` (Boolean): Government Audit Passed
+
+### `stock.lot` (Defined in `farm_multi_farm_base`)
+  - **Class**: `StockLotExtension`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+  - **核心字段**:
+    - `assigned_cooperative_id` (Many2one): cooperative.entity
+    - `cooperative_purpose` (Selection): cooperative_purpose
+    - `is_government_audited` (Boolean): Government Audit Passed
+
+### `stock.lot` (Defined in `farm_orchard_horticulture`)
+  - **Class**: `OrchardStockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot, agri.biological.inventory.mixin, agri.growth.cycle.mixin, agri.biological.valuation.mixin, agri.geospatial.mixin, agri.traceability.mixin`
+  - **核心字段**:
+    - `is_fruit_tree` (Boolean): Is Fruit Tree
+    - `tree_variety_id` (Many2one): agri.industry.variety
+    - `planting_date` (Date): Planting Date
+    - `expected_harvest_gdd` (Float): Target GDD for Ripening
+    - `maturity_status` (Float): Maturity Progress (%)
+
+### `stock.lot` (Defined in `farm_processing`)
+  - **Class**: `AgriStockLotHealth`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+  - **核心字段**:
+    - `health_activity_ids` (One2many): mail.activity
+
+### `stock.lot` (Defined in `farm_processing`)
+  - **Class**: `StockLotHealth`
+  - **描述**: Stock Lot Health (Deprecated - Use stock.lot with agri.health.schedule)
+  - _inherit_: `stock.lot`
+  - **核心字段**:
+    - `health_activity_ids` (One2many): mail.activity
+
+### `stock.lot` (Defined in `farm_processing`)
+  - **Class**: `StockLot`
+  - **描述**: 
+  - _inherit_: `stock.lot`
+  - **核心字段**:
+    - `lot_purpose` (Selection): lot_purpose
+    - `birth_date` (Date): Birth/Hatch Date
+    - `life_stage` (Selection): life_stage
+    - `current_weight` (Float): Current Weight (kg)
+    - `gender` (Selection): gender
+    - `last_gps_lat` (Float): Last Latitude
+    - `last_gps_lng` (Float): Last Longitude
+    - `last_location_update` (Datetime): Last Location Sync
+    - `parent_lot_ids` (Many2many): stock.lot
+    - `child_lot_ids` (One2many): stock.lot
+    - `full_traceability_path` (Text): Full Traceability Path
+    - `quality_grade` (Selection): quality_grade
+    - `harvest_date` (Date): Harvest Date
+    - `plot_id` (Many2one): farm.location
+    - `active_content` (Float): Active Content (%)
+    - *... 以及其他 5 个业务字段*
+
+### `stock.move.line` (Defined in `farm_processing`)
+  - **Class**: `StockMoveLine`
+  - **描述**: 
+  - _inherit_: `stock.move.line`
+
+
+### `stock.move` (Defined in `farm_processing`)
+  - **Class**: `StockMove`
+  - **描述**: 
+  - _inherit_: `stock.move`
+  - **核心字段**:
+    - `industry_context` (Selection): industry_context
+
+### `stock.move` (Defined in `farm_ux`)
+  - **Class**: `MoveInjection`
+  - **描述**: 
+  - _inherit_: `stock.move, agri.view.mixin`
+
+
+### `stock.picking.type` (Defined in `farm_multi_farm_base`)
+  - **Class**: `StockPickingType`
+  - **描述**: 
+  - _inherit_: `stock.picking.type`
+  - **核心字段**:
+    - `is_advancing_distribution` (Boolean): Is Advancing Distribution
+
+### `stock.picking` (Defined in `farm_cert_ch`)
+  - **Class**: `StockPicking`
+  - **描述**: 
+  - _inherit_: `stock.picking`
+  - **核心字段**:
+    - `requires_cert_ch` (Boolean): Requires Cert. (China)
+    - `certificate_ch_ids` (One2many): farm.product.certificate
+
+### `stock.picking` (Defined in `farm_multi_farm_equipment`)
+  - **Class**: `StockPicking`
+  - **描述**: 
+  - _inherit_: `stock.picking`
+
+
+### `stock.picking` (Defined in `farm_ux`)
+  - **Class**: `PickingInjection`
+  - **描述**: 
+  - _inherit_: `stock.picking, agri.view.mixin`
+
+
+### `stock.quant` (Defined in `farm_ux`)
+  - **Class**: `QuantInjection`
+  - **描述**: 
+  - _inherit_: `stock.quant, agri.view.mixin`
+
+
+### `term.mapping` (Defined in `farm_ux`)
+  - **Class**: `TermMapping`
+  - **描述**: Term Mapping for Agricultural Terminology
+
+  - **核心字段**:
+    - `name` (Char): Mapping Name
+    - `source_term` (Char): Source Term (Industrial)
+    - `target_term` (Char): Target Term (Agricultural)
+    - `language_code` (Char): Language Code
+    - `industry_context` (Selection): industry_context
+    - `region_specific` (Boolean): Region Specific
+    - `region_code` (Char): Region Code
+    - `is_active` (Boolean): Is Active
+    - `description` (Text): Description
+    - `example_usage` (Text): Example Usage
+
+### `workspace.customization` (Defined in `farm_ux`)
+  - **Class**: `WorkspaceCustomization`
+  - **描述**: Personalized Workspace Customization
+
+  - **核心字段**:
+    - `name` (Char): Customization Name
+    - `user_id` (Many2one): res.users
+    - `dashboard_widgets` (Text): Dashboard Widgets
+    - `theme_preference` (Selection): theme_preference
+    - `quick_actions` (Text): Quick Actions
+    - `language_preference` (Char): Language Preference
+    - `timezone_preference` (Char): Timezone Preference
+    - `font_size` (Selection): font_size
+    - `layout_preference` (Text): Layout Preferences
+    - `is_active` (Boolean): Is Active
+    - `last_updated` (Datetime): Last Updated

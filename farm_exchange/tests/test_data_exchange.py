@@ -16,7 +16,7 @@ class TestDataExchange(TransactionCase):
         })
 
     def test_01_daplos_export(self):
-        """ 测试 DAPLOS XML 导出格式 [US-20-02] """
+        """ 测试 DAPLOS XML 导出格式 [US-050-02] """
         ex = self.Exchanger.create({
             'name': 'DAPLOS Export Test',
             'format_type': 'daplos',

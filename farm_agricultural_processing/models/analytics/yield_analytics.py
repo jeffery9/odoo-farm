@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class FarmProcessingProductionAnalyticsExtension(models.Model):
     """
-    Extension to Processing ISL Production Model for Analytics - US-14-16
+    Extension to Processing ISL Production Model for Analytics - US-037-16
     """
     _inherit = 'farm.processing.production'
 
@@ -25,7 +25,7 @@ class FarmProcessingProductionAnalyticsExtension(models.Model):
 
 class AgriProcessingYieldRateAnalytics(models.Model):
     """
-    Yield Rate Multi-dimensional Analytics - US-14-16
+    Yield Rate Multi-dimensional Analytics - US-037-16
     """
     _name = 'agri.processing.yield.rate.analytics'
     _description = 'Yield Rate Multi-dimensional Analytics'

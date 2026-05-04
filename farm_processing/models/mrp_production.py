@@ -139,7 +139,7 @@ class MrpProduction(models.Model):
                 # [Level 2: DNA Gate] Enforce Quality Gate
                 if hasattr(order, 'validate_quality_gate'):
                     order.validate_quality_gate()
-                # US-14-09: HACCP / Quality Gate Pre-check
+                # US-037-09: HACCP / Quality Gate Pre-check
                 pass
         return super(MrpProduction, self).action_confirm()
 

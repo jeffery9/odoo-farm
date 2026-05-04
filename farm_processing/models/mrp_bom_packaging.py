@@ -4,7 +4,7 @@ class MrpBom(models.Model):
     _name = 'mrp.bom'
     _inherit = 'mrp.bom'
 
-    # US-14-10: 成品包装结构定义
+    # US-037-10: 成品包装结构定义
     packaging_line_ids = fields.One2many('farm.bom.package.line', 'bom_id', string="Finished Product Packaging")
 
 class FarmBomPackageLine(models.Model):
@@ -26,9 +26,9 @@ class FarmBomPackageLine(models.Model):
         'A product can only have one packaging definition per level in a BOM.'
     )
 
-# US-14-03: 副产品成本分摊
+# US-037-03: 副产品成本分摊
 class MrpBomByproduct(models.Model):
     _name = 'mrp.bom.byproduct'
     _inherit = 'mrp.bom.byproduct'
 
-    cost_share = fields.Float("Cost Share (%)", help="Percentage of the total BOM cost allocated to this byproduct. [US-14-03]")
+    cost_share = fields.Float("Cost Share (%)", help="Percentage of the total BOM cost allocated to this byproduct. [US-037-03]")

@@ -7,7 +7,7 @@ class FarmEquipment(models.Model):
     is_agri_machinery = fields.Boolean("Is Agricultural Machinery", default=False)
     is_drone = fields.Boolean("Is Drone", default=False)
     
-    # Technical Specs [US-05-03, US-22-01]
+    # Technical Specs [US-005-03, US-052-01]
     horsepower = fields.Float("Engine Power (HP)")
     working_width = fields.Float("Working Width (m)", help="Spraying/Working width")
     payload_capacity = fields.Float("Max Payload (kg/L)", help="Tank or hopper capacity")
@@ -52,7 +52,7 @@ class FarmEquipmentLog(models.Model):
 
 class FarmBattery(models.Model):
     """
-    US-22-01: 农用无人机电池资产管理
+    US-052-01: 农用无人机电池资产管理
     """
     _name = 'farm.battery'
     _description = 'Agri-Drone Battery'

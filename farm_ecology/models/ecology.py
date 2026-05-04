@@ -3,7 +3,7 @@ from odoo import models, fields, api, _
 
 class AgriBiodiversityIndicator(models.Model):
     """
-    Agri Domain Level: Biodiversity Indicator. [US-104-2026]
+    Agri Domain Level: Biodiversity Indicator. [US-014-2026]
     Standard observation log for ecological health across the Agri domain.
     Refactored from farm.biodiversity.indicator with 100% logic retention.
     """
@@ -39,7 +39,7 @@ class AgriBiodiversityIndicator(models.Model):
 
 class AgriEcologicalZone(models.Model):
     """
-    Agri Domain Level: Ecological Infrastructure. [US-104-2026]
+    Agri Domain Level: Ecological Infrastructure. [US-014-2026]
     Represents non-productive ecological areas (hedges, ponds, forests).
     Refactored from farm.ecological.zone with 100% logic retention.
     """

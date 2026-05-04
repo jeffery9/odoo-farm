@@ -4,7 +4,7 @@ class FarmEquipment(models.Model):
     _name = 'maintenance.equipment'
     _inherit = 'maintenance.equipment'
 
-    # 农机购置补贴信息 [US-18-07]
+    # 农机购置补贴信息 [US-041-07]
     is_subsidized_machinery = fields.Boolean("Eligible for Subsidy", default=False)
     subsidy_category = fields.Char("Subsidy Category") # e.g. "耕整地机械-拖拉机"
     subsidy_model_no = fields.Char("Subsidy Model No.")
@@ -18,7 +18,7 @@ class FarmEquipment(models.Model):
     
     def action_match_subsidy_catalog(self):
         """ 
-        US-18-07: 匹配国家农机购置补贴目录
+        US-041-07: 匹配国家农机购置补贴目录
         实现基于铭牌编号的自动参数填充逻辑
         """
         self.ensure_one()

@@ -15,7 +15,7 @@ _logger = logging.getLogger(__name__)
 class AgriAiPestDiseaseDetection(AgriAiVisionBase):
     """
     AI model for pest and disease detection from images
-    Implements US-28-01: 病虫害图像识别与诊断
+    Implements US-058-01: 病虫害图像识别与诊断
     """
     _name = 'agri.ai.pest.disease.detection'
     _description = 'AI Pest & Disease Detection'

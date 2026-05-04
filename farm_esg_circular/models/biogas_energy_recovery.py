@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriBiogasProduction(models.Model):
     """
-    US-27-04: 沼气/生物质能转化量化
+    US-057-04: 沼气/生物质能转化量化
     Model for biogas and bioenergy production from waste
     """
     _name = 'agri.biogas.production'

@@ -9,7 +9,7 @@ class DouyinWebhook(http.Controller):
 
     @http.route('/douyin/callback', type='http', auth='public', csrf=False)
     def douyin_oauth_callback(self, **kwargs):
-        """ 处理授权后的 Code 回传 [US-21-01] """
+        """ 处理授权后的 Code 回传 [US-051-01] """
         code = kwargs.get('code')
         state = kwargs.get('state')
         if code and state:
@@ -21,7 +21,7 @@ class DouyinWebhook(http.Controller):
     @http.route('/douyin/notification', type='json', auth='public', csrf=False)
     def douyin_order_notification(self):
         """
-        US-21-04: 真实的抖音 Webhook 接收
+        US-051-04: 真实的抖音 Webhook 接收
         包含签名校验 logic
         """
         data = json.loads(request.httprequest.data)
@@ -54,7 +54,7 @@ class DouyinWebhook(http.Controller):
         return hmac.compare_digest(expected, signature)
 
     def _create_odoo_order(self, dy_order):
-        """ 将抖音订单转化为 Odoo 订单 [US-21-04] """
+        """ 将抖音订单转化为 Odoo 订单 [US-051-04] """
         SaleOrder = request.env['sale.order'].sudo()
         # 1. 查找或创建客户
         partner = request.env['res.partner'].sudo().search([('name', '=', dy_order.get('buyer_name'))], limit=1)

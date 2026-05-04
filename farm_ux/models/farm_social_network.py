@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class FarmSocialNetwork(models.Model):
     """
-    农场社交网络 [US-16-08]
+    农场社交网络 [US-039-08]
     """
     _name = 'farm.social.network'
     _description = 'Farm Social Network & Collaboration Platform'

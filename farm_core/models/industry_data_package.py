@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriIndustryDataPackage(models.Model):
     """
-    US-01-08: "One-Click Initialization" Industry Master Data Package
+    US-001-08: "One-Click Initialization" Industry Master Data Package
     - Pre-configured at least 5 industry-specific basic data packages
     - Import process supports "attribute mapping": automatically associate industry-standard physiological cycles with Odoo task templates
     Refactored to agri domain with 100% business logic retention and English i18n.

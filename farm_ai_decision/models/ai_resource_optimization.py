@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class AgriAiResourceOptimization(models.Model):
     """
     AI model for resource optimization
-    Implements US-58-11: Agri-input intelligent recommendation
+    Implements US-088-11: Agri-input intelligent recommendation
     """
     _name = 'agri.ai.resource.optimization'
     _description = 'AI Resource Optimization'

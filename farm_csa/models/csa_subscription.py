@@ -38,7 +38,7 @@ class FarmCSASubscription(models.Model):
         ('adoption', 'Asset Adoption (认养)')
     ], string="Subscription Type", default='bag')
     
-    # US-36-01: Adoption Linkage
+    # US-066-01: Adoption Linkage
     adopted_lot_id = fields.Many2one('stock.lot', string="Adopted Asset", 
                                     help="The specific animal or tree adopted by the customer.")
 
@@ -56,7 +56,7 @@ class FarmCSASubscription(models.Model):
                 sub.adopted_lot_id.message_post(body=_("ADOPTION: This asset has been adopted by %s.") % sub.partner_id.name)
 
 class FarmSharedTool(models.Model):
-    """ US-36-02: Shared Tool Management for Urban/Community Farming """
+    """ US-066-02: Shared Tool Management for Urban/Community Farming """
     _name = 'farm.shared.tool'
     _description = 'Shared Agricultural Tool'
     _inherit = ['mail.thread', 'mail.activity.mixin']

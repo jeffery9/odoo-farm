@@ -9,7 +9,7 @@ class TestFarmKnowledge(TransactionCase):
         self.FAQ = self.env['faq.entry']
 
     def test_smart_search(self):
-        """Test the smart search functionality [US-16-06]"""
+        """Test the smart search functionality [US-039-06]"""
         self.Knowledge.create({
             'name': 'How to control Wheat Rust',
             'tags': 'wheat, rust, disease',
