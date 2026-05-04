@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-
-    <!-- Core: Hexagon Shield -->
-    <path d="M128,45 L210,92 L210,188 L128,235 L46,188 L46,92 Z" fill="none" stroke="#C9382B" stroke-width="18" stroke-linejoin="round"/>
-    <path d="M100,140 L120,160 L160,110" stroke="#C9382B" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
+    
+        <!-- Flat Silhouette: Loop/Leaves -->
+        <circle cx="128" cy="128" r="90" fill="#C9382B"/>
+        <path d="M128,50 A78,78 0 1,1 70,180" fill="none" stroke="white" stroke-width="15" stroke-linecap="round"/>
+        <path d="M70,180 L50,150 M70,180 L100,165" stroke="white" stroke-width="15" stroke-linecap="round"/>
+        <path d="M128,190 C170,190 170,130 128,100 C86,130 86,190 128,190 Z" fill="white"/>
     
 </svg>

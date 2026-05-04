@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-
-    <!-- Core: Hexagon Shield -->
-    <path d="M128,45 L210,92 L210,188 L128,235 L46,188 L46,92 Z" fill="none" stroke="#C9382B" stroke-width="18" stroke-linejoin="round"/>
-    <path d="M100,140 L120,160 L160,110" stroke="#C9382B" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
+    
+        <!-- Flat Silhouette: Dashboard/Screen -->
+        <circle cx="128" cy="128" r="90" fill="#C9382B"/>
+        <rect x="60" y="80" width="136" height="96" rx="8" fill="none" stroke="white" stroke-width="10"/>
+        <rect x="75" y="100" width="40" height="50" rx="4" fill="white" opacity="0.6"/>
+        <rect x="125" y="100" width="55" height="15" rx="4" fill="white"/>
+        <rect x="125" y="125" width="55" height="15" rx="4" fill="white" opacity="0.8"/>
     
 </svg>
