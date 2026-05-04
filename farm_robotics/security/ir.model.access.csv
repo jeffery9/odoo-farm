@@ -1,5 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_farm_robot,farm.robot,model_farm_robot,farm_core.group_farm_worker,1,1,1,1
-access_farm_robot_mission,farm.robot.mission,model_farm_robot_mission,farm_core.group_farm_worker,1,1,1,1
-access_farm_robot,farm.robot,model_farm_robot,base.group_user,1,1,1,1
-access_farm_robot_mission,farm.robot.mission,model_farm_robot_mission,base.group_user,1,1,1,1

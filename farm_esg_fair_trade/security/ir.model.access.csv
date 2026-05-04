@@ -1,8 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_fair_trade_certificate,farm.esg.fair.trade.certificate,model_farm_esg_fair_trade_certificate,farm_core.group_farm_manager,1,1,1,1
-access_fair_trade_premium_allocation,farm.esg.fair.trade.premium.allocation,model_farm_esg_fair_trade_premium_allocation,farm_core.group_farm_manager,1,1,1,1
-access_community_investment,farm.esg.community.investment,model_farm_esg_community_investment,farm_core.group_farm_manager,1,1,1,1
-access_labor_condition,farm.esg.labor.condition,model_farm_esg_labor_condition,farm_core.group_farm_manager,1,1,1,1access_farm_esg_fair_trade_premium_allocation,farm.esg.fair.trade.premium.allocation,model_farm_esg_fair_trade_premium_allocation,base.group_user,1,1,1,1
-access_farm_esg_fair_trade_certificate,farm.esg.fair.trade.certificate,model_farm_esg_fair_trade_certificate,base.group_user,1,1,1,1
-access_farm_esg_community_investment,farm.esg.community.investment,model_farm_esg_community_investment,base.group_user,1,1,1,1
-access_farm_esg_labor_condition,farm.esg.labor.condition,model_farm_esg_labor_condition,base.group_user,1,1,1,1

@@ -1,0 +1,26 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_orchard_horticulture
+#
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "Base Order"
+msgstr ""
+
+msgid "Pruning Category"
+msgstr ""
+
+msgid "Scope"
+msgstr ""
+
+msgid "Target Asset"
+msgstr ""
+
+msgid "Target Trees"
+msgstr ""
+
+msgid "Variety DNA"
+msgstr ""
+

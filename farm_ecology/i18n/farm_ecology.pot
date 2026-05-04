@@ -1,0 +1,35 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_ecology
+#
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "Associated Operational Parcel"
+msgstr ""
+
+msgid "Impact Category"
+msgstr ""
+
+msgid "Indicator Category"
+msgstr ""
+
+msgid "Land Parcel/Zone"
+msgstr ""
+
+msgid "Number of individuals or density observed."
+msgstr ""
+
+msgid "Physical Container"
+msgstr ""
+
+msgid "Surface area of the ecological infrastructure."
+msgstr ""
+
+msgid "Visual proof of the observation."
+msgstr ""
+
+msgid "Zone Category"
+msgstr ""
+

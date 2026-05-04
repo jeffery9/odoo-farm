@@ -1,13 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_agri_cost_template_user,agri.cost.template.user,model_agri_cost_template,farm_core.group_farm_worker,1,1,1,1
-access_agri_cost_calculation_user,agri.cost.calculation.user,model_agri_cost_calculation,farm_core.group_farm_worker,1,1,1,1
-access_agri_cost_calculation_line_user,agri.cost.calculation.line.user,model_agri_cost_calculation_line,farm_core.group_farm_worker,1,1,1,1access_agri_cost_calculation,agri.cost.calculation,model_agri_cost_calculation,base.group_user,1,1,1,1
-access_account_move,account.move,model_account_move,base.group_user,1,1,1,1
-access_agri_cost_calculation_line,agri.cost.calculation.line,model_agri_cost_calculation_line,base.group_user,1,1,1,1
-access_agri_cost_template,agri.cost.template,model_agri_cost_template,base.group_user,1,1,1,1
-access_farm_mortality_amortization,farm.mortality.amortization,model_farm_mortality_amortization,base.group_user,1,1,1,1
-access_project_task,project.task,model_project_task,base.group_user,1,1,1,1
-access_farm_processing_cost,farm.processing.cost,model_farm_processing_cost,base.group_user,1,1,1,1
-access_farm_cost_wip_transfer,farm.cost.wip.transfer,model_farm_cost_wip_transfer,base.group_user,1,1,1,1
-access_farm_cpa_analysis,farm.cpa.analysis,model_farm_cpa_analysis,base.group_user,1,1,1,1
-access_account_move_line,account.move.line,model_account_move_line,base.group_user,1,1,1,1

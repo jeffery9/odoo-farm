@@ -81,4 +81,4 @@
 
     <menuitem id="menu_farm_entity_reg_root" name="Entity Registration (CN)" parent="farm_hr.menu_hr_root" sequence="85"/>
     <menuitem id="menu_farm_cooperative_member" name="Cooperative Members" parent="menu_farm_entity_reg_root" action="action_farm_cooperative_member" sequence="10" invisible="env.company.entity_type != 'cooperative'"/>
-</oo>
+</odoo>

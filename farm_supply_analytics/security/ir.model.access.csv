@@ -1,7 +1,1 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlinkaccess_supply_chain_dashboard,supply.chain.dashboard,model_supply_chain_dashboard,base.group_user,1,1,1,1
-access_farm_supply_risk_monitor,farm.supply.risk.monitor,model_farm_supply_risk_monitor,base.group_user,1,1,1,1
-access_farm_supply_demand_forecast,farm.supply.demand.forecast,model_farm_supply_demand_forecast,base.group_user,1,1,1,1
-access_supply_chain_risk_dashboard,supply.chain.risk.dashboard,model_supply_chain_risk_dashboard,base.group_user,1,1,1,1
-access_inventory_optimization,inventory.optimization,model_inventory_optimization,base.group_user,1,1,1,1
-access_farm_supply_chain_node,farm.supply.chain.node,model_farm_supply_chain_node,base.group_user,1,1,1,1
-access_inventory_optimization_line,inventory.optimization.line,model_inventory_optimization_line,base.group_user,1,1,1,1
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink

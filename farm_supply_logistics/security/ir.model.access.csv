@@ -1,10 +1,1 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlinkaccess_stock_picking,stock.picking,model_stock_picking,base.group_user,1,1,1,1
-access_seasonal_stock_forecast,seasonal.stock.forecast,model_seasonal_stock_forecast,base.group_user,1,1,1,1
-access_precooling_process,precooling.process,model_precooling_process,base.group_user,1,1,1,1
-access_farm_vehicle,farm.vehicle,model_farm_vehicle,base.group_user,1,1,1,1
-access_farm_transport_temperature,farm.transport.temperature,model_farm_transport_temperature,base.group_user,1,1,1,1
-access_cold_storage_facility,cold.storage.facility,model_cold_storage_facility,base.group_user,1,1,1,1
-access_cold_storage_temperature_log,cold.storage.temperature.log,model_cold_storage_temperature_log,base.group_user,1,1,1,1
-access_cold_storage_inventory,cold.storage.inventory,model_cold_storage_inventory,base.group_user,1,1,1,1
-access_cold_storage_zone,cold.storage.zone,model_cold_storage_zone,base.group_user,1,1,1,1
-access_product_template,product.template,model_product_template,base.group_user,1,1,1,1
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink

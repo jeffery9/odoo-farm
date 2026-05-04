@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 08:26+0000\n"
-"PO-Revision-Date: 2026-05-04 08:26+0000\n"
+"POT-Creation-Date: 2026-05-04 08:41+0000\n"
+"PO-Revision-Date: 2026-05-04 08:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,1260 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__message_needaction
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__activity_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__activity_state
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__activity_type_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__actual_delivery_date
+msgid "Actual Delivery Date"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_allocation_line__allocation_date
+msgid "Allocation Date"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning_line__allocation_lines
+msgid "Allocation Lines"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__amount
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_payable_line__amount
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_receivable_line__amount
+msgid "Amount"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_netting_settlement__payable_amount
+msgid "Amount member should pay for purchases"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_netting_settlement__receivable_amount
+msgid "Amount member should receive from sales"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__procurement_planning__planning_period__annual
+msgid "Annual"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement_po__state__approved
+msgid "Approved"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__message_attachment_count
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__start_date
+msgid "Available From"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__end_date
+msgid "Available Until"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_procurement_allocation_line__priority_score
+msgid "Based on historical contribution or other factors"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__procurement_planning__planning_period__bi_annual
+msgid "Bi-annual"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__netting_payable_line__source_document__account_move
+msgid "Bill"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__netting_settlement__state__calculated
+msgid "Calculated"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__internal_marketplace__state__cancelled
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement__state__cancelled
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement_po__state__cancel
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement_po_member__state__cancel
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__procurement_planning__state__cancelled
+msgid "Cancelled"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__hub_spoke_distribution__state__completed
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__internal_marketplace__state__completed
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement__state__completed
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__netting_settlement__state__completed
+msgid "Completed"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__hub_spoke_distribution__state__confirmed
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement__state__confirmed
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement_po__state__confirmed
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement_po_member__state__confirmed
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__procurement_planning__state__confirmed
+msgid "Confirmed"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.ui.menu,name:farm_multi_farm_procurement.contract_farming_main_menu
+msgid "Contract Farming"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__cooperative_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__cooperative_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__cooperative_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__cooperative_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__cooperative_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__cooperative_id
+msgid "Cooperative"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_cooperative_entity
+msgid "Cooperative Entity"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_cooperative_member
+msgid "Cooperative Member"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_line__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_marketplace_demand_match__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_payable_line__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_receivable_line__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_allocation_line__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__create_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_line__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_marketplace_demand_match__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_payable_line__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_receivable_line__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_allocation_line__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__create_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__currency_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__hub_spoke_distribution__state__delivered
+msgid "Delivered"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__delivery_confirmed
+msgid "Delivery Confirmed"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__delivery_date
+msgid "Delivery Date"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__delivery_notes
+msgid "Delivery Notes"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__internal_marketplace__listing_type__demand
+msgid "Demand"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__demand_matches
+msgid "Demand Matches"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__description
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__description
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__description
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__description
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__description
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_payable_line__description
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_receivable_line__description
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__description
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__description
+msgid "Description"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__destination_member_id
+msgid "Destination Member"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_cooperative_entity__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_cooperative_member__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_settlement__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_line__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_marketplace_demand_match__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_payable_line__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_receivable_line__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_allocation_line__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__display_name
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__distribution_id
+msgid "Distribution"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__distribution_date
+msgid "Distribution Date"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_cooperative_member__hub_spoke_distribution_line_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__distribution_lines
+msgid "Distribution Lines"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__name
+msgid "Distribution Reference"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement_po__state__done
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement_po_member__state__done
+msgid "Done"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__hub_spoke_distribution__state__draft
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement__state__draft
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement_po__state__draft
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement_po_member__state__draft
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__netting_settlement__state__draft
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__procurement_planning__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_payable_line__due_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_receivable_line__due_date
+msgid "Due Date"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement__procurement_type__equipment
+msgid "Equipment"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__procurement_planning__state__executed
+msgid "Executed"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__delivery_date
+msgid "Expected Delivery Date"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement__procurement_type__feed
+msgid "Feed"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement__procurement_type__fertilizer
+msgid "Fertilizer"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__final_settlement_id
+msgid "Final Settlement"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__message_follower_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__message_partner_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_hub_spoke_distribution__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_internal_marketplace__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po_member__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_netting_settlement__activity_type_icon
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_procurement_planning__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__netting_settlement__settlement_direction__from_member
+msgid "From Member"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__has_message
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_hub_spoke_distribution
+msgid "Hub and Spoke Distribution"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_hub_spoke_distribution_line
+msgid "Hub and Spoke Distribution Line"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_cooperative_entity__hub_spoke_distribution_ids
+msgid "Hub and Spoke Distributions"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_cooperative_entity__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_cooperative_member__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_settlement__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_line__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_marketplace_demand_match__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_payable_line__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_receivable_line__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_allocation_line__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning_line__id
+msgid "ID"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_hub_spoke_distribution__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_internal_marketplace__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po_member__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_netting_settlement__activity_exception_icon
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_procurement_planning__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_hub_spoke_distribution__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_internal_marketplace__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po_member__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_netting_settlement__message_needaction
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_procurement_planning__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_hub_spoke_distribution__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_hub_spoke_distribution__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_internal_marketplace__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_internal_marketplace__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po_member__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po_member__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_netting_settlement__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_netting_settlement__message_has_sms_error
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_procurement_planning__message_has_error
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_procurement_planning__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement__state__in_progress
+msgid "In Progress"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__hub_spoke_distribution__state__in_transit
+msgid "In Transit"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__netting_payable_line__source_document__input_delivery
+msgid "Input Delivery"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__internal_debt_id
+msgid "Internal Debt"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_internal_marketplace
+#: model:ir.ui.menu,name:farm_multi_farm_procurement.internal_marketplace_menu
+msgid "Internal Marketplace"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_internal_settlement
+msgid "Internal Settlement"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__netting_receivable_line__source_document__account_move
+msgid "Invoice"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__is_active
+msgid "Is Active"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__message_is_follower
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_settlement__joint_po_member_id
+msgid "Joint PO Member"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_joint_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_settlement__joint_procurement_id
+#: model:ir.ui.menu,name:farm_multi_farm_procurement.joint_procurement_menu
+msgid "Joint Procurement"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_joint_procurement_line
+msgid "Joint Procurement Line"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_joint_procurement_po_member
+msgid "Joint Procurement Member PO"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_cooperative_entity__joint_procurement_po_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_cooperative_member__joint_procurement_po_member_ids
+msgid "Joint Procurement POs"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_joint_procurement_po
+msgid "Joint Procurement Purchase Order"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_cooperative_entity__joint_procurement_ids
+msgid "Joint Procurements"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_line__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_marketplace_demand_match__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_payable_line__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_receivable_line__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_allocation_line__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__write_uid
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_line__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_marketplace_demand_match__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_payable_line__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_receivable_line__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_allocation_line__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__write_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_marketplace_demand_match__listing_id
+msgid "Listing"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__name
+msgid "Listing Title"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__listing_type
+msgid "Listing Type"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__location
+msgid "Location"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_marketplace_demand_match
+msgid "Marketplace Demand Match"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_line__markup_amount
+msgid "Markup Amount"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__markup_rate
+msgid "Markup Rate (%)"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement__markup_rate
+msgid "Markup rate applied to members"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_marketplace_demand_match__match_date
+msgid "Match Date"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__internal_marketplace__state__matched
+msgid "Matched"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_line__member_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__member_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_marketplace_demand_match__member_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__member_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_allocation_line__member_id
+msgid "Member"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_line__member_amount
+msgid "Member Amount"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__child_po_ids
+msgid "Member POs"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__message_has_error
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__net_amount
+msgid "Net Amount"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_netting_payable_line
+msgid "Netting Payable Line"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_netting_receivable_line
+msgid "Netting Receivable Line"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_netting_settlement
+msgid "Netting Settlement"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_cooperative_entity__netting_settlement_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_cooperative_member__netting_settlement_ids
+msgid "Netting Settlements"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
 #. odoo-python
 #: code:addons/farm_multi_farm_procurement/models/advanced_procurement_models.py:0
 #: code:addons/farm_multi_farm_procurement/models/joint_procurement.py:0
 msgid "New"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__activity_summary
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__activity_type_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_hub_spoke_distribution__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_internal_marketplace__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po_member__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_netting_settlement__message_needaction_counter
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_procurement_planning__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_hub_spoke_distribution__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_internal_marketplace__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po_member__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_netting_settlement__message_has_error_counter
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_procurement_planning__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__internal_marketplace__state__open
+msgid "Open"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement__procurement_type__other
+msgid "Other"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__name
+msgid "PO Reference"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__parent_po_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__parent_po_id
+msgid "Parent PO"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__payable_amount
+msgid "Payable Amount"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__payable_lines
+msgid "Payable Lines"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement__procurement_type__pesticide
+msgid "Pesticide"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning_line__planning_id
+msgid "Planning"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.ui.menu,name:farm_multi_farm_procurement.procurement_planning_menu
+msgid "Planning & Allocation"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__planning_date
+msgid "Planning Date"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_allocation_line__planning_line_id
+msgid "Planning Line"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__planning_lines
+msgid "Planning Lines"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__name
+msgid "Planning Name"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__planning_period
+msgid "Planning Period"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_marketplace_demand_match__priority
+msgid "Priority"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_allocation_line__priority_score
+msgid "Priority Score"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__netting_settlement__state__processed
+msgid "Processed"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_line__procurement_id
+msgid "Procurement"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_procurement_allocation_line
+msgid "Procurement Allocation Line"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__procurement_date
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__procurement_date
+msgid "Procurement Date"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__procurement_lines
+msgid "Procurement Lines"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.ui.menu,name:farm_multi_farm_procurement.multi_farm_procurement_menu
+msgid "Procurement Management"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.ui.menu,name:farm_multi_farm_procurement.joint_procurement_main_menu
+msgid "Procurement Orders"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_procurement_planning
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_cooperative_entity__procurement_planning_ids
+msgid "Procurement Planning"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model,name:farm_multi_farm_procurement.model_procurement_planning_line
+msgid "Procurement Planning Line"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__name
+msgid "Procurement Reference"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__procurement_type
+msgid "Procurement Type"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__product_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__product_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_line__product_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__product_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning_line__product_id
+msgid "Product"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__netting_receivable_line__source_document__product_supply
+msgid "Product Supply"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__netting_payable_line__source_document__purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__quantity
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__quantity
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_line__quantity
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__quantity
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_marketplace_demand_match__quantity
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_allocation_line__quantity
+msgid "Quantity"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__procurement_planning__planning_period__quarterly
+msgid "Quarterly"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__rating_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__receivable_amount
+msgid "Receivable Amount"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__receivable_lines
+msgid "Receivable Lines"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution_line__receiver_signature
+msgid "Receiver Signature"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning_line__remaining_quantity
+msgid "Remaining Quantity"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__activity_user_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__netting_receivable_line__source_document__sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__season
+msgid "Season"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement__procurement_type__seeds
+msgid "Seeds"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement_po__state__sent
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__joint_procurement_po_member__state__sent
+msgid "Sent"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_line__settlement_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_payable_line__settlement_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_receivable_line__settlement_id
+msgid "Settlement"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__settlement_date
+msgid "Settlement Date"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__settlement_direction
+msgid "Settlement Direction"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__settlement_lines
+msgid "Settlement Lines"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__name
+msgid "Settlement Reference"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_payable_line__source_document
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_receivable_line__source_document
+msgid "Source Document"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__source_location
+msgid "Source Location"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__state
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__state
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__state
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__state
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__state
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__state
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__state
+msgid "State"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_hub_spoke_distribution__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_internal_marketplace__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po_member__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_netting_settlement__activity_state
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_procurement_planning__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__supplier_id
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__supplier_id
+msgid "Supplier"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__supplier_member_id
+msgid "Supplier Member"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__internal_marketplace__listing_type__surplus
+msgid "Surplus"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields.selection,name:farm_multi_farm_procurement.selection__netting_settlement__settlement_direction__to_member
+msgid "To Member"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning_line__total_allocated
+msgid "Total Allocated"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__total_amount
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__total_amount
+msgid "Total Amount"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning_line__total_available
+msgid "Total Available"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__total_quantity
+msgid "Total Quantity"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning_line__total_required
+msgid "Total Required"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__transaction_id
+msgid "Transaction"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_hub_spoke_distribution__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_internal_marketplace__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po_member__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_netting_settlement__activity_exception_decoration
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_procurement_planning__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__unified_invoice_id
+msgid "Unified Invoice"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__unit_price
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_line__unit_price
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__unit_price
+msgid "Unit Price"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__unit_of_measure
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_hub_spoke_distribution__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_internal_marketplace__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_joint_procurement_po_member__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_netting_settlement__website_message_ids
+#: model:ir.model.fields,field_description:farm_multi_farm_procurement.field_procurement_planning__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: farm_multi_farm_procurement
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_hub_spoke_distribution__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_internal_marketplace__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_joint_procurement_po_member__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_netting_settlement__website_message_ids
+#: model:ir.model.fields,help:farm_multi_farm_procurement.field_procurement_planning__website_message_ids
+msgid "Website communication history"
 msgstr ""

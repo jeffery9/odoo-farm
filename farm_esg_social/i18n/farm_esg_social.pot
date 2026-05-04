@@ -1,0 +1,28 @@
+# Bruteforce extracted POT
+msgid ""
+msgstr ""
+
+msgid "Age Distribution"
+msgstr ""
+
+msgid "Employment Types"
+msgstr ""
+
+msgid "Gender Distribution"
+msgstr ""
+
+msgid "Social &amp; Diversity Metrics"
+msgstr ""
+
+msgid "farm.esg.social.diversity.metric"
+msgstr ""
+
+msgid "farm.esg.social.diversity.metric.form"
+msgstr ""
+
+msgid "farm.esg.social.diversity.metric.tree"
+msgstr ""
+
+msgid "tree,form"
+msgstr ""
+

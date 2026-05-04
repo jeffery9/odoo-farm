@@ -1,6 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_machinery_rental_user,machinery.rental.user,model_machinery_rental,base.group_user,1,1,1,1
-access_machinery_rental_manager,machinery.rental.manager,model_machinery_rental,base.group_user,1,1,1,1access_cooperative_entity,cooperative.entity,model_cooperative_entity,base.group_user,1,1,1,1
-access_shared_machinery_pool,shared.machinery.pool,model_shared_machinery_pool,base.group_user,1,1,1,1
-access_machinery_rental,machinery.rental,model_machinery_rental,base.group_user,1,1,1,1
-access_cooperative_member,cooperative.member,model_cooperative_member,base.group_user,1,1,1,1

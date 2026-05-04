@@ -1,10 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_crop_yield_policy_user,farm.crop.yield.insurance.policy.user,model_farm_crop_yield_insurance_policy,farm_core.group_farm_worker,1,1,1,1
-access_crop_yield_policy_manager,farm.crop.yield.insurance.policy.manager,model_farm_crop_yield_insurance_policy,farm_core.group_farm_manager,1,1,1,1
-access_insurance_claim_user,farm.insurance.claim.user,model_farm_insurance_claim,farm_core.group_farm_worker,1,1,1,1
-access_insurance_claim_manager,farm.insurance.claim.manager,model_farm_insurance_claim,farm_core.group_farm_manager,1,1,1,1
-access_yield_prediction_user,farm.yield.prediction.user,model_farm_yield_prediction,farm_core.group_farm_worker,1,1,1,1
-access_yield_prediction_manager,farm.yield.prediction.manager,model_farm_yield_prediction,farm_core.group_farm_manager,1,1,1,1
-access_farm_insurance_claim,farm.insurance.claim,model_farm_insurance_claim,base.group_user,1,1,1,1
-access_farm_crop_yield_insurance_policy,farm.crop.yield.insurance.policy,model_farm_crop_yield_insurance_policy,base.group_user,1,1,1,1
-access_farm_yield_prediction,farm.yield.prediction,model_farm_yield_prediction,base.group_user,1,1,1,1

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 08:26+0000\n"
-"PO-Revision-Date: 2026-05-04 08:26+0000\n"
+"POT-Creation-Date: 2026-05-04 08:40+0000\n"
+"PO-Revision-Date: 2026-05-04 08:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,100 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: farm_ai_core
+#: model:ir.model,name:farm_ai_core.model_agri_ai_base_mixin_service
+msgid "AI Base Mixin Service"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_base_mixin__ai_confidence_score
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__ai_confidence_score
+msgid "AI Confidence Score"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.actions.act_window,name:farm_ai_core.action_ai_configuration
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_configuration_form
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_configuration_tree
+msgid "AI Configuration"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model,name:farm_ai_core.model_agri_ai_configuration
+msgid "AI Configuration Interface"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model,name:farm_ai_core.model_agri_ai_decision_engine
+msgid "AI Decision Engine"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_base_mixin__ai_feedback_score
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__ai_feedback_score
+msgid "AI Feedback Score"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_base_mixin__ai_input_data
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__ai_input_data
+msgid "AI Input Data"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.actions.act_window,name:farm_ai_core.action_ai_model_registry
+#: model:ir.model,name:farm_ai_core.model_agri_ai_model_registry
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_model_registry_form
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_model_registry_tree
+msgid "AI Model Registry"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_base_mixin__ai_model_used
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__ai_model_used
+msgid "AI Model Used"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_base_mixin__ai_output_data
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__ai_output_data
+msgid "AI Output Data"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__ai_provider
+msgid "AI Provider Type"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.ui.menu,name:farm_ai_core.menu_ai_root
+msgid "AI Services"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_base_mixin__ai_status
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__ai_status
+msgid "AI Status"
+msgstr ""
+
+#. module: farm_ai_core
 #. odoo-python
 #: code:addons/farm_ai_core/models/ai_services/ai_mixin_service.py:0
 msgid "AI processing failed: %s"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__api_key
+msgid "API Key"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_configuration__api_key
+msgid "API key for the AI service"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__accuracy
+msgid "Accuracy (%)"
 msgstr ""
 
 #. module: farm_ai_core
@@ -28,15 +119,350 @@ msgid "Accuracy must be between 0 and 100."
 msgstr ""
 
 #. module: farm_ai_core
+#: model_terms:ir.actions.act_window,help:farm_ai_core.action_ai_configuration
+msgid "Add your first AI Configuration!"
+msgstr ""
+
+#. module: farm_ai_core
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_configuration_form
+msgid "Advanced Settings"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model,name:farm_ai_core.model_agri_ai_base_mixin
+msgid "Agricultural Domain AI Base Mixin"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model,name:farm_ai_core.model_agri_evidence_mixin
+msgid "Agricultural Evidence Analyzer Mixin"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__model_type__anomaly_detection
+msgid "Anomaly Detection"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_evidence_mixin__evidence_ids
+msgid "Attached GPS logs, IoT sensor data, or site photos."
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_evidence_mixin__audit_confidence
+msgid "Audit Confidence"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_evidence_mixin__audit_status
+msgid "Audit Status"
+msgstr ""
+
+#. module: farm_ai_core
 #. odoo-python
 #: code:addons/farm_ai_core/models/evidence_analyzer.py:0
 msgid "Audit failed: Suspected fraudulent evidence detected."
 msgstr ""
 
 #. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__avg_inference_time
+msgid "Avg Inference Time (ms)"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__base_url
+msgid "Base URL"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_configuration__base_url
+msgid "Base URL for the AI service API"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__model_type__classification
+msgid "Classification"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__model_type__clustering
+msgid "Clustering"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__target_crops
+msgid "Comma-separated list of crops this model targets"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_base_mixin__ai_status__completed
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__ai_status__completed
+msgid "Completed"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_configuration__ai_provider__vision
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__model_type__vision
+msgid "Computer Vision"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_base_mixin__ai_confidence_score
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__ai_confidence_score
+msgid "Confidence score from 0-100"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.ui.menu,name:farm_ai_core.menu_ai_core_config
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_model_registry_form
+msgid "Configuration"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__name
+msgid "Configuration Name"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__config_params
+msgid "Configuration Parameters"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.constraint,message:farm_ai_core.constraint_agri_ai_configuration_name_unique
+msgid "Configuration name must be unique!"
+msgstr ""
+
+#. module: farm_ai_core
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_model_registry_form
+msgid "Configuration parameters in JSON format..."
+msgstr ""
+
+#. module: farm_ai_core
+#: model_terms:ir.actions.act_window,help:farm_ai_core.action_ai_configuration
+msgid ""
+"Configure AI services (OpenAI, Anthropic, etc.) for use with AI modules."
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__model_type__generation
+msgid "Content Generation"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_configuration__ai_provider__custom
+msgid "Custom AI Service"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__model_type__analysis
+msgid "Data Analysis"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__default_model
+msgid "Default Model"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_configuration__default_model
+msgid "Default model to use"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__description
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_model_registry_form
+msgid "Description"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_base_mixin__display_name
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_base_mixin_service__display_name
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__display_name
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_decision_engine__display_name
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__display_name
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_evidence_mixin__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_evidence_mixin__audit_status__disputed
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__mrp_production__audit_status__disputed
+msgid "Disputed"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__domain_specific_metrics
+msgid "Domain-specific Metrics"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__target_conditions
+msgid "Environmental conditions this model is optimized for"
+msgstr ""
+
+#. module: farm_ai_core
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_model_registry_form
+msgid "Evaluate Model"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__input_format
+msgid "Expected input format (e.g., image, text, structured data)"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__output_format
+msgid "Expected output format"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__f1_score
+msgid "F1 Score (%)"
+msgstr ""
+
+#. module: farm_ai_core
 #. odoo-python
 #: code:addons/farm_ai_core/models/ai_base.py:0
 msgid "F1 Score must be between 0 and 100."
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_base_mixin__ai_status__failed
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__ai_status__failed
+msgid "Failed"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__failed_requests
+msgid "Failed Requests"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__mae
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__mse
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__rmse
+msgid "For regression models"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__hardware_requirements
+msgid "Hardware Requirements"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_base_mixin__id
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_base_mixin_service__id
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__id
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_decision_engine__id
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__id
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_evidence_mixin__id
+msgid "ID"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__model_type__segmentation
+msgid "Image Segmentation"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__is_agricultural_model
+msgid ""
+"Indicates if this model is specifically designed for agricultural "
+"applications"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__inference_count
+msgid "Inference Count"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__input_format
+msgid "Input Format"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__is_active
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__is_active
+msgid "Is Active"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__is_agricultural_model
+msgid "Is Agricultural Model"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__is_default
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__is_default
+msgid "Is Default"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__config_params
+msgid "JSON configuration for the model"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__domain_specific_metrics
+msgid "JSON format for domain-specific metrics"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_configuration__ai_provider__llm
+msgid "LLM Service"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__last_trained
+msgid "Last Trained"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__last_used
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__last_used
+msgid "Last Used"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_configuration__ai_provider__ml
+msgid "Machine Learning"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__max_retries
+msgid "Max Retries"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__mae
+msgid "Mean Absolute Error"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__mse
+msgid "Mean Squared Error"
 msgstr ""
 
 #. module: farm_ai_core
@@ -64,9 +490,19 @@ msgid "Model Inference"
 msgstr ""
 
 #. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__name
+msgid "Model Name"
+msgstr ""
+
+#. module: farm_ai_core
 #. odoo-python
 #: code:addons/farm_ai_core/models/ai_services/ai_model_service.py:0
 msgid "Model Training"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__model_type
+msgid "Model Type"
 msgstr ""
 
 #. module: farm_ai_core
@@ -76,9 +512,122 @@ msgid "Model Visualization"
 msgstr ""
 
 #. module: farm_ai_core
+#: model:ir.model.constraint,message:farm_ai_core.constraint_agri_ai_model_registry_name_version_unique
+msgid "Model name and version must be unique!"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.constraint,message:farm_ai_core.constraint_agri_ai_model_registry_name_required
+msgid "Model name is required!"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_base_mixin__ai_model_used
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__ai_model_used
+msgid "Name of the AI model used for processing"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__model_type__nlp
+msgid "Natural Language Processing"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_configuration__max_retries
+msgid "Number of retries on failure"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__training_samples_count
+msgid "Number of samples used for training"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__model_type__detection
+msgid "Object Detection"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__output_format
+msgid "Output Format"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_base_mixin__ai_status__pending
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__ai_status__pending
+msgid "Pending"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_evidence_mixin__audit_status__pending
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__mrp_production__audit_status__pending
+msgid "Pending Audit"
+msgstr ""
+
+#. module: farm_ai_core
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_model_registry_form
+msgid "Performance Metrics"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_evidence_mixin__evidence_ids
+msgid "Physical Evidence"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__postprocessing_steps
+msgid "Postprocessing Steps"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_evidence_mixin__audit_status__fraudulent
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__mrp_production__audit_status__fraudulent
+msgid "Potential Fraud"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__precision
+msgid "Precision (%)"
+msgstr ""
+
+#. module: farm_ai_core
 #. odoo-python
 #: code:addons/farm_ai_core/models/ai_base.py:0
 msgid "Precision must be between 0 and 100."
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__preprocessing_steps
+msgid "Preprocessing Steps"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_base_mixin__ai_status__processing
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__ai_status__processing
+msgid "Processing"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_base_mixin__ai_processing_time
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__ai_processing_time
+msgid "Processing Time (ms)"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_base_mixin__ai_input_data
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__ai_input_data
+msgid "Raw input data sent to AI"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_base_mixin__ai_output_data
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__ai_output_data
+msgid "Raw output data from AI"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__recall
+msgid "Recall (%)"
 msgstr ""
 
 #. module: farm_ai_core
@@ -88,7 +637,160 @@ msgid "Recall must be between 0 and 100."
 msgstr ""
 
 #. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__model_type__recommendation
+msgid "Recommendation System"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__recommended_use_cases
+msgid "Recommended Use Cases"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__hardware_requirements
+msgid "Recommended hardware (e.g., GPU, RAM)"
+msgstr ""
+
+#. module: farm_ai_core
+#: model_terms:ir.actions.act_window,help:farm_ai_core.action_ai_model_registry
+msgid "Register and manage AI models used in the system."
+msgstr ""
+
+#. module: farm_ai_core
+#: model_terms:ir.actions.act_window,help:farm_ai_core.action_ai_model_registry
+msgid "Register your first AI Model!"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__model_type__regression
+msgid "Regression Analysis"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_configuration__timeout
+msgid "Request timeout in seconds"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__rmse
+msgid "Root Mean Squared Error"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_base_mixin__ai_feedback_score
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__ai_feedback_score
+msgid "Score based on user feedback (0-100)"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__recommended_use_cases
+msgid "Specific use cases this model is recommended for"
+msgstr ""
+
+#. module: farm_ai_core
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_configuration_form
+msgid "Statistics"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__preprocessing_steps
+msgid "Steps required to preprocess input data"
+msgstr ""
+
+#. module: farm_ai_core
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_model_registry_form
+msgid "Steps required to preprocess input data..."
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__postprocessing_steps
+msgid "Steps required to process model output"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__successful_requests
+msgid "Successful Requests"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__target_conditions
+msgid "Target Conditions"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__target_crops
+msgid "Target Crops"
+msgstr ""
+
+#. module: farm_ai_core
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_configuration_form
+msgid "Test Connection"
+msgstr ""
+
+#. module: farm_ai_core
 #. odoo-python
 #: code:addons/farm_ai_core/models/ai_base.py:0
 msgid "This method should be implemented by the specific AI module"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_ai_model_registry__model_type__prediction
+msgid "Time Series Prediction"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_base_mixin__ai_processing_time
+#: model:ir.model.fields,help:farm_ai_core.field_agri_ai_model_registry__ai_processing_time
+msgid "Time taken by AI to process"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__timeout
+msgid "Timeout (seconds)"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_configuration__total_requests
+msgid "Total Requests"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__training_dataset
+msgid "Training Dataset"
+msgstr ""
+
+#. module: farm_ai_core
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_model_registry_form
+msgid "Training Information"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__training_samples_count
+msgid "Training Samples Count"
+msgstr ""
+
+#. module: farm_ai_core
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_model_registry_form
+msgid "Usage Statistics"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__agri_evidence_mixin__audit_status__verified
+#: model:ir.model.fields.selection,name:farm_ai_core.selection__mrp_production__audit_status__verified
+msgid "Verified"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.fields,field_description:farm_ai_core.field_agri_ai_model_registry__version
+msgid "Version"
+msgstr ""
+
+#. module: farm_ai_core
+#: model:ir.model.constraint,message:farm_ai_core.constraint_agri_ai_model_registry_version_required
+msgid "Version is required!"
+msgstr ""
+
+#. module: farm_ai_core
+#: model_terms:ir.ui.view,arch_db:farm_ai_core.view_ai_model_registry_form
+msgid "Visualize"
 msgstr ""
