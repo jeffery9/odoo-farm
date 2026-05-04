@@ -18,7 +18,9 @@
     'website': 'http://www.geninit.cn',
     'depends': [
         'base',
-        'web'
+        'web',
+        'mrp',
+        'stock'
     ],
     'data': [
         'security/ir.model.access.csv',

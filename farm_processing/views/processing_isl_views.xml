@@ -30,9 +30,12 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <group>
+                                        <group>
                         <field name="mrp_production_id"/>
+                        <field name="product_id"/>
                         <field name="processing_type"/>
+                        <field name="energy_reading_start"/>
+                        <field name="energy_reading_end"/>
                     </group>
                     <notebook>
                         <page string="Agri Processing" name="agri_processing">
