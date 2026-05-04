@@ -7,74 +7,74 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
 msgid "Acquisition Pricing Rules"
-msgstr ""
+msgstr "收购定价规则"
 
 msgid "Base price before quality adjustments"
-msgstr ""
+msgstr "质量调整前的底价"
 
 msgid "Coefficient to apply per percentage point of impurities (usually negative)"
-msgstr ""
+msgstr "每百分比杂质适用的系数（通常为负）"
 
 msgid "Coefficient to apply per percentage point of moisture content (usually negative)"
-msgstr ""
+msgstr "适用于水分含量百分比的系数（通常为负）"
 
 msgid "Coefficient to apply per percentage point of protein content"
-msgstr ""
+msgstr "蛋白质含量每个百分点适用的系数"
 
 msgid "Custom formula for complex pricing calculations"
-msgstr ""
+msgstr "用于复杂定价计算的自定义公式"
 
 msgid "Enable quality-based pricing adjustments for this order"
-msgstr ""
+msgstr "为此订单启用基于质量的定价调整"
 
 msgid "Impurities rate for quality-based pricing"
-msgstr ""
+msgstr "基于质量的定价的杂质率"
 
 msgid "Maximum value for this quality grading"
-msgstr ""
+msgstr "此质量分级的最大值"
 
 msgid "Minimum quality value required for acceptance"
-msgstr ""
+msgstr "验收所需的最低质量值"
 
 msgid "Minimum value for this quality grading"
-msgstr ""
+msgstr "此质量分级的最小值"
 
 msgid "Moisture content percentage for quality-based pricing"
-msgstr ""
+msgstr "基于质量的定价的水分含量百分比"
 
 msgid "Percentage to add to base price for each unit above threshold"
-msgstr ""
+msgstr "高于阈值的每个单位添加到基本价格的百分比"
 
 msgid "Percentage to subtract from base price for each unit below threshold"
-msgstr ""
+msgstr "对于低于阈值的每个单位，从基本价格中减去的百分比"
 
 msgid "Product Category"
-msgstr ""
+msgstr "产品类别"
 
 msgid "Protein content percentage for quality-based pricing"
-msgstr ""
+msgstr "基于质量的定价的蛋白质含量百分比"
 
 msgid "Purchase Order"
-msgstr ""
+msgstr "采购订单"
 
 msgid "Quality Grade"
-msgstr ""
+msgstr "质量等级"
 
 msgid "Quality Grade Label"
-msgstr ""
+msgstr "质量等级标签"
 
 msgid "Quality Pricing Rule"
-msgstr ""
+msgstr "质量定价规则"
 
 msgid "Specific purchase order this rule applies to"
-msgstr ""
+msgstr "此规则适用于特定采购订单"
 
 msgid "Total adjustments based on quality metrics"
-msgstr ""
+msgstr "根据质量指标进行总体调整"
 
 msgid "Unit of measure for quality attribute (e.g., %, g/kg, etc.)"
-msgstr ""
+msgstr "质量属性的计量单位（例如，%、g/kg 等）"
 
 msgid "e.g., protein_content, moisture_content, impurities_rate, sugar_content, fat_content"
-msgstr ""
+msgstr "例如，蛋白质含量、水分含量、杂质率、糖含量、脂肪含量"
 

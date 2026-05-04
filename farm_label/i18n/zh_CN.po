@@ -7,8 +7,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
 msgid "Background image for all agricultural labels."
-msgstr ""
+msgstr "所有农业标签的背景图像。"
 
 msgid "Label Background Image"
-msgstr ""
+msgstr "标签背景图像"
 

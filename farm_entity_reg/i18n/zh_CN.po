@@ -7,14 +7,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
 msgid "Cooperative"
-msgstr ""
+msgstr "合作社"
 
 msgid "Electronic Licenses"
-msgstr ""
+msgstr "电子许可证"
 
 msgid "Entity Type"
-msgstr ""
+msgstr "实体类型"
 
 msgid "Member Name"
-msgstr ""
+msgstr "会员姓名"
 

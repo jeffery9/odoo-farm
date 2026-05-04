@@ -27,7 +27,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_esg/models/esg_target.py:0
 msgid "Target date must be after start date."
-msgstr ""
+msgstr "目标日期必须晚于开始日期。"
 
 #. module: farm_esg
 #. odoo-python

@@ -28,43 +28,43 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_ai_agent/models/a2a_arbitration.py:0
 msgid "Arbitration Decision: Fraudulent activity detected."
-msgstr ""
+msgstr "仲裁决定：检测到欺诈活动。"
 
 #. module: farm_ai_agent
 #. odoo-python
 #: code:addons/farm_ai_agent/models/mission_orchestrator.py:0
 msgid "Auto-Harvest: %s"
-msgstr ""
+msgstr "自动收获：%s"
 
 #. module: farm_ai_agent
 #. odoo-python
 #: code:addons/farm_ai_agent/models/mission_orchestrator.py:0
 msgid "Auto-Inflow: %s"
-msgstr ""
+msgstr "自动流入：%s"
 
 #. module: farm_ai_agent
 #. odoo-python
 #: code:addons/farm_ai_agent/models/ai_decision_engine.py:0
 msgid "Decision Validation Result"
-msgstr ""
+msgstr "决策验证结果"
 
 #. module: farm_ai_agent
 #. odoo-python
 #: code:addons/farm_ai_agent/models/ai_decision_engine.py:0
 msgid "Decision validation completed: %sis_valid"
-msgstr ""
+msgstr "决策验证已完成：%sis_valid"
 
 #. module: farm_ai_agent
 #. odoo-python
 #: code:addons/farm_ai_agent/models/mission_orchestrator.py:0
 msgid "Mission Scouting: Found %d potential community agents."
-msgstr ""
+msgstr "任务侦察：发现 %d 个潜在的社区特工。"
 
 #. module: farm_ai_agent
 #. odoo-python
 #: code:addons/farm_ai_agent/models/mission_orchestrator.py:0
 msgid "Mission Scouting: No nearby agents found in grid %s."
-msgstr ""
+msgstr "任务侦察：在网格 %s 中没有发现附近的特工。"
 
 #. module: farm_ai_agent
 #. odoo-python
@@ -86,29 +86,29 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_ai_agent/models/a2a_negotiation.py:0
 msgid "Negotiation entered Arbitration: %s"
-msgstr ""
+msgstr "谈判进入仲裁：%s"
 
 #. module: farm_ai_agent
 #. odoo-python
 #: code:addons/farm_ai_agent/models/a2a_negotiation.py:0
 #: code:addons/farm_ai_agent/models/mission_orchestrator.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_ai_agent
 #. odoo-python
 #: code:addons/farm_ai_agent/models/ai_decision_engine.py:0
 msgid "No decision result to validate."
-msgstr ""
+msgstr "没有决定结果可供验证。"
 
 #. module: farm_ai_agent
 #. odoo-python
 #: code:addons/farm_ai_agent/models/ai_coordination_layer.py:0
 msgid "Unknown coordination type: %s"
-msgstr ""
+msgstr "未知协调类型：%s"
 
 #. module: farm_ai_agent
 #. odoo-python
 #: code:addons/farm_ai_agent/models/a2a_protocol.py:0
 msgid "intenttype"
-msgstr ""
+msgstr "意图类型"

@@ -19,184 +19,184 @@ msgstr ""
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__farm_location__grid_resolution__10
 msgid "10x10m (Extensive)"
-msgstr ""
+msgstr "10x10m（扩展）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__farm_location__grid_resolution__1
 msgid "1x1m (Ultra High)"
-msgstr ""
+msgstr "1x1米（超高）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__farm_location__grid_resolution__5
 msgid "5x5m (Standard Agri)"
-msgstr ""
+msgstr "5x5m（标准农业）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__accumulated_carbon
 msgid "Accumulated Carbon (kg CO2e)"
-msgstr ""
+msgstr "累积碳 (kg CO2e)"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__accumulated_gdd
 msgid "Accumulated GDD (℃)"
-msgstr ""
+msgstr "累计GDD(℃)"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__message_needaction
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "需要操作"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__activity_ids
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "活动"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__activity_exception_decoration
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "活动异常装饰"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__activity_state
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "活动状态"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__activity_type_icon
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "活动类型图标"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__actual_biomass
 msgid "Actual Measured Biomass (g/m2)"
-msgstr ""
+msgstr "实测生物量（g/m2）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription_line__actual_rate
 msgid "Actual Rate Applied"
-msgstr ""
+msgstr "实际适用利率"
 
 #. module: farm_agri_science
 #: model:ir.ui.menu,name:farm_agri_science.menu_agri_science_root
 msgid "Agri-Science & VRA"
-msgstr ""
+msgstr "农业科学与 VRA"
 
 #. module: farm_agri_science
 #: model:ir.model,name:farm_agri_science.model_farm_agri_science_mixin
 msgid "Agri-Science Calculation Kernel"
-msgstr ""
+msgstr "农业科学计算内核"
 
 #. module: farm_agri_science
 #: model:ir.model,name:farm_agri_science.model_agri_geospatial_grid_cell
 msgid "Agricultural Spatial Grid Cell"
-msgstr ""
+msgstr "农业空间网格单元"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__target_type
 msgid "Application Type"
-msgstr ""
+msgstr "应用类型"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_physiology_profile__product_id
 msgid "Associated Seed Product"
-msgstr ""
+msgstr "相关种子产品"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__message_attachment_count
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "附件数量"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__base_rate
 msgid "Base Rate (kg/mu)"
-msgstr ""
+msgstr "基本费率（公斤/亩）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_physiology_profile__temp_base
 msgid "Base Temperature (T-base)"
-msgstr ""
+msgstr "基础温度（T 基）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__base_temp
 msgid "Base Temperature (℃)"
-msgstr ""
+msgstr "基础温度(℃)"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__intervention_id
 msgid "Biological Context (Intervention)"
-msgstr ""
+msgstr "生物背景（干预）"
 
 #. module: farm_agri_science
 #: model:ir.model,name:farm_agri_science.model_agri_biological_twin
 msgid "Biological Digital Twin Engine"
-msgstr ""
+msgstr "生物数字孪生引擎"
 
 #. module: farm_agri_science
 #: model:ir.actions.act_window,name:farm_agri_science.action_agri_biological_twin
 msgid "Biological Digital Twins"
-msgstr ""
+msgstr "生物数字孪生"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__agricultural_type
 msgid "Biological Domain"
-msgstr ""
+msgstr "生物领域"
 
 #. module: farm_agri_science
 #: model:ir.ui.menu,name:farm_agri_science.menu_biological_twin
 msgid "Biological Twins (AI)"
-msgstr ""
+msgstr "生物双胞胎（AI）"
 
 #. module: farm_agri_science
 #. odoo-python
 #: code:addons/farm_agri_science/models/biological_twin.py:0
 msgid "Biological twin detected low health score. Visual inspection required."
-msgstr ""
+msgstr "生物双胞胎检测到健康评分较低。需要目视检查。"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_intervention_vra_strategy__type__biomass_deficit
 msgid "Biomass Deficit Compensation"
-msgstr ""
+msgstr "生物质赤字补偿"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_vra_strategy_form
 msgid "Biomass Deficit Parameters"
-msgstr ""
+msgstr "生物质赤字参数"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__birth_date
 msgid "Birth/Germination Date"
-msgstr ""
+msgstr "出生/发芽日期"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__carbon_intensity
 msgid "Carbon Intensity (kg CO2e/kg yield)"
-msgstr ""
+msgstr "碳强度（千克二氧化碳当量/千克产量）"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_physiology_profile_form
 msgid "Cardinal Temperatures"
-msgstr ""
+msgstr "基本温度"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_geospatial_grid_cell__cell_geojson
 msgid "Cell Geometry (Polygon)"
-msgstr ""
+msgstr "细胞几何形状（多边形）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_geospatial_grid_cell__center_lat
 msgid "Center Latitude"
-msgstr ""
+msgstr "中心纬度"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_geospatial_grid_cell__center_lng
 msgid "Center Longitude"
-msgstr ""
+msgstr "中心经度"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_vra_stage_rule__intensity_multiplier
@@ -207,17 +207,17 @@ msgstr ""
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_geospatial_grid_cell__col
 msgid "Column Index"
-msgstr ""
+msgstr "栏目索引"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_intervention_vra_prescription__state__executed
 msgid "Completed"
-msgstr ""
+msgstr "完全的"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__confidence_level
 msgid "Confidence Level"
-msgstr ""
+msgstr "置信度"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_biological_twin_form
@@ -227,7 +227,7 @@ msgstr "配置"
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__correction_slope
 msgid "Correction Slope"
-msgstr ""
+msgstr "修正斜率"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__create_uid
@@ -256,52 +256,52 @@ msgstr "创建时间"
 #. module: farm_agri_science
 #: model:ir.model,name:farm_agri_science.model_agri_growth_stage
 msgid "Crop Growth Stage"
-msgstr ""
+msgstr "作物生长阶段"
 
 #. module: farm_agri_science
 #: model:ir.model,name:farm_agri_science.model_agri_physiology_profile
 msgid "Crop Physiology Fingerprint"
-msgstr ""
+msgstr "作物生理指纹图谱"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__is_cultivar_aware
 msgid "Cultivar-Specific Response Aware"
-msgstr ""
+msgstr "品种特异性响应意识"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_farm_agri_science_mixin__cumulative_gdd
 msgid "Cumulative GDD"
-msgstr ""
+msgstr "累计开发面积"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__growth_stage_id
 msgid "Current Physio Stage"
-msgstr ""
+msgstr "目前的物理阶段"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__current_stage_id
 msgid "Current Physio-Stage"
-msgstr ""
+msgstr "当前生理阶段"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_farm_agri_science_mixin__current_growth_stage_id
 msgid "Current Stage"
-msgstr ""
+msgstr "当前阶段"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_prescription__actual_biomass
 msgid "Current actual biomass measurement for deficit calculation."
-msgstr ""
+msgstr "用于赤字计算的当前实际生物量测量。"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_physiology_profile__response_efficiency_c
 msgid "Curvature of the response curve (Mitscherlich c)."
-msgstr ""
+msgstr "响应曲线的曲率 (Mitscherlich c)。"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__deficit_sensitivity
 msgid "Deficit Sensitivity"
-msgstr ""
+msgstr "赤字敏感性"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_growth_stage__description
@@ -311,7 +311,7 @@ msgstr "描述"
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_biological_twin_form
 msgid "Digital Twin Monitoring"
-msgstr ""
+msgstr "数字孪生监控"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__display_name
@@ -330,7 +330,7 @@ msgstr "显示名称"
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__quality_grade
 msgid "Domain Quality Grade"
-msgstr ""
+msgstr "域名质量等级"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_intervention_vra_prescription__state__draft
@@ -340,217 +340,217 @@ msgstr "草稿"
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_strategy__nutrient_ratio
 msgid "E.g. 0.02 for 2% Nitrogen content in dry matter"
-msgstr ""
+msgstr "例如。干物质中 2% 氮含量为 0.02"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__weather_risk_hedging
 msgid "Enable Weather Risk Hedging"
-msgstr ""
+msgstr "启用天气风险对冲"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_vra_strategy_form
 msgid "Environmental Factors"
-msgstr ""
+msgstr "环境因素"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_biological_twin_form
 msgid "Environmental Impact (L4)"
-msgstr ""
+msgstr "环境影响（L4）"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_vra_prescription_form
 msgid "Export ISO-XML / Shapefile"
-msgstr ""
+msgstr "导出 ISO-XML / Shapefile"
 
 #. module: farm_agri_science
 #: model:ir.model,name:farm_agri_science.model_farm_location
 msgid "Farm Location & Land Parcel"
-msgstr ""
+msgstr "农场位置和地块"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_intervention_vra_prescription__target_type__fertilizer
 msgid "Fertilizer"
-msgstr ""
+msgstr "肥料"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__message_follower_ids
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "关注者"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__message_partner_ids
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "关注者（合作伙伴）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_biological_twin__activity_type_icon
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_prescription__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "字体很棒的图标，例如fa 任务"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_prescription__rain_probability
 msgid "Forecasted rain probability for the next 24h"
-msgstr ""
+msgstr "预计未来 24 小时降雨概率"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_prescription__wind_speed
 msgid "Forecasted wind speed at scheduled time"
-msgstr ""
+msgstr "预计时间的风速"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_prescription__geo_point
 msgid "Format: LON,LAT"
-msgstr ""
+msgstr "格式：经纬度、纬度"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_prescription__geo_polygon
 msgid "Format: LON,LAT;LON,LAT..."
-msgstr ""
+msgstr "格式：LON,LAT;LON,LAT..."
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_growth_stage__gdd_threshold
 msgid "GDD Threshold (Cumulative)"
-msgstr ""
+msgstr "GDD 阈值（累计）"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_farm_location_form_inherit_grid
 msgid "Generate Precision Grid"
-msgstr ""
+msgstr "生成精确网格"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_vra_prescription_form
 msgid "Generate Prescription Map"
-msgstr ""
+msgstr "生成处方图"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__dna_marker
 msgid "Genetic Marker / DNA ID"
-msgstr ""
+msgstr "遗传标记/DNA ID"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__geo_polygon
 msgid "Geo Boundaries (Polygon)"
-msgstr ""
+msgstr "地理边界（多边形）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__geo_point
 msgid "Geo Location (Point)"
-msgstr ""
+msgstr "地理位置（点）"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_geospatial_grid_cell_form
 msgid "Geometry"
-msgstr ""
+msgstr "几何学"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription_line__grid_cell_id
 msgid "Grid Cell"
-msgstr ""
+msgstr "网格单元"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_intervention_vra_prescription__state__generated
 msgid "Grid Generated"
-msgstr ""
+msgstr "网格生成"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_geospatial_grid_cell_form
 msgid "Grid Index"
-msgstr ""
+msgstr "网格索引"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_farm_location__grid_generated
 msgid "Grid Layout Generated"
-msgstr ""
+msgstr "生成网格布局"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_farm_location__grid_resolution
 msgid "Grid Resolution"
-msgstr ""
+msgstr "网格分辨率"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_geospatial_grid_cell__name
 msgid "Grid UID"
-msgstr ""
+msgstr "网格UID"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_biological_twin__accumulated_gdd
 msgid "Growing Degree Days accumulation"
-msgstr ""
+msgstr "生长度日累积"
 
 #. module: farm_agri_science
 #. odoo-python
 #: code:addons/farm_agri_science/models/biological_twin.py:0
 msgid "Growth Anomaly Detected: %s"
-msgstr ""
+msgstr "检测到生长异常：%s"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_physiology_profile_form
 msgid "Growth Curve Parameters"
-msgstr ""
+msgstr "生长曲线参数"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_biological_twin_form
 msgid "Growth Health"
-msgstr ""
+msgstr "成长健康"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__health_score
 msgid "Growth Health Score (0-100)"
-msgstr ""
+msgstr "生长健康评分（0-100）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_physiology_profile__logistic_k
 msgid "Growth Rate (k)"
-msgstr ""
+msgstr "增长率（k）"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_physiology_profile_form
 msgid "Growth Stages"
-msgstr ""
+msgstr "成长阶段"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_physiology_profile__temp_max
 msgid "Growth stops above this temp"
-msgstr ""
+msgstr "高于此温度生长停止"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_physiology_profile__temp_base
 msgid "Growth stops below this temp"
-msgstr ""
+msgstr "低于此温度生长停止"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_vra_strategy_form
 msgid "Growth-Stage Sensitivity Weights"
-msgstr ""
+msgstr "生长阶段敏感性权重"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__has_message
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "有留言"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_biological_twin__confidence_level__high
 msgid "High (Near-harvest)"
-msgstr ""
+msgstr "高（接近收获）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__high_threshold
 msgid "High NDVI Threshold"
-msgstr ""
+msgstr "高 NDVI 阈值"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_geospatial_grid_cell__historical_rue
 msgid "Historical RUE (g/MJ)"
-msgstr ""
+msgstr "历史 RUE (g/MJ)"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_geospatial_grid_cell__historical_rue
 msgid "Historical Radiation Use Efficiency of this cell"
-msgstr ""
+msgstr "该电池的历史辐射利用效率"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_strategy__deficit_sensitivity
@@ -577,19 +577,19 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__activity_exception_icon
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "图标"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_biological_twin__activity_exception_icon
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_prescription__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "指示异常活动的图标。"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_biological_twin__message_needaction
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_prescription__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "如果选中，则有新消息需要您注意。"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_biological_twin__message_has_error
@@ -597,7 +597,7 @@ msgstr ""
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_prescription__message_has_error
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_prescription__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "如果检查，则某些消息存在传送错误。"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_strategy__is_stage_aware
@@ -637,43 +637,43 @@ msgstr ""
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_physiology_profile__logistic_gdd0
 msgid "Inflexion GDD (GDD0)"
-msgstr ""
+msgstr "屈曲 GDD (GDD0)"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__product_id
 msgid "Input Material"
-msgstr ""
+msgstr "输入材料"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_vra_stage_rule__intensity_multiplier
 msgid "Intensity Multiplier"
-msgstr ""
+msgstr "强度倍增器"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_farm_location_form_inherit_grid
 msgid "Interpolate Soil Data"
-msgstr ""
+msgstr "插值土壤数据"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_intervention_vra_strategy__type__inverse_ndvi
 msgid "Inverse NDVI (Growth-based)"
-msgstr ""
+msgstr "逆 NDVI（基于增长）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__message_is_follower
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "是追随者"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_biological_twin_form
 msgid "L5: Optimize Environment"
-msgstr ""
+msgstr "L5：优化环境"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__is_lai_aware
 msgid "LAI Aware"
-msgstr ""
+msgstr "赖意识"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__write_uid
@@ -702,416 +702,416 @@ msgstr "最后更新时间"
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_geospatial_grid_cell__lai_index
 msgid "Leaf Area Index (LAI)"
-msgstr ""
+msgstr "叶面积指数 (LAI)"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_vra_strategy_form
 msgid "Linear Parameters"
-msgstr ""
+msgstr "线性参数"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_vra_strategy_form
 msgid "Logic Parameters"
-msgstr ""
+msgstr "逻辑参数"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__type
 msgid "Logic Type"
-msgstr ""
+msgstr "逻辑类型"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_biological_twin__confidence_level__low
 msgid "Low (Initial)"
-msgstr ""
+msgstr "低（初始）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__low_threshold
 msgid "Low NDVI Threshold"
-msgstr ""
+msgstr "NDVI 阈值低"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_physiology_profile__logistic_l
 msgid "Max Biomass (L)"
-msgstr ""
+msgstr "最大生物量 (L)"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_physiology_profile__temp_max
 msgid "Maximum Temperature (T-max)"
-msgstr ""
+msgstr "最高温度（T-max）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_biological_twin__confidence_level__med
 msgid "Medium (Mid-season)"
-msgstr ""
+msgstr "中（季中）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__message_has_error
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "消息投递错误"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__message_ids
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "消息"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_biological_twin__base_temp
 msgid "Min temp for growth"
-msgstr ""
+msgstr "生长最低温度"
 
 #. module: farm_agri_science
 #. odoo-python
 #: code:addons/farm_agri_science/models/land_grid.py:0
 msgid "Missing Geometry"
-msgstr ""
+msgstr "缺失的几何形状"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__location_id
 msgid "Monitoring Parcel"
-msgstr ""
+msgstr "监控包裹"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__my_activity_date_deadline
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "我的活动截止日期"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_geospatial_grid_cell__ndvi_index
 msgid "NDVI (Satellite Index)"
-msgstr ""
+msgstr "NDVI（卫星指数）"
 
 #. module: farm_agri_science
 #. odoo-python
 #: code:addons/farm_agri_science/models/biological_twin.py:0
 #: code:addons/farm_agri_science/models/vra_prescription.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__activity_date_deadline
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "下一个活动截止日期"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__activity_summary
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "下一步活动总结"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__activity_type_id
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "下一个活动类型"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__message_needaction_counter
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "动作数量"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__message_has_error_counter
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "错误数"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_biological_twin__message_needaction_counter
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_prescription__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "需要采取行动的消息数量"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_biological_twin__message_has_error_counter
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_prescription__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "发送错误的消息数"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__nutrient_ratio
 msgid "Nutrient Content Ratio"
-msgstr ""
+msgstr "营养成分含量比"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_physiology_profile__response_efficiency_c
 msgid "Nutrient Efficiency Coefficient (c)"
-msgstr ""
+msgstr "养分效率系数 (c)"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__is_kinetics_aware
 msgid "Nutrient Transformation Kinetics Aware"
-msgstr ""
+msgstr "养分转化动力学意识"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__use_efficiency
 msgid "Nutrient Use Efficiency (0-1)"
-msgstr ""
+msgstr "养分利用效率（0-1）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_intervention_vra_strategy__type__mass_balance
 msgid "Nutrient-Biomass Mass Balance"
-msgstr ""
+msgstr "养分-生物质质量平衡"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_physiology_profile__temp_opt
 msgid "Optimum Temperature (T-opt)"
-msgstr ""
+msgstr "最佳温度 (T-opt)"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_geospatial_grid_cell__location_id
 msgid "Parent Parcel"
-msgstr ""
+msgstr "父包裹"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_intervention_vra_prescription__target_type__pesticide
 msgid "Pesticide"
-msgstr ""
+msgstr "农药"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_geospatial_grid_cell_form
 msgid "Physics & Indices"
-msgstr ""
+msgstr "物理与指数"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_vra_strategy_form
 msgid "Physiological Factors"
-msgstr ""
+msgstr "生理因素"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__is_stage_aware
 msgid "Physiological Growth-Stage Aware"
-msgstr ""
+msgstr "生理生长阶段意识"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__is_mature
 msgid "Physiological Maturity"
-msgstr ""
+msgstr "生理成熟度"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_vra_stage_rule__stage_id
 msgid "Physiological Stage"
-msgstr ""
+msgstr "生理阶段"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_physiology_profile__stage_ids
 msgid "Physiological Stages"
-msgstr ""
+msgstr "生理阶段"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_farm_agri_science_mixin__physiology_profile_id
 msgid "Physiology Profile"
-msgstr ""
+msgstr "生理学概况"
 
 #. module: farm_agri_science
 #: model:ir.actions.act_window,name:farm_agri_science.action_agri_physiology_profile
 #: model:ir.ui.menu,name:farm_agri_science.menu_agri_physiology_profile
 msgid "Physiology Profiles"
-msgstr ""
+msgstr "生理学概况"
 
 #. module: farm_agri_science
 #. odoo-python
 #: code:addons/farm_agri_science/models/land_grid.py:0
 msgid "Please define the parcel boundary first."
-msgstr ""
+msgstr "请先定义地块边界。"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_physiology_profile__response_max_yield
 msgid "Potential Max Yield (A)"
-msgstr ""
+msgstr "潜在最大产量 (A)"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_farm_location_form_inherit_grid
 msgid "Precision Grid"
-msgstr ""
+msgstr "精密网格"
 
 #. module: farm_agri_science
 #: model:ir.ui.menu,name:farm_agri_science.menu_vra_parent
 msgid "Precision VRA"
-msgstr ""
+msgstr "精密VRA"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__predicted_yield
 msgid "Predicted Yield (kg)"
-msgstr ""
+msgstr "预计产量（公斤）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription_line__prescription_id
 msgid "Prescription"
-msgstr ""
+msgstr "处方"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__line_ids
 msgid "Prescription Grid"
-msgstr ""
+msgstr "处方网格"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_vra_prescription_form
 msgid "Prescription Grid Details"
-msgstr ""
+msgstr "处方网格详细信息"
 
 #. module: farm_agri_science
 #: model:ir.ui.menu,name:farm_agri_science.menu_vra_prescription
 msgid "Prescription Maps"
-msgstr ""
+msgstr "处方图"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__name
 msgid "Prescription Ref"
-msgstr ""
+msgstr "处方参考"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_vra_prescription_form
 msgid "Prescription Title..."
-msgstr ""
+msgstr "处方名称..."
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_growth_stage__profile_id
 msgid "Profile"
-msgstr ""
+msgstr "轮廓"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_farm_agri_science_mixin__rue_actual
 msgid "Radiation Use Efficiency (RUE)"
-msgstr ""
+msgstr "辐射利用效率（RUE）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__rain_probability
 msgid "Rain Probability (%)"
-msgstr ""
+msgstr "下雨概率 (%)"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__rating_ids
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__rating_ids
 msgid "Ratings"
-msgstr ""
+msgstr "评级"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_farm_location_form_inherit_grid
 msgid "Regenerate Grid"
-msgstr ""
+msgstr "重新生成网格"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__activity_user_id
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "负责用户"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_geospatial_grid_cell__row
 msgid "Row Index"
-msgstr ""
+msgstr "行索引"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_biological_twin_form
 msgid "Run Yield Prediction AI"
-msgstr ""
+msgstr "运行产量预测 AI"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__message_has_sms_error
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "短信投递错误"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_vra_strategy_form
 msgid "Scientific Enhancements"
-msgstr ""
+msgstr "科学改进"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_intervention_vra_prescription__target_type__seed
 msgid "Seeding"
-msgstr ""
+msgstr "播种"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_vra_prescription_form
 msgid "Select Biological Context..."
-msgstr ""
+msgstr "选择生物背景..."
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_intervention_vra_prescription__state__exported
 msgid "Sent to Machine"
-msgstr ""
+msgstr "发送到机器"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_geospatial_grid_cell__water_stress
 msgid "Simulated from thermal bands"
-msgstr ""
+msgstr "从热带模拟"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_geospatial_grid_cell_form
 msgid "Soil Analysis"
-msgstr ""
+msgstr "土壤分析"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_geospatial_grid_cell__soil_moisture
 msgid "Soil Moisture (%)"
-msgstr ""
+msgstr "土壤湿度（%）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_geospatial_grid_cell__soil_nutrient_n
 msgid "Soil Nitrogen (N) Level"
-msgstr ""
+msgstr "土壤氮 (N) 水平"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_intervention_vra_strategy__type__soil_replacement
 msgid "Soil Nutrient Replacement"
-msgstr ""
+msgstr "土壤养分替代"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_geospatial_grid_cell__soil_ph
 msgid "Soil pH (Interpolated)"
-msgstr ""
+msgstr "土壤 pH 值（插值）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__start_date
 msgid "Sowing/Start Date"
-msgstr ""
+msgstr "播种/开始日期"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_geospatial_grid_cell_form
 msgid "Spatial Coordinates"
-msgstr ""
+msgstr "空间坐标"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_geospatial_grid_cell_form
 msgid "Spatial Grid Cell"
-msgstr ""
+msgstr "空间网格单元"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_farm_location__grid_cell_ids
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_geospatial_grid_cell_list
 msgid "Spatial Grid Cells"
-msgstr ""
+msgstr "空间网格单元"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__spatial_grid_id
 msgid "Spatial Grid ID"
-msgstr ""
+msgstr "空间网格ID"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__is_rue_aware
 msgid "Spatial RUE Aware"
-msgstr ""
+msgstr "空间 RUE 感知"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_growth_stage__stage_code
 msgid "Stage Code (e.g. VE, V1, R1)"
-msgstr ""
+msgstr "阶段代码（例如 VE、V1、R1）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_growth_stage__name
 msgid "Stage Name"
-msgstr ""
+msgstr "艺名"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__stage_rule_ids
 msgid "Stage Rules"
-msgstr ""
+msgstr "舞台规则"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__state
@@ -1131,135 +1131,135 @@ msgstr ""
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_vra_strategy_form
 msgid "Step Parameters"
-msgstr ""
+msgstr "步骤参数"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_vra_stage_rule__strategy_id
 msgid "Strategy"
-msgstr ""
+msgstr "战略"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__name
 msgid "Strategy Name"
-msgstr ""
+msgstr "策略名称"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_vra_strategy_form
 msgid "Strategy Name..."
-msgstr ""
+msgstr "策略名称..."
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_farm_agri_science_mixin__biological_stress_index
 msgid "Stress Index (0-100)"
-msgstr ""
+msgstr "压力指数（0-100）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__high_multiplier
 msgid "Strong Area Multiplier"
-msgstr ""
+msgstr "强面积乘数"
 
 #. module: farm_agri_science
 #. odoo-python
 #: code:addons/farm_agri_science/models/biological_twin.py:0
 msgid "TWIN"
-msgstr ""
+msgstr "双"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__target_gdd_harvest
 msgid "Target GDD for Harvest"
-msgstr ""
+msgstr "收获目标 GDD"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__expected_harvest_date
 msgid "Target Harvest Date"
-msgstr ""
+msgstr "目标收获日期"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__maturity_date
 msgid "Target Maturity Date"
-msgstr ""
+msgstr "目标到期日"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__target_ndvi
 msgid "Target NDVI"
-msgstr ""
+msgstr "目标植被指数"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__location_id
 msgid "Target Parcel"
-msgstr ""
+msgstr "目标地块"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription_line__target_rate
 msgid "Target Rate"
-msgstr ""
+msgstr "目标率"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__target_yield
 msgid "Target Yield (kg/mu)"
-msgstr ""
+msgstr "目标产量（公斤/亩）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_physiology_profile__response_max_yield
 msgid "Theoretical max yield for this variety under ideal conditions."
-msgstr ""
+msgstr "该品种在理想条件下的理论最大产量。"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_biological_twin_form
 msgid "Thermal Intelligence (L3)"
-msgstr ""
+msgstr "热智能（L3）"
 
 #. module: farm_agri_science
 #: model:ir.model.fields.selection,name:farm_agri_science.selection__agri_intervention_vra_strategy__type__fixed_step
 msgid "Threshold Stepping"
-msgstr ""
+msgstr "阈值步进"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__name
 msgid "Twin Ref"
-msgstr ""
+msgstr "双参考"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_biological_twin__activity_exception_decoration
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_prescription__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "记录的异常活动的类型。"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription_line__uom_id
 msgid "Unit"
-msgstr ""
+msgstr "单元"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_biological_twin_form
 msgid "Update GDD (Weather Sync)"
-msgstr ""
+msgstr "更新 GDD（天气同步）"
 
 #. module: farm_agri_science
 #: model:ir.ui.menu,name:farm_agri_science.menu_vra_strategy
 msgid "VRA Decision Strategies"
-msgstr ""
+msgstr "VRA 决策策略"
 
 #. module: farm_agri_science
 #: model:ir.model,name:farm_agri_science.model_agri_intervention_vra_strategy
 msgid "VRA Decision Strategy"
-msgstr ""
+msgstr "VRA决策策略"
 
 #. module: farm_agri_science
 #: model:ir.model,name:farm_agri_science.model_agri_intervention_vra_prescription_line
 msgid "VRA Grid Rate"
-msgstr ""
+msgstr "VRA 网格速率"
 
 #. module: farm_agri_science
 #: model:ir.model,name:farm_agri_science.model_agri_vra_stage_rule
 msgid "VRA Growth-Stage Rule"
-msgstr ""
+msgstr "VRA 生长阶段规则"
 
 #. module: farm_agri_science
 #. odoo-python
 #: code:addons/farm_agri_science/models/vra_prescription.py:0
 msgid "VRA ISO-XML Map Exported with Scientific Audit parameters."
-msgstr ""
+msgstr "VRA ISO-XML 映射使用科学审核参数导出。"
 
 #. module: farm_agri_science
 #. odoo-python
@@ -1280,82 +1280,82 @@ msgstr ""
 #. module: farm_agri_science
 #: model:ir.actions.act_window,name:farm_agri_science.action_farm_vra_prescription
 msgid "VRA Prescription Maps"
-msgstr ""
+msgstr "VRA 处方图"
 
 #. module: farm_agri_science
 #: model:ir.actions.act_window,name:farm_agri_science.action_farm_vra_strategy
 msgid "VRA Strategies"
-msgstr ""
+msgstr "VRA 策略"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__strategy_id
 msgid "VRA Strategy"
-msgstr ""
+msgstr "VRA策略"
 
 #. module: farm_agri_science
 #. odoo-python
 #: code:addons/farm_agri_science/models/vra_prescription.py:0
 msgid "VRA-NEW"
-msgstr ""
+msgstr "VRA-新"
 
 #. module: farm_agri_science
 #: model:ir.model,name:farm_agri_science.model_agri_intervention_vra_prescription
 msgid "Variable Rate Prescription"
-msgstr ""
+msgstr "可变利率处方"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_physiology_profile__name
 msgid "Variety Name"
-msgstr ""
+msgstr "品种名称"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_physiology_profile_form
 msgid "Variety Physiology Fingerprint..."
-msgstr ""
+msgstr "多种生理学指纹..."
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__product_id
 msgid "Variety Standard"
-msgstr ""
+msgstr "品种标准"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_geospatial_grid_cell_form
 msgid "Vegetation"
-msgstr ""
+msgstr "植被"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_geospatial_grid_cell__water_stress
 msgid "Water Stress Index"
-msgstr ""
+msgstr "缺水指数"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_farm_agri_science_mixin__wue_actual
 msgid "Water Use Efficiency (WUE)"
-msgstr ""
+msgstr "水分利用效率 (WUE)"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_strategy__low_multiplier
 msgid "Weak Area Multiplier"
-msgstr ""
+msgstr "弱区乘数"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_biological_twin__website_message_ids
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "网站消息"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,help:farm_agri_science.field_agri_biological_twin__website_message_ids
 #: model:ir.model.fields,help:farm_agri_science.field_agri_intervention_vra_prescription__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "网站沟通历史"
 
 #. module: farm_agri_science
 #: model:ir.model.fields,field_description:farm_agri_science.field_agri_intervention_vra_prescription__wind_speed
 msgid "Wind Speed (m/s)"
-msgstr ""
+msgstr "风速（米/秒）"
 
 #. module: farm_agri_science
 #: model_terms:ir.ui.view,arch_db:farm_agri_science.view_agri_biological_twin_form
 msgid "Yield Forecasting"
-msgstr ""
+msgstr "产量预测"

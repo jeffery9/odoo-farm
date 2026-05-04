@@ -28,34 +28,34 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_financial_valuation/models/financial_valuation_models.py:0
 msgid "Financial Valuation"
-msgstr ""
+msgstr "财务估值"
 
 #. module: farm_financial_valuation
 #. odoo-python
 #: code:addons/farm_financial_valuation/models/financial_valuation_models.py:0
 msgid "Financial valuation request created for selected assets"
-msgstr ""
+msgstr "为选定资产创建财务评估请求"
 
 #. module: farm_financial_valuation
 #. odoo-python
 #: code:addons/farm_financial_valuation/models/financial_valuation_models.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_financial_valuation
 #. odoo-python
 #: code:addons/farm_financial_valuation/models/financial_valuation_models.py:0
 msgid "No general journal found."
-msgstr ""
+msgstr "没有找到一般期刊。"
 
 #. module: farm_financial_valuation
 #. odoo-python
 #: code:addons/farm_financial_valuation/models/financial_valuation_models.py:0
 msgid "No revaluation reserve account found."
-msgstr ""
+msgstr "未找到重估储备账户。"
 
 #. module: farm_financial_valuation
 #. odoo-python
 #: code:addons/farm_financial_valuation/models/financial_valuation_models.py:0
 msgid "No suitable asset account found for valuation entries."
-msgstr ""
+msgstr "未找到适合评估条目的资产帐户。"

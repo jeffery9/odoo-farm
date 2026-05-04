@@ -20,166 +20,166 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_water_protection.py:0
 msgid "Buffer distance must be greater than zero."
-msgstr ""
+msgstr "缓冲距离必须大于零。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
 msgid "CEC cannot be negative."
-msgstr ""
+msgstr "CEC 不能为负数。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/farm_carbon_accounting.py:0
 msgid "CO2-NEW"
-msgstr ""
+msgstr "二氧化碳-新"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_carbon_footprint.py:0
 msgid "Carbon emissions cannot be negative."
-msgstr ""
+msgstr "碳排放不能为负。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/agri_esg_red_line_monitoring.py:0
 msgid "ESG Compliance Monitoring"
-msgstr ""
+msgstr "ESG合规监控"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_carbon_footprint.py:0
 msgid "Fuel savings cannot be negative."
-msgstr ""
+msgstr "节省的燃料不能为负。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_water_protection.py:0
 msgid "Inspection scheduled for %s"
-msgstr ""
+msgstr "检查安排在 %s"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_carbon_footprint.py:0
 msgid "Material quantities cannot be negative."
-msgstr ""
+msgstr "物料数量不能为负。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/farm_carbon_accounting.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
 msgid "Next soil health assessment scheduled for %s"
-msgstr ""
+msgstr "下一次土壤健康评估计划于 %s 进行"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
 msgid "Nitrogen level cannot be negative."
-msgstr ""
+msgstr "氮水平不能为负值。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/agri_esg_red_line_monitoring.py:0
 msgid "No notes provided"
-msgstr ""
+msgstr "没有提供注释"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
 msgid "Organic matter content cannot be negative."
-msgstr ""
+msgstr "有机质含量不能为负值。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
 msgid "Phosphorus level cannot be negative."
-msgstr ""
+msgstr "磷含量不能为负值。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
 msgid "Potassium level cannot be negative."
-msgstr ""
+msgstr "钾水平不能为负值。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
 msgid "Salinity cannot be negative."
-msgstr ""
+msgstr "盐度不能为负。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_carbon_footprint.py:0
 msgid "Soil carbon sequestration cannot be negative."
-msgstr ""
+msgstr "土壤固碳不能为负。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
 msgid "Soil compaction level cannot be negative."
-msgstr ""
+msgstr "土壤压实度不能为负值。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
 msgid "Soil health assessment updated. Current score: %.2f"
-msgstr ""
+msgstr "土壤健康评估已更新。当前分数：%.2f"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
 msgid "Soil health improvement plan created."
-msgstr ""
+msgstr "制定了土壤健康改善计划。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_water_protection.py:0
 msgid "Start season cannot be after end season."
-msgstr ""
+msgstr "开始季节不能晚于结束季节。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_carbon_footprint.py:0
 msgid "VRA Carbon Footprint Report"
-msgstr ""
+msgstr "VRA 碳足迹报告"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
 msgid "VRA Soil Health Report"
-msgstr ""
+msgstr "VRA 土壤健康报告"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_water_protection.py:0
 msgid "VRA Water Protection Report"
-msgstr ""
+msgstr "VRA 水保护报告"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_carbon_footprint.py:0
 msgid "VRA carbon footprint assessment completed."
-msgstr ""
+msgstr "VRA 碳足迹评估已完成。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_carbon_footprint.py:0
 msgid "VRA carbon footprint assessment verified."
-msgstr ""
+msgstr "VRA 碳足迹评估已验证。"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/agri_esg_red_line_monitoring.py:0
 msgid "id"
-msgstr ""
+msgstr "ID"
 
 #. module: farm_esg_environmental
 #. odoo-python
 #: code:addons/farm_esg_environmental/models/vra_soil_health.py:0
 msgid "pH level must be between 0 and 14."
-msgstr ""
+msgstr "pH 值必须在 0 到 14 之间。"

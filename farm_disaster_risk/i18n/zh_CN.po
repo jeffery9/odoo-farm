@@ -20,40 +20,40 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_disaster_risk/models/disaster_risk.py:0
 msgid "A crisis incident is already linked to this disaster."
-msgstr ""
+msgstr "一场危机事件已经与这场灾难有关。"
 
 #. module: farm_disaster_risk
 #. odoo-python
 #: code:addons/farm_disaster_risk/models/disaster_risk.py:0
 msgid "DI"
-msgstr ""
+msgstr "DI"
 
 #. module: farm_disaster_risk
 #. odoo-python
 #: code:addons/farm_disaster_risk/models/disaster_risk.py:0
 msgid "Disaster Crisis: %s (%s)"
-msgstr ""
+msgstr "灾难危机：%s (%s)"
 
 #. module: farm_disaster_risk
 #. odoo-python
 #: code:addons/farm_disaster_risk/models/disaster_risk.py:0
 msgid "LA"
-msgstr ""
+msgstr "洛杉矶"
 
 #. module: farm_disaster_risk
 #. odoo-python
 #: code:addons/farm_disaster_risk/models/disaster_risk.py:0
 msgid "Linked Crisis Incident"
-msgstr ""
+msgstr "连锁危机事件"
 
 #. module: farm_disaster_risk
 #. odoo-python
 #: code:addons/farm_disaster_risk/models/disaster_risk.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_disaster_risk
 #. odoo-python
 #: code:addons/farm_disaster_risk/models/disaster_risk.py:0
 msgid "Triggered by meteorological disaster incident %s."
-msgstr ""
+msgstr "由气象灾害事件%s引发。"

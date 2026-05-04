@@ -20,10 +20,10 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_breeding/models/farm_trait.py:0
 msgid "INBREEDING RISK: Common ancestors found within %s generations: %s"
-msgstr ""
+msgstr "近亲繁殖风险：在 %s 代内发现共同祖先：%s"
 
 #. module: farm_breeding
 #. odoo-python
 #: code:addons/farm_breeding/models/farm_trait.py:0
 msgid "Trait Performance Comparison"
-msgstr ""
+msgstr "性状表现比较"

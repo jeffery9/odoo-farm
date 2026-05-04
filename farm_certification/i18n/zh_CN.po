@@ -28,37 +28,37 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_certification/models/gap_certification.py:0
 msgid "Check date cannot be in the future."
-msgstr ""
+msgstr "检查日期不能是将来的日期。"
 
 #. module: farm_certification
 #. odoo-python
 #: code:addons/farm_certification/models/gap_certification.py:0
 msgid "GAP Certificate Expiry Alert"
-msgstr ""
+msgstr "GAP 证书到期警报"
 
 #. module: farm_certification
 #. odoo-python
 #: code:addons/farm_certification/models/gap_certification.py:0
 msgid "GAP Certificate is expiring on %s. Please renew promptly."
-msgstr ""
+msgstr "GAP 证书将于 %s 到期。请及时更新。"
 
 #. module: farm_certification
 #. odoo-python
 #: code:addons/farm_certification/models/gap_certification.py:0
 msgid "Issue date cannot be later than expiry date."
-msgstr ""
+msgstr "签发日期不能晚于到期日期。"
 
 #. module: farm_certification
 #. odoo-python
 #: code:addons/farm_certification/models/gap_certification.py:0
 msgid "Renew GAP Certificate"
-msgstr ""
+msgstr "更新GAP证书"
 
 #. module: farm_certification
 #. odoo-python
 #: code:addons/farm_certification/models/partner_certification.py:0
 msgid "Supplier Certificate Expired: Completion Required [%s]"
-msgstr ""
+msgstr "供应商证书已过期：需要完成[%s]"
 
 #. module: farm_certification
 #. odoo-python

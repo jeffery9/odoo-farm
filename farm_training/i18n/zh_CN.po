@@ -20,19 +20,19 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_training/models/training.py:0
 msgid "ACCESS DENIED: Worker %s does not have a valid '%s' for this %s task."
-msgstr ""
+msgstr "访问被拒绝：工作线程 %s 没有此 %s 任务的有效“%s”。"
 
 #. module: farm_training
 #. odoo-python
 #: code:addons/farm_training/models/training.py:0
 msgid "CERTIFICATE EXPIRING: %s for %s"
-msgstr ""
+msgstr "证书即将过期：%s 的 %s"
 
 #. module: farm_training
 #. odoo-python
 #: code:addons/farm_training/models/training.py:0
 msgid "The certificate will expire on %s. Please arrange for recertification."
-msgstr ""
+msgstr "该证书将于 %s 到期。请安排重新认证。"
 
 #. module: farm_training
 #. odoo-python
@@ -45,4 +45,4 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_training/models/agri_skill.py:0
 msgid "Training date cannot be after expiration date."
-msgstr ""
+msgstr "培训日期不能晚于有效期。"

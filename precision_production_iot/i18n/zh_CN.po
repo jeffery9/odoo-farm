@@ -28,79 +28,79 @@ msgstr ""
 #. odoo-python
 #: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
 msgid "Control command sent successfully to device: %s"
-msgstr ""
+msgstr "控制命令已成功发送至设备：%s"
 
 #. module: precision_production_iot
 #. odoo-python
 #: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
 msgid "Critical Deviation Detected"
-msgstr ""
+msgstr "检测到严重偏差"
 
 #. module: precision_production_iot
 #. odoo-python
 #: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
 msgid "Critical Deviations Detected"
-msgstr ""
+msgstr "检测到严重偏差"
 
 #. module: precision_production_iot
 #. odoo-python
 #: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
 msgid "Device Refresh"
-msgstr ""
+msgstr "设备刷新"
 
 #. module: precision_production_iot
 #. odoo-python
 #: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
 msgid "Device readings have been refreshed."
-msgstr ""
+msgstr "设备读数已刷新。"
 
 #. module: precision_production_iot
 #. odoo-python
 #: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
 msgid "Failed to send command to device."
-msgstr ""
+msgstr "无法向设备发送命令。"
 
 #. module: precision_production_iot
 #. odoo-python
 #: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
 msgid "IoT Multiple Readings"
-msgstr ""
+msgstr "物联网多读"
 
 #. module: precision_production_iot
 #. odoo-python
 #: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
 msgid "IoT reading has been recorded successfully."
-msgstr ""
+msgstr "IoT读取已成功记录。"
 
 #. module: precision_production_iot
 #. odoo-python
 #: code:addons/precision_production_iot/models/precision_iot_sensor.py:0
 msgid "Minimum range must be less than maximum range"
-msgstr ""
+msgstr "最小范围必须小于最大范围"
 
 #. module: precision_production_iot
 #. odoo-python
 #: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
 msgid "No readings to apply."
-msgstr ""
+msgstr "没有可应用的读数。"
 
 #. module: precision_production_iot
 #. odoo-python
 #: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
 msgid "Please select a sensor."
-msgstr ""
+msgstr "请选择传感器。"
 
 #. module: precision_production_iot
 #. odoo-python
 #: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
 msgid "Selected device is not linked to an Industrial IoT device."
-msgstr ""
+msgstr "所选设备未链接到工业 IoT 设备。"
 
 #. module: precision_production_iot
 #. odoo-python
 #: code:addons/precision_production_iot/wizards/iot_reading_wizard.py:0
 msgid "Send Control Command to Device"
-msgstr ""
+msgstr "向设备发送控制命令"
 
 #. module: precision_production_iot
 #. odoo-python
@@ -112,4 +112,4 @@ msgstr "成功"
 #. odoo-python
 #: code:addons/precision_production_iot/models/precision_iot_reading.py:0
 msgid "Value validation failed: %s"
-msgstr ""
+msgstr "值验证失败：%s"

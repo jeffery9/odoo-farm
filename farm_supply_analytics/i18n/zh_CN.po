@@ -20,31 +20,31 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_supply_analytics/models/demand_forecasting.py:0
 msgid "Applied optimization action: %s"
-msgstr ""
+msgstr "应用的优化操作：%s"
 
 #. module: farm_supply_analytics
 #. odoo-python
 #: code:addons/farm_supply_analytics/models/demand_forecasting.py:0
 msgid "Demand forecast executed. Predicted demand: %s units."
-msgstr ""
+msgstr "执行需求预测。预计需求：%s 单位。"
 
 #. module: farm_supply_analytics
 #. odoo-python
 #: code:addons/farm_supply_analytics/models/demand_forecasting.py:0
 msgid "Inventory optimization completed."
-msgstr ""
+msgstr "库存优化完成。"
 
 #. module: farm_supply_analytics
 #. odoo-python
 #: code:addons/farm_supply_analytics/models/demand_forecasting.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_supply_analytics
 #. odoo-python
 #: code:addons/farm_supply_analytics/models/risk_monitoring.py:0
 msgid "Probability must be between 0 and 100."
-msgstr ""
+msgstr "概率必须介于 0 到 100 之间。"
 
 #. module: farm_supply_analytics
 #. odoo-python
@@ -57,4 +57,4 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_supply_analytics/models/risk_monitoring.py:0
 msgid "Risk alert sent to mitigation owner: %s"
-msgstr ""
+msgstr "已发送给缓解所有者的风险警报：%s"

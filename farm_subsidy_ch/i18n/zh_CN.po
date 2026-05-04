@@ -20,4 +20,4 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_subsidy_ch/models/subsidy_ch.py:0
 msgid "MOARA subsidy report generation simulated for application %s."
-msgstr ""
+msgstr "为应用程序 %s 模拟 MOARA 补贴报告生成。"

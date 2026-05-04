@@ -20,25 +20,25 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_input_reg/models/input_reg.py:0
 msgid "Data successfully reported to Provincial Platform."
-msgstr ""
+msgstr "数据成功上报省级平台。"
 
 #. module: farm_input_reg
 #. odoo-python
 #: code:addons/farm_input_reg/models/input_reg.py:0
 msgid "Expiration date cannot be earlier than registration date."
-msgstr ""
+msgstr "有效期不能早于注册日期。"
 
 #. module: farm_input_reg
 #. odoo-python
 #: code:addons/farm_input_reg/models/input_reg.py:0
 msgid "Operator ID Card No. must be 15 or 18 digits."
-msgstr ""
+msgstr "操作员 ID 卡号必须为 15 或 18 位数字。"
 
 #. module: farm_input_reg
 #. odoo-python
 #: code:addons/farm_input_reg/models/input_reg.py:0
 msgid "Platform Sync Failed: %s"
-msgstr ""
+msgstr "平台同步失败：%s"
 
 #. module: farm_input_reg
 #. odoo-python
@@ -51,7 +51,7 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_input_reg/models/input_reg.py:0
 msgid "REGULATION VIOLATION: Input '%s' is Prohibited/Restricted. Reason: %s"
-msgstr ""
+msgstr "违反规定：禁止/限制输入“%s”。原因：%s"
 
 #. module: farm_input_reg
 #. odoo-python

@@ -20,4 +20,4 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_esg_report/models/__init__.py:0
 msgid "Report must be approved before publishing."
-msgstr ""
+msgstr "报告必须在发布前获得批准。"

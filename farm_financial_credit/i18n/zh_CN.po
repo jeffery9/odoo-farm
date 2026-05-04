@@ -20,50 +20,50 @@ msgstr ""
 #. odoo-python
 #: code:addons/farm_financial_credit/models/carbon_credit_finance.py:0
 msgid "CCF"
-msgstr ""
+msgstr "CCF"
 
 #. module: farm_financial_credit
 #. odoo-python
 #: code:addons/farm_financial_credit/models/agri_supply_chain_finance.py:0
 #: code:addons/farm_financial_credit/models/input_financing.py:0
 msgid "Cannot approve financing for partner with low risk score."
-msgstr ""
+msgstr "无法批准为风险评分较低的合作伙伴提供融资。"
 
 #. module: farm_financial_credit
 #. odoo-python
 #: code:addons/farm_financial_credit/models/farm_loan.py:0
 msgid "Cannot approve loan for partner with low credit score."
-msgstr ""
+msgstr "无法批准信用评分较低的合作伙伴的贷款。"
 
 #. module: farm_financial_credit
 #. odoo-python
 #: code:addons/farm_financial_credit/models/futures_hedging.py:0
 msgid "FH"
-msgstr ""
+msgstr "跳频"
 
 #. module: farm_financial_credit
 #. odoo-python
 #: code:addons/farm_financial_credit/models/industry_initialization_wizard.py:0
 msgid "Industry Initialization Complete"
-msgstr ""
+msgstr "产业初始化完成"
 
 #. module: farm_financial_credit
 #. odoo-python
 #: code:addons/farm_financial_credit/models/livestock_asset_loan.py:0
 msgid "LAL"
-msgstr ""
+msgstr "鲎试剂"
 
 #. module: farm_financial_credit
 #. odoo-python
 #: code:addons/farm_financial_credit/models/farm_loan.py:0
 msgid "LOAN"
-msgstr ""
+msgstr "贷款"
 
 #. module: farm_financial_credit
 #. odoo-python
 #: code:addons/farm_financial_credit/models/farm_loan.py:0
 msgid "Loan must be approved before disbursement."
-msgstr ""
+msgstr "贷款必须在发放前获得批准。"
 
 #. module: farm_financial_credit
 #. odoo-python
@@ -72,13 +72,13 @@ msgstr ""
 #: code:addons/farm_financial_credit/models/futures_hedging.py:0
 #: code:addons/farm_financial_credit/models/livestock_asset_loan.py:0
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #. module: farm_financial_credit
 #. odoo-python
 #: code:addons/farm_financial_credit/models/credit_scoring.py:0
 msgid "SETL"
-msgstr ""
+msgstr "SETL"
 
 #. module: farm_financial_credit
 #. odoo-python
