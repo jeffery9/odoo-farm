@@ -180,6 +180,19 @@ Quality, Agritourism, Supply Chain, and 15+ other core domains follow this highl
 ## ⚖️ License
 Licensed under **GNU Affero General Public License v3 (AGPLv3)**. SaaS providers **must** disclose source code. See [LICENSE](LICENSE).
 
+
+## 📜 Contributor License Agreement (CLA)
+
+We welcome contributions to the **Odoo Farm** project! To protect both the project and our contributors, we require all contributors to sign our Contributor License Agreement (CLA) before we can merge any Pull Requests.
+
+Please read the full [CLA Document](CLA.md).
+
+**How to sign:**
+1. Submit a Pull Request.
+2. Our CLA Assistant bot will automatically comment on your PR.
+3. Simply reply to the PR thread with: `I have read the CLA Document and I hereby sign the CLA`.
+4. Your signature will be automatically recorded in `CONTRIBUTORS.txt`.
+
 ## 📩 Contact
 **genin IT, 亘盈信息技术**, jeffery <jeffery9@gmail.com>
 Website: [http://www.geninit.cn](http://www.geninit.cn)
