@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo></odoo>
+<odoo>
+    <!-- Future implementation: Extended product.product views for processing -->
+    <!-- Keeping file for architecture placeholder -->
+</odoo>
