@@ -48,7 +48,7 @@ class ProjectTask(models.Model):
     _inherit = 'project.task'
 
     worklog_ids = fields.One2many('farm.worklog', 'task_id', string="Labor Worklogs")
-    total_harvested_qty = fields.Float("Total Harvested (kg)", compute='_compute_total_worklog_qty', store=True)
+    total_harvested_qty = fields.Float("Total Harvested (kg)", compute='_compute_total_worklog_qty', store=True, precompute=True)
     
     # 技能要求 [US-004-02]
     required_skill_id = fields.Many2one('farm.agri.skill', string="Required Skill")
@@ -92,7 +92,7 @@ class FarmEmployeeCertificate(models.Model):
     state = fields.Selection([
         ('valid', 'Valid'),
         ('expired', 'Expired')
-    ], compute='_compute_state', store=True)
+    ], compute='_compute_state', store=True, precompute=True)
 
     @api.depends('date_expiry')
     def _compute_state(self):

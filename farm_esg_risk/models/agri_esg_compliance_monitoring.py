@@ -19,7 +19,7 @@ class AgriESGComplianceMonitoring(models.Model):
     current_value = fields.Float('Current Value', help='Current measured value')
     compliance_status = fields.Selection([
         'compliant', 'warning', 'non_compliant', 'critical'
-    ], string='Compliance Status', compute='_compute_compliance_status', store=True)
+    ], string='Compliance Status', compute='_compute_compliance_status', store=True, precompute=True)
     last_check_date = fields.Date('Last Check Date', default=fields.Date.context_today)
     next_check_date = fields.Date('Next Check Date')
     compliance_owner = fields.Many2one('res.users', 'Compliance Owner')

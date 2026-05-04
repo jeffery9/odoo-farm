@@ -186,8 +186,8 @@ class AgriCostCalculationLine(models.TransientModel):
     calculation_id = fields.Many2one('agri.cost.calculation', string='Calculation', ondelete='cascade')
     template_id = fields.Many2one('agri.cost.template', string='Cost Template', required=True)
     quantity = fields.Float('Quantity', default=1.0, help='Quantity of units to apply')
-    unit_cost = fields.Float('Unit Cost', compute='_compute_unit_cost', store=True)
-    total_cost = fields.Float('Total Cost', compute='_compute_total_cost', store=True)
+    unit_cost = fields.Float('Unit Cost', compute='_compute_unit_cost', store=True, precompute=True)
+    total_cost = fields.Float('Total Cost', compute='_compute_total_cost', store=True, precompute=True)
 
     @api.depends('template_id')
     def _compute_unit_cost(self):

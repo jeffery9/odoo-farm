@@ -3,3 +3,12 @@ access_agri_quality_point,agri.quality.point,model_agri_quality_point,base.group
 access_agri_quality_check,agri.quality.check,model_agri_quality_check,base.group_user,1,1,1,1
 access_agri_quality_alert,agri.quality.alert,model_agri_quality_alert,base.group_user,1,1,1,1
 access_agri_quality_sample,agri.quality.sample,model_agri_quality_sample,base.group_user,1,1,1,1
+access_farm_haccp_point,farm.haccp.point,model_farm_haccp_point,base.group_user,1,1,1,1
+access_stock_picking,stock.picking,model_stock_picking,base.group_user,1,1,1,1
+access_agri_quality_point,agri.quality.point,model_agri_quality_point,base.group_user,1,1,1,1
+access_agri_quality_alert,agri.quality.alert,model_agri_quality_alert,base.group_user,1,1,1,1
+access_farm_haccp_check,farm.haccp.check,model_farm_haccp_check,base.group_user,1,1,1,1
+access_agri_quality_check,agri.quality.check,model_agri_quality_check,base.group_user,1,1,1,1
+access_agri_quality_sample,agri.quality.sample,model_agri_quality_sample,base.group_user,1,1,1,1
+access_farm_quality_sample,farm.quality.sample,model_farm_quality_sample,base.group_user,1,1,1,1
+access_stock_lot,stock.lot,model_stock_lot,base.group_user,1,1,1,1

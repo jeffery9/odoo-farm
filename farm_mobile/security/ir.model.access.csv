@@ -4,4 +4,11 @@ access_mobile_res_users,mobile.res.users,base.model_res_users,farm_core.group_fa
 access_farm_evidence_user,farm.evidence user,model_farm_evidence,base.group_user,1,1,1,1
 access_farm_submission_user,farm.checklist.submission user,model_farm_checklist_submission,base.group_user,1,1,1,1
 access_farm_submission_line_user,farm.checklist.submission.line user,model_farm_checklist_submission_line,base.group_user,1,1,1,1
-access_farm_expert_call_user,farm.expert.call user,model_farm_expert_call,base.group_user,1,1,1,1
+access_farm_expert_call_user,farm.expert.call user,model_farm_expert_call,base.group_user,1,1,1,1access_farm_sync_queue,farm.sync.queue,model_farm_sync_queue,base.group_user,1,1,1,1
+access_farm_checklist_submission_line,farm.checklist.submission.line,model_farm_checklist_submission_line,base.group_user,1,1,1,1
+access_farm_evidence,farm.evidence,model_farm_evidence,base.group_user,1,1,1,1
+access_farm_checkin,farm.checkin,model_farm_checkin,base.group_user,1,1,1,1
+access_farm_expert_call,farm.expert.call,model_farm_expert_call,base.group_user,1,1,1,1
+access_farm_checklist_submission,farm.checklist.submission,model_farm_checklist_submission,base.group_user,1,1,1,1
+access_mrp_production,mrp.production,model_mrp_production,base.group_user,1,1,1,1
+access_agri_evidence,agri.evidence,model_agri_evidence,base.group_user,1,1,1,1

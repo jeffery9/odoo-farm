@@ -24,7 +24,7 @@ class ShareTransaction(models.Model):
     ], string='Transaction Type', required=True)
     shares_count = fields.Float('Shares Count', required=True)
     share_price = fields.Float('Share Price', help='Price per share at transaction time')
-    total_amount = fields.Float('Total Amount', compute='_compute_total_amount', store=True)
+    total_amount = fields.Float('Total Amount', compute='_compute_total_amount', store=True, precompute=True)
     transaction_date = fields.Date('Transaction Date', default=fields.Date.context_today, required=True)
     description = fields.Text('Description')
     state = fields.Selection([

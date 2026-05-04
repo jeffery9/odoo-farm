@@ -10,7 +10,7 @@ class AgriScienceMixin(models.AbstractModel):
 
     physiology_profile_id = fields.Many2one('agri.physiology.profile', string="Physiology Profile")
     cumulative_gdd = fields.Float("Cumulative GDD", default=0.0)
-    current_growth_stage_id = fields.Many2one('agri.growth.stage', string="Current Stage", compute='_compute_biological_clock', store=True)
+    current_growth_stage_id = fields.Many2one('agri.growth.stage', string="Current Stage", compute='_compute_biological_clock', store=True, precompute=True)
     
     # [US-045-05] 资源利用效率
     rue_actual = fields.Float("Radiation Use Efficiency (RUE)", compute='_compute_efficiencies')

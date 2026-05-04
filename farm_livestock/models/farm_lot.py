@@ -24,7 +24,7 @@ class FarmLot(models.Model):
 
     # US-003-01: 生长预测与饲喂核销
     start_weight = fields.Float("Initial Weight (kg)")
-    current_predicted_weight = fields.Float("Predicted Weight (kg)", compute='_compute_predicted_weight', store=True)
+    current_predicted_weight = fields.Float("Predicted Weight (kg)", compute='_compute_predicted_weight', store=True, precompute=True)
     average_daily_gain = fields.Float("Average Daily Gain (kg/day)", default=0.5)
 
     active_feeding_bom_id = fields.Many2one('mrp.bom', string="Active Feeding Recipe",

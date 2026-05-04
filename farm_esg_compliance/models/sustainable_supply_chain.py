@@ -20,7 +20,7 @@ class AgriSustainableSupplyChain(models.Model):
     economic_score = fields.Float('Economic Score (0-100)')
     environmental_score = fields.Float('Environmental Score (0-100)')
     social_score = fields.Float('Social Score (0-100)')
-    overall_sustainability_score = fields.Float('Overall Score (0-100)', compute='_compute_overall_score', store=True)
+    overall_sustainability_score = fields.Float('Overall Score (0-100)', compute='_compute_overall_score', store=True, precompute=True)
 
     # Related supplier
     partner_id = fields.Many2one('res.partner', string='Supplier/Partner', required=True)
@@ -173,7 +173,7 @@ class AgriSustainableSupplierEvaluation(models.Model):
     economic_criteria_score = fields.Float('Economic Criteria Score (0-100)')
     environmental_criteria_score = fields.Float('Environmental Criteria Score (0-100)')
     social_criteria_score = fields.Float('Social Criteria Score (0-100)')
-    overall_evaluation_score = fields.Float('Overall Score (0-100)', compute='_compute_overall_score', store=True)
+    overall_evaluation_score = fields.Float('Overall Score (0-100)', compute='_compute_overall_score', store=True, precompute=True)
 
     # Evaluation details
     evaluation_details = fields.Text('Evaluation Details')
@@ -181,7 +181,7 @@ class AgriSustainableSupplierEvaluation(models.Model):
     evaluation_by = fields.Many2one('res.users', string='Evaluated By', default=lambda self: self.env.user)
 
     # Compliance check
-    is_compliant = fields.Boolean('Is Compliant', compute='_compute_compliance', store=True)
+    is_compliant = fields.Boolean('Is Compliant', compute='_compute_compliance', store=True, precompute=True)
 
     @api.depends('economic_criteria_score', 'environmental_criteria_score', 'social_criteria_score')
     def _compute_overall_score(self):

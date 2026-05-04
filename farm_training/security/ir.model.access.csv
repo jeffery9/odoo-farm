@@ -8,3 +8,14 @@ access_farm_training_session_user,farm.training.session.user,model_farm_training
 access_farm_training_skill,farm.training.skill,model_farm_training_skill,farm_core.group_farm_worker,1,1,1,1
 access_farm_training_certification,farm.training.certification,model_farm_training_certification,farm_core.group_farm_worker,1,1,1,1
 access_farm_training_training_record,farm.training.training_record,model_farm_training_training_record,farm_core.group_farm_worker,1,1,1,1
+access_hr_employee,hr.employee,model_hr_employee,base.group_user,1,1,1,1
+access_farm_training_training_record,farm.training.training_record,model_farm_training_training_record,base.group_user,1,1,1,1
+access_agri_training_training_record,agri.training.training_record,model_agri_training_training_record,base.group_user,1,1,1,1
+access_farm_certificate_type,farm.certificate.type,model_farm_certificate_type,base.group_user,1,1,1,1
+access_farm_training_certification,farm.training.certification,model_farm_training_certification,base.group_user,1,1,1,1
+access_agri_training_certification,agri.training.certification,model_agri_training_certification,base.group_user,1,1,1,1
+access_farm_training_skill,farm.training.skill,model_farm_training_skill,base.group_user,1,1,1,1
+access_farm_training_session,farm.training.session,model_farm_training_session,base.group_user,1,1,1,1
+access_mrp_production,mrp.production,model_mrp_production,base.group_user,1,1,1,1
+access_farm_certificate,farm.certificate,model_farm_certificate,base.group_user,1,1,1,1
+access_agri_training_skill,agri.training.skill,model_agri_training_skill,base.group_user,1,1,1,1

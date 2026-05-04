@@ -33,7 +33,7 @@ class FarmExportCompliance(models.Model):
         ('pending', 'Pending Review'),
         ('ready', 'Export Ready'),
         ('blocked', 'Compliance Blocked')
-    ], compute='_compute_compliance_status', store=True)
+    ], compute='_compute_compliance_status', store=True, precompute=True)
 
     @api.depends('residue_limit_ok', 'phytosanitary_cert_ok', 'labeling_ok')
     def _compute_compliance_status(self):

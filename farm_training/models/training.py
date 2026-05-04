@@ -24,7 +24,7 @@ class FarmCertificate(models.Model):
     certificate_type_id = fields.Many2one('farm.certificate.type', string="Type", required=True)
     issue_date = fields.Date("Issue Date")
     expiry_date = fields.Date("Expiry Date")
-    is_valid = fields.Boolean("Is Valid", compute='_compute_is_valid', store=True)
+    is_valid = fields.Boolean("Is Valid", compute='_compute_is_valid', store=True, precompute=True)
     attachment_ids = fields.Many2many('ir.attachment', string="Certificate Photos")
 
     @api.depends('expiry_date')

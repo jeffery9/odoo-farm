@@ -35,7 +35,7 @@ class CropRotationHistory(models.Model):
     continuous_cropping_warning = fields.Boolean("Continuous Cropping Warning",
                                                  compute='_compute_continuous_cropping_warning',
                                                  store=True)
-    warning_reason = fields.Char("Warning Reason", compute='_compute_continuous_cropping_warning', store=True)
+    warning_reason = fields.Char("Warning Reason", compute='_compute_continuous_cropping_warning', store=True, precompute=True)
 
     state = fields.Selection([
         ('planted', 'Planted'),
@@ -150,10 +150,10 @@ class FarmLocationExtension(models.Model):
 
     # Add rotation-related computed fields
     last_crop_planted = fields.Many2one('product.template', "Last Crop Planted",
-                                        compute='_compute_rotation_info', store=True)
-    last_planting_date = fields.Date("Last Planting Date", compute='_compute_rotation_info', store=True)
+                                        compute='_compute_rotation_info', store=True, precompute=True)
+    last_planting_date = fields.Date("Last Planting Date", compute='_compute_rotation_info', store=True, precompute=True)
     continuous_cropping_risk_alert = fields.Boolean("Continuous Cropping Alert",
-                                                    compute='_compute_rotation_info', store=True)
+                                                    compute='_compute_rotation_info', store=True, precompute=True)
 
     @api.depends('rotation_history_ids.planting_date', 'rotation_history_ids.product_id',
                  'rotation_history_ids.continuous_cropping_warning')

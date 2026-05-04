@@ -9,7 +9,7 @@ class IiotFirmware(models.Model):
     _description = 'Industrial IoT Firmware'
     _order = 'version DESC'
 
-    name = fields.Char('Name', compute='_compute_name', store=True)
+    name = fields.Char('Name', compute='_compute_name', store=True, precompute=True)
     version = fields.Char('Version', required=True, help='Firmware version number')
     profile_code = fields.Char('Device Type', required=True, help='Applicable device type code')
     url = fields.Char('Download URL', required=True, help='Firmware download URL')
@@ -57,7 +57,7 @@ class IiotUpdate(models.Model):
     _description = 'Industrial IoT Firmware Update'
     _order = 'create_date DESC'
 
-    name = fields.Char('Update Name', compute='_compute_name', store=True)
+    name = fields.Char('Update Name', compute='_compute_name', store=True, precompute=True)
     device_id = fields.Many2one('iiot.device', 'Target Device', required=True)
     firmware_id = fields.Many2one('iiot.firmware', 'Firmware Version', required=True)
     update_id = fields.Char('Update ID', default=lambda self: self._generate_update_id(), readonly=True)

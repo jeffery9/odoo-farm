@@ -28,24 +28,24 @@ class AgriSustainabilityDashboard(models.Model):
     end_date = fields.Date('结束日期', required=True, default=lambda self: fields.Date.today())
 
     # 三重底线指标
-    economic_score = fields.Float('经济得分', compute='_compute_scores', store=True)
-    environmental_score = fields.Float('环境得分', compute='_compute_scores', store=True)
-    social_score = fields.Float('社会得分', compute='_compute_scores', store=True)
-    overall_score = fields.Float('综合得分', compute='_compute_scores', store=True)
+    economic_score = fields.Float('经济得分', compute='_compute_scores', store=True, precompute=True)
+    environmental_score = fields.Float('环境得分', compute='_compute_scores', store=True, precompute=True)
+    social_score = fields.Float('社会得分', compute='_compute_scores', store=True, precompute=True)
+    overall_score = fields.Float('综合得分', compute='_compute_scores', store=True, precompute=True)
 
     # 关键指标
-    total_circular_flows = fields.Integer('循环经济流程数', compute='_compute_kpis', store=True)
-    total_circular_value = fields.Float('循环经济总价值', compute='_compute_kpis', store=True)
-    waste_reduced = fields.Float('减少废料量', compute='_compute_kpis', store=True)
-    resource_saved = fields.Float('节约资源量', compute='_compute_kpis', store=True)
+    total_circular_flows = fields.Integer('循环经济流程数', compute='_compute_kpis', store=True, precompute=True)
+    total_circular_value = fields.Float('循环经济总价值', compute='_compute_kpis', store=True, precompute=True)
+    waste_reduced = fields.Float('减少废料量', compute='_compute_kpis', store=True, precompute=True)
+    resource_saved = fields.Float('节约资源量', compute='_compute_kpis', store=True, precompute=True)
 
     # 集成现有碳足迹数据
-    total_carbon_footprint = fields.Float('总碳足迹', compute='_compute_kpis', store=True)
+    total_carbon_footprint = fields.Float('总碳足迹', compute='_compute_kpis', store=True, precompute=True)
 
     # 趋势指标
-    economic_trend = fields.Float('经济趋势%', compute='_compute_trends', store=True)
-    environmental_trend = fields.Float('环境趋势%', compute='_compute_trends', store=True)
-    social_trend = fields.Float('社会趋势%', compute='_compute_trends', store=True)
+    economic_trend = fields.Float('经济趋势%', compute='_compute_trends', store=True, precompute=True)
+    environmental_trend = fields.Float('环境趋势%', compute='_compute_trends', store=True, precompute=True)
+    social_trend = fields.Float('社会趋势%', compute='_compute_trends', store=True, precompute=True)
 
     # 状态
     is_active = fields.Boolean('启用', default=True)

@@ -21,7 +21,7 @@ class ProductCertification(models.Model):
     certification_date = fields.Date('Certification Date', default=fields.Date.context_today)
     expiry_date = fields.Date('Expiry Date')
     quality_score = fields.Float('Quality Score (%)')
-    is_certified = fields.Boolean('Is Certified', compute='_compute_certified_status', store=True)
+    is_certified = fields.Boolean('Is Certified', compute='_compute_certified_status', store=True, precompute=True)
     certification_document = fields.Binary('Certification Document')
     document_name = fields.Char('Document Name')
     description = fields.Text('Description')

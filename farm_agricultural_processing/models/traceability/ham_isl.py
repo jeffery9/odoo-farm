@@ -40,10 +40,10 @@ class FarmLotHam(models.Model):
     # [US-117-02] Physical Status
     fresh_weight = fields.Float("Fresh Weight (kg)")
     current_weight = fields.Float("Current Weight (kg)")
-    dehydration_rate = fields.Float("Dehydration Rate (%)", compute='_compute_ham_kpi', store=True)
+    dehydration_rate = fields.Float("Dehydration Rate (%)", compute='_compute_ham_kpi', store=True, precompute=True)
     
     aging_start_date = fields.Date("Aging Start Date")
-    aging_age_months = fields.Integer("Vintage (Months)", compute='_compute_ham_kpi', store=True)
+    aging_age_months = fields.Integer("Vintage (Months)", compute='_compute_ham_kpi', store=True, precompute=True)
 
     @api.depends('fresh_weight', 'current_weight', 'aging_start_date')
     def _compute_ham_kpi(self):

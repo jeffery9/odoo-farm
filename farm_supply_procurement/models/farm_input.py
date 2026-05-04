@@ -80,7 +80,7 @@ class PurchaseOrderLine(models.Model):
     _name = 'purchase.order.line'
     _inherit = 'purchase.order.line'
 
-    is_compliance_warning = fields.Boolean("Compliance Warning", compute='_compute_compliance_warning', store=True)
+    is_compliance_warning = fields.Boolean("Compliance Warning", compute='_compute_compliance_warning', store=True, precompute=True)
 
     @api.depends('product_id')
     def _compute_compliance_warning(self):

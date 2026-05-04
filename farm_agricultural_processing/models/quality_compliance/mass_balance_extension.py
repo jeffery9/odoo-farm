@@ -20,19 +20,19 @@ class FarmProcessingProductionMassBalanceExtension(models.Model):
     theoretical_output_qty = fields.Float('Theoretical Output Quantity')
 
     # Variance tracking
-    balance_variance = fields.Float('Balance Variance', compute='_compute_variance', store=True)
-    variance_percentage = fields.Float('Variance Percentage', compute='_compute_variance', store=True)
+    balance_variance = fields.Float('Balance Variance', compute='_compute_variance', store=True, precompute=True)
+    variance_percentage = fields.Float('Variance Percentage', compute='_compute_variance', store=True, precompute=True)
 
     # Tolerance settings
     max_variance_tolerance = fields.Float('Max Variance Tolerance (+/-)', default=0.01, help='Maximum acceptable variance (e.g., 0.01 for 1%)')
 
     # Compliance status
-    is_balanced = fields.Boolean('Is Balanced', compute='_compute_balance_status', store=True)
+    is_balanced = fields.Boolean('Is Balanced', compute='_compute_balance_status', store=True, precompute=True)
     compliance_status = fields.Selection([
         ('compliant', 'Compliant'),
         ('warning', 'Warning'),
         ('non_compliant', 'Non-Compliant'),
-    ], string='Compliance Status', compute='_compute_balance_status', store=True)
+    ], string='Compliance Status', compute='_compute_balance_status', store=True, precompute=True)
 
     @api.depends('total_input_qty', 'total_output_qty', 'theoretical_output_qty')
     def _compute_variance(self):
@@ -137,7 +137,7 @@ class FarmProcessingProductionActiveIngredientExtension(models.Model):
     # Active ingredient analysis for standardization processing
     active_ingredient_content = fields.Float('Active Ingredient Content (%)')
     active_ingredient_target = fields.Float('Target Active Ingredient Content (%)')
-    active_ingredient_variance = fields.Float('Active Ingredient Variance', compute='_compute_active_ingredient_variance', store=True)
+    active_ingredient_variance = fields.Float('Active Ingredient Variance', compute='_compute_active_ingredient_variance', store=True, precompute=True)
 
     @api.depends('active_ingredient_content', 'active_ingredient_target')
     def _compute_active_ingredient_variance(self):
@@ -232,7 +232,7 @@ class AgriProcessingEnvironmentalMonitoringLine(models.Model):
     humidity_max = fields.Float('Max Humidity (%)', default=65.0)
 
     # Compliance status
-    is_compliant = fields.Boolean('Is Compliant', compute='_compute_compliance', store=True)
+    is_compliant = fields.Boolean('Is Compliant', compute='_compute_compliance', store=True, precompute=True)
     compliance_notes = fields.Text('Compliance Notes')
 
     @api.depends('temperature', 'humidity', 'temperature_min', 'temperature_max', 'humidity_min', 'humidity_max')

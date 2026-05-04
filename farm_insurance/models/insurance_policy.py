@@ -16,7 +16,7 @@ class CropYieldInsurancePolicy(models.Model):
 
     sum_insured = fields.Monetary("Sum Insured", currency_field='currency_id')
     premium_rate = fields.Float("Premium Rate (%)", digits=(5, 2), required=True)
-    premium_amount = fields.Monetary("Premium Amount", currency_field='currency_id', compute='_compute_premium', store=True)
+    premium_amount = fields.Monetary("Premium Amount", currency_field='currency_id', compute='_compute_premium', store=True, precompute=True)
 
     policy_start_date = fields.Date("Policy Start Date", required=True)
     policy_end_date = fields.Date("Policy End Date", required=True)
@@ -27,13 +27,13 @@ class CropYieldInsurancePolicy(models.Model):
     predicted_yield_kg = fields.Float("Predicted Yield (kg)", related='yield_prediction_id.predicted_yield', store=True, readonly=True)
 
     actual_yield_kg = fields.Float("Actual Harvest Yield (kg)")
-    yield_deviation_pct = fields.Float("Yield Deviation (%)", compute='_compute_yield_deviation', store=True)
+    yield_deviation_pct = fields.Float("Yield Deviation (%)", compute='_compute_yield_deviation', store=True, precompute=True)
 
     # Actuarial Fields - Based on US-088-16: Yield Insurance Actuarial Analysis and Claims
     base_yield_trend = fields.Float("Base Yield Trend (kg/ha)", help="Historical average yield for this crop/location")
     risk_factor = fields.Float("Risk Factor", default=1.0, help="Risk multiplier based on location and crop type")
-    actuarial_probability_loss = fields.Float("Actuarial Probability of Loss", compute='_compute_actuarial_metrics', store=True, help="Calculated probability of yield loss based on historical data")
-    actuarial_premium_rate = fields.Float("Actuarial Premium Rate (%)", compute='_compute_actuarial_metrics', store=True, help="Calculated premium rate based on actuarial analysis")
+    actuarial_probability_loss = fields.Float("Actuarial Probability of Loss", compute='_compute_actuarial_metrics', store=True, precompute=True, help="Calculated probability of yield loss based on historical data")
+    actuarial_premium_rate = fields.Float("Actuarial Premium Rate (%)", compute='_compute_actuarial_metrics', store=True, precompute=True, help="Calculated premium rate based on actuarial analysis")
 
     # Claims Status and Link
     claim_ids = fields.One2many('farm.insurance.claim', 'policy_id', string="Claims")
@@ -44,7 +44,7 @@ class CropYieldInsurancePolicy(models.Model):
         ('approved', 'Approved'),
         ('paid', 'Paid'),
         ('rejected', 'Rejected')
-    ], string="Claim Status", compute='_compute_claim_status', store=True)
+    ], string="Claim Status", compute='_compute_claim_status', store=True, precompute=True)
 
     # Financials
     currency_id = fields.Many2one('res.currency', default=lambda self: self.env.company.currency_id)

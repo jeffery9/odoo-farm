@@ -27,7 +27,7 @@ class VmiAgreement(models.Model):
         ('expired', 'Expired'),
         ('cancelled', 'Cancelled'),
     ], string='Status', default='draft', required=True)
-    is_active = fields.Boolean('Is Active', compute='_compute_is_active', store=True)
+    is_active = fields.Boolean('Is Active', compute='_compute_is_active', store=True, precompute=True)
 
     @api.model
     def create(self, vals):
@@ -69,10 +69,10 @@ class VmiStockMonitoring(models.Model):
     product_id = fields.Many2one('product.product', string='Product', required=True)
     current_stock = fields.Float('Current Stock')
     forecast_demand = fields.Float('Forecast Demand')
-    days_of_supply = fields.Float('Days of Supply', compute='_compute_days_of_supply', store=True)
+    days_of_supply = fields.Float('Days of Supply', compute='_compute_days_of_supply', store=True, precompute=True)
     last_updated = fields.Datetime('Last Updated', default=fields.Datetime.now)
-    reorder_suggested = fields.Boolean('Reorder Suggested', compute='_compute_reorder_suggested', store=True)
-    suggested_reorder_qty = fields.Float('Suggested Reorder Quantity', compute='_compute_suggested_reorder', store=True)
+    reorder_suggested = fields.Boolean('Reorder Suggested', compute='_compute_reorder_suggested', store=True, precompute=True)
+    suggested_reorder_qty = fields.Float('Suggested Reorder Quantity', compute='_compute_suggested_reorder', store=True, precompute=True)
 
     @api.depends('current_stock', 'forecast_demand')
     def _compute_days_of_supply(self):

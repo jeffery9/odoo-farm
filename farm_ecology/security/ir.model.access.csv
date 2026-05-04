@@ -3,3 +3,7 @@ access_farm_biodiversity_indicator,agri.sustainability.biodiversity.indicator,mo
 access_farm_ecological_zone,agri.sustainability.ecological.zone,model_agri_sustainability_ecological_zone,farm_core.group_farm_manager,1,1,1,1
 access_agri_eco_activity,agri.eco.activity,model_agri_ecological_activity,base.group_user,1,1,1,1
 access_farm_eco_activity,farm.eco.activity,model_farm_ecological_activity,farm_core.group_farm_worker,1,1,1,1
+access_agri_sustainability_biodiversity_indicator,agri.sustainability.biodiversity.indicator,model_agri_sustainability_biodiversity_indicator,base.group_user,1,1,1,1
+access_agri_ecological_activity,agri.ecological.activity,model_agri_ecological_activity,base.group_user,1,1,1,1
+access_agri_sustainability_ecological_zone,agri.sustainability.ecological.zone,model_agri_sustainability_ecological_zone,base.group_user,1,1,1,1
+access_farm_ecological_activity,farm.ecological.activity,model_farm_ecological_activity,base.group_user,1,1,1,1

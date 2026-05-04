@@ -54,14 +54,14 @@ class AgriVRASoilHealthMonitor(models.Model):
     crop_rotation_history = fields.Text('Crop Rotation History')
 
     # Soil health metrics
-    soil_health_score = fields.Float('Soil Health Score (0-100)', compute='_compute_soil_health_score', store=True)
+    soil_health_score = fields.Float('Soil Health Score (0-100)', compute='_compute_soil_health_score', store=True, precompute=True)
     soil_health_category = fields.Selection([
         ('excellent', 'Excellent (90-100)'),
         ('good', 'Good (70-89)'),
         ('fair', 'Fair (50-69)'),
         ('poor', 'Poor (30-49)'),
         ('very_poor', 'Very Poor (0-29)'),
-    ], string='Soil Health Category', compute='_compute_soil_health_category', store=True)
+    ], string='Soil Health Category', compute='_compute_soil_health_category', store=True, precompute=True)
 
     # VRA prescription integration
     related_prescription_ids = fields.Many2many('agri.intervention.vra.prescription', relation='agri_soil_health_rx_rel',
@@ -74,7 +74,7 @@ class AgriVRASoilHealthMonitor(models.Model):
         ('medium', 'Medium Risk'),
         ('high', 'High Risk'),
         ('very_high', 'Very High Risk'),
-    ], string='Erosion Risk Level', compute='_compute_erosion_risk', store=True)
+    ], string='Erosion Risk Level', compute='_compute_erosion_risk', store=True, precompute=True)
 
     # Recommendations
     improvement_recommendations = fields.Text('Improvement Recommendations')
@@ -88,7 +88,7 @@ class AgriVRASoilHealthMonitor(models.Model):
     ], string='Assessment Frequency', default='quarterly')
 
     next_assessment_date = fields.Date('Next Assessment Date',
-                                     compute='_compute_next_assessment_date', store=True)
+                                     compute='_compute_next_assessment_date', store=True, precompute=True)
 
     # Soil sampling details
     sampling_depth = fields.Float('Sampling Depth (cm)', default=20.0)

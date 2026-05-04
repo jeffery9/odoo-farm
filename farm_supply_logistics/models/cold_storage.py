@@ -23,7 +23,7 @@ class ColdStorageFacility(models.Model):
 
     # Multi-zone support
     zone_ids = fields.One2many('cold.storage.zone', 'facility_id', string='Storage Zones')
-    current_utilization = fields.Float('Current Utilization %', compute='_compute_utilization', store=True)
+    current_utilization = fields.Float('Current Utilization %', compute='_compute_utilization', store=True, precompute=True)
 
     status = fields.Selection([
         ('operational', 'Operational'),
@@ -109,7 +109,7 @@ class ColdStorageInventory(models.Model):
 
     # Temperature history during storage
     temperature_log_ids = fields.One2many('cold.storage.temperature.log', 'inventory_id', string='Temperature Logs')
-    avg_temperature = fields.Float('Average Temperature (℃)', compute='_compute_avg_temperature', store=True)
+    avg_temperature = fields.Float('Average Temperature (℃)', compute='_compute_avg_temperature', store=True, precompute=True)
 
     status = fields.Selection([
         ('stored', 'Stored'),
@@ -154,8 +154,8 @@ class ColdStorageTemperatureLog(models.Model):
     sensor_location = fields.Char('Sensor Location within Zone')
 
     # Alerts
-    is_alert = fields.Boolean('Is Alert', compute='_compute_is_alert', store=True)
-    alert_reason = fields.Char('Alert Reason', compute='_compute_is_alert', store=True)
+    is_alert = fields.Boolean('Is Alert', compute='_compute_is_alert', store=True, precompute=True)
+    alert_reason = fields.Char('Alert Reason', compute='_compute_is_alert', store=True, precompute=True)
 
     @api.depends('temperature', 'humidity', 'zone_id')
     def _compute_is_alert(self):

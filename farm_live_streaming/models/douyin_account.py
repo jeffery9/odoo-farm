@@ -36,7 +36,7 @@ class DouyinAccount(models.Model):
         ('healthy', 'Healthy'),
         ('warning', 'Expiring Soon'),
         ('error', 'Auth Failed'),
-    ], string="Health Status", compute='_compute_health_status', store=True)
+    ], string="Health Status", compute='_compute_health_status', store=True, precompute=True)
     
     last_health_check = fields.Datetime("Last Check")
     responsible_user_id = fields.Many2one('res.users', string="Responsible", default=lambda self: self.env.user)

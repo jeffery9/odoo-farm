@@ -41,7 +41,7 @@ class BiologicalAsset(models.Model):
         ('harvested', 'Harvested/Culled')
     ], string="Operational Growth Stage", default='newborn', required=True)
 
-    is_mature = fields.Boolean("Is Mature (Operational)", compute='_compute_is_mature_from_age', store=True)
+    is_mature = fields.Boolean("Is Mature (Operational)", compute='_compute_is_mature_from_age', store=True, precompute=True)
 
     # Generation tracking
     generation = fields.Selection([
@@ -59,8 +59,8 @@ class BiologicalAsset(models.Model):
     ], string="Operational Grade")
 
     # Basic valuation reference
-    current_valuation = fields.Float("Current Valuation", compute='_compute_current_valuation', store=True)
-    maturity_date = fields.Date("Maturity Date", compute='_compute_maturity_date', store=True)
+    current_valuation = fields.Float("Current Valuation", compute='_compute_current_valuation', store=True, precompute=True)
+    maturity_date = fields.Date("Maturity Date", compute='_compute_maturity_date', store=True, precompute=True)
 
     @api.depends('birth_date', 'lot_id.product_id.maturity_age_days')
     def _compute_maturity_date(self):

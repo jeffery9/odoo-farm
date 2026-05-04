@@ -73,7 +73,7 @@ class FarmCreditScore(models.Model):
     partner_id = fields.Many2one('res.partner', string="Farmer/Entity", required=True)
     evaluation_date = fields.Date("Evaluation Date", default=fields.Date.today)
 
-    total_score = fields.Float("Total Credit Score", compute='_compute_credit_score', store=True)
+    total_score = fields.Float("Total Credit Score", compute='_compute_credit_score', store=True, precompute=True)
 
     # Weight components [US-078-02]
     gap_compliance_rate = fields.Float("GAP Compliance (%)", help="Weight: 30%")
@@ -143,7 +143,7 @@ class FarmCoopSettlement(models.Model):
     harvest_credit_amount = fields.Monetary("Harvest Credit", currency_field='currency_id',
                                            help="Value of harvest delivered by member.")
 
-    net_settlement_amount = fields.Monetary("Net Payout", compute='_compute_net_amount', store=True)
+    net_settlement_amount = fields.Monetary("Net Payout", compute='_compute_net_amount', store=True, precompute=True)
 
     @api.depends('input_debt_amount', 'harvest_credit_amount')
     def _compute_net_amount(self):

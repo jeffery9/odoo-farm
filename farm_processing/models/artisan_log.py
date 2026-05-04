@@ -17,12 +17,12 @@ class FarmProcessingArtisanLog(models.Model):
     
     measured_by = fields.Many2one('res.users', string="Artisan/Master", default=lambda self: self.env.user)
     
-    deviation = fields.Float("Deviation", compute='_compute_deviation', store=True)
+    deviation = fields.Float("Deviation", compute='_compute_deviation', store=True, precompute=True)
     quality_grade = fields.Selection([
         ('perfect', 'Masterpiece (Perfect)'),
         ('standard', 'Standard'),
         ('subpar', 'Subpar')
-    ], compute='_compute_quality_grade', store=True)
+    ], compute='_compute_quality_grade', store=True, precompute=True)
 
     @api.depends('target_value', 'actual_value', 'tolerance')
     def _compute_deviation(self):

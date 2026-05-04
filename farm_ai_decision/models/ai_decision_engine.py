@@ -19,7 +19,7 @@ class AiDecisionEngine(models.Model):
     active_skill_json = fields.Text("Active Skill Directive (JSON)")
     
     # [US-046-02] 采收窗口预测
-    predicted_harvest_date = fields.Date("Predicted Harvest Date", compute='_compute_harvest_prediction', store=True)
+    predicted_harvest_date = fields.Date("Predicted Harvest Date", compute='_compute_harvest_prediction', store=True, precompute=True)
     confidence_score = fields.Float("Confidence Score (%)", default=85.0)
 
     @api.depends('intervention_id.cumulative_gdd', 'intervention_id.physiology_profile_id')

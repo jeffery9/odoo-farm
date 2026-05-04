@@ -30,11 +30,11 @@ class AgriGeospatialCircularNetwork(models.Model):
         ('surplus', 'Surplus'),
         ('deficit', 'Deficit'),
         ('balanced', 'Balanced'),
-    ], string='Nutrient Status', compute='_compute_nutrient_balance', store=True)
+    ], string='Nutrient Status', compute='_compute_nutrient_balance', store=True, precompute=True)
 
-    nitrogen_balance = fields.Float('N Balance (kg/ha)', compute='_compute_nutrient_balance', store=True)
-    phosphorus_balance = fields.Float('P Balance (kg/ha)', compute='_compute_nutrient_balance', store=True)
-    potassium_balance = fields.Float('K Balance (kg/ha)', compute='_compute_nutrient_balance', store=True)
+    nitrogen_balance = fields.Float('N Balance (kg/ha)', compute='_compute_nutrient_balance', store=True, precompute=True)
+    phosphorus_balance = fields.Float('P Balance (kg/ha)', compute='_compute_nutrient_balance', store=True, precompute=True)
+    potassium_balance = fields.Float('K Balance (kg/ha)', compute='_compute_nutrient_balance', store=True, precompute=True)
 
     # Spatial analysis results
     nearest_nodes_count = fields.Integer('Nearest Nodes Count', compute='_compute_nearest_nodes')

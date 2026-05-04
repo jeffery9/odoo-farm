@@ -46,7 +46,7 @@ class AgriCarbonLedger(models.Model):
     quantity = fields.Float("Quantity Used")
     uom_id = fields.Many2one('uom.uom', string="Unit")
     
-    total_co2e = fields.Float("Total CO2e (kg)", compute='_compute_total_co2e', store=True)
+    total_co2e = fields.Float("Total CO2e (kg)", compute='_compute_total_co2e', store=True, precompute=True)
     
     impact_type = fields.Selection([
         ('emission', 'Emission (+)'),

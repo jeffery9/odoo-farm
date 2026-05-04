@@ -12,8 +12,8 @@ class AgriEvidence(models.Model):
     _order = 'create_date desc'
 
     name = fields.Char("Evidence Label", required=True, default=lambda self: _('Field Photo'))
-    res_model = fields.Char("Related Model", index=True)
-    res_id = fields.Many2one_reference("Related ID", model_field='res_model', index=True)
+    res_model = fields.Char("Related Model")
+    res_id = fields.Many2one_reference("Related ID", model_field='res_model')
 
     photo = fields.Binary("Evidence Photo", attachment=True, required=True)
 
@@ -26,14 +26,14 @@ class AgriEvidence(models.Model):
     note = fields.Text("Field Notes")
 
     # 判定位置合规性
-    is_on_site = fields.Boolean("Location Verified", compute='_compute_site_verification', store=True)
+    is_on_site = fields.Boolean("Location Verified", compute='_compute_site_verification', store=True, precompute=True)
 
     # 证据链哈希校验 [US-055-05]
-    evidence_hash = fields.Char("Evidence Hash", compute='_compute_evidence_hash', store=True, help="SHA256 hash of evidence data for integrity verification")
+    evidence_hash = fields.Char("Evidence Hash", compute='_compute_evidence_hash', store=True, precompute=True, help="SHA256 hash of evidence data for integrity verification")
     is_hash_verified = fields.Boolean("Hash Verified", default=True, help="Indicates if evidence data has been tampered with")
 
     # US-095-04: Subsidy Evidence Automation - Link to subsidy applications
-    subsidy_application_id = fields.Many2one('farm.subsidy.application', string="Subsidy Application", index=True)
+    subsidy_application_id = fields.Many2one('farm.subsidy.application', string="Subsidy Application")
 
     @api.depends('photo', 'gps_lat', 'gps_lng', 'taken_at', 'worker_id', 'note')
     def _compute_evidence_hash(self):

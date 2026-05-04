@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_autonomous_orchestrator,ai.autonomous.orchestrator,model_ai_autonomous_orchestrator,base.group_user,1,1,1,1
+access_ai_autonomous_mission_log,ai.autonomous.mission.log,model_ai_autonomous_mission_log,base.group_user,1,1,1,1
+access_agri_a2a_negotiation,agri.a2a.negotiation,model_agri_a2a_negotiation,base.group_user,1,1,1,1

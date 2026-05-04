@@ -24,7 +24,7 @@ class FarmFlowerBom(models.Model):
     target_light_hours = fields.Float("Target Light Hours")
     target_temp_day = fields.Float("Target Day Temp")
     target_temp_night = fields.Float("Target Night Temp")
-    target_temp_diff = fields.Float("Target DIF", compute='_compute_dif', store=True)
+    target_temp_diff = fields.Float("Target DIF", compute='_compute_dif', store=True, precompute=True)
 
     # Preservation Parameters (Treatment Type) [US-FLOR-06]
     target_hydration_hours = fields.Float("Required Hydration (Hours)", help="Pulse treatment duration.")
@@ -54,7 +54,7 @@ class FarmLotFlower(models.Model):
         ('bud', 'Tight Bud'), ('showing', 'Color Showing'), ('half', 'Half Open'), ('full', 'Full Bloom')
     ], string="Bloom Stage at Harvest")
     
-    predicted_vase_life = fields.Integer("Predicted Vase-life (Days)", compute='_compute_vase_life', store=True)
+    predicted_vase_life = fields.Integer("Predicted Vase-life (Days)", compute='_compute_vase_life', store=True, precompute=True)
     
     # Preservation Status [US-FLOR-06]
     is_preserved = fields.Boolean("Preservation Completed", default=False)

@@ -16,7 +16,7 @@ class DividendDistribution(models.Model):
     cooperative_id = fields.Many2one('cooperative.entity', string='Cooperative', required=True)
     distribution_date = fields.Date('Distribution Date', default=fields.Date.context_today, required=True)
     total_dividend_amount = fields.Float('Total Dividend Amount', required=True)
-    dividend_per_share = fields.Float('Dividend per Share', compute='_compute_dividend_per_share', store=True)
+    dividend_per_share = fields.Float('Dividend per Share', compute='_compute_dividend_per_share', store=True, precompute=True)
     distribution_type = fields.Selection([
         ('cash', 'Cash Dividend'),
         ('stock', 'Stock Dividend'),

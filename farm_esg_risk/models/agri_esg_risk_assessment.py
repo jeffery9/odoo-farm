@@ -28,14 +28,14 @@ class AgriESGRiskAssessment(models.Model):
     environmental_score = fields.Float('Environmental Score', help='Score from 0-100 for environmental factors')
     social_score = fields.Float('Social Score', help='Score from 0-100 for social factors')
     governance_score = fields.Float('Governance Score', help='Score from 0-100 for governance factors')
-    overall_esg_score = fields.Float('Overall ESG Score', compute='_compute_overall_score', store=True)
+    overall_esg_score = fields.Float('Overall ESG Score', compute='_compute_overall_score', store=True, precompute=True)
     esg_risk_level = fields.Selection([
         ('very_low', 'Very Low (90-100)'),
         ('low', 'Low (70-89)'),
         ('medium', 'Medium (50-69)'),
         ('high', 'High (30-49)'),
         ('very_high', 'Very High (0-29)')
-    ], string='ESG Risk Level', compute='_compute_risk_level', store=True)
+    ], string='ESG Risk Level', compute='_compute_risk_level', store=True, precompute=True)
     next_assessment_date = fields.Date('Next Assessment Date')
     assessment_method = fields.Selection([
         ('automated', 'Automated'),

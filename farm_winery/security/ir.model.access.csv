@@ -3,3 +3,7 @@ access_farm_winery_vessel,farm.winery.vessel,model_farm_winery_vessel,base.group
 access_farm_winery_recipe,farm.winery.recipe,model_farm_winery_recipe,base.group_user,1,1,1,1
 access_farm_winery_production,farm.winery.production,model_farm_winery_production,base.group_user,1,1,1,1
 access_farm_lot_wine,farm.lot.wine,model_farm_lot_wine,base.group_user,1,1,1,1
+access_farm_winery_recipe,farm.winery.recipe,model_farm_winery_recipe,base.group_user,1,1,1,1
+access_farm_winery_vessel,farm.winery.vessel,model_farm_winery_vessel,base.group_user,1,1,1,1
+access_farm_lot_wine,farm.lot.wine,model_farm_lot_wine,base.group_user,1,1,1,1
+access_farm_winery_production,farm.winery.production,model_farm_winery_production,base.group_user,1,1,1,1

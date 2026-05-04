@@ -53,7 +53,7 @@ class ProcessingCostAllocation(models.Model):
     total_electricity_cost = fields.Float("Total Electricity Cost", compute='_compute_total_costs')
     other_indirect_costs = fields.Float("Other Indirect Costs (Labor/Depreciation)")
     
-    total_processing_cost = fields.Float("Total Processing Cost", compute='_compute_total_costs', store=True)
+    total_processing_cost = fields.Float("Total Processing Cost", compute='_compute_total_costs', store=True, precompute=True)
 
     @api.depends('production_id', 'water_rate', 'electricity_rate', 'other_indirect_costs')
     def _compute_total_costs(self):
@@ -179,11 +179,11 @@ class FarmCpaAnalysis(models.Model):
     total_machinery_cost = fields.Monetary("Machinery/Fuel Cost")
     total_indirect_cost = fields.Monetary("Indirect/Overhead Cost")
     
-    total_production_cost = fields.Monetary("Total Production Cost", compute='_compute_totals', store=True)
+    total_production_cost = fields.Monetary("Total Production Cost", compute='_compute_totals', store=True, precompute=True)
     
     harvest_revenue = fields.Monetary("Harvest Revenue")
-    gross_profit = fields.Monetary("Gross Profit", compute='_compute_totals', store=True)
-    margin_percentage = fields.Float("Margin (%)", compute='_compute_totals', store=True)
+    gross_profit = fields.Monetary("Gross Profit", compute='_compute_totals', store=True, precompute=True)
+    margin_percentage = fields.Float("Margin (%)", compute='_compute_totals', store=True, precompute=True)
     
     currency_id = fields.Many2one('res.currency', default=lambda self: self.env.company.currency_id)
     state = fields.Selection([('draft', 'Draft'), ('calculated', 'Calculated'), ('closed', 'Closed')], default='draft')

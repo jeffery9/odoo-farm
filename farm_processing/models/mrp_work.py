@@ -27,7 +27,7 @@ class MrpWorkorder(models.Model):
                                          help="Actual quantity scrapped in this workorder.")
     qty_input_workorder = fields.Float("Input Qty (Workorder)", default=0.0,
                                       help="Actual quantity input to this workorder.")
-    loss_rate_workorder = fields.Float("Loss Rate (Workorder) (%)", compute='_compute_loss_rate_workorder', store=True,
+    loss_rate_workorder = fields.Float("Loss Rate (Workorder) (%)", compute='_compute_loss_rate_workorder', store=True, precompute=True,
                                       help="Calculated loss rate for this workorder.")
 
     @api.depends('qty_produced_workorder', 'qty_scrapped_workorder', 'qty_input_workorder')

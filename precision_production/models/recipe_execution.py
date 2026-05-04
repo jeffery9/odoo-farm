@@ -113,8 +113,8 @@ class PrecisionRecipeParameter(models.Model):
     is_vra_dynamic = fields.Boolean("VRA Dynamic Setpoint", default=False, help="If true, this setpoint will be updated automatically based on spatial VRA maps.")
     tolerance_percent = fields.Float("Tolerance (%)")
     uom_id = fields.Many2one('uom.uom', string="Unit")
-    min_value = fields.Float("Limit Min", compute='_compute_range', store=True)
-    max_value = fields.Float("Limit Max", compute='_compute_range', store=True)
+    min_value = fields.Float("Limit Min", compute='_compute_range', store=True, precompute=True)
+    max_value = fields.Float("Limit Max", compute='_compute_range', store=True, precompute=True)
 
     @api.depends('target_value', 'tolerance_percent')
     def _compute_range(self):

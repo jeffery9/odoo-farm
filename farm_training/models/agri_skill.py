@@ -32,17 +32,17 @@ class AgriTrainingTrainingRecord(models.Model):
     employee_id = fields.Many2one('hr.employee', string='Employee', required=True)
     certification_id = fields.Many2one('agri.training.certification', string='Certification', required=True)
     training_date = fields.Date(string='Training Date', default=fields.Date.today(), required=True)
-    expiration_date = fields.Date(string='Expiration Date', compute='_compute_expiration_date', store=True)
+    expiration_date = fields.Date(string='Expiration Date', compute='_compute_expiration_date', store=True, precompute=True)
     status = fields.Selection([
         ('valid', 'Valid'),
         ('expired', 'Expired'),
         ('upcoming_expire', 'Expiring Soon'),
         ('pending', 'Pending'),
         ('revoked', 'Revoked'),
-    ], string='Status', compute='_compute_status', store=True)
+    ], string='Status', compute='_compute_status', store=True, precompute=True)
     trainer_id = fields.Many2one('res.partner', string='Trainer/Issued By')
     notes = fields.Text(string='Notes')
-    display_name = fields.Char(compute='_compute_display_name', store=True)
+    display_name = fields.Char(compute='_compute_display_name', store=True, precompute=True)
 
     @api.depends('employee_id', 'certification_id')
     def _compute_display_name(self):

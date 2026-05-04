@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_social_diversity_metric,farm.esg.social.diversity.metric,model_farm_esg_social_diversity_metric,farm_core.group_farm_manager,1,1,1,1
+access_social_diversity_metric,farm.esg.social.diversity.metric,model_farm_esg_social_diversity_metric,farm_core.group_farm_manager,1,1,1,1access_farm_esg_social_diversity_metric,farm.esg.social.diversity.metric,model_farm_esg_social_diversity_metric,base.group_user,1,1,1,1

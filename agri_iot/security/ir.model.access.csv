@@ -8,4 +8,9 @@ access_iiot_device_admin,iiot.device.admin,model_iiot_device,group_iiot_admin,1,
 access_iiot_firmware_user,iiot.firmware.user,model_iiot_firmware,group_iiot_user,1,0,0,0
 access_iiot_firmware_admin,iiot.firmware.admin,model_iiot_firmware,group_iiot_admin,1,1,1,1
 access_iiot_update_user,iiot.update.user,model_iiot_update,group_iiot_user,1,1,1,1
-access_iiot_update_admin,iiot.update.admin,model_iiot_update,group_iiot_admin,1,1,1,1
+access_iiot_update_admin,iiot.update.admin,model_iiot_update,group_iiot_admin,1,1,1,1access_iiot_telemetry,iiot.telemetry,model_iiot_telemetry,base.group_user,1,1,1,1
+access_iiot_device,iiot.device,model_iiot_device,base.group_user,1,1,1,1
+access_iiot_firmware,iiot.firmware,model_iiot_firmware,base.group_user,1,1,1,1
+access_iiot_device_profile,iiot.device.profile,model_iiot_device_profile,base.group_user,1,1,1,1
+access_iiot_telemetry_rule,iiot.telemetry.rule,model_iiot_telemetry_rule,base.group_user,1,1,1,1
+access_iiot_update,iiot.update,model_iiot_update,base.group_user,1,1,1,1

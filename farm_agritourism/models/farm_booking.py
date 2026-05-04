@@ -55,7 +55,7 @@ class FarmBooking(models.Model):
     notes = fields.Text("Notes")
 
     # QR Code for Check-in [US-002-01]
-    booking_qr_code = fields.Char("Booking QR Code", compute='_compute_qr_code', store=True)
+    booking_qr_code = fields.Char("Booking QR Code", compute='_compute_qr_code', store=True, precompute=True)
 
     @api.depends('name')
     def _compute_qr_code(self):

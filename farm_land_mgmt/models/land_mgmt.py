@@ -61,18 +61,18 @@ class FarmLocation(models.Model):
     # US-001-09: Land Health & Crop Rotation Records
     land_health_records = fields.One2many('farm.land.health.record', 'land_parcel_id', string='Land Health Records')
     crop_rotation_history = fields.One2many('farm.land.crop.rotation.history', 'land_parcel_id', string='Crop Rotation History')
-    last_rotation_date = fields.Date('Last Rotation Date', compute='_compute_last_rotation', store=True)
-    current_crop_type = fields.Char('Current Crop Type', compute='_compute_current_crop', store=True)
-    soil_health_score = fields.Float('Current Soil Health Score', compute='_compute_current_health_score', store=True)
+    last_rotation_date = fields.Date('Last Rotation Date', compute='_compute_last_rotation', store=True, precompute=True)
+    current_crop_type = fields.Char('Current Crop Type', compute='_compute_current_crop', store=True, precompute=True)
+    soil_health_score = fields.Float('Current Soil Health Score', compute='_compute_current_health_score', store=True, precompute=True)
     health_status = fields.Selection([
         ('excellent', 'Excellent'),
         ('good', 'Good'),
         ('fair', 'Fair'),
         ('poor', 'Poor'),
         ('critical', 'Critical')
-    ], string='Health Status', compute='_compute_current_health_status', store=True)
+    ], string='Health Status', compute='_compute_current_health_status', store=True, precompute=True)
     consecutive_planting_count = fields.Integer('Consecutive Planting Count', help='Number of consecutive seasons the same crop was planted')
-    rotation_risk_score = fields.Float('Rotation Risk Score', compute='_compute_rotation_risk', store=True)
+    rotation_risk_score = fields.Float('Rotation Risk Score', compute='_compute_rotation_risk', store=True, precompute=True)
 
     @api.depends('crop_rotation_history')
     def _compute_last_rotation(self):
@@ -170,10 +170,10 @@ class FarmLocation(models.Model):
 
     # Additional rotation-related fields
     last_crop_planted = fields.Many2one('product.template', "Last Crop Planted",
-                                        compute='_compute_rotation_info', store=True)
-    last_planting_date = fields.Date("Last Planting Date", compute='_compute_rotation_info', store=True)
+                                        compute='_compute_rotation_info', store=True, precompute=True)
+    last_planting_date = fields.Date("Last Planting Date", compute='_compute_rotation_info', store=True, precompute=True)
     continuous_cropping_risk_alert = fields.Boolean("Continuous Cropping Alert",
-                                                    compute='_compute_rotation_info', store=True)
+                                                    compute='_compute_rotation_info', store=True, precompute=True)
 
     @api.depends('crop_rotation_history.planting_date', 'crop_rotation_history.product_id',
                  'crop_rotation_history.continuous_cropping_warning')
@@ -229,8 +229,8 @@ class FarmLocation(models.Model):
 
     # Soil analysis integration for land health management - link to the proper location
     soil_analysis_ids = fields.One2many('farm.soil.analysis', 'location_id', string="Soil Analyses")
-    latest_ph = fields.Float("Latest pH", compute='_compute_latest_soil_stats', store=True)
-    latest_organic_matter = fields.Float("Organic Matter (%)", compute='_compute_latest_soil_stats', store=True)
+    latest_ph = fields.Float("Latest pH", compute='_compute_latest_soil_stats', store=True, precompute=True)
+    latest_organic_matter = fields.Float("Organic Matter (%)", compute='_compute_latest_soil_stats', store=True, precompute=True)
 
     @api.depends('soil_analysis_ids.state', 'soil_analysis_ids.ph_level')
     def _compute_latest_soil_stats(self):

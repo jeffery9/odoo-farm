@@ -30,9 +30,9 @@ class AgriProcessingRecallSimulation(models.Model):
     source_purchases = fields.Many2many('purchase.order', 'recall_sim_po_rel', 'simulation_id', 'order_id', string='Source Purchases')
 
     # Simulation results
-    total_affected_qty = fields.Float('Total Affected Quantity', compute='_compute_affected_totals', store=True)
-    total_affected_customers = fields.Integer('Total Affected Customers', compute='_compute_affected_totals', store=True)
-    trace_depth_levels = fields.Integer('Trace Depth (Levels)', compute='_compute_trace_depth', store=True)
+    total_affected_qty = fields.Float('Total Affected Quantity', compute='_compute_affected_totals', store=True, precompute=True)
+    total_affected_customers = fields.Integer('Total Affected Customers', compute='_compute_affected_totals', store=True, precompute=True)
+    trace_depth_levels = fields.Integer('Trace Depth (Levels)', compute='_compute_trace_depth', store=True, precompute=True)
 
     # Report generation
     simulation_report = fields.Text('Simulation Report')

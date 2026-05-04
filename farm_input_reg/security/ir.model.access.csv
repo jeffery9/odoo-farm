@@ -4,3 +4,6 @@ access_mrp_production_input_reg,mrp.production,model_mrp_production,farm_core.gr
 access_input_registration_database_manager,farm.input.registration.database.manager,model_farm_input_registration_database,base.group_user,1,1,1,1
 access_input_registration_database_user,farm.input.registration.database.user,model_farm_input_registration_database,base.group_user,1,1,1,0
 access_input_registration_lookup_wizard,farm.input.registration.lookup.wizard,model_farm_input_registration_lookup_wizard,base.group_user,1,1,1,1
+access_mrp_production,mrp.production,model_mrp_production,base.group_user,1,1,1,1
+access_product_template,product.template,model_product_template,base.group_user,1,1,1,1
+access_farm_input_registration_lookup_wizard,farm.input.registration.lookup.wizard,model_farm_input_registration_lookup_wizard,base.group_user,1,1,1,1

@@ -1,1 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_partner_certification,farm.partner.certification,model_farm_partner_certification,base.group_user,1,1,1,1
+access_purchase_order,purchase.order,model_purchase_order,base.group_user,1,1,1,1
+access_farm_gap_certification,farm.gap.certification,model_farm_gap_certification,base.group_user,1,1,1,1
+access_farm_certification_dashboard,farm.certification.dashboard,model_farm_certification_dashboard,base.group_user,1,1,1,1
+access_farm_gap_compliance_check,farm.gap.compliance.check,model_farm_gap_compliance_check,base.group_user,1,1,1,1
+access_res_partner,res.partner,model_res_partner,base.group_user,1,1,1,1
+access_farm_gap_requirement,farm.gap.requirement,model_farm_gap_requirement,base.group_user,1,1,1,1
+access_stock_location,stock.location,model_stock_location,base.group_user,1,1,1,1
+access_farm_gap_audit,farm.gap.audit,model_farm_gap_audit,base.group_user,1,1,1,1
+access_stock_lot,stock.lot,model_stock_lot,base.group_user,1,1,1,1

@@ -19,7 +19,7 @@ class AgriTripleBottomLineMetrics(models.Model):
     # Economic metrics
     revenue = fields.Float('Revenue')
     profit = fields.Float('Profit')
-    profit_margin = fields.Float('Profit Margin (%)', compute='_compute_profit_margin', store=True)
+    profit_margin = fields.Float('Profit Margin (%)', compute='_compute_profit_margin', store=True, precompute=True)
     roi = fields.Float('Return on Investment (%)')
 
     # Environmental metrics
@@ -35,10 +35,10 @@ class AgriTripleBottomLineMetrics(models.Model):
     employee_satisfaction = fields.Float('Employee Satisfaction (0-10)')
 
     # Composite scores
-    economic_score = fields.Float('Economic Score (0-100)', compute='_compute_economic_score', store=True)
-    environmental_score = fields.Float('Environmental Score (0-100)', compute='_compute_environmental_score', store=True)
-    social_score = fields.Float('Social Score (0-100)', compute='_compute_social_score', store=True)
-    overall_sustainability_score = fields.Float('Overall Sustainability Score (0-100)', compute='_compute_overall_score', store=True)
+    economic_score = fields.Float('Economic Score (0-100)', compute='_compute_economic_score', store=True, precompute=True)
+    environmental_score = fields.Float('Environmental Score (0-100)', compute='_compute_environmental_score', store=True, precompute=True)
+    social_score = fields.Float('Social Score (0-100)', compute='_compute_social_score', store=True, precompute=True)
+    overall_sustainability_score = fields.Float('Overall Sustainability Score (0-100)', compute='_compute_overall_score', store=True, precompute=True)
 
     # Related entities
     farm_id = fields.Many2one('farm.location', string='Farm Location')

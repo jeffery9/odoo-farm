@@ -227,7 +227,7 @@ class ResourceSharing(models.Model):
     _description = 'Resource Sharing Between Entities'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    name = fields.Char('Name', required=True, compute='_compute_name', store=True)
+    name = fields.Char('Name', required=True, compute='_compute_name', store=True, precompute=True)
     source_entity_id = fields.Many2one('farm.entity', string='Source Entity', required=True)
     target_entity_id = fields.Many2one('farm.entity', string='Target Entity', required=True)
     resource_type = fields.Selection([
@@ -238,7 +238,7 @@ class ResourceSharing(models.Model):
         ('other', 'Other'),
     ], string='Resource Type', required=True)
     resource_id = fields.Integer('Resource ID', help='ID of the shared resource (e.g., equipment ID, employee ID)')
-    resource_name = fields.Char('Resource Name', compute='_compute_resource_name', store=True)
+    resource_name = fields.Char('Resource Name', compute='_compute_resource_name', store=True, precompute=True)
     start_date = fields.Date('Start Date', required=True)
     end_date = fields.Date('End Date')
     is_active = fields.Boolean('Is Active', default=True)
