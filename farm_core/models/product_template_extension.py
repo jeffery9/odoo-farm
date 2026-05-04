@@ -25,7 +25,7 @@ class ProductTemplate(models.Model):
     genetic_traits = fields.Text("Genetic Traits", help="Key characteristics like drought resistance, high yield, etc.")
     is_transgenic = fields.Boolean("GMO / Transgenic", default=False)
 
-    # Seasonality Matrix [US-01-02]
+    # Seasonality Matrix [US-001-02]
     best_sowing_month_start = fields.Selection([(str(i), str(i)) for i in range(1, 13)], string="Sowing Start Month")
     best_sowing_month_end = fields.Selection([(str(i), str(i)) for i in range(1, 13)], string="Sowing End Month")
     harvest_season_notes = fields.Char("Harvest Season Description")

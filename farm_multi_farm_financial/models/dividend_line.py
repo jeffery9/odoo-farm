@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class DividendLine(models.Model):
     """
-    分红明细 [US-19-06]
+    分红明细 [US-042-06]
     """
     _name = 'dividend.line'
     _description = 'Dividend Distribution Line'

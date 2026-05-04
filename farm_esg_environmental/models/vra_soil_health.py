@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriVRASoilHealthMonitor(models.Model):
     """
-    US-80-03: VRA Soil Health Models
+    US-080-03: VRA Soil Health Models
     Soil health VRA models with health metrics integration and precision agriculture
     """
     _name = 'agri.vra.soil.health.monitor'

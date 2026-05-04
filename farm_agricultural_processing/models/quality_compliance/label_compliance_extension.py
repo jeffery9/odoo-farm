@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 class FarmProcessingProductionLabelComplianceExtension(models.Model):
     """
-    Extension to Processing ISL Production Model for Label Compliance - US-14-17
+    Extension to Processing ISL Production Model for Label Compliance - US-037-17
     """
     _inherit = 'farm.processing.production'
 
@@ -47,7 +47,7 @@ class FarmProcessingProductionLabelComplianceExtension(models.Model):
 
 class FarmProcessingProductionHaccpExtension(models.Model):
     """
-    Extension to Processing ISL Production Model for HACCP - US-14-18
+    Extension to Processing ISL Production Model for HACCP - US-037-18
     """
     _inherit = 'farm.processing.production'
 
@@ -102,7 +102,7 @@ class FarmProcessingProductionHaccpExtension(models.Model):
 
 class AgriProcessingHaccpMonitoringLine(models.Model):
     """
-    HACCP Monitoring Lines - US-14-18
+    HACCP Monitoring Lines - US-037-18
     """
     _name = 'agri.processing.haccp.monitoring.line'
     _description = 'HACCP Monitoring Lines'
@@ -127,7 +127,7 @@ class AgriProcessingHaccpMonitoringLine(models.Model):
 
 class AgriProcessingHaccpVerificationLine(models.Model):
     """
-    HACCP Verification Lines - US-14-18
+    HACCP Verification Lines - US-037-18
     """
     _name = 'agri.processing.haccp.verification.line'
     _description = 'HACCP Verification Lines'

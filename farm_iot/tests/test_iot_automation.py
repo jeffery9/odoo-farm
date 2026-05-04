@@ -28,7 +28,7 @@ class TestIotAutomation(TransactionCase):
         })
 
     def test_01_rule_trigger(self):
-        """ 测试低溶氧自动开启增氧机规则 [US-06-02] """
+        """ 测试低溶氧自动开启增氧机规则 [US-006-02] """
         rule = self.Rule.create({
             'name': 'Oxygen Alert',
             'sensor_type': 'dissolved_oxygen',

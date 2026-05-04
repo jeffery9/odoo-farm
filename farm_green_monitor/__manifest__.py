@@ -4,7 +4,7 @@
     'category': 'Industries/Agriculture',
     'summary': 'China-specific Fertilizer/Pesticide Reduction Assessment',
     'description': """
-        Monitors and assesses fertilizer and pesticide reduction targets and trends [US-18-06].
+        Monitors and assesses fertilizer and pesticide reduction targets and trends [US-041-06].
         - Calculates per-unit-area usage of fertilizers and pesticides.
         - Generates reduction trend charts for government inspection.
         - Provides early warnings if usage increases year-over-year.

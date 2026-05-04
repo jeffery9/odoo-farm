@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class AccessibilitySettings(models.Model):
     """
-    无障碍设置 [US-16-09]
+    无障碍设置 [US-039-09]
     """
     _name = 'accessibility.settings'
     _description = 'Accessibility & Inclusive Design Settings'
@@ -22,7 +22,7 @@ class AccessibilitySettings(models.Model):
     reduced_motion = fields.Boolean('Reduced Motion', help='Reduce animations and motion effects')
     color_blind_mode = fields.Boolean('Color Blind Mode', help='Adjust colors for color blindness')
     
-    # Inclusive Design for diverse workforce [US-65-01]
+    # Inclusive Design for diverse workforce [US-095-01]
     inclusive_mode = fields.Boolean('Inclusive/Elder Mode', 
                                    help='Simplified UI with large fonts (1.5x) and high contrast for aging or low-digital-literacy workforce.')
     voice_entry_enabled = fields.Boolean('Voice-First Entry', 
@@ -43,7 +43,7 @@ class AccessibilitySettings(models.Model):
 
     @api.onchange('inclusive_mode')
     def _onchange_inclusive_mode(self):
-        """US-65-01: Auto-preset accessibility for Elder Mode"""
+        """US-095-01: Auto-preset accessibility for Elder Mode"""
         if self.inclusive_mode:
             self.font_scaling = 1.5
             self.large_touch_targets = True

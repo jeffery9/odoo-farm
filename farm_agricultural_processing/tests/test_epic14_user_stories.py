@@ -45,7 +45,7 @@ class TestEPIC14UserStories(TransactionCase):
             self.skipTest("Missing FarmProcessingBom")
     
     def test_us14_08_net_vegetables_tracking(self):
-        """Test US-14-08: 智能化"净菜/预制菜"分拣过程追踪 (Net Vegetable Processing Tracking)"""
+        """Test US-037-08: 智能化"净菜/预制菜"分拣过程追踪 (Net Vegetable Processing Tracking)"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create BOM
@@ -100,7 +100,7 @@ class TestEPIC14UserStories(TransactionCase):
         self.assertEqual(production.yield_rate, 95.0)
 
     def test_us14_09_formula_version_control(self):
-        """Test US-14-09: 食品加工"配方"版本控制与管理 (Formula Version Control)"""
+        """Test US-037-09: 食品加工"配方"版本控制与管理 (Formula Version Control)"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create BOM with blind mixing enabled
@@ -128,7 +128,7 @@ class TestEPIC14UserStories(TransactionCase):
         self.assertEqual(blind_material.actual_qty, 10.0)
 
     def test_us14_11_dynamic_formula_correction(self):
-        """Test US-14-11: 基于原料属性的配方动态校正 (Dynamic Formula Correction)"""
+        """Test US-037-11: 基于原料属性的配方动态校正 (Dynamic Formula Correction)"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create BOM
@@ -157,7 +157,7 @@ class TestEPIC14UserStories(TransactionCase):
         self.assertTrue(auto_correction.active)
 
     def test_us14_13_mass_balance_verification(self):
-        """Test US-14-13: "物质守恒"平衡核查流程 (Mass Balance Verification)"""
+        """Test US-037-13: "物质守恒"平衡核查流程 (Mass Balance Verification)"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create BOM
@@ -200,7 +200,7 @@ class TestEPIC14UserStories(TransactionCase):
         self.assertFalse(unbalanced_prod.is_balanced, "Production should not be balanced")
 
     def test_us14_14_multi_output_processing(self):
-        """Test US-14-14: "多进多出"加工处理 (Multi-input Multi-output Processing)"""
+        """Test US-037-14: "多进多出"加工处理 (Multi-input Multi-output Processing)"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create multi-output BOM with byproducts
@@ -237,7 +237,7 @@ class TestEPIC14UserStories(TransactionCase):
         self.assertEqual(byproduct.product_qty, 0.1)
 
     def test_us14_16_yield_rate_analytics(self):
-        """Test US-14-16: 加工阶段的"转换率"多维对标 (Yield Rate Analytics)"""
+        """Test US-037-16: 加工阶段的"转换率"多维对标 (Yield Rate Analytics)"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create production
@@ -267,7 +267,7 @@ class TestEPIC14UserStories(TransactionCase):
         self.assertEqual(production.yield_rate, expected_yield)
 
     def test_us14_21_sc_license_verification(self):
-        """Test US-14-21: 生产许可证 (SC) 范围核查与预警 (SC License Verification)"""
+        """Test US-037-21: 生产许可证 (SC) 范围核查与预警 (SC License Verification)"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create SC categories
@@ -306,7 +306,7 @@ class TestEPIC14UserStories(TransactionCase):
         self.assertEqual(production.state, 'confirmed')
 
     def test_us14_22_recall_simulation(self):
-        """Test US-14-22: 法律强制"双向追溯"测试与召回模拟 (Recall Simulation)"""
+        """Test US-037-22: 法律强制"双向追溯"测试与召回模拟 (Recall Simulation)"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create source lot
@@ -336,7 +336,7 @@ class TestEPIC14UserStories(TransactionCase):
         self.assertTrue(recall_sim.report_generated)
 
     def test_us14_19_quality_interception_fermentation(self):
-        """Test US-14-19: GMP 环境监控 - Fermentation Quality Interception"""
+        """Test US-037-19: GMP 环境监控 - Fermentation Quality Interception"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # Create BOM
@@ -384,7 +384,7 @@ class TestEPIC14UserStories(TransactionCase):
             pass
 
     def test_us14_20_label_compliance(self):
-        """Test US-14-20: 标签合规与营养标签 (Label Compliance)"""
+        """Test US-037-20: 标签合规与营养标签 (Label Compliance)"""
         if getattr(self, "FarmProcessingStep", None) is None or getattr(self, "FarmSeasonalBom", None) is None:
             return
         # This functionality would be tested more thoroughly in the actual label compliance model

@@ -46,7 +46,7 @@ class LandHealthRecord(models.Model):
 class FarmLocation(models.Model):
     _inherit = 'farm.location'  # Inherit from the core farm.location model
 
-    # 土地承包权信息 [US-18-01]
+    # 土地承包权信息 [US-041-01]
     land_contract_no = fields.Char("Land Contract No.")
     contractor_id = fields.Many2one('res.partner', string="Contractor")
 
@@ -58,7 +58,7 @@ class FarmLocation(models.Model):
         ('other', 'Other')
     ])
 
-    # US-01-09: Land Health & Crop Rotation Records
+    # US-001-09: Land Health & Crop Rotation Records
     land_health_records = fields.One2many('farm.land.health.record', 'land_parcel_id', string='Land Health Records')
     crop_rotation_history = fields.One2many('farm.land.crop.rotation.history', 'land_parcel_id', string='Crop Rotation History')
     last_rotation_date = fields.Date('Last Rotation Date', compute='_compute_last_rotation', store=True)
@@ -266,7 +266,7 @@ class FarmLocation(models.Model):
 
 class SoilAnalysis(models.Model):
     """
-    DEPRECATED: Soil Analysis Management. [US-104-2026]
+    DEPRECATED: Soil Analysis Management. [US-014-2026]
     This model is maintained for backward compatibility.
     Use agri.soil.analysis for new implementations.
     """

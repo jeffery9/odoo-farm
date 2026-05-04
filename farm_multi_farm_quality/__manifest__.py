@@ -5,9 +5,9 @@
     'summary': 'Multi-Entity Quality Management Module',
     'description': """
         Quality management module for Multi-Entity Collaboration System.
-        - Cooperative quality control and brand access [US-19-09]
-        - Product certification management [US-19-09]
-        - Quality standard compliance [US-19-09]
+        - Cooperative quality control and brand access [US-042-09]
+        - Product certification management [US-042-09]
+        - Quality standard compliance [US-042-09]
     """,
     'author': 'Jeffery',
     'depends': [

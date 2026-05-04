@@ -2,7 +2,7 @@ from odoo import models, fields, api, _
 
 class LiveStreamingSession(models.Model):
     """
-    US-21-03, 06, 07: 直播场次管理
+    US-051-03, 06, 07: 直播场次管理
     职责：管理直播时间、关联商品、统计观看与互动数据、存储回放
     """
     _name = 'live.streaming.session'
@@ -23,13 +23,13 @@ class LiveStreamingSession(models.Model):
 
     product_ids = fields.Many2many('product.product', string="Featured Products")
     
-    # 统计数据 [US-21-05]
+    # 统计数据 [US-051-05]
     view_count = fields.Integer("View Count", readonly=True)
     like_count = fields.Integer("Likes", readonly=True)
     comment_count = fields.Integer("Comments", readonly=True)
     total_sales = fields.Float("Sales Generated", readonly=True)
     
-    # 内容存档 [US-21-07]
+    # 内容存档 [US-051-07]
     archive_url = fields.Char("Replay Link")
     video_binary = fields.Binary("Clip Archive")
     dy_room_id = fields.Char("Douyin Room ID", help="Actual ID of the live room on Douyin")
@@ -44,7 +44,7 @@ class LiveStreamingSession(models.Model):
         self.action_fetch_replay_link()
 
     def action_refresh_stats(self):
-        """ 业务编排：刷新直播统计数据 [US-21-05] """
+        """ 业务编排：刷新直播统计数据 [US-051-05] """
         for session in self:
             if not session.dy_room_id: continue
             
@@ -60,7 +60,7 @@ class LiveStreamingSession(models.Model):
                 })
 
     def action_fetch_replay_link(self):
-        """ 业务编排：拉取并存储回放链接 [US-21-07] """
+        """ 业务编排：拉取并存储回放链接 [US-051-07] """
         for session in self:
             if not session.dy_room_id: continue
             

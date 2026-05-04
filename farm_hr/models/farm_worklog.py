@@ -24,7 +24,7 @@ class FarmWorklog(models.Model):
     notes = fields.Text("Notes")
 
     def action_approve(self):
-        """ 审批并分摊成本 [US-13-04] """
+        """ 审批并分摊成本 [US-036-04] """
         for log in self:
             # 获取员工时薪（示例：从员工档案获取或固定值）
             hourly_rate = getattr(log.employee_id, 'hourly_cost', 50.0) 
@@ -50,7 +50,7 @@ class ProjectTask(models.Model):
     worklog_ids = fields.One2many('farm.worklog', 'task_id', string="Labor Worklogs")
     total_harvested_qty = fields.Float("Total Harvested (kg)", compute='_compute_total_worklog_qty', store=True)
     
-    # 技能要求 [US-04-02]
+    # 技能要求 [US-004-02]
     required_skill_id = fields.Many2one('farm.agri.skill', string="Required Skill")
     eligible_worker_ids = fields.Many2many('hr.employee', compute='_compute_eligible_workers', string="Eligible Workers")
 
@@ -77,7 +77,7 @@ class AgriSkill(models.Model):
     name = fields.Char("Skill Name", required=True) # e.g., Harvester Operator, Veterinarian
     description = fields.Text("Description")
     
-    # 资质要求 [US-17-08]
+    # 资质要求 [US-040-08]
     requires_certificate = fields.Boolean("Requires Certificate", default=False)
 
 class FarmEmployeeCertificate(models.Model):

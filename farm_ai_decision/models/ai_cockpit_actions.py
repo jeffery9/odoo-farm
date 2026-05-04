@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# [US-204-02] AI Decision Cockpit Actions (Bridge between AI and Operation)
+# [US-048-02] AI Decision Cockpit Actions (Bridge between AI and Operation)
 from odoo import models, fields, api, _
 
 class AgriIntervention(models.Model):
@@ -32,7 +32,7 @@ class AgriIntervention(models.Model):
         }
 
     def action_approve_latest_ai_skill(self):
-        """ [US-204-02] 执行最新的 AI 补救指令 """
+        """ [US-048-02] 执行最新的 AI 补救指令 """
         self.ensure_one()
         latest = self.env['ai.decision.engine'].search([
             ('intervention_id', '=', self.id),

@@ -14,7 +14,7 @@ class AgriAiHarvestTiming(models.Model):
     """
     AI model for harvest timing decision.
     Level 4: Quality Driven Harvest.
-    Implements [US-58-09]: Intelligent harvest timing & Quality Prediction.
+    Implements [US-088-09]: Intelligent harvest timing & Quality Prediction.
     """
     _name = 'agri.ai.harvest.timing'
     _description = 'AI Harvest Timing'
@@ -115,7 +115,7 @@ class AgriAiHarvestTiming(models.Model):
 
     def predict_harvest_fingerprint(self):
         """
-        [US-58-09] Generates a predicted quality fingerprint for the value bridge.
+        [US-088-09] Generates a predicted quality fingerprint for the value bridge.
         """
         self.ensure_one()
         metrics = json.loads(self.quality_metrics or '{}')

@@ -11,7 +11,7 @@ class BiologicalAsset(models.Model):
     """
     DEPRECATED: Biological Asset Management.
     Domain Role: Site-specific operational management of a living asset.
-    Level 4: Agri-Farm Semantic Refactoring [US-104-2026]
+    Level 4: Agri-Farm Semantic Refactoring [US-014-2026]
     This model is maintained for backward compatibility.
     Use agri.biological.asset for new implementations.
     """

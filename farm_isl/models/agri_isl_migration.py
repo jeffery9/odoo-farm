@@ -7,12 +7,12 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-# Data Migration & Compatibility (US-54-14)
+# Data Migration & Compatibility (US-084-14)
 
 class AgriISLMigrationUtility(models.TransientModel):
     """
     Data migration utility for ISL architecture
-    Implements US-54-14: Data migration & compatibility
+    Implements US-084-14: Data migration & compatibility
     """
     _name = 'agri.isl.migration.utility'
     _description = 'Agri ISL Data Migration Utility'

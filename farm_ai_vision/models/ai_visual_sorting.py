@@ -14,7 +14,7 @@ _logger = logging.getLogger(__name__)
 class AgriAiVisualSorting(AgriAiVisionBase):
     """
     AI model for visual sorting and grading of agricultural products
-    Implements US-28-02: 视觉智能分拣与质量评估
+    Implements US-058-02: 视觉智能分拣与质量评估
     """
     _name = 'agri.ai.visual.sorting'
     _description = 'AI Visual Sorting'

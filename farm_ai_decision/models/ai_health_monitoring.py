@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class AgriAiHealthMonitoring(models.Model):
     """
     AI model for health and welfare monitoring
-    Implements US-58-13: Intelligent health & welfare monitoring
+    Implements US-088-13: Intelligent health & welfare monitoring
     """
     _name = 'agri.ai.health.monitoring'
     _description = 'AI Health and Welfare Monitoring'

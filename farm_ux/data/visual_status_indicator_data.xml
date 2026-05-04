@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 状态指示器配置 - 遵循三色信号灯原则 [US-16-03] -->
+    <!-- 状态指示器配置 - 遵循三色信号灯原则 [US-039-03] -->
     <record id="visual_indicator_withdrawal_period" model="visual.status.indicator">
         <field name="name">Withdrawal Period Status</field>
         <field name="model_name">stock.lot</field>

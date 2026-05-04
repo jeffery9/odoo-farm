@@ -5,7 +5,7 @@
     'summary': 'China-specific Export Compliance and Cross-border Sales',
     'description': """
         Export compliance module for Odoo 19 Farm Management System.
-        - Maintain prohibited pesticide lists for different countries [US-17-06]
+        - Maintain prohibited pesticide lists for different countries [US-040-06]
         - Automatic verification of batch history against destination standards before sales out
         - Generate compliance certificates for export
     """,

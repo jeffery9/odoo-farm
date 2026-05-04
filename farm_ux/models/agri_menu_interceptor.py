@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# [US-16-26] [LOSSLESS] Agricultural Menu & Action Interceptor
+# [US-039-26] [LOSSLESS] Agricultural Menu & Action Interceptor
 from odoo import models, fields, api, _
 
 class IrUiMenu(models.Model):

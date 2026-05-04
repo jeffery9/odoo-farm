@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 
 class AgriESGKPI(models.Model):
     """
-    US-52-05: ESG KPI仪表盘与对标分析
+    US-082-05: ESG KPI仪表盘与对标分析
     ESG KPIs for dashboard and benchmarking
     """
     _name = 'agri.esg.kpi'

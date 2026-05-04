@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class JointProcurementConfiguration(models.Model):
     """
-    农场联合采购合作组织 [US-09-15]
+    农场联合采购合作组织 [US-009-15]
     """
     _name = 'joint.procurement.configuration'
     _description = 'Joint Procurement for Farm Cooperatives'
@@ -60,7 +60,7 @@ class JointProcurementConfiguration(models.Model):
 
 class JointProcurementOrder(models.Model):
     """
-    联合采购订单 [US-09-15]
+    联合采购订单 [US-009-15]
     """
     _name = 'joint.procurement.order'
     _description = 'Joint Procurement Order'

@@ -10,7 +10,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriAiBaseMixin(models.AbstractModel):
     """
-    Agri Domain Level: AI Base Capabilities. [US-58-01, US-104-2026]
+    Agri Domain Level: AI Base Capabilities. [US-088-01, US-014-2026]
     Provides universal AI interfaces for all agricultural sub-sectors.
     Follows the 'Agri as Domain, Farm as Entity' semantic strategy.
     Replaces the legacy ai.base.mixin.

@@ -7,11 +7,11 @@
 Circular economy module for Odoo 19 Farm Management System - Epic 27 Implementation.
 - Circular flow economics and resource utilization optimization
 - Waste-to-resource conversion tracking
-- Hazardous waste compliance management (US-27-03)
-- Biogas and energy recovery quantification (US-27-04)
-- Cooperative resource sharing coordination (US-27-05)
-- GIS-driven geospatial cycle network (US-27-06)
-- Regional circular economy governance (US-27-07)
+- Hazardous waste compliance management (US-057-03)
+- Biogas and energy recovery quantification (US-057-04)
+- Cooperative resource sharing coordination (US-057-05)
+- GIS-driven geospatial cycle network (US-057-06)
+- Regional circular economy governance (US-057-07)
     """,
     'author': 'Jeffery',
     'depends': [

@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class InternalMarketplace(models.Model):
     """
-    内部余缺调剂平台 [US-19-11]
+    内部余缺调剂平台 [US-042-11]
     """
     _name = 'internal.marketplace'
     _description = 'Internal Marketplace'

@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 class DouyinAccount(models.Model):
     """
-    US-21-01: 抖音账号与授权中心
+    US-051-01: 抖音账号与授权中心
     职责：管理 API 凭据、处理 OAuth 流程、维护令牌生命周期
     """
     _name = 'douyin.account'
@@ -31,7 +31,7 @@ class DouyinAccount(models.Model):
         ('expired', 'Expired')
     ], default='draft', tracking=True)
 
-    # US-21-01: 监控增强
+    # US-051-01: 监控增强
     health_status = fields.Selection([
         ('healthy', 'Healthy'),
         ('warning', 'Expiring Soon'),

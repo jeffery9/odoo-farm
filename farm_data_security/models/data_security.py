@@ -15,7 +15,7 @@ class ResConfigSettings(models.TransientModel):
     is_dengbao_level3_compliant = fields.Boolean("Dengbao Level 3 Compliant", config_parameter='farm_data_security.is_dengbao_level3_compliant')
 
     def action_check_data_localization(self):
-        """ 模拟数据本地化检查 [US-18-10] """
+        """ 模拟数据本地化检查 [US-041-10] """
         self.ensure_one()
         if self.data_storage_region == 'china_mainland':
             message = _("Data localization check passed: Configured for China Mainland deployment.")
@@ -33,7 +33,7 @@ class ResConfigSettings(models.TransientModel):
         }
 
 class FarmDataClassification(models.Model):
-    """ [US-55-02] 农业数据隐私与合规保护 """
+    """ [US-055-02] 农业数据隐私与合规保护 """
     _name = 'farm.data.classification'
     _description = 'Agricultural Data Classification'
 
@@ -50,7 +50,7 @@ class FarmDataClassification(models.Model):
     description = fields.Text("Description")
 
 class FarmIotDeviceRegistry(models.Model):
-    """ [US-55-03] IoT 设备安全管理 """
+    """ [US-055-03] IoT 设备安全管理 """
     _name = 'farm.iot.device.registry'
     _description = 'IoT Device Security Registry'
 
@@ -85,7 +85,7 @@ class FarmLocation(models.Model):
     _inherit = 'stock.location'
 
     def unlink(self):
-        """ 敏感操作审计：删除地块 [US-18-10] """
+        """ 敏感操作审计：删除地块 [US-041-10] """
         for rec in self:
             _logger.info("Sensitive Operation Audit: User %s deleted Land Parcel %s (ID: %s)", 
                          self.env.user.name, rec.name, rec.id)
@@ -96,7 +96,7 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     def write(self, vals):
-        """ 敏感操作审计：修改农户信息 [US-18-10] """
+        """ 敏感操作审计：修改农户信息 [US-041-10] """
         if 'is_company' in vals and not vals['is_company']: # 如果是个人农户
             _logger.info("Sensitive Operation Audit: User %s modified Farmer/Partner %s (ID: %s) with changes: %s",
                          self.env.user.name, self.name, self.id, vals)

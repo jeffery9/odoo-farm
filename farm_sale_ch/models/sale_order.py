@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 
 class ExportCountryStandard(models.Model):
     """
-    国家出口标准 [US-17-06]
+    国家出口标准 [US-040-06]
     维护各国禁用农药清单和其他出口准入标准
     """
     _name = 'export.country.standard'
@@ -23,7 +23,7 @@ class ExportCountryStandard(models.Model):
 
 class StockLot(models.Model):
     """
-    扩展批次模型以支持出口合规验证 [US-17-06]
+    扩展批次模型以支持出口合规验证 [US-040-06]
     """
     _inherit = 'stock.lot'
 
@@ -44,7 +44,7 @@ class StockLot(models.Model):
 
     def check_export_compliance(self, country_code):
         """
-        检查批次是否符合目标国家的出口标准 [US-17-06]
+        检查批次是否符合目标国家的出口标准 [US-040-06]
 
         :param country_code: 目标国家代码
         :return: (is_compliant, violations) 是否合规及违规详情
@@ -75,7 +75,7 @@ class StockLot(models.Model):
 
     def _get_input_history(self):
         """
-        获取投入品历史 [US-17-06]
+        获取投入品历史 [US-040-06]
         根据实际的业务模型获取该批次或订单相关的投入品历史
         """
         # 在实际实现中，这可能需要从以下模型获取数据：
@@ -101,7 +101,7 @@ class StockLot(models.Model):
 
     def _get_related_inputs_for_product(self, product):
         """
-        获取与产品相关的投入品 [US-17-06]
+        获取与产品相关的投入品 [US-040-06]
         根据产品的BOM或生产历史获取相关的投入品
         """
         input_products = self.env['product.product']
@@ -133,7 +133,7 @@ class StockLot(models.Model):
 
 class SaleOrder(models.Model):
     """
-    扩展销售订单以支持出口合规检查 [US-17-06]
+    扩展销售订单以支持出口合规检查 [US-040-06]
     """
     _inherit = 'sale.order'
 
@@ -149,7 +149,7 @@ class SaleOrder(models.Model):
 
     def generate_compliance_report(self, country_code):
         """
-        生成合规报告 [US-17-06]
+        生成合规报告 [US-040-06]
 
         :param country_code: 目标国家代码
         :return: 合规报告内容
@@ -197,7 +197,7 @@ class SaleOrder(models.Model):
 
     def _get_compliance_recommendations(self, standard, violations):
         """
-        获取合规建议 [US-17-06]
+        获取合规建议 [US-040-06]
 
         :param standard: 国家标准记录
         :param violations: 违规列表
@@ -217,7 +217,7 @@ class SaleOrder(models.Model):
 
     def auto_check_compliance_before_sale(self):
         """
-        销售前自动检查合规性 [US-17-06]
+        销售前自动检查合规性 [US-040-06]
         """
         for order in self:
             if order.export_country_code:
@@ -244,7 +244,7 @@ class SaleOrder(models.Model):
 
     def generate_certificate_of_compliance(self):
         """
-        生成合规证书 [US-17-06]
+        生成合规证书 [US-040-06]
         """
         for order in self:
             if order.export_compliance_status == 'compliant':
@@ -265,7 +265,7 @@ class SaleOrder(models.Model):
 
     def _generate_certificate_number(self):
         """
-        生成证书编号 [US-17-06]
+        生成证书编号 [US-040-06]
         """
         import datetime
         timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
@@ -274,7 +274,7 @@ class SaleOrder(models.Model):
 
     def get_intervention_calendar_data(self):
         """
-        US-67-02: 获取与销售订单关联的干预日历数据
+        US-097-02: 获取与销售订单关联的干预日历数据
         为渠道买家提供实时的田间作业进度
         """
         self.ensure_one()
@@ -384,9 +384,9 @@ class SaleOrder(models.Model):
         return color_map.get(intervention_type, '#000000')  # 默认黑色
 
     def action_confirm(self):
-        """在确认销售订单时检查出口合规性及繁育代次硬拦截 [US-01-05]"""
+        """在确认销售订单时检查出口合规性及繁育代次硬拦截 [US-001-05]"""
         for order in self:
-            # 1. 繁育代次硬拦截 [US-01-05] (Core-Closure)
+            # 1. 繁育代次硬拦截 [US-001-05] (Core-Closure)
             for line in order.order_line:
                 product = line.product_id
                 # 检查产品模板层级的设定
@@ -413,7 +413,7 @@ class SaleOrder(models.Model):
                                 "批次 [%s] 的繁育代次为 %s，Strictly prohibited from entering commercial circulation."
                             ) % (lot.name, lot.agri_generation.upper()))
 
-            # 2. 出口合规性检查 [US-17-06]
+            # 2. 出口合规性检查 [US-040-06]
             if order.export_country_code:
                 # 检查订单中所有产品的合规性
                 non_compliant_lines = []

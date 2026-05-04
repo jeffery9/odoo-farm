@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 
 class ESGReportCustomization(models.Model):
     """
-    US-56-06: 利益相关者 ESG 报告定制化 (Stakeholder ESG Report Customization)
+    US-086-06: 利益相关者 ESG 报告定制化 (Stakeholder ESG Report Customization)
     Customizable ESG reports for different stakeholder groups
     """
     _name = 'farm.esg.report.customization'

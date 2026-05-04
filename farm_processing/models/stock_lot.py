@@ -17,7 +17,7 @@ class StockLot(models.Model):
         ('commercial', 'Commercial / Resale')
     ], string="Lot Purpose", default='production', help="Business context of this specific lot.")
 
-    # --- Biological Asset Details (US-03-01) ---
+    # --- Biological Asset Details (US-003-01) ---
     birth_date = fields.Date("Birth/Hatch Date")
     life_stage = fields.Selection([
         ('juvenile', 'Juvenile / Seedling'),
@@ -99,7 +99,7 @@ class StockLot(models.Model):
         except Exception:
             return False
 
-    # 批次溯源 [US-14-03, US-04-02]
+    # 批次溯源 [US-037-03, US-004-02]
     parent_lot_ids = fields.Many2many('stock.lot', 'farm_stock_lot_parent_rel_custom', 'child_lot_id', 'parent_id', string="Parent Lots/Origins", help="Trace back to the raw material lots consumed.")
     child_lot_ids = fields.One2many('stock.lot', 'parent_lot_ids', string="Derived Products")
     
@@ -107,7 +107,7 @@ class StockLot(models.Model):
     full_traceability_path = fields.Text("Full Traceability Path", readonly=True, 
                                        help="Flattened upstream lot IDs for instant lookup.")
 
-    # 分级与元数据 [US-14-05]
+    # 分级与元数据 [US-037-05]
     quality_grade = fields.Selection([
         ('grade_a', 'Grade A'),
         ('grade_b', 'Grade B'),
@@ -121,12 +121,12 @@ class StockLot(models.Model):
     harvest_date = fields.Date('Harvest Date')
     plot_id = fields.Many2one('farm.location', string='Origin Plot')
 
-    # Potency & Attributes [US-14-11, US-14-15, US-14-17]
+    # Potency & Attributes [US-037-11, US-037-15, US-037-17]
     active_content = fields.Float("Active Content (%)", help="Actual potency/active ingredient percentage.")
     is_organic = fields.Boolean("Is Organic", default=False)
     is_gmo = fields.Boolean("Is GMO", default=False)
     functional_tags = fields.Char("Functional Tags", help="e.g. Selenium-enriched, Low-temp pressed")
-    terroir_attributes_json = fields.Text("Terroir Attributes (JSON)", help="JSON string of weighted terroir attributes from source lots [US-14-06].")
+    terroir_attributes_json = fields.Text("Terroir Attributes (JSON)", help="JSON string of weighted terroir attributes from source lots [US-037-06].")
     package_id = fields.Many2one('farm.package', string="Contained in Package", help="The physical package this lot belongs to.")
 
     @api.constrains('lot_purpose', 'plot_id')
@@ -137,7 +137,7 @@ class StockLot(models.Model):
                 raise ValidationError(_("Land Harvest lots must have an associated Origin Plot for full traceability."))
 
     def action_get_full_ancestry(self, collected_ids=None):
-        """ US-14-22: Recursive algorithm to get all upstream lots. """
+        """ US-037-22: Recursive algorithm to get all upstream lots. """
         self.ensure_one()
         if collected_ids is None:
             collected_ids = set()
@@ -172,7 +172,7 @@ class StockLot(models.Model):
         return report_data
 
     def _check_expiring_lots(self):
-        """ US-04-04: Check for expiring lots and create activity reminders. """
+        """ US-004-04: Check for expiring lots and create activity reminders. """
         _logger.info("Running _check_expiring_lots cron job...")
         today = fields.Date.today()
         # Find lots expiring within the next 30 days
@@ -208,7 +208,7 @@ class StockLot(models.Model):
                 })
                 _logger.info("Created activity for expiring lot %s", lot.name)
 
-        # Also check for expired lots (past expiration date) - additional functionality for US-04-04
+        # Also check for expired lots (past expiration date) - additional functionality for US-004-04
         self._check_expired_lots()
         return True
 
@@ -248,7 +248,7 @@ class StockLot(models.Model):
         return True
 
     def _check_lot_expiry_before_use(self):
-        """ US-04-04: Check if a lot is expired before it's used in operations. """
+        """ US-004-04: Check if a lot is expired before it's used in operations. """
         today = fields.Date.today()
         if self.expiration_date and self.expiration_date < today:
             from odoo.exceptions import UserError

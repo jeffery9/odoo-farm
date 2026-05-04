@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class MachineryRental(models.Model):
     """
-    机具租赁记录 [US-19-08]
+    机具租赁记录 [US-042-08]
     """
     _name = 'machinery.rental'
     _description = 'Machinery Rental'

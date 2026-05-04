@@ -58,7 +58,7 @@ class ProjectTask(models.Model):
     support_id = fields.Many2one('product.product', string="Support Object", help="The land parcel, animal or group this task is performed on.")
     size_value = fields.Float("Production Size", help="Area in sqm/mu or quantity of individuals.")
 
-    # 需求驱动关联 [US-03-01]
+    # 需求驱动关联 [US-003-01]
     sale_order_id = fields.Many2one('sale.order', string="Source Sale Order")
 
     intervention_ids = fields.One2many(
@@ -67,17 +67,17 @@ class ProjectTask(models.Model):
         string="Agri Interventions"
     )
 
-    # 养分汇总 [US-01-03]
+    # 养分汇总 [US-001-03]
     total_n = fields.Float("Total Nitrogen (kg)", compute='_compute_nutrients', store=True)
     total_p = fields.Float("Total Phosphorus (kg)", compute='_compute_nutrients', store=True)
     total_k = fields.Float("Total Potassium (kg)", compute='_compute_nutrients', store=True)
 
-    # 养分密度 (kg/mu) [US-01-03 Algorithm]
+    # 养分密度 (kg/mu) [US-001-03 Algorithm]
     n_density = fields.Float("N Density (kg/mu)", compute='_compute_agri_math')
     p_density = fields.Float("P Density (kg/mu)", compute='_compute_agri_math')
     k_density = fields.Float("K Density (kg/mu)", compute='_compute_agri_math')
 
-    # 安全收获检查 [US-11-03 Algorithm]
+    # 安全收获检查 [US-031-03 Algorithm]
     is_safe_to_harvest = fields.Boolean("Safe to Harvest", compute='_compute_agri_math')
     days_to_safety = fields.Integer("Days to Safety", compute='_compute_agri_math')
 
@@ -104,7 +104,7 @@ class ProjectTask(models.Model):
                 task.days_to_safety = 0
 
     def action_view_telemetry(self):
-        """ 跳转至该任务关联的遥测趋势图 [US-11-03] """
+        """ 跳转至该任务关联的遥测趋势图 [US-031-03] """
         self.ensure_one()
         action = self.env["ir.actions.actions"]._for_xml_id("farm_iot.action_farm_telemetry")
         action['domain'] = [('production_id', '=', self.id)]
@@ -136,7 +136,7 @@ class ProjectTask(models.Model):
 
     @api.model
     def cron_generate_feeding_proposals(self):
-        """ 每日定时任务：水产生成建议的饲喂干预 [US-01-03 Algorithm] """
+        """ 每日定时任务：水产生成建议的饲喂干预 [US-001-03 Algorithm] """
         # 寻找活跃的养殖任务
         tasks = self.search([
             ('project_id.activity_family', 'in', ['livestock', 'aquaculture']),
@@ -167,11 +167,11 @@ class ProjectTask(models.Model):
                         age, estimated_biomass, suggested_feed_qty
                     ))
 
-    # Required Qualifications for Task [US-17-08]
+    # Required Qualifications for Task [US-040-08]
 
     @api.constrains('land_parcel_id', 'industry_type')
     def _check_land_use_restriction(self):
-        """ US-18-01: Hard-block non-grain tasks on Permanent Basic Farmland """
+        """ US-041-01: Hard-block non-grain tasks on Permanent Basic Farmland """
         for task in self:
             if task.land_parcel_id.land_nature == 'basic_farmland':
                 if task.industry_type not in ['field_crops', 'mixed']:

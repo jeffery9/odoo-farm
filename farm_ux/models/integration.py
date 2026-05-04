@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# [US-16-25] [LOSSLESS] Global UI Injection Center
+# [US-039-25] [LOSSLESS] Global UI Injection Center
 from odoo import models
 
 # --- 生产/作业层注入 ---

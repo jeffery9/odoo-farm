@@ -4,14 +4,14 @@ class StockMove(models.Model):
     _name = 'stock.move'
     _inherit = 'stock.move'
 
-    # 收获分级字段 [US-02-04]
+    # 收获分级字段 [US-002-04]
     quality_grade = fields.Selection([
         ('grade_a', 'Grade A'),
         ('grade_b', 'Grade B'),
         ('grade_c', 'Grade C'),
     ], string="Quality Grade")
 
-    # US-14-07: Agri Loss Management
+    # US-037-07: Agri Loss Management
     agri_loss_reason = fields.Selection([
         ('natural', 'Natural Dehydration'),
         ('decay', 'Decay/Rot'),

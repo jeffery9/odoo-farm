@@ -15,7 +15,7 @@ _logger = logging.getLogger(__name__)
 class AgriAiVisionRiskAssessment(AgriAiVisionBase):
     """
     AI model for AI vision risk assessment.
-    Implements US-28-04: AI视觉风险评估与预警.
+    Implements US-058-04: AI视觉风险评估与预警.
     Refactored to Agri domain with 100% logic retention.
     """
     _name = 'agri.ai.vision.risk.assessment'

@@ -47,13 +47,13 @@
                 </page>
                 <page string="Energy &amp; Costs" name="energy_costs" invisible="not is_agri_processing">
                     <group>
-                        <group string="Energy Monitoring (US-14-04)">
+                        <group string="Energy Monitoring (US-037-04)">
                             <field name="energy_reading_start"/>
                             <field name="energy_reading_end"/>
                             <field name="energy_unit_price"/>
                             <field name="energy_cost_total"/>
                         </group>
-                        <group string="Cost Sharing (US-14-03)">
+                        <group string="Cost Sharing (US-037-03)">
                             <field name="byproduct_cost_share_total" widget="progressbar"/>
                             <field name="finished_product_cost_share" widget="progressbar"/>
                         </group>

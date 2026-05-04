@@ -5,7 +5,7 @@
     "summary": "Crop-specific management features: rotation history, variety management, and cultivation protocols",
     "description": """
         Crop-focused module that handles:
-        - Crop rotation history and continuous cropping obstacles (US-01-09)
+        - Crop rotation history and continuous cropping obstacles (US-001-09)
         - Crop-specific cultivation protocols
         - Variety management and tracking
     """,

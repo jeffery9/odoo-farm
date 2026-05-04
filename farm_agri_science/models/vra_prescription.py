@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# [US-78-05] [LOSSLESS] [ISA-88] Scientific VRA Core
+# [US-108-05] [LOSSLESS] [ISA-88] Scientific VRA Core
 from odoo import models, fields, api, _
 
 class AgriInterventionVraStrategy(models.Model):
@@ -24,28 +24,28 @@ class AgriInterventionVraStrategy(models.Model):
                                    help="If enabled, the prescription will be adjusted based on the current GDD-based growth stage.")
     stage_rule_ids = fields.One2many('agri.vra.stage.rule', 'strategy_id', string="Stage Rules")
 
-    # [US-78-06] Deficit Parameters
+    # [US-108-06] Deficit Parameters
     deficit_sensitivity = fields.Float("Deficit Sensitivity", default=1.0, 
                                       help="How aggressively to compensate for biomass deficit. 1.0 means linear compensation.")
 
-    # [US-78-08] Mass Balance Parameters
+    # [US-108-08] Mass Balance Parameters
     target_yield = fields.Float("Target Yield (kg/mu)", default=800.0)
     nutrient_ratio = fields.Float("Nutrient Content Ratio", default=0.02, help="E.g. 0.02 for 2% Nitrogen content in dry matter")
     use_efficiency = fields.Float("Nutrient Use Efficiency (0-1)", default=0.5)
 
-    # [US-78-11] Kinetics Parameters
+    # [US-108-11] Kinetics Parameters
     is_kinetics_aware = fields.Boolean("Nutrient Transformation Kinetics Aware", default=False,
                                       help="If enabled, the rate will be adjusted based on real-time soil environmental factors.")
 
-    # [US-78-13] Cultivar Parameters
+    # [US-108-13] Cultivar Parameters
     is_cultivar_aware = fields.Boolean("Cultivar-Specific Response Aware", default=False,
                                       help="If enabled, the rate will be adjusted based on the variety's specific response curve (Mitscherlich).")
 
-    # [US-78-10] RUE Parameters
+    # [US-108-10] RUE Parameters
     is_rue_aware = fields.Boolean("Spatial RUE Aware", default=False,
                                  help="If enabled, the rate will be adjusted based on the historical RUE of each grid cell.")
 
-    # [US-78-12] LAI Parameters
+    # [US-108-12] LAI Parameters
     is_lai_aware = fields.Boolean("LAI Aware", default=False,
                                  help="If enabled, the rate will be adjusted based on the Leaf Area Index (LAI) of each grid cell.")
 
@@ -60,7 +60,7 @@ class AgriInterventionVraStrategy(models.Model):
 
 class AgriVraStageRule(models.Model):
     """
-    [US-78-05] Growth-Stage Sensitivity Weights.
+    [US-108-05] Growth-Stage Sensitivity Weights.
     Defines how much to increase/decrease application rate based on physiological phase.
     """
     _name = 'agri.vra.stage.rule'
@@ -85,11 +85,11 @@ class AgriInterventionVraPrescription(models.Model):
     product_id = fields.Many2one('product.template', string="Input Material", required=True)
     strategy_id = fields.Many2one('agri.intervention.vra.strategy', string="VRA Strategy", required=True)
     
-    # [US-78-06] Link to the intervention for biological context
+    # [US-108-06] Link to the intervention for biological context
     intervention_id = fields.Many2one('mrp.production', string="Biological Context (Intervention)")
     actual_biomass = fields.Float("Actual Measured Biomass (g/m2)", help="Current actual biomass measurement for deficit calculation.")
     
-    # [US-78-02] Weather Risk Parameters
+    # [US-108-02] Weather Risk Parameters
     rain_probability = fields.Float("Rain Probability (%)", help="Forecasted rain probability for the next 24h")
     wind_speed = fields.Float("Wind Speed (m/s)", help="Forecasted wind speed at scheduled time")
     weather_risk_hedging = fields.Boolean("Enable Weather Risk Hedging", default=True)
@@ -119,7 +119,7 @@ class AgriInterventionVraPrescription(models.Model):
 
     def action_generate_prescription_map(self):
         """
-        [US-78-05/06/07] Advanced Scientific VRA Engine.
+        [US-108-05/06/07] Advanced Scientific VRA Engine.
         Integrates Spatial NDVI + Temporal Growth Stage + Stress Clipping.
         """
         for rec in self:
@@ -137,21 +137,21 @@ class AgriInterventionVraPrescription(models.Model):
             stress_index = 0.0
             
             if rec.intervention_id:
-                # 1. Determine current growth stage from intervention (US-78-05)
+                # 1. Determine current growth stage from intervention (US-108-05)
                 if strategy.is_stage_aware:
                     current_stage = rec.intervention_id.current_growth_stage_id
                     rule = strategy.stage_rule_ids.filtered(lambda r: r.stage_id == current_stage)
                     if rule:
                         stage_multiplier = rule[0].intensity_multiplier
                 
-                # 2. [US-78-06] Calculate Biomass Deficit Multiplier
+                # 2. [US-108-06] Calculate Biomass Deficit Multiplier
                 if strategy.type == 'biomass_deficit' and rec.actual_biomass > 0:
                     # Theoretical W from Logistic Curve
                     theoretical_w = rec.intervention_id.get_logistic_biomass_prediction()
                     if theoretical_w > 0:
                         deficit_multiplier = 1.0 + ((theoretical_w - rec.actual_biomass) / theoretical_w) * strategy.deficit_sensitivity
                 
-                # 3. [US-78-13] Cultivar-Specific Response (Mitscherlich Law)
+                # 3. [US-108-13] Cultivar-Specific Response (Mitscherlich Law)
                 if strategy.is_cultivar_aware and hasattr(rec.intervention_id, 'physiology_profile_id'):
                     prof = rec.intervention_id.physiology_profile_id
                     if prof and prof.response_efficiency_c:
@@ -159,7 +159,7 @@ class AgriInterventionVraPrescription(models.Model):
                         # We normalize the multiplier against a standard efficiency of 0.003
                         cultivar_multiplier = 0.003 / prof.response_efficiency_c
 
-                # 4. Get biological stress index for safety clipping (US-78-07)
+                # 4. Get biological stress index for safety clipping (US-108-07)
                 stress_index = getattr(rec.intervention_id, 'biological_stress_index', 0.0)
 
             for cell in rec.location_id.grid_cell_ids:
@@ -190,21 +190,21 @@ class AgriInterventionVraPrescription(models.Model):
                 # 6. Temporal & Cultivar Multipliers (Scientific Enhancement)
                 rate *= (stage_multiplier * cultivar_multiplier)
                 
-                # 6.1 [US-78-10] Spatial RUE Compensation
+                # 6.1 [US-108-10] Spatial RUE Compensation
                 if strategy.is_rue_aware:
                     # Logic: Higher historical RUE allows higher investment
                     # Standard RUE is around 1.2 g/MJ
                     rue_factor = cell.historical_rue / 1.2
                     rate *= rue_factor
                 
-                # 6.2 [US-78-12] LAI-Driven Potential Calibration
+                # 6.2 [US-108-12] LAI-Driven Potential Calibration
                 if strategy.is_lai_aware:
                     # Logic: Nutrient requirement scales with LAI (Photosynthetic potential)
                     # Simplified linear mapping with saturation at LAI=5.0
                     lai_factor = min(1.5, 0.5 + (cell.lai_index / 5.0))
                     rate *= lai_factor
 
-                # 7. [US-78-11] Nutrient Transformation Kinetics (Spatial-Temporal Correction)
+                # 7. [US-108-11] Nutrient Transformation Kinetics (Spatial-Temporal Correction)
                 if strategy.is_kinetics_aware:
                     # Logic: Actual_Rate = Target_Rate / Efficiency_Factor
                     ph_efficiency = max(0.6, min(1.0, 1.0 - abs(cell.soil_ph - 6.5) * 0.1))
@@ -213,13 +213,13 @@ class AgriInterventionVraPrescription(models.Model):
                     if kinetics_factor > 0:
                         rate = rate / kinetics_factor
 
-                # 8. [US-78-07] Stress-based Safety Clipping
+                # 8. [US-108-07] Stress-based Safety Clipping
                 if stress_index > 35.0:
                     max_allowed = rec.base_rate * 0.8
                     if rate > max_allowed:
                         rate = max_allowed
 
-                # 9. [US-78-02] Weather Risk Hedging
+                # 9. [US-108-02] Weather Risk Hedging
                 if rec.weather_risk_hedging:
                     # If high rain probability, reduce fertilizer to prevent runoff
                     if rec.target_type == 'fertilizer' and rec.rain_probability > 70.0:

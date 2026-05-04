@@ -8,14 +8,14 @@ class ProductTemplate(models.Model):
     _name = 'product.template'
     _inherit = 'product.template'
 
-    # 兽药实名制与监管 [US-18-02]
+    # 兽药实名制与监管 [US-041-02]
     is_regulated_input = fields.Boolean("Is Regulated Input", default=False)
     reg_cert_no = fields.Char("Registration/Approval No.")
-    # 兽药实名制与监管 [US-18-02]
+    # 兽药实名制与监管 [US-041-02]
     is_prohibited_restricted = fields.Boolean("Prohibited/Restricted", default=False)
     prohibited_reason = fields.Text("Prohibited/Restricted Reason")
 
-    # Add field to link to registration database (for US-17-12)
+    # Add field to link to registration database (for US-040-12)
     registration_database_id = fields.Many2one(
         'farm.input.registration.database',
         string="Registration Database Entry",
@@ -131,7 +131,7 @@ class ProductTemplate(models.Model):
 class InputRegistrationDatabase(models.Model):
     """
     National Pesticide/Fertilizer Registration Database
-    US-17-12: Pesticide/Fertilizer National Registration Database Integration
+    US-040-12: Pesticide/Fertilizer National Registration Database Integration
     """
     _name = 'farm.input.registration.database'
     _description = 'Input Registration Database (National)'
@@ -253,7 +253,7 @@ class InputRegistrationDatabase(models.Model):
 class InputRegistrationWizard(models.TransientModel):
     """
     Wizard to assist with registration number lookup
-    US-17-12: When entering registration no, assist with lookup
+    US-040-12: When entering registration no, assist with lookup
     """
     _name = 'farm.input.registration.lookup.wizard'
     _description = 'Input Registration Lookup Wizard'
@@ -283,7 +283,7 @@ class MrpProduction(models.Model):
     _name = 'mrp.production'
     _inherit = 'mrp.production'
 
-    # 农事操作人信息 [US-18-02]
+    # 农事操作人信息 [US-041-02]
     operator_id_card = fields.Char("Operator ID Card No.", copy=False)
     
     @api.constrains('operator_id_card')
@@ -309,7 +309,7 @@ class MrpProduction(models.Model):
 
     def _generate_regulation_payload(self):
         """
-        US-18-02: 生成符合“肥药两制”标准的 JSON 报文
+        US-041-02: 生成符合“肥药两制”标准的 JSON 报文
         包含：主体信息、投入品编码、用量、地块、操作人实名信息
         """
         self.ensure_one()
@@ -336,7 +336,7 @@ class MrpProduction(models.Model):
 
     def action_sync_to_provincial_platform(self):
         """ 
-        US-18-02: 向省级农资监管平台同步数据
+        US-041-02: 向省级农资监管平台同步数据
         实现标准的 REST API 调用逻辑
         """
         self.ensure_one()

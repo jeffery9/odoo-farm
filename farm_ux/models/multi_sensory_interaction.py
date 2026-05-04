@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class MultiSensoryInteraction(models.Model):
     """
-    多感官交互 [US-16-07]
+    多感官交互 [US-039-07]
     """
     _name = 'multi.sensory.interaction'
     _description = 'Multi-Sensory Interaction Configuration'

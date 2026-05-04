@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 class MarketPrice(models.Model):
     """
     Market Price Integration - External commodity price feeds
-    US-17-11: Biological Asset Fair Value Real-time Accounting
+    US-040-11: Biological Asset Fair Value Real-time Accounting
     """
     _name = 'farm.market.price'
     _description = 'Market Price Reference'

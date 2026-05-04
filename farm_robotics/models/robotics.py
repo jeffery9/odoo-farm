@@ -26,7 +26,7 @@ class FarmRobot(models.Model):
     
     device_id = fields.Many2one('iiot.device', string="Connected IoT Device")
     
-    # A2A Identity [US-70-2026]
+    # A2A Identity [US-100-2026]
     agent_id = fields.Char("Agent Identifier", compute="_compute_agent_id", store=True)
     
     battery_level = fields.Float("Battery (%)", compute='_compute_iot_status')
@@ -64,7 +64,7 @@ class FarmRobot(models.Model):
 
     def evaluate_a2a_proposal(self, incoming_payload):
         """
-        [US-61-06] Robotic Self-Preservation Bargaining.
+        [US-091-06] Robotic Self-Preservation Bargaining.
         Adjusts price based on battery and current load.
         """
         self.ensure_one()

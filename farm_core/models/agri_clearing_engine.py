@@ -5,7 +5,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriNettingEngine(models.Model):
     """
-    [US-104-04] Internal Netting & Debt Offsetting Engine.
+    [US-014-04] Internal Netting & Debt Offsetting Engine.
     Offsets payables and receivables within the community using a single clearing lock.
     """
     _name = 'agri.clearing.netting.engine'
@@ -41,7 +41,7 @@ class AgriNettingEngine(models.Model):
 
 class AgriDividendPool(models.Model):
     """
-    [US-104-05] Community Impact Dividend Pool.
+    [US-014-05] Community Impact Dividend Pool.
     Distributes collective surplus back to members based on ESG contributions.
     """
     _name = 'agri.dividend.pool'

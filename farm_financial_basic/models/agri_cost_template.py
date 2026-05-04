@@ -9,7 +9,7 @@ class AgriCostTemplate(models.Model):
     """
     Agricultural Cost Template
     Provides pre-defined agricultural cost categories for farmers without financial backgrounds
-    US-65-03: Agricultural Standard Costing
+    US-095-03: Agricultural Standard Costing
     """
     _name = 'agri.cost.template'
     _description = 'Agricultural Cost Template'
@@ -125,7 +125,7 @@ class AgriCostTemplate(models.Model):
 class AgriCostCalculation(models.TransientModel):
     """
     Wizard/Model for calculating costs based on templates and land area
-    US-65-03: User-friendly cost calculation for farmers
+    US-095-03: User-friendly cost calculation for farmers
     """
     _name = 'agri.cost.calculation'
     _description = 'Agricultural Cost Calculation'
@@ -178,7 +178,7 @@ class AgriCostCalculation(models.TransientModel):
 class AgriCostCalculationLine(models.TransientModel):
     """
     Line item for cost calculation
-    US-65-03: Individual cost calculation lines
+    US-095-03: Individual cost calculation lines
     """
     _name = 'agri.cost.calculation.line'
     _description = 'Agricultural Cost Calculation Line'

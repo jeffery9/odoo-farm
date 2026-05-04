@@ -6,11 +6,11 @@
     'icon': '/farm_core/static/description/icon.svg',
     'description': """
         Base module for Odoo 19 Farm Management System.
-        - Agricultural Activity Classification (US-01-01)
-        - Sector-specific attributes (US-01-02)
-        - Land Parcel Management (US-01-03)
+        - Agricultural Activity Classification (US-001-01)
+        - Sector-specific attributes (US-001-02)
+        - Land Parcel Management (US-001-03)
         - Industry Configuration Management
-        - One-Click Industry Data Package Initialization (US-01-08)
+        - One-Click Industry Data Package Initialization (US-001-08)
     """,
     "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
     "website": "http://www.geninit.cn",

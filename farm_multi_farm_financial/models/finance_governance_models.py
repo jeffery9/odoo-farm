@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class CooperativeTreasury(models.Model):
     """
-    合作社资金池 [US-19-14]
+    合作社资金池 [US-042-14]
     """
     _name = 'cooperative.treasury'
     _description = 'Cooperative Treasury'
@@ -33,7 +33,7 @@ class CooperativeTreasury(models.Model):
 
 class InternalLoan(models.Model):
     """
-    内部头寸拆借 [US-19-15]
+    内部头寸拆借 [US-042-15]
     """
     _name = 'internal.loan'
     _description = 'Internal Loan'
@@ -93,7 +93,7 @@ class InternalLoan(models.Model):
 
 class SubsidyDisbursement(models.Model):
     """
-    政策性补贴下拨 [US-19-16]
+    政策性补贴下拨 [US-042-16]
     """
     _name = 'subsidy.disbursement'
     _description = 'Subsidy Disbursement'
@@ -117,7 +117,7 @@ class SubsidyDisbursement(models.Model):
 
 class SubsidyDisbursementLine(models.Model):
     """
-    补贴下拨明细 [US-19-16]
+    补贴下拨明细 [US-042-16]
     """
     _name = 'subsidy.disbursement.line'
     _description = 'Subsidy Disbursement Line'
@@ -133,7 +133,7 @@ class SubsidyDisbursementLine(models.Model):
 
 class CooperativeDecision(models.Model):
     """
-    三会决策记录 [US-19-17]
+    三会决策记录 [US-042-17]
     """
     _name = 'cooperative.decision'
     _description = 'Cooperative Decision'
@@ -181,7 +181,7 @@ class CooperativeDecision(models.Model):
 
 class MultiSignProcess(models.Model):
     """
-    分布式联签流程 [US-19-18]
+    分布式联签流程 [US-042-18]
     """
     _name = 'multi.sign.process'
     _description = 'Multi-sign Process'
@@ -218,7 +218,7 @@ class MultiSignProcess(models.Model):
 
 class MultiSignLine(models.Model):
     """
-    联签明细 [US-19-18]
+    联签明细 [US-042-18]
     """
     _name = 'multi.sign.line'
     _description = 'Multi-sign Line'
@@ -237,7 +237,7 @@ class MultiSignLine(models.Model):
 
 class DecisionAudit(models.Model):
     """
-    决策效力审计 [US-19-19]
+    决策效力审计 [US-042-19]
     """
     _name = 'decision.audit'
     _description = 'Decision Audit'

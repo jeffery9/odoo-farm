@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 class ContractFarmingAgreement(models.Model):
     """
     Contract Farming Agreement Model
-    US-19-24: "Company + Farmer" Contract Farming Management
+    US-042-24: "Company + Farmer" Contract Farming Management
     """
     _name = 'contract.farming.agreement'
     _description = 'Contract Farming Agreement'
@@ -216,7 +216,7 @@ class ContractFarmingAgreement(models.Model):
 class ContractFarmingInputPrepayment(models.Model):
     """
     Input Prepayment Management for Contract Farming
-    US-19-24: Input prepayment tracking and repayment
+    US-042-24: Input prepayment tracking and repayment
     """
     _name = 'contract.farming.input.prepayment'
     _description = 'Contract Farming Input Prepayment'
@@ -309,7 +309,7 @@ class ContractFarmingInputPrepayment(models.Model):
 class ContractFarmingYieldCommitment(models.Model):
     """
     Yield Commitment and Performance Tracking
-    US-19-24: Track yield commitments vs actual performance
+    US-042-24: Track yield commitments vs actual performance
     """
     _name = 'contract.farming.yield.commitment'
     _description = 'Contract Farming Yield Commitment'
@@ -353,7 +353,7 @@ class ContractFarmingYieldCommitment(models.Model):
 class ContractFarmingSettlement(models.Model):
     """
     Profit Distribution and Settlement System
-    US-19-24: Calculate and distribute profits based on contract terms
+    US-042-24: Calculate and distribute profits based on contract terms
     """
     _name = 'contract.farming.settlement'
     _description = 'Contract Farming Settlement'

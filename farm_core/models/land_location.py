@@ -10,13 +10,13 @@ _logger = logging.getLogger(__name__)
 class FarmLocation(models.Model):
     """
     Core Land & Location Management - fundamental agricultural location properties.
-    Level 4: Agri-Farm Semantic Refactoring [US-104-2026]
+    Level 4: Agri-Farm Semantic Refactoring [US-014-2026]
     Architecture: Mixin + ISL Implementation.
     
-    US-01-03: Land Parcel Management
+    US-001-03: Land Parcel Management
     US-TECH-04-01: GIS Core Fields
-    US-32-01: Terroir Profiling
-    US-33-01: Vertical Farming / High-density Storage
+    US-062-01: Terroir Profiling
+    US-063-01: Vertical Farming / High-density Storage
     """
     _name = 'farm.location'
     _description = 'Farm Location & Land Parcel'
@@ -53,7 +53,7 @@ class FarmLocation(models.Model):
     land_area = fields.Float("Area (sqm/mu)", digits=(16, 2), help="Surface area of the parcel.")
     land_area_uom_id = fields.Many2one('uom.uom', string="Area Unit")
 
-    # Core GIS Fields [US-01-03, US-TECH-04-01]
+    # Core GIS Fields [US-001-03, US-TECH-04-01]
     gps_lat = fields.Float("Latitude", digits=(10, 7))
     gps_lng = fields.Float("Longitude", digits=(10, 7))
     boundary_geojson = fields.Text("Boundary Coordinates (GeoJSON)", help="GeoJSON Polygon for the land parcel boundary.")
@@ -80,7 +80,7 @@ class FarmLocation(models.Model):
         ('loam', 'Loam'),
     ], string="Soil Type")
 
-    # Basic terroir attributes [US-32-01]
+    # Basic terroir attributes [US-062-01]
     slope = fields.Float("Slope Gradient (%)", help="Slope of the land parcel.")
     aspect = fields.Selection([
         ('n', 'North'), ('ne', 'North-East'), ('e', 'East'), ('se', 'South-East'),
@@ -95,7 +95,7 @@ class FarmLocation(models.Model):
 
     micro_climate_notes = fields.Text("Micro-climate Characteristics", help="Description of local climate factors.")
 
-    # US-33-01: Vertical Farming / High-density Storage (立体库位管理)
+    # US-063-01: Vertical Farming / High-density Storage (立体库位管理)
     is_vertical_location = fields.Boolean("Is Vertical / Shelf", default=False)
     shelf_id = fields.Char("Shelf ID")
     shelf_level = fields.Integer("Level / Row")
@@ -110,7 +110,7 @@ class FarmLocation(models.Model):
             else:
                 loc.gis_map_url = False
 
-    # Basic aquaculture fields [US-01-02]
+    # Basic aquaculture fields [US-001-02]
     water_depth = fields.Float("Water Depth (m)")
     water_depth_dm = fields.Float("Water Depth (dm)", compute='_compute_water_depth_dm', inverse='_inverse_water_depth_dm')
 
@@ -123,7 +123,7 @@ class FarmLocation(models.Model):
         ('ceramic', 'Ceramic')
     ], string="Material")
 
-    # Multi-farm collaboration [US-17-09] - Using Odoo's native Company mechanism
+    # Multi-farm collaboration [US-040-09] - Using Odoo's native Company mechanism
     farm_id = fields.Many2one('res.company', string="Belonging Farm", default=lambda self: self.env.company)
 
     @api.depends('water_depth')
@@ -135,7 +135,7 @@ class FarmLocation(models.Model):
         for loc in self:
             loc.water_depth = loc.water_depth_dm / 10.0
 
-    # Dynamic attributes [US-01-02]
+    # Dynamic attributes [US-001-02]
     location_properties_definition = fields.PropertiesDefinition('Location Properties Definition')
     _self_ref = fields.Many2one('farm.location', compute='_compute_self_ref')
     location_properties = fields.Properties(

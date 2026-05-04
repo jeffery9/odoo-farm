@@ -5,7 +5,7 @@ class FarmWorkcenterExtension(models.Model):
     _name = 'farm.industry.workcenter'
     _inherit = 'farm.industry.workcenter'
 
-    # 能耗核算基础 [US-14-04]
+    # 能耗核算基础 [US-037-04]
     energy_type = fields.Selection([
         ('electricity', 'Electricity'),
         ('water', 'Water'),
@@ -17,7 +17,7 @@ class FarmWorkcenterExtension(models.Model):
 class FarmWorkorderEnergyExtension(models.Model):
     _inherit = 'mrp.workorder'  # Note: no specific ISL model for workorders yet in farm_processing
 
-    # 实际工序能耗记录 [US-14-04]
+    # 实际工序能耗记录 [US-037-04]
     actual_energy_consumption = fields.Float("Actual Energy Consumption")
     process_parameters = fields.Text("Process Parameters (e.g. Temperature, Pressure)")
 

@@ -5,10 +5,10 @@
     'summary': 'Mobile Field Operations and Hardware Integration',
     'description': """
         Mobile capabilities for Odoo 19 Farm System.
-        - Hardware Integration: GPS, Camera [US-24-01, US-24-04]
-        - Site Check-in and Geofencing Verification [US-24-02]
-        - Field Evidence Collection (Photo + GPS) [US-07-05]
-        - Automated Timesheet Sync [US-24-03]
+        - Hardware Integration: GPS, Camera [US-054-01, US-054-04]
+        - Site Check-in and Geofencing Verification [US-054-02]
+        - Field Evidence Collection (Photo + GPS) [US-007-05]
+        - Automated Timesheet Sync [US-054-03]
     """,
     'author': 'Jeffery',
     'depends': ['farm_core', 'farm_operation', 'hr_timesheet'],

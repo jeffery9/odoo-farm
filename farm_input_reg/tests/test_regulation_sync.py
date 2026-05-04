@@ -17,7 +17,7 @@ class TestRegulationSync(TransactionCase):
         })
 
     def test_01_real_name_validation(self):
-        """ 测试受监管投入品必须有操作人身份证号 [US-18-02] """
+        """ 测试受监管投入品必须有操作人身份证号 [US-041-02] """
         mo = self.Intervention.create({
             'product_id': self.env.ref('product.product_delivery_01', raise_if_not_found=False).id or 1,
             'product_qty': 1.0,

@@ -29,7 +29,7 @@
                             <field name="date_end"/>
                             <field name="land_parcel_id"/>
                         </group>
-                        <group string="GDD Growth Model (US-02-05)">
+                        <group string="GDD Growth Model (US-002-05)">
                             <field name="target_gdd"/>
                             <field name="accumulated_gdd" readonly="1"/>
                             <field name="predicted_harvest_date" readonly="1" decoration-bf="1" decoration-info="1"/>

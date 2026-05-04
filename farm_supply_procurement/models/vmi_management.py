@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 
 class VmiAgreement(models.Model):
     """
-    VMI (Vendor Managed Inventory) Agreement [US-09-14]
+    VMI (Vendor Managed Inventory) Agreement [US-009-14]
     """
     _name = 'vmi.agreement'
     _description = 'VMI Agreement'
