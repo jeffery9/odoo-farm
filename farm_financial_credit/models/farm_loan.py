@@ -43,17 +43,17 @@ class FarmLoan(models.Model):
     collateral_value = fields.Monetary("Collateral Valuation", compute='_compute_collateral_value')
 
     # Financial Trust Integration [US-078-02]
-    credit_score_id = fields.Many2one('farm.credit.score', string="Production Credit Rating", compute='_compute_credit_rating', store=True)
+    credit_score_id = fields.Many2one('farm.credit.score', string="Production Credit Rating", compute='_compute_credit_rating', store=True, precompute=True)
     credit_score = fields.Float(related='credit_score_id.overall_score', string="Score Value")
-    is_high_risk = fields.Boolean("High Financial Risk", compute='_compute_risk', store=True)
+    is_high_risk = fields.Boolean("High Financial Risk", compute='_compute_risk', store=True, precompute=True)
 
     # Risk assessment from integrated functionality
     risk_assessment_id = fields.Many2one('farm.risk.assessment', string="Risk Assessment")
     risk_score = fields.Float(related='risk_assessment_id.risk_score', string="Risk Score")
 
     # Repayment tracking
-    total_repaid = fields.Monetary("Total Repaid", currency_field='currency_id', compute='_compute_repayment_status', store=True)
-    remaining_balance = fields.Monetary("Remaining Balance", currency_field='currency_id', compute='_compute_repayment_status', store=True)
+    total_repaid = fields.Monetary("Total Repaid", currency_field='currency_id', compute='_compute_repayment_status', store=True, precompute=True)
+    remaining_balance = fields.Monetary("Remaining Balance", currency_field='currency_id', compute='_compute_repayment_status', store=True, precompute=True)
 
     state = fields.Selection([
         ('draft', 'Draft'),

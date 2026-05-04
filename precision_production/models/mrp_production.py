@@ -28,7 +28,7 @@ class MrpProduction(models.Model):
 
     # Legacy Compatibility (Used in Header UI)
     active_recipe_phase_id = fields.Many2one('precision.recipe.phase', string="First Active Phase",
-                                            compute='_compute_primary_active', store=True)
+                                            compute='_compute_primary_active', store=True, precompute=True)
 
     @api.depends('recipe_phase_ids.state')
     def _compute_primary_active(self):

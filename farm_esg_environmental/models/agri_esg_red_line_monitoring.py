@@ -361,7 +361,7 @@ class AgriStockLot(models.Model):
         ('violation', 'Violation'),
         ('critical', 'Critical Violation'),
         ('resolved', 'Resolved'),
-    ], string='ESG Compliance Status', compute='_compute_esg_compliance_status', store=True)
+    ], string='ESG Compliance Status', compute='_compute_esg_compliance_status', store=True, precompute=True)
 
     esg_monitoring_ids = fields.One2many('agri.esg.red.line.monitoring', 'batch_lot_id',
                                         string='ESG Monitoring Records')

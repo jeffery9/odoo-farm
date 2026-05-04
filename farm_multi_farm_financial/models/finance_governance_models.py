@@ -15,7 +15,7 @@ class CooperativeTreasury(models.Model):
 
     name = fields.Char('Treasury Name', required=True)
     cooperative_id = fields.Many2one('cooperative.entity', string='Cooperative', required=True)
-    current_balance = fields.Float('Current Balance', compute='_compute_current_balance', store=True)
+    current_balance = fields.Float('Current Balance', compute='_compute_current_balance', store=True, precompute=True)
     currency_id = fields.Many2one('res.currency', default=lambda self: self.env.company.currency_id)
     description = fields.Text('Description')
 
@@ -257,7 +257,7 @@ class DecisionAudit(models.Model):
     ], string='Audit Result', required=True)
     audit_date = fields.Date('Audit Date', default=fields.Date.context_today)
     audit_notes = fields.Text('Audit Notes')
-    compliance_status = fields.Boolean('Compliance Status', compute='_compute_compliance', store=True)
+    compliance_status = fields.Boolean('Compliance Status', compute='_compute_compliance', store=True, precompute=True)
 
     @api.depends('audit_result')
     def _compute_compliance(self):

@@ -12,7 +12,7 @@ class FarmProcessingProductionAnalyticsExtension(models.Model):
     _inherit = 'farm.processing.production'
 
     # Yield analytics tracking
-    yield_rate = fields.Float('Yield Rate (%)', compute='_compute_yield_rate', store=True)
+    yield_rate = fields.Float('Yield Rate (%)', compute='_compute_yield_rate', store=True, precompute=True)
 
     # @api.depends('final_output_qty', 'raw_material_qty')
     def _compute_yield_rate(self):
@@ -49,12 +49,12 @@ class AgriProcessingYieldRateAnalytics(models.Model):
 
     # Benchmarking
     standard_yield_rate = fields.Float('Standard Yield Rate (%)')
-    yield_variance = fields.Float('Yield Variance (%)', compute='_compute_yield_variance', store=True)
+    yield_variance = fields.Float('Yield Variance (%)', compute='_compute_yield_variance', store=True, precompute=True)
 
     # Efficiency factors
     processing_time_hours = fields.Float('Processing Time (hours)')
     energy_consumption_kwh = fields.Float('Energy Consumption (kWh)')
-    energy_efficiency = fields.Float('Energy Efficiency (output/kWh)', compute='_compute_efficiency', store=True)
+    energy_efficiency = fields.Float('Energy Efficiency (output/kWh)', compute='_compute_efficiency', store=True, precompute=True)
 
     notes = fields.Text('Analysis Notes')
 

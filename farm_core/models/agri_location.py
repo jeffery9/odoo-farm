@@ -28,7 +28,7 @@ class AgriLocation(models.Model):
         ('other', 'Other Container')
     ], string="Physical Type", required=True, default='field')
 
-    parent_id = fields.Many2one('agri.location', string="Parent Location", index=True)
+    parent_id = fields.Many2one('agri.location', string="Parent Location")
     child_ids = fields.One2many('agri.location', 'parent_id', string="Sub-locations")
 
     active = fields.Boolean(default=True)

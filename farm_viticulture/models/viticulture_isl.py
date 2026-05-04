@@ -72,7 +72,7 @@ class FarmLotGrape(models.Model):
     
     # [US-115-04] Pressing Context
     juice_yield_volume = fields.Float("Extracted Juice (L)")
-    pressing_ratio = fields.Float("Pressing Ratio (L/kg)", compute='_compute_pressing_ratio', store=True)
+    pressing_ratio = fields.Float("Pressing Ratio (L/kg)", compute='_compute_pressing_ratio', store=True, precompute=True)
 
     @api.depends('juice_yield_volume', 'product_qty')
     def _compute_pressing_ratio(self):

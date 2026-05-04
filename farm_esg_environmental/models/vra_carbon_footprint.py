@@ -36,7 +36,7 @@ class AgriVRACarbonFootprint(models.Model):
                                            help='Amount of material used in traditional method')
     vra_material_qty = fields.Float('VRA Material Quantity',
                                    help='Amount of material used with VRA precision')
-    material_savings = fields.Float('Material Savings', compute='_compute_material_savings', store=True)
+    material_savings = fields.Float('Material Savings', compute='_compute_material_savings', store=True, precompute=True)
 
     # Carbon emission calculations
     traditional_carbon_emission = fields.Float('Traditional Carbon Emission (kg CO2e)',
@@ -44,15 +44,15 @@ class AgriVRACarbonFootprint(models.Model):
     vra_carbon_emission = fields.Float('VRA Carbon Emission (kg CO2e)',
                                       help='Estimated carbon emissions with VRA method')
     carbon_emission_reduction = fields.Float('Carbon Emission Reduction (kg CO2e)',
-                                            compute='_compute_carbon_reduction', store=True)
+                                            compute='_compute_carbon_reduction', store=True, precompute=True)
     carbon_reduction_percentage = fields.Float('Carbon Reduction (%)',
-                                              compute='_compute_carbon_reduction_percentage', store=True)
+                                              compute='_compute_carbon_reduction_percentage', store=True, precompute=True)
 
     # Fuel optimization from VRA
     fuel_savings_liter = fields.Float('Fuel Savings (Liters)',
                                      help='Fuel saved through optimized VRA operations')
     fuel_carbon_savings = fields.Float('Fuel Carbon Savings (kg CO2e)',
-                                      compute='_compute_fuel_carbon_savings', store=True)
+                                      compute='_compute_fuel_carbon_savings', store=True, precompute=True)
 
     # Soil carbon sequestration
     soil_carbon_sequestration = fields.Float('Soil Carbon Sequestration (kg CO2e)',
@@ -60,7 +60,7 @@ class AgriVRACarbonFootprint(models.Model):
 
     # Overall environmental impact
     net_environmental_impact = fields.Float('Net Environmental Impact (kg CO2e)',
-                                          compute='_compute_net_impact', store=True)
+                                          compute='_compute_net_impact', store=True, precompute=True)
 
     # Assessment status
     assessment_status = fields.Selection([
@@ -72,12 +72,12 @@ class AgriVRACarbonFootprint(models.Model):
 
     # Environmental compliance
     meets_environmental_standards = fields.Boolean('Meets Environmental Standards',
-                                                   compute='_compute_compliance', store=True)
+                                                   compute='_compute_compliance', store=True, precompute=True)
     environmental_risk_level = fields.Selection([
         ('low', 'Low Risk'),
         ('medium', 'Medium Risk'),
         ('high', 'High Risk'),
-    ], string='Environmental Risk Level', compute='_compute_risk', store=True)
+    ], string='Environmental Risk Level', compute='_compute_risk', store=True, precompute=True)
 
     # Related reports
     comparison_report = fields.Text('Comparison Report', compute='_compute_comparison_report')

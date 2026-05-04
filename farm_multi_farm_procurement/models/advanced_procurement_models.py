@@ -78,7 +78,7 @@ class JointProcurementPOMember(models.Model):
     product_id = fields.Many2one('product.product', string='Product', required=True)
     quantity = fields.Float('Quantity', required=True)
     unit_price = fields.Float('Unit Price', required=True)
-    amount = fields.Float('Amount', compute='_compute_amount', store=True)
+    amount = fields.Float('Amount', compute='_compute_amount', store=True, precompute=True)
     delivery_date = fields.Date('Delivery Date')
     description = fields.Text('Description')
     state = fields.Selection([
@@ -195,11 +195,11 @@ class NettingSettlement(models.Model):
     settlement_date = fields.Date('Settlement Date', default=fields.Date.context_today, required=True)
     receivable_amount = fields.Float('Receivable Amount', help='Amount member should receive from sales')
     payable_amount = fields.Float('Payable Amount', help='Amount member should pay for purchases')
-    net_amount = fields.Float('Net Amount', compute='_compute_net_amount', store=True)
+    net_amount = fields.Float('Net Amount', compute='_compute_net_amount', store=True, precompute=True)
     settlement_direction = fields.Selection([
         ('to_member', 'To Member'),
         ('from_member', 'From Member'),
-    ], string='Settlement Direction', compute='_compute_settlement_direction', store=True)
+    ], string='Settlement Direction', compute='_compute_settlement_direction', store=True, precompute=True)
     description = fields.Text('Description')
     state = fields.Selection([
         ('draft', 'Draft'),

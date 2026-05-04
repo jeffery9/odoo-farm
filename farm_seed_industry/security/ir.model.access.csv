@@ -2,3 +2,6 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_farm_seed_recipe,farm.seed.recipe,model_farm_seed_recipe,base.group_user,1,1,1,1
 access_farm_seed_batch,farm.seed.batch,model_farm_seed_batch,base.group_user,1,1,1,1
 access_farm_seed_production,farm.seed.production,model_farm_seed_production,base.group_user,1,1,1,1
+access_farm_seed_recipe,farm.seed.recipe,model_farm_seed_recipe,base.group_user,1,1,1,1
+access_farm_seed_production,farm.seed.production,model_farm_seed_production,base.group_user,1,1,1,1
+access_farm_seed_batch,farm.seed.batch,model_farm_seed_batch,base.group_user,1,1,1,1

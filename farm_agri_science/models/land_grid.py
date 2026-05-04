@@ -17,7 +17,7 @@ class AgriGeospatialGridCell(models.Model):
     _order = 'row, col'
 
     location_id = fields.Many2one('farm.location', string="Parent Parcel", required=True, ondelete='cascade')
-    name = fields.Char("Grid UID", compute='_compute_name', store=True)
+    name = fields.Char("Grid UID", compute='_compute_name', store=True, precompute=True)
     
     row = fields.Integer("Row Index")
     col = fields.Integer("Column Index")

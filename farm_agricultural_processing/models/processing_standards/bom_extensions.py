@@ -33,8 +33,8 @@ class FarmProcessingBomExtension(models.Model):
     max_loss_rate = fields.Float("Max Allowable Loss Rate (%)", help="Maximum allowable loss rate for this process. Exceeding this will trigger hard blocking.")
 
     # US-037-03: 农业副产品价值分摊 - Using mixin
-    byproduct_cost_share_total = fields.Float("Byproduct Cost Share Total (%)", compute='_compute_byproduct_cost_share_total', store=True)
-    finished_product_cost_share = fields.Float("Finished Product Cost Share (%)", compute='_compute_finished_product_cost_share', store=True)
+    byproduct_cost_share_total = fields.Float("Byproduct Cost Share Total (%)", compute='_compute_byproduct_cost_share_total', store=True, precompute=True)
+    finished_product_cost_share = fields.Float("Finished Product Cost Share (%)", compute='_compute_finished_product_cost_share', store=True, precompute=True)
 
     @api.depends('byproduct_ids', 'byproduct_ids.cost_share')
     def _compute_byproduct_cost_share_total(self):
@@ -63,8 +63,8 @@ class FarmProcessingProductionExtension(models.Model):
     _name = 'farm.processing.production'
     _inherit = 'farm.processing.production'
 
-    byproduct_cost_share_total = fields.Float("Byproduct Cost Share Total (%)", compute='_compute_byproduct_cost_share_total_mo', store=True)
-    finished_product_cost_share = fields.Float("Finished Product Cost Share (%)", compute='_compute_finished_product_cost_share_mo', store=True)
+    byproduct_cost_share_total = fields.Float("Byproduct Cost Share Total (%)", compute='_compute_byproduct_cost_share_total_mo', store=True, precompute=True)
+    finished_product_cost_share = fields.Float("Finished Product Cost Share (%)", compute='_compute_finished_product_cost_share_mo', store=True, precompute=True)
 
     # @api.depends('bom_id', 'bom_id.byproduct_cost_share_total')
     def _compute_byproduct_cost_share_total_mo(self):

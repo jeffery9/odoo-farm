@@ -34,8 +34,8 @@ class FarmNetVegProduction(models.Model):
     production_id = fields.Many2one('mrp.production', string='Base Order', required=True, ondelete='cascade')
 
     # Yield Analysis [US-113-01]
-    raw_input_weight = fields.Float("Raw Input (kg)", compute="_compute_yield", store=True)
-    actual_net_yield = fields.Float("Actual Yield (%)", compute='_compute_yield', store=True)
+    raw_input_weight = fields.Float("Raw Input (kg)", compute="_compute_yield", store=True, precompute=True)
+    actual_net_yield = fields.Float("Actual Yield (%)", compute='_compute_yield', store=True, precompute=True)
     
     # Safety Records [US-113-03]
     actual_chlorine_ppm = fields.Float("Actual Chlorine (ppm)")
@@ -73,7 +73,7 @@ class FarmLotNetVeg(models.Model):
         ('bag', 'Retail Bag'), ('crate', 'Crate'), ('pallet', 'Pallet')
     ], string="Pack Level")
     
-    expiry_datetime = fields.Datetime("Freshness Deadline", compute='_compute_expiry', store=True)
+    expiry_datetime = fields.Datetime("Freshness Deadline", compute='_compute_expiry', store=True, precompute=True)
 
     @api.depends('create_date')
     def _compute_expiry(self):

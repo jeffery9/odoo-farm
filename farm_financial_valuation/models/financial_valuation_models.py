@@ -44,13 +44,13 @@ class FinancialAssetValuation(models.Model):
     market_price_source = fields.Char("Market Price Source", help="Source of the market price data")
     market_adjustment_factor = fields.Float("Market Adjustment Factor", default=1.0,
                                            help="Factor to adjust market prices for condition, location, etc.")
-    fair_value = fields.Float("Fair Value", compute='_compute_fair_value', store=True,
+    fair_value = fields.Float("Fair Value", compute='_compute_fair_value', store=True, precompute=True,
                              help="Calculated fair value based on selected method")
 
     # Cost Parameters
     original_cost = fields.Float("Original Cost")
     accumulated_depreciation = fields.Float("Accumulated Depreciation", default=0.0)
-    net_book_value = fields.Float("Net Book Value", compute='_compute_net_book_value', store=True)
+    net_book_value = fields.Float("Net Book Value", compute='_compute_net_book_value', store=True, precompute=True)
 
     # Income Approach Parameters
     projected_cash_flows = fields.Text("Projected Cash Flows (JSON)")
@@ -62,8 +62,8 @@ class FinancialAssetValuation(models.Model):
     adjustment_factors = fields.Text("Adjustment Factors for Comparables")
 
     # Valuation Result
-    valuation_amount = fields.Float("Valuation Amount", compute='_compute_valuation_amount', store=True)
-    valuation_variance = fields.Float("Variance from Previous", compute='_compute_variance', store=True)
+    valuation_amount = fields.Float("Valuation Amount", compute='_compute_valuation_amount', store=True, precompute=True)
+    valuation_variance = fields.Float("Variance from Previous", compute='_compute_variance', store=True, precompute=True)
     confidence_level = fields.Float("Confidence Level (%)", default=85.0,
                                    help="Confidence in the valuation estimate")
 
@@ -345,7 +345,7 @@ class FinancialAsset(models.Model):
         ('current', 'Current'),
         ('overdue', 'Overdue for Revaluation'),
         ('exempt', 'Exempt from Regular Valuation'),
-    ], string="Valuation Status", compute='_compute_valuation_status', store=True)
+    ], string="Valuation Status", compute='_compute_valuation_status', store=True, precompute=True)
 
     @api.depends('valuation_history_ids.valuation_amount', 'valuation_history_ids.valuation_date')
     def _compute_current_financial_valuation(self):

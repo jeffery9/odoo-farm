@@ -17,7 +17,7 @@ class EvidenceAnalyzerMixin(models.AbstractModel):
         'ir.attachment', string="Physical Evidence",
         help="Attached GPS logs, IoT sensor data, or site photos."
     )
-    audit_confidence = fields.Float("Audit Confidence", compute="_compute_confidence", store=True)
+    audit_confidence = fields.Float("Audit Confidence", compute="_compute_confidence", store=True, precompute=True)
     audit_status = fields.Selection([
         ('pending', 'Pending Audit'),
         ('verified', 'Verified'),

@@ -45,30 +45,30 @@ class ContractFarmingAgreement(models.Model):
     # Input Prepayment Management
     input_prepayment_total = fields.Monetary('Total Input Prepayment',
                                             currency_field='currency_id',
-                                            compute='_compute_input_prepayment_total', store=True)
+                                            compute='_compute_input_prepayment_total', store=True, precompute=True)
     input_prepayment_paid = fields.Monetary('Input Prepayment Paid',
                                            currency_field='currency_id',
-                                           compute='_compute_input_prepayment_paid', store=True)
+                                           compute='_compute_input_prepayment_paid', store=True, precompute=True)
     input_prepayment_remaining = fields.Monetary('Input Prepayment Remaining',
                                                 currency_field='currency_id',
-                                                compute='_compute_input_prepayment_remaining', store=True)
+                                                compute='_compute_input_prepayment_remaining', store=True, precompute=True)
 
     # Yield Commitment
     yield_commitment = fields.Float('Yield Commitment (kg/mu)', help='Expected yield per mu')
-    actual_yield = fields.Float('Actual Yield (kg)', compute='_compute_actual_yield', store=True)
+    actual_yield = fields.Float('Actual Yield (kg)', compute='_compute_actual_yield', store=True, precompute=True)
     yield_performance = fields.Float('Yield Performance (%)',
-                                    compute='_compute_yield_performance', store=True)
+                                    compute='_compute_yield_performance', store=True, precompute=True)
 
     # Financial Settlement
     projected_revenue = fields.Monetary('Projected Revenue',
                                        currency_field='currency_id',
-                                       compute='_compute_projected_revenue', store=True)
+                                       compute='_compute_projected_revenue', store=True, precompute=True)
     actual_revenue = fields.Monetary('Actual Revenue',
                                     currency_field='currency_id',
-                                    compute='_compute_actual_revenue', store=True)
+                                    compute='_compute_actual_revenue', store=True, precompute=True)
     settlement_amount = fields.Monetary('Settlement Amount',
                                        currency_field='currency_id',
-                                       compute='_compute_settlement_amount', store=True)
+                                       compute='_compute_settlement_amount', store=True, precompute=True)
 
     # Contract Management
     start_date = fields.Date('Contract Start Date', required=True)
@@ -259,7 +259,7 @@ class ContractFarmingInputPrepayment(models.Model):
     paid_amount = fields.Monetary('Paid Amount', currency_field='currency_id', default=0.0)
     remaining_amount = fields.Monetary('Remaining Amount',
                                       currency_field='currency_id',
-                                      compute='_compute_remaining_amount', store=True)
+                                      compute='_compute_remaining_amount', store=True, precompute=True)
 
     description = fields.Text('Description')
     state = fields.Selection([
@@ -328,8 +328,8 @@ class ContractFarmingYieldCommitment(models.Model):
     notes = fields.Text('Harvest Notes')
 
     # Performance metrics
-    performance_rate = fields.Float('Performance Rate (%)', compute='_compute_performance_rate', store=True)
-    quality_compliance = fields.Boolean('Quality Compliance', compute='_compute_quality_compliance', store=True)
+    performance_rate = fields.Float('Performance Rate (%)', compute='_compute_performance_rate', store=True, precompute=True)
+    quality_compliance = fields.Boolean('Quality Compliance', compute='_compute_quality_compliance', store=True, precompute=True)
 
     @api.depends('expected_yield', 'actual_yield', 'area')
     def _compute_performance_rate(self):
@@ -380,8 +380,8 @@ class ContractFarmingSettlement(models.Model):
     description = fields.Text('Description')
 
     # Financial breakdown
-    enterprise_share = fields.Monetary('Enterprise Share', currency_field='currency_id', compute='_compute_shares', store=True)
-    farmer_share = fields.Monetary('Farmer Share', currency_field='currency_id', compute='_compute_shares', store=True)
+    enterprise_share = fields.Monetary('Enterprise Share', currency_field='currency_id', compute='_compute_shares', store=True, precompute=True)
+    farmer_share = fields.Monetary('Farmer Share', currency_field='currency_id', compute='_compute_shares', store=True, precompute=True)
 
     @api.depends('amount', 'agreement_id.revenue_share_percentage')
     def _compute_shares(self):

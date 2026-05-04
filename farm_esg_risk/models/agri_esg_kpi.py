@@ -30,20 +30,20 @@ class AgriESGKPI(models.Model):
     current_value = fields.Float('Current Value')
     unit_of_measurement = fields.Char('Unit of Measurement', required=True)
     baseline_value = fields.Float('Baseline Value')
-    achievement_percentage = fields.Float('Achievement %', compute='_compute_achievement_percentage', store=True)
+    achievement_percentage = fields.Float('Achievement %', compute='_compute_achievement_percentage', store=True, precompute=True)
     trend_indicator = fields.Selection([
         'increasing', 'decreasing', 'stable'
-    ], string='Trend Indicator', compute='_compute_trend_indicator', store=True)
+    ], string='Trend Indicator', compute='_compute_trend_indicator', store=True, precompute=True)
     year = fields.Integer('Year', default=lambda self: fields.Date.context_today(self).year)
     responsible_department = fields.Many2one('hr.department', 'Responsible Department')
     data_source = fields.Char('Data Source')
     calculation_method = fields.Text('Calculation Method')
     benchmark_value = fields.Float('Benchmark Value', help='Industry or regional benchmark')
     benchmark_source = fields.Char('Benchmark Source')
-    variance_from_target = fields.Float('Variance from Target', compute='_compute_variance', store=True)
+    variance_from_target = fields.Float('Variance from Target', compute='_compute_variance', store=True, precompute=True)
     performance_status = fields.Selection([
         'exceeding', 'on_track', 'at_risk', 'off_track'
-    ], string='Performance Status', compute='_compute_performance_status', store=True)
+    ], string='Performance Status', compute='_compute_performance_status', store=True, precompute=True)
     notes = fields.Text('Notes')
 
     @api.depends('current_value', 'target_value')

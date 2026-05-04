@@ -16,8 +16,8 @@ class JointProcurementLine(models.Model):
     product_id = fields.Many2one('product.product', string='Product', required=True)
     quantity = fields.Float('Quantity', required=True)
     unit_price = fields.Float('Unit Price', required=True)
-    member_amount = fields.Float('Member Amount', compute='_compute_member_amount', store=True)
-    markup_amount = fields.Float('Markup Amount', compute='_compute_markup_amount', store=True)
+    member_amount = fields.Float('Member Amount', compute='_compute_member_amount', store=True, precompute=True)
+    markup_amount = fields.Float('Markup Amount', compute='_compute_markup_amount', store=True, precompute=True)
     settlement_id = fields.Many2one('internal.settlement', string='Settlement')
 
     @api.depends('quantity', 'unit_price')

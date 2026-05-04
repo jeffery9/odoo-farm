@@ -9,4 +9,14 @@ access_stakeholder_engagement,farm.esg.stakeholder.engagement,model_farm_esg_sta
 access_esg_kpi,farm.esg.kpi,model_farm_esg_kpi,farm_core.group_farm_manager,1,1,1,1
 access_supply_chain_esg_rating,farm.esg.supply.chain.rating,model_farm_esg_supply_chain_rating,farm_core.group_farm_manager,1,1,1,1
 access_esg_report_customization,farm.esg.report.customization,model_farm_esg_report_customization,farm_core.group_farm_manager,1,1,1,1
-access_esg_scenarios_analysis,farm.esg.scenarios.analysis,model_farm_esg_scenarios_analysis,farm_core.group_farm_manager,1,1,1,1
+access_esg_scenarios_analysis,farm.esg.scenarios.analysis,model_farm_esg_scenarios_analysis,farm_core.group_farm_manager,1,1,1,1access_farm_esg_kpi,farm.esg.kpi,model_farm_esg_kpi,base.group_user,1,1,1,1
+access_farm_esg_stakeholder_engagement,farm.esg.stakeholder.engagement,model_farm_esg_stakeholder_engagement,base.group_user,1,1,1,1
+access_farm_esg_risk_assessment,farm.esg.risk.assessment,model_farm_esg_risk_assessment,base.group_user,1,1,1,1
+access_farm_esg_data_governance,farm.esg.data.governance,model_farm_esg_data_governance,base.group_user,1,1,1,1
+access_agri_esg_compliance_monitoring,agri.esg.compliance.monitoring,model_agri_esg_compliance_monitoring,base.group_user,1,1,1,1
+access_farm_esg_compliance_monitoring,farm.esg.compliance.monitoring,model_farm_esg_compliance_monitoring,base.group_user,1,1,1,1
+access_agri_esg_risk_assessment,agri.esg.risk.assessment,model_agri_esg_risk_assessment,base.group_user,1,1,1,1
+access_farm_esg_supply_chain_rating,farm.esg.supply.chain.rating,model_farm_esg_supply_chain_rating,base.group_user,1,1,1,1
+access_farm_esg_scenarios_analysis,farm.esg.scenarios.analysis,model_farm_esg_scenarios_analysis,base.group_user,1,1,1,1
+access_farm_esg_report_customization,farm.esg.report.customization,model_farm_esg_report_customization,base.group_user,1,1,1,1
+access_agri_esg_kpi,agri.esg.kpi,model_agri_esg_kpi,base.group_user,1,1,1,1

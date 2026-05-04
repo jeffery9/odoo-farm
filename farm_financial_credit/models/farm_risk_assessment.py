@@ -36,7 +36,7 @@ class FarmRiskAssessment(models.Model):
     credit_history_score = fields.Float('Credit History Score (0-100)', digits=(16, 2))
 
     # Overall risk calculation combining both module approaches
-    risk_score = fields.Float('Overall Risk Score (0-100)', compute='_compute_risk_score', store=True)
+    risk_score = fields.Float('Overall Risk Score (0-100)', compute='_compute_risk_score', store=True, precompute=True)
     overall_risk_rating = fields.Selection([
         ('excellent', 'Excellent (A+)'),
         ('very_good', 'Very Good (A)'),
@@ -44,10 +44,10 @@ class FarmRiskAssessment(models.Model):
         ('fair', 'Fair (B)'),
         ('poor', 'Poor (C)'),
         ('very_poor', 'Very Poor (D)'),
-    ], string='Overall Risk Rating', compute='_compute_overall_rating', store=True)
+    ], string='Overall Risk Rating', compute='_compute_overall_rating', store=True, precompute=True)
 
     # Loan recommendations from farm_financial_services
-    recommended_loan_amount = fields.Monetary('Recommended Loan Amount', currency_field='currency_id', compute='_compute_loan_recommendation', store=True)
+    recommended_loan_amount = fields.Monetary('Recommended Loan Amount', currency_field='currency_id', compute='_compute_loan_recommendation', store=True, precompute=True)
     interest_rate_adjustment = fields.Float('Interest Rate Adjustment (+/- %)', digits=(16, 2))
 
     # Integration with credit scoring from farm_finance_loan

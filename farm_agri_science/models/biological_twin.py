@@ -24,7 +24,7 @@ class AgriBiologicalTwin(models.Model):
     
     # Timeline
     start_date = fields.Date("Sowing/Start Date", default=fields.Date.today)
-    expected_harvest_date = fields.Date("Target Harvest Date", compute='_compute_harvest_prediction', store=True)
+    expected_harvest_date = fields.Date("Target Harvest Date", compute='_compute_harvest_prediction', store=True, precompute=True)
     
     # L3: Thermal Intelligence
     accumulated_gdd = fields.Float("Accumulated GDD (℃)", help="Growing Degree Days accumulation")
@@ -33,7 +33,7 @@ class AgriBiologicalTwin(models.Model):
     
     # Current Status
     current_stage_id = fields.Many2one('agri.industry.physio.stage', string="Current Physio-Stage")
-    health_score = fields.Float("Growth Health Score (0-100)", compute='_compute_health_score', store=True)
+    health_score = fields.Float("Growth Health Score (0-100)", compute='_compute_health_score', store=True, precompute=True)
     
     # Prediction
     predicted_yield = fields.Float("Predicted Yield (kg)", digits=(12, 2))

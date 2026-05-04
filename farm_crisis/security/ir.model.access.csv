@@ -1,3 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_farm_emergency_protocol,farm.emergency.protocol,model_farm_emergency_protocol,farm_core.group_farm_manager,1,1,1,1
 access_farm_crisis_incident,farm.crisis.incident,model_farm_crisis_incident,farm_core.group_farm_manager,1,1,1,1
+access_sale_order,sale.order,model_sale_order,base.group_user,1,1,1,1
+access_farm_emergency_protocol,farm.emergency.protocol,model_farm_emergency_protocol,base.group_user,1,1,1,1
+access_stock_lot,stock.lot,model_stock_lot,base.group_user,1,1,1,1
+access_farm_crisis_incident,farm.crisis.incident,model_farm_crisis_incident,base.group_user,1,1,1,1

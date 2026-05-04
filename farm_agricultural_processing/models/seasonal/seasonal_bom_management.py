@@ -229,7 +229,7 @@ class AgriInterventionSeasonalBomMaterial(models.Model):
 
     base_qty = fields.Float("Base Quantity", required=True)
     seasonal_qty = fields.Float("Seasonal Quantity", required=True)
-    qty_difference = fields.Float("Quantity Difference", compute='_compute_qty_difference', store=True)
+    qty_difference = fields.Float("Quantity Difference", compute='_compute_qty_difference', store=True, precompute=True)
 
     adjustment_reason = fields.Text("Adjustment Reason", help="Why this material quantity changes by season")
 
@@ -267,7 +267,7 @@ class AgriInterventionSeasonalBomParameter(models.Model):
     parameter_name = fields.Char("Parameter Name", required=True)
     base_value = fields.Float("Base Value", required=True)
     seasonal_value = fields.Float("Seasonal Value", required=True)
-    value_difference = fields.Float("Value Difference", compute='_compute_value_difference', store=True)
+    value_difference = fields.Float("Value Difference", compute='_compute_value_difference', store=True, precompute=True)
 
     unit_of_measure = fields.Char("Unit of Measure")
     adjustment_reason = fields.Text("Adjustment Reason", help="Why this parameter changes by season")

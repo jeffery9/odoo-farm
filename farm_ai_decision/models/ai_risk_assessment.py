@@ -36,7 +36,7 @@ class AgriAiRiskAssessment(models.Model):
         ('medium', 'Medium'),
         ('high', 'High'),
         ('critical', 'Critical'),
-    ], string='Risk Level', compute='_compute_risk_level', store=True)
+    ], string='Risk Level', compute='_compute_risk_level', store=True, precompute=True)
     risk_factors = fields.Text('Risk Factors')
     mitigation_strategies = fields.Html('Mitigation Strategies')
     contingency_plans = fields.Html('Contingency Plans')

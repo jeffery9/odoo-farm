@@ -35,7 +35,7 @@ class FarmLotQuarantine(models.Model):
     withdrawal_status = fields.Selection([
         ('safe', 'Safe'),
         ('warning', 'Restricting')
-    ], string="Safety Status", compute='_compute_withdrawal_status', store=True)
+    ], string="Safety Status", compute='_compute_withdrawal_status', store=True, precompute=True)
     
     withdrawal_remaining_days = fields.Integer("Safe Harvest Countdown", compute='_compute_withdrawal_remaining')
 

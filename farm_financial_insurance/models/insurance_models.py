@@ -39,11 +39,11 @@ class FarmCropYieldInsurance(models.Model):
     ], string='State', default='draft', required=True)
     reference = fields.Char('Reference', help="External reference from insurance provider")
     risk_score = fields.Float('Risk Score')
-    premium_amount = fields.Monetary('Premium Amount', currency_field='currency_id', compute='_compute_premium_amount', store=True)
+    premium_amount = fields.Monetary('Premium Amount', currency_field='currency_id', compute='_compute_premium_amount', store=True, precompute=True)
     duration_months = fields.Integer('Duration (months)')
     application_date = fields.Date('Application Date', default=fields.Date.context_today)
     approval_date = fields.Date('Approval Date')
-    maturity_date = fields.Date('Maturity Date', compute='_compute_maturity_date', store=True)
+    maturity_date = fields.Date('Maturity Date', compute='_compute_maturity_date', store=True, precompute=True)
     service_fees = fields.Monetary('Service Fees', currency_field='currency_id')
 
     product_id = fields.Many2one('product.template', string='Crop Type')

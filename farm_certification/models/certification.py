@@ -17,7 +17,7 @@ class FarmLocationCert(models.Model):
     last_prohibited_substance_date = fields.Date("Last Prohibited Substance Date", 
                                                help="Automatically updated when a non-organic input is used.")
     conversion_target_days = fields.Integer("Target Conversion Days", default=1095) # 默认3年
-    conversion_progress = fields.Float("Conversion Progress (%)", compute='_compute_conversion_progress', store=True)
+    conversion_progress = fields.Float("Conversion Progress (%)", compute='_compute_conversion_progress', store=True, precompute=True)
     
     @api.depends('conversion_start_date', 'last_prohibited_substance_date', 'conversion_target_days')
     def _compute_conversion_progress(self):

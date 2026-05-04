@@ -19,7 +19,7 @@ class ServiceOrder(models.Model):
     required_date = fields.Date('Required Date', required=True)
     service_quantity = fields.Float('Service Quantity', required=True)
     unit_rate = fields.Float('Unit Rate', related='service_id.unit_rate')
-    total_amount = fields.Float('Total Amount', compute='_compute_total_amount', store=True)
+    total_amount = fields.Float('Total Amount', compute='_compute_total_amount', store=True, precompute=True)
     description = fields.Text('Service Description')
     state = fields.Selection([
         ('draft', 'Draft'),

@@ -37,7 +37,7 @@ class FarmHaccpCheck(models.Model):
 
     # Monitoring results
     actual_value = fields.Float("Measured Value")
-    is_violated = fields.Boolean("CL Violation", compute='_compute_violation', store=True)
+    is_violated = fields.Boolean("CL Violation", compute='_compute_violation', store=True, precompute=True)
     
     # Corrective Action [US-114-03]
     corrective_action_taken = fields.Text("Corrective Action Taken")

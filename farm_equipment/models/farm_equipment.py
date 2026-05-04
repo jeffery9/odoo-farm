@@ -26,7 +26,7 @@ class FarmEquipment(models.Model):
     fuel_tank_capacity = fields.Float("Fuel Tank Capacity (L)")
     
     # Usage Stats
-    total_engine_hours = fields.Float("Total Engine Hours", compute='_compute_total_hours', store=True)
+    total_engine_hours = fields.Float("Total Engine Hours", compute='_compute_total_hours', store=True, precompute=True)
     fuel_log_ids = fields.One2many('farm.equipment.log', 'equipment_id', string="Usage Logs")
 
     @api.depends('fuel_log_ids.engine_hours')
@@ -70,7 +70,7 @@ class FarmBattery(models.Model):
         ('aging', 'Aging'),
         ('retired', 'Retired'),
         ('damaged', 'Damaged')
-    ], string="Status", compute='_compute_state', store=True)
+    ], string="Status", compute='_compute_state', store=True, precompute=True)
 
     @api.depends('cycle_count', 'max_cycles', 'current_capacity_health')
     def _compute_state(self):

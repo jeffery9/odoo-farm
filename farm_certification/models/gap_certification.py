@@ -127,15 +127,15 @@ class FarmGAPAudit(models.Model):
     worker_safety_score = fields.Float("Worker Safety Score", digits=(10, 2))
     traceability_score = fields.Float("Traceability Score", digits=(10, 2))
     environmental_score = fields.Float("Environmental Score", digits=(10, 2))
-    total_score = fields.Float("Total Score", compute='_compute_total_score', store=True)
+    total_score = fields.Float("Total Score", compute='_compute_total_score', store=True, precompute=True)
 
     # Compliance Status
-    compliant = fields.Boolean("Overall Compliant", compute='_compute_compliance', store=True)
+    compliant = fields.Boolean("Overall Compliant", compute='_compute_compliance', store=True, precompute=True)
     audit_result = fields.Selection([
         ('pass', 'Pass'),
         ('conditional', 'Conditional Pass'),
         ('fail', 'Fail')
-    ], string="Audit Result", compute='_compute_audit_result', store=True)
+    ], string="Audit Result", compute='_compute_audit_result', store=True, precompute=True)
 
     non_conformities = fields.Text("Non-Conformities")
     corrective_actions = fields.Text("Corrective Actions Required")
@@ -216,7 +216,7 @@ class FarmGAPComplianceCheck(models.Model):
     _name = 'farm.gap.compliance.check'
     _description = 'GAP Daily Compliance Check'
 
-    name = fields.Char("Check Reference", compute='_compute_name', store=True)
+    name = fields.Char("Check Reference", compute='_compute_name', store=True, precompute=True)
     location_id = fields.Many2one('farm.location', string="Location", required=True)
     date = fields.Date("Check Date", default=fields.Date.context_today, required=True)
     checker_id = fields.Many2one('res.users', string="Checked By", default=lambda self: self.env.user)
@@ -229,7 +229,7 @@ class FarmGAPComplianceCheck(models.Model):
     traceability_compliant = fields.Boolean("Traceability Compliant")
     environmental_compliant = fields.Boolean("Environmental Compliant")
 
-    overall_compliant = fields.Boolean("Overall Compliant", compute='_compute_overall_compliance', store=True)
+    overall_compliant = fields.Boolean("Overall Compliant", compute='_compute_overall_compliance', store=True, precompute=True)
     notes = fields.Text("Notes")
     corrective_actions = fields.Text("Corrective Actions")
 

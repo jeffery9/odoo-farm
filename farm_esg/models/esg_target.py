@@ -29,7 +29,7 @@ class ESGTarget(models.Model):
     # Target metrics
     baseline_value = fields.Float('Baseline Value', required=True)
     target_value = fields.Float('Target Value', required=True)
-    current_value = fields.Float('Current Value', compute='_compute_current_value', store=True)
+    current_value = fields.Float('Current Value', compute='_compute_current_value', store=True, precompute=True)
     unit_of_measurement = fields.Char('Unit of Measurement', required=True)
 
     # Timeline
@@ -38,8 +38,8 @@ class ESGTarget(models.Model):
     achieved_date = fields.Date('Achieved Date', readonly=True)
 
     # Progress tracking
-    progress_percentage = fields.Float('Progress %', compute='_compute_progress_percentage', store=True)
-    is_achieved = fields.Boolean('Is Achieved', compute='_compute_is_achieved', store=True)
+    progress_percentage = fields.Float('Progress %', compute='_compute_progress_percentage', store=True, precompute=True)
+    is_achieved = fields.Boolean('Is Achieved', compute='_compute_is_achieved', store=True, precompute=True)
 
     # Related framework and indicators
     framework_id = fields.Many2one('esg.framework', 'ESG Framework')
@@ -178,7 +178,7 @@ class ESGPerformanceReport(models.Model):
     environmental_score = fields.Float('Environmental Score (0-100)')
     social_score = fields.Float('Social Score (0-100)')
     governance_score = fields.Float('Governance Score (0-100)')
-    overall_esg_score = fields.Float('Overall ESG Score (0-100)', compute='_compute_overall_score', store=True)
+    overall_esg_score = fields.Float('Overall ESG Score (0-100)', compute='_compute_overall_score', store=True, precompute=True)
 
     # Target achievement metrics
     total_targets = fields.Integer('Total Targets', compute='_compute_target_metrics')

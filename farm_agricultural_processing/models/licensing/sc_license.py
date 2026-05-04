@@ -9,7 +9,7 @@ class FarmScLicense(models.Model):
     company_id = fields.Many2one('res.company', string='Company', required=True, default=lambda self: self.env.company)
     expiry_date = fields.Date("Expiry Date", required=True)
     category_ids = fields.Many2many('farm.sc.category', string="Permitted Categories")
-    is_active = fields.Boolean("Is Active", compute='_compute_is_active', store=True)
+    is_active = fields.Boolean("Is Active", compute='_compute_is_active', store=True, precompute=True)
 
     @api.depends('expiry_date')
     def _compute_is_active(self):

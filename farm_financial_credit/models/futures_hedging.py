@@ -38,7 +38,7 @@ class FarmFuturesHedging(models.Model):
     duration_months = fields.Integer('Duration (months)')
     application_date = fields.Date('Application Date', default=fields.Date.context_today)
     approval_date = fields.Date('Approval Date')
-    maturity_date = fields.Date('Maturity Date', compute='_compute_maturity_date', store=True)
+    maturity_date = fields.Date('Maturity Date', compute='_compute_maturity_date', store=True, precompute=True)
     service_fees = fields.Monetary('Service Fees', currency_field='currency_id')
 
     commodity_type = fields.Selection([
@@ -75,7 +75,7 @@ class FarmFuturesHedging(models.Model):
         ('speculation', 'Speculation'),
     ], string='Strategy Type', default='floor')
     margin_amount = fields.Monetary('Margin Amount', currency_field='currency_id')
-    unrealized_pnl = fields.Monetary('Unrealized P&L', currency_field='currency_id', compute='_compute_unrealized_pnl', store=True)
+    unrealized_pnl = fields.Monetary('Unrealized P&L', currency_field='currency_id', compute='_compute_unrealized_pnl', store=True, precompute=True)
     stop_loss_price = fields.Float('Stop Loss Price ($/unit)', digits=(16, 4))
     take_profit_price = fields.Float('Take Profit Price ($/unit)', digits=(16, 4))
     exchange_name = fields.Char('Exchange', default='CME Group')

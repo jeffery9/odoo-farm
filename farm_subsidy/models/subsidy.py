@@ -59,7 +59,7 @@ class FarmSubsidyApplication(models.Model):
         ('non_compliant', 'Non-Compliant')
     ], string="Compliance Status", default='pending', tracking=True)
 
-    evidence_collected = fields.Integer("Evidence Collected", compute='_compute_evidence_collected', store=True)
+    evidence_collected = fields.Integer("Evidence Collected", compute='_compute_evidence_collected', store=True, precompute=True)
     evidence_records = fields.One2many('farm.evidence', 'subsidy_application_id', string="Compliance Evidence")
 
     # Fields for compliance handbook generation

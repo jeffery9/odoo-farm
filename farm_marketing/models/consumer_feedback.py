@@ -39,7 +39,7 @@ class StockLot(models.Model):
     _inherit = 'stock.lot'
 
     feedback_ids = fields.One2many('farm.consumer.feedback', 'lot_id', string="Consumer Feedbacks")
-    avg_consumer_rating = fields.Float("Avg Consumer Rating", compute='_compute_feedback_stats', store=True)
+    avg_consumer_rating = fields.Float("Avg Consumer Rating", compute='_compute_feedback_stats', store=True, precompute=True)
 
     @api.depends('feedback_ids.rating')
     def _compute_feedback_stats(self):

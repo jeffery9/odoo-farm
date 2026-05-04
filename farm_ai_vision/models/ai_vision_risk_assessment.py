@@ -37,7 +37,7 @@ class AgriAiVisionRiskAssessment(AgriAiVisionBase):
         ('medium', 'Medium (41-60%)'),
         ('high', 'High (61-80%)'),
         ('very_high', 'Very High (81-100%)'),
-    ], string='Risk Level', compute='_compute_risk_level', store=True)
+    ], string='Risk Level', compute='_compute_risk_level', store=True, precompute=True)
 
     risk_score = fields.Float('Risk Score', help="Numerical risk score from 0-100")
     affected_area_percentage = fields.Float('Affected Area (%)', help="Percentage of area at risk")

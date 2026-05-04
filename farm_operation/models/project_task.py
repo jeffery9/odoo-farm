@@ -68,9 +68,9 @@ class ProjectTask(models.Model):
     )
 
     # 养分汇总 [US-001-03]
-    total_n = fields.Float("Total Nitrogen (kg)", compute='_compute_nutrients', store=True)
-    total_p = fields.Float("Total Phosphorus (kg)", compute='_compute_nutrients', store=True)
-    total_k = fields.Float("Total Potassium (kg)", compute='_compute_nutrients', store=True)
+    total_n = fields.Float("Total Nitrogen (kg)", compute='_compute_nutrients', store=True, precompute=True)
+    total_p = fields.Float("Total Phosphorus (kg)", compute='_compute_nutrients', store=True, precompute=True)
+    total_k = fields.Float("Total Potassium (kg)", compute='_compute_nutrients', store=True, precompute=True)
 
     # 养分密度 (kg/mu) [US-001-03 Algorithm]
     n_density = fields.Float("N Density (kg/mu)", compute='_compute_agri_math')

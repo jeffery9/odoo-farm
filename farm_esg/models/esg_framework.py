@@ -80,7 +80,7 @@ class ESGAssessment(models.Model):
         ('product.product', 'Product'),
     ], string='Assessed Entity', help='The entity being assessed')
 
-    overall_esg_score = fields.Float('Overall ESG Score (0-100)', compute='_compute_overall_esg_score', store=True)
+    overall_esg_score = fields.Float('Overall ESG Score (0-100)', compute='_compute_overall_esg_score', store=True, precompute=True)
     assessment_status = fields.Selection([
         ('draft', 'Draft'),
         ('in_progress', 'In Progress'),
