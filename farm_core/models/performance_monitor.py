@@ -19,7 +19,7 @@ class AgriPerformanceMonitor(models.Model):
     operation = fields.Char(string="Operation Type", required=True)
     start_time = fields.Datetime(string="Start Time", default=fields.Datetime.now)
     end_time = fields.Datetime(string="End Time")
-    duration = fields.Float(string="Duration (seconds)", compute='_compute_duration', store=True)
+    duration = fields.Float(string="Duration (seconds)", compute='_compute_duration', store=True, precompute=True)
     record_count = fields.Integer(string="Record Count", default=1)
     cpu_time = fields.Float(string="CPU Time (seconds)")
     peak_memory_mb = fields.Float(string="Peak Memory (MB)")

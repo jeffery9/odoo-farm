@@ -27,7 +27,7 @@ class FarmSupplyChainNode(models.Model):
         ('normal', 'Normal'),
         ('delayed', 'Delayed'),
         ('critical', 'Critical Outage')
-    ], compute='_compute_node_status', store=True)
+    ], compute='_compute_node_status', store=True, precompute=True)
 
     def _compute_node_status(self):
         for rec in self:

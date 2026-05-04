@@ -32,7 +32,7 @@ class AgriSustainableProductLifecycle(models.Model):
     environmental_impact = fields.Float('Environmental Impact Score (0-100)')
     social_impact = fields.Float('Social Impact Score (0-100)')
     lifecycle_sustainability_score = fields.Float('Lifecycle Sustainability Score (0-100)',
-                                                  compute='_compute_lifecycle_score', store=True)
+                                                  compute='_compute_lifecycle_score', store=True, precompute=True)
 
     # Design principles
     design_principles = fields.Text('Design Principles')
@@ -47,7 +47,7 @@ class AgriSustainableProductLifecycle(models.Model):
     # Lifecycle management
     start_date = fields.Date('Lifecycle Start Date')
     expected_lifespan = fields.Float('Expected Lifespan (Days)')
-    current_age = fields.Float('Current Age (Days)', compute='_compute_current_age', store=True)
+    current_age = fields.Float('Current Age (Days)', compute='_compute_current_age', store=True, precompute=True)
 
     # End-of-life management
     end_of_life_plan = fields.Selection([

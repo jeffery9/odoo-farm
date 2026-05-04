@@ -1,3 +1,15 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_farm_credit_score_user,farm.credit.score.user,model_farm_credit_score,farm_core.group_farm_worker,1,1,1,1
-access_farm_coop_settlement_user,farm.coop.settlement.user,model_farm_coop_settlement,farm_core.group_farm_worker,1,1,1,1
+access_farm_coop_settlement_user,farm.coop.settlement.user,model_farm_coop_settlement,farm_core.group_farm_worker,1,1,1,1access_farm_livestock_asset_loan,farm.livestock.asset.loan,model_farm_livestock_asset_loan,base.group_user,1,1,1,1
+access_farm_carbon_credit_finance,farm.carbon.credit.finance,model_farm_carbon_credit_finance,base.group_user,1,1,1,1
+access_farm_credit_score,farm.credit.score,model_farm_credit_score,base.group_user,1,1,1,1
+access_farm_industry_initialization,farm.industry.initialization,model_farm_industry_initialization,base.group_user,1,1,1,1
+access_farm_risk_assessment,farm.risk.assessment,model_farm_risk_assessment,base.group_user,1,1,1,1
+access_project_task,project.task,model_project_task,base.group_user,1,1,1,1
+access_res_partner,res.partner,model_res_partner,base.group_user,1,1,1,1
+access_farm_coop_settlement,farm.coop.settlement,model_farm_coop_settlement,base.group_user,1,1,1,1
+access_farm_loan,farm.loan,model_farm_loan,base.group_user,1,1,1,1
+access_farm_futures_hedging,farm.futures.hedging,model_farm_futures_hedging,base.group_user,1,1,1,1
+access_agri_industry_initialization_wizard,agri.industry.initialization.wizard,model_agri_industry_initialization_wizard,base.group_user,1,1,1,1
+access_farm_input_financing,farm.input.financing,model_farm_input_financing,base.group_user,1,1,1,1
+access_farm_supply_chain_finance,farm.supply.chain.finance,model_farm_supply_chain_finance,base.group_user,1,1,1,1

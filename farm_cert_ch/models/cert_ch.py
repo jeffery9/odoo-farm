@@ -24,7 +24,7 @@ class FarmProductCertificate(models.Model):
     # 检测结果
     quality_check_ids = fields.Many2many('farm.quality.check', string="Related Quality Checks")
     
-    certificate_qr_code = fields.Char("Certificate QR Code", compute='_compute_qr_code', store=True)
+    certificate_qr_code = fields.Char("Certificate QR Code", compute='_compute_qr_code', store=True, precompute=True)
 
     @api.depends('certificate_no')
     def _compute_qr_code(self):
@@ -43,7 +43,7 @@ class StockPicking(models.Model):
     _name = 'stock.picking'
     _inherit = 'stock.picking'
 
-    requires_cert_ch = fields.Boolean("Requires Cert. (China)", compute='_compute_requires_cert_ch', store=True)
+    requires_cert_ch = fields.Boolean("Requires Cert. (China)", compute='_compute_requires_cert_ch', store=True, precompute=True)
     certificate_ch_ids = fields.One2many('farm.product.certificate', 'picking_id', string="Certificates (China)")
 
     @api.depends('move_ids.product_id')

@@ -37,17 +37,17 @@ class AgriSustainabilityCircularFlow(models.Model):
     # 时间范围
     start_date = fields.Date('开始日期')
     end_date = fields.Date('结束日期')
-    duration_days = fields.Integer('持续天数', compute='_compute_duration', store=True)
+    duration_days = fields.Integer('持续天数', compute='_compute_duration', store=True, precompute=True)
 
     # 价值指标
-    economic_value = fields.Float('经济价值', compute='_compute_economic_value', store=True)
-    environmental_impact = fields.Float('环境影响评分', compute='_compute_environmental_impact', store=True)
-    social_impact = fields.Float('社会影响评分', compute='_compute_social_impact', store=True)
+    economic_value = fields.Float('经济价值', compute='_compute_economic_value', store=True, precompute=True)
+    environmental_impact = fields.Float('环境影响评分', compute='_compute_environmental_impact', store=True, precompute=True)
+    social_impact = fields.Float('社会影响评分', compute='_compute_social_impact', store=True, precompute=True)
 
     # 成本效益
     processing_cost = fields.Float('加工成本')
     revenue = fields.Float('收入')
-    net_benefit = fields.Float('净收益', compute='_compute_net_benefit', store=True)
+    net_benefit = fields.Float('净收益', compute='_compute_net_benefit', store=True, precompute=True)
 
     # 状态和管理
     status = fields.Selection([

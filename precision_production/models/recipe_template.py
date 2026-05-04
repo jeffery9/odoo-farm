@@ -25,7 +25,7 @@ class MrpBom(models.Model):
     production_drive_type = fields.Selection([
         ('material', 'Material Driven'),
         ('parameter', 'Recipe/Parameter Driven')
-    ], string="Drive Mode", compute='_compute_drive_type', store=True, readonly=False, tracking=True)
+    ], string="Drive Mode", compute='_compute_drive_type', store=True, precompute=True, readonly=False, tracking=True)
 
     @api.depends('product_tmpl_id.production_drive_type')
     def _compute_drive_type(self):

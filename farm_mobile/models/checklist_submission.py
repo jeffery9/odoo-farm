@@ -20,7 +20,7 @@ class FarmChecklistSubmission(models.Model):
     state = fields.Selection([
         ('pass', 'Pass'),
         ('fail', 'Fail')
-    ], string="Result", compute='_compute_state', store=True)
+    ], string="Result", compute='_compute_state', store=True, precompute=True)
 
     @api.model_create_multi
     def create(self, vals_list):

@@ -11,4 +11,16 @@ access_farm_regional_oversight,farm.regional.oversight,model_farm_regional_overs
 access_contract_farming_agreement_user,contract.farming.agreement.user,model_contract_farming_agreement,base.group_user,1,1,1,1
 access_contract_farming_input_prepayment_user,contract.farming.input.prepayment.user,model_contract_farming_input_prepayment,base.group_user,1,1,1,1
 access_contract_farming_yield_commitment_user,contract.farming.yield.commitment.user,model_contract_farming_yield_commitment,base.group_user,1,1,1,1
-access_contract_farming_settlement_user,contract.farming.settlement.user,model_contract_farming_settlement,base.group_user,1,1,1,1
+access_contract_farming_settlement_user,contract.farming.settlement.user,model_contract_farming_settlement,base.group_user,1,1,1,1access_contract_farming_input_prepayment,contract.farming.input.prepayment,model_contract_farming_input_prepayment,base.group_user,1,1,1,1
+access_farm_entity,farm.entity,model_farm_entity,base.group_user,1,1,1,1
+access_agri_service,agri.service,model_agri_service,base.group_user,1,1,1,1
+access_contract_farming_settlement,contract.farming.settlement,model_contract_farming_settlement,base.group_user,1,1,1,1
+access_internal_settlement,internal.settlement,model_internal_settlement,base.group_user,1,1,1,1
+access_farm_regional_oversight,farm.regional.oversight,model_farm_regional_oversight,base.group_user,1,1,1,1
+access_cooperative_entity,cooperative.entity,model_cooperative_entity,base.group_user,1,1,1,1
+access_resource_sharing,resource.sharing,model_resource_sharing,base.group_user,1,1,1,1
+access_contract_farming_yield_commitment,contract.farming.yield.commitment,model_contract_farming_yield_commitment,base.group_user,1,1,1,1
+access_contract_farming_agreement,contract.farming.agreement,model_contract_farming_agreement,base.group_user,1,1,1,1
+access_cooperative_member,cooperative.member,model_cooperative_member,base.group_user,1,1,1,1
+access_service_order,service.order,model_service_order,base.group_user,1,1,1,1
+access_franchise_farm,franchise.farm,model_franchise_farm,base.group_user,1,1,1,1

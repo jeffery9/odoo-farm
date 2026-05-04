@@ -27,7 +27,7 @@ class FarmLaborPayment(models.Model):
     date_to = fields.Date("Date To", required=True)
     
     line_ids = fields.One2many('farm.labor.payment.line', 'payment_id', string="Details")
-    total_amount = fields.Monetary("Total Amount", compute='_compute_total_amount', store=True)
+    total_amount = fields.Monetary("Total Amount", compute='_compute_total_amount', store=True, precompute=True)
     currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.company.currency_id)
     
     # Accounting Integration

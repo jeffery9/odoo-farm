@@ -25,8 +25,8 @@ class FarmCheckIn(models.Model):
     checkin_photo = fields.Binary("Site Photo", attachment=True)
     
     # 校验结果
-    is_on_site = fields.Boolean("On-site Verified", compute='_compute_site_verification', store=True)
-    site_distance = fields.Float("Distance to Site (m)", compute='_compute_site_verification', store=True)
+    is_on_site = fields.Boolean("On-site Verified", compute='_compute_site_verification', store=True, precompute=True)
+    site_distance = fields.Float("Distance to Site (m)", compute='_compute_site_verification', store=True, precompute=True)
 
     @api.model_create_multi
     def create(self, vals_list):

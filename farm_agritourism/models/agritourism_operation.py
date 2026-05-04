@@ -22,7 +22,7 @@ class FarmAgritourismOperation(models.Model):
         ('farm_to_table', 'Farm-to-Table Experience'),
         ('workshop', 'Workshop/Course'),
     ], string='Activity Type', required=True)
-    activity_code = fields.Char('Activity Code', compute='_compute_activity_code', store=True)
+    activity_code = fields.Char('Activity Code', compute='_compute_activity_code', store=True, precompute=True)
 
     # Visitor Management
     visitor_count = fields.Integer('Planned Visitor Count')
@@ -59,7 +59,7 @@ class FarmAgritourismOperation(models.Model):
     improvement_suggestions = fields.Text('Improvement Suggestions')
 
     # Seasonal and Weather Considerations
-    weather_suitable = fields.Boolean('Weather Suitable', compute='_compute_weather_suitable', store=True)
+    weather_suitable = fields.Boolean('Weather Suitable', compute='_compute_weather_suitable', store=True, precompute=True)
     weather_impact_notes = fields.Text('Weather Impact Notes')
     backup_plan = fields.Text('Backup Plan for Inclement Weather')
 
@@ -80,9 +80,9 @@ class FarmAgritourismOperation(models.Model):
 
     # Experience Sales Integration
     related_sale_orders = fields.Many2many('sale.order', string='Related Sale Orders')
-    merchandise_sales = fields.Float('Merchandise Sales (¥)', compute='_compute_revenue', store=True)
-    food_beverage_sales = fields.Float('Food & Beverage Sales (¥)', compute='_compute_revenue', store=True)
-    total_revenue = fields.Float('Total Revenue (¥)', compute='_compute_revenue', store=True)
+    merchandise_sales = fields.Float('Merchandise Sales (¥)', compute='_compute_revenue', store=True, precompute=True)
+    food_beverage_sales = fields.Float('Food & Beverage Sales (¥)', compute='_compute_revenue', store=True, precompute=True)
+    total_revenue = fields.Float('Total Revenue (¥)', compute='_compute_revenue', store=True, precompute=True)
 
     @api.depends('name', 'activity_type')
     def _compute_activity_code(self):

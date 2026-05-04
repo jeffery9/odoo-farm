@@ -50,7 +50,7 @@ class AgriCooperativeResourceSharing(models.Model):
     netting_transaction_id = fields.Char('Netting Transaction ID',
                                          help='For automatic reconciliation engine')
     logistics_cost = fields.Float('Logistics Cost')
-    resource_value = fields.Float('Resource Value', compute='_compute_resource_value', store=True)
+    resource_value = fields.Float('Resource Value', compute='_compute_resource_value', store=True, precompute=True)
 
     # Timeline
     publish_date = fields.Date('Publish Date', default=fields.Date.context_today)
@@ -158,7 +158,7 @@ class AgriInternalNettingEngine(models.Model):
 
     # Logistics and cost accounting
     logistics_cost = fields.Float('Logistics Cost')
-    net_value = fields.Float('Net Value', compute='_compute_net_value', store=True)
+    net_value = fields.Float('Net Value', compute='_compute_net_value', store=True, precompute=True)
 
     # Accounting
     debit_farm_id = fields.Many2one('res.partner', string='Debit Farm')

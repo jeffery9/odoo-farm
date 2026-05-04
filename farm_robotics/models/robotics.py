@@ -27,7 +27,7 @@ class FarmRobot(models.Model):
     device_id = fields.Many2one('iiot.device', string="Connected IoT Device")
     
     # A2A Identity [US-100-2026]
-    agent_id = fields.Char("Agent Identifier", compute="_compute_agent_id", store=True)
+    agent_id = fields.Char("Agent Identifier", compute="_compute_agent_id", store=True, precompute=True)
     
     battery_level = fields.Float("Battery (%)", compute='_compute_iot_status')
     current_mission_id = fields.Many2one('farm.robot.mission', string="Current Mission", compute='_compute_iot_status')

@@ -25,7 +25,7 @@ class FarmAquacultureOperation(models.Model):
     pond_capacity = fields.Float('Pond Capacity (m³)', help='Capacity of the selected pond')
     aquatic_species = fields.Char('Aquatic Species', help='Species name for pond')
     initial_stocking = fields.Integer('Initial Stocking Count')
-    current_count = fields.Integer('Current Count', compute='_compute_current_count', store=True)
+    current_count = fields.Integer('Current Count', compute='_compute_current_count', store=True, precompute=True)
 
     # Water Quality Management
     water_temperature = fields.Float('Water Temperature (°C)')
@@ -39,7 +39,7 @@ class FarmAquacultureOperation(models.Model):
         ('fair', 'Fair'),
         ('poor', 'Poor'),
         ('critical', 'Critical'),
-    ], string='Water Quality Status', compute='_compute_water_quality_status', store=True)
+    ], string='Water Quality Status', compute='_compute_water_quality_status', store=True, precompute=True)
 
     # Feeding Management
     feeding_schedule = fields.Text('Feeding Schedule')
@@ -48,12 +48,12 @@ class FarmAquacultureOperation(models.Model):
 
     # Growth Tracking
     avg_initial_weight = fields.Float('Avg Initial Weight (g)')
-    avg_current_weight = fields.Float('Avg Current Weight (g)', compute='_compute_avg_current_weight', store=True)
-    growth_rate = fields.Float('Growth Rate (g/day)', compute='_compute_growth_rate', store=True)
+    avg_current_weight = fields.Float('Avg Current Weight (g)', compute='_compute_avg_current_weight', store=True, precompute=True)
+    growth_rate = fields.Float('Growth Rate (g/day)', compute='_compute_growth_rate', store=True, precompute=True)
     target_weight = fields.Float('Target Weight (g)')
 
     # Harvest Management
-    harvest_readiness = fields.Boolean('Harvest Readiness', compute='_compute_harvest_readiness', store=True)
+    harvest_readiness = fields.Boolean('Harvest Readiness', compute='_compute_harvest_readiness', store=True, precompute=True)
     harvest_plan_date = fields.Date('Planned Harvest Date')
 
     # Aquaculture specific stages

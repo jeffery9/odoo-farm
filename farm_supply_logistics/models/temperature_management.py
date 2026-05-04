@@ -24,7 +24,7 @@ class SeasonalStockForecast(models.Model):
     base_demand_forecast = fields.Float('Base Demand Forecast')
     temperature_impact_factor = fields.Float('Temperature Impact Factor', default=1.0,
                                            help='Factor by which temperature affects shelf life and demand')
-    adjusted_demand_forecast = fields.Float('Adjusted Demand Forecast', compute='_compute_adjusted_forecast', store=True)
+    adjusted_demand_forecast = fields.Float('Adjusted Demand Forecast', compute='_compute_adjusted_forecast', store=True, precompute=True)
 
     # Temperature data
     avg_temperature = fields.Float('Avg Temperature (℃)')
@@ -33,13 +33,13 @@ class SeasonalStockForecast(models.Model):
 
     # Shelf life impact
     base_shelf_life_days = fields.Integer('Base Shelf Life (Days)')
-    temperature_adjusted_shelf_life = fields.Integer('Temperature-adjusted Shelf Life', compute='_compute_shelf_life', store=True)
-    shelf_life_reduction_days = fields.Integer('Shelf Life Reduction (Days)', compute='_compute_shelf_life', store=True)
+    temperature_adjusted_shelf_life = fields.Integer('Temperature-adjusted Shelf Life', compute='_compute_shelf_life', store=True, precompute=True)
+    shelf_life_reduction_days = fields.Integer('Shelf Life Reduction (Days)', compute='_compute_shelf_life', store=True, precompute=True)
 
     # Inventory recommendations
     recommended_safety_stock = fields.Float('Recommended Safety Stock')
     reorder_point = fields.Float('Reorder Point')
-    suggested_order_quantity = fields.Float('Suggested Order Quantity', compute='_compute_order_quantity', store=True)
+    suggested_order_quantity = fields.Float('Suggested Order Quantity', compute='_compute_order_quantity', store=True, precompute=True)
 
     @api.depends('base_demand_forecast', 'temperature_impact_factor')
     def _compute_adjusted_forecast(self):
@@ -97,8 +97,8 @@ class PrecoolingProcess(models.Model):
 
     # Time tracking
     cooling_duration_hours = fields.Float('Target Cooling Duration (hours)', required=True)
-    actual_cooling_duration = fields.Float('Actual Cooling Duration (hours)', compute='_compute_duration', store=True)
-    cooling_progress = fields.Float('Cooling Progress (%)', compute='_compute_progress', store=True)
+    actual_cooling_duration = fields.Float('Actual Cooling Duration (hours)', compute='_compute_duration', store=True, precompute=True)
+    cooling_progress = fields.Float('Cooling Progress (%)', compute='_compute_progress', store=True, precompute=True)
 
     # Status
     status = fields.Selection([

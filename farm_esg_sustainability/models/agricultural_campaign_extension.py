@@ -6,9 +6,9 @@ class AgriculturalCampaign(models.Model):
 
     # 汇总该生产季下所有任务的养分投入
     task_ids = fields.One2many("project.task", "campaign_id", string="Tasks")
-    total_n = fields.Float("Total Nitrogen (kg)", compute='_compute_campaign_nutrients', store=True)
-    total_p = fields.Float("Total Phosphorus (kg)", compute='_compute_campaign_nutrients', store=True)
-    total_k = fields.Float("Total Potassium (kg)", compute='_compute_campaign_nutrients', store=True)
+    total_n = fields.Float("Total Nitrogen (kg)", compute='_compute_campaign_nutrients', store=True, precompute=True)
+    total_p = fields.Float("Total Phosphorus (kg)", compute='_compute_campaign_nutrients', store=True, precompute=True)
+    total_k = fields.Float("Total Potassium (kg)", compute='_compute_campaign_nutrients', store=True, precompute=True)
 
     # 减量化对比指标 [US-008-03]
     n_reduction_rate = fields.Float("N Reduction %", compute='_compute_reduction_rates')

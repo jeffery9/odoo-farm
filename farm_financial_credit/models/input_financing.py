@@ -27,7 +27,7 @@ class InputFinancing(models.Model):
     # Input details
     quantity = fields.Float('Quantity')
     unit_price = fields.Float('Unit Price')
-    total_amount = fields.Monetary('Total Amount', currency_field='currency_id', compute='_compute_total_amount', store=True)
+    total_amount = fields.Monetary('Total Amount', currency_field='currency_id', compute='_compute_total_amount', store=True, precompute=True)
 
     # Financial terms
     amount_financed = fields.Monetary('Amount Financed', currency_field='currency_id')
@@ -49,7 +49,7 @@ class InputFinancing(models.Model):
     # Tracking
     application_date = fields.Date('Application Date', default=fields.Date.context_today)
     approval_date = fields.Date('Approval Date')
-    maturity_date = fields.Date('Maturity Date', compute='_compute_maturity_date', store=True)
+    maturity_date = fields.Date('Maturity Date', compute='_compute_maturity_date', store=True, precompute=True)
 
     # Delivery & Usage
     delivery_status = fields.Selection([

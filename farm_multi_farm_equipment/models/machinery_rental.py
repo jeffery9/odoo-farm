@@ -24,7 +24,7 @@ class MachineryRental(models.Model):
         ('area_based', 'Area-based'),
         ('task_based', 'Task-based'),
     ], string='Rental Type', default='hourly', required=True)
-    expected_cost = fields.Float('Expected Cost', compute='_compute_expected_cost', store=True)
+    expected_cost = fields.Float('Expected Cost', compute='_compute_expected_cost', store=True, precompute=True)
     actual_cost = fields.Float('Actual Cost', default=0.0)
     settlement_id = fields.Many2one('internal.settlement', string='Settlement')
     state = fields.Selection([

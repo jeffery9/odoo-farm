@@ -3,3 +3,9 @@ access_agri_manure_batch,agri.manure.batch,model_agri_manure_batch,base.group_us
 access_agri_manure_ledger,agri.manure.ledger,model_agri_manure_ledger,base.group_user,1,1,1,1
 access_farm_manure_batch,farm.manure.batch,model_farm_manure_batch,farm_core.group_farm_worker,1,1,1,1
 access_farm_manure_ledger,farm.manure.ledger,model_farm_manure_ledger,farm_core.group_farm_manager,1,1,1,1
+access_farm_storage_env,farm.storage.env,model_farm_storage_env,base.group_user,1,1,1,1
+access_farm_manure_ledger,farm.manure.ledger,model_farm_manure_ledger,base.group_user,1,1,1,1
+access_agri_manure_ledger,agri.manure.ledger,model_agri_manure_ledger,base.group_user,1,1,1,1
+access_farm_manure_batch,farm.manure.batch,model_farm_manure_batch,base.group_user,1,1,1,1
+access_agri_manure_batch,agri.manure.batch,model_agri_manure_batch,base.group_user,1,1,1,1
+access_farm_processing_waste,farm.processing.waste,model_farm_processing_waste,base.group_user,1,1,1,1

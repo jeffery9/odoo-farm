@@ -39,9 +39,9 @@ class FarmProcessingProduction(models.Model):
     # US-095-02: Artisan Monitoring
     current_moisture_content = fields.Float("Current Moisture (%)", group_operator="avg")
     current_weight_loss_ratio = fields.Float("Current Weight Loss (%)")
-    is_ready_for_harvest = fields.Boolean("Ready for Collection", compute='_compute_artisan_readiness', store=True)
+    is_ready_for_harvest = fields.Boolean("Ready for Collection", compute='_compute_artisan_readiness', store=True, precompute=True)
     
-    processing_bom_id = fields.Many2one('farm.processing.bom', string='Processing Recipe', compute='_compute_processing_bom', store=True)
+    processing_bom_id = fields.Many2one('farm.processing.bom', string='Processing Recipe', compute='_compute_processing_bom', store=True, precompute=True)
 
     @api.depends('bom_id')
     def _compute_processing_bom(self):

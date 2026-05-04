@@ -14,11 +14,11 @@ class PrecisionRecipePhaseIot(models.Model):
     )
 
     # Computed fields for IoT status
-    iot_connected = fields.Boolean('IoT Connected', compute='_compute_iot_status', store=True)
-    iot_disconnected = fields.Boolean('IoT Disconnected', compute='_compute_iot_status', store=True)
-    iot_warning = fields.Boolean('IoT Warning', compute='_compute_iot_status', store=True)
-    iot_error = fields.Boolean('IoT Error', compute='_compute_iot_status', store=True)
-    iot_device_status = fields.Char('IoT Device Status', compute='_compute_iot_status', store=True)
+    iot_connected = fields.Boolean('IoT Connected', compute='_compute_iot_status', store=True, precompute=True)
+    iot_disconnected = fields.Boolean('IoT Disconnected', compute='_compute_iot_status', store=True, precompute=True)
+    iot_warning = fields.Boolean('IoT Warning', compute='_compute_iot_status', store=True, precompute=True)
+    iot_error = fields.Boolean('IoT Error', compute='_compute_iot_status', store=True, precompute=True)
+    iot_device_status = fields.Char('IoT Device Status', compute='_compute_iot_status', store=True, precompute=True)
     iot_readings_count = fields.Integer('IoT Readings Count', compute='_compute_iot_readings_count')
 
     @api.depends('iot_device_ids', 'iot_device_ids.is_connected', 'iot_device_ids.status')

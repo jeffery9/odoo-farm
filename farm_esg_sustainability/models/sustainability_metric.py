@@ -30,8 +30,8 @@ class AgriSustainabilityMetric(models.Model):
     description = fields.Text('Description', translate=True)
     sequence = fields.Integer('Sequence', default=10)
     target_value = fields.Float('Target Value')
-    current_value = fields.Float('Current Value', compute='_compute_current_value', store=True)
-    progress_rate = fields.Float('Progress Rate (%)', compute='_compute_progress_rate', store=True, digits=(6, 2))
+    current_value = fields.Float('Current Value', compute='_compute_current_value', store=True, precompute=True)
+    progress_rate = fields.Float('Progress Rate (%)', compute='_compute_progress_rate', store=True, precompute=True, digits=(6, 2))
     is_active = fields.Boolean('Active', default=True)
     
     calculation_method = fields.Selection([

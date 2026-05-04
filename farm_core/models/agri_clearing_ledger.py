@@ -37,7 +37,7 @@ class AgriClearingLedger(models.Model):
     ], default='draft', tracking=True, string="Transaction State")
 
     # UI Optimization
-    is_todo = fields.Boolean("Needs Attention", compute="_compute_is_todo", store=True)
+    is_todo = fields.Boolean("Needs Attention", compute="_compute_is_todo", store=True, precompute=True)
 
     @api.depends('state')
     def _compute_is_todo(self):

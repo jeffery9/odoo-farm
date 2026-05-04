@@ -32,13 +32,13 @@ class AgriRegionalCircularGovernance(models.Model):
     # Circular economy network
     waste_collection_points = fields.Integer('Waste Collection Points')
     recycling_facilities = fields.Integer('Recycling Facilities')
-    total_participating_farms = fields.Integer('Total Participating Farms', compute='_compute_participating_farms', store=True)
+    total_participating_farms = fields.Integer('Total Participating Farms', compute='_compute_participating_farms', store=True, precompute=True)
 
     # Aggregation and reporting
-    total_waste_processed_ton = fields.Float('Total Waste Processed (ton)', compute='_compute_aggregated_data', store=True)
-    total_resource_created_ton = fields.Float('Total Resource Created (ton)', compute='_compute_aggregated_data', store=True)
-    total_co2_reduced_ton = fields.Float('Total CO2 Reduced (ton)', compute='_compute_aggregated_data', store=True)
-    total_economic_value_yuan = fields.Float('Total Economic Value (Yuan)', compute='_compute_aggregated_data', store=True)
+    total_waste_processed_ton = fields.Float('Total Waste Processed (ton)', compute='_compute_aggregated_data', store=True, precompute=True)
+    total_resource_created_ton = fields.Float('Total Resource Created (ton)', compute='_compute_aggregated_data', store=True, precompute=True)
+    total_co2_reduced_ton = fields.Float('Total CO2 Reduced (ton)', compute='_compute_aggregated_data', store=True, precompute=True)
+    total_economic_value_yuan = fields.Float('Total Economic Value (Yuan)', compute='_compute_aggregated_data', store=True, precompute=True)
 
     # Spatial aggregation using ST_Contains (PostGIS)
     aggregated_data_by_boundary = fields.Text('Aggregated Data by Boundary', compute='_compute_boundary_aggregation')
@@ -64,7 +64,7 @@ class AgriRegionalCircularGovernance(models.Model):
 
     # Logistics coordination
     regional_logistics_hub = fields.Many2one('res.partner', string='Regional Logistics Hub')
-    cross_entity_transfer_count = fields.Integer('Cross-Entity Transfer Count', compute='_compute_transfers', store=True)
+    cross_entity_transfer_count = fields.Integer('Cross-Entity Transfer Count', compute='_compute_transfers', store=True, precompute=True)
 
     # Status
     status = fields.Selection([
@@ -205,7 +205,7 @@ class AgriFarmCircularParticipation(models.Model):
     # Participation metrics
     waste_contributed_ton = fields.Float('Waste Contributed (ton)')
     resources_received_ton = fields.Float('Resources Received (ton)')
-    co2_reduced_ton = fields.Float('CO2 Reduced (ton)', compute='_compute_co2_reduction', store=True)
+    co2_reduced_ton = fields.Float('CO2 Reduced (ton)', compute='_compute_co2_reduction', store=True, precompute=True)
     economic_benefit_yuan = fields.Float('Economic Benefit (Yuan)')
 
     # Participation status

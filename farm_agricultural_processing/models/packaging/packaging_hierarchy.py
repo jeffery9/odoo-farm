@@ -42,7 +42,7 @@ class AgriProcessingPackaging(models.Model):
     _order = 'creation_date desc'
 
     name = fields.Char('Package ID', required=True, default=lambda self: self._default_package_id())
-    parent_package_id = fields.Many2one('agri.processing.packaging', string='Parent Package', index=True)
+    parent_package_id = fields.Many2one('agri.processing.packaging', string='Parent Package')
     child_package_ids = fields.One2many('agri.processing.packaging', 'parent_package_id', string='Child Packages')
 
     # Package type and level
@@ -53,7 +53,7 @@ class AgriProcessingPackaging(models.Model):
         ('container', 'Container'),
     ], string='Package Type', required=True, default='individual')
 
-    package_level = fields.Integer('Package Level', compute='_compute_package_level', store=True)
+    package_level = fields.Integer('Package Level', compute='_compute_package_level', store=True, precompute=True)
 
     # Product and lot tracking
     product_id = fields.Many2one('product.product', string='Product')

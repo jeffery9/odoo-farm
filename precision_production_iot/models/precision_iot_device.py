@@ -15,7 +15,7 @@ class PrecisionIotDevice(models.Model):
                                      help="Link to the base Industrial IoT device")
 
     # Basic information
-    name = fields.Char('Device Name', compute='_compute_name', store=True)
+    name = fields.Char('Device Name', compute='_compute_name', store=True, precompute=True)
     device_type = fields.Selection([
         ('temperature', 'Temperature Sensor'),
         ('humidity', 'Humidity Sensor'),

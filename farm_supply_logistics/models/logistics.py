@@ -14,7 +14,7 @@ class StockPicking(models.Model):
     _name = 'stock.picking'
     _inherit = 'stock.picking'
 
-    is_cold_chain = fields.Boolean("Is Cold Chain Transport", compute='_compute_is_cold_chain', store=True)
+    is_cold_chain = fields.Boolean("Is Cold Chain Transport", compute='_compute_is_cold_chain', store=True, precompute=True)
     actual_transport_temp = fields.Float("Actual Transport Temp (℃)")
 
     # Transport Details [US-003-03]

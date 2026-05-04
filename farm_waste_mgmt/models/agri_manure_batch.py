@@ -32,9 +32,9 @@ class AgriManureBatch(models.Model):
     quality_check_id = fields.Many2one('agri.quality.check', string="Quality Check (Maturity)", domain=[('quality_state', '=', 'pass')])
 
     # Nutrient Return [US-057-01, US-057-02]
-    pure_n_qty = fields.Float("Pure Nitrogen (kg)", compute='_compute_nutrients', store=True)
-    pure_p_qty = fields.Float("Pure Phosphorus (kg)", compute='_compute_nutrients', store=True)
-    pure_k_qty = fields.Float("Pure Potassium (kg)", compute='_compute_nutrients', store=True)
+    pure_n_qty = fields.Float("Pure Nitrogen (kg)", compute='_compute_nutrients', store=True, precompute=True)
+    pure_p_qty = fields.Float("Pure Phosphorus (kg)", compute='_compute_nutrients', store=True, precompute=True)
+    pure_k_qty = fields.Float("Pure Potassium (kg)", compute='_compute_nutrients', store=True, precompute=True)
 
     @api.depends('quantity', 'fertilizer_product_id.n_content', 'fertilizer_product_id.p_content', 'fertilizer_product_id.k_content')
     def _compute_nutrients(self):
@@ -106,8 +106,8 @@ class AgriManureLedger(models.Model):
     ], string="Month", default=lambda self: fields.Date.today().strftime('%m'), required=True)
     year = fields.Integer("Year", default=lambda self: fields.Date.today().year, required=True)
 
-    batch_ids = fields.Many2many('agri.manure.batch', string="Manure Batches Included", compute='_compute_batch_ids', store=True)
-    total_quantity_disposed = fields.Float("Total Disposed Quantity (kg)", compute='_compute_ledger_stats', store=True)
+    batch_ids = fields.Many2many('agri.manure.batch', string="Manure Batches Included", compute='_compute_batch_ids', store=True, precompute=True)
+    total_quantity_disposed = fields.Float("Total Disposed Quantity (kg)", compute='_compute_ledger_stats', store=True, precompute=True)
 
     state = fields.Selection([
         ('draft', 'Draft'),

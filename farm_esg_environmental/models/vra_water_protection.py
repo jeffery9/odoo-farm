@@ -90,11 +90,11 @@ class AgriVRAWaterProtectionZone(models.Model):
         ('low', 'Low Risk'),
         ('medium', 'Medium Risk'),
         ('high', 'High Risk'),
-    ], string='Environmental Risk Level', compute='_compute_risk_level', store=True)
+    ], string='Environmental Risk Level', compute='_compute_risk_level', store=True, precompute=True)
 
     # Zone effectiveness metrics
     zone_effectiveness_score = fields.Float('Zone Effectiveness Score (0-100)',
-                                          compute='_compute_effectiveness_score', store=True)
+                                          compute='_compute_effectiveness_score', store=True, precompute=True)
 
     # Status and metadata
     active = fields.Boolean('Active', default=True)

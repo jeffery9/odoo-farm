@@ -4,4 +4,11 @@
 access_farm_crop_bom,farm.crop.bom,model_farm_crop_bom,,1,1,1,1
 access_farm_crop_production,farm.crop.production,model_farm_crop_production,,1,1,1,1
 access_farm_crop_lot,farm.crop.lot,model_farm_crop_lot,,1,1,1,1
-access_farm_crop_bom_line,farm.crop.bom.line,model_farm_crop_bom_line,,1,1,1,1
+access_farm_crop_bom_line,farm.crop.bom.line,model_farm_crop_bom_line,,1,1,1,1access_farm_crop_bom,farm.crop.bom,model_farm_crop_bom,base.group_user,1,1,1,1
+access_mrp_production,mrp.production,model_mrp_production,base.group_user,1,1,1,1
+access_mrp_bom,mrp.bom,model_mrp_bom,base.group_user,1,1,1,1
+access_farm_crop_lot,farm.crop.lot,model_farm_crop_lot,base.group_user,1,1,1,1
+access_farm_crop_bom_line,farm.crop.bom.line,model_farm_crop_bom_line,base.group_user,1,1,1,1
+access_farm_field_crop_operation,farm.field.crop.operation,model_farm_field_crop_operation,base.group_user,1,1,1,1
+access_farm_crop_production,farm.crop.production,model_farm_crop_production,base.group_user,1,1,1,1
+access_stock_lot,stock.lot,model_stock_lot,base.group_user,1,1,1,1

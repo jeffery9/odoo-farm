@@ -16,7 +16,7 @@ class FarmSaleOrder(models.Model):
 
     # 跨境合规 [US-040-06]
     export_country_id = fields.Many2one('res.country', string="Export Destination")
-    is_export_compliant = fields.Boolean("Export Compliant", compute='_compute_export_compliance', store=True)
+    is_export_compliant = fields.Boolean("Export Compliant", compute='_compute_export_compliance', store=True, precompute=True)
 
     @api.depends('export_country_id', 'order_line.product_id')
     def _compute_export_compliance(self):
@@ -102,7 +102,7 @@ class FarmLotMarketing(models.Model):
 
     # US-062-04: Organic Integrity Scoring
     # Formula: Integrity = Geofence Rate * 0.4 + Input Whitelist Rate * 0.4 + QC Pass Rate * 0.2
-    integrity_score = fields.Float("Organic Integrity Score", compute='_compute_integrity_score', store=True)
+    integrity_score = fields.Float("Organic Integrity Score", compute='_compute_integrity_score', store=True, precompute=True)
 
     @api.depends('quality_status') # Simplified dependencies
     def _compute_integrity_score(self):

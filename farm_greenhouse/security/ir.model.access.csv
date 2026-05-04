@@ -4,3 +4,13 @@ access_farm_greenhouse_action,farm.greenhouse.control.action,model_farm_greenhou
 access_farm_greenhouse_energy,farm.greenhouse.energy.log,model_farm_greenhouse_energy_log,farm_core.group_farm_worker,1,1,1,1
 access_government_platform_config,farm.government.platform.config,model_farm_government_platform_config,farm_core.group_farm_worker,1,1,1,1
 access_government_data_report,farm.government.data.report,model_farm_government_data_report,farm_core.group_farm_worker,1,1,1,1
+access_farm_government_data_report,farm.government.data.report,model_farm_government_data_report,base.group_user,1,1,1,1
+access_farm_ecommerce_platform,farm.ecommerce.platform,model_farm_ecommerce_platform,base.group_user,1,1,1,1
+access_farm_greenhouse_control_action,farm.greenhouse.control.action,model_farm_greenhouse_control_action,base.group_user,1,1,1,1
+access_agri_biological_twin,agri.biological.twin,model_agri_biological_twin,base.group_user,1,1,1,1
+access_farm_greenhouse_energy_log,farm.greenhouse.energy.log,model_farm_greenhouse_energy_log,base.group_user,1,1,1,1
+access_farm_ecommerce_listing_wizard,farm.ecommerce.listing.wizard,model_farm_ecommerce_listing_wizard,base.group_user,1,1,1,1
+access_farm_greenhouse_control_rule,farm.greenhouse.control.rule,model_farm_greenhouse_control_rule,base.group_user,1,1,1,1
+access_farm_ecommerce_sync_log,farm.ecommerce.sync.log,model_farm_ecommerce_sync_log,base.group_user,1,1,1,1
+access_farm_location,farm.location,model_farm_location,base.group_user,1,1,1,1
+access_farm_government_platform_config,farm.government.platform.config,model_farm_government_platform_config,base.group_user,1,1,1,1

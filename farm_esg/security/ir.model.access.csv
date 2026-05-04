@@ -4,4 +4,9 @@ access_esg_indicator,esg.indicator,model_esg_indicator,farm_core.group_farm_mana
 access_esg_target,esg.target,model_esg_target,farm_core.group_farm_manager,1,1,1,1
 access_esg_assessment,esg.assessment,model_esg_assessment,farm_core.group_farm_manager,1,1,1,1
 access_esg_assessment_line,esg.assessment.line,model_esg_assessment_line,farm_core.group_farm_manager,1,1,1,1
-access_esg_performance_report,esg.performance.report,model_esg_performance_report,farm_core.group_farm_manager,1,1,1,1
+access_esg_performance_report,esg.performance.report,model_esg_performance_report,farm_core.group_farm_manager,1,1,1,1access_esg_assessment_line,esg.assessment.line,model_esg_assessment_line,base.group_user,1,1,1,1
+access_esg_performance_report,esg.performance.report,model_esg_performance_report,base.group_user,1,1,1,1
+access_esg_framework,esg.framework,model_esg_framework,base.group_user,1,1,1,1
+access_esg_target,esg.target,model_esg_target,base.group_user,1,1,1,1
+access_esg_assessment,esg.assessment,model_esg_assessment,base.group_user,1,1,1,1
+access_esg_indicator,esg.indicator,model_esg_indicator,base.group_user,1,1,1,1

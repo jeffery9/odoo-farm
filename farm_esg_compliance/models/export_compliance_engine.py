@@ -19,8 +19,8 @@ class FarmExportCompliance(models.Model):
     last_audit_run = fields.Datetime("Last Audit Run")
     audit_log = fields.Text("Audit Log Details")
     
-    missing_records = fields.Boolean("Missing Required Records", compute='_compute_compliance_gaps', store=True)
-    withdrawal_violation = fields.Boolean("Withdrawal Period Violation", compute='_compute_compliance_gaps', store=True)
+    missing_records = fields.Boolean("Missing Required Records", compute='_compute_compliance_gaps', store=True, precompute=True)
+    withdrawal_violation = fields.Boolean("Withdrawal Period Violation", compute='_compute_compliance_gaps', store=True, precompute=True)
 
     @api.depends('standard_id', 'product_id', 'target_market_id')
     def _compute_compliance_gaps(self):

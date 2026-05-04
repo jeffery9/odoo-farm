@@ -36,9 +36,9 @@ class FarmEssentialOilProduction(models.Model):
     production_id = fields.Many2one('mrp.production', string='Base Order', required=True, ondelete='cascade')
 
     # Yield Tracking [US-112-02]
-    total_material_input_kg = fields.Float("Material Input (kg)", compute='_compute_yield_metrics', store=True)
+    total_material_input_kg = fields.Float("Material Input (kg)", compute='_compute_yield_metrics', store=True, precompute=True)
     actual_oil_output_l = fields.Float("Oil Output (L)", related='production_id.product_qty')
-    extraction_yield = fields.Float("Extraction Yield (%)", compute='_compute_yield_metrics', store=True)
+    extraction_yield = fields.Float("Extraction Yield (%)", compute='_compute_yield_metrics', store=True, precompute=True)
 
     @api.depends('production_id.move_raw_ids.product_uom_qty', 'production_id.product_qty')
     def _compute_yield_metrics(self):
@@ -69,7 +69,7 @@ class FarmLotEssentialOil(models.Model):
 
     # [US-112-04] Quality Profile
     terpene_content_percent = fields.Float("Total Terpenes (%)")
-    is_medical_grade = fields.Boolean("Medical Grade", compute='_compute_grade', store=True)
+    is_medical_grade = fields.Boolean("Medical Grade", compute='_compute_grade', store=True, precompute=True)
 
     @api.depends('terpene_content_percent')
     def _compute_grade(self):

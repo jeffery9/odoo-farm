@@ -14,8 +14,8 @@ class IiotDevice(models.Model):
     _description = 'Industrial IoT Device'
     _order = 'serial_number'
 
-    name = fields.Char('Name', compute='_compute_name', store=True)
-    serial_number = fields.Char('Serial Number', required=True, copy=False, help='Physical serial number (unique)')
+    name = fields.Char('Name', compute='_compute_name', store=True, precompute=True)
+    serial_number = fields.Char('Serial Number', required=True, copy=False, help='Physical serial number (unique, index=True)')
     device_id = fields.Char('Device ID', required=True, copy=False, help='Logical ID for Topics')
     profile_id = fields.Many2one(
         'iiot.device.profile',

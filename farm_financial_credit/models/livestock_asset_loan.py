@@ -39,7 +39,7 @@ class FarmLivestockAssetLoan(models.Model):
     duration_months = fields.Integer('Duration (months)')
     application_date = fields.Date('Application Date', default=fields.Date.context_today)
     approval_date = fields.Date('Approval Date')
-    maturity_date = fields.Date('Maturity Date', compute='_compute_maturity_date', store=True)
+    maturity_date = fields.Date('Maturity Date', compute='_compute_maturity_date', store=True, precompute=True)
     collateral_value = fields.Monetary('Collateral Value', currency_field='currency_id')
     insurance_coverage = fields.Float('Insurance Coverage (%)', help="Insurance coverage percentage")
     service_fees = fields.Monetary('Service Fees', currency_field='currency_id')

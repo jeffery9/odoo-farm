@@ -124,7 +124,7 @@ class FarmGovernmentDataReport(models.Model):
     start_date = fields.Datetime('Data Start Date', help='Start date for the data included in this report')
     end_date = fields.Datetime('Data End Date', help='End date for the data included in this report')
 
-    data_summary = fields.Text('Data Summary', compute='_compute_data_summary', store=True)
+    data_summary = fields.Text('Data Summary', compute='_compute_data_summary', store=True, precompute=True)
     submission_attempts = fields.Integer('Submission Attempts', default=0)
     last_attempt_date = fields.Datetime('Last Attempt Date')
 

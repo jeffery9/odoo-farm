@@ -6,3 +6,16 @@ access_farm_telemetry,farm.telemetry,model_iiot_telemetry,farm_core.group_farm_w
 access_farm_automation_rule,farm.automation.rule,model_farm_automation_rule,farm_core.group_farm_worker,1,1,1,1
 access_farm_digital_twin_scene,farm.digital.twin.scene,model_farm_digital_twin_scene,farm_core.group_farm_worker,1,1,1,1
 access_farm_digital_twin_marker,farm.digital.twin.marker,model_farm_digital_twin_marker,farm_core.group_farm_worker,1,1,1,1
+access_iiot_device,iiot.device,model_iiot_device,base.group_user,1,1,1,1
+access_farm_telemetry,farm.telemetry,model_farm_telemetry,base.group_user,1,1,1,1
+access_agri_telemetry,agri.telemetry,model_agri_telemetry,base.group_user,1,1,1,1
+access_agri_digital_twin_scene,agri.digital.twin.scene,model_agri_digital_twin_scene,base.group_user,1,1,1,1
+access_iot_telemetry_buffer,iot.telemetry.buffer,model_iot_telemetry_buffer,base.group_user,1,1,1,1
+access_farm_command_log,farm.command.log,model_farm_command_log,base.group_user,1,1,1,1
+access_stock_location,stock.location,model_stock_location,base.group_user,1,1,1,1
+access_agri_digital_twin_marker,agri.digital.twin.marker,model_agri_digital_twin_marker,base.group_user,1,1,1,1
+access_farm_digital_twin_marker,farm.digital.twin.marker,model_farm_digital_twin_marker,base.group_user,1,1,1,1
+access_farm_digital_twin_scene,farm.digital.twin.scene,model_farm_digital_twin_scene,base.group_user,1,1,1,1
+access_farm_location,farm.location,model_farm_location,base.group_user,1,1,1,1
+access_farm_automation_rule,farm.automation.rule,model_farm_automation_rule,base.group_user,1,1,1,1
+access_iot_device_mapping,iot.device.mapping,model_iot_device_mapping,base.group_user,1,1,1,1

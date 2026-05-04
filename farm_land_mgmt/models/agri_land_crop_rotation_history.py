@@ -27,7 +27,7 @@ class AgriLandCropRotationHistory(models.Model):
     continuous_cropping_warning = fields.Boolean("Continuous Cropping Warning",
                                                  compute='_compute_continuous_cropping_warning',
                                                  store=True)
-    warning_reason = fields.Char("Warning Reason", compute='_compute_continuous_cropping_warning', store=True)
+    warning_reason = fields.Char("Warning Reason", compute='_compute_continuous_cropping_warning', store=True, precompute=True)
 
     state = fields.Selection([
         ('planted', 'Planted'),

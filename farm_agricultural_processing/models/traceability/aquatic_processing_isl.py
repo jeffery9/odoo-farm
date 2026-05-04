@@ -40,7 +40,7 @@ class FarmLotAquaticProduct(models.Model):
     # [US-118-02] Glazing Data
     net_weight_kg = fields.Float("Net Weight (kg)")
     ice_glaze_weight_kg = fields.Float("Ice Glaze Weight (kg)")
-    actual_glazing_percent = fields.Float("Actual Glazing (%)", compute='_compute_glazing', store=True)
+    actual_glazing_percent = fields.Float("Actual Glazing (%)", compute='_compute_glazing', store=True, precompute=True)
 
     @api.depends('net_weight_kg', 'ice_glaze_weight_kg')
     def _compute_glazing(self):

@@ -19,7 +19,7 @@ class AgriSupplyChainFinance(models.Model):
 
     # Financial terms
     amount = fields.Monetary('Receivable Amount', currency_field='currency_id')
-    advance_amount = fields.Monetary('Advance Amount', currency_field='currency_id', compute='_compute_advance_amount', store=True)
+    advance_amount = fields.Monetary('Advance Amount', currency_field='currency_id', compute='_compute_advance_amount', store=True, precompute=True)
     financing_percentage = fields.Float('Financing Percentage (%)', default=80.0)
     interest_rate = fields.Float('Interest Rate (%)', default=5.0, digits=(16, 2))
     service_fees = fields.Monetary('Service Fees', currency_field='currency_id')
@@ -34,7 +34,7 @@ class AgriSupplyChainFinance(models.Model):
     # Tracking
     application_date = fields.Date('Application Date', default=fields.Date.context_today)
     approval_date = fields.Date('Approval Date')
-    maturity_date = fields.Date('Maturity Date', compute='_compute_maturity_date', store=True)
+    maturity_date = fields.Date('Maturity Date', compute='_compute_maturity_date', store=True, precompute=True)
     payment_received = fields.Boolean('Payment Received', default=False)
     early_payment_discount = fields.Float('Early Payment Discount (%)', default=2.0)
 

@@ -15,8 +15,8 @@ class ProcurementPlanningLine(models.Model):
     product_id = fields.Many2one('product.product', string='Product', required=True)
     total_required = fields.Float('Total Required', required=True)
     total_available = fields.Float('Total Available', default=0.0)
-    total_allocated = fields.Float('Total Allocated', compute='_compute_total_allocated', store=True)
-    remaining_quantity = fields.Float('Remaining Quantity', compute='_compute_remaining', store=True)
+    total_allocated = fields.Float('Total Allocated', compute='_compute_total_allocated', store=True, precompute=True)
+    remaining_quantity = fields.Float('Remaining Quantity', compute='_compute_remaining', store=True, precompute=True)
 
     allocation_lines = fields.One2many('procurement.allocation.line', 'planning_line_id', string='Allocation Lines')
 

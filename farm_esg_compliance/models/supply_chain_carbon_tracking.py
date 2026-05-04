@@ -30,7 +30,7 @@ class AgriSupplyChainCarbonDataEngine(models.Model):
     scope_1_emissions = fields.Float('Scope 1 Emissions (tCO2e)', help='Direct emissions from owned/controlled sources')
     scope_2_emissions = fields.Float('Scope 2 Emissions (tCO2e)', help='Indirect emissions from purchased energy')
     scope_3_emissions = fields.Float('Scope 3 Emissions (tCO2e)', help='Other indirect emissions in value chain')
-    total_emissions = fields.Float('Total Emissions (tCO2e)', compute='_compute_total_emissions', store=True)
+    total_emissions = fields.Float('Total Emissions (tCO2e)', compute='_compute_total_emissions', store=True, precompute=True)
 
     # Compliance with international standards
     calculation_standard = fields.Selection([
@@ -71,7 +71,7 @@ class AgriSupplyChainCarbonDataEngine(models.Model):
         ('compliant', 'Compliant'),
         ('non_compliant', 'Non-Compliant'),
         ('pending_review', 'Pending Review'),
-    ], string='Compliance Status', compute='_compute_compliance_status', store=True)
+    ], string='Compliance Status', compute='_compute_compliance_status', store=True, precompute=True)
 
     # Related to carbon ledger
     related_carbon_ledger_ids = fields.One2many('agri.carbon.ledger', 'supply_chain_data_id',
@@ -156,8 +156,8 @@ class AgriSupplyChainCarbonReductionStrategy(models.Model):
     # Carbon impact analysis
     current_emissions = fields.Float('Current Emissions (tCO2e)')
     projected_emissions = fields.Float('Projected Emissions (tCO2e) after Implementation')
-    potential_reduction = fields.Float('Potential Reduction (tCO2e)', compute='_compute_reduction', store=True)
-    reduction_percentage = fields.Float('Reduction Percentage (%)', compute='_compute_reduction_percentage', store=True)
+    potential_reduction = fields.Float('Potential Reduction (tCO2e)', compute='_compute_reduction', store=True, precompute=True)
+    reduction_percentage = fields.Float('Reduction Percentage (%)', compute='_compute_reduction_percentage', store=True, precompute=True)
 
     # AI recommendation details
     ai_recommendation = fields.Text('AI Recommendation')
@@ -171,8 +171,8 @@ class AgriSupplyChainCarbonReductionStrategy(models.Model):
     # ROI calculations
     implementation_cost = fields.Float('Implementation Cost')
     annual_savings = fields.Float('Annual Savings')
-    payback_period_months = fields.Float('Payback Period (Months)', compute='_compute_roi', store=True)
-    roi_percentage = fields.Float('ROI (%)', compute='_compute_roi', store=True)
+    payback_period_months = fields.Float('Payback Period (Months)', compute='_compute_roi', store=True, precompute=True)
+    roi_percentage = fields.Float('ROI (%)', compute='_compute_roi', store=True, precompute=True)
 
     # Implementation tracking
     implementation_status = fields.Selection([
@@ -299,7 +299,7 @@ class AgriSupplierCarbonCompliance(models.Model):
         ('partial_compliant', 'Partial Compliant'),
         ('non_compliant', 'Non-Compliant'),
         ('pending', 'Pending'),
-    ], string='Compliance Status', compute='_compute_compliance_status', store=True)
+    ], string='Compliance Status', compute='_compute_compliance_status', store=True, precompute=True)
 
     # Certification and verification
     carbon_certification_ids = fields.Many2many('farm.certification',
@@ -309,13 +309,13 @@ class AgriSupplierCarbonCompliance(models.Model):
 
     # Scorecard and rating
     supplier_carbon_score = fields.Float('Supplier Carbon Score (0-100)',
-                                         compute='_compute_carbon_score', store=True)
+                                         compute='_compute_carbon_score', store=True, precompute=True)
     carbon_performance_rating = fields.Selection([
         ('excellent', 'Excellent (90-100)'),
         ('good', 'Good (70-89)'),
         ('average', 'Average (50-69)'),
         ('poor', 'Poor (0-49)'),
-    ], string='Performance Rating', compute='_compute_performance_rating', store=True)
+    ], string='Performance Rating', compute='_compute_performance_rating', store=True, precompute=True)
 
     # Improvement plans
     improvement_plan = fields.Text('Improvement Plan')
@@ -323,7 +323,7 @@ class AgriSupplierCarbonCompliance(models.Model):
 
     # Incentive programs
     incentive_eligible = fields.Boolean('Eligible for Incentives',
-                                        compute='_compute_incentive_eligibility', store=True)
+                                        compute='_compute_incentive_eligibility', store=True, precompute=True)
     incentive_programs = fields.Text('Available Incentive Programs')
 
     # Historical data
@@ -504,8 +504,8 @@ class AgriCarbonNeutralityCertification(models.Model):
     # Carbon balance
     total_emissions = fields.Float('Total Emissions (tCO2e)', help='Total carbon emissions in scope')
     total_removals = fields.Float('Total Removals (tCO2e)', help='Total carbon removals/offsets')
-    net_balance = fields.Float('Net Balance (tCO2e)', compute='_compute_net_balance', store=True)
-    is_carbon_neutral = fields.Boolean('Is Carbon Neutral', compute='_compute_carbon_neutral', store=True)
+    net_balance = fields.Float('Net Balance (tCO2e)', compute='_compute_net_balance', store=True, precompute=True)
+    is_carbon_neutral = fields.Boolean('Is Carbon Neutral', compute='_compute_carbon_neutral', store=True, precompute=True)
 
     # Verification and certification
     verification_body = fields.Char('Verification Body')
