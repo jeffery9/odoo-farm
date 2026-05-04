@@ -1,2 +1,4 @@
 from . import test_quality_control
 from . import test_registry
+from . import test_tour_ui
+from . import test_integration_flows

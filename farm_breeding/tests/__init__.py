@@ -1,3 +1,5 @@
 from . import test_breeding
 from . import test_nursery
 from . import test_breeding_logic
+from . import test_tour_ui
+from . import test_integration_flows
