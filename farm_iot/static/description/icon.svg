@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-
-    <!-- IoT: Wheat-stalk antenna -->
-    <path d="M128,220 L128,80" stroke="#C9382B" stroke-width="16" stroke-linecap="round"/>
-    <path d="M128,120 A40,40 0 0,1 168,120 M128,120 A40,40 0 0,0 88,120" stroke="#C9382B" stroke-width="12" fill="none" stroke-linecap="round"/>
-    <path d="M128,160 A60,60 0 0,1 188,160 M128,160 A60,60 0 0,0 68,160" stroke="#C9382B" stroke-width="12" fill="none" stroke-linecap="round"/>
-    <circle cx="128" cy="60" r="15" fill="#C9382B"/>
+    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
+    
+        <!-- Flat Silhouette: IoT Antenna -->
+        <circle cx="128" cy="128" r="90" fill="#C9382B"/>
+        <path d="M128,210 L128,90" stroke="white" stroke-width="15" stroke-linecap="round"/>
+        <circle cx="128" cy="70" r="20" fill="white"/>
+        <path d="M80,110 Q128,60 176,110" fill="none" stroke="white" stroke-width="10" stroke-linecap="round" opacity="0.6"/>
     
 </svg>

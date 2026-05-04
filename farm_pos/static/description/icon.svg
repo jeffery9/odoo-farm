@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-
-    <!-- Core: Hexagon Shield -->
-    <path d="M128,45 L210,92 L210,188 L128,235 L46,188 L46,92 Z" fill="none" stroke="#C9382B" stroke-width="18" stroke-linejoin="round"/>
-    <path d="M100,140 L120,160 L160,110" stroke="#C9382B" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
+    
+        <!-- Flat Silhouette: Price Tag -->
+        <circle cx="128" cy="128" r="90" fill="#C9382B"/>
+        <path d="M70,80 L140,80 L180,120 L110,180 Z" fill="white"/>
+        <circle cx="95" cy="105" r="8" fill="#C9382B"/>
     
 </svg>

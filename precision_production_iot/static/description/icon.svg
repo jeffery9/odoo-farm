@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
     <rect width="256" height="256" rx="40" fill="#FFF9F2"/>
-
-    <!-- IoT: Wheat-stalk antenna -->
-    <path d="M128,220 L128,80" stroke="#C9382B" stroke-width="16" stroke-linecap="round"/>
-    <path d="M128,120 A40,40 0 0,1 168,120 M128,120 A40,40 0 0,0 88,120" stroke="#C9382B" stroke-width="12" fill="none" stroke-linecap="round"/>
-    <path d="M128,160 A60,60 0 0,1 188,160 M128,160 A60,60 0 0,0 68,160" stroke="#C9382B" stroke-width="12" fill="none" stroke-linecap="round"/>
-    <circle cx="128" cy="60" r="15" fill="#C9382B"/>
+    <rect width="246" height="246" x="5" y="5" rx="38" fill="none" stroke="#C9382B" stroke-width="2"/>
+    
+        <!-- Target Ring & Red Leaf -->
+        <circle cx="128" cy="128" r="80" stroke="#8D6E63" stroke-width="10" fill="none" stroke-dasharray="20,10"/>
+        <line x1="128" y1="20" x2="128" y2="50" stroke="#C9382B" stroke-width="8" stroke-linecap="round"/>
+        <line x1="128" y1="206" x2="128" y2="236" stroke="#C9382B" stroke-width="8" stroke-linecap="round"/>
+        <line x1="20" y1="128" x2="50" y2="128" stroke="#C9382B" stroke-width="8" stroke-linecap="round"/>
+        <line x1="206" y1="128" x2="236" y2="128" stroke="#C9382B" stroke-width="8" stroke-linecap="round"/>
+        <path d="M128,155 C100,155 80,130 80,110 C80,90 100,80 128,80 C156,80 176,90 176,110 C176,130 156,155 128,155 Z" fill="#C9382B"/>
+        <circle cx="128" cy="110" r="10" fill="white"/>
     
 </svg>
