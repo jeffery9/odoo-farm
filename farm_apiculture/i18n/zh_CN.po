@@ -4,12 +4,2292 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:03+0000\n"
+"PO-Revision-Date: 2026-05-04 09:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__state
+msgid ""
+" * Draft: The MO is not confirmed yet.\n"
+" * Confirmed: The MO is confirmed, the stock rules and the reordering of the components are trigerred.\n"
+" * In Progress: The production has started (on the MO or on the WO).\n"
+" * To Close: The production is done, the MO has to be closed.\n"
+" * Done: The MO is closed, the stock moves are posted. \n"
+" * Cancelled: The MO has been cancelled, can't be confirmed anymore."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__access_warning
+msgid "Access warning"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_needaction
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_needaction
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_hive_inspection_form
+msgid "Actions & Follow-up"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_ids
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_ids
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_state
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_state
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_type_icon
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_type_icon
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__actual_flight_area
+msgid "Actual Flown Area (mu/ha)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__agent_status_feedback
+msgid "Agent Execution Status"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__intervention_ids
+msgid "Agri Interventions"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__all_move_ids
+msgid "All Move"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__all_move_raw_ids
+msgid "All Move Raw"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__allocated_hours
+msgid "Allocated Time"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__allow_workorder_dependencies
+msgid "Allow Work Order Dependencies"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__use_create_components_lots
+msgid "Allow to create new lot/serial numbers for the components"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__allowed_uom_ids
+msgid "Allowed Uom"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__reserve_visible
+msgid "Allowed to Reserve Production"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__unreserve_visible
+msgid "Allowed to Unreserve Production"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__animal_count
+msgid "Animal Count"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.ui.menu,name:farm_apiculture.farm_apiculture_menu_root
+#: model:ir.ui.menu,name:farm_apiculture.menu_farm_apiculture_root
+msgid "Apiculture"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
+msgid "Apiculture Information"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.actions.act_window,name:farm_apiculture.action_farm_apiculture_operations
+msgid "Apiculture Operations"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__approval_date
+msgid "Approval Date"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__approval_state
+msgid "Approval Status"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__approver_id
+msgid "Approver"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__size_value
+msgid "Area in sqm/mu or quantity of individuals."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__user_ids
+msgid "Assignees"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__date_assign
+msgid "Assigning Date"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__evidence_ids
+msgid "Attached GPS logs, IoT sensor data, or site photos."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_attachment_count
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_attachment_count
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__attachment_ids
+msgid "Attachments that don't come from a message"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_variant_attributes
+msgid "Attribute Values"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__audit_confidence
+msgid "Audit Confidence"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__audit_status
+msgid "Audit Status"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
+msgid "Available Sources"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__avg_cost
+msgid "Average Cost"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_avg
+msgid "Average Rating"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__average_weight
+msgid "Avg Weight (kg)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__backorder_sequence
+msgid "Backorder Sequence"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__backorder_sequence
+msgid ""
+"Backorder sequence, if equals to 0 means there is not related backorder"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__lot_id
+msgid "Base Lot"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__production_id
+msgid "Base Order"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
+msgid "Bee Health Management"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model,name:farm_apiculture.model_farm_lot_hive
+msgid "Bee Hive Asset"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
+msgid "Bee Information"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__bom_id
+msgid "Bill of Material"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__bom_id
+msgid ""
+"Bills of Materials, also called recipes, are used to autocomplete components"
+" and work order instructions."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__biological_lot_id
+msgid "Biological Asset/Lot"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__depend_on_ids
+msgid "Blocked By"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__bee_breed
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__bee_breed
+msgid "Breed"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
+msgid "Breeding & Reproduction"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__campaign_id
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__campaign_id
+msgid "Campaign/Season"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_hive_inspection__honey_production_stage__capping
+msgid "Capping"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__carbon_intensity
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__carbon_intensity
+msgid "Carbon Footprint (kg CO2e/kg)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__cert_expiry_date
+msgid "Certification Expiry"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__clearing_status
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__clearing_status
+msgid "Clearing Status"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__closed_depend_on_count
+msgid "Closed Depending on Tasks"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__is_closed
+msgid "Closed state"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
+msgid "Colony Status"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__colony_strength
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__colony_strength
+msgid "Colony Strength"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__credit_score
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__credit_score
+msgid ""
+"Community reputation score (0-1000). Derived from confirmed transaction "
+"ledger entries."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__company_id
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__company_id
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__company_id
+msgid "Company"
+msgstr "公司"
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__partner_company_name
+msgid "Company Name"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__components_availability
+msgid "Component Status"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__move_raw_ids
+msgid "Components"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__components_availability_state
+msgid "Components Availability State"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__location_src_id
+msgid "Components Location"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__priority
+msgid ""
+"Components will be reserved first for the MO with the highest priorities."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__consumption
+msgid "Consumption"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__partner_phone
+msgid "Contact Number"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__cooperative_purpose
+msgid "Cooperative Purpose Context"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__standard_price
+msgid "Cost"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__mrp_production_backorder_count
+msgid "Count of linked backorder"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__serial_numbers_count
+msgid "Count of serial numbers"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__displayed_image_id
+msgid "Cover Image"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__use_create_components_lots
+msgid "Create New Lots/Serial Numbers for Components"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__create_uid
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__create_uid
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__create_date
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__create_date
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__create_date
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__evidence_hash
+msgid "Cryptographic hash of the evidence for tamper-proof auditing."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__cumulative_gdd
+msgid "Cumulative GDD"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__current_location
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__current_location
+msgid "Current Location"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__current_growth_stage_id
+msgid "Current Stage"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_description_variants
+msgid "Custom Description"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__partner_id
+msgid "Customer"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__partner_name
+msgid "Customer Name"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__access_url
+msgid "Customer Portal URL"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__daily_temp_max
+msgid "Daily Max Temperature"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__daily_temp_min
+msgid "Daily Min Temperature"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__search_date_category
+msgid "Date Category"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__date_last_stage_update
+msgid ""
+"Date on which the state of your task has last been modified.\n"
+"Based on this information you can identify tasks that are stalling and get statistics on the time it usually takes to move tasks from one stage/state to another."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__date_assign
+msgid ""
+"Date on which this task was last assigned (or unassigned). Based on this, "
+"you can get statistics on the time it usually takes to assign tasks."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__date_finished
+msgid ""
+"Date you expect to finish production or actual date you finished production."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__date_start
+msgid ""
+"Date you plan to start production or date you actually started production."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__rotting_days
+msgid "Day count since this resource was last updated"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rotting_days
+msgid "Days Rotting"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__days_to_safety
+msgid "Days to Safety"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__date_deadline
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__date_deadline
+msgid "Deadline"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__dead_count
+msgid "Deaths Recorded"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__product_uom_id
+msgid "Default unit of measure used for all stock operations."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__delay_alert_date
+msgid "Delay Alert Date"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__milestone_id
+msgid ""
+"Deliver your services automatically when a milestone is reached by linking "
+"it to a sales order item."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__delivery_count
+msgid "Delivery Orders"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__delivery_count
+msgid "Delivery order count"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__depend_on_count
+msgid "Depending on Tasks"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__description
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__note
+msgid "Description"
+msgstr "描述"
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__disease_detected
+msgid "Diseases Found"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__display_complete
+msgid "Display Complete"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__display_name
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__display_name
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__show_lot_ids
+msgid "Display the serial number shortcut on the moves"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__drone_id
+msgid "Drone Used"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__esg_score
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__esg_score
+msgid "Dynamic ESG score (0-1000) calculated by community impact."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__esg_score
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__esg_score
+msgid "ESG Impact Score"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__foraging_radius_km
+msgid "Effective Radius (km)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__electricity_consumed_kwh
+msgid "Electricity Consumed (kWh)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__eligible_worker_ids
+msgid "Eligible Workers"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__email_from
+msgid "Email From"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__email_cc
+msgid ""
+"Email addresses that were in the CC of the incoming emails from this task "
+"and that are not currently linked to an existing customer."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__email_cc
+msgid "Email cc"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__date_finished
+msgid "End"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__repeat_until
+msgid "End Date"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__date_end
+msgid "Ending Date"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__energy_cost
+msgid "Energy/Utility Cost"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__product_tracking
+msgid "Ensure the traceability of a storable product in your warehouse."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__carbon_intensity
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__carbon_intensity
+msgid "Estimated carbon footprint per unit of output."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__evidence_hash
+msgid "Evidence Hash"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__evidence_source
+msgid "Evidence Source"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__is_verified
+msgid "Evidence Verified"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__duration_expected
+msgid "Expected Duration"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__expected_yield_volume
+msgid "Expected Yield"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__location_final_id
+msgid "Final Location from procurement"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__finished_move_line_ids
+msgid "Finished Product"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__move_finished_ids
+msgid "Finished Products"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__location_dest_id
+msgid "Finished Products Location"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__flowering_plants
+msgid "Flowering Plants"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_follower_ids
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_follower_ids
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_partner_ids
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_partner_ids
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__activity_type_icon
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__activity_type_icon
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__forecasted_issue
+msgid "Forecasted Issue"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__geo_point
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__geo_point
+msgid "Format: LON,LAT"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__geo_polygon
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__geo_polygon
+msgid "Format: LON,LAT;LON,LAT..."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__fuel_consumed_l
+msgid "Fuel Consumed (L)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__geo_polygon
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__geo_polygon
+msgid "Geo Boundaries (Polygon)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__geo_point
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__geo_point
+msgid "Geo Location (Point)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__queen_status__good
+msgid "Good"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__is_government_audited
+msgid "Government Audit Passed"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__grade_a_qty
+msgid "Grade A Quantity"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__grade_b_qty
+msgid "Grade B Quantity"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__grade_c_qty
+msgid "Grade C Quantity"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
+msgid "Harvest Information"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__has_message
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__has_message
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_hive_inspection_form
+msgid "Health Assessment"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_hive_inspection__nectar_availability__high
+msgid "High"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__html_field_history
+msgid "History data"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__html_field_history_metadata
+msgid "History metadata"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
+msgid "Hive & Colony Management"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
+msgid "Hive Information"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model,name:farm_apiculture.model_farm_hive_inspection
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_hive_inspection_form
+msgid "Hive Inspection"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.actions.act_window,name:farm_apiculture.action_farm_hive_inspections
+#: model:ir.ui.menu,name:farm_apiculture.menu_farm_hive_inspections
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_hive_inspection_tree
+msgid "Hive Inspections"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
+msgid "Hive Movement"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__hive_id
+msgid "Hive to Inspect"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model,name:farm_apiculture.model_farm_apiculture_order
+msgid "Honey Flow Production"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
+msgid "Honey Production"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__honey_production_rate
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__honey_production_rate
+msgid "Honey Production Rate"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__honey_store_level
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__honey_store_level
+msgid "Honey Store Level"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__humidity
+msgid "Humidity"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__id
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__id
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__id
+msgid "ID"
+msgstr "ID"
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__activity_exception_icon
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__activity_exception_icon
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__message_needaction
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__message_needaction
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__message_has_error
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__message_has_sms_error
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__message_has_error
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__message_has_sms_error
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__message_has_error
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__lot_valuated
+msgid "If checked, the valuation will be specific by Lot/Serial number."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__propagate_cancel
+msgid ""
+"If checked, when the previous move of the move (which was generated by a "
+"next procurement) is cancelled or split, the move generated by this move "
+"will too"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__is_working
+msgid "In Progress"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__industry_type
+msgid "Industry Type"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__date_deadline
+msgid ""
+"Informative date allowing to define when the manufacturing order should be "
+"processed at the latest to fulfill delivery on time."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__input_cost
+msgid "Input Cost"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__ref
+msgid "Internal Reference"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__ref
+msgid ""
+"Internal reference number in case it differs from the manufacturer's "
+"lot/serial number"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__intervention_type
+msgid "Intervention Type"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__is_delayed
+msgid "Is Delayed"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_is_follower
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_is_follower
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__is_locked
+msgid "Is Locked"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__is_planned
+msgid "Its Operations are Planned"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__json_popover
+msgid "JSON data for the popover widget"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__duration_tracking
+msgid "JSON that maps ids from a many2one field to seconds spent"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__k_density
+msgid "K Density (kg/mu)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__doer_cost
+msgid "Labor Cost"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__worklog_ids
+msgid "Labor Worklogs"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__land_parcel_id
+msgid "Land Parcel/Pond"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__last_harvest_date
+msgid "Last Harvest"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__last_harvest_yield
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__last_harvest_yield
+msgid "Last Harvest Yield"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__date_last_stage_update
+msgid "Last Stage Update"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__write_uid
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__write_uid
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__write_date
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__write_date
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__write_date
+msgid "Last Updated on"
+msgstr "最后更新时间"
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__components_availability
+msgid ""
+"Latest component availability status for this MO. If green, then the MO's "
+"readiness status is ready, as per BOM configuration."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__gps_lat
+msgid "Latitude"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__campaign_id
+msgid "Link this production task to a specific season."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__hive_location
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__hive_location
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__location_id
+msgid "Location"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__location_src_id
+msgid "Location where the system will look for components."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__location_dest_id
+msgid "Location where the system will stock the finished products."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__gps_lng
+msgid "Longitude"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__lot_producing_ids
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__name
+msgid "Lot/Serial Number"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_hive_inspection__nectar_availability__low
+msgid "Low"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__reservation_state
+msgid "MO Readiness"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__reservation_state
+msgid ""
+"Manufacturing readiness for this MO, as per bill of material configuration:\n"
+"            * Ready: The material is available to start the production.\n"
+"            * Waiting: The material is not available to start the production.\n"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_hive_inspection__nectar_availability__medium
+msgid "Medium"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_has_error
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_has_error
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_ids
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_ids
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__migration_schedule
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__migration_schedule
+msgid "Migration Schedule"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__milestone_id
+msgid "Milestone"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__colony_strength__2
+msgid "Moderate"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__mortality_rate
+msgid "Mortality Rate (%)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__move_byproduct_ids
+msgid "Move Byproduct"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__n_density
+msgid "N Density (kg/mu)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__nectar_availability
+msgid "Nectar Availability"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_hive_inspection__honey_production_stage__nectar
+msgid "Nectar Flow"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
+msgid "Nectar Source Management"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__nectar_sources
+msgid "Nectar Sources"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__never_product_template_attribute_value_ids
+msgid "Never attribute values"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__queen_status__new_queen
+msgid "New Queen"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_summary
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_summary
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_type_id
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_type_id
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__nitrogen_qty
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__nitrogen_qty
+msgid "Nitrogen (N)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__unbuild_count
+msgid "Number of Unbuilds"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__mrp_production_child_count
+msgid "Number of generated MO"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__message_needaction_counter
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__message_needaction_counter
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__message_has_error_counter
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__message_has_error_counter
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__mrp_production_source_count
+msgid "Number of source MO"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__out_of_bounds_count
+msgid "Number of telemetry points outside the parcel."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__out_of_bounds_count
+msgid "OOB Point Count"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__product_qty
+msgid "On Hand Quantity"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__picking_type_id
+msgid "Operation Type"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.ui.menu,name:farm_apiculture.menu_farm_apiculture_operations
+msgid "Operations"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__operator_id_card
+msgid "Operator ID Card"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__orderpoint_id
+msgid "Orderpoint"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__carbon_content
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__carbon_content
+msgid "Organic Carbon"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__is_outdated_bom
+msgid "Outdated BoM"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__p_density
+msgid "P Density (kg/mu)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__parent_id
+msgid "Parent Task"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__partner_ids
+msgid "Partner"
+msgstr "合作伙伴"
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__personal_stage_type_id
+msgid "Personal Stage"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__personal_stage_id
+msgid "Personal Stage State"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__pest_disease_status
+msgid "Pest/Disease Status"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__product_registration_no
+msgid "Pesticide or veterinary product registration number."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__phosphorus_qty
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__phosphorus_qty
+msgid "Phosphorus (P)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__evidence_ids
+msgid "Photos, IoT sensor logs, or PDF certificates."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__evidence_ids
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__evidence_ids
+msgid "Physical Evidence"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__physiology_profile_id
+msgid "Physiology Profile"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__picking_ids
+msgid "Picking associated to this manufacturing order"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__colony_population
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__colony_population
+msgid "Population"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__access_url
+msgid "Portal Access URL"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__potassium_qty
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__potassium_qty
+msgid "Potassium (K)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__certification_type
+msgid "Primary Certification"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__priority
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__priority
+msgid "Priority"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__procedure_name
+msgid "Procedure/Method"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_id
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__product_id
+msgid "Product"
+msgstr "产品"
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_registration_no
+msgid "Product Registration No."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_tmpl_id
+msgid "Product Template"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__production_capacity
+msgid "Production Capacity"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__production_group_id
+msgid "Production Group"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__production_location_id
+msgid "Production Location"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__size_value
+msgid "Production Size"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__honey_production_stage
+msgid "Production Stage"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
+msgid "Production Status"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__agri_task_id
+msgid "Production Task"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__project_id
+msgid "Project"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__role_ids
+msgid "Project Roles"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__project_privacy_visibility
+msgid "Project Visibility"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__project_privacy_visibility
+msgid ""
+"Project and Task Visibility:\n"
+"- Invited internal users: Can access only the project or tasks they follow. Assignees automatically get access.\n"
+"- Invited internal and portal users: Same as above, extended to portal users.\n"
+"- All internal users: Full access to the project and all its tasks.\n"
+"- All internal and invited portal users: Internal users get full access. Portal users can access only the project or tasks they follow.\n"
+"\n"
+"Portal Access Levels:\n"
+"- Read-only: Portal users see tasks via their portal but can’t edit them.\n"
+"- Edit (limited): Portal users access kanban/list views and can edit limited fields on followed tasks.\n"
+"- Edit: Same as above, with access to all tasks.\n"
+"\n"
+"Other Rules:\n"
+"- Internal users can open a task from a direct link, even without project access.\n"
+"- Project admins have access to private projects, even if not followers.\n"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__propagate_cancel
+msgid "Propagate cancel and split"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__task_properties
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__lot_properties
+msgid "Properties"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__pure_n_qty
+msgid "Pure Nitrogen (N) kg"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__pure_p_qty
+msgid "Pure Phosphorus (P) kg"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__pure_k_qty
+msgid "Pure Potassium (K) kg"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__quality_fingerprint
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__quality_fingerprint
+msgid "Quality Fingerprint"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__qty_produced
+msgid "Quantity Produced"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__qty_producing
+msgid "Quantity Producing"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_qty
+msgid "Quantity To Produce"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__production_capacity
+msgid "Quantity that can be produced with the current stock of components"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__quant_ids
+msgid "Quants"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__queen_age_months
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__queen_age_months
+msgid "Queen Age (Months)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__queen_status
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__queen_status
+msgid "Queen Status"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__queen_status__queenless
+msgid "Queenless"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__rue_actual
+msgid "Radiation Use Efficiency (RUE)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_avg_text
+msgid "Rating Avg Text"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_last_feedback
+msgid "Rating Last Feedback"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_last_image
+msgid "Rating Last Image"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_last_value
+msgid "Rating Last Value"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_percentage_satisfaction
+msgid "Rating Satisfaction"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_last_text
+msgid "Rating Text"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_count
+msgid "Rating count"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__rating_ids
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_ids
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_hive_inspection__honey_production_stage__ready
+msgid "Ready for Harvest"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__duration
+msgid "Real Duration"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__recurrence_id
+msgid "Recurrence"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__recurring_task
+msgid "Recurrent"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__name
+msgid "Reference"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__origin
+msgid ""
+"Reference of the document that generated this production order request."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__reference_ids
+msgid "References"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__repeat_interval
+msgid "Repeat Every"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__repeat_unit
+msgid "Repeat Unit"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__credit_score
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__credit_score
+msgid "Reputation Credit Score"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__required_skill_id
+msgid "Required Skill"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__operator_id_card
+msgid "Required for pesticide/veterinary real-name registration."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__resource_intensity_score
+msgid "Resource Intensity"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__user_id
+msgid "Responsible"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__assigned_cooperative_id
+msgid "Responsible Cooperative"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__activity_user_id
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__activity_user_id
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__is_rotting
+msgid "Rotting"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__is_safe_to_harvest
+msgid "Safe to Harvest"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__scrap_count
+msgid "Scrap Move"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__scrap_ids
+msgid "Scraps"
+msgstr ""
+
+#. module: farm_apiculture
+#: model_terms:ir.ui.view,arch_db:farm_apiculture.view_farm_apiculture_operation_form
+msgid "Seasonal Management"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__access_token
+msgid "Security Token"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__show_allocation
+msgid "Show Allocation"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__show_final_lots
+msgid "Show Final Lots"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__show_generate_bom
+msgid "Show Generate BOM"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__show_lock
+msgid "Show Lock/unlock buttons"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__show_produce
+msgid "Show Produce"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__show_produce_all
+msgid "Show Produce All"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__simplified_state
+msgid "Simplified State"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__origin
+msgid "Source"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__sale_order_id
+msgid "Source Sale Order"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__spatial_compliance_rate
+msgid "Spatial Compliance (%)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__spatial_grid_id
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__spatial_grid_id
+msgid "Spatial Grid ID"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__bee_species
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__bee_species
+msgid "Species"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__stage_id
+msgid "Stage"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__rating_active
+msgid "Stage Rating Status"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__date_start
+msgid "Start"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__state
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__state
+msgid "State"
+msgstr "状态"
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__activity_state
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__activity_state
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__duration_tracking
+msgid "Status time"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__move_dest_ids
+msgid "Stock Movements of Produced Goods"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__biological_stress_index
+msgid "Stress Index (0-100)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__colony_strength__3
+msgid "Strong"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__agent_instruction_json
+msgid "Structured Command (JSON)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__subtask_allocated_hours
+msgid ""
+"Sum of the hours allocated for all the sub-tasks (and their own sub-tasks) "
+"linked to this task. Usually less than or equal to the allocated hours of "
+"this task."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__queen_status__supersedure
+msgid "Supersedure"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__support_id
+msgid "Support Object"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__is_eco_blocked
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__is_eco_blocked
+msgid "Sustainability Block"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__impact_credits
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__impact_credits
+msgid "Sustainability Credits"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__is_swarm_prevented
+msgid "Swarm Control Done"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__tag_ids
+msgid "Tags"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__honey_moisture_target
+msgid "Target Moisture (%)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__target_nectar_source
+msgid "Target Nectar Plant"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__task_id
+msgid "Task"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__recurring_count
+msgid "Tasks in Recurrence"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__show_allocation
+msgid ""
+"Technical Field used to decide whether the button \"Allocation\" should be "
+"displayed."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__show_produce_all
+msgid "Technical field to check if produce all button can be shown"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__show_produce
+msgid "Technical field to check if produce button can be shown"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__reserve_visible
+msgid "Technical field to check when we can reserve quantities"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__unreserve_visible
+msgid "Technical field to check when we can unreserve"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__temperature
+msgid "Temperature"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__is_outdated_bom
+msgid "The BoM has been updated since creation of the MO"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__personal_stage_id
+msgid "The current user's personal stage."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__personal_stage_type_id
+msgid "The current user's personal task stage."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__support_id
+msgid "The land parcel, animal or group this task is performed on."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__campaign_id
+msgid "The production season this intervention belongs to."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__assigned_cooperative_id
+msgid ""
+"The single cooperative responsible for this product's compliance/marketing."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__agri_task_id
+msgid "The specific production task this intervention belongs to."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__name
+msgid "Title"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__tool_cost
+msgid "Tool/Machinery Cost"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__tool_ids
+msgid "Tools/Machinery"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__total_biomass
+msgid "Total Biomass (kg)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__total_harvested_qty
+msgid "Total Harvested (kg)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__total_agri_cost
+msgid "Total Intervention Cost"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__total_n
+msgid "Total Nitrogen (kg)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__total_p
+msgid "Total Phosphorus (kg)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__total_k
+msgid "Total Potassium (kg)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_uom_qty
+msgid "Total Quantity"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__total_value
+msgid "Total Value"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__duration_expected
+msgid "Total expected duration (in minutes)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__duration
+msgid "Total real duration (in minutes)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__traceability_hash
+msgid "Traceability Fingerprint"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_tracking
+msgid "Tracking"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__delivery_ids
+msgid "Transfers"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__treatment_applied
+msgid "Treatment Applied"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__treatment_date
+msgid "Treatment Date"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__industry_type
+msgid "Type of agricultural industry this task belongs to"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__activity_exception_decoration
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__activity_exception_decoration
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__unbuild_ids
+msgid "Unbuilds"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__name
+msgid "Unique Lot/Serial Number"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__product_uom_id
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__product_uom_id
+msgid "Unit"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__repeat_type
+msgid "Until"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__is_certified
+msgid "Valid Certificate"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__valid_product_template_attribute_line_ids
+msgid "Valid Product Attribute Lines"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__company_currency_id
+msgid "Valuation Currency"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__lot_valuated
+msgid "Valuation by Lot/Serial"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__standard_price
+msgid ""
+"Value of the lot (automatically computed in AVCO).\n"
+"        Used to value the product when the purchase cost is not known (e.g. inventory adjustment).\n"
+"        Used to compute margins on sale orders."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__verification_at
+msgid "Verification Timestamp"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__verified_by_id
+msgid "Verified By"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__colony_strength__4
+msgid "Very Strong"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__warehouse_id
+msgid "Warehouse"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__water_consumed_m3
+msgid "Water Consumed (m3)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__water_footprint
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__water_footprint
+msgid "Water Footprint (L)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__wue_actual
+msgid "Water Use Efficiency (WUE)"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields.selection,name:farm_apiculture.selection__farm_lot_hive__colony_strength__1
+msgid "Weak"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__weather_condition
+msgid "Weather Condition"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__weather_risk_level
+msgid "Weather Risk"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__website_message_ids
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_lot_hive__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__website_message_ids
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__website_message_ids
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_hive_inspection__role_ids
+msgid ""
+"When you create a project from a template, you can choose which employee "
+"takes each role. These employees will be added to the tasks, along with "
+"anyone already assigned."
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__workorder_ids
+msgid "Work Orders"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__work_start_datetime
+msgid "Work Start"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_apiculture_order__workcenter_id
+msgid "Workcenter"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__working_days_open
+msgid "Working Days to Assign"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__working_days_close
+msgid "Working Days to Close"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__working_hours_open
+msgid "Working Hours to Assign"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,field_description:farm_apiculture.field_farm_hive_inspection__working_hours_close
+msgid "Working Hours to Close"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__procedure_name
+msgid "e.g. Mechanical sowing, manual weeding"
+msgstr ""
+
+#. module: farm_apiculture
+#: model:ir.model.fields,help:farm_apiculture.field_farm_apiculture_order__nitrogen_qty
+#: model:ir.model.fields,help:farm_apiculture.field_farm_lot_hive__nitrogen_qty
+msgid "kg per unit."
+msgstr ""

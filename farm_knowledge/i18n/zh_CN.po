@@ -4,12 +4,143 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+
+msgid "Affected Crops"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
+msgid "Attachments"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Category"
+msgstr ""
+
+msgid "Cause/Etiology"
+msgstr ""
+
+msgid "Comma-separated tags for search"
+msgstr ""
+
+msgid "Compliance Standards"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Conventional Products"
+msgstr ""
+
+msgid "Conventional Treatment"
+msgstr ""
+
+msgid "Crops that are typically affected by this pest/disease"
+msgstr ""
+
+msgid "Detailed Article"
+msgstr ""
+
+msgid "Detailed Description"
+msgstr ""
+
+msgid "Difficulty Level"
+msgstr ""
+
+msgid "Helpful Count"
+msgstr ""
+
+msgid "Industry Specific"
+msgstr ""
+
+msgid "Integrated Treatment"
+msgstr ""
+
+msgid "Knowledge Type"
+msgstr ""
+
+msgid "Monitoring Tips"
+msgstr ""
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Optimal Conditions for Development"
+msgstr ""
+
+msgid "Organic/Green Products"
+msgstr ""
+
+msgid "Organic/Green Treatment"
+msgstr ""
+
+msgid "Prevention Measures"
+msgstr ""
+
+msgid "Prevention Methods"
+msgstr ""
+
+msgid "Question"
+msgstr ""
+
+msgid "Recommended Treatment (Technical Route)"
+msgstr ""
+
+msgid "Recommended conventional products for treatment"
+msgstr ""
+
+msgid "Recommended conventional treatment methods and products"
+msgstr ""
+
+msgid "Recommended integrated pest management approach combining different methods"
+msgstr ""
+
+msgid "Recommended organic or green treatment methods and products"
+msgstr ""
+
+msgid "Recommended organic/green products for treatment"
+msgstr ""
+
+msgid "Reference Photo"
+msgstr ""
+
+msgid "Related Pest/Disease"
+msgstr ""
+
+msgid "Scientific Name"
+msgstr ""
+
+msgid "Seasonality"
+msgstr ""
+
+msgid "Standards that treatments must comply with (e.g., NOP, EU Organic)"
+msgstr ""
+
+msgid "Symptoms Description"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+msgid "Technical name of the model"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Typical Severity Level"
+msgstr ""
+
+msgid "Typical severity level of this pest/disease"
+msgstr ""
+
+msgid "Video URL"
+msgstr ""
+
+msgid "View Count"
+msgstr ""
+

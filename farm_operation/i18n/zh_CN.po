@@ -4,12 +4,2898 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:03+0000\n"
+"PO-Revision-Date: 2026-05-04 09:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__state
+msgid ""
+" * Draft: The MO is not confirmed yet.\n"
+" * Confirmed: The MO is confirmed, the stock rules and the reordering of the components are trigerred.\n"
+" * In Progress: The production has started (on the MO or on the WO).\n"
+" * To Close: The production is done, the MO has to be closed.\n"
+" * Done: The MO is closed, the stock moves are posted. \n"
+" * Cancelled: The MO has been cancelled, can't be confirmed anymore."
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/wizard/farm_dispatch_wizard.py:0
+msgid "%s - Batch Dispatch %s"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "<strong>Agricultural Intervention Record</strong>"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "AI Audit"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention.py:0
+msgid "Accumulated %s GDD from environmental sync."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_needaction
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__is_active
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__is_active
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__active
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__is_active
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__is_active
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__is_active
+msgid "Active"
+msgstr "有效"
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__actual_flight_area
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__actual_flight_area
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__actual_flight_area
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__actual_flight_area
+msgid "Actual Flown Area (mu/ha)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__aerial_spraying
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__intervention_type__aerial_spraying
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__intervention_type__aerial_spraying
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__intervention_type__aerial_spraying
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_dispatch_wizard__intervention_type__aerial_spraying
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__aerial_spraying
+msgid "Aerial Spraying"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__agent_status_feedback
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__agent_status_feedback
+msgid "Agent Execution Status"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_bom_mixin__agri_activity_type
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__agri_activity_type
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_mixin__agri_activity_type
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__agri_activity_type
+msgid "Agri Activity Type"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_agri_bom_line_mixin
+msgid "Agri Agricultural BOM Line Shared Logic"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_agri_bom_mixin
+msgid "Agri Agricultural BOM Shared Logic"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_agri_agricultural_campaign_mixin
+msgid "Agri Agricultural Campaign Shared Logic"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_agri_intervention_mixin
+msgid "Agri Agricultural Intervention Shared Logic"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__intervention_ids
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__intervention_ids
+msgid "Agri Interventions"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_stock_move__agri_loss_reason
+msgid "Agri Loss Reason"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_tree_view_inherit_farm
+msgid "Agri-Interventions"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.view_agri_intervention_form_science_inherit
+msgid "Agri-Science Audit"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_farm_agricultural_bom
+msgid "Agricultural BOM (ISL Layer)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_farm_agricultural_bom_line
+msgid "Agricultural BOM Line (ISL Layer)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_farm_agricultural_campaign
+msgid "Agricultural Campaign (ISL Layer)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_mrp_production
+msgid "Agricultural Intervention (De-industrialized View)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_agri_intervention
+msgid "Agricultural Intervention (ISL Layer)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__agricultural_processing
+msgid "Agricultural Processing"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_agricultural_campaign
+msgid "Agricultural Production Season"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_farm_dispatch_wizard
+msgid "Agricultural Task Dispatch Wizard"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__agritourism
+msgid "Agritourism"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__all_move_ids
+msgid "All Move"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__all_move_raw_ids
+msgid "All Move Raw"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__batch_size
+msgid ""
+"All automatically generated manufacturing orders for this product will be of"
+" this size."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__allow_workorder_dependencies
+msgid "Allow Work Order Dependencies"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__use_create_components_lots
+msgid "Allow to create new lot/serial numbers for the components"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__allowed_uom_ids
+msgid "Allowed Uom"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__reserve_visible
+msgid "Allowed to Reserve Production"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__unreserve_visible
+msgid "Allowed to Unreserve Production"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__apiculture
+msgid "Apiculture"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_bom_mixin__application_stage
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__application_stage
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_mixin__application_stage
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__application_stage
+msgid "Application Stage"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__bom_product_template_attribute_value_ids
+msgid "Apply on Variants"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__simplified_state__approval
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__simplified_state__approval
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__simplified_state__approval
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__simplified_state__approval
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__simplified_state__approval
+msgid "Approval"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__approval_date
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__approval_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__approval_date
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__approval_date
+msgid "Approval Date"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__approval_state
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__approval_state
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__approval_state
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__approval_state
+msgid "Approval Status"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Approve"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__approval_state__approved
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__approval_state__approved
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__approval_state__approved
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__approval_state__approved
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__approval_state__approved
+msgid "Approved"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__approver_id
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__approver_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__approver_id
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__approver_id
+msgid "Approver"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__aquaculture
+msgid "Aquaculture"
+msgstr "水产"
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_task__size_value
+#: model:ir.model.fields,help:farm_operation.field_project_task__size_value
+msgid "Area in sqm/mu or quantity of individuals."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__project_task_ids
+#: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_form
+msgid "Associated Tasks"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__evidence_ids
+#: model:ir.model.fields,help:farm_operation.field_mrp_production__evidence_ids
+msgid "Attached GPS logs, IoT sensor data, or site photos."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_attachment_count
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__attachments_count
+msgid "Attachments Count"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_variant_attributes
+msgid "Attribute Values"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__audit_confidence
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__audit_confidence
+msgid "Audit Confidence"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__audit_status
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__audit_status
+msgid "Audit Status"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Auto-recorded from intervention %s"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__produce_delay
+msgid ""
+"Average lead time in days to manufacture this product. In the case of multi-"
+"level BOM, the manufacturing lead times of the components will be added. In "
+"case the product is subcontracted, this can be used to determine the date at"
+" which components should be sent to the subcontractor."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__approval_state__to_approve
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__approval_state__to_approve
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__approval_state__to_approve
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__approval_state__to_approve
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__approval_state__to_approve
+msgid "Awaiting Approval"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_line__bom_product_template_attribute_value_ids
+msgid "BOM Product Variants needed to apply this line."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__child_line_ids
+msgid "BOM lines of the referred bom"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__backorder_sequence
+msgid "Backorder Sequence"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__backorder_sequence
+msgid ""
+"Backorder sequence, if equals to 0 means there is not related backorder"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__bom_id
+msgid "Base BOM"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__bom_line_id
+msgid "Base BOM Line"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__production_id
+msgid "Base Production Order"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__base_temperature
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__base_temperature
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__base_temperature
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__base_temperature
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__base_temperature
+msgid "Base Temp (℃)"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_form
+msgid "Basic Info"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__batch_size
+msgid "Batch Size"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_mrp_bom
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__bom_id
+msgid "Bill of Material"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_mrp_bom_line
+msgid "Bill of Material Line"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__bom_id
+msgid ""
+"Bills of Materials, also called recipes, are used to autocomplete components"
+" and work order instructions."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__biological_lot_id
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__biological_lot_id
+msgid "Biological Asset/Lot"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.view_agri_intervention_form_science_inherit
+msgid "Biological Clock"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__bom_line_ids
+msgid "BoM Lines"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__type
+msgid "BoM Type"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Boundary Compliance"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__byproduct_ids
+msgid "By-products"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "COMPLIANCE ERROR: Invalid ID Card format for operator!"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid ""
+"COMPLIANCE ERROR: Operator ID Card is required for real-name registration of"
+" %s!"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid ""
+"COMPLIANCE ERROR: Product %s is not approved for organic production on "
+"parcel %s!"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_agricultural_campaign_mixin.py:0
+#: code:addons/farm_operation/models/farm_agricultural_campaign_base.py:0
+msgid "Campaign start date must be before end date."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__campaign_id
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__campaign_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__campaign_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__campaign_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__campaign_id
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__campaign_id
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__campaign_id
+msgid "Campaign/Season"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.ui.menu,name:farm_operation.menu_agricultural_campaigns
+msgid "Campaigns"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.view_agri_science_sync_wizard_form
+#: model_terms:ir.ui.view,arch_db:farm_operation.view_farm_dispatch_wizard_form
+msgid "Cancel"
+msgstr "取消"
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Carbon & Impact"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__carbon_intensity
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__carbon_intensity
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__carbon_intensity
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__carbon_intensity
+msgid "Carbon Footprint (kg CO2e/kg)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_bom_mixin__agri_activity_type
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__agri_activity_type
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_mixin__agri_activity_type
+#: model:ir.model.fields,help:farm_operation.field_mrp_bom__agri_activity_type
+msgid "Classify BOM as an agricultural recipe."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__clearing_status
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__clearing_status
+msgid "Clearing Status"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Community Clearing"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__credit_score
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__credit_score
+#: model:ir.model.fields,help:farm_operation.field_mrp_bom__credit_score
+#: model:ir.model.fields,help:farm_operation.field_mrp_production__credit_score
+msgid ""
+"Community reputation score (0-1000). Derived from confirmed transaction "
+"ledger entries."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__company_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__company_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__company_id
+msgid "Company"
+msgstr "公司"
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__simplified_state__done
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__simplified_state__done
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__simplified_state__done
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__simplified_state__done
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__simplified_state__done
+msgid "Completed"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__product_id
+msgid "Component"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__components_availability
+msgid "Component Status"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__move_raw_ids
+msgid "Components"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__components_availability_state
+msgid "Components Availability State"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__location_src_id
+msgid "Components Location"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__priority
+msgid ""
+"Components will be reserved first for the MO with the highest priorities."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__operation_id
+msgid "Consumed in Operation"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__consumption
+msgid "Consumption"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__mrp_production_backorder_count
+msgid "Count of linked backorder"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__serial_numbers_count
+msgid "Count of serial numbers"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__use_create_components_lots
+msgid "Create New Lots/Serial Numbers for Components"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,website_form_label:farm_operation.model_project_task
+msgid "Create a Task"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__days_to_prepare_mo
+msgid ""
+"Create and confirm Manufacturing Orders this many days in advance, to have "
+"enough time to replenish components or manufacture semi-finished products."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__allow_operation_dependencies
+msgid ""
+"Create operation level dependencies that will influence both planning and "
+"the status of work orders upon MO confirmation. If this feature is ticked, "
+"and nothing is specified, Odoo will assume that all operations can be "
+"started simultaneously."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__create_uid
+#: model:ir.model.fields,field_description:farm_operation.field_agri_science_sync_wizard__create_uid
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__create_uid
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__create_uid
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__create_uid
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line_mixin__create_uid
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_mixin__create_uid
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__create_uid
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__create_uid
+#: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__create_date
+#: model:ir.model.fields,field_description:farm_operation.field_agri_science_sync_wizard__create_date
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__create_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__create_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__create_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line_mixin__create_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_mixin__create_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__create_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__create_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__create_date
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__protection
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__intervention_type__protection
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__intervention_type__protection
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__intervention_type__protection
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_dispatch_wizard__intervention_type__protection
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__protection
+msgid "Crop Protection"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__cumulative_gdd
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__cumulative_gdd
+msgid "Cumulative GDD"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Current Application (Pure Nutrient)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__accumulated_gdd
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__accumulated_gdd
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__accumulated_gdd
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__accumulated_gdd
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__accumulated_gdd
+msgid "Current GDD"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__current_growth_stage_id
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__current_growth_stage_id
+msgid "Current Stage"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_description_variants
+msgid "Custom Description"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/project_task.py:0
+msgid ""
+"DAILY FEED PROPOSAL: Age %s days. Estimated Biomass: %s kg. Suggested Feed: "
+"%s kg."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__daily_temp_max
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__daily_temp_max
+msgid "Daily Max Temperature"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__daily_temp_min
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__daily_temp_min
+msgid "Daily Min Temperature"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__search_date_category
+msgid "Date Category"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__date_finished
+msgid ""
+"Date you expect to finish production or actual date you finished production."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__date_start
+msgid ""
+"Date you plan to start production or date you actually started production."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__days_to_safety
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__days_to_safety
+msgid "Days to Safety"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__days_to_prepare_mo
+msgid "Days to prepare Manufacturing Order"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__date_deadline
+msgid "Deadline"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__agri_loss_reason__decay
+msgid "Decay/Rot"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__consumption
+msgid ""
+"Defines if you can consume more or less components than the quantity defined on the BoM:\n"
+"  * Allowed: allowed for all manufacturing users.\n"
+"  * Allowed with warning: allowed for all manufacturing users with summary of consumption differences when closing the manufacturing order.\n"
+"  Note that in the case of component Highlight Consumption, where consumption is registered manually exclusively, consumption warnings will still be issued when appropriate also.\n"
+"  * Blocked: only a manager can close a manufacturing order when the BoM consumption is not respected."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__delay_alert_date
+msgid "Delay Alert Date"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__delivery_count
+msgid "Delivery Orders"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__description
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__description
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__description
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__description
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__description
+msgid "Description"
+msgstr "描述"
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_bom_line_mixin__dilution_ratio
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__dilution_ratio
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line_mixin__dilution_ratio
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__dilution_ratio
+msgid "Dilution Ratio (1:N)"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.view_farm_dispatch_wizard_form
+msgid "Dispatch"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.actions.act_window,name:farm_operation.action_farm_dispatch_wizard
+#: model_terms:ir.ui.view,arch_db:farm_operation.view_farm_dispatch_wizard_form
+msgid "Dispatch Tasks"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_agri_bom_line_mixin__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_agri_bom_mixin__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_agri_science_sync_wizard__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line_mixin__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_mixin__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_sale_order__display_name
+#: model:ir.model.fields,field_description:farm_operation.field_stock_move__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__show_lot_ids
+msgid "Display the serial number shortcut on the moves"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__approval_state__draft
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__simplified_state__draft
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__approval_state__draft
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__simplified_state__draft
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__approval_state__draft
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__simplified_state__draft
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__approval_state__draft
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__simplified_state__draft
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__approval_state__draft
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__simplified_state__draft
+msgid "Draft"
+msgstr "草稿"
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__drone_id
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__drone_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__drone_id
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__drone_id
+msgid "Drone Used"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Drone/Machinery Spatial Audit"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__esg_score
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__esg_score
+#: model:ir.model.fields,help:farm_operation.field_mrp_bom__esg_score
+#: model:ir.model.fields,help:farm_operation.field_mrp_production__esg_score
+msgid "Dynamic ESG score (0-1000) calculated by community impact."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__esg_score
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__esg_score
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__esg_score
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__esg_score
+msgid "ESG Impact Score"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__electricity_consumed_kwh
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__electricity_consumed_kwh
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__electricity_consumed_kwh
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__electricity_consumed_kwh
+msgid "Electricity Consumed (kWh)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__enable_batch_size
+msgid "Enable Batch Size"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__date_finished
+msgid "End"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__date_end
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__date_end
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__date_end
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__date_end
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__date_end
+msgid "End Date"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__energy_cost
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__energy_cost
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__energy_cost
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__energy_cost
+msgid "Energy/Utility Cost"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__product_tracking
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_line__tracking
+msgid "Ensure the traceability of a storable product in your warehouse."
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.view_agri_intervention_form_science_inherit
+msgid "Env Sync"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_agri_science_sync_wizard
+msgid "Environmental Data Sync Wizard"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_kanban
+msgid "Est. Harvest:"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__carbon_intensity
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__carbon_intensity
+#: model:ir.model.fields,help:farm_operation.field_mrp_bom__carbon_intensity
+#: model:ir.model.fields,help:farm_operation.field_mrp_production__carbon_intensity
+msgid "Estimated carbon footprint per unit of output."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__duration_expected
+msgid "Expected Duration"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Export Drone Route"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_farm_agricultural_bom_line_mixin
+msgid ""
+"Farm Agricultural BOM Line Shared Logic (Deprecated - Use "
+"agri.bom.line.mixin)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_farm_agricultural_bom_mixin
+msgid "Farm Agricultural BOM Shared Logic (Deprecated - Use agri.bom.mixin)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_farm_agricultural_campaign_base
+msgid "Farm Agricultural Campaign Base Logic"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_farm_agricultural_campaign_mixin
+msgid ""
+"Farm Agricultural Campaign Shared Logic (Deprecated - Use "
+"agri.agricultural.campaign.mixin)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_farm_agricultural_intervention_mixin
+msgid ""
+"Farm Agricultural Intervention Shared Logic (Deprecated - Use "
+"agri.intervention.mixin)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__agri_activity_type__feed
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom__agri_activity_type__feed
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__agri_activity_type__feed
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__agri_activity_type__feed
+msgid "Feed Formula"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__feeding
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__intervention_type__feeding
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__intervention_type__feeding
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__intervention_type__feeding
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__feeding
+msgid "Feeding"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_bom_line_mixin__feeding_ratio
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__feeding_ratio
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line_mixin__feeding_ratio
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__feeding_ratio
+msgid "Feeding Ratio (%)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__agri_activity_type__fertilizer
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom__agri_activity_type__fertilizer
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__agri_activity_type__fertilizer
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__agri_activity_type__fertilizer
+msgid "Fertilizer Mix"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__fertilizing
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__intervention_type__fertilizing
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__intervention_type__fertilizing
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__intervention_type__fertilizing
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_dispatch_wizard__intervention_type__fertilizing
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__fertilizing
+msgid "Fertilizing"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__field_crops
+msgid "Field Crops"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__location_final_id
+msgid "Final Location from procurement"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__finished_move_line_ids
+msgid "Finished Product"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__move_finished_ids
+msgid "Finished Products"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__location_dest_id
+msgid "Finished Products Location"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__application_stage__finishing
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom__application_stage__finishing
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__application_stage__finishing
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__application_stage__finishing
+msgid "Finishing"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__consumption
+msgid "Flexible Consumption"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_follower_ids
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_partner_ids
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__forecasted_issue
+msgid "Forecasted Issue"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__geo_point
+#: model:ir.model.fields,help:farm_operation.field_mrp_production__geo_point
+msgid "Format: LON,LAT"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__geo_polygon
+#: model:ir.model.fields,help:farm_operation.field_mrp_production__geo_polygon
+msgid "Format: LON,LAT;LON,LAT..."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.ui.menu,name:farm_operation.menu_agri_boms
+msgid "Formulas (BOM)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__fuel_consumed_l
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__fuel_consumed_l
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__fuel_consumed_l
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__fuel_consumed_l
+msgid "Fuel Consumed (L)"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_form
+msgid "GDD Growth Model (US-002-05)"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_kanban
+msgid "GDD Progress:"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_agricultural_campaign_mixin__target_gdd
+#: model:ir.model.fields,help:farm_operation.field_agricultural_campaign__target_gdd
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_campaign__target_gdd
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_campaign_base__target_gdd
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_campaign_mixin__target_gdd
+msgid "GDD required for harvest."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__geo_polygon
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__geo_polygon
+msgid "Geo Boundaries (Polygon)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__geo_point
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__geo_point
+msgid "Geo Location (Point)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_line__sequence
+msgid "Gives the sequence order when displaying."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__quality_grade__grade_a
+msgid "Grade A"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__grade_a_qty
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__grade_a_qty
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__grade_a_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__grade_a_qty
+msgid "Grade A Quantity"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__quality_grade__grade_b
+msgid "Grade B"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__grade_b_qty
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__grade_b_qty
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__grade_b_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__grade_b_qty
+msgid "Grade B Quantity"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__quality_grade__grade_c
+msgid "Grade C"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__grade_c_qty
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__grade_c_qty
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__grade_c_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__grade_c_qty
+msgid "Grade C Quantity"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Graded quantities cannot be negative."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__application_stage__growing
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom__application_stage__growing
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__application_stage__growing
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__application_stage__growing
+msgid "Growing"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/project_task.py:0
+msgid ""
+"HARD-BLOCK COMPLIANCE: Land parcel '%s' is marked as Permanent Basic "
+"Farmland. Non-grain production activities (like tourism or livestock) are "
+"strictly prohibited by national policy!"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__agri_loss_reason__handling
+msgid "Handling Damage"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__application_stage__harvest
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom__application_stage__harvest
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__application_stage__harvest
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__application_stage__harvest
+msgid "Harvest"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Harvest Grading"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Harvest Output (%s)"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Harvest QC: %s"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Harvest QC: %s for Grade %s"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__harvesting
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__intervention_type__harvesting
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__intervention_type__harvesting
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__intervention_type__harvesting
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_dispatch_wizard__intervention_type__harvesting
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__harvesting
+msgid "Harvesting"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__has_message
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__id
+#: model:ir.model.fields,field_description:farm_operation.field_agri_bom_line_mixin__id
+#: model:ir.model.fields,field_description:farm_operation.field_agri_bom_mixin__id
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__id
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__id
+#: model:ir.model.fields,field_description:farm_operation.field_agri_science_sync_wizard__id
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line_mixin__id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_mixin__id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__id
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__id
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__id
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__id
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__id
+#: model:ir.model.fields,field_description:farm_operation.field_sale_order__id
+#: model:ir.model.fields,field_description:farm_operation.field_stock_move__id
+msgid "ID"
+msgstr "ID"
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__isl_campaign_code
+msgid "ISL Campaign Code"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__farm_location_id
+msgid "ISL Farm Location"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_campaign__isl_campaign_code
+msgid "ISL-specific campaign identifier"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__product_id
+msgid ""
+"If a product variant is defined the BOM is available only for this product."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__message_needaction
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__message_has_error
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__message_has_sms_error
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__message_has_error
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__propagate_cancel
+msgid ""
+"If checked, when the previous move of the move (which was generated by a "
+"next procurement) is cancelled or split, the move generated by this move "
+"will too"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_bom_line_mixin__dilution_ratio
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_line__dilution_ratio
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_line_mixin__dilution_ratio
+#: model:ir.model.fields,help:farm_operation.field_mrp_bom_line__dilution_ratio
+msgid ""
+"If set, the component quantity will be calculated as (Finished Qty / Ratio)."
+" E.g. 1:500."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__is_working
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__is_working
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__is_working
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__is_working
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__simplified_state__progress
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__simplified_state__progress
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__simplified_state__progress
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__simplified_state__progress
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__simplified_state__progress
+msgid "In Progress"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__industry_type
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__industry_type
+msgid "Industry Type"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__date_deadline
+msgid ""
+"Informative date allowing to define when the manufacturing order should be "
+"processed at the latest to fulfill delivery on time."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__input_cost
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__input_cost
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__input_cost
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__input_cost
+msgid "Input Cost"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/sale_order.py:0
+msgid ""
+"Insufficient lead-time for product '%s'. Required: %s days, Available: %d "
+"days."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_science_sync_wizard__intervention_id
+msgid "Intervention"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid ""
+"Intervention %s was blocked. Wind speed exceeds level 4. Review required by "
+"Technical Director."
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_pivot_view_inherit_farm
+msgid "Intervention Analysis"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_tree_view_inherit_farm
+msgid "Intervention No."
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_calendar_view_inherit_farm
+msgid "Intervention Schedule"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__intervention_type
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__intervention_type
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__intervention_type
+#: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__intervention_type
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__intervention_type
+msgid "Intervention Type"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Intervention approved by %s"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Intervention rejected."
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Intervention submitted for supervisor approval."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.ui.menu,name:farm_operation.menu_agri_interventions
+#: model:ir.ui.menu,name:farm_operation.menu_farm_operation_intervention
+msgid "Interventions"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__irrigation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__intervention_type__irrigation
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__intervention_type__irrigation
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__intervention_type__irrigation
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_dispatch_wizard__intervention_type__irrigation
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__irrigation
+msgid "Irrigation"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__is_delayed
+msgid "Is Delayed"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_is_follower
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__is_locked
+msgid "Is Locked"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__is_planned
+msgid "Its Operations are Planned"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__json_popover
+msgid "JSON data for the popover widget"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__k_density
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__k_density
+msgid "K Density (kg/mu)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__doer_cost
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__doer_cost
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__doer_cost
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__doer_cost
+msgid "Labor Cost"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Labor: Work started at %s"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "Labor: Work stopped and recorded at %s"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__land_parcel_id
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__land_parcel_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__land_parcel_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__land_parcel_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__land_parcel_id
+msgid "Land Parcel"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__land_parcel_id
+msgid "Land Parcel/Pond"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__write_uid
+#: model:ir.model.fields,field_description:farm_operation.field_agri_science_sync_wizard__write_uid
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__write_uid
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__write_uid
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__write_uid
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line_mixin__write_uid
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_mixin__write_uid
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__write_uid
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__write_uid
+#: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__write_date
+#: model:ir.model.fields,field_description:farm_operation.field_agri_science_sync_wizard__write_date
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__write_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__write_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__write_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line_mixin__write_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_mixin__write_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__write_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__write_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__write_date
+msgid "Last Updated on"
+msgstr "最后更新时间"
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__components_availability
+msgid ""
+"Latest component availability status for this MO. If green, then the MO's "
+"readiness status is ready, as per BOM configuration."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__gps_lat
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__gps_lat
+msgid "Latitude"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_task__campaign_id
+#: model:ir.model.fields,help:farm_operation.field_project_task__campaign_id
+msgid "Link this production task to a specific season."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_campaign__farm_location_id
+msgid "Link to standardized farm location model"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__livestock
+msgid "Livestock"
+msgstr "畜牧"
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__location_src_id
+msgid "Location where the system will look for components."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__location_dest_id
+msgid "Location where the system will stock the finished products."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__gps_lng
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__gps_lng
+msgid "Longitude"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__lot_producing_ids
+msgid "Lot/Serial Number"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_agricultural_campaign_mixin__base_temperature
+#: model:ir.model.fields,help:farm_operation.field_agricultural_campaign__base_temperature
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_campaign__base_temperature
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_campaign_base__base_temperature
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_campaign_mixin__base_temperature
+msgid "Lower threshold for crop growth."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__reservation_state
+msgid "MO Readiness"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.actions.act_window,name:farm_operation.action_agri_science_sync_wizard
+msgid "Manual Env Sync"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__produce_delay
+msgid "Manufacturing Lead Time"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__ready_to_produce
+msgid "Manufacturing Readiness"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__reservation_state
+msgid ""
+"Manufacturing readiness for this MO, as per bill of material configuration:\n"
+"            * Ready: The material is available to start the production.\n"
+"            * Waiting: The material is not available to start the production.\n"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_science_sync_wizard__temp_max
+msgid "Max Temperature"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__medical
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__intervention_type__medical
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__intervention_type__medical
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__intervention_type__medical
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__medical
+msgid "Medical/Prevention"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__medicinal_plants
+msgid "Medicinal Plants"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_has_error
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_ids
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_science_sync_wizard__temp_min
+msgid "Min Temperature"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__mixed
+msgid "Mixed Operations"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__move_byproduct_ids
+msgid "Move Byproduct"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_project_task
+msgid "Multi-Industry Activity Production"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__mushroom
+msgid "Mushroom Cultivation"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__n_density
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__n_density
+msgid "N Density (kg/mu)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__agri_loss_reason__natural
+msgid "Natural Dehydration"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__never_product_template_attribute_value_ids
+msgid "Never attribute values"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "New"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__nitrogen_qty
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__nitrogen_qty
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__nitrogen_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__nitrogen_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__nitrogen_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__nitrogen_qty
+msgid "Nitrogen (N)"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "No GIS boundaries defined for the selected land parcel!"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_form
+msgid "Notes"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__unbuild_count
+msgid "Number of Unbuilds"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__mrp_production_child_count
+msgid "Number of generated MO"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__message_needaction_counter
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__message_has_error_counter
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__mrp_production_source_count
+msgid "Number of source MO"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__out_of_bounds_count
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention_mixin__out_of_bounds_count
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_intervention_mixin__out_of_bounds_count
+#: model:ir.model.fields,help:farm_operation.field_mrp_production__out_of_bounds_count
+msgid "Number of telemetry points outside the parcel."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__out_of_bounds_count
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__out_of_bounds_count
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__out_of_bounds_count
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__out_of_bounds_count
+msgid "OOB Point Count"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__allow_operation_dependencies
+msgid "Operation Dependencies"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__picking_type_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__picking_type_id
+msgid "Operation Type"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__operation_ids
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__allowed_operation_ids
+#: model:ir.ui.menu,name:farm_operation.menu_farm_operation_root
+msgid "Operations"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__operation_count
+msgid "Operations Count"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__operator_id_card
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__operator_id_card
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__operator_id_card
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__operator_id_card
+msgid "Operator ID Card"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__orchard_horticulture
+msgid "Orchard Horticulture"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__orderpoint_id
+msgid "Orderpoint"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__carbon_content
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__carbon_content
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__carbon_content
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__carbon_content
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__carbon_content
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__carbon_content
+msgid "Organic Carbon"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__is_outdated_bom
+msgid "Outdated BoM"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_tree_view_inherit_farm
+msgid "Output/Harvest"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__p_density
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__p_density
+msgid "P Density (kg/mu)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__bom_id
+msgid "Parent BoM"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__parent_product_tmpl_id
+msgid "Parent Product Template"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_bom_line_mixin__feeding_ratio
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_line__feeding_ratio
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_line_mixin__feeding_ratio
+#: model:ir.model.fields,help:farm_operation.field_mrp_bom_line__feeding_ratio
+msgid "Percentage of total biomass (Count * Avg Weight) for daily feeding."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.ui.menu,name:farm_operation.menu_agri_science_performance
+msgid "Performance Board"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__agri_loss_reason__pest_damage
+msgid "Pest/Rodent Damage"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__product_registration_no
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention_mixin__product_registration_no
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_intervention_mixin__product_registration_no
+#: model:ir.model.fields,help:farm_operation.field_mrp_production__product_registration_no
+msgid "Pesticide or veterinary product registration number."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__phosphorus_qty
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__phosphorus_qty
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__phosphorus_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__phosphorus_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__phosphorus_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__phosphorus_qty
+msgid "Phosphorus (P)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__evidence_ids
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__evidence_ids
+msgid "Physical Evidence"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Physical Grounding"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__physiology_profile_id
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__physiology_profile_id
+msgid "Physiology Profile"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__picking_ids
+msgid "Picking associated to this manufacturing order"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__agri_activity_type__planting
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom__agri_activity_type__planting
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__agri_activity_type__planting
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__agri_activity_type__planting
+msgid "Planting Scheme"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__possible_product_template_attribute_value_ids
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__possible_bom_product_template_attribute_value_ids
+msgid "Possible Product Template Attribute Value"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__potassium_qty
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__potassium_qty
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__potassium_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__potassium_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__potassium_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__potassium_qty
+msgid "Potassium (K)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__predicted_harvest_date
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__predicted_harvest_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__predicted_harvest_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__predicted_harvest_date
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__predicted_harvest_date
+msgid "Predicted Harvest"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__priority
+msgid "Priority"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__procedure_name
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__procedure_name
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__procedure_name
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__procedure_name
+msgid "Procedure/Method"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__stock_move__agri_loss_reason__processing
+msgid "Processing Waste"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__product_tmpl_id
+msgid "Product"
+msgstr "产品"
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_registration_no
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__product_registration_no
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__product_registration_no
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__product_registration_no
+msgid "Product Registration No."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_tmpl_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__product_tmpl_id
+msgid "Product Template"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__product_id
+msgid "Product Variant"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__production_capacity
+msgid "Production Capacity"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__production_group_id
+msgid "Production Group"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__production_location_id
+msgid "Production Location"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_form
+msgid "Production Season"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.actions.act_window,name:farm_operation.action_agricultural_campaign
+#: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_tree
+msgid "Production Seasons"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__size_value
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__size_value
+msgid "Production Size"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/wizard/farm_dispatch_wizard.py:0
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__agri_task_id
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__agri_task_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__agri_task_id
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__agri_task_id
+msgid "Production Task"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__propagate_cancel
+msgid "Propagate cancel and split"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__project_task__industry_type__protected_cultivation
+msgid "Protected Cultivation"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__agri_activity_type__protection
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom__agri_activity_type__protection
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__agri_activity_type__protection
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__agri_activity_type__protection
+msgid "Protection Mix"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__pure_n_qty
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__pure_n_qty
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__pure_n_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__pure_n_qty
+msgid "Pure Nitrogen (N) kg"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__pure_p_qty
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__pure_p_qty
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__pure_p_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__pure_p_qty
+msgid "Pure Phosphorus (P) kg"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__pure_k_qty
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__pure_k_qty
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__pure_k_qty
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__pure_k_qty
+msgid "Pure Potassium (K) kg"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__quality_fingerprint
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__quality_fingerprint
+msgid "Quality Fingerprint"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Quality Fingerprint (Immutable Proof)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_stock_move__quality_grade
+msgid "Quality Grade"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__product_qty
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__product_qty
+msgid "Quantity"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__qty_produced
+msgid "Quantity Produced"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__qty_producing
+msgid "Quantity Producing"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_qty
+msgid "Quantity To Produce"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__production_capacity
+msgid "Quantity that can be produced with the current stock of components"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__rue_actual
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__rue_actual
+msgid "Radiation Use Efficiency (RUE)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__rating_ids
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__simplified_state__ready
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__simplified_state__ready
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__simplified_state__ready
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__simplified_state__ready
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__simplified_state__ready
+msgid "Ready"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__duration
+msgid "Real Duration"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Recipe/Formula"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__name
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__code
+msgid "Reference"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__origin
+msgid ""
+"Reference of the document that generated this production order request."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__reference_ids
+msgid "References"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Reject"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__approval_state__rejected
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__approval_state__rejected
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__approval_state__rejected
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__approval_state__rejected
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__approval_state__rejected
+msgid "Rejected"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__credit_score
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__credit_score
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__credit_score
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__credit_score
+msgid "Reputation Credit Score"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__operator_id_card
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention_mixin__operator_id_card
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_intervention_mixin__operator_id_card
+#: model:ir.model.fields,help:farm_operation.field_mrp_production__operator_id_card
+msgid "Required for pesticide/veterinary real-name registration."
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.view_agri_intervention_form_science_inherit
+msgid "Resource Efficiency"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__resource_intensity_score
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__resource_intensity_score
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__resource_intensity_score
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__resource_intensity_score
+msgid "Resource Intensity"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__user_id
+msgid "Responsible"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__is_safe_to_harvest
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__is_safe_to_harvest
+msgid "Safe to Harvest"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.actions.act_window,name:farm_operation.action_agri_science_performance
+msgid "Scientific Performance"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__scrap_count
+msgid "Scrap Move"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__scrap_ids
+msgid "Scraps"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_pivot
+msgid "Season Analytics"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__name
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__name
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__name
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__name
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__name
+msgid "Season Name"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_bom_mixin__application_stage__seedling
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom__application_stage__seedling
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_bom_mixin__application_stage__seedling
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_bom__application_stage__seedling
+msgid "Seedling/Nursery"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__location_ids
+#: model_terms:ir.ui.view,arch_db:farm_operation.view_farm_dispatch_wizard_form
+msgid "Selected Parcels"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__sequence
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__sequence
+msgid "Sequence"
+msgstr "序号"
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__show_allocation
+msgid "Show Allocation"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__show_copy_operations_button
+msgid "Show Copy Operations Button"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__show_final_lots
+msgid "Show Final Lots"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__show_generate_bom
+msgid "Show Generate BOM"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__show_lock
+msgid "Show Lock/unlock buttons"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__show_produce
+msgid "Show Produce"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__show_produce_all
+msgid "Show Produce All"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__show_set_bom_button
+msgid "Show Set Bom Button"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__simplified_state
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__simplified_state
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__simplified_state
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__simplified_state
+msgid "Simplified State"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Soil Nutrient Balance"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__tillage
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__intervention_type__tillage
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__intervention_type__tillage
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__intervention_type__tillage
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_dispatch_wizard__intervention_type__tillage
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__tillage
+msgid "Soil Preparation"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__origin
+msgid "Source"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__sale_order_id
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__sale_order_id
+msgid "Source Sale Order"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention__intervention_type__sowing
+#: model:ir.model.fields.selection,name:farm_operation.selection__agri_intervention_mixin__intervention_type__sowing
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_agricultural_intervention_mixin__intervention_type__sowing
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_apiculture_order__intervention_type__sowing
+#: model:ir.model.fields.selection,name:farm_operation.selection__farm_dispatch_wizard__intervention_type__sowing
+#: model:ir.model.fields.selection,name:farm_operation.selection__mrp_production__intervention_type__sowing
+msgid "Sowing/Planting"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Spatial & Evidence"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__spatial_compliance_rate
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__spatial_compliance_rate
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__spatial_compliance_rate
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__spatial_compliance_rate
+msgid "Spatial Compliance (%)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__spatial_grid_id
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__spatial_grid_id
+msgid "Spatial Grid ID"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__date_start
+msgid "Start"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__date_start
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__date_start
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__date_start
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__date_start
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__date_start
+msgid "Start Date"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Start Work"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__state
+msgid "State"
+msgstr "状态"
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model,name:farm_operation.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__move_dest_ids
+msgid "Stock Movements of Produced Goods"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Stop Work"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__biological_stress_index
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__biological_stress_index
+msgid "Stress Index (0-100)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__agent_instruction_json
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__agent_instruction_json
+msgid "Structured Command (JSON)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__child_bom_id
+msgid "Sub BoM"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Submit for Approval"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__support_id
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__support_id
+msgid "Support Object"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.mrp_production_form_view_inherit_farm_op
+msgid "Sustainability & Value"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__is_eco_blocked
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__is_eco_blocked
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__is_eco_blocked
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__is_eco_blocked
+msgid "Sustainability Block"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__impact_credits
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__impact_credits
+msgid "Sustainability Credits"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.view_agri_science_sync_wizard_form
+msgid "Sync Data"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_agricultural_campaign_mixin__target_gdd
+#: model:ir.model.fields,field_description:farm_operation.field_agricultural_campaign__target_gdd
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign__target_gdd
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_base__target_gdd
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_campaign_mixin__target_gdd
+msgid "Target GDD"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__product_id
+msgid "Target Product (Crop)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__show_allocation
+msgid ""
+"Technical Field used to decide whether the button \"Allocation\" should be "
+"displayed."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__show_produce_all
+msgid "Technical field to check if produce all button can be shown"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__show_produce
+msgid "Technical field to check if produce button can be shown"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__reserve_visible
+msgid "Technical field to check when we can reserve quantities"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__unreserve_visible
+msgid "Technical field to check when we can unreserve"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__show_copy_operations_button
+msgid ""
+"Technical field used to control the visibility of the 'Copy Existing "
+"Operations' button."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__is_outdated_bom
+msgid "The BoM has been updated since creation of the MO"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_dispatch_wizard__product_id
+msgid "The crop or output product."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_task__support_id
+#: model:ir.model.fields,help:farm_operation.field_project_task__support_id
+msgid "The land parcel, animal or group this task is performed on."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_line__operation_id
+msgid ""
+"The operation where the components are consumed, or the finished products "
+"created."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__campaign_id
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention_mixin__campaign_id
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_intervention_mixin__campaign_id
+#: model:ir.model.fields,help:farm_operation.field_mrp_production__campaign_id
+msgid "The production season this intervention belongs to."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__agri_task_id
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention_mixin__agri_task_id
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_intervention_mixin__agri_task_id
+#: model:ir.model.fields,help:farm_operation.field_mrp_production__agri_task_id
+msgid "The specific production task this intervention belongs to."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__product_qty
+msgid ""
+"This should be the smallest quantity that this product can be produced in. "
+"If the BOM contains operations, make sure the work center capacity is "
+"accurate."
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.view_mrp_production_filter_inherit_farm
+msgid "To Do"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__tool_cost
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__tool_cost
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__tool_cost
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__tool_cost
+msgid "Tool/Machinery Cost"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__tool_ids
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__tool_ids
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__tool_ids
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__tool_ids
+msgid "Tools/Machinery"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_dispatch_wizard__total_area
+msgid "Total Area (mu)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__total_agri_cost
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__total_agri_cost
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__total_agri_cost
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__total_agri_cost
+msgid "Total Intervention Cost"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__total_n
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__total_n
+msgid "Total Nitrogen (kg)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__total_p
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__total_p
+msgid "Total Phosphorus (kg)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_farm_task__total_k
+#: model:ir.model.fields,field_description:farm_operation.field_project_task__total_k
+msgid "Total Potassium (kg)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_uom_qty
+msgid "Total Quantity"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__duration_expected
+msgid "Total expected duration (in minutes)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__duration
+msgid "Total real duration (in minutes)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_tracking
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__tracking
+msgid "Tracking"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_task__industry_type
+#: model:ir.model.fields,help:farm_operation.field_project_task__industry_type
+msgid "Type of agricultural industry this task belongs to"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__unbuild_ids
+msgid "Unbuilds"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__product_uom_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__product_uom_id
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__product_uom_id
+msgid "Unit"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__product_uom_id
+msgid ""
+"Unit of Measure (Unit of Measure) is the unit of measurement for the "
+"inventory control"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_project_task__display_name
+msgid ""
+"Use these keywords in the title to set new tasks:\n"
+"\n"
+"            #tags Set tags on the task\n"
+"            @user Assign the task to a user\n"
+"            ! Set the task a medium priority\n"
+"            !! Set the task a high priority\n"
+"            !!! Set the task a urgent priority\n"
+"\n"
+"            Make sure to use the right format and order e.g. Improve the configuration screen #feature #v16 @Mitchell !"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__valid_product_template_attribute_line_ids
+msgid "Valid Product Attribute Lines"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid "WEATHER BLOCK: High Wind Speed (%s km/h)"
+msgstr ""
+
+#. module: farm_operation
+#. odoo-python
+#: code:addons/farm_operation/models/agri_intervention_mixin.py:0
+msgid ""
+"WEATHER WINDOW BLOCK: Wind speed too high (%s km/h > 16 km/h). Risk detected"
+" for spray operation. Technical director has been notified."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__warehouse_id
+msgid "Warehouse"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__water_consumed_m3
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__water_consumed_m3
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__water_consumed_m3
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__water_consumed_m3
+msgid "Water Consumed (m3)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__water_footprint
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__water_footprint
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom_line__water_footprint
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom__water_footprint
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_bom_line__water_footprint
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__water_footprint
+msgid "Water Footprint (L)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__wue_actual
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__wue_actual
+msgid "Water Use Efficiency (WUE)"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__weather_risk_level
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__weather_risk_level
+msgid "Weather Risk"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__website_message_ids
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_bom__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__website_message_ids
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__picking_type_id
+msgid ""
+"When a procurement has a ‘produce’ route with a operation type set, it will "
+"try to create a Manufacturing Order for that product using a BoM of the same"
+" operation type.If not,the operation type is not taken into account in the "
+"BoM search. That allows to define stock rules which trigger different "
+"manufacturing orders with different BoMs."
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__workorder_ids
+msgid "Work Orders"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__work_start_datetime
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention_mixin__work_start_datetime
+#: model:ir.model.fields,field_description:farm_operation.field_farm_agricultural_intervention_mixin__work_start_datetime
+#: model:ir.model.fields,field_description:farm_operation.field_mrp_production__work_start_datetime
+msgid "Work Start"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,field_description:farm_operation.field_agri_intervention__workcenter_id
+msgid "Workcenter"
+msgstr ""
+
+#. module: farm_operation
+#: model_terms:ir.ui.view,arch_db:farm_operation.agricultural_campaign_view_form
+msgid "e.g. 2026 Spring"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__procedure_name
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention_mixin__procedure_name
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_intervention_mixin__procedure_name
+#: model:ir.model.fields,help:farm_operation.field_mrp_production__procedure_name
+msgid "e.g. Mechanical sowing, manual weeding"
+msgstr ""
+
+#. module: farm_operation
+#: model:ir.model.fields,help:farm_operation.field_agri_intervention__nitrogen_qty
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom__nitrogen_qty
+#: model:ir.model.fields,help:farm_operation.field_farm_agricultural_bom_line__nitrogen_qty
+#: model:ir.model.fields,help:farm_operation.field_mrp_bom__nitrogen_qty
+#: model:ir.model.fields,help:farm_operation.field_mrp_bom_line__nitrogen_qty
+#: model:ir.model.fields,help:farm_operation.field_mrp_production__nitrogen_qty
+msgid "kg per unit."
+msgstr ""

@@ -4,12 +4,109 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:03+0000\n"
+"PO-Revision-Date: 2026-05-04 09:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_mobile
+#. odoo-python
+#: code:addons/farm_mobile/models/expert_call.py:0
+msgid "CALL"
+msgstr ""
+
+#. module: farm_mobile
+#. odoo-python
+#: code:addons/farm_mobile/models/farm_checkin.py:0
+msgid "CI"
+msgstr ""
+
+#. module: farm_mobile
+#. odoo-python
+#: code:addons/farm_mobile/models/farm_checkin.py:0
+msgid "Check-in: %s"
+msgstr ""
+
+#. module: farm_mobile
+#. odoo-python
+#: code:addons/farm_mobile/models/agri_evidence.py:0
+msgid ""
+"EVIDENCE INTEGRITY ALERT: Evidence hash mismatch detected. Data may have "
+"been tampered with."
+msgstr ""
+
+#. module: farm_mobile
+#. odoo-python
+#: code:addons/farm_mobile/models/farm_checkin.py:0
+msgid "Evidence: %s"
+msgstr ""
+
+#. module: farm_mobile
+#. odoo-python
+#: code:addons/farm_mobile/models/agri_evidence.py:0
+msgid "Field Photo"
+msgstr ""
+
+#. module: farm_mobile
+#. odoo-python
+#: code:addons/farm_mobile/models/checklist_submission.py:0
+#: code:addons/farm_mobile/models/expert_call.py:0
+#: code:addons/farm_mobile/models/farm_checkin.py:0
+msgid "New"
+msgstr ""
+
+#. module: farm_mobile
+#. odoo-javascript
+#: code:addons/farm_mobile/static/src/xml/farm_mobile_checkin.xml:0
+msgid "Offline SOPs"
+msgstr ""
+
+#. module: farm_mobile
+#. odoo-javascript
+#: code:addons/farm_mobile/static/src/xml/farm_mobile_checkin.xml:0
+msgid "Processing..."
+msgstr ""
+
+#. module: farm_mobile
+#. odoo-python
+#: code:addons/farm_mobile/models/farm_checkin.py:0
+msgid ""
+"SAFETY BLOCK: Please complete the PRE-OP CHECKLIST for %s before starting!"
+msgstr ""
+
+#. module: farm_mobile
+#. odoo-python
+#: code:addons/farm_mobile/models/checklist_submission.py:0
+msgid "SUB"
+msgstr ""
+
+#. module: farm_mobile
+#. odoo-python
+#: code:addons/farm_mobile/models/farm_checkin.py:0
+msgid "WARNING: Worker checked in OUTSIDE the parcel boundary!"
+msgstr ""
+
+#. module: farm_mobile
+#. odoo-javascript
+#: code:addons/farm_mobile/static/src/xml/farm_mobile_checkin.xml:0
+msgid "Working Offline"
+msgstr ""
+
+#. module: farm_mobile
+#. odoo-javascript
+#: code:addons/farm_mobile/static/src/xml/farm_mobile_checkin.xml:0
+msgid "📸 Capture Evidence"
+msgstr ""
+
+#. module: farm_mobile
+#. odoo-javascript
+#: code:addons/farm_mobile/static/src/xml/farm_mobile_checkin.xml:0
+msgid "🚩 Site Check-in"
+msgstr ""

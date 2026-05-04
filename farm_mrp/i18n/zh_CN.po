@@ -4,12 +4,127 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:03+0000\n"
+"PO-Revision-Date: 2026-05-04 09:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/mrp_bom_line_isl_models.py:0
+msgid ""
+"Cannot delete base record that has an associated ISL record. Please delete "
+"the ISL record first."
+msgstr ""
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/mrp_bom_line_isl.py:0
+msgid ""
+"Cannot directly delete base BOM line when ISL record exists. Please delete "
+"through the specialized ISL interface."
+msgstr ""
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/mrp_bom.py:0
+msgid ""
+"Cannot directly delete base BOM when ISL record exists. Please delete "
+"through the specialized ISL interface."
+msgstr ""
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/stock_lot.py:0
+msgid ""
+"Cannot directly delete base lot when ISL record exists. Please delete "
+"through the specialized ISL interface."
+msgstr ""
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/mrp_production.py:0
+msgid ""
+"Cannot directly delete base production order when ISL record exists. Please "
+"delete through the specialized ISL interface."
+msgstr ""
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/mrp_bom_line_isl_models.py:0
+msgid ""
+"Cannot modify '%s' directly. Please modify through the specialized interface"
+" '%s'."
+msgstr ""
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/mrp_bom.py:0
+#: code:addons/farm_mrp/models/mrp_bom_line_isl.py:0
+#: code:addons/farm_mrp/models/mrp_production.py:0
+#: code:addons/farm_mrp/models/stock_lot.py:0
+msgid ""
+"Field '%s' is managed by the specialized ISL interface. Please modify "
+"through the %s interface."
+msgstr ""
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/mrp_bom.py:0
+#: code:addons/farm_mrp/models/mrp_bom_line_isl.py:0
+#: code:addons/farm_mrp/models/mrp_bom_line_isl_models.py:0
+#: code:addons/farm_mrp/models/mrp_production.py:0
+#: code:addons/farm_mrp/models/stock_lot.py:0
+msgid "No ISL Record"
+msgstr ""
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/mrp_bom_line_isl.py:0
+msgid "No specialized ISL record exists for this BOM line."
+msgstr ""
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/mrp_bom.py:0
+msgid "No specialized ISL record exists for this BOM."
+msgstr ""
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/stock_lot.py:0
+msgid "No specialized ISL record exists for this lot."
+msgstr ""
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/mrp_production.py:0
+msgid "No specialized ISL record exists for this production order."
+msgstr ""
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/mrp_bom_line_isl_models.py:0
+msgid "This record does not have an associated ISL record."
+msgstr ""
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/mrp_bom_line_isl.py:0
+msgid "View ISL BOM Line"
+msgstr ""
+
+#. module: farm_mrp
+#. odoo-python
+#: code:addons/farm_mrp/models/mrp_bom.py:0
+#: code:addons/farm_mrp/models/mrp_production.py:0
+#: code:addons/farm_mrp/models/stock_lot.py:0
+msgid "View ISL Record"
+msgstr ""
