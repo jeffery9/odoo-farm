@@ -2,44 +2,60 @@
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import UserError
 
-class TestAiAgent(TransactionCase):
+class TestAiDecision(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.AiAgent = cls.env['agri.ai.agent']
-        
-    def test_01_agent_creation(self):
-        """ Test AI agent creation and base record linking """
-        agent = self.AiAgent.create({
-            'name': 'Yield Prediction Agent',
-            'agent_type': 'prediction',
-            'industry_id': 'crop',
+        cls.Irrigation = cls.env['agri.ai.irrigation.decision']
+        cls.Location = cls.env['farm.location'].create({
+            'name': 'Test Block 1',
+            'usage': 'internal',
         })
-        self.assertTrue(agent.exists())
-        self.assertTrue(agent.base_id, "Base ID should be automatically created via _inherits")
-        self.assertEqual(agent.base_id.name, 'Yield Prediction Agent')
-        
-    def test_02_agent_decision_simulation(self):
-        """ Test AI agent decision making simulation """
-        agent = self.AiAgent.create({
-            'name': 'Pest Analysis Agent',
-            'agent_type': 'analysis',
+        cls.Product = cls.env['product.template'].create({
+            'name': 'Test Corn',
+            'type': 'consu',
         })
         
-        # Test skill activation
-        # Assuming there's a method to generate decisions
-        if hasattr(agent, 'generate_agent_decisions'):
-            res = agent.generate_agent_decisions()
-            self.assertIn('status', res)
-            
-    def test_03_autonomous_status(self):
-        """ Test agent autonomous level handling """
-        agent = self.AiAgent.create({
-            'name': 'Autonomous Harvester AI',
-            'agent_type': 'planning',
+    def test_01_irrigation_decision_logic(self):
+        """ Test irrigation need calculation logic """
+        # Case 1: Low moisture
+        decision = self.Irrigation.create({
+            'name': 'Drought Condition',
+            'land_location_id': self.Location.id,
+            'product_id': self.Product.id,
+            'current_soil_moisture': 20.0, # < 30%
         })
-        # Check default autonomy level if it exists
-        if hasattr(agent, 'autonomy_level'):
-            self.assertEqual(agent.autonomy_level, 'L1')
-            agent.autonomy_level = 'L4'
-            self.assertEqual(agent.autonomy_level, 'L4')
+        decision.calculate_irrigation_needs()
+        self.assertEqual(decision.recommended_water_amount, 25.0)
+        self.assertEqual(decision.priority, 'high')
+        
+        # Case 2: Medium moisture
+        decision_med = self.Irrigation.create({
+            'name': 'Moderate Condition',
+            'land_location_id': self.Location.id,
+            'product_id': self.Product.id,
+            'current_soil_moisture': 40.0, # between 30 and 45
+        })
+        decision_med.calculate_irrigation_needs()
+        self.assertEqual(decision_med.recommended_water_amount, 15.0)
+        
+    def test_02_decision_state_workflow(self):
+        """ Test the recommendation application workflow """
+        decision = self.Irrigation.create({
+            'name': 'Standard Decision',
+            'current_soil_moisture': 35.0,
+        })
+        self.assertEqual(decision.status, 'draft')
+        
+        decision.action_apply_recommendation()
+        self.assertEqual(decision.status, 'applied')
+        
+        decision.action_reject_recommendation()
+        self.assertEqual(decision.status, 'rejected')
+
+    def test_03_base_mixin_inheritance(self):
+        """ Test if decision model correctly inherits from AI base mixin """
+        decision = self.Irrigation.create({'name': 'Mixin Test'})
+        self.assertTrue(hasattr(decision, 'ai_confidence_score'))
+        self.assertTrue(hasattr(decision, 'ai_status'))
+        self.assertEqual(decision.ai_status, 'pending')
