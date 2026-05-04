@@ -20,7 +20,7 @@
     </record>
 
     <!-- Add ISL navigation button and indicator to MRP BOM Form View -->
-    <record id="view_mrp_bom_form_isl_nav" model="ir.ui.view">
+    <!-- <record id="view_mrp_bom_form_isl_nav" model="ir.ui.view">
         <field name="name">mrp.bom.form.isl.nav</field>
         <field name="model">mrp.bom</field>
         <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
@@ -36,10 +36,10 @@
                         invisible="not industry_type or industry_type == 'standard'"/>
             </header>
         </field>
-    </record>
+    </record> -->
 
     <!-- Add ISL navigation button and indicator to Stock Lot Form View -->
-    <record id="view_stock_lot_form_isl_nav" model="ir.ui.view">
+    <!-- <record id="view_stock_lot_form_isl_nav" model="ir.ui.view">
         <field name="name">stock.lot.form.isl.nav</field>
         <field name="model">stock.lot</field>
         <field name="inherit_id" ref="stock.view_production_lot_form"/>
@@ -54,7 +54,7 @@
                         class="btn-primary"/>
             </header>
         </field>
-    </record>
+    </record> -->
 
     <!-- Add ISL navigation to MRP BOM Line Tree View -->
     <!-- view_mrp_bom_line_tree_isl_nav removed -->
