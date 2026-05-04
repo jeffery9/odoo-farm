@@ -1,53 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 扩展 BOM 视图：增加农业加工配方 [US-14-02] -->
-    <record id="mrp_bom_form_view_inherit_farm_proc" model="ir.ui.view">
-        <field name="name">mrp.bom.form.inherit.farm.proc</field>
-        <field name="model">mrp.bom</field>
-        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='product_qty']" position="after">
-                <field name="industry_type"/>
-                
-            </xpath>
-            <xpath expr="//field[@name='bom_line_ids']/list/field[@name='product_id']" position="after">
-                
-            </xpath>
-            <xpath expr="//notebook" position="inside">
-                <page string="Agri-Process Recipe" name="agri_recipe">
-                    <group>
-                        
-                    </group>
-                </page>
-            </xpath>
-        </field>
-    </record>
-
-    <!-- 扩展工作中心：能耗单价 [US-14-04] -->
-    <record id="mrp_workcenter_view_inherit_farm_proc" model="ir.ui.view">
-        <field name="name">mrp.workcenter.form.inherit.farm.proc</field>
-        <field name="model">mrp.workcenter</field>
-        <field name="inherit_id" ref="mrp.mrp_workcenter_view"/>
-        <field name="arch" type="xml">
-            <xpath expr="//group" position="inside">
-                <field name="energy_type"/>
-                <field name="energy_cost_per_hour"/>
-            </xpath>
-        </field>
-    </record>
-
-    <!-- 扩展工单：记录实际能耗 [US-14-04] -->
-    <record id="mrp_production_workorder_tree_editable_view_inherit_farm_proc" model="ir.ui.view">
-        <field name="name">mrp.workorder.list.inherit.farm.proc</field>
-        <field name="model">mrp.workorder</field>
-        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='duration']" position="after">
-                <field name="actual_energy_consumption"/>
-            </xpath>
-        </field>
-    </record>
-
     <record id="mrp_production_form_view_inherit_farm_proc" model="ir.ui.view">
         <field name="name">mrp.production.form.inherit.farm.proc</field>
         <field name="model">mrp.production</field>
@@ -57,14 +9,8 @@
                 <page string="Agri-Processing Details" name="agri_processing">
                     <group>
                         <group string="Energy Monitoring">
-                            
-                            
-                            
-                            
                         </group>
                         <group string="Process Quality">
-                            
-                            
                         </group>
                         <group string="Mass Balance (US-04-02)">
                         </group>
@@ -74,7 +20,6 @@
         </field>
     </record>
 
-    <!-- 扩展批次视图显示溯源 -->
     <record id="view_production_lot_form_inherit_farm_proc" model="ir.ui.view">
         <field name="name">stock.lot.form.inherit.farm.proc</field>
         <field name="model">stock.lot</field>
@@ -83,16 +28,18 @@
             <xpath expr="//field[@name='ref']" position="after">
                 <field name="parent_lot_ids" widget="many2many_tags"/>
             </xpath>
-            <xpath expr="//notebook" position="inside">
-                <page string="Traceability Tree" name="traceability">
-                    <field name="child_lot_ids" readonly="1">
-                        <list>
-                            <field name="name"/>
-                            <field name="product_id"/>
-                            <field name="create_date"/>
-                        </list>
-                    </field>
-                </page>
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Traceability Tree" name="traceability">
+                        <field name="child_lot_ids" readonly="1">
+                            <list>
+                                <field name="name"/>
+                                <field name="product_id"/>
+                                <field name="create_date"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
             </xpath>
         </field>
     </record>

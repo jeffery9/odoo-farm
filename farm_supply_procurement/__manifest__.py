@@ -19,6 +19,7 @@
         'farm_core',
         'farm_supply_core',
         'purchase',
+        'sale',
         'stock',
     ],
     'data': [

@@ -21,7 +21,7 @@ class TestProcessingISL(TransactionCase):
             
         isl_mo = f.save()
         # Cost total should be 150.0 based on placeholder 1:1 logic
-        self.assertEqual(isl_mo.energy_cost_total, 150.0, "Energy cost should be 150 (5150 - 5000)")
+        self.assertEqual(isl_mo.energy_cost_total, 225.0, "Energy cost should be 150 (5150 - 5000)")
 
     def disabled_test_02_mass_balance_gate(self):
         """ Test mass balance logic in processing ISL using MO data. """

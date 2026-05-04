@@ -113,8 +113,6 @@ class MrpProduction(models.Model):
     yield_rate = fields.Float("Yield Rate")
     loss_rate = fields.Float("Loss Rate")
     quality_gate_status = fields.Selection([('pending', 'Pending'), ('passed', 'Passed'), ('failed', 'Failed')], string='Quality Gate Status', default='pending')
-    active_recipe_phase_id = fields.Many2one('precision.recipe.phase', string='Active Phase')
-    recipe_phase_ids = fields.One2many('precision.recipe.phase', 'production_id', string='Recipe Phases')
     phase_start_datetime = fields.Datetime("Phase Start")
     skill_execution_status = fields.Selection([('idle', 'Idle'), ('running', 'Running'), ('error', 'Error')], string='Skill Status', default='idle')
     production_drive_type = fields.Selection([('standard', 'Standard'), ('parameter', 'Parameter-driven')], string='Drive Type', default='standard')

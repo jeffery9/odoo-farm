@@ -108,12 +108,15 @@ class StockLot(models.Model):
                                        help="Flattened upstream lot IDs for instant lookup.")
 
     # 分级与元数据 [US-14-05]
-    quality_grade = fields.Selection(selection_add=[
+    quality_grade = fields.Selection([
+        ('grade_a', 'Grade A'),
+        ('grade_b', 'Grade B'),
+        ('grade_c', 'Grade C'),
         ('a', 'Grade A / Premium'),
         ('b', 'Grade B / Standard'),
         ('c', 'Grade C / Processing'),
         ('loss', 'Loss/Waste')
-    ], ondelete={'a': 'set null', 'b': 'set null', 'c': 'set null', 'loss': 'set null'})
+    ])
     
     harvest_date = fields.Date('Harvest Date')
     plot_id = fields.Many2one('farm.location', string='Origin Plot')
