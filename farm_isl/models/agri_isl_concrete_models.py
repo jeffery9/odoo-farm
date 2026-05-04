@@ -15,12 +15,14 @@ class AgriMRPProduction(models.Model):
     Implements US-084-01: MRP production order ISL model implementation
     """
     _name = 'agri.mrp.production'
+    # TODO: [DE-INDUSTRIAL] Use 'Agri ISL Intervention' or similar
     _description = 'Agri ISL MRP Production Order'
     _inherits = {'mrp.production': 'mrp_production_id'}
     _inherit = ['agri.manufacturing.mixin']
 
     mrp_production_id = fields.Many2one(
         'mrp.production',
+        # TODO: [DE-INDUSTRIAL] Use 'Base Intervention'
         string='Base MRP Production',
         required=True,
         ondelete='cascade'
@@ -53,12 +55,14 @@ class AgriMRPBom(models.Model):
     Implements US-084-02: MRP BOM ISL model implementation
     """
     _name = 'agri.mrp.bom'
+    # TODO: [DE-INDUSTRIAL] Use 'Agri ISL Cultivation Recipe'
     _description = 'Agri ISL MRP Bill of Materials'
     _inherits = {'mrp.bom': 'mrp_bom_id'}
     _inherit = ['agri.manufacturing.mixin']
 
     mrp_bom_id = fields.Many2one(
         'mrp.bom',
+        # TODO: [DE-INDUSTRIAL] Use 'Base Recipe'
         string='Base MRP BOM',
         required=True,
         ondelete='cascade'
@@ -83,19 +87,19 @@ class AgriMRPBom(models.Model):
                 raise UserError(_("Pharmaceutical BOM requires active ingredient specification"))
         return True
 
-
 class AgriMRPWorkcenter(models.Model):
     """
-    ISL model for MRP Work Centers with industry specialization
     Implements US-084-03: MRP work center ISL model implementation
     """
     _name = 'agri.mrp.workcenter'
+    # TODO: [DE-INDUSTRIAL] Use 'Agri ISL Processing Unit' or 'Farm Facility'
     _description = 'Agri ISL MRP Work Center'
     _inherits = {'mrp.workcenter': 'workcenter_id'}
     _inherit = ['agri.manufacturing.mixin']
 
     workcenter_id = fields.Many2one(
         'mrp.workcenter',
+        # TODO: [DE-INDUSTRIAL] Use 'Base Facility'
         string='Base Work Center',
         required=True,
         ondelete='cascade'
