@@ -7,3 +7,5 @@ from . import test_epic14_user_stories
 from . import test_seasonal_bom
 from . import test_ui_tour
 from . import test_integration_flows
+
+from . import test_deep_coverage
