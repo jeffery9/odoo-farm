@@ -46,18 +46,28 @@
 
 ### 4. 顶级菜单预览 (App Directory)
 ```
-农场管理 (Farm)
-├── 基础数据 (Master Data)
-├── 种植管理 (Planting)
-├── 畜牧管理 (Livestock)
-├── 水产养殖 (Aquaculture)
-├── 观光农业 (Agritourism)
-├── 农产品加工 (Processing)
-├── 供应链管理 (Supply Chain)
-├── 质量与安全 (Quality & Safety)
-├── 物联网与自动化 (IoT)
-├── 财务与成本 (Finance)
-└── 加盟与合作社 (Cooperative)
+🌐 Odoo 农业矩阵 (App Ecosystem)
+由于采用“工具化”设计，系统不再提供大一统的“基础数据”菜单。主数据跟随业务归口：
+
+🌿 种植管理 (Planting)
+   ├── 生产季规划 (Campaigns)
+   ├── 农事干预 (Interventions)
+   └── 配置：地块GIS、作物品种、生长基点
+
+🐄 畜牧管理 (Livestock)
+   ├── 个体/群组档案 (Herds)
+   ├── 繁育与配种 (Breeding)
+   └── 配置：动物血统、健康标准
+
+🏭 农产品加工 (Processing)
+   ├── 批次加工单 (Processing Orders)
+   └── 配置：转化配方 (BOM)、加工车间
+
+📡 物联网与自动化 (IoT)
+   ├── 数字孪生看板 (Digital Twin)
+   └── 配置：传感器资产、网关路由、规则引擎
+
+质量安全、农旅、供应链等其余 15+ 核心业务域均遵循此“高内聚”设计模式。
 ```
 
 ### 5. 🚀 核心功能矩阵 (Feature Matrix)
@@ -108,18 +118,28 @@ We upgrade agriculture from experience-based "weather-dependent" practices to a 
 
 ### 4. App Directory (Menu Preview)
 ```
-Farm Management (Farm)
-├── Master Data (基础数据)
-├── Planting (种植管理)
-├── Livestock (畜牧管理)
-├── Aquaculture (水产养殖)
-├── Agritourism (观光农业)
-├── Processing (农产品加工)
-├── Supply Chain (供应链管理)
-├── Quality & Safety (质量与安全)
-├── IoT & Automation (物联网与自动化)
-├── Finance & Costs (财务与成本)
-└── Cooperative (加盟与合作社)
+🌐 Odoo Agri Matrix (App Ecosystem)
+Following the "Tools, not Trees" philosophy, there is no monolithic "Master Data" menu. Data is managed where it belongs:
+
+🌿 Planting
+   ├── Campaigns & Planning
+   ├── Field Interventions
+   └── Config: Parcels GIS, Crop Varieties, Growth Stages
+
+🐄 Livestock
+   ├── Herd & Individual Records
+   ├── Breeding Operations
+   └── Config: Pedigree, Health Standards
+
+🏭 Processing
+   ├── Processing Orders
+   └── Config: Recipes (BOM), Workcenters
+
+📡 IoT & Automation
+   ├── Digital Twin Dashboard
+   └── Config: Sensor Assets, Gateways, Automation Rules
+
+Quality, Agritourism, Supply Chain, and 15+ other core domains follow this highly cohesive design pattern.
 ```
 
 ### 5. 🚀 Core Feature Matrix
