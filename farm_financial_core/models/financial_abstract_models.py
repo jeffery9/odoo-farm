@@ -243,6 +243,7 @@ class FinancialCostTemplate(models.Model):
     cost_per_unit = fields.Monetary("Cost per Unit", compute='_compute_cost_per_unit', currency_field='currency_id')
 
     # Accounting integration
+    # TODO: [DE-INDUSTRIAL] Replace 'Work Center' with 'Processing Unit' or 'Farm Facility' to align with farm_ux mapping
     workcenter_id = fields.Many2one('mrp.workcenter', string="Work Center")
     cost_category_id = fields.Many2one('farm.financial.cost.category', string="Cost Category")
 

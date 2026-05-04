@@ -73,6 +73,7 @@ class AgriManureBatch(models.Model):
         # For this prototype, we'll mark it as confirmed
         mo.action_confirm()
 
+        # TODO: [DE-INDUSTRIAL] Use 'Agricultural Intervention' instead of 'Manufacturing Order' in Python string for consistent audit logs
         self.message_post(body=_("Manufacturing Order %s created for manure conversion.") % mo.name)
 
         return {
