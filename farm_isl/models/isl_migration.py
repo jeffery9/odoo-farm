@@ -7,7 +7,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-# Data Migration & Compatibility (US-54-14)
+# Data Migration & Compatibility (US-084-14)
 
 class ISLMigrationUtility(models.TransientModel):
     """

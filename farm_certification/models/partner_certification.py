@@ -46,7 +46,7 @@ class PurchaseOrder(models.Model):
     _inherit = 'purchase.order'
 
     def button_confirm(self):
-        """ US-09-06: 供应商合规资质硬核查 + Activity 驱动工作流 """
+        """ US-009-06: 供应商合规资质硬核查 + Activity 驱动工作流 """
         today = fields.Date.today()
         for order in self:
             if order.partner_id.agri_certification_ids:

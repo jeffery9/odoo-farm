@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriProcessingRecallSimulation(models.Model):
     """
-    Recall Simulation and Traceability Test - US-14-22
+    Recall Simulation and Traceability Test - US-037-22
     """
     _name = 'agri.processing.recall.simulation'
     _description = 'Recall Simulation and Traceability Test'
@@ -186,7 +186,7 @@ production orders and can be exported for regulatory audit purposes.
 
 class AgriProcessingPerformanceAnalytics(models.Model):
     """
-    Performance and Efficiency Analytics - US-14-16
+    Performance and Efficiency Analytics - US-037-16
     """
     _name = 'agri.processing.performance.analytics'
     _description = 'Performance and Efficiency Analytics'

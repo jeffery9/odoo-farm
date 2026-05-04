@@ -5,7 +5,7 @@ import datetime
 
 class ExportComplianceLog(models.Model):
     """
-    出口合规检查日志 [US-17-06]
+    出口合规检查日志 [US-040-06]
     """
     _name = 'export.compliance.log'
     _description = 'Export Compliance Check Log'
@@ -25,7 +25,7 @@ class ExportComplianceLog(models.Model):
 
 class ExportCertificate(models.Model):
     """
-    出口合规证书 [US-17-06]
+    出口合规证书 [US-040-06]
     """
     _name = 'export.certificate'
     _description = 'Export Compliance Certificate'
@@ -45,13 +45,13 @@ class ExportCertificate(models.Model):
     
     @api.constrains('valid_until')
     def _check_valid_until(self):
-        """检查有效期 [US-17-06]"""
+        """检查有效期 [US-040-06]"""
         for cert in self:
             if cert.valid_until and cert.valid_until < cert.issue_date:
                 raise ValidationError(_("Valid until date must be after issue date."))
 
     def action_generate_certificate_document(self):
-        """生成证书文档 [US-17-06]"""
+        """生成证书文档 [US-040-06]"""
         for cert in self:
             # 这里应该实现证书文档的实际生成逻辑
             # 例如使用PDF生成库创建正式的证书文档
@@ -60,7 +60,7 @@ class ExportCertificate(models.Model):
             cert.attachment_name = f"certificate_{cert.certificate_number}.pdf"
 
     def _create_certificate_document(self, certificate):
-        """创建证书文档内容 [US-17-06]"""
+        """创建证书文档内容 [US-040-06]"""
         # 创建证书文档的逻辑
         # 这里应该使用PDF库生成正式的证书文档
         import base64
@@ -90,7 +90,7 @@ Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
     @api.model
     def check_certificate_validity(self, certificate_number):
-        """检查证书有效性 [US-17-06]"""
+        """检查证书有效性 [US-040-06]"""
         certificate = self.search([('certificate_number', '=', certificate_number)], limit=1)
         if certificate:
             # 检查是否激活
@@ -120,7 +120,7 @@ Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
 class ExportCountryStandard(models.Model):
     """
-    扩展国家出口标准模型，添加更多功能 [US-17-06]
+    扩展国家出口标准模型，添加更多功能 [US-040-06]
     """
     _inherit = 'export.country.standard'
 
@@ -142,7 +142,7 @@ class ExportCountryStandard(models.Model):
 
     @api.model
     def batch_import_standards(self, standards_data):
-        """批量导入标准 [US-17-06]"""
+        """批量导入标准 [US-040-06]"""
         created_standards = []
         for standard_data in standards_data:
             standard = self.create({
@@ -162,14 +162,14 @@ class ExportCountryStandard(models.Model):
         return created_standards
 
     def update_standard(self):
-        """更新标准 [US-17-06]"""
+        """更新标准 [US-040-06]"""
         for standard in self:
             standard.last_updated = fields.Datetime.now()
             # 这里可以添加实际的标准更新逻辑
             # 例如从官方源获取最新信息
 
     def schedule_next_review(self):
-        """安排下次审查 [US-17-06]"""
+        """安排下次审查 [US-040-06]"""
         for standard in self:
             if standard.update_frequency == 'daily':
                 next_review = fields.Date.add(fields.Date.today(), days=1)

@@ -24,7 +24,7 @@ class TestLivestockLogic(TransactionCase):
         })
 
     def test_01_adg_prediction(self):
-        """ Test weight prediction based on ADG [US-03-01] """
+        """ Test weight prediction based on ADG [US-003-01] """
         # Create a lot born 10 days ago
         ten_days_ago = date.today() - timedelta(days=10)
         lot = self.Lot.create({
@@ -41,7 +41,7 @@ class TestLivestockLogic(TransactionCase):
         self.assertEqual(lot.current_predicted_weight, 28.0)
 
     def test_02_daily_depletion_cron(self):
-        """ Test the cron job for daily feeding [US-03-01] """
+        """ Test the cron job for daily feeding [US-003-01] """
         lot = self.Lot.create({
             'name': 'PIG-DEP-01',
             'product_id': self.pig.id,

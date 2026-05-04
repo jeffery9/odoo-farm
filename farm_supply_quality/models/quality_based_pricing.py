@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class QualityBasedPricing(models.Model):
     """
-    质量挂钩的采购分级定价 [US-09-11 & US-09-19]
+    质量挂钩的采购分级定价 [US-009-11 & US-009-19]
     Quality-based pricing for procurement scenarios based on quality metrics
     """
     _name = 'quality.based.pricing'
@@ -27,7 +27,7 @@ class QualityBasedPricing(models.Model):
                                 help='Percentage to subtract from base price for each unit below threshold')
     active = fields.Boolean('Active', default=True)
 
-    # Link to purchase orders for acquisition scenarios (US-09-19)
+    # Link to purchase orders for acquisition scenarios (US-009-19)
     purchase_order_id = fields.Many2one(
         'purchase.order',
         string="Purchase Order",
@@ -50,7 +50,7 @@ class QualityBasedPricing(models.Model):
         ('reject', 'Reject'),
     ], string='Quality Grade Label')
 
-    # US-09-19 specific fields for acquisition pricing
+    # US-009-19 specific fields for acquisition pricing
     protein_content_coefficient = fields.Float('Protein Content Coefficient',
                                              help='Coefficient to apply per percentage point of protein content')
     moisture_content_coefficient = fields.Float('Moisture Content Coefficient',
@@ -99,7 +99,7 @@ class QualityBasedPricing(models.Model):
 
     def calculate_acquisition_price(self, quality_check_results):
         """
-        US-09-19: Calculate acquisition price based on multiple quality metrics
+        US-009-19: Calculate acquisition price based on multiple quality metrics
         quality_check_results: dict with quality metrics like {'protein_content': 15.5, 'moisture_content': 12.0, 'impurities_rate': 2.5}
         """
         base_price = self.base_price
@@ -134,7 +134,7 @@ class QualityBasedPricing(models.Model):
 
 class PurchaseOrderLine(models.Model):
     """
-    Extension of purchase order line to support quality-based pricing [US-09-19]
+    Extension of purchase order line to support quality-based pricing [US-009-19]
     """
     _inherit = 'purchase.order.line'
     quality_adjustment_amount = fields.Float("Quality Adjustment Amount", compute="_compute_quality_adjustment", store=True)
@@ -235,11 +235,11 @@ class PurchaseOrderLine(models.Model):
 
 class PurchaseOrder(models.Model):
     """
-    Extension of purchase order to support quality-based acquisition pricing [US-09-19]
+    Extension of purchase order to support quality-based acquisition pricing [US-009-19]
     """
     _inherit = 'purchase.order'
 
-    # Fields for acquisition scenarios - US-09-19 Quality-based pricing
+    # Fields for acquisition scenarios - US-009-19 Quality-based pricing
     quality_based_pricing_enabled = fields.Boolean(
         "Quality-Based Pricing Enabled",
         help="Enable quality-based pricing adjustments for this order"
@@ -265,7 +265,7 @@ class PurchaseOrder(models.Model):
 
     def action_apply_quality_based_pricing(self):
         """
-        US-09-19: Apply quality-based pricing when purchase order is confirmed.
+        US-009-19: Apply quality-based pricing when purchase order is confirmed.
         This method automatically calculates pricing based on quality check results
         """
         for order in self:

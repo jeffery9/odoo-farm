@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class StockPickingType(models.Model):
     """
-    扩展 stock.picking.type 以支持"垫资分发"类型 [US-48-04]
+    扩展 stock.picking.type 以支持"垫资分发"类型 [US-078-04]
     """
     _inherit = 'stock.picking.type'
 

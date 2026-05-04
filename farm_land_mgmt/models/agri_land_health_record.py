@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 class AgriLandHealthRecord(models.Model):
     """
-    US-01-09: 土地健康与轮作档案 (Land Health & Crop Rotation Records)
+    US-001-09: 土地健康与轮作档案 (Land Health & Crop Rotation Records)
     Model to track land health metrics and soil analysis
     """
     _name = 'agri.land.health.record'

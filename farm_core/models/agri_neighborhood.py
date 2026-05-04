@@ -5,7 +5,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriNeighborhoodRegistry(models.Model):
     """
-    Registry for discovering nearby agents and assets within the same spatial grid. [US-70-2026]
+    Registry for discovering nearby agents and assets within the same spatial grid. [US-100-2026]
     Level 1+: Neighborhood Discovery Service.
     """
     _name = 'agri.neighborhood.registry'

@@ -30,12 +30,12 @@ class FarmLotLivestock(models.Model):
 
     lot_id = fields.Many2one('stock.lot', string='Base Lot', required=True, ondelete='cascade')
 
-    # [US-64-01] 个体动物档案管理
+    # [US-094-01] 个体动物档案管理
     birth_date = fields.Date("Birth Date")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string="Gender")
     current_weight = fields.Float("Weight (kg)")
 
-    # [US-64-04] 生殖与繁殖管理
+    # [US-094-04] 生殖与繁殖管理
     breeding_status = fields.Selection([
         ('immature', 'Immature'),
         ('open', 'Open'),
@@ -45,11 +45,11 @@ class FarmLotLivestock(models.Model):
         ('dry', 'Dry')
     ], string="Breeding Status", default='immature')
 
-    # [US-64-02] 智能健康监测
+    # [US-094-02] 智能健康监测
     health_index = fields.Float("Health Index (0-100)", default=100.0)
     last_vet_check = fields.Date("Last Veterinary Check")
 
-    # [US-64-06] 产量与性能分析
+    # [US-094-06] 产量与性能分析
     fcr_actual = fields.Float("Actual FCR", compute='_compute_performance_metrics')
     avg_daily_gain = fields.Float("Actual ADG (kg/day)", compute='_compute_performance_metrics')
 
@@ -171,7 +171,7 @@ class FarmLivestockProduction(models.Model):
             isl_lot = self.env['farm.lot.livestock'].search([('lot_id', '=', lot.id)], limit=1)
             if isl_lot:
                 isl_lot.current_weight = self.final_total_weight / (self.production_id.product_qty or 1.0)
-                # Create a weight measurement event [US-64-01]
+                # Create a weight measurement event [US-094-01]
                 self.env['farm.livestock.event'].create({
                     'lot_id': lot.id,
                     'event_type': 'weight',

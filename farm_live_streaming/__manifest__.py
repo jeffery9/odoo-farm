@@ -5,13 +5,13 @@
     'summary': 'Live Streaming and Douyin Platform Integration',
     'description': """
         Live streaming and Douyin integration module for Odoo 19 Farm Management System.
-        - Douyin account authorization and binding [US-21-01]
-        - Product synchronization with Douyin shop window [US-21-02]
-        - Live room product association with traceability info [US-21-03]
-        - Order auto-sync from Douyin to farm system [US-21-04]
-        - Live streaming data statistics and analysis [US-21-05]
-        - Live preview and promotion [US-21-06]
-        - Live content archiving and reuse [US-21-07]
+        - Douyin account authorization and binding [US-051-01]
+        - Product synchronization with Douyin shop window [US-051-02]
+        - Live room product association with traceability info [US-051-03]
+        - Order auto-sync from Douyin to farm system [US-051-04]
+        - Live streaming data statistics and analysis [US-051-05]
+        - Live preview and promotion [US-051-06]
+        - Live content archiving and reuse [US-051-07]
     """,
     'author': 'Jeffery',
     'depends': ['farm_marketing', 'farm_supply', 'sale', 'stock', 'website'],

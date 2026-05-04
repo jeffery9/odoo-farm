@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriService(models.Model):
     """
-    社会化服务产能共享 [US-19-13]
+    社会化服务产能共享 [US-042-13]
     """
     _name = 'agri.service'
     _description = 'Agricultural Service'

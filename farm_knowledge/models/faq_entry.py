@@ -2,7 +2,7 @@ from odoo import models, fields, api, _
 
 class FAQEntry(models.Model):
     """
-    常见问题条目 [US-16-05]
+    常见问题条目 [US-039-05]
     """
     _name = 'faq.entry'
     _description = 'Frequently Asked Questions'

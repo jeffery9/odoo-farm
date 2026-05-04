@@ -14,7 +14,7 @@ class SaleOrder(models.Model):
             order.booking_count = len(order.booking_ids)
 
     def action_confirm(self):
-        # US-09-01: 提前期校验
+        # US-009-01: 提前期校验
         today = fields.Date.today()
         for order in self:
             for line in order.order_line:
@@ -34,7 +34,7 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self).action_confirm()
         for order in self:
             for line in order.order_line:
-                # 1. 需求驱动生产任务 [US-03-01]
+                # 1. 需求驱动生产任务 [US-003-01]
                 if line.product_id.is_variety:
                     self.env['project.task'].create({
                         'name': _('Demand: %s for %s') % (line.product_id.name, order.name),
@@ -43,7 +43,7 @@ class SaleOrder(models.Model):
                         'sale_order_id': order.id,
                     })
                 
-                # 2. 体验项目自动预约 [US-02-04]
+                # 2. 体验项目自动预约 [US-002-04]
                 if line.product_id.is_experience_package:
                     self.env['farm.booking'].create({
                         'name': _('Booking for %s') % order.name,

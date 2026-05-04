@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class VisualStatusIndicator(models.Model):
     """
-    视觉状态标识 [US-16-03]
+    视觉状态标识 [US-039-03]
     """
     _name = 'visual.status.indicator'
     _description = 'Visual Status Indicator Configuration'

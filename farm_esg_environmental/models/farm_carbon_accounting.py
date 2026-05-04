@@ -3,7 +3,7 @@ from odoo import models, fields, api, _
 
 class AgriCarbonFactor(models.Model):
     """
-    Agri Domain Level: Carbon Emission Factors. [US-104-2026]
+    Agri Domain Level: Carbon Emission Factors. [US-014-2026]
     Standard factors for inputs, energy, and sequestration across the domain.
     """
     _name = 'agri.carbon.factor'
@@ -25,7 +25,7 @@ class AgriCarbonFactor(models.Model):
 
 class AgriCarbonLedger(models.Model):
     """
-    Agri Domain Level: Carbon Ledger. [US-104-2026]
+    Agri Domain Level: Carbon Ledger. [US-014-2026]
     The universal transaction record for carbon impact.
     Refactored from farm.carbon.ledger with 100% logic retention.
     """

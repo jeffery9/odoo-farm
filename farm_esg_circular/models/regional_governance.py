@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriRegionalCircularGovernance(models.Model):
     """
-    US-27-07: 行政区域级循环治理 (Regional/Administrative Cycle)
+    US-057-07: 行政区域级循环治理 (Regional/Administrative Cycle)
     Model for administrative-level circular economy governance and reporting
     """
     _name = 'agri.regional.circular.governance'

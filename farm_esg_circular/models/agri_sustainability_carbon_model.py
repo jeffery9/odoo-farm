@@ -3,7 +3,7 @@ from odoo.exceptions import ValidationError
 
 class AgriSustainabilityCarbonModel(models.Model):
     """
-    US-30-13: 行业特定碳排放模型ISL扩展
+    US-060-13: 行业特定碳排放模型ISL扩展
     Industry Specific Carbon Model for implementing industry-specific carbon emission calculations
     """
     _name = 'agri.sustainability.carbon.model'

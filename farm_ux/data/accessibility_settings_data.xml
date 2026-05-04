@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 默认无障碍设置 [US-16-09] -->
+    <!-- 默认无障碍设置 [US-039-09] -->
     <record id="default_accessibility_setting" model="accessibility.settings">
         <field name="name">Default Accessibility Configuration</field>
         <field name="user_id" ref="base.user_root"/>
@@ -19,7 +19,7 @@
         <field name="last_updated" eval="DateTime.now()"/>
     </record>
 
-    <!-- 高对比度模式设置 [US-16-09] -->
+    <!-- 高对比度模式设置 [US-039-09] -->
     <record id="high_contrast_setting" model="accessibility.settings">
         <field name="name">High Contrast Accessibility Setting</field>
         <field name="user_id" ref="base.user_root"/>
@@ -35,7 +35,7 @@
         <field name="last_updated" eval="DateTime.now()"/>
     </record>
 
-    <!-- 大字模式设置 [US-16-09] -->
+    <!-- 大字模式设置 [US-039-09] -->
     <record id="large_font_setting" model="accessibility.settings">
         <field name="name">Large Font Accessibility Setting</field>
         <field name="user_id" ref="base.user_root"/>

@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriESGMarketplace(models.Model):
     """
-    US-97-02: 外部ESG市场平台 (External ESG Marketplace Platform)
+    US-097-02: 外部ESG市场平台 (External ESG Marketplace Platform)
     Platform for trading ESG-related products and services
     """
     _name = 'agri.esg.marketplace'
@@ -129,7 +129,7 @@ class AgriESGMarketplace(models.Model):
 
 class AgriESGMarketplaceTrade(models.Model):
     """
-    US-97-03: ESG市场交易记录 (ESG Marketplace Trade Records)
+    US-097-03: ESG市场交易记录 (ESG Marketplace Trade Records)
     Records of trades in the ESG marketplace
     """
     _name = 'agri.esg.marketplace.trade'
@@ -283,7 +283,7 @@ class AgriESGMarketplaceTrade(models.Model):
 
 class AgriWasteResourceTrade(models.Model):
     """
-    US-97-04: 废料资源交易 (Waste Resource Trading)
+    US-097-04: 废料资源交易 (Waste Resource Trading)
     Trading of agricultural waste materials and by-products
     """
     _name = 'agri.waste.resource.trade'

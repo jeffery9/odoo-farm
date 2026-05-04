@@ -2,7 +2,7 @@ from odoo import models, fields, api, _
 
 class AgriculturalKnowledge(models.Model):
     """
-    农业知识库 [US-16-06]
+    农业知识库 [US-039-06]
     """
     _name = 'agricultural.knowledge'
     _description = 'Agricultural Knowledge Base'
@@ -69,7 +69,7 @@ class AgriculturalKnowledge(models.Model):
 
     @api.model
     def smart_search(self, keywords):
-        """US-16-06: 智能搜索"""
+        """US-039-06: 智能搜索"""
         if not keywords:
             return self.browse()
         domain = [
@@ -84,7 +84,7 @@ class AgriculturalKnowledge(models.Model):
     @api.model
     def search_pest_disease_by_symptoms(self, symptoms_keywords):
         """
-        US-17-13: Search for pest/diseases by symptom keywords
+        US-040-13: Search for pest/diseases by symptom keywords
         """
         if not symptoms_keywords:
             return self.env['agri.pest.disease'].browse()

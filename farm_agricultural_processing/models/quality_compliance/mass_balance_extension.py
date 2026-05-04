@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 class FarmProcessingProductionMassBalanceExtension(models.Model):
     """
-    Extension to Processing ISL Production Model for Mass Balance - US-14-13
+    Extension to Processing ISL Production Model for Mass Balance - US-037-13
     """
     _inherit = 'farm.processing.production'
 
@@ -67,7 +67,7 @@ class FarmProcessingProductionMassBalanceExtension(models.Model):
 
 class FarmProcessingProductionMultiOutputExtension(models.Model):
     """
-    Extension to Processing ISL Production Model for Multi-Output - US-14-01
+    Extension to Processing ISL Production Model for Multi-Output - US-037-01
     """
     _inherit = 'farm.processing.production'
 
@@ -76,7 +76,7 @@ class FarmProcessingProductionMultiOutputExtension(models.Model):
     multi_output_line_ids = fields.One2many('agri.processing.multi.output.line', 'production_id', string='Multi-Output Product Lines')
 
     def action_calculate_multi_output(self):
-        """Calculate and validate multi-output results according to [US-14-01] Multi-output Processing"""
+        """Calculate and validate multi-output results according to [US-037-01] Multi-output Processing"""
         for record in self:
             total_output = sum([line.product_qty for line in record.multi_output_line_ids])
             if record.final_output_qty != total_output:
@@ -86,7 +86,7 @@ class FarmProcessingProductionMultiOutputExtension(models.Model):
 
 class AgriProcessingMultiOutputLine(models.Model):
     """
-    Multi-Output Product Lines for Agricultural Processing - US-14-01
+    Multi-Output Product Lines for Agricultural Processing - US-037-01
     """
     _name = 'agri.processing.multi.output.line'
     _description = 'Multi-Output Product Lines for Agricultural Processing'
@@ -115,7 +115,7 @@ class AgriProcessingMultiOutputLine(models.Model):
 
 class FarmProcessingProductionAttributeInheritanceExtension(models.Model):
     """
-    Extension to Processing ISL Production Model for Attribute Inheritance - US-14-02
+    Extension to Processing ISL Production Model for Attribute Inheritance - US-037-02
     """
     _inherit = 'farm.processing.production'
 
@@ -130,7 +130,7 @@ class FarmProcessingProductionAttributeInheritanceExtension(models.Model):
 
 class FarmProcessingProductionActiveIngredientExtension(models.Model):
     """
-    Extension to Processing ISL Production Model for Active Ingredient Standardization - US-14-11
+    Extension to Processing ISL Production Model for Active Ingredient Standardization - US-037-11
     """
     _inherit = 'farm.processing.production'
 
@@ -145,7 +145,7 @@ class FarmProcessingProductionActiveIngredientExtension(models.Model):
             record.active_ingredient_variance = record.active_ingredient_content - record.active_ingredient_target
 
     def _validate_active_ingredient_content(self):
-        """[US-14-11] Active Ingredient Standardization for compliance"""
+        """[US-037-11] Active Ingredient Standardization for compliance"""
         for record in self:
             if record.active_ingredient_content <= 0:
                 raise ValidationError(_("Active ingredient content must be greater than 0%"))
@@ -155,7 +155,7 @@ class FarmProcessingProductionActiveIngredientExtension(models.Model):
 
 class FarmProcessingProductionAllergenExtension(models.Model):
     """
-    Extension to Processing ISL Production Model for Allergen Control - US-14-14
+    Extension to Processing ISL Production Model for Allergen Control - US-037-14
     """
     _inherit = 'farm.processing.production'
 
@@ -188,7 +188,7 @@ class FarmProcessingProductionAllergenExtension(models.Model):
 
 class FarmProcessingProductionGmpExtension(models.Model):
     """
-    Extension to Processing ISL Production Model for GMP Environmental Monitoring - US-14-15
+    Extension to Processing ISL Production Model for GMP Environmental Monitoring - US-037-15
     """
     _inherit = 'farm.processing.production'
 
@@ -213,7 +213,7 @@ class FarmProcessingProductionGmpExtension(models.Model):
 
 class AgriProcessingEnvironmentalMonitoringLine(models.Model):
     """
-    Environmental Monitoring Lines for GMP Compliance - US-14-15
+    Environmental Monitoring Lines for GMP Compliance - US-037-15
     """
     _name = 'agri.processing.environmental.monitoring.line'
     _description = 'Environmental Monitoring Lines for GMP Compliance'

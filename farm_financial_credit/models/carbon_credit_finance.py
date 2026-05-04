@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class FarmCarbonCreditFinance(models.Model):
     """
     Model for carbon credit financing
-    Implements US-30-05: Agri-Carbon Credit Trading & Financialization
+    Implements US-060-05: Agri-Carbon Credit Trading & Financialization
     """
     _name = 'farm.carbon.credit.finance'
     _description = 'Farm Carbon Credit Finance'

@@ -9,7 +9,7 @@ class StockLotTraceabilityExtension(models.Model):
     _name = 'stock.lot'
     _inherit = 'stock.lot'
 
-    # 批次溯源 [US-14-03]
+    # 批次溯源 [US-037-03]
     parent_lot_id = fields.Many2one('stock.lot', string="Parent Lot/Origin", help="Trace back to the raw material lot")
     child_lot_ids = fields.One2many('stock.lot', 'parent_lot_id', string="Derived Products")
 
@@ -17,7 +17,7 @@ class StockLotTraceabilityExtension(models.Model):
     full_traceability_path = fields.Text("Full Traceability Path", readonly=True,
                                        help="Flattened upstream lot IDs for instant lookup.")
 
-    # 分级与元数据 [US-14-05]
+    # 分级与元数据 [US-037-05]
     quality_grade = fields.Selection(selection_add=[
         ('a', 'Grade A / Premium'),
         ('b', 'Grade B / Standard'),
@@ -93,7 +93,7 @@ class StockLotTraceabilityExtension(models.Model):
 
 class AgriProcessingLotTracking(models.Model):
     """
-    Advanced Lot Tracking and Traceability - US-14-03
+    Advanced Lot Tracking and Traceability - US-037-03
     """
     _name = 'agri.processing.lot.tracking'
     _description = 'Advanced Lot Tracking and Traceability'

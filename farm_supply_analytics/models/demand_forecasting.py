@@ -56,7 +56,7 @@ class FarmSupplyDemandForecast(models.Model):
 
     @api.depends('predicted_demand_qty', 'current_stock_level', 'safety_stock_recommended')
     def _compute_optimization(self):
-        """US-54-02: Inventory Optimization Algorithm"""
+        """US-084-02: Inventory Optimization Algorithm"""
         for rec in self:
             if rec.predicted_demand_qty > 0:
                 required_stock = rec.predicted_demand_qty + rec.safety_stock_recommended
@@ -123,7 +123,7 @@ class FarmSupplyDemandForecast(models.Model):
 
 class InventoryOptimization(models.Model):
     """
-    Inventory Optimization Engine [US-54-02]
+    Inventory Optimization Engine [US-084-02]
     """
     _name = 'inventory.optimization'
     _description = 'Inventory Optimization Engine'

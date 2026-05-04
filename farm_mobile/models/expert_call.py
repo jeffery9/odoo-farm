@@ -2,7 +2,7 @@ from odoo import models, fields, api, _
 
 class FarmExpertCall(models.Model):
     """
-    US-26-05: 远程专家实时连线记录
+    US-056-05: 远程专家实时连线记录
     """
     _name = 'farm.expert.call'
     _description = 'Remote Expert Consultation Call'

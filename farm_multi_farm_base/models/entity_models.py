@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class CooperativeEntity(models.Model):
     """
-    合作社实体 [US-19-01]
+    合作社实体 [US-042-01]
     """
     _name = 'cooperative.entity'
     _description = 'Cooperative Entity'
@@ -25,7 +25,7 @@ class CooperativeEntity(models.Model):
     is_active = fields.Boolean('Is Active', default=True)
     description = fields.Text('Description')
 
-    # B2G / Government & Commercial dual-purpose [US-19-25]
+    # B2G / Government & Commercial dual-purpose [US-042-25]
     purpose_type = fields.Selection([
         ('commercial', 'Commercial (Business oriented)'),
         ('government', 'Government (Regulatory/Policy oriented)'),
@@ -56,7 +56,7 @@ class CooperativeEntity(models.Model):
 
 class FarmEntity(models.Model):
     """
-    农场实体 [US-19-01, US-19-02]
+    农场实体 [US-042-01, US-042-02]
     """
     _name = 'farm.entity'
     _description = 'Farm Entity'
@@ -117,7 +117,7 @@ class FarmEntity(models.Model):
 
     def get_accessible_data(self, model_name):
         """
-        根据数据隔离级别获取可访问的数据 [US-19-02]
+        根据数据隔离级别获取可访问的数据 [US-042-02]
         """
         if self.data_isolation_level == 'full':
             # 完全隔离：只能访问本实体数据
@@ -158,7 +158,7 @@ class FarmEntity(models.Model):
 
 class FranchiseFarm(models.Model):
     """
-    加盟农场管理 [US-19-05]
+    加盟农场管理 [US-042-05]
     """
     _name = 'franchise.farm'
     _description = 'Franchise Farm Management'
@@ -198,7 +198,7 @@ class FranchiseFarm(models.Model):
             self.next_audit_date = fields.Date.from_string(self.franchise_agreement_date) + timedelta(days=365)
 
     def action_perform_compliance_check(self):
-        """执行合规检查 [US-19-05]"""
+        """执行合规检查 [US-042-05]"""
         for farm in self:
             # 这里可以实现具体的合规检查逻辑
             # 检查是否符合品牌标准、操作规程等
@@ -212,7 +212,7 @@ class FranchiseFarm(models.Model):
             farm.next_audit_date = fields.Date.add(fields.Date.today(), days=365)
 
     def action_push_operational_standards(self):
-        """推送操作标准 [US-19-05]"""
+        """推送操作标准 [US-042-05]"""
         for farm in self:
             # 这里可以实现向加盟农场推送标准操作规程的逻辑
             # 例如：发送技术路线、生产标准等
@@ -221,7 +221,7 @@ class FranchiseFarm(models.Model):
 
 class ResourceSharing(models.Model):
     """
-    资源共享管理 [US-19-03]
+    资源共享管理 [US-042-03]
     """
     _name = 'resource.sharing'
     _description = 'Resource Sharing Between Entities'
@@ -282,7 +282,7 @@ class ResourceSharing(models.Model):
                 raise ValidationError(_('Start date must be earlier than end date.'))
 
     def action_create_internal_settlement(self):
-        """创建内部结算单 [US-19-03]"""
+        """创建内部结算单 [US-042-03]"""
         for record in self:
             if not record.internal_settlement_id:
                 settlement = self.env['internal.settlement'].create({

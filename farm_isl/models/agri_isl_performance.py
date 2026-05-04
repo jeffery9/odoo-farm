@@ -7,12 +7,12 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-# Performance Optimization & Caching (US-54-13)
+# Performance Optimization & Caching (US-084-13)
 
 class AgriISLOptimizationMixin(models.AbstractModel):
     """
     Performance optimization and caching for ISL architecture
-    Implements US-54-13: Performance optimization & caching
+    Implements US-084-13: Performance optimization & caching
     """
     _name = 'agri.isl.optimization.mixin'
     _description = 'Agri ISL Optimization Mixin'

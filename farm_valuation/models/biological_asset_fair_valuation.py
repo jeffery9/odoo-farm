@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 class BiologicalAssetFairValuation(models.Model):
     """
     Biological Asset Fair Value Real-time Accounting
-    US-17-11: Biological Asset Fair Value Real-time Accounting
+    US-040-11: Biological Asset Fair Value Real-time Accounting
     """
     _name = 'agri.biological.asset.fair.valuation'
     _description = 'Biological Asset Fair Value Valuation'
@@ -192,7 +192,7 @@ class BiologicalAssetFairValuation(models.Model):
     def action_create_revaluation_entry(self):
         """
         Create accounting entry for revaluation of biological assets
-        US-17-11: Automatic generation of "biological asset revaluation" accounting entries
+        US-040-11: Automatic generation of "biological asset revaluation" accounting entries
         """
         account_move = self.env['account.move']
         account_obj = self.env['account.account']

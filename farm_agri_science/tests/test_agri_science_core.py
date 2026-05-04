@@ -16,7 +16,7 @@ class TestAgriScienceCore(TransactionCase):
         })
 
     def test_01_grid_cell_creation(self):
-        """ Test creating spatial grid cells [US-104-2026] """
+        """ Test creating spatial grid cells [US-014-2026] """
         Model = self.env.get('agri.geospatial.grid.cell')
         if not Model:
             self.skipTest("agri.geospatial.grid.cell not found")

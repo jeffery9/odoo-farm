@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class MarketplaceDemandMatch(models.Model):
     """
-    市场供需匹配 [US-19-11]
+    市场供需匹配 [US-042-11]
     """
     _name = 'marketplace.demand.match'
     _description = 'Marketplace Demand Match'

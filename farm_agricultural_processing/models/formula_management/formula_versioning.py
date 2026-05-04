@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 class FarmProcessingBomFormulaVersionExtension(models.Model):
     """
-    Extension to Processing ISL BOM Model for Formula Version - US-14-09
+    Extension to Processing ISL BOM Model for Formula Version - US-037-09
     """
     _inherit = 'farm.processing.bom'
 
@@ -49,7 +49,7 @@ class FarmProcessingBomFormulaVersionExtension(models.Model):
 
 class FarmProcessingBlindMaterial(models.Model):
     """
-    Blind Materials for Formula Confidentiality - US-14-09
+    Blind Materials for Formula Confidentiality - US-037-09
     """
     _name = 'farm.processing.blind.material'
     _description = 'Blind Materials for Formula Confidentiality'
@@ -75,7 +75,7 @@ class FarmProcessingBlindMaterial(models.Model):
 
 class FarmProcessingFormulaAutoCorrection(models.Model):
     """
-    Formula Auto-Correction System - US-14-09
+    Formula Auto-Correction System - US-037-09
     """
     _name = 'farm.processing.formula.auto.correction'
     _description = 'Formula Auto-Correction System'

@@ -2,7 +2,7 @@
 from odoo import models, fields, api
 
 class FarmProcessingBom(models.Model):
-    """ Food Processing Recipe [US-14-23] """
+    """ Food Processing Recipe [US-037-23] """
     _name = 'farm.processing.bom'
     _description = 'Food Processing BOM (ISL Layer)'
     _inherits = {'mrp.bom': 'bom_id'}
@@ -36,7 +36,7 @@ class FarmProcessingProduction(models.Model):
     electricity_consumption = fields.Float("Electricity Consumption")
     total_energy_cost = fields.Float("Total Energy Cost (Measure)")
 
-    # US-65-02: Artisan Monitoring
+    # US-095-02: Artisan Monitoring
     current_moisture_content = fields.Float("Current Moisture (%)", group_operator="avg")
     current_weight_loss_ratio = fields.Float("Current Weight Loss (%)")
     is_ready_for_harvest = fields.Boolean("Ready for Collection", compute='_compute_artisan_readiness', store=True)
@@ -60,7 +60,7 @@ class FarmProcessingProduction(models.Model):
 
     @api.depends('current_moisture_content', 'processing_bom_id.target_moisture_content')
     def _compute_artisan_readiness(self):
-        """US-65-02: Automated logic to determine if artisan drying is complete"""
+        """US-095-02: Automated logic to determine if artisan drying is complete"""
         for rec in self:
             if rec.processing_bom_id and rec.current_moisture_content <= rec.processing_bom_id.target_moisture_content:
                 rec.is_ready_for_harvest = True

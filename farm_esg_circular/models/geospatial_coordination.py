@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriGeospatialCircularNetwork(models.Model):
     """
-    US-27-06: 基于地理空间的空间循环网络 (GIS-driven Geospatial Cycle)
+    US-057-06: 基于地理空间的空间循环网络 (GIS-driven Geospatial Cycle)
     Model for spatial analysis of circular economy opportunities using GIS
     """
     _name = 'agri.geospatial.circular.network'

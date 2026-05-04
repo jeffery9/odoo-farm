@@ -5,7 +5,7 @@ from odoo.exceptions import UserError
 
 class FarmProcessingProductionSCExtension(models.Model):
     """
-    Extension to Processing ISL Production Model for SC License - US-14-21
+    Extension to Processing ISL Production Model for SC License - US-037-21
     """
     _inherit = 'farm.processing.production'
 
@@ -13,7 +13,7 @@ class FarmProcessingProductionSCExtension(models.Model):
     sc_category_id = fields.Many2one('farm.sc.category', string="SC Category")
 
     def action_confirm(self):
-        """ [US-14-21] SC Range Check for industry specific requirements """
+        """ [US-037-21] SC Range Check for industry specific requirements """
         # First call the parent method
         result = super().action_confirm()
 
@@ -35,7 +35,7 @@ class FarmProcessingProductionSCExtension(models.Model):
 
 class FarmProcessingBomSCExtension(models.Model):
     """
-    Extension to Processing ISL BOM Model for SC Category - US-14-21
+    Extension to Processing ISL BOM Model for SC Category - US-037-21
     """
     _inherit = 'farm.processing.bom'
 
@@ -45,7 +45,7 @@ class FarmProcessingBomSCExtension(models.Model):
 
 class AgriProcessingLicenseCheck(models.Model):
     """
-    Production License Scope Verification - US-14-21
+    Production License Scope Verification - US-037-21
     """
     _name = 'agri.processing.license.check'
     _description = 'Production License Scope Verification'

@@ -2,7 +2,7 @@
 from odoo import models, fields, api
 
 class FarmCommandLog(models.Model):
-    """ [US-203-04] 管理中心：通用物联命令审计中心 """
+    """ [US-047-04] 管理中心：通用物联命令审计中心 """
     _name = 'farm.command.log'
     _description = 'Global IoT Command Audit Log'
     _order = 'create_date desc'

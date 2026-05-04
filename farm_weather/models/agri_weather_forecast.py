@@ -62,7 +62,7 @@ class AgriWeatherForecast(models.Model):
             self._fetch_weather_for_location(loc)
 
     def _trigger_disaster_alert(self):
-        """ 触发灾害预警 [US-17-10] """
+        """ 触发灾害预警 [US-040-10] """
         if self.is_warning and self.warning_type in ['storm', 'frost', 'heat']:
             # 1. 查找是否已有活跃的预警
             existing_activity = self.env['mail.activity'].search([

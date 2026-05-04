@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class AgriAiQualityGrading(models.Model):
     """
     AI model for quality grading
-    Implements US-58-12: Intelligent quality grading & sorting
+    Implements US-088-12: Intelligent quality grading & sorting
     """
     _name = 'agri.ai.quality.grading'
     _description = 'AI Quality Grading'

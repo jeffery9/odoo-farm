@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class WorkspaceCustomization(models.Model):
     """
-    工作空间定制 [US-16-04]
+    工作空间定制 [US-039-04]
     """
     _name = 'workspace.customization'
     _description = 'Personalized Workspace Customization'

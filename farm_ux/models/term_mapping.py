@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 class TermMapping(models.Model):
     """
-    Term Mapping Management [US-16-01]
+    Term Mapping Management [US-039-01]
     Stores industrial-to-agricultural term translations for 2026 de-industrialization.
     """
     _name = 'term.mapping'
@@ -60,7 +60,7 @@ class TermMapping(models.Model):
     @tools.ormcache('text', 'industry_context')
     def apply_term_mapping_to_text(self, text, industry_context='general'):
         """
-        [US-16-01] Optimized term replacement engine.
+        [US-039-01] Optimized term replacement engine.
         Applies active mappings to the provided text based on context.
         """
         if not text or not isinstance(text, str):

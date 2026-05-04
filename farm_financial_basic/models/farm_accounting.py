@@ -39,7 +39,7 @@ class AccountMoveLine(models.Model):
 
 class ProcessingCostAllocation(models.Model):
     """
-    US-14-13: 仓储加工成本精细化分摊
+    US-037-13: 仓储加工成本精细化分摊
     将加工过程中的间接费用（水电、折旧等）分摊到产品批次
     """
     _name = 'farm.processing.cost'
@@ -67,7 +67,7 @@ class ProcessingCostAllocation(models.Model):
             rec.total_processing_cost = rec.total_water_cost + rec.total_electricity_cost + rec.other_indirect_costs
 
     def action_allocate_costs(self):
-        """ Write calculated costs to processing product analytic account [US-14-13] """
+        """ Write calculated costs to processing product analytic account [US-037-13] """
         self.ensure_one()
         if self.total_processing_cost > 0:
             # Find processing product analytic account (通过 mrp.production 关联的农事任务或产品的分析账户)
@@ -84,7 +84,7 @@ class ProcessingCostAllocation(models.Model):
 
 class AgriCostWIPTransfer(models.AbstractModel):
     """
-    US-14-15: 生产性生物资产成本归集与结转逻辑
+    US-037-15: 生产性生物资产成本归集与结转逻辑
     """
     _name = 'farm.cost.wip.transfer'
     _description = 'WIP to Finished Goods Cost Transfer'
@@ -116,7 +116,7 @@ class AgriCostWIPTransfer(models.AbstractModel):
 
 class AgriMortalityAmortization(models.AbstractModel):
     """
-    US-03-05: 死亡成本自动重分配 (Core-Closure)
+    US-003-05: 死亡成本自动重分配 (Core-Closure)
     When a biological asset dies, its accumulated costs are amortized across surviving individuals.
     """
     _name = 'farm.mortality.amortization'
@@ -160,7 +160,7 @@ class AgriMortalityAmortization(models.AbstractModel):
 
 class FarmCpaAnalysis(models.Model):
     """
-    US-02-11: 单产损益分析 (CPA - Cost Per Acre/Parcel)
+    US-002-11: 单产损益分析 (CPA - Cost Per Acre/Parcel)
     """
     _name = 'farm.cpa.analysis'
     _description = 'Cost Per Parcel Analysis'
@@ -197,7 +197,7 @@ class FarmCpaAnalysis(models.Model):
 
     def action_calculate_cpa(self):
         """
-        US-02-11: CPA Calculation Logic
+        US-002-11: CPA Calculation Logic
         Aggregates costs from analytic lines linked to the parcel and campaign
         """
         self.ensure_one()

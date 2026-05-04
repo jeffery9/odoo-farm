@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class JointProcurementPO(models.Model):
     """
-    统购虚拟合并与供应商统一对账 [US-19-20]
+    统购虚拟合并与供应商统一对账 [US-042-20]
     """
     _name = 'joint.procurement.po'
     _description = 'Joint Procurement Purchase Order'
@@ -29,7 +29,7 @@ class JointProcurementPO(models.Model):
         ('cancel', 'Cancelled'),
     ], string='State', default='draft', required=True)
 
-    # US-19-20 specific fields
+    # US-042-20 specific fields
     parent_po_id = fields.Many2one('purchase.order', string='Parent PO')
     child_po_ids = fields.One2many('joint.procurement.po.member', 'parent_po_id', string='Member POs')
     unified_invoice_id = fields.Many2one('account.move', string='Unified Invoice')
@@ -67,7 +67,7 @@ class JointProcurementPO(models.Model):
 
 class JointProcurementPOMember(models.Model):
     """
-    统购子PO [US-19-20]
+    统购子PO [US-042-20]
     """
     _name = 'joint.procurement.po.member'
     _description = 'Joint Procurement Member PO'
@@ -89,7 +89,7 @@ class JointProcurementPOMember(models.Model):
         ('cancel', 'Cancelled'),
     ], string='State', default='draft', required=True)
 
-    # Field for US-19-20: Internal debt to cooperative
+    # Field for US-042-20: Internal debt to cooperative
     internal_debt_id = fields.Many2one('internal.settlement', string='Internal Debt')
 
     @api.depends('quantity', 'unit_price')
@@ -114,7 +114,7 @@ class JointProcurementPOMember(models.Model):
 
 class HubSpokeDistribution(models.Model):
     """
-    统配物流拆分与配送存证 [US-19-21]
+    统配物流拆分与配送存证 [US-042-21]
     """
     _name = 'hub.spoke.distribution'
     _description = 'Hub and Spoke Distribution'
@@ -158,7 +158,7 @@ class HubSpokeDistribution(models.Model):
 
 class HubSpokeDistributionLine(models.Model):
     """
-    统配物流明细 [US-19-21]
+    统配物流明细 [US-042-21]
     """
     _name = 'hub.spoke.distribution.line'
     _description = 'Hub and Spoke Distribution Line'
@@ -183,7 +183,7 @@ class HubSpokeDistributionLine(models.Model):
 
 class NettingSettlement(models.Model):
     """
-    内部交易零余额对冲结算 [US-19-22]
+    内部交易零余额对冲结算 [US-042-22]
     """
     _name = 'netting.settlement'
     _description = 'Netting Settlement'
@@ -279,7 +279,7 @@ class NettingSettlement(models.Model):
 
 class NettingReceivableLine(models.Model):
     """
-    对冲应收明细 [US-19-22]
+    对冲应收明细 [US-042-22]
     """
     _name = 'netting.receivable.line'
     _description = 'Netting Receivable Line'
@@ -297,7 +297,7 @@ class NettingReceivableLine(models.Model):
 
 class NettingPayableLine(models.Model):
     """
-    对冲应付明细 [US-19-22]
+    对冲应付明细 [US-042-22]
     """
     _name = 'netting.payable.line'
     _description = 'Netting Payable Line'

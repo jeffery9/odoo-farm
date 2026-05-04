@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class ShareTransaction(models.Model):
     """
-    股份交易记录 [US-19-06]
+    股份交易记录 [US-042-06]
     """
     _name = 'share.transaction'
     _description = 'Share Transaction'

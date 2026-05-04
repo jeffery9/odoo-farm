@@ -5,7 +5,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriBiologicalAssetMixin(models.AbstractModel):
     """
-    Agri Domain Level: Biological Traits Mixin. [US-104-2026]
+    Agri Domain Level: Biological Traits Mixin. [US-014-2026]
     Universal biological facts: pedigree, growth stages, and DNA markers.
     """
     _name = 'agri.biological.asset.mixin'

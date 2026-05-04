@@ -23,7 +23,7 @@ class TestProcessingLogic(TransactionCase):
         })
 
     def test_mass_balance_validation(self):
-        """ Test that MO cannot be done if mass balance is off [US-04-02] """
+        """ Test that MO cannot be done if mass balance is off [US-004-02] """
         mo = self.Production.create({
             'product_id': self.finished_good.id,
             'bom_id': self.bom.id,
@@ -40,7 +40,7 @@ class TestProcessingLogic(TransactionCase):
             mo.button_mark_done()
 
     def test_traceability_linkage(self):
-        """ Test that finished lot links to raw lot and calculates full path [US-14-03] """
+        """ Test that finished lot links to raw lot and calculates full path [US-037-03] """
         # 1. Create a root lot (Harvest)
         root_lot = self.env['stock.lot'].create({
             'name': 'ROOT-LOT',

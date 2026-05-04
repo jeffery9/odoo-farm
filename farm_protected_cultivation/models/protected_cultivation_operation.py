@@ -103,7 +103,7 @@ class ProtectedCultivationOperation(models.Model):
         help='Electrical conductivity of the nutrient solution'
     )
 
-    # US-33-02: Water-Fertilizer-Light Automation Linkage (水肥光联动控制)
+    # US-063-02: Water-Fertilizer-Light Automation Linkage (水肥光联动控制)
     is_automation_enabled = fields.Boolean("Enable Environmental Automation", default=False)
     automation_status = fields.Selection([
         ('idle', 'Idle'),

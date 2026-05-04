@@ -5,7 +5,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriTaskMixin(models.AbstractModel):
     """
-    Agri Domain Level: Task Logic. [US-104-2026]
+    Agri Domain Level: Task Logic. [US-014-2026]
     Universal logic for executing any agricultural activity.
     Focuses on physical facts: grid location, material balance, and evidence.
     """

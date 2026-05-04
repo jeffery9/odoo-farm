@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class StockPicking(models.Model):
     """
-    扩展 stock.picking 以支持垫资分发时更新信用余额 [US-48-04] 和 FEFO 验證 [US-09-20]
+    扩展 stock.picking 以支持垫资分发时更新信用余额 [US-078-04] 和 FEFO 验證 [US-009-20]
     """
     _inherit = 'stock.picking'
 
@@ -38,7 +38,7 @@ class StockPicking(models.Model):
 
     def check_fefo_compliance_for_move_line(self, move_line):
         """
-        US-09-20: Check if the selected lot in move_line is compliant with FEFO (First Expired First Out)
+        US-009-20: Check if the selected lot in move_line is compliant with FEFO (First Expired First Out)
         If there's an earlier expiring lot available, raise a warning.
         """
         if not move_line.lot_id or move_line.product_id.tracking not in ['lot', 'serial']:

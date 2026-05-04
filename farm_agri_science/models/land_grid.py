@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriGeospatialGridCell(models.Model):
     """
-    Agri Domain Level: Spatial Grid Cell. [US-104-2026]
+    Agri Domain Level: Spatial Grid Cell. [US-014-2026]
     The atomic physical unit of agricultural space (typically 11m or 1m resolution).
     Refactored from farm.land.grid.cell with 100% logic retention.
     """
@@ -154,7 +154,7 @@ class FarmLocation(models.Model):
 
     def action_sync_iot_telemetry(self):
         """
-        [US-78-01] IoT Telemetry Mapping.
+        [US-108-01] IoT Telemetry Mapping.
         Fetches the latest soil-related telemetry and maps to grid cells by nearest GPS.
         """
         self.ensure_one()

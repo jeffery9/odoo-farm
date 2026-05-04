@@ -3,7 +3,7 @@ from odoo import models, fields, api
 
 class SeasonalStockForecast(models.Model):
     """
-    Dynamic Shelf-life Prediction based on IoT Temperature [US-09-07]
+    Dynamic Shelf-life Prediction based on IoT Temperature [US-009-07]
     """
     _name = 'seasonal.stock.forecast'
     _description = 'Seasonal Stock Forecast with Temperature Impact'
@@ -73,7 +73,7 @@ class SeasonalStockForecast(models.Model):
 
 class PrecoolingProcess(models.Model):
     """
-    Post-harvest Pre-cooling Process Tracking [US-09-08]
+    Post-harvest Pre-cooling Process Tracking [US-009-08]
     """
     _name = 'precooling.process'
     _description = 'Post-harvest Pre-cooling Process'

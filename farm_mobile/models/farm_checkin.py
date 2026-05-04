@@ -3,7 +3,7 @@ from odoo.exceptions import UserError
 
 class FarmCheckIn(models.Model):
     """
-    US-07-04 & US-13-03: 现场打卡记录与地理位置校验
+    US-007-04 & US-036-03: 现场打卡记录与地理位置校验
     """
     _name = 'farm.checkin'
     _description = 'Agri Site Check-in'
@@ -21,7 +21,7 @@ class FarmCheckIn(models.Model):
     gps_lat = fields.Float("Check-in Latitude", digits=(10, 7))
     gps_lng = fields.Float("Check-in Longitude", digits=(10, 7))
     
-    # 现场照片 [US-24-04]
+    # 现场照片 [US-054-04]
     checkin_photo = fields.Binary("Site Photo", attachment=True)
     
     # 校验结果
@@ -37,7 +37,7 @@ class FarmCheckIn(models.Model):
 
     @api.depends('gps_lat', 'gps_lng', 'intervention_id.land_parcel_id')
     def _compute_site_verification(self):
-        """ 校验打卡位置是否在任务地块范围内 [US-23-01] """
+        """ 校验打卡位置是否在任务地块范围内 [US-053-01] """
         for rec in self:
             parcel = rec.intervention_id.agri_task_id.land_parcel_id
             if not parcel or not parcel.gps_coordinates or not rec.gps_lat:
@@ -61,7 +61,7 @@ class AgriIntervention(models.Model):
     current_check_in_id = fields.Many2one('farm.checkin', string="Active Check-in", compute='_compute_active_checkin')
 
     def action_mobile_capture_evidence(self, lat, lng, photo_base64, note=""):
-        """ 移动端专用：现场取证 [US-07-05] """
+        """ 移动端专用：现场取证 [US-007-05] """
         self.ensure_one()
         return self.env['farm.evidence'].create({
             'name': _('Evidence: %s') % self.name,
@@ -84,7 +84,7 @@ class AgriIntervention(models.Model):
         """ 移动端专用打卡接口：增加点检硬性拦截 """
         self.ensure_one()
         
-        # 1. 检查所使用的工具是否有点检要求 [US-26-03]
+        # 1. 检查所使用的工具是否有点检要求 [US-056-03]
         for tool in self.tool_ids:
             if tool.checklist_id:
                 # 查找最近一次点检记录
@@ -120,7 +120,7 @@ class AgriIntervention(models.Model):
             checkin = self.current_check_in_id
             checkin.write({'check_out_time': now})
             
-            # 自动创建 Timesheet [US-24-03]
+            # 自动创建 Timesheet [US-054-03]
             # 计算小时数
             duration_hrs = (now - checkin.check_in_time).total_seconds() / 3600.0
             

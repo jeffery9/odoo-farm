@@ -2,7 +2,7 @@ from odoo import models, fields, api, _
 
 class AgriIndustryVarietyMixin(models.AbstractModel):
     """
-    Agri Domain Level: Variety Traits Mixin. [US-104-2026]
+    Agri Domain Level: Variety Traits Mixin. [US-014-2026]
     Encapsulates biological and industrial traits of a specific variety.
     """
     _name = 'agri.industry.variety.mixin'

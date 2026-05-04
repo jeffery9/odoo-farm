@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 class AgriMRPProduction(models.Model):
     """
     ISL model for MRP Production Orders with industry specialization
-    Implements US-54-01: MRP production order ISL model implementation
+    Implements US-084-01: MRP production order ISL model implementation
     """
     _name = 'agri.mrp.production'
     _description = 'Agri ISL MRP Production Order'
@@ -50,7 +50,7 @@ class AgriMRPProduction(models.Model):
 class AgriMRPBom(models.Model):
     """
     ISL model for MRP BOMs with industry specialization
-    Implements US-54-02: MRP BOM ISL model implementation
+    Implements US-084-02: MRP BOM ISL model implementation
     """
     _name = 'agri.mrp.bom'
     _description = 'Agri ISL MRP Bill of Materials'
@@ -87,7 +87,7 @@ class AgriMRPBom(models.Model):
 class AgriMRPWorkcenter(models.Model):
     """
     ISL model for MRP Work Centers with industry specialization
-    Implements US-54-03: MRP work center ISL model implementation
+    Implements US-084-03: MRP work center ISL model implementation
     """
     _name = 'agri.mrp.workcenter'
     _description = 'Agri ISL MRP Work Center'
@@ -123,7 +123,7 @@ class AgriMRPWorkcenter(models.Model):
 class AgriStockLot(models.Model):
     """
     ISL model for Stock Lots with industry specialization
-    Implements US-54-04: Inventory batch ISL model implementation
+    Implements US-084-04: Inventory batch ISL model implementation
     """
     _name = 'agri.stock.lot'
     _description = 'Agri ISL Stock Lot'
@@ -161,7 +161,7 @@ class AgriStockLot(models.Model):
 class AgriSaleOrder(models.Model):
     """
     ISL model for Sale Orders with industry specialization
-    Implements US-54-05: Sales order ISL model implementation
+    Implements US-084-05: Sales order ISL model implementation
     """
     _name = 'agri.sale.order'
     _description = 'Agri ISL Sale Order'
@@ -197,7 +197,7 @@ class AgriSaleOrder(models.Model):
 class AgriPurchaseOrder(models.Model):
     """
     ISL model for Purchase Orders with industry specialization
-    Implements US-54-06: Purchase order ISL model implementation
+    Implements US-084-06: Purchase order ISL model implementation
     """
     _name = 'agri.purchase.order'
     _description = 'Agri ISL Purchase Order'
@@ -232,7 +232,7 @@ class AgriPurchaseOrder(models.Model):
 class AgriProductTemplate(models.Model):
     """
     ISL model for Product Templates with industry specialization
-    Implements US-54-07: Product template ISL model implementation
+    Implements US-084-07: Product template ISL model implementation
     """
     _name = 'agri.product.template'
     _description = 'Agri ISL Product Template'
@@ -272,7 +272,7 @@ class AgriProductTemplate(models.Model):
 class AgriStockPicking(models.Model):
     """
     ISL model for Stock Pickings with industry specialization
-    Implements US-54-08: Inventory transfer ISL model implementation
+    Implements US-084-08: Inventory transfer ISL model implementation
     """
     _name = 'agri.stock.picking'
     _description = 'Agri ISL Stock Picking'
@@ -305,7 +305,7 @@ class AgriStockPicking(models.Model):
 class AgriMRPWorkorder(models.Model):
     """
     ISL model for MRP Work Orders with industry specialization
-    Implements US-54-09: MRP work order ISL model implementation
+    Implements US-084-09: MRP work order ISL model implementation
     """
     _name = 'agri.mrp.workorder'
     _description = 'Agri ISL MRP Work Order'
@@ -340,7 +340,7 @@ class AgriMRPWorkorder(models.Model):
 class AgriQualityControl(models.Model):
     """
     ISL model for Quality Control Points with industry specialization
-    Implements US-54-10: Quality control point ISL model implementation
+    Implements US-084-10: Quality control point ISL model implementation
     """
     _name = 'agri.quality.control'
     _description = 'Agri ISL Quality Control'

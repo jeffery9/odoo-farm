@@ -5,7 +5,7 @@ import math
 
 class ESGDataGovernance(models.Model):
     """
-    US-56-05: ESG 数据治理与质量控制 (ESG Data Governance & Quality Control)
+    US-086-05: ESG 数据治理与质量控制 (ESG Data Governance & Quality Control)
     ESG Data Governance for ensuring data integrity, accuracy, and auditability
     """
     _name = 'farm.esg.data.governance'

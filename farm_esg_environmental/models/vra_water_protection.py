@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriVRAWaterProtectionZone(models.Model):
     """
-    US-80-02: VRA Water Body Protection Strategies
+    US-080-02: VRA Water Body Protection Strategies
     Water body protection VRA strategies with buffer zones and contamination prevention
     """
     _name = 'agri.vra.water.protection.zone'

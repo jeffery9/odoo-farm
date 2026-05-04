@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class FormLayoutTemplate(models.Model):
     """
-    表单布局模板 [US-16-02]
+    表单布局模板 [US-039-02]
     """
     _name = 'form.layout.template'
     _description = 'Form Layout Template for Industry-Specific Views'

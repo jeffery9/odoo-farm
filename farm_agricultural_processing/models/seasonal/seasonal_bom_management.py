@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 class AgriInterventionSeasonalBom(models.Model):
     """
-    US-04-06: 季节性"版本化"配方管理 [Refactored to Agri Domain]
+    US-004-06: 季节性"版本化"配方管理 [Refactored to Agri Domain]
     - 管理季节性配方变化
     - 支持为同一产品创建不同季节的配方版本
     Refactored from farm.seasonal.bom with 100% logic retention.

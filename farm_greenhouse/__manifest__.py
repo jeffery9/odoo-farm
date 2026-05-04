@@ -5,10 +5,10 @@
     'summary': 'Automated Greenhouse Environment and Nutrient Control',
     'description': """
         Smart Greenhouse module for Odoo 19.
-        - Environmental Multi-parameter Control [US-57-01]
-        - Nutrient Solution & Irrigation Management [US-57-02]
-        - Energy Optimization & Carbon Monitoring [US-57-03]
-        - Government Regulatory Platform Integration [US-57-04]
+        - Environmental Multi-parameter Control [US-057-01]
+        - Nutrient Solution & Irrigation Management [US-057-02]
+        - Energy Optimization & Carbon Monitoring [US-057-03]
+        - Government Regulatory Platform Integration [US-057-04]
     """,
     'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',
     'website': 'http://www.geninit.cn',

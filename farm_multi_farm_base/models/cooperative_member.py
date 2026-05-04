@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class CooperativeMember(models.Model):
     """
-    合作社成员 [US-19-06]
+    合作社成员 [US-042-06]
     """
     _name = 'cooperative.member'
     _description = 'Cooperative Member'
@@ -28,15 +28,15 @@ class CooperativeMember(models.Model):
     trading_volume = fields.Float('Trading Volume', help='Volume of transactions with cooperative', compute='_compute_trading_volume', store=True)
     dividend_eligibility = fields.Boolean('Eligible for Dividends', default=True)
 
-    # Fields for US-19-07 (Internal Credit)
+    # Fields for US-042-07 (Internal Credit)
     credit_limit = fields.Float('Credit Limit', help='Internal credit limit for member')
     credit_used = fields.Float('Credit Used', compute='_compute_credit_usage', store=True)
     available_credit = fields.Float('Available Credit', compute='_compute_available_credit', store=True)
 
-    # Fields for US-19-14 (Treasury Dashboard)
+    # Fields for US-042-14 (Treasury Dashboard)
     account_balance = fields.Float('Account Balance', compute='_compute_account_balance', store=True)
 
-    # Fields for US-19-15 (Loans)
+    # Fields for US-042-15 (Loans)
     loan_balance = fields.Float('Loan Balance', compute='_compute_loan_balance', store=True)
 
     @api.model
@@ -85,7 +85,7 @@ class CooperativeMember(models.Model):
     def _compute_trading_volume(self):
         """
         Compute trading volume for the member based on their transactions with the cooperative
-        US-19-06: Calculate trading volume for dividend distribution
+        US-042-06: Calculate trading volume for dividend distribution
         """
         SaleOrder = self.env['sale.order']
         PurchaseOrder = self.env['purchase.order']

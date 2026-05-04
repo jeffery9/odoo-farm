@@ -2,7 +2,7 @@ from odoo import models, fields, api, _
 
 class AgriEvidence(models.Model):
     """
-    US-24-04 & US-07-05: 通用现场取证基础设施
+    US-054-04 & US-007-05: 通用现场取证基础设施
     职责：提供移动端现场取证的基础能力，支持关联任务、地块、批次、补贴申请等
     作为技术基础设施，为各业务模块提供证据收集、验证和存储服务
     """
@@ -17,7 +17,7 @@ class AgriEvidence(models.Model):
 
     photo = fields.Binary("Evidence Photo", attachment=True, required=True)
 
-    # 自动采集的硬件数据 [US-24-01]
+    # 自动采集的硬件数据 [US-054-01]
     gps_lat = fields.Float("Latitude", digits=(10, 7))
     gps_lng = fields.Float("Longitude", digits=(10, 7))
     taken_at = fields.Datetime("Captured Time", default=fields.Datetime.now)
@@ -28,16 +28,16 @@ class AgriEvidence(models.Model):
     # 判定位置合规性
     is_on_site = fields.Boolean("Location Verified", compute='_compute_site_verification', store=True)
 
-    # 证据链哈希校验 [US-25-05]
+    # 证据链哈希校验 [US-055-05]
     evidence_hash = fields.Char("Evidence Hash", compute='_compute_evidence_hash', store=True, help="SHA256 hash of evidence data for integrity verification")
     is_hash_verified = fields.Boolean("Hash Verified", default=True, help="Indicates if evidence data has been tampered with")
 
-    # US-65-04: Subsidy Evidence Automation - Link to subsidy applications
+    # US-095-04: Subsidy Evidence Automation - Link to subsidy applications
     subsidy_application_id = fields.Many2one('farm.subsidy.application', string="Subsidy Application", index=True)
 
     @api.depends('photo', 'gps_lat', 'gps_lng', 'taken_at', 'worker_id', 'note')
     def _compute_evidence_hash(self):
-        """ 计算证据数据的哈希值，用于完整性验证 [US-25-05] """
+        """ 计算证据数据的哈希值，用于完整性验证 [US-055-05] """
         import hashlib
         import json
 
@@ -62,7 +62,7 @@ class AgriEvidence(models.Model):
                 rec.evidence_hash = None
 
     def verify_evidence_integrity(self):
-        """ 验证证据完整性 [US-25-05] """
+        """ 验证证据完整性 [US-055-05] """
         import hashlib
         import json
 

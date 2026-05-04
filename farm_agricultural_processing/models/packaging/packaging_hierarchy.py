@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class FarmProcessingProductionPackagingExtension(models.Model):
     """
-    Extension to Processing ISL Production Model for Packaging - US-14-10
+    Extension to Processing ISL Production Model for Packaging - US-037-10
     """
     _inherit = 'farm.processing.production'
 
@@ -35,7 +35,7 @@ class FarmProcessingProductionPackagingExtension(models.Model):
 
 class AgriProcessingPackaging(models.Model):
     """
-    Multi-level Packaging Hierarchy Management - US-14-10
+    Multi-level Packaging Hierarchy Management - US-037-10
     """
     _name = 'agri.processing.packaging'
     _description = 'Multi-level Packaging Hierarchy Management'

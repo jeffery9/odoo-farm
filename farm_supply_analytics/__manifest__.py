@@ -5,9 +5,9 @@
     'summary': 'Supply Chain Analytics and Visualization',
     'description': """
         Supply Analytics module for Odoo 19 Farm Management System.
-        - Supply Chain Visualization (Control Tower) [US-54-01]
-        - Demand Forecasting & Inventory Optimization [US-54-02]
-        - Supply Chain Risk Management [US-54-03]
+        - Supply Chain Visualization (Control Tower) [US-084-01]
+        - Demand Forecasting & Inventory Optimization [US-084-02]
+        - Supply Chain Risk Management [US-084-03]
         - Real-time KPIs and monitoring
     """,
     'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',

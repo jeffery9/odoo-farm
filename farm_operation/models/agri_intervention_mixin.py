@@ -47,11 +47,11 @@ class AgriInterventionMixin(models.AbstractModel):
 
     procedure_name = fields.Char("Procedure/Method", help="e.g. Mechanical sowing, manual weeding")
 
-    # US-18-02: China Real-name Registration
+    # US-041-02: China Real-name Registration
     operator_id_card = fields.Char("Operator ID Card", help="Required for pesticide/veterinary real-name registration.")
     product_registration_no = fields.Char("Product Registration No.", help="Pesticide or veterinary product registration number.")
 
-    # Harvest Grading [US-02-04]
+    # Harvest Grading [US-002-04]
     grade_a_qty = fields.Float("Grade A Quantity")
     grade_b_qty = fields.Float("Grade B Quantity")
     grade_c_qty = fields.Float("Grade C Quantity")
@@ -69,7 +69,7 @@ class AgriInterventionMixin(models.AbstractModel):
     energy_cost = fields.Float("Energy/Utility Cost", compute='_compute_agri_costs', store=True)
     total_agri_cost = fields.Float("Total Intervention Cost", compute='_compute_agri_costs', store=True)
 
-    # US-02-03: Soil Nutrient Inputs (RESTORED)
+    # US-002-03: Soil Nutrient Inputs (RESTORED)
     pure_n_qty = fields.Float("Pure Nitrogen (N) kg", compute='_compute_agri_costs', store=True)
     pure_p_qty = fields.Float("Pure Phosphorus (P) kg", compute='_compute_agri_costs', store=True)
     pure_k_qty = fields.Float("Pure Potassium (K) kg", compute='_compute_agri_costs', store=True)
@@ -116,11 +116,11 @@ class AgriInterventionMixin(models.AbstractModel):
             mo.pure_p_qty = p_total
             mo.pure_k_qty = k_total
 
-    # 工时追踪 [US-13-03]
+    # 工时追踪 [US-036-03]
     work_start_datetime = fields.Datetime("Work Start")
     is_working = fields.Boolean("In Progress", default=False)
 
-    # Simplified Approval System [US-16-01]
+    # Simplified Approval System [US-039-01]
     approval_state = fields.Selection([
         ('draft', 'Draft'),
         ('to_approve', 'Awaiting Approval'),
@@ -159,7 +159,7 @@ class AgriInterventionMixin(models.AbstractModel):
     actual_flight_area = fields.Float("Actual Flown Area (mu/ha)")
     drone_id = fields.Many2one('maintenance.equipment', string="Drone Used", )
 
-    # 空间审计 [US-23-04]
+    # 空间审计 [US-053-04]
     out_of_bounds_count = fields.Integer("OOB Point Count", compute='_compute_spatial_audit', help="Number of telemetry points outside the parcel.")
     spatial_compliance_rate = fields.Float("Spatial Compliance (%)", compute='_compute_spatial_audit')
 
@@ -232,7 +232,7 @@ class AgriInterventionMixin(models.AbstractModel):
     def action_start_work(self):
         """Start the actual work"""
         """ 一键打卡：开始作业 """
-        # US-02-06: Weather window check for spray operations
+        # US-002-06: Weather window check for spray operations
         if hasattr(self, 'intervention_type') and self.intervention_type in ['fertilizing', 'protection', 'aerial_spraying']:
             self._check_weather_window()
 
@@ -245,7 +245,7 @@ class AgriInterventionMixin(models.AbstractModel):
 
     def _check_weather_window(self):
         """
-        Check weather conditions before allowing spray operations [US-02-06]
+        Check weather conditions before allowing spray operations [US-002-06]
         """
         self.ensure_one()
 
@@ -269,7 +269,7 @@ class AgriInterventionMixin(models.AbstractModel):
             if forecast:
                 # 检查风速是否超过4级（约16km/h）
                 if forecast.wind_speed_kmh and forecast.wind_speed_kmh > 16:
-                    # US-02-06: Create high-priority activity for technician review
+                    # US-002-06: Create high-priority activity for technician review
                     self.activity_schedule(
                         'mail.mail_activity_data_todo',
                         summary=_('WEATHER BLOCK: High Wind Speed (%s km/h)') % forecast.wind_speed_kmh,
@@ -307,9 +307,9 @@ class AgriInterventionMixin(models.AbstractModel):
         self.message_post(body=_("Labor: Work stopped and recorded at %s") % now)
 
     def action_confirm(self):
-        """扩展确认逻辑，进行安全拦截 [US-03-04] 并传递任务 ID 到供应端 [US-09-01]"""
+        """扩展确认逻辑，进行安全拦截 [US-003-04] 并传递任务 ID 到供应端 [US-009-01]"""
         for mo in self:
-            # US-18-02: Check real-name registration for pesticide/veterinary
+            # US-041-02: Check real-name registration for pesticide/veterinary
             if hasattr(mo, 'intervention_type') and mo.intervention_type in ['protection', 'aerial_spraying', 'medical']:
                 if not mo.operator_id_card:
                     raise UserError(_("COMPLIANCE ERROR: Operator ID Card is required for real-name registration of %s!") % dict(mo._fields['intervention_type'].selection).get(mo.intervention_type))
@@ -325,7 +325,7 @@ class AgriInterventionMixin(models.AbstractModel):
                     if (hasattr(move.product_id, 'is_agri_input') and move.product_id.is_agri_input and
                         (not hasattr(move.product_id, 'is_safety_approved') or not move.product_id.is_safety_approved)):
                         if is_organic_parcel:
-                            # 如果是有机地块，记录违规日期以重置转换期 [US-12-02]
+                            # 如果是有机地块，记录违规日期以重置转换期 [US-035-02]
                             mo.agri_task_id.land_parcel_id.last_prohibited_substance_date = fields.Date.today()
                             # 发出警告而非强制报错，这里选择报错以严格合规
                             raise UserError(_("COMPLIANCE ERROR: Product %s is not approved for organic production on parcel %s!") % (
@@ -348,8 +348,8 @@ class AgriInterventionMixin(models.AbstractModel):
         return True
 
     def action_export_drone_kml(self):
-        """Export drone route as KML for navigation - US-22-03, US-23-03"""
-        """ US-22-03, US-23-03: 将地块边界与周边禁飞区导出为 KML """
+        """Export drone route as KML for navigation - US-052-03, US-053-03"""
+        """ US-052-03, US-053-03: 将地块边界与周边禁飞区导出为 KML """
         self.ensure_one()
         import base64
         # 1. 查找关联地块
@@ -411,7 +411,7 @@ class AgriInterventionMixin(models.AbstractModel):
     def button_mark_done(self):
         """Extend the done logic to handle drone spraying depletion and graded outputs."""
         for intervention in self:
-            # US-22-04: 无人机飞防自动核销
+            # US-052-04: 无人机飞防自动核销
             if hasattr(intervention, 'intervention_type') and intervention.intervention_type == 'aerial_spraying' and intervention.actual_flight_area > 0:
                 for move in intervention.move_raw_ids:
                     # 根据实际作业面积动态调整原材料需求量
@@ -466,7 +466,7 @@ class AgriInterventionMixin(models.AbstractModel):
 
                     graded_lot_ids = [lot_id for lot_id in graded_lot_ids if lot_id]
 
-                    # US-05-02: Trigger quality check for custom created graded lots
+                    # US-005-02: Trigger quality check for custom created graded lots
                     if graded_lot_ids:
                         for lot_id in graded_lot_ids:
                             try:
@@ -483,7 +483,7 @@ class AgriInterventionMixin(models.AbstractModel):
                     # by setting product_qty to 0 for the super call if custom moves are created
                     intervention.product_qty = 0
 
-                # US-05-02: Trigger quality check for non-graded harvesting
+                # US-005-02: Trigger quality check for non-graded harvesting
                 elif intervention.intervention_type == 'harvesting' and intervention.product_qty > 0:
                     try:
                         if hasattr(intervention.move_finished_ids, 'mapped'):

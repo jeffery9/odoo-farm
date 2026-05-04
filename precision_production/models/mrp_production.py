@@ -11,7 +11,7 @@ class MrpProduction(models.Model):
     
     recipe_phase_ids = fields.One2many('precision.recipe.phase', 'production_id', string="Control Recipe")
     
-    # [US-81-01] VRA Integration
+    # [US-081-01] VRA Integration
     vra_prescription_id = fields.Many2one('agri.intervention.vra.prescription', string="VRA Prescription Map",
                                          help="Link to the scientific VRA map for this production.")
 
@@ -283,7 +283,7 @@ class MrpProduction(models.Model):
             'context': {'default_production_id': self.id, 'default_phase_id': self.active_recipe_phase_id.id}
         }
 
-    # [US-81-01] Dynamic VRA-L3 Linkage Logic
+    # [US-081-01] Dynamic VRA-L3 Linkage Logic
     def action_calculate_spatial_setpoint(self, lat, lng):
         """
         [DYNAMIC VRA LINK]

@@ -14,7 +14,7 @@ class AgriAiFertilizationDecision(models.Model):
     """
     AI model for fertilization decision.
     Level 4: Autonomous Input Feedback.
-    Implements [US-58-06]: Autonomous Nutrient Correction Decision.
+    Implements [US-088-06]: Autonomous Nutrient Correction Decision.
     """
     _name = 'agri.ai.fertilization.decision'
     _description = 'AI Fertilization Decision'
@@ -99,7 +99,7 @@ class AgriAiFertilizationDecision(models.Model):
             record.confidence_score = min(90, max(65, 75 + random.uniform(-10, 10)))
             record.status = 'recommended'
 
-            # Level 4+: Automatic Mission Trigger [US-58-06]
+            # Level 4+: Automatic Mission Trigger [US-088-06]
             if record.recommended_n > 20.0 and record.land_location_id:
                 _logger.info("Nutrient gap > 20kg detected. Triggering Autonomous Mission Orchestrator.")
                 self.env['agri.mission.orchestrator'].action_trigger_inflow_mission(
@@ -109,7 +109,7 @@ class AgriAiFertilizationDecision(models.Model):
 
     def generate_actuator_correction(self, intervention_id):
         """
-        [US-58-06] Converts AI decision into a physical actuation payload.
+        [US-088-06] Converts AI decision into a physical actuation payload.
         """
         self.ensure_one()
         intervention = self.env['agri.intervention'].browse(intervention_id)

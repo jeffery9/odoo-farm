@@ -18,7 +18,7 @@ class FarmLotBreeding(models.Model):
     trait_value_ids = fields.One2many('farm.trait.value', 'lot_id', string="Traits")
     trait_score_avg = fields.Float("Average Trait Score", compute='_compute_trait_score_avg', store=True)
     
-    # Pedigree [US-10-05]
+    # Pedigree [US-020-05]
     father_id = fields.Many2one('stock.lot', string="Sire", domain="[('gender', '=', 'male')]")
     mother_id = fields.Many2one('stock.lot', string="Dam", domain="[('gender', '=', 'female')]")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('other', 'Mixed/Unknown')], default='other')
@@ -54,7 +54,7 @@ class FarmLotBreeding(models.Model):
             lot.trait_score_avg = sum(scores) / len(scores) if scores else 0.0
 
     def action_compare_traits(self):
-        """ 弹出性状对比向导 [US-10-08] """
+        """ 弹出性状对比向导 [US-020-08] """
         return {
             'name': _('Trait Performance Comparison'),
             'type': 'ir.actions.act_window',

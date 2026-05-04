@@ -8,7 +8,7 @@ class StockMoveLine(models.Model):
 
     def write(self, vals):
         """
-        US-09-20: Check FEFO compliance when lot_id is changed on a stock move line.
+        US-009-20: Check FEFO compliance when lot_id is changed on a stock move line.
         This catches cases where a user might manually change the selected lot
         to one that isn't the soonest to expire when an earlier expiring lot is available.
         """

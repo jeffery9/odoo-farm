@@ -29,7 +29,7 @@ class CropYieldInsurancePolicy(models.Model):
     actual_yield_kg = fields.Float("Actual Harvest Yield (kg)")
     yield_deviation_pct = fields.Float("Yield Deviation (%)", compute='_compute_yield_deviation', store=True)
 
-    # Actuarial Fields - Based on US-58-16: Yield Insurance Actuarial Analysis and Claims
+    # Actuarial Fields - Based on US-088-16: Yield Insurance Actuarial Analysis and Claims
     base_yield_trend = fields.Float("Base Yield Trend (kg/ha)", help="Historical average yield for this crop/location")
     risk_factor = fields.Float("Risk Factor", default=1.0, help="Risk multiplier based on location and crop type")
     actuarial_probability_loss = fields.Float("Actuarial Probability of Loss", compute='_compute_actuarial_metrics', store=True, help="Calculated probability of yield loss based on historical data")
