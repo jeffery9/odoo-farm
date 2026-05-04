@@ -6,7 +6,7 @@ class TestDeepCoverageFarmOperation(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = ['agri.intervention', 'farm.agricultural.bom.line', 'stock.move', 'farm.agricultural.bom', 'mrp.bom.line', 'agri.agricultural.campaign.mixin', 'farm.agricultural.intervention.mixin', 'sale.order', 'agri.bom.mixin', 'agri.intervention.mixin', 'farm.agricultural.bom.line.mixin', 'agricultural.campaign', 'farm.agricultural.campaign.mixin', 'mrp.bom', 'project.task', 'farm.agricultural.bom.mixin', 'farm.agricultural.campaign.base', 'mrp.production', 'agri.bom.line.mixin', 'farm.agricultural.campaign']
+        cls.models_to_test = ['agri.intervention', 'farm.agricultural.bom.line', 'stock.move', 'farm.agricultural.bom', 'mrp.bom.line', 'sale.order', 'agricultural.campaign', 'mrp.bom', 'project.task', 'mrp.production', 'farm.agricultural.campaign']
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """

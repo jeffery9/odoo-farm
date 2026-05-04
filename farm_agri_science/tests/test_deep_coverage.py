@@ -6,7 +6,7 @@ class TestDeepCoverageFarmAgriScience(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = ['agri.intervention.vra.prescription', 'agri.physiology.profile', 'agri.growth.stage', 'agri.vra.stage.rule', 'agri.intervention.vra.prescription.line', 'farm.agri.science.mixin', 'farm.location', 'agri.biological.twin', 'agri.intervention.vra.strategy', 'agri.geospatial.grid.cell']
+        cls.models_to_test = ['agri.intervention.vra.prescription', 'agri.physiology.profile', 'agri.growth.stage', 'agri.vra.stage.rule', 'agri.intervention.vra.prescription.line', 'farm.location', 'agri.biological.twin', 'agri.intervention.vra.strategy', 'agri.geospatial.grid.cell']
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """

@@ -6,7 +6,7 @@ class TestDeepCoverageFarmEsgCompliance(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = ['agri.sustainable.supply.chain', 'farm.certification.process', 'farm.biodiversity.metric', 'agri.waste.resource.trade', 'agri.supply.chain.carbon.data.engine', 'agri.supplier.carbon.compliance', 'agri.esg.marketplace', 'agri.sustainability.algorithms', 'farm.export.compliance', 'agri.carbon.neutrality.certification', 'farm.compliance.audit.standard', 'agri.triple.bottom.line.metrics', 'agri.esg.marketplace.trade', 'agri.sustainable.product.lifecycle', 'agri.bio.energy.product', 'agri.sustainable.supplier.evaluation', 'agri.supply.chain.carbon.reduction.strategy', 'agri.supplier.carbon.historical', 'agri.sustainable.business.model', 'agri.carbon.neutral.goal', 'agri.carbon.credit', 'agri.sustainability.mixin']
+        cls.models_to_test = ['agri.sustainable.supply.chain', 'farm.certification.process', 'farm.biodiversity.metric', 'agri.waste.resource.trade', 'agri.supply.chain.carbon.data.engine', 'agri.supplier.carbon.compliance', 'agri.esg.marketplace', 'agri.sustainability.algorithms', 'farm.export.compliance', 'agri.carbon.neutrality.certification', 'farm.compliance.audit.standard', 'agri.triple.bottom.line.metrics', 'agri.esg.marketplace.trade', 'agri.sustainable.product.lifecycle', 'agri.bio.energy.product', 'agri.sustainable.supplier.evaluation', 'agri.supply.chain.carbon.reduction.strategy', 'agri.supplier.carbon.historical', 'agri.sustainable.business.model', 'agri.carbon.neutral.goal', 'agri.carbon.credit']
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """

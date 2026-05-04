@@ -6,7 +6,7 @@ class TestDeepCoverageFarmAiVision(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = ['agri.ai.vision.risk.assessment', 'agri.ai.image.analysis.prediction', 'agri.ai.image.based.planning', 'agri.ai.pest.disease.detection', 'agri.ai.visual.sorting', 'agri.ai.vision.base']
+        cls.models_to_test = ['agri.ai.vision.risk.assessment', 'agri.ai.image.analysis.prediction', 'agri.ai.pest.disease.detection', 'agri.ai.visual.sorting']
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """

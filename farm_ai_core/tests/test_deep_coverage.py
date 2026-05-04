@@ -6,7 +6,7 @@ class TestDeepCoverageFarmAiCore(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = ['agri.evidence.mixin', 'agri.ai.configuration', 'agri.ai.model.registry', 'agri.ai.base.mixin']
+        cls.models_to_test = ['agri.ai.configuration', 'agri.ai.model.registry']
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """

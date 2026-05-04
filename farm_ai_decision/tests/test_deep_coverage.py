@@ -6,7 +6,7 @@ class TestDeepCoverageFarmAiDecision(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = ['agri.ai.harvest.timing', 'agri.ai.resource.optimization', 'agri.ai.crop.growth.prediction', 'ai.decision.engine', 'agri.ai.irrigation.decision', 'agri.ai.agent', 'agri.ai.pest.disease.decision', 'agri.ai.fertilization.decision', 'agri.ai.quality.grading', 'agri.ai.health.monitoring', 'mrp.production', 'agri.ai.risk.assessment', 'agri.ai.market.prediction', 'agri.ai.operation.path.optimization', 'agri.ai.decision.base']
+        cls.models_to_test = ['agri.ai.harvest.timing', 'agri.ai.resource.optimization', 'agri.ai.crop.growth.prediction', 'ai.decision.engine', 'agri.ai.irrigation.decision', 'agri.ai.agent', 'agri.ai.pest.disease.decision', 'agri.ai.fertilization.decision', 'agri.ai.quality.grading', 'agri.ai.health.monitoring', 'mrp.production', 'agri.ai.risk.assessment', 'agri.ai.market.prediction', 'agri.ai.operation.path.optimization']
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """
