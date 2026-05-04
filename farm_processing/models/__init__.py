@@ -23,3 +23,5 @@ from . import package_management
 from . import processing_bom_line_isl
 from . import industry_isl
 from . import missing_models
+
+from . import processing_wizards
