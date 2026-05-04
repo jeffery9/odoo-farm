@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from odoo.tests.common import TransactionCase
 
 class TestEquipmentIntegration(TransactionCase):
@@ -5,6 +6,7 @@ class TestEquipmentIntegration(TransactionCase):
     def setUp(self):
         super().setUp()
         self.Equipment = self.env['maintenance.equipment']
+        self.Checklist = self.env['farm.equipment.checklist']
 
     def test_01_equipment_creation_and_fields(self):
         """ Test Agricultural Equipment creation and specific fields [Integration] """
@@ -30,3 +32,26 @@ class TestEquipmentIntegration(TransactionCase):
         self.assertTrue(drone.is_drone)
         self.assertEqual(drone.max_flight_time, 30)
 
+    def test_03_pre_op_checklist(self):
+        """ Test Equipment Pre-op Checklist association """
+        # Create a checklist
+        checklist = self.Checklist.create({
+            'name': 'Standard Drone Check',
+            'equipment_type': 'drone',
+            'line_ids': [
+                (0, 0, {'name': 'Check Battery Level', 'is_mandatory': True}),
+                (0, 0, {'name': 'Check Propellers', 'requires_photo': True})
+            ]
+        })
+        
+        # Assign to equipment
+        drone = self.Equipment.create({
+            'name': 'Scout Drone',
+            'checklist_id': checklist.id
+        })
+        
+        self.assertEqual(drone.checklist_id.id, checklist.id)
+        self.assertEqual(len(drone.checklist_id.line_ids), 2)
+        # Verify specific line flags
+        propeller_check = drone.checklist_id.line_ids.filtered(lambda l: l.name == 'Check Propellers')
+        self.assertTrue(propeller_check.requires_photo)
