@@ -5,7 +5,7 @@
         <field name="name">Withdrawal Period Status</field>
         <field name="model_name">stock.lot</field>
         <field name="field_name">withdrawal_end_datetime</field>
-        <field name="evaluation_logic"><![CDATA[lambda record: 'red' if record.withdrawal_status == 'warning' and record.withdrawal_remaining_days <=lt;= 3 else 'orange' if record.withdrawal_status == 'warning' else 'green']]></field>
+        <field name="evaluation_logic"><![CDATA[<![CDATA[lambda record: 'red' if record.withdrawal_status == 'warning' and record.withdrawal_remaining_days <= 3 else 'orange' if record.withdrawal_status == 'warning' else 'green']]>]]></field>
         <field name="icon">fa-hourglass-half</field>
         <field name="description">休药期状态指示器，红色表示即将到期，橙色表示正在休药期，绿色表示安全</field>
         <field name="is_active">True</field>
@@ -38,7 +38,7 @@
         <field name="name">ADG Trend Status</field>
         <field name="model_name">stock.lot</field>
         <field name="field_name">average_daily_gain</field>
-        <field name="evaluation_logic"><![CDATA[lambda record: 'green' if record.average_daily_gain and record.average_daily_gain > 1.0 else 'orange' if record.average_daily_gain and record.average_daily_gain > 0.5 else 'red']]></field>
+        <field name="evaluation_logic"><![CDATA[<![CDATA[lambda record: 'green' if record.average_daily_gain and record.average_daily_gain > 1.0 else 'orange' if record.average_daily_gain and record.average_daily_gain > 0.5 else 'red']]>]]></field>
         <field name="icon">fa-line-chart</field>
         <field name="description">日增重趋势指示器，基于平均日增重显示牲畜健康状态</field>
         <field name="is_active">True</field>
@@ -71,7 +71,7 @@
         <field name="name">Processing Loss Rate Status</field>
         <field name="model_name">mrp.production</field>
         <field name="field_name">loss_rate</field>
-        <field name="evaluation_logic"><![CDATA[lambda record: 'red' if record.loss_rate and record.bom_id and record.loss_rate > record.bom_id.max_loss_rate else 'green' if record.loss_rate and record.loss_rate <=lt;= record.bom_id.max_loss_rate * 0.8 else 'orange']]></field>
+        <field name="evaluation_logic"><![CDATA[<![CDATA[lambda record: 'red' if record.loss_rate and record.bom_id and record.loss_rate > record.bom_id.max_loss_rate else 'green' if record.loss_rate and record.loss_rate <= record.bom_id.max_loss_rate * 0.8 else 'orange']]>]]></field>
         <field name="icon">fa-balance-scale</field>
         <field name="description">加工损耗率指示器，红色表示超标，绿色表示良好，橙色表示接近阈值</field>
         <field name="is_active">True</field>
