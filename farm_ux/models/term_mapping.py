@@ -92,13 +92,13 @@ class TermMapping(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        self.clear_caches()
+        self.env.registry.clear_cache()
         return super().create(vals_list)
 
     def write(self, vals):
-        self.clear_caches()
+        self.env.registry.clear_cache()
         return super().write(vals)
 
     def unlink(self):
-        self.clear_caches()
+        self.env.registry.clear_cache()
         return super().unlink()
