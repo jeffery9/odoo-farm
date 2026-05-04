@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 
 class MrpProduction(models.Model):
     _name = 'mrp.production'
@@ -39,10 +40,35 @@ class MrpProduction(models.Model):
         self.message_post(body=_("AGRICULTURAL INTERVENTION [%s]: %s") % (intervention_type, description))
         return True
 
+    # ---------------------------------------------------------
+    # [ISL Hooks] Agricultural Vertical Implementation
+    # ---------------------------------------------------------
+    def _check_phase_readiness(self, phase):
+        """ 
+        [ISL Hook Override] 
+        Adds IoT Environmental gating before starting an agricultural intervention.
+        """
+        super()._check_phase_readiness(phase)
+        
+        # Check IoT/Environmental status via agri.precision.mixin
+        if self.iot_status == 'critical' and not self.is_process_locked:
+            raise UserError(_(
+                "ENVIRONMENTAL BLOCK: Cannot start Intervention '%s'. "
+                "IoT sensors are reporting a CRITICAL environmental condition. "
+                "Please apply corrective intervention first."
+            ) % phase.name)
+        return True
+
+    def _get_quality_weights(self):
+        """ 
+        [ISL Hook Override] 
+        Defines agricultural grading weights (e.g., Premium=100, Standard=70, Fail=0)
+        """
+        return {'premium': 100, 'standard': 70, 'fail': 0}
+
 
 class StockLot(models.Model):
-    _name = 'stock.lot'
-    _inherit = ['stock.lot', 'agri.precision.mixin']
+    _inherit = 'stock.lot'
 
     # [Grading] Each lot carries its binning result
     def action_set_grade(self, grade):
@@ -87,6 +113,29 @@ class PrecisionRecipePhase(models.Model):
 
         # Log the environmental intervention
         self.action_apply_phase_intervention('environmental', f"Phase calibrated due to: {reason}")
+
+    # ---------------------------------------------------------
+    # [ISL Hooks] VRA Dynamic Parameter Execution
+    # ---------------------------------------------------------
+    def action_trigger_vra_sync_from_iot(self, lat, lng):
+        """
+        Called when a tractor/drone reports a new GPS position.
+        Triggers the calculation of dynamic setpoints (like spraying rate)
+        based on the scientific VRA prescription map.
+        """
+        self.ensure_one()
+        if self.state != 'progress':
+            return False
+            
+        # Call the base VRA calculation logic in precision_production
+        if hasattr(self.production_id, 'action_calculate_spatial_setpoint'):
+            self.production_id.action_calculate_spatial_setpoint(lat, lng)
+            
+            # Log the geospatial sync
+            self.production_id.message_post(
+                body=_("VRA Sync: Adjusted active parameters for Intervention '%s' at [%s, %s]") % (self.name, lat, lng)
+            )
+        return True
 
     def action_update_yield_estimate_btn(self):
         return self.action_update_yield_estimate(0.0)
