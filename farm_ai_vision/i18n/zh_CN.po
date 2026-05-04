@@ -4,12 +4,158 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+
+msgid "Batch/Lot"
+msgstr ""
+
+msgid "Color Grade"
+msgstr ""
+
+msgid "Crop Type"
+msgstr ""
+
+msgid "Data Isolation Level"
+msgstr ""
+
+msgid "Defect Severity"
+msgstr ""
+
+msgid "Detection Type"
+msgstr ""
+
+msgid "Estimated percentage of loss if risk materializes"
+msgstr ""
+
+msgid "Explanation of AI vision analysis process"
+msgstr ""
+
+msgid "Growth Stage"
+msgstr ""
+
+msgid "Heatmap showing areas of highest detection confidence"
+msgstr ""
+
+msgid "Industry"
+msgstr ""
+
+msgid "Industry to which this detection applies"
+msgstr ""
+
+msgid "Industry to which this planning applies"
+msgstr ""
+
+msgid "Industry to which this prediction applies"
+msgstr ""
+
+msgid "Industry to which this risk assessment applies"
+msgstr ""
+
+msgid "Industry to which this sorting applies"
+msgstr ""
+
+msgid "Input image for AI vision analysis"
+msgstr ""
+
+msgid "JSON data of similar cases for reference"
+msgstr ""
+
+msgid "JSON parameters used for image analysis"
+msgstr ""
+
+msgid "Land Location"
+msgstr ""
+
+msgid "Name of the detected pest or disease"
+msgstr ""
+
+msgid "Numerical risk score from 0-100"
+msgstr ""
+
+msgid "Percentage of area at risk"
+msgstr ""
+
+msgid "Percentage of plant/leaf affected"
+msgstr ""
+
+msgid "Plants per square meter"
+msgstr ""
+
+msgid "Predicted yield per unit area"
+msgstr ""
+
+msgid "Priority"
+msgstr ""
+
+msgid "Product Type"
+msgstr ""
+
+msgid "Quality grade assigned by AI vision system"
+msgstr ""
+
+msgid "Recommended spacing between plants"
+msgstr ""
+
+msgid "Ripeness Level"
+msgstr ""
+
+msgid "Risk Level"
+msgstr ""
+
+msgid "Risk Type"
+msgstr ""
+
+msgid "Severity Level"
+msgstr ""
+
+msgid "Size Category"
+msgstr ""
+
+msgid "Soil Condition"
+msgstr ""
+
+msgid "Sorting Type"
+msgstr ""
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Suggested Crop Type"
+msgstr ""
+
+msgid "Suggested Planting Season"
+msgstr ""
+
+msgid "Suggested bin/destination for this item"
+msgstr ""
+
+msgid "Treatment Priority"
+msgstr ""
+
+msgid "Type of AI vision model used for analysis"
+msgstr ""
+
+msgid "Type of defect detected by AI vision"
+msgstr ""
+
+msgid "What to do with this item based on classification"
+msgstr ""
+
+msgid "Whether this detection accesses ISL models"
+msgstr ""
+
+msgid "Whether this planning accesses ISL models"
+msgstr ""
+
+msgid "Whether this prediction accesses ISL models"
+msgstr ""
+
+msgid "Whether this risk assessment accesses ISL models"
+msgstr ""
+
+msgid "Whether this sorting accesses ISL models"
+msgstr ""
+
+msgid "Yield Unit"
+msgstr ""
+

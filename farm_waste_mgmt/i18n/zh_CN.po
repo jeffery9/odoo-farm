@@ -4,12 +4,65 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:02+0000\n"
+"PO-Revision-Date: 2026-05-04 09:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_waste_mgmt
+#. odoo-python
+#: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
+msgid "Conversion MO"
+msgstr ""
+
+#. module: farm_waste_mgmt
+#. odoo-python
+#: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
+msgid "MNL"
+msgstr ""
+
+#. module: farm_waste_mgmt
+#. odoo-python
+#: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
+msgid "MNR"
+msgstr ""
+
+#. module: farm_waste_mgmt
+#. odoo-python
+#: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
+msgid "MOARA Manure Utilization Ledger generated for %s/%s."
+msgstr ""
+
+#. module: farm_waste_mgmt
+#. odoo-python
+#: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
+msgid "Manufacturing Order %s created for manure conversion."
+msgstr ""
+
+#. module: farm_waste_mgmt
+#. odoo-python
+#: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
+#: code:addons/farm_waste_mgmt/models/storage_waste.py:0
+msgid "New"
+msgstr ""
+
+#. module: farm_waste_mgmt
+#. odoo-python
+#: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
+msgid "Please select a Converted Fertilizer Product first!"
+msgstr ""
+
+#. module: farm_waste_mgmt
+#. odoo-python
+#: code:addons/farm_waste_mgmt/models/agri_manure_batch.py:0
+msgid ""
+"SAFETY BLOCK: A passed quality check (Compost Maturity) is required before "
+"conversion!"
+msgstr ""

@@ -4,12 +4,848 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:13+0000\n"
+"PO-Revision-Date: 2026-05-04 09:13+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_telemetry_rule_form
+msgid "$.temperature"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__is_active
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_firmware__is_active
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry_rule__active
+msgid "Active"
+msgstr "有效"
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_firmware__profile_code
+msgid "Applicable device type code"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_device__business_ref
+msgid "Associated business entity (equipment/workcenter/location)"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_device__profile_id
+msgid "Associated communication profile"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_telemetry_rule__profile_id
+msgid "Associated device profile"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_form
+msgid "Business Ref"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__business_ref
+msgid "Business Reference"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_update__status__cancelled
+msgid "Cancelled"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_firmware__checksum
+msgid "Checksum"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_telemetry__sensor_type__chemical_level
+msgid "Chemical Level"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device_profile__code
+msgid "Code"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device_profile__command_template
+msgid "Command Template"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device_profile__command_topic_template
+msgid "Command Topic Template"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_device_profile__command_template
+msgid ""
+"Command message template (Jinja2), e.g. {\"action\": \"{{ action }}\", "
+"\"params\": {{ params | tojson }}}"
+msgstr ""
+
+#. module: agri_iot
+#. odoo-python
+#: code:addons/agri_iot/models/iiot_device.py:0
+msgid "Command template rendering failed: %s"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_device_profile__command_topic_template
+msgid "Command topic template, e.g. cmd/{device}/request"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__profile_id
+msgid "Communication Profile"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_form
+msgid "Config & Topics"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__config_token
+msgid "Config Token"
+msgstr ""
+
+#. module: agri_iot
+#. odoo-python
+#: code:addons/agri_iot/models/iiot_device.py:0
+msgid "Configuration download token generated"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__connection_status
+msgid "Connection Status"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__created_date
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_firmware__created_date
+msgid "Created Date"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__create_uid
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device_profile__create_uid
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_firmware__create_uid
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry__create_uid
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry_rule__create_uid
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__create_date
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device_profile__create_date
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_firmware__create_date
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry__create_date
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry_rule__create_date
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__create_date
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_device__firmware_version
+msgid "Current firmware version"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_firmware__description
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__description
+msgid "Description"
+msgstr "描述"
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__device_id
+msgid "Device ID"
+msgstr ""
+
+#. module: agri_iot
+#. odoo-python
+#: code:addons/agri_iot/models/iiot_device.py:0
+msgid "Device ID can only contain letters, numbers, underscores and hyphens"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.constraint,message:agri_iot.constraint_iiot_device_device_id_uniq
+msgid "Device ID must be unique!"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.ui.menu,name:agri_iot.menu_iiot_device_management
+msgid "Device Management"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_firmware__profile_code
+msgid "Device Type"
+msgstr ""
+
+#. module: agri_iot
+#. odoo-python
+#: code:addons/agri_iot/models/iiot_device.py:0
+msgid "Device not associated with communication profile"
+msgstr ""
+
+#. module: agri_iot
+#. odoo-python
+#: code:addons/agri_iot/models/iiot_device_profile.py:0
+msgid ""
+"Device type code can only contain letters, numbers, underscores and hyphens"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_device_profile__code
+msgid "Device type code, e.g. cnc_v1"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__display_name
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device_profile__display_name
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_firmware__display_name
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry__display_name
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry_rule__display_name
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_telemetry__sensor_type__dissolved_oxygen
+msgid "Dissolved Oxygen"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_telemetry_rule__target_domain
+msgid ""
+"Domain to find target records, e.g. [('iot_device_id', '=', '{{ device_id "
+"}}')]"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_firmware__url
+msgid "Download URL"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_update__status__downloading
+msgid "Downloading"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_telemetry__sensor_type__battery_voltage
+msgid "Drone Battery"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__end_time
+msgid "End Time"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_device__connection_status__error
+msgid "Error"
+msgstr "错误"
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__error_message
+msgid "Error Message"
+msgstr ""
+
+#. module: agri_iot
+#. odoo-python
+#: code:addons/agri_iot/models/iiot_device.py:0
+msgid "Error occurred while sending command: %s"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_update__status__failed
+msgid "Failed"
+msgstr ""
+
+#. module: agri_iot
+#. odoo-python
+#: code:addons/agri_iot/models/iiot_device.py:0
+msgid "Failed to send command: %s"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__firmware_version
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__firmware_id
+msgid "Firmware Version"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.ui.menu,name:agri_iot.menu_iiot_firmware
+msgid "Firmware Versions"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_firmware__url
+msgid "Firmware download URL"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_firmware__checksum
+msgid "Firmware file checksum"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.constraint,message:agri_iot.constraint_iiot_firmware_version_profile_uniq
+msgid "Firmware version must be unique for each device type!"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_firmware__version
+msgid "Firmware version number"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_telemetry__sensor_type__flight_altitude
+msgid "Flight Altitude"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_form
+msgid "Generate Config Token"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_device__live_stream_url
+msgid "HLS/HTTP/RTSP stream URL for the camera"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_telemetry__sensor_type__humidity
+msgid "Humidity"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__id
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device_profile__id
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_firmware__id
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry__id
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry_rule__id
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__id
+msgid "ID"
+msgstr "ID"
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry__device_id
+msgid "IIoT Device"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model,name:agri_iot.model_iiot_telemetry
+msgid "IIoT Telemetry Data"
+msgstr ""
+
+#. module: agri_iot
+#: model:res.groups,name:agri_iot.group_iiot_user
+msgid "IIoT用户"
+msgstr ""
+
+#. module: agri_iot
+#: model:res.groups,name:agri_iot.group_iiot_admin
+msgid "IIoT管理员"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.actions.act_window,name:agri_iot.action_iiot_device
+#: model:ir.ui.menu,name:agri_iot.menu_iiot_device
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_form
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_tree
+msgid "IIoT设备"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.ui.menu,name:agri_iot.menu_iiot_root
+msgid "Industrial IoT"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model,name:agri_iot.model_iiot_device
+msgid "Industrial IoT Device"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model,name:agri_iot.model_iiot_device_profile
+msgid "Industrial IoT Device Profile"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model,name:agri_iot.model_iiot_firmware
+msgid "Industrial IoT Firmware"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model,name:agri_iot.model_iiot_update
+msgid "Industrial IoT Firmware Update"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model,name:agri_iot.model_iiot_telemetry_rule
+msgid "Industrial IoT Telemetry Rule"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_update__status__installing
+msgid "Installing"
+msgstr ""
+
+#. module: agri_iot
+#. odoo-python
+#: code:addons/agri_iot/models/iiot_telemetry_rule.py:0
+msgid "Invalid JSON Path format: %s"
+msgstr ""
+
+#. module: agri_iot
+#. odoo-python
+#: code:addons/agri_iot/models/iiot_telemetry_rule.py:0
+msgid "Invalid domain format: %s"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__is_camera
+msgid "Is Camera"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_firmware__is_active
+msgid "Is this an active version?"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry_rule__json_path
+msgid "JSON Path"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__last_command
+msgid "Last Command"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__last_telemetry
+msgid "Last Telemetry"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__last_update
+msgid "Last Update"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__write_uid
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device_profile__write_uid
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_firmware__write_uid
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry__write_uid
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry_rule__write_uid
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__write_date
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device_profile__write_date
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_firmware__write_date
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry__write_date
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry_rule__write_date
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__write_date
+msgid "Last Updated on"
+msgstr "最后更新时间"
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry__gps_lat
+msgid "Latitude"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__live_stream_url
+msgid "Live Stream URL"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_device__device_id
+msgid "Logical ID for Topics"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry__gps_lng
+msgid "Longitude"
+msgstr ""
+
+#. module: agri_iot
+#. odoo-python
+#: code:addons/agri_iot/models/iiot_device.py:0
+msgid "MQTT gateway URL not configured"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__name
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device_profile__name
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_firmware__name
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry_rule__name
+msgid "Name"
+msgstr "名称"
+
+#. module: agri_iot
+#: model:ir.ui.menu,name:agri_iot.menu_iiot_ota
+msgid "OTA Management"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device_profile__ota_notify_topic_template
+msgid "OTA Notify Topic Template"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device_profile__ota_status_topic_template
+msgid "OTA Status Topic Template"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_profile_form
+msgid "OTA Topic 配置"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.ui.menu,name:agri_iot.menu_iiot_update
+msgid "OTA Update Logs"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_device_profile__ota_notify_topic_template
+msgid "OTA notify topic template, e.g. ota/{device}/notify"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_device_profile__ota_status_topic_template
+msgid "OTA status topic template, e.g. ota/{device}/status"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.actions.act_window,name:agri_iot.action_iiot_update
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_update_form
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_update_tree
+msgid "OTA更新记录"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_device__connection_status__offline
+msgid "Offline"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_device__config_token
+msgid "One-time configuration download token"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_device__connection_status__online
+msgid "Online"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_telemetry_rule__json_path
+msgid "Path to extract value from telemetry payload, e.g. $.temperature"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_update__status__pending
+msgid "Pending"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_device__serial_number
+msgid "Physical serial number (unique, index=True)"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_form
+msgid "Power Off"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_form
+msgid "Power On"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry_rule__profile_id
+msgid "Profile"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__progress
+msgid "Progress"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_form
+msgid "Regenerate Token"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_form
+msgid "Remote Control"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_form
+msgid "Reset"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry__name
+msgid "Sensor Name"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry__sensor_type
+msgid "Sensor Type"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_update__status__sent
+msgid "Sent"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry_rule__sequence
+msgid "Sequence"
+msgstr "序号"
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device__serial_number
+msgid "Serial Number"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.constraint,message:agri_iot.constraint_iiot_device_serial_number_uniq
+msgid "Serial number must be unique!"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_telemetry__sensor_type__soil_moisture
+msgid "Soil Moisture"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__start_time
+msgid "Start Time"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__status
+msgid "Status"
+msgstr "状态"
+
+#. module: agri_iot
+#. odoo-python
+#: code:addons/agri_iot/models/iiot_device.py:0
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_update__status__success
+msgid "Success"
+msgstr "成功"
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__device_id
+msgid "Target Device"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry_rule__target_domain
+msgid "Target Domain"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry_rule__target_field
+msgid "Target Field"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry_rule__target_model
+msgid "Target Model"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_telemetry_rule__target_field
+msgid "Target field to write to, e.g. x_temperature"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_telemetry_rule__target_model
+msgid "Target model, e.g. maintenance.equipment"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.ui.menu,name:agri_iot.menu_iiot_telemetry
+msgid "Telemetry Management"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device_profile__iiot_telemetry_rule_ids
+msgid "Telemetry Rules"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_device_profile__telemetry_topic_template
+msgid "Telemetry Topic Template"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_device_profile__telemetry_topic_template
+msgid "Telemetry topic template, e.g. telemetry/{device}/data"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_telemetry__sensor_type__temperature
+msgid "Temperature"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry__timestamp
+msgid "Timestamp"
+msgstr ""
+
+#. module: agri_iot
+#. odoo-python
+#: code:addons/agri_iot/models/iiot_device_profile.py:0
+msgid "Topic template must contain {device} placeholder"
+msgstr ""
+
+#. module: agri_iot
+#. odoo-python
+#: code:addons/agri_iot/models/iiot_firmware.py:0
+msgid "URL format is incorrect, please use http://, https:// or ftp:// prefix"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__update_id
+msgid "Update ID"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_update__name
+msgid "Update Name"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,help:agri_iot.field_iiot_update__progress
+msgid "Update progress percentage (0.0-100.0)"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_telemetry__sensor_type__micro_sensor
+msgid "Urban Micro-sensor"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_telemetry__value
+msgid "Value"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields,field_description:agri_iot.field_iiot_firmware__version
+msgid "Version"
+msgstr ""
+
+#. module: agri_iot
+#. odoo-python
+#: code:addons/agri_iot/models/iiot_firmware.py:0
+msgid ""
+"Version format is incorrect, can only contain letters, numbers, dots, "
+"underscores and hyphens"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_telemetry_rule_form
+msgid "[('iot_device_id', '=', '{{ device_id }}')]"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_telemetry_rule_form
+msgid "maintenance.equipment"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.model.fields.selection,name:agri_iot.selection__iiot_telemetry__sensor_type__ph
+msgid "pH Level"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_telemetry_rule_form
+msgid "x_temperature"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_form
+msgid "发送重置指令"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_profile_form
+msgid "命令模板"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.actions.act_window,name:agri_iot.action_iiot_firmware
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_firmware_form
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_firmware_tree
+msgid "固件版本"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.module.category,name:agri_iot.ir_module_category_iiot
+msgid "工业物联网"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_update_form
+msgid "时间信息"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_telemetry_rule_form
+msgid "目标配置"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_firmware_form
+msgid "设备更新记录"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.actions.act_window,name:agri_iot.action_iiot_device_profile
+#: model:ir.ui.menu,name:agri_iot.menu_iiot_device_profile
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_profile_form
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_profile_tree
+msgid "设备配置模板"
+msgstr ""
+
+#. module: agri_iot
+#: model:ir.actions.act_window,name:agri_iot.action_iiot_telemetry_rule
+#: model:ir.ui.menu,name:agri_iot.menu_iiot_telemetry_rule
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_device_profile_form
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_telemetry_rule_form
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_telemetry_rule_tree
+msgid "遥测规则"
+msgstr ""
+
+#. module: agri_iot
+#: model_terms:ir.ui.view,arch_db:agri_iot.view_iiot_update_form
+msgid "错误信息"
+msgstr ""

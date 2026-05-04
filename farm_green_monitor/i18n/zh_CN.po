@@ -1,15 +1,46 @@
-# Translation of Odoo Server.
-# This file contains the translation of the following modules:
-# 	* farm_green_monitor
-#
+# Bruteforce extracted POT
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+
+msgid "Fertilizer Usage"
+msgstr ""
+
+msgid "Green Monitor"
+msgstr ""
+
+msgid "Pesticide Usage"
+msgstr ""
+
+msgid "Print Reduction Report"
+msgstr ""
+
+msgid "Reduction Trend Report"
+msgstr ""
+
+msgid "agricultural.campaign.form.inherit.green.monitor"
+msgstr ""
+
+msgid "farm.agricultural.campaign"
+msgstr ""
+
+msgid "farm_green_monitor.report_fertilizer_pesticide_reduction_trend"
+msgstr ""
+
+msgid "project.task"
+msgstr ""
+
+msgid "project.task.form.inherit.green.monitor"
+msgstr ""
+
+msgid "qweb-pdf"
+msgstr ""
+
+msgid "report"
+msgstr ""
+
+msgid "stock.location"
+msgstr ""
+
+msgid "stock.location.form.inherit.green.monitor"
+msgstr ""
+

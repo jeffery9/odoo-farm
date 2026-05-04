@@ -4,12 +4,242 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:02+0000\n"
+"PO-Revision-Date: 2026-05-04 09:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_weather
+#: model_terms:ir.ui.view,arch_db:farm_weather.view_weather_forecast_form
+msgid "<strong>Weather Warning!</strong> Potential"
+msgstr ""
+
+#. module: farm_weather
+#: model_terms:ir.ui.view,arch_db:farm_weather.res_config_settings_view_form_weather
+msgid "Agricultural Weather"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model,name:farm_weather.model_agri_weather_forecast
+msgid "Agricultural Weather Forecast"
+msgstr ""
+
+#. module: farm_weather
+#. odoo-python
+#: code:addons/farm_weather/models/agri_weather_forecast.py:0
+msgid "Auto-generated from weather forecast: %s predicted."
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__condition
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__condition
+msgid "Condition"
+msgstr ""
+
+#. module: farm_weather
+#: model_terms:ir.ui.view,arch_db:farm_weather.view_weather_forecast_form
+msgid "Conditions"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model,name:farm_weather.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__create_uid
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__create_date
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__create_date
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__date
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__date
+msgid "Date"
+msgstr "日期"
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__display_name
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__display_name
+#: model:ir.model.fields,field_description:farm_weather.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: farm_weather
+#: model:ir.model.fields.selection,name:farm_weather.selection__agri_weather_forecast__warning_type__heat
+#: model:ir.model.fields.selection,name:farm_weather.selection__farm_weather_forecast__warning_type__heat
+msgid "Extreme Heat"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__location_id
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__location_id
+msgid "Farm Location"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model,name:farm_weather.model_farm_weather_forecast
+msgid "Farm Weather Forecast (Deprecated - Use agri.weather.forecast)"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.actions.server,name:farm_weather.ir_cron_fetch_weather_ir_actions_server
+msgid "Farm: Fetch Weather Forecast"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.ui.menu,name:farm_weather.menu_farm_weather_forecast
+msgid "Forecast"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields.selection,name:farm_weather.selection__agri_weather_forecast__warning_type__frost
+#: model:ir.model.fields.selection,name:farm_weather.selection__farm_weather_forecast__warning_type__frost
+msgid "Frost Risk"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields.selection,name:farm_weather.selection__agri_weather_forecast__warning_type__storm
+#: model:ir.model.fields.selection,name:farm_weather.selection__farm_weather_forecast__warning_type__storm
+msgid "Heavy Rain/Storm"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__humidity
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__humidity
+msgid "Humidity (%)"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__id
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__id
+#: model:ir.model.fields,field_description:farm_weather.field_res_config_settings__id
+msgid "ID"
+msgstr "ID"
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__icon
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__icon
+msgid "Icon ID"
+msgstr ""
+
+#. module: farm_weather
+#: model_terms:ir.ui.view,arch_db:farm_weather.res_config_settings_view_form_weather
+msgid "Integration with OpenWeatherMap API for 5-day forecasts."
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__write_uid
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__write_date
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__write_date
+msgid "Last Updated on"
+msgstr "最后更新时间"
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__temp_max
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__temp_max
+msgid "Max Temp (℃)"
+msgstr ""
+
+#. module: farm_weather
+#: model_terms:ir.ui.view,arch_db:farm_weather.view_weather_forecast_form
+msgid "Metrix"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__temp_min
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__temp_min
+msgid "Min Temp (℃)"
+msgstr ""
+
+#. module: farm_weather
+#. odoo-python
+#: code:addons/farm_weather/models/agri_weather_forecast.py:0
+msgid "Please check the parcel and activate protection measures if necessary."
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__precipitation
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__precipitation
+msgid "Precipitation (mm)"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields.selection,name:farm_weather.selection__agri_weather_forecast__warning_type__wind
+#: model:ir.model.fields.selection,name:farm_weather.selection__farm_weather_forecast__warning_type__wind
+msgid "Strong Wind"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__warning_type
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__warning_type
+msgid "Warning Type"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.ui.menu,name:farm_weather.menu_farm_weather
+msgid "Weather"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_res_config_settings__weather_api_key
+msgid "Weather API Key (OpenWeatherMap)"
+msgstr ""
+
+#. module: farm_weather
+#. odoo-python
+#: code:addons/farm_weather/models/agri_weather_forecast.py:0
+msgid "Weather Alert: %s predicted on %s"
+msgstr ""
+
+#. module: farm_weather
+#: model_terms:ir.ui.view,arch_db:farm_weather.view_weather_forecast_form
+msgid "Weather Detail"
+msgstr ""
+
+#. module: farm_weather
+#. odoo-python
+#: code:addons/farm_weather/models/agri_weather_forecast.py:0
+msgid "Weather Disaster: %s on %s for %s"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.actions.act_window,name:farm_weather.action_farm_weather
+#: model_terms:ir.ui.view,arch_db:farm_weather.view_weather_forecast_tree
+msgid "Weather Forecast"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__is_warning
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__is_warning
+msgid "Weather Warning"
+msgstr ""
+
+#. module: farm_weather
+#: model:ir.model.fields,field_description:farm_weather.field_agri_weather_forecast__wind_speed
+#: model:ir.model.fields,field_description:farm_weather.field_farm_weather_forecast__wind_speed
+msgid "Wind Speed (m/s)"
+msgstr ""
+
+#. module: farm_weather
+#: model_terms:ir.ui.view,arch_db:farm_weather.view_weather_forecast_form
+msgid "detected for this date."
+msgstr ""

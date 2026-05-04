@@ -4,12 +4,62 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
-"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+
+msgid "Allowed Product Categories"
+msgstr ""
+
+msgid "Cooling Equipment"
+msgstr ""
+
+msgid "Driver"
+msgstr ""
+
+msgid "Facility"
+msgstr ""
+
+msgid "Factor by which temperature affects shelf life and demand"
+msgstr ""
+
+msgid "Harvest Lot"
+msgstr ""
+
+msgid "Inventory Item"
+msgstr ""
+
+msgid "Location"
+msgstr ""
+
+msgid "Lot/Serial Number"
+msgstr ""
+
+msgid "Primary Packaging"
+msgstr ""
+
+msgid "Product"
+msgstr "产品"
+
+msgid "Season Period"
+msgstr ""
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Storage Zone"
+msgstr ""
+
+msgid "Storage Zones"
+msgstr ""
+
+msgid "Temperature History"
+msgstr ""
+
+msgid "Temperature Logs"
+msgstr ""
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Vehicle"
+msgstr ""
+

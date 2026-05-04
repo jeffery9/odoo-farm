@@ -4,12 +4,35 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:02+0000\n"
+"PO-Revision-Date: 2026-05-04 09:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_esg
+#. odoo-python
+#: code:addons/farm_esg/models/esg_indicator.py:0
+msgid ""
+"Minimum acceptable value cannot be greater than maximum acceptable value."
+msgstr ""
+
+#. module: farm_esg
+#. odoo-python
+#: code:addons/farm_esg/models/esg_target.py:0
+msgid "Target date must be after start date."
+msgstr ""
+
+#. module: farm_esg
+#. odoo-python
+#: code:addons/farm_esg/models/esg_target.py:0
+msgid ""
+"Target value should be different from baseline value to provide meaningful "
+"target."
+msgstr ""

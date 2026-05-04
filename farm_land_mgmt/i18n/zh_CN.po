@@ -4,12 +4,77 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0\n"
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 12:00+0000\n"
-"PO-Revision-Date: 2026-05-04 12:00+0000\n"
-"Language-Team: Chinese (China)\n"Language: zh_CN\n"
+"POT-Creation-Date: 2026-05-04 09:02+0000\n"
+"PO-Revision-Date: 2026-05-04 09:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: farm_land_mgmt
+#. odoo-python
+#: code:addons/farm_land_mgmt/models/land_mgmt.py:0
+msgid ""
+"Activity Type '%s' is not allowed on 'Permanent Basic Farmland' for parcel "
+"'%s'."
+msgstr ""
+
+#. module: farm_land_mgmt
+#. odoo-python
+#: code:addons/farm_land_mgmt/models/land_mgmt.py:0
+msgid "Add Crop Rotation Record"
+msgstr ""
+
+#. module: farm_land_mgmt
+#. odoo-python
+#: code:addons/farm_land_mgmt/models/land_mgmt.py:0
+msgid "Add Land Health Record"
+msgstr ""
+
+#. module: farm_land_mgmt
+#. odoo-python
+#: code:addons/farm_land_mgmt/models/agri_land_crop_rotation_history.py:0
+msgid "CRH"
+msgstr ""
+
+#. module: farm_land_mgmt
+#. odoo-python
+#: code:addons/farm_land_mgmt/models/land_mgmt.py:0
+msgid "Health History"
+msgstr ""
+
+#. module: farm_land_mgmt
+#. odoo-python
+#: code:addons/farm_land_mgmt/models/land_mgmt.py:0
+msgid "Land marked as 'Construction Land' cannot be a 'Land Parcel'."
+msgstr ""
+
+#. module: farm_land_mgmt
+#. odoo-python
+#: code:addons/farm_land_mgmt/models/agri_land_crop_rotation_history.py:0
+#: code:addons/farm_land_mgmt/models/land_mgmt.py:0
+msgid "New"
+msgstr ""
+
+#. module: farm_land_mgmt
+#. odoo-python
+#: code:addons/farm_land_mgmt/models/land_mgmt.py:0
+msgid "Rotation Timeline"
+msgstr ""
+
+#. module: farm_land_mgmt
+#. odoo-python
+#: code:addons/farm_land_mgmt/models/land_mgmt.py:0
+msgid "SOIL"
+msgstr ""
+
+#. module: farm_land_mgmt
+#. odoo-python
+#: code:addons/farm_land_mgmt/models/land_mgmt.py:0
+msgid "land_parcel_id"
+msgstr ""
