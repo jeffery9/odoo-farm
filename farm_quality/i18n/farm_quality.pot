@@ -1,0 +1,83 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_quality
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:27+0000\n"
+"PO-Revision-Date: 2026-05-04 08:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_quality
+#. odoo-python
+#: code:addons/farm_quality/models/agri_quality.py:0
+msgid "Alert closed: Asset marked for scrapping."
+msgstr ""
+
+#. module: farm_quality
+#. odoo-python
+#: code:addons/farm_quality/models/agri_quality_sample.py:0
+msgid "Blind Sample Batch"
+msgstr ""
+
+#. module: farm_quality
+#. odoo-python
+#: code:addons/farm_quality/models/agri_quality_sample.py:0
+msgid "Blind Sample Product"
+msgstr ""
+
+#. module: farm_quality
+#. odoo-python
+#: code:addons/farm_quality/models/quality.py:0
+msgid "CCP %s violated! Measured: %s"
+msgstr ""
+
+#. module: farm_quality
+#. odoo-python
+#: code:addons/farm_quality/models/agri_quality.py:0
+msgid "CCP VIOLATION: Pasteurization time too short (%s mins)."
+msgstr ""
+
+#. module: farm_quality
+#. odoo-python
+#: code:addons/farm_quality/models/agri_quality.py:0
+#: code:addons/farm_quality/models/agri_quality_sample.py:0
+msgid "New"
+msgstr ""
+
+#. module: farm_quality
+#. odoo-python
+#: code:addons/farm_quality/models/agri_quality.py:0
+msgid "QC"
+msgstr ""
+
+#. module: farm_quality
+#. odoo-python
+#: code:addons/farm_quality/models/agri_quality.py:0
+msgid "QC LOCKED: Lot %s is pending release and cannot be moved."
+msgstr ""
+
+#. module: farm_quality
+#. odoo-python
+#: code:addons/farm_quality/models/agri_quality.py:0
+msgid "QUALITY ALERT: Lot %s has failed quality inspection."
+msgstr ""
+
+#. module: farm_quality
+#. odoo-python
+#: code:addons/farm_quality/models/agri_quality_sample.py:0
+msgid "SMP"
+msgstr ""
+
+#. module: farm_quality
+#. odoo-python
+#: code:addons/farm_quality/models/agri_quality_sample.py:0
+msgid "Sample disposed on %s"
+msgstr ""

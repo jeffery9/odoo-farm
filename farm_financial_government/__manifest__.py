@@ -15,9 +15,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "views/gov_finance_views.xml",
-        "views/menu.xml",
-    ],
+        ],
     "demo": [
     ],
     "images": ["static/description/main_screenshot.png"],

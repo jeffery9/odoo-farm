@@ -1,0 +1,98 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_esg_risk
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:26+0000\n"
+"PO-Revision-Date: 2026-05-04 08:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_esg_risk
+#. odoo-python
+#: code:addons/farm_esg_risk/models/esg_scenarios_analysis.py:0
+msgid "Confidence level must be between 0 and 100."
+msgstr ""
+
+#. module: farm_esg_risk
+#. odoo-python
+#: code:addons/farm_esg_risk/models/esg_report_customization.py:0
+msgid "Custom metrics must be a valid JSON array or object"
+msgstr ""
+
+#. module: farm_esg_risk
+#. odoo-python
+#: code:addons/farm_esg_risk/models/esg_report_customization.py:0
+msgid "Custom metrics must be valid JSON format"
+msgstr ""
+
+#. module: farm_esg_risk
+#. odoo-python
+#: code:addons/farm_esg_risk/models/esg_report_customization.py:0
+msgid "Data filters must be a valid JSON object"
+msgstr ""
+
+#. module: farm_esg_risk
+#. odoo-python
+#: code:addons/farm_esg_risk/models/esg_report_customization.py:0
+msgid "Data filters must be valid JSON format"
+msgstr ""
+
+#. module: farm_esg_risk
+#. odoo-python
+#: code:addons/farm_esg_risk/models/esg_scenarios_analysis.py:0
+msgid "End date must be after start date."
+msgstr ""
+
+#. module: farm_esg_risk
+#. odoo-python
+#: code:addons/farm_esg_risk/models/agri_esg_risk_assessment.py:0
+msgid "Environmental score must be between 0 and 100."
+msgstr ""
+
+#. module: farm_esg_risk
+#. odoo-python
+#: code:addons/farm_esg_risk/models/agri_esg_risk_assessment.py:0
+msgid "Governance score must be between 0 and 100."
+msgstr ""
+
+#. module: farm_esg_risk
+#. odoo-python
+#: code:addons/farm_esg_risk/models/esg_report_customization.py:0
+msgid "Report sections must be a valid JSON array or object"
+msgstr ""
+
+#. module: farm_esg_risk
+#. odoo-python
+#: code:addons/farm_esg_risk/models/esg_report_customization.py:0
+msgid "Report sections must be valid JSON format"
+msgstr ""
+
+#. module: farm_esg_risk
+#. odoo-python
+#: code:addons/farm_esg_risk/models/agri_esg_risk_assessment.py:0
+msgid "Social score must be between 0 and 100."
+msgstr ""
+
+#. module: farm_esg_risk
+#. odoo-python
+#: code:addons/farm_esg_risk/models/esg_scenarios_analysis.py:0
+msgid ""
+"Target carbon emissions must be lower than baseline for carbon footprint "
+"scenarios."
+msgstr ""
+
+#. module: farm_esg_risk
+#. odoo-python
+#: code:addons/farm_esg_risk/models/esg_scenarios_analysis.py:0
+msgid ""
+"Target water usage must be lower than baseline for water efficiency "
+"scenarios."
+msgstr ""

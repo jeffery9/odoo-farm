@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_ai_decision
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:27+0000\n"
+"PO-Revision-Date: 2026-05-04 08:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_ai_decision
+#. odoo-python
+#: code:addons/farm_ai_decision/models/ai_fertilization_decision.py:0
+msgid "%f kg N"
+msgstr ""
+
+#. module: farm_ai_decision
+#. odoo-python
+#: code:addons/farm_ai_decision/models/ai_cockpit_actions.py:0
+msgid "AI Decision Cockpit"
+msgstr ""
+
+#. module: farm_ai_decision
+#. odoo-python
+#: code:addons/farm_ai_decision/models/ai_decision_engine.py:0
+msgid "AI Recovery Plan generated for stress level %s"
+msgstr ""
+
+#. module: farm_ai_decision
+#. odoo-python
+#: code:addons/farm_ai_decision/models/ai_cockpit_actions.py:0
+msgid "Approved AI recovery plan via Cockpit."
+msgstr ""
+
+#. module: farm_ai_decision
+#. odoo-python
+#: code:addons/farm_ai_decision/models/ai_decision_engine.py:0
+msgid "Detected high stress. Recommend boosting irrigation by 45 minutes."
+msgstr ""
+
+#. module: farm_ai_decision
+#. odoo-python
+#: code:addons/farm_ai_decision/models/ai_decision_engine.py:0
+msgid "Plant health is stable. No urgent intervention required."
+msgstr ""
+
+#. module: farm_ai_decision
+#. odoo-python
+#: code:addons/farm_ai_decision/models/ai_harvest_timing.py:0
+msgid "Predicted Quality Score: %f"
+msgstr ""
+
+#. module: farm_ai_decision
+#. odoo-python
+#: code:addons/farm_ai_decision/models/ai_cockpit_actions.py:0
+msgid "intervention_id"
+msgstr ""

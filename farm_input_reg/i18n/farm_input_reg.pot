@@ -1,0 +1,76 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_input_reg
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 08:27+0000\n"
+"PO-Revision-Date: 2026-05-04 08:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_input_reg
+#. odoo-python
+#: code:addons/farm_input_reg/models/input_reg.py:0
+msgid "Data successfully reported to Provincial Platform."
+msgstr ""
+
+#. module: farm_input_reg
+#. odoo-python
+#: code:addons/farm_input_reg/models/input_reg.py:0
+msgid "Expiration date cannot be earlier than registration date."
+msgstr ""
+
+#. module: farm_input_reg
+#. odoo-python
+#: code:addons/farm_input_reg/models/input_reg.py:0
+msgid "Operator ID Card No. must be 15 or 18 digits."
+msgstr ""
+
+#. module: farm_input_reg
+#. odoo-python
+#: code:addons/farm_input_reg/models/input_reg.py:0
+msgid "Platform Sync Failed: %s"
+msgstr ""
+
+#. module: farm_input_reg
+#. odoo-python
+#: code:addons/farm_input_reg/models/input_reg.py:0
+msgid ""
+"REAL-NAME REQUIRED: Operator ID Card No. is required for regulated inputs."
+msgstr ""
+
+#. module: farm_input_reg
+#. odoo-python
+#: code:addons/farm_input_reg/models/input_reg.py:0
+msgid "REGULATION VIOLATION: Input '%s' is Prohibited/Restricted. Reason: %s"
+msgstr ""
+
+#. module: farm_input_reg
+#. odoo-python
+#: code:addons/farm_input_reg/models/input_reg.py:0
+msgid ""
+"Registration data found in national database. Safety and usage information "
+"has been auto-populated from registration: %s."
+msgstr ""
+
+#. module: farm_input_reg
+#. odoo-python
+#: code:addons/farm_input_reg/models/input_reg.py:0
+msgid ""
+"Registration number '%s' not found in national database. Please verify the "
+"number or manually enter safety parameters."
+msgstr ""
+
+#. module: farm_input_reg
+#. odoo-python
+#: code:addons/farm_input_reg/models/input_reg.py:0
+msgid ""
+"Regulation Platform URL not configured. Payload generated: <pre>%s</pre>"
+msgstr ""

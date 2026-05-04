@@ -80,13 +80,13 @@ class AgriSustainabilityCarbonModel(models.Model):
         """Ensure all coefficients and thresholds are non-negative"""
         for record in self:
             if record.carbon_intensity_threshold < 0:
-                raise ValidationError("Carbon intensity threshold cannot be negative.")
+                raise ValidationError(_("Carbon intensity threshold cannot be negative."))
             if record.direct_emission_coefficient < 0:
-                raise ValidationError("Direct emission coefficient cannot be negative.")
+                raise ValidationError(_("Direct emission coefficient cannot be negative."))
             if record.indirect_energy_coefficient < 0:
-                raise ValidationError("Indirect energy coefficient cannot be negative.")
+                raise ValidationError(_("Indirect energy coefficient cannot be negative."))
             if record.supply_chain_coefficient < 0:
-                raise ValidationError("Supply chain coefficient cannot be negative.")
+                raise ValidationError(_("Supply chain coefficient cannot be negative."))
 
     def action_apply_model(self, product_or_operation):
         """
