@@ -11,18 +11,27 @@
 在执行任何代码修改前，你必须严格按物理顺序经过以下“真理检查点”：
 
 1.  **规划与史诗 (Planning & Epics)**: 
-    - 查阅 `docs/business/EPICS_AND_USER_STORIES.md` 定位业务目标。
+    - 查阅 `docs/product_management/EPICS_AND_USER_STORIES.md` 定位业务目标。
     - **强制动作**：在实现前，必须先在 `docs/business/epics/` 下完善 US 及其验收标准 (AC)。
 2.  **治理对齐 (Governance Sync)**:
     - 阅读 [docs/governance/MAINTENANCE_SPEC.md](docs/governance/MAINTENANCE_SPEC.md) 确认无损更新的操作要求。
     - 查阅 [docs/governance/DEVELOPMENT_CONVENTIONS.md](docs/governance/DEVELOPMENT_CONVENTIONS.md) 获取 TDD 与 500 行上限规范。
 3.  **看板同步 (Module Plan)**:
-    - 更新 `docs/business/MODULE_PLAN.md` 标记你的任务归口与进度。
+    - 更新 `docs/product_management/MODULE_PLAN.md` 标记你的任务归口与进度。
 4.  **算法与实现 (Algorithms & Implementation)**:
-    - 算法必须与 `docs/algorithms/` 下的规格 100% 对标。
+    - 算法必须与 `docs/technical/architecture/` 下的规格 100% 对标。
     - 代码中必须引用 US 编号，格式为 `# [US-XX-XX]`。
 
 ---
+
+
+## 🚨 核心架构律令：5-Layer Macro Architecture
+本农业套件包含 100+ 微服务模块，为了防止依赖雪崩，代码生成与设计**必须且只能**遵循以下 5 层扁平架构：
+1. **L0 (Foundation)**: 底层原子数据 (`farm_core`)
+2. **L1 (Core Engines)**: 算法引擎 (`farm_agri_science`, `precision_production`)
+3. **L2 (Industry Apps)**: 生产应用 (`farm_crop`, `farm_livestock`)。**绝对红线：L2 内部严禁横向依赖！**
+4. **L3 (Value Exchange)**: 商业与价值交易 (`farm_financial_insurance`, `farm_csa`)
+5. **L4 (Intelligence)**: 顶层 AI 与合规 (`farm_ai_agent`, `farm_esg_compliance`)
 
 ## 2. 三大绝对律令 (The Absolute Mandates)
 
@@ -49,7 +58,7 @@
 ## 3. 快速感知路径 (Quick Path)
 - **项目宪法中心**：`docs/governance/`
 - **业务标准库**：`docs/business/epics/`
-- **逻辑公式库**：`docs/algorithms/`
+- **逻辑公式库**：`docs/technical/architecture/`
 - **底座 Mixin 定义**：`farm_core/models/base_mixins.py`
 
 ---

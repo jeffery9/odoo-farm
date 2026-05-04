@@ -1,4 +1,4 @@
-# 🤖 Directory Execution Policy: Business Processes
+# 🤖 Directory Execution Policy: UX & Menu Architecture
 
 > **WARNING**: This directory is governed by both global AI policies and localized domain rules.
 
@@ -8,8 +8,8 @@ Before modifying or creating any files in this directory, you **MUST**:
 2. Read the master entry [LLM_START_HERE.md](../LLM_START_HERE.md) for Doc-Driven development paradigms.
 
 ## 1. Localized Domain Rules
-- **Domain**: Business Processes.
-- **Rule**: Define end-to-end flows. Ensure alignment with the 5-Layer architecture boundaries.
+- **Domain**: UX & Menu Architecture.
+- **Rule**: Enforce "Tools, Not Trees" and Distributed Master Data principles.
 
 ## 2. Documentation Constraints
 - **Separation of Concerns**: Code and documentation MUST be committed separately.
