@@ -42,7 +42,7 @@ Odoo 19's `lxml` parser crashes with `ValueError: Unicode strings with encoding 
 
 ### Details
 During mass branding generation for 101 modules, the `<?xml version="1.0" encoding="utf-8"?>` header was injected into `static/description/index.html` to satisfy an older Odoo App Store constraint.
-However, Odoo 19's internal `lxml.etree.fromstring` now strictly rejects parsing string payloads (loaded into memory as unicode strings) if they contain the `<?xml ...>` declaration. It throws a fatal error that completely blocks the module registry from initializing.
+However, Newer versions of `lxml` (>= 5.0) used by Odoo 19 now strictly reject parsing string payloads (loaded into memory as unicode strings) if they contain the `<?xml ...>` declaration. It throws a fatal error that completely blocks the module registry from initializing.
 
 ### Suggested Action
 Never inject `<?xml version="1.0" encoding="utf-8"?>` into `index.html` files intended for Odoo 19 `static/description/`. If an XML declaration must be removed to fix a crashing database, use a script to scan and strip `<\?xml[^>]*\?>` from all `.html` and `.xml` files processed dynamically by the system.
