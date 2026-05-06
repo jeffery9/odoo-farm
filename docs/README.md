@@ -16,8 +16,8 @@
 
 ### 🚀 产品管理与 Backlog (Product Management)
 - **[全量史诗与用户故事](product_management/EPICS_AND_USER_STORIES.md)**: 📂 包含 001-133 项史诗及其 BDD 验收标准。
-- **[开发进度与模块矩阵](product_management/MODULE_PLAN.md)**: 🗺️ 需求 ID 与 107 个物理 Addons 的映射看板。
-- **[205 史诗评审报告](product_management/TOTAL_205_EPICS_REPORT.md)**: 📄 针对全量业务蓝图的合规性审计。
+- **[开发进度与模块矩阵](product_management/MODULE_PLAN.md)**: 🗺️ 需求 ID 与 110+ 个物理 Addons 的映射看板。
+- **[205 史诗评审报告 (Legacy)](product_management/TOTAL_205_EPICS_REPORT.md)**: 📄 旧版 205 Epic 评审存档（已废弃）。
 
 ### 🧠 业务过程与方案 (Business & Solutions)
 - **[全链路业务流程规格](business/processes/BUSINESS_PROCESS_SPEC.md)**: 📖 从种子到餐桌的端到端集成逻辑。

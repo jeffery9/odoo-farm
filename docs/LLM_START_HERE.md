@@ -66,4 +66,4 @@
 
 *V2.0 - Doc-Driven & Governance Edition | 2026-02-01*
 - **ISL 架构指南**: 查阅 `docs/technical/architecture/ISL_ARCHITECTURE.md` 以了解多态代理拦截机制的设计准则。
-- **依赖关系审计**: 查阅 `docs/technical/architecture/DEPENDENCY_ANALYSIS.md` 以了解 107 个模块的拓扑层级与依赖枢纽。
+- **依赖关系审计**: 查阅 `docs/technical/architecture/DEPENDENCY_ANALYSIS.md` 以了解 110+ 个模块的拓扑层级与依赖枢纽。
