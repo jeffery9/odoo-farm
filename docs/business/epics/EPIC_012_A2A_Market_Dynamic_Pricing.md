@@ -21,7 +21,7 @@
 3. **[US-012-03] 风险敏感型动态定价 (Risk-Adjusted Dynamic Pricing)**：💡 待规划
     - **描述**：作为销售智能体，我希望根据环境风险动态调整资源价值。
     - **验收条件**：
-        - **(Critic-Model)** 定价调整必须对标 `BasePPOCritic` 价值评估逻辑：将病虫害风险 (Epic 11) 和天气风险 (Epic 39) 作为负向 Reward 因子，实时重构 `Price_Value`。
+        - **(Critic-Model)** 定价调整必须对标 `BasePPOCritic` 价值评估逻辑：将病虫害风险 (Epic 031) 和天气风险 (Epic 069) 作为负向 Reward 因子，实时重构 `Price_Value`。
         - **(Volatility-Limit)** 动态定价的每小时波动率严禁超过 20%，除非触发 `FORCE_MAJEURE` (不可抗力) 物理标签。
         - **(Traceability)** 每一笔定价变动必须记录“推理路径”：如 `Risk(Pest) > 0.7 -> Discount_Applied(15%)`。
 

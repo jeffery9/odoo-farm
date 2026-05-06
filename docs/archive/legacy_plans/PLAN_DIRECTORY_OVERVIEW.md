@@ -51,7 +51,7 @@ docs/plan/
 
 - **backlog_epics_stories.md**: 产品backlog，包含6大史诗和21个用户故事
   - Epic 1: 精准生产 (VRA)
-  - Epic 2: 智慧大脑 (AI & Prediction)
+  - Epic 002: 智慧大脑 (AI & Prediction)
   - Epic 3: 金融与可持续性
   - Epic 4: 品牌溢价 (Traceability)
   - Epic 5: 全球出口合规中枢

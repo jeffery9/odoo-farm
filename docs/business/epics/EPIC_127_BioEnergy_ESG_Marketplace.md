@@ -12,8 +12,8 @@
 2. **[US-127-02] 外部ESG交易所数据对接 (External ESG Exchange Data Integration)**： 💡 待规划
     - **描述**：作为可持续发展专员（Sustainability Officer），我希望将经过核证的减排数据导出至外部交易所，以申请碳信用。
     - **验收条件**：
-        - **(Logic)** 必须建立"核证记录 / Verified Credit"模型，关联 Epic 30 产生的原始数据及第三方审计证书。
-        - 支持导出符合国际标准（如 VCS 或 GS）的数据交换报文（Epic 20 联动）。
+        - **(Logic)** 必须建立"核证记录 / Verified Credit"模型，关联 Epic 060 产生的原始数据及第三方审计证书。
+        - 支持导出符合国际标准（如 VCS 或 GS）的数据交换报文（Epic 050 联动）。
         - 所有的交易记录必须强制保留双语存证。
 
 ## 业务价值

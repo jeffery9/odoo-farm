@@ -56,7 +56,7 @@
     - **验收条件**：
         - **(Logic)** 检测合格后自动生成 SHA-256 存证指纹 (Blockchain Hash)。
         - **(Fingerprint)** 质检结果必须封装为 `QualityFingerprint` 对象，包含理化指标、检测时空坐标及检测员信誉分。
-        - **(Valuation-Link)** 品质指纹等级直接决定 Epic 104 中的“对价系数（Quality Factor）”。
+        - **(Valuation-Link)** 品质指纹等级直接决定 Epic 014 中的“对价系数（Quality Factor）”。
 
 10. **[US-038-10] 加工环节关键控制点 (CCP) 硬拦截：🔄 待增强 (2026 技术升级)
     - **描述**：作为食品安全员，我希望设定加工线上的关键控制点，若 IoT 监测数据不达标，则自动熔断。

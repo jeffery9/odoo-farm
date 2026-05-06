@@ -12,7 +12,7 @@
 *   **Story 1.4: 农机终端指令导出**
     *   *作为* 农机机手，*我希望* 能从系统导出 Shapefile 或 ISO-XML 文件，*以便于* 让拖拉机自动执行变量喷洒。
 
-## Epic 2: 智慧大脑 (Smart Brain - AI & Prediction)
+## Epic 002: 智慧大脑 (Smart Brain - AI & Prediction)
 **描述**：利用 AI 视觉和生物学模型提升诊断效率和产量可预测性。
 
 *   **Story 2.1: 积温(GDD)生长阶段追踪**

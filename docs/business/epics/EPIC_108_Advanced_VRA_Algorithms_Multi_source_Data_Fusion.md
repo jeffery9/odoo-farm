@@ -1,5 +1,5 @@
 # EPIC 108:高级VRA算法与生理决策融合 (Advanced VRA Algorithms & Physiological Fusion)
-*目标：整合土壤、气象、无人机多源数据，并注入 [EPIC 201] 的生理钟与生长模型，实现基于第一性原理的精准变量决策。*
+*目标：整合土壤、气象、无人机多源数据，并注入 [EPIC 045] 的生理钟与生长模型，实现基于第一性原理的精准变量决策。*
 
 ## 1. 基础架构层 (Infrastructure Layer)
 

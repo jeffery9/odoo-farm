@@ -6,12 +6,12 @@
 
 ## 2. 主要 Epic 概览
 
-### Epic 46：精准生产与变量作业 (Precision Production & VRA)
+### Epic 076：精准生产与变量作业 (Precision Production & VRA)
 - **目标**: 基于PostGIS空间网格与NDVI遥感数据，生成变量施肥处方图并闭环核销作业成本
 - **状态**: 部分完成
 - **模块**: `farm_iot`, `farm_mobile`, `farm_operation`
 
-### Epic 46（农业智能与空间分析）
+### Epic 076（农业智能与空间分析）
 - **目标**: 实现高级农业智能功能，包括PostGIS空间分析、VRA处方引擎等
 
 ## 3. 详细 User Story 列表
