@@ -24,33 +24,42 @@
 ---
 
 ## 3. Mixin 架构设计 (The Mixin Library)
+本套件通过高度抽象的 Mixin 体系实现跨模块的逻辑复用，确保核心业务规则的一致性。
 
-### 3.1 `SustainabilityMixin` (Epic 101/30)
-- **职责**: **系统的“价值度量衡”与准则。** 自动化三重底线（TBL）计算与 ESG 价值重估。
-- **强制约束**: 所有 `Intervention` 必须在确认前调用此 Mixin 评估预估碳强度。
-- **核心接口**: `compute_carbon_footprint()`, `get_social_impact_score()`, `validate_sustainability_redline()`.
+### 3.1 核心架构与 UX (Core & UX)
+- **`AgriViewMixin`**: **UI 去工业化引擎**。重写 `get_views`，实现 MO/BOM 等工业术语到农事术语的动态转换。
+- **`GeoSpatialMixin`**: **地理空间底座**。为模型注入 PostGIS 几何属性，支持地块围栏、作业轨迹及空间聚合计算。
+- **`AgriOdoo19PerformanceSecurityMixin`**: **性能与安全增强**。针对 Odoo 19 优化的大规模并发处理与细粒度行级权限过滤。
 
-### 3.2 `NutrientMixin` (Epic 27)
-- **职责**: 跨阶段 NPK 养分平衡与循环。
-- **核心接口**: `calculate_mass_balance()`, `get_nutrient_fingerprint()`, `forecast_compost_value()`.
+### 3.2 可持续性与合规 (Sustainability & Compliance)
+- **`SustainabilityMixin` (Epic 011/060)**: **系统的“价值度量衡”**。自动化三重底线（TBL）计算，在农事干预确认前强制进行碳强度评估。
+- **`ComplianceMixin`**: **合规性监控**。追踪认证状态（如 GlobalG.A.P, Organic）并拦截不符合合规标准的投入品施用。
 
-### 3.3 `CollaborativeMixin` (Epic 70)
-- **职责**: 跨农场实体（Multi-company）协作与需求聚合。
-- **核心接口**: `get_shared_inventory()`, `request_joint_procurement()`, `apply_internal_netting()`.
+### 3.3 农业科学与生长 (Agro-Science & Growth)
+- **`AgriScienceMixin`**: 提供底层科学计算（如单位换算、密度计算等）的公共算法。
+- **`AgriGrowthCycleMixin` (Epic 077)**: **生理钟驱动器**。实现积温（GDD）累积、物候期预测及生理阶段自动迁移。
+- **`NutrientMixin` (Epic 057)**: **物料守恒平衡**。计算 N/P/K 养分在土壤、生物量与收获物之间的流向及平衡。
 
-### 3.4 `GrowthMixin` (Epic 47)
-- **职责**: 物候期与积温生理追踪。对标 `GDD_Evaluator` 算法。
-- **核心接口**: `get_physiological_age()`, `predict_next_phenology_eta()`.
+### 3.4 生产执行与精准作业 (Operation & Precision)
+- **`AgriInterventionMixin`**: 农事干预模型基类，定义了从“计划 -> 确认 -> 核销”的状态机与 AC 校验逻辑。
+- **`AgriBomMixin`**: 农业动态配方（Tank Mix）管理，支持基于原料有效成分的自动配方修正。
+- **`PrecisionProductionMixin` (Epic 076)**: **VRA 变量执行**。实现处方图（Prescription Map）解析与 IoT 指令流映射。
+- **`ActuatorMixin` (Epic 047)**: **执行器绑定**。建立模型字段与物理设备设定点（Setpoint）的实时双向绑定。
 
-### 3.5 `SharedQualityMixin` (Epic 15/70)
-- **职责**: 社区统一品质标准与交叉审计。
-- **物理载体**: 引入 **“品质指纹 (Quality Fingerprint)”** 机制，包含理化指标、检测时空坐标及检测员信誉分。
+### 3.5 商业价值与结算 (Value & Clearing)
+- **`ClearingEngineMixin` (Epic 014)**: **跨实体价值清算**。实现内部分账、债务抵销及碳信用价值化。
+- **`AgriBiologicalValuationMixin` (Epic 078)**: **生物资产估值**。基于生长进度和市场系数动态重估地块在产品（WIP）的价值。
+- **`AgriTraceabilityMixin`**: **全链路血统追溯**。建立批次间的父子继承关系，支持从成品到种子的正逆向追溯。
 
-### 3.6 `ClearingEngineMixin` (Epic 104)
-- **职责**: 跨实体的价值清算、内部分帐与利益分配。
-- **价值基准**: 结算不以单一货币为准，而以 **“物理贡献 + 可持续性分值”** 作为核心对价单位。
-- **货币化 (Monetization)**: 将 Impact Credits 最终转化为 `account.move` 的财务凭证，支持债务抵扣与外部现金分红。
-- **接口**: `calculate_net_balance()`, `generate_settlement_proof()`, `monetize_impact_credits()`.
+### 3.6 AI 代理与证据评价 (AI & Evidence)
+- **`AgriAiBaseMixin`**: 为业务模型赋予 MCP 工具调用与语义搜索的基础接口。
+- **`AgriEvidenceMixin` (Epic 049)**: **现场证据评价**。实现图像、传感器数据的哈希上链，并计算双重置信度评分。
+- **`EmbeddingMixin`**: 自动化将非结构化业务描述转换为向量，支持 RAG 知识检索。
+
+### 3.7 ISL 行业标准封装 (Industry Standard Layer)
+- **`AgriManufacturingMixin`, `AgriInventoryMixin`, `AgriQualityMixin`**: 
+    - 针对农业场景对 Odoo 原生 `mrp`, `stock`, `quality` 逻辑的“封装”。
+    - 确保在底层核心升级时，上层行业应用逻辑保持稳定。
 
 ---
 
