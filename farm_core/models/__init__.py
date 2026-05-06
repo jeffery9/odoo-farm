@@ -1,4 +1,5 @@
 # Order of loading is critical for model dependencies in Odoo 19
+from . import lxml_patch
 # 1. Base Mixins & Protocols
 from . import base_mixins
 from . import agri_mixins
