@@ -1,3 +1,0 @@
-# No terms found in farm_precision_ag
-msgid "Module farm_precision_ag"
-msgstr ""
