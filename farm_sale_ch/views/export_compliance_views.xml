@@ -48,7 +48,7 @@
     <record id="action_export_country_standards" model="ir.actions.act_window">
         <field name="name">Country Standards</field>
         <field name="res_model">export.country.standard</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- 合规检查日志视图 -->
@@ -187,12 +187,12 @@
     <record id="action_export_compliance_logs" model="ir.actions.act_window">
         <field name="name">Compliance Check Logs</field>
         <field name="res_model">export.compliance.log</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_export_certificates" model="ir.actions.act_window">
         <field name="name">Export Certificates</field>
         <field name="res_model">export.certificate</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

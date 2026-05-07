@@ -164,7 +164,7 @@
     <record id="action_input_registration_database_list" model="ir.actions.act_window">
         <field name="name">Input Registration Database</field>
         <field name="res_model">farm.input.registration.database</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- 扩展农事干预表单：操作人身份证号 -->

@@ -84,6 +84,6 @@
     <record id="action_ai_pest_disease_detection" model="ir.actions.act_window">
         <field name="name">AI Pest and Disease Detection</field>
         <field name="res_model">agri.ai.pest.disease.decision</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

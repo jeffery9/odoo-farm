@@ -435,7 +435,7 @@
     <record id="action_cooperative_member_list" model="ir.actions.act_window">
         <field name="name">Cooperative Members</field>
         <field name="res_model">cooperative.member</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Add Cooperative Members
@@ -449,30 +449,30 @@
     <record id="action_share_transaction_list" model="ir.actions.act_window">
         <field name="name">Share Transactions</field>
         <field name="res_model">share.transaction</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_dividend_distribution_list" model="ir.actions.act_window">
         <field name="name">Dividend Distributions</field>
         <field name="res_model">dividend.distribution</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_internal_credit_list" model="ir.actions.act_window">
         <field name="name">Internal Credits</field>
         <field name="res_model">internal.credit</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_shared_machinery_pool_list" model="ir.actions.act_window">
         <field name="name">Shared Machinery</field>
         <field name="res_model">shared.machinery.pool</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_machinery_rental_list" model="ir.actions.act_window">
         <field name="name">Machinery Rentals</field>
         <field name="res_model">machinery.rental</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

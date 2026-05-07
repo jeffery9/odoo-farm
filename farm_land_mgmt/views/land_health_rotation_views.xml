@@ -243,14 +243,14 @@
     <record id="action_land_health_record" model="ir.actions.act_window">
         <field name="name">Land Health Records</field>
         <field name="res_model">farm.land.health.record</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_land_health_record_search"/>
     </record>
 
     <record id="action_crop_rotation_history" model="ir.actions.act_window">
         <field name="name">Crop Rotation History</field>
         <field name="res_model">farm.land.crop.rotation.history</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_crop_rotation_history_search"/>
     </record>
 

@@ -85,6 +85,6 @@
     <record id="action_ai_fertilization_decision" model="ir.actions.act_window">
         <field name="name">AI Fertilization Decisions</field>
         <field name="res_model">agri.ai.fertilization.decision</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

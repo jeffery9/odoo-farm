@@ -145,7 +145,7 @@
     <record id="action_seasonal_bom_list" model="ir.actions.act_window">
         <field name="name">Seasonal Recipes</field>
         <field name="res_model">farm.seasonal.bom</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Seasonal Recipe Management
@@ -160,13 +160,13 @@
     <record id="action_seasonal_bom_material_list" model="ir.actions.act_window">
         <field name="name">Seasonal Material Adjustments</field>
         <field name="res_model">farm.seasonal.bom.material</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_seasonal_bom_parameter_list" model="ir.actions.act_window">
         <field name="name">Seasonal Parameter Adjustments</field>
         <field name="res_model">farm.seasonal.bom.parameter</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 <menuitem id="menu_seasonal_bom_root" name="Seasonal Recipes"
               parent="farm_agricultural_processing.menu_agricultural_processing_root"

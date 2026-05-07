@@ -58,7 +58,7 @@
     <record id="action_workspace_customization" model="ir.actions.act_window">
         <field name="name">Workspace Customization</field>
         <field name="res_model">workspace.customization</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_workspace_customization" 

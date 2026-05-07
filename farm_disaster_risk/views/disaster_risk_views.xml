@@ -83,13 +83,13 @@
     <record id="action_farm_disaster_incident" model="ir.actions.act_window">
         <field name="name">Disaster Incidents</field>
         <field name="res_model">farm.disaster.incident</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_farm_loss_assessment" model="ir.actions.act_window">
         <field name="name">Loss Assessments</field>
         <field name="res_model">farm.loss.assessment</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Menus -->

@@ -408,7 +408,7 @@ class AgriStockLot(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('ESG Compliance Monitoring'),
             'res_model': 'agri.esg.red.line.monitoring',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('id', 'in', results)],
             'context': self.env.context,
         }

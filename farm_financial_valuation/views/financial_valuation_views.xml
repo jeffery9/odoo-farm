@@ -142,12 +142,12 @@
     <record id="action_financial_asset_valuation" model="ir.actions.act_window">
         <field name="name">Financial Asset Valuations</field>
         <field name="res_model">farm.financial.asset.valuation</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_financial_valuation_template" model="ir.actions.act_window">
         <field name="name">Valuation Templates</field>
         <field name="res_model">farm.financial.valuation.template</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

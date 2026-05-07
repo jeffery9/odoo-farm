@@ -181,7 +181,7 @@ class AgriSustainabilityDashboard(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('经济指标'),
             'res_model': 'agri.sustainability.metric',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('category', '=', 'economic')],
             'context': self.env.context
         }
@@ -192,7 +192,7 @@ class AgriSustainabilityDashboard(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('环境指标'),
             'res_model': 'agri.sustainability.metric',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('category', '=', 'environmental')],
             'context': self.env.context
         }
@@ -203,7 +203,7 @@ class AgriSustainabilityDashboard(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('社会指标'),
             'res_model': 'agri.sustainability.metric',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('category', '=', 'social')],
             'context': self.env.context
         }
@@ -214,7 +214,7 @@ class AgriSustainabilityDashboard(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('循环经济流程'),
             'res_model': 'agri.sustainability.circular.flow',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('status', '=', 'completed')],
             'context': self.env.context
         }
@@ -225,7 +225,7 @@ class AgriSustainabilityDashboard(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('碳足迹数据'),
             'res_model': 'agri.sustainability.carbon.footprint.calculation',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'context': self.env.context
         }
 

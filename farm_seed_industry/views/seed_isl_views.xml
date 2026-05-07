@@ -70,12 +70,12 @@
     <record id="action_farm_seed_batch" model="ir.actions.act_window">
         <field name="name">Seed Batches</field>
         <field name="res_model">farm.seed.batch</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_farm_seed_production" model="ir.actions.act_window">
         <field name="name">Propagation Orders</field>
         <field name="res_model">farm.seed.production</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

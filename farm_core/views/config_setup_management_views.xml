@@ -98,7 +98,7 @@
     <record id="action_industry_data_package_list" model="ir.actions.act_window">
         <field name="name">Industry Data Packages</field>
         <field name="res_model">agri.industry.data.package</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Industry Package Application Wizard -->

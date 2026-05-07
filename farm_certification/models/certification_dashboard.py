@@ -29,7 +29,7 @@ class FarmCertificationDashboard(models.TransientModel):
             'name': 'GAP Certifications',
             'type': 'ir.actions.act_window',
             'res_model': 'farm.gap.certification',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('status', '!=', 'expired')],
             'context': self.env.context,
         }
@@ -41,7 +41,7 @@ class FarmCertificationDashboard(models.TransientModel):
             'name': 'Organic Certifications',
             'type': 'ir.actions.act_window',
             'res_model': 'stock.location',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('certification_level', 'in', ['organic', 'organic_transition'])],
             'context': self.env.context,
         }
@@ -53,7 +53,7 @@ class FarmCertificationDashboard(models.TransientModel):
             'name': 'Expiring Certifications',
             'type': 'ir.actions.act_window',
             'res_model': 'farm.gap.certification',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('expiry_date', '<=', fields.Date.to_string(date.today() + timedelta(days=30))),
                       ('status', '!=', 'expired')],
             'context': self.env.context,
@@ -66,7 +66,7 @@ class FarmCertificationDashboard(models.TransientModel):
             'name': 'All Certifications',
             'type': 'ir.actions.act_window',
             'res_model': 'farm.gap.certification',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'context': self.env.context,
         }
 
