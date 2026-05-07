@@ -69,6 +69,6 @@
     <record id="action_ai_resource_optimization" model="ir.actions.act_window">
         <field name="name">AI Resource Optimization</field>
         <field name="res_model">agri.ai.resource.optimization</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

@@ -73,7 +73,7 @@
     <record id="action_multi_sensory" model="ir.actions.act_window">
         <field name="name">Multi-Sensory Interaction</field>
         <field name="res_model">multi.sensory.interaction</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_multi_sensory" 

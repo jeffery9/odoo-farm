@@ -86,7 +86,7 @@
     <record id="action_esg_target" model="ir.actions.act_window">
         <field name="name">ESG Targets</field>
         <field name="res_model">esg.target</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     
@@ -175,6 +175,6 @@
     <record id="action_esg_performance_report" model="ir.actions.act_window">
         <field name="name">ESG Performance Reports</field>
         <field name="res_model">esg.performance.report</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

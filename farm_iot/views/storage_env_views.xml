@@ -44,6 +44,6 @@
     <record id="action_farm_storage_env" model="ir.actions.act_window">
         <field name="name">Storage Monitoring</field>
         <field name="res_model">farm.storage.env</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

@@ -187,7 +187,7 @@ class AgriInterventionSeasonalBom(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('Seasonal Material Adjustments'),
             'res_model': 'agri.intervention.seasonal.bom.material',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('seasonal_bom_id', '=', self.id)],
             'context': {'default_seasonal_bom_id': self.id},
         }
@@ -200,7 +200,7 @@ class AgriInterventionSeasonalBom(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('Seasonal Parameter Adjustments'),
             'res_model': 'agri.intervention.seasonal.bom.parameter',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('seasonal_bom_id', '=', self.id)],
             'context': {'default_seasonal_bom_id': self.id},
         }

@@ -57,7 +57,7 @@
     <record id="action_form_layouts" model="ir.actions.act_window">
         <field name="name">Form Layout Templates</field>
         <field name="res_model">form.layout.template</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_form_layouts" 

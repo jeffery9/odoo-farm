@@ -137,14 +137,14 @@
     <record id="action_farm_apiculture_operations" model="ir.actions.act_window">
         <field name="name">Apiculture Operations</field>
         <field name="res_model">farm.apiculture.order</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Action for Hive Inspections -->
     <record id="action_farm_hive_inspections" model="ir.actions.act_window">
         <field name="name">Hive Inspections</field>
         <field name="res_model">farm.hive.inspection</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Menu items for Apiculture -->

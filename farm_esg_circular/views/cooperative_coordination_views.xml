@@ -4,7 +4,7 @@
         <field name="name">Cooperative Resource Sharing</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.cooperative.resource.sharing</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Coordinate Resource Sharing in Cooperatives
@@ -123,7 +123,7 @@
         <field name="name">Internal Netting Engine</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.internal.netting.engine</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     

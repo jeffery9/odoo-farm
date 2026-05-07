@@ -4,7 +4,7 @@
         <record id="action_farm_training_skill" model="ir.actions.act_window">
             <field name="name">Skills</field>
             <field name="res_model">farm.training.skill</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
         <menuitem id="menu_farm_training_skill"
                   name="Skills"
@@ -44,7 +44,7 @@
         <record id="action_farm_training_certification" model="ir.actions.act_window">
             <field name="name">Certifications</field>
             <field name="res_model">farm.training.certification</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
         <menuitem id="menu_farm_training_certification"
                   name="Certifications"
@@ -86,7 +86,7 @@
         <record id="action_farm_training_training_record" model="ir.actions.act_window">
             <field name="name">Training Records</field>
             <field name="res_model">farm.training.training_record</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
         <menuitem id="menu_farm_training_training_record"
                   name="Training Records"

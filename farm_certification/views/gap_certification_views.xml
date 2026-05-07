@@ -286,7 +286,7 @@
     <record id="action_gap_certification" model="ir.actions.act_window">
         <field name="name">GAP Certifications</field>
         <field name="res_model">farm.gap.certification</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Add GAP Certifications
@@ -300,21 +300,21 @@
     <record id="action_gap_audit" model="ir.actions.act_window">
         <field name="name">GAP Audits</field>
         <field name="res_model">farm.gap.audit</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- GAP Compliance Check Action -->
     <record id="action_gap_compliance_check" model="ir.actions.act_window">
         <field name="name">GAP Daily Compliance Checks</field>
         <field name="res_model">farm.gap.compliance.check</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- GAP Requirement Action -->
     <record id="action_gap_requirement" model="ir.actions.act_window">
         <field name="name">GAP Requirements</field>
         <field name="res_model">farm.gap.requirement</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
 </odoo>

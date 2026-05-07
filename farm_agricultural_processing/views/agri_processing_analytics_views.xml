@@ -212,25 +212,25 @@
     <record id="action_farm_processing_step_list" model="ir.actions.act_window">
         <field name="name">Processing Steps</field>
         <field name="res_model">farm.processing.step</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_farm_processing_blind_material_list" model="ir.actions.act_window">
         <field name="name">Blind Mixing Materials</field>
         <field name="res_model">farm.processing.blind.material</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_agri_processing_packaging_list" model="ir.actions.act_window">
         <field name="name">Packaging Batches</field>
         <field name="res_model">agri.processing.packaging</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_agri_processing_formula_auto_correction_list" model="ir.actions.act_window">
         <field name="name">Formula Auto Corrections</field>
         <field name="res_model">agri.processing.formula.auto.correction</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Note: Mass balance functionality is integrated into farm.processing.production extension,
@@ -239,55 +239,55 @@
     <record id="action_agri_processing_multi_output_list" model="ir.actions.act_window">
         <field name="name">Multi-Output Processing</field>
         <field name="res_model">agri.processing.multi.output</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_agri_processing_attribute_inheritance_list" model="ir.actions.act_window">
         <field name="name">Attribute Inheritance Rules</field>
         <field name="res_model">agri.processing.attribute.inheritance</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_agri_processing_yield_rate_analytics_list" model="ir.actions.act_window">
         <field name="name">Yield Rate Analytics</field>
         <field name="res_model">agri.processing.yield.rate.analytics</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_agri_processing_active_ingredient_list" model="ir.actions.act_window">
         <field name="name">Active Ingredient Standardization</field>
         <field name="res_model">agri.processing.active.ingredient</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_agri_processing_allergen_control_list" model="ir.actions.act_window">
         <field name="name">Allergen Control</field>
         <field name="res_model">agri.processing.allergen.control</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_agri_processing_gmp_monitoring_list" model="ir.actions.act_window">
         <field name="name">GMP Monitoring</field>
         <field name="res_model">agri.processing.gmp.monitoring</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_agri_processing_label_compliance_list" model="ir.actions.act_window">
         <field name="name">Label Compliance</field>
         <field name="res_model">agri.processing.label.compliance</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_agri_processing_license_check_list" model="ir.actions.act_window">
         <field name="name">License Compliance Check</field>
         <field name="res_model">agri.processing.license.check</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_agri_processing_recall_simulation_list" model="ir.actions.act_window">
         <field name="name">Recall Simulations</field>
         <field name="res_model">agri.processing.recall.simulation</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
 <menuitem id="menu_agri_processing_root" name="Agri Processing"

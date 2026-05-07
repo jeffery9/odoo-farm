@@ -4,7 +4,7 @@
         <field name="name">Regional Circular Governance</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.regional.circular.governance</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Manage Regional Circular Economy Governance
@@ -119,7 +119,7 @@
         <field name="name">Farm Circular Participation</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.farm.circular.participation</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     

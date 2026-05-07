@@ -74,12 +74,12 @@
     <record id="action_farm_livestock_event" model="ir.actions.act_window">
         <field name="name">Lifecycle Events</field>
         <field name="res_model">farm.livestock.event</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_farm_livestock_house_env" model="ir.actions.act_window">
         <field name="name">Environment Monitoring</field>
         <field name="res_model">farm.livestock.house.env</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

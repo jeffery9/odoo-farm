@@ -70,12 +70,12 @@
     <record id="action_farm_viticulture_plot" model="ir.actions.act_window">
         <field name="name">Vineyard Plots</field>
         <field name="res_model">farm.viticulture.plot</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_farm_viticulture_cycle" model="ir.actions.act_window">
         <field name="name">Viticulture Cycles</field>
         <field name="res_model">farm.viticulture.cycle</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

@@ -46,7 +46,7 @@
     <record id="action_farm_product_certificate" model="ir.actions.act_window">
         <field name="name">Product Certificates (China)</field>
         <field name="res_model">farm.product.certificate</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_farm_cert_ch_root" name="China Certificates" parent="farm_core.menu_farm_root" sequence="95"/>

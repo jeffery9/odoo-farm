@@ -81,6 +81,6 @@
     <record id="action_ai_harvest_timing" model="ir.actions.act_window">
         <field name="name">AI Harvest Timing</field>
         <field name="res_model">agri.ai.harvest.timing</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

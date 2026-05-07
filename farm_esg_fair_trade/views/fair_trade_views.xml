@@ -65,7 +65,7 @@
     <record id="action_fair_trade_certificate" model="ir.actions.act_window">
         <field name="name">Fair Trade Certificates</field>
         <field name="res_model">farm.esg.fair.trade.certificate</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     
@@ -121,7 +121,7 @@
     <record id="action_fair_trade_premium_allocation" model="ir.actions.act_window">
         <field name="name">Fair Trade Premium Allocations</field>
         <field name="res_model">farm.esg.fair.trade.premium.allocation</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     
@@ -183,7 +183,7 @@
     <record id="action_community_investment" model="ir.actions.act_window">
         <field name="name">Community Investments</field>
         <field name="res_model">farm.esg.community.investment</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     
@@ -249,6 +249,6 @@
     <record id="action_labor_condition" model="ir.actions.act_window">
         <field name="name">Labor Conditions</field>
         <field name="res_model">farm.esg.labor.condition</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>
