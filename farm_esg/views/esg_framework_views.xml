@@ -69,7 +69,7 @@
     <record id="action_esg_framework" model="ir.actions.act_window">
         <field name="name">ESG Frameworks</field>
         <field name="res_model">esg.framework</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     
@@ -156,6 +156,6 @@
     <record id="action_esg_assessment" model="ir.actions.act_window">
         <field name="name">ESG Assessments</field>
         <field name="res_model">esg.assessment</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

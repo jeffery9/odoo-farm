@@ -138,7 +138,7 @@
     <record id="action_vra_carbon_footprint" model="ir.actions.act_window">
         <field name="name">VRA Carbon Footprint</field>
         <field name="res_model">agri.vra.carbon.footprint</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Add your first VRA Carbon Footprint Assessment!

@@ -343,31 +343,31 @@
     <record id="action_cooperative_entities" model="ir.actions.act_window">
         <field name="name">Cooperatives</field>
         <field name="res_model">cooperative.entity</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_farm_entities" model="ir.actions.act_window">
         <field name="name">Farm Entities</field>
         <field name="res_model">farm.entity</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_resource_sharing" model="ir.actions.act_window">
         <field name="name">Resource Sharing</field>
         <field name="res_model">resource.sharing</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_internal_settlements" model="ir.actions.act_window">
         <field name="name">Internal Settlements</field>
         <field name="res_model">internal.settlement</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_franchise_farms" model="ir.actions.act_window">
         <field name="name">Franchise Farms</field>
         <field name="res_model">franchise.farm</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
 <menuitem id="menu_cooperative_management"

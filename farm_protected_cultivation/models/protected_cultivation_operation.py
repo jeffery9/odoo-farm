@@ -156,7 +156,7 @@ class ProtectedCultivationOperation(models.Model):
         return {
             'type': 'ir.actions.act_window',
             'res_model': 'farm.environmental.log',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('protected_operation_id', '=', self.id)],
             'context': {
                 'default_protected_operation_id': self.id,

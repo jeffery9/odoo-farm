@@ -95,6 +95,6 @@
     <record id="action_circular_flow" model="ir.actions.act_window">
         <field name="name">循环经济流程</field>
         <field name="res_model">farm.sustainability.circular.flow</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

@@ -59,7 +59,7 @@
     <record id="action_term_mappings" model="ir.actions.act_window">
         <field name="name">Term Mappings</field>
         <field name="res_model">term.mapping</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_term_mapping"

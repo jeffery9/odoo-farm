@@ -194,7 +194,7 @@ class FarmLocation(models.Model):
                 'name': _('Rotation Timeline'),
                 'type': 'ir.actions.act_window',
                 'res_model': 'farm.land.crop.rotation.history',
-                'view_mode': 'tree,form',
+                'view_mode': 'list,form',
                 'domain': [('land_parcel_id', '=', record.id)],
                 'context': {'default_land_parcel_id': record.id}
             }
@@ -206,7 +206,7 @@ class FarmLocation(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Rotation History',
             'res_model': 'farm.land.crop.rotation.history',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('land_parcel_id', '=', self.id)],
             'context': {
                 'default_land_parcel_id': self.id,
@@ -222,7 +222,7 @@ class FarmLocation(models.Model):
                 'name': _('Health History'),
                 'type': 'ir.actions.act_window',
                 'res_model': 'farm.land.health.record',
-                'view_mode': 'tree,form',
+                'view_mode': 'list,form',
                 'domain': [('land_parcel_id', '=', record.id)],
                 'context': {'default_land_parcel_id': record.id}
             }
@@ -249,7 +249,7 @@ class FarmLocation(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Soil Analyses',
             'res_model': 'farm.soil.analysis',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('location_id', '=', self.id)],
             'context': {
                 'default_location_id': self.id,

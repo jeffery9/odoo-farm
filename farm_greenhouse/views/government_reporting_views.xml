@@ -153,13 +153,13 @@
     <record id="action_government_platform_config" model="ir.actions.act_window">
         <field name="name">Government Platform Configurations</field>
         <field name="res_model">farm.government.platform.config</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_government_data_report" model="ir.actions.act_window">
         <field name="name">Government Data Reports</field>
         <field name="res_model">farm.government.data.report</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     

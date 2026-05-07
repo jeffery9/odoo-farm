@@ -70,6 +70,6 @@
     <record id="action_live_orders" model="ir.actions.act_window">
         <field name="name">Orders from Live Streaming</field>
         <field name="res_model">live.order</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

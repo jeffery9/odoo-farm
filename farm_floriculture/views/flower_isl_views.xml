@@ -76,12 +76,12 @@
     <record id="action_farm_flower_order" model="ir.actions.act_window">
         <field name="name">Floral Growing Orders</field>
         <field name="res_model">farm.flower.order</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_farm_lot_flower" model="ir.actions.act_window">
         <field name="name">Flower Batches</field>
         <field name="res_model">farm.lot.flower</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

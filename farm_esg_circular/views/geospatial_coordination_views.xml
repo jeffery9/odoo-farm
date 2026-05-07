@@ -4,7 +4,7 @@
         <field name="name">GIS Circular Network</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.geospatial.circular.network</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Analyze Spatial Circular Economy Opportunities
@@ -113,7 +113,7 @@
         <field name="name">Nutrient Heatmap Layer</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.nutrient.heatmap.layer</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     

@@ -78,6 +78,6 @@
     <record id="action_isl_mrp_bom" model="ir.actions.act_window">
         <field name="name">ISL MRP BOMs</field>
         <field name="res_model">farm.mrp.bom</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

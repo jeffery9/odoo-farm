@@ -94,6 +94,6 @@
     <record id="action_isl_purchase_order" model="ir.actions.act_window">
         <field name="name">ISL Purchase Orders</field>
         <field name="res_model">farm.purchase.order</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

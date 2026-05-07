@@ -4,7 +4,7 @@
         <field name="name">Supply Chain Carbon Data Collection</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.supply.chain.carbon.data.engine</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Collect Carbon Footprint Data Across Supply Chain
@@ -107,7 +107,7 @@
         <field name="name">AI Carbon Reduction Strategy</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.supply.chain.carbon.reduction.strategy</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 AI-driven Carbon Reduction Strategies
@@ -215,7 +215,7 @@
         <field name="name">Supplier Carbon Compliance</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.supplier.carbon.compliance</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Manage Supplier Carbon Compliance
@@ -326,7 +326,7 @@
         <field name="name">Carbon Neutrality Certification</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.carbon.neutrality.certification</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Carbon Neutrality Certification &amp; Reporting

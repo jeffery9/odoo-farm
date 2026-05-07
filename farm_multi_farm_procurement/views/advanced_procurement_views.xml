@@ -216,18 +216,18 @@
     <record id="action_joint_procurement_po_list" model="ir.actions.act_window">
         <field name="name">Joint Procurement POs</field>
         <field name="res_model">joint.procurement.po</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_hub_spoke_distribution_list" model="ir.actions.act_window">
         <field name="name">Hub and Spoke Distributions</field>
         <field name="res_model">hub.spoke.distribution</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_netting_settlement_list" model="ir.actions.act_window">
         <field name="name">Netting Settlements</field>
         <field name="res_model">netting.settlement</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

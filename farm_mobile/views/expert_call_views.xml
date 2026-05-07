@@ -60,7 +60,7 @@
     <record id="action_farm_expert_call" model="ir.actions.act_window">
         <field name="name">Expert Calls</field>
         <field name="res_model">farm.expert.call</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 No expert calls recorded yet.

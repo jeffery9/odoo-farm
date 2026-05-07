@@ -94,18 +94,18 @@
     <record id="action_farm_winery_vessel" model="ir.actions.act_window">
         <field name="name">Vessels &amp; Barrels</field>
         <field name="res_model">farm.winery.vessel</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_farm_winery_production" model="ir.actions.act_window">
         <field name="name">Vinification Orders</field>
         <field name="res_model">farm.winery.production</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_farm_lot_wine" model="ir.actions.act_window">
         <field name="name">Wine Batches</field>
         <field name="res_model">farm.lot.wine</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

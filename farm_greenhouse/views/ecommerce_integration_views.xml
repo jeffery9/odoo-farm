@@ -162,13 +162,13 @@
     <record id="action_ecommerce_platform" model="ir.actions.act_window">
         <field name="name">E-commerce Platforms</field>
         <field name="res_model">farm.ecommerce.platform</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_ecommerce_sync_log" model="ir.actions.act_window">
         <field name="name">E-commerce Sync Logs</field>
         <field name="res_model">farm.ecommerce.sync.log</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     

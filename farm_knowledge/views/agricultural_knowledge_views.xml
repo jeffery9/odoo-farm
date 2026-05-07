@@ -116,6 +116,6 @@
     <record id="action_agricultural_knowledge" model="ir.actions.act_window">
         <field name="name">Knowledge Base</field>
         <field name="res_model">agricultural.knowledge</field>
-        <field name="view_mode">kanban,tree,form,pivot</field>
+        <field name="view_mode">kanban,list,form,pivot</field>
     </record>
 </odoo>

@@ -59,7 +59,7 @@
     <record id="action_farm_rural_revitalization_project" model="ir.actions.act_window">
         <field name="name">Rural Revitalization Projects</field>
         <field name="res_model">farm.rural.revitalization.project</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Menus -->

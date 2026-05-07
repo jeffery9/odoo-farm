@@ -65,6 +65,6 @@
     <record id="action_live_statistics" model="ir.actions.act_window">
         <field name="name">Live Streaming Statistics</field>
         <field name="res_model">live.statistics</field>
-        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="view_mode">list,form,pivot,graph</field>
     </record>
 </odoo>
