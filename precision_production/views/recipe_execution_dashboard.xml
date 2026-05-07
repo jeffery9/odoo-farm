@@ -267,7 +267,7 @@
     <record id="action_recipe_execution_dashboard" model="ir.actions.act_window">
         <field name="name">🎯 Recipe Execution Dashboard</field>
         <field name="res_model">mrp.production</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="domain">[('production_drive_type', '=', 'parameter')]</field>
         <field name="context">{'search_default_state_progress': 1}</field>
         <field name="help" type="html">

@@ -17,6 +17,6 @@
     <record id="action_faq_entry" model="ir.actions.act_window">
         <field name="name">FAQs</field>
         <field name="res_model">faq.entry</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

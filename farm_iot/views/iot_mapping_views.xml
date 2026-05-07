@@ -48,6 +48,6 @@
     <record id="action_iot_device_mapping" model="ir.actions.act_window">
         <field name="name">IoT Device Mappings</field>
         <field name="res_model">iot.device.mapping</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

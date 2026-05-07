@@ -75,6 +75,6 @@
     <record id="action_ai_risk_assessment" model="ir.actions.act_window">
         <field name="name">AI Risk Assessment</field>
         <field name="res_model">agri.ai.risk.assessment</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

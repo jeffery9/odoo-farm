@@ -64,7 +64,7 @@
     <record id="action_agri_cost_template" model="ir.actions.act_window">
         <field name="name">Agricultural Cost Templates</field>
         <field name="res_model">agri.cost.template</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     

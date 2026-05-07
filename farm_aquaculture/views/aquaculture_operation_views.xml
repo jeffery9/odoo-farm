@@ -127,14 +127,14 @@
     <record id="action_farm_aquaculture_operations" model="ir.actions.act_window">
         <field name="name">Aquaculture Operations</field>
         <field name="res_model">farm.aquaculture.operation</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Action for Water Quality Logs -->
     <record id="action_farm_water_quality_logs" model="ir.actions.act_window">
         <field name="name">Water Quality Logs</field>
         <field name="res_model">farm.water.quality.log</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Menu items for Aquaculture -->

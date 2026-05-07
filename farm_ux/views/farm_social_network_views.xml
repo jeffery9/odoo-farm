@@ -64,7 +64,7 @@
     <record id="action_farm_social" model="ir.actions.act_window">
         <field name="name">Farm Social Network</field>
         <field name="res_model">farm.social.network</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_farm_social" 

@@ -171,14 +171,14 @@
     <record id="action_farm_protected_cultivation_operations" model="ir.actions.act_window">
         <field name="name">Protected Cultivation Operations</field>
         <field name="res_model">farm.protected.cultivation.operation</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Action to open Environmental Logs -->
     <record id="action_farm_environmental_logs" model="ir.actions.act_window">
         <field name="name">Environmental Logs</field>
         <field name="res_model">farm.environmental.log</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Menu items for Protected Cultivation -->

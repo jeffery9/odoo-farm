@@ -332,7 +332,7 @@
         <field name="name">Decision Engines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.ai.decision.engine</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Add your first AI Decision Engine!
@@ -347,7 +347,7 @@
         <field name="name">Decision Contexts</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.ai.decision.context</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first Decision Context!
@@ -362,7 +362,7 @@
         <field name="name">Decision Rules</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.ai.decision.rule</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first Decision Rule!
@@ -377,7 +377,7 @@
         <field name="name">Decision Workflows</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">agri.ai.decision.workflow</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first Decision Workflow!

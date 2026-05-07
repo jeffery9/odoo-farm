@@ -107,13 +107,13 @@
     <record id="action_farm_manure_batch" model="ir.actions.act_window">
         <field name="name">Manure Batches</field>
         <field name="res_model">farm.manure.batch</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_farm_manure_ledger" model="ir.actions.act_window">
         <field name="name">Manure Ledgers</field>
         <field name="res_model">farm.manure.ledger</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- Menus -->

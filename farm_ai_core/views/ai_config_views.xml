@@ -5,7 +5,7 @@
     <record id="action_ai_configuration" model="ir.actions.act_window">
         <field name="name">AI Configuration</field>
         <field name="res_model">agri.ai.configuration</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Add your first AI Configuration!

@@ -87,7 +87,7 @@
     <record id="action_esg_risk_assessment" model="ir.actions.act_window">
         <field name="name">ESG Risk Assessments</field>
         <field name="res_model">farm.esg.risk.assessment</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     
@@ -148,7 +148,7 @@
     <record id="action_esg_compliance_monitoring" model="ir.actions.act_window">
         <field name="name">ESG Compliance Monitoring</field>
         <field name="res_model">farm.esg.compliance.monitoring</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     
@@ -223,7 +223,7 @@
     <record id="action_stakeholder_engagement" model="ir.actions.act_window">
         <field name="name">Stakeholder Engagements</field>
         <field name="res_model">farm.esg.stakeholder.engagement</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     
@@ -297,6 +297,6 @@
     <record id="action_esg_kpi" model="ir.actions.act_window">
         <field name="name">ESG KPIs</field>
         <field name="res_model">farm.esg.kpi</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

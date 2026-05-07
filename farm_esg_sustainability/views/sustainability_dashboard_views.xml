@@ -181,13 +181,13 @@
     <record id="action_sustainability_dashboard" model="ir.actions.act_window">
         <field name="name">可持续发展仪表板</field>
         <field name="res_model">farm.sustainability.dashboard</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     
     <record id="action_sustainability_report" model="ir.actions.act_window">
         <field name="name">可持续发展报告</field>
         <field name="res_model">farm.sustainability.report</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>
