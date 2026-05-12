@@ -126,5 +126,5 @@ Website: [http://www.geninit.cn](http://www.geninit.cn)
 
 技术交流
 
-<img width="1050" height="1560" alt="c67e6d1c96be9c94e601ad2c2af89fd0" src="https://github.com/user-attachments/assets/ce69871d-f013-4fe2-b0ed-56f51bf3c02c" />
+<img width="525" height="780" alt="c67e6d1c96be9c94e601ad2c2af89fd0" src="https://github.com/user-attachments/assets/ce69871d-f013-4fe2-b0ed-56f51bf3c02c" />
 
