@@ -36,7 +36,7 @@
                         </group>
                     </group>
                     <group string="目标配置">
-                        <field name="target_model" placeholder="maintenance.equipment"/>
+                        <field name="target_model" placeholder="res.partner"/>
                         <field name="target_domain" placeholder="[('iot_device_id', '=', '{{ device_id }}')]"/>
                         <field name="target_field" placeholder="x_temperature"/>
                     </group>
