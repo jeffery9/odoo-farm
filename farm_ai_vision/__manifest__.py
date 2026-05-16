@@ -8,15 +8,9 @@
     "depends": [
         "base",
         "mail",
-        "stock",
-        "mrp",
         "farm_core",
         "farm_ai_core",
         "farm_agri_science",
-        "farm_operation",
-        "farm_ai_core",
-        "farm_quality",
-        "farm_livestock",
         "farm_ai_llm_integration"
     ],
     "data": [
