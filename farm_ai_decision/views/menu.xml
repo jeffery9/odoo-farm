@@ -4,7 +4,7 @@
     <menuitem id="farm_ai_decision_menu_root"
               name="AI Decision Support"
               sequence="101"
-              web_icon="farm_ai_decision,static/description/icon.png"/>
+              parent="farm_ai.menu_ai_root"/>
 
     <!-- AI Decision Categories -->
     <menuitem id="farm_ai_prediction_menu"

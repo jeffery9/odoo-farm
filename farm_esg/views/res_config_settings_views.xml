@@ -29,7 +29,7 @@
 
     <menuitem id="menu_farm_esg_config" 
               name="Settings" 
-              parent="farm_esg.esg_base_menu" 
+              parent="farm_esg.menu_esg_root" 
               sequence="100" 
               action="action_farm_esg_config" 
               groups="base.group_system"/>

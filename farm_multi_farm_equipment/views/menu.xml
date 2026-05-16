@@ -2,7 +2,7 @@
 <odoo>
 <menuitem id="multi_farm_equipment_menu"
               name="Equipment Management"
-              parent="farm_multi_farm.multi_farm_root_menu"
+              parent="farm_multi_farm.menu_multi_farm_root"
               sequence="60"/>
 
     

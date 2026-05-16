@@ -4,7 +4,7 @@
     <menuitem id="farm_ai_vision_menu_root"
               name="AI Vision System"
               sequence="102"
-              web_icon="farm_ai_vision,static/description/icon.png"/>
+              parent="farm_ai.menu_ai_root"/>
 
     <!-- AI Vision Categories -->
     <menuitem id="farm_ai_vision_detection_menu"
