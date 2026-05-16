@@ -81,7 +81,7 @@
     *   **实现方式**: 在各个需要使用到这些数据的 App 的 `Configuration`（配置）菜单下，直接复用 `ir.actions.act_window` 投影对应的视图。确保用户停留在当前的 App 环境中完成闭环操作。
 
 
-## 6. 与 5 层架构的 UI 映射关系 (UI Mapping to 4-Layer Architecture)
+## 6. 与 4 层架构的 UI 映射关系 (UI Mapping to 4-Layer Architecture)
 
 我们的 UI 设计完全倒影了后端的 **4-Layer Macro Architecture**：
 *   **L0/L1 层 (底座与引擎)**: 通常在前端**不可见**，或者只作为“开发者模式”下的隐藏配置菜单存在。它们为上层提供驱动力，但不占用顶层 App 图标资源。
