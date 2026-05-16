@@ -70,7 +70,7 @@
     </record>
 
     
-    <menuitem id="menu_farm_security_root" name="Data Security" parent="farm_core.menu_agri_config" sequence="90" groups="base.group_system"/>
+    <menuitem id="menu_farm_security_root" name="Data Security" web_icon="farm_data_security,static/description/icon.png" sequence="90" groups="base.group_system"/>
     <menuitem id="menu_farm_data_classification" name="Classification Policies" parent="menu_farm_security_root" action="action_farm_data_classification" sequence="10"/>
     <menuitem id="menu_farm_iot_device_registry" name="IoT Device Registry" parent="menu_farm_security_root" action="action_farm_iot_device_registry" sequence="20"/>
 </odoo>

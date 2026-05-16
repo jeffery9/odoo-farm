@@ -151,7 +151,7 @@
     <!-- Menu Items for Input Registration Database -->
     <menuitem id="menu_input_registry_root"
               name="Input Registration"
-              parent="farm_core.menu_farm_root"
+ web_icon="farm_input_reg,static/description/icon.png"
               sequence="30"/>
 
     <menuitem id="menu_input_registration_database"

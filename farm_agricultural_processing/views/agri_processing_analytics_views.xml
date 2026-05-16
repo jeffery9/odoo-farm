@@ -291,7 +291,7 @@
     </record>
 
 <menuitem id="menu_agri_processing_root" name="Agri Processing"
-              parent="farm_core.menu_farm_root" sequence="25">
+ web_icon="farm_agricultural_processing,static/description/icon.png" sequence="25">
     </menuitem>
 <menuitem id="menu_net_vegetables_processing" name="Net Vegetable Processing"
               parent="menu_agri_processing_root" sequence="10">

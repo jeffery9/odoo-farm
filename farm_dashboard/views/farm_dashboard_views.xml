@@ -14,7 +14,7 @@
     </record>
 
     
-    <menuitem id="menu_farm_dashboard_root" name="Dashboards" parent="farm_core.menu_farm_root" sequence="5"/>
+    <menuitem id="menu_farm_dashboard_root" name="Dashboards" web_icon="farm_dashboard,static/description/icon.png" sequence="5"/>
     <menuitem id="menu_farm_cockpit" name="Operational Cockpit" parent="menu_farm_dashboard_root" action="action_farm_cockpit" sequence="10"/>
 
     

@@ -92,5 +92,5 @@
     </record>
 
     <!-- The parent menu_quality_root is usually defined in farm_core or farm_quality menu file -->
-    <menuitem id="menu_quality_check" name="Quality Checks" parent="farm_core.menu_quality_root" action="action_farm_quality_check" sequence="20"/>
+    <menuitem id="menu_quality_check" name="Quality Checks" web_icon="farm_quality,static/description/icon.png" action="action_farm_quality_check" sequence="20"/>
 </odoo>

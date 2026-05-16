@@ -36,5 +36,5 @@
     </record>
 
     <menuitem id="menu_consumer_feedback" name="Consumer Insights (C2M)" 
-              parent="farm_core.menu_marketing_root" action="action_farm_consumer_feedback" sequence="50"/>
+ web_icon="farm_marketing,static/description/icon.png" action="action_farm_consumer_feedback" sequence="50"/>
 </odoo>

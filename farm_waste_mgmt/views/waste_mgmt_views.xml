@@ -117,7 +117,7 @@
     </record>
 
     <!-- Menus -->
-    <menuitem id="menu_farm_waste_mgmt_root" name="Waste Management" parent="farm_core.menu_farm_root" sequence="100"/>
+    <menuitem id="menu_farm_waste_mgmt_root" name="Waste Management" web_icon="farm_waste_mgmt,static/description/icon.png" sequence="100"/>
     <menuitem id="menu_farm_manure_batch" name="Manure Batches" parent="menu_farm_waste_mgmt_root" action="action_farm_manure_batch" sequence="10"/>
     <menuitem id="menu_farm_manure_ledger" name="Manure Ledgers" parent="menu_farm_waste_mgmt_root" action="action_farm_manure_ledger" sequence="20"/>
 </odoo>
