@@ -129,7 +129,7 @@ class MrpProduction(models.Model):
     def _get_isl_model(self):
         res = super(MrpProduction, self)._get_isl_model()
         if getattr(self, 'industry_type', getattr(self.bom_id, 'industry_type', '')) == 'food_processing':
-            return 'farm.processing.production'
+            return 'agri.isl.processing.production'
         return res
 
     def action_confirm(self):

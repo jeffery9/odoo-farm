@@ -9,7 +9,7 @@ class FarmProcessingProductionPackagingExtension(models.Model):
     """
     Extension to Processing ISL Production Model for Packaging - US-037-10
     """
-    _inherit = 'farm.processing.production'
+    _inherit = 'agri.isl.processing.production'
 
     # Packaging specific fields
     package_batch_no = fields.Char('Package Batch No.', default=lambda self: self._default_package_batch())

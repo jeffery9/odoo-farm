@@ -33,8 +33,8 @@
 
     <!-- ISL View for Livestock Production -->
     <record id="view_farm_livestock_production_form" model="ir.ui.view">
-        <field name="name">farm.livestock.production.form</field>
-        <field name="model">farm.livestock.production</field>
+        <field name="name">agri.isl.livestock.production.form</field>
+        <field name="model">agri.isl.livestock.production</field>
         <field name="arch" type="xml">
             <form>
                 <header>
@@ -75,7 +75,7 @@
 
     <record id="action_farm_livestock_mo_isl" model="ir.actions.act_window">
         <field name="name">Livestock Growth Tasks</field>
-        <field name="res_model">farm.livestock.production</field>
+        <field name="res_model">agri.isl.livestock.production</field>
         <field name="view_mode">list,form</field>
     </record>
 </odoo>

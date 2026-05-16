@@ -109,7 +109,7 @@ class AgriProcessingLotTracking(models.Model):
     ], string='Trace Direction', required=True)
 
     # Process information
-    production_id = fields.Many2one('farm.processing.production', string='Production Order')
+    production_id = fields.Many2one('agri.isl.processing.production', string='Production Order')
     process_date = fields.Date('Process Date')
 
     # Quality and compliance

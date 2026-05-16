@@ -5,7 +5,7 @@ class TestIntegrationFarmAquaculture(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_check = ['farm.water.quality.log', 'farm.aquaculture.operation', 'mrp.production', 'farm.aquaculture.bom', 'farm.aquaculture.bom.line', 'farm.ras.production', 'farm.lot.aquaculture', 'farm.aquaculture.lss', 'farm.aquaculture.production', 'stock.lot', 'mrp.bom']
+        cls.models_to_check = ['farm.water.quality.log', 'farm.aquaculture.operation', 'mrp.production', 'agri.isl.aquaculture.bom', 'farm.aquaculture.bom.line', 'agri.isl.ras.production', 'agri.isl.lot.aquaculture', 'farm.aquaculture.lss', 'agri.isl.aquaculture.production', 'stock.lot', 'mrp.bom']
 
     def test_01_cross_model_dependencies(self):
         """ Verify that dependencies and XML IDs required by farm_aquaculture are available """

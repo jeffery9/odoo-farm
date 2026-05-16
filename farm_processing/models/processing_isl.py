@@ -3,7 +3,7 @@ from odoo import models, fields, api
 
 class FarmProcessingBom(models.Model):
     """ Food Processing Recipe [US-037-23] """
-    _name = 'farm.processing.bom'
+    _name = 'agri.isl.processing.bom'
     _description = 'Food Processing BOM (ISL Layer)'
     _inherits = {'mrp.bom': 'bom_id'}
     
@@ -24,7 +24,7 @@ class FarmProcessingProduction(models.Model):
     """
     Food Processing Production Order that extends ISL architecture with farm-specific features
     """
-    _name = 'farm.processing.production'
+    _name = 'agri.isl.processing.production'
     _description = 'Farm Food Processing Order (ISL Layer)'
     _inherit = ['agri.isl.mrp.production']
 
@@ -41,14 +41,14 @@ class FarmProcessingProduction(models.Model):
     current_weight_loss_ratio = fields.Float("Current Weight Loss (%)")
     is_ready_for_harvest = fields.Boolean("Ready for Collection", compute='_compute_artisan_readiness', store=True, precompute=True)
     
-    processing_bom_id = fields.Many2one('farm.processing.bom', string='Processing Recipe', compute='_compute_processing_bom', store=True, precompute=True)
+    processing_bom_id = fields.Many2one('agri.isl.processing.bom', string='Processing Recipe', compute='_compute_processing_bom', store=True, precompute=True)
 
     @api.depends('bom_id')
     def _compute_processing_bom(self):
         for rec in self:
             if rec.bom_id:
                 # Find the corresponding farm.processing.bom for this farm.mrp.bom
-                farm_bom = self.env['farm.processing.bom'].search([('bom_id', '=', rec.bom_id.id)], limit=1)
+                farm_bom = self.env['agri.isl.processing.bom'].search([('bom_id', '=', rec.bom_id.id)], limit=1)
                 rec.processing_bom_id = farm_bom
             else:
                 rec.processing_bom_id = False

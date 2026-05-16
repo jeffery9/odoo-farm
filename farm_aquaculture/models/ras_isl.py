@@ -36,7 +36,7 @@ class FarmRasProduction(models.Model):
     [ISL Layer] RAS Culture Batch Order.
     Extends base aquaculture with precise energy and waste tracking.
     """
-    _name = 'farm.ras.production'
+    _name = 'agri.isl.ras.production'
     _description = 'RAS Culture Order'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
