@@ -14,17 +14,17 @@ class AgriManufacturingMixin(models.AbstractModel):
     Abstract base model for manufacturing-related ISL models
     Implements US-084-01, US-084-02, US-084-03, US-084-09
     """
-    _name = 'agri.manufacturing.mixin'
+    _name = 'agri.isl.manufacturing.mixin'
     _description = 'Agri Manufacturing ISL Abstract Base Model'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     # Common fields that all manufacturing ISL models will inherit
     industry_type = fields.Selection([
-        ('food_processing', 'Food Processing'),
-        ('pharmaceutical', 'Pharmaceutical'),
-        ('chemical', 'Chemical'),
-        ('general', 'General Manufacturing')
-    ], string='Industry Type', default='general', required=True, ondelete={'food_processing': 'cascade', 'pharmaceutical': 'cascade', 'chemical': 'cascade', 'general': 'cascade'})
+        ('field_crop', 'Field Crop'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('general', 'General Agriculture')
+    ], string='Industry Type', default='general', required=True, ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'})
 
     industry_specialization = fields.Char('Industry Specialization')
     compliance_requirements = fields.Text('Compliance Requirements')
@@ -42,20 +42,20 @@ class AgriManufacturingMixin(models.AbstractModel):
     def _get_industry_specific_fields(self):
         """Return fields specific to the industry type"""
         return {
-            'food_processing': ['quality_control_points', 'compliance_requirements', 'safety_requirements'],
-            'pharmaceutical': ['quality_control_points', 'compliance_requirements', 'industry_standards'],
-            'chemical': ['safety_requirements', 'compliance_requirements', 'industry_standards'],
+            'field_crop': ['quality_control_points', 'compliance_requirements', 'safety_requirements'],
+            'livestock': ['quality_control_points', 'compliance_requirements', 'industry_standards'],
+            'aquaculture': ['safety_requirements', 'compliance_requirements', 'industry_standards'],
             'general': [],
         }
 
     def _validate_industry_requirements(self):
         """Validate that industry-specific requirements are met"""
-        if self.industry_type == 'food_processing':
+        if self.industry_type == 'field_crop':
             if not self.quality_control_points:
-                raise UserError(_("Food processing industry requires quality control points to be defined"))
-        elif self.industry_type == 'pharmaceutical':
+                raise UserError(_("Field crop industry requires quality control points to be defined"))
+        elif self.industry_type == 'livestock':
             if not self.industry_standards:
-                raise UserError(_("Pharmaceutical industry requires industry standards to be defined"))
+                raise UserError(_("Livestock industry requires industry standards to be defined"))
         return True
 
 
@@ -64,17 +64,17 @@ class AgriInventoryMixin(models.AbstractModel):
     Abstract base model for inventory-related ISL models
     Implements US-084-04, US-084-08
     """
-    _name = 'agri.inventory.mixin'
+    _name = 'agri.isl.inventory.mixin'
     _description = 'Agri Inventory ISL Abstract Base Model'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     # Common fields for inventory ISL models
     industry_type = fields.Selection([
-        ('food_processing', 'Food Processing'),
-        ('pharmaceutical', 'Pharmaceutical'),
-        ('chemical', 'Chemical'),
-        ('general', 'General Manufacturing')
-    ], string='Industry Type', default='general', required=True, ondelete={'food_processing': 'cascade', 'pharmaceutical': 'cascade', 'chemical': 'cascade', 'general': 'cascade'})
+        ('field_crop', 'Field Crop'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('general', 'General Agriculture')
+    ], string='Industry Type', default='general', required=True, ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'})
 
     shelf_life_tracking = fields.Boolean('Shelf Life Tracking', default=False)
     batch_tracking = fields.Boolean('Batch Tracking', default=True)
@@ -97,17 +97,17 @@ class AgriSalesPurchaseMixin(models.AbstractModel):
     Abstract base model for sales/purchase-related ISL models
     Implements US-084-05, US-084-06
     """
-    _name = 'agri.sales.purchase.mixin'
+    _name = 'agri.isl.sales.purchase.mixin'
     _description = 'Agri Sales/Purchase ISL Abstract Base Model'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     # Common fields for sales/purchase ISL models
     industry_type = fields.Selection([
-        ('food_processing', 'Food Processing'),
-        ('pharmaceutical', 'Pharmaceutical'),
-        ('chemical', 'Chemical'),
-        ('general', 'General Manufacturing')
-    ], string='Industry Type', default='general', required=True, ondelete={'food_processing': 'cascade', 'pharmaceutical': 'cascade', 'chemical': 'cascade', 'general': 'cascade'})
+        ('field_crop', 'Field Crop'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('general', 'General Agriculture')
+    ], string='Industry Type', default='general', required=True, ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'})
 
     industry_certification = fields.Char('Industry Certification')
     compliance_requirements = fields.Text('Compliance Requirements')
@@ -126,17 +126,17 @@ class AgriProductMixin(models.AbstractModel):
     Abstract base model for product-related ISL models
     Implements US-084-07
     """
-    _name = 'agri.product.mixin'
+    _name = 'agri.isl.product.mixin'
     _description = 'Agri Product ISL Abstract Base Model'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     # Common fields for product ISL models
     industry_type = fields.Selection([
-        ('food_processing', 'Food Processing'),
-        ('pharmaceutical', 'Pharmaceutical'),
-        ('chemical', 'Chemical'),
-        ('general', 'General Manufacturing')
-    ], string='Industry Type', default='general', required=True, ondelete={'food_processing': 'cascade', 'pharmaceutical': 'cascade', 'chemical': 'cascade', 'general': 'cascade'})
+        ('field_crop', 'Field Crop'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('general', 'General Agriculture')
+    ], string='Industry Type', default='general', required=True, ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'})
 
     industry_category = fields.Char('Industry Category')
     safety_data_sheet = fields.Binary('Safety Data Sheet')
@@ -155,17 +155,17 @@ class AgriQualityMixin(models.AbstractModel):
     Abstract base model for quality control ISL models
     Implements US-084-10
     """
-    _name = 'agri.quality.mixin'
+    _name = 'agri.isl.quality.mixin'
     _description = 'Agri Quality Control ISL Abstract Base Model'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     # Common fields for quality ISL models
     industry_type = fields.Selection([
-        ('food_processing', 'Food Processing'),
-        ('pharmaceutical', 'Pharmaceutical'),
-        ('chemical', 'Chemical'),
-        ('general', 'General Manufacturing')
-    ], string='Industry Type', default='general', required=True, ondelete={'food_processing': 'cascade', 'pharmaceutical': 'cascade', 'chemical': 'cascade', 'general': 'cascade'})
+        ('field_crop', 'Field Crop'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('general', 'General Agriculture')
+    ], string='Industry Type', default='general', required=True, ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'})
 
     quality_standard = fields.Char('Quality Standard')
     quality_procedures = fields.Html('Quality Procedures')

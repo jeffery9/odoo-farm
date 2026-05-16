@@ -12,10 +12,10 @@ class FarmMRPProduction(models.Model):
     Centralized ISL model that extends base MRP Production with industry specialization
     This follows the _inherits pattern to own the base record completely
     """
-    _name = 'farm.mrp.production'
+    _name = 'agri.isl.mrp.production'
     _description = 'Farm ISL MRP Production Order'
     _inherits = {'mrp.production': 'mrp_production_id'}  # Owns base production record
-    _inherit = ['farm.manufacturing.mixin']  # Industry abstract functionality
+    _inherit = ['agri.isl.manufacturing.mixin']  # Industry abstract functionality
 
     # Foreign key relationship - CRITICAL for _inherits
     mrp_production_id = fields.Many2one(
@@ -39,7 +39,7 @@ class FarmProcessingProduction(models.Model):
     _name = 'farm.processing.production'
     _description = 'Farm Food Processing Production Order'
     _inherits = {'mrp.production': 'mrp_production_id'}  # Direct inheritance from base
-    _inherit = ['farm.manufacturing.mixin']  # Abstract industry functionality
+    _inherit = ['agri.isl.manufacturing.mixin']  # Abstract industry functionality
 
     # Foreign key relationship - CRITICAL for _inherits
     mrp_production_id = fields.Many2one(
@@ -65,7 +65,7 @@ class FarmProcessingProduction(models.Model):
     def write(self, vals):
         # Ensure industry type is set for food processing
         if 'industry_type' not in vals and not self.industry_type:
-            vals['industry_type'] = 'food_processing'
+            vals['industry_type'] = 'field_crop'
         return super().write(vals)
 
     @api.model_create_multi
@@ -73,12 +73,12 @@ class FarmProcessingProduction(models.Model):
         # Ensure industry type is set for food processing
         for vals in vals_list:
             if 'industry_type' not in vals or not vals.get('industry_type'):
-                vals['industry_type'] = 'food_processing'
+                vals['industry_type'] = 'field_crop'
         return super().create(vals_list)
 
     def action_confirm(self):
         # Industry-specific validation
-        if self.industry_type == 'food_processing' and not self.haccp_instructions:
+        if self.industry_type == 'field_crop' and not self.haccp_instructions:
             raise UserError(_("Food processing production requires HACCP instructions"))
 
         # Call parent method to maintain all base functionality
@@ -93,7 +93,7 @@ class FarmLivestockProduction(models.Model):
     _name = 'farm.livestock.production'
     _description = 'Livestock Growth Order (ISL Layer)'
     _inherits = {'mrp.production': 'production_id'}  # Direct inheritance from base
-    _inherit = ['farm.manufacturing.mixin']  # Abstract functionality
+    _inherit = ['agri.isl.manufacturing.mixin']  # Abstract functionality
 
     # Foreign key relationship - CRITICAL for _inherits
     production_id = fields.Many2one(
@@ -142,7 +142,7 @@ class RecommendedPattern(models.Model):
 class AlternativePattern(models.Model):
     """Alternative: Inherit from centralized ISL model"""
     _name = 'alternative.pattern'
-    _inherit = 'farm.mrp.production'  # Extends existing ISL model
+    _inherit = 'agri.isl.mrp.production'  # Extends existing ISL model
 
     # Additional industry-specific fields here
 
@@ -163,7 +163,7 @@ def create_isl_production_with_inherits():
     # Step 2: Create ISL record that owns the base record via _inherits
     isl_production = env['farm.processing.production'].create({
         'mrp_production_id': base_production.id,  # This creates the _inherits relationship
-        'industry_type': 'food_processing',
+        'industry_type': 'field_crop',
         'haccp_instructions': 'Follow HACCP guidelines...',
         'target_temp': 75.0,
     })

@@ -16,11 +16,11 @@ def migrate_production_to_industries():
         industry_type = determine_industry_type(base_prod)
 
         # Create ISL record with proper industry type
-        if industry_type == 'food_processing':
+        if industry_type == 'field_crop':
             # Create processing-specific ISL record
             env['farm.processing.production'].create({
                 'production_id': base_prod.id,
-                'industry_type': 'food_processing',
+                'industry_type': 'field_crop',
                 'energy_reading_start': 0,
                 'energy_reading_end': 0,
             })
@@ -41,7 +41,7 @@ def determine_industry_type(base_record):
     if 'livestock' in base_record.product_id.name.lower():
         return 'livestock'
     elif 'food' in base_record.product_id.name.lower() or 'process' in base_record.product_id.name.lower():
-        return 'food_processing'
+        return 'field_crop'
     else:
         return 'general'
 

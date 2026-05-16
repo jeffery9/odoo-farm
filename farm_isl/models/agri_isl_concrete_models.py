@@ -14,11 +14,11 @@ class AgriMRPProduction(models.Model):
     ISL model for MRP Production Orders with industry specialization
     Implements US-084-01: MRP production order ISL model implementation
     """
-    _name = 'agri.mrp.production'
+    _name = 'agri.isl.mrp.production'
     # TODO: [DE-INDUSTRIAL] Use 'Agri ISL Intervention' or similar
     _description = 'Agri ISL MRP Production Order'
     _inherits = {'mrp.production': 'mrp_production_id'}
-    _inherit = ['agri.manufacturing.mixin']
+    _inherit = ['agri.isl.manufacturing.mixin']
 
     mrp_production_id = fields.Many2one(
         'mrp.production',
@@ -37,13 +37,13 @@ class AgriMRPProduction(models.Model):
     # Industry-specific methods
     def _check_industry_compliance(self):
         """Check industry-specific compliance before production"""
-        if self.industry_type == 'food_processing':
+        if self.industry_type == 'field_crop':
             if not self.haccp_plan:
                 raise UserError(_("Food processing production requires HACCP plan"))
-        elif self.industry_type == 'pharmaceutical':
+        elif self.industry_type == 'livestock':
             if not self.gmp_compliance:
                 raise UserError(_("Pharmaceutical production requires GMP compliance"))
-        elif self.industry_type == 'chemical':
+        elif self.industry_type == 'aquaculture':
             if not self.safety_procedures:
                 raise UserError(_("Chemical production requires safety procedures"))
         return super()._validate_industry_requirements()
@@ -54,11 +54,11 @@ class AgriMRPBom(models.Model):
     ISL model for MRP BOMs with industry specialization
     Implements US-084-02: MRP BOM ISL model implementation
     """
-    _name = 'agri.mrp.bom'
+    _name = 'agri.isl.mrp.bom'
     # TODO: [DE-INDUSTRIAL] Use 'Agri ISL Cultivation Recipe'
     _description = 'Agri ISL MRP Bill of Materials'
     _inherits = {'mrp.bom': 'mrp_bom_id'}
-    _inherit = ['agri.manufacturing.mixin']
+    _inherit = ['agri.isl.manufacturing.mixin']
 
     mrp_bom_id = fields.Many2one(
         'mrp.bom',
@@ -78,11 +78,11 @@ class AgriMRPBom(models.Model):
 
     def _validate_recipe_compliance(self):
         """Validate recipe compliance based on industry type"""
-        if self.industry_type == 'food_processing':
+        if self.industry_type == 'field_crop':
             # Check for allergen control
             if not self.allergen_control and any('allergen' in comp.name.lower() for comp in self.bom_line_ids):
                 raise UserError(_("Food BOM with allergens requires allergen control"))
-        elif self.industry_type == 'pharmaceutical':
+        elif self.industry_type == 'livestock':
             if not self.active_ingredient:
                 raise UserError(_("Pharmaceutical BOM requires active ingredient specification"))
         return True
@@ -91,11 +91,11 @@ class AgriMRPWorkcenter(models.Model):
     """
     Implements US-084-03: MRP work center ISL model implementation
     """
-    _name = 'agri.mrp.workcenter'
+    _name = 'agri.isl.mrp.workcenter'
     # TODO: [DE-INDUSTRIAL] Use 'Agri ISL Processing Unit' or 'Farm Facility'
     _description = 'Agri ISL MRP Work Center'
     _inherits = {'mrp.workcenter': 'workcenter_id'}
-    _inherit = ['agri.manufacturing.mixin']
+    _inherit = ['agri.isl.manufacturing.mixin']
 
     workcenter_id = fields.Many2one(
         'mrp.workcenter',
@@ -115,10 +115,10 @@ class AgriMRPWorkcenter(models.Model):
 
     def _validate_workcenter_compliance(self):
         """Validate work center compliance based on industry type"""
-        if self.industry_type in ['food_processing', 'pharmaceutical']:
+        if self.industry_type in ['field_crop', 'livestock']:
             if not self.cip_required:
                 raise UserError(_("Food/pharmaceutical work centers require CIP capability"))
-        elif self.industry_type == 'chemical':
+        elif self.industry_type == 'aquaculture':
             if not self.explosion_proof:
                 raise UserError(_("Chemical work centers require explosion-proof equipment"))
         return True
@@ -129,10 +129,10 @@ class AgriStockLot(models.Model):
     ISL model for Stock Lots with industry specialization
     Implements US-084-04: Inventory batch ISL model implementation
     """
-    _name = 'agri.stock.lot'
+    _name = 'agri.isl.stock.lot'
     _description = 'Agri ISL Stock Lot'
     _inherits = {'stock.lot': 'stock_lot_id'}
-    _inherit = ['agri.inventory.mixin']
+    _inherit = ['agri.isl.inventory.mixin']
 
     stock_lot_id = fields.Many2one(
         'stock.lot',
@@ -153,10 +153,10 @@ class AgriStockLot(models.Model):
 
     def _validate_lot_compliance(self):
         """Validate lot compliance based on industry type"""
-        if self.industry_type == 'pharmaceutical':
+        if self.industry_type == 'livestock':
             if not self.sterility_date:
                 raise UserError(_("Pharmaceutical lots require sterility date"))
-        elif self.industry_type == 'food_processing':
+        elif self.industry_type == 'field_crop':
             if not self.kill_date:
                 raise UserError(_("Food processing lots require kill date"))
         return True
@@ -167,10 +167,10 @@ class AgriSaleOrder(models.Model):
     ISL model for Sale Orders with industry specialization
     Implements US-084-05: Sales order ISL model implementation
     """
-    _name = 'agri.sale.order'
+    _name = 'agri.isl.sale.order'
     _description = 'Agri ISL Sale Order'
     _inherits = {'sale.order': 'sale_order_id'}
-    _inherit = ['agri.sales.purchase.mixin']
+    _inherit = ['agri.isl.sales.purchase.mixin']
 
     sale_order_id = fields.Many2one(
         'sale.order',
@@ -189,10 +189,10 @@ class AgriSaleOrder(models.Model):
 
     def _validate_sales_compliance(self):
         """Validate sales compliance based on industry type"""
-        if self.industry_type == 'food_processing':
+        if self.industry_type == 'field_crop':
             if not self.traceability_requirements:
                 raise UserError(_("Food processing sales require traceability requirements"))
-        elif self.industry_type == 'pharmaceutical':
+        elif self.industry_type == 'livestock':
             if not self.temperature_monitoring:
                 raise UserError(_("Pharmaceutical sales require temperature monitoring"))
         return True
@@ -203,10 +203,10 @@ class AgriPurchaseOrder(models.Model):
     ISL model for Purchase Orders with industry specialization
     Implements US-084-06: Purchase order ISL model implementation
     """
-    _name = 'agri.purchase.order'
+    _name = 'agri.isl.purchase.order'
     _description = 'Agri ISL Purchase Order'
     _inherits = {'purchase.order': 'purchase_order_id'}
-    _inherit = ['agri.sales.purchase.mixin']
+    _inherit = ['agri.isl.sales.purchase.mixin']
 
     purchase_order_id = fields.Many2one(
         'purchase.order',
@@ -224,10 +224,10 @@ class AgriPurchaseOrder(models.Model):
 
     def _validate_purchase_compliance(self):
         """Validate purchase compliance based on industry type"""
-        if self.industry_type == 'pharmaceutical':
+        if self.industry_type == 'livestock':
             if not self.quality_agreement:
                 raise UserError(_("Pharmaceutical purchases require quality agreement"))
-        elif self.industry_type == 'food_processing':
+        elif self.industry_type == 'field_crop':
             if not self.certificate_verification:
                 raise UserError(_("Food processing purchases require certificate verification"))
         return True
@@ -238,10 +238,10 @@ class AgriProductTemplate(models.Model):
     ISL model for Product Templates with industry specialization
     Implements US-084-07: Product template ISL model implementation
     """
-    _name = 'agri.product.template'
+    _name = 'agri.isl.product.template'
     _description = 'Agri ISL Product Template'
     _inherits = {'product.template': 'product_template_id'}
-    _inherit = ['agri.product.mixin']
+    _inherit = ['agri.isl.product.mixin']
 
     product_template_id = fields.Many2one(
         'product.template',
@@ -261,13 +261,13 @@ class AgriProductTemplate(models.Model):
 
     def _validate_product_compliance(self):
         """Validate product compliance based on industry type"""
-        if self.industry_type == 'food_processing':
+        if self.industry_type == 'field_crop':
             if not self.allergen_information:
                 raise UserError(_("Food products require allergen information"))
-        elif self.industry_type == 'pharmaceutical':
+        elif self.industry_type == 'livestock':
             if not self.pharmacological_class:
                 raise UserError(_("Pharmaceutical products require pharmacological class"))
-        elif self.industry_type == 'chemical':
+        elif self.industry_type == 'aquaculture':
             if not self.hazard_class:
                 raise UserError(_("Chemical products require hazard class"))
         return True
@@ -278,10 +278,10 @@ class AgriStockPicking(models.Model):
     ISL model for Stock Pickings with industry specialization
     Implements US-084-08: Inventory transfer ISL model implementation
     """
-    _name = 'agri.stock.picking'
+    _name = 'agri.isl.stock.picking'
     _description = 'Agri ISL Stock Picking'
     _inherits = {'stock.picking': 'picking_id'}
-    _inherit = ['agri.inventory.mixin']
+    _inherit = ['agri.isl.inventory.mixin']
 
     picking_id = fields.Many2one(
         'stock.picking',
@@ -300,7 +300,7 @@ class AgriStockPicking(models.Model):
 
     def _validate_picking_compliance(self):
         """Validate picking compliance based on industry type"""
-        if self.industry_type in ['pharmaceutical', 'food_processing']:
+        if self.industry_type in ['livestock', 'field_crop']:
             if self.temperature_control and not self.temperature_log:
                 raise UserError(_("Temperature-controlled transfers require temperature log"))
         return True
@@ -311,10 +311,10 @@ class AgriMRPWorkorder(models.Model):
     ISL model for MRP Work Orders with industry specialization
     Implements US-084-09: MRP work order ISL model implementation
     """
-    _name = 'agri.mrp.workorder'
+    _name = 'agri.isl.mrp.workorder'
     _description = 'Agri ISL MRP Work Order'
     _inherits = {'mrp.workorder': 'workorder_id'}
-    _inherit = ['agri.manufacturing.mixin']
+    _inherit = ['agri.isl.manufacturing.mixin']
 
     workorder_id = fields.Many2one(
         'mrp.workorder',
@@ -332,10 +332,10 @@ class AgriMRPWorkorder(models.Model):
 
     def _validate_workorder_compliance(self):
         """Validate work order compliance based on industry type"""
-        if self.industry_type == 'pharmaceutical':
+        if self.industry_type == 'livestock':
             if not self.batch_record:
                 raise UserError(_("Pharmaceutical work orders require batch record"))
-        elif self.industry_type in ['food_processing', 'pharmaceutical']:
+        elif self.industry_type in ['field_crop', 'livestock']:
             if not self.in_process_inspection:
                 raise UserError(_("Food/pharmaceutical work orders require in-process inspection"))
         return True
@@ -346,10 +346,10 @@ class AgriQualityControl(models.Model):
     ISL model for Quality Control Points with industry specialization
     Implements US-084-10: Quality control point ISL model implementation
     """
-    _name = 'agri.quality.control'
+    _name = 'agri.isl.quality.control'
     _description = 'Agri ISL Quality Control'
     # _inherits = {.agri.quality.point.: .agri_quality_point_id.}
-    _inherit = ['agri.quality.mixin']
+    _inherit = ['agri.isl.quality.mixin']
 
     # agri_quality_point_id = fields.Many2one(
 #         .agri.quality.point.,
@@ -366,10 +366,10 @@ class AgriQualityControl(models.Model):
 
     def _validate_quality_compliance(self):
         """Validate quality control compliance based on industry type"""
-        if self.industry_type == 'food_processing':
+        if self.industry_type == 'field_crop':
             if not self.ccp_monitoring:
                 raise UserError(_("Food processing quality control requires CCP monitoring"))
-        elif self.industry_type == 'pharmaceutical':
+        elif self.industry_type == 'livestock':
             if not self.aql_sampling:
                 raise UserError(_("Pharmaceutical quality control requires AQL sampling"))
         return True

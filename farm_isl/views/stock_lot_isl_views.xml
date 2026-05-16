@@ -23,20 +23,20 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Industry Specific" invisible="industry_type != 'food_processing'">
+                        <page string="Industry Specific" invisible="industry_type != 'field_crop'">
                             <group>
                                 <field name="harvest_date"/>
                                 <field name="kill_date"/>
                                 <field name="storage_conditions" placeholder="Food storage conditions"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'pharmaceutical'">
+                        <page string="Industry Specific" invisible="industry_type != 'livestock'">
                             <group>
                                 <field name="sterility_date"/>
                                 <field name="stability_data" placeholder="Pharmaceutical stability data"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'chemical'">
+                        <page string="Industry Specific" invisible="industry_type != 'aquaculture'">
                             <field name="storage_conditions" placeholder="Chemical storage requirements"/>
                         </page>
                         <page string="General Industry Info">
