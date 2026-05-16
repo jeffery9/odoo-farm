@@ -16,9 +16,7 @@
         "farm_ai_core",
         "farm_agri_science",
         "farm_operation",
-        "farm_ai_core",
         "farm_ai_llm_integration",
-        "farm_agri_science"
     ],
     "data": [
         "security/ir.model.access.csv",
