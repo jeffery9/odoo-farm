@@ -6,7 +6,7 @@ class TestDeepCoverageFarmIsl(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = ['farm.mrp.workcenter', 'farm.mrp.bom', 'stock.move', 'agri.mrp.bom', 'agri.quality.control', 'farm.purchase.order', 'agri.sale.order', 'agri.isl.extension', 'farm.sale.order', 'agri.purchase.order', 'agri.mrp.workorder', 'farm.mrp.production', 'agri.mrp.production', 'agri.isl.migration.utility', 'agri.isl.model.redirector', 'stock.lot', 'farm.product.template', 'agri.product.template', 'farm.stock.lot', 'farm.mrp.workorder', 'farm.quality.control', 'farm.isl.extension', 'farm.stock.picking', 'agri.mrp.workcenter', 'isl.model.redirector', 'agri.stock.picking', 'isl.migration.utility', 'agri.stock.lot', 'agri.isl.industry.planting']
+        cls.models_to_test = ['agri.isl.mrp.workcenter', 'agri.isl.mrp.bom', 'stock.move', 'agri.isl.mrp.bom', 'agri.isl.quality.control', 'agri.isl.purchase.order', 'agri.isl.sale.order', 'agri.isl.extension', 'agri.isl.sale.order', 'agri.isl.purchase.order', 'agri.isl.mrp.workorder', 'agri.isl.mrp.production', 'agri.isl.mrp.production', 'agri.isl.migration.utility', 'agri.isl.model.redirector', 'stock.lot', 'agri.isl.product.template', 'agri.isl.product.template', 'agri.isl.stock.lot', 'agri.isl.mrp.workorder', 'agri.isl.quality.control', 'farm.isl.extension', 'agri.isl.stock.picking', 'agri.isl.mrp.workcenter', 'isl.model.redirector', 'agri.isl.stock.picking', 'isl.migration.utility', 'agri.isl.stock.lot', 'agri.isl.industry.planting']
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """

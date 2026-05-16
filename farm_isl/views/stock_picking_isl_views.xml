@@ -30,18 +30,18 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Industry Specific" invisible="industry_type != 'food_processing' and industry_type != 'pharmaceutical'">
+                        <page string="Industry Specific" invisible="industry_type != 'field_crop' and industry_type != 'livestock'">
                             <group>
                                 <field name="temperature_log" placeholder="Temperature monitoring log"/>
                                 <field name="humidity_log" placeholder="Humidity monitoring log"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'food_processing'">
+                        <page string="Industry Specific" invisible="industry_type != 'field_crop'">
                             <group>
                                 <field name="chain_of_custody" placeholder="Food chain of custody documentation"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'pharmaceutical'">
+                        <page string="Industry Specific" invisible="industry_type != 'livestock'">
                             <group>
                                 <field name="security_seal" placeholder="Pharmaceutical security seal"/>
                             </group>
