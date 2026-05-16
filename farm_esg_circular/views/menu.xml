@@ -3,7 +3,7 @@
 <menuitem id="menu_farm_esg_circular_root"
               name="Circular Economy"
               sequence="60"
-              web_icon="farm_esg_circular,static/description/icon.png"/>
+              parent="farm_esg.menu_esg_root"/>
 
     
     <menuitem id="menu_circular_flow_management"

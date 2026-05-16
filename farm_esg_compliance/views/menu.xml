@@ -3,7 +3,7 @@
 <menuitem id="menu_farm_esg_compliance_root"
               name="ESG Compliance"
               sequence="65"
-              web_icon="farm_esg_compliance,static/description/icon.png"/>
+              parent="farm_esg.menu_esg_root"/>
 
     
     <menuitem id="menu_epic_101_sustainability_framework"

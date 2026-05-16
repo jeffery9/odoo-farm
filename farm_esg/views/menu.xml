@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="esg_base_menu" name="ESG Base" sequence="35" groups="farm_core.group_farm_manager"/>
+
+    <menuitem id="menu_esg_root"
+              name="ESG & Sustainability"
+              sequence="100"
+              web_icon="farm_esg,static/description/icon.png"/>
+
 
     
     <menuitem id="esg_frameworks_menu" name="ESG Frameworks"
-              parent="esg_base_menu" sequence="10"/>
+              parent="menu_esg_root" sequence="10"/>
 
     <menuitem id="esg_framework_menu" name="Frameworks"
               parent="esg_frameworks_menu" sequence="10"
@@ -16,7 +21,7 @@
 
     
     <menuitem id="esg_indicators_menu" name="ESG Indicators"
-              parent="esg_base_menu" sequence="20"/>
+              parent="menu_esg_root" sequence="20"/>
 
     <menuitem id="esg_indicator_menu" name="Indicators"
               parent="esg_indicators_menu" sequence="10"
@@ -28,7 +33,7 @@
 
     
     <menuitem id="esg_targets_reports_menu" name="Targets &amp; Reports"
-              parent="esg_base_menu" sequence="30"/>
+              parent="menu_esg_root" sequence="30"/>
 
     <menuitem id="esg_target_menu" name="Targets"
               parent="esg_targets_reports_menu" sequence="10"

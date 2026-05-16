@@ -3,7 +3,7 @@
     <menuitem id="farm_ai_agent_menu_root"
               name="AI Decision System"
               sequence="10"
-              web_icon="farm_ai_agent,static/description/icon.png"/>
+              parent="farm_ai.menu_ai_root"/>
 
     <menuitem id="farm_ai_agent_coordination_menu"
               name="Coordination Layer"
