@@ -1,38 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="farm_core.menu_multi_farm_root"
+    <!-- Root Menu (Merged) -->
+    <menuitem id="farm_core.menu_multi_farm_root"
               name="Multi-Entity Collaboration"
               sequence="120"
               web_icon="farm_multi_farm,static/description/icon.png"
               groups="farm_core.group_farm_manager"/>
 
-    
-    
+    <!-- Entity Management -->
     <menuitem id="menu_entity_management"
               name="Entity Management"
               parent="farm_core.menu_multi_farm_root"
               sequence="10"/>
+
+    <menuitem id="cooperative_entity_menu"
+              name="Cooperatives"
+              parent="menu_entity_management"
+              action="action_cooperative_entities"
+              sequence="10"/>
+
+    <menuitem id="farm_entity_menu"
+              name="Farm Entities"
+              parent="menu_entity_management"
+              action="action_farm_entities"
+              sequence="20"/>
+
+    <menuitem id="franchise_farm_menu"
+              name="Franchise Farms"
+              parent="menu_entity_management"
+              action="action_franchise_farms"
+              sequence="30"/>
 
     <menuitem id="menu_resource_sharing"
               name="Resource Sharing"
               parent="farm_core.menu_multi_farm_root"
               sequence="20"/>
 
-    
+    <menuitem id="resource_sharing_menu"
+              name="Resource Sharing"
+              parent="menu_resource_sharing"
+              action="action_resource_sharing"
+              sequence="10"/>
+
+    <!-- Business Layers (Financial, Procurement, Quality) -->
     <menuitem id="menu_financial_management"
               name="Financial Management"
               parent="farm_core.menu_multi_farm_root"
               sequence="30"/>
 
-    
     <menuitem id="menu_procurement_management"
               name="Procurement Management"
               parent="farm_core.menu_multi_farm_root"
               sequence="40"/>
 
-    
     <menuitem id="menu_quality_management"
               name="Quality Management"
               parent="farm_core.menu_multi_farm_root"
               sequence="50"/>
+
+    <!-- Operational Layers -->
+    <menuitem id="cooperative_member_menu"
+              name="Members"
+              parent="farm_core.menu_multi_farm_root"
+              sequence="60"/>
+
+    <menuitem id="regional_oversight_menu"
+              name="Regional Oversight"
+              parent="farm_core.menu_multi_farm_root"
+              sequence="70"/>
 </odoo>

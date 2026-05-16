@@ -2,7 +2,7 @@
 <odoo>
 <menuitem id="multi_farm_quality_menu"
               name="Quality Management"
-              parent="farm_multi_farm_base.multi_farm_root_menu"
+              parent="farm_multi_farm.multi_farm_root_menu"
               sequence="70"/>
 
     
