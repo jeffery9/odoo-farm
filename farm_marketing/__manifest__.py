@@ -10,7 +10,7 @@
         - Integration with Agritourism & CRM
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'farm_quality', 'farm_operation', 'website', 'loyalty'],
+    'depends': ['farm_core', 'farm_operation', 'website', 'loyalty'],
     'data': [
         'security/ir.model.access.csv',
         'views/gi_registry_views.xml',
