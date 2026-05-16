@@ -10,7 +10,7 @@
     <!-- Entity Management -->
     <menuitem id="menu_entity_management"
               name="Entity Management"
-              parent="farm_core.menu_multi_farm_root"
+ web_icon="farm_multi_farm,static/description/icon.png"
               sequence="10"/>
 
     <menuitem id="cooperative_entity_menu"
@@ -33,7 +33,7 @@
 
     <menuitem id="menu_resource_sharing"
               name="Resource Sharing"
-              parent="farm_core.menu_multi_farm_root"
+ web_icon="farm_multi_farm,static/description/icon.png"
               sequence="20"/>
 
     <menuitem id="resource_sharing_menu"
@@ -45,27 +45,27 @@
     <!-- Business Layers (Financial, Procurement, Quality) -->
     <menuitem id="menu_financial_management"
               name="Financial Management"
-              parent="farm_core.menu_multi_farm_root"
+ web_icon="farm_multi_farm,static/description/icon.png"
               sequence="30"/>
 
     <menuitem id="menu_procurement_management"
               name="Procurement Management"
-              parent="farm_core.menu_multi_farm_root"
+ web_icon="farm_multi_farm,static/description/icon.png"
               sequence="40"/>
 
     <menuitem id="menu_quality_management"
               name="Quality Management"
-              parent="farm_core.menu_multi_farm_root"
+ web_icon="farm_multi_farm,static/description/icon.png"
               sequence="50"/>
 
     <!-- Operational Layers -->
     <menuitem id="cooperative_member_menu"
               name="Members"
-              parent="farm_core.menu_multi_farm_root"
+ web_icon="farm_multi_farm,static/description/icon.png"
               sequence="60"/>
 
     <menuitem id="regional_oversight_menu"
               name="Regional Oversight"
-              parent="farm_core.menu_multi_farm_root"
+ web_icon="farm_multi_farm,static/description/icon.png"
               sequence="70"/>
 </odoo>

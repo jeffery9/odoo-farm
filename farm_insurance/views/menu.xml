@@ -2,6 +2,6 @@
 <odoo>
 <menuitem id="menu_insurance_root"
               name="Insurance"
-              parent="farm_core.menu_finance_root"
+ web_icon="farm_insurance,static/description/icon.png"
               sequence="50"/>
 </odoo>

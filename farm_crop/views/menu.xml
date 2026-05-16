@@ -70,7 +70,7 @@
 
 <menuitem id="menu_crop_rotation_root"
               name="Crop Rotation"
-              parent="farm_core.menu_farm_root"
+ web_icon="farm_crop,static/description/icon.png"
               sequence="20"/>
 
     <menuitem id="menu_crop_rotation_history"

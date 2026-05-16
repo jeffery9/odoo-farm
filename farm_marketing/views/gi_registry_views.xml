@@ -60,7 +60,7 @@
 
     <menuitem id="menu_agri_gi_registry"
               name="GI Registry"
-              parent="farm_core.menu_farm_root"
+ web_icon="farm_marketing,static/description/icon.png"
               action="action_agri_gi_registry"
               sequence="60"/>
 

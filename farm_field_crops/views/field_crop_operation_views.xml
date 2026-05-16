@@ -97,7 +97,7 @@
     <!-- Menu items for Field Crop Operations -->
     <menuitem id="menu_field_crop_operations_root"
               name="Field Crops"
-              parent="farm_core.menu_farm_root"
+ web_icon="farm_field_crops,static/description/icon.png"
               sequence="20"/>
 
     <menuitem id="menu_field_crop_operations"

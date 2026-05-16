@@ -77,5 +77,5 @@
         </field>
     </record>
 
-    <menuitem id="menu_farm_mobile_checkin" name="Check-in Logs" parent="farm_core.menu_farm_root" action="action_farm_checkin" sequence="90"/>
+    <menuitem id="menu_farm_mobile_checkin" name="Check-in Logs" web_icon="farm_mobile,static/description/icon.png" action="action_farm_checkin" sequence="90"/>
 </odoo>

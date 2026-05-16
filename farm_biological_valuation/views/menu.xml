@@ -19,7 +19,7 @@
     
     <menuitem id="farm_biological_asset_valuation_action"
               name="Biological Asset Valuation"
-              parent="farm_core.menu_finance_root"
+ web_icon="farm_biological_valuation,static/description/icon.png"
               action="action_biological_asset_valuation"
               sequence="20"/>
 </odoo>

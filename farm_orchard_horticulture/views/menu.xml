@@ -2,6 +2,6 @@
 <odoo>
 <menuitem id="menu_farm_orchard_horticulture_menu_root"
               name="Orchard Horticulture"
-              parent="farm_core.menu_farm_root"
+ web_icon="farm_orchard_horticulture,static/description/icon.png"
               sequence="22"/>
 </odoo>

@@ -6,6 +6,6 @@
 
     <menuitem id="farm_financial_core_config_menu"
               name="Configuration"
-              parent="farm_core.menu_finance_root"
+ web_icon="farm_financial_core,static/description/icon.png"
               sequence="10"/>
 </odoo>

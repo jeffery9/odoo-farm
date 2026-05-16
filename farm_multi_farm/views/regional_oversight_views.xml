@@ -69,7 +69,7 @@
 
     <menuitem id="menu_regional_oversight"
               name="Regional Oversight (G2B)"
-              parent="farm_core.menu_multi_farm_root"
+ web_icon="farm_multi_farm,static/description/icon.png"
               action="action_farm_regional_oversight"
               sequence="5"/>
 </odoo>

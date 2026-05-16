@@ -85,6 +85,6 @@
         <field name="view_mode">kanban,list,form</field>
     </record>
 
-    <menuitem id="menu_farm_weather" name="Weather" parent="farm_core.menu_farm_root" sequence="55"/>
+    <menuitem id="menu_farm_weather" name="Weather" web_icon="farm_weather,static/description/icon.png" sequence="55"/>
     <menuitem id="menu_farm_weather_forecast" name="Forecast" parent="menu_farm_weather" action="action_farm_weather" sequence="10"/>
 </odoo>
