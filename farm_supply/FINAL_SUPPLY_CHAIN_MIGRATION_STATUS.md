@@ -8,7 +8,7 @@ This document shows the complete migration status of deprecated supply chain mod
 Instead of having overlapping functionality in multiple modules, the architecture consolidates functions into 5 well-defined specialized modules:
 
 ```
-farm_supply_core (core foundation)
+farm_supply (core foundation)
 ├── farm_supply_procurement (procurement & input management)
 ├── farm_supply_quality (quality & pricing)
 ├── farm_supply_logistics (logistics & cold chain)
