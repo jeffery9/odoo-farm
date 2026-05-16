@@ -126,7 +126,7 @@
 
     
     <menuitem id="menu_farm_esg_compliance_root" name="Compliance &amp; Sustainability" 
-              parent="farm_esg.esg_base_menu" sequence="25"/>
+              parent="farm_esg.menu_esg_root" sequence="25"/>
     
     <menuitem id="menu_farm_subsidy" name="Subsidies Tracking" 
               parent="menu_farm_esg_compliance_root" action="action_farm_subsidy" sequence="10"/>

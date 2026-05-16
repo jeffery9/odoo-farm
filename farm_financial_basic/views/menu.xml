@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="farm_financial_basic_menu_root"
-              name="Basic Financial"
- web_icon="farm_financial_basic,static/description/icon.png"
+<menuitem id="farm_financial_basic_menu_root" name="Basic Financial" parent="farm_financial.menu_financial_root"
               sequence="20"/>
 
     <menuitem id="farm_financial_basic_config_menu"
