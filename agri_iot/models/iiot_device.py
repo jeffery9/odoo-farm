@@ -61,14 +61,8 @@ class IiotDevice(models.Model):
     @api.model
     def _get_business_models(self):
         # Return a list of models that can be referenced
-        # This can be extended based on actual business needs
-        return [
-            ('maintenance.equipment', 'Maintenance Equipment'),
-            ('mrp.workcenter', 'Work Center'),
-            ('stock.location', 'Stock Location'),
-            ('product.product', 'Product'),
-            ('project.task', 'Project Task'),
-        ]
+        # This should be extended by business modules (e.g., via _inherit)
+        return []
 
     @api.depends('serial_number', 'device_id')
     def _compute_name(self):
