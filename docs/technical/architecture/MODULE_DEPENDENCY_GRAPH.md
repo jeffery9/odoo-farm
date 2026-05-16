@@ -50,7 +50,7 @@ graph TD
     farm_supply_quality["farm_supply_quality"]:::highlight
     farm_valuation["farm_valuation"]:::highlight
     farm_weather["farm_weather"]:::highlight
-    precision_production["precision_production"]:::highlight
+    farm_operation["farm_operation"]:::highlight
     farm_agri_science --> farm_core
     farm_agri_science --> farm_iot
     farm_agritourism --> farm_core
@@ -104,7 +104,7 @@ graph TD
     farm_valuation --> farm_financial_valuation
     farm_weather --> farm_core
     farm_weather --> farm_iot
-    precision_production --> farm_agri_science
+    farm_operation --> farm_agri_science
 ```
 
 ## Industry Apps (垂直应用层)
@@ -113,7 +113,7 @@ graph TD
 graph TD
     classDef default fill:#fefefe,stroke:#333,stroke-width:1px,color:#000;
     classDef highlight fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000;
-    agri_precision_core["agri_precision_core"]:::highlight
+    farm_operation["farm_operation"]:::highlight
     farm_agricultural_processing["farm_agricultural_processing"]:::highlight
     farm_ai_decision["farm_ai_decision"]:::highlight
     farm_ai_vision["farm_ai_vision"]:::highlight
@@ -166,9 +166,9 @@ graph TD
     farm_training["farm_training"]:::highlight
     farm_viticulture["farm_viticulture"]:::highlight
     farm_waste_mgmt["farm_waste_mgmt"]:::highlight
-    precision_production_iot["precision_production_iot"]:::highlight
-    agri_precision_core --> agri_iot
-    agri_precision_core --> precision_production
+    farm_iot["farm_iot"]:::highlight
+    farm_operation --> agri_iot
+    farm_operation --> farm_operation
     farm_agricultural_processing --> farm_processing
     farm_ai_decision --> farm_agri_science
     farm_ai_decision --> farm_agri_science
@@ -316,9 +316,9 @@ graph TD
     farm_waste_mgmt --> farm_core
     farm_waste_mgmt --> farm_livestock
     farm_waste_mgmt --> farm_quality
-    precision_production_iot --> agri_iot
-    precision_production_iot --> farm_agri_science
-    precision_production_iot --> precision_production
+    farm_iot --> agri_iot
+    farm_iot --> farm_agri_science
+    farm_iot --> farm_operation
 ```
 
 ## Intelligence & Compliance (智控合规层)

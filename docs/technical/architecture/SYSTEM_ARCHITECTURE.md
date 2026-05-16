@@ -17,7 +17,7 @@ flowchart TD
 
     subgraph L3 [<b>L3: 精密执行层</b>]
         direction LR
-        Pre["precision_production"] --- PIoT["precision_production_iot"]
+        Pre["farm_operation"] --- PIoT["farm_iot"]
     end
 
     subgraph L2 [<b>L2: 科学决策层</b>]

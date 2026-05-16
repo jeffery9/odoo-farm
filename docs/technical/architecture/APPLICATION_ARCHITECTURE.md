@@ -63,8 +63,8 @@ Farm Management (农场管理)
 farm_core (基础核心)
 ├── farm_operation (通用作业/干预引擎 - L1)
 │   ├── farm_agri_science (农学科学/VRA 引擎 - L2)
-│   │   └── precision_production (精密生产/ISA-88 - L3)
-│   │       └── precision_production_iot (MQTT 实时闭环)
+│   │   └── farm_operation (精密生产/ISA-88 - L3)
+│   │       └── farm_iot (MQTT 实时闭环)
 ├── farm_planning (生产规划)
 ├── farm_iot (通用IoT管理)
 ├── farm_equipment (设备管理)
@@ -210,8 +210,8 @@ farm_core (基础核心)
 - **farm.vra.strategy.user**: VRA 变量策略设计权限
 
 ### 2.15 精密生产执行组 (Precision Production) - [NEW V3.0]
-- **precision.production.user**: ISA-88 订单与配方执行权限
-- **precision.production.iot.user**: 实时设备参数监控与指令下发权限
+- **farm.operation.user**: ISA-88 订单与配方执行权限
+- **farm.operation.iot.user**: 实时设备参数监控与指令下发权限
 
 ## 3. 应用层级用户组 (Application User Groups)
 
@@ -284,7 +284,7 @@ farm_core (基础核心)
 
 ### 3.13 精密执行应用组 - [NEW V3.0]
 - **farm.precision.app.user**: 精密生产应用权限组合
-  - 组合: precision.production.user + precision.production.iot.user + farm.iot.user
+  - 组合: farm.operation.user + farm.operation.iot.user + farm.iot.user
 
 ## 4. 角色层级用户组 (Role User Groups)
 
@@ -333,7 +333,7 @@ farm_core (基础核心)
 - **权限组成**:
   - base.group_user (内部用户) - 基础权限
   - farm.production.app.user (生产管理应用)
-  - precision.production.user (精密生产执行) [NEW]
+  - farm.operation.user (精密生产执行) [NEW]
   - farm.iot.app.user (物联网应用)
   - farm.hr.user (人力资源) - 单独权限
   - project.group_project_user (项目用户) - 任务查看权限

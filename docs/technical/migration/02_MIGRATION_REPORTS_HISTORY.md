@@ -317,11 +317,11 @@ farm 项目的安全性实现是全面和健全的，包含以下几个关键方
 
 ### 7.1 模型级权限验证
 - **状态**: ✅ 已验证
-- **实现**: precision_production/security/ir.model.access.csv
+- **实现**: farm_operation/security/ir.model.access.csv
 - **详情**: 
     - Master Recipe (BOM) 模型受控。
     - Control Recipe (MO) 实例化实体支持细粒度权限。
-    - 审计日志 (precision.intervention.log) 具有不可篡改的写入权限。
+    - 审计日志 (agri.intervention.log) 具有不可篡改的写入权限。
 
 ### 7.2 角色准入与相位门控 (Role-based Gating)
 - **状态**: ✅ 已验证
@@ -341,7 +341,7 @@ farm 项目的安全性实现是全面和健全的，包含以下几个关键方
 ### 7.4 审计存证一致性 (Audit Integrity)
 - **状态**: ✅ 已验证
 - **机制**: 
-    - 所有的自适应调整 (Active Adaptation) 必须关联 precision.intervention.basis (证据依据)。
+    - 所有的自适应调整 (Active Adaptation) 必须关联 agri.intervention.basis (证据依据)。
     - 系统自发干预标记为 active 类型，区分于人工操作。
 
 ---

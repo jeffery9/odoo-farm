@@ -27,11 +27,11 @@ flowchart TD
         Response["品种响应曲线 [US-78-13]"]
     end
 
-    subgraph L3["Level 3: 精密物理层 (precision_production)"]
+    subgraph L3["Level 3: 精密物理层 (farm_operation)"]
         direction TB
-        PO["precision.production.order"]
+        PO["farm.operation.order"]
         Phase["ISA-88 执行相位 (Phase)"]
-        IoT["precision_production_iot (MQTT)"]
+        IoT["farm_iot (MQTT)"]
     end
 
     MO -- "1:1 关联" --> VRA
@@ -59,7 +59,7 @@ flowchart TD
     *   **品种指纹 (Cultivar Response)**: 利用 Mitscherlich 方程计算边际收益拐点。
 
 ### 2.3 精密层 (Level 3)
-*   **模型**: `precision.production.order` / `precision.recipe.phase`。
+*   **模型**: `farm.operation.order` / `agri.bom.phase`。
 *   **核心逻辑 [US-81]**:
     *   **动态设定点 (Dynamic Setpoint)**: `recipe.parameter` 标记为 `is_vra_dynamic`。
     *   **空间反馈环 (Spatial Loop)**: 
@@ -84,10 +84,10 @@ $$Rate_{final} = Rate_{base} \times F_{spatial} \times F_{stage} \times F_{defic
 
 ### 3.2 空间同步闭环 (L2 ↔ L3)
 当 IoT 设备在田间移动时，系统执行以下原子动作：
-1.  **监听**: `precision.iot.reading` 捕捉到带有 GPS 的遥测数据。
+1.  **监听**: `iiot.reading` 捕捉到带有 GPS 的遥测数据。
 2.  **定位**: 调用 `action_calculate_spatial_setpoint(lat, lng)`。
 3.  **对齐**: 在 `vra.prescription.line` 中通过欧几里得距离寻找最近网格。
-4.  **下发**: 自动更新 `precision.recipe.parameter` 并通过 MQTT 修改物理设备设定值。
+4.  **下发**: 自动更新 `agri.bom.parameter` 并通过 MQTT 修改物理设备设定值。
 
 ---
 

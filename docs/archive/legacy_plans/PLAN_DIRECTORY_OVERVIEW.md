@@ -10,7 +10,7 @@ docs/plan/
 ├── smart_brain_ai_growth.md             # AI智慧大脑与生长预测
 ├── strategic_competitive_directions.md  # 战略竞争方向
 ├── vra_implementation_plan.md          # VRA变量作业实施计划
-└── vra_precision_production.md         # VRA精准生产技术细节
+└── vra_farm_operation.md         # VRA精准生产技术细节
 ```
 
 ## 文档分类与主题
@@ -40,7 +40,7 @@ docs/plan/
   - 指令下发与硬件对接
   - 数据闭环与财务核销
 
-- **vra_precision_production.md**: VRA精准生产技术细节，包含PostGIS空间数据处理、卫星遥感、处方生成算法等
+- **vra_farm_operation.md**: VRA精准生产技术细节，包含PostGIS空间数据处理、卫星遥感、处方生成算法等
 
 - **smart_brain_ai_growth.md**: 智慧大脑技术细节，包括积温算法、AI视觉诊断、产量预测等
 

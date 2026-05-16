@@ -28,7 +28,7 @@
 ## 🚨 核心架构律令：5-Layer Macro Architecture
 本农业套件包含 100+ 微服务模块，为了防止依赖雪崩，代码生成与设计**必须且只能**遵循以下 5 层扁平架构：
 1. **L0 (Foundation)**: 底层原子数据 (`farm_core`)
-2. **L1 (Core Engines)**: 算法引擎 (`farm_agri_science`, `precision_production`)
+2. **L1 (Core Engines)**: 算法引擎 (`farm_agri_science`, `farm_operation`)
 3. **L2 (Industry Apps)**: 生产应用 (`farm_crop`, `farm_livestock`)。**绝对红线：L2 内部严禁横向依赖！**
 4. **L3 (Value Exchange)**: 商业与价值交易 (`farm_financial_insurance`, `farm_csa`)
 5. **L4 (Intelligence)**: 顶层 AI 与合规 (`farm_ai_agent`, `farm_esg_compliance`)

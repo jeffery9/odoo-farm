@@ -86,7 +86,7 @@
 *   **状态**：DONE
 *   **功能**：
     1.  **IIoT 桥接**：与 `agri_iot` 模块集成，支持多种通信协议（MQTT、HTTP、Modbus 等）。
-    2.  **自动数据采集**：通过 `precision.iot.device`、`precision.iot.sensor`、`precision.iot.reading` 三个核心模型实现自动测量数据采集。
+    2.  **自动数据采集**：通过 `iiot.device`、`iiot.sensor`、`iiot.reading` 三个核心模型实现自动测量数据采集。
     3.  **实时控制**：支持向 IoT 设备发送控制命令（设置点、启动/停止相位、校准、紧急停止等）。
     4.  **偏差检测与干预**：自动检测测量值与目标值的偏差，触发干预措施或生产锁定。
     5.  **命令日志**：完整记录所有发送到设备的命令和响应状态。
@@ -99,7 +99,7 @@
 ### **[US-044-09] 农业精准制造桥接 (Agri-Precision Bridge)**
 *   **状态**：DONE
 *   **功能**：
-    1.  **桥接架构**：`agri_precision_core` 模块作为标准 Odoo 应用与农业/半导体精密制造逻辑之间的桥梁。
+    1.  **桥接架构**：`farm_operation` 模块作为标准 Odoo 应用与农业/半导体精密制造逻辑之间的桥梁。
     2.  **不确定性处理**：通过 `agri.precision.mixin` 处理生产过程中的不确定性，包括动态产量跟踪。
     3.  **分级与品质管理**：实现产品分级功能，支持 Premium/Standard/Substandard 等级。
     4.  **干预机制**：提供干预钩子，支持手动和自动干预（基于传感器读数）。

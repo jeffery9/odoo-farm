@@ -149,7 +149,7 @@ App 负责行业隔离。每个 App 通过其专属 Action 注入行业 Domain �
 
 | App 名称 | 行业标识 (Context) | 映射子模型 (ISL) |
 | :--- | :--- | :--- |
-| **Smart Processing**| `food_processing` | `processing.production` |
+| **Smart Processing**| `field_crop` | `processing.production` |
 | **Smart Livestock** | `livestock` | `livestock.production` |
 | **Smart Crop** | `crop` | `mrp.production` (Base) |
 

@@ -12,8 +12,8 @@
 
 ### 2. 核心代码变更清单
 - `farm_agri_science`: 实现 **US-78-01~13**。引入了生理权重、生物量亏缺、品种响应曲线和环境动力学修正。
-- `precision_production`: 实现 **US-81-01**。在生产订单中注入 `vra_prescription_id` 引用。
-- `precision_production_iot`: 实现了 `action_calculate_spatial_setpoint` 触发器，打通了“GPS -> 处方匹配 -> MQTT 指令下发”的硬件闭环。
+- `farm_operation`: 实现 **US-81-01**。在生产订单中注入 `vra_prescription_id` 引用。
+- `farm_iot`: 实现了 `action_calculate_spatial_setpoint` 触发器，打通了“GPS -> 处方匹配 -> MQTT 指令下发”的硬件闭环。
 
 ---
 
@@ -38,7 +38,7 @@
 *   **特性**: **空间差异化 (Spatial Differentiation)**。
 
 ### 第三层：精密与物理层 (Level 3 - Precision)
-*   **模型**: `precision.production.order` (基于 ISA-88 标准)。
+*   **模型**: `farm.operation.order` (基于 ISA-88 标准)。
 *   **职责**: 解决“怎么做”的问题。将科学处方转化为物理指令（相位、流量、压力、转速）。
 *   **特性**: **实时闭环 (Real-time Closed-loop)**。
 
@@ -46,7 +46,7 @@
 这是本次提升最具突破性的部分。数据在系统内部的流转逻辑如下：
 
 1.  **感知 (Sense)**: 农机 IoT 设备通过 `agri_iot` 上报 GPS 坐标和实时传感数据。
-2.  **认知 (Cognize)**: `precision_production_iot` 拦截坐标，并在 L2 科学层中检索当前网格的处方值。
+2.  **认知 (Cognize)**: `farm_iot` 拦截坐标，并在 L2 科学层中检索当前网格的处方值。
 3.  **计算 (Calculate)**: 根据实时环境因素（如风速、降雨、生理压力）对处方值进行最后一步的**风险对冲修正**。
 4.  **执行 (Act)**: 系统自动通过 MQTT 向农机下发 `set_control_point` 指令，农机实时调整喷洒量。
 

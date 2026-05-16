@@ -17,7 +17,7 @@
 ### ⚙️ Layer 1: 算法与核心引擎层 (Core Engines)
 - **定位**: 提供通用的农业科学计算与制造管理算法。
 - **职责**: 计算积温 (GDD)、土壤养分平衡、ISA-88 精密控制逻辑、碳排放因子计算等。
-- **代表模块**: `farm_agri_science`, `farm_supply_core`, `precision_production`。
+- **代表模块**: `farm_agri_science`, `farm_supply_core`, `farm_operation`。
 
 ### 🌾 Layer 2: 垂直行业应用层 (Industry Apps)
 - **定位**: 实现具体的、端到端的农业生产闭环。

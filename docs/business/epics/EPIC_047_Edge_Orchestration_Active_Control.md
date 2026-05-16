@@ -14,9 +14,9 @@
 - **定位**: 全局物联资产配置与审计中心。
 - **职责**: 维护数字孪生模型、全局设备映射配置。记录管理类指令的通用审计日志 `farm.command.log`，不直接干预生产逻辑。
 
-### 2.3 配方边缘 (precision_production_iot)
+### 2.3 配方边缘 (farm_iot)
 - **定位**: 生产执行层的“战术大脑”。
-- **职责**: 专门负责 ISA-88 配方参数的边缘下发。独立于管理中心，直接调用 `agri_iot` 框架，并保存带 MO/Phase 上下文的专用审计日志 `precision.iot.command.log`。
+- **职责**: 专门负责 ISA-88 配方参数的边缘下发。独立于管理中心，直接调用 `agri_iot` 框架，并保存带 MO/Phase 上下文的专用审计日志 `iiot.command.log`。
 
 ---
 
@@ -36,7 +36,7 @@
 ### **[US-047-02] 双向设定点绑定 (Bi-directional Setpoint Binding)**
 - **描述**: 作为工艺员，当我修改执行配方 (Recipe) 的 Target Value 时，系统自动下发 MQTT 指令更新设备。
 - **验收标准 (AC)**:
-    - **(Edge)** 监听 `precision.recipe.parameter` 的变更，调用 `agri_iot` 的下发接口。
+    - **(Edge)** 监听 `agri.bom.parameter` 的变更，调用 `agri_iot` 的下发接口。
     - **(Hardware)** 自动记录生产专用审计日志，实现 Level 2 溯源。
     *   **验收标准 (Acceptance Criteria)**:
         *   **AC1 (界面与交互)**: 用户界面必须清晰展示【双向设定点绑定 (Bi-directional Setpoint Binding)】的核心字段和操作按钮，且响应式兼容移动端访问。

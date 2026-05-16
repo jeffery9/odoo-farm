@@ -107,7 +107,7 @@
 - **校验逻辑**:
     1. 在 `mrp.production`（农事作业）添加投入品时触发。
     2. 检查当前 `project.project` 的 `certification_type`。
-    3. 若为"有机"，则查询所选 `product.product` 的 `chemical_composition` 是否包含在该认证标准的 `forbidden_substances` 名单中。
+    3. 若为"有机"，则查询所选 `product.product` 的 `aquaculture_composition` 是否包含在该认证标准的 `forbidden_substances` 名单中。
     4. 若命中，禁止保存并记录审计异常。
 - **算法复杂度**: O(k), k 为禁用物质列表长度
 - **异常处理**: 校验失败时记录审计日志并返回具体的违规物质信息

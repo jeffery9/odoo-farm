@@ -15,7 +15,7 @@
 
 ## 算法流程
 1. **获取标准**: 提取项目定义的认证类型（如：有机、GlobalG.A.P.）。
-2. **成分穿透**: 读取 `product.product` 的 `chemical_composition`（化学成分）字段。
+2. **成分穿透**: 读取 `product.product` 的 `aquaculture_composition`（化学成分）字段。
 3. **黑名单比对**: 将产品成分与对应认证标准的 `forbidden_substances_registry` 进行字符串模糊或正则匹配。
 4. **状态判定**:
    - 若匹配成功：`is_compliant = False`，并抛出 `ValidationError`。
@@ -44,7 +44,7 @@ def check_organic_compliance(product, project):
     blacklist = [item.strip().lower() for item in blacklist if item.strip()]
 
     # 3. 穿透产品成分字段
-    composition = (product.chemical_composition or "").lower()
+    composition = (product.aquaculture_composition or "").lower()
     
     # 4. 执行匹配检查
     detected = []

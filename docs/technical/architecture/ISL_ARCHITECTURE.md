@@ -22,7 +22,7 @@ ISL 放弃了传统的 `_inherit` (经典扩展)，转而使用 `_inherits` (代
 这是 ISL 的魔法所在。
 我们在底层的 `mrp.production` 模型中重写了 `get_formview_action()` 方法。当用户在任何地方（比如采购单的智能按钮，或者某个仪表盘）点击一条底层制造单记录时：
 1.  重定向引擎 (`agri.isl.model.redirector`) 被唤醒。
-2.  引擎通过读取该记录的 `industry_type` 字段（例如 `food_processing`）。
+2.  引擎通过读取该记录的 `industry_type` 字段（例如 `field_crop`）。
 3.  引擎**拦截原生的跳转响应**，将视图动作 (Action) 的 `res_model` 动态替换为 `agri.mrp.production`，并加载其专属的视图。
 4.  **用户体验**: 对于用户来说，点击不同的订单，看到的是完全不同的、量身定制的专业界面（完全没有多余字段的干扰）。
 

@@ -24,8 +24,8 @@ flowchart TD
     end
 
     subgraph L3["精密物理层 (Level 3 - Precision)"]
-        PreProd["precision_production (ISA-88)"]
-        PreIoT["precision_production_iot (MQTT 闭环)"]
+        PreProd["farm_operation (ISA-88)"]
+        PreIoT["farm_iot (MQTT 闭环)"]
     end
 
     subgraph L2["科学决策层 (Level 2 - Intelligence)"]

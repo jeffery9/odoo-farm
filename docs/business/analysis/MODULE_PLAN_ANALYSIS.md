@@ -94,7 +94,7 @@ This document tracks the implementation status of various EPICs in the Odoo Farm
 - **Module**: `farm_esg_environmental`
 - **Features**:
   - **US-66-05: Supply Chain ESG Red Line Monitoring and Warning**
-    - **AgriESGRedLineConfig** (`agri.esg.red.line.config`): Configuration for ESG red lines (deforestation, water extraction, soil degradation, protected areas, carbon emissions, chemical runoff, biodiversity loss)
+    - **AgriESGRedLineConfig** (`agri.esg.red.line.config`): Configuration for ESG red lines (deforestation, water extraction, soil degradation, protected areas, carbon emissions, aquaculture runoff, biodiversity loss)
     - **AgriESGRedLineMonitoring** (`agri.esg.red.line.monitoring`): Core monitoring system with compliance status tracking, multi-source detection, automated alerts, and batch/lot integration
     - **Geofencing capabilities**: Boundary monitoring with buffer zones and coordinate validation
     - **Threshold monitoring**: Value-based compliance checking with configurable units

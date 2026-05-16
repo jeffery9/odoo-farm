@@ -757,8 +757,8 @@
   - _inherit_: `agri.isl.extension`
 
 
-### `farm.mrp.bom` (Defined in `farm_isl`)
-  - **Class**: `FarmMRPBom`
+### `agri.isl.mrp.bom` (Defined in `farm_isl`)
+  - **Class**: `AgriMRPBom`
   - **描述**: Farm ISL MRP Bill of Materials
   - _inherit_: `farm.manufacturing.mixin`
   - **核心字段**:
@@ -769,8 +769,8 @@
     - `recipe_validation` (Html): Recipe Validation
     - `ingredient_compliance` (Text): Ingredient Compliance
 
-### `farm.mrp.production` (Defined in `farm_isl`)
-  - **Class**: `FarmMRPProduction`
+### `agri.isl.mrp.production` (Defined in `farm_isl`)
+  - **Class**: `AgriMRPProduction`
   - **描述**: Farm ISL MRP Production Order
   - _inherit_: `farm.manufacturing.mixin`
   - **核心字段**:
@@ -780,8 +780,8 @@
     - `safety_procedures` (Html): Safety Procedures
     - `quality_gate_checks` (Text): Quality Gate Checks
 
-### `farm.mrp.workcenter` (Defined in `farm_isl`)
-  - **Class**: `FarmMRPWorkcenter`
+### `agri.isl.mrp.workcenter` (Defined in `farm_isl`)
+  - **Class**: `AgriMRPWorkcenter`
   - **描述**: Farm ISL MRP Work Center
   - _inherit_: `farm.manufacturing.mixin`
   - **核心字段**:
@@ -792,8 +792,8 @@
     - `capacity_uom` (Char): Capacity Unit of Measure
     - `efficiency_factor` (Float): Efficiency Factor
 
-### `farm.mrp.workorder` (Defined in `farm_isl`)
-  - **Class**: `FarmMRPWorkorder`
+### `agri.isl.mrp.workorder` (Defined in `farm_isl`)
+  - **Class**: `AgriMRPWorkorder`
   - **描述**: Farm ISL MRP Work Order
   - _inherit_: `farm.manufacturing.mixin`
   - **核心字段**:
@@ -803,8 +803,8 @@
     - `in_process_inspection` (Html): In-Process Inspection
     - `batch_record` (Html): Batch Record
 
-### `farm.product.template` (Defined in `farm_isl`)
-  - **Class**: `FarmProductTemplate`
+### `agri.isl.product.template` (Defined in `farm_isl`)
+  - **Class**: `AgriProductTemplate`
   - **描述**: Farm ISL Product Template
   - _inherit_: `farm.product.mixin`
   - **核心字段**:
@@ -816,7 +816,7 @@
     - `hazard_class` (Char): Hazard Class
     - `regulatory_class` (Char): Regulatory Class
 
-### `farm.purchase.order` (Defined in `farm_isl`)
+### `agri.isl.purchase.order` (Defined in `farm_isl`)
   - **Class**: `FarmPurchaseOrder`
   - **描述**: Farm ISL Purchase Order
   - _inherit_: `farm.sales.purchase.mixin`
@@ -827,7 +827,7 @@
     - `certificate_verification` (Html): Certificate Verification
     - `quality_agreement` (Html): Quality Agreement
 
-### `farm.sale.order` (Defined in `farm_isl`)
+### `agri.isl.sale.order` (Defined in `farm_isl`)
   - **Class**: `FarmSaleOrder`
   - **描述**: Farm ISL Sale Order
   - _inherit_: `farm.sales.purchase.mixin`
@@ -839,7 +839,7 @@
     - `certificate_requirements` (Html): Certificate Requirements
     - `temperature_monitoring` (Boolean): Temperature Monitoring
 
-### `farm.stock.lot` (Defined in `farm_isl`)
+### `agri.isl.stock.lot` (Defined in `farm_isl`)
   - **Class**: `FarmStockLot`
   - **描述**: Farm ISL Stock Lot
   - _inherit_: `farm.inventory.mixin`
@@ -853,7 +853,7 @@
     - `stability_data` (Html): Stability Data
     - `storage_conditions` (Html): Storage Conditions
 
-### `farm.stock.picking` (Defined in `farm_isl`)
+### `agri.isl.stock.picking` (Defined in `farm_isl`)
   - **Class**: `FarmStockPicking`
   - **描述**: Farm ISL Stock Picking
   - _inherit_: `farm.inventory.mixin`
@@ -2057,10 +2057,10 @@
     - `hazard_description` (Text): Identified Hazard
     - `corrective_action_plan` (Text): Standard Corrective Action
 
-### `farm.quality.control` (Defined in `farm_isl`)
-  - **Class**: `FarmQualityControl`
+### `agri.isl.quality.control` (Defined in `farm_isl`)
+  - **Class**: `AgriQualityControl`
   - **描述**: Farm ISL Quality Control
-  - _inherit_: `farm.quality.mixin`
+  - _inherit_: `agri.isl.quality.mixin`
   - **核心字段**:
     - `ccp_monitoring` (Html): CCP Monitoring
     - `aql_sampling` (Html): AQL Sampling
@@ -2347,61 +2347,61 @@
     - `total_production_costs` (Float): total_production_costs
 
 ## 11. 精密制造与变量控制域 (Precision Production & VRA)
-### `mrp.bom` (Defined in `precision_production`)
+### `mrp.bom` (Defined in `farm_operation`)
   - **Class**: `MrpBom`
   - **描述**: 
   - _inherit_: `mrp.bom, mail.thread, mail.activity.mixin`
   - **核心字段**:
     - `master_recipe_version` (Integer): Master Recipe Version
-    - `master_recipe_phase_ids` (One2many): precision.master.recipe.phase
+    - `master_recipe_phase_ids` (One2many): agri.master.bom.phase
     - `required_workcenter_id` (Many2one): mrp.workcenter
     - `ambient_requirement` (Text): Ambient Constraints
     - `recipe_batch_size` (Float): Recipe Batch Size
     - `production_drive_type` (Selection): production_drive_type
 
-### `mrp.production` (Defined in `agri_precision_core`)
+### `mrp.production` (Defined in `farm_operation`)
   - **Class**: `MrpProductionExtension`
   - **描述**: 
   - _inherit_: `mrp.production`
 
 
-### `mrp.production` (Defined in `agri_precision_core`)
+### `mrp.production` (Defined in `farm_operation`)
   - **Class**: `MrpProduction`
   - **描述**: 
   - _inherit_: `mrp.production, agri.precision.mixin`
   - **核心字段**:
     - `display_name_agri` (Char): Intervention Label
 
-### `mrp.production` (Defined in `precision_production`)
+### `mrp.production` (Defined in `farm_operation`)
   - **Class**: `MrpProduction`
   - **描述**: 
-  - _inherit_: `mrp.production, precision.production.mixin`
+  - _inherit_: `mrp.production, farm.operation.mixin`
   - **核心字段**:
     - `production_drive_type` (Selection): production_drive_type
     - `assigned_workcenter_id` (Many2one): mrp.workcenter
-    - `recipe_phase_ids` (One2many): precision.recipe.phase
+    - `recipe_phase_ids` (One2many): agri.bom.phase
     - `vra_prescription_id` (Many2one): agri.intervention.vra.prescription
-    - `active_recipe_phase_ids` (Many2many): precision.recipe.phase
-    - `active_recipe_phase_id` (Many2one): precision.recipe.phase
+    - `active_recipe_phase_ids` (Many2many): agri.bom.phase
+    - `active_recipe_phase_id` (Many2one): agri.bom.phase
     - `phase_start_datetime` (Datetime): Global Recipe Start
     - `progress_percentage` (Float): Progress %
 
-### `mrp.workorder` (Defined in `precision_production`)
+### `mrp.workorder` (Defined in `farm_operation`)
   - **Class**: `MrpWorkorderExtension`
   - **描述**: 
   - _inherit_: `mrp.workorder`
   - **核心字段**:
-    - `active_execution_phase_id` (Many2one): precision.recipe.phase
+    - `active_execution_phase_id` (Many2one): agri.bom.phase
 
-### `mrp.workorder` (Defined in `precision_production`)
+### `mrp.workorder` (Defined in `farm_operation`)
   - **Class**: `MrpWorkorder`
   - **描述**: 
-  - _inherit_: `mrp.workorder, precision.production.mixin`
+  - _inherit_: `mrp.workorder, farm.operation.mixin`
   - **核心字段**:
     - `production_drive_type` (Selection): production_drive_type
     - `is_intervention_required` (Boolean): Intervention Needed
 
-### `precision.graded.output` (Defined in `precision_production`)
+### `agri.graded.output` (Defined in `farm_operation`)
   - **Class**: `PrecisionGradedOutput`
   - **描述**: Graded Output Worklist
 
@@ -2414,7 +2414,7 @@
     - `move_id` (Many2one): stock.move
     - `notes` (Text): Notes
 
-### `precision.intervention.basis` (Defined in `precision_production`)
+### `agri.intervention.basis` (Defined in `farm_operation`)
   - **Class**: `PrecisionInterventionBasis`
   - **描述**: Intervention Rationale
 
@@ -2429,20 +2429,20 @@
     - `res_id` (Many2oneReference): Related Record
     - `create_date` (Datetime): Captured At
 
-### `precision.intervention.log` (Defined in `precision_production`)
+### `agri.intervention.log` (Defined in `farm_operation`)
   - **Class**: `PrecisionInterventionLog`
   - **描述**: Intervention Audit Log
 
   - **核心字段**:
     - `name` (Char): Action
     - `intervention_type` (Selection): intervention_type
-    - `basis_id` (Many2one): precision.intervention.basis
+    - `basis_id` (Many2one): agri.intervention.basis
     - `res_model` (Char): Related Model
     - `res_id` (Many2oneReference): Related Record
     - `user_id` (Many2one): res.users
     - `create_date` (Datetime): Timestamp
 
-### `precision.iot.device` (Defined in `precision_production_iot`)
+### `iiot.device` (Defined in `farm_iot`)
   - **Class**: `PrecisionIotDevice`
   - **描述**: Precision Production IoT Device (Integrated with Industrial IoT)
 
@@ -2457,17 +2457,17 @@
     - `is_connected` (Boolean): Connected
     - `status` (Selection): status
     - `firmware_version` (Char): Firmware Version
-    - `sensor_ids` (One2many): precision.iot.sensor
-    - `reading_ids` (One2many): precision.iot.reading
+    - `sensor_ids` (One2many): iiot.sensor
+    - `reading_ids` (One2many): iiot.reading
 
-### `precision.iot.reading` (Defined in `precision_production_iot`)
+### `iiot.reading` (Defined in `farm_iot`)
   - **Class**: `PrecisionIotReading`
   - **描述**: Precision Production IoT Reading (Integrated with Industrial IoT)
 
   - **核心字段**:
     - `name` (Char): Reading Reference
-    - `device_id` (Many2one): precision.iot.device
-    - `sensor_id` (Many2one): precision.iot.sensor
+    - `device_id` (Many2one): iiot.device
+    - `sensor_id` (Many2one): iiot.sensor
     - `parameter_name` (Char): parameter_name
     - `value` (Float): Value
     - `uom` (Char): Unit of Measure
@@ -2475,20 +2475,20 @@
     - `is_valid` (Boolean): Valid
     - `validation_message` (Char): Validation Message
     - `production_id` (Many2one): mrp.production
-    - `phase_id` (Many2one): precision.recipe.phase
+    - `phase_id` (Many2one): agri.bom.phase
     - `workorder_id` (Many2one): mrp.workorder
     - `deviation_percent` (Float): Deviation (%)
     - `is_deviation_critical` (Boolean): Critical Deviation
     - `raw_data` (Text): Raw Data
 
-### `precision.iot.sensor` (Defined in `precision_production_iot`)
+### `iiot.sensor` (Defined in `farm_iot`)
   - **Class**: `PrecisionIotSensor`
   - **描述**: Precision Production IoT Sensor (Integrated with Industrial IoT)
 
   - **核心字段**:
     - `name` (Char): Sensor Name
     - `sensor_id` (Char): Sensor ID
-    - `device_id` (Many2one): precision.iot.device
+    - `device_id` (Many2one): iiot.device
     - `sensor_type` (Selection): sensor_type
     - `parameter_name` (Char): Parameter Name
     - `description` (Text): Description
@@ -2503,30 +2503,30 @@
     - `current_value` (Float): Current Value
     - *... 以及其他 4 个业务字段*
 
-### `precision.master.recipe.material` (Defined in `precision_production`)
+### `agri.master.bom.material` (Defined in `farm_operation`)
   - **Class**: `PrecisionMasterRecipeMaterial`
   - **描述**: Master Recipe Material Template
 
   - **核心字段**:
-    - `phase_id` (Many2one): precision.master.recipe.phase
+    - `phase_id` (Many2one): agri.master.bom.phase
     - `product_id` (Many2one): product.product
     - `quantity` (Float): Qty (per Batch Size)
     - `uom_id` (Many2one): uom.uom
 
-### `precision.master.recipe.parameter` (Defined in `precision_production`)
+### `agri.master.bom.parameter` (Defined in `farm_operation`)
   - **Class**: `PrecisionMasterRecipeParameter`
   - **描述**: Master Recipe Parameter Template
 
   - **核心字段**:
     - `bom_id` (Many2one): mrp.bom
-    - `phase_id` (Many2one): precision.master.recipe.phase
+    - `phase_id` (Many2one): agri.master.bom.phase
     - `name` (Char): Parameter Name
     - `target_value` (Float): Target Setpoint
     - `is_scalable` (Boolean): Scales with Batch Size
     - `tolerance_percent` (Float): Tolerance (%)
     - `uom_id` (Many2one): uom.uom
 
-### `precision.master.recipe.phase` (Defined in `precision_production`)
+### `agri.master.bom.phase` (Defined in `farm_operation`)
   - **Class**: `PrecisionMasterRecipePhase`
   - **描述**: Master Recipe Phase Template
 
@@ -2534,14 +2534,14 @@
     - `bom_id` (Many2one): mrp.bom
     - `name` (Char): Phase Name
     - `sequence` (Integer): Sequence
-    - `master_parameter_ids` (One2many): precision.master.recipe.parameter
-    - `master_material_ids` (One2many): precision.master.recipe.material
+    - `master_parameter_ids` (One2many): agri.master.bom.parameter
+    - `master_material_ids` (One2many): agri.master.bom.material
     - `duration_expected` (Float): Planned Duration (Hours)
     - `sampling_plan` (Char): Sampling Plan
     - `required_workcenter_id` (Many2one): mrp.workcenter
     - `required_role` (Selection): required_role
 
-### `precision.recipe.control` (Defined in `precision_production_iot`)
+### `agri.bom.control` (Defined in `farm_iot`)
   - **Class**: `PrecisionRecipeControl`
   - **描述**: Recipe-specific IoT Edge
 
@@ -2549,21 +2549,21 @@
     - `name` (Char): Bridge Name
     - `iiot_device_id` (Many2one): iiot.device
     - `mqtt_topic` (Char): MQTT Setpoint Topic
-    - `recipe_parameter_id` (Many2one): precision.recipe.parameter
+    - `recipe_parameter_id` (Many2one): agri.bom.parameter
     - `last_sync_value` (Float): Last Value
 
-### `precision.recipe.phase` (Defined in `agri_precision_core`)
+### `agri.bom.phase` (Defined in `farm_operation`)
   - **Class**: `PrecisionRecipePhase`
   - **描述**: 
-  - _inherit_: `precision.recipe.phase, agri.precision.mixin`
+  - _inherit_: `agri.bom.phase, agri.precision.mixin`
 
 
-### `precision.recipe.phase` (Defined in `precision_production_iot`)
+### `agri.bom.phase` (Defined in `farm_iot`)
   - **Class**: `PrecisionRecipePhaseIot`
   - **描述**: 
-  - _inherit_: `precision.recipe.phase`
+  - _inherit_: `agri.bom.phase`
   - **核心字段**:
-    - `iot_device_ids` (Many2many): precision.iot.device
+    - `iot_device_ids` (Many2many): iiot.device
     - `iot_connected` (Boolean): IoT Connected
     - `iot_disconnected` (Boolean): IoT Disconnected
     - `iot_warning` (Boolean): IoT Warning
@@ -2571,23 +2571,23 @@
     - `iot_device_status` (Char): IoT Device Status
     - `iot_readings_count` (Integer): IoT Readings Count
 
-### `product.template` (Defined in `precision_production`)
+### `product.template` (Defined in `farm_operation`)
   - **Class**: `ProductTemplate`
   - **描述**: 
   - _inherit_: `product.template`
   - **核心字段**:
     - `production_drive_type` (Selection): production_drive_type
 
-### `stock.lot` (Defined in `agri_precision_core`)
+### `stock.lot` (Defined in `farm_operation`)
   - **Class**: `StockLot`
   - **描述**: 
   - _inherit_: `stock.lot, agri.precision.mixin`
 
 
-### `stock.lot` (Defined in `precision_production`)
+### `stock.lot` (Defined in `farm_operation`)
   - **Class**: `StockLot`
   - **描述**: 
-  - _inherit_: `stock.lot, precision.production.mixin`
+  - _inherit_: `stock.lot, farm.operation.mixin`
   - **核心字段**:
     - `quality_grade` (Selection): quality_grade
 
@@ -3232,31 +3232,31 @@
 
 
 ### `farm.inventory.mixin` (Defined in `farm_isl`)
-  - **Class**: `FarmInventoryMixin`
+  - **Class**: `AgriInventoryMixin`
   - **描述**: Farm Inventory ISL Abstract Base Model (Deprecated - Use agri.inventory.mixin)
   - _inherit_: `agri.inventory.mixin`
 
 
 ### `farm.manufacturing.mixin` (Defined in `farm_isl`)
-  - **Class**: `FarmManufacturingMixin`
+  - **Class**: `AgriManufacturingMixin`
   - **描述**: Farm Manufacturing ISL Abstract Base Model (Deprecated - Use agri.manufacturing.mixin)
   - _inherit_: `agri.manufacturing.mixin`
 
 
 ### `farm.product.mixin` (Defined in `farm_isl`)
-  - **Class**: `FarmProductMixin`
+  - **Class**: `AgriProductMixin`
   - **描述**: Farm Product ISL Abstract Base Model (Deprecated - Use agri.product.mixin)
   - _inherit_: `agri.product.mixin`
 
 
-### `farm.quality.mixin` (Defined in `farm_isl`)
-  - **Class**: `FarmQualityMixin`
+### `agri.isl.quality.mixin` (Defined in `farm_isl`)
+  - **Class**: `AgriQualityMixin`
   - **描述**: Farm Quality Control ISL Abstract Base Model (Deprecated - Use agri.quality.mixin)
   - _inherit_: `agri.quality.mixin`
 
 
 ### `farm.sales.purchase.mixin` (Defined in `farm_isl`)
-  - **Class**: `FarmSalesPurchaseMixin`
+  - **Class**: `AgriSalesPurchaseMixin`
   - **描述**: Farm Sales/Purchase ISL Abstract Base Model (Deprecated - Use agri.sales.purchase.mixin)
   - _inherit_: `agri.sales.purchase.mixin`
 
@@ -3894,7 +3894,7 @@
     - `is_on_site` (Boolean): On-site Verified
     - `site_distance` (Float): Distance to Site (m)
 
-### `farm.chemical.bom` (Defined in `farm_processing`)
+### `farm.aquaculture.bom` (Defined in `farm_processing`)
   - **Class**: `FarmChemicalBom`
   - **描述**: Chemical Processing BOM (ISL Layer)
 
@@ -3903,7 +3903,7 @@
     - `hazard_class` (Selection): hazard_class
     - `reaction_temperature_limit` (Float): Max Reaction Temp (℃)
 
-### `farm.chemical.production` (Defined in `farm_processing`)
+### `farm.aquaculture.production` (Defined in `farm_processing`)
   - **Class**: `FarmChemicalProduction`
   - **描述**: Chemical Production Order (ISL Layer)
 
@@ -4203,10 +4203,10 @@
     - `drying_temperature` (Float): Drying Target Temp (℃)
     - `max_humidity_threshold` (Float): Max Humidity (%)
 
-### `farm.mrp.bom` (Defined in `farm_processing`)
+### `agri.isl.mrp.bom` (Defined in `farm_processing`)
   - **Class**: `FarmMrpBomExtension`
   - **描述**: 
-  - _inherit_: `farm.mrp.bom`
+  - _inherit_: `agri.isl.mrp.bom`
   - **核心字段**:
     - `is_parameter_required` (Boolean): Parameter Required
     - `target_temp` (Float): Target Temp
@@ -4367,7 +4367,7 @@
 ### `farm.processing.production` (Defined in `farm_processing`)
   - **Class**: `FarmProcessingProduction`
   - **描述**: Farm Food Processing Order (ISL Layer)
-  - _inherit_: `farm.mrp.production`
+  - _inherit_: `agri.isl.mrp.production`
   - **核心字段**:
     - `energy_reading_start` (Float): energy_reading_start
     - `energy_reading_end` (Float): energy_reading_end
@@ -4409,10 +4409,10 @@
     - `quality_check_ids` (Many2many): farm.quality.check
     - `certificate_qr_code` (Char): Certificate QR Code
 
-### `farm.product.template` (Defined in `farm_processing`)
+### `agri.isl.product.template` (Defined in `farm_processing`)
   - **Class**: `FarmAgriProduct`
   - **描述**: 
-  - _inherit_: `farm.product.template`
+  - _inherit_: `agri.isl.product.template`
   - **核心字段**:
     - `industry_tag` (Selection): industry_tag
     - `n_content` (Float): Nitrogen (N) %

@@ -22,7 +22,7 @@
 
 ### Layer 1: 算法与核心引擎层 (Core Engines)
 - **定位**: 将农业科学和制造标准抽象为计算引擎，不涉足具体页面。
-- **代表模块**: `farm_agri_science` (积温/GDD引擎), `precision_production` (ISA-88 控制)。
+- **代表模块**: `farm_agri_science` (积温/GDD引擎), `farm_operation` (ISA-88 控制)。
 
 ### Layer 2: 垂直行业应用层 (Industry Apps)
 - **定位**: 聚焦具体动植物的生命周期和加工生产。

@@ -193,7 +193,7 @@
    - **规则**: 不能依赖任何其他层级。
 2. **Layer 1 (Core Engines - 算法与引擎层)**
    - **定位**: 抽象的科学算法与制造引擎。
-   - **包含**: `farm_agri_science`, `precision_production`。
+   - **包含**: `farm_agri_science`, `farm_operation`。
    - **规则**: 仅依赖 Layer 0。
 3. **Layer 2 (Industry Apps - 垂直行业应用层)**
    - **定位**: 具体的农业生产活动（种植、养殖、加工）。

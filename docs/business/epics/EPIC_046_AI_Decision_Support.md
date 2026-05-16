@@ -34,7 +34,7 @@
 ### **[US-046-03] 决策存证与“人机博弈”闭环 (Decision Audit)**
 - **描述**: 作为架构师，我希望所有的 AI 建议必须经过人工审核（或自动信任评分），并记录完整的决策依据。
 - **验收标准 (AC)**:
-    - **(Level 2 Evidence)** AI 建议必须关联具体的 `precision.intervention.basis`。
+    - **(Level 2 Evidence)** AI 建议必须关联具体的 `agri.intervention.basis`。
     - **(UX)** 提供“接受/拒绝”交互，拒绝理由反馈至 AI 学习模型。
 
 ---

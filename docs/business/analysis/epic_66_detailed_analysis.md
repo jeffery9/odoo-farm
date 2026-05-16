@@ -14,7 +14,7 @@ EPIC 66, titled "Supply Chain ESG Red Line Monitoring and Warning", has been ful
 **Function**: Configuration for ESG red lines (deforestation, water extraction, etc.)
 
 #### Key Features:
-- **Red Line Types**: Deforestation risk, water extraction, soil degradation, protected area violation, carbon emission excess, chemical runoff risk, biodiversity loss
+- **Red Line Types**: Deforestation risk, water extraction, soil degradation, protected area violation, carbon emission excess, aquaculture runoff risk, biodiversity loss
 - **Geofencing Support**: Coordinates-based boundary monitoring with buffer zones
 - **Threshold Monitoring**: Value-based compliance checking with configurable units
 - **Monitoring Configuration**: Active monitoring flags, frequency settings (real-time, hourly, daily, weekly)
@@ -106,7 +106,7 @@ EPIC 66, titled "Supply Chain ESG Red Line Monitoring and Warning", has been ful
 - **Soil Degradation**: Assessment of land health
 - **Protected Areas**: Geofencing of sensitive ecological zones
 - **Carbon Emissions**: Monitoring of carbon footprint
-- **Chemical Runoff**: Assessment of chemical usage impact
+- **Chemical Runoff**: Assessment of aquaculture usage impact
 - **Biodiversity Loss**: Tracking of ecosystem health
 
 ### Supply Chain Integration

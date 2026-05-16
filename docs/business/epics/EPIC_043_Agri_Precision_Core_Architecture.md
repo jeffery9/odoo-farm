@@ -2,7 +2,7 @@
 *版本: V1.0 | 日期: 2026-02-01*
 
 ## 1. 核心愿景 (Core Vision)
-`agri_precision_core` 模块是精密制造与标准 ERP 之间的关键桥梁。通过提供抽象层，该模块使标准的 Odoo MRP/Stock 模块能够处理农业与半导体行业特有的"不确定性、分级、干预"三大挑战。
+`farm_operation` 模块是精密制造与标准 ERP 之间的关键桥梁。通过提供抽象层，该模块使标准的 Odoo MRP/Stock 模块能够处理农业与半导体行业特有的"不确定性、分级、干预"三大挑战。
 
 ---
 
@@ -21,8 +21,8 @@
 *   **职责**:
     1.  **MRP 继承**: 扩展 `mrp.production` 添加精准制造属性
     2.  **Stock 继承**: 扩展 `stock.lot` 添加分级功能
-    3.  **Phase 继承**: 扩展 `precision.recipe.phase` 添加相位级干预逻辑
-    4.  **集成接口**: 提供与 `precision_production` 模块的无缝集成
+    3.  **Phase 继承**: 扩展 `agri.bom.phase` 添加相位级干预逻辑
+    4.  **集成接口**: 提供与 `farm_operation` 模块的无缝集成
 
 ### **[AGRI-003] 用户界面桥接 (UI Bridge)**
 *   **组件**: `precision_bridge_views.xml`
@@ -66,7 +66,7 @@
     - `intervention_count` (干预循环计数)
     - `is_critical_status` (关键状态标记)
     - `action_apply_corrective_skill()` (纠正技能应用)
-    - 与 `precision.intervention` 模块集成
+    - 与 `agri.intervention` 模块集成
     *   **验收标准 (Acceptance Criteria)**:
         *   **AC1 (界面与交互)**: 用户界面必须清晰展示【干预机制 (Intervention Mechanism)】的核心字段和操作按钮，且响应式兼容移动端访问。
         *   **AC2 (业务流转)**: 核心状态机（State Machine）的流转必须准确无误，确保模块间集成的边界数据一致性。
@@ -79,7 +79,7 @@
     - `iot_device_ids` (IoT 设备关联)
     - `iot_status` (IoT 状态监控)
     - `action_trigger_iot_based_intervention()` (基于传感器的自动干预)
-    - 与 `precision.iot.*` 模块深度集成
+    - 与 `iiot.*` 模块深度集成
     *   **验收标准 (Acceptance Criteria)**:
         *   **AC1 (界面与交互)**: 用户界面必须清晰展示【IoT 集成桥接 (IoT Integration Bridge)】的核心字段和操作按钮，且响应式兼容移动端访问。
         *   **AC2 (业务流转)**: 核心状态机（State Machine）的流转必须准确无误，确保模块间集成的边界数据一致性。
@@ -121,13 +121,13 @@
 
 ## 5. 集成接口 (Integration Interfaces)
 
-### **[INTERFACE-AGRI-01] 与 precision_production 集成**
-- `mrp.production` 继承 `precision.recipe.phase` 继承
-- `precision.intervention` 创建与管理
+### **[INTERFACE-AGRI-01] 与 farm_operation 集成**
+- `mrp.production` 继承 `agri.bom.phase` 继承
+- `agri.intervention` 创建与管理
 - 产量信心与效率指数同步
 
-### **[INTERFACE-AGRI-02] 与 precision_production_iot 集成**
-- `precision.iot.device`、`precision.iot.sensor`、`precision.iot.reading` 关联
+### **[INTERFACE-AGRI-02] 与 farm_iot 集成**
+- `iiot.device`、`iiot.sensor`、`iiot.reading` 关联
 - 传感器数据驱动的干预逻辑
 - 实时状态监控
 
