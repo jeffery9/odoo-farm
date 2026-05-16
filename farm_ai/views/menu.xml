@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_ai_root" name="AI Services" sequence="60" />
+    <menuitem id="menu_ai_root"
+              name="AI & Intelligence"
+              sequence="100"
+              web_icon="farm_ai,static/description/icon.png"/>
+    
 
     <menuitem id="menu_ai_core_config" name="Configuration" parent="menu_ai_root" sequence="10"/>
     <!-- <menuitem id="menu_ai_configuration" name="AI Providers" parent="menu_ai_core_config" action="action_ai_configuration" sequence="10"/> -->

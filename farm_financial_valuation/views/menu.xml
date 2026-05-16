@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="farm_financial_valuation_menu_root"
-              name="Financial Valuation"
- web_icon="farm_financial_valuation,static/description/icon.png"
+<menuitem id="farm_financial_valuation_menu_root" name="Financial Valuation" parent="farm_financial.menu_financial_root"
               sequence="50"/>
 
     <menuitem id="menu_financial_asset_valuation"
