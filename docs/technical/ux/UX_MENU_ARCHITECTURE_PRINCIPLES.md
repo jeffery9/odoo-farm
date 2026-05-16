@@ -14,7 +14,28 @@
     *   ✅ 将每一个核心业务域独立为一个顶层 App（在 Odoo 应用抽屉中拥有独立图标）。
     *   ✅ 例如：打开【温室控制】App，里面只有温室相关的仪表盘和阈值设定；打开【农业测序】App，里面只有基因和土壤样本数据。
 
-## 2. 顶层 App 拆分原则 (App Splitting Guidelines)
+
+## 2. 混合型应用聚合原则 (Hybrid App Organization Strategy)
+
+在贯彻 "Tools Not Trees" 的同时，为了避免 Odoo 桌面图标因颗粒度过细而导致“应用碎片化（App Fragmentation）”，我们采取**混合型聚拢策略**：
+
+### 2.1 垂直行业应用：绝对扁平化 (Vertical Apps: Fully Flat and Independent)
+涉及实际物理生产环境的垂直行业模块，必须作为完全独立的桌面 App。
+*   **规则**: 直接定义带有 web_icon 的无 parent 属性的 menuitem。
+*   **示例**: 【大田作业 (Field Crops)】、【畜牧养殖 (Livestock)】、【水产 (Aquaculture)】、【农机调度 (Equipment)】。农户点开即可直达特定生产环境，互不干扰。
+*   **严禁**: 严禁将【畜牧】作为子菜单嵌套在一个名为“主农场管理”的巨石 App 之下。
+
+### 2.2 逻辑支撑域：套件化聚合 (Logical Domains: Suite Consolidation)
+为跨行业提供底层逻辑支撑的服务型功能，必须按大领域聚合成**大型工具套件 (Suite App)**，禁止将其子功能平铺到桌面上。
+*   **五大核心套件**:
+    1.  **AI & Intelligence (智能中心)**: 聚拢视觉识别 (vision)、决策引擎 (decision)、多智能体 (agent) 等。
+    2.  **ESG & Sustainability (ESG 合规)**: 聚拢碳排放、环评、合规性审计等。
+    3.  **Finance & Assets (金融与资产)**: 聚拢内部信贷、生物资产估值、农业保险等。
+    4.  **Supply Chain (供应链)**: 聚拢采购、冷链物流、风控分析等。
+    5.  **Multi-Farm Collaboration (多实体协作)**: 聚拢合作社、加盟农场、资源共享等。
+*   **实施规范**: 在领域的基础模块（如 farm_ai）中定义唯一的带有 web_icon 的顶级 Root 菜单。其下辖的增强模块（如 farm_ai_vision）通过 parent="farm_ai.menu_ai_root" 将自己注册为套件内的子工具菜单。
+
+## 3. 顶层 App 拆分边界 (App Splitting Boundary)
 
 当开发一个新的 `farm_xxx` 模块时，如何决定是新建一个 App（顶层菜单）还是依附于现有的 App？
 
@@ -23,7 +44,7 @@
 2.  **菜单层级极限 (Depth Limit)**: 任何 App 内部的菜单层级**绝对禁止超过 3 层**（根菜单 -> 一级分类 -> 动作）。如果某项功能需要建立第 5 层菜单，说明该 App 已经过度臃肿，必须将其剥离为新的 App。
 3.  **微应用即服务 (Micro-App as a Service)**: 像使用手机 App 一样使用 Odoo。【病虫害诊断】、【VRA处方图生成】、【碳足迹测算】都应该是召之即来、挥之即去的独立工具应用。
 
-## 3. Odoo 菜单实现规范 (Implementation Rules)
+## 4. Odoo 菜单实现规范 (Implementation Rules)
 
 在编写 `views/menu.xml` 时，强制遵循以下代码规范：
 
@@ -81,7 +102,7 @@
     *   **实现方式**: 在各个需要使用到这些数据的 App 的 `Configuration`（配置）菜单下，直接复用 `ir.actions.act_window` 投影对应的视图。确保用户停留在当前的 App 环境中完成闭环操作。
 
 
-## 6. 与 4 层架构的 UI 映射关系 (UI Mapping to 4-Layer Architecture)
+## 7. 与 4 层架构的 UI 映射关系 (UI Mapping to 4-Layer Architecture)
 
 我们的 UI 设计完全倒影了后端的 **4-Layer Macro Architecture**：
 *   **L0/L1 层 (底座与引擎)**: 通常在前端**不可见**，或者只作为“开发者模式”下的隐藏配置菜单存在。它们为上层提供驱动力，但不占用顶层 App 图标资源。
