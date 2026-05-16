@@ -84,5 +84,5 @@
         <field name="view_mode">kanban,list,form</field>
     </record>
 
-    <menuitem id="menu_farm_evidence" name="Field Evidence" parent="farm_core.menu_farm_root" action="action_farm_evidence" sequence="95"/>
+    <menuitem id="menu_farm_evidence" name="Field Evidence" web_icon="farm_mobile,static/description/icon.png" action="action_farm_evidence" sequence="95"/>
 </odoo>

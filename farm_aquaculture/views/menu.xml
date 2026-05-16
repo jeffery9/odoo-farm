@@ -3,7 +3,7 @@
     <!-- Aquaculture specific menu items will be added here -->
     <menuitem id="farm_aquaculture_menu_root"
               name="Aquaculture"
-              parent="farm_core.menu_farm_root"
+ web_icon="farm_aquaculture,static/description/icon.png"
               sequence="23"
               groups="base.group_user"/>
 

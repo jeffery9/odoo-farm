@@ -150,7 +150,7 @@
     <!-- Menu items for Apiculture -->
     <menuitem id="menu_farm_apiculture_root"
               name="Apiculture"
-              parent="farm_core.menu_farm_root"
+ web_icon="farm_apiculture,static/description/icon.png"
               sequence="26"/>
 
     <menuitem id="menu_farm_apiculture_operations"

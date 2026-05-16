@@ -102,7 +102,7 @@
 
     
     <menuitem id="menu_farm_robotics_root" name="Robotics &amp; Automation" 
-              parent="farm_core.menu_farm_root" sequence="45"/>
+ web_icon="farm_robotics,static/description/icon.png" sequence="45"/>
     
     <menuitem id="menu_farm_robot_registry" name="Robot Fleet" 
               parent="menu_farm_robotics_root" action="action_farm_robot" sequence="10"/>

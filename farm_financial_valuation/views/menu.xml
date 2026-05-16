@@ -2,7 +2,7 @@
 <odoo>
 <menuitem id="farm_financial_valuation_menu_root"
               name="Financial Valuation"
-              parent="farm_core.menu_finance_root"
+ web_icon="farm_financial_valuation,static/description/icon.png"
               sequence="50"/>
 
     <menuitem id="menu_financial_asset_valuation"

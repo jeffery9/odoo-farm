@@ -56,6 +56,6 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_agri_science_root" name="Agri-Science" parent="farm_core.menu_farm_root" sequence="15"/>
+    <menuitem id="menu_agri_science_root" name="Agri-Science" web_icon="farm_agri_science,static/description/icon.png" sequence="15"/>
     <menuitem id="menu_agri_physiology_profile" name="Physiology Profiles" parent="menu_agri_science_root" action="action_agri_physiology_profile" sequence="10"/>
 </odoo>

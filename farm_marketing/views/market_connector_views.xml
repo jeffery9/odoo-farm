@@ -74,5 +74,5 @@
     </record>
 
     <menuitem id="menu_market_connector" name="Market Connectors" 
-              parent="farm_core.menu_marketing_root" action="action_farm_market_connector" sequence="60"/>
+ web_icon="farm_marketing,static/description/icon.png" action="action_farm_market_connector" sequence="60"/>
 </odoo>

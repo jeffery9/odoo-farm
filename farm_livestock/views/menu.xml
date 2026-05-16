@@ -2,7 +2,7 @@
 <odoo>
     <menuitem id="menu_farm_livestock_root"
               name="Livestock"
-              parent="farm_core.menu_farm_root"
+ web_icon="farm_livestock,static/description/icon.png"
               sequence="28"/>
 
     <menuitem id="menu_livestock_animals"

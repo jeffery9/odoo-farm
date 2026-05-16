@@ -108,7 +108,7 @@
 
     
     <menuitem id="menu_farm_greenhouse_root" name="Smart Greenhouse" 
-              parent="farm_core.menu_farm_root" sequence="18"/>
+ web_icon="farm_greenhouse,static/description/icon.png" sequence="18"/>
     
     <menuitem id="menu_farm_greenhouse_rules" name="Automation Rules" 
               parent="menu_farm_greenhouse_root" action="action_farm_greenhouse_rule" sequence="20"/>

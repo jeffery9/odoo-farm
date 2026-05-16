@@ -1,105 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 主农场菜单 -->
-    <menuitem id="menu_farm_root" 
-              name="Agricultural Families" 
-                
-              sequence="10"/>
-
-    <!-- 农业活动配置菜单 -->
-    <menuitem id="menu_agri_config" 
-              name="Configurations" 
-                
-              sequence="10"/>
-
-    <!-- 农业活动任务菜单 -->
-    <menuitem id="menu_agri_campaign" 
-              name="Production Campaigns" 
-                
-              sequence="20"/>
-
-    <!-- 农业活动执行菜单 -->
-    <menuitem id="menu_agri_operations" 
-              name="Operations" 
-                
-              sequence="30"/>
-
-    <!-- 农业活动报告菜单 -->
-    <menuitem id="menu_agri_reporting" 
-              name="Reporting" 
-                
-              sequence="40"/>
-
-    <!-- 观光农业根菜单 -->
-    <menuitem id="menu_agritourism_root" 
-              name="Agritourism" 
-                
-              sequence="50"/>
-
-    <!-- Livestock Root Menu -->
-    <menuitem id="menu_livestock_root" 
-              name="Livestock" 
-                
-              sequence="20"/>
-
-    <!-- Planting Root Menu -->
-    <menuitem id="menu_planting_root" 
-              name="Planting" 
-                
-              sequence="15"/>
-
-    <!-- 加工根菜单 -->
-    <menuitem id="menu_processing_root"
-              name="Agricultural Processing"
-               
-              web_icon="farm_agricultural_processing,static/description/icon.svg"
-              sequence="40"/>
-
-    <!-- 质量管理根菜单 -->
-    <menuitem id="menu_quality_root" 
-              name="Quality Control" 
-                
-              sequence="60"/>
-
-    <!-- 安全管理根菜单 -->
-    <menuitem id="menu_safety_root" 
-              name="Safety &amp; Crisis" 
-                
-              sequence="40"/>
-
-    <!-- 供应链管理根菜单 -->
-    <menuitem id="menu_supply_root" 
-              name="Supply Chain" 
-                
-              sequence="30"/>
-
-    <!-- 营销管理根菜单 -->
-    <menuitem id="menu_marketing_root" 
-              name="Marketing" 
-                
-              sequence="70"/>
-
-    <!-- 人力资源管理根菜单 -->
-    <menuitem id="menu_hr_root" 
-              name="Labor &amp; HR" 
-                
-              sequence="80"/>
-
-    <!-- 财务管理根菜单 -->
-    <menuitem id="menu_finance_root"
-              name="Finance &amp; Costs"
-               
-              sequence="90"/>
-
-    <!-- 生物资产估值菜单 -->
-    <menuitem id="menu_farm_management"
-              name="Asset Management"
-              parent="menu_finance_root"
-              sequence="10"/>
-
-    <!-- 多农场协同根菜单 -->
-    <menuitem id="menu_multi_farm_root" 
-              name="Multi-Entity Collaboration" 
-                
-              sequence="120"/>
+    <!-- 
+      [De-industrialization & Tools Not Trees]
+      The monolithic farm_core root menus have been intentionally shattered.
+      Core infrastructure should be invisible to the end user.
+      Each L2 vertical module (Livestock, Crop, Equipment) is now responsible for declaring 
+      its own top-level App menu with its own web_icon.
+    -->
+    
+    <!-- 
+      We only retain a developer-level hidden configuration menu for global core settings,
+      accessible only to system administrators.
+    -->
+    <menuitem id="menu_farm_core_hidden_settings" 
+              name="Farm Core Admin" 
+              sequence="999"
+              groups="base.group_system"
+              web_icon="farm_core,static/description/icon.png"/>
 </odoo>

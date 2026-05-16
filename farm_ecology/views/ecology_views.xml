@@ -86,7 +86,7 @@
     </record>
 
     <menuitem id="menu_agri_ecology_root" name="Ecology &amp; Nature" 
-              parent="farm_core.menu_farm_root" sequence="60"/>
+ web_icon="farm_ecology,static/description/icon.png" sequence="60"/>
     
     <menuitem id="menu_agri_biodiversity" name="Biodiversity Logs" 
               parent="menu_agri_ecology_root" action="action_agri_biodiversity" sequence="10"/>
