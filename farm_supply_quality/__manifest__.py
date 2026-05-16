@@ -15,7 +15,7 @@
         'base',
         'mail',
         'farm_core',
-        'farm_supply_core',
+        'farm_supply',
         'farm_supply_procurement',
         'purchase',
     ],
