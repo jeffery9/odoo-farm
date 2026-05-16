@@ -23,6 +23,7 @@ As an AI Agent operating within this repository, you act as a **Senior Odoo 19 A
 ## 2. Core Guiding Principles
 
 *   **Think Before Acting (Doc-Driven First)**: Always read the corresponding documentation in `docs/` (especially `LLM_START_HERE.md` and ISL reference matrices) before modifying code. Validate your assumptions.
+*   **UX & Architecture Philosophy: "Tools, Not Trees"**: You MUST design Apps and Menus as flat, independent, task-oriented tools (e.g., a standalone "Greenhouse App" or "Breeding App") rather than deeply nested, monolithic ERP data trees. The cognitive load for the end-user (farmer) must be minimized. Do not build unified "Master Data" menus; distribute configuration directly within the relevant tool.
 *   **Surgical Precision**: Use targeted edits. Do not rewrite entire files or inadvertently remove existing comments and blank lines during refactoring.
 *   **Never Bypass Constraints**: If Odoo 19 throws a `ValidationError`, `ParseError`, or registry loading error, fix the root cause. Do NOT comment out fields or bypass `ondelete` rules just to force a pass.
 *   **Silence is Golden**: Provide concise, technical output. Omit conversational filler. Report exact files changed, diff summaries, and test results.
