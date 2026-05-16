@@ -22,18 +22,18 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Industry Specific" invisible="industry_type != 'food_processing'">
+                        <page string="Industry Specific" invisible="industry_type != 'field_crop'">
                             <group>
                                 <field name="allergen_control"/>
                                 <field name="recipe_validation" placeholder="Recipe validation for food processing"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'pharmaceutical'">
+                        <page string="Industry Specific" invisible="industry_type != 'livestock'">
                             <group>
                                 <field name="active_ingredient" placeholder="Active pharmaceutical ingredient"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'chemical'">
+                        <page string="Industry Specific" invisible="industry_type != 'aquaculture'">
                             <group>
                                 <field name="safety_coefficient"/>
                                 <field name="ingredient_compliance" placeholder="Chemical ingredient compliance"/>
