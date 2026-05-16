@@ -26,9 +26,6 @@ avoiding direct MQTT connections from Odoo for better reliability and maintainab
         "base",
         "web",
         "mail",
-        "maintenance",  # For equipment integration
-        "stock",  # For inventory tracking if needed
-        "mrp",  # For manufacturing integration
         "http_routing",  # For HTTP routing capabilities
     ],
     "data": [
