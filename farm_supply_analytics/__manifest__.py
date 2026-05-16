@@ -16,7 +16,7 @@
         'base',
         'mail',
         'farm_core',
-        'farm_supply_core',
+        'farm_supply',
         'farm_ai_decision',
     ],
     'data': [

@@ -1,27 +1,28 @@
 {
-    'name': 'Farm Supply (MIGRATION STATUS ONLY)',
+    'name': 'Farm Supply Chain',
     'version': '19.0.1.0.0',
     'category': 'Industries/Agriculture',
-    'summary': 'Migration status documentation only - all functionality moved to specialized modules',
+    'summary': 'Core Supply Chain Infrastructure',
     'description': """
-        This module is retained only for migration status documentation.
-        All supply functionality has been moved to specialized modules:
-        - farm_supply_procurement: Agricultural input management and procurement
-        - farm_supply_quality: Quality-based pricing and grading
-        - farm_supply_logistics: Cold chain and logistics management
-        - farm_supply_analytics: Supply chain analytics and risk monitoring
-        - farm_supply_core: Core supply chain infrastructure
+        Supply Chain foundation module for Odoo 19 Farm Management System.
+        (Consolidated from farm_supply and farm_supply)
+        
+        - Base supply chain models and infrastructure
+        - Supply chain node definitions
+        - Common supply chain utilities and mixins
     """,
     'author': 'Jeffery',
     'depends': [
+        'base',
+        'mail',
         'farm_core',
-        'farm_supply_core',
-        'farm_supply_procurement',
-        'farm_supply_quality',
-        'farm_supply_analytics',
+    ],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/menu.xml',
     ],
     'images': ['static/description/main_screenshot.png'],
     'installable': True,
-    'application': False,
+    'application': True,
     'license': 'AGPL-3',
 }
