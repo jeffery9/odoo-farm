@@ -2,7 +2,7 @@
 <odoo>
 <menuitem id="farm_financial_basic_menu_root"
               name="Basic Financial"
-              parent="farm_core.menu_finance_root"
+ web_icon="farm_financial_basic,static/description/icon.png"
               sequence="20"/>
 
     <menuitem id="farm_financial_basic_config_menu"

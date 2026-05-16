@@ -82,7 +82,7 @@
     </record>
 
     <menuitem id="menu_agri_standards_root" name="Agri Standards" 
-              parent="farm_core.menu_farm_root" sequence="50"/>
+ web_icon="farm_core,static/description/icon.png" sequence="50"/>
     
     <menuitem id="menu_agri_variety" name="Varieties" 
               parent="menu_agri_standards_root" action="action_agri_industry_variety" sequence="10"/>

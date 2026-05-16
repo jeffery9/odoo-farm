@@ -64,7 +64,7 @@
         <field name="view_mode">list,form,graph</field>
     </record>
 
-    <menuitem id="menu_farm_machinery_root" name="Machinery" parent="farm_core.menu_farm_root" sequence="70"/>
+    <menuitem id="menu_farm_machinery_root" name="Machinery" web_icon="farm_equipment,static/description/icon.png" sequence="70"/>
     <menuitem id="menu_farm_equipment" name="Fleet" parent="menu_farm_machinery_root" action="maintenance.hr_equipment_action" sequence="10"/>
     <menuitem id="menu_farm_equipment_logs" name="Usage Logs" parent="menu_farm_machinery_root" action="action_farm_equipment_log" sequence="20"/>
 

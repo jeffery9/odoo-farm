@@ -49,6 +49,6 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_farm_cert_ch_root" name="China Certificates" parent="farm_core.menu_farm_root" sequence="95"/>
+    <menuitem id="menu_farm_cert_ch_root" name="China Certificates" web_icon="farm_cert_ch,static/description/icon.png" sequence="95"/>
     <menuitem id="menu_farm_product_certificate" name="Product Certificates" parent="menu_farm_cert_ch_root" action="action_farm_product_certificate" sequence="10"/>
 </odoo>

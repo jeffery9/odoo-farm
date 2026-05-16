@@ -23,6 +23,6 @@
 
     <!-- Menu under Standards -->
     <menuitem id="menu_agri_growth_curve" name="Growth Curves" 
-              parent="farm_core.menu_agri_standards_root" 
+ web_icon="farm_core,static/description/icon.png" 
               action="action_agri_biological_growth_curve" sequence="30"/>
 </odoo>

@@ -56,7 +56,7 @@
     </record>
 
     <!-- Menu items -->
-    <menuitem id="menu_farm_planning_root" name="Planning" parent="farm_core.menu_farm_root" sequence="20"/>
+    <menuitem id="menu_farm_planning_root" name="Planning" web_icon="farm_planning,static/description/icon.png" sequence="20"/>
     <menuitem id="menu_agri_technical_route" name="Technical Routes" parent="menu_farm_planning_root" action="action_agri_technical_route" sequence="10"/>
 
 </odoo>

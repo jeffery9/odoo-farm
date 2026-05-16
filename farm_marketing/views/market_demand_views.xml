@@ -73,5 +73,5 @@
     </record>
 
     <menuitem id="menu_farm_market_demand" name="Market Demand Matching" 
-              parent="farm_core.menu_marketing_root" action="action_farm_market_demand" sequence="20"/>
+ web_icon="farm_marketing,static/description/icon.png" action="action_farm_market_demand" sequence="20"/>
 </odoo>

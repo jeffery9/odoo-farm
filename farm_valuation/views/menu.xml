@@ -2,6 +2,6 @@
 <odoo>
 <menuitem id="farm_valuation_menu_root"
               name="Valuation"
-              parent="farm_core.menu_finance_root"
+ web_icon="farm_valuation,static/description/icon.png"
               sequence="50"/>
 </odoo>
