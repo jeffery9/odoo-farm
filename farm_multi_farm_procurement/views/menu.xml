@@ -2,7 +2,7 @@
 <odoo>
 <menuitem id="multi_farm_procurement_menu"
               name="Procurement Management"
-              parent="farm_multi_farm_base.multi_farm_root_menu"
+              parent="farm_multi_farm.multi_farm_root_menu"
               sequence="50"/>
 
     

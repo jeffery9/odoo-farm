@@ -11,7 +11,7 @@
     """,
     'author': 'Jeffery',
     'depends': [
-        'farm_multi_farm_base',
+        'farm_multi_farm',
         'farm_quality',
         'base',
     ],

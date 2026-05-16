@@ -36,7 +36,7 @@ graph TD
     farm_greenhouse["farm_greenhouse"]:::highlight
     farm_insurance["farm_insurance"]:::highlight
     farm_iot["farm_iot"]:::highlight
-    farm_multi_farm_base["farm_multi_farm_base"]:::highlight
+    farm_multi_farm["farm_multi_farm"]:::highlight
     farm_multi_farm_equipment["farm_multi_farm_equipment"]:::highlight
     farm_multi_farm_financial["farm_multi_farm_financial"]:::highlight
     farm_multi_farm_procurement["farm_multi_farm_procurement"]:::highlight
@@ -79,10 +79,10 @@ graph TD
     farm_insurance --> farm_core
     farm_iot --> agri_iot
     farm_iot --> farm_core
-    farm_multi_farm_base --> farm_core
-    farm_multi_farm_equipment --> farm_multi_farm_base
-    farm_multi_farm_financial --> farm_multi_farm_base
-    farm_multi_farm_procurement --> farm_multi_farm_base
+    farm_multi_farm --> farm_core
+    farm_multi_farm_equipment --> farm_multi_farm
+    farm_multi_farm_financial --> farm_multi_farm
+    farm_multi_farm_procurement --> farm_multi_farm
     farm_operation --> farm_agri_science
     farm_operation --> farm_ai_core
     farm_operation --> farm_core
@@ -272,10 +272,10 @@ graph TD
     farm_multi_farm --> farm_financial_core
     farm_multi_farm --> farm_hr
     farm_multi_farm --> farm_marketing
-    farm_multi_farm --> farm_multi_farm_base
+    farm_multi_farm --> farm_multi_farm
     farm_multi_farm --> farm_multi_farm_financial
     farm_multi_farm --> farm_multi_farm_procurement
-    farm_multi_farm_quality --> farm_multi_farm_base
+    farm_multi_farm_quality --> farm_multi_farm
     farm_multi_farm_quality --> farm_quality
     farm_mushroom --> farm_core
     farm_mushroom --> farm_operation

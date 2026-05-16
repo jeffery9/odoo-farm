@@ -3031,121 +3031,121 @@
 
 
 
-### `base.action.approve.mixin` (Defined in `farm_multi_farm_base`)
+### `base.action.approve.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseActionApproveMixin`
   - **描述**: Base Action Approve Mixin
 
 
 
-### `base.action.cancel.mixin` (Defined in `farm_multi_farm_base`)
+### `base.action.cancel.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseActionCancelMixin`
   - **描述**: Base Action Cancel Mixin
 
 
 
-### `base.action.confirm.mixin` (Defined in `farm_multi_farm_base`)
+### `base.action.confirm.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseActionConfirmMixin`
   - **描述**: Base Action Confirm Mixin
 
 
 
-### `base.action.reject.mixin` (Defined in `farm_multi_farm_base`)
+### `base.action.reject.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseActionRejectMixin`
   - **描述**: Base Action Reject Mixin
 
 
 
-### `base.amount.calculation.mixin` (Defined in `farm_multi_farm_base`)
+### `base.amount.calculation.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseAmountCalculationMixin`
   - **描述**: Base Amount Calculation Mixin
 
 
 
-### `base.available.amount.mixin` (Defined in `farm_multi_farm_base`)
+### `base.available.amount.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseAvailableAmountMixin`
   - **描述**: Base Available Amount Mixin
 
 
 
-### `base.available.credit.mixin` (Defined in `farm_multi_farm_base`)
+### `base.available.credit.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseAvailableCreditMixin`
   - **描述**: Base Available Credit Mixin
 
 
 
-### `base.certified.status.mixin` (Defined in `farm_multi_farm_base`)
+### `base.certified.status.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseCertifiedStatusMixin`
   - **描述**: Base Certified Status Mixin
 
 
 
-### `base.code.mixin` (Defined in `farm_multi_farm_base`)
+### `base.code.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseCodeMixin`
   - **描述**: Base Code Mixin
 
 
 
-### `base.compliance.status.mixin` (Defined in `farm_multi_farm_base`)
+### `base.compliance.status.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseComplianceStatusMixin`
   - **描述**: Base Compliance Status Mixin
 
 
 
-### `base.credit.limit.mixin` (Defined in `farm_multi_farm_base`)
+### `base.credit.limit.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseCreditLimitMixin`
   - **描述**: Base Credit Limit Mixin
 
 
 
-### `base.investment.amount.mixin` (Defined in `farm_multi_farm_base`)
+### `base.investment.amount.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseInvestmentAmountMixin`
   - **描述**: Base Investment Amount Mixin
 
 
 
-### `base.loan.amount.mixin` (Defined in `farm_multi_farm_base`)
+### `base.loan.amount.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseLoanAmountMixin`
   - **描述**: Base Loan Amount Mixin
 
 
 
-### `base.net.amount.mixin` (Defined in `farm_multi_farm_base`)
+### `base.net.amount.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseNetAmountMixin`
   - **描述**: Base Net Amount Mixin
 
 
 
-### `base.sequence.mixin` (Defined in `farm_multi_farm_base`)
+### `base.sequence.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseSequenceMixin`
   - **描述**: Base Sequence Mixin
 
 
 
-### `base.service.amount.mixin` (Defined in `farm_multi_farm_base`)
+### `base.service.amount.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseServiceAmountMixin`
   - **描述**: Base Service Amount Mixin
 
 
 
-### `base.settlement.direction.mixin` (Defined in `farm_multi_farm_base`)
+### `base.settlement.direction.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseSettlementDirectionMixin`
   - **描述**: Base Settlement Direction Mixin
 
 
 
-### `base.share.value.mixin` (Defined in `farm_multi_farm_base`)
+### `base.share.value.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseShareValueMixin`
   - **描述**: Base Share Value Mixin
 
 
 
-### `base.total.amount.mixin` (Defined in `farm_multi_farm_base`)
+### `base.total.amount.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseTotalAmountMixin`
   - **描述**: Base Total Amount Mixin
 
 
 
-### `base.total.investment.mixin` (Defined in `farm_multi_farm_base`)
+### `base.total.investment.mixin` (Defined in `farm_multi_farm`)
   - **Class**: `BaseTotalInvestmentMixin`
   - **描述**: Base Total Investment Mixin
 
@@ -3532,7 +3532,7 @@
     - `total_labor_forecast` (Float): Total Labor Forecast (Hours)
     - `input_forecast_ids` (One2many): agri.scenario.input.forecast
 
-### `agri.service` (Defined in `farm_multi_farm_base`)
+### `agri.service` (Defined in `farm_multi_farm`)
   - **Class**: `AgriService`
   - **描述**: Agricultural Service
   - _inherit_: `mail.thread, mail.activity.mixin`
@@ -3677,7 +3677,7 @@
     - `industry_context` (Selection): industry_context
     - `difficulty_level` (Selection): difficulty_level
 
-### `cooperative.entity` (Defined in `farm_multi_farm_base`)
+### `cooperative.entity` (Defined in `farm_multi_farm`)
   - **Class**: `CooperativeEntityExtension`
   - **描述**: 
   - _inherit_: `cooperative.entity`
@@ -3685,7 +3685,7 @@
     - `member_ids` (One2many): cooperative.member
     - `agri_service_ids` (One2many): agri.service
 
-### `cooperative.entity` (Defined in `farm_multi_farm_base`)
+### `cooperative.entity` (Defined in `farm_multi_farm`)
   - **Class**: `CooperativeEntityExtension`
   - **描述**: 
   - _inherit_: `cooperative.entity`
@@ -3725,14 +3725,14 @@
     - `hub_spoke_distribution_ids` (One2many): hub.spoke.distribution
     - `netting_settlement_ids` (One2many): netting.settlement
 
-### `cooperative.member` (Defined in `farm_multi_farm_base`)
+### `cooperative.member` (Defined in `farm_multi_farm`)
   - **Class**: `CooperativeMemberExtension`
   - **描述**: 
   - _inherit_: `cooperative.member`
   - **核心字段**:
     - `service_order_ids` (One2many): service.order
 
-### `cooperative.member` (Defined in `farm_multi_farm_base`)
+### `cooperative.member` (Defined in `farm_multi_farm`)
   - **Class**: `CooperativeMemberExtension`
   - **描述**: 
   - _inherit_: `cooperative.member`
@@ -3944,14 +3944,14 @@
   - _inherit_: `agri.ecological.activity`
 
 
-### `farm.entity` (Defined in `farm_multi_farm_base`)
+### `farm.entity` (Defined in `farm_multi_farm`)
   - **Class**: `FarmEntityExtension`
   - **描述**: 
   - _inherit_: `farm.entity`
   - **核心字段**:
     - `cooperative_member_ids` (One2many): cooperative.member
 
-### `farm.entity` (Defined in `farm_multi_farm_base`)
+### `farm.entity` (Defined in `farm_multi_farm`)
   - **Class**: `FarmEntityExtension`
   - **描述**: 
   - _inherit_: `farm.entity`
@@ -4424,7 +4424,7 @@
     - `is_potency_standardized` (Boolean): Standardize by Potency
     - `target_purity` (Float): Target Purity %
 
-### `farm.regional.oversight` (Defined in `farm_multi_farm_base`)
+### `farm.regional.oversight` (Defined in `farm_multi_farm`)
   - **Class**: `FarmRegionalOversight`
   - **描述**: Regional Agricultural Oversight Dashboard
   - _inherit_: `mail.thread, mail.activity.mixin`
@@ -4667,14 +4667,14 @@
     - `certification_ids` (Many2many): farm.training.certification
     - `training_record_ids` (One2many): farm.training.training_record
 
-### `internal.settlement` (Defined in `farm_multi_farm_base`)
+### `internal.settlement` (Defined in `farm_multi_farm`)
   - **Class**: `InternalSettlementExtension`
   - **描述**: 
   - _inherit_: `internal.settlement`
   - **核心字段**:
     - `settlement_type` (Selection): settlement_type
 
-### `internal.settlement` (Defined in `farm_multi_farm_base`)
+### `internal.settlement` (Defined in `farm_multi_farm`)
   - **Class**: `InternalSettlementExtension`
   - **描述**: 
   - _inherit_: `internal.settlement`
@@ -5019,7 +5019,7 @@
   - **核心字段**:
     - `loyalty_points` (Float): Farm Loyalty Points
 
-### `res.partner` (Defined in `farm_multi_farm_base`)
+### `res.partner` (Defined in `farm_multi_farm`)
   - **Class**: `ResPartner`
   - **描述**: 
   - _inherit_: `res.partner`
@@ -5154,7 +5154,7 @@
     - `isl_summary_info` (Char): ISL Contextual Info
     - `isl_record_type` (Char): isl_record_type
 
-### `stock.lot` (Defined in `farm_multi_farm_base`)
+### `stock.lot` (Defined in `farm_multi_farm`)
   - **Class**: `StockLotExtension`
   - **描述**: 
   - _inherit_: `stock.lot`
@@ -5163,7 +5163,7 @@
     - `cooperative_purpose` (Selection): cooperative_purpose
     - `is_government_audited` (Boolean): Government Audit Passed
 
-### `stock.lot` (Defined in `farm_multi_farm_base`)
+### `stock.lot` (Defined in `farm_multi_farm`)
   - **Class**: `StockLotExtension`
   - **描述**: 
   - _inherit_: `stock.lot`
@@ -5238,7 +5238,7 @@
   - _inherit_: `stock.move, agri.view.mixin`
 
 
-### `stock.picking.type` (Defined in `farm_multi_farm_base`)
+### `stock.picking.type` (Defined in `farm_multi_farm`)
   - **Class**: `StockPickingType`
   - **描述**: 
   - _inherit_: `stock.picking.type`
