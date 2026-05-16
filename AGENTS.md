@@ -62,3 +62,36 @@ Every single module MUST implement the following testing trinity:
 
 *   Regularly clean up temporary migration scripts (e.g., `fix_*.py`).
 *   Ensure all module manifests (`__manifest__.py`) are valid Python dictionaries and pass `ast.literal_eval`.
+
+## 7. Git Worktree Workflow (Multi-Context Paradigm)
+
+This project utilizes `git worktree` to manage multiple development contexts simultaneously. This approach ensures physical isolation between the active development branch, the release branch, and baseline code, eliminating context-switching overhead.
+
+### 7.1 Physical Directory Structure
+
+The workspace is organized around a "Main Base" and a "Task Hub":
+
+*   **Main Base (`odoo-farm-dev/`)**: 
+    *   **Branch**: `dev`
+    *   **Role**: The primary active development area. Contains the core `.git` directory. Most of your daily coding will happen here.
+*   **Task Hub (`../odoo-farm-workspace/`)**:
+    *   `../odoo-farm-workspace/19.0/`: 
+        *   **Branch**: `19.0`
+        *   **Role**: Release branch. Use this for verifying production-ready code, backporting fixes, or comparing against development.
+    *   `../odoo-farm-workspace/19.0-clean/`: 
+        *   **Branch**: `19.0-clean`
+        *   **Role**: A pristine baseline reference. Use this to verify original Odoo behavior before any project-specific modifications.
+
+### 7.2 Operational Guidelines for Agents
+
+1.  **Context Awareness**: Before making changes or running tests, always confirm which physical directory you are in (`pwd`). Do not assume you are in `dev` if the task involves the release branch.
+2.  **Comparison Flow**: To compare the active `dev` state with the `19.0` release state, utilize the physical paths directly. For example: `diff -r . ../odoo-farm-workspace/19.0/module_name`.
+3.  **Branch Safety (Crucial)**: **NEVER** attempt to `git checkout 19.0` or `git checkout 19.0-clean` within the main `odoo-farm-dev/` directory. Git will block this because those branches are already checked out in their respective worktrees. To work on `19.0`, you MUST `cd ../odoo-farm-workspace/19.0`.
+4.  **Clean Verification**: If a bug is reported, first try to reproduce it in `../odoo-farm-workspace/19.0-clean/` to determine if it is an upstream Odoo issue or a local regression caused by our ISL architecture.
+
+### 7.3 Standard Commands
+
+*   **List Status**: `git worktree list` (Run this if you lose track of branch locations).
+*   **Add Worktree**: `git worktree add ../odoo-farm-workspace/<folder_name> <branch_name>`
+*   **Remove Worktree**: Delete the folder (`rm -rf <path>`), then run `git worktree prune`.
+
