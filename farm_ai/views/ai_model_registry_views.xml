@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- AI Model Registry Action -->
+    <record id="action_ai_model_registry" model="ir.actions.act_window">
+        <field name="name">AI Model Registry</field>
+        <field name="res_model">agri.ai.model.registry</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register your first AI Model!
+            </p><p>
+                Register and manage AI models used in the system.
+            </p>
+        </field>
+    </record>
+
+    <!-- AI Model Registry Tree View -->
+    <record id="view_ai_model_registry_tree" model="ir.ui.view">
+        <field name="name">ai.model.registry.tree</field>
+        <field name="model">agri.ai.model.registry</field>
+        <field name="arch" type="xml">
+            <list string="AI Model Registry">
+                <field name="name"/>
+                <field name="model_type"/>
+                <field name="version"/>
+                <field name="accuracy"/>
+                <field name="is_active"/>
+                <field name="is_default"/>
+                <field name="inference_count"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- AI Model Registry Form View -->
+    <record id="view_ai_model_registry_form" model="ir.ui.view">
+        <field name="name">ai.model.registry.form</field>
+        <field name="model">agri.ai.model.registry</field>
+        <field name="arch" type="xml">
+            <form string="AI Model Registry">
+                <header>
+                    <button name="action_evaluate_model" type="object" string="Evaluate Model" class="btn btn-secondary"/>
+                    <button name="action_visualize_model" type="object" string="Visualize" class="btn btn-secondary"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="is_active" widget="boolean_button" options='{"terminology": "active"}'/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name"/></h1>
+                        <div class="o_row">
+                            <field name="version"/>
+                            <field name="model_type" class="ml8"/>
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="model_type"/>
+                            <field name="version"/>
+                            <field name="input_format"/>
+                            <field name="output_format"/>
+                        </group>
+                        <group>
+                            <field name="is_active"/>
+                            <field name="is_default"/>
+                            <field name="hardware_requirements"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Performance Metrics">
+                            <group>
+                                <group>
+                                    <field name="accuracy"/>
+                                    <field name="precision"/>
+                                </group>
+                                <group>
+                                    <field name="recall"/>
+                                    <field name="f1_score"/>
+                                    <field name="mae"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Training Information">
+                            <group>
+                                <group>
+                                    <field name="last_trained"/>
+                                    <field name="training_dataset"/>
+                                </group>
+                                <group>
+                                    <field name="training_samples_count"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Configuration">
+                            <group>
+                                <field name="config_params" nolabel="1" placeholder="Configuration parameters in JSON format..."/>
+                            </group>
+                            <group>
+                                <field name="preprocessing_steps" nolabel="1" placeholder="Steps required to preprocess input data..."/>
+                            </group>
+                        </page>
+                        <page string="Usage Statistics">
+                            <group>
+                                <group>
+                                    <field name="inference_count"/>
+                                    <field name="avg_inference_time"/>
+                                </group>
+                                <group>
+                                    <field name="last_used"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

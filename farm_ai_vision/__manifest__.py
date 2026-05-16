@@ -9,7 +9,7 @@
         "base",
         "mail",
         "farm_core",
-        "farm_ai_core",
+        "farm_ai",
         "farm_agri_science",
         "farm_ai_llm_integration"
     ],
