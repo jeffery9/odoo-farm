@@ -37,17 +37,17 @@ class AgriISLModelRedirector(models.AbstractModel):
             base_suffix = base_model_name.split('.')[-1]
             # Specialized mappings for specific industries/models
             special_mappings = {
-                ('aquaculture', 'production'): 'farm.ras.production',
-                ('livestock', 'bom'): 'farm.livestock.bom',
-                ('livestock', 'production'): 'farm.livestock.production',
-                ('crop', 'production'): 'farm.crop.production',
-                ('processing', 'production'): 'farm.processing.production',
+                ('aquaculture', 'production'): 'agri.isl.ras.production',
+                ('livestock', 'bom'): 'agri.isl.livestock.bom',
+                ('livestock', 'production'): 'agri.isl.livestock.production',
+                ('crop', 'production'): 'agri.isl.crop.production',
+                ('processing', 'production'): 'agri.isl.processing.production',
             }
             
             target_model = special_mappings.get((industry, base_suffix))
             if not target_model:
                 # Try generic pattern
-                potential_model = f'farm.{industry}.{base_suffix}'
+                potential_model = f'agri.isl.{industry}.{base_suffix}'
                 if potential_model in self.env:
                     target_model = potential_model
             
