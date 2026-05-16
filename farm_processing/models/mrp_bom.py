@@ -29,7 +29,7 @@ class MrpBom(models.Model):
     def _get_isl_model(self):
         res = super(MrpBom, self)._get_isl_model()
         if self.industry_type in ['food_processing', 'baking', 'winemaking']:
-            return 'farm.processing.bom'
+            return 'agri.isl.processing.bom'
         return res
 
     # --- Processing Specific Fields ---

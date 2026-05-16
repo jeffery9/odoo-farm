@@ -14,7 +14,7 @@ class TestProcessingISL(TransactionCase):
 
     def test_01_energy_cost_form_logic(self):
         """ Test energy cost calculation through Form UI simulation. """
-        with Form(self.env['farm.processing.production']) as f:
+        with Form(self.env['agri.isl.processing.production']) as f:
             f.product_id = self.juice
             f.energy_reading_start = 5000.0
             f.energy_reading_end = 5150.0
@@ -30,11 +30,11 @@ class TestProcessingISL(TransactionCase):
             'product_qty': 100.0,
             'industry_type': 'food_processing',
         })
-        isl_bom = self.env['farm.processing.bom'].search([('mrp_bom_id', '=', bom.id)])
+        isl_bom = self.env['agri.isl.processing.bom'].search([('mrp_bom_id', '=', bom.id)])
         isl_bom.max_loss_rate = 5.0 
         
         # Simulate MO creation
-        with Form(self.env['farm.processing.production']) as f:
+        with Form(self.env['agri.isl.processing.production']) as f:
             f.product_id = self.juice
             f.bom_id = bom
             f.product_qty = 100.0

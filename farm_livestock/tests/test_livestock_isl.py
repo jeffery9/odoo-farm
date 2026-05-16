@@ -7,8 +7,8 @@ class TestLivestockISL(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.Product = cls.env['product.product']
-        cls.AnimalLot = cls.env['farm.lot.livestock']
-        cls.HusbandryBom = cls.env['farm.livestock.bom']
+        cls.AnimalLot = cls.env['agri.isl.lot.livestock']
+        cls.HusbandryBom = cls.env['agri.isl.livestock.bom']
         
         cls.cow_product = cls.Product.create({
             'name': 'Angus Cow',

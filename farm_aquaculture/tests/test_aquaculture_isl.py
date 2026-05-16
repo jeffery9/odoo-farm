@@ -6,8 +6,8 @@ class TestAquacultureISL(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.Product = cls.env['product.product']
-        cls.AquaLot = cls.env['farm.lot.aquaculture']
-        cls.AquaBom = cls.env['farm.aquaculture.bom']
+        cls.AquaLot = cls.env['agri.isl.lot.aquaculture']
+        cls.AquaBom = cls.env['agri.isl.aquaculture.bom']
         
         cls.fish_product = cls.Product.create({
             'name': 'Atlantic Salmon',

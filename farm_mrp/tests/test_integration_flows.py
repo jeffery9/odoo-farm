@@ -43,7 +43,7 @@ class TestIntegrationFarmMrp(TransactionCase):
         # Check if ISL redirection would work
         if hasattr(mo, 'get_formview_action'):
             action = mo.get_formview_action()
-            # If food_processing is correctly set, it might redirect to farm.processing.production
+            # If food_processing is correctly set, it might redirect to agri.isl.processing.production
             # This depends on if farm_processing is installed
             pass
 

@@ -15,7 +15,7 @@ class MrpBomLine(models.Model):
         parent_bom = self.bom_id
         if parent_bom:
             if parent_bom.industry_type == 'livestock':
-                return 'farm.livestock.bom.line'
+                return 'agri.isl.livestock.bom.line'
             elif parent_bom.industry_type == 'processing':
                 return 'farm.processing.bom.line'
             elif parent_bom.industry_type == 'aquaculture':
