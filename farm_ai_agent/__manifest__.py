@@ -9,14 +9,10 @@
         "base",
         "mail",
         "farm_core",
-        "farm_operation",
         "farm_ai_core",
         "farm_ai_vision",
         "farm_ai_decision",
-        "farm_financial_insurance",
         "farm_ai_llm_integration",
-        "farm_robotics",
-        
         "farm_agri_science"
     ],
     "data": [
