@@ -28,6 +28,58 @@ class AgriInterventionMixin(models.AbstractModel):
         help="The production season this intervention belongs to."
     )
 
+    # ---------------------------------------------------------
+    # [Agri-Precision Absorbed DNA] 
+    # Yield Calibration, Cycle Counting, and IoT Status
+    # ---------------------------------------------------------
+    
+    # 1. Uncertainty: Dynamic Yield Tracking
+    expected_yield_accuracy = fields.Float("Expected Yield Accuracy (%)", default=100.0)
+    last_metrology_date = fields.Datetime("Last Calibration/Sampling")
+
+    # 2. Intervention: Cycle Tracking
+    intervention_count = fields.Integer("Intervention Cycles", default=0, copy=False)
+
+    # 3. IoT Integration: Environment Condition
+    iot_device_ids = fields.Many2many(
+        'iiot.device',
+        string='IoT Devices',
+        help='IoT devices directly associated with this intervention for environmental gating.'
+    )
+    iot_status = fields.Selection([
+        ('normal', 'Normal'),
+        ('monitoring', 'Monitoring'),
+        ('warning', 'Warning'),
+        ('critical', 'Critical')
+    ], string="IoT Environmental Status", default='normal', tracking=True)
+
+    def action_update_yield_estimate(self, new_qty):
+        """ [Uncertainty] Mid-process yield calibration based on field sampling. """
+        self.ensure_one()
+        self.product_qty = new_qty
+        self.last_metrology_date = fields.Datetime.now()
+        self.message_post(body=_("YIELD CALIBRATION: New expected quantity set to %s.") % new_qty)
+
+    def action_trigger_iot_based_intervention(self, sensor_readings_summary):
+        """
+        Automatically adjust IoT status and log interventions based on sensor streams.
+        """
+        self.ensure_one()
+        self.intervention_count += 1
+        
+        # Determine urgency based on telemetry keywords
+        summary_lower = sensor_readings_summary.lower()
+        if any(kw in summary_lower for kw in ['critical', 'deviation', 'error', 'emergency']):
+            self.iot_status = 'critical'
+        elif any(kw in summary_lower for kw in ['warning', 'alert', 'high', 'low']):
+            self.iot_status = 'warning'
+        else:
+            self.iot_status = 'monitoring'
+
+        self.message_post(body=_("IoT Auto-Intervention (Cycle %s): %s") % (self.intervention_count, sensor_readings_summary))
+        return True
+
+
     # Agricultural-specific intervention classification
     intervention_type = fields.Selection([
         ('tillage', 'Soil Preparation'),
