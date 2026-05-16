@@ -190,7 +190,7 @@
 | **Epic 132: 农光互补与能源微电网 (Agrivoltaics & Energy Microgrids)** | US-132-01 等 4 个 | `farm_iot`, `farm_equipment` | 🔄 敏捷推进中 |
 | **Epic 133: 机器人与无人机“蜂群”协同编队 (Swarm Robotics Coordination)** | US-133-01 等 4 个 | `farm_robotics`, `farm_ai_agent` | 🔄 敏捷推进中 |
 
-### 模块职责边界说明 (5-Layer Macro Architecture)
+### 模块职责边界说明 (4-Layer Macro Architecture)
 为了确保系统的极高解耦性和灵活的商业交付，本套件严格遵循 **5 层扁平架构** 原则：
 
 1. **Layer 0 (Foundation - 基础设施底座层)**

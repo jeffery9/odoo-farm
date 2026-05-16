@@ -1,12 +1,12 @@
 # 🌾 Odoo 农业生态系统：全量知识库 (Farm Docs Portal)
 
-欢迎进入 Odoo Farm 知识库。本项目不仅是一个 Odoo 套件，更是一套遵循 **5层扁平化宏观架构** 的数字化农业操作系统。
+欢迎进入 Odoo Farm 知识库。本项目不仅是一个 Odoo 套件，更是一套遵循 **4层扁平化宏观架构** 的数字化农业操作系统。
 
 ---
 
 ## 🏛️ 核心架构律令 (Core Architecture Trinity)
 在阅读具体文档前，请务必理解系统的三大支柱：
-1.  **[5-Layer Macro Architecture](technical/architecture/MACRO_5_LAYER_ARCHITECTURE.md)**: 严格物理隔离底座、引擎、应用、商业与智能。
+1.  **[4-Layer Macro Architecture](technical/architecture/MACRO_4_LAYER_ARCHITECTURE.md)**: 严格物理隔离底座、引擎、应用、商业与智能。
 2.  **[ISL (Industry Standard Layer)](technical/architecture/ISL_ARCHITECTURE.md)**: 采用 `_inherits` 代理模式实现底层交易与上层业务解耦。
 3.  **[Tool-based App UX](technical/ux/UX_MENU_ARCHITECTURE_PRINCIPLES.md)**: 坚持 "Tools, not Trees"，每一个业务域均为独立、高内聚的应用。
 
@@ -34,6 +34,6 @@
 - **[LLM START HERE (必读)](LLM_START_HERE.md)**: 🤖 AI 开发者接入项目后的首读文件，定义了文档驱动开发的黄金路径。
 
 ---
-**文档版本**: V8.0.0 (5-Layer Architecture Edition)  
+**文档版本**: V8.0.0 (4-Layer Architecture Edition)  
 **最后更新**: 2026-05-04  
 **治理状态**: 已建立全量 BDD 验收链条与 95% 测试覆盖率验证。
