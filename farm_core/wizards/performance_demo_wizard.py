@@ -67,7 +67,7 @@ class PerformanceDemoWizard(models.TransientModel):
         # Simulate creating records with precompute fields
         for i in range(min(5, self.record_count)):  # Only demo a few records to keep it fast
             # Create a livestock production record that uses precompute
-            record = self.env['farm.livestock.production'].create({
+            record = self.env['agri.isl.livestock.production'].create({
                 'name': f'Demo Production Order {i}',
                 'initial_total_weight': 100.0,
                 'final_total_weight': 150.0,
@@ -89,7 +89,7 @@ class PerformanceDemoWizard(models.TransientModel):
         self.demo_details = "Demonstrating JSON field usage...\n"
 
         # Create a livestock production record with JSON config
-        record = self.env['farm.livestock.production'].create({
+        record = self.env['agri.isl.livestock.production'].create({
             'name': 'JSON Demo Order',
             'livestock_config': {
                 'feeding_schedule': ['morning', 'afternoon', 'evening'],
@@ -116,7 +116,7 @@ class PerformanceDemoWizard(models.TransientModel):
         self.demo_details = "Demonstrating security enhancements...\n"
 
         # Create a livestock production record that includes security features
-        record = self.env['farm.livestock.production'].create({
+        record = self.env['agri.isl.livestock.production'].create({
             'name': 'Security Demo Order',
             'security_level': 'high',
             'initial_total_weight': 100.0,

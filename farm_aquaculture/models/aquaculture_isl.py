@@ -7,7 +7,7 @@ import json
 _logger = logging.getLogger(__name__)
 
 class FarmAquacultureBom(models.Model):
-    _name = 'farm.aquaculture.bom'
+    _name = 'agri.isl.aquaculture.bom'
     _description = 'Aquaculture Stocking Recipe'
     _inherits = {'mrp.bom': 'bom_id'}
     _inherit = ['agri.bom.mixin']
@@ -20,7 +20,7 @@ class FarmAquacultureBom(models.Model):
     max_stocking_density = fields.Float("Max Density (kg/m³)")
 
 class FarmLotAquaculture(models.Model):
-    _name = 'farm.lot.aquaculture'
+    _name = 'agri.isl.lot.aquaculture'
     _description = 'Aquaculture Asset Batch'
     _inherits = {'stock.lot': 'lot_id'}
     _inherit = ['agri.biological.inventory.mixin', 'agri.geospatial.mixin']
@@ -37,7 +37,7 @@ class FarmLotAquaculture(models.Model):
             rec.current_density = rec.total_biomass / rec.water_volume_m3 if rec.water_volume_m3 > 0 else 0.0
 
 class FarmAquacultureProduction(models.Model):
-    _name = 'farm.aquaculture.production'
+    _name = 'agri.isl.aquaculture.production'
     _description = 'Aquaculture Growth Order'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
@@ -79,7 +79,7 @@ class FarmAquacultureProduction(models.Model):
         
         if do_level is not None:
             self.latest_do_level = do_level
-            bom = self.env['farm.aquaculture.bom'].search([('bom_id', '=', self.bom_id.id)], limit=1)
+            bom = self.env['agri.isl.aquaculture.bom'].search([('bom_id', '=', self.bom_id.id)], limit=1)
             threshold = bom.min_dissolved_oxygen if bom else 4.0
             
             if do_level < threshold:

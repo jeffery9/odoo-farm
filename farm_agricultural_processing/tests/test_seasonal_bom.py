@@ -25,7 +25,7 @@ class TestAgriculturalProcessingAdditionalFeatures(TransactionCase):
             self.FarmSeasonalBom = None
 
         try:
-            self.FarmProcessingBom = self.env['farm.processing.bom']
+            self.FarmProcessingBom = self.env['agri.isl.processing.bom']
         except KeyError:
             self.FarmProcessingBom = None
         try:

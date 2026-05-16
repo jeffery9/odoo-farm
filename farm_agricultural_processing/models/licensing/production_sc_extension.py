@@ -7,7 +7,7 @@ class FarmProcessingProductionSCExtension(models.Model):
     """
     Extension to Processing ISL Production Model for SC License - US-037-21
     """
-    _inherit = 'farm.processing.production'
+    _inherit = 'agri.isl.processing.production'
 
     # Add SC category field to production order
     sc_category_id = fields.Many2one('farm.sc.category', string="SC Category")
@@ -37,7 +37,7 @@ class FarmProcessingBomSCExtension(models.Model):
     """
     Extension to Processing ISL BOM Model for SC Category - US-037-21
     """
-    _inherit = 'farm.processing.bom'
+    _inherit = 'agri.isl.processing.bom'
 
     # Add SC category field to BOM
     sc_category_id = fields.Many2one('farm.sc.category', string="SC Category")
@@ -51,7 +51,7 @@ class AgriProcessingLicenseCheck(models.Model):
     _description = 'Production License Scope Verification'
 
     name = fields.Char('License Check Record', required=True)
-    production_id = fields.Many2one('farm.processing.production', string='Production Order', required=True)
+    production_id = fields.Many2one('agri.isl.processing.production', string='Production Order', required=True)
     license_id = fields.Many2one('farm.sc.license', string='SC License', required=True)
 
     # Product and category checks

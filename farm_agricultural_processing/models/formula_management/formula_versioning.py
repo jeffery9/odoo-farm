@@ -10,7 +10,7 @@ class FarmProcessingBomFormulaVersionExtension(models.Model):
     """
     Extension to Processing ISL BOM Model for Formula Version - US-037-09
     """
-    _inherit = 'farm.processing.bom'
+    _inherit = 'agri.isl.processing.bom'
 
     # Formula version specific fields
     version_number = fields.Integer('Version', default=1)
@@ -54,7 +54,7 @@ class FarmProcessingBlindMaterial(models.Model):
     _name = 'farm.processing.blind.material'
     _description = 'Blind Materials for Formula Confidentiality'
 
-    formula_bom_id = fields.Many2one('farm.processing.bom', string='Formula BOM', ondelete='cascade')
+    formula_bom_id = fields.Many2one('agri.isl.processing.bom', string='Formula BOM', ondelete='cascade')
     product_id = fields.Many2one('product.product', string='Product', required=True)
     blind_name = fields.Char('Blind Name', help='Confidential name shown during mixing')
     sequence = fields.Integer('Sequence', default=10)
@@ -81,8 +81,8 @@ class FarmProcessingFormulaAutoCorrection(models.Model):
     _description = 'Formula Auto-Correction System'
 
     name = fields.Char('Correction Record', required=True)
-    bom_id = fields.Many2one('farm.processing.bom', string='Formula', required=True)
-    production_id = fields.Many2one('farm.processing.production', string='Production Order')
+    bom_id = fields.Many2one('agri.isl.processing.bom', string='Formula', required=True)
+    production_id = fields.Many2one('agri.isl.processing.production', string='Production Order')
 
     # Original values
     original_qty = fields.Float('Original Quantity', required=True)

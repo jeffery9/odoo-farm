@@ -10,7 +10,7 @@ class FarmProcessingProductionMassBalanceExtension(models.Model):
     """
     Extension to Processing ISL Production Model for Mass Balance - US-037-13
     """
-    _inherit = 'farm.processing.production'
+    _inherit = 'agri.isl.processing.production'
 
     # Mass balance specific fields extending the existing ISL model
     mass_balance_name = fields.Char('Balance Check No.')
@@ -69,7 +69,7 @@ class FarmProcessingProductionMultiOutputExtension(models.Model):
     """
     Extension to Processing ISL Production Model for Multi-Output - US-037-01
     """
-    _inherit = 'farm.processing.production'
+    _inherit = 'agri.isl.processing.production'
 
     # Multi-output processing fields
     is_multi_output = fields.Boolean('Is Multi-Output Process', default=False)
@@ -91,7 +91,7 @@ class AgriProcessingMultiOutputLine(models.Model):
     _name = 'agri.processing.multi.output.line'
     _description = 'Multi-Output Product Lines for Agricultural Processing'
     multi_output_id = fields.Many2one('agri.processing.multi.output', string='Multi-Output Record')
-    production_id = fields.Many2one('farm.processing.production', string='Production Order', ondelete='cascade')
+    production_id = fields.Many2one('agri.isl.processing.production', string='Production Order', ondelete='cascade')
     product_id = fields.Many2one('product.product', string='Product', required=True)
     product_qty = fields.Float('Quantity', required=True)
     output_qty = fields.Float('Output Quantity')
@@ -117,7 +117,7 @@ class FarmProcessingProductionAttributeInheritanceExtension(models.Model):
     """
     Extension to Processing ISL Production Model for Attribute Inheritance - US-037-02
     """
-    _inherit = 'farm.processing.production'
+    _inherit = 'agri.isl.processing.production'
 
     # Incremental labeling system fields
     incremental_label_base = fields.Char('Incremental Label Base', help='Base part of incremental label')
@@ -132,7 +132,7 @@ class FarmProcessingProductionActiveIngredientExtension(models.Model):
     """
     Extension to Processing ISL Production Model for Active Ingredient Standardization - US-037-11
     """
-    _inherit = 'farm.processing.production'
+    _inherit = 'agri.isl.processing.production'
 
     # Active ingredient analysis for standardization processing
     active_ingredient_content = fields.Float('Active Ingredient Content (%)')
@@ -157,7 +157,7 @@ class FarmProcessingProductionAllergenExtension(models.Model):
     """
     Extension to Processing ISL Production Model for Allergen Control - US-037-14
     """
-    _inherit = 'farm.processing.production'
+    _inherit = 'agri.isl.processing.production'
 
     # Allergen tracking and control
     contains_allergens = fields.Boolean('Contains Allergens', default=False)
@@ -190,7 +190,7 @@ class FarmProcessingProductionGmpExtension(models.Model):
     """
     Extension to Processing ISL Production Model for GMP Environmental Monitoring - US-037-15
     """
-    _inherit = 'farm.processing.production'
+    _inherit = 'agri.isl.processing.production'
 
     # GMP environmental monitoring
     gmp_temperature_monitoring = fields.Boolean('Temperature Monitoring', default=True)
@@ -218,7 +218,7 @@ class AgriProcessingEnvironmentalMonitoringLine(models.Model):
     _name = 'agri.processing.environmental.monitoring.line'
     _description = 'Environmental Monitoring Lines for GMP Compliance'
 
-    production_id = fields.Many2one('farm.processing.production', string='Production Order', ondelete='cascade')
+    production_id = fields.Many2one('agri.isl.processing.production', string='Production Order', ondelete='cascade')
     monitoring_date = fields.Datetime('Monitoring Date', required=True)
     temperature = fields.Float('Temperature (℃)')
     humidity = fields.Float('Humidity (%)')

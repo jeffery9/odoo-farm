@@ -17,19 +17,19 @@ class TestISLViews(TransactionCase):
 
         def test_specialized_views_existence(self):
             """ Verify that ISL specialized views are correctly registered. """
-            if 'farm.livestock.bom' not in self.env:
+            if 'agri.isl.livestock.bom' not in self.env:
                 self.skipTest("farm.livestock.bom not installed")
             # Livestock
             view_livestock = self.env.ref('farm_livestock.view_farm_livestock_bom_form', raise_if_not_found=False)
-            self.assertTrue(view_livestock and view_livestock.model == 'farm.livestock.bom')
+            self.assertTrue(view_livestock and view_livestock.model == 'agri.isl.livestock.bom')
             
             # Aquaculture
             view_aqua = self.env.ref('farm_aquaculture.view_farm_aquaculture_bom_form', raise_if_not_found=False)
-            self.assertTrue(view_aqua and view_aqua.model == 'farm.aquaculture.bom')
+            self.assertTrue(view_aqua and view_aqua.model == 'agri.isl.aquaculture.bom')
             
             # Processing
             view_proc = self.env.ref('farm_processing.view_farm_processing_bom_form', raise_if_not_found=False)
-            self.assertTrue(view_proc and view_proc.model == 'farm.processing.bom')
+            self.assertTrue(view_proc and view_proc.model == 'agri.isl.processing.bom')
             
             # Crop
             view_crop = self.env.ref('farm_field_crops.view_farm_crop_bom_form', raise_if_not_found=False)
@@ -37,9 +37,9 @@ class TestISLViews(TransactionCase):
 
         def test_livestock_bom_form_simulation(self):
             """ Simulate user interaction with Livestock ISL BOM Form. """
-            if 'farm.livestock.bom' not in self.env:
+            if 'agri.isl.livestock.bom' not in self.env:
                 self.skipTest("farm.livestock.bom not installed")
-            with Form(self.env['farm.livestock.bom']) as f:
+            with Form(self.env['agri.isl.livestock.bom']) as f:
                 f.product_tmpl_id = self.product_apple.product_tmpl_id
                 f.product_qty = 1.0
                 f.product_uom_id = self.uom_unit
@@ -55,9 +55,9 @@ class TestISLViews(TransactionCase):
 
         def test_processing_production_form_simulation(self):
             """ Simulate user interaction with Processing ISL Production Form. """
-            if 'farm.processing.production' not in self.env:
-                self.skipTest("farm.processing.production not installed")
-            with Form(self.env['farm.processing.production']) as f:
+            if 'agri.isl.processing.production' not in self.env:
+                self.skipTest("agri.isl.processing.production not installed")
+            with Form(self.env['agri.isl.processing.production']) as f:
                 f.product_id = self.product_apple
                 f.product_qty = 100.0
                 f.energy_reading_start = 1200.0
@@ -84,13 +84,13 @@ class TestISLViews(TransactionCase):
 
         def test_menu_actions(self):
             """ Verify that menu actions point to ISL models. """
-            if 'farm.livestock.production' not in self.env:
-                self.skipTest("farm.livestock.production not installed")
+            if 'agri.isl.livestock.production' not in self.env:
+                self.skipTest("agri.isl.livestock.production not installed")
             action_livestock = self.env.ref('farm_livestock.action_farm_livestock_mo_isl')
-            self.assertEqual(action_livestock.res_model, 'farm.livestock.production')
+            self.assertEqual(action_livestock.res_model, 'agri.isl.livestock.production')
             
             action_aqua = self.env.ref('farm_aquaculture.action_farm_aquaculture_mo_isl')
-            self.assertEqual(action_aqua.res_model, 'farm.aquaculture.production')
+            self.assertEqual(action_aqua.res_model, 'agri.isl.aquaculture.production')
             
             action_crop = self.env.ref('farm_field_crops.action_farm_crop_mo_isl')
             self.assertEqual(action_crop.res_model, 'farm.crop.production')
