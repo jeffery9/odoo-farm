@@ -15,7 +15,7 @@
 
 ### 🏛️ 系统核心架构思想 (The Core Philosophy)
 不同于传统的 ERP 堆砌，Odoo Farm 遵循三大底层设计原则：
-*   **5层扁平拓扑 (5-Layer Structure)**：将 110+ 个模块严格划分为基座、引擎、应用、智能四层，确保系统可无限水平扩展。
+*   **4层扁平拓扑 (4-Layer Structure)**：将 110+ 个模块严格划分为基座、引擎、应用、智能四层，确保系统可无限水平扩展。
 *   **133个史诗需求 (Digital Backlog)**：内置 133 个标准史诗 (Epics) 及 800+ 用户故事 (User Stories)，定义了从 L1 到 L5 的进化路径。
 *   **ISL 代理中枢 (ISL Architecture)**：首创 Odoo 多态代理机制，在保持供应链内核稳定的同时，提供千人千面的行业专属界面。
 *   **工具化应用矩阵 (Tool-based App)**：坚持 “Tools, not Trees” 的 UX哲学，每个业务域均为独立 App，大幅降低农业从业者的数字化准入门槛。
@@ -97,7 +97,7 @@ Traditional agriculture faces challenges like "black box" production, industrial
 
 ### 🏛️ The Core Philosophy
 Unlike traditional ERP stacks, Odoo Farm follows three fundamental design principles:
-*   **5-Layer Structure**: 110+ modules strictly categorized into Foundation, Engine, App, and Intelligence layers for infinite horizontal scaling.
+*   **4-Layer Structure**: 110+ modules strictly categorized into Foundation, Engine, App, and Intelligence layers for infinite horizontal scaling.
 *   **133 Standard Epics**: 133 built-in Epics and 800+ User Stories defining the evolution path from L1 to L5.
 *   **ISL Architecture**: A pioneering polymorphic agent mechanism that maintains a stable supply chain core while providing tailored interfaces for diverse roles.
 *   **Tool-based Apps**: A "Tools, not Trees" UX philosophy where each business domain is a standalone App, significantly lowering the digital entry barrier.
