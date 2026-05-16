@@ -28,6 +28,9 @@ class AgriBiologicalAssetMixin(models.AbstractModel):
     growth_stage_id = fields.Many2one('agri.industry.physio.stage', string="Current Physio Stage")
     
     # Genetic & Quality Fingerprint
+
+    base_weight_kg = fields.Float("Base Weight (kg)", default=0.0, tracking=True)
+    fcr_ratio = fields.Float("Feed Conversion Ratio (FCR)", default=2.5, help="Kg of feed required to produce 1 Kg of asset weight.")
     dna_marker = fields.Char("Genetic Marker / DNA ID")
     quality_grade = fields.Selection([
         ('premium', 'Premium / S Grade'),
