@@ -10,7 +10,8 @@
         - Customer Subscription Lifecycle
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'stock', 'sale'],
+    'depends': ['farm_core',
+        'mrp', 'stock', 'sale'],
     'data': [
         # # 'security/ir.model.access.csv',
         'data/ir_cron_data.xml',
