@@ -6,7 +6,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class FarmLivestockBom(models.Model):
-    _name = 'farm.livestock.bom'
+    _name = 'agri.isl.livestock.bom'
     _description = 'Livestock Breeding BOM (ISL Layer)'
     _inherits = {'mrp.bom': 'bom_id'}
     _inherit = ['agri.bom.mixin']
@@ -18,7 +18,7 @@ class FarmLivestockBom(models.Model):
     daily_feed_intake = fields.Float("Avg Daily Feed (kg)")
 
 class FarmLotLivestock(models.Model):
-    _name = 'farm.lot.livestock'
+    _name = 'agri.isl.lot.livestock'
     _description = 'Livestock Asset Lot (ISL Layer)'
     _inherits = {'stock.lot': 'lot_id'}
     _inherit = [
@@ -56,7 +56,7 @@ class FarmLotLivestock(models.Model):
     def _compute_performance_metrics(self):
         for rec in self:
             # Aggregate data from completed production orders
-            orders = self.env['farm.livestock.production'].search([
+            orders = self.env['agri.isl.livestock.production'].search([
                 ('production_id.lot_producing_id', '=', rec.lot_id.id),
                 ('production_id.state', '=', 'done')
             ])
@@ -97,13 +97,13 @@ class StockPicking(models.Model):
             for move in picking.move_line_ids:
                 if move.lot_id:
                     # Look for livestock proxy
-                    livestock_lot = self.env['farm.lot.livestock'].search([('lot_id', '=', move.lot_id.id)], limit=1)
+                    livestock_lot = self.env['agri.isl.lot.livestock'].search([('lot_id', '=', move.lot_id.id)], limit=1)
                     if livestock_lot:
                         livestock_lot.action_check_harvest_safety()
         return super(StockPicking, self).button_validate()
 
 class FarmLivestockProduction(models.Model):
-    _name = 'farm.livestock.production'
+    _name = 'agri.isl.livestock.production'
     _description = 'Livestock Growth Order (ISL Layer)'
     _inherits = {'mrp.production': 'production_id'}
     _inherit = [
@@ -136,13 +136,13 @@ class FarmLivestockProduction(models.Model):
     )
 
     # --- Polymorphic Link (US-TECH-06-26) ---
-    livestock_bom_id = fields.Many2one('farm.livestock.bom', string='Livestock Recipe', compute='_compute_livestock_bom_id')
+    livestock_bom_id = fields.Many2one('agri.isl.livestock.bom', string='Livestock Recipe', compute='_compute_livestock_bom_id')
 
     def _compute_livestock_bom_id(self):
         """ Automatically up-cast base bom_id to ISL livestock.bom. """
         for rec in self:
             if rec.bom_id:
-                rec.livestock_bom_id = self.env['farm.livestock.bom'].search([('bom_id', '=', rec.bom_id.id)], limit=1)
+                rec.livestock_bom_id = self.env['agri.isl.livestock.bom'].search([('bom_id', '=', rec.bom_id.id)], limit=1)
             else:
                 rec.livestock_bom_id = False
 
@@ -168,7 +168,7 @@ class FarmLivestockProduction(models.Model):
         if self.production_id.lot_producing_id:
             lot = self.production_id.lot_producing_id
             # Search for ISL lot record
-            isl_lot = self.env['farm.lot.livestock'].search([('lot_id', '=', lot.id)], limit=1)
+            isl_lot = self.env['agri.isl.lot.livestock'].search([('lot_id', '=', lot.id)], limit=1)
             if isl_lot:
                 isl_lot.current_weight = self.final_total_weight / (self.production_id.product_qty or 1.0)
                 # Create a weight measurement event [US-094-01]

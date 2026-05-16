@@ -192,7 +192,7 @@ class AgriProcessingPerformanceAnalytics(models.Model):
     _description = 'Performance and Efficiency Analytics'
 
     name = fields.Char('Performance Record', required=True)
-    production_id = fields.Many2one('farm.processing.production', string='Production Order', required=True)
+    production_id = fields.Many2one('agri.isl.processing.production', string='Production Order', required=True)
     analysis_date = fields.Date('Analysis Date', default=fields.Date.today())
 
     # Efficiency metrics

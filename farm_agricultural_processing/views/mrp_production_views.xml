@@ -2,8 +2,8 @@
 <odoo>
     <!-- Production Form View Inherit -->
     <record id="view_farm_processing_production_form_inherit_agri_v2" model="ir.ui.view">
-        <field name="name">farm.processing.production.form.inherit.agri.v2</field>
-        <field name="model">farm.processing.production</field>
+        <field name="name">agri.isl.processing.production.form.inherit.agri.v2</field>
+        <field name="model">agri.isl.processing.production</field>
         <field name="inherit_id" ref="farm_processing.view_farm_processing_production_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='processing_type']" position="replace">
@@ -28,8 +28,8 @@
 
     <!-- Kanban View for Mobile Optimization [US-UX] -->
     <record id="view_farm_processing_production_kanban_farm" model="ir.ui.view">
-        <field name="name">farm.processing.production.kanban.farm</field>
-        <field name="model">farm.processing.production</field>
+        <field name="name">agri.isl.processing.production.kanban.farm</field>
+        <field name="model">agri.isl.processing.production</field>
         <field name="arch" type="xml">
             <kanban class="o_kanban_mobile" sample="1">
                 <field name="name"/>
@@ -71,8 +71,8 @@
 
     <!-- Pivot View for Energy Analysis [US-UX] -->
     <record id="view_farm_processing_production_pivot_farm" model="ir.ui.view">
-        <field name="name">farm.processing.production.pivot.farm</field>
-        <field name="model">farm.processing.production</field>
+        <field name="name">agri.isl.processing.production.pivot.farm</field>
+        <field name="model">agri.isl.processing.production</field>
         <field name="arch" type="xml">
             <pivot string="Energy &amp; Cost Analysis" sample="1">
                 <field name="product_id" type="row"/>

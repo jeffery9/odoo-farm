@@ -2,8 +2,8 @@
 <odoo>
     <!-- Net Vegetables Processing Form Inherit View -->
     <record id="view_farm_processing_production_net_vegetables_inherit" model="ir.ui.view">
-        <field name="name">farm.processing.production.net.vegetables.inherit</field>
-        <field name="model">farm.processing.production</field>
+        <field name="name">agri.isl.processing.production.net.vegetables.inherit</field>
+        <field name="model">agri.isl.processing.production</field>
         <field name="inherit_id" ref="farm_processing.view_farm_processing_production_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='agri_processing']//field[@name='harvest_lot_ids']" position="after">

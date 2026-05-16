@@ -233,7 +233,7 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <!-- Note: Mass balance functionality is integrated into farm.processing.production extension,
+    <!-- Note: Mass balance functionality is integrated into agri.isl.processing.production extension,
          no separate action needed for non-existent model -->
 
     <record id="action_agri_processing_multi_output_list" model="ir.actions.act_window">

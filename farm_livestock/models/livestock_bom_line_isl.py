@@ -2,7 +2,7 @@
 from odoo import models, fields, api, _
 
 class FarmLivestockBomLine(models.Model):
-    _name = 'farm.livestock.bom.line'
+    _name = 'agri.isl.livestock.bom.line'
     _description = 'Livestock BOM Component (ISL Layer)'
     _inherits = {'mrp.bom.line': 'bom_line_id'}
 

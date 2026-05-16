@@ -9,7 +9,7 @@ class FarmProcessingProductionAnalyticsExtension(models.Model):
     """
     Extension to Processing ISL Production Model for Analytics - US-037-16
     """
-    _inherit = 'farm.processing.production'
+    _inherit = 'agri.isl.processing.production'
 
     # Yield analytics tracking
     yield_rate = fields.Float('Yield Rate (%)', compute='_compute_yield_rate', store=True, precompute=True)
@@ -32,7 +32,7 @@ class AgriProcessingYieldRateAnalytics(models.Model):
     _order = 'production_date desc'
 
     name = fields.Char('Analytics Record', required=True)
-    production_id = fields.Many2one('farm.processing.production', string='Production Order', required=True)
+    production_id = fields.Many2one('agri.isl.processing.production', string='Production Order', required=True)
     production_date = fields.Date('Production Date', required=True)
 
     # Yield metrics

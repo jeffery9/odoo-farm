@@ -10,7 +10,7 @@ class FarmProcessingProductionLabelComplianceExtension(models.Model):
     """
     Extension to Processing ISL Production Model for Label Compliance - US-037-17
     """
-    _inherit = 'farm.processing.production'
+    _inherit = 'agri.isl.processing.production'
 
     # Nutrition labeling compliance fields
     requires_nutrition_labeling = fields.Boolean('Requires Nutrition Labeling', default=False)
@@ -49,7 +49,7 @@ class FarmProcessingProductionHaccpExtension(models.Model):
     """
     Extension to Processing ISL Production Model for HACCP - US-037-18
     """
-    _inherit = 'farm.processing.production'
+    _inherit = 'agri.isl.processing.production'
 
     # HACCP plan fields
     is_haccp_controlled = fields.Boolean('Is HACCP Controlled Process', default=False)
@@ -107,7 +107,7 @@ class AgriProcessingHaccpMonitoringLine(models.Model):
     _name = 'agri.processing.haccp.monitoring.line'
     _description = 'HACCP Monitoring Lines'
 
-    production_id = fields.Many2one('farm.processing.production', string='Production Order', ondelete='cascade')
+    production_id = fields.Many2one('agri.isl.processing.production', string='Production Order', ondelete='cascade')
     ccp_name = fields.Char('Critical Control Point', required=True)
     monitoring_date = fields.Datetime('Monitoring Date', default=fields.Datetime.now)
     measured_value = fields.Float('Measured Value')
@@ -132,7 +132,7 @@ class AgriProcessingHaccpVerificationLine(models.Model):
     _name = 'agri.processing.haccp.verification.line'
     _description = 'HACCP Verification Lines'
 
-    production_id = fields.Many2one('farm.processing.production', string='Production Order', ondelete='cascade')
+    production_id = fields.Many2one('agri.isl.processing.production', string='Production Order', ondelete='cascade')
     verification_date = fields.Datetime('Verification Date', default=fields.Datetime.now)
     verification_type = fields.Selection([
         ('internal_audit', 'Internal Audit'),
