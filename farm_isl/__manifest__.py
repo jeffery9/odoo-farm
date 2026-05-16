@@ -13,7 +13,6 @@
         "sale",
         "purchase",
         "product",
-        "farm_quality",
         "farm_core",
     ],
     "data": [
