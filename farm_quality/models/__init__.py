@@ -5,3 +5,4 @@ from . import agri_quality_sample
 # from . import sample   # Deprecated: proxies enterprise quality.alert
 from . import product_extension
 from . import stock_picking_extension
+from . import qc_extension
