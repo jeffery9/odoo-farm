@@ -12,7 +12,7 @@
     """,
     'author': 'Jeffery',
     'depends': [
-        'farm_multi_farm_base',
+        'farm_multi_farm',
         'account',
         'base',
         'mail',
