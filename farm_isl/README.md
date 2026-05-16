@@ -1,95 +1,67 @@
 # Industry Specialized Layer (ISL) Module Architecture
 
-The ISL module implements a standardized architecture for industry-specific extensions to core Odoo models. The architecture follows the single responsibility principle and provides a consistent pattern for extending core functionality with industry-specific requirements.
+The ISL module implements a standardized architecture for industry-specific extensions to core Odoo models. The architecture follows the single responsibility principle and provides a consistent pattern for extending core agricultural functionality with vertical industry requirements.
 
 ## Architecture Overview
 
 The ISL architecture follows these key design principles:
 
-1. **Separation of Concerns**: Abstract models handle common functionality, concrete models extend Odoo core models
-2. **Inheritance Pattern**: Uses `_inherits` mechanism to extend core Odoo models while maintaining all base functionality
-3. **Industry Specialization**: Common industry fields and validation across all ISL models
-4. **Automatic Redirection**: Built-in mechanism to redirect to ISL models when available
-5. **Performance Optimization**: Caching and optimization utilities for efficient operations
-6. **Data Migration**: Utilities for migrating existing data to ISL architecture
+1. **Separation of Concerns**: Abstract models handle common functionality, concrete models extend Odoo core models.
+2. **Inheritance Pattern**: Uses the `_inherits` mechanism to extend core Odoo models while maintaining all base functionality and avoiding base table bloating.
+3. **Industry Specialization**: Common industry fields and validation across all ISL models tailored for the agricultural domain.
+4. **Automatic Redirection**: Built-in intelligent routing (`agri.isl.model.redirector`) to redirect base models to their specific ISL counterparts.
 
 ## Core Components
 
-### 1. Abstract Base Models (`isl_abstract_models.py`)
+### 1. Abstract Base Models (`agri_isl_abstract_models.py`)
 Provide common functionality and industry-specific fields for different functional areas:
 
-- `FarmManufacturingMixin`: For manufacturing-related models (MRP Production, BOM, Work Centers, Work Orders)
-- `FarmInventoryMixin`: For inventory-related models (Stock Lots, Stock Pickings)
-- `FarmSalesPurchaseMixin`: For sales/purchase-related models (Sale Orders, Purchase Orders)
-- `FarmProductMixin`: For product-related models (Product Templates)
-- `FarmQualityMixin`: For quality control models (Quality Control Points)
+- `AgriManufacturingMixin`: For manufacturing/intervention models (MRP Production, BOM, Work Centers, Work Orders).
+- `AgriInventoryMixin`: For inventory-related models (Stock Lots, Stock Pickings).
+- `AgriSalesPurchaseMixin`: For sales/purchase-related models (Sale Orders, Purchase Orders).
+- `AgriProductMixin`: For product-related models (Product Templates).
+- `AgriQualityMixin`: For quality control models.
 
-### 2. Concrete ISL Models (`isl_concrete_models.py`)
-Extend core Odoo models using the `_inherits` mechanism:
+### 2. Concrete ISL Models (`agri_isl_concrete_models.py`)
+Extend core Odoo models using the `_inherits` mechanism. These serve as the central bridging proxy:
 
-- `FarmMRPProduction`: Extends `mrp.production`
-- `FarmMRPBom`: Extends `mrp.bom`
-- `FarmMRPWorkcenter`: Extends `mrp.workcenter`
-- `FarmMRPWorkorder`: Extends `mrp.workorder`
-- `FarmStockLot`: Extends `stock.lot`
-- `FarmStockPicking`: Extends `stock.picking`
-- `FarmSaleOrder`: Extends `sale.order`
-- `FarmPurchaseOrder`: Extends `purchase.order`
-- `FarmProductTemplate`: Extends `product.template`
-- `FarmQualityControl`: Extends `quality.point`
+- `AgriMRPProduction`: Extends `mrp.production`
+- `AgriMRPBom`: Extends `mrp.bom`
+- `AgriMRPWorkcenter`: Extends `mrp.workcenter`
+- `AgriMRPWorkorder`: Extends `mrp.workorder`
+- `AgriStockLot`: Extends `stock.lot`
+- `AgriStockPicking`: Extends `stock.picking`
+- `AgriSaleOrder`: Extends `sale.order`
+- `AgriPurchaseOrder`: Extends `purchase.order`
+- `AgriProductTemplate`: Extends `product.template`
+- `AgriQualityControl`: Extends `quality.point`
 
-### 3. Redirection System (`isl_redirection.py`)
-- `ISLModelRedirector`: Provides automatic redirection from base models to ISL models
-- `ISLIndustryExtension`: Manages industry-specific extensions
+### 3. Redirection System (`agri_isl_redirection.py`)
+- `AgriISLModelRedirector`: Provides automatic routing from generic base records to vertical ISL records.
+- `AgriISLIndustryExtension`: Manages dynamic industry-specific extensions.
 
-### 4. Performance Utilities (`isl_performance.py`)
-- `ISLOptimizationMixin`: Provides caching and performance optimization
+### 4. Migration & Performance Utilities
+- Provided via `agri_isl_migration.py` and `agri_isl_performance.py`.
 
-### 5. Migration Utilities (`isl_migration.py`)
-- `ISLMigrationUtility`: Transient model for migrating existing data to ISL architecture
+## Supported Agricultural Domains (De-industrialized)
 
-## Industry Types Support
+All ISL models support the following vertical agricultural industries:
 
-All ISL models support the following industry types with specific requirements:
-
-- `food_processing`: Food processing industry with HACCP, allergen control, kill dates
-- `pharmaceutical`: Pharmaceutical industry with GMP compliance, sterility dates, pharmacological classes
-- `chemical`: Chemical industry with safety coefficients, explosion-proof requirements, hazard classes
-- `general`: General manufacturing without industry-specific requirements
+- `field_crop`: Traditional agriculture, planting, and harvesting.
+- `livestock`: Animal husbandry, breeding, and feeding operations.
+- `aquaculture`: Water-based farming, RAS systems, and fish production.
+- `general`: General agriculture without specific vertical requirements.
 
 ## Implementation Standards
 
-1. **Model Naming**: All ISL models follow the pattern `farm.{module}.{model}` (e.g., `farm.mrp.production`)
-2. **Field Structure**: Common industry_type field with validation methods for each industry
-3. **Inheritance**: Use `_inherits` mechanism for extension to create proper ownership relationships
-4. **Relationship Field**: Use base model name with `_id` suffix (e.g., `mrp_production_id`)
-5. **Foreign Key**: Always define the Many2one field for the base model relationship with `ondelete='cascade'`
-6. **Validation Methods**: Industry-specific validation in `_validate_{model}_compliance` methods
-7. **Security**: Comprehensive access rights defined in `ir.model.access.csv`
+1. **Namespace Unification**: All ISL models MUST follow the strict `agri.isl.*` namespace (e.g., `agri.isl.mrp.production` or `agri.isl.livestock.production`).
+2. **Field Structure**: Common `industry_type` field utilizing the agricultural domains listed above.
+3. **Inheritance Rule**: Use the `_inherits` (delegation inheritance) mechanism for extension to create proper ownership relationships without polluting base L1 tables.
+4. **Relationship Linking**: Use the base model name with the `_id` suffix (e.g., `mrp_production_id`).
+5. **Foreign Key Safety**: Always define the Many2one field for the base model relationship with `ondelete='cascade'`.
 
-## Usage Pattern
+## Distributed Specialization Pattern
 
-1. Create base Odoo model instances as usual
-2. ISL records are automatically created via the redirection mechanism
-3. Industry-specific fields and validation are available on ISL models
-4. Use the ISL model for industry-specific operations while maintaining access to base functionality
-
-## Extension Points
-
-The ISL architecture provides several extension points for additional functionality:
-
-- New industry types can be added to the `industry_type` selection field
-- Industry-specific extension modules can be created using the `ISLIndustryExtension` model
-- Custom validation methods can be added to specific ISL models
-- View customizations can be added for industry-specific user interfaces
-
-## Industry-Specific Extensions
-
-The ISL architecture supports industry-specific extensions through a hybrid approach that combines centralized infrastructure with distributed specialization:
-
-- Core ISL infrastructure in `farm_isl` provides common functionality and redirection
-- Industry-specific modules (e.g., `farm_processing`, `farm_livestock`) extend ISL models using `_inherit`
-- Each industry can implement specialized functionality while maintaining consistent architecture patterns
-- Centralized redirection mechanisms ensure proper navigation between base and specialized models
-
-For more details on the hybrid architecture pattern, see ARCHITECTURE_OVERVIEW.md.
+The ISL architecture is a hybrid approach combining centralized infrastructure with distributed specialization:
+- **Core Infrastructure** (`farm_isl`): Provides the abstract mixins, standard concrete proxies, and the Redirector logic.
+- **Industry Apps** (`farm_livestock`, `farm_aquaculture`, `farm_crop`): Inject their unique models by inheriting from the central `agri.isl.*` proxies, allowing each vertical to maintain specialized UI and behaviors securely.
