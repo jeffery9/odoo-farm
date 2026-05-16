@@ -20,7 +20,8 @@
         'base',
         'web',
         'mrp',
-        'stock'
+        'stock',
+        'farm_core'
     ],
     'data': [
         'security/ir.model.access.csv',

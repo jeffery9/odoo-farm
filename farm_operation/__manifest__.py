@@ -17,7 +17,7 @@
         - [US-045-09] Scientific Performance Dashboard (RUE/WUE)
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'farm_agri_science', 'mrp', 'project'],
+    'depends': ['farm_core', 'farm_agri_science', 'mrp', 'project', 'farm_ux'],
     'data': [
         # 'security/ir.model.access.csv',
         'wizard/farm_dispatch_wizard_views.xml',
