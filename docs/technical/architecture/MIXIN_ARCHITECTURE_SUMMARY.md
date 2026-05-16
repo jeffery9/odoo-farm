@@ -33,7 +33,7 @@
 | **`AgriQualityGateMixin`** | `farm_core` | `base` | 质量门控基因，在状态迁移前强制校验 QCP（质量控制点）覆盖情况。 |
 | **`AgriCertificationStatusMixin`** | `farm_core` | `base` | 合规认证状态基因，管理有机、绿色等认证的有效期与合法性检查。 |
 | **`AgriIncidentAlertMixin`** | `farm_core` | `base` | 标准化异常事件上报基因，支持灾害、病害等事件的 AI 预警。 |
-| **`EvidenceAnalyzerMixin`** | `farm_ai_core` | `farm_core`, `base` | 基于物理存证的双重置信度（Dual Confidence）审计算法。 |
+| **`EvidenceAnalyzerMixin`** | `farm_ai` | `farm_core`, `base` | 基于物理存证的双重置信度（Dual Confidence）审计算法。 |
 | **`ComplianceMixin`** | `farm_core` | `base`, `mail` | 通用合规性框架，集成安全间隔期（PHI）与行业准入审计。 |
 | **`EmbeddingMixin`** | `farm_core` | `base` | 为 RAG 提供语义向量化接口，支持自然语言检索农事记录。 |
 
@@ -48,10 +48,10 @@
 ### **Level 4: 自主、协作与编排层 (Orchestration & A2A)**
 | Mixin 名称 | 所在模块 | 模块依赖 | 核心职责 |
 | :--- | :--- | :--- | :--- |
-| **`A2AProtocol`** | `farm_ai_agent` | `farm_ai_core`, `farm_ux`, `mrp` | 定义智能体之间的自主议价、发现与协议撮合接口（七状态机）。 |
+| **`A2AProtocol`** | `farm_ai_agent` | `farm_ai`, `farm_ux`, `mrp` | 定义智能体之间的自主议价、发现与协议撮合接口（七状态机）。 |
 | **`AgriAgentInstructionMixin`** | `farm_core` | `base` | 将业务记录转化为结构化指令（JSON）的基因，支持 AI 智能体与农用机器人的指令派发与反馈闭环。 |
-| **`AgriAiBaseMixin`** | `farm_ai_core` | `farm_core`, `base` | AI 服务接入协议，支持多模型（OpenAI, Anthropic, Ollama）统一调用。 |
-| **`AgriAiDecisionEngine`** | `farm_ai_core` | `farm_core`, `base` | 提供决策建议的生成、多源验证与推理路径（Reasoning Path）记录。 |
+| **`AgriAiBaseMixin`** | `farm_ai` | `farm_core`, `base` | AI 服务接入协议，支持多模型（OpenAI, Anthropic, Ollama）统一调用。 |
+| **`AgriAiDecisionEngine`** | `farm_ai` | `farm_core`, `base` | 提供决策建议的生成、多源验证与推理路径（Reasoning Path）记录。 |
 
 ---
 
@@ -64,8 +64,8 @@ graph TD
     farm_isl[farm_isl] --> farm_core
     farm_operation[farm_operation] --> farm_core
     farm_operation --> farm_ux
-    farm_ai_core[farm_ai_core] --> farm_core
-    farm_ai_agent[farm_ai_agent] --> farm_ai_core
+    farm_ai[farm_ai] --> farm_core
+    farm_ai_agent[farm_ai_agent] --> farm_ai
     farm_ai_agent --> farm_ux
     farm_esg_compliance[farm_esg_compliance] --> farm_esg
     farm_esg_compliance --> farm_esg_environmental

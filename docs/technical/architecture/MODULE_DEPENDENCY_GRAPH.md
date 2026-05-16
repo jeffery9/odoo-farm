@@ -21,7 +21,7 @@ graph TD
     classDef highlight fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000;
     farm_agri_science["farm_agri_science"]:::highlight
     farm_agritourism["farm_agritourism"]:::highlight
-    farm_ai_core["farm_ai_core"]:::highlight
+    farm_ai["farm_ai"]:::highlight
     farm_ai_llm_integration["farm_ai_llm_integration"]:::highlight
     farm_biological_valuation["farm_biological_valuation"]:::highlight
     farm_csa["farm_csa"]:::highlight
@@ -54,8 +54,8 @@ graph TD
     farm_agri_science --> farm_core
     farm_agri_science --> farm_iot
     farm_agritourism --> farm_core
-    farm_ai_core --> farm_core
-    farm_ai_llm_integration --> farm_ai_core
+    farm_ai --> farm_core
+    farm_ai_llm_integration --> farm_ai
     farm_ai_llm_integration --> farm_core
     farm_biological_valuation --> farm_core
     farm_csa --> farm_core
@@ -84,7 +84,7 @@ graph TD
     farm_multi_farm_financial --> farm_multi_farm
     farm_multi_farm_procurement --> farm_multi_farm
     farm_operation --> farm_agri_science
-    farm_operation --> farm_ai_core
+    farm_operation --> farm_ai
     farm_operation --> farm_core
     farm_pos --> farm_core
     farm_robotics --> farm_core
@@ -172,15 +172,15 @@ graph TD
     farm_agricultural_processing --> farm_processing
     farm_ai_decision --> farm_agri_science
     farm_ai_decision --> farm_agri_science
-    farm_ai_decision --> farm_ai_core
-    farm_ai_decision --> farm_ai_core
+    farm_ai_decision --> farm_ai
+    farm_ai_decision --> farm_ai
     farm_ai_decision --> farm_ai_llm_integration
     farm_ai_decision --> farm_ai_vision
     farm_ai_decision --> farm_core
     farm_ai_decision --> farm_operation
     farm_ai_vision --> farm_agri_science
-    farm_ai_vision --> farm_ai_core
-    farm_ai_vision --> farm_ai_core
+    farm_ai_vision --> farm_ai
+    farm_ai_vision --> farm_ai
     farm_ai_vision --> farm_ai_llm_integration
     farm_ai_vision --> farm_core
     farm_ai_vision --> farm_livestock
@@ -340,7 +340,7 @@ graph TD
     farm_supply_analytics["farm_supply_analytics"]:::highlight
     farm_winery["farm_winery"]:::highlight
     farm_ai_agent --> farm_agri_science
-    farm_ai_agent --> farm_ai_core
+    farm_ai_agent --> farm_ai
     farm_ai_agent --> farm_ai_decision
     farm_ai_agent --> farm_ai_llm_integration
     farm_ai_agent --> farm_ai_vision

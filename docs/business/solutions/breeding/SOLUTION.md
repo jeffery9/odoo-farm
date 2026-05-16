@@ -11,7 +11,7 @@
 | :--- | :--- | :--- |
 | **谱系追踪** | `farm_core` | 注入 `AgriTraceabilityMixin`，基于父/母本哈希生成子代指纹。 |
 | **苗圃管理** | `farm_breeding` | `farm.nursery.batch` 代理 `stock.lot`，记录苗龄与成活率。 |
-| **性状打分** | `farm_ai_core` | 注入 `EvidenceAnalyzerMixin` 对表型性状（Phenotype）进行双重置信度评估。 |
+| **性状打分** | `farm_ai` | 注入 `EvidenceAnalyzerMixin` 对表型性状（Phenotype）进行双重置信度评估。 |
 | **移栽联动** | `farm_operation` | 通过 `action_create_transplant_task` 自动生成大田干预任务。 |
 | **自动核销** | `farm_core` | 注入 `AgriBiologicalInventoryMixin` 实时核销损耗与死苗。 |
 

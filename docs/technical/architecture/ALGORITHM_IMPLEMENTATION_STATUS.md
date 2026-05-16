@@ -47,7 +47,7 @@
 | 碳足迹算法 | CARBON_FOOTPRINT_ALGORITHM.md | 🔄 开发中 | farm_sustainability/models/carbon_footprint_calculation.py | 碳足迹计算已部分实现 |
 | 成本计算算法 | COST_CALCULATION_ALGORITHM.md | 🔄 开发中 | farm_financial/* | 财务模块中已部分实现 |
 | AI协调算法 | AI_COORDINATION_ALGORITHM.md | ✅ 已实现 | farm_ai_agent/models/ai_coordination_layer.py | 已在AI代理协调层实现 |
-| AI决策算法 | AI_DECISION_ALGORITHM.md | ✅ 已实现 | farm_ai_core/models/ai_services/ai_decision_engine.py | 已在AI决策引擎中实现 |
+| AI决策算法 | AI_DECISION_ALGORITHM.md | ✅ 已实现 | farm_ai/models/ai_services/ai_decision_engine.py | 已在AI决策引擎中实现 |
 | 农户结算轧差算法 | FARMER_SETTLEMENT_NETTING_ALGORITHM.md | 📋 已规划 | - | 计划在多农场结算中实现 |
 | 饲料估计算法 | FEED_ESTIMATION_ALGORITHM.md | ❌ 未实现 | - | 未计划实现 |
 | 生长预测模型 | GROWTH_PREDICTION_MODEL.md | 🔄 开发中 | farm_ai_decision/models/ai_crop_growth_prediction.py | 作物生长预测部分已实现 |

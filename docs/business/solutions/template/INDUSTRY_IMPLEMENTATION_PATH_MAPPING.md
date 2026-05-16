@@ -13,7 +13,7 @@
 *   **`farm_breeding`**：提供苗圃管理、成活率追踪、品种性状建模。
 *   **`farm_processing`**：提供多级包装、HACCP 门控、批次 DNA 继承。
 *   **`farm_esg_compliance`**：提供可持续性 Mixin、三重底线评估、插件化开关。
-*   **`farm_ai_core`**：提供双重置信度审计、RAG 向量化接口。
+*   **`farm_ai`**：提供双重置信度审计、RAG 向量化接口。
 
 ---
 
