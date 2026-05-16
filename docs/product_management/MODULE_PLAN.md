@@ -40,6 +40,12 @@
 - **规划维护管理规范**: `docs/governance/MAINTENANCE_SPEC.md` - 定义史诗、用户故事、模 块规划的维护管理流程
 - **模块规范与进度看板**: 本文档 - 定义模块矩阵、职责和开发计划
 
+
+### 2026-05 Architecture Refactoring Notice
+- De-industrialization: precision_production suite was extracted to maintain a pure L2 Agricultural Operation core.
+- Consolidation: farm_supply_core was absorbed into farm_supply; farm_multi_farm_base was absorbed into farm_multi_farm.
+- L4 Flattening: farm_ai_core was renamed to farm_ai and all AI modules were formally moved into Layer 3 (Value and Intelligence).
+
 ### 模块矩阵与全量追踪看板 (Total Epic Tracking Matrix)
 
 | 史诗 (Epic) | 包含的 US ID | 承载模块 (预估/实际) | 状态 |
