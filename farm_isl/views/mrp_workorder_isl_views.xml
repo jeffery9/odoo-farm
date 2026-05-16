@@ -24,13 +24,13 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Industry Specific" invisible="industry_type != 'pharmaceutical'">
+                        <page string="Industry Specific" invisible="industry_type != 'livestock'">
                             <group>
                                 <field name="batch_record" placeholder="Pharmaceutical batch record"/>
                                 <field name="operator_certification" placeholder="Operator certification requirements"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'food_processing' and industry_type != 'pharmaceutical'">
+                        <page string="Industry Specific" invisible="industry_type != 'field_crop' and industry_type != 'livestock'">
                             <group>
                                 <field name="in_process_inspection" placeholder="In-process inspection requirements"/>
                             </group>

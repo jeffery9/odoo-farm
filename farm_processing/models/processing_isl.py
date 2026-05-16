@@ -26,7 +26,7 @@ class FarmProcessingProduction(models.Model):
     """
     _name = 'agri.isl.processing.production'
     _description = 'Farm Food Processing Order (ISL Layer)'
-    _inherit = ['farm.mrp.production']
+    _inherit = ['agri.isl.mrp.production']
 
     # Energy Tracking (Processing Specific)
     energy_reading_start = fields.Float(string='Energy Reading Start', copy=False)

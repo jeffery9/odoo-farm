@@ -70,16 +70,16 @@ class AgriISLModelRedirector(models.AbstractModel):
 
         # 2. Fallback to centralized core ISL models
         isl_model_map = {
-            'mrp.production': 'agri.mrp.production',
-            'mrp.bom': 'agri.mrp.bom',
-            'mrp.workcenter': 'agri.mrp.workcenter',
-            'stock.lot': 'agri.stock.lot',
-            'sale.order': 'agri.sale.order',
-            'purchase.order': 'agri.purchase.order',
-            'product.template': 'agri.product.template',
-            'stock.picking': 'agri.stock.picking',
-            'mrp.workorder': 'agri.mrp.workorder',
-            'quality.point': 'agri.quality.control',
+            'mrp.production': 'agri.isl.mrp.production',
+            'mrp.bom': 'agri.isl.mrp.bom',
+            'mrp.workcenter': 'agri.isl.mrp.workcenter',
+            'stock.lot': 'agri.isl.stock.lot',
+            'sale.order': 'agri.isl.sale.order',
+            'purchase.order': 'agri.isl.purchase.order',
+            'product.template': 'agri.isl.product.template',
+            'stock.picking': 'agri.isl.stock.picking',
+            'mrp.workorder': 'agri.isl.mrp.workorder',
+            'quality.point': 'agri.isl.quality.control',
         }
 
         if base_model_name in isl_model_map:
@@ -109,16 +109,16 @@ class AgriISLModelRedirector(models.AbstractModel):
         """
         # Map base models to their ISL counterparts
         isl_model_map = {
-            'mrp.production': 'agri.mrp.production',
-            'mrp.bom': 'agri.mrp.bom',
-            'mrp.workcenter': 'agri.mrp.workcenter',
-            'stock.lot': 'agri.stock.lot',
-            'sale.order': 'agri.sale.order',
-            'purchase.order': 'agri.purchase.order',
-            'product.template': 'agri.product.template',
-            'stock.picking': 'agri.stock.picking',
-            'mrp.workorder': 'agri.mrp.workorder',
-            'agri.quality.point': 'agri.quality.control',
+            'mrp.production': 'agri.isl.mrp.production',
+            'mrp.bom': 'agri.isl.mrp.bom',
+            'mrp.workcenter': 'agri.isl.mrp.workcenter',
+            'stock.lot': 'agri.isl.stock.lot',
+            'sale.order': 'agri.isl.sale.order',
+            'purchase.order': 'agri.isl.purchase.order',
+            'product.template': 'agri.isl.product.template',
+            'stock.picking': 'agri.isl.stock.picking',
+            'mrp.workorder': 'agri.isl.mrp.workorder',
+            'agri.quality.point': 'agri.isl.quality.control',
         }
 
         if base_model_name not in isl_model_map:
@@ -166,14 +166,14 @@ class AgriISLIndustryExtension(models.Model):
 
     name = fields.Char('Extension Name', required=True)
     industry_type = fields.Selection([
-        ('food_processing', 'Food Processing'),
-        ('pharmaceutical', 'Pharmaceutical'),
-        ('chemical', 'Chemical'),
-        ('general', 'General Manufacturing'),
-        ('food_processing', 'Food Processing'),
-        ('pharmaceutical', 'Pharmaceutical'),
-        ('chemical', 'Chemical'),
-        ('general', 'General Manufacturing')
+        ('field_crop', 'Field Crop'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('general', 'General Agriculture'),
+        ('field_crop', 'Field Crop'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('general', 'General Agriculture')
     ], string='Industry Type', required=True)
 
     model_name = fields.Char('Model Name', required=True)

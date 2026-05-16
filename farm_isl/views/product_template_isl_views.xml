@@ -28,19 +28,19 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Industry Specific" invisible="industry_type != 'food_processing'">
+                        <page string="Industry Specific" invisible="industry_type != 'field_crop'">
                             <group>
                                 <field name="allergen_information" placeholder="Food allergen information"/>
                                 <field name="shelf_life"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'pharmaceutical'">
+                        <page string="Industry Specific" invisible="industry_type != 'livestock'">
                             <group>
                                 <field name="pharmacological_class" placeholder="Pharmaceutical pharmacological class"/>
                                 <field name="regulatory_class" placeholder="Pharmaceutical regulatory class"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'chemical'">
+                        <page string="Industry Specific" invisible="industry_type != 'aquaculture'">
                             <group>
                                 <field name="hazard_class" placeholder="Chemical hazard classification"/>
                                 <field name="storage_temperature"/>

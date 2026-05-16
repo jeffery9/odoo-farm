@@ -18,14 +18,14 @@ class AgriISLMigrationUtility(models.TransientModel):
     _description = 'Agri ISL Data Migration Utility'
 
     industry_type = fields.Selection([
-        ('food_processing', 'Food Processing'),
-        ('pharmaceutical', 'Pharmaceutical'),
-        ('chemical', 'Chemical'),
-        ('general', 'General Manufacturing'),
-        ('food_processing', 'Food Processing'),
-        ('pharmaceutical', 'Pharmaceutical'),
-        ('chemical', 'Chemical'),
-        ('general', 'General Manufacturing')
+        ('field_crop', 'Field Crop'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('general', 'General Agriculture'),
+        ('field_crop', 'Field Crop'),
+        ('livestock', 'Livestock'),
+        ('aquaculture', 'Aquaculture'),
+        ('general', 'General Agriculture')
     ], string='Industry Type', default='general', required=True)
 
     model_to_migrate = fields.Selection([
@@ -52,16 +52,16 @@ class AgriISLMigrationUtility(models.TransientModel):
 
         base_model_name = self.model_to_migrate
         isl_model_name_map = {
-            'mrp.production': 'agri.mrp.production',
-            'mrp.bom': 'agri.mrp.bom',
-            'mrp.workcenter': 'agri.mrp.workcenter',
-            'stock.lot': 'agri.stock.lot',
-            'sale.order': 'agri.sale.order',
-            'purchase.order': 'agri.purchase.order',
-            'product.template': 'agri.product.template',
-            'stock.picking': 'agri.stock.picking',
-            'mrp.workorder': 'agri.mrp.workorder',
-            'quality.point': 'agri.quality.control',
+            'mrp.production': 'agri.isl.mrp.production',
+            'mrp.bom': 'agri.isl.mrp.bom',
+            'mrp.workcenter': 'agri.isl.mrp.workcenter',
+            'stock.lot': 'agri.isl.stock.lot',
+            'sale.order': 'agri.isl.sale.order',
+            'purchase.order': 'agri.isl.purchase.order',
+            'product.template': 'agri.isl.product.template',
+            'stock.picking': 'agri.isl.stock.picking',
+            'mrp.workorder': 'agri.isl.mrp.workorder',
+            'quality.point': 'agri.isl.quality.control',
         }
 
         if base_model_name not in isl_model_name_map:

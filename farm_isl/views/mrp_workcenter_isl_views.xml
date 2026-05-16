@@ -22,18 +22,18 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Industry Specific" invisible="industry_type != 'food_processing' and industry_type != 'pharmaceutical'">
+                        <page string="Industry Specific" invisible="industry_type != 'field_crop' and industry_type != 'livestock'">
                             <group>
                                 <field name="cip_required"/>
                                 <field name="capacity_uom" placeholder="Capacity unit of measure"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'pharmaceutical'">
+                        <page string="Industry Specific" invisible="industry_type != 'livestock'">
                             <group>
                                 <field name="clean_room_class" placeholder="Clean room classification"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'chemical'">
+                        <page string="Industry Specific" invisible="industry_type != 'aquaculture'">
                             <group>
                                 <field name="explosion_proof"/>
                             </group>

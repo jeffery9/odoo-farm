@@ -33,19 +33,19 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Industry Specific" invisible="industry_type != 'food_processing'">
+                        <page string="Industry Specific" invisible="industry_type != 'field_crop'">
                             <group>
                                 <field name="certificate_verification" placeholder="Food ingredient certificate verification"/>
                                 <field name="incoming_inspection" placeholder="Food incoming inspection procedures"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'pharmaceutical'">
+                        <page string="Industry Specific" invisible="industry_type != 'livestock'">
                             <group>
                                 <field name="quality_agreement" placeholder="Pharmaceutical quality agreement"/>
                                 <field name="supplier_certification" placeholder="Pharmaceutical supplier certification"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'chemical'">
+                        <page string="Industry Specific" invisible="industry_type != 'aquaculture'">
                             <group>
                                 <field name="incoming_inspection" placeholder="Chemical incoming inspection procedures"/>
                             </group>

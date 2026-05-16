@@ -33,19 +33,19 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Industry Specific" invisible="industry_type != 'food_processing'">
+                        <page string="Industry Specific" invisible="industry_type != 'field_crop'">
                             <group>
                                 <field name="traceability_requirements" placeholder="Food traceability requirements"/>
                                 <field name="temperature_monitoring"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'pharmaceutical'">
+                        <page string="Industry Specific" invisible="industry_type != 'livestock'">
                             <group>
                                 <field name="temperature_monitoring"/>
                                 <field name="certificate_requirements" placeholder="Pharmaceutical certificate requirements"/>
                             </group>
                         </page>
-                        <page string="Industry Specific" invisible="industry_type != 'chemical'">
+                        <page string="Industry Specific" invisible="industry_type != 'aquaculture'">
                             <group>
                                 <field name="shipping_conditions" placeholder="Chemical shipping conditions"/>
                             </group>
