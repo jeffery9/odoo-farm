@@ -3,7 +3,7 @@
     'version': '1.0',
     'category': 'Agriculture/AI',
     'summary': 'Bridge module to connect Farm AI Agents with Farm Robotics',
-    'depends': ['farm_ai_agent', 'farm_robotics', 'farm_robotics'],
+    'depends': ['farm_ai_agent', 'farm_robotics'],
     'data': [
         'security/ir.model.access.csv',
         'views/mission_log_views.xml'
