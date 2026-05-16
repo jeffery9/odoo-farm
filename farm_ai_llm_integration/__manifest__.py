@@ -9,7 +9,7 @@
         "base",
         "mail",
         "farm_core",
-        "farm_ai_core"
+        "farm_ai"
     ],
     "data": [
         "security/ir.model.access.csv",
