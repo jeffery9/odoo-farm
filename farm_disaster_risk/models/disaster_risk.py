@@ -38,6 +38,74 @@ class FarmDisasterIncident(models.Model):
     total_estimated_loss = fields.Monetary("Total Estimated Loss", compute='_compute_total_estimated_loss')
     currency_id = fields.Many2one('res.currency', default=lambda self: self.env.company.currency_id)
 
+
+    # AI Integration
+    ai_strategy_log = fields.Text("AI Remediation Strategy", tracking=True)
+    intervention_ids = fields.Many2many('mrp.production', string="AI Generated Interventions")
+
+    def action_request_ai_strategy(self):
+        self.ensure_one()
+        
+        # Soft dependency check: Only run if AI modules are installed
+        if 'agri.ai.llm.service' not in self.env:
+            self.message_post(body=_("AI Services are not installed. Cannot generate strategy."))
+            return False
+            
+        import json
+        import logging
+        _logger = logging.getLogger(__name__)
+
+        llm_service = self.env['agri.ai.llm.service'].search([], limit=1)
+        prompt = f"Disaster Type: {self.disaster_type}, Intensity: {self.intensity}, Description: {self.description}. Generate an urgent agricultural intervention strategy JSON with keys 'action_type' (one of: protection, irrigation, harvesting, aerial_spraying), 'strategy_name', and 'details'."
+        
+        strategy_json = "{}"
+        if llm_service and not self.env.context.get('test_mock_llm'):
+            try:
+                # We expect the LLM to return a JSON string
+                strategy_json = llm_service.call_llm(prompt)
+            except Exception as e:
+                _logger.warning("LLM call failed: %s", str(e))
+                strategy_json = self._get_mock_strategy()
+        else:
+            strategy_json = self._get_mock_strategy()
+
+        try:
+            strategy_data = json.loads(strategy_json)
+        except json.JSONDecodeError:
+            strategy_data = {"action_type": "protection", "strategy_name": "Emergency Fallback", "details": strategy_json}
+
+        self.ai_strategy_log = json.dumps(strategy_data, indent=2, ensure_ascii=False)
+
+        # Automatically generate the Intervention (mrp.production)
+        # Using a generic service product
+        product = self.env['product.product'].search([('type', '=', 'service')], limit=1)
+        if not product:
+            product = self.env['product.product'].create({'name': 'Disaster Remediation Service', 'type': 'service'})
+            
+        intervention_type = strategy_data.get('action_type', 'protection')
+        if intervention_type not in ['tillage', 'sowing', 'fertilizing', 'irrigation', 'protection', 'aerial_spraying', 'harvesting', 'feeding']:
+            intervention_type = 'protection'
+            
+        intervention = self.env['mrp.production'].create({
+            'product_id': product.id,
+            'product_qty': 1.0,
+            'intervention_type': intervention_type,
+            'origin': self.name,
+        })
+        
+        # Link the generated intervention
+        self.write({'intervention_ids': [(4, intervention.id)]})
+        
+        self.message_post(body=_("Robot AI Agent generated a strategy and automatically created Intervention Order: %s") % intervention.name)
+        return True
+
+    def _get_mock_strategy(self):
+        if self.disaster_type == 'frost':
+            return '{"action_type": "protection", "strategy_name": "Anti-Frost Spraying", "details": "Deploy drones to spray anti-frost agents immediately."}'
+        elif self.disaster_type == 'drought':
+            return '{"action_type": "irrigation", "strategy_name": "Deep Irrigation", "details": "Trigger deep root irrigation across all affected parcels."}'
+        return '{"action_type": "harvesting", "strategy_name": "Emergency Harvest", "details": "Harvest marketable crops immediately to minimize financial loss."}'
+
     @api.depends('loss_assessment_ids.estimated_loss_amount')
     def _compute_total_estimated_loss(self):
         for incident in self:

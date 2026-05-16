@@ -21,6 +21,7 @@
         <field name="arch" type="xml">
             <form string="Disaster Incident">
                 <header>
+                                        <button name="action_request_ai_strategy" string="Generate AI Strategy" type="object" class="btn-warning"/>
                     <button name="action_create_crisis_incident" string="Create Crisis Incident" type="object" class="oe_highlight" invisible="crisis_incident_id"/>
                 </header>
                 <sheet>
@@ -58,6 +59,19 @@
                         </page>
                         <page string="Crisis Integration">
                             <field name="crisis_incident_id"/>
+                        </page>
+                    
+                        <page string="AI Strategy & Interventions">
+                            <group>
+                                <field name="ai_strategy_log" widget="code"/>
+                            </group>
+                            <field name="intervention_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="intervention_type"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
