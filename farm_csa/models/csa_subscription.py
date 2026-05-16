@@ -54,6 +54,28 @@ class FarmCSASubscription(models.Model):
         for sub in self:
             if sub.sub_type == 'adoption' and sub.adopted_lot_id:
                 sub.adopted_lot_id.message_post(body=_("ADOPTION: This asset has been adopted by %s.") % sub.partner_id.name)
+                
+                # 1. Provision Stream URL (Digital Twin Linkage)
+                stream_url = f"https://stream.farm/csa/{sub.id}/{sub.adopted_lot_id.name}"
+                sub.adopted_lot_id.write({
+                    'csa_stream_url': stream_url,
+                    'csa_adopter_id': sub.partner_id.id
+                })
+                
+                # 2. Trigger Initial Care/Feeding Intervention
+                # Find a generic service/feed product
+                feed_product = self.env['product.product'].search([('name', '=', 'Standard Feed')], limit=1)
+                if not feed_product:
+                    feed_product = self.env['product.product'].create({'name': 'Standard Feed', 'type': 'consu'})
+                    
+                intervention = self.env['mrp.production'].create({
+                    'product_id': sub.adopted_lot_id.product_id.id,
+                    'product_qty': 1.0,
+                    'intervention_type': 'feeding',
+                    'lot_producing_id': sub.adopted_lot_id.id,
+                    'origin': f"CSA Adoption: {sub.name}",
+                })
+                sub.message_post(body=_("Provisioned Video Stream: %s and scheduled initial Care Intervention: %s") % (stream_url, intervention.name))
 
 class FarmSharedTool(models.Model):
     """ US-066-02: Shared Tool Management for Urban/Community Farming """
