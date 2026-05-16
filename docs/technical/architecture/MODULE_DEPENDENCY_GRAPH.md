@@ -44,7 +44,7 @@ graph TD
     farm_pos["farm_pos"]:::highlight
     farm_robotics["farm_robotics"]:::highlight
     farm_sale_ch["farm_sale_ch"]:::highlight
-    farm_supply_core["farm_supply_core"]:::highlight
+    farm_supply["farm_supply"]:::highlight
     farm_supply_logistics["farm_supply_logistics"]:::highlight
     farm_supply_procurement["farm_supply_procurement"]:::highlight
     farm_supply_quality["farm_supply_quality"]:::highlight
@@ -90,13 +90,13 @@ graph TD
     farm_robotics --> farm_core
     farm_robotics --> farm_iot
     farm_sale_ch --> farm_core
-    farm_supply_core --> farm_core
+    farm_supply --> farm_core
     farm_supply_logistics --> farm_core
-    farm_supply_logistics --> farm_supply_core
+    farm_supply_logistics --> farm_supply
     farm_supply_procurement --> farm_core
-    farm_supply_procurement --> farm_supply_core
+    farm_supply_procurement --> farm_supply
     farm_supply_quality --> farm_core
-    farm_supply_quality --> farm_supply_core
+    farm_supply_quality --> farm_supply
     farm_supply_quality --> farm_supply_procurement
     farm_valuation --> farm_biological_valuation
     farm_valuation --> farm_core
@@ -390,12 +390,12 @@ graph TD
     farm_live_streaming --> farm_supply
     farm_supply --> farm_core
     farm_supply --> farm_supply_analytics
-    farm_supply --> farm_supply_core
+    farm_supply --> farm_supply
     farm_supply --> farm_supply_procurement
     farm_supply --> farm_supply_quality
     farm_supply_analytics --> farm_ai_decision
     farm_supply_analytics --> farm_core
-    farm_supply_analytics --> farm_supply_core
+    farm_supply_analytics --> farm_supply
     farm_winery --> farm_core
     farm_winery --> farm_isl
     farm_winery --> farm_processing

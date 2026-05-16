@@ -3307,13 +3307,13 @@
 
 
 
-### `supply.chain.node.mixin` (Defined in `farm_supply_core`)
+### `supply.chain.node.mixin` (Defined in `farm_supply`)
   - **Class**: `SupplyChainNodeMixin`
   - **描述**: Supply Chain Node Mixin (Deprecated - Use agri.supply.chain.node.mixin)
   - _inherit_: `agri.supply.chain.node.mixin`
 
 
-### `supply.common.fields.mixin` (Defined in `farm_supply_core`)
+### `supply.common.fields.mixin` (Defined in `farm_supply`)
   - **Class**: `SupplyCommonFieldsMixin`
   - **描述**: Supply Chain Common Fields Mixin
 
