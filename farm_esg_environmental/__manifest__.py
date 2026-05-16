@@ -22,6 +22,7 @@ ESG Environmental Assessment module for Odoo 19 Farm Management System - Epic 80
         "farm_agri_science",
         "farm_operation",  # For interventions
         "farm_iot",  # For sensor data
+        "farm_equipment", # For fuel logs to carbon ledger
     ],
     "data": [
         "security/ir.model.access.csv",
