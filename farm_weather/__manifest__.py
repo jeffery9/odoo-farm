@@ -12,7 +12,7 @@
     'author': 'Jeffery',
     'depends': ['farm_core', 'farm_iot'],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'data/ir_cron_data.xml',
         'views/weather_forecast_views.xml',
         'views/res_config_settings_views.xml',

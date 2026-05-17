@@ -17,7 +17,7 @@
     'depends': ['project', 'stock', 'uom', 'base_setup'],
     'data': [
         'security/farm_security.xml',
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'data/product_category_data.xml',
         'data/ir_cron_data.xml',

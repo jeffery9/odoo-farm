@@ -18,7 +18,7 @@
     ],
     'data': [
         'views/menu.xml',
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
     ],
     'images': ['static/description/main_screenshot.png'],
     'installable': True,
