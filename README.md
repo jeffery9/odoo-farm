@@ -11,7 +11,51 @@
 2. **[金融级三层数据隔离 (3-Tier Row-Level Security)](docs/business/analysis/DATA_ISOLATION_RLS_DESIGN.md)**
    针对中国及亚洲“大村集体 -> 承包大户 -> 临时散工”的嵌套型农业组织架构，我们首创了基于 ir.rule 的 3 级动态 RLS 防火墙。
    **农场主能够向下穿透监控下属散工的产出与贷款，但各农场之间平行绝密隔离。** 这彻底扫清了多个农户共用一个系统时的“露富”和“隐私泄漏”痛点。
-   👉 *[点击查看 RLS 数据隔离架构设计图 (Draw.io Web Viewer)](https://viewer.diagrams.net/?tags=%7B%7D&lightbox=1&edit=_blank#R3ZldT%2BM4FIbv%2BRXe7A1I09KkH3SAdNQUGKGFZTR0dxZpJOQkTuPFiSvHJXR%2F%2FZ58tHFKU1poWbTtRVP72LGfc95jxzn98hQw9EhERHloanq9oSESOtyl4cjU%2Fhhe1Lral97eafDkUUaQzyNpaq7AMeVa0czo1BvQsreH0KlL8UjgAIU4IKZ2hiVGlxFnWIIl6gvHp5I4ciJIag4NgqevAo%2F9a%2B4SlhVBoeBczv6kNgPCGKKuqcEAD5fX6BoaY0FCuWhUWP9SqyELOw8jwSehiwY8lJiGMA1Uq%2FXKZjcu5%2BgyjCQOHVKuVu5Jc4N7ewQ8MJvAnNOWF1gESP9cb6AEgY0jMu9MQ5GcMjCMYhowHJITKBfylv5DzFbjBECzAWdcmL967eQL1YI%2FkLysk35OPBj6bdqNnl0nrfXOSeoVSZ5KOHStGH1GnPCASDFFYNcCWNPsJ6au9E2t24Frn9CRD23bBvzBkamN8jaaiv8wY9HbK8Mb8GCMwynSj%2BGSj4kA9z9WU3TARiU4pEQkbf8EFHhESn3sp3ivJ0zS2uw28wA7WMW2WWLrYtL1nAW2TpfYXontUp6q11eQNTKyHYWsoZBttdYiuzyK0%2Fi6iSF2Ub%2BSqwdG9%2FgZWeO43Hx%2FSECw%2FU3gtUnXbZXhdQ27uRCYS%2BHNnL0RuKYakumfTUNSmbG1Gpj9AjArB2ZtAMzzPMNZiDa3Y3fa2wHWau2A2O%2BQkSPkcZFNvjrMAhyCSsU9nlNTw%2BtnuH%2FGA0izx%2FmM7qmLTBQR5hUA03xMXEAQJwvE7Rg7xIxhXTjxZcCSHFdiCZ%2FXBV%2BhiBU09UZGs13Q1FWanVfqVkEWc%2FGQENPLgdY8Rj%2FSGtTXgdstAQcMcfSA9M9oEEVEIn17zPKV5PWccpnqRwqn1m44GZWcjBIn4xO64jj8YJi2wqkszvmu4jtxuHDX0qlrKxIdjAQFVk62MNsffPoZXlFH8FrCL8oKLsJHGCaHYVxymZYVGc%2FHY2I6U0YBrmi%2BTbZvkGoeg4bKVp1kD9%2Be%2BKwXE5%2B9LPFZ75L41p1Eiplt54lvlZDtyoRnlRNe8x0F%2FCIWfcsCLmvSrtKktahJa4kmrW1rMo%2BoN%2BDahSbP3BGERkylT8NZngN5xWGMhQsvChG1KaNy%2BqlSrAR6UCfc8wlU3JAQniDlDeE3l2nBNLHKhMWF9PmIh5idzcp6RWgWtZewXIOCv4mU03QliCeSz9iTJyr%2FMht1o52e3iVFISBIytrZ6Z3ZWJoks7IfKU8D3JM8WUXCRBGfCPC6ujKDhemISHXlUeVCQVj6qpV2vv78%2FZy1Ucl613gP%2F3O8xrbwVvMtTee7JvpWoC6O%2FPS%2B65FV1sczsulwdx2zyU2M%2FztUYzdQX0rY1urUbH%2BQ1LyBU%2FKpcr3UYS9NHfaz1GHr7xHl9kcM8qU8Xwxye1mQ2%2BXMYe8myIc%2BQedUkBgD3v0bLOCfMGU%2FsnqnKbcq7xpTURcTRtC8p1nnydp4%2BP3iZHh5h6zL65Pfzk53LAQ9d9vcW%2BC4udvqC5vSnteAo%2BS4JjR2B0Lw2LQZdx6WuW%2B%2B77tiQi2EsrkHVYvc6obTUGbb3tkqtdtQHZ25etb1OhvdfIyuskdcvb2dj2Pub3VPO%2B9AeWHUTX2WO%2FNNbsXdjNFxRNZY3hPdbZPDsqu%2BdA6buLO1Pe5mvvNYa1a8M3Y3WewfHxQfflJHlL4MHR%2FkH5f6e0ll8kWqv%2Fcv)*
+   
+👉 *[图解：RLS 数据隔离架构]*
+```mermaid
+graph TD
+    subgraph Odoo_Instance [Odoo Farm 19.0 Instance]
+        subgraph Coop [Tier 1: Cooperative / res.company]
+            Manager((Coop Manager))
+            
+            subgraph Farm_A [Tier 2: Farm Owner A / Team A]
+                OwnerA[Farm Owner A]
+                WorkerA1([Worker A1])
+                WorkerA2([Worker A2])
+                DB_A[(Location A, Loans A)]
+                
+                OwnerA -->|parent_id: Full Penetration| WorkerA1
+                OwnerA -->|parent_id: Full Penetration| WorkerA2
+                WorkerA1 -.->|Sees Only Own| DB_A
+                WorkerA2 -.->|Sees Only Own| DB_A
+            end
+            
+            subgraph Farm_B [Tier 2: Farm Owner B / Team B]
+                OwnerB[Farm Owner B]
+                WorkerB1([Worker B1])
+                DB_B[(Location B, Loans B)]
+                
+                OwnerB -->|parent_id: Full Penetration| WorkerB1
+                WorkerB1 -.->|Sees Only Own| DB_B
+            end
+            
+            Manager ==>|1=1: God View within Coop| Farm_A
+            Manager ==>|1=1: God View within Coop| Farm_B
+            OwnerA -.-x|STRICTLY BLOCKED: ir.rule Parallel Firewall| OwnerB
+        end
+    end
+    
+    style Manager fill:#e1d5e7,stroke:#9673a6
+    style OwnerA fill:#d5e8d4,stroke:#82b366
+    style OwnerB fill:#fff2cc,stroke:#d6b656
+    style WorkerA1 fill:#ffffff,stroke:#666666
+    style WorkerA2 fill:#ffffff,stroke:#666666
+    style WorkerB1 fill:#ffffff,stroke:#666666
+    style DB_A fill:#f5f5f5,stroke:#b3b3b3
+    style DB_B fill:#f5f5f5,stroke:#b3b3b3
+```
+
 
 
 : 智慧农业全链路数字化底座 / Full-Chain Smart Agriculture OS
