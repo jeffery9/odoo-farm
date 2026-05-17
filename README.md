@@ -100,47 +100,47 @@ Odoo Farm 将庞杂的农业切割为极易部署的工具链：
    从制药级 CIP 物理防线、多叉树基因溯源，到无抵押数据微贷与按交易量返还分红，为您精选 8 个极具震撼力的真实业务场景。
    👉 *[深度阅读：Odoo Farm 与日本农协 (JA) 模式落地指南](docs/business/marketing/THE_JA_MODEL_PLAYBOOK.md)*
 
-2. **[金融级三层数据隔离 (3-Tier Row-Level Security)](docs/business/analysis/DATA_ISOLATION_RLS_DESIGN.md)**
-   针对中国及亚洲“大村集体 -> 承包大户 -> 临时散工”的嵌套型农业组织架构，我们首创了基于 ir.rule 的 3 级动态 RLS 防火墙。
-   **农场主能够向下穿透监控下属散工的产出与贷款，但各农场之间平行绝密隔离。** 这彻底扫清了多个农户共用一个系统时的“露富”和“隐私泄漏”痛点。
+2. **[坚如磐石的数据隐私 (Absolute Data Privacy)](docs/business/analysis/DATA_ISOLATION_RLS_DESIGN.md)**
+   在一个村集体（或合作社）共用一套系统时，最怕的就是数据“串门”。Odoo Farm 完美适配了“村集体 -> 承包大户 -> 散户”的复杂社会结构：
+   * **散户/雇工**：只能看到自己的干活记录和工资单。
+   * **承包大户**：能统揽自己团队里所有人的进度和产出，但**绝对看不到同村其他大户的任何财务和收成**（防红眼病，防隐私泄露）。
+   * **合作社总管**：拥有全盘宏观视角，方便进行生产调配与年底分红。
    
-👉 *[图解：RLS 数据隔离架构]*
+👉 *[图解：谁能看什么？(数据隐私边界)]*
 ```mermaid
 graph TD
-    subgraph Odoo_Instance [Odoo Farm 19.0 Instance]
-        subgraph Coop [Tier 1: Cooperative / res.company]
-            Manager((Coop Manager))
+    subgraph Coop [全村/合作社级别]
+        Manager((合作社总管<br>全盘调配与分红))
+        
+        subgraph Farm_A [大户 A 的农场团队]
+            OwnerA[承包大户 A]
+            WorkerA1([散户帮工 张三])
+            WorkerA2([散户帮工 李四])
+            DB_A[(张老板的私密数据<br>土地 / 收成 / 账本)]
             
-            subgraph Farm_A [Tier 2: Farm Owner A / Team A]
-                OwnerA[Farm Owner A]
-                WorkerA1([Worker A1])
-                WorkerA2([Worker A2])
-                DB_A[(Location A, Loans A)]
-                
-                OwnerA -->|parent_id: Full Penetration| WorkerA1
-                OwnerA -->|parent_id: Full Penetration| WorkerA2
-                WorkerA1 -.->|Sees Only Own| DB_A
-                WorkerA2 -.->|Sees Only Own| DB_A
-            end
-            
-            subgraph Farm_B [Tier 2: Farm Owner B / Team B]
-                OwnerB[Farm Owner B]
-                WorkerB1([Worker B1])
-                DB_B[(Location B, Loans B)]
-                
-                OwnerB -->|parent_id: Full Penetration| WorkerB1
-                WorkerB1 -.->|Sees Only Own| DB_B
-            end
-            
-            Manager ==>|1=1: God View within Coop| Farm_A
-            Manager ==>|1=1: God View within Coop| Farm_B
-            OwnerA -.-x|STRICTLY BLOCKED: ir.rule Parallel Firewall| OwnerB
+            OwnerA -->|向下管理与查看| WorkerA1
+            OwnerA -->|向下管理与查看| WorkerA2
+            WorkerA1 -.->|仅看自己记录| DB_A
+            WorkerA2 -.->|仅看自己记录| DB_A
         end
+        
+        subgraph Farm_B [大户 B 的农场团队]
+            OwnerB[承包大户 B]
+            WorkerB1([散户帮工 王五])
+            DB_B[(王老板的私密数据<br>土地 / 收成 / 账本)]
+            
+            OwnerB -->|向下管理与查看| WorkerB1
+            WorkerB1 -.->|仅看自己记录| DB_B
+        end
+        
+        Manager ==>|监管| Farm_A
+        Manager ==>|监管| Farm_B
+        OwnerA -.-x|🚫 数据绝密隔离<br>互相看不见存款与产量| OwnerB
     end
     
-    style Manager fill:#e1d5e7,stroke:#9673a6
-    style OwnerA fill:#d5e8d4,stroke:#82b366
-    style OwnerB fill:#fff2cc,stroke:#d6b656
+    style Manager fill:#e1d5e7,stroke:#9673a6,stroke-width:2px
+    style OwnerA fill:#d5e8d4,stroke:#82b366,stroke-width:2px
+    style OwnerB fill:#fff2cc,stroke:#d6b656,stroke-width:2px
     style WorkerA1 fill:#ffffff,stroke:#666666
     style WorkerA2 fill:#ffffff,stroke:#666666
     style WorkerB1 fill:#ffffff,stroke:#666666
