@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="26.0.0">
+  <diagram name="C2M Ecosystem">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Containers -->
+        <!-- Node 1: Smart Pantry App -->
+        <mxCell id="node1" value="Node 1: Smart Pantry App&#xa;(Consumer / Household)" style="swimlane;startSize=40;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="220" height="400" as="geometry"/>
+        </mxCell>
+        
+        <!-- Node 2: The Agri-Nexus Hub -->
+        <mxCell id="node2" value="Node 2: The Agri-Nexus Hub&#xa;(Market-Maker &amp; Connector)" style="swimlane;startSize=40;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="380" y="40" width="340" height="480" as="geometry"/>
+        </mxCell>
+        
+        <!-- Node 3: Odoo Farm Instances -->
+        <mxCell id="node3" value="Node 3: Odoo Farm Instances&#xa;(Production / Supply Side)" style="swimlane;startSize=40;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="840" y="80" width="220" height="400" as="geometry"/>
+        </mxCell>
+
+        <!-- Components in Node 1 -->
+        <mxCell id="app_inventory" value="Digital Inventory &amp;&#xa;Expiry Tracker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="node1">
+          <mxGeometry x="30" y="70" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="app_diet" value="Dietary Genome &amp;&#xa;Allergen Profile" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="node1">
+          <mxGeometry x="30" y="160" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="app_wallet" value="Eco-Points Wallet &amp;&#xa;C-End Purchasing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="node1">
+          <mxGeometry x="30" y="250" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Components in Node 2 -->
+        <mxCell id="hub_bidding" value="The Bidding Floor&#xa;(Supply-Demand Matchmaking)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="node2">
+          <mxGeometry x="60" y="80" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="hub_trust" value="Trust Broker&#xa;(IoT/Carbon Passport Translation)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="node2">
+          <mxGeometry x="60" y="170" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="hub_routing" value="Logistics Routing &amp;&#xa;Payment Gateway" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="node2">
+          <mxGeometry x="60" y="260" width="220" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="hub_api" value="Open API Connector&#xa;(Banks / Insurers / Cold Chain)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="node2">
+          <mxGeometry x="60" y="350" width="220" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Components in Node 3 -->
+        <mxCell id="farm_multi" value="farm_multi_farm&#xa;(Cooperatives &amp; Settlements)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="node3">
+          <mxGeometry x="30" y="70" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="farm_op" value="farm_operation&#xa;(C2M Planting &amp; Interventions)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="node3">
+          <mxGeometry x="30" y="160" width="160" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="farm_iot" value="farm_iot &amp; farm_esg&#xa;(Traceability &amp; Carbon Ledger)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="node3">
+          <mxGeometry x="30" y="250" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- External Integrations (Bottom) -->
+        <mxCell id="ext_bank" value="Rural Banks" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="370" y="580" width="100" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="ext_logistics" value="3PL Cold Chain" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="500" y="580" width="100" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="ext_insurance" value="Agri-Insurance" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="630" y="580" width="100" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges (App to Hub) -->
+        <mxCell id="edge1" value="Consumer Budget &amp;&#xa;Dietary Needs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;flowAnimation=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="app_diet" target="hub_bidding">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge2" value="Zero-Waste Behavior" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;flowAnimation=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="app_inventory" target="hub_trust">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges (Hub to Farm) -->
+        <mxCell id="edge3" value="Forward Contracts &amp;&#xa;C2M Planting Quotas" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;flowAnimation=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="hub_bidding" target="farm_op">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge4" value="Financial Settlements&#xa;&amp; Platform GMV Cut" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;flowAnimation=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="hub_routing" target="farm_multi">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges (Farm to Hub) -->
+        <mxCell id="edge5" value="Yield Projections &amp;&#xa;Live Inventory" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;flowAnimation=1;exitX=0;exitY=0.25;entryX=1;entryY=0.25;" edge="1" parent="1" source="farm_op" target="hub_bidding">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="255"/>
+              <mxPoint x="800" y="135"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge6" value="IoT Logs &amp;&#xa;Carbon Sinks" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;flowAnimation=1;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="farm_iot" target="hub_trust">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges (Hub to App) -->
+        <mxCell id="edge7" value="Traceability Passports&#xa;&amp; Eco-Point Rewards" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;flowAnimation=1;exitX=0;exitY=0.75;entryX=1;entryY=0.5;" edge="1" parent="1" source="hub_trust" target="app_wallet">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="255"/>
+              <mxPoint x="320" y="360"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Edges (External Connectors) -->
+        <mxCell id="edge8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="hub_api" target="ext_bank">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="hub_api" target="ext_logistics">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="hub_api" target="ext_insurance">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
