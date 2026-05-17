@@ -2,10 +2,32 @@
 
 > **智慧农业全链路数字化底座 / Full-Chain Smart Agriculture OS**
 
-<div align="center">
-  <img src="farm_core/static/description/banner.png" alt="Odoo Farm Core Banner" width="100%">
-  <p><b>From Seed to Sale, Code to Farm — Empowering Modern Agriculture with Digital Certainty.</b></p>
-</div>
+```mermaid
+graph TD
+    subgraph L3 [L3: Intelligence & Science]
+        direction LR
+        AI(AI Decision Engine) -.- GEN(Genomic Breeding) -.- DT(Digital Twin)
+    end
+    subgraph L2 [L2: Vertical Industries]
+        direction LR
+        CROP(Crop & Orchard) -.- LIVE(Livestock & Aqua) -.- PROC(Food Processing)
+    end
+    subgraph L1 [L1: Operations & SCM]
+        direction LR
+        IOT(Smart IoT) -.- LOG(FEFO Logistics) -.- QC(Quality Control)
+    end
+    subgraph L0 [L0: Cooperative Foundation]
+        direction LR
+        FIN(JA Bank / Micro-Credit) -.- HR(Rural Time Bank) -.- LAND(Land Banking)
+    end
+    
+    L3 ==> L2 ==> L1 ==> L0
+
+    style L3 fill:#e1d5e7,stroke:#9673a6,stroke-width:2px
+    style L2 fill:#dae8fc,stroke:#6c8ebf,stroke-width:2px
+    style L1 fill:#d5e8d4,stroke:#82b366,stroke-width:2px
+    style L0 fill:#fff2cc,stroke:#d6b656,stroke-width:2px
+```
 
 [Chinese](#chinese) | [English](#english)
 
@@ -36,7 +58,30 @@
 
 ### 🚀 核心生态矩阵 (The App Ecosystem)
 
-<img src="farm_isl/static/description/banner.png" alt="Odoo Farm ISL" width="100%" style="margin-top: 15px; margin-bottom: 15px; border-radius: 8px;">
+```mermaid
+graph LR
+    subgraph Eco [Odoo Farm 100+ Modules Micro-Ecosystem]
+        direction TB
+        A[🌿 Planting Engine]
+        B[🐄 Livestock & Aqua]
+        C[🏭 Processing]
+        D[📡 Smart IoT]
+        F[🏪 Commerce & ESG]
+    end
+    
+    A --- A1(Campaign Planning) & A2(N/P/K Balance)
+    B --- B1(Pedigree Traceability) & B2(ADG Vitals)
+    C --- C1(Mass Balance) & C2(CIP Allergen Lock)
+    D --- D1(Edge Gateways) & D2(Weather Gating)
+    F --- F1(Carbon Footprint) & F2(CSA Subscriptions)
+    
+    style Eco fill:#f9f9f9,stroke:#666666,stroke-dasharray: 5 5
+    style A fill:#d5e8d4,stroke:#82b366
+    style B fill:#dae8fc,stroke:#6c8ebf
+    style C fill:#fff2cc,stroke:#d6b656
+    style D fill:#e1d5e7,stroke:#9673a6
+    style F fill:#ffe6cc,stroke:#d79b00
+```
 
 Odoo Farm 将庞杂的农业切割为极易部署的工具链：
 *   **🌿 种植引擎 (Planting)**：生产季规划 -> 农事干预 -> 农机调度 -> 收获分级 -> N/P/K 自动养分平衡核算。
@@ -128,7 +173,30 @@ Odoo Farm delivers hard-hitting commercial value to every stakeholder:
 
 ### 🚀 The App Ecosystem Matrix
 
-<img src="farm_supply/static/description/banner.png" alt="Odoo Farm Supply Chain" width="100%" style="margin-top: 15px; margin-bottom: 15px; border-radius: 8px;">
+```mermaid
+graph LR
+    subgraph Eco [Odoo Farm 100+ Modules Micro-Ecosystem]
+        direction TB
+        A[🌿 Planting Engine]
+        B[🐄 Livestock & Aqua]
+        C[🏭 Processing]
+        D[📡 Smart IoT]
+        F[🏪 Commerce & ESG]
+    end
+    
+    A --- A1(Campaign Planning) & A2(N/P/K Balance)
+    B --- B1(Pedigree Traceability) & B2(ADG Vitals)
+    C --- C1(Mass Balance) & C2(CIP Allergen Lock)
+    D --- D1(Edge Gateways) & D2(Weather Gating)
+    F --- F1(Carbon Footprint) & F2(CSA Subscriptions)
+    
+    style Eco fill:#f9f9f9,stroke:#666666,stroke-dasharray: 5 5
+    style A fill:#d5e8d4,stroke:#82b366
+    style B fill:#dae8fc,stroke:#6c8ebf
+    style C fill:#fff2cc,stroke:#d6b656
+    style D fill:#e1d5e7,stroke:#9673a6
+    style F fill:#ffe6cc,stroke:#d79b00
+```
 
 *   **🌿 Crop Engine**: Campaign Planning -> Interventions -> Machinery Dispatch -> Harvest Grading -> Auto N/P/K Balance.
 *   **🐄 Livestock & Aqua**: Ear-tag Traceability -> Pedigree Trees -> ADG Prediction -> Automated Feed Depletion -> Vitals Alert.
