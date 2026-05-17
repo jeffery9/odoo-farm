@@ -1,8 +1,8 @@
-# Odoo Farm 19.0: 28 Futuristic Commercial Scenarios (21大商业落地场景)
+# Odoo Farm 19.0: 32 Futuristic Commercial Scenarios (21大商业落地场景)
 
 > **Document Note / 文档说明**: 
-> This document archives the 28 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
-> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 28 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
+> This document archives the 32 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
+> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 32 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
 
 ---
 
@@ -161,7 +161,9 @@
 * **Pain Point / 业务痛点**: Land consolidation (leasing land from many smallholders to a single large operator) is complex to track, with rent payments and boundary disputes being constant headaches. / 土地流转（从分散农户手中租地）过程复杂，租金发放、地块边界争议、租期管理是农场主最大的头疼点。
 * **Solution / 解决方案**: The farm_land_mgmt module maps every smallholder plot using GIS. The system manages the Leaseback contracts, automatically notifying the operator of upcoming rent payments. If a plot is consolidated into a larger field, the original ownership DNA is preserved in the system. / 土地管理模块利用 GIS 将每户农户的权属地块进行数字化建模。系统管理所有返租合同，自动提醒租金发放。即便地块被合并为大田，系统依然保留其原始权属“DNA”。
 * **Value / 商业价值**: Provides a digital foundation for large-scale land consolidation while protecting the fundamental rights of smallholder owners. / 为大规模土地流转提供数字化底座，在实现适度规模经营的同时，保护农户的底层权益。
-\n## 7. Beautiful Countryside & Rural Revitalization (美丽乡村与农旅融合)
+\n
+
+## 7. Beautiful Countryside & Rural Revitalization (美丽乡村与农旅融合)
 
 > **Context / 背景**: Rural revitalization is more than just crop yields; it is about ecological livability, cultural heritage, and integrating agriculture with tourism (Agritourism). This section demonstrates how Odoo Farm supports the Beautiful Countryside initiative by monetizing rural aesthetics, managing eco-tourism, and preserving community governance.
 > 乡村振兴不仅关乎产量，更关乎生态宜居、乡风文明以及一二三产融合（农旅融合）。本章节展示 Odoo Farm 如何支撑“美丽乡村”建设，将乡村美学变现，管理生态旅游，并助力透明规范的乡村治理。
@@ -180,3 +182,30 @@
 * **Pain Point / 业务痛点**: Traditional farming techniques are dying out, while urban schools struggle to find engaging, educational outdoor activities for students. / 珍贵的传统农耕技艺正在失传，而城市中小学又苦于找不到兼具教育深度与趣味性的户外实践基地。
 * **Solution / 解决方案**: The farm sets up Agritainment workshops. Using farm_training and farm_agritourism, schools book field trips. Students walk through the village scanning QR codes on ancient trees or heritage tools (farm_marketing) to read their rich Traceability Passports detailing centuries of history. After learning to make traditional tofu or dye cloth, the farm_pos handles instant merchandising of their crafts. / 农场开设“研学游”基地。学校通过农旅模块在线预订行程。学生们在村落里游览时，通过扫描古树或传统农具上的二维码，读取详尽的“数字护照”了解百年农耕历史。在体验完传统手工豆腐或扎染后，使用 POS 模块一键购买纪念品。
 * **Value / 商业价值**: Monetizes agricultural knowledge, preserves intangible cultural heritage, and creates a highly profitable Agri-Education revenue stream. / 将无形的农业知识变现，保护非物质文化遗产，开辟出利润丰厚的“农业研学”第二增长曲线。
+
+---
+
+## 8. Deep Vertical Industry Verticals (深耕垂直农业领域)
+
+> **Context / 背景**: Beyond generic farming, specialized sectors like apiculture, aquaculture, and winery management have unique biological and process requirements. This section showcases how Odoo Farm adapts its 4-Layer architecture to the deep complexities of specific agricultural verticals.
+> 除了通用的种植和养殖，蜂产业、水产养殖、酿酒等领域拥有极具个性的生物特性与工艺需求。本章节展示 Odoo Farm 如何利用 4 层架构适配这些极其深度的垂直行业复杂度。
+
+### Scenario 29: Honey Batch Integrity & Hive Health (甜蜜的数字指纹：蜂蜜批次完整性与蜂群健康)
+* **Pain Point / 业务痛点**: Counterfeit honey is a global problem. It is difficult to prove that a specific jar of honey came from a specific mountain range or that the hives were not treated with antibiotics. / 假蜂蜜是全球性难题。很难证明某瓶蜂蜜来自特定的山脉，且采集期间蜂群未曾违规使用抗生素。
+* **Solution / 解决方案**: The farm_apiculture module tracks individual Hives as IoT-enabled assets. Foraging interventions log the bloom period (e.g., Acacia) and location via GPS. When honey is extracted, the system creates a Honey Batch linked to specific hive IDs. The farm_quality module stores lab tests for pollen count and antibiotic residue. The consumer QR code shows the bloom map and the No-Antibiotic digital certificate. / 蜂业模块将蜂箱作为 IoT 资产管理。采集任务自动记录花期（如槐花）和 GPS 位置。摇蜜时，系统生成关联特定蜂箱 ID 的“蜂蜜批次”。质检模块记录花粉计数和抗生素残留检测。消费者扫码即可看到花期采集地图和“无抗生素”数字化证书。
+* **Value / 商业价值**: Authenticates high-value honey through hive-level traceability, commanding 3x the price of generic commodity honey. / 实现蜂箱级溯源，自证清白，使高端蜂蜜的价格达到普通散装蜜的 3 倍以上。
+
+### Scenario 30: RAS Water Quality & Fish Welfare (工业化水产：RAS 循环水质与鱼类福利监控)
+* **Pain Point / 业务痛点**: In Recirculating Aquaculture Systems (RAS), a slight ammonia spike can kill a million dollars of stock in minutes, and manually recording water chemistry is error-prone. / 在循环水养殖（RAS）中，氨氮指标的微小波动就能在几分钟内毁掉数百万的鱼苗，人工记录水质数据完全来不及且极易出错。
+* **Solution / 解决方案**: The farm_aquaculture module connects to 24/7 submerged sensors via farm_iot. Dissolved oxygen and temperature data are fed into the Biological Twin. If water quality deviates, the system automatically triggers Life Support System (LSS) adjustments. The farm_financial_valuation module adjusts the fish biomass value daily based on feed intake and mortality logs. / 水产模块通过 IoT 24小时连接水下传感器。溶氧量、水温数据直通“生物孪生”模型。水质异常时，系统自动联动 LSS 生命维持系统进行调节。财务模块每天根据投喂量和死淘率自动更新鱼群的生物资产估值。
+* **Value / 商业价值**: Provides a mission-critical safety net for intensive fish farming, protecting high-value biological assets from catastrophic environmental failure. / 为工厂化养鱼提供“生命线”级的安全保障，保护高价值生物资产免受突发环境故障的摧毁。
+
+### Scenario 31: Micro-Climate Gating for Greenhouse Interventions (温室守门员：基于微气候条件的农事卡点)
+* **Pain Point / 业务痛点**: Applying certain organic pesticides in a greenhouse is useless if the humidity is too high or the UV intensity is too strong, leading to wasted labor and materials. / 在温室中进行有机植保，如果湿度过高或紫外线过强，药剂会失效甚至产生药害，导致人工和物料的双重浪费。
+* **Solution / 解决方案**: The farm_protected_cultivation module adds a Climate Gate to intervention orders. Before a worker can start a Spraying task, the Odoo app queries the farm_iot greenhouse station. If the internal humidity is > 85%, the START button is disabled and a warning is issued: Conditions Unsuitable for Spraying. / 温室模块在农事单中加入“气候关卡”。员工在点击“开始作业”前，系统自动查询温室 IoT 气象站。如果内部湿度高于 85%，手机端的【开始】按钮将被锁死并提示：“当前气候环境不适宜打药”。
+* **Value / 商业价值**: Enforces biological efficacy at the UI level, preventing material waste and ensuring the highest success rate for high-value greenhouse crops. / 在 UI 层面对农事科学性进行强制拦截，杜绝物料浪费，确保温室作物极高的作业成功率。
+
+### Scenario 32: Barrel Aging & Vintage Lot Identity (葡萄酒灵魂追踪：橡木桶窖藏与年份批次身份)
+* **Pain Point / 业务痛点**: In premium winemaking, individual barrels age differently. Traditional ERPs lose the link between a specific plot of grapes and the specific barrel it aged in. / 在高端酿酒业，不同橡木桶的陈酿效果差异巨大。传统 ERP 往往在葡萄入瓮后就失去了对地块、批次与具体橡木桶之间一一对应关系的追踪。
+* **Solution / 解决方案**: The farm_winery module uses stock.lot to track not just the wine, but the Vessel Identity (Barrels). When wine is transferred from tank to barrel, the system preserves the Plot-to-Barrel DNA. The farm_quality module logs monthly sensory profiles for each barrel. At the final blending stage, the AI model (farm_ai) recommends which specific barrels should be pooled for the Grand Vin versus the secondary label. / 酿酒模块利用批次追踪记录“容器身份（橡木桶）”。当原酒入桶时，系统保留“地块-橡木桶”的关联 DNA。质检模块记录每个桶每月的感官评价。最终调配阶段，AI 视觉与数据模型辅助推荐哪些桶应该进入“正牌酒”，哪些进入“副牌酒”。
+* **Value / 商业价值**: Provides 100% granular traceability for artisanal winemakers, enabling premium pricing for single-barrel or single-plot special editions. / 为工匠级酒庄提供 100% 的精细化溯源，支撑起“单桶”或“单地块”限量版的高额溢价。
