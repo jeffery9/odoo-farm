@@ -1,8 +1,8 @@
-# Odoo Farm 19.0: 21 Futuristic Commercial Scenarios (21大商业落地场景)
+# Odoo Farm 19.0: 24 Futuristic Commercial Scenarios (21大商业落地场景)
 
 > **Document Note / 文档说明**: 
-> This document archives the 21 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
-> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 21 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
+> This document archives the 24 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
+> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 24 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
 
 ---
 
@@ -123,6 +123,22 @@
 * **Value / 商业价值**: Creates a closed-loop rural financial mutual aid system built on digital trust, completely eliminating the need for traditional collateral. / 建立基于数字信任的农村金融互助闭环，用“种地数据”代替“房产抵押”，激活农村生产力。
 
 ---
+
+
+### Scenario 22: Cooperative Mutual Aid & Risk Pooling (灾害互助资金池：基于 IoT 的微型农业共保体)
+* **Pain Point / 业务痛点**: Commercial insurance is too expensive for micro-farms, and localized disasters can easily bankrupt a family. / 商业保险对小农户门槛高、保费贵，局部天灾极易导致个体家庭破产。
+* **Solution / 解决方案**: 100 farmers contribute to a cooperative Mutual Aid Fund (farm_multi_farm_financial). A micro-climate IoT station detects severe localized frost hitting 5 specific plots. The farm_disaster_risk module automatically verifies the event and triggers an immediate payout from the mutual fund to those 5 farmers to buy replacement seedlings. / 100 户农民每人出资凑成合作社“互助资金池”。田间微气候 IoT 探测到局部严重霜冻袭击了其中 5 户的农田。防灾模块自动交叉验证，并从互助池中秒级下拨救灾款，供这 5 户立刻购买补种小苗。
+* **Value / 商业价值**: Creates a self-sustaining, community-driven safety net, protecting vulnerable smallholders from bankruptcy. / 建立社区驱动的自循环安全网，保护脆弱的小农经济免受天灾摧毁。
+
+### Scenario 23: Rural Time Bank Labor Sharing (农忙“时间银行”：村庄内部的劳动力共享与互助)
+* **Pain Point / 业务痛点**: Labor shortages during peak harvest seasons lead to crop rot, while hiring external seasonal workers is costly. / 农忙抢收期劳动力严重短缺，导致农产品烂在地里，而雇佣外部临时工成本高昂且难找。
+* **Solution / 解决方案**: Using the farm_hr and farm_multi_farm modules, a Time Bank is created. Farmer A finishes harvesting early and sees Farmer B urgent Help Needed request. Farmer A helps for 8 hours, logging time via the mobile app. Instead of cash, Farmer A earns 8 Labor Credits which they can spend next season when they need help, tracked transparently on the internal ledger. / 借助人力与多农场模块建立“时间银行”。农户 A 自家抢收完毕，在系统看到农户 B 发出的紧急求助。A 帮 B 干了 8 小时活，通过手机端打卡。系统不产生现金交易，而是给 A 记入 8 个“工时信用点”。来年春耕 A 缺人手时，可直接消耗信用点“雇佣”其他村民。
+* **Value / 商业价值**: Optimizes idle labor within the community, reviving traditional mutual assistance with modern blockchain-like ledger tech. / 完美盘活村庄内部闲置劳动力，用现代去中心化账本技术复兴传统的“换工/帮工”互助文化。
+
+### Scenario 24: Shared Primary Processing Facility (联合初加工：跨越“卖原料”的低毛利陷阱)
+* **Pain Point / 业务痛点**: Smallholders lack capital to buy processing equipment, forcing them to sell low-margin raw crops (e.g., fresh tea leaves) to middlemen. / 小农户买不起加工设备，只能将低毛利的初级农产品（如刚采摘的鲜茶叶、咖啡鲜果）贱卖给中间商。
+* **Solution / 解决方案**: The cooperative invests in a shared roasting/drying facility (farm_multi_farm_equipment). 20 farmers book time slots to process their raw harvest. The farm_processing module meticulously traces the yield. 500kg of Farmer A raw leaves turn into 100kg of premium roasted tea. The system generates a co-branded label (farm_marketing) allowing Farmer A to sell the value-added product directly at a 5x profit margin. / 合作社集体出资购买一套烘焙/干燥设备作为共享资产。20 户农民在系统上预约时段加工自己的鲜果。加工模块精准溯源：农户 A 的 500kg 鲜叶产出了 100kg 特级烤茶。系统自动生成联合品牌标签，让农户 A 能以成品形式直接面向市场，毛利翻 5 倍。
+* **Value / 商业价值**: Empowers smallholders to climb the value chain, transforming raw material producers into artisanal branded producers. / 赋能小农户向上攀登价值链，实现从“底层原料供应商”到“高溢价品牌工匠”的阶级跃升。
 
 ## 7. Beautiful Countryside & Rural Revitalization (美丽乡村与农旅融合)
 
