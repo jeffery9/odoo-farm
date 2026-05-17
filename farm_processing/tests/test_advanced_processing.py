@@ -103,3 +103,55 @@ class TestAdvancedProcessingEpics(TransactionCase):
         # EPIC-137 Check
         carbon_found = any("ESG & Cost Allocation (Scope 2)" in b for b in message_bodies)
         self.assertTrue(carbon_found, "Granular Carbon/Energy allocation failed to log to chatter.")
+
+    def test_03_toll_manufacturing_mass_balance_epic_135(self):
+        """
+        US-135-01: Test Subcontracting Mass Balance validation.
+        Ensure that receiving products below the minimum yield tolerance raises an error.
+        """
+        from odoo.exceptions import ValidationError
+
+        # 1. Setup a BOM with a strict 25% minimum yield tolerance
+        bom = self.Bom.create({
+            'product_tmpl_id': self.jam.product_tmpl_id.id,
+            'product_qty': 100.0,
+            'type': 'subcontract',
+            'min_yield_tolerance_pct': 25.0,
+        })
+        
+        # 2. Mock an incoming picking (Subcontractor sending finished goods back)
+        partner = self.env['res.partner'].create({'name': 'Shady Co-Packer Inc.'})
+        picking_type = self.env['stock.picking.type'].search([('code', '=', 'incoming')], limit=1)
+        location_dest = self.env['stock.location'].search([('usage', '=', 'internal')], limit=1)
+        location_supplier = self.env['stock.location'].search([('usage', '=', 'supplier')], limit=1)
+
+        picking = self.env['stock.picking'].create({
+            'partner_id': partner.id,
+            'picking_type_id': picking_type.id,
+            'location_id': location_supplier.id,
+            'location_dest_id': location_dest.id,
+        })
+
+        move = self.env['stock.move'].create({
+            'name': 'Receive Jam from Co-packer',
+            'product_id': self.jam.id,
+            'product_uom_qty': 200.0, # Attempting to receive only 200kg (20% yield based on mock 1000kg sent)
+            'product_uom': self.jam.uom_id.id,
+            'picking_id': picking.id,
+            'location_id': location_supplier.id,
+            'location_dest_id': location_dest.id,
+            'bom_id': bom.id,
+        })
+        
+        # Mock the subcontracting flag which would normally be set by Odoo's native subcontracting module
+        move.is_subcontract = True
+        
+        picking.action_confirm()
+        picking.action_assign()
+        move.quantity = 200.0 # Force the done quantity
+        
+        # 3. The Validation should fail because 200 / 1000 = 20%, which is less than 25% min yield
+        with self.assertRaises(ValidationError) as error_catcher:
+            picking.button_validate()
+            
+        self.assertIn("Mass Balance Anomaly", str(error_catcher.exception), "The system failed to block a fraudulent toll manufacturing receipt.")
