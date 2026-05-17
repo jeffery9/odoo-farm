@@ -19,7 +19,7 @@
     'author': 'Jeffery',
     'depends': ['farm_operation', 'farm_core', 'farm_mrp', 'project', 'mrp', 'stock'],
     'data': [
-        # #'security/ir.model.access.csv',
+        # 'security/ir.model.access.csv',
         'data/ir_cron_data.xml',
         'views/menu.xml',
         'views/livestock_lot_views.xml',

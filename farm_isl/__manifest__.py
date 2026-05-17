@@ -16,7 +16,7 @@
         "farm_core",
     ],
     "data": [
-        ##"security/ir.model.access.csv",
+        #"security/ir.model.access.csv",
         "views/mrp_production_isl_views.xml",
         "views/mrp_bom_isl_views.xml",
         "views/mrp_workcenter_isl_views.xml",

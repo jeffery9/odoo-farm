@@ -14,7 +14,7 @@
         "farm_ai_llm_integration"
     ],
     "data": [
-        #"security/ir.model.access.csv",
+        "security/ir.model.access.csv",
         "views/ai_vision_base_views.xml",
         "views/ai_pest_disease_views.xml",
         "views/ai_visual_sorting_views.xml",

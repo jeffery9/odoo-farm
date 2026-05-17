@@ -24,7 +24,7 @@
         'farm_esg_environmental',
     ],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         # No specific model access rights needed since this module only extends existing models
     ],
     'images': ['static/description/main_screenshot.png'],

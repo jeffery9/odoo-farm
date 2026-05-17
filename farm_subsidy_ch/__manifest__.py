@@ -12,7 +12,7 @@
     'author': 'Jeffery',
     'depends': ['farm_subsidy', 'farm_core', 'farm_operation'],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'report/subsidy_report_templates.xml',
         'report/subsidy_reports.xml',
         'views/subsidy_ch_views.xml',

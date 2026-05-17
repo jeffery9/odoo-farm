@@ -18,7 +18,7 @@
         'farm_processing',
     ],
     'data': [
-        # #'security/ir.model.access.csv',
+        # 'security/ir.model.access.csv',
         'views/menu_root.xml',
         'views/sc_license_views.xml',
         'views/mrp_processing_industry_views.xml',

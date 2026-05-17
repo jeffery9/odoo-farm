@@ -12,7 +12,7 @@
         "farm_ai"
     ],
     "data": [
-        #"security/ir.model.access.csv",
+        "security/ir.model.access.csv",
         "views/llm_config_views.xml",
         "views/llm_service_views.xml",
         "views/menu.xml",

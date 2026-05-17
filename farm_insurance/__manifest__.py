@@ -13,7 +13,7 @@
         'farm_agri_science',
     ],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         # 'data/ir_sequence_data.xml',
         'views/insurance_policy_views.xml',
         'views/menu.xml',
