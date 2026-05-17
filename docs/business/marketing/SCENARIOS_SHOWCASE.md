@@ -1,8 +1,8 @@
-# Odoo Farm 19.0: 18 Futuristic Commercial Scenarios (十八大商业落地场景)
+# Odoo Farm 19.0: 21 Futuristic Commercial Scenarios (21大商业落地场景)
 
 > **Document Note / 文档说明**: 
-> This document archives the 18 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
-> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 18 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
+> This document archives the 21 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
+> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 21 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
 
 ---
 
@@ -121,3 +121,25 @@
 * **Pain Point / 业务痛点**: Smallholders lack collateral and cannot obtain bank loans for spring farming materials, trapping them in poverty. / 小农户缺乏抵押物，春耕时借不到买种子化肥的钱，陷入“越穷越种不好”的死循环。
 * **Solution / 解决方案**: The cooperative internal credit module evaluates the farmer past 3 years of digital farming records in Odoo (yield consistency, SOP compliance). It automatically approves a low-interest micro-loan of 500 USD for spring inputs. This loan is automatically deducted from the farmer share of the harvest payout at the end of the season. / 合作社内部信贷模块调取农户过去 3 年在 Odoo 中的数字化农事记录（如：产量稳定性、SOP 依从度），将其作为“信用资产”，秒级审批发放 3000 元的春耕农资微贷。秋收合作社统销结款时，系统自动从农户的利润分成中扣除本息。
 * **Value / 商业价值**: Creates a closed-loop rural financial mutual aid system built on digital trust, completely eliminating the need for traditional collateral. / 建立基于数字信任的农村金融互助闭环，用“种地数据”代替“房产抵押”，激活农村生产力。
+
+---
+
+## 7. Beautiful Countryside & Rural Revitalization (美丽乡村与农旅融合)
+
+> **Context / 背景**: Rural revitalization is more than just crop yields; it is about ecological livability, cultural heritage, and integrating agriculture with tourism (Agritourism). This section demonstrates how Odoo Farm supports the Beautiful Countryside initiative by monetizing rural aesthetics, managing eco-tourism, and preserving community governance.
+> 乡村振兴不仅关乎产量，更关乎生态宜居、乡风文明以及一二三产融合（农旅融合）。本章节展示 Odoo Farm 如何支撑“美丽乡村”建设，将乡村美学变现，管理生态旅游，并助力透明规范的乡村治理。
+
+### Scenario 19: Shared Farm Subscription & Cloud Farming (云端“共享农庄”：城市居民的沉浸式微农业)
+* **Pain Point / 业务痛点**: Traditional agritourism relies on one-off ticket sales. Visitors come once and rarely return, making revenue unstable. / 传统的休闲农业依赖“门票经济”和单次采摘，游客来一次就不再复购，农场收入极不稳定。
+* **Solution / 解决方案**: Using the farm_csa and farm_agritourism modules, urban families can rent a 10-sqm plot of land. Via the Odoo Farm mobile portal, they watch a 24/7 Digital Twin live stream of their plot. They can click buttons to remotely trigger real farm operations (e.g., Hire local farmer to weed or Trigger smart irrigation). During harvest, they can drive down to pick the produce themselves or choose cold-chain delivery. / 借助 CSA 和农旅模块，城市家庭认租 10 平方米的小菜园。通过手机端门户，他们可以 24 小时观看专属地块的“数字孪生直播”，还能像玩游戏一样点击按钮触发真实的农事指令（如：支付 50 元雇佣当地大叔帮忙除草，或远程开启智能浇水）。丰收时，他们可以选择自驾下乡采摘，或要求系统一键冷链寄出。
+* **Value / 商业价值**: Converts low-frequency tourism into high-frequency, sticky recurring subscription revenue, bridging the urban-rural divide. / 将极低频的旅游观光转化为极高频、高粘性的“订阅制”收入，用云端科技打破城乡边界。
+
+### Scenario 20: Eco-Monitoring & Transparent Village Governance (乡村生态长效管护与透明村务)
+* **Pain Point / 业务痛点**: Beautiful countryside infrastructure often degrades quickly due to poor maintenance, and government subsidy usage lacks transparency to villagers. / “美丽乡村”的基础设施往往“重建设、轻管护”，生态极易返贫；且政府下发的环境治理补贴去向对村民不够透明。
+* **Solution / 解决方案**: The farm_ecology module integrates with village IoT sensors (e.g., river water quality, smart trash bins). An overflowing bin automatically generates a work order for the village cleaner. Concurrently, the farm_financial_government module tracks every cent of government ecological subsidies used to pay these cleaners. This data is automatically published to a public dashboard for all villagers to audit. / 生态模块直连全村 IoT 传感器（如河道水质探头、智能垃圾桶）。垃圾桶满溢会自动向村保洁员的手机派发工单。同时，村务财务模块会精准追踪用于支付保洁员的每一笔“环境治理专项补贴”，并将账本自动发布到村民公开大屏上。
+* **Value / 商业价值**: Ensures long-term ecological beauty through automated maintenance dispatch and builds community trust via absolute financial transparency. / 通过自动化管护派单确保乡村环境“长治久美”，用绝对的财务透明建立坚不可摧的村务公信力。
+
+### Scenario 21: Agritainment & Cultural Heritage Workshops (研学游与农耕文化数字传承)
+* **Pain Point / 业务痛点**: Traditional farming techniques are dying out, while urban schools struggle to find engaging, educational outdoor activities for students. / 珍贵的传统农耕技艺正在失传，而城市中小学又苦于找不到兼具教育深度与趣味性的户外实践基地。
+* **Solution / 解决方案**: The farm sets up Agritainment workshops. Using farm_training and farm_agritourism, schools book field trips. Students walk through the village scanning QR codes on ancient trees or heritage tools (farm_marketing) to read their rich Traceability Passports detailing centuries of history. After learning to make traditional tofu or dye cloth, the farm_pos handles instant merchandising of their crafts. / 农场开设“研学游”基地。学校通过农旅模块在线预订行程。学生们在村落里游览时，通过扫描古树或传统农具上的二维码，读取详尽的“数字护照”了解百年农耕历史。在体验完传统手工豆腐或扎染后，使用 POS 模块一键购买纪念品。
+* **Value / 商业价值**: Monetizes agricultural knowledge, preserves intangible cultural heritage, and creates a highly profitable Agri-Education revenue stream. / 将无形的农业知识变现，保护非物质文化遗产，开辟出利润丰厚的“农业研学”第二增长曲线。
