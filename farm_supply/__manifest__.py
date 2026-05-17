@@ -18,7 +18,7 @@
         'farm_core',
     ],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/menu.xml',
     ],
     'images': ['static/description/main_screenshot.png'],

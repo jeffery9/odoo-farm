@@ -13,7 +13,7 @@
     'author': 'Jeffery',
     'depends': ['farm_core', 'farm_weather', 'farm_crisis', 'farm_operation'],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/disaster_risk_views.xml',
     ],
     'images': ['static/description/main_screenshot.png'],

@@ -15,7 +15,7 @@
     'author': 'Jeffery',
     'depends': ['farm_core', 'farm_esg'],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/ecology_views.xml',
     ],
     'images': ['static/description/main_screenshot.png'],

@@ -27,7 +27,7 @@ Circular economy module for Odoo 19 Farm Management System - Epic 27 Implementat
         'uom',      # For unit of measure
     ],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/circular_flow_views.xml',
         'views/hazardous_waste_views.xml',
         'views/biogas_energy_views.xml',

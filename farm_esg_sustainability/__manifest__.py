@@ -25,7 +25,7 @@
         'farm_esg_circular',
     ],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/sustainability_views.xml',
         'views/sustainability_metric_views.xml',
         'views/sustainability_dashboard_views.xml',
