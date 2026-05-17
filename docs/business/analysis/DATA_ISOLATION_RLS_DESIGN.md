@@ -5,6 +5,32 @@
 > 如果不加限制，农户 A 可以看到农户 B 的土地、生物资产、结算单甚至小额贷款审批情况。这在多实体协同中是绝对不允许的。
 > 本设计方案利用 Odoo 的 ir.rule (记录规则) 实现硬编码级别的数据隔离。
 
+
+---
+
+## 4. 升级版：三级树状组织架构的权限隔离 (Hierarchical Multi-Tier RLS)
+
+> **进阶需求**：现代农业合作社并非扁平结构，而是呈现出 **合作社 (Cooperative) -> 独立农场主 (Farm Owner) -> 雇佣农工/小散户 (Worker)** 的三级树状嵌套结构。我们需要通过更加动态的 Domain 规则实现“向下穿透可见，向上平行隔离”。
+
+### 4.1 角色映射 (The 3 Tiers)
+* **Tier 1: 合作社管理员 (Coop Manager)** -> 映射到 group_farm_manager。
+* **Tier 2: 独立农场主 / 承包大户 (Farm Owner)** -> 映射到 group_farm_specialist。
+* **Tier 3: 基层雇工 / 小散户 (Worker)** -> 映射到 group_farm_worker。
+
+### 4.2 动态隔离域设计 (Dynamic Domain Design)
+
+为了实现层级穿透，我们在 Odoo 的 ir.rule 中不只判断 user.id，而是深入解析用户的组织关系网：
+
+* **Tier 3 (Worker) 规则**：
+  * **逻辑**：极度私密，仅看自己。
+  * **代码 (Domain)**：[('user_id', '=', user.id)] 或 [('partner_id', '=', user.partner_id.id)]。
+* **Tier 2 (Farm Owner) 规则**：
+  * **逻辑**：不仅能看自己的数据，还能向下穿透，看到**挂靠在自己农场名下**的所有雇工或土地数据。但绝对看不到同村其他农场主的数据（平行隔离）。
+  * **代码 (Domain)**：['|', ('owner_id', '=', user.partner_id.id), ('parent_id', '=', user.partner_id.id)]。如果是结算单，则判断付款/收款方是否属于自己的子农场组织架构。
+* **Tier 1 (Coop Manager) 规则**：
+  * **逻辑**：管理整个村集体。能看到所有加入了该合作社的农场和散户的数据。但看不到隔壁村合作社的数据（通过 Multi-Company 防火墙）。
+  * **代码 (Domain)**：[(1, '=', 1)] (在多公司模式下，Odoo 的公司级防火墙会自动限制在当前合作社公司内)。
+
 ---
 
 ## 一、 角色体系重塑 (Role Hierarchy)
