@@ -2,7 +2,7 @@
 <odoo>
 
     <menuitem id="menu_esg_root"
-              name="ESG & Sustainability"
+              name="ESG &amp; Sustainability"
               sequence="100"
               web_icon="farm_esg,static/description/icon.png"/>
 
