@@ -68,5 +68,5 @@ class CommonAgriculturalFields(models.AbstractModel):
     company_id = fields.Many2one('res.company', default=lambda self: self.env.company)
     properties = fields.Properties(
         'Properties',
-        definition='properties_definition'
+        definition='company_id.properties_definition'
     )

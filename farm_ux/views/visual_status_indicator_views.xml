@@ -10,7 +10,7 @@
                 <field name="status_type"/>
                 <field name="status_value"/>
                 <field name="color_code"/>
-                <field name="icon_class"/>
+                <!-- <field name="icon_class"/> -->
                 <field name="badge_style"/>
                 <field name="is_active"/>
             </list>
@@ -37,7 +37,7 @@
                         </group>
                         <group>
                             <field name="color_code"/>
-                            <field name="icon_class"/>
+                            <!-- <field name="icon_class"/> -->
                             <field name="badge_style"/>
                         </group>
                     </group>
@@ -63,7 +63,7 @@
 
     <menuitem id="menu_visual_indicators" 
               name="Visual Status Indicators" 
-              parent="farm_ux.menu_ux_root" 
+              parent="base.menu_custom" 
               action="action_visual_indicators" 
               sequence="30"/>
 </odoo>

@@ -71,16 +71,8 @@
                         <page string="Weather Triggers">
                             <field name="weather_index_ids" widget="many2many_tags" options="{'color_field': 'index_type'}"/>
                         </page>
-                        <page string="Claims">
-                            <field name="claim_ids">
-                                <list>
-                                    <field name="claim_type"/>
-                                    <field name="requested_amount"/>
-                                    <field name="approved_amount"/>
-                                    <field name="state"/>
-                                </list>
-                            </field>
-                        </page>
+                        
+
                     </notebook>
                 </sheet>
             </form>

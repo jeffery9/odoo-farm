@@ -3,7 +3,7 @@ from odoo import models, fields, api, _
 class FarmResource(models.Model):
     _inherit = 'farm.resource'
     
-    resource_type = fields.Selection(selection_add=[('workshop', 'Agritainment Workshop')])
+    resource_type = fields.Selection(ondelete={'workshop': 'cascade'}, selection_add=[('workshop', 'Agritainment Workshop')])
 
 class FarmBooking(models.Model):
     _inherit = 'farm.booking'

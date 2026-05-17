@@ -65,7 +65,7 @@
 
     <menuitem id="menu_accessibility_settings" 
               name="Accessibility Settings" 
-              parent="farm_ux.menu_ux_root" 
+              parent="base.menu_custom" 
               action="action_accessibility_settings" 
               sequence="90"/>
 </odoo>

@@ -46,7 +46,7 @@
         <field name="large_touch_targets">True</field>
         <field name="reduced_motion">True</field>
         <field name="color_blind_mode">False</field>
-        <field name="font_family_preference">Arial, sans-serif</field>
+        <!-- <field name="font_family_preference">Arial, sans-serif</field> -->
         <field name="is_active">True</field>
         <field name="last_updated" eval="DateTime.now()"/>
     </record>

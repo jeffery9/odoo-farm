@@ -1,20 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<record id="view_isl_quality_control_form" model="ir.ui.view">
-        
-        
-        
-    </record>
-
-    <record id="view_isl_quality_control_tree" model="ir.ui.view">
-        
-        
-        
-    </record>
-
-    <record id="action_isl_quality_control" model="ir.actions.act_window">
-        
-        
-        
-    </record>
 </odoo>

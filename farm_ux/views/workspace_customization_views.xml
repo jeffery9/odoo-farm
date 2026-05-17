@@ -63,7 +63,7 @@
 
     <menuitem id="menu_workspace_customization" 
               name="Workspace Customization" 
-              parent="farm_ux.menu_ux_root" 
+              parent="base.menu_custom" 
               action="action_workspace_customization" 
               sequence="40"/>
 </odoo>

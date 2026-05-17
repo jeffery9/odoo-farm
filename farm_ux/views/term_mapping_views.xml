@@ -64,7 +64,7 @@
 
     <menuitem id="menu_term_mapping"
               name="Term Mappings"
-              parent="farm_ux.menu_ux_root"
+              parent="base.menu_custom"
               action="action_term_mappings"
               sequence="10"/>
 </odoo>

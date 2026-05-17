@@ -125,6 +125,7 @@ class FarmLocation(models.Model):
 
     # Multi-farm collaboration [US-040-09] - Using Odoo's native Company mechanism
     farm_id = fields.Many2one('res.company', string="Belonging Farm", default=lambda self: self.env.company)
+    owner_id = fields.Many2one('res.partner', string="Farm Owner / Contractor")
 
     @api.depends('water_depth')
     def _compute_water_depth_dm(self):
@@ -140,7 +141,7 @@ class FarmLocation(models.Model):
     
     location_properties = fields.Properties(
         'Properties',
-        definition='location_properties_definition'
+        definition='farm_id.properties_definition'
     )
 
     

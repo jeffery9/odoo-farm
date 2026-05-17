@@ -19,7 +19,7 @@
 
     <menuitem id="menu_voice_recognition_alias"
               name="Voice Aliases"
-              parent="farm_ux.menu_ux_root"
+              parent="base.menu_custom"
               action="action_voice_recognition_aliases"
               sequence="20"/>
 </odoo>

@@ -108,7 +108,7 @@
     <!-- Menu item for Agritourism Operations -->
     <menuitem id="menu_farm_agritourism_operations"
               name="Activities"
-              parent="farm_agritourism.menu_farm_agritourism_root"
+              parent="base.menu_custom"
               action="action_farm_agritourism_operations"
               sequence="15"/>
 </odoo>

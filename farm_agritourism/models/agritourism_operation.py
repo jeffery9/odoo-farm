@@ -10,7 +10,14 @@ class FarmAgritourismOperation(models.Model):
     """
     _name = 'farm.agritourism.operation'
     _description = 'Farm Agritourism Operation'
-    _inherit = 'project.task'  # Inherit from project.task to leverage existing task functionality
+    _inherit = 'project.task'
+
+    user_ids = fields.Many2many(relation='farm_agritourism_user_rel')
+    personal_stage_type_ids = fields.Many2many(relation='farm_agritourism_stage_rel')
+    tag_ids = fields.Many2many(relation='farm_agritourism_tag_rel')
+    depend_on_ids = fields.Many2many(relation='farm_agritourism_depend_rel')
+    dependent_ids = fields.Many2many(relation='farm_agritourism_dependent_rel')
+  # Inherit from project.task to leverage existing task functionality
 
     # Agritourism Activity Information
     activity_type = fields.Selection([

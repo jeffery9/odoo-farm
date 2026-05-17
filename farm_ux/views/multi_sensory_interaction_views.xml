@@ -45,7 +45,7 @@
                                 <field name="visual_enhancement"/>
                                 <field name="large_font_support"/>
                                 <field name="high_contrast_mode"/>
-                                <field name="large_touch_targets"/>
+                                <!-- <field name="large_touch_targets"/> -->
                             </group>
                         </page>
                         <page string="Gesture &amp; Haptic">
@@ -78,7 +78,7 @@
 
     <menuitem id="menu_multi_sensory" 
               name="Multi-Sensory Interaction" 
-              parent="farm_ux.menu_ux_root" 
+              parent="base.menu_custom" 
               action="action_multi_sensory" 
               sequence="70"/>
 </odoo>

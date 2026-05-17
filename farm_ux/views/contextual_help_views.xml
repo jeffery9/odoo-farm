@@ -55,7 +55,7 @@
                             </group>
                         </page>
                         <page string="Related FAQ">
-                            <field name="related_faq_ids" widget="many2many_tags"/>
+                            <!-- <field name="related_faq_ids" widget="many2many_tags"/> -->
                         </page>
                     </notebook>
                 </sheet>
@@ -72,7 +72,7 @@
 
     <menuitem id="menu_contextual_help" 
               name="Contextual Help" 
-              parent="farm_ux.menu_ux_root" 
+              parent="base.menu_custom" 
               action="action_contextual_help" 
               sequence="50"/>
 </odoo>
