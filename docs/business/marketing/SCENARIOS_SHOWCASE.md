@@ -1,8 +1,8 @@
-# Odoo Farm 19.0: 48 Futuristic Commercial Scenarios (21大商业落地场景)
+# Odoo Farm 19.0: 44 Futuristic Commercial Scenarios (21大商业落地场景)
 
 > **Document Note / 文档说明**: 
-> This document archives the 48 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
-> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 48 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
+> This document archives the 44 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
+> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 44 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
 
 ---
 
@@ -186,66 +186,42 @@
 ---
 
 
-### Scenario 29: Rural Time Bank for Elderly Care (乡村“时间银行”：留守老人的数字化互助养老)
-* **Pain Point / 业务痛点**: Severe aging in rural areas leaves many elderly farmers without support, and commercial care services are economically unviable. / 农村空心化、老龄化严重，留守老人缺乏照料，而商业化养老服务在农村极度缺乏经济可行性。
-* **Solution / 解决方案**: Expanding the farm_hr and loyalty modules, the cooperative creates a Social Time Bank. Younger farmers log hours helping elderly neighbors with heavy chores (e.g., roof repair, heavy lifting). These hours are tokenized into Care Credits on the Odoo ledger. When these young farmers age, or when their own parents need help, they can redeem these credits for community service. / 扩展人力与积分模块，合作社建立“社会时间银行”。年轻村民帮邻居孤寡老人干重活（如修屋顶、搬重物）并在 Odoo 打卡。系统将这些工时“代币化”存入账本。等这些年轻人老了，或者他们自己的父母需要照顾时，可以消耗这些信用点换取全村的照料服务。
-* **Value / 商业价值**: Rebuilds the traditional rural social fabric using digital ledgers, solving the rural elderly care crisis at zero financial cost to the government. / 用数字化账本重塑传统乡村的“人情社会”网络，以零财政成本破解农村互助养老危机。
-
-### Scenario 30: Digital Land Trust and Fractional Ownership (数字化土地信托：城里人的“一分田”地主梦)
-* **Pain Point / 业务痛点**: Smallholders have land but lack capital for modern upgrades; urbanites have capital and desire a connection to the land but cannot physically farm. / 小农户有土地但缺乏现代化升级的资金；城里人有钱且渴望田园生活，但无法亲自种地。
-* **Solution / 解决方案**: The farm_land_mgmt and farm_csa modules map a 10-hectare village plot into 1,000 micro-plots. Urban investors lease a micro-plot via the Web Portal, effectively funding the cooperative spring planting. In return, the farm_multi_farm_financial module automatically routes 5 percent of the crop yield or a share of the harvest profits directly to the urban investor account. / 土地管理与 CSA 模块将村里 150 亩土地在 GIS 上切分为 1000 份“微地块”。城市投资者通过门户网站“认租”一分田，其实质是为合作社的春耕提供免息资金。秋收后，多农场财务模块会自动将该地块产出的 5% 实物（直邮到家）或等比例的销售利润，自动打入城市投资者的账户。
-* **Value / 商业价值**: Creates a massive, decentralized crowdfunding mechanism for rural agriculture, turning idle urban capital into a powerful engine for rural revitalization. / 为乡村农业建立了一个庞大的去中心化众筹机制，将城市闲置资金转化为乡村振兴的强大引擎。
-
-### Scenario 31: Non-Timber Forest Product Foraging Co-ops (林下经济：野生采摘合作社与“数字山民”)
-* **Pain Point / 业务痛点**: Foraging for wild mushrooms or herbs is solitary, dangerous, and highly exploited by middle-men who mix premium wild goods with cheap farmed ones. / 采摘野生菌、野山参等林下经济极其危险且分散，采山人极易被中间商狠狠压价，且珍贵的纯野生产品常被掺假。
-* **Solution / 解决方案**: A Village Foraging Cooperative uses farm_operation and agri_iot. Foragers log rare finds offline. Once back in cell range, the app syncs the exact GPS, altitude, and timestamp. The cooperative farm_processing module grades and packages it. The final QR code proves its wild origin, bypassing local brokers to sell directly to Michelin-star restaurants. / 村集体成立“采摘合作社”。采山人携带手机进山，挖到极品松茸时离线打卡。恢复信号后，系统同步其精确的 GPS、海拔和时间戳（固化为不可篡改的证据）。下山后合作社加工模块直接分级包装。最终的溯源二维码向米其林餐厅直接证明其“纯野生”血统，彻底踢掉中间商。
-* **Value / 商业价值**: Secures monopoly-level premiums for rare wild goods and ensures the poorest rural demographics capture the full economic value of their labor. / 锁定稀缺野生林产品的高额垄断溢价，确保农村最底层群体（采山人）拿回原本属于他们的劳动尊严和全额利润。
-
-### Scenario 32: Gamified Village Environmental Audits (全民“随手拍”：游戏化的乡村人居环境治理)
-* **Pain Point / 业务痛点**: Keeping a village clean relies on underpaid cleaners; villagers often treat public spaces as dumps, leading to a Tragedy of the Commons. / 保持村容村貌单靠几个低薪保洁员根本不够，村民往往把公共区域当垃圾场，陷入“公地悲剧”。
-* **Solution / 解决方案**: The farm_ecology and loyalty modules launch a Village Guardian mini-program. If a villager spots illegal dumping or a broken fence, they snap a picture and report it. The system automatically creates a maintenance task. Once verified and fixed, the reporting villager earns Eco-Points. These points can be redeemed at the cooperative supermarket for free cooking oil or salt. / 生态与积分模块联手推出“乡村卫士”随手拍。村民如果发现有人乱倒垃圾或公共栅栏损坏，拍照上传。系统自动生成维修工单派发给村委会。一旦核实修复，上报的村民将获得“生态积分”。村民可用这些积分在合作社超市（POS 模块）直接免费兑换米面粮油。
-* **Value / 商业价值**: Uses gamification and micro-incentives to turn every villager into an active environmental inspector, achieving low-cost, highly effective grassroots governance. / 用游戏化和微小物质激励，把每一个村民变成积极的环境稽查员，实现低成本、极高效的乡村基层自治。
-\n## 8. Deep Vertical Industry Verticals (深耕垂直农业领域)
-
-> **Context / 背景**: Beyond generic farming, specialized sectors like apiculture, aquaculture, and winery management have unique biological and process requirements. This section showcases how Odoo Farm adapts its 4-Layer architecture to the deep complexities of specific agricultural verticals.
-> 除了通用的种植和养殖，蜂产业、水产养殖、酿酒等领域拥有极具个性的生物特性与工艺需求。本章节展示 Odoo Farm 如何利用 4 层架构适配这些极其深度的垂直行业复杂度。
-
-### Scenario 33: Honey Batch Integrity & Hive Health (甜蜜的数字指纹：蜂蜜批次完整性与蜂群健康)
+### Scenario 29: Honey Batch Integrity & Hive Health (甜蜜的数字指纹：蜂蜜批次完整性与蜂群健康)
 * **Pain Point / 业务痛点**: Counterfeit honey is a global problem. It is difficult to prove that a specific jar of honey came from a specific mountain range or that the hives were not treated with antibiotics. / 假蜂蜜是全球性难题。很难证明某瓶蜂蜜来自特定的山脉，且采集期间蜂群未曾违规使用抗生素。
 * **Solution / 解决方案**: The farm_apiculture module tracks individual Hives as IoT-enabled assets. Foraging interventions log the bloom period (e.g., Acacia) and location via GPS. When honey is extracted, the system creates a Honey Batch linked to specific hive IDs. The farm_quality module stores lab tests for pollen count and antibiotic residue. The consumer QR code shows the bloom map and the No-Antibiotic digital certificate. / 蜂业模块将蜂箱作为 IoT 资产管理。采集任务自动记录花期（如槐花）和 GPS 位置。摇蜜时，系统生成关联特定蜂箱 ID 的“蜂蜜批次”。质检模块记录花粉计数和抗生素残留检测。消费者扫码即可看到花期采集地图和“无抗生素”数字化证书。
 * **Value / 商业价值**: Authenticates high-value honey through hive-level traceability, commanding 3x the price of generic commodity honey. / 实现蜂箱级溯源，自证清白，使高端蜂蜜的价格达到普通散装蜜的 3 倍以上。
 
-### Scenario 34: RAS Water Quality & Fish Welfare (工业化水产：RAS 循环水质与鱼类福利监控)
+### Scenario 30: RAS Water Quality & Fish Welfare (工业化水产：RAS 循环水质与鱼类福利监控)
 * **Pain Point / 业务痛点**: In Recirculating Aquaculture Systems (RAS), a slight ammonia spike can kill a million dollars of stock in minutes, and manually recording water chemistry is error-prone. / 在循环水养殖（RAS）中，氨氮指标的微小波动就能在几分钟内毁掉数百万的鱼苗，人工记录水质数据完全来不及且极易出错。
 * **Solution / 解决方案**: The farm_aquaculture module connects to 24/7 submerged sensors via farm_iot. Dissolved oxygen and temperature data are fed into the Biological Twin. If water quality deviates, the system automatically triggers Life Support System (LSS) adjustments. The farm_financial_valuation module adjusts the fish biomass value daily based on feed intake and mortality logs. / 水产模块通过 IoT 24小时连接水下传感器。溶氧量、水温数据直通“生物孪生”模型。水质异常时，系统自动联动 LSS 生命维持系统进行调节。财务模块每天根据投喂量和死淘率自动更新鱼群的生物资产估值。
 * **Value / 商业价值**: Provides a mission-critical safety net for intensive fish farming, protecting high-value biological assets from catastrophic environmental failure. / 为工厂化养鱼提供“生命线”级的安全保障，保护高价值生物资产免受突发环境故障的摧毁。
 
-### Scenario 35: Micro-Climate Gating for Greenhouse Interventions (温室守门员：基于微气候条件的农事卡点)
+### Scenario 31: Micro-Climate Gating for Greenhouse Interventions (温室守门员：基于微气候条件的农事卡点)
 * **Pain Point / 业务痛点**: Applying certain organic pesticides in a greenhouse is useless if the humidity is too high or the UV intensity is too strong, leading to wasted labor and materials. / 在温室中进行有机植保，如果湿度过高或紫外线过强，药剂会失效甚至产生药害，导致人工和物料的双重浪费。
 * **Solution / 解决方案**: The farm_protected_cultivation module adds a Climate Gate to intervention orders. Before a worker can start a Spraying task, the Odoo app queries the farm_iot greenhouse station. If the internal humidity is > 85%, the START button is disabled and a warning is issued: Conditions Unsuitable for Spraying. / 温室模块在农事单中加入“气候关卡”。员工在点击“开始作业”前，系统自动查询温室 IoT 气象站。如果内部湿度高于 85%，手机端的【开始】按钮将被锁死并提示：“当前气候环境不适宜打药”。
 * **Value / 商业价值**: Enforces biological efficacy at the UI level, preventing material waste and ensuring the highest success rate for high-value greenhouse crops. / 在 UI 层面对农事科学性进行强制拦截，杜绝物料浪费，确保温室作物极高的作业成功率。
 
-### Scenario 36: Barrel Aging & Vintage Lot Identity (葡萄酒灵魂追踪：橡木桶窖藏与年份批次身份)
+### Scenario 32: Barrel Aging & Vintage Lot Identity (葡萄酒灵魂追踪：橡木桶窖藏与年份批次身份)
 * **Pain Point / 业务痛点**: In premium winemaking, individual barrels age differently. Traditional ERPs lose the link between a specific plot of grapes and the specific barrel it aged in. / 在高端酿酒业，不同橡木桶的陈酿效果差异巨大。传统 ERP 往往在葡萄入瓮后就失去了对地块、批次与具体橡木桶之间一一对应关系的追踪。
 * **Solution / 解决方案**: The farm_winery module uses stock.lot to track not just the wine, but the Vessel Identity (Barrels). When wine is transferred from tank to barrel, the system preserves the Plot-to-Barrel DNA. The farm_quality module logs monthly sensory profiles for each barrel. At the final blending stage, the AI model (farm_ai) recommends which specific barrels should be pooled for the Grand Vin versus the secondary label. / 酿酒模块利用批次追踪记录“容器身份（橡木桶）”。当原酒入桶时，系统保留“地块-橡木桶”的关联 DNA。质检模块记录每个桶每月的感官评价。最终调配阶段，AI 视觉与数据模型辅助推荐哪些桶应该进入“正牌酒”，哪些进入“副牌酒”。
 * **Value / 商业价值**: Provides 100% granular traceability for artisanal winemakers, enabling premium pricing for single-barrel or single-plot special editions. / 为工匠级酒庄提供 100% 的精细化溯源，支撑起“单桶”或“单地块”限量版的高额溢价。
 
-### Scenario 37: Floriculture Cold Chain & Vase Life Prediction (花卉鲜切：极致冷链与瓶插期预测)
+### Scenario 33: Floriculture Cold Chain & Vase Life Prediction (花卉鲜切：极致冷链与瓶插期预测)
 * **Pain Point / 业务痛点**: Fresh cut flowers degrade rapidly if the cold chain is broken. Wholesalers reject shipments if they suspect a short vase life, leading to massive disputes. / 鲜切花在冷链断裂时会迅速衰败。批发商常因怀疑“瓶插期”太短而拒收，导致巨额贸易纠纷。
 * **Solution / 解决方案**: The farm_floriculture module ties directly into farm_supply_logistics. Smart IoT dataloggers in the shipping truck continuously stream temperature data to Odoo. If the temperature exceeds 4C for more than 30 minutes, the AI module instantly recalculates and downgrades the predicted Vase Life of that specific flower lot from 14 days to 5 days, automatically triggering a price discount or rerouting to a closer local market. / 花卉模块与冷链物流深度绑定。货车内的 IoT 记录仪实时回传温度。一旦温度超过 4℃ 达半小时，AI 模块瞬间重算并降低该批次鲜花的预期“瓶插期”（从 14 天降至 5 天），自动触发价格折扣或紧急将货单改派至更近的本地市场。
 * **Value / 商业价值**: Turns invisible cold-chain damage into actionable data, preventing complete shipment losses through dynamic AI-driven logistics rerouting. / 将看不见的冷链损伤转化为可量化的数据，通过 AI 动态改派挽救整车货损。
 
-### Scenario 38: Edible Fungi Chamber Orchestration (食用菌工厂化：微环境舱的极致发酵控制)
+### Scenario 34: Edible Fungi Chamber Orchestration (食用菌工厂化：微环境舱的极致发酵控制)
 * **Pain Point / 业务痛点**: Growing premium mushrooms (like Enoki or Shiitake) indoors requires exact parts-per-million control of CO2, light, and humidity across multiple growth phases. / 工厂化培育高端食用菌（如金针菇、香菇）需要在多个生长阶段对二氧化碳、光照和湿度进行 PPM 级别的极致控制。
 * **Solution / 解决方案**: The farm_mushroom and farm_fermentation modules manage Climate Chambers as discrete Work Centers. A single Mushroom Batch moves through Incubation, Pinning, and Fruiting phases. Odoo automatically downloads the specific recipe (e.g., Drop temp to 12C, spike CO2 to 2000ppm) to the PLC controllers via farm_iot for each specific phase, without any human intervention. / 食用菌与发酵模块将“微环境舱”定义为独立工作中心。一批菌菇经历发菌、催蕾、出菇阶段时，Odoo 通过 IoT 自动向下位机 PLC 下发对应阶段的环境配方指令（如：“降温至12℃，CO2 拉升至 2000ppm”），全程无人化。
 * **Value / 商业价值**: Achieves pharmaceutical-grade precision in industrial agriculture, maximizing yield and consistency for highly sensitive fungi crops. / 在工厂化农业中实现制药级的控制精度，将极度敏感的菌菇产量与稳定性拉满。
 
-### Scenario 39: Medicinal Plants Active Ingredient Traceability (道地药材：有效成分溯源与 GAP 合规)
+### Scenario 35: Medicinal Plants Active Ingredient Traceability (道地药材：有效成分溯源与 GAP 合规)
 * **Pain Point / 业务痛点**: Traditional Chinese Medicine (TCM) herbs are valued based on their geographic origin and the concentration of active ingredients, but falsification is rampant. / 中药材（如人参、三七）的价值完全取决于“道地性”及有效成分含量，但市场造假猖獗。
 * **Solution / 解决方案**: The farm_medicinal_plants module enforces GAP (Good Agricultural Practices). Every harvesting intervention logs the exact GPS coordinates and soil data (proving geographic authenticity). The farm_quality module stores the lab results (HPLC) for specific active ingredients (e.g., Ginsenosides). The final product label links directly to these tamper-proof, geo-tagged lab results. / 中药材模块强制执行 GAP 规范。每次采收必须记录精确 GPS 和土壤数据以证明“道地性”。质检模块接入实验室液相色谱（HPLC）数据，记录人参皂苷等有效成分的精确含量。最终药材标签直连这些不可篡改的带位置标记的检验报告。
 * **Value / 商业价值**: Secures premium pricing for authentic medicinal herbs by providing irrefutable, digital proof of geographic origin and active ingredient potency. / 提供无法辩驳的道地性与有效成分数字铁证，捍卫顶级中药材的超额溢价。
 
-### Scenario 40: Agrivoltaics and Solar Sharing Management (农光互补：光伏板下的农业双栖收益)
+### Scenario 36: Agrivoltaics and Solar Sharing Management (农光互补：光伏板下的农业双栖收益)
 * **Pain Point / 业务痛点**: Farms with solar panels struggle to optimize both crop yield and electricity generation, often treating them as two separate, conflicting businesses. / 部署了光伏板的农场难以平衡农作物产量与发电量，往往将二者视为冲突的独立业务。
 * **Solution / 解决方案**: The farm_green_monitor integrates with the solar inverter API to track daily electricity generated and revenue. Simultaneously, the farm_crop module tracks the shade-tolerant crops grown underneath. The Dashboard unifies both metrics, calculating the Total Revenue per Acre (Crops + Energy). The AI engine optimizes the tilt of the solar panels (if motorized) to balance the crop Daily Light Integral needs against peak electricity pricing. / 绿电模块对接光伏逆变器 API，追踪每日发电量与收益；种植模块追踪板下的喜阴作物产量。控制台统一计算“单亩综合收益（农产+绿电）”。AI 引擎甚至能根据作物当日的需光量（DLI）和电价波峰，自动计算并调整光伏板的最优倾斜角度。
 * **Value / 商业价值**: Maximizes land efficiency by fusing energy production and agriculture into a single, highly optimized economic model. / 将能源生产与农业深度融合为一个极度优化的经济模型，把土地的空间利用率逼向极限。
@@ -257,22 +233,22 @@
 > **Context / 背景**: Raw agricultural products have low profit margins and high volatility. The true wealth lies in deep processing and hyper-efficient supply chains. This section explores how Odoo Farm handles multi-stage industrial food processing and advanced supply chain orchestration (C2M, FEFO).
 > 初级农产品毛利低且波动大，真正的财富密码在于精深加工与极致高效的供应链网络。本章节探索 Odoo Farm 如何驾驭多级工业化食品深加工，以及高阶供应链调度（如 C2M 反向定制、FEFO 动态保质期物流）。
 
-### Scenario 41: Multi-Stage Valorization & By-Product Upcycling (吃干榨净：多级深加工与副产品高值化循环)
+### Scenario 37: Multi-Stage Valorization & By-Product Upcycling (吃干榨净：多级深加工与副产品高值化循环)
 * **Pain Point / 业务痛点**: Traditional processing creates massive waste. Squeezing oranges leaves tons of peels that cost money to dispose of, ignoring their hidden chemical value. / 传统粗加工产生海量废料。比如榨橙汁剩下成吨的橙皮，不仅要花钱处理，更白白浪费了其隐藏的化工价值。
 * **Solution / 解决方案**: The farm_processing module utilizes Multi-Output BOMs. When 1 ton of oranges is processed into 400L of juice, the system automatically registers 600kg of wet peels into inventory. This instantly triggers a secondary, specialized work order in the extraction facility to transform these peels into high-value pectin or essential oils, meticulously tracking costs across both production lines. / 深加工模块采用“多产出物 BOM”。当 1 吨橙子榨出 400L 橙汁时，系统自动将 600kg 湿橙皮登记入库。这瞬间触发提取车间的第二道精深加工作业，将废弃橙皮提炼为高价值的果胶或精油，并精确分摊两条产线的成本。
 * **Value / 商业价值**: Implements a zero-waste industrial ecology, extracting 3x the revenue from the exact same raw agricultural input. / 实现零废弃的工业生态，从完全相同的农业原材料中榨取出 3 倍的营业收入。
 
-### Scenario 42: CIP (Clean-in-Place) Routing & Allergen Traceability (柔性产线：CIP 清洗强制路由与致敏原绝对隔离)
+### Scenario 38: CIP (Clean-in-Place) Routing & Allergen Traceability (柔性产线：CIP 清洗强制路由与致敏原绝对隔离)
 * **Pain Point / 业务痛点**: Cross-contamination of allergens (like peanuts) in shared food processing facilities can lead to fatal consumer reactions and multi-million dollar corporate recalls. / 共享食品加工厂内的致敏原（如花生）交叉污染，会导致致命的消费者事故和极其惨重的千万级企业召回。
 * **Solution / 解决方案**: The farm_safety and farm_processing modules track the Allergen Profile of every lot. If Work Center A processes peanut butter, the system physically locks that production line. It absolutely refuses to process the next batch (e.g., almond butter) until a certified CIP (Cleaning-in-Place) intervention is logged, verified by an IoT sensor, and counter-signed by Quality Control. / 安全与加工模块追踪每个批次的“致敏原图谱”。如果工作中心 A 刚加工完花生酱，系统将在物理层面锁死该产线。在未执行标准 CIP（原位清洗）作业、未获取 IoT 清洗数据验证并经质检员签字前，系统绝对拒绝派发下一个加工单（如杏仁酱）。
 * **Value / 商业价值**: Achieves pharmaceutical-level food safety in agricultural processing, eliminating catastrophic cross-contamination risks. / 在农产品加工中实现制药级的食品安全，彻底杜绝灾难性的交叉污染风险。
 
-### Scenario 43: Demand-Sensing & Bullwhip Mitigation (反向定制：多级需求感知与契约农业自动排产)
+### Scenario 39: Demand-Sensing & Bullwhip Mitigation (反向定制：多级需求感知与契约农业自动排产)
 * **Pain Point / 业务痛点**: The Bullwhip Effect. Retailers need 1,000 units, but delayed information means farmers plant 5,000 units, leading to oversupply and price crashes. / 供应链牛鞭效应。前端超市只需要 1000 份，但信息滞后导致底层农户种了 5000 份，最终供大于求，菜贱伤农。
 * **Solution / 解决方案**: The farm_supply_analytics engine links directly to downstream Retail POS or e-commerce endpoints. AI analyzes consumer purchasing trends to forecast next season's demand. It automatically back-propagates this data into Contract Farming Agreements (farm_multi_farm) and automatically generates precise sowing interventions for the cooperative's 50 smallholders, telling them exactly what and how much to plant. / 供应链分析引擎直连下游商超 POS 或电商终端。AI 分析消费者购买趋势以预测下季需求。系统将此数据“反向穿透”回多农场模块的“契约农业合同”中，并自动为合作社的 50 户小农生成精确的播种工单，明确告诉他们种什么、种多少。
 * **Value / 商业价值**: Realizes true C2M (Consumer-to-Manufacturer) order-driven agriculture, eliminating overproduction risks and securing guaranteed offtake for farmers. / 实现真正的 C2M 反向定制（以销定产），消灭产能过剩风险，让农户稳赚“订单农业”的钱。
 
-### Scenario 44: Dynamic FEFO Smart Logistics (与时间赛跑：基于动态保质期的 FEFO 智能调度)
+### Scenario 40: Dynamic FEFO Smart Logistics (与时间赛跑：基于动态保质期的 FEFO 智能调度)
 * **Pain Point / 业务痛点**: Standard FIFO (First-In-First-Out) logistics fail for fresh produce, because a newer batch might ripen faster due to field weather conditions, rotting in transit. / 标准的先进先出（FIFO）物流在生鲜领域经常失效，因为后采收的批次可能由于田间高温熟得更快，在长途运输中直接烂掉。
 * **Solution / 解决方案**: The farm_supply_logistics module reads the Biological Twin's ripeness index and shelf-life prediction. Instead of blind FIFO, the system enforces strict FEFO (First-Expired-First-Out). It automatically assigns the fastest-ripening lots to the closest local markets, while reserving the hardiest, unripened lots for 14-day long-haul export routes. / 冷链物流模块直接读取生物孪生模型的“成熟度指数”与保质期预测。系统摒弃盲目的先进先出，强制执行 FEFO（先过期先出）。它自动将熟得最快、快过期的批次派发给距离最近的本地市场，而将最坚挺、未完全成熟的批次预留给需要 14 天海运的出口长线。
 * **Value / 商业价值**: Slashes fresh produce shrink rates by 40%, optimizing shelf-life realization across complex supply webs. / 斩断生鲜折损，将生鲜货损率暴降 40%，在复杂的供应链网络中将保质期的商业价值压榨到极致。
@@ -284,22 +260,22 @@
 > **Context / 背景**: The final step of the agricultural value chain is the consumer. This section illustrates how Odoo Farm integrates e-commerce, live-streaming, and point-of-sale (POS) systems to build brand loyalty, reduce food waste, and deliver personalized health solutions directly to the end-user.
 > 价值链的最后一环是消费者。本章节展示 Odoo Farm 如何整合电商、直播带货与线下门店（POS）等全渠道，构建品牌忠诚度、减少食物浪费，并将个性化的健康饮食方案直接交付给终端消费者。
 
-### Scenario 45: Omnichannel Live-Streaming Commerce (田间直播带货与秒级库存分配)
+### Scenario 41: Omnichannel Live-Streaming Commerce (田间直播带货与秒级库存分配)
 * **Pain Point / 业务痛点**: Live streaming generates massive traffic spikes in minutes, often leading to overselling, logistics collapse, and ruined customer experience. / 直播带货会在几分钟内产生巨大的流量洪峰，极易导致超卖、物流崩溃和极差的消费者体验。
 * **Solution / 解决方案**: A farmer streams on TikTok/Douyin directly from the orchard. The farm_live_streaming module integrates with social commerce APIs. When 10,000 boxes of cherries are sold in 5 minutes, Odoo instantly deducts available stock across all nodes, dynamically calculates the fastest shipping routes via farm_supply_logistics, and dispatches split packing orders to edge warehouses. / 农场主在果园直接开播。直播模块对接社交电商 API。当 5 分钟内卖出 1 万单车厘子时，Odoo 瞬间扣减全网可用库存（防止超卖），并通过物流模块动态计算最优发货路线，向各个前置仓下发分拆的打包指令。
 * **Value / 商业价值**: Turns massive, unpredictable social traffic into perfectly executed agricultural sales without inventory nightmares. / 将庞大且不可预测的社交媒体流量，转化为完美履约的农产品销量，彻底告别库存噩梦。
 
-### Scenario 46: Gamified "Ugly Produce" & Eco-Loyalty (丑果盲盒与环保会员积分体系)
+### Scenario 42: Gamified "Ugly Produce" & Eco-Loyalty (丑果盲盒与环保会员积分体系)
 * **Pain Point / 业务痛点**: Nutritionally sound but visually imperfect "ugly" produce is rejected by supermarkets, causing massive farm-level food waste. / 营养完好但外观瑕疵的“丑果”往往被超市拒收，导致农场端严重的食物浪费和收入流失。
 * **Solution / 解决方案**: The farm_marketing and loyalty modules create a Gamified Ugly Produce Blind Box subscription. Eco-conscious consumers buying these boxes earn Eco-Points logged in their account. The farm_esg_carbon module translates the saved food waste into a personal Carbon Savings badge. Points can be redeemed for offline farm tours (farm_agritourism). / 营销与会员模块联手推出“丑果环保盲盒”订阅。有环保意识的消费者购买后可获得“生态积分”。ESG 模块将挽救的食物浪费折算为消费者的“个人碳减排勋章”。积分可用于兑换线下的农庄游览体验。
 * **Value / 商业价值**: Solves agricultural food waste while building an extremely sticky, eco-conscious consumer community. / 完美解决农场食物浪费痛点，变废为宝，同时建立起极具粘性、高净值的环保消费者社群。
 
-### Scenario 47: Farm-to-Table Restaurant POS Traceability (农场餐厅的“从种子到盘子”数字菜单)
+### Scenario 43: Farm-to-Table Restaurant POS Traceability (农场餐厅的“从种子到盘子”数字菜单)
 * **Pain Point / 业务痛点**: Consumers paying premium prices in farm-to-table restaurants cannot easily verify if the ingredients are truly local and fresh. / 在“农场到餐桌”的高端餐厅，消费者花高价却无法直观验证食材是否真的新鲜和本土。
 * **Solution / 解决方案**: The farm_pos module is deployed in the agritourism restaurant. Dishes are strictly linked to harvested lots. Diners scan the menu QR code to see the exact profile of the farmer who picked their salad that morning. Furthermore, sold dishes automatically deduct raw agricultural inventory and trigger tomorrow harvest quotas in farm_operation. / 农旅餐厅部署农场 POS 模块。菜品后台直接绑定采收批次。食客扫描桌面菜单二维码，能直接看到今天清晨采摘这份沙拉的农民笑脸和采摘时间。更绝的是，餐厅每卖出一道菜，系统自动扣减农产品原材料库存，并自动生成明天的田间采收配额。
 * **Value / 商业价值**: Provides the ultimate dining experience, justifying high restaurant margins while automating raw material replenishment from the field. / 提供极致的餐饮溯源体验，支撑起高昂的餐厅溢价，同时全自动拉动田间的原材料按需采收。
 
-### Scenario 48: AI-Personalized Nutrition Subscriptions (AI 定制化营养盲盒与致敏原自动过滤)
+### Scenario 44: AI-Personalized Nutrition Subscriptions (AI 定制化营养盲盒与致敏原自动过滤)
 * **Pain Point / 业务痛点**: Standard vegetable subscriptions do not cater to individual dietary needs or allergies, leading to churn. / 千篇一律的蔬菜订阅包无法满足个体家庭的特定饮食需求或过敏禁忌，导致极高的用户流失率。
 * **Solution / 解决方案**: farm_ai analyzes a customer health profile (e.g., Keto diet, Peanut Allergy). The farm_csa module dynamically generates a personalized packing list for their weekly box. Simultaneously, the farm_processing allergen control logic ensures absolute safety by flagging any cross-contamination risks during packaging. / AI 分析客户填写的健康档案（如：生酮饮食、花生过敏）。CSA 模块在每周发货前，动态为该客户生成独一无二的营养搭配打包单。同时，加工模块的致敏原控制逻辑介入，确保打包流水线上绝对没有交叉污染风险。
 * **Value / 商业价值**: Moves agriculture from selling "commodities" to selling high-margin "health and lifestyle solutions". / 推动农业从“卖基础农产品”向“卖高毛利的健康生活方式解决方案”跨越。
