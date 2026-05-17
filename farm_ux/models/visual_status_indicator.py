@@ -27,15 +27,7 @@ class VisualStatusIndicator(models.Model):
         ('icon', 'Icon'),
         ('badge', 'Badge / Text'),
     ], default='color', string='Legacy Indicator Type')
-    # original _legacy_status_type = fields.Selection([
-        ('task', 'Task Status'),
-        ('quality', 'Quality Status'),
-        ('safety', 'Safety Status'),
-        ('compliance', 'Compliance Status'),
-        ('weather', 'Weather Alert'),
-        ('equipment', 'Equipment Status'),
-    ], string='Status Type', required=True)
-    status_value = fields.Char('Status Value', required=True, help='Value to match (e.g. "pending", "in_progress", "done")')
+    status_value = fields.Char('Status Value', help='Value to match (e.g. "pending", "in_progress", "done")')
     color_code = fields.Char('Color Code', default='#000000', help='CSS color code for the indicator')
     icon = fields.Char('Icon', help='Font Awesome icon (e.g. fa-check, fa-warning)')
     badge_style = fields.Selection([

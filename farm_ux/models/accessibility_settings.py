@@ -29,6 +29,16 @@ class AccessibilitySettings(models.Model):
                                         help='Prioritize voice input for recording farm activities.')
     
     voice_navigation = fields.Boolean('Voice Navigation', help='Enable voice-based navigation')
+
+    font_family_preference = fields.Selection([('sans-serif', 'Sans-Serif'), ('serif', 'Serif'), ('dyslexic', 'Dyslexia Friendly')], default='sans-serif', string='Font Family')
+    alternative_input_method = fields.Selection([('none', 'None'), ('eye_tracking', 'Eye Tracking'), ('switch', 'Switch Access')], default='none', string='Alternative Input')
+    voice_control_enabled = fields.Boolean('Voice Control Enabled')
+    is_active = fields.Boolean('Is Active', default=True)
+    last_updated = fields.Datetime('Last Updated')
+
+    custom_color_scheme = fields.Char('Custom Color Scheme')
+
+
     
     # UI Simplification
     hide_advanced_menus = fields.Boolean('Hide Advanced Menus', default=True, help="Hide configuration and complex menus.")
