@@ -1,24 +1,24 @@
-# Odoo Farm 19.0: 49 Futuristic Commercial Scenarios (21大商业落地场景)
+# Odoo Farm 19.0: 52 Futuristic Commercial Scenarios
 
 > **Document Note / 文档说明**: 
-> This document archives the 49 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
+> This document archives the 52 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
 > 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 49 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
 
 ---
 
 ## 1. Food Safety & Traceability (食品安全与信任重塑)
 
-### Scenario 1: Quality Traceability & Shipping Block (智能拦截：农资违规与发货熔断)
+### Scenario 01: Quality Traceability & Shipping Block (智能拦截：农资违规与发货熔断)
 * **Pain Point / 业务痛点**: It is hard to trace if banned pesticides were used before shipping, risking massive safety incidents. / 农产品发货前，难以排查前端种植是否违规使用了禁用农药，极易引发重大的食品安全事故。
 * **Solution / 解决方案**: When warehouse staff attempt to Validate a shipment, the tracing engine scans upstream. If the corresponding harvest intervention consumed a banned chemical, the system throws a red alert, physically blocks the shipment, and generates an urgent Quality Alert. / 当库房员工尝试发货验证（Validate）时，底层的溯源引擎会瞬间逆向展开。如果发现关联的农事单消耗了禁用农资，系统将直接抛出红色警告，物理锁死发货流程，并自动生成质检警告。
 * **Value / 商业价值**: Replaces manual checks with hard-coded control, killing food safety crises at the loading dock. / 用代码级硬管控代替人工巡查，将食品安全事故扼杀在发货站台。
 
-### Scenario 2: Smart Recall & AI PR (危机公关大师：一键智能召回与 AI 声明生成)
+### Scenario 02: Smart Recall & AI PR (危机公关大师：一键智能召回与 AI 声明生成)
 * **Pain Point / 业务痛点**: Manual tracing during a pesticide residue crisis is slow, and PR responses are often delayed. / 发生农残超标等危机时，人工排查污染源极慢，且公关应对往往严重滞后。
 * **Solution / 解决方案**: After failing a QC check, clicking Emergency Recall triggers the system to: 1) Find the source land parcel instantly. 2) Sweep and lock all other lots originating from that parcel into Quarantine. 3) Awaken the L3 LLM to draft a professional recall notice based on the exact blast radius. / 质检不合格后，点击“紧急召回”：1) 秒级查出污染源头地块。2) 跨库锁定并隔离所有同源批次。3) 唤醒 L3 层大模型，根据爆炸半径自动起草一份专业、透明的《紧急召回公关通知》。
 * **Value / 商业价值**: Fully automated crisis management, reducing response time from days to milliseconds. / 危机处理全自动化，响应时间从“天”级缩短到“毫秒”级。
 
-### Scenario 3: Traceability Passport as a Service (信任护照：融合 IoT 与碳足迹的超级溯源)
+### Scenario 03: Traceability Passport as a Service (信任护照：融合 IoT 与碳足迹的超级溯源)
 * **Pain Point / 业务痛点**: Static QR codes are boring and fail to generate brand trust or premium pricing. / 市面上的溯源二维码多为静态文本，消费者早已审美疲劳，无法产生信任溢价。
 * **Solution / 解决方案**: Scanning the QR code presents a dynamic Data Pump showing: 1) Real IoT weather curves during the crop growth. 2) Verified drone flight logs. 3) Exact Carbon Ledger data. / 扫码后展现动态“数据泵”：1) 伴随草莓生长的真实 IoT 气象曲线。2) 真实出动的无人机飞行架次。3) 精确读取的 ESG 碳账本数据（如：通过免耕法贡献了 -5.0kg 碳中和）。
 * **Value / 商业价值**: Uses hardcore tech to crush fake traceability, building an absolute trust barrier for premium pricing. / 用极致硬核的技术碾压“伪溯源”，帮助农产品建立绝对的信任壁垒，实现高额品牌溢价。
@@ -27,17 +27,17 @@
 
 ## 2. Commerce & Value Exchange (商业变现与创新模式)
 
-### Scenario 4: Demand-Driven JIT Harvest (零库存革命：基于消费者需求的 JIT 极速采收)
+### Scenario 04: Demand-Driven JIT Harvest (零库存革命：基于消费者需求的 JIT 极速采收)
 * **Pain Point / 业务痛点**: The harvest blind to cold room to sell model causes high spoilage and energy costs. / 传统的“盲目采收 -> 放冷库 -> 找销路”模式导致极高的生鲜损耗与冷储电费。
 * **Solution / 解决方案**: In the CSA module, clicking Aggregate JIT Harvest scans all active subscriptions for the next 3 days, sums the demand, and dispatches a precise Harvesting Intervention to the field. / 点击“聚合 JIT 采收”，系统自动扫描未来 3 天内所有激活的生鲜盲盒订单，汇总需求量，并自动生成一张极其精准的田间“采收任务单”。
 * **Value / 商业价值**: Zero inventory. Fresh from field to table. Turns cold storage electricity bills into net profit. / 实现真正的生鲜零库存，出土直达餐桌，把原本消耗的冷库电费转化为净利润。
 
-### Scenario 5: Dynamic Quality-Based Pricing (数据即价格：基于质检数据的动态溢价引擎)
+### Scenario 05: Dynamic Quality-Based Pricing (数据即价格：基于质检数据的动态溢价引擎)
 * **Pain Point / 业务痛点**: Premium crops often get sold at flat commodity prices. Bad money drives out good. / 极品农产品在批发环节往往遭遇“一刀切”的统货价，劣币驱逐良币。
 * **Solution / 解决方案**: When a salesperson creates a Sales Order and selects a lot graded as Premium, the pricing engine automatically applies a 30 percent Premium Surcharge. / 销售员创建销售订单时，一旦选中了质检评级为“Premium (特级)”的批次，定价引擎会自动在基础价上瞬间追加 30% 的品质溢价。
 * **Value / 商业价值**: Forces the market to reward quality, translating digital QC data directly into cash profit. / 让数字化的品质把控直接兑换成真金白银的利润，用系统倒逼优质优价。
 
-### Scenario 6: B2C & Digital Twin (认养经济：CSA 数字孪生与任务联动)
+### Scenario 06: B2C & Digital Twin (认养经济：CSA 数字孪生与任务联动)
 * **Pain Point / 业务痛点**: Consumers adopt animals/trees but lack engagement, and farms struggle to manage specific adopted assets. / 消费者花钱认养了果树或动物但缺乏参与感，农场也难以针对性管理。
 * **Solution / 解决方案**: When a customer activates an adoption, the system: 1) Generates a dedicated Digital Twin video stream URL. 2) Automatically dispatches a Feeding intervention to the staff specifically for that adopted asset. / 消费者激活认养后：1) 系统生成专属数字孪生直播 URL 推送给客户。2) 自动向饲养员下发一条带有“认养标识”的专属农事作业单。
 * **Value / 商业价值**: Transforms traditional farming into a high-margin service experience economy. / 将传统的农业生产转化为具有高附加值的“服务体验经济”。
@@ -46,17 +46,17 @@
 
 ## 3. ESG & Green Finance (绿色金融与循环经济)
 
-### Scenario 7: Automated Carbon Ledger (自动碳核算：农机作业直通碳账本)
+### Scenario 07: Automated Carbon Ledger (自动碳核算：农机作业直通碳账本)
 * **Pain Point / 业务痛点**: Carbon accounting relies on manual audits and is prone to falsification. / 农业碳排放核算依赖繁琐的人工盘点，数据极易造假。
 * **Solution / 解决方案**: When a driver logs 50L of diesel consumption, the system intercepts it, checks IPCC emission factors, and automatically writes an immutable 134 kg Scope 1 emission record to the Carbon Ledger. / 农机手填报“消耗 50 升柴油”日志的瞬间，系统拦截并查询底层 IPCC 碳因子，自动向碳账本写入一条不可篡改的 134 kg Scope 1 排放记录。
 * **Value / 商业价值**: Seamless ESG auditing built into daily operations, providing ironclad proof for export compliance. / 将 ESG 审计无感融入日常生产，为农产品出口（如欧盟 CBAM）提供铁证。
 
-### Scenario 8: Carbon Tokenization & Exchange (绿水青山变现：碳汇代币化与跨域交易)
+### Scenario 08: Carbon Tokenization & Exchange (绿水青山变现：碳汇代币化与跨域交易)
 * **Pain Point / 业务痛点**: Farms generate carbon sinks (negative emissions) but struggle to monetize them. / 农场通过环保手段产生了碳汇（负排放），但难以变现。
 * **Solution / 解决方案**: A farm tokenizes its 50 Tons of CO2e sink into digital assets on the internal exchange. A high-emission processing plant buys them to offset its footprint, triggering an automatic internal financial settlement of 2500 USD. / 农场主将 50 吨 CO2e 碳汇“代币化”并挂牌内部交易所。集团高排放加工厂购买抵消指标，系统自动生成 2500 美元的内部财务结算凭证。
 * **Value / 商业价值**: Unlocks the internal carbon trading market, turning ecology into a profit center. / 打通内部碳交易市场，让生态保护真正成为农场的盈利中心。
 
-### Scenario 9: Eco-Symbiosis Waste Loop (桑基鱼塘 2.0：废弃物转化为肥料的自动化闭环)
+### Scenario 09: Eco-Symbiosis Waste Loop (桑基鱼塘 2.0：废弃物转化为肥料的自动化闭环)
 * **Pain Point / 业务痛点**: Animal waste disposal is a cost, while fertilizer for crops is an expense. / 畜牧废弃物处理是巨大成本，而种植业又要高价采购化肥。
 * **Solution / 解决方案**: Logging 5000kg of raw manure triggers the Symbiosis module to auto-generate a Composting intervention, turning it into 2000kg of organic fertilizer and calculating the pure Nitrogen/Phosphorus recovered. / 猪场登记 5000kg 猪粪，共生模块检测后自动在背后生成一张加工单，将其转化为 2000kg 有机肥，并精确折算出为果园省下的纯氮(N)量。
 * **Value / 商业价值**: Code-enforced circular economy, reducing raw material procurement costs. / 用代码固化农业内循环，降低原材料外部采购成本。
