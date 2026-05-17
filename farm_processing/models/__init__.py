@@ -26,3 +26,4 @@ from . import missing_models
 
 from . import processing_wizards
 from . import cip_routing
+from . import byproduct_upcycling
