@@ -12,10 +12,18 @@
 
 > **进阶需求**：现代农业合作社并非扁平结构，而是呈现出 **合作社 (Cooperative) -> 独立农场主 (Farm Owner) -> 雇佣农工/小散户 (Worker)** 的三级树状嵌套结构。我们需要通过更加动态的 Domain 规则实现“向下穿透可见，向上平行隔离”。
 
-### 4.1 角色映射 (The 3 Tiers)
-* **Tier 1: 合作社管理员 (Coop Manager)** -> 映射到 group_farm_manager。
-* **Tier 2: 独立农场主 / 承包大户 (Farm Owner)** -> 映射到 group_farm_specialist。
-* **Tier 3: 基层雇工 / 小散户 (Worker)** -> 映射到 group_farm_worker。
+### 4.1 角色与底层数据结构映射 (The 3-Tier Odoo Mapping)
+> **核心定律**：合作社 (Tier 1) 对应 Odoo 的 res.company；其下的农场与农户 (Tier 2/3) 属于公司内部的团队/部门 (Team) 层级。
+
+* **Tier 1: 合作社管理员 (Coop Manager)** 
+  * -> 映射到 group_farm_manager。
+  * -> **架构地位**：利用 Odoo 原生的多公司机制 (Multi-Company)。在单公司下，Manager 的 Domain 为 [(1, '=', 1)]。他自动被 Odoo 的原生 company_id 防火墙隔离，绝对看不到其他合作社（其他 Company）的数据。
+* **Tier 2: 独立农场主 / 承包大户 (Farm Owner / Team Leader)** 
+  * -> 映射到 group_farm_specialist。
+  * -> **架构地位**：属于公司内的一个 Team 或 Department。他在 res.partner 或 hr.employee 中作为 Parent 节点。
+* **Tier 3: 基层雇工 / 小散户 (Worker)** 
+  * -> 映射到 group_farm_worker。
+  * -> **架构地位**：作为叶子节点，其 parent_id 或 department_id 指向 Tier 2 的大户。
 
 ### 4.2 动态隔离域设计 (Dynamic Domain Design)
 
