@@ -1,5 +1,53 @@
 # Odoo Farm
 
+
+
+
+: 智慧农业全链路数字化底座 / Full-Chain Smart Agriculture OS
+
+<div align="center">
+  <img src="farm_core/static/description/banner.png" alt="Odoo Farm Core Banner" width="100%">
+  <p><b>From Seed to Sale, Code to Farm — Empowering Modern Agriculture with Digital Certainty.</b></p>
+</div>
+
+[Chinese](#chinese) | [English](#english)
+
+---
+
+<a name="chinese"></a>
+## 🇨🇳 中文版 (Chinese)
+
+### 1. 我们的愿景：为什么我们需要 Odoo Farm？
+在数字化的浪潮中，传统农业面临着生产过程“黑盒”、管理术语“过度工业化”以及合规追溯成本高昂的三大绝境。传统 ERP 试图用管螺丝钉的逻辑来管农作物，结果往往水土不服。
+
+**Odoo Farm** 拒绝这种粗暴移植。我们基于全球顶尖的开源 ERP 框架 **Odoo 19**，深度复刻并全面超越了欧洲领先农业系统 (如 Ekylibre) 的架构能力。我们不仅仅是在记录数据，我们打造的是一套**专为中国乃至全球农业设计的开源操作系统 (OS)**。在这里，土地是会呼吸的车间，作物是具备生命周期的在制资产，而 IoT 则是系统的神经末梢。
+
+### 💎 核心传播价值 (Why Odoo Farm?)
+
+对于不同的角色，Odoo Farm 传递着完全不同的核心商业价值：
+
+*   👨‍🌾 **对农场主 (Farm Owners)**：**生物资产的数据化与金融化。** 告别糊涂账。系统将作物的生长周期和农资投入实时转化为可视化的资产估值图谱，打通供应链融资与农业信贷的“最后一公里”。
+*   🛠️ **对农技人员 (Agronomists)**：**由数据驱动的精准农业。** 借助 AI 视觉病害诊断、养分平衡计算与气象联动干预，每一滴水、每一把肥都有据可依，实现边际成本的指数级下降。
+*   🛒 **对零售与消费者 (Consumers & Retail)**：**品牌溢价与区块链级信任。** 每一颗果实都有其独特的“履历”。扫码即可看到该批次所历经的土壤温度、干预清单甚至农工的合规资质，让农产品轻松跨越高端市场的门槛。
+*   💻 **对开发者 (Developers)**：**极速构建、开箱即用。** 遵循 "Tools, not Trees" 哲学，将 100+ 模块切割为 13 个独立微生态。拥有极其扁平的 5 层拓扑架构和基于多态 ISL 代理中枢的行业定制能力。
+
+### 🏛️ 颠覆性的系统设计思想
+不同于传统的 ERP 堆砌，Odoo Farm 遵循三大底层设计原则：
+1.  **全站去工业化 UX (De-industrialized UX)**：系统自动将工业术语 (如 BOM / 生产工单) 隐式映射为“农事干预”、“生产配方”、“批次繁育”。操作员只需点击简单的卡片，而非面对恐惧的树状表单。
+2.  **MTO 生长周期校验 (Biological Cycle Alignment)**：将自然规律写入代码。内置动植物生长模型，确认订单时自动倒推并校验生长周期，防范违约风险。
+3.  **100+ 模块微生态 (Micro-Ecosystem)**：通过高度解耦的矩阵设计，按需热插拔（种植、畜牧、无人机 IoT、CSA 认养营销等）。
+
+### 🚀 核心生态矩阵 (The App Ecosystem)
+
+<img src="farm_isl/static/description/banner.png" alt="Odoo Farm ISL" width="100%" style="margin-top: 15px; margin-bottom: 15px; border-radius: 8px;">
+
+Odoo Farm 将庞杂的农业切割为极易部署的工具链：
+*   **🌿 种植引擎 (Planting)**：生产季规划 -> 农事干预 -> 农机调度 -> 收获分级 -> N/P/K 自动养分平衡核算。
+*   **🐄 畜牧与水产 (Livestock/Aqua)**：耳标溯源 -> 系谱繁育树 -> ADG 预测 -> 饲料自动核销 -> 异常体征预警。
+*   **🏭 农产品加工 (Processing)**：单料进多料出 (One-in-Multi-out) 体系 -> 物料平衡 (Mass Balance) 校验 -> 能源消耗精细分摊。
+*   **📡 智慧物联 (Smart IoT)**：原生对接底层网关 -> 数字孪生看板 -> 阈值自动触发干预任务。
+*   **🏪 ESG 与商业闭环 (Commerce & ESG)**：碳汇追踪记录 -> 直播带货订单融合 -> CSA 社区认养模式 -> 农旅票务。
+
 ## 🌟 核心亮点：降维打击的商业能力 (The 3-Tier Edge)
 
 除了 Odoo 原生的进销存财能力，Odoo Farm 在以下三个维度实现了对传统农业 ERP 的降维打击：
@@ -56,52 +104,6 @@ graph TD
     style DB_B fill:#f5f5f5,stroke:#b3b3b3
 ```
 
-
-
-: 智慧农业全链路数字化底座 / Full-Chain Smart Agriculture OS
-
-<div align="center">
-  <img src="farm_core/static/description/banner.png" alt="Odoo Farm Core Banner" width="100%">
-  <p><b>From Seed to Sale, Code to Farm — Empowering Modern Agriculture with Digital Certainty.</b></p>
-</div>
-
-[Chinese](#chinese) | [English](#english)
-
----
-
-<a name="chinese"></a>
-## 🇨🇳 中文版 (Chinese)
-
-### 1. 我们的愿景：为什么我们需要 Odoo Farm？
-在数字化的浪潮中，传统农业面临着生产过程“黑盒”、管理术语“过度工业化”以及合规追溯成本高昂的三大绝境。传统 ERP 试图用管螺丝钉的逻辑来管农作物，结果往往水土不服。
-
-**Odoo Farm** 拒绝这种粗暴移植。我们基于全球顶尖的开源 ERP 框架 **Odoo 19**，深度复刻并全面超越了欧洲领先农业系统 (如 Ekylibre) 的架构能力。我们不仅仅是在记录数据，我们打造的是一套**专为中国乃至全球农业设计的开源操作系统 (OS)**。在这里，土地是会呼吸的车间，作物是具备生命周期的在制资产，而 IoT 则是系统的神经末梢。
-
-### 💎 核心传播价值 (Why Odoo Farm?)
-
-对于不同的角色，Odoo Farm 传递着完全不同的核心商业价值：
-
-*   👨‍🌾 **对农场主 (Farm Owners)**：**生物资产的数据化与金融化。** 告别糊涂账。系统将作物的生长周期和农资投入实时转化为可视化的资产估值图谱，打通供应链融资与农业信贷的“最后一公里”。
-*   🛠️ **对农技人员 (Agronomists)**：**由数据驱动的精准农业。** 借助 AI 视觉病害诊断、养分平衡计算与气象联动干预，每一滴水、每一把肥都有据可依，实现边际成本的指数级下降。
-*   🛒 **对零售与消费者 (Consumers & Retail)**：**品牌溢价与区块链级信任。** 每一颗果实都有其独特的“履历”。扫码即可看到该批次所历经的土壤温度、干预清单甚至农工的合规资质，让农产品轻松跨越高端市场的门槛。
-*   💻 **对开发者 (Developers)**：**极速构建、开箱即用。** 遵循 "Tools, not Trees" 哲学，将 100+ 模块切割为 13 个独立微生态。拥有极其扁平的 5 层拓扑架构和基于多态 ISL 代理中枢的行业定制能力。
-
-### 🏛️ 颠覆性的系统设计思想
-不同于传统的 ERP 堆砌，Odoo Farm 遵循三大底层设计原则：
-1.  **全站去工业化 UX (De-industrialized UX)**：系统自动将工业术语 (如 BOM / 生产工单) 隐式映射为“农事干预”、“生产配方”、“批次繁育”。操作员只需点击简单的卡片，而非面对恐惧的树状表单。
-2.  **MTO 生长周期校验 (Biological Cycle Alignment)**：将自然规律写入代码。内置动植物生长模型，确认订单时自动倒推并校验生长周期，防范违约风险。
-3.  **100+ 模块微生态 (Micro-Ecosystem)**：通过高度解耦的矩阵设计，按需热插拔（种植、畜牧、无人机 IoT、CSA 认养营销等）。
-
-### 🚀 核心生态矩阵 (The App Ecosystem)
-
-<img src="farm_isl/static/description/banner.png" alt="Odoo Farm ISL" width="100%" style="margin-top: 15px; margin-bottom: 15px; border-radius: 8px;">
-
-Odoo Farm 将庞杂的农业切割为极易部署的工具链：
-*   **🌿 种植引擎 (Planting)**：生产季规划 -> 农事干预 -> 农机调度 -> 收获分级 -> N/P/K 自动养分平衡核算。
-*   **🐄 畜牧与水产 (Livestock/Aqua)**：耳标溯源 -> 系谱繁育树 -> ADG 预测 -> 饲料自动核销 -> 异常体征预警。
-*   **🏭 农产品加工 (Processing)**：单料进多料出 (One-in-Multi-out) 体系 -> 物料平衡 (Mass Balance) 校验 -> 能源消耗精细分摊。
-*   **📡 智慧物联 (Smart IoT)**：原生对接底层网关 -> 数字孪生看板 -> 阈值自动触发干预任务。
-*   **🏪 ESG 与商业闭环 (Commerce & ESG)**：碳汇追踪记录 -> 直播带货订单融合 -> CSA 社区认养模式 -> 农旅票务。
 
 ---
 
