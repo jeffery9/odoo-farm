@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- RLS for Biological Assets -->
+        <record id="rule_agri_biological_asset_worker" model="ir.rule">
+            <field name="name">Worker: See Own Assets Only</field>
+            <field name="model_id" ref="farm_core.model_agri_biological_asset"/>
+            <field name="domain_force">[('owner_id', '=', user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('farm_core.group_farm_worker'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="rule_agri_biological_asset_owner_hierarchy" model="ir.rule">
+            <field name="name">Farm Owner: See Own and Subordinate Assets</field>
+            <field name="model_id" ref="farm_core.model_agri_biological_asset"/>
+            <field name="domain_force">['|', ('owner_id', '=', user.partner_id.id), ('owner_id.parent_id', '=', user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('farm_core.group_farm_specialist'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="rule_agri_biological_asset_manager" model="ir.rule">
+            <field name="name">Manager: See All Assets</field>
+            <field name="model_id" ref="farm_core.model_agri_biological_asset"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('farm_core.group_farm_manager'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+    </data>
+</odoo>
