@@ -1,0 +1,30 @@
+name: Odoo Farm CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "19.0", "dev" ]
+  pull_request:
+    branches: [ "19.0", "dev" ]
+
+jobs:
+  stdd-test-suite:
+    name: STDD Integration Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Install dependencies
+      run: python -m pip install --upgrade pip
+      
+    - name: Pull Odoo 19.0 Docker Image
+      run: docker pull odoo:19.0
+      
+    - name: Run Strict Odoo Farm Test Suite
+      # The --ci flag ensures full logs are printed to GitHub Actions console
+      # and activates the strict regex log scanner to catch hidden test failures.
+      run: python3 run_all_install_test.py --ci
