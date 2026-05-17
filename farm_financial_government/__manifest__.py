@@ -10,7 +10,7 @@
         "mail",
         "account",
         "farm_core",
-        "farm_financial_core",
+        "farm_financial",
         "farm_financial_basic",
     ],
     "data": [
@@ -33,6 +33,6 @@
     - Special funds accounting and compliance
     - Project-based financial tracking for government programs
 
-    Built on top of the farm_financial_core foundation module.
+    Built on top of the farm_financial foundation module.
     """,
 }

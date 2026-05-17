@@ -2,7 +2,7 @@
 <odoo>
 <menuitem id="farm_financial_credit_menu_root"
               name="Credit &amp; Risk"
-              parent="farm_financial_core.farm_financial_core_menu_root"
+              parent="farm_financial.farm_financial_menu_root"
               sequence="30"/>
 
     <menuitem id="menu_farm_credit_score"

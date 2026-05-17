@@ -12,6 +12,7 @@
         "farm_ai",
         "farm_ai_vision",
         "farm_ai_decision",
+        "farm_financial_insurance",
         "farm_ai_llm_integration",
         "farm_agri_science"
     ],
