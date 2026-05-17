@@ -96,3 +96,12 @@ The workspace is organized around a "Main Base" and a "Task Hub":
 *   **Add Worktree**: `git worktree add ../odoo-farm-workspace/<folder_name> <branch_name>`
 *   **Remove Worktree**: Delete the folder (`rm -rf <path>`), then run `git worktree prune`.
 
+
+
+## 8. STRICT SECURITY & PUBLICATION PROTOCOL (docs/)
+
+**ABSOLUTE MANDATE: You MUST explicitly ask the user for permission before publishing, copying, or pushing ANY file from the `docs/` directory of the `dev` branch to the public `19.0` release branch.**
+
+* **The `docs/` directory in `dev` is highly classified.** It contains confidential C2M Ecosystem strategies, multi-billion dollar business blueprints, unreleased 52-scenario architectures, internal Epic specifications, and LLM prompt engineering guidelines.
+* **The `docs/` directory in `19.0` is strictly curated.** It must only ever contain public-facing marketing pitches (e.g., the Top 8 Showcase) and technical specifications (e.g., Data Isolation Design) explicitly approved for external stakeholders.
+* **Never assume a document is safe to publish.** Even if you update a document in `dev`, do NOT automatically cherry-pick or merge that commit into `19.0`. Always halt execution and request user authorization: *"I have updated the document in `dev`. Shall I sanitize and publish this to the `19.0` release branch?"*
