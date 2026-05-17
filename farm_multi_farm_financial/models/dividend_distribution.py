@@ -53,7 +53,7 @@ class DividendDistribution(models.Model):
             distribution.dividend_lines.unlink()
 
             # Calculate dividends for each member
-            for member in distribution.env['cooperative.member'].search([('cooperative_id', '=', record.cooperative_id.id)]):
+            for member in distribution.env['cooperative.member'].search([('cooperative_id', '=', distribution.cooperative_id.id)]):
                 if not member.dividend_eligibility:
                     continue
 
