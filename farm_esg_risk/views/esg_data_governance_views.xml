@@ -1,3 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<record id="view_esg_data_governance_tree" model="ir.ui.view">
+        <field name="name">farm.esg.data.governance.tree</field>
+        <field name="model">farm.esg.data.governance</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="data_type"/>
+                <field name="data_source"/>
+                <field name="data_quality_score"/>
+                <field name="validation_status"/>
+                <field name="quality_issue_severity"/>
+                <field name="data_completeness_percentage"/>
+                <field name="data_owner"/>
+                <field name="data_steward"/>
+                <field name="last_updated"/>
+            </list>
+        </field>
+    </record>
+
+    
+    <record id="view_esg_data_governance_form" model="ir.ui.view">
+        <field name="name">farm.esg.data.governance.form</field>
+        <field name="model">farm.esg.data.governance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_validate_data" type="object" string="Validate Data Quality" class="oe_highlight"/>
+                    <button name="action_run_data_profiling" type="object" string="Run Data Profiling"/>
+                    <button name="action_assign_data_steward" type="object" string="Assign Data Steward"/>
+                    <button name="action_generate_checksum" type="object" string="Generate Checksum"/>
+                    <button name="action_validate_accuracy" type="object" string="Validate Accuracy"/>
+                    <field name="validation_status" widget="statusbar" statusbar_visible="pending,requires_review,validated,invalid"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_schedule_quality_check" type="object" class="oe_stat_button" icon="fa-check-circle">
+                            <div>Schedule Check</div>
+                        </button>
+                        <button name="action_enforce_retention_policy" type="object" class="oe_stat_button" icon="fa-calendar">
+                            <div>Enforce Retention</div>
+                        </button>
+                    </div>
+                    <group>
+                        <group name="basic_info" string="Basic Information">
+                            <field name="name"/>
+                            <field name="data_source"/>
+                            <field name="data_type"/>
+                            <field name="collection_method"/>
+                            <field name="collection_date"/>
+                            <field name="data_owner"/>
+                        </group>
+                        <group name="data_quality" string="Data Quality">
+                            <field name="data_quality_score"/>
+                            <field name="data_completeness_percentage"/>
+                            <field name="data_accuracy_validation"/>
+                            <field name="validation_status"/>
+                            <field name="quality_issue_severity"/>
+                            <field name="quality_validation_rules"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Governance Details">
+                            <group>
+                                <field name="data_steward"/>
+                                <field name="data_security_classification"/>
+                                <field name="audit_trail_enabled"/>
+                                <field name="anonymization_applied"/>
+                                <field name="data_backup_status"/>
+                                <field name="sensitive_data_identified"/>
+                                <field name="privacy_compliance_status"/>
+                            </group>
+                        </page>
+                        <page string="Data Lineage">
+                            <group>
+                                <field name="data_lineage"/>
+                                <field name="upstream_data_sources"/>
+                                <field name="downstream_consumers"/>
+                                <field name="data_transformation_log"/>
+                                <field name="data_origin_verification"/>
+                            </group>
+                        </page>
+                        <page string="Quality Control">
+                            <group>
+                                <field name="data_profiling_report"/>
+                                <field name="data_quality_issues"/>
+                                <field name="remediation_status"/>
+                                <field name="quality_monitoring_enabled"/>
+                                <field name="automated_quality_alerts_enabled"/>
+                                <field name="last_quality_alert_date"/>
+                                <field name="validation_rules_applied"/>
+                                <field name="data_quality_history"/>
+                            </group>
+                        </page>
+                        <page string="Retention &amp; Compliance">
+                            <group>
+                                <field name="data_retention_years"/>
+                                <field name="data_retention_policy_applied"/>
+                                <field name="retention_cleanup_date"/>
+                                <field name="access_control_list"/>
+                                <field name="data_impact_analysis"/>
+                            </group>
+                        </page>
+                        <page string="Integrity &amp; Security">
+                            <group>
+                                <field name="checksum"/>
+                                <field name="data_flow_diagram"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    
+    <record id="view_esg_data_governance_search" model="ir.ui.view">
+        <field name="name">farm.esg.data.governance.search</field>
+        <field name="model">farm.esg.data.governance</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="data_type"/>
+                <field name="data_source"/>
+                <field name="validation_status"/>
+                <field name="quality_issue_severity"/>
+                <field name="data_owner"/>
+                <field name="data_steward"/>
+                <separator/>
+                <filter name="filter_needs_review" string="Needs Review" domain="[('validation_status', '=', 'requires_review')]"/>
+                <filter name="filter_invalid" string="Invalid Data" domain="[('validation_status', '=', 'invalid')]"/>
+                <filter name="filter_critical_severity" string="Critical Issues" domain="[('quality_issue_severity', '=', 'critical')]"/>
+                <filter name="filter_high_severity" string="High Issues" domain="[('quality_issue_severity', '=', 'high')]"/>
+                <group>
+                    <filter name="group_by_data_type" string="Data Type" context="{'group_by': 'data_type'}"/>
+                    <filter name="group_by_validation_status" string="Validation Status" context="{'group_by': 'validation_status'}"/>
+                    <filter name="group_by_quality_severity" string="Quality Severity" context="{'group_by': 'quality_issue_severity'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    
+    <record id="action_esg_data_governance" model="ir.actions.act_window">
+        <field name="name">ESG Data Governance</field>
+        <field name="res_model">farm.esg.data.governance</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_esg_data_governance_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add ESG data governance records
+            </p>
+            <p>
+                Manage ESG data governance records to ensure data integrity, completeness, and accuracy.
+                These records help track data quality metrics and compliance with governance policies.
+            </p>
+        </field>
+    </record>
+
+    
+    <menuitem id="esg_data_governance_menu" name="Data Governance"
+              parent="esg_risk_menu" sequence="50"
+              action="action_esg_data_governance"/>
 </odoo>

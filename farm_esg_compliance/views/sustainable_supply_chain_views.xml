@@ -1,3 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<record id="action_sustainable_supply_chain" model="ir.actions.act_window">
+        <field name="name">Sustainable Supply Chain</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agri.sustainable.supply.chain</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Manage Sustainable Supply Chain Relationships
+            </p>
+            <p>
+                Monitor and manage supplier sustainability performance across the triple bottom line.
+            </p>
+        </field>
+    </record>
+
+    
+    <record id="view_sustainable_supply_chain_tree" model="ir.ui.view">
+        <field name="name">agri.sustainable.supply.chain.tree</field>
+        <field name="model">agri.sustainable.supply.chain</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="overall_sustainability_score"/>
+                <field name="economic_score"/>
+                <field name="environmental_score"/>
+                <field name="social_score"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    
+    <record id="view_sustainable_supply_chain_form" model="ir.ui.view">
+        <field name="name">agri.sustainable.supply.chain.form</field>
+        <field name="model">agri.sustainable.supply.chain</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_assess_supplier_sustainability" type="object" string="Assess Supplier" class="btn-secondary"/>
+                    <button name="action_approve_supplier" type="object" string="Approve Supplier" class="btn-success" invisible="status != 'prospective'"/>
+                    <button name="action_monitor_supply_chain" type="object" string="Monitor" class="btn-primary" invisible="status != 'approved'"/>
+                    <button name="action_suspend_supplier" type="object" string="Suspend" class="btn-warning" invisible="status != 'monitoring'"/>
+                    <button name="action_update_procurement_policy" type="object" string="Update Policy" class="btn-info"/>
+                    <field name="status" widget="statusbar" statusbar_visible="prospective,approved,monitoring,suspended,deactivated"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_sustainable_supply_chain)d" type="action" class="oe_stat_button" icon="fa-truck">
+                            <field string="Supply Chains" name="name" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="partner_credit_score"/>
+                            <field name="farm_id"/>
+                        </group>
+                        <group>
+                            <field name="overall_sustainability_score" widget="percentage"/>
+                            <field name="economic_score" widget="percentage"/>
+                            <field name="environmental_score" widget="percentage"/>
+                            <field name="social_score" widget="percentage"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Performance Metrics">
+                            <group>
+                                <group>
+                                    <field name="delivery_performance"/>
+                                    <field name="quality_performance"/>
+                                    <field name="sustainability_compliance"/>
+                                </group>
+                                <group>
+                                    <field name="monitoring_frequency"/>
+                                    <field name="next_monitoring_date"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Assessment &amp; Certifications">
+                            <group>
+                                <group string="Last Assessment">
+                                    <field name="sustainability_assessment_date"/>
+                                    <field name="sustainability_assessment_result" colspan="2"/>
+                                </group>
+                                <group string="Certifications">
+                                    <field name="certification_ids" widget="many2many_tags"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Procurement Policy">
+                            <group>
+                                <field name="procurement_policy" colspan="2"/>
+                                <field name="dynamic_authorization_rules" colspan="2"/>
+                            </group>
+                        </page>
+
+                        <page string="Related Products">
+                            <field name="related_product_ids" widget="many2many_tags"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    
+    <record id="action_sustainable_supplier_evaluation" model="ir.actions.act_window">
+        <field name="name">Sustainable Supplier Evaluation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agri.sustainable.supplier.evaluation</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    
+    <record id="view_sustainable_supplier_evaluation_tree" model="ir.ui.view">
+        <field name="name">agri.sustainable.supplier.evaluation.tree</field>
+        <field name="model">agri.sustainable.supplier.evaluation</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="evaluation_date"/>
+                <field name="supply_chain_id"/>
+                <field name="overall_evaluation_score"/>
+                <field name="is_compliant"/>
+            </list>
+        </field>
+    </record>
+
+    
+    <record id="view_sustainable_supplier_evaluation_form" model="ir.ui.view">
+        <field name="name">agri.sustainable.supplier.evaluation.form</field>
+        <field name="model">agri.sustainable.supplier.evaluation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="evaluation_date"/>
+                            <field name="supply_chain_id"/>
+                            <field name="evaluation_by"/>
+                        </group>
+                        <group>
+                            <field name="overall_evaluation_score" widget="percentage"/>
+                            <field name="is_compliant"/>
+                        </group>
+                    </group>
+                    <group string="Criteria Scores">
+                        <group>
+                            <field name="economic_criteria_score" widget="percentage"/>
+                            <field name="environmental_criteria_score" widget="percentage"/>
+                            <field name="social_criteria_score" widget="percentage"/>
+                        </group>
+                    </group>
+                    <group string="Evaluation Details">
+                        <field name="evaluation_details" colspan="2"/>
+                        <field name="recommendations" colspan="2"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
 </odoo>
