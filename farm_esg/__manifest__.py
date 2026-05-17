@@ -17,7 +17,7 @@ ESG Management Module for Odoo 19 Farm Management System.
         'farm_core',
     ],
         'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/esg_framework_views.xml',
         'views/esg_indicator_views.xml',
         'views/esg_target_views.xml',

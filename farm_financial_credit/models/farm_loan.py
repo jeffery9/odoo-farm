@@ -44,7 +44,7 @@ class FarmLoan(models.Model):
 
     # Financial Trust Integration [US-078-02]
     credit_score_id = fields.Many2one('farm.credit.score', string="Production Credit Rating", compute='_compute_credit_rating', store=True, precompute=True)
-    credit_score = fields.Float(related='credit_score_id.overall_score', string="Score Value")
+    credit_score = fields.Float(related='credit_score_id.total_score', string="Score Value")
     is_high_risk = fields.Boolean("High Financial Risk", compute='_compute_risk', store=True, precompute=True)
 
     # Risk assessment from integrated functionality

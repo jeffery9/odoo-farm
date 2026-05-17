@@ -104,7 +104,6 @@ class FarmLotMarketing(models.Model):
     # Formula: Integrity = Geofence Rate * 0.4 + Input Whitelist Rate * 0.4 + QC Pass Rate * 0.2
     integrity_score = fields.Float("Organic Integrity Score", compute='_compute_integrity_score', store=True, precompute=True)
 
-    @api.depends('quality_status') # Simplified dependencies
     def _compute_integrity_score(self):
         for lot in self:
             # In real system, these would be fetched from actual records

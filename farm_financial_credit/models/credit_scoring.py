@@ -128,6 +128,7 @@ class ResPartner(models.Model):
 
 
 class FarmCoopSettlement(models.Model):
+    currency_id = fields.Many2one("res.currency", default=lambda self: self.env.company.currency_id)
     _name = 'farm.coop.settlement'
     _description = 'Cooperative Member Settlement'
     _inherit = ['mail.thread', 'mail.activity.mixin']

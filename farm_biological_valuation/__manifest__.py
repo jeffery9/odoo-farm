@@ -13,7 +13,7 @@
         "farm_core",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        #"security/ir.model.access.csv",
         "views/biological_asset_valuation_views.xml",
         "views/menu.xml",
     ],

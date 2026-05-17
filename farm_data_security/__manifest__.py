@@ -16,7 +16,7 @@
     'author': 'Jeffery',
     'depends': ['base', 'base_setup', 'farm_core', 'stock', 'base'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/data_security_views.xml',
         'views/res_config_settings_views.xml',
     ],

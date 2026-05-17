@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import random
 
 class FarmRiskAssessment(models.Model):
+    currency_id = fields.Many2one("res.currency", default=lambda self: self.env.company.currency_id)
     """
     Risk Assessment model combining features from both modules
     """
@@ -138,4 +139,4 @@ class FarmRiskAssessment(models.Model):
             if credit_score:
                 record.credit_score_id = credit_score.id
                 # Update relevant fields based on credit score
-                record.credit_history_score = credit_score.overall_score
+                record.credit_history_score = credit_score.latest_credit_score

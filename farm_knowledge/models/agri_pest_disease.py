@@ -37,18 +37,12 @@ class AgriPestDisease(models.Model):
                                      help="Recommended integrated pest management approach combining different methods")
 
     # Product recommendations (linking to specific products that can be used)
-    conventional_products = fields.Many2many(
-        'product.template',
-        'pest_disease_conventional_product_rel',
-        'pest_disease_id', 'product_id',
+    conventional_products = fields.Many2many('product.template', 'agri_pest_disease_conventional_rel', 'disease_id', 'product_id',
         string="Conventional Products",
         domain=[('is_agri_input', '=', True)],
         help="Recommended conventional products for treatment"
     )
-    organic_products = fields.Many2many(
-        'product.template',
-        'pest_disease_organic_product_rel',
-        'pest_disease_id', 'product_id',
+    organic_products = fields.Many2many('product.template', 'agri_pest_disease_organic_rel', 'disease_id', 'product_id',
         string="Organic/Green Products",
         domain=[('is_agri_input', '=', True)],
         help="Recommended organic/green products for treatment"

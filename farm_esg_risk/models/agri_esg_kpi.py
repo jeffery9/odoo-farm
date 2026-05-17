@@ -12,14 +12,8 @@ class AgriESGKPI(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char('KPI Name', required=True)
-    kpi_category = fields.Selection([
-        'environmental', 'social', 'governance', 'financial'
-    ], string='KPI Category', required=True)
-    kpi_type = fields.Selection([
-        'carbon_emissions', 'water_usage', 'waste_generation', 'biodiversity',
-        'employee_safety', 'diversity', 'community_investment', 'governance_score',
-        'compliance_rate', 'training_hours', 'local_procurement', 'other'
-    ], string='KPI Type', required=True)
+    kpi_category = fields.Selection([('environmental', 'Environmental'), ('social', 'Social'), ('governance', 'Governance'), ('financial', 'Financial')], string='KPI Category', required=True)
+    kpi_type = fields.Selection([('carbon_emissions', 'Carbon Emissions'), ('water_usage', 'Water Usage'), ('waste_generation', 'Waste Generation'), ('biodiversity', 'Biodiversity'), ('employee_safety', 'Employee Safety'), ('diversity', 'Diversity'), ('community_investment', 'Community Investment'), ('governance_score', 'Governance Score'), ('compliance_rate', 'Compliance Rate'), ('training_hours', 'Training Hours'), ('local_procurement', 'Local Procurement'), ('other', 'Other')], string='KPI Type', required=True)
     reporting_period = fields.Selection([
         ('monthly', 'Monthly'),
         ('quarterly', 'Quarterly'),
@@ -31,9 +25,7 @@ class AgriESGKPI(models.Model):
     unit_of_measurement = fields.Char('Unit of Measurement', required=True)
     baseline_value = fields.Float('Baseline Value')
     achievement_percentage = fields.Float('Achievement %', compute='_compute_achievement_percentage', store=True, precompute=True)
-    trend_indicator = fields.Selection([
-        'increasing', 'decreasing', 'stable'
-    ], string='Trend Indicator', compute='_compute_trend_indicator', store=True, precompute=True)
+    trend_indicator = fields.Selection([('increasing', 'Increasing'), ('decreasing', 'Decreasing'), ('stable', 'Stable')], string='Trend Indicator', compute='_compute_trend_indicator', store=True, precompute=True)
     year = fields.Integer('Year', default=lambda self: fields.Date.context_today(self).year)
     responsible_department = fields.Many2one('hr.department', 'Responsible Department')
     data_source = fields.Char('Data Source')
@@ -41,9 +33,7 @@ class AgriESGKPI(models.Model):
     benchmark_value = fields.Float('Benchmark Value', help='Industry or regional benchmark')
     benchmark_source = fields.Char('Benchmark Source')
     variance_from_target = fields.Float('Variance from Target', compute='_compute_variance', store=True, precompute=True)
-    performance_status = fields.Selection([
-        'exceeding', 'on_track', 'at_risk', 'off_track'
-    ], string='Performance Status', compute='_compute_performance_status', store=True, precompute=True)
+    performance_status = fields.Selection([('exceeding', 'Exceeding'), ('on_track', 'On Track'), ('at_risk', 'At Risk'), ('off_track', 'Off Track')], string='Performance Status', compute='_compute_performance_status', store=True, precompute=True)
     notes = fields.Text('Notes')
 
     @api.depends('current_value', 'target_value')

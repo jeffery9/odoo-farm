@@ -12,7 +12,7 @@
     'author': 'Jeffery',
     'depends': ['farm_core', 'farm_operation', 'farm_supply', 'farm_esg', 'farm_esg_report'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'report/reduction_report_templates.xml',
         'report/reduction_reports.xml',
         'views/green_monitor_views.xml',

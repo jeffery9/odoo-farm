@@ -19,7 +19,7 @@
     'author': 'Jeffery',
     'depends': ['farm_core', 'sale', 'project'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/farm_booking_views.xml',
         'views/agritourism_operation_views.xml',
         'views/menu.xml',

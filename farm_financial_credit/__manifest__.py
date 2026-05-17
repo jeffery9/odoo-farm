@@ -11,9 +11,10 @@
         "account",
         "farm_core",
         "farm_financial_core",
+        "farm_multi_farm_financial",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        #"security/ir.model.access.csv",
         "views/credit_scoring_views.xml",
         "views/menu.xml",
     ],

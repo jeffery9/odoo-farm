@@ -13,31 +13,19 @@ class StakeholderEngagement(models.Model):
 
     name = fields.Char('Engagement Activity', required=True)
     stakeholder_id = fields.Many2one('res.partner', 'Stakeholder', required=True)
-    stakeholder_type = fields.Selection([
-        'community', 'ngo', 'regulator', 'investor', 'customer', 'employee', 'supplier', 'other'
-    ], string='Stakeholder Type', required=True)
+    stakeholder_type = fields.Selection([('community', 'Community'), ('ngo', 'NGO'), ('regulator', 'Regulator'), ('investor', 'Investor'), ('customer', 'Customer'), ('employee', 'Employee'), ('supplier', 'Supplier'), ('other', 'Other')], string='Stakeholder Type', required=True)
     engagement_date = fields.Date('Engagement Date', required=True)
-    engagement_type = fields.Selection([
-        'meeting', 'survey', 'consultation', 'feedback_session', 'complaint', 'inquiry', 'other'
-    ], string='Engagement Type', required=True)
-    engagement_topic = fields.Selection([
-        'environmental_impact', 'social_impact', 'governance', 'compliance', 'sustainability', 'other'
-    ], string='Engagement Topic')
-    communication_channel = fields.Selection([
-        'in_person', 'virtual', 'written', 'survey', 'public_hearing', 'online', 'other'
-    ], string='Communication Channel')
+    engagement_type = fields.Selection([('meeting', 'Meeting'), ('survey', 'Survey'), ('consultation', 'Consultation'), ('feedback_session', 'Feedback Session'), ('complaint', 'Complaint'), ('inquiry', 'Inquiry'), ('other', 'Other')], string='Engagement Type', required=True)
+    engagement_topic = fields.Selection([('environmental_impact', 'Environmental Impact'), ('social_impact', 'Social Impact'), ('governance', 'Governance'), ('compliance', 'Compliance'), ('sustainability', 'Sustainability'), ('other', 'Other')], string='Engagement Topic')
+    communication_channel = fields.Selection([('in_person', 'In Person'), ('virtual', 'Virtual'), ('written', 'Written'), ('survey', 'Survey'), ('public_hearing', 'Public Hearing'), ('online', 'Online'), ('other', 'Other')], string='Communication Channel')
     participants_count = fields.Integer('Participants Count')
     outcome_summary = fields.Text('Outcome Summary')
     feedback_received = fields.Text('Feedback Received')
     action_items = fields.Text('Action Items')
     action_owner = fields.Many2one('res.users', 'Action Owner')
     action_deadline = fields.Date('Action Deadline')
-    action_status = fields.Selection([
-        'pending', 'in_progress', 'completed', 'cancelled'
-    ], string='Action Status', default='pending')
-    satisfaction_rating = fields.Selection([
-        'very_satisfied', 'satisfied', 'neutral', 'dissatisfied', 'very_dissatisfied'
-    ], string='Satisfaction Rating')
+    action_status = fields.Selection([('pending', 'Pending'), ('in_progress', 'In Progress'), ('completed', 'Completed'), ('cancelled', 'Cancelled')], string='Action Status', default='pending')
+    satisfaction_rating = fields.Selection([('very_satisfied', 'Very Satisfied'), ('satisfied', 'Satisfied'), ('neutral', 'Neutral'), ('dissatisfied', 'Dissatisfied'), ('very_dissatisfied', 'Very Dissatisfied')], string='Satisfaction Rating')
     follow_up_required = fields.Boolean('Follow Up Required')
     next_engagement_date = fields.Date('Next Engagement Date')
     report_year = fields.Integer('Report Year', default=lambda self: fields.Date.context_today(self).year)

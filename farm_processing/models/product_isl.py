@@ -6,7 +6,7 @@ class FarmAgriProduct(models.Model):
     Specialized Agricultural Product extension of ISL architecture
     This extends the centralized farm.product.template model with agricultural specific features
     """
-    _inherit = 'farm.product.template'
+    _inherit = 'product.template'
 
     # --- Specialized Metadata (Sunk from Base) ---
     industry_tag = fields.Selection(selection=[

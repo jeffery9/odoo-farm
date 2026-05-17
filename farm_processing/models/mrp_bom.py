@@ -38,7 +38,7 @@ class MrpBom(models.Model):
     allergen_ids = fields.Many2many('farm.allergen', string="Allergens Involved")
 
 class FarmMrpBomExtension(models.Model):
-    _inherit = 'farm.mrp.bom'
+    _inherit = 'mrp.bom'
 
     is_parameter_required = fields.Boolean("Parameter Required")
     target_temp = fields.Float("Target Temp")

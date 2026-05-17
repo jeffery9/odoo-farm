@@ -11,7 +11,7 @@
     'author': 'Jeffery',
     'depends': ['farm_operation', 'farm_core'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'wizard/trait_comparison_wizard_views.xml',
         'views/nursery_batch_views.xml',
         'views/breeding_views.xml',

@@ -45,7 +45,7 @@ class AgriESGMarketplace(models.Model):
     ], string='Integration Type', default='direct_api')
 
     # Compliance and standards
-    compliance_standards = fields.Many2many('farm.certification', string='Compliance Standards')
+    #compliance_standards removed
     certification_requirement = fields.Text('Certification Requirement')
     audit_frequency = fields.Selection([
         ('monthly', 'Monthly'),
@@ -326,7 +326,7 @@ class AgriWasteResourceTrade(models.Model):
         ('low_grade', 'Low Grade'),
     ], string='Quality Grade', default='standard')
 
-    quality_certifications = fields.Many2many('farm.certification', string='Quality Certifications')
+    #quality_certifications removed
     contamination_level = fields.Float('Contamination Level (%)', help='Level of contamination in the waste')
 
     # Trading information
@@ -358,10 +358,7 @@ class AgriWasteResourceTrade(models.Model):
         ('verified', 'Verified'),
         ('non_compliant', 'Non-Compliant'),
     ], string='Compliance Status', default='pending')
-    required_certifications = fields.Many2many('farm.certification',
-                                             'waste_trade_certifications_rel',
-                                             'trade_id', 'cert_id',
-                                             string='Required Certifications')
+    #required_certifications removed
 
     # Documentation
     trade_agreement = fields.Binary('Trade Agreement', attachment=True)
@@ -402,7 +399,7 @@ class AgriWasteResourceTrade(models.Model):
         for record in self:
             record.total_value = (record.quantity or 0) * (record.unit_price or 0)
 
-    @api.depends('quality_grade', 'contamination_level', 'moisture_content', 'quality_certifications')
+    @api.depends('quality_grade', 'contamination_level', 'moisture_content')
     def _compute_sustainability_score(self):
         """Compute sustainability score based on various factors"""
         for record in self:
@@ -426,7 +423,7 @@ class AgriWasteResourceTrade(models.Model):
                     score += 5   # Minimum for other ranges
 
             # Certifications add to score
-            score += len(record.quality_certifications) * 5
+            pass
 
             record.sustainability_score = min(100, max(0, score))
 

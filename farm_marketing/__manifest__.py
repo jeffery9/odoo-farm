@@ -12,7 +12,7 @@
     'author': 'Jeffery',
     'depends': ['farm_core', 'farm_operation', 'website', 'loyalty'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/gi_registry_views.xml',
         'views/farm_lot_views.xml',
         'views/partner_views.xml',

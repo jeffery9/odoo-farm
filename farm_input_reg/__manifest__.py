@@ -13,7 +13,7 @@
     'author': 'Jeffery',
     'depends': ['farm_supply', 'farm_operation'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'views/input_reg_views.xml',
     ],

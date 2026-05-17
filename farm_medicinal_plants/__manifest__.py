@@ -24,7 +24,7 @@
         'stock',
     ],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/medicinal_plants_operation_views.xml',
         'views/menu.xml',
     ],

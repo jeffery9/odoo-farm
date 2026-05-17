@@ -11,7 +11,7 @@ class AgriManureBatch(models.Model):
     batch_no = fields.Char("Batch No.", default=lambda self: _('New'))
     production_date = fields.Date("Production Date", default=fields.Date.today)
     quantity = fields.Float("Quantity (kg)")
-    lot_source_ids = fields.Many2many('stock.lot', string="Source Animal Lots", domain=[('agricultural_type', 'in', ['animal', 'animal_group'])])
+    lot_source_ids = fields.Many2many('stock.lot', string="Source Animal Lots", )
     location_source_id = fields.Many2one('farm.location', string="Source Location", domain=[('usage', '=', 'internal')]) # e.g., Barn
 
     # 处理方式
