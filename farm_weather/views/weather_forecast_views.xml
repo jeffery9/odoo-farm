@@ -3,7 +3,7 @@
     <!-- Weather Forecast List View -->
     <record id="view_weather_forecast_tree" model="ir.ui.view">
         <field name="name">farm.weather.forecast.list</field>
-        <field name="model">farm.weather.forecast</field>
+        <field name="model">agri.weather.forecast</field>
         <field name="arch" type="xml">
             <list string="Weather Forecast" decoration-danger="is_warning">
                 <field name="date"/>
@@ -22,7 +22,7 @@
     <!-- Weather Forecast Form View -->
     <record id="view_weather_forecast_form" model="ir.ui.view">
         <field name="name">farm.weather.forecast.form</field>
-        <field name="model">farm.weather.forecast</field>
+        <field name="model">agri.weather.forecast</field>
         <field name="arch" type="xml">
             <form string="Weather Detail">
                 <sheet>
@@ -52,7 +52,7 @@
     <!-- Weather Kanban View -->
     <record id="view_weather_forecast_kanban" model="ir.ui.view">
         <field name="name">farm.weather.forecast.kanban</field>
-        <field name="model">farm.weather.forecast</field>
+        <field name="model">agri.weather.forecast</field>
         <field name="arch" type="xml">
             <kanban>
                 <field name="condition"/>
@@ -81,7 +81,7 @@
 
     <record id="action_farm_weather" model="ir.actions.act_window">
         <field name="name">Weather Forecast</field>
-        <field name="res_model">farm.weather.forecast</field>
+        <field name="res_model">agri.weather.forecast</field>
         <field name="view_mode">kanban,list,form</field>
     </record>
 

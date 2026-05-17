@@ -1,3 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <menuitem id="farm_ai_agent_menu_root"
+              name="AI Decision System"
+              sequence="10"
+              parent="farm_ai.menu_ai_root"/>
+
+    <menuitem id="farm_ai_agent_coordination_menu"
+              name="Coordination Layer"
+              parent="farm_ai_agent_menu_root"
+              sequence="10"/>
+
+    <menuitem id="farm_ai_agent_decision_menu"
+              name="Decision Engine"
+              parent="farm_ai_agent_menu_root"
+              sequence="20"/>
+
+    <menuitem id="farm_ai_agent_rules_menu"
+              name="Decision Rules"
+              parent="farm_ai_agent_menu_root"
+              sequence="30"/>
+
+    <menuitem id="farm_ai_agent_workflows_menu"
+              name="Workflows"
+              parent="farm_ai_agent_menu_root"
+              sequence="40"/>
+
 </odoo>

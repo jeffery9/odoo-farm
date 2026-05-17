@@ -3,7 +3,7 @@
     <!-- Digital Twin Scene Views -->
     <record id="view_farm_digital_twin_scene_tree" model="ir.ui.view">
         <field name="name">farm.digital.twin.scene.list</field>
-        <field name="model">farm.digital.twin.scene</field>
+        <field name="model">agri.digital.twin.scene</field>
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
@@ -15,7 +15,7 @@
 
     <record id="view_farm_digital_twin_scene_form" model="ir.ui.view">
         <field name="name">farm.digital.twin.scene.form</field>
-        <field name="model">farm.digital.twin.scene</field>
+        <field name="model">agri.digital.twin.scene</field>
         <field name="arch" type="xml">
             <form>
                 <header>
@@ -56,7 +56,7 @@
 
     <record id="action_farm_digital_twin_scene" model="ir.actions.act_window">
         <field name="name">Digital Twin Scenes</field>
-        <field name="res_model">farm.digital.twin.scene</field>
+        <field name="res_model">agri.digital.twin.scene</field>
         <field name="view_mode">list,form</field>
     </record>
 

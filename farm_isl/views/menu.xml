@@ -1,3 +1,319 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<record id="view_isl_farm_extension_form" model="ir.ui.view">
+        <field name="name">farm.isl.extension.form</field>
+        <field name="model">farm.isl.extension</field>
+        <field name="arch" type="xml">
+            <form string="ISL Industry Extension">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="industry_type"/>
+                            <field name="model_name"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="extension_fields"/>
+                        <field name="extension_methods"/>
+                    </group>
+                </sheet>
+                <footer>
+                    
+                    
+                </footer>
+            </form>
+        </field>
+    </record>
+<record id="view_isl_farm_extension_tree" model="ir.ui.view">
+        <field name="name">farm.isl.extension.tree</field>
+        <field name="model">farm.isl.extension</field>
+        <field name="arch" type="xml">
+            <list string="ISL Industry Extensions">
+                <field name="name"/>
+                <field name="industry_type"/>
+                <field name="model_name"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+<record id="action_isl_farm_extension" model="ir.actions.act_window">
+        <field name="name">Farm ISL Extensions</field>
+        <field name="res_model">farm.isl.extension</field>
+        <field name="view_mode">list,form</field>
+    </record>
+<record id="view_isl_migration_utility_form" model="ir.ui.view">
+        <field name="name">isl.migration.utility.form</field>
+        <field name="model">isl.migration.utility</field>
+        <field name="arch" type="xml">
+            <form string="ISL Migration Utility">
+                <group>
+                    <field name="model_to_migrate"/>
+                    <field name="industry_type"/>
+                </group>
+                <group>
+                    <field name="confirmation" widget="boolean_toggle"/>
+                </group>
+                <footer>
+                    
+                    
+                </footer>
+            </form>
+        </field>
+    </record>
+<record id="action_isl_migration_utility" model="ir.actions.act_window">
+        <field name="name">ISL Data Migration</field>
+        <field name="res_model">isl.migration.utility</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<menuitem id="farm_isl_menu_root"
+              name="ISL Architecture"
+              sequence="100"
+              web_icon="farm_isl,static/description/icon.png"/>
+
+    
+    <menuitem id="farm_isl_manufacturing_menu"
+              name="Manufacturing ISL"
+              parent="farm_isl_menu_root"
+              sequence="10"/>
+
+    <menuitem id="farm_isl_inventory_menu"
+              name="Inventory ISL"
+              parent="farm_isl_menu_root"
+              sequence="20"/>
+
+    <menuitem id="farm_isl_sales_purchase_menu"
+              name="Sales &amp; Purchase ISL"
+              parent="farm_isl_menu_root"
+              sequence="30"/>
+
+    <menuitem id="farm_isl_product_menu"
+              name="Product ISL"
+              parent="farm_isl_menu_root"
+              sequence="40"/>
+
+    <menuitem id="farm_isl_quality_menu"
+              name="Quality ISL"
+              parent="farm_isl_menu_root"
+              sequence="50"/>
+
+    <menuitem id="farm_isl_config_menu"
+              name="Configuration"
+              parent="farm_isl_menu_root"
+              sequence="60"/>
+
+    
+
+    
+
+    
+
+    <menuitem id="menu_isl_farm_extension"
+              name="Farm Extensions"
+              parent="farm_isl_config_menu"
+              action="action_isl_farm_extension"
+              sequence="10"/>
+
+    
+    
+
+    
+
+    <menuitem id="menu_isl_migration_utility"
+              name="Data Migration"
+              parent="farm_isl_config_menu"
+              action="action_isl_migration_utility"
+              sequence="20"/>
 </odoo>

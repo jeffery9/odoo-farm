@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<record id="sustainability_metric_economic_target" model="farm.sustainability.metric">
+<record id="sustainability_metric_economic_target" model="agri.sustainability.metric">
         <field name="name">经济目标达成率</field>
         <field name="code">ECONOMIC_TARGET_RATE</field>
         <field name="category">economic</field>
@@ -10,7 +10,7 @@
         <field name="calculation_method">manual</field>
     </record>
 
-    <record id="sustainability_metric_environmental_score" model="farm.sustainability.metric">
+    <record id="sustainability_metric_environmental_score" model="agri.sustainability.metric">
         <field name="name">环境影响评分</field>
         <field name="code">ENVIRONMENTAL_SCORE</field>
         <field name="category">environmental</field>
@@ -20,7 +20,7 @@
         <field name="calculation_method">manual</field>
     </record>
 
-    <record id="sustainability_metric_social_impact" model="farm.sustainability.metric">
+    <record id="sustainability_metric_social_impact" model="agri.sustainability.metric">
         <field name="name">社会影响力评分</field>
         <field name="code">SOCIAL_IMPACT_SCORE</field>
         <field name="category">social</field>

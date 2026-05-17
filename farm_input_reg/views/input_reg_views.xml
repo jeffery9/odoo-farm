@@ -1,3 +1,182 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!-- 扩展产品模板：兽药登记信息 -->
+    <record id="product_template_form_view_inherit_input_reg" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.input.reg</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='inventory']" position="after">
+                <page string="Input Regulation (China)" name="input_regulation" invisible="not is_agri_input">
+                    <group>
+                        <group>
+                            <field name="is_regulated_input"/>
+                            <field name="reg_cert_no" invisible="not is_regulated_input"/>
+                        </group>
+                        <group>
+                            <field name="is_prohibited_restricted" invisible="not is_regulated_input"/>
+                            <field name="prohibited_reason" invisible="not is_prohibited_restricted"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Extension to add registry lookup functionality -->
+    <record id="product_template_form_view_registry_extension" model="ir.ui.view">
+        <field name="name">product.template.form.registry.extension</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product_template_form_view_inherit_input_reg"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='input_regulation']//group" position="after">
+                <group string="National Registry Lookup">
+                    <field name="registration_database_id" placeholder="Look up registration number in national database..."/>
+                    <button name="action_lookup_registration_no"
+                            string="Lookup Registration No."
+                            type="object"
+                            class="btn-secondary"
+                            invisible="not reg_cert_no"/>
+                </group>
+                <group string="Auto-Populated Safety Information" invisible="not registration_database_id">
+                    <group>
+                        <field name="auto_withdrawal_period_days"/>
+                        <field name="auto_active_ingredient"/>
+                    </group>
+                    <group>
+                        <field name="auto_applicable_crops"/>
+                        <field name="auto_manufacturer_name"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Input Registration Database Tree View -->
+    <record id="view_input_registration_database_tree" model="ir.ui.view">
+        <field name="name">farm.input.registration.database.tree</field>
+        <field name="model">farm.input.registration.database</field>
+        <field name="arch" type="xml">
+            <list string="Input Registration Database"
+                  decoration-success="registration_status == 'active'"
+                  decoration-danger="registration_status in ('expired', 'revoked', 'suspended')"
+                  decoration-warning="is_restricted">
+                <field name="name"/>
+                <field name="registration_no"/>
+                <field name="registration_type"/>
+                <field name="manufacturer_name"/>
+                <field name="active_ingredient"/>
+                <field name="withdrawal_period_days"/>
+                <field name="registration_status"/>
+                <field name="is_restricted"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Input Registration Database Form View -->
+    <record id="view_input_registration_database_form" model="ir.ui.view">
+        <field name="name">farm.input.registration.database.form</field>
+        <field name="model">farm.input.registration.database</field>
+        <field name="arch" type="xml">
+            <form string="Input Registration Database">
+                <header>
+                    <field name="registration_status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Registration Details">
+                            <field name="registration_no"/>
+                            <field name="registration_type"/>
+                            <field name="registration_date"/>
+                            <field name="expiration_date"/>
+                        </group>
+                        <group string="Product Information">
+                            <field name="active_ingredient"/>
+                            <field name="active_ingredient_content"/>
+                            <field name="formulation"/>
+                            <field name="compliance_standard"/>
+                        </group>
+                    </group>
+                    <group string="Manufacturer Information">
+                        <field name="manufacturer_name"/>
+                        <field name="manufacturer_address"/>
+                        <field name="manufacturer_license_no"/>
+                    </group>
+                    <group string="Safety &amp; Usage Information">
+                        <field name="withdrawal_period_days"/>
+                        <field name="safety_interval"/>
+                        <field name="toxicity_class"/>
+                        <field name="is_restricted"/>
+                        <field name="restriction_notes"/>
+                    </group>
+                    <group string="Application Information">
+                        <field name="applicable_crops"/>
+                        <field name="usage_method"/>
+                        <field name="max_usage_rate"/>
+                        <field name="usage_unit"/>
+                    </group>
+                    <group string="Technical Specifications">
+                        <field name="storage_conditions"/>
+                        <field name="shelf_life_months"/>
+                    </group>
+                    <group string="Search &amp; Index">
+                        <field name="search_keywords"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Lookup Wizard Form View -->
+    <record id="view_input_registration_lookup_wizard_form" model="ir.ui.view">
+        <field name="name">farm.input.registration.lookup.wizard.form</field>
+        <field name="model">farm.input.registration.lookup.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Registration Number Lookup">
+                <group>
+                    <field name="product_id"/>
+                    <field name="registration_no"/>
+                </group>
+                <footer>
+                    <button name="action_perform_lookup" string="Lookup in Database" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Menu Items for Input Registration Database -->
+    <menuitem id="menu_input_registry_root"
+              name="Input Registration"
+ web_icon="farm_input_reg,static/description/icon.png"
+              sequence="30"/>
+
+    <menuitem id="menu_input_registration_database"
+              name="Registration Database"
+              parent="menu_input_registry_root"
+              action="action_input_registration_database_list"
+              sequence="10"/>
+
+    <!-- Action for Input Registration Database -->
+    <record id="action_input_registration_database_list" model="ir.actions.act_window">
+        <field name="name">Input Registration Database</field>
+        <field name="res_model">farm.input.registration.database</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- 扩展农事干预表单：操作人身份证号 -->
+    <record id="mrp_production_form_view_inherit_input_reg" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit.input.reg</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='intervention_type']" position="after">
+                <field name="operator_id_card" invisible="intervention_type not in ['protection', 'medical']"/>
+                <button name="action_sync_to_provincial_platform" string="Sync to Regulator" type="object" class="oe_highlight" invisible="intervention_type not in ['protection', 'medical']"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>
