@@ -8,7 +8,7 @@ class TestIntegrationFarmFinancialCore(TransactionCase):
         cls.models_to_check = ['farm.financial.abstract', 'farm.financial.utility.mixin', 'farm.financial.cost.template', 'farm.financial.cost.category']
 
     def test_01_cross_model_dependencies(self):
-        """ Verify that dependencies and XML IDs required by farm_financial_core are available """
+        """ Verify that dependencies and XML IDs required by farm_financial are available """
         menus = self.env['ir.ui.menu'].search([], limit=1)
         self.assertTrue(menus, "Menu registry is accessible")
 

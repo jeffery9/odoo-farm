@@ -10,7 +10,7 @@
         "mail",
         "account",
         "farm_core",
-        "farm_financial_core",
+        "farm_financial",
     ],
     "data": [
         "security/ir.model.access.csv",
@@ -35,6 +35,6 @@
     - Property insurance for farm assets
     - Insurance claim management
 
-    Built on top of the farm_financial_core foundation module.
+    Built on top of the farm_financial foundation module.
     """,
 }

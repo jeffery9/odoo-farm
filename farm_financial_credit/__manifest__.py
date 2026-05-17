@@ -10,7 +10,7 @@
         "mail",
         "account",
         "farm_core",
-        "farm_financial_core",
+        "farm_financial",
         "farm_multi_farm_financial",
     ],
     "data": [
@@ -36,6 +36,6 @@
     - Credit history tracking
     - Default probability calculations
 
-    Built on top of the farm_financial_core foundation module.
+    Built on top of the farm_financial foundation module.
     """,
 }

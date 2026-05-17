@@ -1,3 +1,533 @@
-# No terms found in farm_financial
-msgid "Module farm_financial"
-msgstr "模块 farm_financial"
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* farm_financial_core
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260421\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-04 09:03+0000\n"
+"PO-Revision-Date: 2026-05-04 09:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_abstract__period
+msgid "Accounting period for this financial record"
+msgstr "本财务记录的会计期间"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__message_needaction
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__message_needaction
+msgid "Action Needed"
+msgstr "需要操作"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__active
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__active
+msgid "Active"
+msgstr "有效"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__activity_ids
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__activity_ids
+msgid "Activities"
+msgstr "活动"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__activity_exception_decoration
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "活动异常装饰"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__activity_state
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__activity_state
+msgid "Activity State"
+msgstr "活动状态"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__activity_type_icon
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "活动类型图标"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__amount_adjusted
+msgid "Adjusted Amount"
+msgstr "调整金额"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__amount
+msgid "Amount"
+msgstr "金额"
+
+#. module: farm_financial_core
+#. odoo-python
+#: code:addons/farm_financial_core/models/financial_abstract_models.py:0
+msgid "Amount cannot be negative"
+msgstr "金额不能为负数"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__message_attachment_count
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__message_attachment_count
+msgid "Attachment Count"
+msgstr "附件数量"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__amount_base
+msgid "Base Amount"
+msgstr "基础金额"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_abstract__amount_base
+msgid "Base amount before adjustments"
+msgstr "调整前的基数"
+
+#. module: farm_financial_core
+#: model:ir.model.fields.selection,name:farm_financial_core.selection__farm_financial_abstract__state__cancelled
+msgid "Cancelled"
+msgstr "已取消"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__code
+msgid "Category Code"
+msgstr "类别代码"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__name
+msgid "Category Name"
+msgstr "类别名称"
+
+#. module: farm_financial_core
+#. odoo-python
+#: code:addons/farm_financial_core/models/financial_abstract_models.py:0
+msgid "Category hierarchy is too deep."
+msgstr "类别层次结构太深。"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__child_ids
+msgid "Child Categories"
+msgstr "儿童类别"
+
+#. module: farm_financial_core
+#: model:ir.model.constraint,message:farm_financial_core.constraint_farm_financial_cost_category_code_unique
+msgid "Code must be unique!"
+msgstr "代码必须是唯一的！"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__company_id
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__company_id
+msgid "Company"
+msgstr "公司"
+
+#. module: farm_financial_core
+#: model:ir.model.fields.selection,name:farm_financial_core.selection__farm_financial_abstract__state__confirmed
+msgid "Confirmed"
+msgstr "确认的"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__cost_category_id
+msgid "Cost Category"
+msgstr "成本类别"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__cost_center_id
+msgid "Cost Center"
+msgstr "成本中心"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__type
+msgid "Cost Type"
+msgstr "成本类型"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__cost_per_unit
+msgid "Cost per Unit"
+msgstr "每单位成本"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__created_by
+msgid "Created By"
+msgstr "创建者"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__created_date
+msgid "Created Date"
+msgstr "创建日期"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__create_uid
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__create_date
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__create_date
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__currency_id
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__currency_id
+msgid "Currency"
+msgstr "币种"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__date
+msgid "Date"
+msgstr "日期"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__description
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__description
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__description
+msgid "Description"
+msgstr "描述"
+
+#. module: farm_financial_core
+#: model:ir.model.fields.selection,name:farm_financial_core.selection__farm_financial_cost_category__type__direct
+msgid "Direct Cost"
+msgstr "直接成本"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__direct_labor_cost
+msgid "Direct Labor Cost"
+msgstr "直接人工成本"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__direct_material_cost
+msgid "Direct Material Cost"
+msgstr "直接材料成本"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__display_name
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__display_name
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__display_name
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_utility_mixin__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: farm_financial_core
+#: model:ir.model.fields.selection,name:farm_financial_core.selection__farm_financial_abstract__state__draft
+msgid "Draft"
+msgstr "草稿"
+
+#. module: farm_financial_core
+#. odoo-python
+#: code:addons/farm_financial_core/models/financial_abstract_models.py:0
+msgid "Error creating journal entry: %s"
+msgstr "创建日记条目时出错：%s"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__expected_quantity
+msgid "Expected Quantity"
+msgstr "预计数量"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_cost_template__expected_quantity
+msgid "Expected output quantity for cost calculation"
+msgstr "成本计算的预期产出数量"
+
+#. module: farm_financial_core
+#: model:ir.model,name:farm_financial_core.model_farm_financial_abstract
+msgid "Farm Financial Abstract Model"
+msgstr "农场财务抽象模型"
+
+#. module: farm_financial_core
+#: model:ir.model,name:farm_financial_core.model_farm_financial_cost_category
+msgid "Farm Financial Cost Category"
+msgstr "农场财务成本类别"
+
+#. module: farm_financial_core
+#: model:ir.model,name:farm_financial_core.model_farm_financial_cost_template
+msgid "Farm Financial Cost Template"
+msgstr "农场财务成本模板"
+
+#. module: farm_financial_core
+#: model:ir.model,name:farm_financial_core.model_farm_financial_utility_mixin
+msgid "Farm Financial Utility Mixin"
+msgstr "农场金融公用事业 Mixin"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__account_id
+msgid "Financial Account"
+msgstr "金融账户"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__period
+msgid "Financial Period"
+msgstr "财务期间"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__fiscal_year
+msgid "Fiscal Year"
+msgstr "会计年度"
+
+#. module: farm_financial_core
+#: model:ir.model.fields.selection,name:farm_financial_core.selection__farm_financial_cost_category__type__fixed
+msgid "Fixed Cost"
+msgstr "固定成本"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__message_follower_ids
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__message_follower_ids
+msgid "Followers"
+msgstr "关注者"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__message_partner_ids
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "关注者（合作伙伴）"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_abstract__activity_type_icon
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_cost_template__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "字体很棒的图标，例如fa 任务"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__has_message
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__has_message
+msgid "Has Message"
+msgstr "有留言"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__id
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__id
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__id
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_utility_mixin__id
+msgid "ID"
+msgstr "ID"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__activity_exception_icon
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__activity_exception_icon
+msgid "Icon"
+msgstr "图标"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_abstract__activity_exception_icon
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_cost_template__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "指示异常活动的图标。"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_abstract__message_needaction
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_cost_template__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "如果选中，则有新消息需要您注意。"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_abstract__message_has_error
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_abstract__message_has_sms_error
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_cost_template__message_has_error
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_cost_template__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "如果检查，则某些消息存在传送错误。"
+
+#. module: farm_financial_core
+#: model:ir.model.fields.selection,name:farm_financial_core.selection__farm_financial_cost_category__type__indirect
+msgid "Indirect Cost"
+msgstr "间接成本"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__message_is_follower
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__message_is_follower
+msgid "Is Follower"
+msgstr "是追随者"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__last_modified_date
+msgid "Last Modified"
+msgstr "最后修改时间"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__last_modified_by
+msgid "Last Modified By"
+msgstr "最后修改者"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__write_uid
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__write_date
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__write_date
+msgid "Last Updated on"
+msgstr "最后更新时间"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__message_has_error
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__message_has_error
+msgid "Message Delivery error"
+msgstr "消息投递错误"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__message_ids
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__message_ids
+msgid "Messages"
+msgstr "消息"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__my_activity_date_deadline
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "我的活动截止日期"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__activity_date_deadline
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "下一个活动截止日期"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__activity_summary
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__activity_summary
+msgid "Next Activity Summary"
+msgstr "下一步活动总结"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__activity_type_id
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__activity_type_id
+msgid "Next Activity Type"
+msgstr "下一个活动类型"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__message_needaction_counter
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__message_needaction_counter
+msgid "Number of Actions"
+msgstr "动作数量"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__message_has_error_counter
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__message_has_error_counter
+msgid "Number of errors"
+msgstr "错误数"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_abstract__message_needaction_counter
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_cost_template__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "需要采取行动的消息数量"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_abstract__message_has_error_counter
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_cost_template__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "发送错误的消息数"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__overhead_cost
+msgid "Overhead Cost"
+msgstr "管理费用"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__parent_id
+msgid "Parent Category"
+msgstr "家长类别"
+
+#. module: farm_financial_core
+#: model:ir.model.fields.selection,name:farm_financial_core.selection__farm_financial_abstract__state__posted
+msgid "Posted"
+msgstr "已过账"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__project_id
+msgid "Project"
+msgstr "项目"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__rating_ids
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__rating_ids
+msgid "Ratings"
+msgstr "评级"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__name
+msgid "Reference"
+msgstr "参考"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__activity_user_id
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__activity_user_id
+msgid "Responsible User"
+msgstr "负责用户"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__message_has_sms_error
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "短信投递错误"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_category__sequence
+msgid "Sequence"
+msgstr "序号"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__state
+msgid "Status"
+msgstr "状态"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_abstract__activity_state
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_cost_template__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__code
+msgid "Template Code"
+msgstr "模板代码"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__name
+msgid "Template Name"
+msgstr "模板名称"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__total_cost
+msgid "Total Cost"
+msgstr "总成本"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_abstract__activity_exception_decoration
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_cost_template__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "记录的异常活动的类型。"
+
+#. module: farm_financial_core
+#: model:ir.model.fields.selection,name:farm_financial_core.selection__farm_financial_cost_category__type__variable
+msgid "Variable Cost"
+msgstr "可变成本"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_abstract__website_message_ids
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__website_message_ids
+msgid "Website Messages"
+msgstr "网站消息"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_abstract__website_message_ids
+#: model:ir.model.fields,help:farm_financial_core.field_farm_financial_cost_template__website_message_ids
+msgid "Website communication history"
+msgstr "网站沟通历史"
+
+#. module: farm_financial_core
+#: model:ir.model.fields,field_description:farm_financial_core.field_farm_financial_cost_template__workcenter_id
+msgid "Work Center"
+msgstr "工作中心"

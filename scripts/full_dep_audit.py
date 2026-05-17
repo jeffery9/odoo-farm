@@ -18,7 +18,7 @@ dep_graph = {m: [d for d in get_manifest_deps(m) if d in modules] for m in modul
 
 # 1. Layer Definitions based on our recent refactoring
 layer_0 = ['farm_core', 'agri_iot', 'farm_isl']
-layer_1 = ['farm_operation', 'farm_supply', 'farm_iot', 'farm_multi_farm', 'farm_financial_core', 'farm_equipment', 'farm_hr', 'farm_marketing', 'farm_agri_science', 'farm_mrp', 'farm_ux']
+layer_1 = ['farm_operation', 'farm_supply', 'farm_iot', 'farm_multi_farm', 'farm_financial', 'farm_equipment', 'farm_hr', 'farm_marketing', 'farm_agri_science', 'farm_mrp', 'farm_ux']
 layer_2_industry = ['farm_crop', 'farm_livestock', 'farm_aquaculture', 'farm_apiculture', 'farm_mushroom', 'farm_orchard_horticulture', 'farm_viticulture']
 layer_2_functional = [m for m in modules if m not in layer_0 + layer_1 + layer_2_industry and not m.startswith('farm_ai')]
 layer_3 = [m for m in modules if m.startswith('farm_ai')]

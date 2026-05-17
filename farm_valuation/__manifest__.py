@@ -17,7 +17,7 @@
         "account",
         "product",
         "farm_biological_valuation",  # Consolidated biological asset valuation
-        "farm_financial_core",  # Core financial foundation
+        "farm_financial",  # Core financial foundation
         "farm_financial_valuation",  # Financial valuation specialization
     ],
     "data": [
