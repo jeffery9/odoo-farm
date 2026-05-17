@@ -7,3 +7,4 @@ from . import procurement_allocation_line
 from . import procurement_planning_line
 from . import procurement_planning
 from . import extension_models
+from . import coop_aggregation
