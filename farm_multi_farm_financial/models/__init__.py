@@ -7,3 +7,4 @@ from . import extension_models
 from . import credit_transaction
 from . import dividend_line
 from . import account_move_extension
+from . import dividend_automation

@@ -1,2 +1,3 @@
 from . import farm_booking
 from . import agritourism_operation
+from . import agritainment_workshop
