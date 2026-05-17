@@ -1,6 +1,8 @@
 # Odoo Farm
 
-> **智慧农业全链路数字化底座 / Full-Chain Smart Agriculture OS**
+<div align="center">
+  <img src="docs/business/marketing/odoo_farm_poster.svg" alt="Odoo Farm 19.0 Banner" width="100%">
+</div>
 
 ```mermaid
 graph TD
