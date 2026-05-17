@@ -323,6 +323,14 @@
 ## 7. The Deep JA Model (日本农协深度本地化模式)
 > 将日本 JA（农协）体系的金融、品控与互助养老精髓，通过底层代码进行数字化复刻。
 
-*   **[S50] 惠顾额分红 (Patronage Dividends)**: 突破传统股份制，系统将 50% 的分红额度与农户的“交易量(化肥购买/农产品统销)”强绑定。越忠诚，分红越高。
-*   **[S51] 营农指导与品牌护城河 (Brand SOP Enforcement)**: 若农户未按合作社要求按时打药（如迟报、IoT探测违规），系统触发 agri.intervention.mixin 拦截，自动将产出物降级为“统货 (Commodity)”，剥夺使用“村集体高溢价白牌”的资格。
-*   **[S52] 土地银行与农业养老金 (Land Banking & Pension)**: 80岁老农将撂荒地流转至 farm_land_mgmt（土地银行），合作社统筹机收后，系统自动扣除 10% 利润作为“养老金 (Pension)”打入老农的 internal.settlement 账户。
+### Scenario 50: Patronage Dividends (按交易量返还分红：打破吃大锅饭的死局)
+* **业务痛点**：传统合作社年底分红只看“土地入股多少”，导致农民不愿意把高品质农产品卖给合作社（私下高价卖给贩子）。
+* **Odoo Farm 破局**：系统引入了 **Patronage（惠顾额）** 分红引擎 (dividend.distribution)。年底利润的 50% 严格按照农户今年在合作社“买了多少化肥”和“交了多少蔬菜”的交易额 (Trading Volume) 比例分红。用代码逼迫农户对合作社保持绝对忠诚！
+
+### Scenario 51: Strict Brand SOP Enforcement (营农指导降维打击：统一品牌护城河)
+* **业务痛点**：农户为了图省事，不按合作社的 SOP 打药，导致残留超标，砸了村集体的招牌。
+* **Odoo Farm 破局**：若农户未按规定时间窗口点击完成“打药”任务，或 IoT 探测出违规用药，agri.intervention.mixin 将无情触发拦截。系统在农产品入库时自动将其降级为“统货 (Commodity)”，彻底剥夺使用“村集体高溢价白牌”的资格。用极权级的代码捍卫集体品牌。
+
+### Scenario 52: Land Banking & Pension for the Aging (土地银行与撂荒地拯救计划)
+* **业务痛点**：80岁老农干不动了，土地面临撂荒（耕作放棄地）。年轻人想种地但没地。
+* **Odoo Farm 破局**：老农在系统中将土地所有权“托管”给合作社的土地银行 (farm_land_mgmt)。合作社利用这块地统一引入大型农机作业。作为回报，系统每年自动将这块地产出的 10% 利润作为**“农业养老金 (Pension)”**，精准打入老农的 internal.settlement 账户。完美解决农村空心化痛点。
