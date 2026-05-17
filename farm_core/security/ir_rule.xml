@@ -24,5 +24,16 @@
             <field name="perm_create" eval="1"/>
             <field name="perm_unlink" eval="1"/>
         </record>
+    
+        <record id="rule_agri_location_owner_hierarchy" model="ir.rule">
+            <field name="name">Farm Owner: See Own, Subordinate, or Unassigned Plots</field>
+            <field name="model_id" ref="farm_core.model_agri_location"/>
+            <field name="domain_force">['|', '|', ('original_owner_id', '=', user.partner_id.id), ('original_owner_id.parent_id', '=', user.partner_id.id), ('original_owner_id', '=', False)]</field>
+            <field name="groups" eval="[(4, ref('farm_core.group_farm_specialist'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
     </data>
 </odoo>
