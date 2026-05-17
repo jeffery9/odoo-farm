@@ -1,5 +1,11 @@
 # Odoo Farm
 
+: 智慧农业全链路数字化解决方案 / Full-Chain Smart Agriculture Solution
+
+[Chinese](#chinese) | [English](#english)
+
+---
+
 ## 🌟 核心亮点：降维打击的商业能力 (The 3-Tier Edge)
 
 除了 Odoo 原生的进销存财能力，Odoo Farm 在以下三个维度实现了对传统农业 ERP 的降维打击：
@@ -16,11 +22,7 @@
 
 3. **[F2P 消费端生态矩阵 (C2M Ecosystem Hub)](docs/business/marketing/C2M_ECOSYSTEM_VISION.md)**
    打通 C 端 App 与 Odoo 合作社之间的桥梁，创造基于“冰箱消耗率”的 C2M 订单农业与生态闭环。
-: 智慧农业全链路数字化解决方案 / Full-Chain Smart Agriculture Solution
 
-[Chinese](#chinese) | [English](#english)
-
----
 
 <a name="chinese"></a>
 ## 中文版 (Chinese)
