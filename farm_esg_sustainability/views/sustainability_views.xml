@@ -67,7 +67,7 @@
     
     <record id="farm_ecological_activity_view_tree" model="ir.ui.view">
         <field name="name">farm.ecological.activity.list</field>
-        <field name="model">farm.ecological.activity</field>
+        <field name="model">agri.ecological.activity</field>
         <field name="arch" type="xml">
             <list string="Ecological Activities">
                 <field name="date"/>
@@ -80,7 +80,7 @@
 
     <record id="action_farm_ecological_activity" model="ir.actions.act_window">
         <field name="name">Ecological Maintenance</field>
-        <field name="res_model">farm.ecological.activity</field>
+        <field name="res_model">agri.ecological.activity</field>
         <field name="view_mode">list,form</field>
     </record>
 

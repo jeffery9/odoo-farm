@@ -1,3 +1,443 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<record id="action_supply_chain_carbon_data_engine" model="ir.actions.act_window">
+        <field name="name">Supply Chain Carbon Data Collection</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agri.supply.chain.carbon.data.engine</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Collect Carbon Footprint Data Across Supply Chain
+            </p>
+            <p>
+                Automate collection of carbon emission data from suppliers, logistics, production, and warehousing.
+            </p>
+        </field>
+    </record>
+
+    
+    <record id="view_supply_chain_carbon_data_engine_tree" model="ir.ui.view">
+        <field name="name">agri.supply.chain.carbon.data.engine.tree</field>
+        <field name="model">agri.supply.chain.carbon.data.engine</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="data_source_type"/>
+                <field name="partner_id"/>
+                <field name="total_emissions"/>
+                <field name="calculation_standard"/>
+                <field name="compliance_status"/>
+                <field name="collection_status"/>
+            </list>
+        </field>
+    </record>
+
+    
+    <record id="view_supply_chain_carbon_data_engine_form" model="ir.ui.view">
+        <field name="name">agri.supply.chain.carbon.data.engine.form</field>
+        <field name="model">agri.supply.chain.carbon.data.engine</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_start_collection" type="object" string="Start Collection" class="btn-primary" invisible="collection_status != 'draft'"/>
+                    <button name="action_complete_collection" type="object" string="Complete Collection" class="btn-success" invisible="collection_status != 'in_progress'"/>
+                    <button name="action_verify_data" type="object" string="Verify Data" class="btn-info" invisible="verification_status != 'pending'"/>
+                    <button name="action_trigger_real_time_monitoring" type="object" string="Real-time Monitor" class="btn-warning"/>
+                    <field name="collection_status" widget="statusbar" statusbar_visible="draft,in_progress,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_supply_chain_carbon_data_engine)d" type="action" class="oe_stat_button" icon="fa-leaf">
+                            <field string="Carbon Data Collections" name="name" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="data_source_type"/>
+                            <field name="collection_date"/>
+                        </group>
+                        <group>
+                            <field name="calculation_standard"/>
+                            <field name="data_quality_score"/>
+                            <field name="verification_status"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Emissions Data">
+                            <group>
+                                <group string="Scope Emissions">
+                                    <field name="scope_1_emissions"/>
+                                    <field name="scope_2_emissions"/>
+                                    <field name="scope_3_emissions"/>
+                                    <field name="total_emissions"/>
+                                </group>
+                                <group string="Compliance">
+                                    <field name="compliance_status"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Related Entities">
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="product_id"/>
+                                <field name="location_id"/>
+                                <field name="logistics_route_id"/>
+                            </group>
+                        </page>
+
+                        <page string="Carbon Ledger Integration">
+                            <field name="related_carbon_ledger_ids" nolabel="1" context="{'default_supply_chain_data_id': id}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    
+    <record id="action_supply_chain_carbon_reduction_strategy" model="ir.actions.act_window">
+        <field name="name">AI Carbon Reduction Strategy</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agri.supply.chain.carbon.reduction.strategy</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                AI-driven Carbon Reduction Strategies
+            </p>
+            <p>
+                Generate intelligent recommendations for reducing carbon emissions across the supply chain with ROI analysis.
+            </p>
+        </field>
+    </record>
+
+    
+    <record id="view_supply_chain_carbon_reduction_strategy_tree" model="ir.ui.view">
+        <field name="name">agri.supply.chain.carbon.reduction.strategy.tree</field>
+        <field name="model">agri.supply.chain.carbon.reduction.strategy</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="strategy_type"/>
+                <field name="potential_reduction"/>
+                <field name="reduction_percentage"/>
+                <field name="roi_percentage"/>
+                <field name="implementation_status"/>
+            </list>
+        </field>
+    </record>
+
+    
+    <record id="view_supply_chain_carbon_reduction_strategy_form" model="ir.ui.view">
+        <field name="name">agri.supply.chain.carbon.reduction.strategy.form</field>
+        <field name="model">agri.supply.chain.carbon.reduction.strategy</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_generate_ai_recommendation" type="object" string="Generate AI Recommendation" class="btn-primary"/>
+                    <button name="action_implement_strategy" type="object" string="Implement Strategy" class="btn-info" invisible="implementation_status != 'recommended'"/>
+                    <button name="action_complete_implementation" type="object" string="Complete Implementation" class="btn-success" invisible="implementation_status != 'in_progress'"/>
+                    <field name="implementation_status" widget="statusbar" statusbar_visible="recommended,planning,in_progress,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_supply_chain_carbon_reduction_strategy)d" type="action" class="oe_stat_button" icon="fa-magic">
+                            <field string="AI Strategies" name="name" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="strategy_type"/>
+                            <field name="strategy_date"/>
+                        </group>
+                        <group>
+                            <field name="reduction_percentage"/>
+                            <field name="potential_reduction"/>
+                            <field name="roi_percentage"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Carbon Impact Analysis">
+                            <group>
+                                <group string="Emissions Impact">
+                                    <field name="current_emissions"/>
+                                    <field name="projected_emissions"/>
+                                    <field name="potential_reduction"/>
+                                    <field name="reduction_percentage"/>
+                                </group>
+                                <group string="ROI Analysis">
+                                    <field name="implementation_cost"/>
+                                    <field name="annual_savings"/>
+                                    <field name="payback_period_months"/>
+                                    <field name="roi_percentage"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="AI Recommendation">
+                            <group>
+                                <field name="ai_recommendation" colspan="2"/>
+                                <field name="recommendation_confidence"/>
+                                <field name="implementation_complexity"/>
+                                <field name="effectiveness_score"/>
+                            </group>
+                        </page>
+
+                        <page string="Related Entities">
+                            <group>
+                                <field name="partner_id"/>
+                                <field name="product_category_id"/>
+                                <field name="logistics_route_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    
+    <record id="action_supplier_carbon_compliance" model="ir.actions.act_window">
+        <field name="name">Supplier Carbon Compliance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agri.supplier.carbon.compliance</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Manage Supplier Carbon Compliance
+            </p>
+            <p>
+                Track and manage carbon emissions compliance for suppliers with scorecards and incentive programs.
+            </p>
+        </field>
+    </record>
+
+    
+    <record id="view_supplier_carbon_compliance_tree" model="ir.ui.view">
+        <field name="name">agri.supplier.carbon.compliance.tree</field>
+        <field name="model">agri.supplier.carbon.compliance</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="supplier_carbon_score"/>
+                <field name="carbon_performance_rating"/>
+                <field name="compliance_status"/>
+                <field name="incentive_eligible"/>
+            </list>
+        </field>
+    </record>
+
+    
+    <record id="view_supplier_carbon_compliance_form" model="ir.ui.view">
+        <field name="name">agri.supplier.carbon.compliance.form</field>
+        <field name="model">agri.supplier.carbon.compliance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_create_improvement_plan" type="object" string="Create Improvement Plan" class="btn-warning" invisible="compliance_status != 'non_compliant'"/>
+                    <button name="action_generate_incentive_programs" type="object" string="Generate Incentives" class="btn-success" invisible="not incentive_eligible"/>
+                    <button name="action_update_compliance_status" type="object" string="Update Status" class="btn-info"/>
+                    <field name="compliance_status" widget="statusbar" statusbar_visible="pending,partial_compliant,compliant,non_compliant"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_supplier_carbon_compliance)d" type="action" class="oe_stat_button" icon="fa-balance-scale">
+                            <field string="Supplier Compliance" name="name" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="supplier_category"/>
+                        </group>
+                        <group>
+                            <field name="supplier_carbon_score"/>
+                            <field name="carbon_performance_rating"/>
+                            <field name="incentive_eligible"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Carbon Metrics">
+                            <group>
+                                <group string="Emissions Data">
+                                    <field name="carbon_footprint_tco2e"/>
+                                    <field name="carbon_intensity_kgco2e_per_kg"/>
+                                </group>
+                                <group string="Reduction Tracking">
+                                    <field name="carbon_reduction_target"/>
+                                    <field name="achieved_reduction"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Compliance &amp; Certification">
+                            <group>
+                                <group>
+                                    <field name="carbon_certification_ids" widget="many2many_tags"/>
+                                    <field name="verification_date"/>
+                                    <field name="next_verification_date"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Improvement &amp; Incentives">
+                            <group string="Improvement Plan">
+                                <field name="improvement_plan" colspan="2"/>
+                                <field name="target_date_for_improvement"/>
+                            </group>
+                            <group string="Incentive Programs">
+                                <field name="incentive_programs" colspan="2"/>
+                            </group>
+                        </page>
+
+                        <page string="Historical Data">
+                            <field name="historical_compliance_ids" nolabel="1" context="{'default_compliance_id': id}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    
+    <record id="action_carbon_neutrality_certification" model="ir.actions.act_window">
+        <field name="name">Carbon Neutrality Certification</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">agri.carbon.neutrality.certification</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Carbon Neutrality Certification &amp; Reporting
+            </p>
+            <p>
+                Manage carbon neutrality, net zero, and climate positive certifications with verification and reporting.
+            </p>
+        </field>
+    </record>
+
+    
+    <record id="view_carbon_neutrality_certification_tree" model="ir.ui.view">
+        <field name="name">agri.carbon.neutrality.certification.tree</field>
+        <field name="model">agri.carbon.neutrality.certification</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="certification_type"/>
+                <field name="certification_scope"/>
+                <field name="net_balance"/>
+                <field name="is_carbon_neutral"/>
+                <field name="certification_status"/>
+                <field name="certification_expires"/>
+            </list>
+        </field>
+    </record>
+
+    
+    <record id="view_carbon_neutrality_certification_form" model="ir.ui.view">
+        <field name="name">agri.carbon.neutrality.certification.form</field>
+        <field name="model">agri.carbon.neutrality.certification</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_apply_certification" type="object" string="Apply" class="btn-primary" invisible="certification_status != 'applied'"/>
+                    <button name="action_start_review" type="object" string="Start Review" class="btn-info" invisible="certification_status != 'applied'"/>
+                    <button name="action_verify_data" type="object" string="Verify Data" class="btn-warning" invisible="certification_status != 'under_review'"/>
+                    <button name="action_issue_certification" type="object" string="Issue Certification" class="btn-success" invisible="not is_carbon_neutral or certification_status not in ['pending', 'under_review']"/>
+                    <button name="action_generate_compliance_report" type="object" string="Compliance Report" class="btn-info"/>
+                    <field name="certification_status" widget="statusbar" statusbar_visible="applied,under_review,pending,certified"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_carbon_neutrality_certification)d" type="action" class="oe_stat_button" icon="fa-certificate">
+                            <field string="Certifications" name="name" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="certification_type"/>
+                            <field name="certification_scope"/>
+                        </group>
+                        <group>
+                            <field name="certification_number"/>
+                            <field name="certification_expires"/>
+                            <field name="certification_status"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Carbon Balance">
+                            <group>
+                                <group string="Emissions &amp; Removals">
+                                    <field name="total_emissions"/>
+                                    <field name="total_removals"/>
+                                    <field name="net_balance"/>
+                                    <field name="is_carbon_neutral"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Verification &amp; Standards">
+                            <group>
+                                <group>
+                                    <field name="verification_body"/>
+                                    <field name="verification_date"/>
+                                    <field name="certification_standard"/>
+                                    <field name="third_party_certifier"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Offsets &amp; Projects">
+                            <group>
+                                <field name="offset_projects" colspan="2"/>
+                                <field name="offset_certification_standards" colspan="2"/>
+                            </group>
+                        </page>
+
+                        <page string="Reporting">
+                            <group string="Compliance Report">
+                                <field name="compliance_report" colspan="2" nolabel="1"/>
+                            </group>
+                            <group string="Verification Report">
+                                <field name="verification_report" filename="verification_report_name"/>
+                                <field name="verification_report_name" invisible="1"/>
+                            </group>
+                        </page>
+
+                        <page string="Related Data">
+                            <field name="carbon_data_ids" widget="many2many_tags" context="{'default_data_source_type': 'external_api'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
 </odoo>
