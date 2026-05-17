@@ -1,8 +1,8 @@
-# Odoo Farm 19.0: 24 Futuristic Commercial Scenarios (21大商业落地场景)
+# Odoo Farm 19.0: 28 Futuristic Commercial Scenarios (21大商业落地场景)
 
 > **Document Note / 文档说明**: 
-> This document archives the 24 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
-> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 24 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
+> This document archives the 28 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
+> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 28 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
 
 ---
 
@@ -140,7 +140,28 @@
 * **Solution / 解决方案**: The cooperative invests in a shared roasting/drying facility (farm_multi_farm_equipment). 20 farmers book time slots to process their raw harvest. The farm_processing module meticulously traces the yield. 500kg of Farmer A raw leaves turn into 100kg of premium roasted tea. The system generates a co-branded label (farm_marketing) allowing Farmer A to sell the value-added product directly at a 5x profit margin. / 合作社集体出资购买一套烘焙/干燥设备作为共享资产。20 户农民在系统上预约时段加工自己的鲜果。加工模块精准溯源：农户 A 的 500kg 鲜叶产出了 100kg 特级烤茶。系统自动生成联合品牌标签，让农户 A 能以成品形式直接面向市场，毛利翻 5 倍。
 * **Value / 商业价值**: Empowers smallholders to climb the value chain, transforming raw material producers into artisanal branded producers. / 赋能小农户向上攀登价值链，实现从“底层原料供应商”到“高溢价品牌工匠”的阶级跃升。
 
-## 7. Beautiful Countryside & Rural Revitalization (美丽乡村与农旅融合)
+
+### Scenario 25: Wild Foraging & Artisan Processing (非木材林产品：野生采集与工匠级加工溯源)
+* **Pain Point / 业务痛点**: High-value wild-foraged products (like matsutake mushrooms, wild ginseng, or truffles) are often mixed with inferior cultivated products by brokers, depriving the actual foragers of the true premium value. / 高价值的野生非木材林产品（如松茸、野山参、野生菌）在流通环节常被中间商与人工劣质品混档，真实的采山人拿不到应有的极高溢价。
+* **Solution / 解决方案**: A forager uses the Odoo Farm Mobile App in the mountains offline. When they harvest a wild truffle, they snap a photo; the app logs the exact GPS coordinates and timestamp (agri.evidence.mixin). Back at the village, the truffle enters an 'Artisan Processing' intervention (e.g., flash-freezing or slice drying) recorded in the farm_processing module. The final packaging prints a QR code. When scanned, the consumer sees a 3D map pinpointing the exact wild mountain slope where this specific truffle was found, along with the artisan's processing log. / 采山人在深山离线状态下使用移动端 App。采到一颗极品松茸时拍照，系统自动锁定精准的 GPS 坐标与时间戳作为不可篡改的证据。下山后，这颗松茸进入合作社的“工匠级加工”流程（如冻干切片），由加工模块全程记录。最终包装生成的二维码，消费者扫码后能看到 3D 地图上精准标记的“野生出土地点”以及老手艺人的加工日志。
+* **Value / 商业价值**: Transforms a raw, unverified wild product into a cryptographically verified 'luxury' agricultural good, ensuring the foraging smallholder captures the maximum market premium. / 将无法自证的野生土特产转化为带有密码学证据的“奢侈级”农产品，用科技自证清白，确保采山人赚取极致的自然溢价。
+
+
+### Scenario 26: Village Collective Dividend Distribution (村集体经济：股份分红自动结算)
+* **Pain Point / 业务痛点**: Managing shares and distributing dividends for village collectives is manually intensive and lacks transparency, often leading to disputes. / 村集体经济组织（如村办合作社）在管理村民股份和年终分红时，依靠人工记账，不透明且极易产生纠纷。
+* **Solution / 解决方案**: The farm_multi_farm_financial module tracks each villager shareholding (land contribution or cash). Throughout the year, all cooperative profits (from sales, processing, or agritourism) are logged. At year-end, the system automatically calculates the dividend for each family based on their specific share ratio and triggers an internal payment batch. A public report is generated for village-wide auditing. / 多农场财务模块精准记录每户村民的占股比例（如土地入股、资金入股）。全年的销售、加工、农旅收入在系统内沉淀。年终结算时，系统一键按股比例自动算出分红金额，并生成批量付款清单，同时自动产出全村透明审计报告。
+* **Value / 商业价值**: Codifies Common Prosperity by ensuring absolute fairness and transparency in collective wealth distribution, reducing governance friction. / 用代码固化“共同富裕”，确保集体收益分配的绝对公平透明，极大降低乡村治理成本与矛盾。
+
+### Scenario 27: Mobile Agri-Service Teams (农事“服务队”：流动的专业化服务站)
+* **Pain Point / 业务痛点**: Specialized equipment like large sprayers or harvesters is underutilized if only used by one owner, while smallholders cannot afford to buy them. / 专业植保无人机或大型收割机如果只服务于单一农场，设备利用率极低；而小农户又无力购买专业服务。
+* **Solution / 解决方案**: Professional Service Teams are established as independent entities in Odoo. Using farm_operation and farm_iot, they manage a fleet of mobile equipment. Smallholders book services via their phones. The system dispatches the team, logs the work via GPS and IoT, and automatically bills the farmer upon completion. / 成立专业的“农事服务队”并在系统中独立核算。利用作业模块与 IoT 管理移动设备。小农户在手机端“下单”购买植保或收割服务。系统自动派工、自动 GPS 轨迹打卡，并在完工后向农户发起结算。
+* **Value / 商业价值**: Professionalizes rural labor, creating a specialized service economy that maximizes high-value equipment utilization across thousands of small plots. / 实现农村劳动力的专业化转型，建立高效的农业服务经济，让高价值农机服务于千家万户。
+
+### Scenario 28: Digital Land Rights and Leaseback Management (地权“明白账”：数字化土地流转与返租倒包)
+* **Pain Point / 业务痛点**: Land consolidation (leasing land from many smallholders to a single large operator) is complex to track, with rent payments and boundary disputes being constant headaches. / 土地流转（从分散农户手中租地）过程复杂，租金发放、地块边界争议、租期管理是农场主最大的头疼点。
+* **Solution / 解决方案**: The farm_land_mgmt module maps every smallholder plot using GIS. The system manages the Leaseback contracts, automatically notifying the operator of upcoming rent payments. If a plot is consolidated into a larger field, the original ownership DNA is preserved in the system. / 土地管理模块利用 GIS 将每户农户的权属地块进行数字化建模。系统管理所有返租合同，自动提醒租金发放。即便地块被合并为大田，系统依然保留其原始权属“DNA”。
+* **Value / 商业价值**: Provides a digital foundation for large-scale land consolidation while protecting the fundamental rights of smallholder owners. / 为大规模土地流转提供数字化底座，在实现适度规模经营的同时，保护农户的底层权益。
+\n## 7. Beautiful Countryside & Rural Revitalization (美丽乡村与农旅融合)
 
 > **Context / 背景**: Rural revitalization is more than just crop yields; it is about ecological livability, cultural heritage, and integrating agriculture with tourism (Agritourism). This section demonstrates how Odoo Farm supports the Beautiful Countryside initiative by monetizing rural aesthetics, managing eco-tourism, and preserving community governance.
 > 乡村振兴不仅关乎产量，更关乎生态宜居、乡风文明以及一二三产融合（农旅融合）。本章节展示 Odoo Farm 如何支撑“美丽乡村”建设，将乡村美学变现，管理生态旅游，并助力透明规范的乡村治理。
