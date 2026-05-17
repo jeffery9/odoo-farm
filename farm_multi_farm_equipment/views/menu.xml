@@ -1,3 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<menuitem id="multi_farm_equipment_menu"
+              name="Equipment Management"
+              parent="farm_multi_farm.menu_multi_farm_root"
+              sequence="60"/>
+
+    
+              name="Shared Machinery"
+              parent="multi_farm_equipment_menu"
+              sequence="10"/>
+
+              name="Machinery Rental"
+              action="action_machinery_rental"
+              sequence="10"/>
+
+    
+    <menuitem id="equipment_pool_menu"
+              name="Equipment Pool"
+              sequence="20"/>
 </odoo>

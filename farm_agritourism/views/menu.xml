@@ -1,3 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <menuitem id="menu_farm_agritourism_root"
+              name="Agritourism"
+ web_icon="farm_agritourism,static/description/icon.png"
+              sequence="30"/>
+
+    <menuitem id="menu_agritourism_bookings"
+              name="Bookings"
+              parent="menu_farm_agritourism_root"
+              action="action_farm_booking"
+              sequence="10"/>
+
+    <menuitem id="menu_agritourism_activities"
+              name="Activities"
+              parent="menu_farm_agritourism_root"
+              action="project.action_project_task"
+              sequence="20"/>
+
+    <menuitem id="menu_agritourism_members"
+              name="Members"
+              parent="menu_farm_agritourism_root"
+              sequence="30"/>
 </odoo>

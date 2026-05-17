@@ -1,3 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <!-- Processing Formula Blind Material Tree View -->
+    <record id="view_farm_processing_blind_material_tree" model="ir.ui.view">
+        <field name="name">farm.processing.blind.material.tree</field>
+        <field name="model">farm.processing.blind.material</field>
+        <field name="arch" type="xml">
+            <list string="Blind Mixing Materials">
+                <field name="formula_bom_id"/>
+                <field name="product_id"/>
+                <field name="actual_qty"/>
+                <field name="instruction_qty"/>
+                <field name="sequence"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Processing Formula Blind Material Form View -->
+    <record id="view_farm_processing_blind_material_form" model="ir.ui.view">
+        <field name="name">farm.processing.blind.material.form</field>
+        <field name="model">farm.processing.blind.material</field>
+        <field name="arch" type="xml">
+            <form string="Blind Mixing Material">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="formula_bom_id"/>
+                            <field name="product_id"/>
+                        </group>
+                        <group>
+                            <field name="sequence"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Quantities">
+                            <field name="actual_qty"/>
+                            <field name="instruction_qty"/>
+                        </group>
+                        <group string="Access Control">
+                            <field name="actual_qty" groups="farm_core.group_confidential_access"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Formula Auto Correction Tree View -->
+    <record id="view_farm_processing_formula_auto_correction_tree" model="ir.ui.view">
+        <field name="name">farm.processing.formula.auto.correction.tree</field>
+        <field name="model">farm.processing.formula.auto.correction</field>
+        <field name="arch" type="xml">
+            <list string="Formula Auto Corrections">
+                <field name="name"/>
+                <field name="bom_id"/>
+                <field name="base_attribute"/>
+                <field name="target_attribute_value"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Formula Auto Correction Form View -->
+    <record id="view_farm_processing_formula_auto_correction_form" model="ir.ui.view">
+        <field name="name">farm.processing.formula.auto.correction.form</field>
+        <field name="model">farm.processing.formula.auto.correction</field>
+        <field name="arch" type="xml">
+            <form string="Formula Auto Correction Rule">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="bom_id"/>
+                        </group>
+                        <group>
+                            <field name="base_attribute"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group string="Correction Parameters">
+                        <field name="correction_function"/>
+                        <field name="target_attribute_value"/>
+                        <field name="tolerance_range"/>
+                        <field name="correction_factor"/>
+                    </group>
+                    <group string="Affected BOM Lines">
+                        <field name="bom_line_corrections">
+                            <list editable="top">
+                                <field name="bom_line_id"/>
+                                <field name="adjustment_type"/>
+                                <field name="adjustment_value"/>
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
 </odoo>
