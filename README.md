@@ -10,8 +10,8 @@
 
 除了 Odoo 原生的进销存财能力，Odoo Farm 在以下三个维度实现了对传统农业 ERP 的降维打击：
 
-1. **[49 大科幻级商业闭环场景 (The Top 49 Showcases)](docs/business/marketing/SCENARIOS_SHOWCASE.md)**
-   涵盖了从地里的基因溯源、温室大棚的微气候拦截，到供应链的 FEFO 调度，再到消费端的“丑果盲盒”与“时间银行”等 49 个全真实业务落地场景。
+1. **[49 大科幻级商业闭环场景 (The Global Scenario Showcases)](docs/business/marketing/SCENARIOS_SHOWCASE.md)**
+   涵盖了从地里的基因溯源、温室大棚的微气候拦截，到供应链的 FEFO 调度，再到消费端的“丑果盲盒”与“时间银行”等 海量全真实业务落地场景。
    👉 *[深度阅读：Odoo Farm 与日本农协 (JA) 模式落地指南](docs/business/marketing/THE_JA_MODEL_PLAYBOOK.md)*
    👉 *[快速阅读：精选 Top 8 农业大客户营销路演画册](docs/business/marketing/TOP_8_SHOWCASE_PITCH.md)*
 
