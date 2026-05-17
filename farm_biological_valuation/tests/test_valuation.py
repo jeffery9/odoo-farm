@@ -9,7 +9,7 @@ class TestBiologicalValuation(TransactionCase):
         # Create a dummy asset
         cls.Asset = cls.env['agri.biological.asset'].create({
             'name': 'Test Apple Tree',
-            'asset_type': 'crop',
+            'agricultural_type': 'tree',
         })
         
     def test_01_valuation_creation(self):
