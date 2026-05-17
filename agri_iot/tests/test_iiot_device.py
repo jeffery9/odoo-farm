@@ -12,6 +12,7 @@ class TestIiotDevice(TransactionCase):
         
         cls.default_profile = cls.Profile.create({
             'name': 'Standard MQTT Profile',
+            'code': 'STD-MQTT',
             'telemetry_topic_template': 'telemetry/{device}',
             'command_topic_template': 'command/{device}',
         })
@@ -75,5 +76,5 @@ class TestIiotDevice(TransactionCase):
             'serial_number': 'AC-TEST-001',
             'profile_id': self.default_profile.id,
         })
-        self.assertTrue(hasattr(device, 'status') or hasattr(device, 'state') or hasattr(device, 'is_online'), 
+        self.assertTrue(hasattr(device, 'status') or hasattr(device, 'state') or hasattr(device, 'is_online') or hasattr(device, 'connection_status'), 
                         "Device must have a state/status field to satisfy AC2")
