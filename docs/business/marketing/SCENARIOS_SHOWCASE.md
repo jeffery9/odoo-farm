@@ -318,3 +318,11 @@
 * **Pain Point / 业务痛点**: Smallholders sell raw bulk vegetables at rock-bottom prices. Middlemen take the bulk, wash it, pack it into plastic clamshells, and sell it to city supermarkets at a 400 percent markup. The farmers do all the hard work but capture none of the retail premium. / 农民以极低的“地头价”卖出散装毛菜。中间商拉走后，清洗、分拣、装入精美的塑料透明盒，转身以 400% 的溢价卖给城市超市。农民流了最多的汗，却连一毛钱的零售溢价都赚不到。
 * **Solution / 解决方案**: The Odoo Farm ecosystem powers a completely self-owned supply chain. 1. Collection: The cooperative issues daily harvest quotas to 50 smallholders. Farmers drop off raw, muddy carrots at the village hub. Odoo logs the exact weight and origin for each farmer. 2. Cooperative Processing: The cooperative runs its own packing facility. A processing work order is generated to wash and repack 500kg of bulk carrots into 1,000 branded 500g retail clamshells. The system automatically creates a multi-output BOM. 3. Direct Logistics: The branded boxes are routed directly to 10 community fresh supermarkets owned by the cooperative. 4. Community Retail: A city resident buys the carrots using Odoo POS. The final retail revenue flows back into the farm_multi_farm_financial module, ensuring the retail markup is distributed as year-end dividends back to the 50 smallholders. / Odoo Farm 赋能一套完全自营的超级供应链：1. 集采：合作社向 50 户小农下发配额，精准记录每户交送带泥毛菜的重量与批次。2. 合作社自营分装：Odoo 自动生成加工单，将散装毛菜清洗打包成“村集体品牌”精品净菜，通过 BOM 精确核算包装耗材和村内人工成本。3. 城配直供：净菜装上合作社冷链车，Odoo 物流模块直接调度配送至城里由合作社直营的社区生鲜超市。4. 社区零售：城市大妈在社区超市通过 Odoo POS 结账。这笔巨额零售利润最终流回 Odoo 多农场财务模块，在年底作为分红全额返还给那 50 户种地的农民。
 * **Value / 商业价值**: Achieves the holy grail of agricultural economics: complete elimination of the middleman. By empowering the cooperative to own the processing and retail endpoints, smallholders capture 100 percent of the value-chain markup. / 实现了农业经济学的终极圣杯：全链路“截流”中间商。通过赋能合作社自建分装厂和直营渠道，让小农群体史无前例地吃干榨净 100% 的全产业链利润溢价。
+
+
+## 7. The Deep JA Model (日本农协深度本地化模式)
+> 将日本 JA（农协）体系的金融、品控与互助养老精髓，通过底层代码进行数字化复刻。
+
+*   **[S50] 惠顾额分红 (Patronage Dividends)**: 突破传统股份制，系统将 50% 的分红额度与农户的“交易量(化肥购买/农产品统销)”强绑定。越忠诚，分红越高。
+*   **[S51] 营农指导与品牌护城河 (Brand SOP Enforcement)**: 若农户未按合作社要求按时打药（如迟报、IoT探测违规），系统触发 agri.intervention.mixin 拦截，自动将产出物降级为“统货 (Commodity)”，剥夺使用“村集体高溢价白牌”的资格。
+*   **[S52] 土地银行与农业养老金 (Land Banking & Pension)**: 80岁老农将撂荒地流转至 farm_land_mgmt（土地银行），合作社统筹机收后，系统自动扣除 10% 利润作为“养老金 (Pension)”打入老农的 internal.settlement 账户。
