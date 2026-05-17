@@ -15,7 +15,7 @@
 
 ---
 
-## 2. 49 大场景 STDD 物理落地盘点 (The 49 Scenario Validations)
+## 2. 众多商业场景 STDD 物理落地盘点 (The 49 Scenario Validations)
 
 经过代码级审计，以下极其复杂的商业逻辑均已配备自动化测试防护网：
 

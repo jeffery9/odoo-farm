@@ -1,8 +1,8 @@
-# Odoo Farm 19.0: 52 Futuristic Commercial Scenarios
+# Odoo Farm 19.0: Evolving Commercial Scenarios
 
 > **Document Note / 文档说明**: 
-> This document archives the 52 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
-> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 49 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
+> This document archives the evolving list of visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
+> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 众多全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
 
 ---
 
@@ -228,7 +228,7 @@
 
 ---
 
-## 9. Deep Processing & Advanced Supply Chain (精深加工与高阶供应链)
+## 8. Deep Processing & Advanced Supply Chain (精深加工与高阶供应链)
 
 > **Context / 背景**: Raw agricultural products have low profit margins and high volatility. The true wealth lies in deep processing and hyper-efficient supply chains. This section explores how Odoo Farm handles multi-stage industrial food processing and advanced supply chain orchestration (C2M, FEFO).
 > 初级农产品毛利低且波动大，真正的财富密码在于精深加工与极致高效的供应链网络。本章节探索 Odoo Farm 如何驾驭多级工业化食品深加工，以及高阶供应链调度（如 C2M 反向定制、FEFO 动态保质期物流）。
@@ -255,7 +255,7 @@
 
 ---
 
-## 10. Omnichannel Market & Consumer Experience (全渠道市场与极致消费者体验)
+## 9. Omnichannel Market & Consumer Experience (全渠道市场与极致消费者体验)
 
 > **Context / 背景**: The final step of the agricultural value chain is the consumer. This section illustrates how Odoo Farm integrates e-commerce, live-streaming, and point-of-sale (POS) systems to build brand loyalty, reduce food waste, and deliver personalized health solutions directly to the end-user.
 > 价值链的最后一环是消费者。本章节展示 Odoo Farm 如何整合电商、直播带货与线下门店（POS）等全渠道，构建品牌忠诚度、减少食物浪费，并将个性化的健康饮食方案直接交付给终端消费者。
@@ -282,7 +282,7 @@
 
 ---
 
-## 11. The Localized JA Model (日本农协模式的中国化落地)
+## 10. The Localized JA Model (日本农协模式的中国化落地)
 
 > **Context / 背景**: The Japanese Agricultural Cooperatives (JA) model is famous for providing cradle-to-grave services for smallholders, encompassing finance, insurance, supply chain, and retail. This section demonstrates how Odoo Farm localizes this powerful Comprehensive Cooperative model for the Chinese rural revitalization context, transforming fragmented villages into highly organized, financially independent mega-cooperatives.
 > 日本农协（JA）模式以其为小农户提供从金融、保险到农资、零售的“从摇篮到坟墓”全方位服务而闻名。本章节展示 Odoo Farm 如何将这种强大的“综合性合作社”模式进行中国化落地，将一盘散沙的乡村转化为高度组织化、财务独立的超级合作社。
@@ -309,7 +309,7 @@
 
 ---
 
-## 12. The Ultimate Farm-to-Community Loop (终极农企直链：从泥土到社区生鲜的自治闭环)
+## 11. The Ultimate Farm-to-Community Loop (终极农企直链：从泥土到社区生鲜的自治闭环)
 
 > **Context / 背景**: True wealth generation for smallholders only happens when they control the value-added steps (packing/branding) and own the distribution channel down to the community level. This section details the ultimate closed-loop model: Smallholder Collection -> Cooperative Packing Hub -> Community Fresh Supermarket -> Consumer.
 > 只有当小农户组织起来，将高附加值环节（包装/分装）掌握在自己手里，并直通社区终端渠道时，才能实现真正的财富增值。本章展示终极闭环模式：小农集采 -> 合作社自有分装厂 -> 社区生鲜超市直营 -> 终端消费者。
@@ -320,7 +320,7 @@
 * **Value / 商业价值**: Achieves the holy grail of agricultural economics: complete elimination of the middleman. By empowering the cooperative to own the processing and retail endpoints, smallholders capture 100 percent of the value-chain markup. / 实现了农业经济学的终极圣杯：全链路“截流”中间商。通过赋能合作社自建分装厂和直营渠道，让小农群体史无前例地吃干榨净 100% 的全产业链利润溢价。
 
 
-## 7. The Deep JA Model (日本农协深度本地化模式)
+## 12. The Deep JA Model (日本农协深度本地化模式)
 > 将日本 JA（农协）体系的金融、品控与互助养老精髓，通过底层代码进行数字化复刻。
 
 ### Scenario 50: Patronage Dividends (按交易量返还分红：打破吃大锅饭的死局)

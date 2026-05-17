@@ -141,5 +141,5 @@ sequenceDiagram
 ---
 
 > 💡 **Explore the Full Potential**
-> 这仅仅是 49 大场景中的冰山一角。Odoo Farm 19.0 是全球唯一一个能够同时驾驭 **“制药级工业逻辑”** 与 **“中国熟人社会乡土逻辑”** 的终极农业产业互联网底座。
+> 这仅仅是 众多商业场景中的冰山一角。Odoo Farm 19.0 是全球唯一一个能够同时驾驭 **“制药级工业逻辑”** 与 **“中国熟人社会乡土逻辑”** 的终极农业产业互联网底座。
 > **Contact us to explore how we can architect your multi-billion dollar agricultural empire.**

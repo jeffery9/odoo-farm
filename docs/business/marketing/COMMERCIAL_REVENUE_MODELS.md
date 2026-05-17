@@ -1,8 +1,8 @@
 # Odoo Farm 19.0: Commercial Revenue Models (商业变现与盈利模式白皮书)
 
 > **Document Note / 文档说明**: 
-> The system is ready. This whitepaper answers the ultimate commercial question: Where does our revenue come from? Odoo Farm is not just a traditional software product; it is an ecosystem platform. Based on its 4-layer architecture and 49 commercial scenarios, we have designed the following multi-dimensional monetization strategies.
-> 系统已经 Ready。本白皮书用于解答最核心的商业命题——“我们的米（收入）从哪里来？”。Odoo Farm 绝不仅是一个卖代码的传统软件，它是一个生态平台。基于其 4 层架构和 49 大商业场景，我们设计了以下多维度的降维打击式盈利模式。
+> The system is ready. This whitepaper answers the ultimate commercial question: Where does our revenue come from? Odoo Farm is not just a traditional software product; it is an ecosystem platform. Based on its 4-layer architecture and numerous commercial scenarios, we have designed the following multi-dimensional monetization strategies.
+> 系统已经 Ready。本白皮书用于解答最核心的商业命题——“我们的米（收入）从哪里来？”。Odoo Farm 绝不仅是一个卖代码的传统软件，它是一个生态平台。基于其 4 层架构和 不断演进的商业场景库，我们设计了以下多维度的降维打击式盈利模式。
 
 ---
 
