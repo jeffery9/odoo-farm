@@ -16,7 +16,7 @@
         "farm_agri_science"
     ],
     "data": [
-        #"security/ir.model.access.csv",
+        "security/ir.model.access.csv",
         "views/ai_agent_views.xml",
         "views/ai_decision_engine_views.xml",
         "views/mission_orchestrator_views.xml",

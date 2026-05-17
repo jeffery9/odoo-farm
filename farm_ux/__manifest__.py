@@ -24,7 +24,7 @@
         'farm_core'
     ],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'data/term_mapping_data.xml',
         'data/form_layout_template_data.xml',
         'data/visual_status_indicator_data.xml',

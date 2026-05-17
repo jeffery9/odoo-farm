@@ -13,7 +13,7 @@
     'author': 'Jeffery',
     'depends': ['farm_core', 'farm_operation', 'hr_timesheet'],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'views/farm_checkin_views.xml',
         'views/farm_evidence_views.xml',

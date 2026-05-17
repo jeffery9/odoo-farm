@@ -21,7 +21,7 @@
         "farm_financial_valuation",  # Financial valuation specialization
     ],
     "data": [
-        #"security/ir.model.access.csv",
+        "security/ir.model.access.csv",
         "data/ir_sequence_data.xml",
         "views/biological_asset_valuation_views.xml",
         "views/market_price_views.xml",

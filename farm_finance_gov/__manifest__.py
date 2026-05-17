@@ -18,7 +18,7 @@
     ],
     'auto_install': False,  # Don't auto-install deprecated module
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'report/project_fund_report_templates.xml',
         'report/project_fund_reports.xml',
         'views/finance_gov_views.xml',
