@@ -1,8 +1,8 @@
-# Odoo Farm 19.0: 32 Futuristic Commercial Scenarios (21大商业落地场景)
+# Odoo Farm 19.0: 36 Futuristic Commercial Scenarios (21大商业落地场景)
 
 > **Document Note / 文档说明**: 
-> This document archives the 32 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
-> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 32 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
+> This document archives the 36 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
+> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 36 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
 
 ---
 
@@ -209,3 +209,23 @@
 * **Pain Point / 业务痛点**: In premium winemaking, individual barrels age differently. Traditional ERPs lose the link between a specific plot of grapes and the specific barrel it aged in. / 在高端酿酒业，不同橡木桶的陈酿效果差异巨大。传统 ERP 往往在葡萄入瓮后就失去了对地块、批次与具体橡木桶之间一一对应关系的追踪。
 * **Solution / 解决方案**: The farm_winery module uses stock.lot to track not just the wine, but the Vessel Identity (Barrels). When wine is transferred from tank to barrel, the system preserves the Plot-to-Barrel DNA. The farm_quality module logs monthly sensory profiles for each barrel. At the final blending stage, the AI model (farm_ai) recommends which specific barrels should be pooled for the Grand Vin versus the secondary label. / 酿酒模块利用批次追踪记录“容器身份（橡木桶）”。当原酒入桶时，系统保留“地块-橡木桶”的关联 DNA。质检模块记录每个桶每月的感官评价。最终调配阶段，AI 视觉与数据模型辅助推荐哪些桶应该进入“正牌酒”，哪些进入“副牌酒”。
 * **Value / 商业价值**: Provides 100% granular traceability for artisanal winemakers, enabling premium pricing for single-barrel or single-plot special editions. / 为工匠级酒庄提供 100% 的精细化溯源，支撑起“单桶”或“单地块”限量版的高额溢价。
+
+### Scenario 33: Floriculture Cold Chain & Vase Life Prediction (花卉鲜切：极致冷链与瓶插期预测)
+* **Pain Point / 业务痛点**: Fresh cut flowers degrade rapidly if the cold chain is broken. Wholesalers reject shipments if they suspect a short vase life, leading to massive disputes. / 鲜切花在冷链断裂时会迅速衰败。批发商常因怀疑“瓶插期”太短而拒收，导致巨额贸易纠纷。
+* **Solution / 解决方案**: The farm_floriculture module ties directly into farm_supply_logistics. Smart IoT dataloggers in the shipping truck continuously stream temperature data to Odoo. If the temperature exceeds 4C for more than 30 minutes, the AI module instantly recalculates and downgrades the predicted Vase Life of that specific flower lot from 14 days to 5 days, automatically triggering a price discount or rerouting to a closer local market. / 花卉模块与冷链物流深度绑定。货车内的 IoT 记录仪实时回传温度。一旦温度超过 4℃ 达半小时，AI 模块瞬间重算并降低该批次鲜花的预期“瓶插期”（从 14 天降至 5 天），自动触发价格折扣或紧急将货单改派至更近的本地市场。
+* **Value / 商业价值**: Turns invisible cold-chain damage into actionable data, preventing complete shipment losses through dynamic AI-driven logistics rerouting. / 将看不见的冷链损伤转化为可量化的数据，通过 AI 动态改派挽救整车货损。
+
+### Scenario 34: Edible Fungi Chamber Orchestration (食用菌工厂化：微环境舱的极致发酵控制)
+* **Pain Point / 业务痛点**: Growing premium mushrooms (like Enoki or Shiitake) indoors requires exact parts-per-million control of CO2, light, and humidity across multiple growth phases. / 工厂化培育高端食用菌（如金针菇、香菇）需要在多个生长阶段对二氧化碳、光照和湿度进行 PPM 级别的极致控制。
+* **Solution / 解决方案**: The farm_mushroom and farm_fermentation modules manage Climate Chambers as discrete Work Centers. A single Mushroom Batch moves through Incubation, Pinning, and Fruiting phases. Odoo automatically downloads the specific recipe (e.g., Drop temp to 12C, spike CO2 to 2000ppm) to the PLC controllers via farm_iot for each specific phase, without any human intervention. / 食用菌与发酵模块将“微环境舱”定义为独立工作中心。一批菌菇经历发菌、催蕾、出菇阶段时，Odoo 通过 IoT 自动向下位机 PLC 下发对应阶段的环境配方指令（如：“降温至12℃，CO2 拉升至 2000ppm”），全程无人化。
+* **Value / 商业价值**: Achieves pharmaceutical-grade precision in industrial agriculture, maximizing yield and consistency for highly sensitive fungi crops. / 在工厂化农业中实现制药级的控制精度，将极度敏感的菌菇产量与稳定性拉满。
+
+### Scenario 35: Medicinal Plants Active Ingredient Traceability (道地药材：有效成分溯源与 GAP 合规)
+* **Pain Point / 业务痛点**: Traditional Chinese Medicine (TCM) herbs are valued based on their geographic origin and the concentration of active ingredients, but falsification is rampant. / 中药材（如人参、三七）的价值完全取决于“道地性”及有效成分含量，但市场造假猖獗。
+* **Solution / 解决方案**: The farm_medicinal_plants module enforces GAP (Good Agricultural Practices). Every harvesting intervention logs the exact GPS coordinates and soil data (proving geographic authenticity). The farm_quality module stores the lab results (HPLC) for specific active ingredients (e.g., Ginsenosides). The final product label links directly to these tamper-proof, geo-tagged lab results. / 中药材模块强制执行 GAP 规范。每次采收必须记录精确 GPS 和土壤数据以证明“道地性”。质检模块接入实验室液相色谱（HPLC）数据，记录人参皂苷等有效成分的精确含量。最终药材标签直连这些不可篡改的带位置标记的检验报告。
+* **Value / 商业价值**: Secures premium pricing for authentic medicinal herbs by providing irrefutable, digital proof of geographic origin and active ingredient potency. / 提供无法辩驳的道地性与有效成分数字铁证，捍卫顶级中药材的超额溢价。
+
+### Scenario 36: Agrivoltaics and Solar Sharing Management (农光互补：光伏板下的农业双栖收益)
+* **Pain Point / 业务痛点**: Farms with solar panels struggle to optimize both crop yield and electricity generation, often treating them as two separate, conflicting businesses. / 部署了光伏板的农场难以平衡农作物产量与发电量，往往将二者视为冲突的独立业务。
+* **Solution / 解决方案**: The farm_green_monitor integrates with the solar inverter API to track daily electricity generated and revenue. Simultaneously, the farm_crop module tracks the shade-tolerant crops grown underneath. The Dashboard unifies both metrics, calculating the Total Revenue per Acre (Crops + Energy). The AI engine optimizes the tilt of the solar panels (if motorized) to balance the crop Daily Light Integral needs against peak electricity pricing. / 绿电模块对接光伏逆变器 API，追踪每日发电量与收益；种植模块追踪板下的喜阴作物产量。控制台统一计算“单亩综合收益（农产+绿电）”。AI 引擎甚至能根据作物当日的需光量（DLI）和电价波峰，自动计算并调整光伏板的最优倾斜角度。
+* **Value / 商业价值**: Maximizes land efficiency by fusing energy production and agriculture into a single, highly optimized economic model. / 将能源生产与农业深度融合为一个极度优化的经济模型，把土地的空间利用率逼向极限。
