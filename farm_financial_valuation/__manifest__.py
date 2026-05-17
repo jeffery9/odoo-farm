@@ -11,7 +11,7 @@
         "account",
         "stock",
         "farm_core",
-        "farm_financial_core",
+        "farm_financial",
         "farm_biological_valuation",  # Using the consolidated module created earlier
     ],
     "data": [
@@ -36,7 +36,7 @@
     - Revaluation accounting entries
     - Growth stage coefficient management
 
-    Built on top of the farm_financial_core foundation module.
+    Built on top of the farm_financial foundation module.
     NOTE: This module uses the consolidated farm_biological_valuation module for core valuation functionality.
     """,
 }

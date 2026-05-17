@@ -2,11 +2,11 @@
 from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
-class TestDeepCoverageFarmFinancial(TransactionCase):
+class TestDeepCoverageFarmFinancialCore(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = []
+        cls.models_to_test = ['farm.financial.cost.template', 'farm.financial.cost.category', 'farm.financial.abstract']
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """

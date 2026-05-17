@@ -64,7 +64,7 @@ class FarmCropYieldInsurance(models.Model):
     weather_monitoring = fields.Boolean('Weather Monitoring', default=True)
 
     # Claim management
-    claim_ids = fields.One2many('farm.insurance.claim', 'policy_id', string="Claims")
+    # claim_ids = fields.One2many('farm.insurance.claim', 'insurance_id', string="Claims")
     claim_amount = fields.Monetary('Total Claim Amount', currency_field='currency_id', default=0)
     claim_status = fields.Selection([
         ('no_claim', 'No Claim'),

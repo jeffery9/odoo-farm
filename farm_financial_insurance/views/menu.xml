@@ -2,7 +2,7 @@
 <odoo>
 <menuitem id="farm_financial_insurance_menu_root"
               name="Insurance"
-              parent="farm_financial_core.farm_financial_core_menu_root"
+              parent="farm_financial.farm_financial_menu_root"
               sequence="40"/>
 
     <menuitem id="menu_farm_crop_yield_insurance"

@@ -10,7 +10,7 @@
         - Critical alerts and safety status
     """,
     'author': 'Jeffery',
-    'depends': ['farm_operation', 'farm_weather', 'farm_iot', 'farm_financial_core'],
+    'depends': ['farm_operation', 'farm_weather', 'farm_iot', 'farm_financial'],
     'data': [
         'views/farm_dashboard_views.xml',
     ],
