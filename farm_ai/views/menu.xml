@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <menuitem id="menu_ai_root"
-              name="AI & Intelligence"
+              name="AI &amp; Intelligence"
               sequence="100"
               web_icon="farm_ai,static/description/icon.png"/>
     

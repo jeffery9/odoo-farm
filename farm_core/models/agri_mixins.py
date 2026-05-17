@@ -421,8 +421,12 @@ class ClearingEngineMixin(models.AbstractModel):
     quality_fingerprint = fields.Text("Quality Fingerprint")
     clearing_status = fields.Selection([('draft', 'Drafting'), ('settled', 'Settled')], default='draft')
 
+    @api.depends('clearing_status')
     def _compute_impact_credits(self):
         for record in self:
+            if not record.id or not isinstance(record.id, int):
+                record.impact_credits = 0.0
+                continue
             entries = self.env['agri.clearing.ledger'].search([
                 ('source_ref', '=', '%s,%d' % (record._name, record.id)), ('state', '=', 'confirmed')
             ])
