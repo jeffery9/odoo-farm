@@ -25,3 +25,4 @@ from . import industry_isl
 from . import missing_models
 
 from . import processing_wizards
+from . import cip_routing
