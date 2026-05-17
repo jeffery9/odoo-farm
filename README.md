@@ -99,6 +99,7 @@ Odoo Farm 将庞杂的农业切割为极易部署的工具链：
 1. **[精选 Top 8 农业商业闭环场景 (The Top 8 Showcases)](docs/business/marketing/TOP_8_SHOWCASE_PITCH.md)**
    从制药级 CIP 物理防线、多叉树基因溯源，到无抵押数据微贷与按交易量返还分红，为您精选 8 个极具震撼力的真实业务场景。
    👉 *[深度阅读：Odoo Farm 与日本农协 (JA) 模式落地指南](docs/business/marketing/THE_JA_MODEL_PLAYBOOK.md)*
+   👉 *[深度阅读：Odoo Farm 与浙江安吉“农旅一二三产融合”模式落地指南](docs/business/marketing/THE_ZHEJIANG_MODEL_PLAYBOOK.md)*
 
 2. **[坚如磐石的数据隐私 (Absolute Data Privacy)](docs/business/analysis/DATA_ISOLATION_RLS_DESIGN.md)**
    在一个村集体（或合作社）共用一套系统时，最怕的就是数据“串门”。Odoo Farm 完美适配了“村集体 -> 承包大户 -> 散户”的复杂社会结构：
