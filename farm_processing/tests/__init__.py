@@ -5,3 +5,4 @@ from . import test_integration_flows
 
 from . import test_deep_coverage
 from . import test_cip_allergen_routing
+from . import test_byproduct_upcycling
