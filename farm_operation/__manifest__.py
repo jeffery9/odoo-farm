@@ -20,6 +20,7 @@
     'depends': ['farm_core', 'farm_agri_science', 'mrp', 'project', 'farm_ux', 'sale', 'agri_iot'],
     'data': [
         # 'security/ir.model.access.csv',
+        'security/ir_rule.xml',
         'wizard/farm_dispatch_wizard_views.xml',
         'wizard/agri_science_sync_wizard_views.xml',
         'views/menu.xml',
