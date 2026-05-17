@@ -10,7 +10,7 @@ class TestFloricultureColdChain(TransactionCase):
 
     def test_01_vase_life_downgrade(self):
         """ Scenario 33: Floriculture Cold Chain & Vase Life Prediction """
-        mo = self.env['farm.floriculture.production'].create({
+        mo = self.env['farm.flower.order'].create({
             'product_id': self.rose.id,
             'product_qty': 1000,
             'vase_life_days': 14

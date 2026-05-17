@@ -12,7 +12,7 @@
     'author': 'Jeffery',
     'depends': ['farm_core', 'point_of_sale'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         ],
     'images': ['static/description/main_screenshot.png'],
     'installable': True,

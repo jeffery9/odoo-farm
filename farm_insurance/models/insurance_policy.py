@@ -12,7 +12,7 @@ class CropYieldInsurancePolicy(models.Model):
     partner_id = fields.Many2one('res.partner', string="Policy Holder", required=True)
     product_id = fields.Many2one('product.template', string="Insured Crop", required=True)
     location_id = fields.Many2one('farm.location', string="Insured Location", required=True)
-    farm_entity_id = fields.Many2one('farm.entity', string="Farm Entity")
+    farm_entity_id = fields.Many2one('res.partner', string="Farm Entity")
 
     sum_insured = fields.Monetary("Sum Insured", currency_field='currency_id')
     premium_rate = fields.Float("Premium Rate (%)", digits=(5, 2), required=True)

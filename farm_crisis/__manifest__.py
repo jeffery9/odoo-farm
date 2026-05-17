@@ -10,9 +10,9 @@
         - Incident Logging & Reporting
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'farm_safety'],
+    'depends': ['farm_core', 'farm_safety', 'sale'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/crisis_views.xml',
     ],
     'images': ['static/description/main_screenshot.png'],

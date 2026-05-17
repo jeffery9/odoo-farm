@@ -23,12 +23,8 @@ class FairTradeCertificate(models.Model):
     fair_trade_premium = fields.Float('Fair Trade Premium (%)', help='Percentage premium paid to producers')
     covered_products = fields.Many2many('product.product', string='Covered Products')
     covered_farms = fields.Many2many('res.partner', string='Covered Farms')
-    certificate_type = fields.Selection([
-        'fair_trade_intl', 'fair_trade_usa', 'fair_for_life', 'worldfairtrade', 'other'
-    ], string='Certificate Type', default='fair_trade_intl')
-    status = fields.Selection([
-        'applied', 'under_review', 'certified', 'suspended', 'expired', 'revoked'
-    ], string='Status', default='applied', required=True)
+    certificate_type = fields.Selection([('fair_trade_intl', 'Fairtrade International'), ('fair_trade_usa', 'Fair Trade USA'), ('fair_for_life', 'Fair for Life'), ('worldfairtrade', 'WFTO'), ('other', 'Other')], string='Certificate Type', default='fair_trade_intl')
+    status = fields.Selection([('applied', 'Applied'), ('under_review', 'Under Review'), ('certified', 'Certified'), ('suspended', 'Suspended'), ('expired', 'Expired'), ('revoked', 'Revoked')], string='Status', default='applied', required=True)
     annual_audit_date = fields.Date('Annual Audit Date')
     next_audit_date = fields.Date('Next Audit Date')
     compliance_score = fields.Float('Compliance Score', help='Score based on audit results')
@@ -91,9 +87,7 @@ class FairTradePremiumAllocation(models.Model):
     certificate_id = fields.Many2one('farm.esg.fair.trade.certificate', 'Certificate', required=True)
     allocation_date = fields.Date('Allocation Date', required=True)
     amount = fields.Float('Amount', required=True)
-    allocation_type = fields.Selection([
-        'community_investment', 'producer_bonus', 'infrastructure', 'education', 'healthcare', 'other'
-    ], string='Allocation Type', required=True)
+    allocation_type = fields.Selection([('community_investment', 'Community Investment'), ('producer_bonus', 'Producer Bonus'), ('infrastructure', 'Infrastructure'), ('education', 'Education'), ('healthcare', 'Healthcare'), ('other', 'Other')], string='Allocation Type', required=True)
     description = fields.Text('Description')
     beneficiaries = fields.Text('Beneficiaries')
     impact_measure = fields.Text('Impact Measure')
@@ -168,9 +162,7 @@ class CommunityInvestment(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char('Investment Name', required=True)
-    investment_type = fields.Selection([
-        'employment', 'infrastructure', 'education', 'healthcare', 'environmental', 'social_welfare', 'other'
-    ], string='Investment Type', required=True)
+    investment_type = fields.Selection([('employment', 'Employment'), ('infrastructure', 'Infrastructure'), ('education', 'Education'), ('healthcare', 'Healthcare'), ('environmental', 'Environmental'), ('social_welfare', 'Social Welfare'), ('other', 'Other')], string='Investment Type', required=True)
     amount = fields.Float('Amount')
     beneficiaries_count = fields.Integer('Number of Beneficiaries')
     location = fields.Char('Location')
@@ -179,9 +171,7 @@ class CommunityInvestment(models.Model):
     impact_assessment = fields.Text('Impact Assessment')
     evidence_attachments = fields.Binary('Evidence Attachments', attachment=True)
     reported_by = fields.Many2one('res.users', 'Reported By')
-    project_status = fields.Selection([
-        'planned', 'in_progress', 'completed', 'cancelled'
-    ], string='Project Status', default='planned')
+    project_status = fields.Selection([('planned', 'Planned'), ('in_progress', 'In Progress'), ('completed', 'Completed'), ('cancelled', 'Cancelled')], string='Project Status', default='planned')
     start_date = fields.Date('Start Date')
     end_date = fields.Date('End Date')
     annual_recurring = fields.Boolean('Annual Recurring')
@@ -229,16 +219,12 @@ class LaborCondition(models.Model):
 
     name = fields.Char('Condition Name', required=True)
     employee_id = fields.Many2one('hr.employee', 'Employee', required=True)
-    condition_type = fields.Selection([
-        'safety_training', 'health_cert', 'insurance_coverage', 'working_hours', 'wage_compliance', 'other'
-    ], string='Condition Type', required=True)
+    condition_type = fields.Selection([('safety_training', 'Safety Training'), ('health_cert', 'Health Cert'), ('insurance_coverage', 'Insurance Coverage'), ('working_hours', 'Working Hours'), ('wage_compliance', 'Wage Compliance'), ('other', 'Other')], string='Condition Type', required=True)
     issue_date = fields.Date('Issue Date')
     expiry_date = fields.Date('Expiry Date')
     is_valid = fields.Boolean('Is Valid', compute='_compute_is_valid', store=True)
-    compliance_status = fields.Selection([
-        'compliant', 'non_compliant', 'pending_review', 'expired'
-    ], string='Compliance Status', default='compliant')
-    training_record = fields.Many2one('hr.training', 'Training Record')
+    compliance_status = fields.Selection([('compliant', 'Compliant'), ('non_compliant', 'Non Compliant'), ('pending_review', 'Pending Review'), ('expired', 'Expired')], string='Compliance Status', default='compliant')
+    training_record = fields.Many2one('farm.agri.skill', 'Training Record')
     certification = fields.Char('Certification Number')
     issuing_body = fields.Char('Issuing Body')
     notes = fields.Text('Notes')

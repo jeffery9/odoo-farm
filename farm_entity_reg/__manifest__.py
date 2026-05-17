@@ -12,7 +12,7 @@
     'author': 'Jeffery',
     'depends': ['base', 'farm_core'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/entity_reg_views.xml',
     ],
     'images': ['static/description/main_screenshot.png'],

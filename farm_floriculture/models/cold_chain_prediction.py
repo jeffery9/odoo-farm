@@ -1,7 +1,7 @@
 from odoo import models, fields, api, _
 
-class FarmFloricultureProduction(models.Model):
-    _inherit = 'farm.floriculture.production'
+class FarmFlowerOrder(models.Model):
+    _inherit = 'farm.flower.order'
     
     # [US-SCENARIO-33] Floriculture Cold Chain
     vase_life_days = fields.Integer("Predicted Vase Life (Days)", default=14)

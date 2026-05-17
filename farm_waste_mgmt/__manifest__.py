@@ -12,7 +12,7 @@
     'author': 'Jeffery',
     'depends': ['farm_core', 'farm_livestock', 'farm_quality'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'report/manure_ledger_report_templates.xml',
         'report/manure_ledger_reports.xml',
         'views/waste_mgmt_views.xml',

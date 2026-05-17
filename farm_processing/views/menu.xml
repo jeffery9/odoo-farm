@@ -1,7 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_farm_processing_settings" name="Configuration" parent="menu_farm_processing_root" sequence="100"/>
-    <menuitem id="menu_processing_facility_isl" name="Facilities (ISL)" parent="menu_farm_processing_settings" action="mrp.mrp_workcenter_action" sequence="10"/>
-    <menuitem id="menu_processing_product_isl" name="Products (ISL)" parent="menu_farm_processing_settings" action="mrp.mrp_workcenter_action" sequence="20"/>
-    <!-- Note: Actions refer to base MRP for now as proxies until actual ISL windows are mapped -->
 </odoo>

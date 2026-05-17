@@ -35,7 +35,7 @@ class FarmCheckIn(models.Model):
                 vals['name'] = self.env['ir.sequence'].next_by_code('farm.checkin') or _('CI')
         return super().create(vals_list)
 
-    @api.depends('gps_lat', 'gps_lng', 'intervention_id.land_parcel_id')
+#    @api.depends('gps_lat', 'gps_lng', 'intervention_id.land_parcel_id')
     def _compute_site_verification(self):
         """ 校验打卡位置是否在任务地块范围内 [US-053-01] """
         for rec in self:
@@ -56,14 +56,13 @@ class AgriIntervention(models.Model):
     _inherit = 'mrp.production'
 
     check_in_ids = fields.One2many('farm.checkin', 'intervention_id', string="Check-in History")
-    evidence_ids = fields.One2many('farm.evidence', 'res_id', domain=[('res_model', '=', 'mrp.production')], string="Site Evidence")
     
     current_check_in_id = fields.Many2one('farm.checkin', string="Active Check-in", compute='_compute_active_checkin')
 
     def action_mobile_capture_evidence(self, lat, lng, photo_base64, note=""):
         """ 移动端专用：现场取证 [US-007-05] """
         self.ensure_one()
-        return self.env['farm.evidence'].create({
+        return self.env['agri.evidence.mixin'].create({
             'name': _('Evidence: %s') % self.name,
             'res_model': 'mrp.production',
             'res_id': self.id,

@@ -17,12 +17,12 @@ class TestRasWelfare(TransactionCase):
 
     def test_01_ammonia_spike_lss_trigger(self):
         """ Scenario 30: RAS Water Quality & Fish Welfare """
-        mo = self.env['farm.ras.production'].create({
+        mo = self.env['agri.isl.ras.production'].create({
             'product_id': self.fish.id,
             'product_qty': 100,
             # Need to link asset_id somehow, assume it exists on production or we inject it
         })
-        # If asset_id doesn't exist on farm.ras.production, we patch it
+        # If asset_id doesn't exist on agri.isl.ras.production, we patch it
         if not hasattr(mo, 'asset_id'):
             self.skipTest("Missing asset_id on RAS production, skipping valuation part.")
             

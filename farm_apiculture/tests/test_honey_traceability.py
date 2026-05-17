@@ -10,7 +10,7 @@ class TestHoneyTraceability(TransactionCase):
         
     def test_01_honey_extraction_certification(self):
         """ Scenario 29: Honey Batch Integrity & Hive Health """
-        mo = self.env['farm.apiculture.production'].create({
+        mo = self.env['farm.apiculture.order'].create({
             'product_id': self.honey.id,
             'product_qty': 50,
             'bloom_period': 'Acacia Spring'

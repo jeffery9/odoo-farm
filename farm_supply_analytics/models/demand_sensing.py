@@ -1,7 +1,7 @@
 from odoo import models, fields, api, _
 
-class SupplyChainAnalytics(models.Model):
-    _inherit = 'supply.chain.analytics'
+class FarmSupplyChainNode(models.Model):
+    _inherit = 'farm.supply.chain.node'
     
     # [US-SCENARIO-39] Demand-Sensing & Bullwhip Mitigation
     def action_c2m_demand_propagation(self):

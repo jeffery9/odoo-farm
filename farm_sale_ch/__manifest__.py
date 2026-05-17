@@ -12,7 +12,7 @@
     'author': 'Jeffery',
     'depends': ['farm_core', 'sale', 'stock'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'data/export_standards_data.xml',
         'views/export_compliance_views.xml',
         'views/sale_order_views.xml',

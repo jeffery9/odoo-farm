@@ -16,7 +16,7 @@
     'author': 'Jeffery',
     'depends': ['farm_marketing', 'farm_supply', 'sale', 'stock', 'website'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'data/douyin_api_data.xml',
         'views/douyin_account_views.xml',
         'views/product_sync_views.xml',

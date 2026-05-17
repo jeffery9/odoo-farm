@@ -74,8 +74,7 @@ class AgriSupplyChainCarbonDataEngine(models.Model):
     ], string='Compliance Status', compute='_compute_compliance_status', store=True, precompute=True)
 
     # Related to carbon ledger
-    related_carbon_ledger_ids = fields.One2many('agri.carbon.ledger', 'supply_chain_data_id',
-                                                string='Related Carbon Ledger Entries')
+    #related_carbon_ledger_ids removed
 
     @api.depends('scope_1_emissions', 'scope_2_emissions', 'scope_3_emissions')
     def _compute_total_emissions(self):
@@ -302,8 +301,7 @@ class AgriSupplierCarbonCompliance(models.Model):
     ], string='Compliance Status', compute='_compute_compliance_status', store=True, precompute=True)
 
     # Certification and verification
-    carbon_certification_ids = fields.Many2many('farm.certification',
-                                               string='Carbon Certifications')
+    #carbon_certification_ids removed
     verification_date = fields.Date('Last Verification Date')
     next_verification_date = fields.Date('Next Verification Date')
 
@@ -546,8 +544,7 @@ class AgriCarbonNeutralityCertification(models.Model):
     ], string='Certification Status', default='applied', required=True)
 
     # Related data
-    carbon_data_ids = fields.Many2many('agri.supply.chain.carbon.data.engine',
-                                       string='Related Carbon Data')
+    carbon_data_ids = fields.Many2many('agri.supply.chain.carbon.data.engine', 'agri_cert_supply_chain_carbon_rel', 'cert_id', 'data_id', string='Related Carbon Data')
 
     @api.depends('total_emissions', 'total_removals')
     def _compute_net_balance(self):

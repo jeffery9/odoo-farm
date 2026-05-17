@@ -1,7 +1,7 @@
 from odoo import models, fields, api, _
 
-class FarmApicultureProduction(models.Model):
-    _inherit = 'farm.apiculture.production'
+class FarmApicultureOrder(models.Model):
+    _inherit = 'farm.apiculture.order'
     
     # [US-SCENARIO-29] Honey Batch Integrity
     bloom_period = fields.Char("Bloom Period (Nectar Source)")

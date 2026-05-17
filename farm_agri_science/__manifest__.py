@@ -16,7 +16,7 @@
     'website': 'http://www.geninit.cn',
     'depends': ['farm_core'],
     'data': [
-        # 'security/ir.model.access.csv',
+        # #'security/ir.model.access.csv',
         # 'data/ir_sequence_data.xml',
         'views/physiology_profile_views.xml',
         'views/growth_stage_views.xml',
