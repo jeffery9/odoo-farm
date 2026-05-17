@@ -1,8 +1,8 @@
-# Odoo Farm 19.0: 44 Futuristic Commercial Scenarios (21大商业落地场景)
+# Odoo Farm 19.0: 48 Futuristic Commercial Scenarios (21大商业落地场景)
 
 > **Document Note / 文档说明**: 
-> This document archives the 44 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
-> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 44 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
+> This document archives the 48 most visionary and commercially valuable end-to-end closed-loop scenarios in the Odoo Farm Agricultural OS. These scenarios have been physically implemented at the code level via STDD (Scenario-Test-Driven Development) and are ready for investor roadshows, key client demos, and marketing campaigns.
+> 本文档沉淀了 Odoo Farm 农业操作系统中最具前瞻性和商业宣发价值的 48 个全链路闭环场景。这些场景均已在系统底层通过 STDD（场景测试驱动开发）完成了代码级物理落地，可直接用于投资人路演、大客户演示及市场宣发。
 
 ---
 
@@ -185,7 +185,27 @@
 
 ---
 
-## 8. Deep Vertical Industry Verticals (深耕垂直农业领域)
+
+### Scenario 45: Rural Time Bank for Elderly Care (乡村“时间银行”：留守老人的数字化互助养老)
+* **Pain Point / 业务痛点**: Severe aging in rural areas leaves many elderly farmers without support, and commercial care services are economically unviable. / 农村空心化、老龄化严重，留守老人缺乏照料，而商业化养老服务在农村极度缺乏经济可行性。
+* **Solution / 解决方案**: Expanding the farm_hr and loyalty modules, the cooperative creates a Social Time Bank. Younger farmers log hours helping elderly neighbors with heavy chores (e.g., roof repair, heavy lifting). These hours are tokenized into Care Credits on the Odoo ledger. When these young farmers age, or when their own parents need help, they can redeem these credits for community service. / 扩展人力与积分模块，合作社建立“社会时间银行”。年轻村民帮邻居孤寡老人干重活（如修屋顶、搬重物）并在 Odoo 打卡。系统将这些工时“代币化”存入账本。等这些年轻人老了，或者他们自己的父母需要照顾时，可以消耗这些信用点换取全村的照料服务。
+* **Value / 商业价值**: Rebuilds the traditional rural social fabric using digital ledgers, solving the rural elderly care crisis at zero financial cost to the government. / 用数字化账本重塑传统乡村的“人情社会”网络，以零财政成本破解农村互助养老危机。
+
+### Scenario 46: Digital Land Trust and Fractional Ownership (数字化土地信托：城里人的“一分田”地主梦)
+* **Pain Point / 业务痛点**: Smallholders have land but lack capital for modern upgrades; urbanites have capital and desire a connection to the land but cannot physically farm. / 小农户有土地但缺乏现代化升级的资金；城里人有钱且渴望田园生活，但无法亲自种地。
+* **Solution / 解决方案**: The farm_land_mgmt and farm_csa modules map a 10-hectare village plot into 1,000 micro-plots. Urban investors lease a micro-plot via the Web Portal, effectively funding the cooperative spring planting. In return, the farm_multi_farm_financial module automatically routes 5 percent of the crop yield or a share of the harvest profits directly to the urban investor account. / 土地管理与 CSA 模块将村里 150 亩土地在 GIS 上切分为 1000 份“微地块”。城市投资者通过门户网站“认租”一分田，其实质是为合作社的春耕提供免息资金。秋收后，多农场财务模块会自动将该地块产出的 5% 实物（直邮到家）或等比例的销售利润，自动打入城市投资者的账户。
+* **Value / 商业价值**: Creates a massive, decentralized crowdfunding mechanism for rural agriculture, turning idle urban capital into a powerful engine for rural revitalization. / 为乡村农业建立了一个庞大的去中心化众筹机制，将城市闲置资金转化为乡村振兴的强大引擎。
+
+### Scenario 47: Non-Timber Forest Product Foraging Co-ops (林下经济：野生采摘合作社与“数字山民”)
+* **Pain Point / 业务痛点**: Foraging for wild mushrooms or herbs is solitary, dangerous, and highly exploited by middle-men who mix premium wild goods with cheap farmed ones. / 采摘野生菌、野山参等林下经济极其危险且分散，采山人极易被中间商狠狠压价，且珍贵的纯野生产品常被掺假。
+* **Solution / 解决方案**: A Village Foraging Cooperative uses farm_operation and agri_iot. Foragers log rare finds offline. Once back in cell range, the app syncs the exact GPS, altitude, and timestamp. The cooperative farm_processing module grades and packages it. The final QR code proves its wild origin, bypassing local brokers to sell directly to Michelin-star restaurants. / 村集体成立“采摘合作社”。采山人携带手机进山，挖到极品松茸时离线打卡。恢复信号后，系统同步其精确的 GPS、海拔和时间戳（固化为不可篡改的证据）。下山后合作社加工模块直接分级包装。最终的溯源二维码向米其林餐厅直接证明其“纯野生”血统，彻底踢掉中间商。
+* **Value / 商业价值**: Secures monopoly-level premiums for rare wild goods and ensures the poorest rural demographics capture the full economic value of their labor. / 锁定稀缺野生林产品的高额垄断溢价，确保农村最底层群体（采山人）拿回原本属于他们的劳动尊严和全额利润。
+
+### Scenario 48: Gamified Village Environmental Audits (全民“随手拍”：游戏化的乡村人居环境治理)
+* **Pain Point / 业务痛点**: Keeping a village clean relies on underpaid cleaners; villagers often treat public spaces as dumps, leading to a Tragedy of the Commons. / 保持村容村貌单靠几个低薪保洁员根本不够，村民往往把公共区域当垃圾场，陷入“公地悲剧”。
+* **Solution / 解决方案**: The farm_ecology and loyalty modules launch a Village Guardian mini-program. If a villager spots illegal dumping or a broken fence, they snap a picture and report it. The system automatically creates a maintenance task. Once verified and fixed, the reporting villager earns Eco-Points. These points can be redeemed at the cooperative supermarket for free cooking oil or salt. / 生态与积分模块联手推出“乡村卫士”随手拍。村民如果发现有人乱倒垃圾或公共栅栏损坏，拍照上传。系统自动生成维修工单派发给村委会。一旦核实修复，上报的村民将获得“生态积分”。村民可用这些积分在合作社超市（POS 模块）直接免费兑换米面粮油。
+* **Value / 商业价值**: Uses gamification and micro-incentives to turn every villager into an active environmental inspector, achieving low-cost, highly effective grassroots governance. / 用游戏化和微小物质激励，把每一个村民变成积极的环境稽查员，实现低成本、极高效的乡村基层自治。
+\n## 8. Deep Vertical Industry Verticals (深耕垂直农业领域)
 
 > **Context / 背景**: Beyond generic farming, specialized sectors like apiculture, aquaculture, and winery management have unique biological and process requirements. This section showcases how Odoo Farm adapts its 4-Layer architecture to the deep complexities of specific agricultural verticals.
 > 除了通用的种植和养殖，蜂产业、水产养殖、酿酒等领域拥有极具个性的生物特性与工艺需求。本章节展示 Odoo Farm 如何利用 4 层架构适配这些极其深度的垂直行业复杂度。
