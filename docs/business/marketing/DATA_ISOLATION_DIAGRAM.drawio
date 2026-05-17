@@ -84,7 +84,7 @@
         <!-- The Firewall (Parallel Isolation) -->
         <mxCell id="firewall" value="Odoo ir.rule Parallel Firewall\n(STRICTLY BLOCKED)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#ff0000;strokeWidth=3;endArrow=block;" edge="1" parent="coop_bg" source="manager_a" target="manager_b">
           <mxGeometry relative="1" as="geometry">
-              <mxPoint x="400" y="80"/>
+              
           </mxGeometry>
         </mxCell>
 
