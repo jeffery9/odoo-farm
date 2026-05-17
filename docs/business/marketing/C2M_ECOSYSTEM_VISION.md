@@ -6,6 +6,11 @@
 > 当我们引入 **“家庭食品库存 App (C端)”** 与 **“农业数据调度枢纽 (The Hub)”** 后，我们将完成从 B2B 软件提供商向 **B2B2C 产业互联网平台**的终极进化。
 > 这将彻底消灭农业的盲目性，实现基于“冰箱消耗率”的终极 C2M（反向定制）。
 
+
+> **⚠️ 绝密警告 (CONFIDENTIALITY WARNING)**：
+> The contents of this document (C2M Ecosystem Vision and The Hub) represent the ultimate commercial strategy and multi-billion dollar valuation roadmap for GeninIT. This is strictly **CONFIDENTIAL** and **INTERNAL USE ONLY**. Under no circumstances should this document or its associated diagrams be published to public repositories (e.g., the 19.0 release branch) or disclosed to unauthorized third parties.
+> 本文档（含 C2M 生态愿景与 Hub 枢纽架构）代表了 GeninIT 的终极商业底牌与百亿级估值路线图，属于**最高机密 (CONFIDENTIAL)**。**仅限内部使用**。在任何情况下，绝不允许将此文档及其配套架构图发布至公开代码库（如 19.0 分支）或泄露给未经授权的第三方。
+
 ---
 
 ## 1. 平台三大物理节点 (The 3-Node Architecture)
