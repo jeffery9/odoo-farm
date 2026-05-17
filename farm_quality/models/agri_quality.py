@@ -12,7 +12,8 @@ class AgriQualityPoint(models.Model):
     test_type = fields.Selection([
         ('pass_fail', 'Pass - Fail'),
         ('measure', 'Measure'),
-        ('sensory', 'Sensory Evaluation')
+        ('sensory', 'Sensory Evaluation'),
+        ('hplc', 'HPLC Lab Test')
     ], string="Test Type", default='pass_fail', required=True)
 
     # 测量标准

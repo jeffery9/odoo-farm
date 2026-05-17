@@ -13,7 +13,7 @@
         "farm_esg",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        #"security/ir.model.access.csv",
         "views/esg_risk_views.xml",
         "views/esg_data_governance_views.xml",
         "views/esg_report_customization_views.xml",

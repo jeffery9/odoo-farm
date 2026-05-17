@@ -16,7 +16,7 @@
         "farm_ai_llm_integration",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        #"security/ir.model.access.csv",
         "views/ai_decision_views.xml",
         "views/ai_cockpit_views.xml",
         "views/ai_crop_growth_views.xml",

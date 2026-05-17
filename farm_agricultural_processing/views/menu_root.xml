@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_agricultural_processing_root" name="Agri Processing" web_icon="farm_agricultural_processing,static/description/icon.png" sequence="50"/>
 </odoo>

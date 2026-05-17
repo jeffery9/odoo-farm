@@ -5,7 +5,7 @@
     'summary': 'Specialized management for vineyards, wine grape production, and terroir tracking.',
     'depends': ['farm_core', 'farm_isl', 'farm_operation', 'farm_agricultural_processing'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/viticulture_isl_views.xml',
         'views/menu.xml',
     ],

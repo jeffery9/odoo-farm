@@ -13,7 +13,7 @@ class FarmProductCertificate(models.Model):
 
     producer_name = fields.Char("Producer Name", default=lambda self: self.env.company.name)
     origin_location_id = fields.Many2one('farm.location', string="Origin/Farm", domain=[('is_land_parcel', '=', True)])
-    production_date = fields.Date("Production Date", related='lot_id.create_date', store=True)
+    production_date = fields.Datetime("Production Date", related='lot_id.create_date', store=True)
     
     # 承诺声明
     commitment_statement = fields.Html("Commitment Statement", default="""
@@ -22,7 +22,7 @@ class FarmProductCertificate(models.Model):
     """)
     
     # 检测结果
-    quality_check_ids = fields.Many2many('farm.quality.check', string="Related Quality Checks")
+    quality_check_ids = fields.Many2many('agri.quality.check', string="Related Quality Checks")
     
     certificate_qr_code = fields.Char("Certificate QR Code", compute='_compute_qr_code', store=True, precompute=True)
 

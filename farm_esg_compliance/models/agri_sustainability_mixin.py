@@ -60,11 +60,7 @@ class AgriSustainabilityMixin(models.AbstractModel):
     ], string='ESG Compliance Status', compute='_compute_esg_compliance_status', store=True, precompute=True)
 
     # Sustainability certification tracking
-    sustainability_certifications = fields.Many2many(
-        'farm.certification',
-        string='Sustainability Certifications',
-        help='Sustainability certifications applicable to this record'
-    )
+    # removed
 
     # Standards governance
     applicable_esg_standards = fields.Text(

@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import random
 
 class AgriSupplyChainFinance(models.Model):
+    currency_id = fields.Many2one("res.currency", default=lambda self: self.env.company.currency_id)
     """
     Supply Chain Finance functionality integrated into farm_finance_loan
     """
@@ -76,7 +77,7 @@ class AgriSupplyChainFinance(models.Model):
                 credit_score = self.env['farm.credit.score'].search([
                     ('partner_id', '=', record.partner_id.id)
                 ], order='score_date desc', limit=1)
-                record.risk_score = credit_score.overall_score if credit_score else 60.0
+                record.risk_score = credit_score.total_score if credit_score else 60.0
             else:
                 record.risk_score = 0.0
 

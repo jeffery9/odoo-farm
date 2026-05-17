@@ -15,7 +15,7 @@
         "farm_biological_valuation",  # Using the consolidated module created earlier
     ],
     "data": [
-        "security/ir.model.access.csv",
+        #"security/ir.model.access.csv",
         "views/financial_valuation_views.xml",
         "views/menu.xml",
     ],

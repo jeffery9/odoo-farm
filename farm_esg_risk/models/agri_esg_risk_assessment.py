@@ -14,9 +14,7 @@ class AgriESGRiskAssessment(models.Model):
 
     name = fields.Char('Assessment Name', required=True)
     assessment_date = fields.Date('Assessment Date', required=True, default=fields.Date.context_today)
-    assessment_type = fields.Selection([
-        'environmental', 'social', 'governance', 'combined'
-    ], string='Assessment Type', required=True, default='combined')
+    assessment_type = fields.Selection([('environmental', 'Environmental'), ('social', 'Social'), ('governance', 'Governance'), ('combined', 'Combined')], string='Assessment Type', required=True, default='combined')
     assessment_period = fields.Selection([
         ('q1', 'Q1'),
         ('q2', 'Q2'),

@@ -13,7 +13,7 @@
     'author': 'Jeffery',
     'depends': ['farm_core', 'farm_marketing', 'barcodes'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'report/farm_label_templates.xml',
         'report/farm_label_reports.xml',
         'views/res_config_settings_views.xml',

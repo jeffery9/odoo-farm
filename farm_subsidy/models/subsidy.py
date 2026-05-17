@@ -60,7 +60,7 @@ class FarmSubsidyApplication(models.Model):
     ], string="Compliance Status", default='pending', tracking=True)
 
     evidence_collected = fields.Integer("Evidence Collected", compute='_compute_evidence_collected', store=True, precompute=True)
-    evidence_records = fields.One2many('farm.evidence', 'subsidy_application_id', string="Compliance Evidence")
+#    evidence_records = fields.One2many('agri.evidence', 'subsidy_application_id', string="Compliance Evidence")
 
     # Fields for compliance handbook generation
     compliance_handbook_data = fields.Text("Compliance Handbook Data", readonly=True)
@@ -74,7 +74,7 @@ class FarmSubsidyApplication(models.Model):
     @api.depends('land_parcel_ids', 'fiscal_year')
     def _compute_evidence_collected(self):
         """Compute the number of evidence records associated with this application"""
-        FarmEvidence = self.env['farm.evidence']
+        FarmEvidence = self.env['agri.evidence']
         for app in self:
             if app.land_parcel_ids:
                 # Find evidence records associated with the declared parcels
@@ -131,7 +131,7 @@ class FarmSubsidyApplication(models.Model):
         This method searches for related evidence records based on land parcels and time period
         """
         self.ensure_one()
-        FarmEvidence = self.env['farm.evidence']
+        FarmEvidence = self.env['agri.evidence']
 
         # Build domain to find evidence records related to this application
         evidence_domain = []
@@ -183,7 +183,7 @@ class FarmSubsidyApplication(models.Model):
         return {
             'type': 'ir.actions.act_window',
             'name': _('Compliance Evidence'),
-            'res_model': 'farm.evidence',
+            'res_model': 'agri.evidence',
             'view_mode': 'list,form',
             'domain': [('id', 'in', evidence_records.ids)],
             'context': self.env.context,
@@ -195,7 +195,7 @@ class FarmSubsidyApplication(models.Model):
         This creates audit-ready documentation with GPS + timestamp + photo evidence
         """
         self.ensure_one()
-        FarmEvidence = self.env['farm.evidence']
+        FarmEvidence = self.env['agri.evidence']
 
         # Collect all relevant evidence for this application
         evidence_domain = []
@@ -276,7 +276,7 @@ class FarmSubsidyApplication(models.Model):
         return {
             'type': 'ir.actions.act_window',
             'name': _('Compliance Handbook'),
-            'res_model': 'farm.evidence',
+            'res_model': 'agri.evidence',
             'view_mode': 'list,form',
             'domain': [('id', 'in', evidence_records.ids)],
             'context': self.env.context,
@@ -301,7 +301,7 @@ class FarmSubsidyApplication(models.Model):
         self.ensure_one()
 
         # Get all associated evidence records
-        evidence_records = self.env['farm.evidence'].search([
+        evidence_records = self.env['agri.evidence'].search([
             ('subsidy_application_id', '=', self.id)
         ])
 
@@ -335,7 +335,7 @@ class FarmSubsidyApplication(models.Model):
             return {
                 'type': 'ir.actions.act_window',
                 'name': _('Evidence Integrity Issues'),
-                'res_model': 'farm.evidence',
+                'res_model': 'agri.evidence',
                 'view_mode': 'list,form',
                 'domain': [('id', 'in', [issue['id'] for issue in integrity_issues])],
                 'context': self.env.context,

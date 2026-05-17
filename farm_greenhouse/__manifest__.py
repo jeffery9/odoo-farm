@@ -14,7 +14,7 @@
     'website': 'http://www.geninit.cn',
     'depends': ['farm_core', 'farm_iot', 'farm_agri_science'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/farm_greenhouse_views.xml',
         'views/government_reporting_views.xml',
     ],

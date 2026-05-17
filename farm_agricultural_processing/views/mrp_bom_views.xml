@@ -1,39 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_farm_processing_bom_form_inherit_agri_v2" model="ir.ui.view">
-        <field name="name">farm.processing.bom.form.inherit.agri.v2</field>
-        <field name="model">farm.processing.bom</field>
-        <field name="inherit_id" ref="farm_processing.view_farm_processing_bom_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='processing_type']" position="after">
-                <field name="industry_type"/>
-                <field name="is_parameter_required"/>
-            </xpath>
-            <xpath expr="//notebook" position="inside">
-                <page string="Agri-Process Standards">
-                    <group>
-                        <group string="Industry Targets">
-                            <field name="target_temp" invisible="not is_parameter_required"/>
-                            <field name="target_ph" invisible="not is_parameter_required"/>
-                            <field name="target_brix" invisible="not is_parameter_required"/>
-                            <field name="target_proofing_time" invisible="not is_parameter_required"/>
-                            <field name="standard_duration" invisible="not is_parameter_required"/>
-                        </group>
-                        <group string="Safety &amp; Yield">
-                            <field name="haccp_instructions"/>
-                        </group>
-                    </group>
-                    <field name="grade_distribution_ids">
-                        <list editable="bottom">
-                            <field name="quality_grade"/>
-                            <field name="expected_percentage"/>
-                        </list>
-                    </field>
-                </page>
-            </xpath>
-            <xpath expr="//field[@name='bom_line_ids']/list/field[@name='product_id']" position="after">
-                <field name="ingredient_role"/>
-            </xpath>
-        </field>
-    </record>
 </odoo>
