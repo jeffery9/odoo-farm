@@ -1,9 +1,6 @@
 # Odoo Farm
 
-
-
-
-: 智慧农业全链路数字化底座 / Full-Chain Smart Agriculture OS
+> **智慧农业全链路数字化底座 / Full-Chain Smart Agriculture OS**
 
 <div align="center">
   <img src="farm_core/static/description/banner.png" alt="Odoo Farm Core Banner" width="100%">
