@@ -137,12 +137,10 @@ class FarmLocation(models.Model):
 
     # Dynamic attributes [US-001-02]
     location_properties_definition = fields.PropertiesDefinition('Location Properties Definition')
-    _self_ref = fields.Many2one('farm.location', compute='_compute_self_ref')
+    
     location_properties = fields.Properties(
         'Properties',
-        definition='_self_ref.location_properties_definition'
+        definition='location_properties_definition'
     )
 
-    def _compute_self_ref(self):
-        for rec in self:
-            rec._self_ref = rec.id
+    
