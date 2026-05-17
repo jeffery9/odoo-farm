@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-<menuitem id="farm_financial_core_menu_root"
-              name="Financial Core"
-              sequence="40"/>
-
-    <menuitem id="farm_financial_core_config_menu" name="Configuration" parent="farm_financial.menu_financial_root"
-              sequence="10"/>
-</odoo>

@@ -36,7 +36,7 @@
 ### 3. 技术架构 (Technical Architecture)
 - **数据源**: `farm_agri_science` (GDD), `farm_iot` (Logs), `farm_ai_decision` (Actions)。
 - **核心 Mixin**: `agri.evidence.mixin` [Level 2]。
-- **依赖模块**: `farm_financial_core`, `agri_iot` (作为上链通道)。
+- **依赖模块**: `farm_financial`, `agri_iot` (作为上链通道)。
 
 ---
 *V1.0 - Digital Credit Foundation | 2026-02-02*

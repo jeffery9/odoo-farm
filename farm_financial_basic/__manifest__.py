@@ -12,7 +12,7 @@
         "analytic",
         "farm_core",
         "farm_operation",
-        "farm_financial_core",
+        "farm_financial",
     ],
     "data": [
         "security/ir.model.access.csv",
@@ -37,6 +37,6 @@
     - Profitability analysis per production unit
     - Cost tracking and allocation
 
-    Built on top of the farm_financial_core foundation module.
+    Built on top of the farm_financial foundation module.
     """,
 }

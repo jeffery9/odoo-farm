@@ -42,8 +42,8 @@
 | :--- | :--- | :--- | :--- |
 | **`ClearingEngineMixin`** | `farm_core` | `base`, `mail` | 跨实体的价值清算引擎，支持信用分扣减与社区奖励发放。 |
 | **`AgriBiologicalValuationMixin`** | `farm_core` | `base` | 生物资产动态公允价值评估基因，支持基于生长进度与市场挂钩的资产估值（US-58-15）。 |
-| **`AgriCostWIPTransfer`** | `farm_financial_basic` | `farm_financial_core`, `farm_core` | 生物资产在制品（WIP）的成本归集、分摊与结转逻辑。 |
-| **`AgriMortalityAmortization`**| `farm_financial_basic` | `farm_financial_core`, `farm_core` | 养殖业中的死亡率摊销、资产减值计算与财务计提。 |
+| **`AgriCostWIPTransfer`** | `farm_financial_basic` | `farm_financial`, `farm_core` | 生物资产在制品（WIP）的成本归集、分摊与结转逻辑。 |
+| **`AgriMortalityAmortization`**| `farm_financial_basic` | `farm_financial`, `farm_core` | 养殖业中的死亡率摊销、资产减值计算与财务计提。 |
 
 ### **Level 4: 自主、协作与编排层 (Orchestration & A2A)**
 | Mixin 名称 | 所在模块 | 模块依赖 | 核心职责 |
@@ -69,7 +69,7 @@ graph TD
     farm_ai_agent --> farm_ux
     farm_esg_compliance[farm_esg_compliance] --> farm_esg
     farm_esg_compliance --> farm_esg_environmental
-    farm_financial_basic[farm_financial_basic] --> farm_financial_core
+    farm_financial_basic[farm_financial_basic] --> farm_financial
     farm_financial_basic --> farm_core
 ```
 

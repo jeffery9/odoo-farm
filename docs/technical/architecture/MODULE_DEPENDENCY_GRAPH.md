@@ -29,7 +29,7 @@ graph TD
     farm_ecology["farm_ecology"]:::highlight
     farm_entity_reg["farm_entity_reg"]:::highlight
     farm_esg["farm_esg"]:::highlight
-    farm_financial_core["farm_financial_core"]:::highlight
+    farm_financial["farm_financial"]:::highlight
     farm_financial_credit["farm_financial_credit"]:::highlight
     farm_financial_insurance["farm_financial_insurance"]:::highlight
     farm_financial_valuation["farm_financial_valuation"]:::highlight
@@ -64,14 +64,14 @@ graph TD
     farm_ecology --> farm_esg
     farm_entity_reg --> farm_core
     farm_esg --> farm_core
-    farm_financial_core --> farm_core
+    farm_financial --> farm_core
     farm_financial_credit --> farm_core
-    farm_financial_credit --> farm_financial_core
+    farm_financial_credit --> farm_financial
     farm_financial_insurance --> farm_core
-    farm_financial_insurance --> farm_financial_core
+    farm_financial_insurance --> farm_financial
     farm_financial_valuation --> farm_biological_valuation
     farm_financial_valuation --> farm_core
-    farm_financial_valuation --> farm_financial_core
+    farm_financial_valuation --> farm_financial
     farm_greenhouse --> farm_agri_science
     farm_greenhouse --> farm_core
     farm_greenhouse --> farm_iot
@@ -100,7 +100,7 @@ graph TD
     farm_supply_quality --> farm_supply_procurement
     farm_valuation --> farm_biological_valuation
     farm_valuation --> farm_core
-    farm_valuation --> farm_financial_core
+    farm_valuation --> farm_financial
     farm_valuation --> farm_financial_valuation
     farm_weather --> farm_core
     farm_weather --> farm_iot
@@ -202,7 +202,7 @@ graph TD
     farm_crisis --> farm_safety
     farm_crop --> farm_core
     farm_crop --> farm_operation
-    farm_dashboard --> farm_financial_core
+    farm_dashboard --> farm_financial
     farm_dashboard --> farm_iot
     farm_dashboard --> farm_operation
     farm_dashboard --> farm_weather
@@ -235,11 +235,11 @@ graph TD
     farm_field_crops --> farm_operation
     farm_finance_gov --> farm_financial_government
     farm_financial_basic --> farm_core
-    farm_financial_basic --> farm_financial_core
+    farm_financial_basic --> farm_financial
     farm_financial_basic --> farm_operation
     farm_financial_government --> farm_core
     farm_financial_government --> farm_financial_basic
-    farm_financial_government --> farm_financial_core
+    farm_financial_government --> farm_financial
     farm_floriculture --> farm_core
     farm_floriculture --> farm_isl
     farm_floriculture --> farm_operation
@@ -269,7 +269,7 @@ graph TD
     farm_multi_farm --> farm_agri_science
     farm_multi_farm --> farm_core
     farm_multi_farm --> farm_equipment
-    farm_multi_farm --> farm_financial_core
+    farm_multi_farm --> farm_financial
     farm_multi_farm --> farm_hr
     farm_multi_farm --> farm_marketing
     farm_multi_farm --> farm_multi_farm
@@ -362,7 +362,7 @@ graph TD
     farm_esg_compliance --> farm_esg_circular
     farm_esg_compliance --> farm_esg_environmental
     farm_esg_compliance --> farm_esg_risk
-    farm_esg_compliance --> farm_financial_core
+    farm_esg_compliance --> farm_financial
     farm_esg_compliance --> farm_supply_analytics
     farm_esg_compliance --> farm_supply_logistics
     farm_esg_environmental --> farm_agri_science
@@ -377,7 +377,7 @@ graph TD
     farm_esg_sustainability --> farm_esg_carbon
     farm_esg_sustainability --> farm_esg_circular
     farm_esg_sustainability --> farm_esg_environmental
-    farm_esg_sustainability --> farm_financial_core
+    farm_esg_sustainability --> farm_financial
     farm_esg_sustainability --> farm_operation
     farm_green_monitor --> farm_core
     farm_green_monitor --> farm_esg
