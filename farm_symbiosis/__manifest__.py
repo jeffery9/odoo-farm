@@ -3,9 +3,9 @@
     'version': '1.0',
     'category': 'Industries/Agriculture',
     'summary': 'Specialized management for symbiotic agriculture systems (Rice-Fish, Rice-Shrimp).',
-    'depends': ['farm_core', 'farm_isl', 'farm_operation', 'farm_aquaculture'],
+    'depends': ['farm_core', 'farm_isl', 'farm_operation', 'farm_aquaculture', 'farm_waste_mgmt'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
     ],
     'images': ['static/description/main_screenshot.png'],
     'installable': True,

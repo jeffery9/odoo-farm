@@ -1,21 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_farm_industry_workcenter_form" model="ir.ui.view">
-        <field name="name">farm.industry.workcenter.form</field>
-        <field name="model">farm.industry.workcenter</field>
-        <field name="arch" type="xml">
-            <form string="Facility ISL">
-                <sheet>
-                    <div class="oe_title">
-                        <h1><field name="workcenter_id" placeholder="Workcenter"/></h1>
-                    </div>
-                    <group>
-                        <field name="industry_type"/>
-                        <field name="sanitation_status"/>
-                        <field name="haccp_certified"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
 </odoo>

@@ -17,10 +17,11 @@
         'mail',
         'farm_core',
         'farm_supply',
+        'farm_ai_decision',
     ],
     'data': [
         'views/menu.xml',
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
     ],
     'images': ['static/description/main_screenshot.png'],
     'installable': True,

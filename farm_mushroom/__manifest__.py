@@ -23,7 +23,7 @@
         'stock',
     ],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/mushroom_operation_views.xml',
         'views/menu.xml',
     ],

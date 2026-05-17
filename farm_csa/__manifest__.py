@@ -13,7 +13,7 @@
     'depends': ['farm_core',
         'mrp', 'stock', 'sale'],
     'data': [
-        # # 'security/ir.model.access.csv',
+        # # #'security/ir.model.access.csv',
         'data/ir_cron_data.xml',
         'views/csa_subscription_views.xml',
     ],

@@ -26,7 +26,7 @@
         'farm_quality'
     ],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'data/processing_data.xml',
         'data/package_data.xml',
         'data/ir_cron_data.xml',

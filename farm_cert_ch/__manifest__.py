@@ -11,7 +11,7 @@
     'author': 'Jeffery',
     'depends': ['farm_core', 'stock', 'farm_marketing'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'report/certificate_report_templates.xml',
         'report/certificate_reports.xml',
         'views/certificate_views.xml',

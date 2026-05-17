@@ -1,7 +1,7 @@
 from odoo import models, fields, api, _
 
 class FarmRasProduction(models.Model):
-    _inherit = 'farm.ras.production'
+    _inherit = 'agri.isl.ras.production'
     
     # [US-SCENARIO-30] RAS Water Quality & Fish Welfare
     lss_status = fields.Selection([('normal', 'Normal'), ('emergency', 'Emergency Mode')], default='normal')

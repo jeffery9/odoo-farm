@@ -18,7 +18,7 @@
     'author': 'Jeffery',
     'depends': ['farm_planning'],
     'data': [
-        'security/ir.model.access.csv',
+        #'security/ir.model.access.csv',
         'views/pest_disease_views.xml',
         'views/agricultural_knowledge_views.xml',
         'views/faq_entry_views.xml',

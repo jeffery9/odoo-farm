@@ -6,7 +6,7 @@ class TestDemandSensing(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.analytic = cls.env['supply.chain.analytics'].create({'name': 'Hub Demand Engine'})
+        cls.analytic = cls.env['farm.supply.chain.node'].create({'name': 'Hub Demand Engine'})
 
     def test_01_c2m_propagation(self):
         """ Scenario 39: Demand-Sensing & Bullwhip Mitigation """

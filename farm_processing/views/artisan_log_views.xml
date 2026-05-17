@@ -1,28 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_mrp_production_form_artisan" model="ir.ui.view">
-        <field name="name">mrp.production.form.artisan</field>
-        <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='user_id']" position="after">
-                <field name="is_artisan_batch" widget="boolean_toggle"/>
-            </xpath>
-            <xpath expr="//notebook" position="inside">
-                <page string="Artisan Precision" name="artisan_logs" invisible="not is_artisan_batch">
-                    <field name="artisan_log_ids">
-                        <list editable="bottom" decoration-success="quality_grade == 'perfect'" decoration-warning="quality_grade == 'subpar'">
-                            <field name="workorder_id"/>
-                            <field name="parameter_name"/>
-                            <field name="target_value"/>
-                            <field name="actual_value"/>
-                            <field name="deviation"/>
-                            <field name="quality_grade" widget="badge"/>
-                            <field name="measured_by" widget="many2one_avatar_user"/>
-                        </list>
-                    </field>
-                </page>
-            </xpath>
-        </field>
-    </record>
 </odoo>

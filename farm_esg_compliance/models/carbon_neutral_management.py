@@ -357,7 +357,7 @@ class AgriBioEnergyProduct(models.Model):
     production_unit = fields.Many2one('uom.uom', string='Production Unit')
 
     # ESG compliance
-    esg_certifications = fields.Many2many('farm.certification', string='ESG Certifications')
+    #esg_certifications removed
     sustainability_standards = fields.Char('Sustainability Standards', help='Standards the product meets (e.g., RSB, ISCC)')
 
     # Marketplace information
@@ -382,10 +382,7 @@ class AgriBioEnergyProduct(models.Model):
         ('basic', 'Basic'),
     ], string='Quality Grade', default='standard')
 
-    quality_certifications = fields.Many2many('farm.certification',
-                                            'agri_bio_energy_product_quality_rel',
-                                            'product_id', 'cert_id',
-                                            string='Quality Certifications')
+    #quality_certifications removed
 
     # Documentation
     technical_specifications = fields.Binary('Technical Specifications', attachment=True)
@@ -411,7 +408,7 @@ class AgriBioEnergyProduct(models.Model):
             if record.available_quantity < 0:
                 raise ValidationError(_("Available quantity cannot be negative."))
 
-    @api.depends('co2_reduction_percentage', 'esg_certifications', 'quality_grade', 'life_cycle_assessment')
+    @api.depends('co2_reduction_percentage')
     def _compute_sustainability_score(self):
         """Compute sustainability score based on various factors"""
         for record in self:

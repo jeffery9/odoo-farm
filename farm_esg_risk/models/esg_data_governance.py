@@ -14,18 +14,12 @@ class ESGDataGovernance(models.Model):
 
     name = fields.Char('Data Governance Record', required=True)
     data_source = fields.Char('Data Source', help='System or process that generated the data')
-    data_type = fields.Selection([
-        'environmental', 'social', 'governance', 'financial', 'operational'
-    ], string='Data Type', required=True)
-    collection_method = fields.Selection([
-        'automated', 'manual', 'sensor', 'third_party', 'survey', 'other'
-    ], string='Collection Method', required=True)
+    data_type = fields.Selection([('environmental', 'Environmental'), ('social', 'Social'), ('governance', 'Governance'), ('other', 'Other')], string='Data Type', required=True)
+    collection_method = fields.Selection([('automated', 'Automated'), ('manual', 'Manual'), ('sensor', 'Sensor'), ('third_party', 'Third Party'), ('survey', 'Survey'), ('other', 'Other')], string='Collection Method', required=True)
     collection_date = fields.Datetime('Collection Date', required=True)
     data_owner = fields.Many2one('res.users', 'Data Owner')
     data_quality_score = fields.Float('Data Quality Score', help='Score from 0-100 for data quality')
-    validation_status = fields.Selection([
-        'pending', 'validated', 'invalid', 'requires_review'
-    ], string='Validation Status', default='pending')
+    validation_status = fields.Selection([('pending', 'Pending'), ('validated', 'Validated'), ('rejected', 'Rejected')], string='Validation Status', default='pending')
     data_retention_years = fields.Integer('Data Retention (Years)', default=7)
     access_control_list = fields.Text('Access Control List', help='List of users/groups with access')
     anonymization_applied = fields.Boolean('Anonymization Applied', help='Whether data has been anonymized')
@@ -44,9 +38,7 @@ class ESGDataGovernance(models.Model):
     audit_trail_enabled = fields.Boolean('Audit Trail Enabled', default=True)
     data_lineage = fields.Text('Data Lineage', help='Trace of data transformations')
     data_quality_issues = fields.Text('Data Quality Issues')
-    remediation_status = fields.Selection([
-        'open', 'in_progress', 'resolved', 'wont_fix'
-    ], string='Remediation Status', default='open')
+    remediation_status = fields.Selection([('open', 'Open'), ('in_progress', 'In Progress'), ('resolved', 'Resolved'), ('closed', 'Closed')], string='Remediation Status', default='open')
     last_updated = fields.Datetime('Last Updated', default=fields.Datetime.now)
 
     # Enhanced quality control fields
@@ -64,9 +56,7 @@ class ESGDataGovernance(models.Model):
     # Automated quality control fields
     automated_quality_alerts_enabled = fields.Boolean('Automated Alerts Enabled', default=True)
     last_quality_alert_date = fields.Datetime('Last Quality Alert Date', help='When the last quality alert was raised')
-    quality_issue_severity = fields.Selection([
-        'low', 'medium', 'high', 'critical'
-    ], string='Quality Issue Severity', help='Severity level of quality issues')
+    quality_issue_severity = fields.Selection([('low', 'Low'), ('medium', 'Medium'), ('high', 'High'), ('critical', 'Critical')], string='Quality Issue Severity', help='Severity level of quality issues')
     quality_validation_rules = fields.Text('Quality Validation Rules', help='Custom validation rules for this data')
     data_quality_history = fields.Text('Quality History', help='Historical quality scores and issues')
 
@@ -75,9 +65,7 @@ class ESGDataGovernance(models.Model):
     data_origin_verification = fields.Boolean('Origin Verified', help='Whether data origin has been verified')
     data_transformation_log = fields.Text('Transformation Log', help='Log of all data transformations')
     sensitive_data_identified = fields.Boolean('Sensitive Data Identified', help='Whether sensitive data was identified in this record')
-    privacy_compliance_status = fields.Selection([
-        'compliant', 'non_compliant', 'requires_review'
-    ], string='Privacy Compliance Status', help='Privacy compliance status of the data')
+    privacy_compliance_status = fields.Selection([('compliant', 'Compliant'), ('non_compliant', 'Non Compliant'), ('requires_review', 'Requires Review')], string='Privacy Compliance Status', help='Privacy compliance status of the data')
 
     # Data lineage extensions
     upstream_data_sources = fields.Text('Upstream Data Sources', help='Sources of data that feed into this record')

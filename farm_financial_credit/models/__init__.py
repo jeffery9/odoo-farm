@@ -7,4 +7,6 @@ from . import farm_risk_assessment
 from . import agri_supply_chain_finance
 from . import input_financing
 from . import industry_initialization_wizard
-from . import farm_industry_initializationfrom . import micro_credit_engine
+from . import farm_industry_initialization
+from . import micro_credit_engine
+

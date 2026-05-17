@@ -30,7 +30,7 @@ class FarmLandLease(models.Model):
         ('expired', 'Expired')
     ], default='draft', tracking=True)
 
-    @api.depends('land_parcel_ids.area')
+    #@api.depends('land_parcel_ids.area')
     def _compute_area(self):
         for contract in self:
             # Assuming area field exists on farm.location from base agri_location
