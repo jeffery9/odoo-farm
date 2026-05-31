@@ -4,6 +4,7 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 import logging
+from .agri_isl_abstract_models import INDUSTRY_SELECTION
 
 _logger = logging.getLogger(__name__)
 
@@ -17,29 +18,24 @@ class AgriISLMigrationUtility(models.TransientModel):
     _name = 'agri.isl.migration.utility'
     _description = 'Agri ISL Data Migration Utility'
 
-    industry_type = fields.Selection([
-        ('field_crop', 'Field Crop'),
-        ('livestock', 'Livestock'),
-        ('aquaculture', 'Aquaculture'),
-        ('general', 'General Agriculture'),
-        ('field_crop', 'Field Crop'),
-        ('livestock', 'Livestock'),
-        ('aquaculture', 'Aquaculture'),
-        ('general', 'General Agriculture')
-    ], string='Industry Type', default='general', required=True)
+    industry_type = fields.Selection(
+        selection=INDUSTRY_SELECTION,
+        string='Industry Type', 
+        default='general', 
+        required=True
+    )
 
     model_to_migrate = fields.Selection([
-        ('mrp.production', 'MRP Production'),
-        ('mrp.bom', 'MRP BOM'),
-        ('mrp.workcenter', 'MRP Work Center'),
+        ('mrp.production', 'Intervention'),
+        ('mrp.bom', 'Cultivation Recipe'),
+        ('mrp.workcenter', 'Facility Unit'),
         ('stock.lot', 'Stock Lot'),
         ('sale.order', 'Sale Order'),
         ('purchase.order', 'Purchase Order'),
         ('product.template', 'Product Template'),
         ('stock.picking', 'Stock Picking'),
-        ('mrp.workorder', 'MRP Work Order'),
-        ('quality.point', 'Quality Point'),
-    ], string='Model to Migrate', required=True)
+        ('mrp.workorder', 'Operation Phase'),
+    ], string='Base Model', required=True)
 
     confirmation = fields.Boolean('Confirm Migration')
 
@@ -51,44 +47,25 @@ class AgriISLMigrationUtility(models.TransientModel):
             raise UserError(_("Please confirm the migration before proceeding"))
 
         base_model_name = self.model_to_migrate
-        isl_model_name_map = {
-            'mrp.production': 'agri.isl.mrp.production',
-            'mrp.bom': 'agri.isl.mrp.bom',
-            'mrp.workcenter': 'agri.isl.mrp.workcenter',
-            'stock.lot': 'agri.isl.stock.lot',
-            'sale.order': 'agri.isl.sale.order',
-            'purchase.order': 'agri.isl.purchase.order',
-            'product.template': 'agri.isl.product.template',
-            'stock.picking': 'agri.isl.stock.picking',
-            'mrp.workorder': 'agri.isl.mrp.workorder',
-            'quality.point': 'agri.isl.quality.control',
-        }
-
-        if base_model_name not in isl_model_name_map:
-            raise UserError(_("Unsupported model for migration"))
-
-        isl_model_name = isl_model_name_map[base_model_name]
-
-        # Get all records of the base model
+        
+        # 1. Get all records of the base model
         base_records = self.env[base_model_name].search([])
 
-        # Create ISL records for each base record
+        # 2. Use Redirector to create ISL records (which uses Convention and Metadata)
         migrated_count = 0
+        redirector = self.env['agri.isl.model.redirector']
+        
         for base_record in base_records:
-            # Check if ISL record already exists
-            existing_isl = self.env['agri.isl.model.redirector'].get_isl_record(
-                base_model_name, base_record.id
+            # create_isl_record internally checks for existence and uses dynamic discovery
+            isl_record = redirector.create_isl_record(
+                base_model_name, 
+                base_record.id, 
+                industry_type=self.industry_type
             )
-
-            if not existing_isl:
-                field_name = base_model_name.replace('.', '_') + '_id'
-                self.env[isl_model_name].create({
-                    field_name: base_record.id,
-                    'industry_type': self.industry_type,
-                })
+            if isl_record:
                 migrated_count += 1
 
-        message = _("Migration completed. %d records migrated to ISL architecture.", migrated_count)
+        message = _("Migration completed. %d records migrated to ISL architecture.") % migrated_count
         return {
             'type': 'ir.actions.client',
             'tag': 'display_notification',
