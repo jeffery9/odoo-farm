@@ -1,4 +1,4 @@
-from odoo import models, api
+from odoo import models, api, fields
 
 class BiologicalAssetValuation(models.Model):
     _inherit = 'agri.biological.asset'
