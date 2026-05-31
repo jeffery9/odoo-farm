@@ -7,14 +7,14 @@ _logger = logging.getLogger(__name__)
 
 class FarmNetVegRecipe(models.Model):
     """
-    [ISL Layer] Net Vegetable Preparation Standard.
+    [ISL Layer] Net Vegetable Preparation Standard. [De-industrialized]
     Proxies mrp.bom to handle expected yield and washing specs.
     """
     _name = 'farm.net_vegetable.recipe'
     _description = 'Net Veg Prep Standard'
     _inherits = {'mrp.bom': 'bom_id'}
     
-    bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
+    bom_id = fields.Many2one('mrp.bom', string='Base Recipe', required=True, ondelete='cascade')
 
     # Prep Specifics [US-113-01]
     expected_net_yield_percent = fields.Float("Expected Yield (%)", default=85.0)
@@ -23,7 +23,7 @@ class FarmNetVegRecipe(models.Model):
 
 class FarmNetVegProduction(models.Model):
     """
-    [ISL Layer] Net Vegetable Preparation Order.
+    [ISL Layer] Net Vegetable Preparation Order. [De-industrialized]
     Proxies mrp.production to track real-time processing loss.
     """
     _name = 'farm.net_vegetable.production'
@@ -57,7 +57,7 @@ class FarmNetVegProduction(models.Model):
 
 class FarmLotNetVeg(models.Model):
     """
-    [ISL Layer] Retail-ready Net Veg Batch.
+    [ISL Layer] Retail-ready Net Veg Batch. [De-industrialized]
     Holds packaging hierarchy and shelf-life data.
     """
     _name = 'farm.lot.net_vegetable'
