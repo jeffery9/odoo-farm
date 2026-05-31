@@ -16,7 +16,9 @@
     'depends': ['farm_core', 'farm_operation', 'farm_input_reg', 'farm_ecology', 'farm_multi_farm'],
     'data': [
         'security/ir.model.access.csv',
+        'data/gov_reporting_data.xml',
         'views/gov_audit_views.xml',
+        'views/gov_platform_views.xml',
         'views/menu.xml',
     ],
     'installable': True,
