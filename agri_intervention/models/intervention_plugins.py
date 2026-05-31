@@ -398,8 +398,9 @@ class AgriDnaPluginKinship(models.AbstractModel):
     def inherit_dna(self, lot, inputs):
         Kinship = self.env['agri.lot.kinship']
         input_lots = inputs.mapped('lot_id')
-        if not input_lots: return
-        
+        if not input_lots:
+            return
+
         intervention = False
         if hasattr(inputs[0], 'production_id') and inputs[0].production_id:
             intervention = inputs[0].production_id
@@ -420,3 +421,45 @@ class AgriDnaPluginKinship(models.AbstractModel):
                 intervention=intervention,
                 derivation_type=derivation_type
             )
+
+class AgriDnaPluginEntityCompliance(models.AbstractModel):
+    """
+    [DNA Plugin] Entity Trust DNA.
+    Syncs the compliance audit status of the farm entity into the product lot.
+    Fulfills US-TECH-DNA-07.
+    """
+    _name = 'agri.dna.plugin.entity_compliance'
+    _inherit = 'agri.dna.plugin'
+
+    @api.model
+    def inherit_dna(self, lot, inputs):
+        # 1. Resolve Intervention Context
+        intervention = False
+        if inputs and hasattr(inputs[0], 'production_id') and inputs[0].production_id:
+            intervention = inputs[0].production_id
+        elif inputs and hasattr(inputs[0], 'raw_material_production_id') and inputs[0].raw_material_production_id:
+            intervention = inputs[0].raw_material_production_id
+
+        if not intervention or not intervention.location_id:
+            return
+
+        # 2. Look for Farm Entity or Franchise Audit Status
+        # We check for farm_multi_farm models
+        location = intervention.location_id
+
+        # Try to find the farm entity linked to the company or location
+        farm_entity = self.env['farm.entity'].search([('company_id', '=', lot.company_id.id)], limit=1)
+
+        # Also check if it's a franchise farm
+        franchise = self.env['franchise.farm'].search([('farm_entity_id', '=', farm_entity.id)], limit=1) if farm_entity else False
+
+        status = 'compliant'
+        if franchise:
+            status = franchise.compliance_status
+
+        # 3. Inject into Lot Metadata
+        if hasattr(lot, 'entity_audit_status'):
+            lot.entity_audit_status = status
+            if status != 'compliant':
+                lot.message_post(body=_("Trust DNA Alert: Lot associated with a '%s' status entity.") % status.upper())
+

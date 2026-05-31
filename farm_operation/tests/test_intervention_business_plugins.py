@@ -281,3 +281,58 @@ class TestInterventionBusinessPlugins(TransactionCase):
         # Check reverse relation on parent
         descendants = parent_lot_1.child_kinship_ids.mapped('child_lot_id')
         self.assertIn(child_lot, descendants)
+
+    def test_08_entity_compliance_trust_dna(self):
+        """ Test Entity Compliance -> Lot Integrity linkage """
+        # 1. Setup Farm Entity and Franchise with 'warning' status
+        farm_entity = self.env['farm.entity'].create({
+            'name': 'Warning Farm',
+            'code': 'WF-01',
+            'company_id': self.env.company.id,
+        })
+        franchise = self.env['franchise.farm'].create({
+            'name': 'Warning Franchise',
+            'code': 'WF-FR-01',
+            'farm_entity_id': farm_entity.id,
+            'compliance_status': 'warning',
+        })
+        
+        # 2. Create intervention in this farm
+        intervention = self.Intervention.create({
+            'product_id': self.apple.id,
+            'product_qty': 100.0,
+            'intervention_type': 'harvesting',
+            'location_id': self.parcel.id,
+        })
+        intervention.action_confirm()
+        
+        # 3. Create output lot
+        output_lot = self.env['stock.lot'].create({
+            'name': 'TRUST-LOT-01',
+            'product_id': self.apple.id,
+            'quality_status': 'passed', # Base status is good
+        })
+        
+        # 4. Trigger DNA Inheritance (which calls Entity Compliance plugin)
+        # Using a dummy move for context
+        move = self.env['stock.move'].create({
+            'name': 'Test Move',
+            'product_id': self.apple.id,
+            'product_uom_qty': 100.0,
+            'location_id': self.env.ref('stock.location_production').id,
+            'location_dest_id': self.env.ref('stock.stock_location_stock').id,
+            'production_id': intervention.id,
+            'state': 'done',
+        })
+        output_lot.inherit_dna_from_source(move)
+        
+        # 5. Verify results
+        self.assertEqual(output_lot.entity_audit_status, 'warning', "Lot should capture farm's warning status")
+        
+        # Check integrity score (Base 100 * 0.8 multiplier for warning)
+        # Formula: (geofence 100*0.4 + input 100*0.4 + qc 100*0.2) * 0.8 = 80.0
+        # Wait, geofence check logic in _compute_integrity_score depends on quality_status
+        # lot.quality_status is 'passed' (not 'healthy'), so geofence compliance is 80.0
+        # score = (80*0.4 + 100*0.4 + 100*0.2) * 0.8 = (32 + 40 + 20) * 0.8 = 92 * 0.8 = 73.6
+        self.assertLess(output_lot.integrity_score, 100.0)
+        self.assertEqual(output_lot.integrity_score, 73.6)

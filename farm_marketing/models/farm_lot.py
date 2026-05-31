@@ -100,25 +100,32 @@ class FarmLotMarketing(models.Model):
     is_premium_brand = fields.Boolean("Premium Brand Lot", default=False)
     allowed_partner_ids = fields.Many2many('res.partner', string="Allowed Premium Channels")
 
-    # US-062-04: Organic Integrity Scoring
-    # Formula: Integrity = Geofence Rate * 0.4 + Input Whitelist Rate * 0.4 + QC Pass Rate * 0.2
+    # Formula: Integrity = (Base Score from QC) * Entity Multiplier
     integrity_score = fields.Float("Organic Integrity Score", compute='_compute_integrity_score', store=True, precompute=True)
 
     def _compute_integrity_score(self):
         for lot in self:
-            # In real system, these would be fetched from actual records
-            # For prototype, we simulate based on current state
+            # 1. Base Score calculation (from QC and inputs)
             geofence_compliance = 100.0 if lot.quality_status == 'healthy' else 80.0
             input_whitelist_rate = 100.0 if lot.quality_status == 'passed' else 70.0
             qc_pass_rate = 100.0 if lot.quality_status == 'passed' else 0.0
             
-            score = (geofence_compliance * 0.4) + (input_whitelist_rate * 0.4) + (qc_pass_rate * 0.2)
-            lot.integrity_score = score
+            base_score = (geofence_compliance * 0.4) + (input_whitelist_rate * 0.4) + (qc_pass_rate * 0.2)
             
-            if score < 60.0:
+            # 2. Entity Trust Multiplier [US-TECH-DNA-07]
+            # Compliant = 1.0, Warning = 0.8, Non-compliant = 0.5
+            multiplier = 1.0
+            status = getattr(lot, 'entity_audit_status', 'compliant')
+            if status == 'warning': multiplier = 0.8
+            elif status == 'non_compliant': multiplier = 0.5
+            
+            final_score = base_score * multiplier
+            lot.integrity_score = final_score
+            
+            if final_score < 60.0:
                 lot.activity_schedule(
                     'mail.mail_activity_data_todo',
-                    summary=_('Integrity Warning: Low Score (%s)') % score,
+                    summary=_('Integrity Warning: Low Score (%s)') % final_score,
                     note=_('Lot %s has an integrity score below 60. Please investigate immediately.') % lot.name,
                     user_id=self.env.user.id # Should be quality manager
                 )

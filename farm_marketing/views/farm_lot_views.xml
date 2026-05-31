@@ -37,6 +37,7 @@
                             <field name="allowed_partner_ids" widget="many2many_tags" invisible="not is_premium_brand"/>
                         </group>
                         <group string="Integrity Assessment">
+                            <field name="entity_audit_status" widget="badge" decoration-success="entity_audit_status == 'compliant'" decoration-warning="entity_audit_status == 'warning'" decoration-danger="entity_audit_status == 'non_compliant'"/>
                             <field name="integrity_score" widget="gauge" options="{'max_value': 100}"/>
                         </group>
                     </group>
