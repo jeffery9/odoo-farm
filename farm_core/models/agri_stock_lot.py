@@ -1,4 +1,7 @@
 from odoo import models, fields, api, _
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class StockLot(models.Model):
     """
@@ -41,30 +44,35 @@ class StockLot(models.Model):
             'target': 'new',
         }
 
+    @api.model
+    def _get_dna_plugins(self):
+        """
+        Registry for DNA inheritance plugins.
+        """
+        return [
+            {'name': 'nutrients', 'class': 'agri.dna.plugin.nutrient'},
+            {'name': 'sustainability', 'class': 'agri.dna.plugin.sustainability'},
+            {'name': 'spatial', 'class': 'agri.dna.plugin.spatial'},
+            {'name': 'certification', 'class': 'agri.dna.plugin.certification'},
+        ]
+
     def inherit_dna_from_source(self, inputs):
         """
         [Level 1+ DNA Traceability]
-        Aggregates nutrients and sustainability metrics from input movements.
+        Orchestrates DNA transfer from inputs to the output lot via plugins.
         """
         self.ensure_one()
-        total_qty = sum(i.product_uom_qty for i in inputs)
-        if total_qty <= 0:
+        if not inputs:
             return
 
-        # 1. Mass Balance Accumulation
-        self.nitrogen_qty = sum(i.nitrogen_qty for i in inputs)
-        self.phosphorus_qty = sum(i.phosphorus_qty for i in inputs)
-        self.potassium_qty = sum(i.potassium_qty for i in inputs)
-        self.water_footprint = sum(i.water_footprint for i in inputs)
+        plugins = self._get_dna_plugins()
+        for plugin_info in plugins:
+            plugin_model = self.env.get(plugin_info['class'])
+            if plugin_model:
+                try:
+                    plugin_model.inherit_dna(self, inputs)
+                except Exception as e:
+                    _logger.error(f"DNA Inheritance Plugin Error ({plugin_info['name']}): {str(e)}")
 
-        # 2. Weighted Average Sustainability (Carbon Intensity)
-        weighted_carbon = sum(i.carbon_intensity * i.product_uom_qty for i in inputs)
-        self.carbon_intensity = weighted_carbon / total_qty
-
-        # 3. Spatial Context Inheritance
-        # Lots often take the location of the latest intervention
-        if inputs:
-            self.geo_point = inputs[0].production_id.geo_point
-            
         self.generate_quality_fingerprint()
         return True

@@ -11,19 +11,17 @@ _logger = logging.getLogger(__name__)
 
 class AgriMRPProduction(models.Model):
     """
-    ISL model for MRP Production Orders with industry specialization
-    Implements US-084-01: MRP production order ISL model implementation
+    ISL model for Agricultural Interventions with industry specialization
+    Implements US-084-01: Intervention ISL model implementation
     """
     _name = 'agri.isl.mrp.production'
-    # TODO: [DE-INDUSTRIAL] Use 'Agri ISL Intervention' or similar
-    _description = 'Agri ISL MRP Production Order'
+    _description = 'Agri ISL Agricultural Intervention'
     _inherits = {'mrp.production': 'mrp_production_id'}
     _inherit = ['agri.isl.manufacturing.mixin']
 
     mrp_production_id = fields.Many2one(
         'mrp.production',
-        # TODO: [DE-INDUSTRIAL] Use 'Base Intervention'
-        string='Base MRP Production',
+        string='Base Intervention',
         required=True,
         ondelete='cascade'
     )
@@ -51,19 +49,17 @@ class AgriMRPProduction(models.Model):
 
 class AgriMRPBom(models.Model):
     """
-    ISL model for MRP BOMs with industry specialization
-    Implements US-084-02: MRP BOM ISL model implementation
+    ISL model for Cultivation Recipes with industry specialization
+    Implements US-084-02: Recipe ISL model implementation
     """
     _name = 'agri.isl.mrp.bom'
-    # TODO: [DE-INDUSTRIAL] Use 'Agri ISL Cultivation Recipe'
-    _description = 'Agri ISL MRP Bill of Materials'
+    _description = 'Agri ISL Cultivation Recipe'
     _inherits = {'mrp.bom': 'mrp_bom_id'}
     _inherit = ['agri.isl.manufacturing.mixin']
 
     mrp_bom_id = fields.Many2one(
         'mrp.bom',
-        # TODO: [DE-INDUSTRIAL] Use 'Base Recipe'
-        string='Base MRP BOM',
+        string='Base Recipe',
         required=True,
         ondelete='cascade'
     )
@@ -89,18 +85,16 @@ class AgriMRPBom(models.Model):
 
 class AgriMRPWorkcenter(models.Model):
     """
-    Implements US-084-03: MRP work center ISL model implementation
+    Implements US-084-03: Facility Unit ISL model implementation
     """
     _name = 'agri.isl.mrp.workcenter'
-    # TODO: [DE-INDUSTRIAL] Use 'Agri ISL Processing Unit' or 'Farm Facility'
-    _description = 'Agri ISL MRP Work Center'
+    _description = 'Agri ISL Facility Unit'
     _inherits = {'mrp.workcenter': 'workcenter_id'}
     _inherit = ['agri.isl.manufacturing.mixin']
 
     workcenter_id = fields.Many2one(
         'mrp.workcenter',
-        # TODO: [DE-INDUSTRIAL] Use 'Base Facility'
-        string='Base Work Center',
+        string='Base Facility Unit',
         required=True,
         ondelete='cascade'
     )
@@ -308,17 +302,17 @@ class AgriStockPicking(models.Model):
 
 class AgriMRPWorkorder(models.Model):
     """
-    ISL model for MRP Work Orders with industry specialization
-    Implements US-084-09: MRP work order ISL model implementation
+    ISL model for Operation Phases with industry specialization
+    Implements US-084-09: Operation phase ISL model implementation
     """
     _name = 'agri.isl.mrp.workorder'
-    _description = 'Agri ISL MRP Work Order'
+    _description = 'Agri ISL Operation Phase'
     _inherits = {'mrp.workorder': 'workorder_id'}
     _inherit = ['agri.isl.manufacturing.mixin']
 
     workorder_id = fields.Many2one(
         'mrp.workorder',
-        string='Base Work Order',
+        string='Base Operation Phase',
         required=True,
         ondelete='cascade'
     )
