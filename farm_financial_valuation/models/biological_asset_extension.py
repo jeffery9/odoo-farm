@@ -3,6 +3,8 @@ from odoo import models, api
 class BiologicalAssetValuation(models.Model):
     _inherit = 'agri.biological.asset'
 
+    location_id = fields.Many2one('farm.location', string="Primary Location", help="Physical location for GEP valuation link")
+
     def trigger_financial_revaluation(self, reason="Biological Growth"):
         """
         [US-VALUATION-02] 
