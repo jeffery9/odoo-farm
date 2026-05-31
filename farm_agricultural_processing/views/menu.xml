@@ -12,7 +12,7 @@
               sequence="10"/>
 
     <menuitem id="menu_processing_boms"
-              name="Agri-Recipes (BOM)"
+              name="Agri-Recipes"
               parent="menu_farm_agricultural_processing_root"
               action="mrp.mrp_bom_form_action"
               sequence="20"/>

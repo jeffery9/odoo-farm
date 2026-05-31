@@ -1,1 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agri_seasonal_recipe,agri.seasonal.recipe,model_agri_seasonal_recipe,base.group_user,1,1,1,1
+access_agri_seasonal_recipe_input,agri.seasonal.recipe.input,model_agri_seasonal_recipe_input,base.group_user,1,1,1,1
+access_agri_seasonal_recipe_parameter,agri.seasonal.recipe.parameter,model_agri_seasonal_recipe_parameter,base.group_user,1,1,1,1
+access_agri_processing_lot_tracking,agri.processing.lot.tracking,model_agri_processing_lot_tracking,base.group_user,1,1,1,1
+access_agri_processing_blind_input,agri.processing.blind.input,model_agri_processing_blind_input,base.group_user,1,1,1,1
+access_agri_processing_formula_auto_correction,agri.processing.formula.auto.correction,model_agri_processing_formula_auto_correction,base.group_user,1,1,1,1
