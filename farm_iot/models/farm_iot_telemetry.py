@@ -29,7 +29,12 @@ class FarmIotTelemetry(models.Model):
             for rule in rules:
                 rule.check_and_trigger(record)
 
-            # 2. 地理围栏越界判定 [US-053-02, US-053-06]
+            # 2. 业务层事件关联逻辑 [US-TECH-06-01]
+            correlations = self.env['farm.event.correlation'].sudo().search([('active', '=', True)])
+            for correlation in correlations:
+                correlation.evaluate_telemetry(record)
+
+            # 3. 地理围栏越界判定 [US-053-02, US-053-06]
             if record.device_id and record.device_id.geofence_id and record.gps_lat and record.gps_lng:
                 fence = record.device_id.geofence_id
                 is_inside = fence.is_point_inside(record.gps_lng, record.gps_lat)

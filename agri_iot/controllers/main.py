@@ -13,6 +13,84 @@ _logger = logging.getLogger(__name__)
 class IndustrialIotController(http.Controller):
     """HTTP controllers for IIoT module"""
 
+    @http.route('/iiot/gateway/register', type='json', auth='public', methods=['POST'], csrf=False)
+    def gateway_register(self, **post):
+        """
+        Automatic registration endpoint for IoT Gateways
+        Expected payload: {"gateway_id": "bridge-01", "name": "Main Bridge", "url": "http://192.168.1.100:8000"}
+        """
+        try:
+            data = request.jsonrequest or {}
+            gateway_id = data.get('gateway_id')
+            name = data.get('name', gateway_id)
+            url = data.get('url')
+
+            if not gateway_id:
+                return {'error': 'Missing gateway_id', 'status': 'error'}
+
+            gateway = request.env['iiot.gateway'].sudo().search([('gateway_id', '=', gateway_id)], limit=1)
+            vals = {
+                'name': name,
+                'url': url,
+                'state': 'online',
+                'last_seen': datetime.now(),
+            }
+
+            if gateway:
+                gateway.sudo().write(vals)
+            else:
+                gateway = request.env['iiot.gateway'].sudo().create({
+                    'gateway_id': gateway_id,
+                    **vals
+                })
+
+            _logger.info(f"IoT Gateway registered: {gateway_id} at {url}")
+            return {'status': 'success'}
+
+        except Exception as e:
+            _logger.error(f"Error in gateway registration: {str(e)}")
+            return {'error': str(e), 'status': 'error'}
+
+    @http.route('/iiot/gateway/config', type='json', auth='public', methods=['POST'], csrf=False)
+    def gateway_config(self, **post):
+        """
+        Endpoint for IoT Gateways to download their configuration
+        Expected payload: {"gateway_id": "bridge-01"}
+        """
+        try:
+            data = request.jsonrequest or {}
+            gateway_id = data.get('gateway_id')
+
+            if not gateway_id:
+                return {'error': 'Missing gateway_id', 'status': 'error'}
+
+            gateway = request.env['iiot.gateway'].sudo().search([('gateway_id', '=', gateway_id)], limit=1)
+            
+            if not gateway:
+                return {'error': 'Gateway not found', 'status': 'error'}
+
+            # Collect managed device profiles for topic patterns
+            managed_devices = gateway.device_ids
+            topics = {
+                'config_request': request.env['ir.config_parameter'].sudo().get_param('iiot.mqtt_config_request_topic', 'iiot/config/request'),
+            }
+
+            return {
+                'status': 'success',
+                'mqtt': {
+                    'host': gateway.mqtt_host or request.env['ir.config_parameter'].sudo().get_param('iiot.mqtt_host', 'mqtt.factory.com'),
+                    'port': gateway.mqtt_port or int(request.env['ir.config_parameter'].sudo().get_param('iiot.mqtt_port', '8883')),
+                    'user': gateway.mqtt_user,
+                    'password': gateway.mqtt_password,
+                    'use_tls': gateway.mqtt_use_tls,
+                },
+                'topics': topics
+            }
+
+        except Exception as e:
+            _logger.error(f"Error in gateway config: {str(e)}")
+            return {'error': str(e), 'status': 'error'}
+
     @http.route('/iiot/config', type='json', auth='public', methods=['POST'], csrf=False)
     def device_config(self, **post):
         """
@@ -114,12 +192,16 @@ class IndustrialIotController(http.Controller):
                 }
 
             # Process telemetry data based on topic
-            if 'telemetry' in topic:
+            payload_type = payload.get('event', 'telemetry')
+            
+            if payload_type == 'telemetry' or 'telemetry' in topic:
                 device.process_telemetry_data(payload)
+            elif payload_type == 'command_ack':
+                self._process_command_ack(device, payload)
             elif 'ota' in topic and 'status' in topic:
                 self._process_ota_status(device, payload)
 
-            _logger.info(f"Telemetry received for device {device_id}: {topic}")
+            _logger.info(f"IoT Event received for device {device_id}: {payload_type}")
             return {'status': 'success'}
 
         except Exception as e:
@@ -128,6 +210,28 @@ class IndustrialIotController(http.Controller):
                 'error': str(e),
                 'status': 'error'
             }
+
+    def _process_command_ack(self, device, payload):
+        """Process command acknowledgement from device"""
+        action = payload.get('action')
+        status = payload.get('status')
+        
+        # Find the most recent dispatched command for this device and action
+        command_log = request.env['farm.command.log'].sudo().search([
+            ('device_id', '=', device.id),
+            ('command', '=', action),
+            ('status', '=', 'dispatched')
+        ], order='create_date desc', limit=1)
+        
+        if command_log:
+            vals = {
+                'status': 'success' if status in ['ok', 'success', 'ACK'] else 'failed',
+                'ack_timestamp': datetime.now(),
+            }
+            if status == 'failed':
+                vals['error_log'] = json.dumps(payload.get('raw_response', {}))
+            command_log.write(vals)
+            _logger.info(f"Command {action} ACK received for log {command_log.id}")
 
     def _process_ota_status(self, device, payload):
         """Process OTA status updates from device"""

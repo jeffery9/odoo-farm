@@ -250,3 +250,103 @@ class HTTPService:
     async def close(self):
         """Close the HTTP client"""
         await self.client.aclose()
+
+    async def fetch_gateway_config(self) -> Dict[str, Any]:
+        """
+        Fetch this bridge's configuration from Odoo
+        """
+        url = f"{settings.ODOO_BASE_URL}{settings.ODOO_GATEWAY_CONFIG_ENDPOINT}"
+
+        data = {
+            "gateway_id": settings.BRIDGE_ID
+        }
+
+        headers = {
+            "Content-Type": "application/json"
+        }
+
+        if settings.ODOO_API_KEY:
+            headers["Authorization"] = f"Bearer {settings.ODOO_API_KEY}"
+
+        try:
+            response = await self.client.post(url, json=data, headers=headers)
+
+            if response.status_code == 200:
+                return response.json()
+            else:
+                logger.error(f"Failed to fetch gateway config: {response.status_code} - {response.text}")
+                return {
+                    "error": f"HTTP {response.status_code}: {response.text}",
+                    "status": "error"
+                }
+        except Exception as e:
+            logger.error(f"Error fetching gateway config: {str(e)}")
+            return {
+                "error": str(e),
+                "status": "error"
+            }
+    async def register_bridge(self) -> Dict[str, Any]:
+        """
+        Register this bridge with Odoo on startup
+        """
+        url = f"{settings.ODOO_BASE_URL}{settings.ODOO_REGISTER_ENDPOINT}"
+
+        data = {
+            "gateway_id": settings.BRIDGE_ID,
+            "name": settings.BRIDGE_NAME,
+            "url": settings.BRIDGE_PUBLIC_URL
+        }
+
+        headers = {
+            "Content-Type": "application/json"
+        }
+
+        if settings.ODOO_API_KEY:
+            headers["Authorization"] = f"Bearer {settings.ODOO_API_KEY}"
+
+        try:
+            response = await self.client.post(url, json=data, headers=headers)
+
+            if response.status_code == 200:
+                logger.info(f"Successfully registered bridge {settings.BRIDGE_ID} with Odoo")
+                return response.json()
+            else:
+                logger.error(f"Failed to register bridge: {response.status_code} - {response.text}")
+                return {
+                    "error": f"HTTP {response.status_code}: {response.text}",
+                    "status": "error"
+                }
+        except Exception as e:
+            logger.error(f"Error registering bridge: {str(e)}")
+            return {
+                "error": str(e),
+                "status": "error"
+            }
+
+    async def dispatch_webhook(self, url: str, device_id: str, topic: str, payload: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Dispatch a generic webhook to a subscriber
+        """
+        data = {
+            "device_id": device_id,
+            "topic": topic,
+            "payload": payload
+        }
+
+        headers = {
+            "Content-Type": "application/json"
+        }
+
+        if settings.ODOO_API_KEY:
+            headers["Authorization"] = f"Bearer {settings.ODOO_API_KEY}"
+
+        try:
+            response = await self.client.post(url, json=data, headers=headers)
+            if response.status_code == 200:
+                return response.json()
+            else:
+                logger.error(f"Webhook dispatch failed to {url}: {response.status_code}")
+                return {"status": "error", "code": response.status_code}
+        except Exception as e:
+            logger.error(f"Error dispatching webhook to {url}: {str(e)}")
+            return {"status": "error", "error": str(e)}

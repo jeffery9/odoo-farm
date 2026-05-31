@@ -1,1 +1,15 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_iiot_device_profile_user,iiot.device.profile.user,model_iiot_device_profile,base.group_user,1,1,1,0
+access_iiot_device_profile_manager,iiot.device.profile.manager,model_iiot_device_profile,base.group_system,1,1,1,1
+access_iiot_device_user,iiot.device.user,model_iiot_device,base.group_user,1,1,1,0
+access_iiot_device_manager,iiot.device.manager,model_iiot_device,base.group_system,1,1,1,1
+access_iiot_firmware_user,iiot.firmware.user,model_iiot_firmware,base.group_user,1,1,1,0
+access_iiot_firmware_manager,iiot.firmware.manager,model_iiot_firmware,base.group_system,1,1,1,1
+access_iiot_update_user,iiot.update.user,model_iiot_update,base.group_user,1,1,1,0
+access_iiot_update_manager,iiot.update.manager,model_iiot_update,base.group_system,1,1,1,1
+access_iiot_telemetry_rule_user,iiot.telemetry.rule.user,model_iiot_telemetry_rule,base.group_user,1,1,1,0
+access_iiot_telemetry_rule_manager,iiot.telemetry.rule.manager,model_iiot_telemetry_rule,base.group_system,1,1,1,1
+access_iiot_telemetry_user,iiot.telemetry.user,model_iiot_telemetry,base.group_user,1,1,1,0
+access_iiot_telemetry_manager,iiot.telemetry.manager,model_iiot_telemetry,base.group_system,1,1,1,1
+access_iiot_gateway_user,iiot.gateway.user,model_iiot_gateway,base.group_user,1,1,1,0
+access_iiot_gateway_manager,iiot.gateway.manager,model_iiot_gateway,base.group_system,1,1,1,1

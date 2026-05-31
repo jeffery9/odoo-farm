@@ -20,6 +20,13 @@ class Settings(BaseSettings):
     ODOO_CONFIG_ENDPOINT: str = os.getenv("ODOO_CONFIG_ENDPOINT", "/iiot/config")
     ODOO_WEBHOOK_ENDPOINT: str = os.getenv("ODOO_WEBHOOK_ENDPOINT", "/iiot/webhook")
     ODOO_COMMAND_ENDPOINT: str = os.getenv("ODOO_COMMAND_ENDPOINT", "/iiot/command")
+    ODOO_REGISTER_ENDPOINT: str = os.getenv("ODOO_REGISTER_ENDPOINT", "/iiot/gateway/register")
+    ODOO_GATEWAY_CONFIG_ENDPOINT: str = os.getenv("ODOO_GATEWAY_CONFIG_ENDPOINT", "/iiot/gateway/config")
+
+    # Bridge Registration Configuration
+    BRIDGE_NAME: str = os.getenv("BRIDGE_NAME", "Agri IoT Bridge")
+    BRIDGE_ID: str = os.getenv("BRIDGE_ID", f"bridge-{os.getpid()}")
+    BRIDGE_PUBLIC_URL: str = os.getenv("BRIDGE_PUBLIC_URL", "http://localhost:8000")
 
     # Topic Configuration
     MQTT_CONFIG_REQUEST_TOPIC: str = os.getenv("MQTT_CONFIG_REQUEST_TOPIC", "iiot/config/request")

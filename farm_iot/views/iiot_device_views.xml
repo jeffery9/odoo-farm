@@ -7,6 +7,8 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='profile_id']" position="after">
                 <field name="geofence_id" options="{'no_create': True}"/>
+                <field name="location_id"/>
+                <field name="site_id"/>
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Active Alerts" name="active_alerts">
