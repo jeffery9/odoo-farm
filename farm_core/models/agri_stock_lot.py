@@ -25,6 +25,13 @@ class StockLot(models.Model):
     parent_kinship_ids = fields.One2many('agri.lot.kinship', 'child_lot_id', string='Ancestry (Parents)', help='The lots that this lot was derived from.')
     child_kinship_ids = fields.One2many('agri.lot.kinship', 'parent_lot_id', string='Lineage (Descendants)', help='The lots that were derived from this lot.')
 
+    # Trust DNA [US-TECH-DNA-07]
+    entity_audit_status = fields.Selection([
+        ('compliant', 'Compliant'),
+        ('warning', 'Warning'),
+        ('non_compliant', 'Non-Compliant')
+    ], string='Entity Audit Status', default='compliant')
+
     # Visualization Trigger [US-TECH-DNA-06]
     holographic_map_trigger = fields.Boolean('Traceability Map Active', default=True)
 
@@ -63,6 +70,7 @@ class StockLot(models.Model):
             {'name': 'spatial', 'class': 'agri.dna.plugin.spatial'},
             {'name': 'certification', 'class': 'agri.dna.plugin.certification'},
             {'name': 'kinship', 'class': 'agri.dna.plugin.kinship'},
+            {'name': 'entity_trust', 'class': 'agri.dna.plugin.entity_compliance'},
         ]
 
     def inherit_dna_from_source(self, inputs):
