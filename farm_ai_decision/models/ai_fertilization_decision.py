@@ -34,6 +34,48 @@ class AgriAiFertilizationDecision(models.Model):
     application_timing = fields.Char('Application Timing')
     nutrient_deficiency_analysis = fields.Html('Nutrient Deficiency Analysis')
 
+    def action_fetch_iot_shadow(self):
+        """ Pull live soil NPK levels from location's device shadow [US-TECH-AI-02] """
+        self.ensure_one()
+        if not self.land_location_id:
+            return False
+            
+        # Find NPK sensor in this location
+        device = self.env['iiot.device'].search([
+            ('location_id', '=', self.land_location_id.id),
+            ('connection_status', '=', 'online')
+        ], limit=1)
+        
+        if device and device.shadow_state:
+            try:
+                shadow = json.loads(device.shadow_state)
+                # Map shadow keys to soil fields
+                self.soil_nitrogen = float(shadow.get('n', shadow.get('nitrogen', self.soil_nitrogen)))
+                self.soil_phosphorus = float(shadow.get('p', shadow.get('phosphorus', self.soil_phosphorus)))
+                self.soil_potassium = float(shadow.get('k', shadow.get('potassium', self.soil_potassium)))
+                self.soil_ph = float(shadow.get('ph', self.soil_ph))
+                
+                self.message_post(body=_("IoT Sync: Fetched NPK/pH from device %s") % device.name)
+            except Exception as e:
+                _logger.error(f"Failed to parse shadow for fertilization decision: {str(e)}")
+
+    def _create_correction_intervention(self):
+        """ Create a correction fertilization task in the Intervention Engine """
+        if self.recommended_n <= 0 and self.recommended_p <= 0 and self.recommended_k <= 0:
+            return False
+
+        vals = {
+            'product_id': self.product_id.product_variant_id.id if self.product_id.product_variant_id else self.product_id.id,
+            'product_qty': 0.0,
+            'intervention_type': 'fertilizing',
+            'location_id': self.land_location_id.id,
+            'origin': f"AI Decision: {self.name}",
+        }
+        
+        intervention = self.env['mrp.production'].create(vals)
+        intervention.action_confirm()
+        return intervention
+
     def calculate_fertilization_needs(self):
         """Calculate fertilization needs based on soil and crop conditions."""
         for record in self:

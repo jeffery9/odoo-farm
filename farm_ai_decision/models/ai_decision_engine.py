@@ -7,9 +7,8 @@ class AiDecisionEngine(models.Model):
     """ AI 决策引擎：基于生物压力指数生成补救方案与采收预测 """
     _name = 'ai.decision.engine'
     _description = 'AI Decision Engine'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['agri.ai.decision.base']
 
-    name = fields.Char("Decision Ref", required=True, default="New AI Decision")
     intervention_id = fields.Many2one('mrp.production', string="Target Intervention", required=True)
     stress_index = fields.Float(related='intervention_id.biological_stress_index', string="Current Stress Index")
     growth_stage_id = fields.Many2one(related='intervention_id.current_growth_stage_id', string="Current Stage")
@@ -20,7 +19,39 @@ class AiDecisionEngine(models.Model):
     
     # [US-046-02] 采收窗口预测
     predicted_harvest_date = fields.Date("Predicted Harvest Date", compute='_compute_harvest_prediction', store=True, precompute=True)
-    confidence_score = fields.Float("Confidence Score (%)", default=85.0)
+
+    def _create_correction_intervention(self):
+        """ Automatically execute the generated recovery plan [US-TECH-AI-01] """
+        if not self.active_skill_json or self.active_skill_json == "{}":
+            return False
+            
+        try:
+            plan = json.loads(self.active_skill_json)
+            action = plan.get('action')
+            
+            # Map AI action to intervention type
+            type_map = {
+                'irrigation_boost': 'irrigation',
+                'nutrient_correction': 'fertilizing',
+                'pest_control': 'protection'
+            }
+            
+            intervention_type = type_map.get(action, 'protection')
+            
+            vals = {
+                'product_id': self.intervention_id.product_id.id,
+                'product_qty': 0.0,
+                'intervention_type': intervention_type,
+                'location_id': self.intervention_id.location_id.id,
+                'origin': f"AI Recovery: {self.name}",
+            }
+            
+            intervention = self.env['mrp.production'].create(vals)
+            intervention.action_confirm()
+            return intervention
+        except Exception as e:
+            _logger.error(f"Failed to execute AI recovery plan: {str(e)}")
+            return False
 
     @api.depends('intervention_id.cumulative_gdd', 'intervention_id.physiology_profile_id')
     def _compute_harvest_prediction(self):
