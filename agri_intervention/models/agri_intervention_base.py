@@ -114,3 +114,19 @@ class AgriInterventionPlugin(models.AbstractModel):
         hook_point: pre_confirm, post_confirm, pre_start, post_start, pre_done, post_done
         """
         pass
+
+class AgriDnaPlugin(models.AbstractModel):
+    """
+    [L1 DNA Foundation] Interface for DNA Inheritance Plugins.
+    Handles the transfer of physical/biological metadata from inputs to outputs.
+    """
+    _name = 'agri.dna.plugin'
+    _description = 'DNA Inheritance Plugin Interface'
+
+    @api.model
+    def inherit_dna(self, lot, inputs):
+        """
+        Lot: The target stock.lot receiving the DNA.
+        Inputs: The stock.move records (raw materials) used.
+        """
+        pass
