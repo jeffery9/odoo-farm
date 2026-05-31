@@ -40,9 +40,33 @@ class AgriAiDecisionBase(models.Model):
         ('critical', 'Critical'),
     ], string='Priority', default='medium')
 
+    # Bridge to execution [US-TECH-AI-01]
+    result_intervention_id = fields.Reference(
+        selection=[('mrp.production', 'Intervention'), ('project.task', 'Task')],
+        string='Triggered Action',
+        readonly=True
+    )
+
     def action_apply_recommendation(self):
-        """Apply the AI recommendation"""
+        """
+        [SOLID Refactored] Apply the AI recommendation and trigger an actual intervention.
+        """
+        self.ensure_one()
         self.write({'status': 'applied'})
+        
+        # Trigger creation of a correction intervention if logic exists
+        if hasattr(self, '_create_correction_intervention'):
+            intervention = self._create_correction_intervention()
+            if intervention:
+                self.result_intervention_id = f"{intervention._name},{intervention.id}"
+                self.message_post(body=_("AI Action: Automatically created correction intervention %s") % intervention.name)
+
+    def _create_correction_intervention(self):
+        """
+        Stub for specific AI models to implement their execution logic.
+        Should return an intervention record.
+        """
+        return False
 
     def action_reject_recommendation(self):
         """Reject the AI recommendation"""

@@ -12,7 +12,8 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_apply_recommendation" type="object" string="Apply Recommendation" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'"/>
+                        <field name="result_intervention_id" invisible="1"/>
+                        <button name="action_apply_recommendation" type="object" string="Apply Recommendation" class="oe_stat_button" icon="fa-play" invisible="status != 'recommended'"/>
                         <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'"/>
                         <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'"/>
                     </div>
@@ -20,6 +21,7 @@
                         <group>
                             <field name="product_id"/>
                             <field name="land_location_id"/>
+                            <field name="result_intervention_id" invisible="not result_intervention_id"/>
                             <field name="detection_date"/>
                         </group>
                         <group>

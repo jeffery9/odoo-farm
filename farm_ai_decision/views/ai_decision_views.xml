@@ -21,19 +21,24 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_generate_recovery_plan" string="Generate AI Recovery" type="object" class="btn-primary"/>
+                    <button name="action_generate_recovery_plan" string="Generate AI Recovery" type="object" invisible="status != 'draft'" class="btn-primary"/>
+                    <button name="action_apply_recommendation" string="Apply Recovery Plan" type="object" invisible="status != 'recommended'" class="oe_highlight"/>
+                    <field name="status" widget="statusbar"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <field name="result_intervention_id" invisible="1"/>
+                    </div>
                     <div class="oe_title">
                         <h1><field name="name"/></h1>
                     </div>
                     <group>
-                        <group string="Source Audit">
+                        <group string="Source &amp; Execution">
                             <field name="intervention_id"/>
-                            <field name="growth_stage_id"/>
+                            <field name="result_intervention_id" invisible="not result_intervention_id"/>
                             <field name="stress_index" widget="progressbar"/>
                         </group>
-                        <group string="Harvest Prediction">
+                        <group string="Predictions">
                             <field name="predicted_harvest_date"/>
                             <field name="confidence_score"/>
                         </group>
