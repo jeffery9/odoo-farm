@@ -90,33 +90,52 @@ class AgriInterventionPluginRegulator(models.AbstractModel):
             self._generate_audit_snapshot(intervention)
 
     def _generate_audit_snapshot(self, intervention):
-        """ Creates a signed record of the completed intervention """
-        # 1. Prepare Data
+        """ 
+        [SPEC ALIGNED] Creates a signed record of the completed intervention.
+        Follows GS1 EPCIS 2.0 / JSON-LD schema defined in GOVERNMENT_API_SPEC.md.
+        """
+        # 1. Prepare Standard EPCIS 2.0 Payload
         payload = {
-            'name': intervention.name,
-            'type': getattr(intervention, 'intervention_type', 'unknown'),
-            'date': fields.Datetime.now().isoformat(),
-            'location': intervention.location_id.name,
-            'inputs': [],
-            'evidence_count': len(getattr(intervention, 'evidence_ids', []))
+            "@context": "https://ref.gs1.org/standards/epcis/2.0.0/epcis-context.jsonld",
+            "type": "TransformationEvent",
+            "eventID": f"GOV-{intervention.name}",
+            "eventTime": fields.Datetime.now().isoformat() + "Z",
+            "bizStep": getattr(intervention, 'gs1_biz_step', 'processing'),
+            "disposition": "active",
+            "readPoint": {
+                "id": f"urn:epc:id:sgln:{intervention.company_id.gs1_gln or '0000000000000'}.0"
+            },
+            "bizTransactionList": [
+                {"type": "inv", "id": intervention.name}
+            ],
+            "data": {
+                "intervention_type": getattr(intervention, 'intervention_type', 'unknown'),
+                "location_name": intervention.location_id.name,
+                "operator_id": getattr(intervention, 'operator_id_card', '脱敏存储'),
+                "inputs": [],
+                "gep_score": getattr(intervention.location_id, 'gep_score', 0.0),
+                "evidence_count": len(getattr(intervention, 'evidence_ids', []))
+            }
         }
         
         if hasattr(intervention, 'move_raw_ids'):
             for move in intervention.move_raw_ids:
-                payload['inputs'].append({
-                    'product': move.product_id.name,
-                    'qty': move.product_uom_qty,
-                    'reg_no': getattr(move.product_id, 'reg_cert_no', 'N/A')
+                payload['data']['inputs'].append({
+                    "product": move.product_id.name,
+                    "gtin": getattr(move.product_id, 'gs1_gtin', '00000000000000'),
+                    "dosage": move.product_uom_qty,
+                    "unit": move.product_uom.name
                 })
 
+        # Serialize with sorted keys for consistent hashing
         json_data = json.dumps(payload, sort_keys=True)
         
-        # 2. Digital Signature (Simple SHA256 for now)
+        # 2. Digital Signature (SHA256)
         signature = hashlib.sha256(json_data.encode()).hexdigest()
         
-        # 3. Create Snapshot
+        # 3. Create Immutable Snapshot
         self.env['gov.audit.snapshot'].sudo().create({
-            'snapshot_ref': f"GOV-{intervention.name}",
+            'snapshot_ref': payload['eventID'],
             'source_model': intervention._name,
             'source_id': intervention.id,
             'snapshot_data': json_data,
@@ -125,4 +144,4 @@ class AgriInterventionPluginRegulator(models.AbstractModel):
             'location_id': intervention.location_id.id,
             'operator_name': intervention.responsible_id.name
         })
-        _logger.info(f"Government Audit Snapshot created for {intervention.name}")
+        _logger.info(f"Standardized Gov Audit Snapshot created: {payload['eventID']}")
