@@ -422,6 +422,82 @@ class AgriDnaPluginKinship(models.AbstractModel):
                 derivation_type=derivation_type
             )
 
+
+# ---------------------------------------------------------
+# [Valuation Plugins]
+# ---------------------------------------------------------
+
+class AgriValuationPluginFairValue(models.AbstractModel):
+    """
+    [Valuation Plugin] Fair Value / Market Approach.
+    Formula: Value = (Potential Yield * Market Price) * Growth Progress.
+    """
+    _name = 'agri.valuation.plugin.fair_value'
+    _inherit = 'agri.valuation.plugin'
+
+    @api.model
+    def calculate_value(self, asset, context=None):
+        if not hasattr(asset, 'current_growth_progress'): return {}
+        
+        # 1. Logic extracted from AgriValuationBiologicalAsset
+        progress = getattr(asset, 'current_growth_progress', 0) / 100.0
+        potential = getattr(asset, 'target_yield', 1000.0)
+        
+        # Find market price (simplified lookup)
+        market_price = 50.0 # Mock or search in farm.market.price
+        
+        amount = (potential * market_price) * progress
+        return {
+            'amount': amount,
+            'notes': _("Fair Value based on %s%% growth progress.") % (progress * 100)
+        }
+
+class AgriValuationPluginGEP(models.AbstractModel):
+    """
+    [Valuation Plugin] Ecological GEP Premium (Anji Model).
+    Applies multipliers based on land GEP scores.
+    """
+    _name = 'agri.valuation.plugin.gep'
+    _inherit = 'agri.valuation.plugin'
+
+    @api.model
+    def calculate_value(self, asset, context=None):
+        # Only applies to land assets with GEP scores
+        if not hasattr(asset, 'gep_score') or getattr(asset, 'agricultural_type', '') != 'tree': # Simplified check
+            return {}
+
+        gep = getattr(asset, 'gep_score', 0.0)
+        multiplier = 1.0
+        if gep >= 80.0: multiplier = 1.2
+        elif gep >= 60.0: multiplier = 1.1
+        
+        return {
+            'multiplier': multiplier,
+            'notes': _("Ecological Premium (GEP %s) applied.") % gep
+        }
+
+class AgriValuationPluginGrowth(models.AbstractModel):
+    """
+    [Valuation Plugin] Biological Growth Integration.
+    Calculates value adjustments based on BBCH growth stages and maturity.
+    """
+    _name = 'agri.valuation.plugin.growth'
+    _inherit = 'agri.valuation.plugin'
+
+    @api.model
+    def calculate_value(self, asset, context=None):
+        if not hasattr(asset, 'growth_stage_id') or not asset.growth_stage_id:
+            return {}
+            
+        # Logic: Growth Stage determines a coefficient (e.g., Flowering = 0.7, Fruiting = 0.9)
+        stage = asset.growth_stage_id
+        coefficient = getattr(stage, 'valuation_coefficient', 1.0)
+        
+        return {
+            'multiplier': coefficient,
+            'notes': _("Biological Stage '%s' (Coefficient %s) applied.") % (stage.name, coefficient)
+        }
+
 class AgriDnaPluginEntityCompliance(models.AbstractModel):
     """
     [DNA Plugin] Entity Trust DNA.
