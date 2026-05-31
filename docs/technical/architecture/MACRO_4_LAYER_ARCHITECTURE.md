@@ -1,6 +1,6 @@
 # 4层扁平化宏观架构 (4-Layer Macro Architecture)
 
-*版本: V1.0 | 日期: 2026-05-04 | 状态: Mandatory Enforcement*
+*版本: V1.1 | 日期: 2026-05-31 | 状态: Mandatory Enforcement (2026 Refactored)*
 
 ## 1. 设计初衷 (Design Purpose)
 为了解决 Odoo 模块系统在超大规模（100+ 模块）开发中极易产生的“深层依赖污染”和“业务逻辑耦合”问题，本项目强制执行 4 层扁平化架构设计。该设计旨在实现**生产执行**、**价值流转**与**智能网关**的物理隔离。
