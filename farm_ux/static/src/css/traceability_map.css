@@ -1,0 +1,34 @@
+/* Holographic Traceability Map Styles */
+.o_agri_traceability_map {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+.traceability-node {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    background-color: white;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+}
+
+.traceability-node:hover {
+    border-color: #28a745;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.dna-metrics {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+.x-small {
+    font-size: 0.7rem;
+}
+
+.mt-n2 {
+    margin-top: -0.5rem !important;
+}

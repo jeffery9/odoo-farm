@@ -25,6 +25,9 @@ class StockLot(models.Model):
     parent_kinship_ids = fields.One2many('agri.lot.kinship', 'child_lot_id', string='Ancestry (Parents)', help='The lots that this lot was derived from.')
     child_kinship_ids = fields.One2many('agri.lot.kinship', 'parent_lot_id', string='Lineage (Descendants)', help='The lots that were derived from this lot.')
 
+    # Visualization Trigger [US-TECH-DNA-06]
+    holographic_map_trigger = fields.Boolean('Traceability Map Active', default=True)
+
     # Level 2: Semantic content for Lot RAG search
     def _get_embedding_content(self):
         self.ensure_one()

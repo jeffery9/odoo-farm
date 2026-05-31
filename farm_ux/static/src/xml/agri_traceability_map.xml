@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="AgriTraceabilityMap" owl="1">
+        <div class="o_agri_traceability_map bg-light p-4 rounded shadow-sm overflow-auto" style="min-height: 400px;">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="mb-0"><i class="fa fa-sitemap me-2 text-success"/>Holographic DNA Traceability</h3>
+                <button class="btn btn-outline-secondary btn-sm" t-on-click="loadGraph">
+                    <i class="fa fa-refresh me-1"/>Refresh Map
+                </button>
+            </div>
+
+            <div t-if="state.loading" class="text-center py-5">
+                <div class="spinner-border text-success" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2 text-muted">Decoding DNA Lineage...</p>
+            </div>
+
+            <div t-else="" class="traceability-graph-container d-flex flex-column align-items-center">
+                <div class="nodes-layer d-flex flex-wrap justify-content-center gap-5">
+                    <t t-foreach="state.nodes" t-as="node" t-key="node.id">
+                        <div t-attf-class="traceability-node border rounded p-3 bg-white shadow-sm position-relative #{node.id === state.root_id ? 'border-success border-3' : ''}" 
+                             style="width: 280px; transition: transform 0.2s;"
+                             t-att-style="node.id === state.root_id ? 'transform: scale(1.05);' : ''">
+                            
+                            <div class="node-header d-flex justify-content-between align-items-start mb-2 border-bottom pb-1">
+                                <span class="badge rounded-pill bg-info text-uppercase small"><t t-esc="node.certification"/></span>
+                                <span class="text-muted x-small">Depth: <t t-esc="node.depth"/></span>
+                            </div>
+                            
+                            <div class="node-body">
+                                <strong class="d-block text-truncate" t-att-title="node.name"><t t-esc="node.name"/></strong>
+                                <span class="d-block small text-muted mb-2"><t t-esc="node.product"/></span>
+                                
+                                <div class="dna-metrics bg-light p-2 rounded x-small">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span><i class="fa fa-leaf me-1 text-success"/>NPK (kg):</span>
+                                        <strong><t t-esc="node.dna.nitrogen.toFixed(2)"/> / <t t-esc="node.dna.phosphorus.toFixed(2)"/> / <t t-esc="node.dna.potassium.toFixed(2)"/></strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span><i class="fa fa-cloud me-1 text-primary"/>CO2e:</span>
+                                        <strong><t t-esc="node.dna.carbon.toFixed(2)"/></strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <span><i class="fa fa-tint me-1 text-info"/>Water:</span>
+                                        <strong><t t-esc="node.dna.water.toFixed(2)"/>L</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Link Indicators -->
+                            <t t-if="node.id !== state.root_id">
+                                <div class="position-absolute top-0 start-50 translate-middle mt-n2">
+                                    <i class="fa fa-chevron-up text-muted"/>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                </div>
+
+                <div t-if="!state.nodes.length" class="alert alert-warning mt-4">
+                    No kinship data found for this batch.
+                </div>
+            </div>
+            
+            <div class="mt-4 border-top pt-3 text-center">
+                <small class="text-muted"><i class="fa fa-shield me-1"/> 2026 High-Density Functional Matrix | ISO 22005 Compliant</small>
+            </div>
+        </div>
+    </t>
+</templates>
