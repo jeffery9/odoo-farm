@@ -57,6 +57,7 @@ class StockLot(models.Model):
         Registry for DNA inheritance plugins.
         """
         return [
+            {'name': 'inbound_init', 'class': 'agri.dna.plugin.inbound'},
             {'name': 'nutrients', 'class': 'agri.dna.plugin.nutrient'},
             {'name': 'sustainability', 'class': 'agri.dna.plugin.sustainability'},
             {'name': 'spatial', 'class': 'agri.dna.plugin.spatial'},
