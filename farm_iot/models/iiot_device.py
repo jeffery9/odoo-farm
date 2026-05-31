@@ -23,12 +23,16 @@ class IiotDevice(models.Model):
 
     def send_command(self, action, **params):
         """ Overridden to add business logging in farm_iot layer """
+        # Trigger actual hardware command
         res = super(IiotDevice, self).send_command(action, **params)
-        if res:
-            self.env['farm.command.log'].create({
-                'device_id': self.id,
-                'command': action,
-                'payload': json.dumps(params) if params else '{}',
-                'status': 'dispatched'
-            })
-        return res
+        
+        # Log command attempt
+        log_vals = {
+            'device_id': self.id,
+            'command': action,
+            'payload': json.dumps(params) if params else '{}',
+            'status': 'dispatched' if res else 'failed',
+            'res_model': self._context.get('active_model'),
+            'res_id': self._context.get('active_id'),
+        }
+        return self.env['farm.command.log'].create(log_vals)

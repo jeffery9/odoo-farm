@@ -1,1 +1,17 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_event_correlation_user,farm.event.correlation.user,model_farm_event_correlation,base.group_user,1,1,1,0
+access_farm_event_correlation_manager,farm.event.correlation.manager,model_farm_event_correlation,base.group_system,1,1,1,1
+access_farm_event_correlation_condition_user,farm.event.correlation.condition.user,model_farm_event_correlation_condition,base.group_user,1,1,1,0
+access_farm_event_correlation_condition_manager,farm.event.correlation.condition.manager,model_farm_event_correlation_condition,base.group_system,1,1,1,1
+access_farm_command_log_user,farm.command.log.user,model_farm_command_log,base.group_user,1,1,1,0
+access_farm_command_log_manager,farm.command.log.manager,model_farm_command_log,base.group_system,1,1,1,1
+access_iot_device_mapping_user,iot.device.mapping.user,model_iot_device_mapping,base.group_user,1,1,1,0
+access_iot_device_mapping_manager,iot.device.mapping.manager,model_iot_device_mapping,base.group_system,1,1,1,1
+access_farm_automation_rule_user,farm.automation.rule.user,model_farm_automation_rule,base.group_user,1,1,1,0
+access_farm_automation_rule_manager,farm.automation.rule.manager,model_farm_automation_rule,base.group_system,1,1,1,1
+access_iot_telemetry_buffer_user,iot.telemetry.buffer.user,model_iot_telemetry_buffer,base.group_user,1,1,1,0
+access_iot_telemetry_buffer_manager,iot.telemetry.buffer.manager,model_iot_telemetry_buffer,base.group_system,1,1,1,1
+access_agri_digital_twin_scene_user,agri.digital.twin.scene.user,model_agri_digital_twin_scene,base.group_user,1,1,1,0
+access_agri_digital_twin_scene_manager,agri.digital.twin.scene.manager,model_agri_digital_twin_scene,base.group_system,1,1,1,1
+access_agri_digital_twin_marker_user,agri.digital.twin.marker.user,model_agri_digital_twin_marker,base.group_user,1,1,1,0
+access_agri_digital_twin_marker_manager,agri.digital.twin.marker.manager,model_agri_digital_twin_marker,base.group_system,1,1,1,1

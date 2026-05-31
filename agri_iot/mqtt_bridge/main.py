@@ -38,6 +38,8 @@ from models.message import DeviceConfigRequest, TelemetryData, CommandMessage, O
 from services.mqtt_service import MQTTService
 from services.http_service import HTTPService
 from services.device_manager import DeviceManager
+from services.subscription_manager import SubscriptionManager
+from services.persistence_manager import PersistenceManager
 
 
 class MQTTBridge:
@@ -49,11 +51,14 @@ class MQTTBridge:
         self.mqtt_service = MQTTService()
         self.http_service = HTTPService()
         self.device_manager = DeviceManager()
+        self.subscription_manager = SubscriptionManager()
+        self.persistence_manager = PersistenceManager()
         self.app = FastAPI(
             title="Industrial IoT MQTT Bridge",
             description="Bridge between MQTT devices and Odoo HTTP webhooks",
             version="1.0.0"
         )
+        self.loop = None  # To be captured on start
         self.setup_routes()
         self.setup_mqtt_callbacks()
 
@@ -63,6 +68,44 @@ class MQTTBridge:
         @self.app.get("/")
         async def root():
             return {"message": "Industrial IoT MQTT Bridge", "status": "running"}
+
+        @self.app.post("/api/v1/webhook")
+        async def odoo_webhook_callback(data: Dict[str, Any]):
+            """
+            Unified callback endpoint for Odoo.
+            Handles various events like command execution, configuration sync, etc.
+            """
+            event = data.get("event")
+            payload = data.get("payload", {})
+            
+            logger.info(f"Received webhook event from Odoo: {event}")
+            
+            if event == "command":
+                # Route to existing command logic
+                device_id = payload.get("device_id")
+                action = payload.get("action")
+                params = payload.get("params", {})
+                
+                success = await self.mqtt_service.send_device_command(device_id, {"action": action, "params": params})
+                return {"status": "success" if success else "error"}
+            
+            elif event == "subscribe":
+                # Register a new webhook subscription from Odoo
+                callback_url = payload.get("callback_url")
+                events = payload.get("events", ["telemetry"])
+                
+                if not callback_url:
+                    return {"status": "error", "message": "Missing callback_url"}
+                
+                for e in events:
+                    await self.subscription_manager.register_subscription(e, callback_url)
+                
+                return {"status": "success", "message": f"Subscribed to {events}"}
+
+            elif event == "ping":
+                return {"status": "pong", "timestamp": datetime.utcnow().isoformat()}
+                
+            return {"status": "ignored", "message": f"Unknown event: {event}"}
 
         @self.app.get("/health")
         async def health_check():
@@ -223,7 +266,11 @@ class MQTTBridge:
         def on_message(client, userdata, msg):
             """Handle incoming MQTT messages"""
             try:
-                logger.info(f"Received MQTT message on topic: {msg.topic}")
+                logger.debug(f"Received MQTT message on topic: {msg.topic}")
+
+                if not self.loop:
+                    logger.error("Event loop not yet captured, cannot handle message")
+                    return
 
                 # Parse the message payload
                 try:
@@ -232,15 +279,19 @@ class MQTTBridge:
                     logger.error(f"Invalid JSON in message: {msg.payload}")
                     return
 
-                # Route message based on topic
+                # Route message based on topic using thread-safe async call
+                coro = None
                 if settings.MQTT_CONFIG_REQUEST_TOPIC in msg.topic:
-                    asyncio.create_task(self.handle_config_request(payload))
+                    coro = self.handle_config_request(payload)
                 elif "telemetry" in msg.topic:
-                    asyncio.create_task(self.handle_telemetry_data(msg.topic, payload))
+                    coro = self.handle_telemetry_data(msg.topic, payload)
                 elif "ota" in msg.topic and "status" in msg.topic:
-                    asyncio.create_task(self.handle_ota_status(msg.topic, payload))
+                    coro = self.handle_ota_status(msg.topic, payload)
                 elif "command" in msg.topic and "response" in msg.topic:
-                    asyncio.create_task(self.handle_command_response(msg.topic, payload))
+                    coro = self.handle_command_response(msg.topic, payload)
+                
+                if coro:
+                    asyncio.run_coroutine_threadsafe(coro, self.loop)
                 else:
                     logger.warning(f"Unknown topic: {msg.topic}")
 
@@ -313,93 +364,203 @@ class MQTTBridge:
             logger.error(f"Error handling config request: {str(e)}")
 
     async def handle_telemetry_data(self, topic: str, payload: Dict):
-        """Handle telemetry data from device and forward to Odoo"""
+        """Handle telemetry data from device and forward to all subscribers"""
         try:
             # Extract device_id from topic
-            # Assuming topic format like: telemetry/{device_id}/data
             topic_parts = topic.split('/')
             if len(topic_parts) >= 2:
-                device_id = topic_parts[1]  # Extract device_id from topic
+                device_id = topic_parts[1]
             else:
                 logger.error(f"Invalid topic format: {topic}")
                 return
 
             logger.info(f"Processing telemetry for device: {device_id}")
 
-            # Forward telemetry to Odoo via webhook
-            telemetry_response = await self.http_service.send_telemetry(
-                device_id, topic, payload
-            )
+            # Find all subscribers for 'telemetry' event
+            subscribers = await self.subscription_manager.get_subscriptions('telemetry')
+            
+            # If no dynamic subscribers, use Odoo default
+            if not subscribers:
+                odoo_url = f"{settings.ODOO_BASE_URL}{settings.ODOO_WEBHOOK_ENDPOINT}/{device_id}"
+                subscribers = [odoo_url]
 
-            if telemetry_response.get("status") == "success":
-                logger.info(f"Telemetry forwarded successfully for device: {device_id}")
-            else:
-                logger.error(f"Failed to forward telemetry: {telemetry_response.get('error')}")
+            # Dispatch to all subscribers
+            success = await self._dispatch_to_subscribers(subscribers, device_id, topic, payload)
+            
+            if not success:
+                logger.warning(f"All webhook dispatches failed for {device_id}, storing in persistence")
+                await self.persistence_manager.store_telemetry(device_id, topic, payload)
 
         except Exception as e:
             logger.error(f"Error handling telemetry data: {str(e)}")
 
+    async def _dispatch_to_subscribers(self, subscribers: List[str], device_id: str, topic: str, payload: Dict) -> bool:
+        """Helper to dispatch to multiple subscribers and return success if at least one succeeded"""
+        dispatch_tasks = []
+        for url in subscribers:
+            dispatch_tasks.append(
+                self.http_service.dispatch_webhook(url, device_id, topic, payload)
+            )
+        
+        if not dispatch_tasks:
+            return False
+            
+        results = await asyncio.gather(*dispatch_tasks)
+        # Consider it success if at least one Odoo endpoint (or subscriber) acknowledged
+        return any(r.get("status") == "success" for r in results if isinstance(r, dict))
+
     async def handle_ota_status(self, topic: str, payload: Dict):
-        """Handle OTA status updates from device and forward to Odoo"""
+        """Handle OTA status updates from device and forward to all subscribers"""
         try:
             # Extract device_id from topic
-            # Assuming topic format like: ota/{device_id}/status
             topic_parts = topic.split('/')
             if len(topic_parts) >= 2:
-                device_id = topic_parts[1]  # Extract device_id from topic
+                device_id = topic_parts[1]
             else:
                 logger.error(f"Invalid topic format: {topic}")
                 return
 
             logger.info(f"Processing OTA status for device: {device_id}")
 
-            # Forward OTA status to Odoo via webhook
-            ota_response = await self.http_service.send_ota_status(
-                device_id, payload
-            )
+            # Find all subscribers for 'ota_status' event
+            subscribers = await self.subscription_manager.get_subscriptions('ota_status')
+            
+            if not subscribers:
+                logger.warning(f"No subscribers for ota_status event from device {device_id}")
+                return
 
-            if ota_response.get("status") == "success":
-                logger.info(f"OTA status forwarded successfully for device: {device_id}")
-            else:
-                logger.error(f"Failed to forward OTA status: {ota_response.get('error')}")
+            # Dispatch to all subscribers
+            dispatch_tasks = []
+            for url in subscribers:
+                dispatch_tasks.append(
+                    self.http_service.dispatch_webhook(url, device_id, f"ota/{device_id}/status", payload)
+                )
+            
+            if dispatch_tasks:
+                await asyncio.gather(*dispatch_tasks)
 
         except Exception as e:
             logger.error(f"Error handling OTA status: {str(e)}")
 
     async def handle_command_response(self, topic: str, payload: Dict):
-        """Handle command responses from devices"""
+        """Handle command responses from devices and notify subscribers (Loop Closure)"""
         try:
             # Extract device_id from topic
-            # Assuming topic format like: command/{device_id}/response
             topic_parts = topic.split('/')
             if len(topic_parts) >= 2:
-                device_id = topic_parts[1]  # Extract device_id from topic
+                device_id = topic_parts[1]
             else:
                 logger.error(f"Invalid topic format: {topic}")
                 return
 
             logger.info(f"Processing command response from device: {device_id}")
 
-            # Process the command response (e.g., update command status in Odoo)
-            # This could involve notifying Odoo about the command result
             action = payload.get('action')
             status = payload.get('status', 'unknown')
-            result = payload.get('result')
+            
+            # Find all subscribers for 'command_ack' event
+            subscribers = await self.subscription_manager.get_subscriptions('command_ack')
+            
+            # If no dynamic subscribers, try Odoo default
+            if not subscribers:
+                odoo_url = f"{settings.ODOO_BASE_URL}{settings.ODOO_WEBHOOK_ENDPOINT}/{device_id}"
+                subscribers = [odoo_url]
 
-            logger.info(f"Command {action} response from {device_id}: {status}")
-
-            # In a real implementation, you might want to send this status back to Odoo
-            # For example, to update a command tracking record in Odoo
-            # await self.http_service.update_command_status(device_id, action, status, result)
+            # Dispatch ACK to all subscribers
+            ack_payload = {
+                "event": "command_ack",
+                "device_id": device_id,
+                "action": action,
+                "status": status,
+                "raw_response": payload,
+                "timestamp": datetime.utcnow().isoformat()
+            }
+            
+            await self._dispatch_to_subscribers(subscribers, device_id, f"command/{device_id}/response", ack_payload)
 
         except Exception as e:
             logger.error(f"Error handling command response: {str(e)}")
 
+    async def heartbeat_loop(self):
+        """Background task to keep the bridge registered with Odoo"""
+        while True:
+            try:
+                await self.http_service.register_bridge()
+            except Exception as e:
+                logger.error(f"Heartbeat registration failed: {str(e)}")
+            
+            # Wait for 1 minute before next heartbeat
+            await asyncio.sleep(60)
+
+    async def persistence_forward_loop(self):
+        """Background task to retry sending stored telemetries from local database"""
+        while True:
+            try:
+                queued_records = await self.persistence_manager.get_queued_telemetry(limit=20)
+                if queued_records:
+                    logger.info(f"Persistence: Attempting to forward {len(queued_records)} queued records")
+                    
+                    for record in queued_records:
+                        device_id = record['device_id']
+                        topic = record['topic']
+                        payload = json.loads(record['payload'])
+                        
+                        # Find all subscribers for 'telemetry' event
+                        subscribers = await self.subscription_manager.get_subscriptions('telemetry')
+                        
+                        # If no dynamic subscribers, try Odoo default
+                        if not subscribers:
+                            odoo_url = f"{settings.ODOO_BASE_URL}{settings.ODOO_WEBHOOK_ENDPOINT}/{device_id}"
+                            subscribers = [odoo_url]
+
+                        success = await self._dispatch_to_subscribers(subscribers, device_id, topic, payload)
+                        
+                        if success:
+                            await self.persistence_manager.delete_telemetry(record['id'])
+                        else:
+                            await self.persistence_manager.increment_retry(record['id'])
+                            # If forwarding fails, wait a bit before next attempt
+                            break 
+            except Exception as e:
+                logger.error(f"Error in persistence forward loop: {str(e)}")
+            
+            await asyncio.sleep(30)
+
     async def start(self):
         """Start the MQTT bridge"""
         try:
-            # Connect to MQTT broker
-            self.mqtt_service.connect()
+            # Capture the current event loop for thread-safe callbacks
+            self.loop = asyncio.get_running_loop()
+
+            # Initialize persistence database
+            await self.persistence_manager.initialize()
+
+            # 1. Fetch remote configuration from Odoo
+            logger.info("Fetching bridge configuration from Odoo...")
+            config_result = await self.http_service.fetch_gateway_config()
+            
+            mqtt_args = {}
+            if config_result.get("status") == "success":
+                mqtt_config = config_result.get("mqtt", {})
+                mqtt_args = {
+                    'host': mqtt_config.get('host'),
+                    'port': mqtt_config.get('port'),
+                    'username': mqtt_config.get('user'),
+                    'password': mqtt_config.get('password'),
+                    'use_tls': mqtt_config.get('use_tls'),
+                }
+                logger.info(f"Using remote MQTT config: {mqtt_args['host']}:{mqtt_args['port']}")
+            else:
+                logger.warning(f"Failed to fetch remote config, using local defaults: {config_result.get('error')}")
+
+            # 2. Connect to MQTT broker (starts background threaded loop)
+            self.mqtt_service.connect(**mqtt_args)
+
+            # 3. Start heartbeat registration in the background
+            asyncio.create_task(self.heartbeat_loop())
+
+            # 4. Start persistence forwarder in the background
+            asyncio.create_task(self.persistence_forward_loop())
 
             # Start the FastAPI app
             config = uvicorn.Config(
@@ -409,20 +570,14 @@ class MQTTBridge:
                 log_level="info"
             )
             server = uvicorn.Server(config)
+            
+            logger.info(f"FastAPI server starting on {settings.HOST}:{settings.PORT}")
+            await server.serve()
 
-            # Run the server in a separate task
-            server_task = asyncio.create_task(server.serve())
-
-            # Keep the MQTT client running
-            while True:
-                self.mqtt_service.loop()
-                await asyncio.sleep(0.01)  # Small delay to prevent blocking
-
-        except KeyboardInterrupt:
-            logger.info("Shutting down MQTT bridge...")
-            self.mqtt_service.disconnect()
         except Exception as e:
             logger.error(f"Error starting MQTT bridge: {str(e)}")
+            if self.mqtt_service.is_connected():
+                self.mqtt_service.disconnect()
             raise
 
 

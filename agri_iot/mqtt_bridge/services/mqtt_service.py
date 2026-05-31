@@ -32,26 +32,46 @@ class MQTTService:
                 cert_reqs=ssl.CERT_REQUIRED,
                 tls_version=ssl.PROTOCOL_TLS,
             )
-            # For production, you might want to specify ca_certs
-            # self.client.tls_insecure_set(False)  # Only for testing with self-signed certificates
 
-    def connect(self):
-        """Connect to the MQTT broker"""
+    def connect(self, host: Optional[str] = None, port: Optional[int] = None, username: Optional[str] = None, password: Optional[str] = None, use_tls: Optional[bool] = None):
+        """Connect to the MQTT broker and start the background loop"""
+        target_host = host or settings.MQTT_BROKER_HOST
+        target_port = port or settings.MQTT_BROKER_PORT
+        target_user = username or settings.MQTT_BROKER_USERNAME
+        target_pass = password or settings.MQTT_BROKER_PASSWORD
+        target_tls = use_tls if use_tls is not None else settings.MQTT_USE_TLS
+
         try:
+            # Re-configure client if credentials provided
+            if target_user and target_pass:
+                self.client.username_pw_set(target_user, target_pass)
+
+            if target_tls:
+                try:
+                    self.client.tls_set(
+                        cert_reqs=ssl.CERT_REQUIRED,
+                        tls_version=ssl.PROTOCOL_TLS,
+                    )
+                except:
+                    # If already configured, ignore
+                    pass
+
             self.client.connect(
-                settings.MQTT_BROKER_HOST,
-                settings.MQTT_BROKER_PORT,
+                target_host,
+                target_port,
                 keepalive=60
             )
+            self.client.loop_start()  # Start the multi-threaded loop
             self.connected = True
-            logger.info(f"Connected to MQTT broker at {settings.MQTT_BROKER_HOST}:{settings.MQTT_BROKER_PORT}")
+            logger.info(f"Connected to MQTT broker at {target_host}:{target_port}")
         except Exception as e:
             logger.error(f"Failed to connect to MQTT broker: {str(e)}")
             raise
 
     def disconnect(self):
-        """Disconnect from the MQTT broker"""
+        """Disconnect from the MQTT broker and stop the background loop"""
         try:
+            self.client.loop_stop()  # Stop the multi-threaded loop
             self.client.disconnect()
             self.connected = False
             logger.info("Disconnected from MQTT broker")
@@ -65,41 +85,22 @@ class MQTTService:
     def publish(self, topic: str, payload: str, qos: int = 1, retain: bool = False) -> bool:
         """
         Publish a message to an MQTT topic
-
-        Args:
-            topic: MQTT topic to publish to
-            payload: Message payload as string
-            qos: Quality of Service level (0, 1, or 2)
-            retain: Whether to retain the message
-
-        Returns:
-            True if publish was successful, False otherwise
         """
         try:
             result = self.client.publish(topic, payload, qos=qos, retain=retain)
-
-            # The result is a tuple (rc, mid) where rc is the result code
-            # 0 means success
             if result.rc == mqtt.MQTT_ERR_SUCCESS:
-                logger.debug(f"Published message to {topic}: {payload[:100]}...")
+                logger.debug(f"Published message to {topic}")
                 return True
             else:
-                logger.error(f"Failed to publish message to {topic}, result code: {result.rc}")
+                logger.error(f"Failed to publish to {topic}, rc: {result.rc}")
                 return False
         except Exception as e:
-            logger.error(f"Exception while publishing to {topic}: {str(e)}")
+            logger.error(f"Exception publishing to {topic}: {str(e)}")
             return False
 
     def subscribe(self, topic: str, qos: int = 1) -> bool:
         """
         Subscribe to an MQTT topic
-
-        Args:
-            topic: MQTT topic to subscribe to
-            qos: Quality of Service level
-
-        Returns:
-            True if subscription was successful, False otherwise
         """
         try:
             result = self.client.subscribe(topic, qos=qos)
@@ -107,33 +108,15 @@ class MQTTService:
                 logger.debug(f"Subscribed to topic: {topic}")
                 return True
             else:
-                logger.error(f"Failed to subscribe to {topic}, result code: {result[0]}")
+                logger.error(f"Failed to subscribe to {topic}, rc: {result[0]}")
                 return False
         except Exception as e:
-            logger.error(f"Exception while subscribing to {topic}: {str(e)}")
+            logger.error(f"Exception subscribing to {topic}: {str(e)}")
             return False
-
-    def loop(self):
-        """
-        Process MQTT network traffic.
-        This should be called regularly to handle incoming messages and maintain the connection.
-        """
-        try:
-            self.client.loop(timeout=0.01)
-        except Exception as e:
-            logger.error(f"Error in MQTT loop: {str(e)}")
-            self.connected = False
 
     def send_device_command(self, device_id: str, command: Dict[str, Any]) -> bool:
         """
         Send a command to a specific device
-
-        Args:
-            device_id: ID of the target device
-            command: Command dictionary containing action and parameters
-
-        Returns:
-            True if command was sent successfully, False otherwise
         """
         try:
             topic = settings.MQTT_COMMAND_TOPIC_TEMPLATE.format(device=device_id)
@@ -146,13 +129,6 @@ class MQTTService:
     def send_ota_notification(self, device_id: str, ota_info: Dict[str, Any]) -> bool:
         """
         Send an OTA notification to a specific device
-
-        Args:
-            device_id: ID of the target device
-            ota_info: OTA information dictionary
-
-        Returns:
-            True if notification was sent successfully, False otherwise
         """
         try:
             topic = settings.MQTT_OTA_NOTIFY_TOPIC_TEMPLATE.format(device=device_id)
@@ -165,16 +141,9 @@ class MQTTService:
     def send_ota_command(self, device_id: str, command: Dict[str, Any]) -> bool:
         """
         Send an OTA command to a specific device
-
-        Args:
-            device_id: ID of the target device
-            command: OTA command dictionary
-
-        Returns:
-            True if command was sent successfully, False otherwise
         """
         try:
-            topic = settings.MQTT_OTA_NOTIFY_TOPIC_TEMPLATE.format(device=device_id)  # OTA commands use notify topic
+            topic = settings.MQTT_OTA_NOTIFY_TOPIC_TEMPLATE.format(device=device_id)
             payload = json.dumps(command)
             return self.publish(topic, payload)
         except Exception as e:

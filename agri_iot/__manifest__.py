@@ -36,6 +36,7 @@ avoiding direct MQTT connections from Odoo for better reliability and maintainab
         "views/iiot_device_views.xml",
         "views/iiot_firmware_views.xml",
         "views/iiot_update_views.xml",
+        "views/iiot_gateway_views.xml",
         "views/menu.xml",
     ],
     "demo": [],
