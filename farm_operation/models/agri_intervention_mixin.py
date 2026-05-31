@@ -13,9 +13,19 @@ class AgriInterventionMixin(models.AbstractModel):
     """
     _name = 'agri.intervention.mixin'
     _description = 'Agri Agricultural Intervention Shared Logic'
-    _inherit = ['agri.resource.consumption.mixin', 'agri.incident.alert.mixin']
+    _inherit = ['agri.intervention.base', 'agri.resource.consumption.mixin', 'agri.incident.alert.mixin']
 
-    # Basic intervention fields
+    # Registry for intervention plugins
+    @api.model
+    def _get_intervention_plugins(self):
+        res = super(AgriInterventionMixin, self)._get_intervention_plugins()
+        res.extend([
+            {'name': 'weather_gating', 'class': 'agri.intervention.plugin.weather'},
+            {'name': 'spatial_audit', 'class': 'agri.intervention.plugin.spatial'},
+        ])
+        return res
+
+    # Basic intervention fields (location_id is now in base)
     agri_task_id = fields.Many2one(
         'project.task',
         string="Production Task",
@@ -215,11 +225,11 @@ class AgriInterventionMixin(models.AbstractModel):
     out_of_bounds_count = fields.Integer("OOB Point Count", compute='_compute_spatial_audit', help="Number of telemetry points outside the parcel.")
     spatial_compliance_rate = fields.Float("Spatial Compliance (%)", compute='_compute_spatial_audit')
 
-    @api.depends('agri_task_id.land_parcel_id', 'is_working')
+    @api.depends('location_id', 'is_working')
     def _compute_spatial_audit(self):
         """ 统计该任务期间所有 GPS 记录的合规性 """
         for mo in self:
-            parcel = mo.agri_task_id.land_parcel_id if mo.agri_task_id else None
+            parcel = mo.location_id
             if not parcel or not hasattr(parcel, 'gps_coordinates') or not parcel.gps_coordinates:
                 mo.out_of_bounds_count = 0
                 mo.spatial_compliance_rate = 100.0
@@ -262,17 +272,15 @@ class AgriInterventionMixin(models.AbstractModel):
         self.message_post(body=_("Intervention submitted for supervisor approval."))
 
     def action_approve(self):
-        """Approve the intervention"""
+        """Approve the intervention and confirm in base engine"""
         self.ensure_one()
         self.write({
             'approval_state': 'approved',
             'approver_id': self.env.user.id,
             'approval_date': fields.Datetime.now()
         })
-        # Approve后自动确认生产单
-        if self.state == 'draft':
-            if hasattr(self, 'action_confirm'):
-                self.action_confirm()
+        # Use Base Engine for confirmation
+        self.action_confirm_base()
         self.message_post(body=_("Intervention approved by %s") % self.env.user.name)
 
     def action_reject(self):
@@ -282,65 +290,20 @@ class AgriInterventionMixin(models.AbstractModel):
         self.message_post(body=_("Intervention rejected."))
 
     def action_start_work(self):
-        """Start the actual work"""
-        """ 一键打卡：开始作业 """
-        # US-002-06: Weather window check for spray operations
-        if hasattr(self, 'intervention_type') and self.intervention_type in ['fertilizing', 'protection', 'aerial_spraying']:
-            self._check_weather_window()
-
+        """Start the actual work via Base Engine (which triggers plugins)"""
         self.ensure_one()
-        self.write({
-            'work_start_datetime': fields.Datetime.now(),
-            'is_working': True
-        })
-        self.message_post(body=_("Labor: Work started at %s") % self.work_start_datetime)
-
-    def _check_weather_window(self):
-        """
-        Check weather conditions before allowing spray operations [US-002-06]
-        """
-        self.ensure_one()
-
-        # 获取作业地点最近的天气预报
-        parcel = self.agri_task_id.land_parcel_id if self.agri_task_id else None
-        if not parcel or not hasattr(parcel, 'gps_coordinates') or not parcel.gps_coordinates:
-            return  # 如果没有地理信息，则跳过检查
-
-        # 获取未来24小时天气预报
-        from datetime import datetime, timedelta
-        end_time = datetime.now() + timedelta(hours=24)
-
-        # 查找相关的天气预报记录 (需要安装天气模块)
-        if hasattr(self.env['agri.weather.forecast'], 'search'):
-            forecast = self.env['agri.weather.forecast'].search([
-                ('location_id', '=', parcel.id),
-                ('forecast_datetime', '<=', end_time),
-                ('forecast_datetime', '>=', datetime.now())
-            ], limit=1, order='forecast_datetime asc')
-
-            if forecast:
-                # 检查风速是否超过4级（约16km/h）
-                if forecast.wind_speed_kmh and forecast.wind_speed_kmh > 16:
-                    # US-002-06: Create high-priority activity for technician review
-                    self.activity_schedule(
-                        'mail.mail_activity_data_todo',
-                        summary=_('WEATHER BLOCK: High Wind Speed (%s km/h)') % forecast.wind_speed_kmh,
-                        note=_('Intervention %s was blocked. Wind speed exceeds level 4. Review required by Technical Director.') % self.name,
-                        user_id=self.env.ref('farm_core.group_farm_specialist').users[:1].id or self.env.user.id
-                    )
-                    raise UserError(_(
-                        "WEATHER WINDOW BLOCK: Wind speed too high (%s km/h > 16 km/h). "
-                        "Risk detected for spray operation. Technical director has been notified."
-                    ) % forecast.wind_speed_kmh)
+        self.action_start_base()
+        self.write({'is_working': True})
+        self.message_post(body=_("Labor: Work started at %s") % self.date_start)
 
     def action_stop_work(self):
-        """Stop the actual work"""
-        """ 一键打卡：停止作业并自动创建工时记录 """
+        """Stop the actual work via Base Engine"""
         self.ensure_one()
-        if not self.work_start_datetime:
+        if not self.date_start:
             return
 
-        now = fields.Datetime.now()
+        self.action_done_base()
+        
         if hasattr(self.env['farm.worklog'], 'create'):
             employee = self.env.user.employee_id
             self.env['farm.worklog'].create({
@@ -352,14 +315,14 @@ class AgriInterventionMixin(models.AbstractModel):
                 'notes': _('Auto-recorded from intervention %s') % self.name
             })
 
-        self.write({
-            'is_working': False,
-            'work_start_datetime': False
-        })
-        self.message_post(body=_("Labor: Work stopped and recorded at %s") % now)
+        self.write({'is_working': False})
+        self.message_post(body=_("Labor: Work stopped and recorded at %s") % self.date_finished)
 
     def action_confirm(self):
         """扩展确认逻辑，进行安全拦截 [US-003-04] 并传递任务 ID 到供应端 [US-009-01]"""
+        # Ensure base engine is also updated if not already confirmed
+        self.filtered(lambda r: r.state == 'draft').action_confirm_base()
+        
         for mo in self:
             # US-041-02: Check real-name registration for pesticide/veterinary
             if hasattr(mo, 'intervention_type') and mo.intervention_type in ['protection', 'aerial_spraying', 'medical']:

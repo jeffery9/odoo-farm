@@ -61,6 +61,7 @@ class AgriIntervention(models.Model):
         Finalizes clearing and transfers physical DNA to the output lots.
         """
         self.ensure_one()
+        self.action_done_base()  # Use base engine completion (triggers plugins)
         self.action_finalize_clearing()
         
         # 1. Identify output lots
