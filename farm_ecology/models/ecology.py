@@ -60,3 +60,49 @@ class AgriEcologicalZone(models.Model):
     location_id = fields.Many2one('farm.location', string="Associated Operational Parcel")
     
     active = fields.Boolean(default=True)
+
+
+class FarmLocation(models.Model):
+    """
+    [Anji Model Integration] Ecological Value Extension.
+    Calculates Gross Ecosystem Product (GEP) for land parcels.
+    """
+    _name = 'farm.location'
+    _inherit = 'farm.location'
+
+    gep_score = fields.Float("Ecological GEP Score", compute='_compute_gep_score', store=True, group_operator="avg")
+    biodiversity_index = fields.Float("Biodiversity Index", compute='_compute_gep_score', store=True)
+    eco_zone_coverage = fields.Float("Eco-infrastructure Coverage (%)", compute='_compute_gep_score', store=True)
+
+    @api.depends('calculated_area_ha', 'land_area')
+    def _compute_gep_score(self):
+        """
+        [US-ANJI-01] GEP Calculation Algorithm.
+        GEP = (Biodiversity Factor * 0.6) + (Eco Zone Factor * 0.4)
+        """
+        for parcel in self:
+            # 1. Biodiversity Component
+            observations = self.env['agri.sustainability.biodiversity.indicator'].search([
+                ('location_id', '=', parcel.id)
+            ])
+            # Count species abundance and variety
+            total_abundance = sum(observations.mapped('count_observed'))
+            variety_count = len(set(observations.mapped('indicator_type')))
+            bio_factor = (total_abundance * 0.5) + (variety_count * 10.0)
+            parcel.biodiversity_index = min(100.0, bio_factor)
+
+            # 2. Eco-Infrastructure Component
+            zones = self.env['agri.sustainability.ecological.zone'].search([
+                ('location_id', '=', parcel.id)
+            ])
+            total_eco_area = sum(zones.mapped('area')) # in sqm
+            parcel_area_sqm = parcel.land_area or (parcel.calculated_area_ha * 10000.0)
+            
+            coverage = (total_eco_area / parcel_area_sqm * 100.0) if parcel_area_sqm > 0 else 0.0
+            parcel.eco_zone_coverage = min(100.0, coverage)
+
+            # 3. Final GEP Score (0-100 normalized)
+            parcel.gep_score = (parcel.biodiversity_index * 0.6) + (parcel.eco_zone_coverage * 0.4)
+            
+            if parcel.gep_score > 80:
+                parcel.message_post(body=_("Ecological Excellence: GEP Score %s reached.") % round(parcel.gep_score, 2))

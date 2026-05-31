@@ -73,6 +73,32 @@
     </record>
 
     
+    <record id="view_farm_location_form_inherit_gep" model="ir.ui.view">
+        <field name="name">farm.location.form.inherit.gep</field>
+        <field name="model">farm.location</field>
+        <field name="inherit_id" ref="farm_core.view_farm_location_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Ecological Value (GEP)" name="gep_value" invisible="not is_land_parcel">
+                    <group>
+                        <group string="GEP Metrics">
+                            <field name="gep_score" widget="gauge" options="{'max_value': 100}"/>
+                        </group>
+                        <group string="Contribution Factors">
+                            <field name="biodiversity_index" widget="progressbar"/>
+                            <field name="eco_zone_coverage" widget="progressbar"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        <i class="fa fa-info-circle me-1"/> 
+                        GEP (Gross Ecosystem Product) reflects the ecological health of the land. 
+                        High scores can increase the financial valuation of the asset.
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
     <record id="action_agri_biodiversity" model="ir.actions.act_window">
         <field name="name">Biodiversity Observations</field>
         <field name="res_model">agri.sustainability.biodiversity.indicator</field>
