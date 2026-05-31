@@ -10,6 +10,7 @@
                 <field name="valuation_date"/>
                 <field name="valuation_method"/>
                 <field name="valuation_amount"/>
+                <field name="gep_score" widget="badge" decoration-success="gep_score > 60"/>
                 <field name="confidence_level"/>
             </list>
         </field>
@@ -71,6 +72,10 @@
                             <group>
                                 <field name="valuation_amount"/>
                                 <field name="valuation_variance"/>
+                            </group>
+                            <group string="Ecological Impact (Anji Model)" invisible="asset_type != 'land'">
+                                <field name="gep_score" widget="gauge" options="{'max_value': 100}"/>
+                                <field name="gep_premium_factor" widget="percentage"/>
                             </group>
                         </page>
                         <page string="Professional Details">
