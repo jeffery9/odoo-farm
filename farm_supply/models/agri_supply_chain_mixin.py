@@ -1,6 +1,22 @@
 from odoo import models, fields, api
 
 
+class StockPicking(models.Model):
+    _inherit = 'stock.picking'
+
+    def button_validate(self):
+        """ [ISL/DNA Bridge] Inject initial DNA upon supply receipt. """
+        res = super(StockPicking, self).button_validate()
+        
+        # Only process inbound supply orders (Purchase/Supply)
+        for picking in self.filtered(lambda p: p.picking_type_id.code == 'incoming' and p.state == 'done'):
+            for move in picking.move_ids:
+                if move.lot_ids:
+                    for lot in move.lot_ids:
+                        # Use DNA engine with inbound context
+                        # Pass move as input context
+                        lot.inherit_dna_from_source(move)
+        return res
 class AgriSupplyChainNodeMixin(models.AbstractModel):
     """
     Base mixin for agricultural supply chain nodes

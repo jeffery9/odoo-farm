@@ -90,13 +90,28 @@ class AgriInterventionPluginCompliance(models.AbstractModel):
             self._trigger_withdrawal_sync(intervention)
 
     def _check_real_name_registration(self, intervention):
-        if hasattr(intervention, 'intervention_type') and intervention.intervention_type in ['protection', 'aerial_spraying', 'medical']:
+        """ US-041-02: Check real-name registration for pesticide/veterinary """
+        # Determine if any input is regulated
+        has_regulated_input = False
+        if hasattr(intervention, 'move_raw_ids'):
+            for move in intervention.move_raw_ids:
+                if getattr(move.product_id, 'is_regulated_input', False):
+                    has_regulated_input = True
+                    # Check for prohibited substances
+                    if getattr(move.product_id, 'is_prohibited_restricted', False):
+                        raise UserError(_("REGULATION VIOLATION: Input '%s' is Prohibited/Restricted. Reason: %s") % (
+                            move.product_id.name, getattr(move.product_id, 'prohibited_reason', 'N/A')
+                        ))
+
+        if has_regulated_input:
             if not getattr(intervention, 'operator_id_card', False):
-                raise UserError(_("COMPLIANCE ERROR: Operator ID Card is required!"))
+                raise UserError(_("REAL-NAME REQUIRED: Operator ID Card No. is required for regulated inputs in %s!") % 
+                                intervention.name)
+            
             id_card = intervention.operator_id_card
             import re
             if not re.match(r'^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$', id_card):
-                raise UserError(_("COMPLIANCE ERROR: Invalid ID Card format!"))
+                raise UserError(_("COMPLIANCE ERROR: Invalid ID Card format for operator!"))
 
     def _check_organic_compliance(self, intervention):
         if hasattr(intervention, 'agri_task_id') and intervention.agri_task_id and intervention.agri_task_id.land_parcel_id:
@@ -341,6 +356,36 @@ class AgriDnaPluginCertification(models.AbstractModel):
             lot.certification_type = 'green'
             lot.message_post(body=_("DNA Tainting: Lot certification downgraded to 'Green' due to non-organic inputs."))
 
+class AgriDnaPluginInbound(models.AbstractModel):
+    """
+    [DNA Plugin] Inbound Supply Initialization.
+    Injects initial metadata and creates source kinship upon receipt.
+    """
+    _name = 'agri.dna.plugin.inbound'
+    _inherit = 'agri.dna.plugin'
+
+    @api.model
+    def inherit_dna(self, lot, inputs):
+        """
+        Inputs here are actually stock.moves from a procurement/inbound picking.
+        """
+        Kinship = self.env['agri.lot.kinship']
+        
+        for move in inputs:
+            # 1. Inject initial metadata from product/po if applicable
+            if hasattr(lot, 'nitrogen_qty') and hasattr(move.product_id, 'n_content'):
+                lot.nitrogen_qty = move.product_uom_qty * (move.product_id.n_content / 100.0)
+            
+            # 2. Establish Source Kinship (Supplier -> Lot)
+            if move.picking_id and move.picking_id.partner_id:
+                # We use a dummy lot/partner representation or just record notes
+                lot.message_post(body=_("Source DNA: Originating from Supplier %s") % move.picking_id.partner_id.name)
+                
+                # If the purchase order has quality metrics (from farm_supply_quality)
+                if hasattr(move, 'purchase_line_id') and move.purchase_line_id:
+                    po_line = move.purchase_line_id
+                    if hasattr(po_line, 'quality_protein_content') and po_line.quality_protein_content > 0:
+                        lot.message_post(body=_("Initial Quality DNA: Protein %s%%") % po_line.quality_protein_content)
 class AgriDnaPluginKinship(models.AbstractModel):
     """
     [DNA Plugin] Kinship / Ancestry Tracking.
