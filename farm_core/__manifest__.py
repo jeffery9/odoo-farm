@@ -29,6 +29,7 @@
         'views/geofencing_management_views.xml',
         'views/config_setup_management_views.xml',
         'views/performance_monitor_views.xml',
+        'views/agri_lot_kinship_views.xml',
         'views/menu.xml',
     ],
     'demo': [

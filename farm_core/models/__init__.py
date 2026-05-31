@@ -23,6 +23,7 @@ from . import performance_monitor
 
 # 4. Standard Extensions & Auxiliary Models
 from . import agri_stock_lot
+from . import agri_lot_kinship
 from . import agri_stock_move
 from . import farm_growth_curve  # Must be before product_template_extension
 
