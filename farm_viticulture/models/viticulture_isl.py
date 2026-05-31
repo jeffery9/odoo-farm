@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class FarmViticulturePlot(models.Model):
     """
-    [ISL Layer] Digital Twin of a Vineyard Plot or Row.
+    [ISL Layer] Digital Twin of a Vineyard Plot or Row. [De-industrialized]
     Proxies farm.location to hold terroir and trellis metadata.
     """
     _name = 'farm.viticulture.plot'
@@ -28,34 +28,32 @@ class FarmViticulturePlot(models.Model):
     vine_spacing = fields.Float("Vine Spacing (m)")
     row_orientation = fields.Float("Row Azimuth (Degree)")
 
-class FarmViticultureCycle(models.Model):
+class FarmVineyardTask(models.Model):
     """
-    [ISL Layer] Annual Vineyard Nurturing Cycle.
+    [ISL Layer] Vineyard Nurturing Task. [De-industrialized]
     Proxies mrp.production to manage pruning, canopy management, and harvest.
     """
-    _name = 'farm.viticulture.cycle'
-    _description = 'Vineyard Annual Cycle'
-    _inherits = {'mrp.production': 'production_id'}
+    _name = 'farm.viticulture.task'
+    _description = 'Vineyard Nurturing Task'
+    _inherits = {'mrp.production': 'intervention_id'}
     _inherit = [
         'agri.intervention.mixin',
         'agri.growth.cycle.mixin',
-        'agri.weather.sensitive.mixin'
     ]
 
-    production_id = fields.Many2one('mrp.production', string='Base Order', required=True, ondelete='cascade')
+    intervention_id = fields.Many2one('mrp.production', string='Base Intervention', required=True, ondelete='cascade')
 
     # [US-115-02] Pruning & Yield Control
     pruned_buds_per_vine = fields.Integer("Pruned Buds per Vine")
     target_brix = fields.Float("Target Ripeness (Brix)", default=22.0)
 
     def action_confirm(self):
-        """ DNA Gate: Weather check for frost risk during budding. """
-        self.check_weather_window('general')
-        return super(FarmViticultureCycle, self).action_confirm()
+        """ DNA Gate: Base logic triggers weather and compliance checks. """
+        return super(FarmVineyardTask, self).action_confirm()
 
 class FarmLotGrape(models.Model):
     """
-    [ISL Layer] Grape Harvest Batch.
+    [ISL Layer] Grape Harvest Batch. [De-industrialized]
     Holds ripeness fingerprints and pressing data.
     """
     _name = 'farm.lot.grape'

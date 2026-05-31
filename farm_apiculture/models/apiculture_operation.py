@@ -7,7 +7,7 @@ _logger = logging.getLogger(__name__)
 
 class FarmLotHive(models.Model):
     """
-    [ISL Layer] Digital Twin of a Bee Hive/Colony.
+    [ISL Layer] Digital Twin of a Bee Hive/Colony. [De-industrialized]
     Proxies stock.lot to track biological population and queen lineage.
     """
     _name = 'farm.lot.hive'
@@ -43,17 +43,17 @@ class FarmLotHive(models.Model):
         ('1', 'Weak'), ('2', 'Moderate'), ('3', 'Strong'), ('4', 'Very Strong')
     ], string="Colony Strength", default='2')
 
-class FarmApicultureOrder(models.Model):
+class FarmHoneyTask(models.Model):
     """
-    [ISL Layer] Honey Flow / Production Order.
+    [ISL Layer] Honey Flow / Collection Task. [De-industrialized]
     Proxies mrp.production to manage the foraging and harvesting cycle.
     """
-    _name = 'farm.apiculture.order'
-    _description = 'Honey Flow Production'
-    _inherits = {'mrp.production': 'production_id'}
+    _name = 'farm.honey.task'
+    _description = 'Honey Flow Task'
+    _inherits = {'mrp.production': 'intervention_id'}
     _inherit = ['agri.intervention.mixin', 'agri.quality.gate.mixin']
 
-    production_id = fields.Many2one('mrp.production', string='Base Order', required=True, ondelete='cascade')
+    intervention_id = fields.Many2one('mrp.production', string='Base Intervention', required=True, ondelete='cascade')
 
     # Foraging Context [US-110-02]
     target_nectar_source = fields.Char("Target Nectar Plant")
@@ -63,13 +63,12 @@ class FarmApicultureOrder(models.Model):
 
     def action_confirm(self):
         """ [Level 2 DNA] Check hive health before deployment. """
-        # Simplified: Check if linked lots (hives) are strong enough
         self.validate_quality_gate()
-        return super(FarmApicultureOrder, self).action_confirm()
+        return super(FarmHoneyTask, self).action_confirm()
 
 class FarmHiveInspection(models.Model):
     """
-    [ISL Layer] Hive Inspection Task.
+    [ISL Layer] Hive Inspection Task. [De-industrialized]
     Proxies project.task for regular health and swarm checks.
     """
     _name = 'farm.hive.inspection'
@@ -110,5 +109,4 @@ class FarmHiveInspection(models.Model):
     def action_done(self):
         """ Sync inspection results back to Hive Asset. """
         self.ensure_one()
-        # Logic: Update hive_id.queen_status based on inspection
         return self.task_id.action_fsm_validate()
