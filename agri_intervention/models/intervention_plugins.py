@@ -17,7 +17,7 @@ class AgriInterventionPluginWeather(models.AbstractModel):
 
     def _check_weather_window(self, intervention):
         """
-        [Restored] Check weather conditions before allowing spray operations [US-002-06]
+        Check weather conditions before allowing spray operations [US-002-06]
         """
         # 1. Determine if this intervention type requires weather gating
         if not hasattr(intervention, 'intervention_type') or intervention.intervention_type not in ['fertilizing', 'protection', 'aerial_spraying']:
@@ -54,6 +54,56 @@ class AgriInterventionPluginWeather(models.AbstractModel):
                         "Risk detected for spray operation. Technical director has been notified."
                     ) % forecast.wind_speed_kmh)
 
+class AgriInterventionPluginYield(models.AbstractModel):
+    """
+    [Plugin] Dynamic Yield Calibration.
+    Handles uncertainty by allowing mid-process quantity adjustments.
+    """
+    _name = 'agri.intervention.plugin.yield'
+    _inherit = 'agri.intervention.plugin'
+
+    @api.model
+    def execute_hook(self, intervention, hook_point):
+        # Triggered manually via action_update_yield_estimate
+        pass
+
+class AgriInterventionPluginNutrient(models.AbstractModel):
+    """
+    [Plugin] Nutrient Mass Balance.
+    Calculates pure N-P-K inputs based on consumed materials.
+    """
+    _name = 'agri.intervention.plugin.nutrient'
+    _inherit = 'agri.intervention.plugin'
+
+    @api.model
+    def execute_hook(self, intervention, hook_point):
+        if hook_point == 'pre_done' or hook_point == 'post_confirm':
+            self._compute_nutrients(intervention)
+
+    def _compute_nutrients(self, intervention):
+        """ Calculate Pure Nitrogen (N), Phosphorus (P), and Potassium (K) kg """
+        n_total = p_total = k_total = 0.0
+
+        # Check if intervention has move_raw_ids (MRP based)
+        if hasattr(intervention, 'move_raw_ids'):
+            for move in intervention.move_raw_ids:
+                product = move.product_id
+                qty = move.product_uom_qty
+
+                # Check for nutrient content fields (usually added by farm_agri_science or farm_core)
+                if hasattr(product, 'n_content'):
+                    n_total += qty * (product.n_content / 100.0)
+                    p_total += qty * (product.p_content / 100.0)
+                    k_total += qty * (product.k_content / 100.0)
+
+        # Write back to intervention if fields exist
+        if hasattr(intervention, 'pure_n_qty'):
+            intervention.write({
+                'pure_n_qty': n_total,
+                'pure_p_qty': p_total,
+                'pure_k_qty': k_total
+            })
+
 class AgriInterventionPluginSpatial(models.AbstractModel):
     """
     [Plugin] Spatial Compliance Audit.
@@ -69,7 +119,7 @@ class AgriInterventionPluginSpatial(models.AbstractModel):
 
     def _audit_spatial_compliance(self, intervention):
         """
-        [Restored] Analyzes GPS logs after completion.
+        Analyzes GPS logs after completion.
         Uses GIS boundaries to check for out-of-bounds work.
         """
         parcel = intervention.location_id
@@ -83,7 +133,6 @@ class AgriInterventionPluginSpatial(models.AbstractModel):
             })
 
             # Get telemetry records during this intervention
-            # Filter by intervention linkage (production_id or task_id)
             telemetry_domain = [
                 ('gps_lat', '!=', 0),
                 ('gps_lng', '!=', 0)
