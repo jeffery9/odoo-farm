@@ -25,6 +25,38 @@ class AgriInterventionBase(models.AbstractModel):
         ('cancel', 'Cancelled')
     ], string='Status', default='draft', tracking=True)
 
+    # GS1 EPCIS Mapping [EPCIS Alignment]
+    gs1_biz_step = fields.Selection([
+        ('commissioning', 'Commissioning (Setup)'),
+        ('processing', 'Processing (Transformation)'),
+        ('harvesting', 'Harvesting'),
+        ('inspecting', 'Inspecting'),
+        ('packing', 'Packing'),
+        ('shipping', 'Shipping'),
+        ('receiving', 'Receiving'),
+    ], string='GS1 Business Step', compute='_compute_gs1_biz_step', store=True)
+
+    @api.depends('intervention_type', 'state')
+    def _compute_gs1_biz_step(self):
+        """ Maps agricultural types to international EPCIS business steps """
+        for rec in self:
+            if not hasattr(rec, 'intervention_type'):
+                rec.gs1_biz_step = 'processing'
+                continue
+                
+            mapping = {
+                'harvesting': 'harvesting',
+                'tillage': 'commissioning',
+                'sowing': 'commissioning',
+                'fertilizing': 'processing',
+                'protection': 'processing',
+                'aerial_spraying': 'processing',
+                'feeding': 'processing',
+                'medical': 'inspecting',
+                'process': 'processing'
+            }
+            rec.gs1_biz_step = mapping.get(rec.intervention_type, 'processing')
+
     # Contextual Domain
     location_id = fields.Many2one('farm.location', string='Target Location', help='Where the intervention takes place')
     company_id = fields.Many2one('res.company', string='Company', required=True, default=lambda self: self.env.company)

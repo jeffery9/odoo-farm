@@ -8,6 +8,9 @@ class ResPartner(models.Model):
     _name = 'res.partner'
     _inherit = ['res.partner', 'agri.sustainability.mixin']
     
+    # GS1 Global Identifiers [EPCIS Alignment]
+    gs1_gln = fields.Char('GS1 GLN', help='Global Location Number (13 digits)', size=13)
+    
     # We use credit_score defined in SustainabilityMixin
     
     def action_view_reputation_history(self):
