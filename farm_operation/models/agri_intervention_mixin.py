@@ -22,6 +22,8 @@ class AgriInterventionMixin(models.AbstractModel):
         res.extend([
             {'name': 'weather_gating', 'class': 'agri.intervention.plugin.weather'},
             {'name': 'spatial_audit', 'class': 'agri.intervention.plugin.spatial'},
+            {'name': 'yield_calibration', 'class': 'agri.intervention.plugin.yield'},
+            {'name': 'nutrient_tracking', 'class': 'agri.intervention.plugin.nutrient'},
         ])
         return res
 
@@ -141,14 +143,8 @@ class AgriInterventionMixin(models.AbstractModel):
         for mo in self:
             # 1. 投入品成本 (Actual Cost from Moves)
             inputs = 0.0
-            n_total = p_total = k_total = 0.0
             for move in mo.move_raw_ids:
                 inputs += move.product_uom_qty * move.product_id.standard_price
-                # RESTORED: Calculate Pure Nutrients
-                if hasattr(move.product_id, 'n_content'):
-                    n_total += move.product_uom_qty * (move.product_id.n_content / 100.0)
-                    p_total += move.product_uom_qty * (move.product_id.p_content / 100.0)
-                    k_total += move.product_uom_qty * (move.product_id.k_content / 100.0)
 
             # 2. 劳动力成本
             labor = 0.0
@@ -172,11 +168,6 @@ class AgriInterventionMixin(models.AbstractModel):
             mo.tool_cost = tools
             mo.energy_cost = energy
             mo.total_agri_cost = inputs + labor + tools + energy
-
-            # RESTORED: Assign Nutrient Totals
-            mo.pure_n_qty = n_total
-            mo.pure_p_qty = p_total
-            mo.pure_k_qty = k_total
 
     # 工时追踪 [US-036-03]
     work_start_datetime = fields.Datetime("Work Start")
