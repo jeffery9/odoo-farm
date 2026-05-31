@@ -158,13 +158,46 @@ class FinancialAssetValuation(models.Model):
             else:
                 record.valuation_variance = 0.0
 
+    @api.model
+    def _get_valuation_plugins(self):
+        """ Registry for valuation plugins """
+        return [
+            {'name': 'fair_value', 'class': 'agri.valuation.plugin.fair_value'},
+            {'name': 'growth_progress', 'class': 'agri.valuation.plugin.growth'},
+            {'name': 'gep_premium', 'class': 'agri.valuation.plugin.gep'},
+        ]
+
     def action_calculate_valuation(self):
-        """Recalculate the valuation based on current data"""
+        """
+        [SOLID Refactored] Calculates valuation by orchestrating multiple plugins.
+        """
         for record in self:
-            record._compute_valuation_amount()
+            final_amount = 0.0
+            accumulated_notes = []
+            multiplier = 1.0
+            
+            plugins = record._get_valuation_plugins()
+            for plugin_info in plugins:
+                plugin_model = self.env.get(plugin_info['class'])
+                if plugin_model:
+                    res = plugin_model.calculate_value(record.asset_id)
+                    if 'amount' in res:
+                        final_amount = res['amount'] # Take base amount
+                    if 'multiplier' in res:
+                        multiplier *= res['multiplier'] # Apply multipliers (like GEP)
+                    if 'notes' in res:
+                        accumulated_notes.append(res['notes'])
+            
+            record.write({
+                'valuation_amount': final_amount * multiplier,
+                'valuation_notes': "\n".join(accumulated_notes)
+            })
+            
+            # Legacy compute triggers for UI consistency
             record._compute_net_book_value()
             record._compute_fair_value()
             record._compute_variance()
+        return True
 
     def action_create_accounting_entries(self):
         """Create accounting entries for revaluation"""
