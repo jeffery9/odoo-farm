@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Base Intervention Views (Abstract - can be used via inherit) -->
+    <record id="view_agri_intervention_base_tree" model="ir.ui.view">
+        <field name="name">agri.intervention.base.tree</field>
+        <field name="model">agri.intervention.base</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="date_planned_start"/>
+                <field name="responsible_id"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_agri_intervention_base_form" model="ir.ui.view">
+        <field name="name">agri.intervention.base.form</field>
+        <field name="model">agri.intervention.base</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm_base" string="Confirm" type="object" invisible="state != 'draft'" class="oe_highlight"/>
+                    <button name="action_start_base" string="Start Work" type="object" invisible="state != 'confirmed'" class="oe_highlight"/>
+                    <button name="action_done_base" string="Mark Done" type="object" invisible="state != 'in_progress'" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="location_id"/>
+                            <field name="responsible_id"/>
+                        </group>
+                        <group>
+                            <field name="date_planned_start"/>
+                            <field name="date_planned_finished"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>
