@@ -315,15 +315,82 @@
         <field name="example_usage">将制造菜单替换为农场作业菜单</field>
     </record>
 
-    <record id="term_mapping_production" model="term.mapping">
-        <field name="name">Production - Farm Production</field>
-        <field name="source_term">Production</field>
-        <field name="target_term">Farm Production</field>
+    <record id="term_mapping_workcenter" model="term.mapping">
+        <field name="name">Work Center - Facility Unit</field>
+        <field name="source_term">Work Center</field>
+        <field name="target_term">Facility Unit</field>
         <field name="language_code">zh_CN</field>
         <field name="industry_context">general</field>
         <field name="is_active">True</field>
-        <field name="description">生产映射为农场生产</field>
-        <field name="example_usage">将生产模块替换为农场生产</field>
+    </record>
+
+    <record id="term_mapping_workorder_phase" model="term.mapping">
+        <field name="name">Work Order - Operation Phase</field>
+        <field name="source_term">Work Order</field>
+        <field name="target_term">Operation Phase</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+    </record>
+
+    <record id="term_mapping_mrp_operation" model="term.mapping">
+        <field name="name">MRP Operation - Farm Operation</field>
+        <field name="source_term">MRP Operation</field>
+        <field name="target_term">Farm Operation</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+    </record>
+
+    <record id="term_mapping_routing" model="term.mapping">
+        <field name="name">Routing - Operational Flow</field>
+        <field name="source_term">Routing</field>
+        <field name="target_term">Operational Flow</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">general</field>
+        <field name="is_active">True</field>
+    </record>
+
+    <record id="term_mapping_production_label" model="term.mapping">
+        <field name="name">Production - Cultivation</field>
+        <field name="source_term">Production</field>
+        <field name="target_term">Cultivation</field>
+        <field name="language_code">zh_CN</field>
+        <field name="industry_context">planting</field>
+        <field name="is_active">True</field>
+    </record>
+
+    <!-- English Term Mappings [US-039-01] -->
+    <record id="term_mapping_mrp_production_en" model="term.mapping">
+        <field name="name">Manufacturing Order - Intervention (EN)</field>
+        <field name="source_term">Manufacturing Order</field>
+        <field name="target_term">Agricultural Intervention</field>
+        <field name="language_code">en_US</field>
+        <field name="industry_context">general</field>
+    </record>
+
+    <record id="term_mapping_bom_en" model="term.mapping">
+        <field name="name">Bill of Materials - Recipe (EN)</field>
+        <field name="source_term">Bill of Materials</field>
+        <field name="target_term">Cultivation Recipe</field>
+        <field name="language_code">en_US</field>
+        <field name="industry_context">general</field>
+    </record>
+
+    <record id="term_mapping_workcenter_en" model="term.mapping">
+        <field name="name">Work Center - Facility Unit (EN)</field>
+        <field name="source_term">Work Center</field>
+        <field name="target_term">Facility Unit</field>
+        <field name="language_code">en_US</field>
+        <field name="industry_context">general</field>
+    </record>
+
+    <record id="term_mapping_mo_en" model="term.mapping">
+        <field name="name">MO - AI (EN)</field>
+        <field name="source_term">MO</field>
+        <field name="target_term">AI</field>
+        <field name="language_code">en_US</field>
+        <field name="industry_context">general</field>
     </record>
 
 </odoo>
