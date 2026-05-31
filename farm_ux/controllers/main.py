@@ -48,6 +48,68 @@ class TermMappingController(http.Controller):
         return replace_terms_in_dict(data)
 
 
+class TraceabilityController(http.Controller):
+    """
+    [US-TECH-DNA-06] Holographic Traceability Controller.
+    Fetches recursive kinship data and accumulated DNA for visualization.
+    """
+
+    @http.route('/agri/traceability/lot/<int:lot_id>/graph', type='json', auth='user')
+    def get_lot_traceability_graph(self, lot_id):
+        """
+        Recursively fetches parent lots and their metadata to build a pedigree graph.
+        """
+        Lot = request.env['stock.lot']
+        target_lot = Lot.browse(lot_id)
+        if not target_lot.exists():
+            return {'error': 'Lot not found'}
+
+        # Graph structure: { nodes: [], edges: [] }
+        graph = {
+            'nodes': [],
+            'edges': [],
+            'root_id': lot_id
+        }
+        
+        visited_ids = set()
+
+        def build_recursive_graph(current_lot, depth=0):
+            if current_lot.id in visited_ids or depth > 5: # Limit depth to 5
+                return
+            visited_ids.add(current_lot.id)
+
+            # Node data (The "Holographic" metadata)
+            node_data = {
+                'id': current_lot.id,
+                'name': current_lot.name,
+                'product': current_lot.product_id.name,
+                'certification': getattr(current_lot, 'certification_type', 'commodity'),
+                'dna': {
+                    'nitrogen': getattr(current_lot, 'nitrogen_qty', 0),
+                    'phosphorus': getattr(current_lot, 'phosphorus_qty', 0),
+                    'potassium': getattr(current_lot, 'potassium_qty', 0),
+                    'carbon': getattr(current_lot, 'carbon_intensity', 0),
+                    'water': getattr(current_lot, 'water_footprint', 0),
+                },
+                'depth': depth
+            }
+            graph['nodes'].append(node_data)
+
+            # Recurse into parents
+            for kinship in current_lot.parent_kinship_ids:
+                parent = kinship.parent_lot_id
+                graph['edges'].append({
+                    'from': parent.id,
+                    'to': current_lot.id,
+                    'type': kinship.derivation_type,
+                    'date': kinship.derivation_date.isoformat() if kinship.derivation_date else False
+                })
+                build_recursive_graph(parent, depth + 1)
+
+        build_recursive_graph(target_lot)
+        return graph
+
+
 class AgriculturalTermHome(Home):
     """扩展 Home 控制器以支持农业术语"""
 
