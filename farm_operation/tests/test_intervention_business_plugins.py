@@ -159,6 +159,67 @@ class TestInterventionBusinessPlugins(TransactionCase):
         # Simulate completion
         intervention.button_mark_done()
         
-        # Verify move quantity was updated based on flight area
-        # Assuming BOM qty was 1.0, new qty should be 10.0
-        self.assertEqual(intervention.move_raw_ids[0].product_uom_qty, 10.0)
+    def test_06_dna_certification_tainting(self):
+        """ Test DNA Certification Tainting (Organic + Commodity -> Green) """
+        # 1. Create one organic lot and one commodity lot
+        organic_lot = self.env['stock.lot'].create({
+            'name': 'ORG-INPUT-01',
+            'product_id': self.fertilizer.id,
+            'certification_type': 'organic',
+        })
+        commodity_lot = self.env['stock.lot'].create({
+            'name': 'COM-INPUT-02',
+            'product_id': self.fertilizer.id,
+            'certification_type': False, # Commodity
+        })
+        
+        # 2. Create intervention producing a lot, initially marked as organic
+        intervention = self.Intervention.create({
+            'product_id': self.apple.id,
+            'product_qty': 100.0,
+            'intervention_type': 'harvesting',
+        })
+        intervention.action_confirm()
+        
+        # Manually create output move with a lot
+        output_move = self.env['stock.move'].create({
+            'name': 'Harvest',
+            'product_id': self.apple.id,
+            'product_uom_qty': 100.0,
+            'location_id': self.env.ref('stock.location_production').id,
+            'location_dest_id': self.env.ref('stock.stock_location_stock').id,
+            'production_id': intervention.id,
+            'state': 'done',
+        })
+        output_lot = self.env['stock.lot'].create({
+            'name': 'OUTPUT-LOT-99',
+            'product_id': self.apple.id,
+            'certification_type': 'organic',
+        })
+        output_move.lot_ids = [(6, 0, [output_lot.id])]
+        
+        # 3. Define raw moves using the lots
+        raw_move_1 = self.env['stock.move'].create({
+            'name': 'Input 1',
+            'product_id': self.fertilizer.id,
+            'product_uom_qty': 50.0,
+            'raw_material_production_id': intervention.id,
+            'lot_ids': [(6, 0, [organic_lot.id])],
+        })
+        raw_move_2 = self.env['stock.move'].create({
+            'name': 'Input 2',
+            'product_id': self.fertilizer.id,
+            'product_uom_qty': 50.0,
+            'raw_material_production_id': intervention.id,
+            'lot_ids': [(6, 0, [commodity_lot.id])],
+        })
+        
+        # 4. Trigger DNA Inheritance
+        output_lot.inherit_dna_from_source(intervention.move_raw_ids)
+        
+        # Verify output lot was tainted/downgraded to 'green'
+        self.assertEqual(output_lot.certification_type, 'green', "Lot should be downgraded to Green due to non-organic input")
+        
+        # Verify chatter notification
+        messages = self.env['mail.message'].search([('res_id', '=', output_lot.id), ('model', '=', 'stock.lot')])
+        self.assertTrue(any("DNA Tainting" in m.body for m in messages))

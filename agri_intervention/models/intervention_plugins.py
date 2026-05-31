@@ -269,3 +269,85 @@ class AgriInterventionPluginVerification(models.AbstractModel):
                 if hasattr(move, 'bom_line_id'):
                     bom_qty = move.bom_line_id.product_qty if move.bom_line_id else 1.0
                     move.product_uom_qty = intervention.actual_flight_area * bom_qty
+
+
+# ---------------------------------------------------------
+# [DNA Inheritance Plugins]
+# ---------------------------------------------------------
+
+class AgriDnaPluginNutrient(models.AbstractModel):
+    """
+    [DNA Plugin] Nutrient Mass Balance.
+    Sums up N-P-K from inputs to the output lot.
+    """
+    _name = 'agri.dna.plugin.nutrient'
+    _inherit = 'agri.dna.plugin'
+
+    @api.model
+    def inherit_dna(self, lot, inputs):
+        if hasattr(lot, 'nitrogen_qty'):
+            lot.nitrogen_qty = sum(i.nitrogen_qty for i in inputs)
+            lot.phosphorus_qty = sum(i.phosphorus_qty for i in inputs)
+            lot.potassium_qty = sum(i.potassium_qty for i in inputs)
+
+class AgriDnaPluginSustainability(models.AbstractModel):
+    """
+    [DNA Plugin] Sustainability Metrics.
+    Calculates weighted average carbon intensity and total water footprint.
+    """
+    _name = 'agri.dna.plugin.sustainability'
+    _inherit = 'agri.dna.plugin'
+
+    @api.model
+    def inherit_dna(self, lot, inputs):
+        total_qty = sum(i.product_uom_qty for i in inputs)
+        if total_qty <= 0: return
+
+        if hasattr(lot, 'carbon_intensity'):
+            weighted_carbon = sum(i.carbon_intensity * i.product_uom_qty for i in inputs)
+            lot.carbon_intensity = weighted_carbon / total_qty
+        
+        if hasattr(lot, 'water_footprint'):
+            lot.water_footprint = sum(i.water_footprint for i in inputs)
+
+class AgriDnaPluginSpatial(models.AbstractModel):
+    """
+    [DNA Plugin] Spatial Context.
+    Propagates the geographical location from the latest intervention to the lot.
+    """
+    _name = 'agri.dna.plugin.spatial'
+    _inherit = 'agri.dna.plugin'
+
+    @api.model
+    def inherit_dna(self, lot, inputs):
+        if not inputs: return
+        # Take location from the first input's intervention (which produced the lot)
+        if hasattr(lot, 'geo_point'):
+            lot.geo_point = inputs[0].production_id.geo_point
+
+class AgriDnaPluginCertification(models.AbstractModel):
+    """
+    [DNA Plugin] Certification Inheritance & Tainting.
+    Ensures that the output lot's certification level is derived from its inputs.
+    Logic: If any input is non-certified, the output cannot be 'organic'.
+    """
+    _name = 'agri.dna.plugin.certification'
+    _inherit = 'agri.dna.plugin'
+
+    @api.model
+    def inherit_dna(self, lot, inputs):
+        if not hasattr(lot, 'certification_type'):
+            return
+
+        # Check all inputs for their certification status
+        # (Assuming inputs are stock.moves, we check their source lots)
+        input_lots = inputs.mapped('lot_id')
+        if not input_lots:
+            return
+
+        # If any input lot is not organic, the output lot is downgraded to 'commodity' or 'green'
+        is_all_organic = all(l.certification_type == 'organic' for l in input_lots)
+        
+        if not is_all_organic and lot.certification_type == 'organic':
+            lot.certification_type = 'green' # Downgrade to next level
+            lot.message_post(body=_("DNA Tainting: Lot certification downgraded to 'Green' due to non-organic inputs."))
