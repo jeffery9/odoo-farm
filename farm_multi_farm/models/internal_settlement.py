@@ -18,7 +18,14 @@ class InternalSettlement(models.Model):
     ], string='Type', default='general', required=True)
     
     amount = fields.Float('Amount', required=True)
-    invoice_id = fields.Many2one("account.move", string="Invoice")
+    
+    # Twin Invoices [US-UBER-01]
+    debtor_invoice_id = fields.Many2one("account.move", string="Debtor Invoice (AP)", readonly=True)
+    creditor_invoice_id = fields.Many2one("account.move", string="Creditor Invoice (AR)", readonly=True)
+    
+    # Legacy field for compatibility (points to debtor invoice)
+    invoice_id = fields.Many2one("account.move", string="Invoice", related='debtor_invoice_id', readonly=True)
+    
     currency_id = fields.Many2one("res.currency", string="Currency", default=lambda self: self.env.company.currency_id)
     # Removing hard dependency on resource.sharing for abstract settlement flexibility
     # resource_sharing_id = fields.Many2one("resource.sharing", string="Resource Sharing")
@@ -40,9 +47,23 @@ class InternalSettlement(models.Model):
         return super().create(vals_list)
 
     def action_confirm(self):
-        self.write({'state': 'confirmed'})
-        # Automatically generate internal invoice entries when confirmed
-        self.action_generate_invoice()
+        """
+        Confirms settlement after verifying governance requirements.
+        """
+        for rec in self:
+            # 1. Check for mandatory multi-sign approval [US-042-18]
+            if hasattr(rec, '_check_multi_sign_status'):
+                rec._check_multi_sign_status()
+                
+            rec.write({'state': 'confirmed'})
+            
+            # 2. Automatically generate internal invoice entries
+            rec.action_generate_invoice()
+        return True
+
+    def _check_multi_sign_status(self):
+        """ Stub for extension in farm_multi_farm_financial """
+        return True
 
     def action_generate_invoice(self):
         """
@@ -51,22 +72,51 @@ class InternalSettlement(models.Model):
         2. AR (Accounts Receivable) for the Creditor (to_entity_id).
         """
         self.ensure_one()
-        if self.invoice_id:
+        if self.debtor_invoice_id or self.creditor_invoice_id:
             return True
             
-        # Simplified: We just create one Vendor Bill for the from_entity (B) to pay to_entity (A)
-        # In a real multi-company setup, this would be two linked entries
-        move_vals = {
-            'move_type': 'in_invoice', # Vendor Bill for Farm B
-            'partner_id': self.to_entity_id.id, # Pay to Farm A
+        # Strategy: Create linked entries in a single transaction
+        move_obj = self.env['account.move']
+        
+        # Determine companies based on partners
+        debtor_farm = self.env['farm.entity'].search([('company_id.partner_id', '=', self.from_entity_id.id)], limit=1)
+        creditor_farm = self.env['farm.entity'].search([('company_id.partner_id', '=', self.to_entity_id.id)], limit=1)
+        
+        # 1. Create Vendor Bill (AP) for Debtor Farm
+        ap_vals = {
+            'move_type': 'in_invoice',
+            'partner_id': self.to_entity_id.id,
+            'company_id': debtor_farm.company_id.id if debtor_farm else self.env.company.id,
             'invoice_date': self.settlement_date,
             'invoice_line_ids': [(0, 0, {
-                'name': self.description or self.name,
+                'name': _("Internal Settlement (AP): %s") % (self.description or self.name),
                 'price_unit': self.amount,
                 'quantity': 1,
             })],
         }
-        invoice = self.env['account.move'].create(move_vals)
-        self.write({'invoice_id': invoice.id})
-        self.message_post(body=_("Generated Internal Settlement Invoice: %s") % invoice.name)
+        ap_invoice = move_obj.create(ap_vals)
+        
+        # 2. Create Customer Invoice (AR) for Creditor Farm
+        ar_vals = {
+            'move_type': 'out_invoice',
+            'partner_id': self.from_entity_id.id,
+            'company_id': creditor_farm.company_id.id if creditor_farm else self.env.company.id,
+            'invoice_date': self.settlement_date,
+            'invoice_line_ids': [(0, 0, {
+                'name': _("Internal Settlement (AR): %s") % (self.description or self.name),
+                'price_unit': self.amount,
+                'quantity': 1,
+            })],
+        }
+        ar_invoice = move_obj.create(ar_vals)
+        
+        self.write({
+            'debtor_invoice_id': ap_invoice.id,
+            'creditor_invoice_id': ar_invoice.id,
+        })
+        
+        self.message_post(body=_(
+            "Dual Invoices Generated: AP (%s) for %s and AR (%s) for %s"
+        ) % (ap_invoice.name, self.from_entity_id.name, ar_invoice.name, self.to_entity_id.name))
+        
         return True
