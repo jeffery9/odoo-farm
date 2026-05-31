@@ -24,6 +24,9 @@ class AgriInterventionMixin(models.AbstractModel):
             {'name': 'spatial_audit', 'class': 'agri.intervention.plugin.spatial'},
             {'name': 'yield_calibration', 'class': 'agri.intervention.plugin.yield'},
             {'name': 'nutrient_tracking', 'class': 'agri.intervention.plugin.nutrient'},
+            {'name': 'compliance', 'class': 'agri.intervention.plugin.compliance'},
+            {'name': 'labor_tracking', 'class': 'agri.intervention.plugin.labor'},
+            {'name': 'iot_monitoring', 'class': 'agri.intervention.plugin.iot'},
         ])
         return res
 
@@ -74,21 +77,14 @@ class AgriInterventionMixin(models.AbstractModel):
 
     def action_trigger_iot_based_intervention(self, sensor_readings_summary):
         """
-        Automatically adjust IoT status and log interventions based on sensor streams.
+        Automatically adjust IoT status via Plugin.
         """
         self.ensure_one()
         self.intervention_count += 1
         
-        # Determine urgency based on telemetry keywords
-        summary_lower = sensor_readings_summary.lower()
-        if any(kw in summary_lower for kw in ['critical', 'deviation', 'error', 'emergency']):
-            self.iot_status = 'critical'
-        elif any(kw in summary_lower for kw in ['warning', 'alert', 'high', 'low']):
-            self.iot_status = 'warning'
-        else:
-            self.iot_status = 'monitoring'
-
-        self.message_post(body=_("IoT Auto-Intervention (Cycle %s): %s") % (self.intervention_count, sensor_readings_summary))
+        # Use IoT Plugin
+        plugin = self.env['agri.intervention.plugin.iot']
+        plugin.update_iot_status(self, sensor_readings_summary)
         return True
 
 
@@ -310,44 +306,10 @@ class AgriInterventionMixin(models.AbstractModel):
         self.message_post(body=_("Labor: Work stopped and recorded at %s") % self.date_finished)
 
     def action_confirm(self):
-        """扩展确认逻辑，进行安全拦截 [US-003-04] 并传递任务 ID 到供应端 [US-009-01]"""
-        # Ensure base engine is also updated if not already confirmed
+        """扩展确认逻辑，通过基础引擎触发合规插件逻辑"""
+        # action_confirm_base handles pre_confirm plugins (Compliance check)
         self.filtered(lambda r: r.state == 'draft').action_confirm_base()
         
-        for mo in self:
-            # US-041-02: Check real-name registration for pesticide/veterinary
-            if hasattr(mo, 'intervention_type') and mo.intervention_type in ['protection', 'aerial_spraying', 'medical']:
-                if not mo.operator_id_card:
-                    raise UserError(_("COMPLIANCE ERROR: Operator ID Card is required for real-name registration of %s!") % dict(mo._fields['intervention_type'].selection).get(mo.intervention_type))
-                if mo.operator_id_card:
-                    import re
-                    if not re.match(r'^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$', mo.operator_id_card):
-                        raise UserError(_("COMPLIANCE ERROR: Invalid ID Card format for operator!"))
-
-            # 1. 检查有机拦截
-            if mo.agri_task_id and mo.agri_task_id.land_parcel_id:
-                is_organic_parcel = mo.agri_task_id.land_parcel_id.certification_level in ['organic', 'organic_transition']
-                for move in mo.move_raw_ids:
-                    if (hasattr(move.product_id, 'is_agri_input') and move.product_id.is_agri_input and
-                        (not hasattr(move.product_id, 'is_safety_approved') or not move.product_id.is_safety_approved)):
-                        if is_organic_parcel:
-                            # 如果是有机地块，记录违规日期以重置转换期 [US-035-02]
-                            mo.agri_task_id.land_parcel_id.last_prohibited_substance_date = fields.Date.today()
-                            # 发出警告而非强制报错，这里选择报错以严格合规
-                            raise UserError(_("COMPLIANCE ERROR: Product %s is not approved for organic production on parcel %s!") % (
-                                move.product_id.name, mo.agri_task_id.land_parcel_id.name
-                            ))
-
-            # 2. 传递 agri_task_id 到采购逻辑 (通过 procurement_group)
-            if mo.agri_task_id and mo.procurement_group_id:
-                if hasattr(mo.procurement_group_id, 'agri_task_id'):
-                    mo.procurement_group_id.agri_task_id = mo.agri_task_id.id
-
-            # 3. 触发休药期更新 (调用 farm_safety 注入的方法)
-            if mo.agri_task_id and hasattr(mo.agri_task_id, 'action_confirm_intervention_safety'):
-                if hasattr(mo.move_raw_ids, 'mapped'):
-                    mo.agri_task_id.action_confirm_intervention_safety(mo.move_raw_ids.mapped('product_id').ids)
-
         # Call the parent method if it exists
         if hasattr(super(AgriInterventionMixin, self), 'action_confirm'):
             return super(AgriInterventionMixin, self).action_confirm()
