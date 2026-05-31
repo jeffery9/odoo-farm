@@ -27,3 +27,8 @@ class IiotTelemetry(models.Model):
     # GIS Snapshot
     gps_lat = fields.Float("Latitude", digits=(10, 7))
     gps_lng = fields.Float("Longitude", digits=(10, 7))
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super(IiotTelemetry, self).create(vals_list)
+        return records

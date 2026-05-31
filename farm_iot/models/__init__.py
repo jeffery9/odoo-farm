@@ -8,3 +8,4 @@ from . import iot_telemetry_buffer
 from . import agri_digital_twin
 from . import digital_twin
 from . import iiot_device_inherit
+from . import farm_event_correlation

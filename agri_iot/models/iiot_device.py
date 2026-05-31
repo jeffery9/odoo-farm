@@ -31,6 +31,20 @@ class IiotDevice(models.Model):
     config_token = fields.Char('Config Token', copy=False, help='One-time configuration download token')
     firmware_version = fields.Char('Firmware Version', help='Current firmware version')
 
+    # Physical Topology [ISA-95 L2/L1]
+    parent_id = fields.Many2one('iiot.device', string='Parent Device', help='Physical upstream gateway or controller', ondelete='restrict')
+    child_ids = fields.One2many('iiot.device', 'parent_id', string='Sub-devices')
+    physical_level = fields.Selection([
+        ('gateway', 'Gateway/Edge Server'),
+        ('controller', 'Controller/PLC'),
+        ('node', 'Sensor Node'),
+        ('sensor', 'Sub-sensor/Module')
+    ], string='Physical Level', default='node')
+
+    # 设备影子 [US-TECH-04-01]
+    shadow_state = fields.Text('Device Shadow', help='Last known state (JSON)')
+    shadow_update = fields.Datetime('Shadow Last Update')
+
     # 视频流集成 [US-039-01]
     is_camera = fields.Boolean("Is Camera", default=False)
     live_stream_url = fields.Char("Live Stream URL", help="HLS/HTTP/RTSP stream URL for the camera")
@@ -108,55 +122,71 @@ class IiotDevice(models.Model):
         }
 
     def send_command(self, action, **params):
-        """Send command"""
+        """Send command via gateway"""
         self.ensure_one()
 
         if not self.profile_id:
             raise UserError(_("Device not associated with communication profile"))
 
-        # Get command topic
-        command_topic = self.profile_id.command_topic_template.format(device=self.device_id)
+        # Find gateway managing this device
+        gateway = self.env['iiot.gateway'].sudo().search([('device_ids', 'in', self.id)], limit=1)
+        
+        # Fallback to the first online gateway if not specifically assigned
+        if not gateway:
+            gateway = self.env['iiot.gateway'].sudo().search([('state', '=', 'online')], limit=1)
 
-        # Render command message using Jinja2 template
-        try:
-            from jinja2 import Template
-            template = Template(self.profile_id.command_template)
-            message = template.render(action=action, params=params)
-            command_payload = json.loads(message)
-        except Exception as e:
-            raise UserError(_("Command template rendering failed: %s") % str(e))
-
-        # Send command via HTTP-to-MQTT bridge
-        # This would call the HTTP gateway that forwards to MQTT
-        mqtt_bridge_url = self.env['ir.config_parameter'].sudo().get_param('iiot.mqtt_bridge_url')
-
-        if not mqtt_bridge_url:
-            raise UserError(_("MQTT gateway URL not configured"))
+        if not gateway or not gateway.url:
+            raise UserError(_("No online IoT Gateway found to handle this command"))
 
         try:
+            # Use the unified webhook endpoint on the bridge
+            webhook_url = f"{gateway.url.rstrip('/')}/api/v1/webhook"
+            
             response = requests.post(
-                f"{mqtt_bridge_url}/publish",
+                webhook_url,
                 json={
-                    'topic': command_topic,
-                    'payload': command_payload
+                    'event': 'command',
+                    'payload': {
+                        'device_id': self.device_id,
+                        'action': action,
+                        'params': params
+                    }
                 },
                 timeout=10
             )
-            if response.status_code == 200:
+            
+            if response.status_code == 200 and response.json().get('status') == 'success':
                 self.last_command = fields.Datetime.now()
                 return True
             else:
-                raise UserError(_("Failed to send command: %s") % response.text)
+                error_detail = response.text
+                try:
+                    error_detail = response.json().get('error', response.text)
+                except:
+                    pass
+                raise UserError(_("Gateway rejected command: %s") % error_detail)
+                
         except Exception as e:
-            raise UserError(_("Error occurred while sending command: %s") % str(e))
+            raise UserError(_("Error occurred while sending command to gateway: %s") % str(e))
 
     def process_telemetry_data(self, telemetry_data):
-        """Process incoming telemetry data based on rules"""
+        """Process incoming telemetry data and update Device Shadow"""
         self.ensure_one()
 
         # Update last telemetry time
         self.last_telemetry = fields.Datetime.now()
         self.connection_status = 'online'
+
+        # Update Device Shadow [US-TECH-04-01]
+        try:
+            current_shadow = json.loads(self.shadow_state) if self.shadow_state else {}
+            # Merge new telemetry into shadow
+            if isinstance(telemetry_data, dict):
+                current_shadow.update(telemetry_data)
+                self.shadow_state = json.dumps(current_shadow)
+                self.shadow_update = fields.Datetime.now()
+        except Exception as e:
+            _logger.error(f"Failed to update shadow for {self.device_id}: {str(e)}")
 
         # Process according to telemetry rules
         for rule in self.profile_id.iiot_telemetry_rule_ids:

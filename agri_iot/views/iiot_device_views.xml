@@ -39,6 +39,8 @@
                             <field name="serial_number"/>
                             <field name="device_id"/>
                             <field name="profile_id"/>
+                            <field name="physical_level"/>
+                            <field name="parent_id" invisible="physical_level == 'gateway'"/>
                         </group>
                         <group>
                             <field name="is_active"/>
@@ -61,6 +63,15 @@
                                 <field name="config_token" readonly="1"/>
                                 <button name="action_generate_config_token" string="Regenerate Token" type="object" class="btn-secondary"/>
                             </group>
+                        </page>
+                        <page string="Physical Topology" name="topology" invisible="physical_level == 'sensor'">
+                            <field name="child_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="physical_level"/>
+                                    <field name="connection_status" widget="badge"/>
+                                </list>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>

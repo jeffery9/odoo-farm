@@ -13,11 +13,12 @@
     'website': 'http://www.geninit.cn',
     'depends': ['farm_core', 'project', 'agri_iot', 'maintenance', 'stock', 'mrp'],
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         # 'data/iot_cron_data.xml',
         'views/iot_mapping_views.xml',
         'views/farm_telemetry_views.xml',
         'views/farm_automation_views.xml',
+        'views/farm_event_correlation_views.xml',
         
         'views/iiot_device_views.xml',
         'views/digital_twin_views.xml',
