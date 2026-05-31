@@ -162,3 +162,19 @@ class AgriDnaPlugin(models.AbstractModel):
         Inputs: The stock.move records (raw materials) used.
         """
         pass
+
+class AgriValuationPlugin(models.AbstractModel):
+    """
+    [L3 Financial Foundation] Interface for Valuation Plugins.
+    Handles different accounting approaches (Fair Value, Cost, GEP, etc.)
+    """
+    _name = 'agri.valuation.plugin'
+    _description = 'Valuation Plugin Interface'
+
+    @api.model
+    def calculate_value(self, asset, context=None):
+        """
+        Calculates the financial value of an asset.
+        Returns a dictionary: {'amount': 100.0, 'currency_id': 1, 'notes': '...'}
+        """
+        return {}

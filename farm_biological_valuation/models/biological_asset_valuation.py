@@ -9,15 +9,14 @@ _logger = logging.getLogger(__name__)
 
 class AgriValuationBiologicalAsset(models.Model):
     """
-    Consolidated Biological Asset Valuation [Refactored to Agri Domain]
-    Combines fair value accounting with cost/depreciation accounting
-    Refactored from farm.biological.asset.valuation with 100% logic retention.
+    Consolidated Biological Asset Valuation [Refactored to Agri Domain] [De-industrialized]
+    Combines fair value accounting with cost/depreciation accounting.
     """
     _name = 'agri.biological.asset.valuation'
-    _description = 'Consolidated Biological Asset Valuation'
+    _description = 'Biological Asset Valuation'
     _order = 'asset_id, valuation_date desc'
 
-    name = fields.Char("Valuation Reference", required=True, default=lambda self: _('New'))
+    name = fields.Char("Valuation Ref", required=True, default=lambda self: _('New'))
     asset_id = fields.Many2one('agri.biological.asset', string="Biological Asset", required=True)
     valuation_date = fields.Date("Valuation Date", default=fields.Date.today, required=True)
 
