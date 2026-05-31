@@ -289,27 +289,12 @@ class MrpProduction(models.Model):
     @api.constrains('operator_id_card')
     def _check_operator_id_card(self):
         for record in self:
-            if record.operator_id_card and not record.operator_id_card.isdigit() or len(record.operator_id_card) not in [15, 18]:
+            if record.operator_id_card and (not record.operator_id_card.isdigit() and not (record.operator_id_card[:-1].isdigit() and record.operator_id_card[-1].upper() == 'X') or len(record.operator_id_card) not in [15, 18]):
                 raise ValidationError(_("Operator ID Card No. must be 15 or 18 digits."))
-
-    def action_confirm(self):
-        # 扩展确认逻辑，增加投入品实名制校验
-        for mo in self:
-            has_regulated_input = False
-            for move in mo.move_raw_ids:
-                if move.product_id.is_regulated_input:
-                    has_regulated_input = True
-                    if move.product_id.is_prohibited_restricted:
-                        raise UserError(_("REGULATION VIOLATION: Input '%s' is Prohibited/Restricted. Reason: %s") % (move.product_id.name, move.product_id.prohibited_reason))
-            
-            if has_regulated_input and not mo.operator_id_card:
-                raise UserError(_("REAL-NAME REQUIRED: Operator ID Card No. is required for regulated inputs."))
-        
-        return super(MrpProduction, self).action_confirm()
 
     def _generate_regulation_payload(self):
         """
-        US-041-02: 生成符合“肥药两制”标准的 JSON 报文
+        US-041-02: 生成符合“肥药两制”标准的 JSON 报文 [De-industrialized]
         包含：主体信息、投入品编码、用量、地块、操作人实名信息
         """
         self.ensure_one()
@@ -321,7 +306,7 @@ class MrpProduction(models.Model):
                 'name': self.user_id.name,
                 'id_card': self.operator_id_card,
             },
-            'parcel_id': self.agri_task_id.land_parcel_id.name,
+            'parcel_id': self.agri_task_id.land_parcel_id.name if self.agri_task_id and self.agri_task_id.land_parcel_id else 'UNKNOWN',
             'items': []
         }
         

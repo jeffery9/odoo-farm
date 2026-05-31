@@ -57,14 +57,14 @@ class PurchaseOrder(models.Model):
     # Link to joint procurement for cooperative purchases
     joint_procurement_order_id = fields.Many2one(
         'joint.procurement.order',
-        string="Joint Procurement Order",
+        string="Joint Supply Order",
         help="Link to cooperative/consortium procurement order"
     )
 
     agri_task_id = fields.Many2one(
         'project.task',
-        string="Origin Agri Task",
-        help="The specific production task that triggered this procurement."
+        string="Originating Task",
+        help="The specific intervention task that triggered this supply requirement."
     )
 
     @api.model_create_multi
