@@ -223,3 +223,61 @@ class TestInterventionBusinessPlugins(TransactionCase):
         # Verify chatter notification
         messages = self.env['mail.message'].search([('res_id', '=', output_lot.id), ('model', '=', 'stock.lot')])
         self.assertTrue(any("DNA Tainting" in m.body for m in messages))
+
+    def test_07_lot_kinship_tracking(self):
+        """ Test Lot Kinship / Ancestry recording """
+        # 1. Create parent lots
+        parent_lot_1 = self.env['stock.lot'].create({
+            'name': 'P-LOT-01',
+            'product_id': self.fertilizer.id,
+        })
+        parent_lot_2 = self.env['stock.lot'].create({
+            'name': 'P-LOT-02',
+            'product_id': self.fertilizer.id,
+        })
+        
+        # 2. Create output lot
+        child_lot = self.env['stock.lot'].create({
+            'name': 'C-LOT-01',
+            'product_id': self.apple.id,
+        })
+        
+        # 3. Simulate inputs via stock moves
+        intervention = self.Intervention.create({
+            'product_id': self.apple.id,
+            'product_qty': 1.0,
+            'intervention_type': 'process',
+        })
+        
+        inputs = self.env['stock.move'].create([
+            {
+                'name': 'In 1',
+                'product_id': self.fertilizer.id,
+                'product_uom_qty': 1.0,
+                'raw_material_production_id': intervention.id,
+                'lot_ids': [(6, 0, [parent_lot_1.id])],
+            },
+            {
+                'name': 'In 2',
+                'product_id': self.fertilizer.id,
+                'product_uom_qty': 1.0,
+                'raw_material_production_id': intervention.id,
+                'lot_ids': [(6, 0, [parent_lot_2.id])],
+            }
+        ])
+        
+        # 4. Trigger DNA Inheritance (which now includes kinship)
+        child_lot.inherit_dna_from_source(inputs)
+        
+        # 5. Verify Kinship records
+        kinship_links = self.env['agri.lot.kinship'].search([('child_lot_id', '=', child_lot.id)])
+        self.assertEqual(len(kinship_links), 2, "Should have 2 parent kinship links")
+        
+        parents = kinship_links.mapped('parent_lot_id')
+        self.assertIn(parent_lot_1, parents)
+        self.assertIn(parent_lot_2, parents)
+        self.assertEqual(kinship_links[0].derivation_type, 'process')
+        
+        # Check reverse relation on parent
+        descendants = parent_lot_1.child_kinship_ids.mapped('child_lot_id')
+        self.assertIn(child_lot, descendants)
