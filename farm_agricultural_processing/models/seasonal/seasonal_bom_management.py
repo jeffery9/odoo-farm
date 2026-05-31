@@ -6,14 +6,14 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class AgriInterventionSeasonalBom(models.Model):
+class AgriSeasonalRecipe(models.Model):
     """
-    US-004-06: 季节性"版本化"配方管理 [Refactored to Agri Domain]
+    US-004-06: 季节性"版本化"配方管理 [De-industrialized]
     - 管理季节性配方变化
     - 支持为同一产品创建不同季节的配方版本
-    Refactored from farm.seasonal.bom with 100% logic retention.
+    Refactored from agri.intervention.seasonal.bom with 100% logic retention.
     """
-    _name = 'agri.intervention.seasonal.bom'
+    _name = 'agri.seasonal.recipe'
     _description = 'Seasonal Versioned Recipe Management'
     _order = 'product_tmpl_id, season_start_date'
 
@@ -30,11 +30,12 @@ class AgriInterventionSeasonalBom(models.Model):
         help="Product that this seasonal recipe is for"
     )
 
+    # Bridge to Odoo MRP
     bom_id = fields.Many2one(
         'mrp.bom',
-        string="Base BOM",
+        string="Base Recipe",
         required=True,
-        help="Base BOM to be used as template for seasonal variations"
+        help="Base Recipe to be used as template for seasonal variations"
     )
 
     season_name = fields.Char(
@@ -58,16 +59,16 @@ class AgriInterventionSeasonalBom(models.Model):
         help="End date of this seasonal recipe validity"
     )
 
-    # Seasonal adjustments to the base BOM
-    seasonal_material_ids = fields.One2many(
-        'agri.intervention.seasonal.bom.material',
-        'seasonal_bom_id',
-        string="Seasonal Material Adjustments"
+    # Seasonal adjustments to the base recipe
+    seasonal_input_ids = fields.One2many(
+        'agri.seasonal.recipe.input',
+        'seasonal_recipe_id',
+        string="Seasonal Input Adjustments"
     )
 
     seasonal_parameter_ids = fields.One2many(
-        'agri.intervention.seasonal.bom.parameter',
-        'seasonal_bom_id',
+        'agri.seasonal.recipe.parameter',
+        'seasonal_recipe_id',
         string="Seasonal Parameter Adjustments"
     )
 
@@ -130,10 +131,10 @@ class AgriInterventionSeasonalBom(models.Model):
                     "Overlapping with: %s" % ', '.join(overlapping.mapped('name'))
                 ))
 
-    @api.depends('seasonal_material_ids', 'seasonal_parameter_ids')
+    @api.depends('seasonal_input_ids', 'seasonal_parameter_ids')
     def _compute_has_seasonal_adjustment(self):
         for record in self:
-            record.is_seasonal_adjustment = bool(record.seasonal_material_ids or record.seasonal_parameter_ids)
+            record.is_seasonal_adjustment = bool(record.seasonal_input_ids or record.seasonal_parameter_ids)
 
     @api.depends('base_yield_factor')
     def _compute_seasonal_yield_factor(self):
@@ -153,43 +154,43 @@ class AgriInterventionSeasonalBom(models.Model):
         self.write({'state': 'inactive'})
         return True
 
-    def get_applicable_seasonal_bom(self, product_id, date=None):
+    def get_applicable_seasonal_recipe(self, product_id, date=None):
         """
-        Get applicable seasonal BOM for a product on a specific date
+        Get applicable seasonal recipe for a product on a specific date
         """
         if not date:
             date = fields.Date.today()
 
-        seasonal_bom = self.search([
+        seasonal_recipe = self.search([
             ('product_tmpl_id', '=', product_id),
             ('season_start_date', '<=', date),
             ('season_end_date', '>=', date),
             ('state', '=', 'active'),
         ], limit=1)
 
-        return seasonal_bom
+        return seasonal_recipe
 
     def apply_seasonal_adjustments(self, base_bom):
         """
-        Apply seasonal adjustments to a base BOM
+        Apply seasonal adjustments to a base recipe (BOM)
         """
         self.ensure_one()
-        # This would contain the logic to create an adjusted BOM based on seasonal factors
-        # For now, we return the base BOM with seasonal info
+        # This would contain the logic to create an adjusted recipe based on seasonal factors
+        # For now, we return the base recipe with seasonal info
         result = base_bom.copy()
         result.name = f"{base_bom.name} - {self.season_name} Season"
         return result
 
-    def action_view_seasonal_materials(self):
-        """Open a view to see seasonal material adjustments"""
+    def action_view_seasonal_inputs(self):
+        """Open a view to see seasonal input adjustments"""
         self.ensure_one()
         action = {
             'type': 'ir.actions.act_window',
-            'name': _('Seasonal Material Adjustments'),
-            'res_model': 'agri.intervention.seasonal.bom.material',
+            'name': _('Seasonal Input Adjustments'),
+            'res_model': 'agri.seasonal.recipe.input',
             'view_mode': 'list,form',
-            'domain': [('seasonal_bom_id', '=', self.id)],
-            'context': {'default_seasonal_bom_id': self.id},
+            'domain': [('seasonal_recipe_id', '=', self.id)],
+            'context': {'default_seasonal_recipe_id': self.id},
         }
         return action
 
@@ -199,31 +200,31 @@ class AgriInterventionSeasonalBom(models.Model):
         action = {
             'type': 'ir.actions.act_window',
             'name': _('Seasonal Parameter Adjustments'),
-            'res_model': 'agri.intervention.seasonal.bom.parameter',
+            'res_model': 'agri.seasonal.recipe.parameter',
             'view_mode': 'list,form',
-            'domain': [('seasonal_bom_id', '=', self.id)],
-            'context': {'default_seasonal_bom_id': self.id},
+            'domain': [('seasonal_recipe_id', '=', self.id)],
+            'context': {'default_seasonal_recipe_id': self.id},
         }
         return action
 
 
-class AgriInterventionSeasonalBomMaterial(models.Model):
+class AgriSeasonalRecipeInput(models.Model):
     """
-    季节性材料调整 [Refactored to Agri Domain]
+    季节性投入品调整 [De-industrialized]
     """
-    _name = 'agri.intervention.seasonal.bom.material'
-    _description = 'Seasonal BOM Material Adjustment'
+    _name = 'agri.seasonal.recipe.input'
+    _description = 'Seasonal Recipe Input Adjustment'
 
-    seasonal_bom_id = fields.Many2one(
-        'agri.intervention.seasonal.bom',
-        string="Seasonal BOM",
+    seasonal_recipe_id = fields.Many2one(
+        'agri.seasonal.recipe',
+        string="Seasonal Recipe",
         required=True,
         ondelete='cascade'
     )
 
     product_id = fields.Many2one(
         'product.product',
-        string="Material",
+        string="Input Material",
         required=True
     )
 
@@ -231,7 +232,7 @@ class AgriInterventionSeasonalBomMaterial(models.Model):
     seasonal_qty = fields.Float("Seasonal Quantity", required=True)
     qty_difference = fields.Float("Quantity Difference", compute='_compute_qty_difference', store=True, precompute=True)
 
-    adjustment_reason = fields.Text("Adjustment Reason", help="Why this material quantity changes by season")
+    adjustment_reason = fields.Text("Adjustment Reason", help="Why this input quantity changes by season")
 
     @api.depends('base_qty', 'seasonal_qty')
     def _compute_qty_difference(self):
@@ -240,26 +241,26 @@ class AgriInterventionSeasonalBomMaterial(models.Model):
 
     @api.onchange('product_id')
     def _onchange_product_id(self):
-        """Set base quantity from original BOM if possible"""
-        if self.seasonal_bom_id and self.product_id:
-            # Try to find the base quantity from the original BOM
-            base_bom_line = self.seasonal_bom_id.bom_id.bom_line_ids.filtered(
+        """Set base quantity from original recipe if possible"""
+        if self.seasonal_recipe_id and self.product_id:
+            # Try to find the base quantity from the original recipe
+            base_bom_line = self.seasonal_recipe_id.bom_id.bom_line_ids.filtered(
                 lambda l: l.product_id == self.product_id
             )
             if base_bom_line:
                 self.base_qty = base_bom_line.product_qty
 
 
-class AgriInterventionSeasonalBomParameter(models.Model):
+class AgriSeasonalRecipeParameter(models.Model):
     """
-    季节性参数调整 [Refactored to Agri Domain]
+    季节性参数调整 [De-industrialized]
     """
-    _name = 'agri.intervention.seasonal.bom.parameter'
-    _description = 'Seasonal BOM Parameter Adjustment'
+    _name = 'agri.seasonal.recipe.parameter'
+    _description = 'Seasonal Recipe Parameter Adjustment'
 
-    seasonal_bom_id = fields.Many2one(
-        'agri.intervention.seasonal.bom',
-        string="Seasonal BOM",
+    seasonal_recipe_id = fields.Many2one(
+        'agri.seasonal.recipe',
+        string="Seasonal Recipe",
         required=True,
         ondelete='cascade'
     )

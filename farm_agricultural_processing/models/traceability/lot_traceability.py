@@ -5,95 +5,30 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class StockLotTraceabilityExtension(models.Model):
-    _name = 'stock.lot'
+class StockLot(models.Model):
     _inherit = 'stock.lot'
 
-    # 批次溯源 [US-037-03]
-    parent_lot_id = fields.Many2one('stock.lot', string="Parent Lot/Origin", help="Trace back to the raw material lot")
-    child_lot_ids = fields.One2many('stock.lot', 'parent_lot_id', string="Derived Products")
-
-    # 性能优化：写入时预计算的全路径 [Pre-calculated Path]
-    full_traceability_path = fields.Text("Full Traceability Path", readonly=True,
-                                       help="Flattened upstream lot IDs for instant lookup.")
-
-    # 分级与元数据 [US-037-05]
-    quality_grade = fields.Selection(selection_add=[
-        ('a', 'Grade A / Premium'),
-        ('b', 'Grade B / Standard'),
-        ('c', 'Grade C / Processing'),
-        ('loss', 'Loss/Waste')
-    ], ondelete={'a': 'set null', 'b': 'set null', 'c': 'set null', 'loss': 'set null'})
-
-    harvest_date = fields.Date('Harvest Date')
-    # plot_id = fields.Many2one('farm.land', string='Origin Plot')
-
-    @api.model
-    def create(self, vals):
-        """Override create to populate full traceability path"""
-        record = super().create(vals)
-        record._compute_full_traceability_path()
-        return record
-
-    def write(self, vals):
-        """Override write to update full traceability path when parent changes"""
-        result = super().write(vals)
-        if 'parent_lot_id' in vals:
-            self._compute_full_traceability_path()
-        return result
-
-    def _compute_full_traceability_path(self):
-        """Compute and set the full traceability path for instant lookup"""
-        for record in self:
-            path_ids = []
-            current = record
-            # Traverse up the parent chain to build the path
-            while current and current.parent_lot_id:
-                path_ids.append(current.parent_lot_id.id)
-                current = current.parent_lot_id
-            # Store as comma-separated string for quick lookup
-            record.full_traceability_path = ','.join(map(str, path_ids)) if path_ids else ''
-
+    # [Refactored] Migrated to agri.lot.kinship for performance and consistency
+    # Redundant parent_lot_id removed.
+    
     def get_full_traceability_chain(self):
-        """Get the complete traceability chain (both upstream and downstream)"""
-        upstream_chain = self._get_upstream_traceability()
-        downstream_chain = self._get_downstream_traceability()
+        """
+        [SOLID Refactored] Use the centralized kinship model for deep traceability.
+        """
+        self.ensure_one()
         return {
-            'upstream': upstream_chain,
-            'downstream': downstream_chain
+            'upstream': self.parent_kinship_ids.mapped('parent_lot_id'),
+            'downstream': self.child_kinship_ids.mapped('child_lot_id')
         }
 
-    def _get_upstream_traceability(self):
-        """Get all parent lots in the traceability chain"""
-        chain = []
-        current = self
-        while current and current.parent_lot_id:
-            chain.append(current.parent_lot_id)
-            current = current.parent_lot_id
-        return chain
-
-    def _get_downstream_traceability(self):
-        """Get all child lots in the traceability chain"""
-        chain = []
-        # Use a queue for BFS traversal
-        lots_to_check = [self]
-        checked_lots = set()
-
-        while lots_to_check:
-            current_lot = lots_to_check.pop(0)
-            if current_lot.id not in checked_lots:
-                checked_lots.add(current_lot.id)
-                for child in current_lot.child_lot_ids:
-                    if child.id not in checked_lots:
-                        chain.append(child)
-                        lots_to_check.append(child)
-
-        return chain
-
+    def _compute_full_traceability_path(self):
+        """ [Deprecated] Logic migrated to agri.lot.kinship graph traversal """
+        pass
 
 class AgriProcessingLotTracking(models.Model):
     """
     Advanced Lot Tracking and Traceability - US-037-03
+    Refactored to bridge with the Kinship Engine.
     """
     _name = 'agri.processing.lot.tracking'
     _description = 'Advanced Lot Tracking and Traceability'
@@ -108,8 +43,8 @@ class AgriProcessingLotTracking(models.Model):
         ('downstream', 'Downstream (Source to Child)'),
     ], string='Trace Direction', required=True)
 
-    # Process information
-    production_id = fields.Many2one('agri.isl.processing.production', string='Production Order')
+    # Process information (Using ISL naming)
+    production_id = fields.Many2one('agri.isl.mrp.production', string='Intervention Order')
     process_date = fields.Date('Process Date')
 
     # Quality and compliance
@@ -128,10 +63,18 @@ class AgriProcessingLotTracking(models.Model):
     def create(self, vals):
         if 'name' not in vals or not vals['name']:
             vals['name'] = 'TRACE/' + fields.Date.to_string(fields.Date.today()) + '/' + str(self.id or 0)
-        return super().create(vals)
+        
+        record = super().create(vals)
+        
+        # [DNA Integration] Automatically sync with Kinship model
+        self.env['agri.lot.kinship'].create_kinship(
+            parent_lot=record.source_lot_id if record.trace_direction == 'downstream' else record.target_lot_id,
+            child_lot=record.target_lot_id if record.trace_direction == 'downstream' else record.source_lot_id,
+            derivation_type='process'
+        )
+        return record
 
     def action_verify_traceability(self):
         """Verify the traceability connection between lots"""
         for record in self:
-            # Add verification logic here
             record.transfer_quality_status = 'verified'

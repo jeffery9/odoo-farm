@@ -8,14 +8,14 @@ _logger = logging.getLogger(__name__)
 
 class FarmHamRecipe(models.Model):
     """
-    [ISL Layer] Ham Curing Protocol.
+    [ISL Layer] Ham Curing Protocol. [De-industrialized]
     Proxies mrp.bom to handle salting ratio and aging duration.
     """
     _name = 'farm.ham.recipe'
     _description = 'Ham Curing Protocol'
     _inherits = {'mrp.bom': 'bom_id'}
     
-    bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
+    bom_id = fields.Many2one('mrp.bom', string='Base Recipe', required=True, ondelete='cascade')
 
     # Process Setpoints [US-117-03]
     target_aging_months = fields.Integer("Target Aging (Months)", default=24)
@@ -24,7 +24,7 @@ class FarmHamRecipe(models.Model):
 
 class FarmLotHam(models.Model):
     """
-    [ISL Layer] Dry-Cured Ham Asset.
+    [ISL Layer] Dry-Cured Ham Asset. [De-industrialized]
     Inherits DNA from specific livestock lot (Pig).
     """
     _name = 'farm.lot.ham'
@@ -70,7 +70,7 @@ class FarmLotHam(models.Model):
 
 class FarmHamProduction(models.Model):
     """
-    [ISL Layer] Curing/Aging Order.
+    [ISL Layer] Curing/Aging Order. [De-industrialized]
     Proxies mrp.production to manage environment checkpoints.
     """
     _name = 'farm.ham.production'

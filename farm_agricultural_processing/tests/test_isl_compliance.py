@@ -24,7 +24,7 @@ class TestAgriculturalProcessingISLCompliance(TransactionCase):
             self.FarmProcessingStep = None
             
         try:
-            self.FarmSeasonalBom = self.env['agri.intervention.seasonal.bom']
+            self.FarmSeasonalBom = self.env['agri.seasonal.recipe']
         except KeyError:
             self.FarmSeasonalBom = None
 

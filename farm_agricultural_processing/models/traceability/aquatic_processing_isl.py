@@ -8,14 +8,14 @@ _logger = logging.getLogger(__name__)
 
 class FarmAquaticRecipe(models.Model):
     """
-    [ISL Layer] Aquatic Processing Standard.
+    [ISL Layer] Aquatic Processing Standard. [De-industrialized]
     Proxies mrp.bom to handle target yield and glazing specs.
     """
     _name = 'farm.aquatic_processing.recipe'
     _description = 'Aquatic Prep Standard'
     _inherits = {'mrp.bom': 'bom_id'}
     
-    bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
+    bom_id = fields.Many2one('mrp.bom', string='Base Recipe', required=True, ondelete='cascade')
 
     # Processing Setpoints [US-118-02]
     target_net_yield_percent = fields.Float("Expected Net Yield (%)", default=65.0)
@@ -24,7 +24,7 @@ class FarmAquaticRecipe(models.Model):
 
 class FarmLotAquaticProduct(models.Model):
     """
-    [ISL Layer] Processed Aquatic Batch.
+    [ISL Layer] Processed Aquatic Batch. [De-industrialized]
     Inherits DNA from specific pond/cage catch.
     """
     _name = 'farm.lot.aquatic_product'
@@ -50,7 +50,7 @@ class FarmLotAquaticProduct(models.Model):
 
 class FarmAquaticProduction(models.Model):
     """
-    [ISL Layer] Filleting/Freezing Order.
+    [ISL Layer] Filleting/Freezing Order. [De-industrialized]
     Proxies mrp.production to monitor cold-chain redlines.
     """
     _name = 'farm.aquatic_processing.production'
