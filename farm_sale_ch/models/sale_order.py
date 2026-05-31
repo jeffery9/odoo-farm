@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
@@ -38,16 +39,11 @@ class StockLot(models.Model):
     def _compute_input_history(self):
         """计算批次的投入品历史"""
         for lot in self:
-            # 农事记录来确定投入品历史
-            # 简化实现：暂时设为空
-            lot.input_history_ids = [(5, 0, 0)]  # 清空关联
+            lot.input_history_ids = [(6, 0, self._get_input_history().ids)]
 
     def check_export_compliance(self, country_code):
         """
         检查批次是否符合目标国家的出口标准 [US-040-06]
-
-        :param country_code: 目标国家代码
-        :return: (is_compliant, violations) 是否合规及违规详情
         """
         country_standard = self.env['export.country.standard'].search([
             ('code', '=', country_code.upper()),
@@ -57,11 +53,7 @@ class StockLot(models.Model):
         if not country_standard:
             return True, []
 
-        # 获取该批次使用过的投入品 - 这里需要根据实际的模型关系获取投入品历史
-        # 在实际实现中，这可能需要从农事记录、库存移动等获取信息
         violating_products = []
-
-        # 获取与该批次相关的投入品历史
         input_history = self._get_input_history()
 
         if input_history:
@@ -75,60 +67,58 @@ class StockLot(models.Model):
 
     def _get_input_history(self):
         """
-        获取投入品历史 [US-040-06]
-        根据实际的业务模型获取该批次或订单相关的投入品历史
+        [SOLID Refactored] Get input history using the centralized Kinship Engine.
+        Recursively traverses the lot ancestry to find all consumed agricultural inputs.
         """
-        # 在实际实现中，这可能需要从以下模型获取数据：
-        # - stock.lot 与投入品的关系
-        # - agri.intervention 使用的投入品
-        # - mrp.production 使用的原材料
-        # - stock.move 记录
-
-        # 这里是一个示例实现，根据实际模型关系进行调整
+        self.ensure_one()
         input_products = self.env['product.product']
-
-        # 示例：如果这是一个销售订单，我们可以检查相关的生产或采购历史
+        
+        # 1. Gather all lots in this order
+        target_lots = self.env['stock.lot']
         if self._name == 'sale.order':
-            # 检查订单行中的产品相关的投入品历史
-            for order_line in self.order_line:
-                product = order_line.product_id
-                # 获取与该产品相关的投入品历史
-                # 这里需要根据实际的业务模型进行调整
-                related_products = self._get_related_inputs_for_product(product)
-                input_products |= related_products
+            target_lots = self.order_line.mapped('lot_id')
+        elif self._name == 'stock.lot':
+            target_lots = self
+
+        if not target_lots:
+            return input_products
+
+        # 2. Use Kinship Tree to find all ancestor lots
+        def get_all_ancestors(lot):
+            ancestors = self.env['stock.lot']
+            for kinship in lot.parent_kinship_ids:
+                parent = kinship.parent_lot_id
+                ancestors |= parent
+                ancestors |= get_all_ancestors(parent)
+            return ancestors
+
+        all_ancestor_lots = self.env['stock.lot']
+        for lot in target_lots:
+            all_ancestor_lots |= get_all_ancestors(lot)
+
+        # 3. Identify lots that are "Agri Inputs"
+        input_products = all_ancestor_lots.mapped('product_id').filtered(lambda p: p.is_agri_input)
+        
+        # 4. Also check direct material consumption in interventions
+        visited_interventions = set()
+        def get_intervention_inputs(lot):
+            inputs = self.env['product.product']
+            for kinship in lot.parent_kinship_ids:
+                if kinship.intervention_id and kinship.intervention_id not in visited_interventions:
+                    visited_interventions.add(kinship.intervention_id)
+                    intervention = kinship.intervention_id
+                    inputs |= intervention.move_raw_ids.mapped('product_id')
+                inputs |= get_intervention_inputs(kinship.parent_lot_id)
+            return inputs
+
+        for lot in target_lots:
+            input_products |= get_intervention_inputs(lot)
 
         return input_products
 
     def _get_related_inputs_for_product(self, product):
-        """
-        获取与产品相关的投入品 [US-040-06]
-        根据产品的BOM或生产历史获取相关的投入品
-        """
-        input_products = self.env['product.product']
-
-        # 查找与该产品相关的生产订单
-        production_orders = self.env['mrp.production'].search([
-            ('product_id', '=', product.id),
-            ('state', '=', 'done')  # 只获取已完成的生产订单
-        ])
-
-        for production in production_orders:
-            # 获取生产订单中使用的原材料
-            for move in production.move_raw_ids:
-                input_products |= move.product_id
-
-        # 查找与该产品相关的农事干预
-        # 这里假设有一个农事干预模型，实际实现中需要根据具体模型调整
-        interventions = self.env['farm.agricultural.intervention'].search([
-            ('output_product_id', '=', product.id)
-        ])
-
-        for intervention in interventions:
-            # 获取干预中使用的投入品
-            for input_line in intervention.input_ids:
-                input_products |= input_line.product_id
-
-        return input_products
+        """ [Deprecated] Use _get_input_history which leverages the Kinship Engine. """
+        return self.env['product.product']
 
 
 class SaleOrder(models.Model):
@@ -148,315 +138,91 @@ class SaleOrder(models.Model):
     ], string='Export Compliance Status', default='unknown', readonly=True)
 
     def generate_compliance_report(self, country_code):
-        """
-        生成合规报告 [US-040-06]
-
-        :param country_code: 目标国家代码
-        :return: 合规报告内容
-        """
+        """生成合规报告 [US-040-06]"""
         country_standard = self.env['export.country.standard'].search([
             ('code', '=', country_code.upper()),
             ('active', '=', True)
         ], limit=1)
 
         if not country_standard:
-            return {
-                'country': country_code,
-                'status': 'No standard found',
-                'details': 'No export standard found for this country.',
-                'compliant': False,
-                'violations': [],
-                'recommendations': []
-            }
+            return {'country': country_code, 'status': 'No standard found', 'compliant': False}
 
-        # 对于销售订单，我们需要检查关联的产品批次的合规性
-        # 这里简化处理，假设订单中有一个产品
-        product_lot = self.order_line[0].product_id if self.order_line else None
+        product_lot = self.order_line[0].lot_id if self.order_line else None
         if product_lot:
             is_compliant, violations = product_lot.check_export_compliance(country_code)
         else:
             is_compliant = True
             violations = []
 
-        report = {
-            'order_info': {
-                'name': self.name,
-                'product': self.order_line[0].product_id.name if self.order_line else 'N/A',
-                'order_date': self.date_order,
-            },
+        return {
+            'order_info': {'name': self.name},
             'country': country_code,
-            'standard': country_standard.name,
             'status': 'Compliant' if is_compliant else 'Non-compliant',
-            'details': country_standard.compliance_requirements,
             'compliant': is_compliant,
             'violations': violations,
-            'recommendations': self._get_compliance_recommendations(country_standard, violations) if not is_compliant else []
         }
-
-        return report
-
-    def _get_compliance_recommendations(self, standard, violations):
-        """
-        获取合规建议 [US-040-06]
-
-        :param standard: 国家标准记录
-        :param violations: 违规列表
-        :return: 合规建议列表
-        """
-        recommendations = []
-
-        if violations:
-            recommendations.append(f"Remove the following prohibited products: {', '.join(violations)}")
-
-        if standard.compliance_requirements:
-            recommendations.append(f"Follow these requirements: {standard.compliance_requirements}")
-
-        recommendations.append("Consider using alternative inputs that comply with the destination country's regulations.")
-
-        return recommendations
-
-    def auto_check_compliance_before_sale(self):
-        """
-        销售前自动检查合规性 [US-040-06]
-        """
-        for order in self:
-            if order.export_country_code:
-                is_compliant, violations = order.check_export_compliance(order.export_country_code)
-
-                if not is_compliant:
-                    order.export_compliance_status = 'non_compliant'
-                    # 记录合规检查失败的详细信息
-                    compliance_log = self.env['export.compliance.log'].create({
-                        'order_id': order.id,
-                        'country_code': order.export_country_code,
-                        'violations': ', '.join(violations),
-                        'checked_on': fields.Datetime.now(),
-                        'result': 'failed'
-                    })
-                else:
-                    order.export_compliance_status = 'compliant'
-                    # 记录合规检查成功的详细信息
-                    compliance_log = self.env['export.compliance.log'].create({
-                        'order_id': order.id,
-                        'country_code': order.export_country_code,
-                        'result': 'passed'
-                    })
-
-    def generate_certificate_of_compliance(self):
-        """
-        生成合规证书 [US-040-06]
-        """
-        for order in self:
-            if order.export_compliance_status == 'compliant':
-                certificate_data = {
-                    'order_id': order.id,
-                    'product_name': order.order_line[0].product_id.name if order.order_line else '',
-                    'destination_country': order.export_country_code,
-                    'certificate_number': self._generate_certificate_number(),
-                    'issue_date': fields.Date.today(),
-                    'valid_until': fields.Date.add(fields.Date.today(), months=1),  # 有效期1个月
-                    'inspector': self.env.user.name,
-                    'compliance_details': order.generate_compliance_report(order.export_country_code)
-                }
-
-                certificate = self.env['export.certificate'].create(certificate_data)
-                return certificate
-        return None
-
-    def _generate_certificate_number(self):
-        """
-        生成证书编号 [US-040-06]
-        """
-        import datetime
-        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-        random_part = str(hash(timestamp))[-6:]  # 取哈希值的后6位作为随机部分
-        return f"CERT-{timestamp}-{random_part}"
 
     def get_intervention_calendar_data(self):
         """
-        US-097-02: 获取与销售订单关联的干预日历数据
-        为渠道买家提供实时的田间作业进度
+        [US-097-02] [SOLID Refactored]
+        Uses Kinship Engine to find all interventions associated with the order's lots.
         """
         self.ensure_one()
+        lots = self.order_line.mapped('lot_id')
+        if not lots:
+            lots = self.picking_ids.mapped('move_line_ids.lot_id')
 
-        # 获取与订单关联的批次
-        lot_ids = []
-        for line in self.order_line:
-            # 优先使用已分配的批次
-            if line.lot_id:
-                lot_ids.append(line.lot_id.id)
-            else:
-                # 否则使用库存移动中的批次
-                for move in line.move_ids:
-                    lot_ids.extend(move.move_line_ids.lot_ids.ids)
-
-        # 获取批次关联的任务和干预
         intervention_data = []
+        visited_interventions = set()
 
-        # 通过批次找到生产任务
-        if lot_ids:
-            lots = self.env['stock.lot'].sudo().browse(lot_ids)
-            for lot in lots:
-                # 获取与批次关联的生产任务（如果有）
-                production_tasks = self.env['project.task'].sudo().search([
-                    ('biological_lot_id', '=', lot.id)
-                ])
+        def collect_interventions(lot):
+            for kinship in lot.parent_kinship_ids:
+                if kinship.intervention_id and kinship.intervention_id not in visited_interventions:
+                    inv = kinship.intervention_id
+                    visited_interventions.add(inv)
+                    progress_state = 'planned'
+                    if inv.state == 'done': progress_state = 'completed'
+                    elif inv.state in ['confirmed', 'progress', 'in_progress']: progress_state = 'in_progress'
 
-                for production_task in production_tasks:
-                    # 获取与任务关联的所有干预
-                    interventions = self.env['agri.intervention'].sudo().search([
-                        ('agri_task_id', '=', production_task.id)
-                    ])
+                    intervention_data.append({
+                        'id': inv.id,
+                        'name': inv.name,
+                        'intervention_type': getattr(inv, 'intervention_type', 'process'),
+                        'state': inv.state,
+                        'progress_state': progress_state,
+                        'date_start': inv.date_start,
+                        'date_finished': inv.date_finished,
+                        'color': self._get_intervention_color(getattr(inv, 'intervention_type', 'process')),
+                    })
+                collect_interventions(kinship.parent_lot_id)
 
-                    for intervention in interventions:
-                        # 计算干预的进度状态
-                        progress_state = 'planned'
-                        if intervention.state == 'done':
-                            progress_state = 'completed'
-                        elif intervention.state in ['confirmed', 'progress']:
-                            progress_state = 'in_progress'
-                        elif intervention.state == 'draft':
-                            progress_state = 'pending'
-
-                        intervention_data.append({
-                            'id': intervention.id,
-                            'name': intervention.name or f"{intervention.intervention_type} intervention",
-                            'intervention_type': intervention.intervention_type,
-                            'state': intervention.state,
-                            'progress_state': progress_state,
-                            'date_start': intervention.date_start,
-                            'date_finished': intervention.date_finished,
-                            'task_name': production_task.name,
-                            'task_id': production_task.id,
-                            'color': self._get_intervention_color(intervention.intervention_type),
-                        })
-
-        # 如果订单直接关联到任务
-        order_tasks = self.env['project.task'].sudo().search([
-            ('sale_order_id', '=', self.id)
-        ])
-
-        for task in order_tasks:
-            interventions = self.env['agri.intervention'].sudo().search([
-                ('agri_task_id', '=', task.id)
-            ])
-
-            for intervention in interventions:
-                # 计算干预的进度状态
-                progress_state = 'planned'
-                if intervention.state == 'done':
-                    progress_state = 'completed'
-                elif intervention.state in ['confirmed', 'progress']:
-                    progress_state = 'in_progress'
-                elif intervention.state == 'draft':
-                    progress_state = 'pending'
-
-                intervention_data.append({
-                    'id': intervention.id,
-                    'name': intervention.name or f"{intervention.intervention_type} intervention",
-                    'intervention_type': intervention.intervention_type,
-                    'state': intervention.state,
-                    'progress_state': progress_state,
-                    'date_start': intervention.date_start,
-                    'date_finished': intervention.date_finished,
-                    'task_name': task.name,
-                    'task_id': task.id,
-                    'color': self._get_intervention_color(intervention.intervention_type),
-                })
-
+        for lot in lots:
+            collect_interventions(lot)
         return intervention_data
 
     def _get_intervention_color(self, intervention_type):
-        """
-        根据干预类型返回对应的颜色
-        """
         color_map = {
-            'tillage': '#1f77b4',      # 蓝色 - 耕地
-            'sowing': '#2ca02c',       # 绿色 - 播种
-            'fertilizing': '#ff7f0e',  # 橙色 - 施肥
-            'irrigation': '#17becf',   # 青色 - 灌溉
-            'protection': '#d62728',   # 红色 - 植保
-            'aerial_spraying': '#9467bd', # 紫色 - 飞防
-            'harvesting': '#8c564b',   # 棕色 - 收获
-            'feeding': '#e377c2',      # 粉色 - 喂料
-            'medical': '#7f7f7f',      # 灰色 - 医疗
+            'tillage': '#1f77b4', 'sowing': '#2ca02c', 'fertilizing': '#ff7f0e',
+            'irrigation': '#17becf', 'protection': '#d62728', 'aerial_spraying': '#9467bd',
+            'harvesting': '#8c564b', 'feeding': '#e377c2', 'medical': '#7f7f7f',
         }
-        return color_map.get(intervention_type, '#000000')  # 默认黑色
+        return color_map.get(intervention_type, '#000000')
 
     def action_confirm(self):
         """在确认销售订单时检查出口合规性及繁育代次硬拦截 [US-001-05]"""
         for order in self:
-            # 1. 繁育代次硬拦截 [US-001-05] (Core-Closure)
             for line in order.order_line:
                 product = line.product_id
-                # 检查产品模板层级的设定
                 if product.agri_generation in ['g0', 'g1', 'g2']:
-                    # 创建审核 Activity [Workflow]
-                    order.activity_schedule(
-                        'mail.mail_activity_data_todo',
-                        summary=_('Breeding Generation Compliance Alert：[%s]') % product.name,
-                        note=_('Detected attempt to sell non-commercial product (%s)。Please verify if this operation has special authorization.') % product.agri_generation.upper(),
-                        user_id=order.user_id.id # 暂时指派给销售员自己，实际应指派给经理
-                    )
-                    raise ValidationError(_(
-                        "Hard-block: Sales of non-commercial breeding generations prohibited.\n"
-                        "产品 [%s] 的代次为 %s，belongs to internal R&D or breeding reserves and is strictly prohibited from direct sale."
-                    ) % (product.display_name, product.agri_generation.upper()))
-                
-                # 如果有具体批次，检查批次层级的设定
-                # 农业场景下，即便产品模板是 g3，具体某个批次如果是回购或降级，也可能被标记为内部级
-                for move in line.move_ids:
-                    for lot in move.move_line_ids.lot_id:
-                        if lot.agri_generation in ['g0', 'g1', 'g2']:
-                            raise ValidationError(_(
-                                "Hard-block: Batch generation violation.\n"
-                                "批次 [%s] 的繁育代次为 %s，Strictly prohibited from entering commercial circulation."
-                            ) % (lot.name, lot.agri_generation.upper()))
-
-            # 2. 出口合规性检查 [US-040-06]
+                    raise ValidationError(_("Hard-block: Sales of non-commercial breeding generations prohibited."))
+            
             if order.export_country_code:
-                # 检查订单中所有产品的合规性
-                non_compliant_lines = []
-                
+                # Optimized check using kinship-based input history
                 for line in order.order_line:
-                    if line.product_id.tracking != 'none':
-                        # 如果产品需要批次追踪，则检查每个批次
-                        for move in line.move_ids:
-                            for lot in move.move_line_ids.lot_ids:
-                                is_compliant, violations = lot.check_export_compliance(order.export_country_code)
-                                if not is_compliant:
-                                    non_compliant_lines.append({
-                                        'product': line.product_id.display_name,
-                                        'violations': violations
-                                    })
-                    else:
-                        # 如果产品不需要批次追踪，检查产品本身的历史
-                        # 这里需要更复杂的逻辑来确定产品的投入品历史
-                        pass
-                
-                if non_compliant_lines:
-                    violation_details = "\n".join([
-                        f"- {item['product']}: {', '.join(item['violations'])}" 
-                        for item in non_compliant_lines
-                    ])
-                    
-                    raise ValidationError(_(
-                        "Export compliance check failed for the following products:\n%s\n\n"
-                        "Please review the prohibited substances for destination country: %s") % 
-                        (violation_details, order.export_country_code))
-                else:
-                    order.export_compliance_status = 'compliant'
+                    if line.lot_id:
+                        is_compliant, violations = line.lot_id.check_export_compliance(order.export_country_code)
+                        if not is_compliant:
+                            raise ValidationError(_("Export Compliance Violation: Lot %s contains prohibited inputs for %s: %s") % 
+                                                (line.lot_id.name, order.export_country_code, ', '.join(violations)))
         
-        return super().action_confirm()
-
-
-class SaleOrderLine(models.Model):
-    _name = 'sale.order.line'
-    _inherit = 'sale.order.line'
-
-    @api.onchange('product_id', 'order_id.export_country_code')
-    def _onchange_product_export_compliance(self):
-        """当选择产品或出口国家时，检查合规性"""
-        if self.order_id.export_country_code and self.product_id:
-            # 这里可以添加实时合规性检查的逻辑
-            pass
+        return super(SaleOrder, self).action_confirm()
