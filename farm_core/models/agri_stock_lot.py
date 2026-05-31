@@ -21,6 +21,10 @@ class StockLot(models.Model):
         'agri.clearing.mixin',       # Level 3: Clearing & Fingerprint
     ]
 
+    # Kinship / Ancestry Tracking [US-TECH-DNA-05]
+    parent_kinship_ids = fields.One2many('agri.lot.kinship', 'child_lot_id', string='Ancestry (Parents)', help='The lots that this lot was derived from.')
+    child_kinship_ids = fields.One2many('agri.lot.kinship', 'parent_lot_id', string='Lineage (Descendants)', help='The lots that were derived from this lot.')
+
     # Level 2: Semantic content for Lot RAG search
     def _get_embedding_content(self):
         self.ensure_one()
@@ -54,6 +58,7 @@ class StockLot(models.Model):
             {'name': 'sustainability', 'class': 'agri.dna.plugin.sustainability'},
             {'name': 'spatial', 'class': 'agri.dna.plugin.spatial'},
             {'name': 'certification', 'class': 'agri.dna.plugin.certification'},
+            {'name': 'kinship', 'class': 'agri.dna.plugin.kinship'},
         ]
 
     def inherit_dna_from_source(self, inputs):

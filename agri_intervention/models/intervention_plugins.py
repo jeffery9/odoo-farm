@@ -321,33 +321,57 @@ class AgriDnaPluginSpatial(models.AbstractModel):
     @api.model
     def inherit_dna(self, lot, inputs):
         if not inputs: return
-        # Take location from the first input's intervention (which produced the lot)
         if hasattr(lot, 'geo_point'):
             lot.geo_point = inputs[0].production_id.geo_point
 
 class AgriDnaPluginCertification(models.AbstractModel):
     """
     [DNA Plugin] Certification Inheritance & Tainting.
-    Ensures that the output lot's certification level is derived from its inputs.
-    Logic: If any input is non-certified, the output cannot be 'organic'.
     """
     _name = 'agri.dna.plugin.certification'
     _inherit = 'agri.dna.plugin'
 
     @api.model
     def inherit_dna(self, lot, inputs):
-        if not hasattr(lot, 'certification_type'):
-            return
-
-        # Check all inputs for their certification status
-        # (Assuming inputs are stock.moves, we check their source lots)
+        if not hasattr(lot, 'certification_type'): return
         input_lots = inputs.mapped('lot_id')
-        if not input_lots:
-            return
-
-        # If any input lot is not organic, the output lot is downgraded to 'commodity' or 'green'
+        if not input_lots: return
         is_all_organic = all(l.certification_type == 'organic' for l in input_lots)
-        
         if not is_all_organic and lot.certification_type == 'organic':
-            lot.certification_type = 'green' # Downgrade to next level
+            lot.certification_type = 'green'
             lot.message_post(body=_("DNA Tainting: Lot certification downgraded to 'Green' due to non-organic inputs."))
+
+class AgriDnaPluginKinship(models.AbstractModel):
+    """
+    [DNA Plugin] Kinship / Ancestry Tracking.
+    Explicitly records derivation links between input lots and the output lot.
+    """
+    _name = 'agri.dna.plugin.kinship'
+    _inherit = 'agri.dna.plugin'
+
+    @api.model
+    def inherit_dna(self, lot, inputs):
+        Kinship = self.env['agri.lot.kinship']
+        input_lots = inputs.mapped('lot_id')
+        if not input_lots: return
+        
+        intervention = False
+        if hasattr(inputs[0], 'production_id') and inputs[0].production_id:
+            intervention = inputs[0].production_id
+        elif hasattr(inputs[0], 'raw_material_production_id') and inputs[0].raw_material_production_id:
+            intervention = inputs[0].raw_material_production_id
+
+        derivation_type = 'process'
+        if intervention and hasattr(intervention, 'intervention_type'):
+            if intervention.intervention_type == 'harvesting':
+                derivation_type = 'harvest'
+            elif intervention.intervention_type in ['sowing', 'breeding']:
+                derivation_type = 'breeding'
+
+        for parent_lot in input_lots:
+            Kinship.create_kinship(
+                parent_lot=parent_lot,
+                child_lot=lot,
+                intervention=intervention,
+                derivation_type=derivation_type
+            )

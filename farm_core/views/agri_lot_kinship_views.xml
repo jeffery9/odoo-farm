@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_lot_form_inherit_kinship" model="ir.ui.view">
+        <field name="name">stock.lot.form.inherit.kinship</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Lineage &amp; Kinship" name="kinship">
+                    <group>
+                        <group string="Ancestry (Parents)">
+                            <field name="id" invisible="1"/>
+                            <field name="parent_kinship_ids" nolabel="1" readonly="1">
+                                <list>
+                                    <field name="parent_lot_id"/>
+                                    <field name="derivation_type"/>
+                                    <field name="derivation_date"/>
+                                    <field name="intervention_id"/>
+                                </list>
+                            </field>
+                        </group>
+                        <group string="Descendants (Children)">
+                            <field name="child_kinship_ids" nolabel="1" readonly="1">
+                                <list>
+                                    <field name="child_lot_id"/>
+                                    <field name="derivation_type"/>
+                                    <field name="derivation_date"/>
+                                    <field name="intervention_id"/>
+                                </list>
+                            </field>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_agri_lot_kinship_tree" model="ir.ui.view">
+        <field name="name">agri.lot.kinship.list</field>
+        <field name="model">agri.lot.kinship</field>
+        <field name="arch" type="xml">
+            <list create="0">
+                <field name="derivation_date"/>
+                <field name="parent_lot_id"/>
+                <field name="child_lot_id"/>
+                <field name="derivation_type"/>
+                <field name="intervention_id"/>
+            </list>
+        </field>
+    </record>
+</odoo>
