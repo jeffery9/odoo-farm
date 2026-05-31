@@ -27,6 +27,8 @@ class AgriInterventionMixin(models.AbstractModel):
             {'name': 'compliance', 'class': 'agri.intervention.plugin.compliance'},
             {'name': 'labor_tracking', 'class': 'agri.intervention.plugin.labor'},
             {'name': 'iot_monitoring', 'class': 'agri.intervention.plugin.iot'},
+            {'name': 'harvest_grading', 'class': 'agri.intervention.plugin.harvest'},
+            {'name': 'work_verification', 'class': 'agri.intervention.plugin.verification'},
         ])
         return res
 
@@ -377,98 +379,14 @@ class AgriInterventionMixin(models.AbstractModel):
         }
 
     def button_mark_done(self):
-        """Extend the done logic to handle drone spraying depletion and graded outputs."""
+        """扩展完成逻辑，通过基础引擎触发分级与核销插件"""
         for intervention in self:
-            # US-052-04: 无人机飞防自动核销
-            if hasattr(intervention, 'intervention_type') and intervention.intervention_type == 'aerial_spraying' and intervention.actual_flight_area > 0:
-                for move in intervention.move_raw_ids:
-                    # 根据实际作业面积动态调整原材料需求量
-                    # 假设配方中 product_uom_qty 是针对 1 亩设计的
-                    if hasattr(move, 'bom_line_id'):
-                        move.product_uom_qty = intervention.actual_flight_area * (move.bom_line_id.product_qty if move.bom_line_id else 1.0)
-
-            if hasattr(intervention, 'intervention_type') and intervention.intervention_type == 'harvesting':
-                # Handle graded quantities logic
-                total_graded_qty = intervention.grade_a_qty + intervention.grade_b_qty + intervention.grade_c_qty
-
-                if total_graded_qty > 0:
-                    # Logic to create separate stock moves and lots for each grade
-                    finished_product = intervention.product_id
-
-                    def _create_graded_move_and_lot(grade_type, qty):
-                        if qty <= 0:
-                            return None
-
-                        # Create a new lot with the specified grade
-                        if hasattr(self.env['stock.lot'], 'create'):
-                            graded_lot = self.env['stock.lot'].create({
-                                'product_id': finished_product.id,
-                                'name': finished_product.name + '/' + grade_type.upper() + '/' + (self.env['ir.sequence'].next_by_code('stock.lot') or _('New')),
-                                'quality_grade': grade_type,
-                            })
-
-                            # Create a stock move for this graded quantity
-                            move = self.env['stock.move'].create({
-                                'name': _('Harvest Output (%s)') % grade_type.upper(),
-                                'product_id': finished_product.id,
-                                'product_uom_qty': qty,
-                                'product_uom': finished_product.uom_id.id,
-                                'location_id': intervention.location_src_id.id, # Production location
-                                'location_dest_id': intervention.location_dest_id.id, # Destination (stock) location
-                                'production_id': intervention.id,
-                                'lot_ids': [(6, 0, [graded_lot.id])] if graded_lot else [],
-                                'state': 'done', # Mark as done directly
-                            })
-                            if hasattr(move, '_action_done'):
-                                move._action_done() # Finalize the move
-                            return graded_lot.id
-                        return None
-
-                    graded_lot_ids = []
-                    if hasattr(intervention, 'grade_a_qty'):
-                        graded_lot_ids.append(_create_graded_move_and_lot('grade_a', intervention.grade_a_qty))
-                    if hasattr(intervention, 'grade_b_qty'):
-                        graded_lot_ids.append(_create_graded_move_and_lot('grade_b', intervention.grade_b_qty))
-                    if hasattr(intervention, 'grade_c_qty'):
-                        graded_lot_ids.append(_create_graded_move_and_lot('grade_c', intervention.grade_c_qty))
-
-                    graded_lot_ids = [lot_id for lot_id in graded_lot_ids if lot_id]
-
-                    # US-005-02: Trigger quality check for custom created graded lots
-                    if graded_lot_ids:
-                        for lot_id in graded_lot_ids:
-                            try:
-                                if hasattr(self.env['farm.quality.check'], 'create'):
-                                    self.env['farm.quality.check'].create({
-                                        'lot_id': lot_id,
-                                        'task_id': intervention.agri_task_id.id if intervention.agri_task_id else False,
-                                        'name': _('Harvest QC: %s for Grade %s') % (intervention.name, (self.env['stock.lot'].browse(lot_id).quality_grade or 'UNKNOWN').upper()),
-                                    })
-                            except Exception:
-                                pass
-
-                    # Prevent base MRP from creating duplicate finished moves
-                    # by setting product_qty to 0 for the super call if custom moves are created
-                    intervention.product_qty = 0
-
-                # US-005-02: Trigger quality check for non-graded harvesting
-                elif intervention.intervention_type == 'harvesting' and intervention.product_qty > 0:
-                    try:
-                        if hasattr(intervention.move_finished_ids, 'mapped'):
-                            lot_ids = intervention.move_finished_ids.mapped('lot_ids')
-                            if hasattr(self.env['farm.quality.check'], 'create') and lot_ids:
-                                self.env['farm.quality.check'].create({
-                                    'lot_id': lot_ids[:1].id if lot_ids else False,
-                                    'task_id': intervention.agri_task_id.id if intervention.agri_task_id else False,
-                                    'name': _('Harvest QC: %s') % intervention.name,
-                                })
-                    except Exception:
-                        pass
+            # action_done_base handles pre_done plugins (Harvest Grading, Drone Depletion)
+            intervention.action_done_base()
 
         # Call super method if available to handle other MRP production logic
         if hasattr(super(AgriInterventionMixin, self), 'button_mark_done'):
             return super(AgriInterventionMixin, self).button_mark_done()
         else:
-            # If no parent button_mark_done exists, update state to done
             self.write({'state': 'done'})
             return True

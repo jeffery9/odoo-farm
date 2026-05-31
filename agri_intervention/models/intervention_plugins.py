@@ -16,26 +16,19 @@ class AgriInterventionPluginWeather(models.AbstractModel):
             self._check_weather_window(intervention)
 
     def _check_weather_window(self, intervention):
-        """
-        Check weather conditions before allowing spray operations [US-002-06]
-        """
         if not hasattr(intervention, 'intervention_type') or intervention.intervention_type not in ['fertilizing', 'protection', 'aerial_spraying']:
             return
-
         parcel = intervention.location_id
         if not parcel or not hasattr(parcel, 'gps_coordinates') or not parcel.gps_coordinates:
             return 
-
         from datetime import datetime, timedelta
         end_time = datetime.now() + timedelta(hours=24)
-
         if hasattr(intervention.env['agri.weather.forecast'], 'search'):
             forecast = intervention.env['agri.weather.forecast'].search([
                 ('location_id', '=', parcel.id),
                 ('forecast_datetime', '<=', end_time),
                 ('forecast_datetime', '>=', datetime.now())
             ], limit=1, order='forecast_datetime asc')
-
             if forecast:
                 if forecast.wind_speed_kmh and forecast.wind_speed_kmh > 16:
                     intervention.activity_schedule(
@@ -44,9 +37,7 @@ class AgriInterventionPluginWeather(models.AbstractModel):
                         note=_('Intervention %s was blocked. Wind speed exceeds level 4.') % intervention.name,
                         user_id=intervention.env.ref('farm_core.group_farm_specialist').users[:1].id or intervention.env.user.id
                     )
-                    raise UserError(_(
-                        "WEATHER WINDOW BLOCK: Wind speed too high (%s km/h > 16 km/h). "
-                    ) % forecast.wind_speed_kmh)
+                    raise UserError(_("WEATHER WINDOW BLOCK: Wind speed too high (%s km/h > 16 km/h).") % forecast.wind_speed_kmh)
 
 class AgriInterventionPluginYield(models.AbstractModel):
     """
@@ -81,13 +72,8 @@ class AgriInterventionPluginNutrient(models.AbstractModel):
                     n_total += qty * (product.n_content / 100.0)
                     p_total += qty * (product.p_content / 100.0)
                     k_total += qty * (product.k_content / 100.0)
-
         if hasattr(intervention, 'pure_n_qty'):
-            intervention.write({
-                'pure_n_qty': n_total,
-                'pure_p_qty': p_total,
-                'pure_k_qty': k_total
-            })
+            intervention.write({'pure_n_qty': n_total, 'pure_p_qty': p_total, 'pure_k_qty': k_total})
 
 class AgriInterventionPluginCompliance(models.AbstractModel):
     """
@@ -201,3 +187,85 @@ class AgriInterventionPluginSpatial(models.AbstractModel):
             if hasattr(intervention, 'out_of_bounds_count'):
                 intervention.write({'out_of_bounds_count': oob_count, 'spatial_compliance_rate': compliance_rate})
             intervention.message_post(body=_("Spatial Audit Completed: Compliance Rate %s%%.") % round(compliance_rate, 2))
+
+class AgriInterventionPluginHarvest(models.AbstractModel):
+    """
+    [Plugin] Harvest Grading & Quality Trigger.
+    """
+    _name = 'agri.intervention.plugin.harvest'
+    _inherit = 'agri.intervention.plugin'
+
+    @api.model
+    def execute_hook(self, intervention, hook_point):
+        if hook_point == 'pre_done':
+            self._handle_harvest_grading(intervention)
+
+    def _handle_harvest_grading(self, intervention):
+        if not hasattr(intervention, 'intervention_type') or intervention.intervention_type != 'harvesting':
+            return
+        total_graded_qty = (getattr(intervention, 'grade_a_qty', 0) + getattr(intervention, 'grade_b_qty', 0) + getattr(intervention, 'grade_c_qty', 0))
+        if total_graded_qty > 0:
+            finished_product = intervention.product_id
+            def _create_graded_move_and_lot(grade_type, qty):
+                if qty <= 0: return None
+                lot_model = intervention.env['stock.lot']
+                if hasattr(lot_model, 'create'):
+                    name_prefix = finished_product.name + '/' + grade_type.upper() + '/'
+                    seq = intervention.env['ir.sequence'].next_by_code('stock.lot') or _('New')
+                    graded_lot = lot_model.create({'product_id': finished_product.id, 'name': name_prefix + seq, 'quality_grade': grade_type})
+                    move = intervention.env['stock.move'].create({
+                        'name': _('Harvest Output (%s)') % grade_type.upper(),
+                        'product_id': finished_product.id,
+                        'product_uom_qty': qty,
+                        'product_uom': finished_product.uom_id.id,
+                        'location_id': intervention.location_src_id.id, 
+                        'location_dest_id': intervention.location_dest_id.id,
+                        'production_id': intervention.id,
+                        'lot_ids': [(6, 0, [graded_lot.id])],
+                        'state': 'done',
+                    })
+                    if hasattr(move, '_action_done'): move._action_done()
+                    return graded_lot.id
+                return None
+            graded_lot_ids = []
+            for g in ['grade_a', 'grade_b', 'grade_c']:
+                qty = getattr(intervention, g, 0)
+                lot_id = _create_graded_move_and_lot(g, qty)
+                if lot_id: graded_lot_ids.append(lot_id)
+            if graded_lot_ids and hasattr(intervention.env['farm.quality.check'], 'create'):
+                for lot_id in graded_lot_ids:
+                    lot_name = intervention.env['stock.lot'].browse(lot_id).quality_grade or 'UNKNOWN'
+                    intervention.env['farm.quality.check'].create({
+                        'lot_id': lot_id,
+                        'task_id': getattr(intervention, 'agri_task_id', False) and intervention.agri_task_id.id,
+                        'name': _('Harvest QC: %s for Grade %s') % (intervention.name, lot_name.upper()),
+                    })
+            intervention.product_qty = 0
+        elif intervention.product_qty > 0:
+            if hasattr(intervention.move_finished_ids, 'mapped'):
+                lot_ids = intervention.move_finished_ids.mapped('lot_ids')
+                if lot_ids and hasattr(intervention.env['farm.quality.check'], 'create'):
+                    intervention.env['farm.quality.check'].create({
+                        'lot_id': lot_ids[:1].id,
+                        'task_id': getattr(intervention, 'agri_task_id', False) and intervention.agri_task_id.id,
+                        'name': _('Harvest QC: %s') % intervention.name,
+                    })
+
+class AgriInterventionPluginVerification(models.AbstractModel):
+    """
+    [Plugin] Work Verification & Depletion.
+    """
+    _name = 'agri.intervention.plugin.verification'
+    _inherit = 'agri.intervention.plugin'
+
+    @api.model
+    def execute_hook(self, intervention, hook_point):
+        if hook_point == 'pre_done':
+            self._verify_drone_work(intervention)
+
+    def _verify_drone_work(self, intervention):
+        if (hasattr(intervention, 'intervention_type') and intervention.intervention_type == 'aerial_spraying' and getattr(intervention, 'actual_flight_area', 0) > 0):
+            for move in intervention.move_raw_ids:
+                if hasattr(move, 'bom_line_id'):
+                    bom_qty = move.bom_line_id.product_qty if move.bom_line_id else 1.0
+                    move.product_uom_qty = intervention.actual_flight_area * bom_qty
