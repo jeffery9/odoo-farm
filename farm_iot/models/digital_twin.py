@@ -8,6 +8,15 @@ class FarmLocation(models.Model):
     _name = 'farm.location'
     _inherit = 'farm.location'
 
+    isa95_level = fields.Selection([
+        ('enterprise', 'Enterprise (Company)'),
+        ('site', 'Site (Farm)'),
+        ('area', 'Area (Sector/Barn)'),
+        ('production_line', 'Production Line (Pond/Greenhouse)'),
+        ('work_center', 'Work Center (Specific Bed/Rack)'),
+        ('unit', 'Unit (Specific Pot/Cage)')
+    ], string='ISA-95 Level', default='area', help="Industry standard functional hierarchy level")
+
     digital_twin_enabled = fields.Boolean("Digital Twin Enabled", default=False)
     digital_twin_scene_id = fields.Many2one('agri.digital.twin.scene', string="3D Scene")
 

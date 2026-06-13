@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- AI Configuration Action -->
-    <record id="action_ai_configuration" model="ir.actions.act_window">
+<data>
+<record id="action_ai_configuration" model="ir.actions.act_window">
         <field name="name">AI Configuration</field>
         <field name="res_model">agri.ai.configuration</field>
         <field name="view_mode">list,form</field>
@@ -15,60 +14,60 @@
         </field>
     </record>
 
-    <!-- AI Configuration Tree View -->
+    
     <record id="view_ai_configuration_tree" model="ir.ui.view">
         <field name="name">ai.configuration.tree</field>
         <field name="model">agri.ai.configuration</field>
         <field name="arch" type="xml">
             <list string="AI Configuration">
-                <field name="name"/>
-                <field name="ai_provider"/>
-                <field name="default_model"/>
-                <field name="is_active"/>
-                <field name="is_default"/>
-                <field name="total_requests"/>
-                <field name="last_used"/>
+                <field name="name" />
+                <field name="ai_provider" />
+                <field name="default_model" />
+                <field name="is_active" />
+                <field name="is_default" />
+                <field name="total_requests" />
+                <field name="last_used" />
             </list>
         </field>
     </record>
 
-    <!-- AI Configuration Form View -->
+    
     <record id="view_ai_configuration_form" model="ir.ui.view">
         <field name="name">ai.configuration.form</field>
         <field name="model">agri.ai.configuration</field>
         <field name="arch" type="xml">
             <form string="AI Configuration">
                 <header>
-                    <button name="action_test_connection" type="object" string="Test Connection" class="btn btn-primary"/>
+                    <button name="action_test_connection" type="object" string="Test Connection" class="btn btn-primary" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
-                            <field name="is_active" widget="boolean_button" options='{"terminology": "active"}'/>
+                            <field name="is_active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;active&quot;}" />
                         </button>
                     </div>
                     <div class="oe_title">
-                        <label for="name" class="oe_edit_only"/>
-                        <h1><field name="name"/></h1>
+                        <label for="name" class="oe_edit_only" />
+                        <h1><field name="name" /></h1>
                     </div>
                     <group>
                         <group>
-                            <field name="ai_provider"/>
-                            <field name="api_key" password="True"/>
-                            <field name="base_url"/>
-                            <field name="default_model"/>
+                            <field name="ai_provider" />
+                            <field name="api_key" password="True" />
+                            <field name="base_url" />
+                            <field name="default_model" />
                         </group>
                         <group>
-                            <field name="is_active"/>
-                            <field name="is_default"/>
+                            <field name="is_active" />
+                            <field name="is_default" />
                             
                             
                         </group>
                     </group>
                     <group string="Advanced Settings">
                         <group>
-                            <field name="timeout"/>
-                            <field name="max_retries"/>
+                            <field name="timeout" />
+                            <field name="max_retries" />
                         </group>
                         <group>
                             
@@ -77,17 +76,17 @@
                     </group>
                     <group string="Statistics">
                         <group>
-                            <field name="total_requests"/>
-                            <field name="successful_requests"/>
+                            <field name="total_requests" />
+                            <field name="successful_requests" />
                         </group>
                         <group>
-                            <field name="failed_requests"/>
-                            <field name="last_used"/>
+                            <field name="failed_requests" />
+                            <field name="last_used" />
                         </group>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
-
+</data>
 </odoo>

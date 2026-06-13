@@ -28,6 +28,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/ir_rule_lot.xml',
         'data/multi_farm_data.xml',
         'views/entity_views.xml',
         'views/regional_oversight_views.xml',

@@ -37,6 +37,48 @@ class AgriAiIrrigationDecision(models.Model):
     irrigation_advice = fields.Html('Irrigation Advice')
     soil_analysis = fields.Text('Soil Analysis')
 
+    def action_fetch_iot_shadow(self):
+        """ Pull live soil moisture from location's device shadow [US-TECH-AI-02] """
+        self.ensure_one()
+        if not self.land_location_id:
+            return False
+            
+        # Find soil moisture sensor in this location
+        device = self.env['iiot.device'].search([
+            ('location_id', '=', self.land_location_id.id),
+            ('connection_status', '=', 'online')
+        ], limit=1)
+        
+        if device and device.shadow_state:
+            try:
+                shadow = json.loads(device.shadow_state)
+                # Look for typical soil moisture keys
+                moisture = shadow.get('moisture') or shadow.get('soil_moisture')
+                if moisture is not None:
+                    self.current_soil_moisture = float(moisture)
+                    self.message_post(body=_("IoT Sync: Fetched soil moisture %s%% from device %s") % (moisture, device.name))
+            except Exception as e:
+                _logger.error(f"Failed to parse shadow for irrigation decision: {str(e)}")
+
+    def _create_correction_intervention(self):
+        """ Create a correction irrigation task in the Intervention Engine """
+        if self.recommended_water_amount <= 0:
+            return False
+
+        # Use ISA-88/MRP implementation of the engine
+        vals = {
+            'product_id': self.product_id.product_variant_id.id if self.product_id.product_variant_id else self.product_id.id,
+            'product_qty': 0.0, # Service/Intervention has no product output usually
+            'intervention_type': 'irrigation',
+            'location_id': self.land_location_id.id,
+            'origin': f"AI Decision: {self.name}",
+        }
+        
+        # Create and confirm immediately (which triggers engine plugins)
+        intervention = self.env['mrp.production'].create(vals)
+        intervention.action_confirm()
+        return intervention
+
     def calculate_irrigation_needs(self):
         """Calculate irrigation needs based on multiple factors"""
         for record in self:

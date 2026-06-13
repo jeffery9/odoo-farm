@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gov_audit_snapshot_user,gov.audit.snapshot.user,model_gov_audit_snapshot,base.group_user,1,0,0,0
+access_gov_audit_snapshot_manager,gov.audit.snapshot.manager,model_gov_audit_snapshot,base.group_system,1,1,1,1
+access_gov_platform_config_manager,gov.platform.config.manager,model_gov_platform_config,base.group_system,1,1,1,1

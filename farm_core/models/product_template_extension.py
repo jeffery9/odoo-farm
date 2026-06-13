@@ -4,7 +4,7 @@ class ProductTemplate(models.Model):
     """
     Product template extensions for agricultural products - replacing functionality from product_template.py
     """
-    _inherit = 'product.template'
+    _inherit = ['product.template', 'agri.quality.gate.mixin']
 
     # Agricultural-specific fields
     agricultural_type = fields.Selection([
@@ -32,6 +32,9 @@ class ProductTemplate(models.Model):
     born_at = fields.Datetime("Born At/Started At")
     dead_at = fields.Datetime("Dead At/Terminated At")
     identification_number = fields.Char("Identification No.")
+    
+    # GS1 Global Identifiers [EPCIS Alignment]
+    gs1_gtin = fields.Char('GS1 GTIN', help='Global Trade Item Number (8, 12, 13, or 14 digits)', size=14)
 
     # Growth curve data
     growth_curve_ids = fields.One2many('agri.biological.growth.curve', 'product_id', string="Growth Curve")

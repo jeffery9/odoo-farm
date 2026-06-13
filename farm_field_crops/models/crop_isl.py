@@ -6,16 +6,16 @@ import json
 
 _logger = logging.getLogger(__name__)
 
-class FarmCropBom(models.Model):
+class FarmCropRecipe(models.Model):
     """
-    Crop Farming Recipe (ISL Layer)
+    Crop Farming Recipe (ISL Layer) [De-industrialized]
     """
-    _name = 'farm.crop.bom'
-    _description = 'Crop Farming Recipe (ISL Layer)'
-    _inherits = {'mrp.bom': 'bom_id'}
+    _name = 'farm.crop.recipe'
+    _description = 'Crop Farming Recipe'
+    _inherits = {'mrp.bom': 'recipe_id'}
     _inherit = ['agri.bom.mixin', 'agri.nutrient.mixin']
 
-    bom_id = fields.Many2one('mrp.bom', string='Base BOM', required=True, ondelete='cascade')
+    recipe_id = fields.Many2one('mrp.bom', string='Base Recipe', required=True, ondelete='cascade')
 
     # Crop Specifics [US-CROP-02]
     target_yield_mu = fields.Float("Target Yield per Mu (kg)")
@@ -25,21 +25,19 @@ class FarmCropBom(models.Model):
 
     phi_days = fields.Integer("Pre-Harvest Interval (PHI) Days")
 
-class FarmCropProduction(models.Model):
+class FarmCropTask(models.Model):
     """
-    Crop Farming Task (ISL Layer) - Precision Intervention
+    Crop Farming Task (ISL Layer) - Precision Intervention [De-industrialized]
     """
-    _name = 'farm.crop.production'
-    _description = 'Crop Farming Task (ISL Layer)'
-    _inherits = {'mrp.production': 'production_id'}
+    _name = 'farm.crop.task'
+    _description = 'Crop Farming Task'
+    _inherits = {'mrp.production': 'intervention_id'}
     _inherit = [
         'agri.intervention.mixin',
-        'agri.weather.sensitive.mixin',
         'agri.agent.instruction.mixin',
-        'agri.resource.consumption.mixin'
     ]
 
-    production_id = fields.Many2one('mrp.production', string='Base MO', required=True, ondelete='cascade')
+    intervention_id = fields.Many2one('mrp.production', string='Base Intervention', required=True, ondelete='cascade')
 
     # [US-CROP-02] VRA Prescription Mapping
     is_vra_enabled = fields.Boolean("Enable Variable Rate Application", default=False)
@@ -48,15 +46,15 @@ class FarmCropProduction(models.Model):
     def action_confirm(self):
         """ [Level 2 DNA] Precision Gating for Field Crops. """
         self.ensure_one()
-        # 1. Weather Window check [US-CROP-04]
-        activity_type = 'spraying' if 'spray' in (self.product_id.name or '').lower() else 'general'
-        self.check_weather_window(activity_type)
+        
+        # 1. Base Engine Logic (triggers Compliance, Nutrient, Weather plugins)
+        res = super(FarmCropTask, self).action_confirm()
         
         # 2. VRA Instruction generation [US-CROP-02]
         if self.is_vra_enabled:
             self.apply_vra_instruction_skill()
             
-        return super(FarmCropProduction, self).action_confirm()
+        return res
 
     def apply_vra_instruction_skill(self):
         """ Transforms Prescription into Machine Instruction (Level 4 DNA). """

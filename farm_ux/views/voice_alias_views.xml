@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_voice_recognition_alias_tree" model="ir.ui.view">
+<data>
+<record id="view_voice_recognition_alias_tree" model="ir.ui.view">
         <field name="name">farm.voice.recognition.alias.tree</field>
         <field name="model">farm.voice.recognition.alias</field>
         <field name="arch" type="xml">
             <list string="Voice Recognition Aliases" editable="bottom">
-                <field name="alias"/>
-                <field name="target_term"/>
+                <field name="alias" />
+                <field name="target_term" />
             </list>
         </field>
     </record>
@@ -17,9 +18,6 @@
         <field name="view_mode">list</field>
     </record>
 
-    <menuitem id="menu_voice_recognition_alias"
-              name="Voice Aliases"
-              parent="base.menu_custom"
-              action="action_voice_recognition_aliases"
-              sequence="20"/>
+    <menuitem id="menu_voice_recognition_alias" name="Voice Aliases" parent="farm_ux.menu_ux_root" action="action_voice_recognition_aliases" sequence="20" />
+</data>
 </odoo>

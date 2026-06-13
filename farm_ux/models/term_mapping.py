@@ -57,25 +57,37 @@ class TermMapping(models.Model):
                     _("Term mapping already exists for '%s' in this language/region context") % record.source_term)
 
     @api.model
-    @tools.ormcache('text', 'industry_context')
-    def apply_term_mapping_to_text(self, text, industry_context='general'):
+    @tools.ormcache('text', 'industry_context', 'lang')
+    def apply_term_mapping_to_text(self, text, industry_context='general', lang=None):
         """
         [US-039-01] Optimized term replacement engine.
-        Applies active mappings to the provided text based on context.
+        Applies active mappings to the provided text based on context and language.
         """
         if not text or not isinstance(text, str):
             return text
 
-        # Cache-aware retrieval of active mappings
+        current_lang = lang or self.env.context.get('lang') or 'en_US'
+        
+        # Cache-aware retrieval of active mappings for current language
         term_mappings = self.search([
             ('is_active', '=', True),
-            ('industry_context', 'in', ['general', industry_context])
+            ('industry_context', 'in', ['general', industry_context]),
+            ('language_code', '=', current_lang)
         ])
 
         if not term_mappings:
-            return text
+            # Fallback to English if current language has no mappings
+            if current_lang != 'en_US':
+                term_mappings = self.search([
+                    ('is_active', '=', True),
+                    ('industry_context', 'in', ['general', industry_context]),
+                    ('language_code', '=', 'en_US')
+                ])
+            
+            if not term_mappings:
+                return text
 
-        # Sort by length descending to prevent partial replacements (e.g. 'Manufacturing Order' vs 'Manufacturing')
+        # Sort by length descending to prevent partial replacements
         sorted_mappings = sorted(term_mappings, key=lambda x: len(x.source_term), reverse=True)
 
         for mapping in sorted_mappings:

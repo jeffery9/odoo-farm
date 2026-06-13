@@ -7,31 +7,34 @@ class AgriCarbonLedger(models.Model):
 
     def action_tokenize_offset(self):
         """
-        [US-ESG-02] Tokenize negative emissions (carbon sinks) into tradable assets.
+        [US-ESG-02] Tokenize verified negative emissions into tradable assets.
         """
         for ledger in self:
             if ledger.impact_type != 'sequestration' or ledger.co2e_amount <= 0:
                 continue
                 
+            # Only tokenize if verified via evidence audit (L2)
+            if hasattr(ledger, 'audit_status') and ledger.audit_status != 'verified':
+                from odoo.exceptions import UserError
+                raise UserError(_("Ledger %s must be 'Verified' by physical evidence before tokenization.") % ledger.name)
+
             if ledger.is_tokenized:
                 continue
                 
-            # Convert CO2e (kg) to Tons for trading
+            # Convert CO2e (kg) to Tons for trading (GS1 Standard Unit)
             tons_co2e = ledger.co2e_amount / 1000.0
             
-            # Create the asset in the exchange module if available
             if 'farm.exchange.asset' in self.env:
                 asset = self.env['farm.exchange.asset'].create({
-                    'name': f"Carbon Offset: {ledger.name}",
+                    'name': f"CERT-C-{fields.Date.today().year}-{ledger.id}",
                     'asset_type': 'carbon_credit',
                     'quantity': tons_co2e,
                     'origin_ledger_id': ledger.id,
                     'owner_id': self.env.company.partner_id.id,
-                    # Base price assumption $50/ton
                     'unit_price': 50.0 
                 })
                 ledger.is_tokenized = True
-                ledger.message_post(body=_("Tokenized %s tons of CO2e into tradable asset: %s") % (tons_co2e, asset.name))
+                ledger.message_post(body=_("Verified Tokenization: %s tons of CO2e converted to %s") % (tons_co2e, asset.name))
 
 class FarmExchangeAsset(models.Model):
     """
@@ -61,27 +64,45 @@ class FarmExchangeAsset(models.Model):
 
     def action_purchase(self, buyer_partner_id):
         """
-        [US-ESG-03] Execute internal trade between entities.
+        [US-ESG-03] [SOLID Hardened] Execute internal trade between entities.
+        Ensures atomic settlement and owner transfer.
         """
         self.ensure_one()
         if self.state != 'available':
-            return False
+            from odoo.exceptions import UserError
+            raise UserError(_("Asset %s is no longer available for purchase.") % self.name)
             
+        if buyer_partner_id == self.owner_id:
+            from odoo.exceptions import UserError
+            raise UserError(_("You cannot purchase your own carbon credits."))
+
         total_amount = self.quantity * self.unit_price
         
-        # Attempt to create internal settlement if Multi-Farm is installed
+        # 1. Atomic Internal Settlement [Link to farm_multi_farm]
         if 'internal.settlement' in self.env:
             settlement = self.env['internal.settlement'].create({
-                'from_entity_id': buyer_partner_id.id,
-                'to_entity_id': self.owner_id.id,
+                'from_entity_id': self.env['farm.entity'].search([('company_id.partner_id', '=', buyer_partner_id.id)], limit=1).id,
+                'to_entity_id': self.env['farm.entity'].search([('company_id.partner_id', '=', self.owner_id.id)], limit=1).id,
                 'settlement_type': 'general',
                 'amount': total_amount,
-                'description': f"Purchase of {self.quantity} Carbon Credits: {self.name}"
+                'description': f"Carbon Credit Trade: {self.name}",
+                'res_model': self._name,
+                'res_id': self.id
             })
-            settlement.action_confirm()
-            self.message_post(body=_("Asset sold to %s. Settlement %s auto-generated.") % (buyer_partner_id.name, settlement.name))
-        
-        self.state = 'sold'
-        self.owner_id = buyer_partner_id.id
-        return True
+            if hasattr(settlement, 'action_confirm'):
+                settlement.action_confirm()
+            
+            # 2. Transfer Ownership & Retire
+            self.write({
+                'state': 'sold',
+                'owner_id': buyer_partner_id.id,
+            })
+            
+            self.message_post(body=_(
+                "Transaction Complete: %s purchased by %s. "
+                "Settlement %s confirmed."
+            ) % (self.name, buyer_partner_id.name, settlement.name))
+            
+            return True
+        return False
 

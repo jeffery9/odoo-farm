@@ -1,63 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- AI Pest Disease Detection Views -->
-    <record id="view_ai_pest_disease_detection_form" model="ir.ui.view">
+<data>
+<record id="view_ai_pest_disease_detection_form" model="ir.ui.view">
         <field name="name">agri.ai.pest.disease.decision.form</field>
         <field name="model">agri.ai.pest.disease.decision</field>
         <field name="arch" type="xml">
             <form string="AI Pest and Disease Detection">
                 <header>
-                    <button name="analyze_pest_disease_decision" type="object" string="Analyze" class="oe_highlight"/>
-                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected"/>
+                    <button name="analyze_pest_disease_decision" type="object" string="Analyze" class="oe_highlight" />
+                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_apply_recommendation" type="object" string="Apply Recommendation" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'"/>
-                        <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'"/>
-                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'"/>
+                        <field name="result_intervention_id" invisible="1" />
+                        <button name="action_apply_recommendation" type="object" string="Apply Recommendation" class="oe_stat_button" icon="fa-play" invisible="status != 'recommended'" />
+                        <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'" />
+                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'" />
                     </div>
                     <group>
                         <group>
-                            <field name="product_id"/>
-                            <field name="land_location_id"/>
-                            <field name="detection_date"/>
+                            <field name="product_id" />
+                            <field name="land_location_id" />
+                            <field name="result_intervention_id" invisible="not result_intervention_id" />
+                            <field name="detection_date" />
                         </group>
                         <group>
-                            <field name="pest_disease_name"/>
-                            <field name="severity_level"/>
-                            <field name="priority"/>
+                            <field name="pest_disease_name" />
+                            <field name="severity_level" />
+                            <field name="priority" />
                         </group>
                     </group>
                     <group>
                         <group>
-                            <field name="affected_area_percentage"/>
-                            <field name="detection_method"/>
+                            <field name="affected_area_percentage" />
+                            <field name="detection_method" />
                         </group>
                         <group>
-                            <field name="confidence_score"/>
-                            <field name="status"/>
+                            <field name="confidence_score" />
+                            <field name="status" />
                         </group>
                     </group>
                     <group string="Image Evidence">
-                        <field name="image_attachment" filename="image_name"/>
-                        <field name="image_name"/>
+                        <field name="image_attachment" filename="image_name" />
+                        <field name="image_name" />
                     </group>
                     <notebook>
                         <page string="Analysis Results">
                             <group>
-                                <field name="risk_assessment" placeholder="Risk assessment details"/>
+                                <field name="risk_assessment" placeholder="Risk assessment details" />
                             </group>
                         </page>
                         <page string="Treatment Options">
-                            <field name="treatment_options" placeholder="Treatment options and recommendations"/>
+                            <field name="treatment_options" placeholder="Treatment options and recommendations" />
                         </page>
                         <page string="Prevention Advice">
-                            <field name="prevention_advice" placeholder="Prevention advice"/>
+                            <field name="prevention_advice" placeholder="Prevention advice" />
                         </page>
                         <page string="Results">
                             <group>
-                                <field name="recommendation" placeholder="Overall recommendation"/>
-                                <field name="decision_reasoning" placeholder="Reasoning behind the AI decision"/>
+                                <field name="recommendation" placeholder="Overall recommendation" />
+                                <field name="decision_reasoning" placeholder="Reasoning behind the AI decision" />
                             </group>
                         </page>
                     </notebook>
@@ -71,12 +73,12 @@
         <field name="model">agri.ai.pest.disease.decision</field>
         <field name="arch" type="xml">
             <list string="AI Pest and Disease Detection">
-                <field name="product_id"/>
-                <field name="pest_disease_name"/>
-                <field name="severity_level"/>
-                <field name="affected_area_percentage"/>
-                <field name="confidence_score"/>
-                <field name="status"/>
+                <field name="product_id" />
+                <field name="pest_disease_name" />
+                <field name="severity_level" />
+                <field name="affected_area_percentage" />
+                <field name="confidence_score" />
+                <field name="status" />
             </list>
         </field>
     </record>
@@ -86,4 +88,5 @@
         <field name="res_model">agri.ai.pest.disease.decision</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

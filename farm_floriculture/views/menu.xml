@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="menu_farm_floriculture_root"
-              name="Floriculture"
-              web_icon="farm_floriculture,static/description/icon.png"
-              sequence="45"/>
+<data>
+<menuitem id="menu_farm_floriculture_root" name="Floriculture" web_icon="farm_floriculture,static/description/icon.png" sequence="45" />
 
-    <menuitem id="menu_farm_flower_orders"
-              name="Growing Orders"
-              parent="menu_farm_floriculture_root"
-              action="action_farm_flower_order"
-              sequence="10"/>
+    <menuitem id="menu_farm_flower_orders" name="Growing Orders" parent="menu_farm_floriculture_root" action="action_farm_flower_order" sequence="10" />
 
-    <menuitem id="menu_farm_lot_flower"
-              name="Flower Batches"
-              parent="menu_farm_floriculture_root"
-              action="action_farm_lot_flower"
-              sequence="20"/>
+    <menuitem id="menu_farm_lot_flower" name="Flower Batches" parent="menu_farm_floriculture_root" action="action_farm_lot_flower" sequence="20" />
+</data>
 </odoo>

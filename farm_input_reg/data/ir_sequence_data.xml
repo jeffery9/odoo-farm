@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
-        <!-- Input Registration Database Sequence -->
+<data>
+
         <record id="seq_input_registration_database" model="ir.sequence">
             <field name="name">Input Registration Database</field>
             <field name="code">farm.input.registration.database</field>
             <field name="prefix">REG/</field>
             <field name="padding">6</field>
-            <field name="company_id" eval="False"/>
+            <field name="company_id" eval="False" />
         </record>
-    </data>
+</data>
 </odoo>

@@ -24,6 +24,7 @@
         'farm_core'
     ],
     'data': [
+        'views/menu.xml',
         'security/ir.model.access.csv',
         'data/term_mapping_data.xml',
         'data/form_layout_template_data.xml',
@@ -40,16 +41,22 @@
         'views/multi_sensory_interaction_views.xml',
         'views/farm_social_network_views.xml',
         'views/accessibility_settings_views.xml',
+        'views/agri_traceability_views.xml',
         'views/menu.xml',
     ],
     'assets': {
         'web.assets_backend': [
             'farm_ux/static/src/css/workspace_customization.css',
             'farm_ux/static/src/css/accessibility.css',
+            'farm_ux/static/src/css/traceability_map.css',
             'farm_ux/static/src/js/farm_ux_integration.esm.js',
             'farm_ux/static/src/js/term_mapping_handler.esm.js',
             'farm_ux/static/src/js/agri_action_buttons.esm.js',
+            'farm_ux/static/src/js/agri_dna_integrity.esm.js',
+            'farm_ux/static/src/js/agri_gating_audit.esm.js',
+            'farm_ux/static/src/js/agri_nutrient_gauge.esm.js',
             'farm_ux/static/src/js/agri_spatial_gauge.esm.js',
+            'farm_ux/static/src/js/agri_traceability_map.esm.js',
             'farm_ux/static/src/xml/*.xml',
         ],
     },

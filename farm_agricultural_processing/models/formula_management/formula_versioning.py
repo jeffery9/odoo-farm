@@ -6,20 +6,20 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class FarmProcessingBomFormulaVersionExtension(models.Model):
+class AgriProcessingRecipeVersioning(models.Model):
     """
-    Extension to Processing ISL BOM Model for Formula Version - US-037-09
+    Extension to Processing ISL Recipe Model for Versioning - US-037-09 [De-industrialized]
     """
     _inherit = 'agri.isl.processing.bom'
 
-    # Formula version specific fields
+    # Recipe version specific fields
     version_number = fields.Integer('Version', default=1)
     version_description = fields.Text('Version Description')
     version_name = fields.Char("Version Name", help="e.g., Summer 2024 v1.0")
 
     # Confidentiality controls
     is_blind_mode_enabled = fields.Boolean('Enable Blind Mixing Mode', default=False)
-    blind_material_ids = fields.One2many('farm.processing.blind.material', 'formula_bom_id', string='Blind Materials')
+    blind_input_ids = fields.One2many('agri.processing.blind.input', 'formula_recipe_id', string='Blind Inputs')
 
     # Change tracking
     change_reason = fields.Text('Change Reason')
@@ -47,42 +47,41 @@ class FarmProcessingBomFormulaVersionExtension(models.Model):
                 raise ValidationError(_("Version number %s already exists for this formula.") % record.version_number)
 
 
-class FarmProcessingBlindMaterial(models.Model):
+class AgriProcessingBlindInput(models.Model):
     """
-    Blind Materials for Formula Confidentiality - US-037-09
+    Blind Inputs for Formula Confidentiality - US-037-09 [De-industrialized]
     """
-    _name = 'farm.processing.blind.material'
-    _description = 'Blind Materials for Formula Confidentiality'
+    _name = 'agri.processing.blind.input'
+    _description = 'Blind Inputs for Formula Confidentiality'
 
-    formula_bom_id = fields.Many2one('agri.isl.processing.bom', string='Formula BOM', ondelete='cascade')
+    formula_recipe_id = fields.Many2one('agri.isl.processing.bom', string='Formula Recipe', ondelete='cascade')
     product_id = fields.Many2one('product.product', string='Product', required=True)
     blind_name = fields.Char('Blind Name', help='Confidential name shown during mixing')
     sequence = fields.Integer('Sequence', default=10)
     hide_during_mixing = fields.Boolean('Hide During Mixing', default=True)
-    authorized_users = fields.Many2many('res.users', 'blind_material_auth_rel', 'blind_material_id', 'user_id', string='Authorized to View')
+    authorized_users = fields.Many2many('res.users', 'blind_input_auth_rel', 'blind_input_id', 'user_id', string='Authorized to View')
 
     def name_get(self):
         result = []
         for record in self:
-            # If the user is not authorized to see the real name, show the blind name
             if self.env.user in record.authorized_users:
                 name = f"{record.product_id.name} ({record.blind_name})"
             else:
-                name = record.blind_name or "Confidential Material"
+                name = record.blind_name or "Confidential Input"
             result.append((record.id, name))
         return result
 
 
-class FarmProcessingFormulaAutoCorrection(models.Model):
+class AgriProcessingFormulaAutoCorrection(models.Model):
     """
-    Formula Auto-Correction System - US-037-09
+    Formula Auto-Correction System - US-037-09 [De-industrialized]
     """
-    _name = 'farm.processing.formula.auto.correction'
+    _name = 'agri.processing.formula.auto.correction'
     _description = 'Formula Auto-Correction System'
 
     name = fields.Char('Correction Record', required=True)
     bom_id = fields.Many2one('agri.isl.processing.bom', string='Formula', required=True)
-    production_id = fields.Many2one('agri.isl.processing.production', string='Production Order')
+    production_id = fields.Many2one('agri.isl.mrp.production', string='Intervention Order')
 
     # Original values
     original_qty = fields.Float('Original Quantity', required=True)
@@ -114,12 +113,11 @@ class FarmProcessingFormulaAutoCorrection(models.Model):
         return super().create(vals)
 
     def action_apply_correction(self):
-        """Apply the correction to the production order"""
+        """Apply the correction to the intervention order"""
         for record in self:
             if record.production_id and record.correction_qty:
-                # Apply the correction logic here
                 record.correction_status = 'applied'
-                _logger.info(f"Applied correction {record.name} to production {record.production_id.name}")
+                _logger.info(f"Applied correction {record.name} to intervention {record.production_id.name}")
 
     def action_reject_correction(self):
         """Reject the correction"""

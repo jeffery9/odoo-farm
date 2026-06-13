@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_contract_farming_agreement_tree" model="ir.ui.view">
         <field name="name">contract.farming.agreement.tree</field>
         <field name="model">contract.farming.agreement</field>
         <field name="arch" type="xml">
-            <list decoration-danger="state=='cancelled'"
-                  decoration-info="state in ['draft', 'submitted']"
-                  decoration-success="state=='settled'"
-                  decoration-warning="state in ['approved', 'in_progress', 'harvest_complete']">
-                <field name="name"/>
-                <field name="company_id"/>
-                <field name="farmer_id"/>
-                <field name="crop_type"/>
-                <field name="planting_area"/>
-                <field name="start_date"/>
-                <field name="end_date"/>
-                <field name="input_prepayment_total"/>
-                <field name="settlement_amount"/>
-                <field name="state"/>
+            <list decoration-danger="state=='cancelled'" decoration-info="state in ['draft', 'submitted']" decoration-success="state=='settled'" decoration-warning="state in ['approved', 'in_progress', 'harvest_complete']">
+                <field name="name" />
+                <field name="company_id" />
+                <field name="farmer_id" />
+                <field name="crop_type" />
+                <field name="planting_area" />
+                <field name="start_date" />
+                <field name="end_date" />
+                <field name="input_prepayment_total" />
+                <field name="settlement_amount" />
+                <field name="state" />
             </list>
         </field>
     </record>
@@ -28,95 +26,90 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_approve_agreement" type="object" string="Approve Agreement"
-                            class="oe_highlight"/>
-                    <button name="action_start_farming" type="object" string="Start Farming"
-                           />
-                    <button name="action_complete_harvest" type="object" string="Complete Harvest"
-                           />
-                    <button name="action_settle_contract" type="object" string="Settle Contract"
-                            class="oe_highlight"/>
-                    <button name="action_cancel_agreement" type="object" string="Cancel Agreement"
-                            class="oe_link"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,approved,in_progress,harvest_complete,settled"/>
+                    <button name="action_approve_agreement" type="object" string="Approve Agreement" class="oe_highlight" />
+                    <button name="action_start_farming" type="object" string="Start Farming" />
+                    <button name="action_complete_harvest" type="object" string="Complete Harvest" />
+                    <button name="action_settle_contract" type="object" string="Settle Contract" class="oe_highlight" />
+                    <button name="action_cancel_agreement" type="object" string="Cancel Agreement" class="oe_link" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,approved,in_progress,harvest_complete,settled" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                     </div>
                     <group>
                         <group string="Contract Parties">
-                            <field name="name"/>
-                            <field name="company_id"/>
-                            <field name="farmer_id"/>
+                            <field name="name" />
+                            <field name="company_id" />
+                            <field name="farmer_id" />
                         </group>
                         <group string="Contract Dates">
-                            <field name="start_date"/>
-                            <field name="end_date"/>
+                            <field name="start_date" />
+                            <field name="end_date" />
                         </group>
                     </group>
                     <group string="Crop and Area Details">
-                        <field name="crop_type"/>
-                        <field name="planting_area"/>
-                        <field name="planting_date"/>
-                        <field name="harvest_date"/>
+                        <field name="crop_type" />
+                        <field name="planting_area" />
+                        <field name="planting_date" />
+                        <field name="harvest_date" />
                     </group>
                     <group string="Financial Terms">
-                        <field name="pricing_method"/>
-                        <field name="fixed_price"/>
-                        <field name="cost_plus_margin"/>
-                        <field name="revenue_share_percentage"/>
+                        <field name="pricing_method" />
+                        <field name="fixed_price" />
+                        <field name="cost_plus_margin" />
+                        <field name="revenue_share_percentage" />
                     </group>
                     <group string="Financial Summary">
-                        <field name="input_prepayment_total"/>
-                        <field name="input_prepayment_paid"/>
-                        <field name="input_prepayment_remaining"/>
-                        <field name="projected_revenue"/>
-                        <field name="actual_revenue"/>
-                        <field name="settlement_amount"/>
+                        <field name="input_prepayment_total" />
+                        <field name="input_prepayment_paid" />
+                        <field name="input_prepayment_remaining" />
+                        <field name="projected_revenue" />
+                        <field name="actual_revenue" />
+                        <field name="settlement_amount" />
                     </group>
                     <group string="Yield Commitment">
-                        <field name="yield_commitment"/>
-                        <field name="actual_yield"/>
-                        <field name="yield_performance"/>
+                        <field name="yield_commitment" />
+                        <field name="actual_yield" />
+                        <field name="yield_performance" />
                     </group>
                     <notebook>
                         <page string="Input Prepayments">
                             <field name="input_prepayment_ids">
                                 <list editable="bottom">
-                                    <field name="input_type"/>
-                                    <field name="product_id"/>
-                                    <field name="quantity"/>
-                                    <field name="unit_price"/>
-                                    <field name="amount"/>
-                                    <field name="delivery_date"/>
-                                    <field name="verification_status"/>
-                                    <field name="repayment_method"/>
-                                    <field name="paid_amount"/>
-                                    <field name="remaining_amount"/>
-                                    <field name="state"/>
+                                    <field name="input_type" />
+                                    <field name="product_id" />
+                                    <field name="quantity" />
+                                    <field name="unit_price" />
+                                    <field name="amount" />
+                                    <field name="delivery_date" />
+                                    <field name="verification_status" />
+                                    <field name="repayment_method" />
+                                    <field name="paid_amount" />
+                                    <field name="remaining_amount" />
+                                    <field name="state" />
                                 </list>
                                 <form>
                                     <group>
-                                        <field name="input_type"/>
-                                        <field name="product_id"/>
-                                        <field name="quantity"/>
-                                        <field name="unit_price"/>
-                                        <field name="amount"/>
+                                        <field name="input_type" />
+                                        <field name="product_id" />
+                                        <field name="quantity" />
+                                        <field name="unit_price" />
+                                        <field name="amount" />
                                     </group>
                                     <group string="Delivery">
-                                        <field name="delivery_date"/>
-                                        <field name="delivered_quantity"/>
-                                        <field name="verification_status"/>
+                                        <field name="delivery_date" />
+                                        <field name="delivered_quantity" />
+                                        <field name="verification_status" />
                                     </group>
                                     <group string="Repayment">
-                                        <field name="repayment_method"/>
-                                        <field name="repayment_due_date"/>
-                                        <field name="paid_amount"/>
-                                        <field name="remaining_amount"/>
+                                        <field name="repayment_method" />
+                                        <field name="repayment_due_date" />
+                                        <field name="paid_amount" />
+                                        <field name="remaining_amount" />
                                     </group>
                                     <group>
-                                        <field name="description"/>
-                                        <field name="state"/>
+                                        <field name="description" />
+                                        <field name="state" />
                                     </group>
                                 </form>
                             </field>
@@ -124,63 +117,63 @@
                         <page string="Yield Commitments">
                             <field name="yield_commitment_ids">
                                 <list editable="bottom">
-                                    <field name="expected_yield"/>
-                                    <field name="actual_yield"/>
-                                    <field name="area"/>
-                                    <field name="quality_grade"/>
-                                    <field name="harvest_date"/>
-                                    <field name="performance_rate"/>
+                                    <field name="expected_yield" />
+                                    <field name="actual_yield" />
+                                    <field name="area" />
+                                    <field name="quality_grade" />
+                                    <field name="harvest_date" />
+                                    <field name="performance_rate" />
                                 </list>
                                 <form>
                                     <group>
-                                        <field name="expected_yield"/>
-                                        <field name="actual_yield"/>
-                                        <field name="area"/>
+                                        <field name="expected_yield" />
+                                        <field name="actual_yield" />
+                                        <field name="area" />
                                     </group>
                                     <group>
-                                        <field name="quality_grade"/>
-                                        <field name="harvest_date"/>
-                                        <field name="performance_rate"/>
-                                        <field name="quality_compliance"/>
+                                        <field name="quality_grade" />
+                                        <field name="harvest_date" />
+                                        <field name="performance_rate" />
+                                        <field name="quality_compliance" />
                                     </group>
-                                    <field name="notes"/>
+                                    <field name="notes" />
                                 </form>
                             </field>
                         </page>
                         <page string="Settlements">
                             <field name="settlement_ids">
                                 <list>
-                                    <field name="type"/>
-                                    <field name="amount"/>
-                                    <field name="settlement_date"/>
-                                    <field name="payment_method"/>
-                                    <field name="enterprise_share"/>
-                                    <field name="farmer_share"/>
+                                    <field name="type" />
+                                    <field name="amount" />
+                                    <field name="settlement_date" />
+                                    <field name="payment_method" />
+                                    <field name="enterprise_share" />
+                                    <field name="farmer_share" />
                                 </list>
                                 <form>
                                     <group>
-                                        <field name="type"/>
-                                        <field name="amount"/>
-                                        <field name="settlement_date"/>
-                                        <field name="payment_method"/>
+                                        <field name="type" />
+                                        <field name="amount" />
+                                        <field name="settlement_date" />
+                                        <field name="payment_method" />
                                     </group>
                                     <group string="Financial Breakdown">
-                                        <field name="enterprise_share"/>
-                                        <field name="farmer_share"/>
+                                        <field name="enterprise_share" />
+                                        <field name="farmer_share" />
                                     </group>
-                                    <field name="description"/>
+                                    <field name="description" />
                                 </form>
                             </field>
                         </page>
                         <page string="Quality Standards">
-                            <field name="quality_standards"/>
+                            <field name="quality_standards" />
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -192,15 +185,15 @@
         <field name="model">contract.farming.input.prepayment</field>
         <field name="arch" type="xml">
             <list>
-                <field name="agreement_id"/>
-                <field name="input_type"/>
-                <field name="product_id"/>
-                <field name="amount"/>
-                <field name="delivery_date"/>
-                <field name="verification_status"/>
-                <field name="paid_amount"/>
-                <field name="remaining_amount"/>
-                <field name="state"/>
+                <field name="agreement_id" />
+                <field name="input_type" />
+                <field name="product_id" />
+                <field name="amount" />
+                <field name="delivery_date" />
+                <field name="verification_status" />
+                <field name="paid_amount" />
+                <field name="remaining_amount" />
+                <field name="state" />
             </list>
         </field>
     </record>
@@ -211,13 +204,13 @@
         <field name="model">contract.farming.yield.commitment</field>
         <field name="arch" type="xml">
             <list>
-                <field name="agreement_id"/>
-                <field name="expected_yield"/>
-                <field name="actual_yield"/>
-                <field name="area"/>
-                <field name="performance_rate"/>
-                <field name="quality_grade"/>
-                <field name="harvest_date"/>
+                <field name="agreement_id" />
+                <field name="expected_yield" />
+                <field name="actual_yield" />
+                <field name="area" />
+                <field name="performance_rate" />
+                <field name="quality_grade" />
+                <field name="harvest_date" />
             </list>
         </field>
     </record>
@@ -228,13 +221,13 @@
         <field name="model">contract.farming.settlement</field>
         <field name="arch" type="xml">
             <list>
-                <field name="agreement_id"/>
-                <field name="type"/>
-                <field name="amount"/>
-                <field name="settlement_date"/>
-                <field name="payment_method"/>
-                <field name="enterprise_share"/>
-                <field name="farmer_share"/>
+                <field name="agreement_id" />
+                <field name="type" />
+                <field name="amount" />
+                <field name="settlement_date" />
+                <field name="payment_method" />
+                <field name="enterprise_share" />
+                <field name="farmer_share" />
             </list>
         </field>
     </record>
@@ -265,22 +258,14 @@
     </record>
 
     
-    <menuitem id="menu_contract_farming_root" name="Contract Farming"
-              parent="farm_multi_farm.farm_multi_farm_root" sequence="50"/>
+    <menuitem id="menu_contract_farming_root" name="Contract Farming" parent="farm_multi_farm.farm_multi_farm_root" sequence="50" />
 
-    <menuitem id="menu_contract_farming_agreements" name="Agreements"
-              action="action_contract_farming_agreement"
-              parent="menu_contract_farming_root" sequence="10"/>
+    <menuitem id="menu_contract_farming_agreements" name="Agreements" action="action_contract_farming_agreement" parent="menu_contract_farming_root" sequence="10" />
 
-    <menuitem id="menu_contract_farming_input_prepayments" name="Input Prepayments"
-              action="action_contract_farming_input_prepayment"
-              parent="menu_contract_farming_root" sequence="20"/>
+    <menuitem id="menu_contract_farming_input_prepayments" name="Input Prepayments" action="action_contract_farming_input_prepayment" parent="menu_contract_farming_root" sequence="20" />
 
-    <menuitem id="menu_contract_farming_yield_commitments" name="Yield Tracking"
-              action="action_contract_farming_yield_commitment"
-              parent="menu_contract_farming_root" sequence="30"/>
+    <menuitem id="menu_contract_farming_yield_commitments" name="Yield Tracking" action="action_contract_farming_yield_commitment" parent="menu_contract_farming_root" sequence="30" />
 
-    <menuitem id="menu_contract_farming_settlements" name="Settlements"
-              action="action_contract_farming_settlement"
-              parent="menu_contract_farming_root" sequence="40"/>
+    <menuitem id="menu_contract_farming_settlements" name="Settlements" action="action_contract_farming_settlement" parent="menu_contract_farming_root" sequence="40" />
+</data>
 </odoo>

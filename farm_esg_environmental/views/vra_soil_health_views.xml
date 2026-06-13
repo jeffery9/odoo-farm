@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_vra_soil_health_monitor_tree" model="ir.ui.view">
         <field name="name">agri.vra.soil.health.monitor.tree</field>
         <field name="model">agri.vra.soil.health.monitor</field>
         <field name="arch" type="xml">
             <list string="VRA Soil Health Monitoring">
-                <field name="name"/>
-                <field name="location_id"/>
-                <field name="soil_health_score"/>
-                <field name="soil_health_category"/>
-                <field name="erosion_risk_level"/>
-                <field name="assessment_date"/>
-                <field name="next_assessment_date"/>
+                <field name="name" />
+                <field name="location_id" />
+                <field name="soil_health_score" />
+                <field name="soil_health_category" />
+                <field name="erosion_risk_level" />
+                <field name="assessment_date" />
+                <field name="next_assessment_date" />
             </list>
         </field>
     </record>
@@ -23,25 +24,19 @@
         <field name="arch" type="xml">
             <form string="VRA Soil Health Monitoring">
                 <header>
-                    <button name="action_update_soil_health_assessment" type="object" string="Recalculate Assessment"
-                            class="oe_highlight"/>
-                    <button name="action_create_improvement_plan" type="object" string="Create Improvement Plan"
-                            class="oe_highlight"/>
-                    <button name="action_schedule_next_assessment" type="object" string="Schedule Next Assessment"
-                            class="oe_highlight"/>
-                    <button name="action_generate_soil_health_report" type="object" string="Generate Report"
-                            class="oe_highlight"/>
+                    <button name="action_update_soil_health_assessment" type="object" string="Recalculate Assessment" class="oe_highlight" />
+                    <button name="action_create_improvement_plan" type="object" string="Create Improvement Plan" class="oe_highlight" />
+                    <button name="action_schedule_next_assessment" type="object" string="Schedule Next Assessment" class="oe_highlight" />
+                    <button name="action_generate_soil_health_report" type="object" string="Generate Report" class="oe_highlight" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" name="action_create_improvement_plan" type="object"
-                                icon="fa-wrench">
+                        <button class="oe_stat_button" name="action_create_improvement_plan" type="object" icon="fa-wrench">
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Improvement Plan</span>
                             </div>
                         </button>
-                        <button class="oe_stat_button" name="action_schedule_next_assessment" type="object"
-                                icon="fa-calendar">
+                        <button class="oe_stat_button" name="action_schedule_next_assessment" type="object" icon="fa-calendar">
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Schedule</span>
                             </div>
@@ -49,17 +44,17 @@
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="assessment_date"/>
-                            <field name="location_id"/>
-                            <field name="sampling_method"/>
+                            <field name="name" />
+                            <field name="assessment_date" />
+                            <field name="location_id" />
+                            <field name="sampling_method" />
                         </group>
                         <group>
-                            <field name="soil_health_score"/>
-                            <field name="soil_health_category"/>
-                            <field name="erosion_risk_level"/>
-                            <field name="assessment_frequency"/>
-                            <field name="next_assessment_date"/>
+                            <field name="soil_health_score" />
+                            <field name="soil_health_category" />
+                            <field name="erosion_risk_level" />
+                            <field name="assessment_frequency" />
+                            <field name="next_assessment_date" />
                         </group>
                     </group>
 
@@ -67,17 +62,17 @@
                         <page string="Basic Parameters">
                             <group>
                                 <group>
-                                    <field name="organic_matter_content"/>
-                                    <field name="ph_level"/>
-                                    <field name="nitrogen_level"/>
-                                    <field name="phosphorus_level"/>
-                                    <field name="potassium_level"/>
+                                    <field name="organic_matter_content" />
+                                    <field name="ph_level" />
+                                    <field name="nitrogen_level" />
+                                    <field name="phosphorus_level" />
+                                    <field name="potassium_level" />
                                 </group>
                                 <group>
-                                    <field name="cation_exchange_capacity"/>
-                                    <field name="total_salinity"/>
-                                    <field name="soil_compaction_level"/>
-                                    <field name="soil_texture"/>
+                                    <field name="cation_exchange_capacity" />
+                                    <field name="total_salinity" />
+                                    <field name="soil_compaction_level" />
+                                    <field name="soil_texture" />
                                 </group>
                             </group>
                         </page>
@@ -85,12 +80,12 @@
                         <page string="Advanced Parameters">
                             <group>
                                 <group>
-                                    <field name="microbial_activity"/>
-                                    <field name="enzyme_activity"/>
-                                    <field name="soil_respiration_rate"/>
+                                    <field name="microbial_activity" />
+                                    <field name="enzyme_activity" />
+                                    <field name="soil_respiration_rate" />
                                 </group>
                                 <group>
-                                    <field name="water_holding_capacity"/>
+                                    <field name="water_holding_capacity" />
                                 </group>
                             </group>
                         </page>
@@ -98,42 +93,42 @@
                         <page string="Sampling Details">
                             <group>
                                 <group>
-                                    <field name="sampling_depth"/>
-                                    <field name="sampling_points"/>
-                                    <field name="sampling_area"/>
+                                    <field name="sampling_depth" />
+                                    <field name="sampling_points" />
+                                    <field name="sampling_area" />
                                 </group>
                                 <group>
-                                    <field name="previous_fertilizer_application"/>
-                                    <field name="previous_pesticide_application"/>
-                                    <field name="crop_rotation_history"/>
+                                    <field name="previous_fertilizer_application" />
+                                    <field name="previous_pesticide_application" />
+                                    <field name="crop_rotation_history" />
                                 </group>
                             </group>
                         </page>
 
                         <page string="VRA Recommendations">
                             <group>
-                                <field name="next_vra_recommendations" nolabel="1"/>
+                                <field name="next_vra_recommendations" nolabel="1" />
                             </group>
                         </page>
 
                         <page string="Improvement Plan">
                             <group>
-                                <field name="improvement_recommendations" nolabel="1"/>
+                                <field name="improvement_recommendations" nolabel="1" />
                             </group>
                             <group>
-                                <field name="recommended_practices" nolabel="1"/>
+                                <field name="recommended_practices" nolabel="1" />
                             </group>
                         </page>
 
                         <page string="VRA Integration">
-                            <field name="related_prescription_ids" widget="many2many_tags"/>
+                            <field name="related_prescription_ids" widget="many2many_tags" />
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -145,20 +140,20 @@
         <field name="model">agri.vra.soil.health.monitor</field>
         <field name="arch" type="xml">
             <search string="VRA Soil Health Monitoring">
-                <field name="name"/>
-                <field name="location_id"/>
-                <field name="soil_health_category"/>
-                <field name="erosion_risk_level"/>
-                <field name="assessment_date"/>
-                <field name="assessment_frequency"/>
-                <filter name="filter_excellent_health" string="Excellent Health" domain="[('soil_health_category', '=', 'excellent')]"/>
-                <filter name="filter_poor_health" string="Poor Health" domain="[('soil_health_category', '=', 'poor')]"/>
-                <filter name="filter_high_risk" string="High Erosion Risk" domain="[('erosion_risk_level', '=', 'high')]"/>
-                <filter name="filter_urgent_assessment" string="Due for Assessment" domain="[('next_assessment_date', '&lt;', context_today().strftime('%Y-%m-%d'))]"/>
+                <field name="name" />
+                <field name="location_id" />
+                <field name="soil_health_category" />
+                <field name="erosion_risk_level" />
+                <field name="assessment_date" />
+                <field name="assessment_frequency" />
+                <filter name="filter_excellent_health" string="Excellent Health" domain="[('soil_health_category', '=', 'excellent')]" />
+                <filter name="filter_poor_health" string="Poor Health" domain="[('soil_health_category', '=', 'poor')]" />
+                <filter name="filter_high_risk" string="High Erosion Risk" domain="[('erosion_risk_level', '=', 'high')]" />
+                <filter name="filter_urgent_assessment" string="Due for Assessment" domain="[('next_assessment_date', '&lt;', context_today().strftime('%Y-%m-%d'))]" />
                 <group>
-                    <filter name="group_location" string="Location" domain="[]" context="{'group_by':'location_id'}"/>
-                    <filter name="group_health" string="Health Category" domain="[]" context="{'group_by':'soil_health_category'}"/>
-                    <filter name="group_frequency" string="Assessment Frequency" domain="[]" context="{'group_by':'assessment_frequency'}"/>
+                    <filter name="group_location" string="Location" domain="[]" context="{'group_by':'location_id'}" />
+                    <filter name="group_health" string="Health Category" domain="[]" context="{'group_by':'soil_health_category'}" />
+                    <filter name="group_frequency" string="Assessment Frequency" domain="[]" context="{'group_by':'assessment_frequency'}" />
                 </group>
             </search>
         </field>
@@ -178,4 +173,5 @@
             </p>
         </field>
     </record>
+</data>
 </odoo>

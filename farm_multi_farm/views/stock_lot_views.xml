@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_production_lot_form_inherit_coop" model="ir.ui.view">
         <field name="name">stock.lot.form.inherit.coop</field>
         <field name="model">stock.lot</field>
-        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="inherit_id" ref="stock.view_production_lot_form" />
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="before">
 <header>
 
-                <button name="action_assign_cooperative" string="Assign to Cooperative" type="action" 
-                        context="{'default_lot_id': active_id}"
-                        invisible="assigned_cooperative_id"/>
+                <button name="action_assign_cooperative" string="Assign to Cooperative" type="action" context="{'default_lot_id': active_id}" invisible="assigned_cooperative_id" />
             
 </header>
 </xpath>
             <xpath expr="//group[@name='main_group']" position="after">
                 <group string="Cooperative &amp; Governance">
                     <group>
-                        <field name="assigned_cooperative_id" options="{'no_create': True}"/>
-                        <field name="cooperative_purpose" readonly="1"/>
+                        <field name="assigned_cooperative_id" options="{'no_create': True}" />
+                        <field name="cooperative_purpose" readonly="1" />
                     </group>
                     <group>
-                        <field name="is_government_audited" invisible="cooperative_purpose == 'commercial'"/>
+                        <field name="is_government_audited" invisible="cooperative_purpose == 'commercial'" />
                     </group>
                 </group>
             </xpath>
         </field>
     </record>
+</data>
 </odoo>

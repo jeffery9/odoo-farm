@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Device Tree View -->
-    <record id="view_iiot_device_tree" model="ir.ui.view">
+<data>
+<record id="view_iiot_device_tree" model="ir.ui.view">
         <field name="name">iiot.device.tree</field>
         <field name="model">iiot.device</field>
         <field name="arch" type="xml">
             <list string="IIoT设备">
-                <field name="name"/>
-                <field name="serial_number"/>
-                <field name="device_id"/>
-                <field name="profile_id"/>
-                <field name="connection_status"/>
-                <field name="firmware_version"/>
-                <field name="is_active"/>
-                <field name="last_telemetry"/>
+                <field name="name" />
+                <field name="serial_number" />
+                <field name="device_id" />
+                <field name="profile_id" />
+                <field name="connection_status" />
+                <field name="firmware_version" />
+                <field name="is_active" />
+                <field name="last_telemetry" />
             </list>
         </field>
     </record>
 
-    <!-- Device Form View -->
+    
     <record id="view_iiot_device_form" model="ir.ui.view">
         <field name="name">iiot.device.form</field>
         <field name="model">iiot.device</field>
         <field name="arch" type="xml">
             <form string="IIoT设备">
                 <header>
-                    <button name="action_generate_config_token" string="Generate Config Token" type="object" class="btn-primary"/>
-                    <field name="connection_status" widget="statusbar" statusbar_visible="online"/>
+                    <button name="action_generate_config_token" string="Generate Config Token" type="object" class="btn-primary" />
+                    <field name="connection_status" widget="statusbar" statusbar_visible="online" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
@@ -36,31 +36,42 @@
                     </div>
                     <group>
                         <group>
-                            <field name="serial_number"/>
-                            <field name="device_id"/>
-                            <field name="profile_id"/>
+                            <field name="serial_number" />
+                            <field name="device_id" />
+                            <field name="profile_id" />
+                            <field name="physical_level" />
+                            <field name="parent_id" invisible="physical_level == 'gateway'" />
                         </group>
                         <group>
-                            <field name="is_active"/>
-                            <field name="is_camera"/>
-                            <field name="firmware_version"/>
+                            <field name="is_active" />
+                            <field name="is_camera" />
+                            <field name="firmware_version" />
                         </group>
                     </group>
                     <group string="Remote Control" name="remote_control">
-                        <button name="send_command" string="Power On" type="object" context="{'action': 'power', 'params': {'state': 'on'}}" class="oe_highlight"/>
-                        <button name="send_command" string="Power Off" type="object" context="{'action': 'power', 'params': {'state': 'off'}}" class="oe_highlight"/>
-                        <button name="send_command" string="Reset" type="object" context="{'action': 'reset'}" class="oe_highlight"/>
-                        <field name="live_stream_url" widget="url" invisible="not is_camera"/>
+                        <button name="send_command" string="Power On" type="object" context="{'action': 'power', 'params': {'state': 'on'}}" class="oe_highlight" />
+                        <button name="send_command" string="Power Off" type="object" context="{'action': 'power', 'params': {'state': 'off'}}" class="oe_highlight" />
+                        <button name="send_command" string="Reset" type="object" context="{'action': 'reset'}" class="oe_highlight" />
+                        <field name="live_stream_url" widget="url" invisible="not is_camera" />
                     </group>
                     <notebook>
                         <page string="Business Ref" name="business_ref_page">
-                            <group><field name="business_ref"/></group>
+                            <group><field name="business_ref" /></group>
                         </page>
                         <page string="Config &amp; Topics" name="config_topics">
                             <group>
-                                <field name="config_token" readonly="1"/>
-                                <button name="action_generate_config_token" string="Regenerate Token" type="object" class="btn-secondary"/>
+                                <field name="config_token" readonly="1" />
+                                <button name="action_generate_config_token" string="Regenerate Token" type="object" class="btn-secondary" />
                             </group>
+                        </page>
+                        <page string="Physical Topology" name="topology" invisible="physical_level == 'sensor'">
+                            <field name="child_ids" readonly="1">
+                                <list>
+                                    <field name="name" />
+                                    <field name="physical_level" />
+                                    <field name="connection_status" widget="badge" />
+                                </list>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
@@ -68,10 +79,11 @@
         </field>
     </record>
 
-    <!-- Device Action -->
+    
     <record id="action_iiot_device" model="ir.actions.act_window">
         <field name="name">IIoT设备</field>
         <field name="res_model">iiot.device</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="wage_rule_tillage" model="farm.wage.rule">
             <field name="work_type">tillage</field>
             <field name="price_per_unit">150.0</field> 
@@ -19,4 +20,5 @@
             <field name="work_type">packaging</field>
             <field name="price_per_unit">0.1</field> 
         </record>
+</data>
 </odoo>

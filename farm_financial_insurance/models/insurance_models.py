@@ -64,7 +64,7 @@ class FarmCropYieldInsurance(models.Model):
     weather_monitoring = fields.Boolean('Weather Monitoring', default=True)
 
     # Claim management
-    # claim_ids = fields.One2many('farm.insurance.claim', 'policy_id', string="Claims")
+    claim_ids = fields.One2many('farm.financial.insurance.claim', 'insurance_id', string="Claims")
     claim_amount = fields.Monetary('Total Claim Amount', currency_field='currency_id', default=0)
     claim_status = fields.Selection([
         ('no_claim', 'No Claim'),
@@ -133,7 +133,7 @@ class FarmCropYieldInsurance(models.Model):
                 claim_amt = yield_loss * record.indemnity_base_price
 
                 # Create a claim record
-                self.env['farm.insurance.claim'].create({
+                self.env['farm.financial.insurance.claim'].create({
                     'insurance_id': record.id,
                     'claim_type': 'yield_loss',
                     'requested_amount': claim_amt,
@@ -156,7 +156,7 @@ class FarmCropYieldInsurance(models.Model):
                 triggered, value = index._check_trigger(record.land_location_id)
                 if triggered:
                     # Auto-generate claim
-                    self.env['farm.insurance.claim'].create({
+                    self.env['farm.financial.insurance.claim'].create({
                         'insurance_id': record.id,
                         'claim_type': 'weather_index',
                         'index_id': index.id,
@@ -229,8 +229,8 @@ class FarmInsuranceIndex(models.Model):
         return is_triggered, mock_val
 
 
-class FarmInsuranceClaim(models.Model):
-    _name = 'farm.insurance.claim'
+class FarmFinancialInsuranceClaim(models.Model):
+    _name = 'farm.financial.insurance.claim'
     _description = 'Agricultural Insurance Claim'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 

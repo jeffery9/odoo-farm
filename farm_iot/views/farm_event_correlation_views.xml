@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+<record id="view_farm_event_correlation_tree" model="ir.ui.view">
+        <field name="name">farm.event.correlation.list</field>
+        <field name="model">farm.event.correlation</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="rule_type" />
+                <field name="time_window" />
+                <field name="action_type" />
+                <field name="active" widget="boolean_toggle" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_farm_event_correlation_form" model="ir.ui.view">
+        <field name="name">farm.event.correlation.form</field>
+        <field name="model">farm.event.correlation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1><field name="name" placeholder="e.g. Fire Risk Detection" /></h1>
+                    </div>
+                    <group>
+                        <group name="logic" string="Logic Configuration">
+                            <field name="rule_type" />
+                            <field name="time_window" />
+                            <field name="active" />
+                        </group>
+                        <group name="action" string="Action Configuration">
+                            <field name="action_type" />
+                            <field name="target_model_id" invisible="action_type != 'method'" />
+                            <field name="method_name" invisible="action_type != 'method'" />
+                            <field name="webhook_url" invisible="action_type != 'webhook'" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Conditions" name="conditions">
+                            <field name="condition_ids">
+                                <list editable="bottom">
+                                    <field name="sensor_type" />
+                                    <field name="operator" />
+                                    <field name="threshold" />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Message Template" name="template">
+                            <group>
+                                <field name="message_template" nolabel="1" placeholder="Correlation detected: {{ name }}. Current Temp: {{ temperature }}" />
+                            </group>
+                            <div class="alert alert-info">
+                                Use <code>{{ name }}</code> for rule name and <code>{{ sensor_type }}</code> for values.
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter />
+            </form>
+        </field>
+    </record>
+
+    <record id="action_farm_event_correlation" model="ir.actions.act_window">
+        <field name="name">Event Correlations</field>
+        <field name="res_model">farm.event.correlation</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_farm_event_correlation" name="Event Correlation" parent="menu_farm_iot_root" action="action_farm_event_correlation" sequence="60" />
+</data>
+</odoo>

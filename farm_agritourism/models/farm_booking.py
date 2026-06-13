@@ -11,7 +11,7 @@ class FarmResource(models.Model):
         ('bbq', 'BBQ Area'),
         ('room', 'Farm Stay'),
         ('other', 'Other')
-    ], string="Type", required=True, ondelete={'ticket': 'cascade', 'facility': 'cascade'})
+    ], string="Type", required=True, default='other')
     active = fields.Boolean(default=True)
 
 class FarmBooking(models.Model):

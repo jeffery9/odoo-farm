@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_sustainability_dashboard_tree" model="ir.ui.view">
         <field name="name">farm.sustainability.dashboard.tree</field>
         <field name="model">agri.sustainability.dashboard</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="period_type"/>
-                <field name="economic_score"/>
-                <field name="environmental_score"/>
-                <field name="social_score"/>
-                <field name="overall_score"/>
-                <field name="is_active"/>
+                <field name="name" />
+                <field name="period_type" />
+                <field name="economic_score" />
+                <field name="environmental_score" />
+                <field name="social_score" />
+                <field name="overall_score" />
+                <field name="is_active" />
             </list>
         </field>
     </record>
@@ -23,61 +24,61 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_calculate_dashboard" type="object" string="重新计算数据" class="btn-primary"/>
+                    <button name="action_calculate_dashboard" type="object" string="重新计算数据" class="btn-primary" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_view_economic_metrics" type="object" string="经济指标" class="oe_stat_button" icon="fa-line-chart"/>
-                        <button name="action_view_environmental_metrics" type="object" string="环境指标" class="oe_stat_button" icon="fa-leaf"/>
-                        <button name="action_view_social_metrics" type="object" string="社会指标" class="oe_stat_button" icon="fa-users"/>
-                        <button name="action_view_circular_flows" type="object" string="循环经济流程" class="oe_stat_button" icon="fa-recycle"/>
-                        <button name="action_view_carbon_footprints" type="object" string="碳足迹" class="oe_stat_button" icon="fa-leaf"/>
+                        <button name="action_view_economic_metrics" type="object" string="经济指标" class="oe_stat_button" icon="fa-line-chart" />
+                        <button name="action_view_environmental_metrics" type="object" string="环境指标" class="oe_stat_button" icon="fa-leaf" />
+                        <button name="action_view_social_metrics" type="object" string="社会指标" class="oe_stat_button" icon="fa-users" />
+                        <button name="action_view_circular_flows" type="object" string="循环经济流程" class="oe_stat_button" icon="fa-recycle" />
+                        <button name="action_view_carbon_footprints" type="object" string="碳足迹" class="oe_stat_button" icon="fa-leaf" />
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="period_type"/>
-                            <field name="is_active"/>
+                            <field name="name" />
+                            <field name="period_type" />
+                            <field name="is_active" />
                         </group>
                         <group>
-                            <field name="start_date"/>
-                            <field name="end_date"/>
+                            <field name="start_date" />
+                            <field name="end_date" />
                         </group>
                     </group>
                     <notebook>
                         <page string="三重底线得分">
                             <group>
                                 <group string="得分">
-                                    <field name="economic_score"/>
-                                    <field name="environmental_score"/>
-                                    <field name="social_score"/>
-                                    <field name="overall_score"/>
+                                    <field name="economic_score" />
+                                    <field name="environmental_score" />
+                                    <field name="social_score" />
+                                    <field name="overall_score" />
                                 </group>
                                 <group string="趋势">
-                                    <field name="economic_trend"/>
-                                    <field name="environmental_trend"/>
-                                    <field name="social_trend"/>
+                                    <field name="economic_trend" />
+                                    <field name="environmental_trend" />
+                                    <field name="social_trend" />
                                 </group>
                             </group>
                         </page>
                         <page string="关键指标">
                             <group>
-                                <field name="total_circular_flows"/>
-                                <field name="total_circular_value"/>
-                                <field name="waste_reduced"/>
-                                <field name="resource_saved"/>
-                                <field name="total_carbon_footprint"/>
+                                <field name="total_circular_flows" />
+                                <field name="total_circular_value" />
+                                <field name="waste_reduced" />
+                                <field name="resource_saved" />
+                                <field name="total_carbon_footprint" />
                             </group>
                         </page>
                     </notebook>
                     <group>
-                        <field name="description"/>
+                        <field name="description" />
                     </group>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -89,12 +90,12 @@
         <field name="model">agri.sustainability.report</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="report_date"/>
-                <field name="period_start"/>
-                <field name="period_end"/>
-                <field name="overall_score"/>
-                <field name="state"/>
+                <field name="name" />
+                <field name="report_date" />
+                <field name="period_start" />
+                <field name="period_end" />
+                <field name="overall_score" />
+                <field name="state" />
             </list>
         </field>
     </record>
@@ -106,72 +107,72 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_confirm" type="object" string="确认" invisible="state != 'draft'"/>
-                    <button name="action_approve" type="object" string="批准" invisible="state != 'confirmed'"/>
-                    <button name="action_print_report" type="object" string="打印报告"/>
-                    <field name="state" widget="statusbar"/>
+                    <button name="action_confirm" type="object" string="确认" invisible="state != 'draft'" />
+                    <button name="action_approve" type="object" string="批准" invisible="state != 'confirmed'" />
+                    <button name="action_print_report" type="object" string="打印报告" />
+                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="report_date"/>
+                            <field name="name" />
+                            <field name="report_date" />
                         </group>
                         <group>
-                            <field name="period_start"/>
-                            <field name="period_end"/>
+                            <field name="period_start" />
+                            <field name="period_end" />
                         </group>
                     </group>
                     <group string="三重底线得分">
                         <group>
-                            <field name="economic_score"/>
-                            <field name="environmental_score"/>
-                            <field name="social_score"/>
-                            <field name="overall_score"/>
+                            <field name="economic_score" />
+                            <field name="environmental_score" />
+                            <field name="social_score" />
+                            <field name="overall_score" />
                         </group>
                     </group>
                     <group string="环境指标">
                         <group>
-                            <field name="total_carbon_footprint"/>
+                            <field name="total_carbon_footprint" />
                         </group>
                     </group>
                     <group string="循环经济成果">
                         <group>
-                            <field name="circular_flows_count"/>
-                            <field name="circular_value_created"/>
-                            <field name="waste_diverted"/>
-                            <field name="resource_efficiency_improvement"/>
+                            <field name="circular_flows_count" />
+                            <field name="circular_value_created" />
+                            <field name="waste_diverted" />
+                            <field name="resource_efficiency_improvement" />
                         </group>
                     </group>
                     <notebook>
                         <page string="执行摘要">
-                            <field name="executive_summary"/>
+                            <field name="executive_summary" />
                         </page>
                         <page string="经济分析">
-                            <field name="economic_analysis"/>
+                            <field name="economic_analysis" />
                         </page>
                         <page string="环境分析">
-                            <field name="environmental_analysis"/>
+                            <field name="environmental_analysis" />
                         </page>
                         <page string="社会分析">
-                            <field name="social_analysis"/>
+                            <field name="social_analysis" />
                         </page>
                     </notebook>
                     <group string="审批信息">
                         <group>
-                            <field name="author_id"/>
-                            <field name="reviewer_id"/>
+                            <field name="author_id" />
+                            <field name="reviewer_id" />
                         </group>
                         <group>
-                            <field name="approved_by"/>
-                            <field name="approval_date"/>
+                            <field name="approved_by" />
+                            <field name="approval_date" />
                         </group>
                     </group>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -190,4 +191,5 @@
         <field name="res_model">agri.sustainability.report</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

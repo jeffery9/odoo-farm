@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="farm_ux.AgriGatingAudit">
+        <div class="o_agri_gating_audit d-flex justify-content-around p-2 bg-white border rounded shadow-sm mb-3">
+            <!-- Weather Gating -->
+            <div class="d-flex flex-column align-items-center" t-att-class="weatherInfo.class">
+                <i t-attf-class="fa #{weatherInfo.icon} fa-2x mb-1"/>
+                <div class="small fw-bold">WEATHER</div>
+                <div class="x-small"><t t-esc="weatherInfo.text"/></div>
+            </div>
+
+            <!-- Vertical Divider -->
+            <div class="border-start mx-2"/>
+
+            <!-- Compliance Gating -->
+            <div class="d-flex flex-column align-items-center" t-att-class="complianceInfo.class">
+                <i t-attf-class="fa #{complianceInfo.icon} fa-2x mb-1"/>
+                <div class="small fw-bold">COMPLIANCE</div>
+                <div class="x-small"><t t-esc="complianceInfo.text"/></div>
+            </div>
+
+            <!-- Vertical Divider -->
+            <div class="border-start mx-2"/>
+
+            <!-- IoT Status -->
+            <div class="d-flex flex-column align-items-center" t-att-class="iotInfo.class">
+                <i t-attf-class="fa #{iotInfo.icon} fa-2x mb-1"/>
+                <div class="small fw-bold">IOT</div>
+                <div class="x-small"><t t-esc="iotInfo.text"/></div>
+            </div>
+        </div>
+    </t>
+</templates>

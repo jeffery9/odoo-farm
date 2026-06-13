@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="farm_worklog_view_tree" model="ir.ui.view">
         <field name="name">farm.worklog.list</field>
         <field name="model">farm.worklog</field>
         <field name="arch" type="xml">
             <list string="Field Worklogs" editable="bottom">
-                <field name="date"/>
-                <field name="employee_id"/>
-                <field name="task_id"/>
-                <field name="work_type"/>
-                <field name="quantity"/>
-                <field name="uom_id"/>
+                <field name="date" />
+                <field name="employee_id" />
+                <field name="task_id" />
+                <field name="work_type" />
+                <field name="quantity" />
+                <field name="uom_id" />
             </list>
         </field>
     </record>
@@ -21,6 +22,7 @@
         <field name="view_mode">list,form,pivot,graph</field>
     </record>
 
-    <menuitem id="menu_farm_hr_root" name="Labor &amp; HR" sequence="70"/>
-    <menuitem id="menu_farm_worklog" name="Field Worklogs" parent="menu_farm_hr_root" action="action_farm_worklog" sequence="10"/>
+    <menuitem id="menu_farm_hr_root" name="Labor &amp; HR" sequence="70" />
+    <menuitem id="menu_farm_worklog" name="Field Worklogs" parent="menu_farm_hr_root" action="action_farm_worklog" sequence="10" />
+</data>
 </odoo>

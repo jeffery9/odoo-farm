@@ -4,6 +4,7 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 import logging
+from .agri_isl_abstract_models import INDUSTRY_SELECTION
 
 _logger = logging.getLogger(__name__)
 
@@ -21,7 +22,8 @@ class AgriISLModelRedirector(models.AbstractModel):
     @api.model
     def get_isl_record(self, base_model_name, base_record_id):
         """
-        Get the corresponding ISL record for a base record, with industry awareness.
+        [SOLID Refactored] Get the corresponding ISL record for a base record.
+        Uses Odoo delegation inheritance metadata (_inherits) for dynamic discovery.
         """
         if not base_record_id:
             return None
@@ -30,74 +32,30 @@ class AgriISLModelRedirector(models.AbstractModel):
         if not base_record.exists():
             return None
 
-        # 1. Try to find specialized industry ISL models first
         industry = getattr(base_record, 'industry_type', False)
-        if industry:
-            # Common pattern: farm.{industry}.{base_model_suffix}
-            base_suffix = base_model_name.split('.')[-1]
-            # Specialized mappings for specific industries/models
-            special_mappings = {
-                ('aquaculture', 'production'): 'agri.isl.ras.production',
-                ('livestock', 'bom'): 'agri.isl.livestock.bom',
-                ('livestock', 'production'): 'agri.isl.livestock.production',
-                ('crop', 'production'): 'agri.isl.crop.production',
-                ('processing', 'production'): 'agri.isl.processing.production',
-            }
-            
-            target_model = special_mappings.get((industry, base_suffix))
-            if not target_model:
-                # Try generic pattern
-                potential_model = f'agri.isl.{industry}.{base_suffix}'
-                if potential_model in self.env:
-                    target_model = potential_model
-            
-            if target_model and target_model in self.env:
-                # Try both naming conventions for the link field: mrp_bom_id and bom_id
-                field_name_long = base_model_name.replace('.', '_') + '_id'
-                field_name_short = base_model_name.split('.')[-1] + '_id'
-            
-                domain = []
-                if field_name_long in self.env[target_model]._fields:
-                    domain = [(field_name_long, '=', base_record_id)]
-                elif field_name_short in self.env[target_model]._fields:
-                    domain = [(field_name_short, '=', base_record_id)]
+        
+        # Scan registry for models that delegate-inherit from base_model_name
+        for model_name, model_obj in self.env.registry.items():
+            inherits = getattr(model_obj, '_inherits', {})
+            if base_model_name in inherits:
+                # This is a candidate ISL model
+                link_field = inherits[base_model_name]
                 
-                if domain:
-                    isl_record = self.env[target_model].search(domain, limit=1)
-                    if isl_record:
+                # Performance optimization: search with industry filter if possible
+                domain = [(link_field, '=', base_record_id)]
+                
+                # Check if this ISL model matches the record's industry
+                # Most ISL models have industry_type field via AgriManufacturingMixin
+                isl_record = self.env[model_name].search(domain, limit=1)
+                
+                if isl_record:
+                    # If industry is specified, verify match (LSP/OCP check)
+                    if industry and hasattr(isl_record, 'industry_type'):
+                        if isl_record.industry_type == industry:
+                            return isl_record
+                    else:
+                        # Fallback for generic/non-industry ISL models
                         return isl_record
-
-
-        # 2. Fallback to centralized core ISL models
-        isl_model_map = {
-            'mrp.production': 'agri.isl.mrp.production',
-            'mrp.bom': 'agri.isl.mrp.bom',
-            'mrp.workcenter': 'agri.isl.mrp.workcenter',
-            'stock.lot': 'agri.isl.stock.lot',
-            'sale.order': 'agri.isl.sale.order',
-            'purchase.order': 'agri.isl.purchase.order',
-            'product.template': 'agri.isl.product.template',
-            'stock.picking': 'agri.isl.stock.picking',
-            'mrp.workorder': 'agri.isl.mrp.workorder',
-            'quality.point': 'agri.isl.quality.control',
-        }
-
-        if base_model_name in isl_model_map:
-            isl_model_name = isl_model_map[base_model_name]
-            if isl_model_name in self.env:
-                field_name_long = base_model_name.replace('.', '_') + '_id'
-                field_name_short = base_model_name.split('.')[-1] + '_id'
-            
-                domain = []
-                if field_name_long in self.env[isl_model_name]._fields:
-                    domain = [(field_name_long, '=', base_record_id)]
-                elif field_name_short in self.env[isl_model_name]._fields:
-                    domain = [(field_name_short, '=', base_record_id)]
-
-                if domain:
-                    isl_record = self.env[isl_model_name].search(domain, limit=1)
-                    return isl_record
-
 
         return None
 
@@ -105,39 +63,47 @@ class AgriISLModelRedirector(models.AbstractModel):
     @api.model
     def create_isl_record(self, base_model_name, base_record_id, industry_type='general'):
         """
-        Create an ISL record for a base record if it doesn't exist
+        [SOLID Refactored] Create an ISL record for a base record if it doesn't exist.
+        Uses metadata discovery and Naming Conventions instead of hardcoded mappings.
         """
-        # Map base models to their ISL counterparts
-        isl_model_map = {
-            'mrp.production': 'agri.isl.mrp.production',
-            'mrp.bom': 'agri.isl.mrp.bom',
-            'mrp.workcenter': 'agri.isl.mrp.workcenter',
-            'stock.lot': 'agri.isl.stock.lot',
-            'sale.order': 'agri.isl.sale.order',
-            'purchase.order': 'agri.isl.purchase.order',
-            'product.template': 'agri.isl.product.template',
-            'stock.picking': 'agri.isl.stock.picking',
-            'mrp.workorder': 'agri.isl.mrp.workorder',
-            'agri.quality.point': 'agri.isl.quality.control',
-        }
-
-        if base_model_name not in isl_model_map:
+        if not base_model_name or not base_record_id:
             return None
 
-        isl_model_name = isl_model_map[base_model_name]
+        target_model = False
+        link_field = False
+        
+        # 1. Strategy: Industry-Specific Discovery (Convention: agri.isl.{industry}.{suffix})
+        for model_name, model_obj in self.env.registry.items():
+            inherits = getattr(model_obj, '_inherits', {})
+            if base_model_name in inherits:
+                # Priority match: Name includes industry identifier
+                if f".{industry_type}." in model_name or f"_{industry_type}_" in model_name:
+                    target_model = model_name
+                    link_field = inherits[base_model_name]
+                    break
+        
+        # 2. Strategy: Generic Discovery (Convention: agri.isl.{suffix_without_dots})
+        if not target_model:
+            suffix = base_model_name.replace('.', '_')
+            potential_generic = f"agri.isl.{suffix}"
+            if potential_generic in self.env:
+                target_model = potential_generic
+                link_field = self.env[target_model]._inherits[base_model_name]
 
-        # Check if ISL record already exists
-        existing_record = self.env[isl_model_name].search([
-            (base_model_name.replace('.', '_') + '_id', '=', base_record_id)
+        if not target_model:
+            return None
+
+        # 3. Check if ISL record already exists
+        existing_record = self.env[target_model].search([
+            (link_field, '=', base_record_id)
         ], limit=1)
 
         if existing_record:
             return existing_record
 
-        # Create new ISL record
-        field_name = base_model_name.replace('.', '_') + '_id'
-        isl_record = self.env[isl_model_name].create({
-            field_name: base_record_id,
+        # 4. Create new ISL record
+        isl_record = self.env[target_model].create({
+            link_field: base_record_id,
             'industry_type': industry_type,
         })
 
@@ -165,16 +131,11 @@ class AgriISLIndustryExtension(models.Model):
     _description = 'Agri ISL Extension'
 
     name = fields.Char('Extension Name', required=True)
-    industry_type = fields.Selection([
-        ('field_crop', 'Field Crop'),
-        ('livestock', 'Livestock'),
-        ('aquaculture', 'Aquaculture'),
-        ('general', 'General Agriculture'),
-        ('field_crop', 'Field Crop'),
-        ('livestock', 'Livestock'),
-        ('aquaculture', 'Aquaculture'),
-        ('general', 'General Agriculture')
-    ], string='Industry Type', required=True)
+    industry_type = fields.Selection(
+        selection=INDUSTRY_SELECTION,
+        string='Industry Type', 
+        required=True
+    )
 
     model_name = fields.Char('Model Name', required=True)
     extension_fields = fields.Text('Extension Fields (JSON)')

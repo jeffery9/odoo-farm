@@ -41,8 +41,8 @@ class FarmTeaProduction(models.Model):
 
     production_id = fields.Many2one('mrp.production', string='Base Order', required=True, ondelete='cascade')
 
-    # Seasonal Context [US-107-01]
-    tea_season_id = fields.Many2one('agri.intervention.seasonal.bom', string="Tea Flush/Season")
+    # Seasonal Context [US-107-01] [Refactored]
+    tea_season_id = fields.Many2one('agri.seasonal.recipe', string="Tea Flush/Season")
     harvest_altitude = fields.Float("Leaf Altitude (m)", related='production_id.location_src_id.altitude_meters')
 
     def action_confirm(self):

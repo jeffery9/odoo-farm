@@ -4,7 +4,6 @@ class ProductTemplate(models.Model):
     _name = 'product.template'
     _inherit = 'product.template'
 
-    is_agri_input = fields.Boolean("Is Agri Input", default=False)
     input_type = fields.Selection([
         ('seed', 'Seed/Variety'),
         ('fertilizer', 'Fertilizer'),
@@ -14,7 +13,7 @@ class ProductTemplate(models.Model):
         ('other', 'Other Supplies')
     ], string="Input Type")
 
-    is_safety_approved = fields.Boolean("Safety Approved", default=True, help="Is this input compliant with organic/safety standards?")
+    # is_safety_approved moved to core mixin
     active_ingredient = fields.Char("Active Ingredient", help="e.g. Glyphosate, Nitrogen content")
 
     # 养分含量 [US-001-03]
@@ -57,14 +56,14 @@ class PurchaseOrder(models.Model):
     # Link to joint procurement for cooperative purchases
     joint_procurement_order_id = fields.Many2one(
         'joint.procurement.order',
-        string="Joint Procurement Order",
+        string="Joint Supply Order",
         help="Link to cooperative/consortium procurement order"
     )
 
     agri_task_id = fields.Many2one(
         'project.task',
-        string="Origin Agri Task",
-        help="The specific production task that triggered this procurement."
+        string="Originating Task",
+        help="The specific intervention task that triggered this supply requirement."
     )
 
     @api.model_create_multi

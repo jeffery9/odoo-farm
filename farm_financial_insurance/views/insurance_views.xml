@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_farm_crop_yield_insurance_tree" model="ir.ui.view">
         <field name="name">farm.crop.yield.insurance.tree</field>
         <field name="model">farm.crop.yield.insurance</field>
         <field name="arch" type="xml">
             <list string="Crop Yield Insurance">
-                <field name="name"/>
-                <field name="partner_id"/>
-                <field name="product_id"/>
-                <field name="amount"/>
-                <field name="premium_amount"/>
-                <field name="state"/>
+                <field name="name" />
+                <field name="partner_id" />
+                <field name="product_id" />
+                <field name="amount" />
+                <field name="premium_amount" />
+                <field name="state" />
             </list>
         </field>
     </record>
@@ -22,57 +23,65 @@
         <field name="arch" type="xml">
             <form string="Crop Yield Insurance">
                 <header>
-                    <button name="action_submit_application" type="object" string="Submit Application" class="oe_highlight" invisible="state != 'draft'"/>
-                    <button name="action_approve_insurance" type="object" string="Approve" class="oe_highlight" invisible="state != 'submitted'"/>
-                    <button name="action_activate_insurance" type="object" string="Activate" class="oe_highlight" invisible="state != 'approved'"/>
-                    <button name="action_check_weather_indices" type="object" string="Check Weather Indices" invisible="state != 'active'"/>
-                    <button name="action_settle_claim" type="object" string="Settle" class="oe_highlight" invisible="state != 'claim_approved'"/>
-                    <field name="state" widget="statusbar"/>
+                    <button name="action_submit_application" type="object" string="Submit Application" class="oe_highlight" invisible="state != 'draft'" />
+                    <button name="action_approve_insurance" type="object" string="Approve" class="oe_highlight" invisible="state != 'submitted'" />
+                    <button name="action_activate_insurance" type="object" string="Activate" class="oe_highlight" invisible="state != 'approved'" />
+                    <button name="action_check_weather_indices" type="object" string="Check Weather Indices" invisible="state != 'active'" />
+                    <button name="action_settle_claim" type="object" string="Settle" class="oe_highlight" invisible="state != 'claim_approved'" />
+                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
                     <group>
                         <group string="Policy Information">
-                            <field name="name"/>
-                            <field name="partner_id"/>
-                            <field name="insurance_type"/>
-                            <field name="reference"/>
+                            <field name="name" />
+                            <field name="partner_id" />
+                            <field name="insurance_type" />
+                            <field name="reference" />
                         </group>
                         <group string="Financial Information">
-                            <field name="amount"/>
-                            <field name="premium_amount"/>
-                            <field name="premium_rate"/>
-                            <field name="service_fees"/>
+                            <field name="amount" />
+                            <field name="premium_amount" />
+                            <field name="premium_rate" />
+                            <field name="service_fees" />
                         </group>
                     </group>
                     <group string="Coverage Details">
-                        <field name="product_id"/>
-                        <field name="land_location_id"/>
-                        <field name="coverage_area"/>
-                        <field name="coverage_type"/>
-                        <field name="coverage_percentage"/>
-                        <field name="indemnity_base_price"/>
+                        <field name="product_id" />
+                        <field name="land_location_id" />
+                        <field name="coverage_area" />
+                        <field name="coverage_type" />
+                        <field name="coverage_percentage" />
+                        <field name="indemnity_base_price" />
                     </group>
                     <group string="Timeline">
-                        <field name="application_date"/>
-                        <field name="approval_date"/>
-                        <field name="maturity_date"/>
-                        <field name="duration_months"/>
-                        <field name="planting_date"/>
+                        <field name="application_date" />
+                        <field name="approval_date" />
+                        <field name="maturity_date" />
+                        <field name="duration_months" />
+                        <field name="planting_date" />
                     </group>
                     <notebook>
                         <page string="Yield Parameters">
                             <group>
-                                <field name="expected_yield"/>
-                                <field name="historical_yield"/>
-                                <field name="risk_score"/>
-                                <field name="weather_monitoring"/>
+                                <field name="expected_yield" />
+                                <field name="historical_yield" />
+                                <field name="risk_score" />
+                                <field name="weather_monitoring" />
                             </group>
                         </page>
                         <page string="Weather Triggers">
-                            <field name="weather_index_ids" widget="many2many_tags" options="{'color_field': 'index_type'}"/>
+                            <field name="weather_index_ids" widget="many2many_tags" options="{'color_field': 'index_type'}" />
                         </page>
-                        
-
+                        <page string="Claims">
+                            <field name="claim_ids">
+                                <list>
+                                    <field name="claim_type" />
+                                    <field name="requested_amount" />
+                                    <field name="approved_amount" />
+                                    <field name="state" />
+                                </list>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
@@ -85,10 +94,10 @@
         <field name="model">farm.insurance.index</field>
         <field name="arch" type="xml">
             <list string="Insurance Indices">
-                <field name="name"/>
-                <field name="index_type"/>
-                <field name="threshold_value"/>
-                <field name="payout_factor"/>
+                <field name="name" />
+                <field name="index_type" />
+                <field name="threshold_value" />
+                <field name="payout_factor" />
             </list>
         </field>
     </record>
@@ -101,13 +110,13 @@
             <form string="Insurance Index">
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="index_type"/>
+                        <field name="name" />
+                        <field name="index_type" />
                     </group>
                     <group>
-                        <field name="threshold_value"/>
-                        <field name="comparison_operator"/>
-                        <field name="payout_factor"/>
+                        <field name="threshold_value" />
+                        <field name="comparison_operator" />
+                        <field name="payout_factor" />
                     </group>
                 </sheet>
             </form>
@@ -116,47 +125,47 @@
 
     
     <record id="view_farm_insurance_claim_tree" model="ir.ui.view">
-        <field name="name">farm.insurance.claim.tree</field>
-        <field name="model">farm.insurance.claim</field>
+        <field name="name">farm.financial.insurance.claim.tree</field>
+        <field name="model">farm.financial.insurance.claim</field>
         <field name="arch" type="xml">
             <list string="Insurance Claims">
-                <field name="insurance_id"/>
-                <field name="claim_type"/>
-                <field name="requested_amount"/>
-                <field name="approved_amount"/>
-                <field name="state"/>
+                <field name="insurance_id" />
+                <field name="claim_type" />
+                <field name="requested_amount" />
+                <field name="approved_amount" />
+                <field name="state" />
             </list>
         </field>
     </record>
 
     
     <record id="view_farm_insurance_claim_form" model="ir.ui.view">
-        <field name="name">farm.insurance.claim.form</field>
-        <field name="model">farm.insurance.claim</field>
+        <field name="name">farm.financial.insurance.claim.form</field>
+        <field name="model">farm.financial.insurance.claim</field>
         <field name="arch" type="xml">
             <form string="Insurance Claim">
                 <header>
-                    <button name="action_verify" type="object" string="Verify" invisible="state != 'draft'"/>
-                    <button name="action_approve" type="object" string="Approve" invisible="state != 'verified'"/>
-                    <field name="state" widget="statusbar"/>
+                    <button name="action_verify" type="object" string="Verify" invisible="state != 'draft'" />
+                    <button name="action_approve" type="object" string="Approve" invisible="state != 'verified'" />
+                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="insurance_id"/>
-                            <field name="claim_type"/>
+                            <field name="insurance_id" />
+                            <field name="claim_type" />
                         </group>
                         <group>
-                            <field name="requested_amount"/>
-                            <field name="approved_amount"/>
+                            <field name="requested_amount" />
+                            <field name="approved_amount" />
                         </group>
                     </group>
                     <group>
-                        <field name="index_id" invisible="claim_type != 'weather_index'"/>
-                        <field name="auto_triggered"/>
+                        <field name="index_id" invisible="claim_type != 'weather_index'" />
+                        <field name="auto_triggered" />
                     </group>
                     <group string="Evidence">
-                        <field name="evidence_summary"/>
+                        <field name="evidence_summary" />
                     </group>
                 </sheet>
             </form>
@@ -178,7 +187,8 @@
 
     <record id="action_farm_insurance_claim" model="ir.actions.act_window">
         <field name="name">Insurance Claims</field>
-        <field name="res_model">farm.insurance.claim</field>
+        <field name="res_model">farm.financial.insurance.claim</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

@@ -1,44 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Processing Formula Blind Material Tree View -->
-    <record id="view_farm_processing_blind_material_tree" model="ir.ui.view">
-        <field name="name">farm.processing.blind.material.tree</field>
-        <field name="model">farm.processing.blind.material</field>
+<data>
+<record id="view_agri_processing_blind_input_tree" model="ir.ui.view">
+        <field name="name">agri.processing.blind.input.tree</field>
+        <field name="model">agri.processing.blind.input</field>
         <field name="arch" type="xml">
-            <list string="Blind Mixing Materials">
-                <field name="formula_bom_id"/>
-                <field name="product_id"/>
-                <field name="actual_qty"/>
-                <field name="instruction_qty"/>
-                <field name="sequence"/>
+            <list string="Blind Mixing Inputs">
+                <field name="formula_recipe_id" />
+                <field name="product_id" />
+                <field name="sequence" />
             </list>
         </field>
     </record>
 
-    <!-- Processing Formula Blind Material Form View -->
-    <record id="view_farm_processing_blind_material_form" model="ir.ui.view">
-        <field name="name">farm.processing.blind.material.form</field>
-        <field name="model">farm.processing.blind.material</field>
+    
+    <record id="view_agri_processing_blind_input_form" model="ir.ui.view">
+        <field name="name">agri.processing.blind.input.form</field>
+        <field name="model">agri.processing.blind.input</field>
         <field name="arch" type="xml">
-            <form string="Blind Mixing Material">
+            <form string="Blind Mixing Input">
                 <sheet>
                     <group>
                         <group>
-                            <field name="formula_bom_id"/>
-                            <field name="product_id"/>
+                            <field name="formula_recipe_id" />
+                            <field name="product_id" />
                         </group>
                         <group>
-                            <field name="sequence"/>
+                            <field name="sequence" />
                         </group>
                     </group>
                     <group>
-                        <group string="Quantities">
-                            <field name="actual_qty"/>
-                            <field name="instruction_qty"/>
+                        <group string="Configuration">
+                            <field name="blind_name" />
+                            <field name="hide_during_mixing" />
                         </group>
                         <group string="Access Control">
-                            <field name="actual_qty" groups="farm_core.group_confidential_access"/>
+                            <field name="authorized_users" widget="many2many_tags" />
                         </group>
                     </group>
                 </sheet>
@@ -46,56 +43,67 @@
         </field>
     </record>
 
-    <!-- Formula Auto Correction Tree View -->
-    <record id="view_farm_processing_formula_auto_correction_tree" model="ir.ui.view">
-        <field name="name">farm.processing.formula.auto.correction.tree</field>
-        <field name="model">farm.processing.formula.auto.correction</field>
+    
+    <record id="view_agri_processing_formula_auto_correction_tree" model="ir.ui.view">
+        <field name="name">agri.processing.formula.auto.correction.tree</field>
+        <field name="model">agri.processing.formula.auto.correction</field>
         <field name="arch" type="xml">
             <list string="Formula Auto Corrections">
-                <field name="name"/>
-                <field name="bom_id"/>
-                <field name="base_attribute"/>
-                <field name="target_attribute_value"/>
-                <field name="active"/>
+                <field name="name" />
+                <field name="bom_id" />
+                <field name="correction_status" />
+                <field name="corrected_by" />
+                <field name="corrected_date" />
             </list>
         </field>
     </record>
 
-    <!-- Formula Auto Correction Form View -->
-    <record id="view_farm_processing_formula_auto_correction_form" model="ir.ui.view">
-        <field name="name">farm.processing.formula.auto.correction.form</field>
-        <field name="model">farm.processing.formula.auto.correction</field>
+    
+    <record id="view_agri_processing_formula_auto_correction_form" model="ir.ui.view">
+        <field name="name">agri.processing.formula.auto.correction.form</field>
+        <field name="model">agri.processing.formula.auto.correction</field>
         <field name="arch" type="xml">
             <form string="Formula Auto Correction Rule">
+                <header>
+                    <button name="action_apply_correction" string="Apply Correction" type="object" class="oe_highlight" invisible="correction_status != 'pending'" />
+                    <button name="action_reject_correction" string="Reject" type="object" invisible="correction_status != 'pending'" />
+                    <field name="correction_status" widget="statusbar" />
+                </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="bom_id"/>
+                            <field name="name" />
+                            <field name="bom_id" />
+                            <field name="production_id" />
                         </group>
                         <group>
-                            <field name="base_attribute"/>
-                            <field name="active"/>
+                            <field name="corrected_by" />
+                            <field name="corrected_date" />
                         </group>
                     </group>
-                    <group string="Correction Parameters">
-                        <field name="correction_function"/>
-                        <field name="target_attribute_value"/>
-                        <field name="tolerance_range"/>
-                        <field name="correction_factor"/>
+                    <group string="Original Data">
+                        <group>
+                            <field name="original_product_id" />
+                            <field name="original_qty" />
+                        </group>
                     </group>
-                    <group string="Affected BOM Lines">
-                        <field name="bom_line_corrections">
-                            <list editable="top">
-                                <field name="bom_line_id"/>
-                                <field name="adjustment_type"/>
-                                <field name="adjustment_value"/>
-                            </list>
-                        </field>
+                    <group string="Actual Data">
+                        <group>
+                            <field name="actual_product_id" />
+                            <field name="actual_qty" />
+                        </group>
+                    </group>
+                    <group string="Correction">
+                        <group>
+                            <field name="correction_qty" />
+                        </group>
+                        <group>
+                            <field name="correction_reason" />
+                        </group>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
-
+</data>
 </odoo>

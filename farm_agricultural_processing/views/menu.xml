@@ -1,50 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_farm_agricultural_processing_root"
-              name="Agricultural Processing"
- web_icon="farm_agricultural_processing,static/description/icon.png"
-              sequence="40"/>
+<data>
+<menuitem id="menu_farm_agricultural_processing_root" name="Agricultural Processing" web_icon="farm_agricultural_processing,static/description/icon.png" sequence="40" />
 
-    <menuitem id="menu_processing_orders"
-              name="Processing Tasks"
-              parent="menu_farm_agricultural_processing_root"
-              action="mrp.mrp_production_action"
-              sequence="10"/>
+    <menuitem id="menu_processing_orders" name="Processing Tasks" parent="menu_farm_agricultural_processing_root" action="mrp.mrp_production_action" sequence="10" />
 
-    <menuitem id="menu_processing_boms"
-              name="Agri-Recipes (BOM)"
-              parent="menu_farm_agricultural_processing_root"
-              action="mrp.mrp_bom_form_action"
-              sequence="20"/>
+    <menuitem id="menu_processing_boms" name="Agri-Recipes" parent="menu_farm_agricultural_processing_root" action="mrp.mrp_bom_form_action" sequence="20" />
 
-    <menuitem id="menu_storage_monitoring"
-              name="Storage Monitoring"
-              parent="menu_farm_agricultural_processing_root"
-              action="action_farm_storage_env"
-              sequence="30"/>
+    <menuitem id="menu_storage_monitoring" name="Storage Monitoring" parent="menu_farm_agricultural_processing_root" action="action_farm_storage_env" sequence="30" />
 
-    <menuitem id="menu_processing_waste"
-              name="Waste Registry"
-              parent="menu_farm_agricultural_processing_root"
-              action="action_farm_agricultural_processing_waste"
-              sequence="40"/>
-    <menuitem id="menu_agri_processing_orders" name="Processing Orders" parent="farm_processing.menu_farm_processing_root" sequence="10"/>
+    <menuitem id="menu_processing_waste" name="Waste Registry" parent="menu_farm_agricultural_processing_root" action="action_farm_agricultural_processing_waste" sequence="40" />
+    <menuitem id="menu_agri_processing_orders" name="Processing Orders" parent="farm_processing.menu_farm_processing_root" sequence="10" />
 
-    <menuitem id="menu_farm_ham_production"
-              name="Ham Curing"
-              parent="menu_agri_processing_orders"
-              action="action_farm_ham_production"
-              sequence="10"/>
+    <menuitem id="menu_farm_ham_production" name="Ham Curing" parent="menu_agri_processing_orders" action="action_farm_ham_production" sequence="10" />
 
-    <menuitem id="menu_farm_aquatic_production"
-              name="Aquatic Processing"
-              parent="menu_agri_processing_orders"
-              action="action_farm_aquatic_production"
-              sequence="20"/>
+    <menuitem id="menu_farm_aquatic_production" name="Aquatic Processing" parent="menu_agri_processing_orders" action="action_farm_aquatic_production" sequence="20" />
 
-    <menuitem id="menu_farm_net_vegetable_production"
-              name="Net Veg Prep"
-              parent="menu_agri_processing_orders"
-              action="action_farm_net_vegetable_production"
-              sequence="30"/>
+    <menuitem id="menu_farm_net_vegetable_production" name="Net Veg Prep" parent="menu_agri_processing_orders" action="action_farm_net_vegetable_production" sequence="30" />
+</data>
 </odoo>

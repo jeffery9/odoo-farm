@@ -4,6 +4,9 @@ import math
 import base64
 import datetime
 import re
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class AgriInterventionMixin(models.AbstractModel):
@@ -13,9 +16,26 @@ class AgriInterventionMixin(models.AbstractModel):
     """
     _name = 'agri.intervention.mixin'
     _description = 'Agri Agricultural Intervention Shared Logic'
-    _inherit = ['agri.resource.consumption.mixin', 'agri.incident.alert.mixin']
+    _inherit = ['agri.intervention.base', 'agri.resource.consumption.mixin', 'agri.incident.alert.mixin']
 
-    # Basic intervention fields
+    # Registry for intervention plugins
+    @api.model
+    def _get_intervention_plugins(self):
+        res = super(AgriInterventionMixin, self)._get_intervention_plugins()
+        res.extend([
+            {'name': 'weather_gating', 'class': 'agri.intervention.plugin.weather'},
+            {'name': 'spatial_audit', 'class': 'agri.intervention.plugin.spatial'},
+            {'name': 'yield_calibration', 'class': 'agri.intervention.plugin.yield'},
+            {'name': 'nutrient_tracking', 'class': 'agri.intervention.plugin.nutrient'},
+            {'name': 'compliance', 'class': 'agri.intervention.plugin.compliance'},
+            {'name': 'labor_tracking', 'class': 'agri.intervention.plugin.labor'},
+            {'name': 'iot_monitoring', 'class': 'agri.intervention.plugin.iot'},
+            {'name': 'harvest_grading', 'class': 'agri.intervention.plugin.harvest'},
+            {'name': 'work_verification', 'class': 'agri.intervention.plugin.verification'},
+        ])
+        return res
+
+    # Basic intervention fields (location_id is now in base)
     agri_task_id = fields.Many2one(
         'project.task',
         string="Production Task",
@@ -26,6 +46,12 @@ class AgriInterventionMixin(models.AbstractModel):
         'farm.agricultural.campaign',
         string="Campaign/Season",
         help="The production season this intervention belongs to."
+    )
+
+    biological_asset_id = fields.Many2one(
+        'agri.biological.asset',
+        string="Target Biological Asset",
+        help="The living asset this intervention is performed upon."
     )
 
     # ---------------------------------------------------------
@@ -62,21 +88,14 @@ class AgriInterventionMixin(models.AbstractModel):
 
     def action_trigger_iot_based_intervention(self, sensor_readings_summary):
         """
-        Automatically adjust IoT status and log interventions based on sensor streams.
+        Automatically adjust IoT status via Plugin.
         """
         self.ensure_one()
         self.intervention_count += 1
         
-        # Determine urgency based on telemetry keywords
-        summary_lower = sensor_readings_summary.lower()
-        if any(kw in summary_lower for kw in ['critical', 'deviation', 'error', 'emergency']):
-            self.iot_status = 'critical'
-        elif any(kw in summary_lower for kw in ['warning', 'alert', 'high', 'low']):
-            self.iot_status = 'warning'
-        else:
-            self.iot_status = 'monitoring'
-
-        self.message_post(body=_("IoT Auto-Intervention (Cycle %s): %s") % (self.intervention_count, sensor_readings_summary))
+        # Use IoT Plugin
+        plugin = self.env['agri.intervention.plugin.iot']
+        plugin.update_iot_status(self, sensor_readings_summary)
         return True
 
 
@@ -131,18 +150,12 @@ class AgriInterventionMixin(models.AbstractModel):
         for mo in self:
             # 1. 投入品成本 (Actual Cost from Moves)
             inputs = 0.0
-            n_total = p_total = k_total = 0.0
             for move in mo.move_raw_ids:
                 inputs += move.product_uom_qty * move.product_id.standard_price
-                # RESTORED: Calculate Pure Nutrients
-                if hasattr(move.product_id, 'n_content'):
-                    n_total += move.product_uom_qty * (move.product_id.n_content / 100.0)
-                    p_total += move.product_uom_qty * (move.product_id.p_content / 100.0)
-                    k_total += move.product_uom_qty * (move.product_id.k_content / 100.0)
 
             # 2. 劳动力成本
             labor = 0.0
-            if hasattr(mo, 'agri_task_id') and mo.agri_task_id:
+            if hasattr(mo, 'agri_task_id') and mo.agri_task_id and hasattr(mo.agri_task_id, 'worklog_ids'):
                 labor = sum(mo.agri_task_id.worklog_ids.mapped(lambda l: l.quantity * (l.employee_id.hourly_cost or 50.0)))
 
             # 3. 工具与机械成本
@@ -162,11 +175,6 @@ class AgriInterventionMixin(models.AbstractModel):
             mo.tool_cost = tools
             mo.energy_cost = energy
             mo.total_agri_cost = inputs + labor + tools + energy
-
-            # RESTORED: Assign Nutrient Totals
-            mo.pure_n_qty = n_total
-            mo.pure_p_qty = p_total
-            mo.pure_k_qty = k_total
 
     # 工时追踪 [US-036-03]
     work_start_datetime = fields.Datetime("Work Start")
@@ -191,8 +199,8 @@ class AgriInterventionMixin(models.AbstractModel):
         ('done', 'Completed'),
     ], string="Simplified State", compute='_compute_simplified_state', store=True, precompute=True)
 
-    # @api.depends(.state., .approval_state.)
-    def _compute_simplified_state_old(self):
+    @api.depends('state', 'approval_state')
+    def _compute_simplified_state(self):
         for rec in self:
             if rec.state == 'draft' and rec.approval_state == 'draft':
                 rec.simplified_state = 'draft'
@@ -215,11 +223,11 @@ class AgriInterventionMixin(models.AbstractModel):
     out_of_bounds_count = fields.Integer("OOB Point Count", compute='_compute_spatial_audit', help="Number of telemetry points outside the parcel.")
     spatial_compliance_rate = fields.Float("Spatial Compliance (%)", compute='_compute_spatial_audit')
 
-    @api.depends('agri_task_id.land_parcel_id', 'is_working')
+    @api.depends('location_id', 'is_working')
     def _compute_spatial_audit(self):
         """ 统计该任务期间所有 GPS 记录的合规性 """
         for mo in self:
-            parcel = mo.agri_task_id.land_parcel_id if mo.agri_task_id else None
+            parcel = mo.location_id
             if not parcel or not hasattr(parcel, 'gps_coordinates') or not parcel.gps_coordinates:
                 mo.out_of_bounds_count = 0
                 mo.spatial_compliance_rate = 100.0
@@ -262,17 +270,15 @@ class AgriInterventionMixin(models.AbstractModel):
         self.message_post(body=_("Intervention submitted for supervisor approval."))
 
     def action_approve(self):
-        """Approve the intervention"""
+        """Approve the intervention and confirm in base engine"""
         self.ensure_one()
         self.write({
             'approval_state': 'approved',
             'approver_id': self.env.user.id,
             'approval_date': fields.Datetime.now()
         })
-        # Approve后自动确认生产单
-        if self.state == 'draft':
-            if hasattr(self, 'action_confirm'):
-                self.action_confirm()
+        # Use Base Engine for confirmation
+        self.action_confirm_base()
         self.message_post(body=_("Intervention approved by %s") % self.env.user.name)
 
     def action_reject(self):
@@ -281,67 +287,38 @@ class AgriInterventionMixin(models.AbstractModel):
         self.write({'approval_state': 'rejected'})
         self.message_post(body=_("Intervention rejected."))
 
-    def action_start_work(self):
-        """Start the actual work"""
-        """ 一键打卡：开始作业 """
-        # US-002-06: Weather window check for spray operations
-        if hasattr(self, 'intervention_type') and self.intervention_type in ['fertilizing', 'protection', 'aerial_spraying']:
-            self._check_weather_window()
+    # ---------------------------------------------------------
+    # Overridable Hooks (Bridge Pattern Implementation)
+    # ---------------------------------------------------------
 
-        self.ensure_one()
-        self.write({
-            'work_start_datetime': fields.Datetime.now(),
-            'is_working': True
-        })
-        self.message_post(body=_("Labor: Work started at %s") % self.work_start_datetime)
+    def _hook_pre_confirm(self):
+        """[US-041-02] Compliance Gating before confirmation"""
+        super()._hook_pre_confirm()
+        # Additional business-specific confirm logic if needed
+        _logger.info("Farm Operation: Running pre-confirm hooks for %s", self.name)
 
-    def _check_weather_window(self):
-        """
-        Check weather conditions before allowing spray operations [US-002-06]
-        """
-        self.ensure_one()
+    def _hook_pre_start(self):
+        """[US-053-04] Weather & IoT Gating before starting"""
+        super()._hook_pre_start()
+        # Verify IoT status before allowing start
+        if self.iot_status == 'critical':
+            raise UserError(_("CRITICAL ALERT: IoT sensors report hazardous conditions. Cannot start intervention."))
 
-        # 获取作业地点最近的天气预报
-        parcel = self.agri_task_id.land_parcel_id if self.agri_task_id else None
-        if not parcel or not hasattr(parcel, 'gps_coordinates') or not parcel.gps_coordinates:
-            return  # 如果没有地理信息，则跳过检查
+    def _hook_pre_done(self):
+        """[US-002-04] Harvest Grading and Audit before completion"""
+        super()._hook_pre_done()
+        _logger.info("Farm Operation: Running pre-done hooks for %s", self.name)
 
-        # 获取未来24小时天气预报
-        from datetime import datetime, timedelta
-        end_time = datetime.now() + timedelta(hours=24)
+    def _hook_post_done(self):
+        """[US-036-03] Labor recording and Cleanup after completion"""
+        super()._hook_post_done()
+        # Auto-record worklog if not already recorded
+        if not self.is_working and self.date_start:
+            self._create_auto_worklog_from_hook()
 
-        # 查找相关的天气预报记录 (需要安装天气模块)
-        if hasattr(self.env['agri.weather.forecast'], 'search'):
-            forecast = self.env['agri.weather.forecast'].search([
-                ('location_id', '=', parcel.id),
-                ('forecast_datetime', '<=', end_time),
-                ('forecast_datetime', '>=', datetime.now())
-            ], limit=1, order='forecast_datetime asc')
-
-            if forecast:
-                # 检查风速是否超过4级（约16km/h）
-                if forecast.wind_speed_kmh and forecast.wind_speed_kmh > 16:
-                    # US-002-06: Create high-priority activity for technician review
-                    self.activity_schedule(
-                        'mail.mail_activity_data_todo',
-                        summary=_('WEATHER BLOCK: High Wind Speed (%s km/h)') % forecast.wind_speed_kmh,
-                        note=_('Intervention %s was blocked. Wind speed exceeds level 4. Review required by Technical Director.') % self.name,
-                        user_id=self.env.ref('farm_core.group_farm_specialist').users[:1].id or self.env.user.id
-                    )
-                    raise UserError(_(
-                        "WEATHER WINDOW BLOCK: Wind speed too high (%s km/h > 16 km/h). "
-                        "Risk detected for spray operation. Technical director has been notified."
-                    ) % forecast.wind_speed_kmh)
-
-    def action_stop_work(self):
-        """Stop the actual work"""
-        """ 一键打卡：停止作业并自动创建工时记录 """
-        self.ensure_one()
-        if not self.work_start_datetime:
-            return
-
-        now = fields.Datetime.now()
-        if hasattr(self.env['farm.worklog'], 'create'):
+    def _create_auto_worklog_from_hook(self):
+        """Helper to create worklog from completion hook"""
+        if 'farm.worklog' in self.env:
             employee = self.env.user.employee_id
             self.env['farm.worklog'].create({
                 'employee_id': employee.id if employee else False,
@@ -349,54 +326,32 @@ class AgriInterventionMixin(models.AbstractModel):
                 'date': fields.Date.today(),
                 'work_type': self.intervention_type or 'harvesting',
                 'quantity': 1.0,
-                'notes': _('Auto-recorded from intervention %s') % self.name
+                'notes': _('Auto-recorded from intervention hook: %s') % self.name
             })
 
-        self.write({
-            'is_working': False,
-            'work_start_datetime': False
-        })
-        self.message_post(body=_("Labor: Work stopped and recorded at %s") % now)
+    # ---------------------------------------------------------
+    # UI Actions (Refactored to use Hooks)
+    # ---------------------------------------------------------
+
+    def action_start_work(self):
+        """Start the actual work via Base Engine (which triggers hooks)"""
+        self.ensure_one()
+        self.action_start_base()
+        self.write({'is_working': True})
+        return True
+
+    def action_stop_work(self):
+        """Stop the actual work via Base Engine (which triggers hooks)"""
+        self.ensure_one()
+        if not self.date_start:
+            return
+        self.action_done_base()
+        self.write({'is_working': False})
+        return True
 
     def action_confirm(self):
-        """扩展确认逻辑，进行安全拦截 [US-003-04] 并传递任务 ID 到供应端 [US-009-01]"""
-        for mo in self:
-            # US-041-02: Check real-name registration for pesticide/veterinary
-            if hasattr(mo, 'intervention_type') and mo.intervention_type in ['protection', 'aerial_spraying', 'medical']:
-                if not mo.operator_id_card:
-                    raise UserError(_("COMPLIANCE ERROR: Operator ID Card is required for real-name registration of %s!") % dict(mo._fields['intervention_type'].selection).get(mo.intervention_type))
-                if mo.operator_id_card:
-                    import re
-                    if not re.match(r'^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$', mo.operator_id_card):
-                        raise UserError(_("COMPLIANCE ERROR: Invalid ID Card format for operator!"))
-
-            # 1. 检查有机拦截
-            if mo.agri_task_id and mo.agri_task_id.land_parcel_id:
-                is_organic_parcel = mo.agri_task_id.land_parcel_id.certification_level in ['organic', 'organic_transition']
-                for move in mo.move_raw_ids:
-                    if (hasattr(move.product_id, 'is_agri_input') and move.product_id.is_agri_input and
-                        (not hasattr(move.product_id, 'is_safety_approved') or not move.product_id.is_safety_approved)):
-                        if is_organic_parcel:
-                            # 如果是有机地块，记录违规日期以重置转换期 [US-035-02]
-                            mo.agri_task_id.land_parcel_id.last_prohibited_substance_date = fields.Date.today()
-                            # 发出警告而非强制报错，这里选择报错以严格合规
-                            raise UserError(_("COMPLIANCE ERROR: Product %s is not approved for organic production on parcel %s!") % (
-                                move.product_id.name, mo.agri_task_id.land_parcel_id.name
-                            ))
-
-            # 2. 传递 agri_task_id 到采购逻辑 (通过 procurement_group)
-            if mo.agri_task_id and mo.procurement_group_id:
-                if hasattr(mo.procurement_group_id, 'agri_task_id'):
-                    mo.procurement_group_id.agri_task_id = mo.agri_task_id.id
-
-            # 3. 触发休药期更新 (调用 farm_safety 注入的方法)
-            if mo.agri_task_id and hasattr(mo.agri_task_id, 'action_confirm_intervention_safety'):
-                if hasattr(mo.move_raw_ids, 'mapped'):
-                    mo.agri_task_id.action_confirm_intervention_safety(mo.move_raw_ids.mapped('product_id').ids)
-
-        # Call the parent method if it exists
-        if hasattr(super(AgriInterventionMixin, self), 'action_confirm'):
-            return super(AgriInterventionMixin, self).action_confirm()
+        """扩展确认逻辑，通过基础引擎触发钩子"""
+        self.filtered(lambda r: r.state == 'draft').action_confirm_base()
         return True
 
     def action_export_drone_kml(self):
@@ -461,98 +416,12 @@ class AgriInterventionMixin(models.AbstractModel):
         }
 
     def button_mark_done(self):
-        """Extend the done logic to handle drone spraying depletion and graded outputs."""
+        """扩展完成逻辑，通过基础引擎触发钩子"""
         for intervention in self:
-            # US-052-04: 无人机飞防自动核销
-            if hasattr(intervention, 'intervention_type') and intervention.intervention_type == 'aerial_spraying' and intervention.actual_flight_area > 0:
-                for move in intervention.move_raw_ids:
-                    # 根据实际作业面积动态调整原材料需求量
-                    # 假设配方中 product_uom_qty 是针对 1 亩设计的
-                    if hasattr(move, 'bom_line_id'):
-                        move.product_uom_qty = intervention.actual_flight_area * (move.bom_line_id.product_qty if move.bom_line_id else 1.0)
-
-            if hasattr(intervention, 'intervention_type') and intervention.intervention_type == 'harvesting':
-                # Handle graded quantities logic
-                total_graded_qty = intervention.grade_a_qty + intervention.grade_b_qty + intervention.grade_c_qty
-
-                if total_graded_qty > 0:
-                    # Logic to create separate stock moves and lots for each grade
-                    finished_product = intervention.product_id
-
-                    def _create_graded_move_and_lot(grade_type, qty):
-                        if qty <= 0:
-                            return None
-
-                        # Create a new lot with the specified grade
-                        if hasattr(self.env['stock.lot'], 'create'):
-                            graded_lot = self.env['stock.lot'].create({
-                                'product_id': finished_product.id,
-                                'name': finished_product.name + '/' + grade_type.upper() + '/' + (self.env['ir.sequence'].next_by_code('stock.lot') or _('New')),
-                                'quality_grade': grade_type,
-                            })
-
-                            # Create a stock move for this graded quantity
-                            move = self.env['stock.move'].create({
-                                'name': _('Harvest Output (%s)') % grade_type.upper(),
-                                'product_id': finished_product.id,
-                                'product_uom_qty': qty,
-                                'product_uom': finished_product.uom_id.id,
-                                'location_id': intervention.location_src_id.id, # Production location
-                                'location_dest_id': intervention.location_dest_id.id, # Destination (stock) location
-                                'production_id': intervention.id,
-                                'lot_ids': [(6, 0, [graded_lot.id])] if graded_lot else [],
-                                'state': 'done', # Mark as done directly
-                            })
-                            if hasattr(move, '_action_done'):
-                                move._action_done() # Finalize the move
-                            return graded_lot.id
-                        return None
-
-                    graded_lot_ids = []
-                    if hasattr(intervention, 'grade_a_qty'):
-                        graded_lot_ids.append(_create_graded_move_and_lot('grade_a', intervention.grade_a_qty))
-                    if hasattr(intervention, 'grade_b_qty'):
-                        graded_lot_ids.append(_create_graded_move_and_lot('grade_b', intervention.grade_b_qty))
-                    if hasattr(intervention, 'grade_c_qty'):
-                        graded_lot_ids.append(_create_graded_move_and_lot('grade_c', intervention.grade_c_qty))
-
-                    graded_lot_ids = [lot_id for lot_id in graded_lot_ids if lot_id]
-
-                    # US-005-02: Trigger quality check for custom created graded lots
-                    if graded_lot_ids:
-                        for lot_id in graded_lot_ids:
-                            try:
-                                if hasattr(self.env['farm.quality.check'], 'create'):
-                                    self.env['farm.quality.check'].create({
-                                        'lot_id': lot_id,
-                                        'task_id': intervention.agri_task_id.id if intervention.agri_task_id else False,
-                                        'name': _('Harvest QC: %s for Grade %s') % (intervention.name, (self.env['stock.lot'].browse(lot_id).quality_grade or 'UNKNOWN').upper()),
-                                    })
-                            except Exception:
-                                pass
-
-                    # Prevent base MRP from creating duplicate finished moves
-                    # by setting product_qty to 0 for the super call if custom moves are created
-                    intervention.product_qty = 0
-
-                # US-005-02: Trigger quality check for non-graded harvesting
-                elif intervention.intervention_type == 'harvesting' and intervention.product_qty > 0:
-                    try:
-                        if hasattr(intervention.move_finished_ids, 'mapped'):
-                            lot_ids = intervention.move_finished_ids.mapped('lot_ids')
-                            if hasattr(self.env['farm.quality.check'], 'create') and lot_ids:
-                                self.env['farm.quality.check'].create({
-                                    'lot_id': lot_ids[:1].id if lot_ids else False,
-                                    'task_id': intervention.agri_task_id.id if intervention.agri_task_id else False,
-                                    'name': _('Harvest QC: %s') % intervention.name,
-                                })
-                    except Exception:
-                        pass
+            if intervention.state != 'done':
+                intervention.action_done_base()
 
         # Call super method if available to handle other MRP production logic
         if hasattr(super(AgriInterventionMixin, self), 'button_mark_done'):
             return super(AgriInterventionMixin, self).button_mark_done()
-        else:
-            # If no parent button_mark_done exists, update state to done
-            self.write({'state': 'done'})
-            return True
+        return True

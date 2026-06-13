@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_farm_viticulture_plot_form" model="ir.ui.view">
         <field name="name">farm.viticulture.plot.form</field>
         <field name="model">farm.viticulture.plot</field>
@@ -14,18 +15,18 @@
                         </button>
                     </div>
                     <div class="oe_title">
-                        <label for="location_id" string="Plot/Row ID"/>
-                        <h1><field name="location_id" readonly="1"/></h1>
+                        <label for="location_id" string="Plot/Row ID" />
+                        <h1><field name="location_id" readonly="1" /></h1>
                     </div>
                     <group>
                         <group string="Terroir &amp; Trellis (风土与架式)">
-                            <field name="trellis_system"/>
-                            <field name="vine_spacing"/>
-                            <field name="row_orientation"/>
+                            <field name="trellis_system" />
+                            <field name="vine_spacing" />
+                            <field name="row_orientation" />
                         </group>
                         <group string="Physical Context">
-                            <field name="gps_lat"/>
-                            <field name="gps_lng"/>
+                            <field name="gps_lat" />
+                            <field name="gps_lng" />
                         </group>
                     </group>
                 </sheet>
@@ -40,24 +41,24 @@
         <field name="arch" type="xml">
             <form string="Vineyard Annual Cycle">
                 <header>
-                    <button name="action_confirm" string="Confirm Cycle Start" type="object" class="oe_highlight" invisible="state != 'draft'"/>
-                    <field name="state" widget="statusbar"/>
+                    <button name="action_confirm" string="Confirm Cycle Start" type="object" class="oe_highlight" invisible="state != 'draft'" />
+                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name" readonly="1"/></h1>
+                        <h1><field name="name" readonly="1" /></h1>
                     </div>
                     <group>
                         <group string="Growth Targets">
-                            <field name="product_id" string="Grape Variety"/>
-                            <field name="target_brix" decoration-warning="1"/>
-                            <field name="pruned_buds_per_vine"/>
+                            <field name="product_id" string="Grape Variety" />
+                            <field name="target_brix" decoration-warning="1" />
+                            <field name="pruned_buds_per_vine" />
                         </group>
                         <group string="Biological Progress">
-                            <field name="current_stage_id"/>
-                            <label for="stage_progress" string="GDD Progress"/>
+                            <field name="current_stage_id" />
+                            <label for="stage_progress" string="GDD Progress" />
                             <div class="o_row">
-                                <field name="stage_progress" widget="progressbar"/>
+                                <field name="stage_progress" widget="progressbar" />
                             </div>
                         </group>
                     </group>
@@ -78,4 +79,5 @@
         <field name="res_model">farm.viticulture.cycle</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

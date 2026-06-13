@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_agri_growth_stage_tree" model="ir.ui.view">
+<data>
+<record id="view_agri_growth_stage_tree" model="ir.ui.view">
         <field name="name">agri.growth.stage.tree</field>
         <field name="model">agri.growth.stage</field>
         <field name="arch" type="xml">
             <list>
-                <field name="profile_id"/>
-                <field name="stage_code"/>
-                <field name="name"/>
-                <field name="gdd_threshold"/>
+                <field name="profile_id" />
+                <field name="stage_code" />
+                <field name="name" />
+                <field name="gdd_threshold" />
             </list>
         </field>
     </record>
+</data>
 </odoo>

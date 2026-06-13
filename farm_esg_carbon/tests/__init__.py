@@ -4,3 +4,8 @@ from . import test_integration_flows
 
 from . import test_deep_coverage
 from . import test_carbon_trading_flow
+
+from . import test_epic_060
+from . import test_epic_127
+from . import test_epic_137
+from . import test_epic_106

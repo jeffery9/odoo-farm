@@ -1,64 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- AI Fertilization Decision Views -->
-    <record id="view_ai_fertilization_decision_form" model="ir.ui.view">
+<data>
+<record id="view_ai_fertilization_decision_form" model="ir.ui.view">
         <field name="name">agri.ai.fertilization.decision.form</field>
         <field name="model">agri.ai.fertilization.decision</field>
         <field name="arch" type="xml">
             <form string="AI Fertilization Decision">
                 <header>
-                    <button name="calculate_fertilization_needs" type="object" string="Calculate Needs" class="oe_highlight"/>
-                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected"/>
+                    <button name="action_fetch_iot_shadow" type="object" string="Fetch IoT Shadow" class="btn-secondary" />
+                    <button name="calculate_fertilization_needs" type="object" string="Calculate Needs" class="oe_highlight" />
+                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_apply_recommendation" type="object" string="Apply Recommendation" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'"/>
-                        <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'"/>
-                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'"/>
+                        <field name="result_intervention_id" invisible="1" />
+                        <button name="action_apply_recommendation" type="object" string="Apply Recommendation" class="oe_stat_button" icon="fa-play" invisible="status != 'recommended'" />
+                        <button name="action_reject_recommendation" type="object" string="Reject" class="oe_stat_button" icon="fa-times" invisible="status != 'recommended'" />
+                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'" />
                     </div>
                     <group>
                         <group>
-                            <field name="land_location_id"/>
-                            <field name="product_id"/>
+                            <field name="land_location_id" />
+                            <field name="product_id" />
+                            <field name="result_intervention_id" invisible="not result_intervention_id" />
                         </group>
                         <group>
-                            <field name="confidence_score"/>
-                            <field name="priority"/>
-                            <field name="status"/>
+                            <field name="confidence_score" />
+                            <field name="priority" />
+                            <field name="status" />
                         </group>
                     </group>
                     <group string="Soil Analysis">
                         <group>
-                            <field name="soil_nitrogen"/>
-                            <field name="soil_phosphorus"/>
+                            <field name="soil_nitrogen" />
+                            <field name="soil_phosphorus" />
                         </group>
                         <group>
-                            <field name="soil_potassium"/>
-                            <field name="soil_ph"/>
+                            <field name="soil_potassium" />
+                            <field name="soil_ph" />
                         </group>
                     </group>
                     <group string="Recommendations">
                         <group>
-                            <field name="recommended_n"/>
-                            <field name="recommended_p"/>
-                            <field name="recommended_k"/>
+                            <field name="recommended_n" />
+                            <field name="recommended_p" />
+                            <field name="recommended_k" />
                         </group>
                     </group>
                     <group>
-                        <field name="crop_growth_stage"/>
-                        <field name="application_timing"/>
+                        <field name="crop_growth_stage" />
+                        <field name="application_timing" />
                     </group>
                     <notebook>
                         <page string="Nutrient Deficiency Analysis">
-                            <field name="nutrient_deficiency_analysis" placeholder="Analysis of nutrient deficiencies"/>
+                            <field name="nutrient_deficiency_analysis" placeholder="Analysis of nutrient deficiencies" />
                         </page>
                         <page string="Fertilizer Recommendation">
-                            <field name="fertilizer_recommendation" placeholder="Detailed fertilizer recommendations"/>
+                            <field name="fertilizer_recommendation" placeholder="Detailed fertilizer recommendations" />
                         </page>
                         <page string="Results">
                             <group>
-                                <field name="recommendation" placeholder="Overall recommendation"/>
-                                <field name="decision_reasoning" placeholder="Reasoning behind the AI decision"/>
+                                <field name="recommendation" placeholder="Overall recommendation" />
+                                <field name="decision_reasoning" placeholder="Reasoning behind the AI decision" />
                             </group>
                         </page>
                     </notebook>
@@ -72,12 +75,12 @@
         <field name="model">agri.ai.fertilization.decision</field>
         <field name="arch" type="xml">
             <list string="AI Fertilization Decisions">
-                <field name="land_location_id"/>
-                <field name="product_id"/>
-                <field name="soil_nitrogen"/>
-                <field name="recommended_n"/>
-                <field name="confidence_score"/>
-                <field name="status"/>
+                <field name="land_location_id" />
+                <field name="product_id" />
+                <field name="soil_nitrogen" />
+                <field name="recommended_n" />
+                <field name="confidence_score" />
+                <field name="status" />
             </list>
         </field>
     </record>
@@ -87,4 +90,5 @@
         <field name="res_model">agri.ai.fertilization.decision</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

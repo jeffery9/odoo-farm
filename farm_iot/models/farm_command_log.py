@@ -25,6 +25,11 @@ class FarmCommandLog(models.Model):
     execution_latency = fields.Integer("Latency (ms)")
     error_log = fields.Text("Error Traceback")
     
+    # 响应追踪 [US-TECH-05-01]
+    ack_timestamp = fields.Datetime("ACK Timestamp")
+    retry_count = fields.Integer("Retries", default=0)
+    max_retries = fields.Integer("Max Retries", default=3)
+    
     # 通用关联 (不绑定特定业务模块)
     res_model = fields.Char("Originating Model")
     res_id = fields.Integer("Originating ID")

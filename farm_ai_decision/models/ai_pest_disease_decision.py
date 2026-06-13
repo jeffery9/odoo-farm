@@ -46,6 +46,23 @@ class AgriAiPestDiseaseDecision(models.Model):
     treatment_cost = fields.Float('Treatment Cost ($)', help="Estimated cost of recommended treatments")
     roi_impact = fields.Float('ROI Impact ($)', help="Estimated impact on return on investment", compute='_compute_roi_impact')
 
+    def _create_correction_intervention(self):
+        """ Create a crop protection intervention in the engine """
+        if self.severity_level not in ['high', 'critical']:
+            return False
+
+        vals = {
+            'product_id': self.product_id.product_variant_id.id if self.product_id.product_variant_id else self.product_id.id,
+            'product_qty': 0.0,
+            'intervention_type': 'protection',
+            'location_id': self.land_location_id.id,
+            'origin': f"AI Pest Decision: {self.name} ({self.pest_disease_name})",
+        }
+        
+        intervention = self.env['mrp.production'].create(vals)
+        intervention.action_confirm()
+        return intervention
+
     @api.depends('economic_impact', 'treatment_cost')
     def _compute_roi_impact(self):
         for record in self:

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Apiculture Operation Form View -->
-    <record id="view_farm_apiculture_operation_form" model="ir.ui.view">
+<data>
+<record id="view_farm_apiculture_operation_form" model="ir.ui.view">
         <field name="name">farm.apiculture.operation.form</field>
         <field name="model">farm.hive.inspection</field>
         
@@ -10,81 +10,81 @@
                 <page string="Apiculture Information" name="apiculture_info">
                     <group name="hive_colony_info" string="Hive &amp; Colony Management">
                         <group name="hive_details" string="Hive Information">
-                            <field name="hive_id"/>
-                            <field name="hive_location"/>
+                            <field name="hive_id" />
+                            <field name="hive_location" />
                         </group>
                         <group name="colony_status" string="Colony Status">
-                            <field name="colony_strength"/>
-                            <field name="colony_population"/>
-                            <field name="queen_status"/>
-                            <field name="queen_age_months"/>
+                            <field name="colony_strength" />
+                            <field name="colony_population" />
+                            <field name="queen_status" />
+                            <field name="queen_age_months" />
                         </group>
                         <group name="bee_info" string="Bee Information">
-                            <field name="bee_species"/>
-                            <field name="bee_breed"/>
+                            <field name="bee_species" />
+                            <field name="bee_breed" />
                         </group>
                     </group>
                     <group name="nectar_info" string="Nectar Source Management">
                         <group name="nectar_sources" string="Available Sources">
-                            <field name="nectar_sources"/>
-                            <field name="flowering_plants"/>
-                            <field name="nectar_availability"/>
+                            <field name="nectar_sources" />
+                            <field name="flowering_plants" />
+                            <field name="nectar_availability" />
                         </group>
                     </group>
                     <group name="honey_info" string="Honey Production">
                         <group name="production_status" string="Production Status">
-                            <field name="honey_production_stage"/>
-                            <field name="honey_store_level"/>
-                            <field name="honey_production_rate"/>
+                            <field name="honey_production_stage" />
+                            <field name="honey_store_level" />
+                            <field name="honey_production_rate" />
                         </group>
                         <group name="harvest_info" string="Harvest Information">
-                            <field name="last_harvest_date"/>
-                            <field name="last_harvest_yield"/>
+                            <field name="last_harvest_date" />
+                            <field name="last_harvest_yield" />
                         </group>
                     </group>
                     <group name="movement_info" string="Hive Movement">
-                        <field name="migration_schedule"/>
-                        <field name="current_location"/>
-                        <!-- field previous_locations removed -->
-                        <!-- field migration_reason removed -->
+                        <field name="migration_schedule" />
+                        <field name="current_location" />
+                        
+                        
                     </group>
                     <group name="health_info" string="Bee Health Management">
-                        <!-- field health_status removed -->
-                        <!-- field health_notes removed -->
-                        <!-- field pest_control_used removed -->
+                        
+                        
+                        
                     </group>
                     <group name="reproduction_info" string="Breeding &amp; Reproduction">
-                        <!-- field breeding_status removed -->
-                        <!-- field swarm_date removed -->
-                        <!-- field swarm_details removed -->
+                        
+                        
+                        
                     </group>
                     <group name="seasonal_info" string="Seasonal Management">
-                        <!-- field season removed -->
-                        <!-- field apiculture_stage removed -->
+                        
+                        
                     </group>
                 </page>
             </notebook></sheet></form>
         </field>
     </record>
 
-    <!-- Apiculture Operation Tree View -->
+    
     <record id="view_farm_apiculture_operation_tree" model="ir.ui.view">
         <field name="name">farm.apiculture.operation.tree</field>
         <field name="model">farm.hive.inspection</field>
-        <field name="inherit_id" ref="project.view_task_tree2"/>
+        <field name="inherit_id" ref="project.view_task_tree2" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="hive_id"/>
-                <field name="colony_strength"/>
-                <field name="queen_status"/>
-                <field name="honey_store_level"/>
-                <!-- field health_status removed -->
-                <!-- field apiculture_stage removed -->
+                <field name="hive_id" />
+                <field name="colony_strength" />
+                <field name="queen_status" />
+                <field name="honey_store_level" />
+                
+                
             </field>
         </field>
     </record>
 
-    <!-- Hive Inspection Form View -->
+    
     <record id="view_farm_hive_inspection_form" model="ir.ui.view">
         <field name="name">farm.hive.inspection.form</field>
         <field name="model">farm.hive.inspection</field>
@@ -93,75 +93,65 @@
                 <sheet>
                     <group>
                         <group name="main_info">
-                            <!-- field operation_id removed -->
-                            <!-- field inspection_date removed -->
-                            <!-- field inspector removed -->
+                            
+                            
+                            
                         </group>
                         <group name="colony_status">
-                            <field name="colony_strength"/>
-                            <field name="queen_status"/>
-                            <!-- field bee_population removed -->
-                            <field name="honey_store_level"/>
+                            <field name="colony_strength" />
+                            <field name="queen_status" />
+                            
+                            <field name="honey_store_level" />
                         </group>
                     </group>
                     <group string="Health Assessment">
-                        <!-- field health_status removed -->
-                        <!-- field issues_found removed -->
-                        <!-- field recommendations removed -->
+                        
+                        
+                        
                     </group>
                     <group string="Actions &amp; Follow-up">
-                        <!-- field actions_taken removed -->
-                        <!-- field next_inspection_date removed -->
+                        
+                        
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Hive Inspection Tree View -->
+    
     <record id="view_farm_hive_inspection_tree" model="ir.ui.view">
         <field name="name">farm.hive.inspection.tree</field>
         <field name="model">farm.hive.inspection</field>
         <field name="arch" type="xml">
             <list string="Hive Inspections">
-                <!-- field inspection_date removed -->
-                <!-- field operation_id removed -->
-                <field name="colony_strength"/>
-                <!-- field health_status removed -->
-                <!-- field bee_population removed -->
+                
+                
+                <field name="colony_strength" />
+                
+                
             </list>
         </field>
     </record>
 
-    <!-- Action for Apiculture Operations -->
+    
     <record id="action_farm_apiculture_operations" model="ir.actions.act_window">
         <field name="name">Apiculture Operations</field>
         <field name="res_model">farm.apiculture.order</field>
         <field name="view_mode">list,form</field>
     </record>
 
-    <!-- Action for Hive Inspections -->
+    
     <record id="action_farm_hive_inspections" model="ir.actions.act_window">
         <field name="name">Hive Inspections</field>
         <field name="res_model">farm.hive.inspection</field>
         <field name="view_mode">list,form</field>
     </record>
 
-    <!-- Menu items for Apiculture -->
-    <menuitem id="menu_farm_apiculture_root"
-              name="Apiculture"
- web_icon="farm_apiculture,static/description/icon.png"
-              sequence="26"/>
+    
+    <menuitem id="menu_farm_apiculture_root" name="Apiculture" web_icon="farm_apiculture,static/description/icon.png" sequence="26" />
 
-    <menuitem id="menu_farm_apiculture_operations"
-              name="Operations"
-              parent="menu_farm_apiculture_root"
-              action="action_farm_apiculture_operations"
-              sequence="10"/>
+    <menuitem id="menu_farm_apiculture_operations" name="Operations" parent="menu_farm_apiculture_root" action="action_farm_apiculture_operations" sequence="10" />
 
-    <menuitem id="menu_farm_hive_inspections"
-              name="Hive Inspections"
-              parent="menu_farm_apiculture_root"
-              action="action_farm_hive_inspections"
-              sequence="20"/>
+    <menuitem id="menu_farm_hive_inspections" name="Hive Inspections" parent="menu_farm_apiculture_root" action="action_farm_hive_inspections" sequence="20" />
+</data>
 </odoo>

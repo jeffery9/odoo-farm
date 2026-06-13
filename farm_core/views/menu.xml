@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 
-      [De-industrialization & Tools Not Trees]
-      The monolithic farm_core root menus have been intentionally shattered.
-      Core infrastructure should be invisible to the end user.
-      Each L2 vertical module (Livestock, Crop, Equipment) is now responsible for declaring 
-      its own top-level App menu with its own web_icon.
-    -->
-    
-    <!-- 
-      We only retain a developer-level hidden configuration menu for global core settings,
-      accessible only to system administrators.
-    -->
-    <menuitem id="menu_farm_core_hidden_settings" 
-              name="Farm Core Admin" 
-              sequence="999"
-              groups="base.group_system"
-              web_icon="farm_core,static/description/icon.png"/>
+<data>
+<menuitem id="menu_farm_core_hidden_settings" name="Farm Core Admin" sequence="999" groups="base.group_system" web_icon="farm_core,static/description/icon.png" />
+</data>
 </odoo>

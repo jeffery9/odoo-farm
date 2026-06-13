@@ -11,28 +11,25 @@ _logger = logging.getLogger(__name__)
 
 class AgriMRPProduction(models.Model):
     """
-    ISL model for MRP Production Orders with industry specialization
-    Implements US-084-01: MRP production order ISL model implementation
+    ISL model for Agricultural Interventions with industry specialization
+    Implements US-084-01: Intervention ISL model implementation
     """
     _name = 'agri.isl.mrp.production'
-    # TODO: [DE-INDUSTRIAL] Use 'Agri ISL Intervention' or similar
-    _description = 'Agri ISL MRP Production Order'
+    _description = 'Agri ISL Agricultural Intervention'
     _inherits = {'mrp.production': 'mrp_production_id'}
-    _inherit = ['agri.isl.manufacturing.mixin']
+    _inherit = [
+        'agri.isl.manufacturing.mixin',
+        'agri.isl.trait.food_safety',
+        'agri.isl.trait.livestock',
+        'agri.isl.trait.aquaculture'
+    ]
 
     mrp_production_id = fields.Many2one(
         'mrp.production',
-        # TODO: [DE-INDUSTRIAL] Use 'Base Intervention'
-        string='Base MRP Production',
+        string='Base Intervention',
         required=True,
         ondelete='cascade'
     )
-
-
-    haccp_plan = fields.Html('HACCP Plan')  # Food processing
-    gmp_compliance = fields.Boolean('GMP Compliance')  # Pharmaceutical
-    safety_procedures = fields.Html('Safety Procedures')  # Chemical
-    quality_gate_checks = fields.Text('Quality Gate Checks')
 
     # Industry-specific methods
     def _check_industry_compliance(self):
@@ -51,28 +48,26 @@ class AgriMRPProduction(models.Model):
 
 class AgriMRPBom(models.Model):
     """
-    ISL model for MRP BOMs with industry specialization
-    Implements US-084-02: MRP BOM ISL model implementation
+    ISL model for Cultivation Recipes with industry specialization
+    Implements US-084-02: Recipe ISL model implementation
     """
     _name = 'agri.isl.mrp.bom'
-    # TODO: [DE-INDUSTRIAL] Use 'Agri ISL Cultivation Recipe'
-    _description = 'Agri ISL MRP Bill of Materials'
+    _description = 'Agri ISL Cultivation Recipe'
     _inherits = {'mrp.bom': 'mrp_bom_id'}
-    _inherit = ['agri.isl.manufacturing.mixin']
+    _inherit = [
+        'agri.isl.manufacturing.mixin',
+        'agri.isl.trait.food_safety',
+        'agri.isl.trait.livestock',
+        'agri.isl.trait.chemical'
+    ]
 
     mrp_bom_id = fields.Many2one(
         'mrp.bom',
-        # TODO: [DE-INDUSTRIAL] Use 'Base Recipe'
-        string='Base MRP BOM',
+        string='Base Recipe',
         required=True,
         ondelete='cascade'
     )
 
-
-    # Industry-specific fields for BOMs
-    allergen_control = fields.Boolean('Allergen Control')  # Food processing
-    active_ingredient = fields.Char('Active Ingredient')  # Pharmaceutical
-    safety_coefficient = fields.Float('Safety Coefficient')  # Chemical
     recipe_validation = fields.Html('Recipe Validation')
     ingredient_compliance = fields.Text('Ingredient Compliance')
 
@@ -89,26 +84,25 @@ class AgriMRPBom(models.Model):
 
 class AgriMRPWorkcenter(models.Model):
     """
-    Implements US-084-03: MRP work center ISL model implementation
+    Implements US-084-03: Facility Unit ISL model implementation
     """
     _name = 'agri.isl.mrp.workcenter'
-    # TODO: [DE-INDUSTRIAL] Use 'Agri ISL Processing Unit' or 'Farm Facility'
-    _description = 'Agri ISL MRP Work Center'
+    _description = 'Agri ISL Facility Unit'
     _inherits = {'mrp.workcenter': 'workcenter_id'}
-    _inherit = ['agri.isl.manufacturing.mixin']
+    _inherit = [
+        'agri.isl.manufacturing.mixin',
+        'agri.isl.trait.chemical'
+    ]
 
     workcenter_id = fields.Many2one(
         'mrp.workcenter',
-        # TODO: [DE-INDUSTRIAL] Use 'Base Facility'
-        string='Base Work Center',
+        string='Base Facility Unit',
         required=True,
         ondelete='cascade'
     )
 
-
     # Industry-specific fields for work centers
     cip_required = fields.Boolean('CIP Required')  # Clean-in-place, for food/pharma
-    explosion_proof = fields.Boolean('Explosion Proof')  # For chemical industry
     clean_room_class = fields.Char('Clean Room Class')  # For pharma
     capacity_uom = fields.Char('Capacity Unit of Measure')
     efficiency_factor = fields.Float('Efficiency Factor', default=1.0)
@@ -132,7 +126,10 @@ class AgriStockLot(models.Model):
     _name = 'agri.isl.stock.lot'
     _description = 'Agri ISL Stock Lot'
     _inherits = {'stock.lot': 'stock_lot_id'}
-    _inherit = ['agri.isl.inventory.mixin']
+    _inherit = [
+        'agri.isl.inventory.mixin',
+        'agri.isl.trait.livestock'
+    ]
 
     stock_lot_id = fields.Many2one(
         'stock.lot',
@@ -141,11 +138,7 @@ class AgriStockLot(models.Model):
         ondelete='cascade'
     )
 
-
-    # Industry-specific fields for lots
     harvest_date = fields.Date('Harvest Date')  # Agriculture
-    kill_date = fields.Date('Kill Date')  # Food processing
-    sterility_date = fields.Date('Sterility Date')  # Pharmaceuticals
     certificate_of_analysis = fields.Binary('Certificate of Analysis')
     certificate_of_analysis_name = fields.Char('COA Name')
     stability_data = fields.Html('Stability Data')
@@ -170,7 +163,10 @@ class AgriSaleOrder(models.Model):
     _name = 'agri.isl.sale.order'
     _description = 'Agri ISL Sale Order'
     _inherits = {'sale.order': 'sale_order_id'}
-    _inherit = ['agri.isl.sales.purchase.mixin']
+    _inherit = [
+        'agri.isl.sales.purchase.mixin',
+        'agri.isl.trait.traceability'
+    ]
 
     sale_order_id = fields.Many2one(
         'sale.order',
@@ -179,10 +175,7 @@ class AgriSaleOrder(models.Model):
         ondelete='cascade'
     )
 
-
-    # Industry-specific fields for sales orders
     delivery_compliance = fields.Html('Delivery Compliance')
-    traceability_requirements = fields.Html('Traceability Requirements')
     shipping_conditions = fields.Html('Shipping Conditions')
     certificate_requirements = fields.Html('Certificate Requirements')
     temperature_monitoring = fields.Boolean('Temperature Monitoring', default=False)
@@ -215,8 +208,6 @@ class AgriPurchaseOrder(models.Model):
         ondelete='cascade'
     )
 
-
-    # Industry-specific fields for purchase orders
     supplier_certification = fields.Char('Supplier Certification')
     incoming_inspection = fields.Html('Incoming Inspection')
     certificate_verification = fields.Html('Certificate Verification')
@@ -241,7 +232,12 @@ class AgriProductTemplate(models.Model):
     _name = 'agri.isl.product.template'
     _description = 'Agri ISL Product Template'
     _inherits = {'product.template': 'product_template_id'}
-    _inherit = ['agri.isl.product.mixin']
+    _inherit = [
+        'agri.isl.product.mixin',
+        'agri.isl.trait.food_safety',
+        'agri.isl.trait.livestock',
+        'agri.isl.trait.chemical'
+    ]
 
     product_template_id = fields.Many2one(
         'product.template',
@@ -250,14 +246,12 @@ class AgriProductTemplate(models.Model):
         ondelete='cascade'
     )
 
-
-    # Industry-specific fields for product templates
-    allergen_information = fields.Html('Allergen Information')  # Food processing
-    pharmacological_class = fields.Char('Pharmacological Class')  # Pharmaceutical
     safety_data_sheet = fields.Binary('Safety Data Sheet')
     safety_data_sheet_name = fields.Char('SDS Name')
-    hazard_class = fields.Char('Hazard Class')  # Chemical
-    regulatory_class = fields.Char('Regulatory Class')
+    regulatory_compliance = fields.Text('Regulatory Compliance')
+    shelf_life = fields.Float('Shelf Life (Days)')
+    storage_temperature = fields.Float('Storage Temperature (°C)')
+    storage_humidity = fields.Float('Storage Humidity (%)')
 
     def _validate_product_compliance(self):
         """Validate product compliance based on industry type"""
@@ -281,7 +275,10 @@ class AgriStockPicking(models.Model):
     _name = 'agri.isl.stock.picking'
     _description = 'Agri ISL Stock Picking'
     _inherits = {'stock.picking': 'picking_id'}
-    _inherit = ['agri.isl.inventory.mixin']
+    _inherit = [
+        'agri.isl.inventory.mixin',
+        'agri.isl.trait.traceability'
+    ]
 
     picking_id = fields.Many2one(
         'stock.picking',
@@ -290,12 +287,6 @@ class AgriStockPicking(models.Model):
         ondelete='cascade'
     )
 
-
-    # Industry-specific fields for stock pickings
-    chain_of_custody = fields.Html('Chain of Custody')
-    temperature_log = fields.Html('Temperature Log')
-    humidity_log = fields.Html('Humidity Log')
-    security_seal = fields.Char('Security Seal')
     compliance_verification = fields.Html('Compliance Verification')
 
     def _validate_picking_compliance(self):
@@ -308,27 +299,27 @@ class AgriStockPicking(models.Model):
 
 class AgriMRPWorkorder(models.Model):
     """
-    ISL model for MRP Work Orders with industry specialization
-    Implements US-084-09: MRP work order ISL model implementation
+    ISL model for Operation Phases with industry specialization
+    Implements US-084-09: Operation phase ISL model implementation
     """
     _name = 'agri.isl.mrp.workorder'
-    _description = 'Agri ISL MRP Work Order'
+    _description = 'Agri ISL Operation Phase'
     _inherits = {'mrp.workorder': 'workorder_id'}
-    _inherit = ['agri.isl.manufacturing.mixin']
+    _inherit = [
+        'agri.isl.manufacturing.mixin',
+        'agri.isl.trait.livestock'
+    ]
 
     workorder_id = fields.Many2one(
         'mrp.workorder',
-        string='Base Work Order',
+        string='Base Operation Phase',
         required=True,
         ondelete='cascade'
     )
 
-
-    # Industry-specific fields for work orders
     operator_certification = fields.Html('Operator Certification')
     equipment_validation = fields.Html('Equipment Validation')
     in_process_inspection = fields.Html('In-Process Inspection')
-    batch_record = fields.Html('Batch Record')
 
     def _validate_workorder_compliance(self):
         """Validate work order compliance based on industry type"""
@@ -348,17 +339,20 @@ class AgriQualityControl(models.Model):
     """
     _name = 'agri.isl.quality.control'
     _description = 'Agri ISL Quality Control'
-    # _inherits = {.agri.quality.point.: .agri_quality_point_id.}
-    _inherit = ['agri.isl.quality.mixin']
+    _inherits = {'quality.point': 'quality_point_id'}
+    _inherit = [
+        'agri.isl.quality.mixin',
+        'agri.isl.trait.food_safety',
+        'agri.isl.trait.livestock'
+    ]
 
-    # agri_quality_point_id = fields.Many2one(
-#         .agri.quality.point.,
-#         string=.Base Agri Quality Point.,
-#     )
+    quality_point_id = fields.Many2one(
+        'quality.point',
+        string='Base Quality Point',
+        required=True,
+        ondelete='cascade'
+    )
 
-
-    # Industry-specific fields for quality control
-    ccp_monitoring = fields.Html('CCP Monitoring')  # Critical Control Points, HACCP
     aql_sampling = fields.Html('AQL Sampling')  # Acceptable Quality Level
     testing_procedures = fields.Html('Testing Procedures')
     acceptance_criteria = fields.Html('Acceptance Criteria')

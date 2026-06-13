@@ -10,7 +10,7 @@
         - Generate compliance certificates for export
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'sale', 'stock'],
+    'depends': ['farm_core', 'sale', 'stock', 'farm_marketing'],
     'data': [
         'security/ir.model.access.csv',
         'data/export_standards_data.xml',

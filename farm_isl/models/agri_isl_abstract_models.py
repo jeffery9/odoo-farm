@@ -7,7 +7,28 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+# Centralized Industry Type Definitions
+# This allows consistent selection options across all ISL modules and utilities.
+INDUSTRY_SELECTION = [
+    ('field_crop', 'Field Crop'),
+    ('livestock', 'Livestock'),
+    ('aquaculture', 'Aquaculture'),
+    ('general', 'General Agriculture')
+]
+
 # Abstract Base Models for ISL Architecture (US-084-01 through US-084-10)
+
+class AgriISLBaseMixin(models.AbstractModel):
+    """
+    Base abstraction for all ISL Mixins to provide common metadata and methods.
+    """
+    _name = 'agri.isl.base.mixin'
+    _description = 'Agri ISL Base abstraction'
+
+    @api.model
+    def _get_industry_selection(self):
+        """ Centralized industry type definitions for Odoo inheritance """
+        return INDUSTRY_SELECTION
 
 class AgriManufacturingMixin(models.AbstractModel):
     """
@@ -16,15 +37,16 @@ class AgriManufacturingMixin(models.AbstractModel):
     """
     _name = 'agri.isl.manufacturing.mixin'
     _description = 'Agri Manufacturing ISL Abstract Base Model'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['agri.isl.base.mixin', 'mail.thread', 'mail.activity.mixin']
 
     # Common fields that all manufacturing ISL models will inherit
-    industry_type = fields.Selection([
-        ('field_crop', 'Field Crop'),
-        ('livestock', 'Livestock'),
-        ('aquaculture', 'Aquaculture'),
-        ('general', 'General Agriculture')
-    ], string='Industry Type', default='general', required=True, ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'})
+    industry_type = fields.Selection(
+        selection=INDUSTRY_SELECTION,
+        string='Industry Type', 
+        default='general', 
+        required=True, 
+        ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'}
+    )
 
     industry_specialization = fields.Char('Industry Specialization')
     compliance_requirements = fields.Text('Compliance Requirements')
@@ -66,15 +88,16 @@ class AgriInventoryMixin(models.AbstractModel):
     """
     _name = 'agri.isl.inventory.mixin'
     _description = 'Agri Inventory ISL Abstract Base Model'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['agri.isl.base.mixin', 'mail.thread', 'mail.activity.mixin']
 
     # Common fields for inventory ISL models
-    industry_type = fields.Selection([
-        ('field_crop', 'Field Crop'),
-        ('livestock', 'Livestock'),
-        ('aquaculture', 'Aquaculture'),
-        ('general', 'General Agriculture')
-    ], string='Industry Type', default='general', required=True, ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'})
+    industry_type = fields.Selection(
+        selection=INDUSTRY_SELECTION,
+        string='Industry Type', 
+        default='general', 
+        required=True, 
+        ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'}
+    )
 
     shelf_life_tracking = fields.Boolean('Shelf Life Tracking', default=False)
     batch_tracking = fields.Boolean('Batch Tracking', default=True)
@@ -99,15 +122,16 @@ class AgriSalesPurchaseMixin(models.AbstractModel):
     """
     _name = 'agri.isl.sales.purchase.mixin'
     _description = 'Agri Sales/Purchase ISL Abstract Base Model'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['agri.isl.base.mixin', 'mail.thread', 'mail.activity.mixin']
 
     # Common fields for sales/purchase ISL models
-    industry_type = fields.Selection([
-        ('field_crop', 'Field Crop'),
-        ('livestock', 'Livestock'),
-        ('aquaculture', 'Aquaculture'),
-        ('general', 'General Agriculture')
-    ], string='Industry Type', default='general', required=True, ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'})
+    industry_type = fields.Selection(
+        selection=INDUSTRY_SELECTION,
+        string='Industry Type', 
+        default='general', 
+        required=True, 
+        ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'}
+    )
 
     industry_certification = fields.Char('Industry Certification')
     compliance_requirements = fields.Text('Compliance Requirements')
@@ -128,15 +152,16 @@ class AgriProductMixin(models.AbstractModel):
     """
     _name = 'agri.isl.product.mixin'
     _description = 'Agri Product ISL Abstract Base Model'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['agri.isl.base.mixin', 'mail.thread', 'mail.activity.mixin']
 
     # Common fields for product ISL models
-    industry_type = fields.Selection([
-        ('field_crop', 'Field Crop'),
-        ('livestock', 'Livestock'),
-        ('aquaculture', 'Aquaculture'),
-        ('general', 'General Agriculture')
-    ], string='Industry Type', default='general', required=True, ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'})
+    industry_type = fields.Selection(
+        selection=INDUSTRY_SELECTION,
+        string='Industry Type', 
+        default='general', 
+        required=True, 
+        ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'}
+    )
 
     industry_category = fields.Char('Industry Category')
     safety_data_sheet = fields.Binary('Safety Data Sheet')
@@ -157,15 +182,16 @@ class AgriQualityMixin(models.AbstractModel):
     """
     _name = 'agri.isl.quality.mixin'
     _description = 'Agri Quality Control ISL Abstract Base Model'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['agri.isl.base.mixin', 'mail.thread', 'mail.activity.mixin']
 
     # Common fields for quality ISL models
-    industry_type = fields.Selection([
-        ('field_crop', 'Field Crop'),
-        ('livestock', 'Livestock'),
-        ('aquaculture', 'Aquaculture'),
-        ('general', 'General Agriculture')
-    ], string='Industry Type', default='general', required=True, ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'})
+    industry_type = fields.Selection(
+        selection=INDUSTRY_SELECTION,
+        string='Industry Type', 
+        default='general', 
+        required=True, 
+        ondelete={'field_crop': 'cascade', 'livestock': 'cascade', 'aquaculture': 'cascade', 'general': 'cascade'}
+    )
 
     quality_standard = fields.Char('Quality Standard')
     quality_procedures = fields.Html('Quality Procedures')

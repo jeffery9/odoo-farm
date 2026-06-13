@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="farm_financial_insurance_menu_root"
-              name="Insurance"
-              parent="base.menu_custom"
-              sequence="40"/>
+<data>
+<menuitem id="farm_financial_insurance_menu_root" name="Insurance" parent="farm_financial.farm_financial_menu_root" sequence="40"/>
 
-    <menuitem id="menu_farm_crop_yield_insurance"
-              name="Crop Insurance"
-              parent="farm_financial_insurance_menu_root"
-              action="action_farm_crop_yield_insurance"
-              sequence="10"/>
+    <menuitem id="menu_farm_crop_yield_insurance" name="Crop Insurance" parent="farm_financial_insurance_menu_root" action="action_farm_crop_yield_insurance" sequence="10" />
 
-    <menuitem id="menu_farm_insurance_index"
-              name="Weather Indices"
-              parent="farm_financial_insurance_menu_root"
-              action="action_farm_insurance_index"
-              sequence="20"/>
+    <menuitem id="menu_farm_insurance_index" name="Weather Indices" parent="farm_financial_insurance_menu_root" action="action_farm_insurance_index" sequence="20" />
 
-    <menuitem id="menu_farm_insurance_claim"
-              name="Claims Management"
-              parent="farm_financial_insurance_menu_root"
-              action="action_farm_insurance_claim"
-              sequence="30"/>
+    <menuitem id="menu_farm_insurance_claim" name="Claims Management" parent="farm_financial_insurance_menu_root" action="action_farm_insurance_claim" sequence="30" />
+</data>
 </odoo>

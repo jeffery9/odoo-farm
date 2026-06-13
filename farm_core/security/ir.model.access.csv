@@ -1,1 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agri_stock_lot,agri.stock.lot,model_stock_lot,base.group_user,1,1,1,1
+access_agri_lot_kinship,agri.lot.kinship,model_agri_lot_kinship,base.group_user,1,1,1,1
+access_agri_biological_asset,agri.biological.asset,model_agri_biological_asset,base.group_user,1,1,1,1
+access_agri_location,agri.location,model_agri_location,base.group_user,1,1,1,1
+access_farm_location,farm.location,model_farm_location,base.group_user,1,1,1,1
+access_agri_clearing_ledger,agri.clearing.ledger,model_agri_clearing_ledger,base.group_user,1,1,1,1

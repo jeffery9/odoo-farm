@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="farm_valuation_menu_root"
-              name="Valuation"
- web_icon="farm_valuation,static/description/icon.png"
-              sequence="50"/>
+<data>
+<menuitem id="farm_valuation_menu_root" name="Valuation" web_icon="farm_valuation,static/description/icon.png" sequence="50" />
+</data>
 </odoo>

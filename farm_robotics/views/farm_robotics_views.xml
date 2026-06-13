@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_farm_robot_tree" model="ir.ui.view">
         <field name="name">farm.robot.list</field>
         <field name="model">farm.robot</field>
         <field name="arch" type="xml">
             <list decoration-success="robot_status == 'working'" decoration-warning="robot_status == 'charging'" decoration-danger="robot_status == 'error'">
-                <field name="name"/>
-                <field name="robot_type"/>
-                <field name="robot_status" widget="badge"/>
-                <field name="battery_level" widget="progressbar"/>
-                <field name="current_mission_id"/>
+                <field name="name" />
+                <field name="robot_type" />
+                <field name="robot_status" widget="badge" />
+                <field name="battery_level" widget="progressbar" />
+                <field name="current_mission_id" />
             </list>
         </field>
     </record>
@@ -21,16 +22,16 @@
             <form>
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name"/></h1>
+                        <h1><field name="name" /></h1>
                     </div>
                     <group>
                         <group>
-                            <field name="robot_type"/>
-                            <field name="device_id"/>
+                            <field name="robot_type" />
+                            <field name="device_id" />
                         </group>
                         <group>
-                            <field name="robot_status" widget="badge"/>
-                            <field name="battery_level" widget="gauge" options="{'max_field': 100}"/>
+                            <field name="robot_status" widget="badge" />
+                            <field name="battery_level" widget="gauge" options="{'max_field': 100}" />
                         </group>
                     </group>
                 </sheet>
@@ -50,11 +51,11 @@
         <field name="model">farm.robot.mission</field>
         <field name="arch" type="xml">
             <list decoration-info="state == 'scheduled'" decoration-success="state == 'completed'">
-                <field name="name"/>
-                <field name="robot_id"/>
-                <field name="location_id"/>
-                <field name="progress" widget="progressbar"/>
-                <field name="state" widget="badge"/>
+                <field name="name" />
+                <field name="robot_id" />
+                <field name="location_id" />
+                <field name="progress" widget="progressbar" />
+                <field name="state" widget="badge" />
             </list>
         </field>
     </record>
@@ -65,31 +66,31 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_start_mission" string="Start Mission" type="object" class="oe_highlight" invisible="state != 'scheduled'"/>
-                    <button name="action_emergency_stop" string="Emergency Stop" type="object" class="btn-danger" invisible="state != 'in_progress'"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,scheduled,in_progress,completed"/>
+                    <button name="action_start_mission" string="Start Mission" type="object" class="oe_highlight" invisible="state != 'scheduled'" />
+                    <button name="action_emergency_stop" string="Emergency Stop" type="object" class="btn-danger" invisible="state != 'in_progress'" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,scheduled,in_progress,completed" />
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name" readonly="1"/></h1>
+                        <h1><field name="name" readonly="1" /></h1>
                     </div>
                     <group>
                         <group>
-                            <field name="robot_id"/>
-                            <field name="task_id"/>
+                            <field name="robot_id" />
+                            <field name="task_id" />
                         </group>
                         <group>
-                            <field name="location_id"/>
-                            <field name="progress" widget="progressbar"/>
+                            <field name="location_id" />
+                            <field name="progress" widget="progressbar" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Path Data" name="path">
-                            <field name="planned_path_geojson" widget="ace" options="{'mode': 'json'}" placeholder="Enter Planned Path GeoJSON..."/>
+                            <field name="planned_path_geojson" widget="ace" options="{'mode': 'json'}" placeholder="Enter Planned Path GeoJSON..." />
                         </page>
                     </notebook>
                 </sheet>
-                <chatter/>
+                <chatter />
             </form>
         </field>
     </record>
@@ -101,12 +102,10 @@
     </record>
 
     
-    <menuitem id="menu_farm_robotics_root" name="Robotics &amp; Automation" 
- web_icon="farm_robotics,static/description/icon.png" sequence="45"/>
+    <menuitem id="menu_farm_robotics_root" name="Robotics &amp; Automation" web_icon="farm_robotics,static/description/icon.png" sequence="45" />
     
-    <menuitem id="menu_farm_robot_registry" name="Robot Fleet" 
-              parent="menu_farm_robotics_root" action="action_farm_robot" sequence="10"/>
+    <menuitem id="menu_farm_robot_registry" name="Robot Fleet" parent="menu_farm_robotics_root" action="action_farm_robot" sequence="10" />
               
-    <menuitem id="menu_farm_robot_mission" name="Mission Control" 
-              parent="menu_farm_robotics_root" action="action_farm_robot_mission" sequence="20"/>
+    <menuitem id="menu_farm_robot_mission" name="Mission Control" parent="menu_farm_robotics_root" action="action_farm_robot_mission" sequence="20" />
+</data>
 </odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+<menuitem id="menu_agri_intervention_root" name="Interventions" sequence="20" web_icon="agri_intervention,static/description/icon.png" />
+
+    <record id="action_agri_intervention_base" model="ir.actions.act_window">
+        <field name="name">Intervention Engine</field>
+        <field name="res_model">agri.intervention.test</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</data>
+</odoo>

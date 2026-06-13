@@ -22,7 +22,7 @@ services:
       - ./config:/etc/odoo
       - odoo-web-data:/var/lib/odoo
     environment:
-      - HOST=db
+      - HOST=192.168.148.3
       - USER=odoo
       - PASSWORD=odoo
     networks:

@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Net Vegetables Processing Form Inherit View -->
-    <record id="view_farm_processing_production_net_vegetables_inherit" model="ir.ui.view">
+<data>
+<record id="view_farm_processing_production_net_vegetables_inherit" model="ir.ui.view">
         <field name="name">agri.isl.processing.production.net.vegetables.inherit</field>
         <field name="model">agri.isl.processing.production</field>
-        <field name="inherit_id" ref="farm_processing.view_farm_processing_production_form"/>
+        <field name="inherit_id" ref="farm_processing.view_farm_processing_production_form" />
         <field name="arch" type="xml">
             <xpath expr="//page[@name='agri_processing']//field[@name='harvest_lot_ids']" position="after">
-                <field name="raw_material_lot_id"/>
-                <field name="raw_material_qty"/>
-                <field name="quality_grade"/>
-                <field name="final_output_qty"/>
-                <field name="yield_rate"/>
+                <field name="raw_material_lot_id" />
+                <field name="raw_material_qty" />
+                <field name="quality_grade" />
+                <field name="final_output_qty" />
+                <field name="yield_rate" />
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Net Vegetable Processing" name="net_vegetable_processing">
                     <group>
                         <group string="Batch Information">
-                            <field name="net_vegetable_batch_no"/>
-                            <field name="total_loss_qty"/>
+                            <field name="net_vegetable_batch_no" />
+                            <field name="total_loss_qty" />
                         </group>
                         <group string="Quality Control">
-                            <field name="moisture_content"/>
-                            <field name="is_haccp_compliant"/>
+                            <field name="moisture_content" />
+                            <field name="is_haccp_compliant" />
                         </group>
                     </group>
                     <group string="Processing Steps" name="processing_steps">
                         <field name="processing_steps">
                             <list editable="top">
-                                <field name="sequence"/>
-                                <field name="step_name"/>
-                                <field name="step_type"/>
-                                <field name="input_qty"/>
-                                <field name="output_qty"/>
-                                <field name="loss_qty"/>
-                                <field name="temperature"/>
-                                <field name="humidity"/>
-                                <field name="ph_level"/>
+                                <field name="sequence" />
+                                <field name="step_name" />
+                                <field name="step_type" />
+                                <field name="input_qty" />
+                                <field name="output_qty" />
+                                <field name="loss_qty" />
+                                <field name="temperature" />
+                                <field name="humidity" />
+                                <field name="ph_level" />
                             </list>
                         </field>
                     </group>
@@ -44,4 +44,5 @@
             </xpath>
         </field>
     </record>
+</data>
 </odoo>

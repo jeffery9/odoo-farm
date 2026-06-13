@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data noupdate="1">
-        <!-- Root Category -->
+<data>
+
         <record id="category_agri_root" model="product.category">
             <field name="name">Agricultural Products (Agricultural Products)</field>
         </record>
 
-        <!-- Sub-Categories -->
+        
         <record id="category_seeds" model="product.category">
             <field name="name">Seeds &amp; Varieties</field>
-            <field name="parent_id" ref="category_agri_root"/>
+            <field name="parent_id" ref="category_agri_root" />
         </record>
 
         <record id="category_inputs" model="product.category">
             <field name="name">Farming Inputs (Farming Inputs)</field>
-            <field name="parent_id" ref="category_agri_root"/>
+            <field name="parent_id" ref="category_agri_root" />
         </record>
 
         <record id="category_fertilizers" model="product.category">
             <field name="name">Fertilizers (Fertilizers)</field>
-            <field name="parent_id" ref="category_inputs"/>
+            <field name="parent_id" ref="category_inputs" />
         </record>
 
         <record id="category_pesticides" model="product.category">
             <field name="name">Pesticides (Pesticides)</field>
-            <field name="parent_id" ref="category_inputs"/>
+            <field name="parent_id" ref="category_inputs" />
         </record>
 
         <record id="category_harvested" model="product.category">
             <field name="name">Harvested Crops (Harvested Crops)</field>
-            <field name="parent_id" ref="category_agri_root"/>
+            <field name="parent_id" ref="category_agri_root" />
         </record>
 </data>
 </odoo>

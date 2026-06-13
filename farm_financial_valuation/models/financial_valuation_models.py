@@ -62,7 +62,7 @@ class FinancialAssetValuation(models.Model):
     adjustment_factors = fields.Text("Adjustment Factors for Comparables")
 
     # Valuation Result
-    valuation_amount = fields.Float("Valuation Amount", compute='_compute_valuation_amount', store=True, precompute=True)
+    valuation_amount = fields.Float("Valuation Amount", compute='_compute_valuation_amount', store=True, precompute=True, readonly=False)
     valuation_variance = fields.Float("Variance from Previous", compute='_compute_variance', store=True, precompute=True)
     confidence_level = fields.Float("Confidence Level (%)", default=85.0,
                                    help="Confidence in the valuation estimate")
@@ -76,38 +76,61 @@ class FinancialAssetValuation(models.Model):
     compliance_requirements = fields.Text("Compliance Requirements")
     valuation_notes = fields.Text("Valuation Notes")
 
+    # [Anji Model] Ecological Linkage [US-TECH-VAL-03]
+    gep_score = fields.Float("Ecological GEP", related='asset_id.location_id.gep_score')
+    gep_premium_factor = fields.Float("GEP Premium Factor", compute='_compute_gep_premium', store=True)
+
+    @api.depends('gep_score', 'asset_type')
+    def _compute_gep_premium(self):
+        """
+        [US-ANJI-02] Ecological Value Monetization.
+        If asset is 'land', apply a premium factor based on GEP score.
+        GEP > 80 = +20% value, GEP > 60 = +10% value.
+        """
+        for record in self:
+            if record.asset_type == 'land' and record.gep_score:
+                if record.gep_score >= 80.0:
+                    record.gep_premium_factor = 1.20
+                elif record.gep_score >= 60.0:
+                    record.gep_premium_factor = 1.10
+                else:
+                    record.gep_premium_factor = 1.0
+            else:
+                record.gep_premium_factor = 1.0
+
     # Previous valuation for comparison
     previous_valuation_id = fields.Many2one('farm.financial.asset.valuation', string="Previous Valuation")
 
     @api.depends('valuation_method', 'market_price', 'original_cost', 'accumulated_depreciation',
-                 'market_adjustment_factor', 'discount_rate', 'projected_cash_flows')
+                 'market_adjustment_factor', 'discount_rate', 'projected_cash_flows', 'gep_premium_factor')
     def _compute_valuation_amount(self):
-        """Compute valuation amount based on selected method"""
+        """Compute valuation amount based on selected method and ecological premium"""
         for record in self:
+            base_amount = 0.0
             if record.valuation_method == 'market_price':
-                record.valuation_amount = record.market_price * record.market_adjustment_factor
+                base_amount = record.market_price * record.market_adjustment_factor
             elif record.valuation_method == 'cost_model':
-                record.valuation_amount = record.original_cost - record.accumulated_depreciation
+                base_amount = record.original_cost - record.accumulated_depreciation
             elif record.valuation_method == 'income_approach':
-                # Simplified income approach - would be more complex in real implementation
                 if record.projected_cash_flows and record.discount_rate > 0:
-                    # This would need to parse the cash flows and calculate present value
-                    # For now, using a placeholder calculation
-                    record.valuation_amount = record.original_cost * (1 + record.discount_rate/100)
+                    base_amount = record.original_cost * (1 + record.discount_rate/100)
                 else:
-                    record.valuation_amount = record.original_cost - record.accumulated_depreciation
+                    base_amount = record.original_cost - record.accumulated_depreciation
             elif record.valuation_method == 'comparable_sales':
-                # Based on comparable asset values with adjustments
                 if record.comparable_asset_ids:
                     avg_comparable_value = sum(record.comparable_asset_ids.mapped('valuation_amount')) / len(record.comparable_asset_ids)
-                    record.valuation_amount = avg_comparable_value * record.market_adjustment_factor
+                    base_amount = avg_comparable_value * record.market_adjustment_factor
                 else:
-                    record.valuation_amount = record.market_price if record.market_price else record.original_cost - record.accumulated_depreciation
+                    base_amount = record.market_price if record.market_price else record.original_cost - record.accumulated_depreciation
             else:  # hybrid
-                # Combine methods with weighted average
                 market_val = record.market_price * record.market_adjustment_factor if record.market_price else 0
                 cost_val = record.original_cost - record.accumulated_depreciation if record.original_cost else 0
-                record.valuation_amount = (market_val + cost_val) / 2
+                base_amount = (market_val + cost_val) / 2
+            
+            # Apply Ecological GEP Premium
+            record.valuation_amount = base_amount * record.gep_premium_factor
+            _logger.info("Valuation Compute Amount: base=%s, factor=%s -> result=%s", 
+                         base_amount, record.gep_premium_factor, record.valuation_amount)
 
     @api.depends('original_cost', 'accumulated_depreciation')
     def _compute_net_book_value(self):
@@ -137,13 +160,59 @@ class FinancialAssetValuation(models.Model):
             else:
                 record.valuation_variance = 0.0
 
+    @api.model
+    def _get_valuation_plugins(self):
+        """ Registry for valuation plugins """
+        return [
+            {'name': 'fair_value', 'class': 'agri.valuation.plugin.fair_value'},
+            {'name': 'growth_progress', 'class': 'agri.valuation.plugin.growth'},
+            {'name': 'gep_premium', 'class': 'agri.valuation.plugin.gep'},
+        ]
+
     def action_calculate_valuation(self):
-        """Recalculate the valuation based on current data"""
+        """
+        [SOLID Refactored] Calculates valuation by orchestrating multiple plugins.
+        """
         for record in self:
-            record._compute_valuation_amount()
+            final_amount = 0.0
+            accumulated_notes = []
+            multiplier = 1.0
+            
+            plugins = record._get_valuation_plugins()
+            valuation_context = {
+                'market_price': record.market_price,
+                'market_adjustment_factor': record.market_adjustment_factor,
+                'valuation_method': record.valuation_method,
+            }
+            for plugin_info in plugins:
+                try:
+                    plugin_model = self.env[plugin_info['class']]
+                    _logger.info("Valuation Plugin Found: %s", plugin_info['class'])
+                    res = plugin_model.calculate_value(record.asset_id, context=valuation_context)
+                    _logger.info("Valuation Plugin Result: %s", res)
+                    if res:
+                        if 'amount' in res:
+                            final_amount = res['amount'] # Take base amount
+                        if 'multiplier' in res:
+                            multiplier *= res['multiplier'] # Apply multipliers
+                        if 'notes' in res:
+                            accumulated_notes.append(res['notes'])
+                except KeyError:
+                    _logger.warning("Valuation Plugin Not Found: %s", plugin_info['class'])
+                except Exception as e:
+                    _logger.error("Valuation Plugin Error (%s): %s", plugin_info['name'], str(e))
+            
+            record.write({
+                'valuation_amount': final_amount * multiplier,
+                'valuation_notes': "\n".join(accumulated_notes)
+            })
+            _logger.info("Valuation Orchestrator Final: %s (Amount: %s)", record.name, record.valuation_amount)
+            
+            # Legacy compute triggers for UI consistency
             record._compute_net_book_value()
             record._compute_fair_value()
             record._compute_variance()
+        return True
 
     def action_create_accounting_entries(self):
         """Create accounting entries for revaluation"""
@@ -151,19 +220,20 @@ class FinancialAssetValuation(models.Model):
         account_obj = self.env['account.account']
 
         for record in self:
+            _logger.info("Valuation Journal Entry: Checking record %s (Variance: %s)", record.name, record.valuation_variance)
             if not record.valuation_variance or abs(record.valuation_variance) < 0.01:
                 continue  # Skip if no significant change
 
             # Get required accounts
             asset_account = account_obj.search([
                 ('code', '=like', '16%'),  # Fixed assets account
-                ('company_id', '=', self.env.company.id)
+                ('company_ids', 'in', self.env.company.ids)
             ], limit=1)
 
             if not asset_account:
                 asset_account = account_obj.search([
                     ('name', 'ilike', 'asset'),
-                    ('company_id', '=', self.env.company.id)
+                    ('company_ids', 'in', self.env.company.ids)
                 ], limit=1)
 
             if not asset_account:
@@ -180,13 +250,13 @@ class FinancialAssetValuation(models.Model):
 
             reval_account = account_obj.search([
                 ('code', '=like', '48%'),  # Revaluation reserve account
-                ('company_id', '=', self.env.company.id)
+                ('company_ids', 'in', self.env.company.ids)
             ], limit=1)
 
             if not reval_account:
                 reval_account = account_obj.search([
                     ('name', 'ilike', 'revaluation'),
-                    ('company_id', '=', self.env.company.id)
+                    ('company_ids', 'in', self.env.company.ids)
                 ], limit=1)
 
             if not reval_account:

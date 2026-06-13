@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_farm_location_form_greenhouse" model="ir.ui.view">
         <field name="name">farm.location.form.greenhouse</field>
         <field name="model">farm.location</field>
-        <field name="inherit_id" ref="farm_core.view_farm_location_form"/>
+        <field name="inherit_id" ref="farm_core.view_farm_location_form" />
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Greenhouse Ops" name="greenhouse" invisible="not is_land_parcel">
                     <group>
                         <group string="Configuration">
-                            <field name="is_greenhouse"/>
-                            <field name="greenhouse_type" invisible="not is_greenhouse"/>
+                            <field name="is_greenhouse" />
+                            <field name="greenhouse_type" invisible="not is_greenhouse" />
                         </group>
                         <group string="Real-time Status" invisible="not is_greenhouse">
-                            <field name="current_temp"/>
-                            <field name="current_humidity"/>
-                            <field name="current_ec"/>
-                            <field name="current_ph"/>
+                            <field name="current_temp" />
+                            <field name="current_humidity" />
+                            <field name="current_ec" />
+                            <field name="current_ph" />
                         </group>
                     </group>
                 </page>
@@ -30,10 +31,10 @@
         <field name="model">farm.greenhouse.control.rule</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="greenhouse_id"/>
-                <field name="parameter"/>
-                <field name="active" widget="boolean_toggle"/>
+                <field name="name" />
+                <field name="greenhouse_id" />
+                <field name="parameter" />
+                <field name="active" widget="boolean_toggle" />
             </list>
         </field>
     </record>
@@ -45,34 +46,34 @@
             <form>
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name"/></h1>
+                        <h1><field name="name" /></h1>
                     </div>
                     <group>
                         <group>
-                            <field name="greenhouse_id"/>
-                            <field name="parameter"/>
+                            <field name="greenhouse_id" />
+                            <field name="parameter" />
                         </group>
                         <group>
-                            <field name="is_ai_controlled"/>
-                            <field name="active"/>
+                            <field name="is_ai_controlled" />
+                            <field name="active" />
                         </group>
                     </group>
                     <group string="Thresholds">
-                        <field name="threshold_low"/>
-                        <field name="threshold_high"/>
+                        <field name="threshold_low" />
+                        <field name="threshold_high" />
                     </group>
                     <notebook>
                         <page string="Actions">
                             <field name="action_ids">
                                 <list editable="bottom">
-                                    <field name="device_id"/>
-                                    <field name="command"/>
-                                    <field name="value"/>
+                                    <field name="device_id" />
+                                    <field name="command" />
+                                    <field name="value" />
                                 </list>
                             </field>
                         </page>
                         <page string="AI Logs" invisible="not is_ai_controlled">
-                            <field name="ai_adjustment_log" readonly="1"/>
+                            <field name="ai_adjustment_log" readonly="1" />
                         </page>
                     </notebook>
                 </sheet>
@@ -92,10 +93,10 @@
         <field name="model">farm.greenhouse.energy.log</field>
         <field name="arch" type="xml">
             <list>
-                <field name="greenhouse_id"/>
-                <field name="date"/>
-                <field name="kwh_consumed" sum="Total kWh"/>
-                <field name="carbon_footprint" sum="Total CO2"/>
+                <field name="greenhouse_id" />
+                <field name="date" />
+                <field name="kwh_consumed" sum="Total kWh" />
+                <field name="carbon_footprint" sum="Total CO2" />
             </list>
         </field>
     </record>
@@ -107,12 +108,10 @@
     </record>
 
     
-    <menuitem id="menu_farm_greenhouse_root" name="Smart Greenhouse" 
- web_icon="farm_greenhouse,static/description/icon.png" sequence="18"/>
+    <menuitem id="menu_farm_greenhouse_root" name="Smart Greenhouse" web_icon="farm_greenhouse,static/description/icon.png" sequence="18" />
     
-    <menuitem id="menu_farm_greenhouse_rules" name="Automation Rules" 
-              parent="menu_farm_greenhouse_root" action="action_farm_greenhouse_rule" sequence="20"/>
+    <menuitem id="menu_farm_greenhouse_rules" name="Automation Rules" parent="menu_farm_greenhouse_root" action="action_farm_greenhouse_rule" sequence="20" />
               
-    <menuitem id="menu_farm_greenhouse_energy" name="Energy &amp; Sustainability" 
-              parent="menu_farm_greenhouse_root" action="action_farm_greenhouse_energy" sequence="30"/>
+    <menuitem id="menu_farm_greenhouse_energy" name="Energy &amp; Sustainability" parent="menu_farm_greenhouse_root" action="action_farm_greenhouse_energy" sequence="30" />
+</data>
 </odoo>

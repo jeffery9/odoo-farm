@@ -1,124 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Soil Analysis Tree View -->
-    <record id="view_soil_analysis_tree" model="ir.ui.view">
+<data>
+<record id="view_soil_analysis_tree" model="ir.ui.view">
         <field name="name">agri.soil.analysis.tree</field>
         <field name="model">agri.soil.analysis</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="location_id"/>
-                <field name="analysis_date"/>
-                <field name="ph_level"/>
-                <field name="organic_matter"/>
-                <field name="nitrogen_content"/>
-                <field name="phosphorus_content"/>
-                <field name="potassium_content"/>
-                <field name="state"/>
+                <field name="name" />
+                <field name="location_id" />
+                <field name="analysis_date" />
+                <field name="ph_level" />
+                <field name="organic_matter" />
+                <field name="nitrogen_content" />
+                <field name="phosphorus_content" />
+                <field name="potassium_content" />
+                <field name="state" />
             </list>
         </field>
     </record>
 
-    <!-- Soil Analysis Form View -->
+    
     <record id="view_soil_analysis_form" model="ir.ui.view">
         <field name="name">agri.soil.analysis.form</field>
         <field name="model">agri.soil.analysis</field>
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_validate" type="object" string="Validate Analysis" class="oe_highlight" invisible="state == 'done'"/>
-                    <field name="state" widget="statusbar"/>
+                    <button name="action_validate" type="object" string="Validate Analysis" class="oe_highlight" invisible="state == 'done'" />
+                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
                     <group>
                         <group name="basic_info" string="Basic Information">
-                            <field name="name"/>
-                            <field name="location_id"/>
-                            <field name="analysis_date"/>
-                            <field name="laboratory_id"/>
+                            <field name="name" />
+                            <field name="location_id" />
+                            <field name="analysis_date" />
+                            <field name="laboratory_id" />
                         </group>
                         <group name="status" string="Status">
-                            <field name="state"/>
+                            <field name="state" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Nutrient Analysis">
                             <group>
                                 <group name="primary_nutrients" string="Primary Nutrients">
-                                    <field name="ph_level"/>
-                                    <field name="organic_matter"/>
-                                    <field name="nitrogen_content"/>
-                                    <field name="phosphorus_content"/>
-                                    <field name="potassium_content"/>
+                                    <field name="ph_level" />
+                                    <field name="organic_matter" />
+                                    <field name="nitrogen_content" />
+                                    <field name="phosphorus_content" />
+                                    <field name="potassium_content" />
                                 </group>
                                 <group name="secondary_nutrients" string="Secondary Nutrients">
-                                    <field name="magnesium"/>
-                                    <field name="calcium"/>
+                                    <field name="magnesium" />
+                                    <field name="calcium" />
                                 </group>
                             </group>
                         </page>
                         <page string="Heavy Metals Analysis">
                             <group>
-                                <field name="lead_content"/>
-                                <field name="cadmium_content"/>
-                                <field name="mercury_content"/>
-                                <field name="arsenic_content"/>
-                                <field name="chromium_content"/>
-                                <field name="copper_content"/>
-                                <field name="zinc_content"/>
-                                <field name="nickel_content"/>
+                                <field name="lead_content" />
+                                <field name="cadmium_content" />
+                                <field name="mercury_content" />
+                                <field name="arsenic_content" />
+                                <field name="chromium_content" />
+                                <field name="copper_content" />
+                                <field name="zinc_content" />
+                                <field name="nickel_content" />
                             </group>
                         </page>
                         <page string="Recommendations">
                             <group>
-                                <field name="recommendation" nolabel="1" placeholder="Fertilization recommendations..."/>
-                                <field name="remediation_advice" nolabel="1" placeholder="Soil remediation advice..."/>
+                                <field name="recommendation" nolabel="1" placeholder="Fertilization recommendations..." />
+                                <field name="remediation_advice" nolabel="1" placeholder="Soil remediation advice..." />
                             </group>
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
     </record>
 
-    <!-- Soil Analysis Search View -->
+    
     <record id="view_soil_analysis_search" model="ir.ui.view">
         <field name="name">agri.soil.analysis.search</field>
         <field name="model">agri.soil.analysis</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name"/>
-                <field name="location_id"/>
-                <field name="analysis_date"/>
-                <field name="state"/>
-                <field name="laboratory_id"/>
-                <separator/>
-                <filter name="filter_validated" string="Validated" domain="[('state', '=', 'done')]"/>
-                <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <field name="name" />
+                <field name="location_id" />
+                <field name="analysis_date" />
+                <field name="state" />
+                <field name="laboratory_id" />
+                <separator />
+                <filter name="filter_validated" string="Validated" domain="[('state', '=', 'done')]" />
+                <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]" />
                 <group>
-                    <filter name="group_by_location" string="By Location" context="{'group_by': 'location_id'}"/>
-                    <filter name="group_by_state" string="By Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_by_location" string="By Location" context="{'group_by': 'location_id'}" />
+                    <filter name="group_by_state" string="By Status" context="{'group_by': 'state'}" />
                 </group>
             </search>
         </field>
     </record>
 
-    <!-- Soil Analysis Action -->
+    
     <record id="action_soil_analysis" model="ir.actions.act_window">
         <field name="name">Soil Analyses</field>
         <field name="res_model">agri.soil.analysis</field>
         <field name="view_mode">list,form</field>
-        <field name="search_view_id" ref="view_soil_analysis_search"/>
+        <field name="search_view_id" ref="view_soil_analysis_search" />
     </record>
 
-    <!-- Menu item for Soil Analysis -->
-    <menuitem id="soil_analysis_menu" name="Soil Analysis"
-              parent="land_health_rotation_menu" sequence="5"
-              action="action_soil_analysis"/>
-
+    
+    <menuitem id="soil_analysis_menu" name="Soil Analysis" parent="land_health_rotation_menu" sequence="5" action="action_soil_analysis" />
+</data>
 </odoo>
