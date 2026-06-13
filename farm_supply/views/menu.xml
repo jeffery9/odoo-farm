@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_supply_chain_root"
-              name="Supply Chain"
-              sequence="100"
-              web_icon="farm_supply,static/description/icon.png"/>
-
+<data>
+<menuitem id="menu_supply_chain_root" name="Supply Chain" sequence="100" web_icon="farm_supply,static/description/icon.png" />
+</data>
 </odoo>
