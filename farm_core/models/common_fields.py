@@ -64,9 +64,8 @@ class CommonAgriculturalFields(models.AbstractModel):
     ], string="Production Cycle", default='annual')
 
     # Dynamic properties for flexible attribute management
-    properties_definition = fields.PropertiesDefinition('Properties Definition')
+    properties_definition = fields.Json('Properties Definition')
     company_id = fields.Many2one('res.company', default=lambda self: self.env.company)
-    properties = fields.Properties(
-        'Properties',
-        definition='properties_definition'
+    properties = fields.Json(
+        'Properties'
     )

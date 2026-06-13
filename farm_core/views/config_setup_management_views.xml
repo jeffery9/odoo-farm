@@ -1,88 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Industry Data Package Tree View -->
-    <record id="view_industry_data_package_tree" model="ir.ui.view">
+<data>
+<record id="view_industry_data_package_tree" model="ir.ui.view">
         <field name="name">agri.industry.data.package.tree</field>
         <field name="model">agri.industry.data.package</field>
         <field name="arch" type="xml">
             <list string="Industry Data Packages">
-                <field name="name"/>
-                <field name="code"/>
-                <field name="industry_type"/>
-                <field name="description"/>
+                <field name="name" />
+                <field name="code" />
+                <field name="industry_type" />
+                <field name="description" />
             </list>
         </field>
     </record>
 
-    <!-- Industry Data Package Form View -->
+    
     <record id="view_industry_data_package_form" model="ir.ui.view">
         <field name="name">agri.industry.data.package.form</field>
         <field name="model">agri.industry.data.package</field>
         <field name="arch" type="xml">
             <form string="Industry Data Package">
                 <header>
-                    <button name="action_apply_package" type="object" string="Apply Package" class="oe_highlight"/>
+                    <button name="action_apply_package" type="object" string="Apply Package" class="oe_highlight" />
                 </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="code"/>
+                            <field name="name" />
+                            <field name="code" />
                         </group>
                         <group>
-                            <field name="industry_type"/>
+                            <field name="industry_type" />
                         </group>
                     </group>
-                    <field name="description"/>
+                    <field name="description" />
                     <notebook>
                         <page string="Varieties" name="varieties">
                             <field name="variety_ids">
                                 <list editable="top">
-                                    <field name="product_name"/>
-                                    <field name="variety_name"/>
-                                    <field name="agricultural_type"/>
-                                    <field name="standard_dose"/>
-                                    <field name="growth_duration"/>
-                                    <field name="maturity_age_days"/>
-                                    <field name="is_biological_asset"/>
+                                    <field name="product_name" />
+                                    <field name="variety_name" />
+                                    <field name="agricultural_type" />
+                                    <field name="standard_dose" />
+                                    <field name="growth_duration" />
+                                    <field name="maturity_age_days" />
+                                    <field name="is_biological_asset" />
                                 </list>
                             </field>
                         </page>
                         <page string="Physiological Stages" name="physio_stages">
                             <field name="physio_stage_ids">
                                 <list editable="top">
-                                    <field name="stage_name"/>
-                                    <field name="age_days"/>
-                                    <field name="target_weight"/>
-                                    <field name="daily_feed_rate"/>
-                                    <field name="related_variety"/>
+                                    <field name="stage_name" />
+                                    <field name="age_days" />
+                                    <field name="target_weight" />
+                                    <field name="daily_feed_rate" />
+                                    <field name="related_variety" />
                                 </list>
                             </field>
                         </page>
                         <page string="UOM Conversions" name="uom_conversions">
                             <field name="uom_conversion_ids">
                                 <list editable="top">
-                                    <field name="from_uom_id"/>
-                                    <field name="to_uom_id"/>
-                                    <field name="factor"/>
+                                    <field name="from_uom_id" />
+                                    <field name="to_uom_id" />
+                                    <field name="factor" />
                                 </list>
                             </field>
                         </page>
                         <page string="Task Templates" name="task_templates">
                             <field name="task_template_ids">
                                 <list editable="top">
-                                    <field name="name"/>
-                                    <field name="expected_duration"/>
-                                    <field name="required_equipment"/>
+                                    <field name="name" />
+                                    <field name="expected_duration" />
+                                    <field name="required_equipment" />
                                 </list>
                             </field>
                         </page>
                         <page string="Product Categories" name="product_categories">
                             <field name="product_category_ids">
                                 <list editable="top">
-                                    <field name="name"/>
-                                    <field name="parent_id"/>
-                                    <field name="agricultural_type"/>
+                                    <field name="name" />
+                                    <field name="parent_id" />
+                                    <field name="agricultural_type" />
                                 </list>
                             </field>
                         </page>
@@ -92,34 +92,34 @@
         </field>
     </record>
 
-    <!-- Menu Items -->
+    
 
-    <!-- Actions -->
+    
     <record id="action_industry_data_package_list" model="ir.actions.act_window">
         <field name="name">Industry Data Packages</field>
         <field name="res_model">agri.industry.data.package</field>
         <field name="view_mode">list,form</field>
     </record>
 
-    <!-- Industry Package Application Wizard -->
+    
     <record id="view_industry_package_wizard_form" model="ir.ui.view">
         <field name="name">farm.industry.package.wizard.form</field>
         <field name="model">farm.industry.package.wizard</field>
         <field name="arch" type="xml">
             <form string="Apply Industry Package">
                 <group>
-                    <field name="package_id"/>
-                    <field name="confirmation_message"/>
+                    <field name="package_id" />
+                    <field name="confirmation_message" />
                 </group>
                 <footer>
-                    <button name="action_apply_selected_package" type="object" string="Apply Package" class="oe_highlight"/>
-                    <button string="Cancel" class="oe_link" special="cancel"/>
+                    <button name="action_apply_selected_package" type="object" string="Apply Package" class="oe_highlight" />
+                    <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
             </form>
         </field>
     </record>
 
-    <!-- Wizard Action -->
+    
     <record id="action_industry_package_wizard" model="ir.actions.act_window">
         <field name="name">Apply Industry Package</field>
         <field name="res_model">farm.industry.package.wizard</field>
@@ -127,9 +127,9 @@
         <field name="target">new</field>
     </record>
 
-    <!-- Menu item to apply packages -->
+    
               parent="menu_config_setup_root"
               action="action_industry_package_wizard"
-              sequence="20"/>
-
+              sequence="20"/&gt;
+</data>
 </odoo>

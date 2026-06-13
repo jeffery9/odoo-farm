@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 示例出口国家标准数据 -->
-    <record id="export_standard_usa" model="export.country.standard">
+<data>
+<record id="export_standard_usa" model="export.country.standard">
         <field name="name">United States of America</field>
         <field name="code">US</field>
         <field name="compliance_requirements">Compliance with FDA regulations, organic certification requirements, etc.</field>
@@ -18,4 +18,5 @@
         <field name="code">JP</field>
         <field name="compliance_requirements">Compliance with Japanese Agricultural Standards (JAS), positive list system, etc.</field>
     </record>
+</data>
 </odoo>

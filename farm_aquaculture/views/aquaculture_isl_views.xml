@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    
-    <record id="view_farm_aquaculture_bom_form" model="ir.ui.view">
+<data>
+<record id="view_farm_aquaculture_bom_form" model="ir.ui.view">
         <field name="name">farm.aquaculture.bom.form</field>
         <field name="model">farm.aquaculture.bom</field>
         <field name="arch" type="xml">
@@ -40,9 +40,9 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_confirm" type="object" string="Confirm" invisible="state != 'draft'" class="oe_highlight"/>
-                    <button name="button_mark_done" type="object" string="Mark as Done" invisible="state != 'confirmed'" class="oe_highlight"/>
-                    <field name="state" widget="statusbar"/>
+                    <button name="action_confirm" type="object" string="Confirm" invisible="state != 'draft'" class="oe_highlight" />
+                    <button name="button_mark_done" type="object" string="Mark as Done" invisible="state != 'confirmed'" class="oe_highlight" />
+                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -83,4 +83,5 @@
         <field name="res_model">farm.aquaculture.bom</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

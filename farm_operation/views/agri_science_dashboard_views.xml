@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_agri_intervention_form_science_inherit" model="ir.ui.view">
+<data>
+<record id="view_agri_intervention_form_science_inherit" model="ir.ui.view">
         <field name="name">mrp.production.form.science.inherit</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="before">
 <header>
 
-                <button name="%(farm_operation.action_agri_science_sync_wizard)d" string="Env Sync" type="action" class="btn-secondary" invisible="state != 'progress'"/>
+                <button name="%(farm_operation.action_agri_science_sync_wizard)d" string="Env Sync" type="action" class="btn-secondary" invisible="state != 'progress'" />
             
 </header>
 </xpath>
@@ -16,14 +17,14 @@
                 <page string="Agri-Science Audit" name="agri_science">
                     <group>
                         <group string="Biological Clock">
-                            <field name="physiology_profile_id"/>
-                            <field name="cumulative_gdd"/>
-                            <field name="current_growth_stage_id" readonly="1"/>
+                            <field name="physiology_profile_id" />
+                            <field name="cumulative_gdd" />
+                            <field name="current_growth_stage_id" readonly="1" />
                         </group>
                         <group string="Resource Efficiency">
-                            <field name="rue_actual"/>
-                            <field name="wue_actual"/>
-                            <field name="biological_stress_index" widget="progressbar"/>
+                            <field name="rue_actual" />
+                            <field name="wue_actual" />
+                            <field name="biological_stress_index" widget="progressbar" />
                         </group>
                     </group>
                 </page>
@@ -31,7 +32,7 @@
         </field>
     </record>
 
-    <!-- RUE/WUE Dashboard Action -->
+    
     <record id="action_agri_science_performance" model="ir.actions.act_window">
         <field name="name">Scientific Performance</field>
         <field name="res_model">mrp.production</field>
@@ -39,5 +40,6 @@
         <field name="domain">[('physiology_profile_id', '!=', False)]</field>
     </record>
 
-    <menuitem id="menu_agri_science_performance" name="Performance Board" parent="farm_agri_science.menu_agri_science_root" action="action_agri_science_performance" sequence="20"/>
+    <menuitem id="menu_agri_science_performance" name="Performance Board" parent="farm_agri_science.menu_agri_science_root" action="action_agri_science_performance" sequence="20" />
+</data>
 </odoo>

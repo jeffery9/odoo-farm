@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="skill_harvester_operator" model="farm.agri.skill">
             <field name="name">Harvester Operator</field>
             <field name="description">Certified to operate heavy harvesting machinery.</field>
@@ -24,4 +25,5 @@
             <field name="name">Nursery Expert</field>
             <field name="description">Expertise in seed germination and seedling management.</field>
         </record>
+</data>
 </odoo>

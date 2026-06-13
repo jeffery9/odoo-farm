@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Yield Rate Analytics Tree View -->
-    <record id="view_agri_processing_yield_rate_analytics_tree" model="ir.ui.view">
+<data>
+<record id="view_agri_processing_yield_rate_analytics_tree" model="ir.ui.view">
         <field name="name">agri.processing.yield.rate.analytics.tree</field>
         <field name="model">agri.processing.yield.rate.analytics</field>
         <field name="arch" type="xml">
             <list string="Yield Rate Analytics">
-                <field name="name"/>
-                <field name="production_id"/>
-                <field name="production_date"/>
-                <field name="yield_rate"/>
-                <field name="yield_variance"/>
-                <field name="operator_id"/>
-                <field name="season"/>
+                <field name="name" />
+                <field name="production_id" />
+                <field name="production_date" />
+                <field name="yield_rate" />
+                <field name="yield_variance" />
+                <field name="operator_id" />
+                <field name="season" />
             </list>
         </field>
     </record>
 
-    <!-- Yield Rate Analytics Form View -->
+    
     <record id="view_agri_processing_yield_rate_analytics_form" model="ir.ui.view">
         <field name="name">agri.processing.yield.rate.analytics.form</field>
         <field name="model">agri.processing.yield.rate.analytics</field>
@@ -27,175 +26,171 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="production_id"/>
-                            <field name="production_date"/>
+                            <field name="name" />
+                            <field name="production_id" />
+                            <field name="production_date" />
                         </group>
                         <group>
-                            <field name="yield_rate"/>
-                            <field name="yield_variance"/>
-                            <field name="standard_yield_rate"/>
+                            <field name="yield_rate" />
+                            <field name="yield_variance" />
+                            <field name="standard_yield_rate" />
                         </group>
                     </group>
                     <group string="Dimensions">
-                        <field name="batch_id"/>
-                        <field name="season"/>
-                        <field name="operator_id"/>
-                        <field name="equipment_id"/>
-                        <field name="raw_material_source"/>
+                        <field name="batch_id" />
+                        <field name="season" />
+                        <field name="operator_id" />
+                        <field name="equipment_id" />
+                        <field name="raw_material_source" />
                     </group>
                     <group string="Efficiency Metrics">
-                        <field name="processing_time_hours"/>
-                        <field name="energy_consumption_kwh"/>
-                        <field name="energy_efficiency"/>
+                        <field name="processing_time_hours" />
+                        <field name="energy_consumption_kwh" />
+                        <field name="energy_efficiency" />
                     </group>
-                    <field name="notes"/>
+                    <field name="notes" />
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- License Check Tree View -->
+    
     <record id="view_agri_processing_license_check_tree" model="ir.ui.view">
         <field name="name">agri.processing.license.check.tree</field>
         <field name="model">agri.processing.license.check</field>
         <field name="arch" type="xml">
-            <list string="Production License Checks"
-                  decoration-danger="compliance_status == 'non_compliant'"
-                  decoration-warning="compliance_status == 'warning'"
-                  decoration-info="compliance_status == 'compliant'">
-                <field name="name"/>
-                <field name="production_id"/>
-                <field name="license_id"/>
-                <field name="compliance_status"/>
-                <field name="license_active"/>
-                <field name="is_category_permitted"/>
-                <field name="checked_date"/>
+            <list string="Production License Checks" decoration-danger="compliance_status == 'non_compliant'" decoration-warning="compliance_status == 'warning'" decoration-info="compliance_status == 'compliant'">
+                <field name="name" />
+                <field name="production_id" />
+                <field name="license_id" />
+                <field name="compliance_status" />
+                <field name="license_active" />
+                <field name="is_category_permitted" />
+                <field name="checked_date" />
             </list>
         </field>
     </record>
 
-    <!-- License Check Form View -->
+    
     <record id="view_agri_processing_license_check_form" model="ir.ui.view">
         <field name="name">agri.processing.license.check.form</field>
         <field name="model">agri.processing.license.check</field>
         <field name="arch" type="xml">
             <form string="Production License Scope Verification">
                 <header>
-                    <field name="compliance_status" widget="statusbar"/>
+                    <field name="compliance_status" widget="statusbar" />
                 </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="production_id"/>
+                            <field name="name" />
+                            <field name="production_id" />
                         </group>
                         <group>
-                            <field name="license_id"/>
-                            <field name="license_active"/>
+                            <field name="license_id" />
+                            <field name="license_active" />
                         </group>
                     </group>
                     <group string="Category Compliance">
-                        <field name="product_category"/>
-                        <field name="product_type"/>
-                        <field name="is_category_permitted"/>
+                        <field name="product_category" />
+                        <field name="product_type" />
+                        <field name="is_category_permitted" />
                     </group>
                     <group string="License Details">
-                        <field name="license_expiry_date"/>
+                        <field name="license_expiry_date" />
                     </group>
                     <group string="Compliance Status">
-                        <field name="violations_found" widget="text"/>
+                        <field name="violations_found" widget="text" />
                     </group>
                     <group string="Override Information" invisible="compliance_status != 'non_compliant'">
-                        <field name="override_authorized_by"/>
-                        <field name="override_reason"/>
+                        <field name="override_authorized_by" />
+                        <field name="override_reason" />
                     </group>
                     <group string="Audit Trail">
-                        <field name="checked_by"/>
-                        <field name="checked_date"/>
+                        <field name="checked_by" />
+                        <field name="checked_date" />
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Recall Simulation Tree View -->
+    
     <record id="view_agri_processing_recall_simulation_tree" model="ir.ui.view">
         <field name="name">agri.processing.recall.simulation.tree</field>
         <field name="model">agri.processing.recall.simulation</field>
         <field name="arch" type="xml">
             <list string="Recall Simulations">
-                <field name="name"/>
-                <field name="simulation_date"/>
-                <field name="simulation_status"/>
-                <field name="total_affected_qty"/>
-                <field name="total_affected_customers"/>
-                <field name="executor"/>
+                <field name="name" />
+                <field name="simulation_date" />
+                <field name="simulation_status" />
+                <field name="total_affected_qty" />
+                <field name="total_affected_customers" />
+                <field name="executor" />
             </list>
         </field>
     </record>
 
-    <!-- Recall Simulation Form View -->
+    
     <record id="view_agri_processing_recall_simulation_form" model="ir.ui.view">
         <field name="name">agri.processing.recall.simulation.form</field>
         <field name="model">agri.processing.recall.simulation</field>
         <field name="arch" type="xml">
             <form string="Recall Simulation and Traceability Test">
                 <header>
-                    <button name="action_execute_recall_simulation" type="object" string="Execute Simulation"
-                            class="oe_highlight" invisible="simulation_status != 'draft'"/>
-                    <field name="simulation_status" widget="statusbar"/>
+                    <button name="action_execute_recall_simulation" type="object" string="Execute Simulation" class="oe_highlight" invisible="simulation_status != 'draft'" />
+                    <field name="simulation_status" widget="statusbar" />
                 </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="simulation_date"/>
-                            <field name="simulation_status"/>
+                            <field name="name" />
+                            <field name="simulation_date" />
+                            <field name="simulation_status" />
                         </group>
                         <group>
-                            <field name="executor"/>
-                            <field name="execution_time"/>
+                            <field name="executor" />
+                            <field name="execution_time" />
                         </group>
                     </group>
                     <group string="Trigger Information">
-                        <field name="trigger_lot_id"/>
-                        <field name="trigger_reason"/>
+                        <field name="trigger_lot_id" />
+                        <field name="trigger_reason" />
                     </group>
                     <notebook>
                         <page string="Forward Trace (Distribution)" name="forward_trace">
                             <group string="Affected Items">
-                                <field name="affected_batches" widget="many2many_tags"/>
-                                <field name="affected_sales_orders" widget="many2many_tags"/>
-                                <field name="affected_customers" widget="many2many_tags"/>
+                                <field name="affected_batches" widget="many2many_tags" />
+                                <field name="affected_sales_orders" widget="many2many_tags" />
+                                <field name="affected_customers" widget="many2many_tags" />
                             </group>
                         </page>
                         <page string="Backward Trace (Supply)" name="backward_trace">
                             <group string="Source Information">
-                                <field name="source_materials" widget="many2many_tags"/>
-                                <field name="source_suppliers" widget="many2many_tags"/>
-                                <field name="source_purchases" widget="many2many_tags"/>
+                                <field name="source_materials" widget="many2many_tags" />
+                                <field name="source_suppliers" widget="many2many_tags" />
+                                <field name="source_purchases" widget="many2many_tags" />
                             </group>
                         </page>
                         <page string="Simulation Results" name="results">
                             <group string="Summary Metrics">
-                                <field name="total_affected_qty"/>
-                                <field name="total_affected_customers"/>
-                                <field name="trace_depth_levels"/>
+                                <field name="total_affected_qty" />
+                                <field name="total_affected_customers" />
+                                <field name="trace_depth_levels" />
                             </group>
                             <group string="Simulation Report">
-                                <field name="simulation_report" widget="text"/>
-                                <field name="report_generated"/>
+                                <field name="simulation_report" widget="text" />
+                                <field name="report_generated" />
                             </group>
                         </page>
                     </notebook>
-                    <field name="notes"/>
+                    <field name="notes" />
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Menu Items -->
+    
     
 
     
@@ -208,7 +203,7 @@
 
     
 
-    <!-- Actions -->
+    
     <record id="action_farm_processing_step_list" model="ir.actions.act_window">
         <field name="name">Processing Steps</field>
         <field name="res_model">farm.processing.step</field>
@@ -233,8 +228,7 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <!-- Note: Mass balance functionality is integrated into agri.isl.processing.production extension,
-         no separate action needed for non-existent model -->
+    
 
     <record id="action_agri_processing_multi_output_list" model="ir.actions.act_window">
         <field name="name">Multi-Output Processing</field>
@@ -290,48 +284,30 @@
         <field name="view_mode">list,form</field>
     </record>
 
-<menuitem id="menu_agri_processing_root" name="Agri Processing"
- web_icon="farm_agricultural_processing,static/description/icon.png" sequence="25">
+<menuitem id="menu_agri_processing_root" name="Agri Processing" web_icon="farm_agricultural_processing,static/description/icon.png" sequence="25">
     </menuitem>
-<menuitem id="menu_net_vegetables_processing" name="Net Vegetable Processing"
-              parent="menu_agri_processing_root" sequence="10">
-        <menuitem id="menu_processing_steps_list" name="Processing Steps"
-                  action="action_farm_processing_step_list" sequence="10"/>
+<menuitem id="menu_net_vegetables_processing" name="Net Vegetable Processing" parent="menu_agri_processing_root" sequence="10">
+        <menuitem id="menu_processing_steps_list" name="Processing Steps" action="action_farm_processing_step_list" sequence="10" />
     </menuitem>
-<menuitem id="menu_formula_management" name="Formula Management"
-              parent="menu_agri_processing_root" sequence="20">
-        <menuitem id="menu_formula_versions_list" name="Blind Mixing Materials"
-                  action="action_farm_processing_blind_material_list" sequence="10"/>
-        <menuitem id="menu_formula_corrections_list" name="Auto Corrections"
-                  action="action_agri_processing_formula_auto_correction_list" sequence="20"/>
+<menuitem id="menu_formula_management" name="Formula Management" parent="menu_agri_processing_root" sequence="20">
+        <menuitem id="menu_formula_versions_list" name="Blind Mixing Materials" action="action_farm_processing_blind_material_list" sequence="10" />
+        <menuitem id="menu_formula_corrections_list" name="Auto Corrections" action="action_agri_processing_formula_auto_correction_list" sequence="20" />
     </menuitem>
-<menuitem id="menu_packaging_serialization" name="Packaging &amp; Serialization"
-              parent="menu_agri_processing_root" sequence="30">
-        <menuitem id="menu_packaging_list" name="Packaging Batches"
-                  action="action_agri_processing_packaging_list" sequence="10"/>
+<menuitem id="menu_packaging_serialization" name="Packaging &amp; Serialization" parent="menu_agri_processing_root" sequence="30">
+        <menuitem id="menu_packaging_list" name="Packaging Batches" action="action_agri_processing_packaging_list" sequence="10" />
     </menuitem>
-<menuitem id="menu_quality_compliance" name="Quality &amp; Compliance"
-              parent="menu_agri_processing_root" sequence="40">
-        <menuitem id="menu_multi_output_list" name="Multi-Output Processing"
-                  action="action_agri_processing_multi_output_list" sequence="20"/>
-        <menuitem id="menu_attribute_inheritance_list" name="Attribute Inheritance"
-                  action="action_agri_processing_attribute_inheritance_list" sequence="30"/>
-        <menuitem id="menu_active_ingredient_list" name="Active Ingredients"
-                  action="action_agri_processing_active_ingredient_list" sequence="40"/>
-        <menuitem id="menu_allergen_control_list" name="Allergen Control"
-                  action="action_agri_processing_allergen_control_list" sequence="50"/>
-        <menuitem id="menu_gmp_monitoring_list" name="GMP Monitoring"
-                  action="action_agri_processing_gmp_monitoring_list" sequence="60"/>
-        <menuitem id="menu_label_compliance_list" name="Label Compliance"
-                  action="action_agri_processing_label_compliance_list" sequence="70"/>
-        <menuitem id="menu_license_check_list" name="License Compliance"
-                  action="action_agri_processing_license_check_list" sequence="80"/>
+<menuitem id="menu_quality_compliance" name="Quality &amp; Compliance" parent="menu_agri_processing_root" sequence="40">
+        <menuitem id="menu_multi_output_list" name="Multi-Output Processing" action="action_agri_processing_multi_output_list" sequence="20" />
+        <menuitem id="menu_attribute_inheritance_list" name="Attribute Inheritance" action="action_agri_processing_attribute_inheritance_list" sequence="30" />
+        <menuitem id="menu_active_ingredient_list" name="Active Ingredients" action="action_agri_processing_active_ingredient_list" sequence="40" />
+        <menuitem id="menu_allergen_control_list" name="Allergen Control" action="action_agri_processing_allergen_control_list" sequence="50" />
+        <menuitem id="menu_gmp_monitoring_list" name="GMP Monitoring" action="action_agri_processing_gmp_monitoring_list" sequence="60" />
+        <menuitem id="menu_label_compliance_list" name="Label Compliance" action="action_agri_processing_label_compliance_list" sequence="70" />
+        <menuitem id="menu_license_check_list" name="License Compliance" action="action_agri_processing_license_check_list" sequence="80" />
     </menuitem>
-<menuitem id="menu_analytics_recall" name="Analytics &amp; Recall"
-              parent="menu_agri_processing_root" sequence="50">
-        <menuitem id="menu_yield_analytics_list" name="Yield Analytics"
-                  action="action_agri_processing_yield_rate_analytics_list" sequence="10"/>
-        <menuitem id="menu_recall_simulation_list" name="Recall Simulations"
-                  action="action_agri_processing_recall_simulation_list" sequence="20"/>
+<menuitem id="menu_analytics_recall" name="Analytics &amp; Recall" parent="menu_agri_processing_root" sequence="50">
+        <menuitem id="menu_yield_analytics_list" name="Yield Analytics" action="action_agri_processing_yield_rate_analytics_list" sequence="10" />
+        <menuitem id="menu_recall_simulation_list" name="Recall Simulations" action="action_agri_processing_recall_simulation_list" sequence="20" />
     </menuitem>
+</data>
 </odoo>

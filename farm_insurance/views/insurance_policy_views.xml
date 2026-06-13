@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_crop_yield_policy_tree" model="ir.ui.view">
         <field name="name">farm.crop.yield.insurance.policy.list</field>
         <field name="model">farm.crop.yield.insurance.policy</field>
         <field name="arch" type="xml">
             <list string="Insurance Policies" decoration-success="state == 'active'" decoration-warning="state == 'expired'">
-                <field name="name"/>
-                <field name="partner_id"/>
-                <field name="product_id"/>
-                <field name="location_id"/>
-                <field name="policy_start_date"/>
-                <field name="policy_end_date"/>
-                <field name="sum_insured"/>
-                <field name="premium_amount"/>
-                <field name="state"/>
-                <field name="claim_status" widget="badge"/>
+                <field name="name" />
+                <field name="partner_id" />
+                <field name="product_id" />
+                <field name="location_id" />
+                <field name="policy_start_date" />
+                <field name="policy_end_date" />
+                <field name="sum_insured" />
+                <field name="premium_amount" />
+                <field name="state" />
+                <field name="claim_status" widget="badge" />
             </list>
         </field>
     </record>
@@ -25,66 +26,66 @@
         <field name="arch" type="xml">
             <form string="Insurance Policy">
                 <header>
-                    <button name="action_activate_policy" string="Activate Policy" type="object" class="oe_highlight"/>
-                    <button name="action_file_claim" string="File New Claim" type="object" class="btn-primary" invisible="claim_status != 'no_claim' or state not in ('active', 'expired')"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,active,expired,cancelled"/>
+                    <button name="action_activate_policy" string="Activate Policy" type="object" class="oe_highlight" />
+                    <button name="action_file_claim" string="File New Claim" type="object" class="btn-primary" invisible="claim_status != 'no_claim' or state not in ('active', 'expired')" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,expired,cancelled" />
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name" readonly="1"/></h1>
+                        <h1><field name="name" readonly="1" /></h1>
                     </div>
                     <group>
                         <group string="Policy Holder &amp; Location">
-                            <field name="partner_id"/>
-                            <field name="farm_entity_id"/>
-                            <field name="location_id"/>
+                            <field name="partner_id" />
+                            <field name="farm_entity_id" />
+                            <field name="location_id" />
                         </group>
                         <group string="Product &amp; Coverage">
-                            <field name="product_id"/>
-                            <field name="sum_insured"/>
-                            <field name="premium_rate"/>
-                            <field name="premium_amount" readonly="1"/>
-                            <field name="currency_id" invisible="1"/>
+                            <field name="product_id" />
+                            <field name="sum_insured" />
+                            <field name="premium_rate" />
+                            <field name="premium_amount" readonly="1" />
+                            <field name="currency_id" invisible="1" />
                         </group>
                     </group>
                     <group string="Policy Dates">
-                        <field name="policy_start_date"/>
-                        <field name="policy_end_date"/>
+                        <field name="policy_start_date" />
+                        <field name="policy_end_date" />
                     </group>
                     <group string="Actuarial Data" name="actuarial_data">
-                        <field name="base_yield_trend"/>
-                        <field name="risk_factor"/>
-                        <field name="actuarial_probability_loss"/>
-                        <field name="actuarial_premium_rate"/>
-                        <button name="action_calculate_actuarial_data" string="Calculate Actuarial Data" type="object" class="btn-secondary"/>
+                        <field name="base_yield_trend" />
+                        <field name="risk_factor" />
+                        <field name="actuarial_probability_loss" />
+                        <field name="actuarial_premium_rate" />
+                        <button name="action_calculate_actuarial_data" string="Calculate Actuarial Data" type="object" class="btn-secondary" />
                     </group>
                     <notebook>
                         <page string="Yield Forecast &amp; Actuals" name="yield_data">
                             <group>
                                 <group>
-                                    <field name="predicted_yield_kg"/>
+                                    <field name="predicted_yield_kg" />
                                 </group>
                                 <group>
-                                    <field name="actual_yield_kg"/>
-                                    <field name="yield_deviation_pct"/>
+                                    <field name="actual_yield_kg" />
+                                    <field name="yield_deviation_pct" />
                                 </group>
                             </group>
                         </page>
                         <page string="Claims" name="claims">
                             <field name="claim_ids" readonly="1">
                                 <list>
-                                    <field name="name"/>
-                                    <field name="claim_date"/>
-                                    <field name="reported_yield_kg"/>
-                                    <field name="assessed_loss_amount"/>
-                                    <field name="state"/>
+                                    <field name="name" />
+                                    <field name="claim_date" />
+                                    <field name="reported_yield_kg" />
+                                    <field name="assessed_loss_amount" />
+                                    <field name="state" />
                                 </list>
                             </field>
-                            <button name="action_file_claim" string="File New Claim" type="object" icon="fa-plus" invisible="claim_status != 'no_claim' or state not in ('active', 'expired')"/>
+                            <button name="action_file_claim" string="File New Claim" type="object" icon="fa-plus" invisible="claim_status != 'no_claim' or state not in ('active', 'expired')" />
                         </page>
                         <page string="AI Actuarial Analysis" name="ai_analysis">
                             <group>
-                                <field name="yield_prediction_id"/>
+                                <field name="yield_prediction_id" />
                             </group>
                             <group string="AI Derived Metrics">
                                 <p>Based on predictive models and historical data.</p>
@@ -109,12 +110,12 @@
         <field name="model">farm.insurance.claim</field>
         <field name="arch" type="xml">
             <list string="Insurance Claims" decoration-info="state == 'filed'" decoration-success="state == 'paid'" decoration-danger="state == 'rejected'">
-                <field name="name"/>
-                <field name="policy_id"/>
-                <field name="claim_date"/>
-                <field name="reported_yield_kg"/>
-                <field name="assessed_loss_amount"/>
-                <field name="state" widget="badge"/>
+                <field name="name" />
+                <field name="policy_id" />
+                <field name="claim_date" />
+                <field name="reported_yield_kg" />
+                <field name="assessed_loss_amount" />
+                <field name="state" widget="badge" />
             </list>
         </field>
     </record>
@@ -125,36 +126,36 @@
         <field name="arch" type="xml">
             <form string="Insurance Claim">
                 <header>
-                    <button name="action_review_claim" string="Review Claim" type="object" class="oe_highlight"/>
-                    <button name="action_approve_claim" string="Approve Claim" type="object" class="btn-primary"/>
-                    <button name="action_reject_claim" string="Reject Claim" type="object" class="btn-secondary"/>
-                    <button name="action_mark_as_paid" string="Mark as Paid" type="object"/>
-                    <field name="state" widget="statusbar" statusbar_visible="filed,under_review,approved,paid,rejected"/>
+                    <button name="action_review_claim" string="Review Claim" type="object" class="oe_highlight" />
+                    <button name="action_approve_claim" string="Approve Claim" type="object" class="btn-primary" />
+                    <button name="action_reject_claim" string="Reject Claim" type="object" class="btn-secondary" />
+                    <button name="action_mark_as_paid" string="Mark as Paid" type="object" />
+                    <field name="state" widget="statusbar" statusbar_visible="filed,under_review,approved,paid,rejected" />
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name" readonly="1"/></h1>
+                        <h1><field name="name" readonly="1" /></h1>
                     </div>
                     <group>
                         <group>
-                            <field name="policy_id"/>
-                            <field name="claim_date"/>
+                            <field name="policy_id" />
+                            <field name="claim_date" />
                         </group>
                         <group>
-                            <field name="reported_yield_kg"/>
-                            <field name="assessed_loss_amount"/>
-                            <field name="payout_amount"/>
+                            <field name="reported_yield_kg" />
+                            <field name="assessed_loss_amount" />
+                            <field name="payout_amount" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Assessment &amp; Payout" name="assessment">
                             <group>
-                                <field name="assessment_report" nolabel="1"/>
+                                <field name="assessment_report" nolabel="1" />
                             </group>
                             <group string="Payout Calculation" name="payout_calc">
                                 <group>
-                                    <field name="assessed_loss_amount"/>
-                                    <field name="payout_amount"/>
+                                    <field name="assessed_loss_amount" />
+                                    <field name="payout_amount" />
                                 </group>
                             </group>
                         </page>
@@ -171,17 +172,10 @@
     </record>
 
     
-    <menuitem id="menu_insurance_root" name="Insurance"
- web_icon="farm_insurance,static/description/icon.png"
-              sequence="50"/>
+    <menuitem id="menu_insurance_root" name="Insurance" web_icon="farm_insurance,static/description/icon.png" sequence="50" />
               
-    <menuitem id="menu_crop_yield_insurance" name="Crop Yield Policies"
-              parent="menu_insurance_root"
-              action="action_crop_yield_policy"
-              sequence="10"/>
+    <menuitem id="menu_crop_yield_insurance" name="Crop Yield Policies" parent="menu_insurance_root" action="action_crop_yield_policy" sequence="10" />
 
-    <menuitem id="menu_insurance_claims" name="Claims"
-              parent="menu_insurance_root"
-              action="action_farm_insurance_claim_form"
-              sequence="20"/>
+    <menuitem id="menu_insurance_claims" name="Claims" parent="menu_insurance_root" action="action_farm_insurance_claim_form" sequence="20" />
+</data>
 </odoo>

@@ -136,8 +136,7 @@ class FarmLocation(models.Model):
             loc.water_depth = loc.water_depth_dm / 10.0
 
     # Dynamic attributes [US-001-02]
-    location_properties_definition = fields.PropertiesDefinition('Location Properties Definition')
-    location_properties = fields.Properties(
-        'Properties',
-        definition='location_properties_definition'
+    location_properties_definition = fields.Json('Location Properties Definition')
+    location_properties = fields.Json(
+        'Properties'
     )

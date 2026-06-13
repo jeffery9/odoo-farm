@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="action_compliance_handbook_report" model="ir.actions.report">
         <field name="name">Compliance Handbook Report</field>
         <field name="model">farm.subsidy.application</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">farm_subsidy.compliance_handbook_report_template</field>
         <field name="report_file">farm_subsidy.compliance_handbook_report_template</field>
-        <field name="binding_model_id" ref="model_farm_subsidy_application"/>
+        <field name="binding_model_id" ref="model_farm_subsidy_application" />
         <field name="binding_type">report</field>
         <field name="name">Export Compliance Handbook</field>
     </record>
@@ -17,16 +18,16 @@
             <t t-foreach="docs" t-as="doc">
                 <t t-call="web.external_layout">
                     <div class="page">
-                        <div class="oe_structure"/>
+                        <div class="oe_structure" />
 
                         <div class="row">
                             <div class="col-12">
                                 <div style="text-align: center;">
-                                    <h2 t-esc="doc.program_id.name"/>
+                                    <h2 t-esc="doc.program_id.name" />
                                     <h3>Compliance Handbook</h3>
-                                    <p>Application Reference: <strong t-esc="doc.name"/></p>
-                                    <p>Fiscal Year: <strong t-esc="doc.fiscal_year"/></p>
-                                    <p>Generated: <strong t-esc="doc.handbook_generated_date"/></p>
+                                    <p>Application Reference: <strong t-esc="doc.name" /></p>
+                                    <p>Fiscal Year: <strong t-esc="doc.fiscal_year" /></p>
+                                    <p>Generated: <strong t-esc="doc.handbook_generated_date" /></p>
                                 </div>
                             </div>
                         </div>
@@ -34,16 +35,16 @@
                         <div class="row mt32">
                             <div class="col-6">
                                 <h4>Program Information</h4>
-                                <p><strong>Authority:</strong> <span t-esc="doc.program_id.authority"/></p>
-                                <p><strong>Subsidy Type:</strong> <span t-esc="dict(doc.fields_get(allfields=['subsidy_type'])['subsidy_type']['selection'])[doc.program_id.subsidy_type]"/></p>
-                                <p><strong>Amount per Unit:</strong> <span t-esc="doc.program_id.amount_per_unit" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></p>
+                                <p><strong>Authority:</strong> <span t-esc="doc.program_id.authority" /></p>
+                                <p><strong>Subsidy Type:</strong> <span t-esc="dict(doc.fields_get(allfields=['subsidy_type'])['subsidy_type']['selection'])[doc.program_id.subsidy_type]" /></p>
+                                <p><strong>Amount per Unit:</strong> <span t-esc="doc.program_id.amount_per_unit" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}" /></p>
                             </div>
                             <div class="col-6">
                                 <h4>Application Summary</h4>
-                                <p><strong>Declared Quantity:</strong> <span t-esc="doc.declared_quantity"/></p>
-                                <p><strong>Estimated Amount:</strong> <span t-esc="doc.estimated_amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></p>
-                                <p><strong>Compliance Status:</strong> <span t-esc="dict(doc.fields_get(allfields=['compliance_status'])['compliance_status']['selection'])[doc.compliance_status]"/></p>
-                                <p><strong>Evidence Collected:</strong> <span t-esc="doc.evidence_collected"/></p>
+                                <p><strong>Declared Quantity:</strong> <span t-esc="doc.declared_quantity" /></p>
+                                <p><strong>Estimated Amount:</strong> <span t-esc="doc.estimated_amount" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}" /></p>
+                                <p><strong>Compliance Status:</strong> <span t-esc="dict(doc.fields_get(allfields=['compliance_status'])['compliance_status']['selection'])[doc.compliance_status]" /></p>
+                                <p><strong>Evidence Collected:</strong> <span t-esc="doc.evidence_collected" /></p>
                             </div>
                         </div>
 
@@ -60,9 +61,9 @@
                                     </thead>
                                     <tbody>
                                         <tr t-foreach="doc.land_parcel_ids" t-as="parcel">
-                                            <td><span t-esc="parcel.name"/></td>
-                                            <td><span t-esc="parcel.land_area"/> <span t-esc="parcel.land_area_unit"/></td>
-                                            <td t-if="parcel.gps_lat and parcel.gps_lng"><span t-esc="parcel.gps_lat"/> / <span t-esc="parcel.gps_lng"/></td>
+                                            <td><span t-esc="parcel.name" /></td>
+                                            <td><span t-esc="parcel.land_area" /> <span t-esc="parcel.land_area_unit" /></td>
+                                            <td t-if="parcel.gps_lat and parcel.gps_lng"><span t-esc="parcel.gps_lat" /> / <span t-esc="parcel.gps_lng" /></td>
                                             <td t-else="">N/A</td>
                                         </tr>
                                     </tbody>
@@ -73,7 +74,7 @@
                         <div class="row mt32" t-if="doc.program_id.requirements">
                             <div class="col-12">
                                 <h4>Program Requirements</h4>
-                                <p t-esc="doc.program_id.requirements"/>
+                                <p t-esc="doc.program_id.requirements" />
                             </div>
                         </div>
 
@@ -93,13 +94,13 @@
                                     </thead>
                                     <tbody>
                                         <tr t-foreach="doc.evidence_records" t-as="evidence">
-                                            <td><span t-esc="evidence.taken_at"/></td>
-                                            <td t-if="evidence.gps_lat and evidence.gps_lng"><span t-esc="evidence.gps_lat"/> / <span t-esc="evidence.gps_lng"/></td>
+                                            <td><span t-esc="evidence.taken_at" /></td>
+                                            <td t-if="evidence.gps_lat and evidence.gps_lng"><span t-esc="evidence.gps_lat" /> / <span t-esc="evidence.gps_lng" /></td>
                                             <td t-else="">N/A</td>
-                                            <td><span t-esc="evidence.is_on_site"/></td>
-                                            <td><span t-esc="evidence.worker_id.name if evidence.worker_id else 'N/A'"/></td>
-                                            <td><span t-esc="evidence.note"/></td>
-                                            <td><span t-esc="evidence.is_hash_verified"/></td>
+                                            <td><span t-esc="evidence.is_on_site" /></td>
+                                            <td><span t-esc="evidence.worker_id.name if evidence.worker_id else 'N/A'" /></td>
+                                            <td><span t-esc="evidence.note" /></td>
+                                            <td><span t-esc="evidence.is_hash_verified" /></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -109,16 +110,17 @@
                         <div class="row mt32">
                             <div class="col-12">
                                 <h4>Compliance Verification</h4>
-                                <p>Compliance handbook generated with <strong t-esc="len(doc.evidence_records)"/> evidence records.</p>
+                                <p>Compliance handbook generated with <strong t-esc="len(doc.evidence_records)" /> evidence records.</p>
                                 <p>Handbook integrity verified: <strong>TRUE</strong></p>
                                 <p>This document meets audit standards for government subsidy applications.</p>
                             </div>
                         </div>
 
-                        <div class="oe_structure"/>
+                        <div class="oe_structure" />
                     </div>
                 </t>
             </t>
         </t>
     </template>
+</data>
 </odoo>

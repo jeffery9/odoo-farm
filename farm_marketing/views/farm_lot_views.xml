@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_production_lot_form_inherit_farm_trace" model="ir.ui.view">
+<data>
+<record id="view_production_lot_form_inherit_farm_trace" model="ir.ui.view">
         <field name="name">stock.lot.form.inherit.farm.trace</field>
         <field name="model">stock.lot</field>
-        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="inherit_id" ref="stock.view_production_lot_form" />
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="inside">
 <div name="button_box" class="oe_button_box">
@@ -19,26 +20,26 @@
                 <page string="Consumer Story" name="marketing_story">
                     <group>
                         <group string="Content">
-                            <field name="story_title"/>
-                            <field name="story_content"/>
+                            <field name="story_title" />
+                            <field name="story_content" />
                         </group>
                         <group string="Traceability Public Link">
-                            <field name="traceability_url" widget="url"/>
+                            <field name="traceability_url" widget="url" />
                         </group>
                     </group>
                     <group string="Photo Gallery">
-                        <field name="marketing_image_ids" widget="many2many_binary"/>
+                        <field name="marketing_image_ids" widget="many2many_binary" />
                     </group>
                 </page>
                 <page string="Brand &amp; Integrity" name="brand_integrity">
                     <group>
                         <group string="Premium Brand Protection">
-                            <field name="is_premium_brand"/>
-                            <field name="allowed_partner_ids" widget="many2many_tags" invisible="not is_premium_brand"/>
+                            <field name="is_premium_brand" />
+                            <field name="allowed_partner_ids" widget="many2many_tags" invisible="not is_premium_brand" />
                         </group>
                         <group string="Integrity Assessment">
-                            <field name="entity_audit_status" widget="badge" decoration-success="entity_audit_status == 'compliant'" decoration-warning="entity_audit_status == 'warning'" decoration-danger="entity_audit_status == 'non_compliant'"/>
-                            <field name="integrity_score" widget="gauge" options="{'max_value': 100}"/>
+                            <field name="entity_audit_status" widget="badge" decoration-success="entity_audit_status == 'compliant'" decoration-warning="entity_audit_status == 'warning'" decoration-danger="entity_audit_status == 'non_compliant'" />
+                            <field name="integrity_score" widget="gauge" options="{'max_value': 100}" />
                         </group>
                     </group>
                 </page>
@@ -46,4 +47,5 @@
             </xpath>
         </field>
     </record>
+</data>
 </odoo>

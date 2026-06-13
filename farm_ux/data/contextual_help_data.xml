@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 农业干预表单帮助 - 种植业 [US-039-05] -->
-    <record id="help_planting_intervention_form" model="contextual.help">
+<data>
+<record id="help_planting_intervention_form" model="contextual.help">
         <field name="name">Agricultural Intervention Form Help - Planting</field>
         <field name="model_name">mrp.production</field>
         <field name="view_type">form</field>
@@ -19,7 +19,7 @@
         <field name="difficulty_level">beginner</field>
     </record>
 
-    <!-- 农业干预表单帮助 - 畜牧业 [US-039-05] -->
+    
     <record id="help_livestock_intervention_form" model="contextual.help">
         <field name="name">Agricultural Intervention Form Help - Livestock</field>
         <field name="model_name">mrp.production</field>
@@ -38,7 +38,7 @@
         <field name="difficulty_level">beginner</field>
     </record>
 
-    <!-- 农业干预表单帮助 - 加工 [US-039-05] -->
+    
     <record id="help_processing_intervention_form" model="contextual.help">
         <field name="name">Agricultural Intervention Form Help - Processing</field>
         <field name="model_name">mrp.production</field>
@@ -57,7 +57,7 @@
         <field name="difficulty_level">intermediate</field>
     </record>
 
-    <!-- 农业干预表单帮助 - 酿酒 [US-039-05] -->
+    
     <record id="help_winemaking_intervention_form" model="contextual.help">
         <field name="name">Agricultural Intervention Form Help - Winemaking</field>
         <field name="model_name">mrp.production</field>
@@ -76,7 +76,7 @@
         <field name="difficulty_level">advanced</field>
     </record>
 
-    <!-- 通用农业干预表单帮助 [US-039-05] -->
+    
     <record id="help_general_intervention_form" model="contextual.help">
         <field name="name">General Agricultural Intervention Form Help</field>
         <field name="model_name">mrp.production</field>
@@ -95,7 +95,7 @@
         <field name="difficulty_level">beginner</field>
     </record>
 
-    <!-- 收获分级帮助 [US-039-05] -->
+    
     <record id="help_harvest_grading" model="contextual.help">
         <field name="name">Harvest Grading Help</field>
         <field name="model_name">mrp.production</field>
@@ -115,7 +115,7 @@
         <field name="difficulty_level">beginner</field>
     </record>
 
-    <!-- 休药期管理帮助 [US-039-05] -->
+    
     <record id="help_withdrawal_period" model="contextual.help">
         <field name="name">Withdrawal Period Management Help</field>
         <field name="model_name">stock.lot</field>
@@ -135,7 +135,7 @@
         <field name="difficulty_level">intermediate</field>
     </record>
 
-    <!-- 积温计算帮助 [US-039-05] -->
+    
     <record id="help_gdd_calculation" model="contextual.help">
         <field name="name">Growing Degree Days Calculation Help</field>
         <field name="model_name">farm.agricultural.campaign</field>
@@ -155,5 +155,5 @@
         <field name="industry_context">planting</field>
         <field name="difficulty_level">intermediate</field>
     </record>
-
+</data>
 </odoo>

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Farm Location Tree View (Odoo 19 Standard) -->
-    <record id="view_farm_location_tree" model="ir.ui.view">
+<data>
+<record id="view_farm_location_tree" model="ir.ui.view">
         <field name="name">farm.location.list</field>
         <field name="model">farm.location</field>
         <field name="arch" type="xml">
             <list string="Farm Locations">
-                <field name="name"/>
-                <field name="location_type"/>
-                <field name="spatial_grid_id"/>
-                <field name="is_land_parcel"/>
-                <field name="land_nature"/>
-                <field name="land_area"/>
+                <field name="name" />
+                <field name="location_type" />
+                <field name="spatial_grid_id" />
+                <field name="is_land_parcel" />
+                <field name="land_nature" />
+                <field name="land_area" />
             </list>
         </field>
     </record>
 
-    <!-- Farm Location Form View (Odoo 19 Standard) -->
+    
     <record id="view_farm_location_form" model="ir.ui.view">
         <field name="name">farm.location.form</field>
         <field name="model">farm.location</field>
@@ -26,59 +26,59 @@
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <label for="name" class="oe_edit_only" string="Operational Name"/>
-                        <h1><field name="name" placeholder="e.g. North Field Sector A"/></h1>
+                        <label for="name" class="oe_edit_only" string="Operational Name" />
+                        <h1><field name="name" placeholder="e.g. North Field Sector A" /></h1>
                         <group>
-                            <field name="agri_location_id" readonly="1" groups="base.group_no_one"/>
+                            <field name="agri_location_id" readonly="1" groups="base.group_no_one" />
                         </group>
                     </div>
                     <group>
                         <group string="Physical Identity (Agri Domain)">
-                            <field name="location_type"/>
-                            <field name="spatial_grid_id"/>
-                            <field name="geo_point"/>
+                            <field name="location_type" />
+                            <field name="spatial_grid_id" />
+                            <field name="geo_point" />
                         </group>
                         <group string="Operational Management (Farm)">
-                            <field name="is_land_parcel"/>
-                            <field name="active"/>
-                            <field name="farm_id"/>
+                            <field name="is_land_parcel" />
+                            <field name="active" />
+                            <field name="farm_id" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Agricultural Properties" name="agri_props" invisible="not is_land_parcel">
                             <group>
                                 <group>
-                                    <field name="land_nature"/>
-                                    <field name="land_area"/>
-                                    <field name="land_area_uom_id"/>
+                                    <field name="land_nature" />
+                                    <field name="land_area" />
+                                    <field name="land_area_uom_id" />
                                 </group>
                                 <group>
-                                    <field name="calculated_area_ha"/>
-                                    <button name="calculate_area" type="object" string="Update GIS Area" class="oe_link"/>
+                                    <field name="calculated_area_ha" />
+                                    <button name="calculate_area" type="object" string="Update GIS Area" class="oe_link" />
                                 </group>
                             </group>
                         </page>
                         <page string="GIS &amp; Terroir" name="gis_terroir">
                             <group>
                                 <group string="Coordinates">
-                                    <field name="gps_lat"/>
-                                    <field name="gps_lng"/>
-                                    <field name="gis_map_url" widget="url"/>
+                                    <field name="gps_lat" />
+                                    <field name="gps_lng" />
+                                    <field name="gis_map_url" widget="url" />
                                 </group>
                                 <group string="Environment">
-                                    <field name="soil_type"/>
-                                    <field name="slope"/>
-                                    <field name="aspect"/>
-                                    <field name="water_source"/>
+                                    <field name="soil_type" />
+                                    <field name="slope" />
+                                    <field name="aspect" />
+                                    <field name="water_source" />
                                 </group>
                             </group>
-                            <field name="boundary_geojson" widget="ace" options="{'mode': 'json'}"/>
+                            <field name="boundary_geojson" widget="ace" options="{'mode': 'json'}" />
                         </page>
                         <page string="Value &amp; Evidence" name="value_evidence">
                             <group>
                                 <group string="Sustainability">
-                                    <field name="carbon_intensity"/>
-                                    <field name="esg_score"/>
+                                    <field name="carbon_intensity" />
+                                    <field name="esg_score" />
                                 </group>
                                 <group string="Audit Status">
                                 </group>
@@ -87,23 +87,23 @@
                     </notebook>
                 </sheet>
                 <chatter>
-                    <message/>
-                    <activity/>
+                    <message />
+                    <activity />
                 </chatter>
             </form>
         </field>
     </record>
 
-    <!-- Soil Analysis Registry View (Odoo 19) -->
+    
     <record id="view_soil_analysis_tree" model="ir.ui.view">
         <field name="name">agri.soil.analysis.list</field>
         <field name="model">agri.soil.analysis</field>
         <field name="arch" type="xml">
-            <list string="Soil Analyses" >
-                <field name="name"/>
-                <field name="analysis_date"/>
-                <field name="ph_level"/>
-                <field name="organic_matter"/>
+            <list string="Soil Analyses">
+                <field name="name" />
+                <field name="analysis_date" />
+                <field name="ph_level" />
+                <field name="organic_matter" />
             </list>
         </field>
     </record>
@@ -117,60 +117,60 @@
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <label for="name" class="oe_edit_only"/>
-                        <h1><field name="name"/></h1>
+                        <label for="name" class="oe_edit_only" />
+                        <h1><field name="name" /></h1>
                         <group>
                         </group>
                     </div>
                     <group>
                         <group string="Analysis Identity">
-                            <field name="analysis_date"/>
+                            <field name="analysis_date" />
                         </group>
                         <group string="Physical Context">
-                            <field name="spatial_grid_id"/>
+                            <field name="spatial_grid_id" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Nutrients &amp; pH" name="nutrients">
                             <group>
                                 <group string="Macro Nutrients">
-                                    <field name="nitrogen_content"/>
-                                    <field name="phosphorus_content"/>
-                                    <field name="potassium_content"/>
+                                    <field name="nitrogen_content" />
+                                    <field name="phosphorus_content" />
+                                    <field name="potassium_content" />
                                 </group>
                                 <group string="Basic Indicators">
-                                    <field name="ph_level"/>
-                                    <field name="organic_matter"/>
+                                    <field name="ph_level" />
+                                    <field name="organic_matter" />
                                 </group>
                             </group>
                         </page>
                         <page string="Heavy Metals" name="heavy_metals">
                             <group>
                                 <group string="Toxic Elements">
-                                    <field name="lead_content"/>
-                                    <field name="cadmium_content"/>
-                                    <field name="mercury_content"/>
-                                    <field name="arsenic_content"/>
+                                    <field name="lead_content" />
+                                    <field name="cadmium_content" />
+                                    <field name="mercury_content" />
+                                    <field name="arsenic_content" />
                                 </group>
                                 <group string="Trace Elements">
-                                    <field name="chromium_content"/>
-                                    <field name="copper_content"/>
-                                    <field name="zinc_content"/>
-                                    <field name="nickel_content"/>
+                                    <field name="chromium_content" />
+                                    <field name="copper_content" />
+                                    <field name="zinc_content" />
+                                    <field name="nickel_content" />
                                 </group>
                             </group>
                         </page>
                     </notebook>
                 </sheet>
                 <chatter>
-                    <message/>
-                    <activity/>
+                    <message />
+                    <activity />
                 </chatter>
             </form>
         </field>
     </record>
 
-    <!-- Actions -->
+    
     <record id="action_farm_location_list" model="ir.actions.act_window">
         <field name="name">Farm Locations</field>
         <field name="res_model">farm.location</field>
@@ -182,4 +182,5 @@
         <field name="res_model">agri.soil.analysis</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

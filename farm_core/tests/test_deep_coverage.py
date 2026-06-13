@@ -13,6 +13,7 @@ class TestDeepCoverageFarmCore(TransactionCase):
         for model_name in self.models_to_test:
             if model_name not in self.env: continue
             Model = self.env[model_name]
+            if Model._abstract: continue
             
             # 1. Field and default coverage
             all_fields = list(Model.fields_get().keys())

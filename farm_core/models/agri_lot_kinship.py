@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
+import logging
+
+_logger = logging.getLogger(__name__)
+
 
 class AgriLotKinship(models.Model):
     """
@@ -38,18 +42,27 @@ class AgriLotKinship(models.Model):
     ]
 
     @api.model
-    def create_kinship(self, parent_lot, child_lot, intervention=None, derivation_type='process'):
-        """Helper to create a kinship record if it doesn't exist"""
-        existing = self.search([
+    def create_kinship(self, parent_lot, child_lot, intervention=False, derivation_type='process'):
+        """ Standardized way to link lots [US-038-02] """
+        domain = [
             ('parent_lot_id', '=', parent_lot.id),
             ('child_lot_id', '=', child_lot.id),
-            ('intervention_id', '=', f"{intervention._name},{intervention.id}" if intervention else False)
-        ])
+        ]
+        if intervention:
+            ref_val = f"{intervention._name},{intervention.id}"
+            domain.append(('intervention_id', '=', ref_val))
+        else:
+            domain.append(('intervention_id', '=', False))
+
+        existing = self.search(domain)
+        _logger.info("Kinship: Search domain %s, found %s existing", domain, len(existing))
         if not existing:
-            return self.create({
+            vals = {
                 'parent_lot_id': parent_lot.id,
                 'child_lot_id': child_lot.id,
                 'intervention_id': intervention,
                 'derivation_type': derivation_type
-            })
+            }
+            _logger.info("Kinship: Creating new with vals %s", vals)
+            existing = self.create(vals)
         return existing

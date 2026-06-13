@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_farm_recall_wizard_form" model="ir.ui.view">
+<data>
+<record id="view_farm_recall_wizard_form" model="ir.ui.view">
         <field name="name">farm.recall.wizard.form</field>
         <field name="model">farm.recall.wizard</field>
         <field name="arch" type="xml">
@@ -8,29 +9,29 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="lot_id"/>
-                            <field name="recall_reason"/>
+                            <field name="lot_id" />
+                            <field name="recall_reason" />
                         </group>
                         <group>
-                            <field name="action_plan"/>
+                            <field name="action_plan" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Affected Deliveries" name="affected_pickings">
                             <field name="affected_picking_ids" widget="many2many">
                                 <list>
-                                    <field name="name"/>
-                                    <field name="partner_id"/>
-                                    <field name="date_done"/>
-                                    <field name="state"/>
+                                    <field name="name" />
+                                    <field name="partner_id" />
+                                    <field name="date_done" />
+                                    <field name="state" />
                                 </list>
                             </field>
                         </page>
                     </notebook>
                 </sheet>
                 <footer>
-                    <button name="action_execute_recall" type="object" string="Execute Recall" class="btn-danger" confirm="Are you sure you want to initiate this recall process?"/>
-                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    <button name="action_execute_recall" type="object" string="Execute Recall" class="btn-danger" confirm="Are you sure you want to initiate this recall process?" />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
         </field>
@@ -43,7 +44,8 @@
         <field name="target">new</field>
     </record>
     
-    <!-- Add entry to the Safety & Quality menu domain, temporarily parked in Processing -->
-    <menuitem id="menu_processing_safety" name="Safety &amp; Compliance" parent="menu_farm_processing_root" sequence="80"/>
-    <menuitem id="menu_farm_recall_wizard" name="Initiate Recall" parent="menu_processing_safety" action="action_farm_recall_wizard" sequence="10"/>
+    
+    <menuitem id="menu_processing_safety" name="Safety &amp; Compliance" parent="menu_farm_processing_root" sequence="80" />
+    <menuitem id="menu_farm_recall_wizard" name="Initiate Recall" parent="menu_processing_safety" action="action_farm_recall_wizard" sequence="10" />
+</data>
 </odoo>

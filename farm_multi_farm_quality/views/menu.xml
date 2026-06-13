@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="multi_farm_quality_menu"
-              name="Quality Management"
-              parent="farm_multi_farm.menu_multi_farm_root"
-              sequence="70"/>
+<data>
+<menuitem id="multi_farm_quality_menu" name="Quality Management" parent="farm_multi_farm.menu_multi_farm_root" sequence="70" />
 
     
-    <menuitem id="quality_control_menu"
-              name="Quality Control"
-              parent="multi_farm_quality_menu"
-              sequence="10"/>
+    <menuitem id="quality_control_menu" name="Quality Control" parent="multi_farm_quality_menu" sequence="10" />
 
     
-    <menuitem id="certification_management_menu"
-              name="Certification Management"
-              parent="multi_farm_quality_menu"
-              sequence="20"/>
+    <menuitem id="certification_management_menu" name="Certification Management" parent="multi_farm_quality_menu" sequence="20" />
+</data>
 </odoo>

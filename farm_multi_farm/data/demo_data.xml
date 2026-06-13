@@ -1,51 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="demo_cooperative" model="farm.entity">
         <field name="name">Harvest Agri Cooperative</field>
         <field name="entity_type">cooperative</field>
-        <field name="is_active" eval="True"/>
+        <field name="is_active" eval="True" />
     </record>
 
     
     <record id="demo_farm_1" model="farm.entity">
         <field name="name">Zhang San's Farm</field>
         <field name="entity_type">farm</field>
-        <field name="parent_entity_id" ref="demo_cooperative"/>
-        <field name="is_active" eval="True"/>
+        <field name="parent_entity_id" ref="demo_cooperative" />
+        <field name="is_active" eval="True" />
     </record>
 
     <record id="demo_farm_2" model="farm.entity">
         <field name="name">Li Si's Family Farm</field>
         <field name="entity_type">farm</field>
-        <field name="parent_entity_id" ref="demo_cooperative"/>
-        <field name="is_active" eval="True"/>
+        <field name="parent_entity_id" ref="demo_cooperative" />
+        <field name="is_active" eval="True" />
     </record>
 
     
     <record id="demo_franchise_farm" model="farm.entity">
         <field name="name">Green Field Franchise Farm</field>
         <field name="entity_type">franchise</field>
-        <field name="parent_entity_id" ref="demo_cooperative"/>
-        <field name="is_active" eval="True"/>
-        <field name="franchise_fee" eval="5000.0"/>
+        <field name="parent_entity_id" ref="demo_cooperative" />
+        <field name="is_active" eval="True" />
+        <field name="franchise_fee" eval="5000.0" />
     </record>
 
     
     <record id="demo_entity_link" model="farm.entity.link">
-        <field name="source_entity_id" ref="demo_cooperative"/>
-        <field name="target_entity_id" ref="demo_farm_1"/>
+        <field name="source_entity_id" ref="demo_cooperative" />
+        <field name="target_entity_id" ref="demo_farm_1" />
         <field name="link_type">membership</field>
-        <field name="is_active" eval="True"/>
+        <field name="is_active" eval="True" />
     </record>
 
     
     <record id="demo_sharing_rule" model="farm.data.sharing.rule">
         <field name="name">Production Data Sharing</field>
-        <field name="source_entity_id" ref="demo_farm_1"/>
-        <field name="target_entity_id" ref="demo_cooperative"/>
+        <field name="source_entity_id" ref="demo_farm_1" />
+        <field name="target_entity_id" ref="demo_cooperative" />
         <field name="data_type">production</field>
         <field name="access_level">read</field>
-        <field name="is_active" eval="True"/>
+        <field name="is_active" eval="True" />
     </record>
 
     
@@ -54,16 +55,17 @@
         <field name="code">ORG-VEG-001</field>
         <field name="category">planting</field>
         <field name="description">Standardized workflow for organic vegetable planting</field>
-        <field name="is_mandatory" eval="True"/>
-        <field name="effective_date" eval="DateTime.now().date()"/>
+        <field name="is_mandatory" eval="True" />
+        <field name="effective_date" eval="DateTime.now().date()" />
     </record>
 
     
     <record id="demo_compliance_check" model="farm.compliance.check">
         <field name="name">Organic Vegetable Compliance Check</field>
-        <field name="entity_id" ref="demo_franchise_farm"/>
-        <field name="procedure_id" ref="demo_standard_proc"/>
+        <field name="entity_id" ref="demo_franchise_farm" />
+        <field name="procedure_id" ref="demo_standard_proc" />
         <field name="compliance_status">pending</field>
-        <field name="check_date" eval="DateTime.now().date()"/>
+        <field name="check_date" eval="DateTime.now().date()" />
     </record>
+</data>
 </odoo>

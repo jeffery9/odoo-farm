@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_social_diversity_metric_tree" model="ir.ui.view">
         <field name="name">farm.esg.social.diversity.metric.tree</field>
         <field name="model">farm.esg.social.diversity.metric</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="reporting_period"/>
-                <field name="total_employees"/>
-                <field name="gender_balance_ratio"/>
-                <field name="local_employment_ratio"/>
+                <field name="name" />
+                <field name="reporting_period" />
+                <field name="total_employees" />
+                <field name="gender_balance_ratio" />
+                <field name="local_employment_ratio" />
             </list>
         </field>
     </record>
@@ -22,36 +23,36 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="reporting_period"/>
+                            <field name="name" />
+                            <field name="reporting_period" />
                         </group>
                         <group>
-                            <field name="total_employees"/>
-                            <field name="gender_balance_ratio"/>
-                            <field name="local_employment_ratio"/>
+                            <field name="total_employees" />
+                            <field name="gender_balance_ratio" />
+                            <field name="local_employment_ratio" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Gender Distribution">
                             <group>
-                                <field name="gender_male_count"/>
-                                <field name="gender_female_count"/>
-                                <field name="gender_other_count"/>
+                                <field name="gender_male_count" />
+                                <field name="gender_female_count" />
+                                <field name="gender_other_count" />
                             </group>
                         </page>
                         <page string="Age Distribution">
                             <group>
-                                <field name="age_under_30"/>
-                                <field name="age_30_to_50"/>
-                                <field name="age_over_50"/>
+                                <field name="age_under_30" />
+                                <field name="age_30_to_50" />
+                                <field name="age_over_50" />
                             </group>
                         </page>
                         <page string="Employment Types">
                             <group>
-                                <field name="disability_employment"/>
-                                <field name="local_community_employment"/>
-                                <field name="temporary_contract_count"/>
-                                <field name="full_time_count"/>
+                                <field name="disability_employment" />
+                                <field name="local_community_employment" />
+                                <field name="temporary_contract_count" />
+                                <field name="full_time_count" />
                             </group>
                         </page>
                     </notebook>
@@ -65,4 +66,5 @@
         <field name="res_model">farm.esg.social.diversity.metric</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

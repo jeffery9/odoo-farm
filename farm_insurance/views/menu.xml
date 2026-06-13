@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="menu_insurance_root"
-              name="Insurance"
- web_icon="farm_insurance,static/description/icon.png"
-              sequence="50"/>
+<data>
+<menuitem id="menu_insurance_root" name="Insurance" web_icon="farm_insurance,static/description/icon.png" sequence="50" />
+</data>
 </odoo>

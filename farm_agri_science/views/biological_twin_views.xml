@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_agri_biological_twin_tree" model="ir.ui.view">
+<data>
+<record id="view_agri_biological_twin_tree" model="ir.ui.view">
         <field name="name">agri.biological.twin.list</field>
         <field name="model">agri.biological.twin</field>
         <field name="arch" type="xml">
             <list decoration-danger="health_score &lt; 60" decoration-success="health_score &gt; 80">
-                <field name="name"/>
-                <field name="product_id"/>
-                <field name="location_id"/>
-                <field name="current_stage_id"/>
-                <field name="accumulated_gdd"/>
-                <field name="health_score" widget="badge"/>
-                <field name="expected_harvest_date"/>
-                <field name="predicted_yield"/>
+                <field name="name" />
+                <field name="product_id" />
+                <field name="location_id" />
+                <field name="current_stage_id" />
+                <field name="accumulated_gdd" />
+                <field name="health_score" widget="badge" />
+                <field name="expected_harvest_date" />
+                <field name="predicted_yield" />
             </list>
         </field>
     </record>
@@ -23,50 +24,50 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_update_gdd" string="Update GDD (Weather Sync)" type="object" class="oe_highlight"/>
-                    <button name="action_run_yield_prediction_ai" string="Run Yield Prediction AI" type="object"/>
-                    <button name="action_optimize_environment" string="L5: Optimize Environment" type="object" invisible="health_score > 90"/>
+                    <button name="action_update_gdd" string="Update GDD (Weather Sync)" type="object" class="oe_highlight" />
+                    <button name="action_run_yield_prediction_ai" string="Run Yield Prediction AI" type="object" />
+                    <button name="action_optimize_environment" string="L5: Optimize Environment" type="object" invisible="health_score &gt; 90" />
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name" readonly="1"/></h1>
+                        <h1><field name="name" readonly="1" /></h1>
                     </div>
                     <group>
                         <group string="Configuration">
-                            <field name="product_id"/>
-                            <field name="location_id"/>
-                            <field name="start_date"/>
+                            <field name="product_id" />
+                            <field name="location_id" />
+                            <field name="start_date" />
                         </group>
                         <group string="Thermal Intelligence (L3)">
-                            <field name="base_temp"/>
-                            <field name="accumulated_gdd"/>
-                            <field name="target_gdd_harvest"/>
+                            <field name="base_temp" />
+                            <field name="accumulated_gdd" />
+                            <field name="target_gdd_harvest" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Digital Twin Monitoring" name="monitoring">
                             <group>
                                 <group string="Growth Health">
-                                    <field name="current_stage_id"/>
-                                    <field name="health_score" widget="gauge" options="{'max_value': 100}"/>
+                                    <field name="current_stage_id" />
+                                    <field name="health_score" widget="gauge" options="{'max_value': 100}" />
                                 </group>
                                 <group string="Yield Forecasting">
-                                    <field name="expected_harvest_date"/>
-                                    <field name="predicted_yield"/>
-                                    <field name="confidence_level"/>
+                                    <field name="expected_harvest_date" />
+                                    <field name="predicted_yield" />
+                                    <field name="confidence_level" />
                                 </group>
                                 <group string="Environmental Impact (L4)">
-                                    <field name="accumulated_carbon"/>
-                                    <field name="carbon_intensity" decoration-danger="carbon_intensity > 0.5" decoration-success="carbon_intensity &lt;= 0.2"/>
+                                    <field name="accumulated_carbon" />
+                                    <field name="carbon_intensity" decoration-danger="carbon_intensity &gt; 0.5" decoration-success="carbon_intensity &lt;= 0.2" />
                                 </group>
                             </group>
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -78,9 +79,6 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_biological_twin"
-              name="Biological Twins (AI)"
-              parent="menu_agri_science_root"
-              action="action_agri_biological_twin"
-              sequence="5"/>
+    <menuitem id="menu_biological_twin" name="Biological Twins (AI)" parent="menu_agri_science_root" action="action_agri_biological_twin" sequence="5" />
+</data>
 </odoo>

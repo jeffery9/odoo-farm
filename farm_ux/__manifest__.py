@@ -24,6 +24,7 @@
         'farm_core'
     ],
     'data': [
+        'views/menu.xml',
         'security/ir.model.access.csv',
         'data/term_mapping_data.xml',
         'data/form_layout_template_data.xml',
@@ -51,6 +52,9 @@
             'farm_ux/static/src/js/farm_ux_integration.esm.js',
             'farm_ux/static/src/js/term_mapping_handler.esm.js',
             'farm_ux/static/src/js/agri_action_buttons.esm.js',
+            'farm_ux/static/src/js/agri_dna_integrity.esm.js',
+            'farm_ux/static/src/js/agri_gating_audit.esm.js',
+            'farm_ux/static/src/js/agri_nutrient_gauge.esm.js',
             'farm_ux/static/src/js/agri_spatial_gauge.esm.js',
             'farm_ux/static/src/js/agri_traceability_map.esm.js',
             'farm_ux/static/src/xml/*.xml',

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_esg_risk_assessment_tree" model="ir.ui.view">
         <field name="name">farm.esg.risk.assessment.tree</field>
         <field name="model">agri.esg.risk.assessment</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="assessment_type"/>
-                <field name="overall_esg_score"/>
-                <field name="esg_risk_level"/>
-                <field name="assessment_period"/>
-                <field name="year"/>
+                <field name="name" />
+                <field name="assessment_type" />
+                <field name="overall_esg_score" />
+                <field name="esg_risk_level" />
+                <field name="assessment_period" />
+                <field name="year" />
             </list>
         </field>
     </record>
@@ -21,61 +22,61 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_calculate_scores_automatically" type="object" string="Calculate Scores Automatically" class="oe_highlight"/>
-                    <field name="status" widget="statusbar"/>
+                    <button name="action_calculate_scores_automatically" type="object" string="Calculate Scores Automatically" class="oe_highlight" />
+                    <field name="status" widget="statusbar" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="assessment_type"/>
-                            <field name="assessment_period"/>
+                            <field name="name" />
+                            <field name="assessment_type" />
+                            <field name="assessment_period" />
                         </group>
                         <group>
-                            <field name="assessment_date"/>
-                            <field name="year"/>
-                            <field name="assessment_method"/>
+                            <field name="assessment_date" />
+                            <field name="year" />
+                            <field name="assessment_method" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Scores">
                             <group>
-                                <field name="environmental_score"/>
-                                <field name="social_score"/>
-                                <field name="governance_score"/>
-                                <field name="overall_esg_score"/>
-                                <field name="esg_risk_level"/>
+                                <field name="environmental_score" />
+                                <field name="social_score" />
+                                <field name="governance_score" />
+                                <field name="overall_esg_score" />
+                                <field name="esg_risk_level" />
                             </group>
                         </page>
                         <page string="Environmental Factors">
                             <group>
-                                <field name="carbon_intensity"/>
-                                <field name="water_usage_efficiency"/>
-                                <field name="waste_management_score"/>
-                                <field name="biodiversity_impact_score"/>
+                                <field name="carbon_intensity" />
+                                <field name="water_usage_efficiency" />
+                                <field name="waste_management_score" />
+                                <field name="biodiversity_impact_score" />
                             </group>
                         </page>
                         <page string="Social Factors">
                             <group>
-                                <field name="labor_practice_score"/>
-                                <field name="community_relation_score"/>
-                                <field name="health_safety_score"/>
+                                <field name="labor_practice_score" />
+                                <field name="community_relation_score" />
+                                <field name="health_safety_score" />
                             </group>
                         </page>
                         <page string="Governance Factors">
                             <group>
-                                <field name="transparency_score"/>
-                                <field name="compliance_score"/>
-                                <field name="ethics_score"/>
+                                <field name="transparency_score" />
+                                <field name="compliance_score" />
+                                <field name="ethics_score" />
                             </group>
                         </page>
                         <page string="Details">
                             <group>
-                                <field name="risk_factors"/>
-                                <field name="mitigation_plan"/>
-                                <field name="responsible_user"/>
+                                <field name="risk_factors" />
+                                <field name="mitigation_plan" />
+                                <field name="responsible_user" />
                             </group>
                         </page>
                     </notebook>
@@ -96,11 +97,11 @@
         <field name="model">agri.esg.compliance.monitoring</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="compliance_type"/>
-                <field name="compliance_status"/>
-                <field name="current_value"/>
-                <field name="threshold_value"/>
+                <field name="name" />
+                <field name="compliance_type" />
+                <field name="compliance_status" />
+                <field name="current_value" />
+                <field name="threshold_value" />
             </list>
         </field>
     </record>
@@ -111,34 +112,34 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_issue_alert" type="object" string="Issue Alert" invisible="compliance_status not in ['warning','non_compliant','critical']"/>
+                    <button name="action_issue_alert" type="object" string="Issue Alert" invisible="compliance_status not in ['warning','non_compliant','critical']" />
                 </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="compliance_type"/>
-                            <field name="regulation_reference"/>
+                            <field name="name" />
+                            <field name="compliance_type" />
+                            <field name="regulation_reference" />
                         </group>
                         <group>
-                            <field name="threshold_value"/>
-                            <field name="current_value"/>
-                            <field name="compliance_status"/>
+                            <field name="threshold_value" />
+                            <field name="current_value" />
+                            <field name="compliance_status" />
                         </group>
                     </group>
                     <group string="Dates">
-                        <field name="last_check_date"/>
-                        <field name="next_check_date"/>
+                        <field name="last_check_date" />
+                        <field name="next_check_date" />
                     </group>
                     <group string="Details">
-                        <field name="compliance_owner"/>
-                        <field name="alert_issued"/>
-                        <field name="last_alert_date"/>
+                        <field name="compliance_owner" />
+                        <field name="alert_issued" />
+                        <field name="last_alert_date" />
                     </group>
                     <group string="Actions">
-                        <field name="corrective_actions"/>
-                        <field name="implementation_status"/>
-                        <field name="notes"/>
+                        <field name="corrective_actions" />
+                        <field name="implementation_status" />
+                        <field name="notes" />
                     </group>
                 </sheet>
             </form>
@@ -157,11 +158,11 @@
         <field name="model">farm.esg.stakeholder.engagement</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="stakeholder_id"/>
-                <field name="stakeholder_type"/>
-                <field name="engagement_date"/>
-                <field name="engagement_type"/>
+                <field name="name" />
+                <field name="stakeholder_id" />
+                <field name="stakeholder_type" />
+                <field name="engagement_date" />
+                <field name="engagement_type" />
             </list>
         </field>
     </record>
@@ -172,46 +173,46 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_follow_up_required" type="object" string="Mark Follow Up Required"/>
+                    <button name="action_follow_up_required" type="object" string="Mark Follow Up Required" />
                 </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="stakeholder_id"/>
-                            <field name="stakeholder_type"/>
+                            <field name="name" />
+                            <field name="stakeholder_id" />
+                            <field name="stakeholder_type" />
                         </group>
                         <group>
-                            <field name="engagement_date"/>
-                            <field name="engagement_type"/>
-                            <field name="communication_channel"/>
+                            <field name="engagement_date" />
+                            <field name="engagement_type" />
+                            <field name="communication_channel" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Details">
                             <group>
-                                <field name="engagement_topic"/>
-                                <field name="participants_count"/>
-                                <field name="satisfaction_rating"/>
+                                <field name="engagement_topic" />
+                                <field name="participants_count" />
+                                <field name="satisfaction_rating" />
                             </group>
                         </page>
                         <page string="Outcomes">
                             <group string="Summary">
-                                <field name="outcome_summary"/>
-                                <field name="feedback_received"/>
+                                <field name="outcome_summary" />
+                                <field name="feedback_received" />
                             </group>
                             <group string="Actions">
-                                <field name="action_items"/>
-                                <field name="action_owner"/>
-                                <field name="action_deadline"/>
-                                <field name="action_status"/>
+                                <field name="action_items" />
+                                <field name="action_owner" />
+                                <field name="action_deadline" />
+                                <field name="action_status" />
                             </group>
                         </page>
                         <page string="Follow-up">
                             <group>
-                                <field name="follow_up_required"/>
-                                <field name="next_engagement_date"/>
-                                <field name="engagement_score"/>
+                                <field name="follow_up_required" />
+                                <field name="next_engagement_date" />
+                                <field name="engagement_score" />
                             </group>
                         </page>
                     </notebook>
@@ -232,12 +233,12 @@
         <field name="model">agri.esg.kpi</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="kpi_category"/>
-                <field name="kpi_type"/>
-                <field name="current_value"/>
-                <field name="achievement_percentage"/>
-                <field name="performance_status"/>
+                <field name="name" />
+                <field name="kpi_category" />
+                <field name="kpi_type" />
+                <field name="current_value" />
+                <field name="achievement_percentage" />
+                <field name="performance_status" />
             </list>
         </field>
     </record>
@@ -250,42 +251,42 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="kpi_category"/>
-                            <field name="kpi_type"/>
+                            <field name="name" />
+                            <field name="kpi_category" />
+                            <field name="kpi_type" />
                         </group>
                         <group>
-                            <field name="unit_of_measurement"/>
-                            <field name="year"/>
+                            <field name="unit_of_measurement" />
+                            <field name="year" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Targets">
                             <group>
-                                <field name="baseline_value"/>
-                                <field name="target_value"/>
-                                <field name="current_value"/>
-                                <field name="achievement_percentage"/>
+                                <field name="baseline_value" />
+                                <field name="target_value" />
+                                <field name="current_value" />
+                                <field name="achievement_percentage" />
                             </group>
                         </page>
                         <page string="Performance">
                             <group>
-                                <field name="reporting_period"/>
-                                <field name="trend_indicator"/>
-                                <field name="variance_from_target"/>
-                                <field name="performance_status"/>
+                                <field name="reporting_period" />
+                                <field name="trend_indicator" />
+                                <field name="variance_from_target" />
+                                <field name="performance_status" />
                             </group>
                         </page>
                         <page string="Details">
                             <group>
-                                <field name="responsible_department"/>
-                                <field name="data_source"/>
-                                <field name="benchmark_value"/>
-                                <field name="benchmark_source"/>
+                                <field name="responsible_department" />
+                                <field name="data_source" />
+                                <field name="benchmark_value" />
+                                <field name="benchmark_source" />
                             </group>
                             <group string="Calculation">
-                                <field name="calculation_method"/>
-                                <field name="notes"/>
+                                <field name="calculation_method" />
+                                <field name="notes" />
                             </group>
                         </page>
                     </notebook>
@@ -299,4 +300,5 @@
         <field name="res_model">agri.esg.kpi</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

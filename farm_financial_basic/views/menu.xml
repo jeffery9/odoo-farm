@@ -1,28 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="farm_financial_basic_menu_root" name="Basic Financial" parent="farm_financial.menu_financial_root"
-              sequence="20"/>
+<data>
+<menuitem id="farm_financial_basic_menu_root" name="Basic Financial" parent="farm_financial.farm_financial_menu_root" sequence="20" />
 
-    <menuitem id="farm_financial_basic_config_menu"
-              name="Configuration"
-              parent="farm_financial_basic_menu_root"
-              sequence="10"/>
+    <menuitem id="farm_financial_basic_config_menu" name="Configuration" parent="farm_financial_basic_menu_root" sequence="10" />
 
-    <menuitem id="menu_agri_cost_template"
-              name="Cost Templates"
-              parent="farm_financial_basic_config_menu"
-              action="action_agri_cost_template"
-              sequence="10"/>
+    <menuitem id="menu_agri_cost_template" name="Cost Templates" parent="farm_financial_basic_config_menu" action="action_agri_cost_template" sequence="10" />
 
-    <menuitem id="menu_cost_calculator"
-              name="Cost Calculator"
-              parent="farm_financial_basic_menu_root"
-              action="action_agri_cost_calculation"
-              sequence="20"/>
+    <menuitem id="menu_cost_calculator" name="Cost Calculator" parent="farm_financial_basic_menu_root" action="action_agri_cost_calculation" sequence="20" />
 
     
-    <menuitem id="farm_financial_basic_operations_menu"
-              name="Operations"
-              parent="farm_financial_basic_menu_root"
-              sequence="30"/>
+    <menuitem id="farm_financial_basic_operations_menu" name="Operations" parent="farm_financial_basic_menu_root" sequence="30" />
+</data>
 </odoo>

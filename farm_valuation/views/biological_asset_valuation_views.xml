@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_biological_asset_valuation_tree" model="ir.ui.view">
         <field name="name">agri.biological.asset.valuation.tree</field>
         <field name="model">agri.biological.asset.valuation</field>
         <field name="arch" type="xml">
             <list string="Biological Asset Valuations">
-                <field name="name"/>
-                <field name="valuation_date"/>
+                <field name="name" />
+                <field name="valuation_date" />
             </list>
         </field>
     </record>
+</data>
 </odoo>

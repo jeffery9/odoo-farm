@@ -13,7 +13,7 @@
         - Standardized lifecycle management for farm operations.
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core'],
+    'depends': ['farm_core', 'mail', 'sale', 'sale_stock'],
     'data': [
         'security/ir.model.access.csv',
         'views/intervention_base_views.xml',

@@ -9,7 +9,7 @@ class AgriViewMixin(models.AbstractModel):
     高级去工业化拦截器：全维度视图重塑。
     支持：Label, Placeholder, Help-text, Title, Button String 的实时映射。
     """
-    _name = 'agri.view.mixin'
+    _inherit = 'agri.view.mixin'
     _description = 'Global UI De-industrialization Injector'
 
     @api.model

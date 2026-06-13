@@ -1,20 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_order_form_inherit_farm_marketing" model="ir.ui.view">
+<data>
+<record id="view_order_form_inherit_farm_marketing" model="ir.ui.view">
         <field name="name">sale.order.form.inherit.farm.marketing</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='payment_term_id']" position="after">
-                <field name="is_preorder"/>
-                <field name="reservation_expiry" invisible="not is_preorder"/>
+                <field name="is_preorder" />
+                <field name="reservation_expiry" invisible="not is_preorder" />
             </xpath>
             <xpath expr="//field[@name='order_line']//list//field[@name='product_uom_qty']" position="after">
-                <field name="lot_id" groups="stock.group_production_lot" optional="show" string="Reserved Lot"/>
-                <field name="required_integrity_score" optional="hide"/>
-                <field name="is_reserved" widget="boolean_favorite" nolabel="1"/>
-                <button name="action_view_traceability" type="object" icon="fa-leaf" title="Traceability" invisible="state != 'sale'"/>
+                <field name="lot_id" groups="stock.group_production_lot" optional="show" string="Reserved Lot" />
+                <field name="required_integrity_score" optional="hide" />
+                <field name="is_reserved" widget="boolean_favorite" nolabel="1" />
+                <button name="action_view_traceability" type="object" icon="fa-leaf" title="Traceability" invisible="state != 'sale'" />
             </xpath>
         </field>
     </record>
+</data>
 </odoo>

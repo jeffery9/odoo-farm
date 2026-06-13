@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="farm_ux.AgriDnaIntegrity">
+        <div class="o_agri_dna_integrity d-flex align-items-center gap-3 p-2 bg-light rounded border mb-3">
+            <div class="gauge-container" style="width: 50px; height: 50px;">
+                <svg viewBox="0 0 36 36" class="circular-chart" style="transform: rotate(-90deg);">
+                    <path class="circle-bg"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                        stroke="#ddd"
+                        stroke-width="4"
+                    />
+                    <path class="circle"
+                        t-att-stroke="scoreColor"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        t-att-stroke-dasharray="dashArray"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                    />
+                </svg>
+            </div>
+            <div class="score-info">
+                <div class="fw-bold" t-att-style="'color: ' + scoreColor"><t t-esc="statusText"/></div>
+                <div class="h4 mb-0"><t t-esc="score"/> / 100</div>
+                <div class="small text-muted">Immutable DNA Integrity Score</div>
+            </div>
+        </div>
+    </t>
+</templates>

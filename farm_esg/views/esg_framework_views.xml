@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_esg_framework_tree" model="ir.ui.view">
         <field name="name">esg.framework.tree</field>
         <field name="model">esg.framework</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="code"/>
-                <field name="framework_type"/>
-                <field name="standards_body"/>
-                <field name="is_active"/>
-                <field name="effective_date"/>
+                <field name="name" />
+                <field name="code" />
+                <field name="framework_type" />
+                <field name="standards_body" />
+                <field name="is_active" />
+                <field name="effective_date" />
             </list>
         </field>
     </record>
@@ -27,36 +28,36 @@
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="code"/>
-                            <field name="framework_type"/>
+                            <field name="name" />
+                            <field name="code" />
+                            <field name="framework_type" />
                         </group>
                         <group>
-                            <field name="is_active"/>
-                            <field name="standards_body"/>
-                            <field name="version"/>
+                            <field name="is_active" />
+                            <field name="standards_body" />
+                            <field name="version" />
                         </group>
                     </group>
                     <group string="Dates">
-                        <field name="effective_date"/>
-                        <field name="expiry_date"/>
+                        <field name="effective_date" />
+                        <field name="expiry_date" />
                     </group>
                     <group string="Compliance">
-                        <field name="compliance_level"/>
+                        <field name="compliance_level" />
                     </group>
                     <notebook>
                         <page string="Description">
-                            <field name="description"/>
+                            <field name="description" />
                         </page>
                         <page string="Indicators" name="indicators">
                             <field name="indicator_ids" nolabel="1">
                                 <list editable="bottom">
-                                    <field name="name"/>
-                                    <field name="code"/>
-                                    <field name="subcategory"/>
-                                    <field name="unit_of_measurement"/>
-                                    <field name="target_value"/>
-                                    <field name="is_active"/>
+                                    <field name="name" />
+                                    <field name="code" />
+                                    <field name="subcategory" />
+                                    <field name="unit_of_measurement" />
+                                    <field name="target_value" />
+                                    <field name="is_active" />
                                 </list>
                             </field>
                         </page>
@@ -78,12 +79,12 @@
         <field name="model">esg.assessment</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="assessment_date"/>
-                <field name="assessment_type"/>
-                <field name="overall_esg_score"/>
-                <field name="assessment_status"/>
-                <field name="assessor_id"/>
+                <field name="name" />
+                <field name="assessment_date" />
+                <field name="assessment_type" />
+                <field name="overall_esg_score" />
+                <field name="assessment_status" />
+                <field name="assessor_id" />
             </list>
         </field>
     </record>
@@ -94,56 +95,56 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_start_assessment" type="object" string="Start Assessment" invisible="assessment_status != 'draft'"/>
-                    <button name="action_complete_assessment" type="object" string="Complete Assessment" invisible="assessment_status != 'in_progress'"/>
-                    <field name="assessment_status" widget="statusbar"/>
+                    <button name="action_start_assessment" type="object" string="Start Assessment" invisible="assessment_status != 'draft'" />
+                    <button name="action_complete_assessment" type="object" string="Complete Assessment" invisible="assessment_status != 'in_progress'" />
+                    <field name="assessment_status" widget="statusbar" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="assessment_type"/>
-                            <field name="assessment_period"/>
-                            <field name="year"/>
+                            <field name="name" />
+                            <field name="assessment_type" />
+                            <field name="assessment_period" />
+                            <field name="year" />
                         </group>
                         <group>
-                            <field name="assessment_date"/>
-                            <field name="assessor_id"/>
-                            <field name="assessment_method"/>
+                            <field name="assessment_date" />
+                            <field name="assessor_id" />
+                            <field name="assessment_method" />
                         </group>
                     </group>
                     <group string="Framework &amp; Entity">
-                        <field name="framework_id"/>
-                        <field name="assessed_entity_type"/>
-                        <field name="assessed_entity_id" required="assessed_entity_type != False"/>
+                        <field name="framework_id" />
+                        <field name="assessed_entity_type" />
+                        <field name="assessed_entity_id" required="assessed_entity_type != False" />
                     </group>
                     <group string="Scores" col="4">
-                        <field name="environmental_score"/>
-                        <field name="social_score"/>
-                        <field name="governance_score"/>
-                        <field name="overall_esg_score"/>
+                        <field name="environmental_score" />
+                        <field name="social_score" />
+                        <field name="governance_score" />
+                        <field name="overall_esg_score" />
                     </group>
                     <notebook>
                         <page string="Assessment Details">
                             <group>
-                                <field name="certification_body"/>
+                                <field name="certification_body" />
                             </group>
                             <group string="Targets">
-                                <field name="target_ids" nolabel="1"/>
+                                <field name="target_ids" nolabel="1" />
                             </group>
                         </page>
                         <page string="Assessment Lines" name="assessment_lines">
-                            <field name="name" invisible="1"/>
+                            <field name="name" invisible="1" />
                             <field name="assessment_line_ids" nolabel="1">
                                 <list editable="bottom">
-                                    <field name="indicator_id"/>
-                                    <field name="actual_value"/>
-                                    <field name="target_value"/>
-                                    <field name="performance_score"/>
-                                    <field name="achievement_percentage"/>
-                                    <field name="verification_status"/>
+                                    <field name="indicator_id" />
+                                    <field name="actual_value" />
+                                    <field name="target_value" />
+                                    <field name="performance_score" />
+                                    <field name="achievement_percentage" />
+                                    <field name="verification_status" />
                                 </list>
                             </field>
                         </page>
@@ -158,4 +159,5 @@
         <field name="res_model">esg.assessment</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

@@ -47,13 +47,21 @@ class AgriBiologicalAsset(models.Model):
     _description = 'Agricultural Biological Asset Standard'
     _inherit = [
         'agri.biological.asset.mixin',
+        'agri.growth.cycle.mixin',    # Level 1: Growth
+        'agri.biological.inventory.mixin', # Level 1: Inventory
         'agri.sustainability.mixin', # Level 0: Impact
         'agri.evidence.mixin',       # Level 2: Evidence
         'mail.thread'
     ]
 
+    # Yield & Production Targets
+    target_yield = fields.Float("Target Yield", default=0.0)
+    actual_yield = fields.Float("Actual Yield", default=0.0)
+
     name = fields.Char("Standard Identity", required=True, index=True)
     active = fields.Boolean(default=True)
+
+    owner_id = fields.Many2one('res.partner', string="Legal Owner")
 
     parent_asset_id = fields.Many2one('agri.biological.asset', string="Domain Parent")
     sub_asset_ids = fields.One2many('agri.biological.asset', 'parent_asset_id', string="Biological Offspring")

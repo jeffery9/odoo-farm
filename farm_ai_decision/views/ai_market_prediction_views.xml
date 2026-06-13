@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- AI Market Prediction Views -->
-    <record id="view_ai_market_prediction_form" model="ir.ui.view">
+<data>
+<record id="view_ai_market_prediction_form" model="ir.ui.view">
         <field name="name">agri.ai.market.prediction.form</field>
         <field name="model">agri.ai.market.prediction</field>
         <field name="arch" type="xml">
             <form string="AI Market Prediction">
                 <header>
-                    <button name="calculate_market_prediction" type="object" string="Calculate Prediction" class="oe_highlight"/>
-                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected"/>
+                    <button name="calculate_market_prediction" type="object" string="Calculate Prediction" class="oe_highlight" />
+                    <field name="status" widget="statusbar" statusbar_visible="draft,recommended,applied,completed,rejected" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_apply_recommendation" type="object" string="Apply Strategy" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'"/>
-                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'"/>
+                        <button name="action_apply_recommendation" type="object" string="Apply Strategy" class="oe_stat_button" icon="fa-check" invisible="status != 'recommended'" />
+                        <button name="action_mark_completed" type="object" string="Mark Completed" class="oe_stat_button" icon="fa-check-circle" invisible="status != 'applied'" />
                     </div>
                     <div class="oe_title">
-                        <label for="prediction_type"/>
-                        <h1><field name="prediction_type"/></h1>
+                        <label for="prediction_type" />
+                        <h1><field name="prediction_type" /></h1>
                     </div>
                     <group>
                         <group>
-                            <field name="product_id" string="Product/Input"/>
-                            <field name="current_price"/>
-                            <field name="price_trend" widget="priority"/>
+                            <field name="product_id" string="Product/Input" />
+                            <field name="current_price" />
+                            <field name="price_trend" widget="priority" />
                         </group>
                         <group>
-                            <field name="confidence_score" widget="gauge" options="{'max_field': 100}"/>
-                            <field name="status"/>
+                            <field name="confidence_score" widget="gauge" options="{'max_field': 100}" />
+                            <field name="status" />
                         </group>
                     </group>
                     <group string="Price Trend Forecast">
                         <group>
-                            <field name="predicted_price_7d"/>
-                            <field name="predicted_price_30d"/>
+                            <field name="predicted_price_7d" />
+                            <field name="predicted_price_30d" />
                         </group>
                         <group>
-                            <field name="predicted_price_90d"/>
+                            <field name="predicted_price_90d" />
                         </group>
                     </group>
                     
@@ -44,29 +44,29 @@
                         <page string="Revenue &amp; Hedging" name="hedging" invisible="prediction_type != 'sales'">
                             <group>
                                 <group string="Market Indicators">
-                                    <field name="futures_price"/>
-                                    <field name="basis_value"/>
+                                    <field name="futures_price" />
+                                    <field name="basis_value" />
                                 </group>
                                 <group string="Decision">
-                                    <field name="optimal_sales_ratio" widget="progressbar"/>
+                                    <field name="optimal_sales_ratio" widget="progressbar" />
                                 </group>
                             </group>
-                            <separator string="Hedging Recommendation"/>
-                            <field name="hedging_recommendation"/>
+                            <separator string="Hedging Recommendation" />
+                            <field name="hedging_recommendation" />
                         </page>
                         <page string="Procurement Optimizer" name="procurement" invisible="prediction_type != 'procurement'">
                             <group>
-                                <field name="procurement_action" widget="priority"/>
+                                <field name="procurement_action" widget="priority" />
                             </group>
-                            <separator string="AI Decision Summary"/>
-                            <field name="decision_summary"/>
+                            <separator string="AI Decision Summary" />
+                            <field name="decision_summary" />
                         </page>
                         <page string="Market Factors Analysis" name="factors">
-                            <field name="market_factors" placeholder="Analysis of seasonal, weather and macro factors..."/>
+                            <field name="market_factors" placeholder="Analysis of seasonal, weather and macro factors..." />
                         </page>
                     </notebook>
                 </sheet>
-                <chatter/>
+                <chatter />
             </form>
         </field>
     </record>
@@ -76,13 +76,13 @@
         <field name="model">agri.ai.market.prediction</field>
         <field name="arch" type="xml">
             <list string="AI Market Predictions">
-                <field name="prediction_type"/>
-                <field name="product_id"/>
-                <field name="current_price"/>
-                <field name="predicted_price_30d"/>
-                <field name="price_trend"/>
-                <field name="confidence_score"/>
-                <field name="status" widget="badge"/>
+                <field name="prediction_type" />
+                <field name="product_id" />
+                <field name="current_price" />
+                <field name="predicted_price_30d" />
+                <field name="price_trend" />
+                <field name="confidence_score" />
+                <field name="status" widget="badge" />
             </list>
         </field>
     </record>
@@ -92,4 +92,5 @@
         <field name="res_model">agri.ai.market.prediction</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

@@ -1,45 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <menuitem id="menu_esg_root"
-              name="ESG &amp; Sustainability"
-              sequence="100"
-              web_icon="farm_esg,static/description/icon.png"/>
+<data>
+<menuitem id="menu_esg_root" name="ESG &amp; Sustainability" sequence="100" web_icon="farm_esg,static/description/icon.png" />
 
 
     
-    <menuitem id="esg_frameworks_menu" name="ESG Frameworks"
-              parent="menu_esg_root" sequence="10"/>
+    <menuitem id="esg_frameworks_menu" name="ESG Frameworks" parent="menu_esg_root" sequence="10" />
 
-    <menuitem id="esg_framework_menu" name="Frameworks"
-              parent="esg_frameworks_menu" sequence="10"
-              action="action_esg_framework"/>
+    <menuitem id="esg_framework_menu" name="Frameworks" parent="esg_frameworks_menu" sequence="10" action="action_esg_framework" />
 
-    <menuitem id="esg_assessment_menu" name="Assessments"
-              parent="esg_frameworks_menu" sequence="20"
-              action="action_esg_assessment"/>
+    <menuitem id="esg_assessment_menu" name="Assessments" parent="esg_frameworks_menu" sequence="20" action="action_esg_assessment" />
 
     
-    <menuitem id="esg_indicators_menu" name="ESG Indicators"
-              parent="menu_esg_root" sequence="20"/>
+    <menuitem id="esg_indicators_menu" name="ESG Indicators" parent="menu_esg_root" sequence="20" />
 
-    <menuitem id="esg_indicator_menu" name="Indicators"
-              parent="esg_indicators_menu" sequence="10"
-              action="action_esg_indicator"/>
+    <menuitem id="esg_indicator_menu" name="Indicators" parent="esg_indicators_menu" sequence="10" action="action_esg_indicator" />
 
-    <menuitem id="esg_assessment_line_menu" name="Assessment Lines"
-              parent="esg_indicators_menu" sequence="20"
-              action="action_esg_assessment_line"/>
+    <menuitem id="esg_assessment_line_menu" name="Assessment Lines" parent="esg_indicators_menu" sequence="20" action="action_esg_assessment_line" />
 
     
-    <menuitem id="esg_targets_reports_menu" name="Targets &amp; Reports"
-              parent="menu_esg_root" sequence="30"/>
+    <menuitem id="esg_targets_reports_menu" name="Targets &amp; Reports" parent="menu_esg_root" sequence="30" />
 
-    <menuitem id="esg_target_menu" name="Targets"
-              parent="esg_targets_reports_menu" sequence="10"
-              action="action_esg_target"/>
+    <menuitem id="esg_target_menu" name="Targets" parent="esg_targets_reports_menu" sequence="10" action="action_esg_target" />
 
-    <menuitem id="esg_performance_report_menu" name="Performance Reports"
-              parent="esg_targets_reports_menu" sequence="20"
-              action="action_esg_performance_report"/>
+    <menuitem id="esg_performance_report_menu" name="Performance Reports" parent="esg_targets_reports_menu" sequence="20" action="action_esg_performance_report" />
+</data>
 </odoo>

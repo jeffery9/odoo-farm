@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_farm_consumer_feedback_tree" model="ir.ui.view">
+<data>
+<record id="view_farm_consumer_feedback_tree" model="ir.ui.view">
         <field name="name">farm.consumer.feedback.list</field>
         <field name="model">farm.consumer.feedback</field>
         <field name="arch" type="xml">
             <list create="false">
-                <field name="create_date" string="Feedback Date"/>
-                <field name="lot_id"/>
-                <field name="product_id"/>
-                <field name="rating" widget="priority"/>
-                <field name="taste_score"/>
-                <field name="freshness_score"/>
-                <field name="consumer_region"/>
-                <field name="comment"/>
+                <field name="create_date" string="Feedback Date" />
+                <field name="lot_id" />
+                <field name="product_id" />
+                <field name="rating" widget="priority" />
+                <field name="taste_score" />
+                <field name="freshness_score" />
+                <field name="consumer_region" />
+                <field name="comment" />
             </list>
         </field>
     </record>
@@ -22,9 +23,9 @@
         <field name="model">farm.consumer.feedback</field>
         <field name="arch" type="xml">
             <pivot string="C2M Sentiment Analysis">
-                <field name="product_id" type="row"/>
-                <field name="rating" type="col"/>
-                <field name="taste_score" type="measure"/>
+                <field name="product_id" type="row" />
+                <field name="rating" type="col" />
+                <field name="taste_score" type="measure" />
             </pivot>
         </field>
     </record>
@@ -35,6 +36,6 @@
         <field name="view_mode">list,pivot,form</field>
     </record>
 
-    <menuitem id="menu_consumer_feedback" name="Consumer Insights (C2M)" 
- web_icon="farm_marketing,static/description/icon.png" action="action_farm_consumer_feedback" sequence="50"/>
+    <menuitem id="menu_consumer_feedback" name="Consumer Insights (C2M)" web_icon="farm_marketing,static/description/icon.png" action="action_farm_consumer_feedback" sequence="50" />
+</data>
 </odoo>

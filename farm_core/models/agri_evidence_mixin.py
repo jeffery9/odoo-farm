@@ -21,6 +21,14 @@ class AgriEvidenceMixin(models.AbstractModel):
     verified_by_id = fields.Many2one('res.users', string="Verified By")
     verification_at = fields.Datetime("Verification Timestamp")
 
+    audit_confidence = fields.Float("Audit Confidence", default=0.0)
+    audit_status = fields.Selection([
+        ('pending', 'Pending Audit'),
+        ('verified', 'Verified'),
+        ('disputed', 'Disputed'),
+        ('fraudulent', 'Potential Fraud')
+    ], string="Audit Status", default='pending')
+
     @api.model
     def _generate_evidence_hash(self):
         """Standardized method to generate evidence hash (stub for future implementation)"""

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_farm_market_demand_tree" model="ir.ui.view">
+<data>
+<record id="view_farm_market_demand_tree" model="ir.ui.view">
         <field name="name">farm.market.demand.list</field>
         <field name="model">farm.market.demand</field>
         <field name="arch" type="xml">
             <list decoration-info="state == 'active'" decoration-success="state == 'matched'">
-                <field name="name"/>
-                <field name="partner_id"/>
-                <field name="product_id"/>
-                <field name="quantity_required"/>
-                <field name="delivery_date"/>
-                <field name="state" widget="badge"/>
+                <field name="name" />
+                <field name="partner_id" />
+                <field name="product_id" />
+                <field name="quantity_required" />
+                <field name="delivery_date" />
+                <field name="state" widget="badge" />
             </list>
         </field>
     </record>
@@ -21,46 +22,46 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_match_production" string="Match Production" type="object" class="oe_highlight" invisible="state == 'closed'"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,active,matched,closed"/>
+                    <button name="action_match_production" string="Match Production" type="object" class="oe_highlight" invisible="state == 'closed'" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,matched,closed" />
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name" placeholder="Demand Ref..."/></h1>
+                        <h1><field name="name" placeholder="Demand Ref..." /></h1>
                     </div>
                     <group>
                         <group>
-                            <field name="partner_id"/>
-                            <field name="product_id"/>
-                            <field name="quantity_required"/>
-                            <field name="uom_id"/>
+                            <field name="partner_id" />
+                            <field name="product_id" />
+                            <field name="quantity_required" />
+                            <field name="uom_id" />
                         </group>
                         <group>
-                            <field name="target_price"/>
-                            <field name="currency_id" invisible="1"/>
-                            <field name="delivery_date"/>
+                            <field name="target_price" />
+                            <field name="currency_id" invisible="1" />
+                            <field name="delivery_date" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Quality &amp; Details" name="details">
-                            <field name="quality_spec"/>
+                            <field name="quality_spec" />
                         </page>
                         <page string="Matched Production Lots" name="matched_lots">
                             <field name="matched_lot_ids">
                                 <list>
-                                    <field name="name"/>
-                                    <field name="product_id"/>
-                                    <field name="quantity"/>
-                                    <field name="state"/>
+                                    <field name="name" />
+                                    <field name="product_id" />
+                                    <field name="quantity" />
+                                    <field name="state" />
                                 </list>
                             </field>
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -72,6 +73,6 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_farm_market_demand" name="Market Demand Matching" 
- web_icon="farm_marketing,static/description/icon.png" action="action_farm_market_demand" sequence="20"/>
+    <menuitem id="menu_farm_market_demand" name="Market Demand Matching" web_icon="farm_marketing,static/description/icon.png" action="action_farm_market_demand" sequence="20" />
+</data>
 </odoo>

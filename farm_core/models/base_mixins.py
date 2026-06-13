@@ -92,7 +92,7 @@ class CreationMethodMixin(models.AbstractModel):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if vals.get('name', '/') == '/' or vals.get('name', fields._('New')) == fields._('New'):
+            if vals.get('name', '/') == '/' or vals.get('name', _('New')) == _('New'):
                 vals['name'] = self.env['ir.sequence'].next_by_code(self._name.replace('.', '_')) or '/'
         return super().create(vals_list)
 

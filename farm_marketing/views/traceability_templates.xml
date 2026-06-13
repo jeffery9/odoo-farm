@@ -1,109 +1,107 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="traceability_portal_template" name="Product Traceability Portal">
+<data>
+<template id="traceability_portal_template" name="Product Traceability Portal">
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure oe_empty bg-light">
                 <section class="s_text_block pb32 pt32" data-snippet="s_text_block">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8 offset-lg-2">
-                                <!-- 品牌头部 -->
+                                
                                 <div class="card shadow-sm mb-4 border-0">
                                     <div class="card-body text-center bg-success text-white rounded-top">
-                                        <h2 t-field="lot.product_id.name"/>
-                                        <p class="mb-0">批次编号 / Batch ID: <span t-field="lot.name"/></p>
+                                        <h2 t-field="lot.product_id.name" />
+                                        <p class="mb-0">批次编号 / Batch ID: <span t-field="lot.name" /></p>
                                     </div>
                                     <div class="card-body">
                                         <div class="row text-center">
                                             <div class="col-6 border-end">
                                                 <h6>产地 / Origin</h6>
-                                                <p t-field="lot.location_id.name"/>
+                                                <p t-field="lot.location_id.name" />
                                             </div>
                                             <div class="col-6">
                                                 <h6>状态 / Status</h6>
-                                                <span class="badge rounded-pill bg-info" t-field="lot.biological_stage"/>
+                                                <span class="badge rounded-pill bg-info" t-field="lot.biological_stage" />
                                             </div>
                                         </div>
                                         <t t-if="lot.certification_level and lot.certification_level != 'conventional'">
                                             <div class="mt-3 text-center">
                                                 <span class="badge bg-warning text-dark p-2 w-100" style="font-size: 1rem;">
-                                                    <i class="fa fa-certificate me-2"/>认证级别 / Certified: <span t-field="lot.certification_level"/>
+                                                    <i class="fa fa-certificate me-2" />认证级别 / Certified: <span t-field="lot.certification_level" />
                                                 </span>
                                             </div>
                                         </t>
                                         <t t-if="lot.gi_security_code">
                                             <div class="mt-2 text-center">
                                                 <span class="text-success" style="font-weight: bold;">
-                                                    <i class="fa fa-shield me-1"/>地理标志防伪码 / GI Secure Code: <span t-field="lot.gi_security_code"/>
+                                                    <i class="fa fa-shield me-1" />地理标志防伪码 / GI Secure Code: <span t-field="lot.gi_security_code" />
                                                 </span>
                                             </div>
                                         </t>
                                     </div>
                                 </div>
 
-                                <!-- 风土特征 (Terroir) [US-062-05] -->
-                                <h4 class="mb-3"><i class="fa fa-globe text-primary me-2"/>风土特征 / Terroir Profiles</h4>
+                                
+                                <h4 class="mb-3"><i class="fa fa-globe text-primary me-2" />风土特征 / Terroir Profiles</h4>
                                 <div class="card shadow-sm mb-4 border-0">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6 mb-2">
-                                                <strong>坡度 / Slope:</strong> <span t-field="lot.location_id.slope"/>%
+                                                <strong>坡度 / Slope:</strong> <span t-field="lot.location_id.slope" />%
                                             </div>
                                             <div class="col-6 mb-2">
-                                                <strong>朝向 / Aspect:</strong> <span t-field="lot.location_id.aspect"/>
+                                                <strong>朝向 / Aspect:</strong> <span t-field="lot.location_id.aspect" />
                                             </div>
                                             <div class="col-12 mb-2">
-                                                <strong>水源 / Water:</strong> <span t-field="lot.location_id.water_source"/>
+                                                <strong>水源 / Water:</strong> <span t-field="lot.location_id.water_source" />
                                             </div>
                                             <t t-if="lot.location_id.micro_climate_notes">
                                                 <div class="col-12 mb-2">
-                                                    <strong>微气候 / Climate:</strong> <p class="text-muted" t-field="lot.location_id.micro_climate_notes"/>
+                                                    <strong>微气候 / Climate:</strong> <p class="text-muted" t-field="lot.location_id.micro_climate_notes" />
                                                 </div>
                                             </t>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- 生产节点 (Timeline) -->
-                                <h4 class="mb-3"><i class="fa fa-history text-success me-2"/>生命档案 / Life Cycle</h4>
+                                
+                                <h4 class="mb-3"><i class="fa fa-history text-success me-2" />生命档案 / Life Cycle</h4>
                                 <div class="list-group mb-4 shadow-sm">
                                     <div class="list-group-item">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h6 class="mb-1">出生/种植日期 / Birth/Planting Date</h6>
-                                            <small t-field="lot.create_date" t-options='{"widget": "date"}'/>
+                                            <small t-field="lot.create_date" t-options="{&quot;widget&quot;: &quot;date&quot;}" />
                                         </div>
                                     </div>
                                     <t t-if="task">
                                         <div class="list-group-item">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <h6 class="mb-1">种植产季 / Cultivation Season</h6>
-                                                <p class="mb-1" t-field="task.campaign_id.name"/>
+                                                <p class="mb-1" t-field="task.campaign_id.name" />
                                             </div>
                                         </div>
                                     </t>
                                 </div>
 
-                                <!-- 实况监控 [US-039-01] -->
+                                
                                 <t t-if="video_url">
-                                    <h4 class="mb-3"><i class="fa fa-video-camera text-danger me-2"/>实况监控 / Live View</h4>
+                                    <h4 class="mb-3"><i class="fa fa-video-camera text-danger me-2" />实况监控 / Live View</h4>
                                     <div class="card shadow-sm mb-4 border-0 bg-dark overflow-hidden" style="aspect-ratio: 16/9;">
-                                        <iframe t-att-src="video_url" 
-                                                class="w-100 h-100 border-0" 
-                                                allow="autoplay; encrypted-media" 
-                                                allowfullscreen="True">
+                                        <iframe t-att-src="video_url" class="w-100 h-100 border-0" allow="autoplay; encrypted-media" allowfullscreen="True">
                                         </iframe>
                                     </div>
                                 </t>
 
-                                <!-- 质检报告 -->
-                                <h4 class="mb-3"><i class="fa fa-certificate text-warning me-2"/>质量认证 / Quality Trust</h4>
+                                
+                                <h4 class="mb-3"><i class="fa fa-certificate text-warning me-2" />质量认证 / Quality Trust</h4>
                                 <div class="card shadow-sm mb-4">
                                     <div class="card-body">
                                         <t t-if="qc_checks">
                                             <div t-foreach="qc_checks" t-as="qc" class="d-flex align-items-center mb-2">
-                                                <i class="fa fa-check-circle text-success me-2"/>
-                                                <span t-field="qc.point_id.name"/>: 
-                                                <strong class="ms-1" t-field="qc.quality_state"/>
+                                                <i class="fa fa-check-circle text-success me-2" />
+                                                <span t-field="qc.point_id.name" />: 
+                                                <strong class="ms-1" t-field="qc.quality_state" />
                                             </div>
                                         </t>
                                         <t t-else="">
@@ -112,10 +110,10 @@
                                     </div>
                                 </div>
 
-                                <!-- 农场故事 -->
-                                <h4 class="mb-3"><i class="fa fa-leaf text-success me-2"/>品牌故事 / Our Story</h4>
+                                
+                                <h4 class="mb-3"><i class="fa fa-leaf text-success me-2" />品牌故事 / Our Story</h4>
                                 <div class="card shadow-sm border-0 bg-white p-3 mb-5">
-                                    <p class="mb-0 text-italic" t-out="farm_story"/>
+                                    <p class="mb-0 text-italic" t-out="farm_story" />
                                 </div>
                             </div>
                         </div>
@@ -125,10 +123,11 @@
         </t>
     </template>
 
-    <!-- Action for order intervention calendar -->
+    
     <record id="action_view_order_intervention_calendar" model="ir.actions.act_url">
         <field name="name">Field Operations Calendar</field>
-        <field name="url" eval="'/farm/order/' + str(object.id) + '/calendar'"/>
+        <field name="url" eval="'/farm/order/' + str(object.id) + '/calendar'" />
         <field name="target">new</field>
     </record>
+</data>
 </odoo>

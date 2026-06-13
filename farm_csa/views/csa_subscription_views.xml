@@ -1,15 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="farm_csa_subscription_view_tree" model="ir.ui.view">
+<data>
+<record id="farm_csa_subscription_view_tree" model="ir.ui.view">
         <field name="name">farm.csa.subscription.list</field>
         <field name="model">farm.csa.subscription</field>
         <field name="arch" type="xml">
             <list string="CSA Subscriptions" decoration-success="state == 'active'">
-                <field name="name"/>
-                <field name="partner_id"/>
-                <field name="plan_id"/>
-                <field name="next_delivery_date"/>
-                <field name="state" widget="badge"/>
+                <field name="name" />
+                <field name="partner_id" />
+                <field name="plan_id" />
+                <field name="next_delivery_date" />
+                <field name="state" widget="badge" />
             </list>
         </field>
     </record>
@@ -20,42 +21,42 @@
         <field name="arch" type="xml">
             <form string="CSA Subscription">
                 <header>
-                    <button name="action_activate" string="Activate" type="object" class="btn-primary" invisible="state != 'draft'"/>
-                    <field name="state" widget="statusbar"/>
+                    <button name="action_activate" string="Activate" type="object" class="btn-primary" invisible="state != 'draft'" />
+                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
-                    <h1><field name="name"/></h1>
+                    <h1><field name="name" /></h1>
                     <group>
                         <group>
-                            <field name="partner_id"/>
-                            <field name="plan_id"/>
-                            <field name="sub_type"/>
-                            <field name="adopted_lot_id" invisible="sub_type != 'adoption'"/>
+                            <field name="partner_id" />
+                            <field name="plan_id" />
+                            <field name="sub_type" />
+                            <field name="adopted_lot_id" invisible="sub_type != 'adoption'" />
                         </group>
                         <group>
-                            <field name="date_start"/>
-                            <field name="next_delivery_date"/>
+                            <field name="date_start" />
+                            <field name="next_delivery_date" />
                         </group>
                     </group>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
     </record>
 
-    <!-- Shared Tools Views -->
+    
     <record id="view_farm_shared_tool_tree" model="ir.ui.view">
         <field name="name">farm.shared.tool.tree</field>
         <field name="model">farm.shared.tool</field>
         <field name="arch" type="xml">
             <list string="Shared Tools" decoration-info="status == 'available'" decoration-warning="status == 'borrowed'">
-                <field name="name"/>
-                <field name="tool_type"/>
-                <field name="status" widget="badge"/>
-                <field name="current_user_id"/>
+                <field name="name" />
+                <field name="tool_type" />
+                <field name="status" widget="badge" />
+                <field name="current_user_id" />
             </list>
         </field>
     </record>
@@ -66,27 +67,27 @@
         <field name="arch" type="xml">
             <form string="Shared Tool">
                 <header>
-                    <button name="action_return" string="Return Tool" type="object" invisible="status != 'borrowed'"/>
-                    <field name="status" widget="statusbar"/>
+                    <button name="action_return" string="Return Tool" type="object" invisible="status != 'borrowed'" />
+                    <field name="status" widget="statusbar" />
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name" placeholder="e.g. Community Rototiller"/></h1>
+                        <h1><field name="name" placeholder="e.g. Community Rototiller" /></h1>
                     </div>
                     <group>
                         <group>
-                            <field name="tool_type"/>
-                            <field name="equipment_id"/>
+                            <field name="tool_type" />
+                            <field name="equipment_id" />
                         </group>
                         <group>
-                            <field name="current_user_id" readonly="1"/>
+                            <field name="current_user_id" readonly="1" />
                         </group>
                     </group>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -97,5 +98,5 @@
         <field name="res_model">farm.shared.tool</field>
         <field name="view_mode">list,form</field>
     </record>
-
+</data>
 </odoo>

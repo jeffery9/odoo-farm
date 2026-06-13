@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Protected Cultivation specific menu items -->
-    <menuitem id="menu_farm_protected_cultivation_menu_root"
-              name="Protected Cultivation"
- web_icon="farm_protected_cultivation,static/description/icon.png"
-              sequence="21"/>
+<data>
+<menuitem id="menu_farm_protected_cultivation_menu_root" name="Protected Cultivation" web_icon="farm_protected_cultivation,static/description/icon.png" sequence="21" />
+</data>
 </odoo>
