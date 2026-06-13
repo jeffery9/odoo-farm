@@ -115,7 +115,7 @@ Odoo Farm 的生态架构覆盖了农业生产与经营的几乎所有细分领�
 *   **酿酒工业**：安装 `farm_winery`
 
 ### 🚜 农业服务与跨界融合 (Agri-Services & Integration)
-*   **农业物联网与精准农业**：安装 `farm_iot` 或 `farm_operation` 
+*   **农业物联网与精准农业**：安装 `farm_iot` 或 `agri_precision` 
 *   **种子产业**：安装 `farm_seed_industry`
 *   **农业生态与碳汇**：安装 `farm_ecology` 或 `farm_esg_carbon`
 *   **休闲农业与农旅**：安装 `farm_agritourism`
