@@ -9,11 +9,10 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     # 兽药实名制与监管 [US-041-02]
-    is_regulated_input = fields.Boolean("Is Regulated Input", default=False)
     reg_cert_no = fields.Char("Registration/Approval No.")
     # 兽药实名制与监管 [US-041-02]
-    is_prohibited_restricted = fields.Boolean("Prohibited/Restricted", default=False)
-    prohibited_reason = fields.Text("Prohibited/Restricted Reason")
+    # is_prohibited_restricted moved to core
+    # prohibited_reason moved to core
 
     # Add field to link to registration database (for US-040-12)
     registration_database_id = fields.Many2one(

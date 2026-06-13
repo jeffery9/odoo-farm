@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="seq_farm_task_planting" model="ir.sequence">
             <field name="name">Farm Task: Planting</field>
             <field name="code">farm.task.planting</field>
             <field name="prefix">P-</field>
             <field name="padding">5</field>
-            <field name="company_id" eval="False"/>
+            <field name="company_id" eval="False" />
         </record>
 
         
@@ -14,7 +15,7 @@
             <field name="code">farm.task.livestock</field>
             <field name="prefix">L-</field>
             <field name="padding">5</field>
-            <field name="company_id" eval="False"/>
+            <field name="company_id" eval="False" />
         </record>
 
         
@@ -23,7 +24,7 @@
             <field name="code">farm.task.aquaculture</field>
             <field name="prefix">A-</field>
             <field name="padding">5</field>
-            <field name="company_id" eval="False"/>
+            <field name="company_id" eval="False" />
         </record>
 
         
@@ -32,7 +33,7 @@
             <field name="code">farm.task.agritourism</field>
             <field name="prefix">T-</field>
             <field name="padding">5</field>
-            <field name="company_id" eval="False"/>
+            <field name="company_id" eval="False" />
         </record>
 
         
@@ -41,6 +42,7 @@
             <field name="code">agri.soil.analysis</field>
             <field name="prefix">SOIL/</field>
             <field name="padding">5</field>
-            <field name="company_id" eval="False"/>
+            <field name="company_id" eval="False" />
         </record>
+</data>
 </odoo>

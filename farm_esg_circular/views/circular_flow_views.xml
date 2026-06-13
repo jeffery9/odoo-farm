@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_circular_flow_tree" model="ir.ui.view">
         <field name="name">farm.sustainability.circular.flow.tree</field>
         <field name="model">farm.sustainability.circular.flow</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="code"/>
-                <field name="flow_type"/>
-                <field name="input_product_id"/>
-                <field name="output_product_id"/>
-                <field name="economic_value"/>
-                <field name="status"/>
+                <field name="name" />
+                <field name="code" />
+                <field name="flow_type" />
+                <field name="input_product_id" />
+                <field name="output_product_id" />
+                <field name="economic_value" />
+                <field name="status" />
             </list>
         </field>
     </record>
@@ -23,69 +24,69 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_activate_flow" type="object" string="激活" invisible="status != 'planned'"/>
-                    <button name="action_complete_flow" type="object" string="完成" invisible="status not in ['planned','active']"/>
-                    <button name="action_suspend_flow" type="object" string="暂停" invisible="status not in ['planned','active']"/>
-                    <field name="status" widget="statusbar" statusbar_visible="planned,active,completed"/>
+                    <button name="action_activate_flow" type="object" string="激活" invisible="status != 'planned'" />
+                    <button name="action_complete_flow" type="object" string="完成" invisible="status not in ['planned','active']" />
+                    <button name="action_suspend_flow" type="object" string="暂停" invisible="status not in ['planned','active']" />
+                    <field name="status" widget="statusbar" statusbar_visible="planned,active,completed" />
                 </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="code"/>
-                            <field name="flow_type"/>
+                            <field name="name" />
+                            <field name="code" />
+                            <field name="flow_type" />
                         </group>
                         <group>
-                            <field name="status"/>
-                            <field name="responsible_person_id"/>
-                            <field name="department_id"/>
+                            <field name="status" />
+                            <field name="responsible_person_id" />
+                            <field name="department_id" />
                         </group>
                     </group>
                     <group string="产品流转">
                         <group>
-                            <field name="input_product_id"/>
-                            <field name="input_quantity"/>
+                            <field name="input_product_id" />
+                            <field name="input_quantity" />
                         </group>
                         <group>
-                            <field name="output_product_id"/>
-                            <field name="output_quantity"/>
+                            <field name="output_product_id" />
+                            <field name="output_quantity" />
                         </group>
                     </group>
                     <group string="时间范围">
                         <group>
-                            <field name="start_date"/>
-                            <field name="end_date"/>
-                            <field name="duration_days"/>
+                            <field name="start_date" />
+                            <field name="end_date" />
+                            <field name="duration_days" />
                         </group>
                     </group>
                     <group string="价值评估">
                         <group>
-                            <field name="economic_value"/>
-                            <field name="environmental_impact"/>
-                            <field name="social_impact"/>
+                            <field name="economic_value" />
+                            <field name="environmental_impact" />
+                            <field name="social_impact" />
                         </group>
                         <group>
-                            <field name="processing_cost"/>
-                            <field name="revenue"/>
-                            <field name="net_benefit"/>
+                            <field name="processing_cost" />
+                            <field name="revenue" />
+                            <field name="net_benefit" />
                         </group>
                     </group>
                     <group string="业务关联">
                         <group>
-                            <field name="related_production_id"/>
-                            <field name="related_sale_order_id"/>
+                            <field name="related_production_id" />
+                            <field name="related_sale_order_id" />
                         </group>
                         <group>
                         </group>
                     </group>
                     <group>
-                        <field name="description"/>
+                        <field name="description" />
                     </group>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -97,4 +98,5 @@
         <field name="res_model">farm.sustainability.circular.flow</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

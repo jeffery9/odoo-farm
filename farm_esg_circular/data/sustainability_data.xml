@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="circular_flow_example" model="farm.sustainability.circular.flow">
         <field name="name">农作物秸秆再利用</field>
         <field name="code">CF-001</field>
@@ -11,4 +12,5 @@
         <field name="revenue">1000.0</field>
         <field name="status">completed</field>
     </record>
+</data>
 </odoo>

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_crop_rotation_history_tree" model="ir.ui.view">
         <field name="name">farm.crop.rotation.history.tree</field>
         <field name="model">farm.crop.rotation.history</field>
         <field name="arch" type="xml">
-            <list string="Crop Rotation History"
-                  decoration-danger="continuous_cropping_warning"
-                  decoration-info="state == 'archived'">
-                <field name="name"/>
-                <field name="location_id"/>
-                <field name="product_id"/>
-                <field name="planting_date"/>
-                <field name="harvesting_date"/>
-                <field name="continuous_cropping_risk"/>
-                <field name="continuous_cropping_warning"/>
-                <field name="state"/>
+            <list string="Crop Rotation History" decoration-danger="continuous_cropping_warning" decoration-info="state == 'archived'">
+                <field name="name" />
+                <field name="location_id" />
+                <field name="product_id" />
+                <field name="planting_date" />
+                <field name="harvesting_date" />
+                <field name="continuous_cropping_risk" />
+                <field name="continuous_cropping_warning" />
+                <field name="state" />
             </list>
         </field>
     </record>
@@ -26,36 +25,35 @@
         <field name="arch" type="xml">
             <form string="Crop Rotation History">
                 <header>
-                    <field name="state" widget="statusbar" statusbar_visible="planted,harvested,archived"/>
+                    <field name="state" widget="statusbar" statusbar_visible="planted,harvested,archived" />
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name"/></h1>
+                        <h1><field name="name" /></h1>
                     </div>
                     <group>
                         <group string="Location &amp; Crop">
-                            <field name="location_id"/>
-                            <field name="product_id"/>
+                            <field name="location_id" />
+                            <field name="product_id" />
                         </group>
                         <group string="Timeline">
-                            <field name="planting_date"/>
-                            <field name="harvesting_date"/>
-                            <field name="season"/>
+                            <field name="planting_date" />
+                            <field name="harvesting_date" />
+                            <field name="season" />
                         </group>
                     </group>
                     <group string="Planting Details">
-                        <field name="planting_quantity"/>
-                        <field name="unit_of_measure"/>
+                        <field name="planting_quantity" />
+                        <field name="unit_of_measure" />
                     </group>
-                    <group string="Continuous Cropping Risk Assessment"
-                           invisible="not continuous_cropping_warning">
-                        <field name="continuous_cropping_warning" invisible="1"/>
-                        <field name="continuous_cropping_risk" widget="gauge"/>
-                        <field name="warning_reason" placeholder="Risk assessment details..."/>
+                    <group string="Continuous Cropping Risk Assessment" invisible="not continuous_cropping_warning">
+                        <field name="continuous_cropping_warning" invisible="1" />
+                        <field name="continuous_cropping_risk" widget="gauge" />
+                        <field name="warning_reason" placeholder="Risk assessment details..." />
                     </group>
                     <notebook>
                         <page string="Notes" name="notes">
-                            <field name="notes"/>
+                            <field name="notes" />
                         </page>
                     </notebook>
                 </sheet>
@@ -74,35 +72,27 @@
     <record id="view_farm_location_form_extension" model="ir.ui.view">
         <field name="name">farm.location.form.rotation.extension</field>
         <field name="model">farm.location</field>
-        <field name="inherit_id" ref="farm_core.view_farm_location_form"/>
+        <field name="inherit_id" ref="farm_core.view_farm_location_form" />
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page string="Rotation History" name="rotation_history">
                     <group>
-                        <field name="last_crop_planted"/>
-                        <field name="last_planting_date"/>
-                        <field name="continuous_cropping_risk_alert"/>
+                        <field name="last_crop_planted" />
+                        <field name="last_planting_date" />
+                        <field name="continuous_cropping_risk_alert" />
                     </group>
                     <field name="rotation_history_ids" mode="tree">
-                        <list string="Crop Rotation History"
-                              decoration-danger="continuous_cropping_warning"
-                              decoration-info="state == 'archived'">
-                            <field name="planting_date"/>
-                            <field name="product_id"/>
-                            <field name="harvesting_date"/>
-                            <field name="continuous_cropping_risk"/>
-                            <field name="continuous_cropping_warning"/>
+                        <list string="Crop Rotation History" decoration-danger="continuous_cropping_warning" decoration-info="state == 'archived'">
+                            <field name="planting_date" />
+                            <field name="product_id" />
+                            <field name="harvesting_date" />
+                            <field name="continuous_cropping_risk" />
+                            <field name="continuous_cropping_warning" />
                         </list>
                     </field>
                     <group col="4">
-                        <button name="action_view_rotation_history"
-                                string="View Full Rotation History"
-                                type="object"
-                                class="btn-primary"/>
-                        <button name="action_view_soil_analyses_history"
-                                string="View Soil Analysis History"
-                                type="object"
-                                class="btn-secondary"/>
+                        <button name="action_view_rotation_history" string="View Full Rotation History" type="object" class="btn-primary" />
+                        <button name="action_view_soil_analyses_history" string="View Soil Analysis History" type="object" class="btn-secondary" />
                     </group>
                 </page>
             </notebook>
@@ -113,15 +103,15 @@
     <record id="view_product_template_form_extension" model="ir.ui.view">
         <field name="name">product.template.form.rotation.extension</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="inherit_id" ref="product.product_template_form_view" />
         <field name="arch" type="xml">
             <page name="inventory" position="after">
                 <page string="Crop Rotation Info" name="crop_rotation_info" groups="base.group_user">
                     <group>
                         <group string="Rotation Management">
-                            <field name="crop_family"/>
-                            <field name="continuous_cropping_susceptible"/>
-                            <field name="recommended_rotation_interval"/>
+                            <field name="crop_family" />
+                            <field name="continuous_cropping_susceptible" />
+                            <field name="recommended_rotation_interval" />
                         </group>
                     </group>
                 </page>
@@ -130,14 +120,8 @@
     </record>
 
     
-    <menuitem id="menu_crop_rotation_root"
-              name="Crop Rotation"
- web_icon="farm_crop,static/description/icon.png"
-              sequence="20"/>
+    <menuitem id="menu_crop_rotation_root" name="Crop Rotation" web_icon="farm_crop,static/description/icon.png" sequence="20" />
 
-    <menuitem id="menu_crop_rotation_history"
-              name="Rotation History"
-              parent="menu_crop_rotation_root"
-              action="action_crop_rotation_history"
-              sequence="10"/>
+    <menuitem id="menu_crop_rotation_history" name="Rotation History" parent="menu_crop_rotation_root" action="action_crop_rotation_history" sequence="10" />
+</data>
 </odoo>

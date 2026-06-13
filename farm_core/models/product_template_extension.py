@@ -4,7 +4,7 @@ class ProductTemplate(models.Model):
     """
     Product template extensions for agricultural products - replacing functionality from product_template.py
     """
-    _inherit = 'product.template'
+    _inherit = ['product.template', 'agri.quality.gate.mixin']
 
     # Agricultural-specific fields
     agricultural_type = fields.Selection([

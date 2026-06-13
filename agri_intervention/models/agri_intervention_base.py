@@ -12,7 +12,7 @@ class AgriInterventionBase(models.AbstractModel):
     """
     _name = 'agri.intervention.base'
     _description = 'Agricultural Intervention Base Engine'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    # _inherit = ['mail.thread', 'mail.activity.mixin']  # Removed to avoid MRO conflicts
 
     name = fields.Char('Intervention Reference', required=True, copy=False, readonly=True, default=lambda self: _('New'))
     
@@ -26,6 +26,18 @@ class AgriInterventionBase(models.AbstractModel):
     ], string='Status', default='draft', tracking=True)
 
     # GS1 EPCIS Mapping [EPCIS Alignment]
+    intervention_type = fields.Selection([
+        ('tillage', 'Tillage'),
+        ('sowing', 'Sowing'),
+        ('fertilizing', 'Fertilizing'),
+        ('protection', 'Protection'),
+        ('aerial_spraying', 'Aerial Spraying'),
+        ('harvesting', 'Harvesting'),
+        ('feeding', 'Feeding'),
+        ('medical', 'Medical'),
+        ('process', 'General Process'),
+    ], string='Intervention Type', default='process')
+
     gs1_biz_step = fields.Selection([
         ('commissioning', 'Commissioning (Setup)'),
         ('processing', 'Processing (Transformation)'),
@@ -70,40 +82,91 @@ class AgriInterventionBase(models.AbstractModel):
     # Actor
     responsible_id = fields.Many2one('res.users', string='Responsible', default=lambda self: self.env.user)
 
+    # Gating & Audit Status (for UI visualization)
+    weather_gating_status = fields.Selection([
+        ('safe', 'Optimal Conditions'),
+        ('warning', 'Sub-optimal'),
+        ('blocked', 'Hazardous/Blocked'),
+        ('none', 'Not Applicable')
+    ], string='Weather Window', default='none', tracking=True)
+
+    compliance_gating_status = fields.Selection([
+        ('compliant', 'Fully Compliant'),
+        ('warning', 'Caution/Minor Violation'),
+        ('blocked', 'Non-Compliant'),
+        ('none', 'Pending Review')
+    ], string='Regulatory Compliance', default='none', tracking=True)
+
+    iot_status = fields.Selection([
+        ('connected', 'Connected/Active'),
+        ('offline', 'Offline/Disconnected'),
+        ('critical', 'Critical Sensor Alert'),
+        ('none', 'No Sensors')
+    ], string='IoT Status', default='none', tracking=True)
+
     # ---------------------------------------------------------
     # Execution Orchestration (The Engine Part)
     # ---------------------------------------------------------
 
     def action_confirm_base(self):
-        """Standard confirmation flow with plugin hooks"""
+        """Standard confirmation flow with plugin and hook support"""
         for rec in self:
-            rec._run_plugins('pre_confirm')
+            rec._hook_pre_confirm()
             rec.state = 'confirmed'
-            rec._run_plugins('post_confirm')
+            rec._hook_post_confirm()
         return True
 
     def action_start_base(self):
-        """Standard start flow with gating hooks"""
+        """Standard start flow with gating support"""
         for rec in self:
-            # Gating check: Plugins can raise UserError to block start
-            rec._run_plugins('pre_start')
+            rec._hook_pre_start()
             rec.write({
                 'state': 'in_progress',
                 'date_start': fields.Datetime.now()
             })
-            rec._run_plugins('post_start')
+            rec._hook_post_start()
         return True
 
     def action_done_base(self):
-        """Standard completion flow with audit hooks"""
+        """Standard completion flow with audit support"""
         for rec in self:
-            rec._run_plugins('pre_done')
+            rec._hook_pre_done()
             rec.write({
                 'state': 'done',
                 'date_finished': fields.Datetime.now()
             })
-            rec._run_plugins('post_done')
+            rec._hook_post_done()
         return True
+
+    # ---------------------------------------------------------
+    # Overridable Hooks (Bridge Pattern)
+    # ---------------------------------------------------------
+
+    def _hook_pre_confirm(self):
+        """Hook called before intervention confirmation. 
+        Business modules should override this to add validation logic.
+        """
+        self._run_plugins('pre_confirm')
+
+    def _hook_post_confirm(self):
+        """Hook called after intervention confirmation."""
+        self._run_plugins('post_confirm')
+
+    def _hook_pre_start(self):
+        """Hook called before starting execution (Gating point)."""
+        self._run_plugins('pre_start')
+
+    def _hook_post_start(self):
+        """Hook called after starting execution."""
+        self._run_plugins('post_start')
+
+    def _hook_pre_done(self):
+        """Hook called before completion (Audit point)."""
+        self._run_plugins('pre_done')
+
+    def _hook_post_done(self):
+        """Hook called after completion (Cleanup point)."""
+        self._run_plugins('post_done')
 
     # ---------------------------------------------------------
     # Plugin System [DIP Principle]
@@ -122,8 +185,9 @@ class AgriInterventionBase(models.AbstractModel):
         """Internal runner for plugin hooks"""
         plugins = self._get_intervention_plugins()
         for plugin_info in plugins:
-            plugin_model = self.env.get(plugin_info['class'])
-            if plugin_model:
+            plugin_model_name = plugin_info['class']
+            if plugin_model_name in self.env:
+                plugin_model = self.env[plugin_model_name]
                 try:
                     # Plugins are called with (intervention_record, hook_point)
                     plugin_model.execute_hook(self, hook_point)

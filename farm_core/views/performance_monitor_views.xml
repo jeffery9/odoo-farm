@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Performance Monitor Views -->
-    <record id="view_agri_performance_monitor_tree" model="ir.ui.view">
+<data>
+<record id="view_agri_performance_monitor_tree" model="ir.ui.view">
         <field name="name">agri.performance.monitor.tree</field>
         <field name="model">agri.performance.monitor</field>
         <field name="arch" type="xml">
             <list string="Performance Monitor">
-                <field name="name"/>
-                <field name="model_name"/>
-                <field name="operation"/>
-                <field name="duration"/>
-                <field name="record_count"/>
-                <field name="start_time"/>
-                <field name="end_time"/>
-                <field name="status"/>
-                <field name="user_id"/>
+                <field name="name" />
+                <field name="model_name" />
+                <field name="operation" />
+                <field name="duration" />
+                <field name="record_count" />
+                <field name="start_time" />
+                <field name="end_time" />
+                <field name="status" />
+                <field name="user_id" />
             </list>
         </field>
     </record>
@@ -27,38 +27,38 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="model_name"/>
-                            <field name="operation"/>
-                            <field name="status"/>
+                            <field name="name" />
+                            <field name="model_name" />
+                            <field name="operation" />
+                            <field name="status" />
                         </group>
                         <group>
-                            <field name="duration"/>
-                            <field name="record_count"/>
-                            <field name="start_time"/>
-                            <field name="end_time"/>
+                            <field name="duration" />
+                            <field name="record_count" />
+                            <field name="start_time" />
+                            <field name="end_time" />
                         </group>
                     </group>
                     <group>
-                        <field name="details"/>
+                        <field name="details" />
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Audit Log Views -->
+    
     <record id="view_agri_audit_log_tree" model="ir.ui.view">
         <field name="name">agri.audit.log.tree</field>
         <field name="model">agri.audit.log</field>
         <field name="arch" type="xml">
             <list string="Audit Log">
-                <field name="model_name"/>
-                <field name="operation"/>
-                <field name="user_id"/>
-                <field name="timestamp"/>
-                <field name="severity"/>
-                <field name="details"/>
+                <field name="model_name" />
+                <field name="operation" />
+                <field name="user_id" />
+                <field name="timestamp" />
+                <field name="severity" />
+                <field name="details" />
             </list>
         </field>
     </record>
@@ -71,21 +71,22 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="model_name"/>
-                            <field name="operation"/>
-                            <field name="user_id"/>
+                            <field name="model_name" />
+                            <field name="operation" />
+                            <field name="user_id" />
                         </group>
                         <group>
-                            <field name="timestamp"/>
-                            <field name="severity"/>
-                            <field name="ip_address"/>
+                            <field name="timestamp" />
+                            <field name="severity" />
+                            <field name="ip_address" />
                         </group>
                     </group>
                     <group>
-                        <field name="details"/>
+                        <field name="details" />
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
+</data>
 </odoo>

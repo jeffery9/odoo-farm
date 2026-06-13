@@ -5,7 +5,7 @@ class TestIntegrationFarmFinancialInsurance(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_check = ['farm.insurance.index', 'farm.crop.yield.insurance', 'farm.insurance.claim']
+        cls.models_to_check = ['farm.insurance.index', 'farm.crop.yield.insurance', 'farm.financial.insurance.claim']
 
     def test_01_cross_model_dependencies(self):
         """ Verify that dependencies and XML IDs required by farm_financial_insurance are available """

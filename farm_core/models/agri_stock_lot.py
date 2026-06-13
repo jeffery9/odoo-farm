@@ -32,6 +32,35 @@ class StockLot(models.Model):
         ('non_compliant', 'Non-Compliant')
     ], string='Entity Audit Status', default='compliant')
 
+    dna_integrity_score = fields.Float('DNA Integrity Score', compute='_compute_dna_integrity', store=True)
+
+    @api.depends('certification_type', 'entity_audit_status', 'audit_status', 'parent_kinship_ids')
+    def _compute_dna_integrity(self):
+        for lot in self:
+            score = 100.0
+            if lot.certification_type != 'organic':
+                score -= 20.0
+            if lot.entity_audit_status != 'compliant':
+                score -= 30.0
+            if lot.audit_status == 'fraudulent':
+                score -= 50.0
+            
+            # Heritage check: if parents have low integrity, child inherits some penalty
+            if lot.parent_kinship_ids:
+                avg_parent_score = sum(lot.parent_kinship_ids.mapped('parent_lot_id.dna_integrity_score')) / len(lot.parent_kinship_ids)
+                if avg_parent_score < 80:
+                    score -= (100 - avg_parent_score) * 0.5
+            
+            lot.dna_integrity_score = max(0.0, score)
+
+    # [US-002-04] Quality Grading
+    quality_grade = fields.Selection([
+        ('grade_a', 'Grade A'),
+        ('grade_b', 'Grade B'),
+        ('grade_c', 'Grade C'),
+        ('ungraded', 'Not Graded')
+    ], string="Quality Grade", default='ungraded')
+
     # Visualization Trigger [US-TECH-DNA-06]
     holographic_map_trigger = fields.Boolean('Traceability Map Active', default=True)
 
@@ -84,8 +113,9 @@ class StockLot(models.Model):
 
         plugins = self._get_dna_plugins()
         for plugin_info in plugins:
-            plugin_model = self.env.get(plugin_info['class'])
-            if plugin_model:
+            plugin_model_name = plugin_info['class']
+            if plugin_model_name in self.env:
+                plugin_model = self.env[plugin_model_name]
                 try:
                     plugin_model.inherit_dna(self, inputs)
                 except Exception as e:

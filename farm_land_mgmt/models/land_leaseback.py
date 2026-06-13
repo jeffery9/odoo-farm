@@ -3,7 +3,6 @@ from odoo import models, fields, api, _
 class AgriLocation(models.Model):
     _inherit = 'farm.location'
 
-    original_owner_id = fields.Many2one('res.partner', string="Original Land Rights Owner", help="The smallholder who originally owns this micro-plot.")
     lease_contract_id = fields.Many2one('farm.land.lease', string="Active Lease Contract")
     is_consolidated = fields.Boolean("Consolidated into Mega-Field", default=False)
     mega_field_id = fields.Many2one('farm.location', string="Parent Mega-Field")

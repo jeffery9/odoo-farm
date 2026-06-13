@@ -62,7 +62,7 @@ class FinancialAssetValuation(models.Model):
     adjustment_factors = fields.Text("Adjustment Factors for Comparables")
 
     # Valuation Result
-    valuation_amount = fields.Float("Valuation Amount", compute='_compute_valuation_amount', store=True, precompute=True)
+    valuation_amount = fields.Float("Valuation Amount", compute='_compute_valuation_amount', store=True, precompute=True, readonly=False)
     valuation_variance = fields.Float("Variance from Previous", compute='_compute_variance', store=True, precompute=True)
     confidence_level = fields.Float("Confidence Level (%)", default=85.0,
                                    help="Confidence in the valuation estimate")
@@ -129,6 +129,8 @@ class FinancialAssetValuation(models.Model):
             
             # Apply Ecological GEP Premium
             record.valuation_amount = base_amount * record.gep_premium_factor
+            _logger.info("Valuation Compute Amount: base=%s, factor=%s -> result=%s", 
+                         base_amount, record.gep_premium_factor, record.valuation_amount)
 
     @api.depends('original_cost', 'accumulated_depreciation')
     def _compute_net_book_value(self):
@@ -177,21 +179,34 @@ class FinancialAssetValuation(models.Model):
             multiplier = 1.0
             
             plugins = record._get_valuation_plugins()
+            valuation_context = {
+                'market_price': record.market_price,
+                'market_adjustment_factor': record.market_adjustment_factor,
+                'valuation_method': record.valuation_method,
+            }
             for plugin_info in plugins:
-                plugin_model = self.env.get(plugin_info['class'])
-                if plugin_model:
-                    res = plugin_model.calculate_value(record.asset_id)
-                    if 'amount' in res:
-                        final_amount = res['amount'] # Take base amount
-                    if 'multiplier' in res:
-                        multiplier *= res['multiplier'] # Apply multipliers (like GEP)
-                    if 'notes' in res:
-                        accumulated_notes.append(res['notes'])
+                try:
+                    plugin_model = self.env[plugin_info['class']]
+                    _logger.info("Valuation Plugin Found: %s", plugin_info['class'])
+                    res = plugin_model.calculate_value(record.asset_id, context=valuation_context)
+                    _logger.info("Valuation Plugin Result: %s", res)
+                    if res:
+                        if 'amount' in res:
+                            final_amount = res['amount'] # Take base amount
+                        if 'multiplier' in res:
+                            multiplier *= res['multiplier'] # Apply multipliers
+                        if 'notes' in res:
+                            accumulated_notes.append(res['notes'])
+                except KeyError:
+                    _logger.warning("Valuation Plugin Not Found: %s", plugin_info['class'])
+                except Exception as e:
+                    _logger.error("Valuation Plugin Error (%s): %s", plugin_info['name'], str(e))
             
             record.write({
                 'valuation_amount': final_amount * multiplier,
                 'valuation_notes': "\n".join(accumulated_notes)
             })
+            _logger.info("Valuation Orchestrator Final: %s (Amount: %s)", record.name, record.valuation_amount)
             
             # Legacy compute triggers for UI consistency
             record._compute_net_book_value()
@@ -205,19 +220,20 @@ class FinancialAssetValuation(models.Model):
         account_obj = self.env['account.account']
 
         for record in self:
+            _logger.info("Valuation Journal Entry: Checking record %s (Variance: %s)", record.name, record.valuation_variance)
             if not record.valuation_variance or abs(record.valuation_variance) < 0.01:
                 continue  # Skip if no significant change
 
             # Get required accounts
             asset_account = account_obj.search([
                 ('code', '=like', '16%'),  # Fixed assets account
-                ('company_id', '=', self.env.company.id)
+                ('company_ids', 'in', self.env.company.ids)
             ], limit=1)
 
             if not asset_account:
                 asset_account = account_obj.search([
                     ('name', 'ilike', 'asset'),
-                    ('company_id', '=', self.env.company.id)
+                    ('company_ids', 'in', self.env.company.ids)
                 ], limit=1)
 
             if not asset_account:
@@ -234,13 +250,13 @@ class FinancialAssetValuation(models.Model):
 
             reval_account = account_obj.search([
                 ('code', '=like', '48%'),  # Revaluation reserve account
-                ('company_id', '=', self.env.company.id)
+                ('company_ids', 'in', self.env.company.ids)
             ], limit=1)
 
             if not reval_account:
                 reval_account = account_obj.search([
                     ('name', 'ilike', 'revaluation'),
-                    ('company_id', '=', self.env.company.id)
+                    ('company_ids', 'in', self.env.company.ids)
                 ], limit=1)
 
             if not reval_account:

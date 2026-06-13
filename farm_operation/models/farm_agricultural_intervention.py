@@ -2,7 +2,7 @@
 from odoo import models, fields
 
 
-class AgriIntervention(models.Model):
+class AgriInterventionIsl(models.Model):
     """
     Concrete ISL model for Agricultural Interventions using _inherits.
     This model inherits from the base mrp.production model and includes the shared logic from the mixin.

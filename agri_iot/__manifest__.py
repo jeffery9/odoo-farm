@@ -29,6 +29,7 @@ avoiding direct MQTT connections from Odoo for better reliability and maintainab
         "http_routing",  # For HTTP routing capabilities
     ],
     "data": [
+        "views/iiot_root_menu.xml",
         "security/iiot_security.xml",
         "security/ir.model.access.csv",
         "views/iiot_device_profile_views.xml",

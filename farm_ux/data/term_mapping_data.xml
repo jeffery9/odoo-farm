@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- 通用农业术语映射 [US-039-01] -->
-    <record id="term_mapping_mrp_production" model="term.mapping">
+<data>
+<record id="term_mapping_mrp_production" model="term.mapping">
         <field name="name">Manufacturing Order - Intervention</field>
         <field name="source_term">Manufacturing Order</field>
         <field name="target_term">Agricultural Intervention</field>
@@ -111,7 +111,7 @@
         <field name="example_usage">将系统中的库存术语替换为农场库存</field>
     </record>
 
-    <!-- 种植业专用术语映射 -->
+    
     <record id="term_mapping_seed" model="term.mapping">
         <field name="name">Seed Material</field>
         <field name="source_term">Seed</field>
@@ -167,7 +167,7 @@
         <field name="example_usage">在种植业场景中使用播种术语</field>
     </record>
 
-    <!-- 畜牧业专用术语映射 -->
+    
     <record id="term_mapping_livestock" model="term.mapping">
         <field name="name">Livestock - Animals</field>
         <field name="source_term">Livestock</field>
@@ -212,7 +212,7 @@
         <field name="example_usage">在畜牧业场景中使用繁育术语</field>
     </record>
 
-    <!-- 加工业专用术语映射 -->
+    
     <record id="term_mapping_processing" model="term.mapping">
         <field name="name">Processing - Food Processing</field>
         <field name="source_term">Processing</field>
@@ -246,7 +246,7 @@
         <field name="example_usage">在发酵加工场景中使用发酵工艺术语</field>
     </record>
 
-    <!-- 酿酒业专用术语映射 -->
+    
     <record id="term_mapping_viticulture" model="term.mapping">
         <field name="name">Viticulture - Grape Growing</field>
         <field name="source_term">Viticulture</field>
@@ -269,7 +269,7 @@
         <field name="example_usage">在酿酒业场景中使用葡萄压榨术语</field>
     </record>
 
-    <!-- 通用农业操作术语 -->
+    
     <record id="term_mapping_intervention" model="term.mapping">
         <field name="name">Intervention - Farm Operation</field>
         <field name="source_term">Intervention</field>
@@ -303,7 +303,7 @@
         <field name="example_usage">将系统中的任务术语替换为农场任务</field>
     </record>
 
-    <!-- 菜单和视图术语映射 -->
+    
     <record id="term_mapping_manufacturing" model="term.mapping">
         <field name="name">Manufacturing - Farm Operations</field>
         <field name="source_term">Manufacturing</field>
@@ -319,15 +319,6 @@
         <field name="name">Work Center - Facility Unit</field>
         <field name="source_term">Work Center</field>
         <field name="target_term">Facility Unit</field>
-        <field name="language_code">zh_CN</field>
-        <field name="industry_context">general</field>
-        <field name="is_active">True</field>
-    </record>
-
-    <record id="term_mapping_workorder_phase" model="term.mapping">
-        <field name="name">Work Order - Operation Phase</field>
-        <field name="source_term">Work Order</field>
-        <field name="target_term">Operation Phase</field>
         <field name="language_code">zh_CN</field>
         <field name="industry_context">general</field>
         <field name="is_active">True</field>
@@ -360,7 +351,7 @@
         <field name="is_active">True</field>
     </record>
 
-    <!-- English Term Mappings [US-039-01] -->
+    
     <record id="term_mapping_mrp_production_en" model="term.mapping">
         <field name="name">Manufacturing Order - Intervention (EN)</field>
         <field name="source_term">Manufacturing Order</field>
@@ -392,5 +383,5 @@
         <field name="language_code">en_US</field>
         <field name="industry_context">general</field>
     </record>
-
+</data>
 </odoo>

@@ -4,6 +4,9 @@ import math
 import base64
 import datetime
 import re
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class AgriInterventionMixin(models.AbstractModel):
@@ -43,6 +46,12 @@ class AgriInterventionMixin(models.AbstractModel):
         'farm.agricultural.campaign',
         string="Campaign/Season",
         help="The production season this intervention belongs to."
+    )
+
+    biological_asset_id = fields.Many2one(
+        'agri.biological.asset',
+        string="Target Biological Asset",
+        help="The living asset this intervention is performed upon."
     )
 
     # ---------------------------------------------------------
@@ -146,7 +155,7 @@ class AgriInterventionMixin(models.AbstractModel):
 
             # 2. 劳动力成本
             labor = 0.0
-            if hasattr(mo, 'agri_task_id') and mo.agri_task_id:
+            if hasattr(mo, 'agri_task_id') and mo.agri_task_id and hasattr(mo.agri_task_id, 'worklog_ids'):
                 labor = sum(mo.agri_task_id.worklog_ids.mapped(lambda l: l.quantity * (l.employee_id.hourly_cost or 50.0)))
 
             # 3. 工具与机械成本
@@ -190,8 +199,8 @@ class AgriInterventionMixin(models.AbstractModel):
         ('done', 'Completed'),
     ], string="Simplified State", compute='_compute_simplified_state', store=True, precompute=True)
 
-    # @api.depends(.state., .approval_state.)
-    def _compute_simplified_state_old(self):
+    @api.depends('state', 'approval_state')
+    def _compute_simplified_state(self):
         for rec in self:
             if rec.state == 'draft' and rec.approval_state == 'draft':
                 rec.simplified_state = 'draft'
@@ -278,22 +287,38 @@ class AgriInterventionMixin(models.AbstractModel):
         self.write({'approval_state': 'rejected'})
         self.message_post(body=_("Intervention rejected."))
 
-    def action_start_work(self):
-        """Start the actual work via Base Engine (which triggers plugins)"""
-        self.ensure_one()
-        self.action_start_base()
-        self.write({'is_working': True})
-        self.message_post(body=_("Labor: Work started at %s") % self.date_start)
+    # ---------------------------------------------------------
+    # Overridable Hooks (Bridge Pattern Implementation)
+    # ---------------------------------------------------------
 
-    def action_stop_work(self):
-        """Stop the actual work via Base Engine"""
-        self.ensure_one()
-        if not self.date_start:
-            return
+    def _hook_pre_confirm(self):
+        """[US-041-02] Compliance Gating before confirmation"""
+        super()._hook_pre_confirm()
+        # Additional business-specific confirm logic if needed
+        _logger.info("Farm Operation: Running pre-confirm hooks for %s", self.name)
 
-        self.action_done_base()
-        
-        if hasattr(self.env['farm.worklog'], 'create'):
+    def _hook_pre_start(self):
+        """[US-053-04] Weather & IoT Gating before starting"""
+        super()._hook_pre_start()
+        # Verify IoT status before allowing start
+        if self.iot_status == 'critical':
+            raise UserError(_("CRITICAL ALERT: IoT sensors report hazardous conditions. Cannot start intervention."))
+
+    def _hook_pre_done(self):
+        """[US-002-04] Harvest Grading and Audit before completion"""
+        super()._hook_pre_done()
+        _logger.info("Farm Operation: Running pre-done hooks for %s", self.name)
+
+    def _hook_post_done(self):
+        """[US-036-03] Labor recording and Cleanup after completion"""
+        super()._hook_post_done()
+        # Auto-record worklog if not already recorded
+        if not self.is_working and self.date_start:
+            self._create_auto_worklog_from_hook()
+
+    def _create_auto_worklog_from_hook(self):
+        """Helper to create worklog from completion hook"""
+        if 'farm.worklog' in self.env:
             employee = self.env.user.employee_id
             self.env['farm.worklog'].create({
                 'employee_id': employee.id if employee else False,
@@ -301,20 +326,32 @@ class AgriInterventionMixin(models.AbstractModel):
                 'date': fields.Date.today(),
                 'work_type': self.intervention_type or 'harvesting',
                 'quantity': 1.0,
-                'notes': _('Auto-recorded from intervention %s') % self.name
+                'notes': _('Auto-recorded from intervention hook: %s') % self.name
             })
 
+    # ---------------------------------------------------------
+    # UI Actions (Refactored to use Hooks)
+    # ---------------------------------------------------------
+
+    def action_start_work(self):
+        """Start the actual work via Base Engine (which triggers hooks)"""
+        self.ensure_one()
+        self.action_start_base()
+        self.write({'is_working': True})
+        return True
+
+    def action_stop_work(self):
+        """Stop the actual work via Base Engine (which triggers hooks)"""
+        self.ensure_one()
+        if not self.date_start:
+            return
+        self.action_done_base()
         self.write({'is_working': False})
-        self.message_post(body=_("Labor: Work stopped and recorded at %s") % self.date_finished)
+        return True
 
     def action_confirm(self):
-        """扩展确认逻辑，通过基础引擎触发合规插件逻辑"""
-        # action_confirm_base handles pre_confirm plugins (Compliance check)
+        """扩展确认逻辑，通过基础引擎触发钩子"""
         self.filtered(lambda r: r.state == 'draft').action_confirm_base()
-        
-        # Call the parent method if it exists
-        if hasattr(super(AgriInterventionMixin, self), 'action_confirm'):
-            return super(AgriInterventionMixin, self).action_confirm()
         return True
 
     def action_export_drone_kml(self):
@@ -379,14 +416,12 @@ class AgriInterventionMixin(models.AbstractModel):
         }
 
     def button_mark_done(self):
-        """扩展完成逻辑，通过基础引擎触发分级与核销插件"""
+        """扩展完成逻辑，通过基础引擎触发钩子"""
         for intervention in self:
-            # action_done_base handles pre_done plugins (Harvest Grading, Drone Depletion)
-            intervention.action_done_base()
+            if intervention.state != 'done':
+                intervention.action_done_base()
 
         # Call super method if available to handle other MRP production logic
         if hasattr(super(AgriInterventionMixin, self), 'button_mark_done'):
             return super(AgriInterventionMixin, self).button_mark_done()
-        else:
-            self.write({'state': 'done'})
-            return True
+        return True

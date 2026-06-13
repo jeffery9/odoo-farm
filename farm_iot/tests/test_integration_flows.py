@@ -14,11 +14,19 @@ class TestIntegrationFarmIot(TransactionCase):
             'usage': 'internal'
         })
         
+        # Create a dummy profile
+        cls.profile = cls.env['iiot.device.profile'].create({
+            'name': 'IoT Profile',
+            'code': 'IOT-PROF',
+            'telemetry_topic_template': 't/{device}',
+            'command_topic_template': 'c/{device}'
+        })
         cls.device = cls.Device.create({
             'name': 'Pond Oxygen Sensor',
-            'device_type': 'sensor',
+            'physical_level': 'node',
             'location_id': cls.location.id,
-            'hardware_id': 'SN-O2-001'
+            'serial_number': 'SN-O2-001',
+            'profile_id': cls.profile.id
         })
 
     def test_01_device_telemetry_flow(self):

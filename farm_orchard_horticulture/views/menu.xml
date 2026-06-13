@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="menu_farm_orchard_horticulture_menu_root"
-              name="Orchard Horticulture"
- web_icon="farm_orchard_horticulture,static/description/icon.png"
-              sequence="22"/>
+<data>
+<menuitem id="menu_farm_orchard_horticulture_menu_root" name="Orchard Horticulture" web_icon="farm_orchard_horticulture,static/description/icon.png" sequence="22" />
+</data>
 </odoo>

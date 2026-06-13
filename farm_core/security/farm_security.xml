@@ -1,55 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="module_category_farm_management" model="ir.module.category">
+<data>
+<record id="module_category_farm_management" model="ir.module.category">
         <field name="name">Farm Management (Farm Management)</field>
         <field name="description">Helps you manage farm assets, operations, and quality.</field>
         <field name="sequence">10</field>
     </record>
 
-    <!-- 角色 1: 农场Field Technician (Field Technician) -->
+    
     <record id="group_farm_worker" model="res.groups">
         <field name="name">Field Technician (Field Technician)</field>
-        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]" />
     </record>
 
-    <!-- 角色 2: 技术专家 (Specialist) -->
+    
     <record id="group_farm_specialist" model="res.groups">
         <field name="name">Agri Specialist (Agri Specialist)</field>
-        <field name="implied_ids" eval="[(4, ref('group_farm_worker'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_farm_worker'))]" />
     </record>
 
-    <!-- 角色 3: Farm Manager (Farm Manager) -->
+    
     <record id="group_farm_manager" model="res.groups">
         <field name="name">Farm Manager (Farm Manager)</field>
-        <field name="implied_ids" eval="[(4, ref('group_farm_specialist'))]"/>
-        <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('group_farm_specialist'))]" />
+        <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
     </record>
-    <!-- Security rules for performance and audit logs -->
+    
     <record id="agri_performance_monitor_rule" model="ir.rule">
         <field name="name">Agricultural Performance Monitor Access</field>
-        <field name="model_id" ref="model_agri_performance_monitor"/>
+        <field name="model_id" ref="model_agri_performance_monitor" />
         <field name="domain_force">[(1, '=', 1)]</field>
-        <field name="groups" eval="[(4, ref('farm_core.group_farm_worker'))]"/>
-        <field name="perm_read" eval="1"/>
-        <field name="perm_write" eval="0"/>
-        <field name="perm_create" eval="0"/>
-        <field name="perm_unlink" eval="0"/>
+        <field name="groups" eval="[(4, ref('farm_core.group_farm_worker'))]" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_unlink" eval="0" />
     </record>
 
-    <!-- Audit Log Isolation -->
+    
     <record id="agri_audit_log_rule" model="ir.rule">
         <field name="name">Agricultural Audit Log Access</field>
-        <field name="model_id" ref="model_agri_audit_log"/>
+        <field name="model_id" ref="model_agri_audit_log" />
         <field name="domain_force">[(1, '=', 1)]</field>
-        <field name="groups" eval="[(4, ref('farm_core.group_farm_manager'))]"/>
-        <field name="perm_read" eval="1"/>
-        <field name="perm_write" eval="0"/>
-        <field name="perm_create" eval="0"/>
-        <field name="perm_unlink" eval="0"/>
+        <field name="groups" eval="[(4, ref('farm_core.group_farm_manager'))]" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_write" eval="0" />
+        <field name="perm_create" eval="0" />
+        <field name="perm_unlink" eval="0" />
     </record>
-    <!-- Industry-specific access control for livestock -->
-
-    <!-- Industry-specific access control for mushroom -->
-
-    <!-- Industry-specific access control for aquaculture -->
+</data>
 </odoo>

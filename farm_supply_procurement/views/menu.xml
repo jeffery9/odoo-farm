@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <menuitem id="menu_supply_procurement_root" name="Procurement" parent="farm_supply.menu_supply_chain_root" sequence="10" />
+</data>
 </odoo>

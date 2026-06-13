@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_esg_marketplace_list" model="ir.ui.view">
         <field name="name">agri.esg.marketplace.list</field>
         <field name="model">agri.esg.marketplace</field>
         <field name="arch" type="xml">
             <list string="ESG Marketplaces">
-                <field name="name"/>
-                <field name="code"/>
-                <field name="market_type"/>
-                <field name="is_active"/>
-                <field name="operator_partner_id"/>
-                <field name="launch_date"/>
-                <field name="total_trades"/>
-                <field name="total_volume"/>
+                <field name="name" />
+                <field name="code" />
+                <field name="market_type" />
+                <field name="is_active" />
+                <field name="operator_partner_id" />
+                <field name="launch_date" />
+                <field name="total_trades" />
+                <field name="total_volume" />
             </list>
         </field>
     </record>
@@ -24,17 +25,13 @@
         <field name="arch" type="xml">
             <form string="ESG Marketplace">
                 <header>
-                    <button name="action_activate_marketplace" type="object" string="Activate"
-                            class="oe_highlight"/>
-                    <button name="action_deactivate_marketplace" type="object" string="Deactivate"
-                            class="oe_highlight"/>
-                    <button name="action_sync_with_external_platform" type="object" string="Sync Platform"
-                            class="oe_highlight"/>
+                    <button name="action_activate_marketplace" type="object" string="Activate" class="oe_highlight" />
+                    <button name="action_deactivate_marketplace" type="object" string="Deactivate" class="oe_highlight" />
+                    <button name="action_sync_with_external_platform" type="object" string="Sync Platform" class="oe_highlight" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" name="action_sync_with_external_platform" type="object"
-                                icon="fa-refresh">
+                        <button class="oe_stat_button" name="action_sync_with_external_platform" type="object" icon="fa-refresh">
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Sync</span>
                             </div>
@@ -42,16 +39,16 @@
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="code"/>
-                            <field name="market_type"/>
-                            <field name="is_active"/>
+                            <field name="name" />
+                            <field name="code" />
+                            <field name="market_type" />
+                            <field name="is_active" />
                         </group>
                         <group>
-                            <field name="operator_partner_id"/>
-                            <field name="launch_date"/>
-                            <field name="access_level"/>
-                            <field name="integration_type"/>
+                            <field name="operator_partner_id" />
+                            <field name="launch_date" />
+                            <field name="access_level" />
+                            <field name="integration_type" />
                         </group>
                     </group>
 
@@ -59,32 +56,32 @@
                         <page string="Operational Details">
                             <group>
                                 <group>
-                                    <field name="platform_url"/>
-                                    <field name="api_endpoint"/>
+                                    <field name="platform_url" />
+                                    <field name="api_endpoint" />
                                 </group>
                                 <group>
-                                    <field name="supported_regions" widget="many2many_tags"/>
-                                    <field name="supported_languages" widget="many2many_tags"/>
+                                    <field name="supported_regions" widget="many2many_tags" />
+                                    <field name="supported_languages" widget="many2many_tags" />
                                 </group>
                             </group>
                         </page>
 
                         <page string="Compliance Standards">
                             <group>
-                                <field name="compliance_standards" widget="many2many_tags"/>
-                                <field name="certification_requirement"/>
-                                <field name="audit_frequency"/>
+                                <field name="compliance_standards" widget="many2many_tags" />
+                                <field name="certification_requirement" />
+                                <field name="audit_frequency" />
                             </group>
                         </page>
 
                         <page string="Fee Structure">
                             <group>
                                 <group>
-                                    <field name="listing_fee"/>
-                                    <field name="transaction_fee_percent"/>
+                                    <field name="listing_fee" />
+                                    <field name="transaction_fee_percent" />
                                 </group>
                                 <group>
-                                    <field name="withdrawal_fee"/>
+                                    <field name="withdrawal_fee" />
                                 </group>
                             </group>
                         </page>
@@ -92,27 +89,27 @@
                         <page string="Trading Statistics">
                             <group>
                                 <group>
-                                    <field name="total_trades"/>
-                                    <field name="total_volume"/>
+                                    <field name="total_trades" />
+                                    <field name="total_volume" />
                                 </group>
                                 <group>
-                                    <field name="total_products_listed"/>
+                                    <field name="total_products_listed" />
                                 </group>
                             </group>
                         </page>
 
                         <page string="Security Information">
                             <group>
-                                <field name="security_certificate"/>
-                                <field name="data_encryption"/>
+                                <field name="security_certificate" />
+                                <field name="data_encryption" />
                             </group>
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -124,19 +121,19 @@
         <field name="model">agri.esg.marketplace</field>
         <field name="arch" type="xml">
             <search string="ESG Marketplaces">
-                <field name="name"/>
-                <field name="code"/>
-                <field name="market_type"/>
-                <field name="is_active"/>
-                <field name="operator_partner_id"/>
-                <filter name="filter_active" string="Active" domain="[('is_active', '=', True)]"/>
-                <filter name="filter_carbon_credits" string="Carbon Credit Markets" domain="[('market_type', '=', 'carbon_credits')]"/>
-                <filter name="filter_bio_energy" string="Bio-energy Markets" domain="[('market_type', '=', 'bio_energy')]"/>
-                <filter name="filter_renewable" string="Renewable Energy Markets" domain="[('market_type', '=', 'renewable_energy')]"/>
+                <field name="name" />
+                <field name="code" />
+                <field name="market_type" />
+                <field name="is_active" />
+                <field name="operator_partner_id" />
+                <filter name="filter_active" string="Active" domain="[('is_active', '=', True)]" />
+                <filter name="filter_carbon_credits" string="Carbon Credit Markets" domain="[('market_type', '=', 'carbon_credits')]" />
+                <filter name="filter_bio_energy" string="Bio-energy Markets" domain="[('market_type', '=', 'bio_energy')]" />
+                <filter name="filter_renewable" string="Renewable Energy Markets" domain="[('market_type', '=', 'renewable_energy')]" />
                 <group>
-                    <filter name="group_type" string="Market Type" domain="[]" context="{'group_by':'market_type'}"/>
-                    <filter name="group_operator" string="Market Operator" domain="[]" context="{'group_by':'operator_partner_id'}"/>
-                    <filter name="group_access" string="Access Level" domain="[]" context="{'group_by':'access_level'}"/>
+                    <filter name="group_type" string="Market Type" domain="[]" context="{'group_by':'market_type'}" />
+                    <filter name="group_operator" string="Market Operator" domain="[]" context="{'group_by':'operator_partner_id'}" />
+                    <filter name="group_access" string="Access Level" domain="[]" context="{'group_by':'access_level'}" />
                 </group>
             </search>
         </field>
@@ -163,16 +160,16 @@
         <field name="model">agri.esg.marketplace.trade</field>
         <field name="arch" type="xml">
             <list string="ESG Marketplace Trades">
-                <field name="name"/>
-                <field name="trade_date"/>
-                <field name="marketplace_id"/>
-                <field name="trade_type"/>
-                <field name="product_name"/>
-                <field name="quantity"/>
-                <field name="total_amount"/>
-                <field name="trade_status"/>
-                <field name="buyer_partner_id"/>
-                <field name="seller_partner_id"/>
+                <field name="name" />
+                <field name="trade_date" />
+                <field name="marketplace_id" />
+                <field name="trade_type" />
+                <field name="product_name" />
+                <field name="quantity" />
+                <field name="total_amount" />
+                <field name="trade_status" />
+                <field name="buyer_partner_id" />
+                <field name="seller_partner_id" />
             </list>
         </field>
     </record>
@@ -184,28 +181,21 @@
         <field name="arch" type="xml">
             <form string="ESG Marketplace Trade">
                 <header>
-                    <button name="action_confirm_payment" type="object" string="Confirm Payment"
-                            class="oe_highlight"/>
-                    <button name="action_mark_delivered" type="object" string="Mark Delivered"
-                            class="oe_highlight"/>
-                    <button name="action_complete_trade" type="object" string="Complete Trade"
-                            class="oe_highlight"/>
-                    <button name="action_verify_compliance" type="object" string="Verify Compliance"
-                            class="oe_highlight"/>
-                    <button name="action_cancel_trade" type="object" string="Cancel Trade"
-                            class="btn-danger"/>
-                    <field name="trade_status" widget="statusbar" statusbar_visible="draft,payment_confirmed,delivered,completed"/>
+                    <button name="action_confirm_payment" type="object" string="Confirm Payment" class="oe_highlight" />
+                    <button name="action_mark_delivered" type="object" string="Mark Delivered" class="oe_highlight" />
+                    <button name="action_complete_trade" type="object" string="Complete Trade" class="oe_highlight" />
+                    <button name="action_verify_compliance" type="object" string="Verify Compliance" class="oe_highlight" />
+                    <button name="action_cancel_trade" type="object" string="Cancel Trade" class="btn-danger" />
+                    <field name="trade_status" widget="statusbar" statusbar_visible="draft,payment_confirmed,delivered,completed" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" name="action_verify_compliance" type="object"
-                                icon="fa-check-circle">
+                        <button class="oe_stat_button" name="action_verify_compliance" type="object" icon="fa-check-circle">
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Verify</span>
                             </div>
                         </button>
-                        <button class="oe_stat_button" name="action_complete_trade" type="object"
-                                icon="fa-check-square-o">
+                        <button class="oe_stat_button" name="action_complete_trade" type="object" icon="fa-check-square-o">
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Complete</span>
                             </div>
@@ -213,39 +203,39 @@
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="trade_date"/>
-                            <field name="marketplace_id"/>
-                            <field name="trade_type"/>
+                            <field name="name" />
+                            <field name="trade_date" />
+                            <field name="marketplace_id" />
+                            <field name="trade_type" />
                         </group>
                         <group>
-                            <field name="compliance_verification"/>
-                            <field name="verification_date"/>
-                            <field name="trade_status"/>
-                            <field name="net_amount"/>
+                            <field name="compliance_verification" />
+                            <field name="verification_date" />
+                            <field name="trade_status" />
+                            <field name="net_amount" />
                         </group>
                     </group>
 
                     <notebook>
                         <page string="Product Details">
                             <group>
-                                <field name="product_id"/>
-                                <field name="product_name"/>
-                                <field name="product_category"/>
-                                <field name="quantity"/>
-                                <field name="unit_price"/>
-                                <field name="total_amount"/>
+                                <field name="product_id" />
+                                <field name="product_name" />
+                                <field name="product_category" />
+                                <field name="quantity" />
+                                <field name="unit_price" />
+                                <field name="total_amount" />
                             </group>
                         </page>
 
                         <page string="Trading Parties">
                             <group>
                                 <group>
-                                    <field name="buyer_partner_id"/>
-                                    <field name="seller_partner_id"/>
+                                    <field name="buyer_partner_id" />
+                                    <field name="seller_partner_id" />
                                 </group>
                                 <group>
-                                    <field name="broker_partner_id"/>
+                                    <field name="broker_partner_id" />
                                 </group>
                             </group>
                         </page>
@@ -253,12 +243,12 @@
                         <page string="Delivery &amp; Logistics">
                             <group>
                                 <group>
-                                    <field name="delivery_date"/>
-                                    <field name="actual_delivery_date"/>
+                                    <field name="delivery_date" />
+                                    <field name="actual_delivery_date" />
                                 </group>
                                 <group>
-                                    <field name="delivery_location_id"/>
-                                    <field name="shipping_method"/>
+                                    <field name="delivery_location_id" />
+                                    <field name="shipping_method" />
                                 </group>
                             </group>
                         </page>
@@ -266,41 +256,41 @@
                         <page string="Financial Details">
                             <group>
                                 <group>
-                                    <field name="payment_method"/>
-                                    <field name="invoice_reference"/>
+                                    <field name="payment_method" />
+                                    <field name="invoice_reference" />
                                 </group>
                                 <group>
-                                    <field name="marketplace_fee"/>
-                                    <field name="net_amount"/>
+                                    <field name="marketplace_fee" />
+                                    <field name="net_amount" />
                                 </group>
                             </group>
                         </page>
 
                         <page string="ESG Impact">
                             <group>
-                                <field name="co2_reduction_impact"/>
-                                <field name="sustainability_score_change"/>
+                                <field name="co2_reduction_impact" />
+                                <field name="sustainability_score_change" />
                             </group>
                         </page>
 
                         <page string="Documentation">
                             <group>
-                                <field name="trade_contract" filename="contract_name"/>
-                                <field name="contract_name" invisible="1"/>
-                                <field name="delivery_receipt" filename="receipt_name"/>
-                                <field name="receipt_name" invisible="1"/>
+                                <field name="trade_contract" filename="contract_name" />
+                                <field name="contract_name" invisible="1" />
+                                <field name="delivery_receipt" filename="receipt_name" />
+                                <field name="receipt_name" invisible="1" />
                             </group>
                         </page>
 
                         <page string="Verification Notes">
-                            <field name="verification_notes"/>
+                            <field name="verification_notes" />
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -312,22 +302,22 @@
         <field name="model">agri.esg.marketplace.trade</field>
         <field name="arch" type="xml">
             <search string="ESG Marketplace Trades">
-                <field name="name"/>
-                <field name="marketplace_id"/>
-                <field name="trade_type"/>
-                <field name="trade_status"/>
-                <field name="buyer_partner_id"/>
-                <field name="seller_partner_id"/>
-                <field name="trade_date"/>
-                <filter name="filter_completed" string="Completed Trades" domain="[('trade_status', '=', 'completed')]"/>
-                <filter name="filter_pending" string="Pending Payment" domain="[('trade_status', '=', 'pending_payment')]"/>
-                <filter name="filter_verified" string="Verified Compliance" domain="[('compliance_verification', '=', 'verified')]"/>
-                <filter name="filter_carbon_credits" string="Carbon Credit Trades" domain="[('product_category', '=', 'carbon_offset')]"/>
+                <field name="name" />
+                <field name="marketplace_id" />
+                <field name="trade_type" />
+                <field name="trade_status" />
+                <field name="buyer_partner_id" />
+                <field name="seller_partner_id" />
+                <field name="trade_date" />
+                <filter name="filter_completed" string="Completed Trades" domain="[('trade_status', '=', 'completed')]" />
+                <filter name="filter_pending" string="Pending Payment" domain="[('trade_status', '=', 'pending_payment')]" />
+                <filter name="filter_verified" string="Verified Compliance" domain="[('compliance_verification', '=', 'verified')]" />
+                <filter name="filter_carbon_credits" string="Carbon Credit Trades" domain="[('product_category', '=', 'carbon_offset')]" />
                 <group>
-                    <filter name="group_marketplace" string="Marketplace" domain="[]" context="{'group_by':'marketplace_id'}"/>
-                    <filter name="group_status" string="Trade Status" domain="[]" context="{'group_by':'trade_status'}"/>
-                    <filter name="group_type" string="Trade Type" domain="[]" context="{'group_by':'trade_type'}"/>
-                    <filter name="group_buyer" string="Buyer" domain="[]" context="{'group_by':'buyer_partner_id'}"/>
+                    <filter name="group_marketplace" string="Marketplace" domain="[]" context="{'group_by':'marketplace_id'}" />
+                    <filter name="group_status" string="Trade Status" domain="[]" context="{'group_by':'trade_status'}" />
+                    <filter name="group_type" string="Trade Type" domain="[]" context="{'group_by':'trade_type'}" />
+                    <filter name="group_buyer" string="Buyer" domain="[]" context="{'group_by':'buyer_partner_id'}" />
                 </group>
             </search>
         </field>
@@ -354,15 +344,15 @@
         <field name="model">agri.waste.resource.trade</field>
         <field name="arch" type="xml">
             <list string="Waste Resource Trades">
-                <field name="name"/>
-                <field name="trade_date"/>
-                <field name="waste_type"/>
-                <field name="waste_category"/>
-                <field name="quantity"/>
-                <field name="total_value"/>
-                <field name="status"/>
-                <field name="source_partner_id"/>
-                <field name="destination_partner_id"/>
+                <field name="name" />
+                <field name="trade_date" />
+                <field name="waste_type" />
+                <field name="waste_category" />
+                <field name="quantity" />
+                <field name="total_value" />
+                <field name="status" />
+                <field name="source_partner_id" />
+                <field name="destination_partner_id" />
             </list>
         </field>
     </record>
@@ -374,27 +364,20 @@
         <field name="arch" type="xml">
             <form string="Waste Resource Trade">
                 <header>
-                    <button name="action_list_for_trade" type="object" string="List for Trade"
-                            class="oe_highlight"/>
-                    <button name="action_contract_waste_resource" type="object" string="Contract"
-                            class="oe_highlight"/>
-                    <button name="action_mark_delivered" type="object" string="Mark Delivered"
-                            class="oe_highlight"/>
-                    <button name="action_complete_trade" type="object" string="Complete Trade"
-                            class="oe_highlight"/>
-                    <button name="action_verify_compliance" type="object" string="Verify Compliance"
-                            class="oe_highlight"/>
+                    <button name="action_list_for_trade" type="object" string="List for Trade" class="oe_highlight" />
+                    <button name="action_contract_waste_resource" type="object" string="Contract" class="oe_highlight" />
+                    <button name="action_mark_delivered" type="object" string="Mark Delivered" class="oe_highlight" />
+                    <button name="action_complete_trade" type="object" string="Complete Trade" class="oe_highlight" />
+                    <button name="action_verify_compliance" type="object" string="Verify Compliance" class="oe_highlight" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" name="action_verify_compliance" type="object"
-                                icon="fa-check-circle">
+                        <button class="oe_stat_button" name="action_verify_compliance" type="object" icon="fa-check-circle">
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Verify</span>
                             </div>
                         </button>
-                        <button class="oe_stat_button" name="action_complete_trade" type="object"
-                                icon="fa-check-square-o">
+                        <button class="oe_stat_button" name="action_complete_trade" type="object" icon="fa-check-square-o">
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Complete</span>
                             </div>
@@ -402,15 +385,15 @@
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="trade_reference"/>
-                            <field name="trade_date"/>
+                            <field name="name" />
+                            <field name="trade_reference" />
+                            <field name="trade_date" />
                         </group>
                         <group>
-                            <field name="waste_type"/>
-                            <field name="waste_category"/>
-                            <field name="status"/>
-                            <field name="compliance_status"/>
+                            <field name="waste_type" />
+                            <field name="waste_category" />
+                            <field name="status" />
+                            <field name="compliance_status" />
                         </group>
                     </group>
 
@@ -418,32 +401,32 @@
                         <page string="Waste Specifications">
                             <group>
                                 <group>
-                                    <field name="quantity"/>
-                                    <field name="quantity_uom"/>
-                                    <field name="weight_kg"/>
+                                    <field name="quantity" />
+                                    <field name="quantity_uom" />
+                                    <field name="weight_kg" />
                                 </group>
                                 <group>
-                                    <field name="moisture_content"/>
-                                    <field name="energy_content"/>
-                                    <field name="contamination_level"/>
+                                    <field name="moisture_content" />
+                                    <field name="energy_content" />
+                                    <field name="contamination_level" />
                                 </group>
                             </group>
 
                             <group>
-                                <field name="quality_grade"/>
-                                <field name="quality_certifications" widget="many2many_tags"/>
+                                <field name="quality_grade" />
+                                <field name="quality_certifications" widget="many2many_tags" />
                             </group>
                         </page>
 
                         <page string="Trading Information">
                             <group>
                                 <group>
-                                    <field name="source_location_id"/>
-                                    <field name="source_partner_id"/>
+                                    <field name="source_location_id" />
+                                    <field name="source_partner_id" />
                                 </group>
                                 <group>
-                                    <field name="destination_location_id"/>
-                                    <field name="destination_partner_id"/>
+                                    <field name="destination_location_id" />
+                                    <field name="destination_partner_id" />
                                 </group>
                             </group>
                         </page>
@@ -451,54 +434,54 @@
                         <page string="Valuation">
                             <group>
                                 <group>
-                                    <field name="unit_price"/>
-                                    <field name="total_value"/>
+                                    <field name="unit_price" />
+                                    <field name="total_value" />
                                 </group>
                                 <group>
-                                    <field name="market_price_reference"/>
+                                    <field name="market_price_reference" />
                                 </group>
                             </group>
                         </page>
 
                         <page string="Environmental Impact">
                             <group>
-                                <field name="co2_reduction_potential"/>
-                                <field name="sustainability_score"/>
+                                <field name="co2_reduction_potential" />
+                                <field name="sustainability_score" />
                             </group>
                         </page>
 
                         <page string="Trade Terms">
                             <group>
                                 <group>
-                                    <field name="expected_collection_date"/>
-                                    <field name="actual_collection_date"/>
+                                    <field name="expected_collection_date" />
+                                    <field name="actual_collection_date" />
                                 </group>
                                 <group>
-                                    <field name="payment_terms"/>
+                                    <field name="payment_terms" />
                                 </group>
                             </group>
                         </page>
 
                         <page string="Compliance">
                             <group>
-                                <field name="required_certifications" widget="many2many_tags"/>
+                                <field name="required_certifications" widget="many2many_tags" />
                             </group>
                         </page>
 
                         <page string="Documentation">
                             <group>
-                                <field name="trade_agreement" filename="agreement_name"/>
-                                <field name="agreement_name" invisible="1"/>
-                                <field name="collection_receipt" filename="receipt_name"/>
-                                <field name="receipt_name" invisible="1"/>
+                                <field name="trade_agreement" filename="agreement_name" />
+                                <field name="agreement_name" invisible="1" />
+                                <field name="collection_receipt" filename="receipt_name" />
+                                <field name="receipt_name" invisible="1" />
                             </group>
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -510,22 +493,22 @@
         <field name="model">agri.waste.resource.trade</field>
         <field name="arch" type="xml">
             <search string="Waste Resource Trades">
-                <field name="name"/>
-                <field name="waste_type"/>
-                <field name="waste_category"/>
-                <field name="status"/>
-                <field name="source_partner_id"/>
-                <field name="destination_partner_id"/>
-                <field name="trade_date"/>
-                <filter name="filter_listed" string="Listed for Trade" domain="[('status', '=', 'listed')]"/>
-                <filter name="filter_crop_residue" string="Crop Residue" domain="[('waste_type', '=', 'crop_residue')]"/>
-                <filter name="filter_animal_waste" string="Animal Waste" domain="[('waste_type', '=', 'animal_waste')]"/>
-                <filter name="filter_energy_source" string="Energy Source" domain="[('waste_category', '=', 'energy_source')]"/>
+                <field name="name" />
+                <field name="waste_type" />
+                <field name="waste_category" />
+                <field name="status" />
+                <field name="source_partner_id" />
+                <field name="destination_partner_id" />
+                <field name="trade_date" />
+                <filter name="filter_listed" string="Listed for Trade" domain="[('status', '=', 'listed')]" />
+                <filter name="filter_crop_residue" string="Crop Residue" domain="[('waste_type', '=', 'crop_residue')]" />
+                <filter name="filter_animal_waste" string="Animal Waste" domain="[('waste_type', '=', 'animal_waste')]" />
+                <filter name="filter_energy_source" string="Energy Source" domain="[('waste_category', '=', 'energy_source')]" />
                 <group>
-                    <filter name="group_type" string="Waste Type" domain="[]" context="{'group_by':'waste_type'}"/>
-                    <filter name="group_category" string="Waste Category" domain="[]" context="{'group_by':'waste_category'}"/>
-                    <filter name="group_status" string="Status" domain="[]" context="{'group_by':'status'}"/>
-                    <filter name="group_source" string="Source Partner" domain="[]" context="{'group_by':'source_partner_id'}"/>
+                    <filter name="group_type" string="Waste Type" domain="[]" context="{'group_by':'waste_type'}" />
+                    <filter name="group_category" string="Waste Category" domain="[]" context="{'group_by':'waste_category'}" />
+                    <filter name="group_status" string="Status" domain="[]" context="{'group_by':'status'}" />
+                    <filter name="group_source" string="Source Partner" domain="[]" context="{'group_by':'source_partner_id'}" />
                 </group>
             </search>
         </field>
@@ -545,4 +528,5 @@
             </p>
         </field>
     </record>
+</data>
 </odoo>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="action_crop_rotation_history" model="ir.actions.act_window">
         <field name="name">Crop Rotation History</field>
         <field name="res_model">farm.crop.rotation.history</field>
@@ -68,17 +69,8 @@
 
 
 
-<menuitem id="menu_crop_rotation_root"
-              name="Crop Rotation"
- web_icon="farm_crop,static/description/icon.png"
-              sequence="20"/>
+<menuitem id="menu_crop_rotation_root" name="Crop Rotation" web_icon="farm_crop,static/description/icon.png" sequence="20" />
 
-    <menuitem id="menu_crop_rotation_history"
-              name="Rotation History"
-              parent="menu_crop_rotation_root"
-              action="action_crop_rotation_history"
-              sequence="10"/>
-
-    
-    
+    <menuitem id="menu_crop_rotation_history" name="Rotation History" parent="menu_crop_rotation_root" action="action_crop_rotation_history" sequence="10" />
+</data>
 </odoo>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+<menuitem id="menu_iiot_root" name="Industrial IoT" sequence="5" />
+</data>
+</odoo>

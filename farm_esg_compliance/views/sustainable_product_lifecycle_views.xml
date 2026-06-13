@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="action_sustainable_product_lifecycle" model="ir.actions.act_window">
         <field name="name">Sustainable Product Lifecycle</field>
         <field name="type">ir.actions.act_window</field>
@@ -21,12 +22,12 @@
         <field name="model">agri.sustainable.product.lifecycle</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="product_id"/>
-                <field name="lifecycle_stage"/>
-                <field name="lifecycle_sustainability_score"/>
-                <field name="current_age"/>
-                <field name="status"/>
+                <field name="name" />
+                <field name="product_id" />
+                <field name="lifecycle_stage" />
+                <field name="lifecycle_sustainability_score" />
+                <field name="current_age" />
+                <field name="status" />
             </list>
         </field>
     </record>
@@ -38,32 +39,32 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_update_lifecycle_stage" type="object" string="Update Stage" class="btn-secondary"/>
-                    <button name="action_plan_end_of_life" type="object" string="Plan End-of-Life" class="btn-warning"/>
-                    <button name="action_generate_optimization_suggestions" type="object" string="Optimize" class="btn-info"/>
-                    <button name="action_apply_design_principles" type="object" string="Apply Design Principles" class="btn-primary"/>
-                    <button name="action_monitor_lifecycle" type="object" string="Monitor" class="btn-success"/>
-                    <button name="action_transition_to_circular" type="object" string="To Circular Market" class="btn-success" invisible="end_of_life_plan != 'circular' or circular_market_ready != True"/>
-                    <field name="status" widget="statusbar" statusbar_visible="active,monitored,optimizing,transitioning,end_of_life"/>
+                    <button name="action_update_lifecycle_stage" type="object" string="Update Stage" class="btn-secondary" />
+                    <button name="action_plan_end_of_life" type="object" string="Plan End-of-Life" class="btn-warning" />
+                    <button name="action_generate_optimization_suggestions" type="object" string="Optimize" class="btn-info" />
+                    <button name="action_apply_design_principles" type="object" string="Apply Design Principles" class="btn-primary" />
+                    <button name="action_monitor_lifecycle" type="object" string="Monitor" class="btn-success" />
+                    <button name="action_transition_to_circular" type="object" string="To Circular Market" class="btn-success" invisible="end_of_life_plan != 'circular' or circular_market_ready != True" />
+                    <field name="status" widget="statusbar" statusbar_visible="active,monitored,optimizing,transitioning,end_of_life" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="%(action_sustainable_product_lifecycle)d" type="action" class="oe_stat_button" icon="fa-leaf">
-                            <field string="Product Lifecycles" name="name" widget="statinfo"/>
+                            <field string="Product Lifecycles" name="name" widget="statinfo" />
                         </button>
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="product_id"/>
-                            <field name="lot_id"/>
-                            <field name="farm_id"/>
+                            <field name="name" />
+                            <field name="product_id" />
+                            <field name="lot_id" />
+                            <field name="farm_id" />
                         </group>
                         <group>
-                            <field name="lifecycle_stage"/>
-                            <field name="lifecycle_sustainability_score" widget="percentage"/>
-                            <field name="start_date"/>
-                            <field name="current_age"/>
+                            <field name="lifecycle_stage" />
+                            <field name="lifecycle_sustainability_score" widget="percentage" />
+                            <field name="start_date" />
+                            <field name="current_age" />
                         </group>
                     </group>
 
@@ -71,66 +72,67 @@
                         <page string="Triple Bottom Line">
                             <group>
                                 <group string="Impact Scores">
-                                    <field name="economic_impact" widget="percentage"/>
-                                    <field name="environmental_impact" widget="percentage"/>
-                                    <field name="social_impact" widget="percentage"/>
+                                    <field name="economic_impact" widget="percentage" />
+                                    <field name="environmental_impact" widget="percentage" />
+                                    <field name="social_impact" widget="percentage" />
                                 </group>
                                 <group string="Lifecycle Planning">
-                                    <field name="expected_lifespan"/>
-                                    <field name="end_of_life_plan"/>
-                                    <field name="circular_market_ready"/>
+                                    <field name="expected_lifespan" />
+                                    <field name="end_of_life_plan" />
+                                    <field name="circular_market_ready" />
                                 </group>
                             </group>
                         </page>
 
                         <page string="Lineage &amp; Traceability">
                             <group string="Complete Lineage Trace">
-                                <field name="complete_lineage_trace" colspan="2" nolabel="1"/>
+                                <field name="complete_lineage_trace" colspan="2" nolabel="1" />
                             </group>
                             <group string="Ancestry Information">
-                                <field name="genetic_lineage" colspan="2"/>
-                                <field name="production_ancestry" colspan="2"/>
+                                <field name="genetic_lineage" colspan="2" />
+                                <field name="production_ancestry" colspan="2" />
                             </group>
                         </page>
 
                         <page string="Design &amp; Optimization">
                             <group>
                                 <group string="Design Principles">
-                                    <field name="design_principles" colspan="2"/>
+                                    <field name="design_principles" colspan="2" />
                                 </group>
                                 <group string="Optimization">
-                                    <field name="sustainability_guidelines" colspan="2"/>
-                                    <field name="optimization_suggestions" colspan="2"/>
+                                    <field name="sustainability_guidelines" colspan="2" />
+                                    <field name="optimization_suggestions" colspan="2" />
                                 </group>
                             </group>
                         </page>
 
                         <page string="Supply Chain">
                             <group>
-                                <field name="supplier_ids" widget="many2many_tags"/>
+                                <field name="supplier_ids" widget="many2many_tags" />
                             </group>
                         </page>
 
                         <page string="Circular Market Integration">
                             <group>
                                 <group string="Circular Market Listing">
-                                    <field name="circular_market_listing_id"/>
-                                    <field name="circular_market_ready"/>
+                                    <field name="circular_market_listing_id" />
+                                    <field name="circular_market_ready" />
                                 </group>
                             </group>
                         </page>
 
                         <page string="Lifecycle Events">
-                            <field name="lifecycle_events" colspan="2" nolabel="1"/>
+                            <field name="lifecycle_events" colspan="2" nolabel="1" />
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
     </record>
+</data>
 </odoo>

@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Disaster Incident Views -->
+<data>
+<!-- Disaster Incident Views -->
     <record id="view_farm_disaster_incident_tree" model="ir.ui.view">
         <field name="name">farm.disaster.incident.tree</field>
         <field name="model">farm.disaster.incident</field>
@@ -110,4 +111,5 @@
     <menuitem id="menu_farm_disaster_risk_root" name="Disaster Risk" parent="farm_crisis.menu_farm_safety_crisis" sequence="10"/>
     <menuitem id="menu_farm_disaster_incident" name="Incidents" parent="menu_farm_disaster_risk_root" action="action_farm_disaster_incident" sequence="10"/>
     <menuitem id="menu_farm_loss_assessment" name="Loss Assessments" parent="menu_farm_disaster_risk_root" action="action_farm_loss_assessment" sequence="20"/>
+</data>
 </odoo>

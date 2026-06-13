@@ -39,6 +39,8 @@ class TestGepValuation(TransactionCase):
             'name': 'Bamboo Forest Plot 01',
             'agricultural_type': 'plant',
             'location_id': cls.parcel.id,
+            'target_yield': 1.0, # 1 unit of land
+            'stage_progress': 100.0, # fully mature for land
         })
 
     def test_01_gep_calculation(self):
@@ -77,6 +79,10 @@ class TestGepValuation(TransactionCase):
         
         # Trigger calculation
         valuation.action_calculate_valuation()
+        
+        # Invalidate cache to ensure compute fields are re-read
+        valuation.invalidate_recordset(['gep_premium_factor', 'valuation_amount'])
+        print(f"TEST DEBUG: GEP Factor={valuation.gep_premium_factor}, Amount={valuation.valuation_amount}")
         
         # GEP = 80 -> Premium Factor = 1.20
         self.assertEqual(valuation.gep_premium_factor, 1.20)

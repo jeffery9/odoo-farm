@@ -26,6 +26,16 @@ class ResCompany(models.Model):
         for company in self:
             company.is_license_expired = company.license_expiry_date and company.license_expiry_date < today
 
+class ResConfigSettings(models.TransientModel):
+    _inherit = 'res.config.settings'
+
+    unified_social_credit_code = fields.Char(related='company_id.unified_social_credit_code', readonly=False)
+    registration_no = fields.Char(related='company_id.registration_no', readonly=False)
+    entity_type = fields.Selection(related='company_id.entity_type', readonly=False)
+    license_expiry_date = fields.Date(related='company_id.license_expiry_date', readonly=False)
+    license_attachment_ids = fields.Many2many(related='company_id.license_attachment_ids', readonly=False)
+    is_license_expired = fields.Boolean(related='company_id.is_license_expired')
+
 class FarmCooperativeMember(models.Model):
     _name = 'farm.cooperative.member'
     _description = 'Cooperative Member'

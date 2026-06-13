@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_farm_market_connector_tree" model="ir.ui.view">
+<data>
+<record id="view_farm_market_connector_tree" model="ir.ui.view">
         <field name="name">farm.market.connector.list</field>
         <field name="model">farm.market.connector</field>
         <field name="arch" type="xml">
             <list decoration-success="sync_status == 'ok'" decoration-danger="sync_status == 'error'">
-                <field name="name"/>
-                <field name="connector_type"/>
-                <field name="last_sync_date"/>
-                <field name="sync_status" widget="badge"/>
+                <field name="name" />
+                <field name="connector_type" />
+                <field name="last_sync_date" />
+                <field name="sync_status" widget="badge" />
             </list>
         </field>
     </record>
@@ -19,30 +20,30 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_test_connection" string="Test Connection" type="object" class="oe_highlight"/>
+                    <button name="action_test_connection" string="Test Connection" type="object" class="oe_highlight" />
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name" placeholder="Connector Name (e.g. Shopee API)"/></h1>
+                        <h1><field name="name" placeholder="Connector Name (e.g. Shopee API)" /></h1>
                     </div>
                     <group>
                         <group>
-                            <field name="connector_type"/>
-                            <field name="endpoint_url" widget="url"/>
+                            <field name="connector_type" />
+                            <field name="endpoint_url" widget="url" />
                         </group>
                         <group>
-                            <field name="api_key" password="1"/>
-                            <field name="active"/>
+                            <field name="api_key" password="1" />
+                            <field name="active" />
                         </group>
                     </group>
                     <group string="Status">
-                        <field name="last_sync_date" readonly="1"/>
-                        <field name="sync_status" readonly="1"/>
+                        <field name="last_sync_date" readonly="1" />
+                        <field name="sync_status" readonly="1" />
                     </group>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -54,25 +55,25 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <!-- Enhance Market Demand View -->
+    
     <record id="view_farm_market_demand_form_inherit" model="ir.ui.view">
         <field name="name">farm.market.demand.form.inherit</field>
         <field name="model">farm.market.demand</field>
-        <field name="inherit_id" ref="farm_marketing.view_farm_market_demand_form"/>
+        <field name="inherit_id" ref="farm_marketing.view_farm_market_demand_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
-                <field name="connector_id"/>
-                <field name="external_id"/>
+                <field name="connector_id" />
+                <field name="external_id" />
             </xpath>
             <xpath expr="//group[@name='details']" position="before">
                 <group string="Technical Requirements">
-                    <field name="min_integrity_score"/>
-                    <field name="requires_organic"/>
+                    <field name="min_integrity_score" />
+                    <field name="requires_organic" />
                 </group>
             </xpath>
         </field>
     </record>
 
-    <menuitem id="menu_market_connector" name="Market Connectors" 
- web_icon="farm_marketing,static/description/icon.png" action="action_farm_market_connector" sequence="60"/>
+    <menuitem id="menu_market_connector" name="Market Connectors" web_icon="farm_marketing,static/description/icon.png" action="action_farm_market_connector" sequence="60" />
+</data>
 </odoo>

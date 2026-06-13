@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <!-- Processing Formula Blind Input Tree View -->
-    <record id="view_agri_processing_blind_input_tree" model="ir.ui.view">
+<data>
+<record id="view_agri_processing_blind_input_tree" model="ir.ui.view">
         <field name="name">agri.processing.blind.input.tree</field>
         <field name="model">agri.processing.blind.input</field>
         <field name="arch" type="xml">
             <list string="Blind Mixing Inputs">
-                <field name="formula_recipe_id"/>
-                <field name="product_id"/>
-                <field name="sequence"/>
+                <field name="formula_recipe_id" />
+                <field name="product_id" />
+                <field name="sequence" />
             </list>
         </field>
     </record>
 
-    <!-- Processing Formula Blind Input Form View -->
+    
     <record id="view_agri_processing_blind_input_form" model="ir.ui.view">
         <field name="name">agri.processing.blind.input.form</field>
         <field name="model">agri.processing.blind.input</field>
@@ -23,20 +22,20 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="formula_recipe_id"/>
-                            <field name="product_id"/>
+                            <field name="formula_recipe_id" />
+                            <field name="product_id" />
                         </group>
                         <group>
-                            <field name="sequence"/>
+                            <field name="sequence" />
                         </group>
                     </group>
                     <group>
                         <group string="Configuration">
-                            <field name="blind_name"/>
-                            <field name="hide_during_mixing"/>
+                            <field name="blind_name" />
+                            <field name="hide_during_mixing" />
                         </group>
                         <group string="Access Control">
-                            <field name="authorized_users" widget="many2many_tags"/>
+                            <field name="authorized_users" widget="many2many_tags" />
                         </group>
                     </group>
                 </sheet>
@@ -44,67 +43,67 @@
         </field>
     </record>
 
-    <!-- Formula Auto Correction Tree View -->
+    
     <record id="view_agri_processing_formula_auto_correction_tree" model="ir.ui.view">
         <field name="name">agri.processing.formula.auto.correction.tree</field>
         <field name="model">agri.processing.formula.auto.correction</field>
         <field name="arch" type="xml">
             <list string="Formula Auto Corrections">
-                <field name="name"/>
-                <field name="bom_id"/>
-                <field name="correction_status"/>
-                <field name="corrected_by"/>
-                <field name="corrected_date"/>
+                <field name="name" />
+                <field name="bom_id" />
+                <field name="correction_status" />
+                <field name="corrected_by" />
+                <field name="corrected_date" />
             </list>
         </field>
     </record>
 
-    <!-- Formula Auto Correction Form View -->
+    
     <record id="view_agri_processing_formula_auto_correction_form" model="ir.ui.view">
         <field name="name">agri.processing.formula.auto.correction.form</field>
         <field name="model">agri.processing.formula.auto.correction</field>
         <field name="arch" type="xml">
             <form string="Formula Auto Correction Rule">
                 <header>
-                    <button name="action_apply_correction" string="Apply Correction" type="object" class="oe_highlight" invisible="correction_status != 'pending'"/>
-                    <button name="action_reject_correction" string="Reject" type="object" invisible="correction_status != 'pending'"/>
-                    <field name="correction_status" widget="statusbar"/>
+                    <button name="action_apply_correction" string="Apply Correction" type="object" class="oe_highlight" invisible="correction_status != 'pending'" />
+                    <button name="action_reject_correction" string="Reject" type="object" invisible="correction_status != 'pending'" />
+                    <field name="correction_status" widget="statusbar" />
                 </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="bom_id"/>
-                            <field name="production_id"/>
+                            <field name="name" />
+                            <field name="bom_id" />
+                            <field name="production_id" />
                         </group>
                         <group>
-                            <field name="corrected_by"/>
-                            <field name="corrected_date"/>
+                            <field name="corrected_by" />
+                            <field name="corrected_date" />
                         </group>
                     </group>
                     <group string="Original Data">
                         <group>
-                            <field name="original_product_id"/>
-                            <field name="original_qty"/>
+                            <field name="original_product_id" />
+                            <field name="original_qty" />
                         </group>
                     </group>
                     <group string="Actual Data">
                         <group>
-                            <field name="actual_product_id"/>
-                            <field name="actual_qty"/>
+                            <field name="actual_product_id" />
+                            <field name="actual_qty" />
                         </group>
                     </group>
                     <group string="Correction">
                         <group>
-                            <field name="correction_qty"/>
+                            <field name="correction_qty" />
                         </group>
                         <group>
-                            <field name="correction_reason"/>
+                            <field name="correction_reason" />
                         </group>
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
-
+</data>
 </odoo>

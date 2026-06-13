@@ -5,3 +5,7 @@ from . import test_integration_flows
 
 from . import test_deep_coverage
 from . import test_ras_welfare
+
+from . import test_epic_029
+from . import test_epic_034
+from . import test_epic_019

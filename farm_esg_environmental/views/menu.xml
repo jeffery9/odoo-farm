@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="esg_environmental_menu" name="ESG Environmental" sequence="50" groups="farm_core.group_farm_manager"/>
+<data>
+<menuitem id="esg_environmental_menu" name="ESG Environmental" sequence="50" groups="farm_core.group_farm_manager" />
 
-    <menuitem id="esg_environmental_reports_menu" name="Environmental Reports"
-              parent="esg_environmental_menu" sequence="10"
-              action="action_esg_environmental_report"/>
+    <menuitem id="esg_environmental_reports_menu" name="Environmental Reports" parent="esg_environmental_menu" sequence="10" action="action_esg_environmental_report" />
 
               parent="esg_environmental_menu" sequence="20"
-              action="action_esg_environmental_compliance"/>
+              action="action_esg_environmental_compliance"/&gt;
 
-    <menuitem id="vra_environmental_menu" name="VRA Environmental Impact"
-              parent="esg_environmental_menu" sequence="30"/>
+    <menuitem id="vra_environmental_menu" name="VRA Environmental Impact" parent="esg_environmental_menu" sequence="30" />
 
-    <menuitem id="vra_carbon_footprint_menu" name="VRA Carbon Footprint"
-              parent="vra_environmental_menu" sequence="10"
-              action="action_vra_carbon_footprint"/>
+    <menuitem id="vra_carbon_footprint_menu" name="VRA Carbon Footprint" parent="vra_environmental_menu" sequence="10" action="action_vra_carbon_footprint" />
 
-    <menuitem id="vra_water_protection_menu" name="VRA Water Protection"
-              parent="vra_environmental_menu" sequence="20"
-              action="action_vra_water_protection_zone"/>
+    <menuitem id="vra_water_protection_menu" name="VRA Water Protection" parent="vra_environmental_menu" sequence="20" action="action_vra_water_protection_zone" />
 
-    <menuitem id="vra_soil_health_menu" name="VRA Soil Health"
-              parent="vra_environmental_menu" sequence="30"
-              action="action_vra_soil_health_monitor"/>
+    <menuitem id="vra_soil_health_menu" name="VRA Soil Health" parent="vra_environmental_menu" sequence="30" action="action_vra_soil_health_monitor" />
+</data>
 </odoo>

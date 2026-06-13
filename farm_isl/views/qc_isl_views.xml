@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_isl_quality_control_form" model="ir.ui.view">
         
         
@@ -17,4 +18,5 @@
         
         
     </record>
+</data>
 </odoo>

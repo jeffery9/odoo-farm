@@ -9,7 +9,7 @@ class TestFinancialValuation(TransactionCase):
         # Create a dummy asset
         cls.Asset = cls.env['agri.biological.asset'].create({
             'name': 'Test Tractor',
-            'asset_type': 'machinery',
+            'agricultural_type': 'tree',
         })
         
     def test_01_valuation_creation(self):
@@ -18,11 +18,11 @@ class TestFinancialValuation(TransactionCase):
             'asset_id': self.Asset.id,
             'asset_type': 'machinery',
             'valuation_method': 'cost_model',
-            'acquisition_cost': 50000.0,
-            'depreciation_accumulated': 10000.0,
+            'original_cost': 50000.0,
+            'accumulated_depreciation': 10000.0,
         })
         self.assertTrue(val.exists())
-        self.assertEqual(val.book_value, 40000.0)
+        self.assertEqual(val.net_book_value, 40000.0)
         
     def test_02_fair_value_calculation(self):
         """ Test fair value computation with market adjustment """

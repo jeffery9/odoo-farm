@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_ai_autonomous_orchestrator_tree" model="ir.ui.view">
+<data>
+<record id="view_ai_autonomous_orchestrator_tree" model="ir.ui.view">
         <field name="name">ai.autonomous.orchestrator.list</field>
         <field name="model">ai.autonomous.orchestrator</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="auto_dispatch_threshold"/>
-                <field name="active"/>
+                <field name="name" />
+                <field name="auto_dispatch_threshold" />
+                <field name="active" />
             </list>
         </field>
     </record>
@@ -18,36 +19,36 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_run_autonomous_scan" string="Run Autonomous Scan (Manual)" type="object" class="oe_highlight"/>
+                    <button name="action_run_autonomous_scan" string="Run Autonomous Scan (Manual)" type="object" class="oe_highlight" />
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <h1><field name="name" placeholder="Orchestrator Name..."/></h1>
+                        <h1><field name="name" placeholder="Orchestrator Name..." /></h1>
                     </div>
                     <group>
                         <group string="Control Strategy (L5)">
-                            <field name="workflow_id"/>
-                            <field name="auto_dispatch_threshold"/>
-                            <field name="active"/>
+                            <field name="workflow_id" />
+                            <field name="auto_dispatch_threshold" />
+                            <field name="active" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Autonomous Dispatch Logs" name="logs">
                             <field name="log_ids" readonly="1">
                                 <list>
-                                    <field name="create_date"/>
-                                    <field name="twin_id"/>
-                                    <field name="status"/>
-                                    <field name="detail"/>
+                                    <field name="create_date" />
+                                    <field name="twin_id" />
+                                    <field name="status" />
+                                    <field name="detail" />
                                 </list>
                             </field>
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -59,9 +60,6 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_autonomous_dispatch"
-              name="Autonomous Dispatch (L5)"
-              parent="farm_ai_agent.menu_ai_agent_root"
-              action="action_ai_autonomous_orchestrator"
-              sequence="20"/>
+    <menuitem id="menu_autonomous_dispatch" name="Autonomous Dispatch (L5)" parent="farm_ai_agent.menu_ai_agent_root" action="action_ai_autonomous_orchestrator" sequence="20" />
+</data>
 </odoo>

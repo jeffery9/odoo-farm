@@ -6,7 +6,7 @@ class TestDeepCoverageFarmFinancialInsurance(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = ['farm.insurance.claim', 'farm.insurance.index', 'farm.crop.yield.insurance']
+        cls.models_to_test = ['farm.financial.insurance.claim', 'farm.insurance.index', 'farm.crop.yield.insurance']
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """

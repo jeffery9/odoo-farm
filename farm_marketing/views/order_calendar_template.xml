@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="order_calendar_template" name="Order Calendar Template">
+<data>
+<template id="order_calendar_template" name="Order Calendar Template">
         <t t-call="website.layout">
-            <div class="oe_structure"/>
+            <div class="oe_structure" />
             <div class="container mt-4">
                 <div class="row">
                     <div class="col-12">
-                        <h2>Order Production Calendar - <span t-field="order.name"/></h2>
+                        <h2>Order Production Calendar - <span t-field="order.name" /></h2>
                         <p class="text-muted">Real-time field operation progress for your order</p>
 
                         <div class="card mb-4">
@@ -16,13 +17,13 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <p><strong>Order Date:</strong> <span t-field="order.date_order"/></p>
-                                        <p><strong>Customer:</strong> <span t-field="order.partner_id.name"/></p>
-                                        <p><strong>Total Amount:</strong> <span t-field="order.amount_total"/></p>
+                                        <p><strong>Order Date:</strong> <span t-field="order.date_order" /></p>
+                                        <p><strong>Customer:</strong> <span t-field="order.partner_id.name" /></p>
+                                        <p><strong>Total Amount:</strong> <span t-field="order.amount_total" /></p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p><strong>Order Status:</strong> <span t-field="order.state"/></p>
-                                        <p><strong>Required Date:</strong> <span t-field="order.commitment_date"/></p>
+                                        <p><strong>Order Status:</strong> <span t-field="order.state" /></p>
+                                        <p><strong>Required Date:</strong> <span t-field="order.commitment_date" /></p>
                                     </div>
                                 </div>
                             </div>
@@ -34,7 +35,7 @@
                                 <p class="text-muted">Track real-time progress of field operations for your order</p>
                             </div>
                             <div class="card-body">
-                                <div id="calendar-container" style="height: 600px;"></div>
+                                <div id="calendar-container" style="height: 600px;" />
                             </div>
                         </div>
 
@@ -123,8 +124,9 @@
                 });
             </script>
 
-            <!-- Add order ID as data attribute for use in JavaScript -->
-            <div id="order_id" t-att-data-order-id="order.id" style="display: none;"></div>
+            
+            <div id="order_id" t-att-data-order-id="order.id" style="display: none;" />
         </t>
     </template>
+</data>
 </odoo>

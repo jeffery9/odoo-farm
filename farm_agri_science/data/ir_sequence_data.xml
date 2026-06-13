@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="seq_farm_vra_prescription" model="ir.sequence">
+<data>
+<record id="seq_farm_vra_prescription" model="ir.sequence">
         <field name="name">VRA Prescription</field>
         <field name="code">farm.vra.prescription</field>
         <field name="prefix">VRA/%(year)s/</field>
         <field name="padding">5</field>
-        <field name="company_id" eval="False"/>
+        <field name="company_id" eval="False" />
     </record>
 
     <record id="seq_farm_biological_twin" model="ir.sequence">
@@ -13,6 +14,7 @@
         <field name="code">farm.biological.twin</field>
         <field name="prefix">TWIN/%(year)s/</field>
         <field name="padding">5</field>
-        <field name="company_id" eval="False"/>
+        <field name="company_id" eval="False" />
     </record>
+</data>
 </odoo>
