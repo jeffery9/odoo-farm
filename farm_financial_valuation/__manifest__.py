@@ -10,8 +10,11 @@
         "mail",
         "account",
         "stock",
+        "mrp",
         "farm_core",
         "farm_financial",
+        "farm_ecology",
+        "farm_operation",
         "farm_biological_valuation",  # Using the consolidated module created earlier
     ],
     "data": [

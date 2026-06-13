@@ -1,103 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- AI Visual Sorting Tree View -->
-    <record id="view_ai_visual_sorting_tree" model="ir.ui.view">
+<data>
+<record id="view_ai_visual_sorting_tree" model="ir.ui.view">
         <field name="name">agri.ai.visual.sorting.tree</field>
         <field name="model">agri.ai.visual.sorting</field>
         <field name="arch" type="xml">
             <list string="AI Visual Sorting">
-                <field name="name"/>
-                <field name="product_id"/>
-                <field name="batch_id"/>
-                <field name="sorting_type"/>
-                <field name="grade"/>
-                <field name="size_category"/>
-                <field name="ai_confidence_score"/>
-                <field name="analysis_date"/>
-                <field name="status"/>
+                <field name="name" />
+                <field name="product_id" />
+                <field name="batch_id" />
+                <field name="sorting_type" />
+                <field name="grade" />
+                <field name="size_category" />
+                <field name="ai_confidence_score" />
+                <field name="analysis_date" />
+                <field name="status" />
             </list>
         </field>
     </record>
 
-    <!-- AI Visual Sorting Form View -->
+    
     <record id="view_ai_visual_sorting_form" model="ir.ui.view">
         <field name="name">agri.ai.visual.sorting.form</field>
         <field name="model">agri.ai.visual.sorting</field>
         <field name="arch" type="xml">
             <form string="AI Visual Sorting">
                 <header>
-                    <button name="action_process_image" type="object" string="Process Image" class="oe_highlight"/>
-                    <field name="status" widget="statusbar"/>
+                    <button name="action_process_image" type="object" string="Process Image" class="oe_highlight" />
+                    <field name="status" widget="statusbar" />
                 </header>
                 <sheet>
                     <div class="oe_title">
                         <h1>
-                            <field name="name" placeholder="Visual Sorting Analysis"/>
+                            <field name="name" placeholder="Visual Sorting Analysis" />
                         </h1>
                     </div>
                     <group>
                         <group>
-                            <field name="product_id"/>
-                            <field name="batch_id"/>
-                            <field name="sorting_type"/>
+                            <field name="product_id" />
+                            <field name="batch_id" />
+                            <field name="sorting_type" />
                         </group>
                         <group>
-                            <field name="grade"/>
-                            <field name="size_category"/>
-                            <field name="color_grade"/>
-                            <field name="ripeness_level"/>
+                            <field name="grade" />
+                            <field name="size_category" />
+                            <field name="color_grade" />
+                            <field name="ripeness_level" />
                         </group>
                     </group>
                     <group>
                         <group>
-                            <field name="defect_detected"/>
-                            <field name="defect_type"/>
-                            <field name="defect_severity"/>
+                            <field name="defect_detected" />
+                            <field name="defect_type" />
+                            <field name="defect_severity" />
                         </group>
                         <group>
-                            <field name="ai_confidence_score"/>
-                            <field name="analysis_date"/>
+                            <field name="ai_confidence_score" />
+                            <field name="analysis_date" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Image">
                             <group>
-                                <field name="image" filename="image_filename"/>
+                                <field name="image" filename="image_filename" />
                             </group>
                         </page>
                         <page string="Classification &amp; Actions">
                             <group>
-                                <field name="classification_result"/>
-                                <field name="recommended_action"/>
-                                <field name="sort_into_bin"/>
+                                <field name="classification_result" />
+                                <field name="recommended_action" />
+                                <field name="sort_into_bin" />
                             </group>
                         </page>
                         <page string="Results &amp; Parameters">
                             <group>
-                                <field name="input_parameters" widget="ace" options="{'mode': 'json'}"/>
-                                <field name="output_data" widget="ace" options="{'mode': 'json'}"/>
-                                <field name="analysis_result"/>
+                                <field name="input_parameters" widget="ace" options="{'mode': 'json'}" />
+                                <field name="output_data" widget="ace" options="{'mode': 'json'}" />
+                                <field name="analysis_result" />
                             </group>
                         </page>
                         <page string="ISL Configuration">
                             <group>
-                                <field name="industry_id"/>
-                                <field name="uses_isl_data"/>
-                                <field name="data_isolation_level"/>
+                                <field name="industry_id" />
+                                <field name="uses_isl_data" />
+                                <field name="data_isolation_level" />
                             </group>
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
     </record>
 
-    <!-- AI Visual Sorting Action -->
+    
     <record id="action_ai_visual_sorting" model="ir.actions.act_window">
         <field name="name">Visual Sorting</field>
         <field name="res_model">agri.ai.visual.sorting</field>
@@ -112,4 +112,5 @@
             </p>
         </field>
     </record>
+</data>
 </odoo>

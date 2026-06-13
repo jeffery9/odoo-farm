@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_farm_flower_order_form" model="ir.ui.view">
         <field name="name">farm.flower.order.form</field>
         <field name="model">farm.flower.order</field>
         <field name="arch" type="xml">
             <form string="Floral Growing Order">
                 <header>
-                    <button name="action_confirm" string="Confirm Bloom Start" type="object" class="oe_highlight" invisible="state != 'draft'"/>
-                    <field name="state" widget="statusbar"/>
+                    <button name="action_confirm" string="Confirm Bloom Start" type="object" class="oe_highlight" invisible="state != 'draft'" />
+                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
                     <div class="oe_title">
                         <h1>
-                            <field name="name" readonly="1"/>
+                            <field name="name" readonly="1" />
                         </h1>
                     </div>
                     <group>
                         <group string="Basic Information">
-                            <field name="product_id" string="Flower Variety"/>
-                            <field name="bom_id" string="Bloom Recipe"/>
-                            <field name="qty_producing" string="Quantity to Harvest"/>
+                            <field name="product_id" string="Flower Variety" />
+                            <field name="bom_id" string="Bloom Recipe" />
+                            <field name="qty_producing" string="Quantity to Harvest" />
                         </group>
                         <group string="Bloom &amp; Environmental Control">
-                            <!-- field actual_light_hours removed -->
-                            <!-- field lighting_intervention_needed removed -->
-                            <field name="current_stage_id"/>
-                            <label for="stage_progress" string="Biological Progress"/>
+                            
+                            
+                            <field name="current_stage_id" />
+                            <label for="stage_progress" string="Biological Progress" />
                             <div class="o_row">
-                                <field name="stage_progress" widget="progressbar"/>
+                                <field name="stage_progress" widget="progressbar" />
                             </div>
                         </group>
                     </group>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -50,21 +51,21 @@
                     <div class="oe_button_box" name="button_box">
                         <button class="oe_stat_button" icon="fa-thermometer-half">
                             <div class="o_stat_info">
-                                <span class="o_stat_value"><field name="current_batch_temp"/> ℃</span>
+                                <span class="o_stat_value"><field name="current_batch_temp" /> ℃</span>
                                 <span class="o_stat_text">Cold-chain Temp</span>
                             </div>
                         </button>
                     </div>
                     <group>
                         <group string="Batch Info">
-                            <field name="lot_id" readonly="1"/>
-                            <!-- field bloom_stage_at_harvest removed -->
-                            <!-- field floral_fragrance_level removed -->
+                            <field name="lot_id" readonly="1" />
+                            
+                            
                         </group>
                         <group string="Market &amp; Quality">
-                            <field name="predicted_vase_life" decoration-bf="1" decoration-success="predicted_vase_life > 10"/>
-                            <field name="temperature_violation" widget="boolean_toggle" decoration-danger="temperature_violation"/>
-                            <field name="traceability_hash" groups="base.group_no_one"/>
+                            <field name="predicted_vase_life" decoration-bf="1" decoration-success="predicted_vase_life &gt; 10" />
+                            <field name="temperature_violation" widget="boolean_toggle" decoration-danger="temperature_violation" />
+                            <field name="traceability_hash" groups="base.group_no_one" />
                         </group>
                     </group>
                 </sheet>
@@ -84,4 +85,5 @@
         <field name="res_model">farm.lot.flower</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

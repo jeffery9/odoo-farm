@@ -12,11 +12,11 @@ class TestInterventionEngine(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.Engine = cls.env['agri.intervention.base']
+        cls.Engine = cls.env['agri.intervention.test']
         
         # Create a dummy model that implements the engine for testing
         # In Odoo tests, we often use existing implementations or mock registry
-        cls.intervention = cls.env['agri.intervention.base'].create({
+        cls.intervention = cls.env['agri.intervention.test'].create({
             'name': 'TEST-INT-001',
         })
 

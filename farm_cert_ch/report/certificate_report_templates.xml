@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_product_certificate_document">
+<data>
+<template id="report_product_certificate_document">
         <t t-call="web.external_layout">
             <t t-set="doc" t-value="doc.with_context(lang=doc.lang)"/>
             <div class="page">
@@ -62,4 +63,5 @@
             </div>
         </t>
     </template>
+</data>
 </odoo>

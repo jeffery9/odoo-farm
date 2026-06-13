@@ -12,6 +12,21 @@ class FarmAgritourismOperation(models.Model):
     _description = 'Farm Agritourism Operation'
     _inherit = 'project.task'  # Inherit from project.task to leverage existing task functionality
 
+    # Explicitly override user_ids to use a different relation table to avoid MRO/Setup conflicts in Odoo 19
+    user_ids = fields.Many2many('res.users', 'farm_agritourism_operation_user_rel', 
+                                'operation_id', 'user_id', string='Assignees', tracking=True)
+    
+    # Also override other M2M fields to avoid similar conflicts
+    tag_ids = fields.Many2many('project.tags', 'farm_agritourism_operation_tag_rel',
+                               'operation_id', 'tag_id', string='Tags')
+    personal_stage_type_ids = fields.Many2many('project.task.type', 'farm_agritourism_operation_personal_stage_rel',
+                                              'operation_id', 'stage_id', string='Personal Stages')
+    
+    depend_on_ids = fields.Many2many('project.task', 'farm_agritourism_operation_dependency_rel',
+                                     'operation_id', 'depends_on_id', string='Blocked By')
+    dependent_ids = fields.Many2many('project.task', 'farm_agritourism_operation_dependency_rel',
+                                     'depends_on_id', 'operation_id', string='Block')
+
     # Agritourism Activity Information
     activity_type = fields.Selection([
         ('picking', 'Picking Activity'),

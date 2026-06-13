@@ -308,25 +308,45 @@ class AgriQualityGateMixin(models.AbstractModel):
     _name = 'agri.quality.gate.mixin'
     _description = 'Agri Quality Gate Mixin'
 
+    quality_status = fields.Selection([
+        ('pending', 'Pending QC'),
+        ('passed', 'Passed'),
+        ('failed', 'Failed'),
+    ], string="Quality Status", default='pending')
+
+    # [US-041-02] China Regulatory Fields moved to core to break loops
+    is_agri_input = fields.Boolean("Is Agri Input", default=False)
+    is_regulated_input = fields.Boolean("Is Regulated Input", default=False)
+    is_safety_approved = fields.Boolean("Safety Approved", default=True)
+    is_prohibited_restricted = fields.Boolean("Prohibited/Restricted", default=False)
+    prohibited_reason = fields.Text("Reason for Prohibition")
+
     def validate_quality_gate(self):
         """ Check mandatory QCPs. """
         _logger.info("Validating Quality Gate for %s", self._name)
         return True
 
-
 class AgriCertificationStatusMixin(models.AbstractModel):
     """
-    [Level 2: Audit DNA]
-    Mixin for Certification and Compliance Validity Tracking.
+    [L0 DNA] Certification Status Mixin.
+    Tracks organic, green, and other specialized certifications.
     """
     _name = 'agri.certification.status.mixin'
     _description = 'Agri Certification Status Mixin'
 
     certification_type = fields.Selection([
-        ('organic', 'Organic'), ('green', 'Green'), ('fairtrade', 'Fair Trade'), ('globalgap', 'GlobalGAP')
-    ], string="Primary Certification")
+        ('organic', 'Organic'),
+        ('green', 'Green/Low-carbon'),
+        ('gap', 'GAP/Standard'),
+        ('non_certified', 'No Certificate')
+    ], string="Primary Certification", default='non_certified')
+
     cert_expiry_date = fields.Date("Certification Expiry")
     is_certified = fields.Boolean("Valid Certificate", compute='_compute_cert_validity')
+
+    # [US-038-03] Organic transition tracking
+    last_prohibited_substance_date = fields.Date("Last Prohibited Substance Date", 
+                                                help="The last date a prohibited substance was applied. Resets conversion.")
 
     @api.depends('cert_expiry_date')
     def _compute_cert_validity(self):

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_faq_entry_tree" model="ir.ui.view">
+<data>
+<record id="view_faq_entry_tree" model="ir.ui.view">
         <field name="name">faq.entry.tree</field>
         <field name="model">faq.entry</field>
         <field name="arch" type="xml">
             <list editable="bottom">
-                <field name="sequence" widget="handle"/>
-                <field name="question"/>
-                <field name="category"/>
-                <field name="target_model"/>
-                <field name="active"/>
+                <field name="sequence" widget="handle" />
+                <field name="question" />
+                <field name="category" />
+                <field name="target_model" />
+                <field name="active" />
             </list>
         </field>
     </record>
@@ -19,4 +20,5 @@
         <field name="res_model">faq.entry</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

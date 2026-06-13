@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="ir_cron_fetch_weather" model="ir.cron">
+<data>
+<record id="ir_cron_fetch_weather" model="ir.cron">
         <field name="name">Farm: Fetch Weather Forecast</field>
-        <field name="model_id" ref="model_agri_weather_forecast"/>
+        <field name="model_id" ref="model_agri_weather_forecast" />
         <field name="state">code</field>
         <field name="code">model._cron_fetch_forecast()</field>
         <field name="interval_number">6</field>
         <field name="interval_type">hours</field>
-        <field name="active" eval="True"/>
+        <field name="active" eval="True" />
     </record>
+</data>
 </odoo>

@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_agri_intervention_root" name="Interventions" 
-              parent="farm_core.menu_farm_root" sequence="20"/>
+<data>
+<menuitem id="menu_agri_intervention_root" name="Interventions" sequence="20" web_icon="agri_intervention,static/description/icon.png" />
 
     <record id="action_agri_intervention_base" model="ir.actions.act_window">
         <field name="name">Intervention Engine</field>
-        <field name="res_model">agri.intervention.base</field>
+        <field name="res_model">agri.intervention.test</field>
         <field name="view_mode">list,form</field>
     </record>
-
-    <!-- Optional: Add a menu for the engine itself for debugging/config -->
-    <!-- <menuitem id="menu_agri_intervention_engine" name="Intervention Engine" 
-              parent="menu_agri_intervention_root" action="action_agri_intervention_base" sequence="100"/> -->
+</data>
 </odoo>

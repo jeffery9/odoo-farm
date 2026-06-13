@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="action_biogas_production" model="ir.actions.act_window">
         <field name="name">Biogas Production</field>
         <field name="type">ir.actions.act_window</field>
@@ -21,13 +22,13 @@
         <field name="model">agri.biogas.production</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="production_date"/>
-                <field name="input_waste_type"/>
-                <field name="biogas_volume"/>
-                <field name="energy_output_kwh"/>
-                <field name="coal_equivalent_ton"/>
-                <field name="status"/>
+                <field name="name" />
+                <field name="production_date" />
+                <field name="input_waste_type" />
+                <field name="biogas_volume" />
+                <field name="energy_output_kwh" />
+                <field name="coal_equivalent_ton" />
+                <field name="status" />
             </list>
         </field>
     </record>
@@ -39,27 +40,27 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_start_production" type="object" string="Start Production" class="btn-primary" invisible="status != 'planned'"/>
-                    <button name="action_complete_production" type="object" string="Complete Production" class="btn-success" invisible="status != 'in_progress'"/>
-                    <button name="action_generate_energy_report" type="object" string="Energy Report" class="btn-info"/>
-                    <field name="status" widget="statusbar" statusbar_visible="planned,in_progress,completed"/>
+                    <button name="action_start_production" type="object" string="Start Production" class="btn-primary" invisible="status != 'planned'" />
+                    <button name="action_complete_production" type="object" string="Complete Production" class="btn-success" invisible="status != 'in_progress'" />
+                    <button name="action_generate_energy_report" type="object" string="Energy Report" class="btn-info" />
+                    <field name="status" widget="statusbar" statusbar_visible="planned,in_progress,completed" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button name="%(action_biogas_production)d" type="action" class="oe_stat_button" icon="fa-fire">
-                            <field string="Biogas Production" name="name" widget="statinfo"/>
+                            <field string="Biogas Production" name="name" widget="statinfo" />
                         </button>
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="production_date"/>
-                            <field name="input_waste_type"/>
+                            <field name="name" />
+                            <field name="production_date" />
+                            <field name="input_waste_type" />
                         </group>
                         <group>
-                            <field name="input_quantity"/>
-                            <field name="input_uom"/>
-                            <field name="status"/>
+                            <field name="input_quantity" />
+                            <field name="input_uom" />
+                            <field name="status" />
                         </group>
                     </group>
 
@@ -67,13 +68,13 @@
                         <page string="Production Data">
                             <group>
                                 <group string="Biogas Output">
-                                    <field name="biogas_volume"/>
-                                    <field name="methane_content"/>
+                                    <field name="biogas_volume" />
+                                    <field name="methane_content" />
                                 </group>
                                 <group string="Energy Calculations">
-                                    <field name="energy_output_kwh"/>
-                                    <field name="coal_equivalent_ton"/>
-                                    <field name="co2_reduction_ton"/>
+                                    <field name="energy_output_kwh" />
+                                    <field name="coal_equivalent_ton" />
+                                    <field name="co2_reduction_ton" />
                                 </group>
                             </group>
                         </page>
@@ -81,13 +82,13 @@
                         <page string="Process Parameters">
                             <group>
                                 <group>
-                                    <field name="digester_temperature"/>
-                                    <field name="retention_time_days"/>
-                                    <field name="ph_level"/>
+                                    <field name="digester_temperature" />
+                                    <field name="retention_time_days" />
+                                    <field name="ph_level" />
                                 </group>
                                 <group>
-                                    <field name="digester_id"/>
-                                    <field name="production_location_id"/>
+                                    <field name="digester_id" />
+                                    <field name="production_location_id" />
                                 </group>
                             </group>
                         </page>
@@ -95,17 +96,17 @@
                         <page string="Environmental Impact">
                             <group>
                                 <group>
-                                    <field name="related_carbon_impact_id"/>
-                                    <field name="related_circular_flow_id"/>
+                                    <field name="related_carbon_impact_id" />
+                                    <field name="related_circular_flow_id" />
                                 </group>
                             </group>
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -125,11 +126,12 @@
         <field name="model">agri.energy.recovery.integration</field>
         <field name="arch" type="xml">
             <list>
-                <field name="biogas_production_id"/>
-                <field name="co2_reduction_ton"/>
-                <field name="energy_output_kwh"/>
-                <field name="integration_status"/>
+                <field name="biogas_production_id" />
+                <field name="co2_reduction_ton" />
+                <field name="energy_output_kwh" />
+                <field name="integration_status" />
             </list>
         </field>
     </record>
+</data>
 </odoo>

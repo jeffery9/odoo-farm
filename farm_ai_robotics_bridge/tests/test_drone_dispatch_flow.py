@@ -15,11 +15,19 @@ class TestDroneDispatchFlow(TransactionCase):
             'name': 'Test Grid A1'
         })
 
+        # Create a dummy profile
+        cls.profile = cls.env['iiot.device.profile'].create({
+            'name': 'Drone Profile',
+            'code': 'DRONE-PROF',
+            'telemetry_topic_template': 't/{device}',
+            'command_topic_template': 'c/{device}'
+        })
         # 2. Create a Scout Drone (Robotic Asset)
         cls.drone_device = cls.env['iiot.device'].create({
             'name': 'Scout Drone D1',
             'serial_number': 'SN-DRONE-001',
-            'device_type': 'actuator'
+            'profile_id': cls.profile.id,
+            'physical_level': 'controller'
         })
         
         cls.drone = cls.env['farm.robot'].create({

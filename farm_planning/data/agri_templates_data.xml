@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
-        <!-- Common Intervention Templates -->
+<data>
+
         <record id="template_tillage_standard" model="agri.intervention.template">
             <field name="name">Standard Tillage</field>
             <intervention_type>tillage</intervention_type>
@@ -37,5 +37,5 @@
             <intervention_type>harvesting</intervention_type>
             <estimated_labor_hours>1.5</estimated_labor_hours>
         </record>
-    </data>
+</data>
 </odoo>

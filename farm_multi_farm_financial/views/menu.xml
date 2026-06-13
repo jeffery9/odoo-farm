@@ -1,43 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="multi_farm_financial_menu"
-              name="Financial Management"
-              parent="farm_multi_farm.menu_multi_farm_root"
-              sequence="40"/>
+<data>
+<menuitem id="multi_farm_financial_menu" name="Financial Management" parent="farm_multi_farm.menu_multi_farm_root" sequence="40" />
 
     
               name="Share Management"
               parent="multi_farm_financial_menu"
-              sequence="10"/>
+              sequence="10"/&gt;
 
-    <menuitem id="share_transaction_menu"
-              name="Share Transactions"
-              sequence="10"/>
+    <menuitem id="share_transaction_menu" name="Share Transactions" sequence="10" />
 
     
-    <menuitem id="dividend_management_menu"
-              name="Dividend Management"
-              parent="multi_farm_financial_menu"
-              sequence="20"/>
+    <menuitem id="dividend_management_menu" name="Dividend Management" parent="multi_farm_financial_menu" sequence="20" />
 
-    <menuitem id="dividend_distribution_menu"
-              name="Dividend Distribution"
-              parent="dividend_management_menu"
-              sequence="10"/>
+    <menuitem id="dividend_distribution_menu" name="Dividend Distribution" parent="dividend_management_menu" sequence="10" />
 
-    <menuitem id="dividend_line_menu"
-              name="Dividend Lines"
-              parent="dividend_management_menu"
-              sequence="20"/>
+    <menuitem id="dividend_line_menu" name="Dividend Lines" parent="dividend_management_menu" sequence="20" />
 
     
               name="Internal Credit"
               parent="multi_farm_financial_menu"
-              sequence="30"/>
+              sequence="30"/&gt;
 
     
-    <menuitem id="treasury_governance_menu"
-              name="Treasury &amp; Governance"
-              parent="multi_farm_financial_menu"
-              sequence="40"/>
+    <menuitem id="treasury_governance_menu" name="Treasury &amp; Governance" parent="multi_farm_financial_menu" sequence="40" />
+</data>
 </odoo>

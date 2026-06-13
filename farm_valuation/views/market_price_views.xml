@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_market_price_tree" model="ir.ui.view">
 <field name="name">farm.market.price.tree</field>
 <field name="model">farm.market.price</field>
 <field name="arch" type="xml">
 <list string="Market Prices">
-<field name="product_id"/>
-<field name="unit_price"/>
+<field name="product_id" />
+<field name="unit_price" />
 </list>
 </field>
 </record>
+</data>
 </odoo>

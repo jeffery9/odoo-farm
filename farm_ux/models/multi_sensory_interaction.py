@@ -31,6 +31,7 @@ class MultiSensoryInteraction(models.Model):
     visual_enhancement = fields.Boolean('Visual Enhancement', help='Enable visual enhancements')
     large_font_support = fields.Boolean('Large Font Support', help='Support large font mode')
     high_contrast_mode = fields.Boolean('High Contrast Mode', help='Support high contrast mode')
+    large_touch_targets = fields.Boolean('Large Touch Targets', help='Enable larger touch targets')
     screen_reader_compatible = fields.Boolean('Screen Reader Compatible', help='Compatible with screen readers')
     keyboard_shortcuts = fields.Text('Keyboard Shortcuts', help='JSON configuration of keyboard shortcuts')
     description = fields.Text('Description', translate=True)

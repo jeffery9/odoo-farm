@@ -1,70 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_biological_asset_valuation_form" model="ir.ui.view">
         <field name="name">agri.biological.asset.valuation.form</field>
         <field name="model">agri.biological.asset.valuation</field>
         <field name="arch" type="xml">
             <form string="Biological Asset Valuation">
                 <header>
-                    <field name="state" widget="statusbar"/>
+                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_create_revaluation_entry" type="object" string="Create Accounting Entry" class="oe_stat_button" icon="fa-pencil-square-o" invisible="is_accounting_entry_created"/>
-                        <field name="is_accounting_entry_created" invisible="1"/>
+                        <button name="action_create_revaluation_entry" type="object" string="Create Accounting Entry" class="oe_stat_button" icon="fa-pencil-square-o" invisible="is_accounting_entry_created" />
+                        <field name="is_accounting_entry_created" invisible="1" />
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="asset_id"/>
-                            <field name="valuation_date"/>
-                            <field name="valuation_method"/>
+                            <field name="name" />
+                            <field name="asset_id" />
+                            <field name="valuation_date" />
+                            <field name="valuation_method" />
                         </group>
                         <group>
-                            <field name="growth_stage_coefficient"/>
-                            <field name="current_growth_progress"/>
-                            <field name="target_yield"/>
+                            <field name="growth_stage_coefficient" />
+                            <field name="current_growth_progress" />
+                            <field name="target_yield" />
                         </group>
                     </group>
 
                     <notebook>
                         <page string="Fair Value Details" invisible="valuation_method != 'market_price'">
                             <group>
-                                <field name="current_yield_potential"/>
-                                <field name="market_price"/>
-                                <field name="market_price_source"/>
-                                <field name="fair_value"/>
-                                <field name="previous_valuation"/>
-                                <field name="revaluation_amount"/>
-                                <field name="revaluation_type"/>
+                                <field name="current_yield_potential" />
+                                <field name="market_price" />
+                                <field name="market_price_source" />
+                                <field name="fair_value" />
+                                <field name="previous_valuation" />
+                                <field name="revaluation_amount" />
+                                <field name="revaluation_type" />
                             </group>
                         </page>
 
                         <page string="Cost Model Details" invisible="valuation_method == 'market_price'">
                             <group>
-                                <field name="original_value"/>
-                                <field name="depreciation_years"/>
-                                <field name="annual_depreciation_rate"/>
-                                <field name="accumulated_depreciation"/>
-                                <field name="net_book_value"/>
+                                <field name="original_value" />
+                                <field name="depreciation_years" />
+                                <field name="annual_depreciation_rate" />
+                                <field name="accumulated_depreciation" />
+                                <field name="net_book_value" />
                             </group>
                         </page>
 
                         <page string="Growth Stage Coefficients">
                             <field name="stage_coefficient_ids">
                                 <list editable="bottom">
-                                    <field name="biological_stage"/>
-                                    <field name="coefficient"/>
-                                    <field name="description"/>
+                                    <field name="biological_stage" />
+                                    <field name="coefficient" />
+                                    <field name="description" />
                                 </list>
                             </field>
                         </page>
 
                         <page string="Accounting">
                             <group>
-                                <field name="journal_entry_id"/>
-                                <field name="ope_score"/>
-                                <field name="efficiency_multiplier"/>
+                                <field name="journal_entry_id" />
+                                <field name="ope_score" />
+                                <field name="efficiency_multiplier" />
                             </group>
                         </page>
                     </notebook>
@@ -79,15 +80,15 @@
         <field name="model">agri.biological.asset.valuation</field>
         <field name="arch" type="xml">
             <list string="Biological Asset Valuations">
-                <field name="name"/>
-                <field name="asset_id"/>
-                <field name="valuation_date"/>
-                <field name="valuation_method"/>
-                <field name="fair_value" invisible="valuation_method != 'market_price'"/>
-                <field name="net_book_value" invisible="valuation_method == 'market_price'"/>
-                <field name="revaluation_amount" invisible="valuation_method != 'market_price'"/>
-                <field name="current_growth_progress"/>
-                <field name="state"/>
+                <field name="name" />
+                <field name="asset_id" />
+                <field name="valuation_date" />
+                <field name="valuation_method" />
+                <field name="fair_value" invisible="valuation_method != 'market_price'" />
+                <field name="net_book_value" invisible="valuation_method == 'market_price'" />
+                <field name="revaluation_amount" invisible="valuation_method != 'market_price'" />
+                <field name="current_growth_progress" />
+                <field name="state" />
             </list>
         </field>
     </record>
@@ -98,4 +99,5 @@
         <field name="res_model">agri.biological.asset.valuation</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_vra_carbon_footprint_tree" model="ir.ui.view">
         <field name="name">agri.vra.carbon.footprint.tree</field>
         <field name="model">agri.vra.carbon.footprint</field>
         <field name="arch" type="xml">
             <list string="VRA Carbon Footprint">
-                <field name="name"/>
-                <field name="location_id"/>
-                <field name="operation_type"/>
-                <field name="carbon_emission_reduction"/>
-                <field name="carbon_reduction_percentage"/>
-                <field name="net_environmental_impact"/>
-                <field name="assessment_status"/>
-                <field name="assessment_date"/>
+                <field name="name" />
+                <field name="location_id" />
+                <field name="operation_type" />
+                <field name="carbon_emission_reduction" />
+                <field name="carbon_reduction_percentage" />
+                <field name="net_environmental_impact" />
+                <field name="assessment_status" />
+                <field name="assessment_date" />
             </list>
         </field>
     </record>
@@ -24,18 +25,14 @@
         <field name="arch" type="xml">
             <form string="VRA Carbon Footprint">
                 <header>
-                    <button name="action_calculate_assessment" type="object" string="Calculate Assessment"
-                             class="oe_highlight"/>
-                    <button name="action_verify_assessment" type="object" string="Verify Assessment"
-                             class="oe_highlight"/>
-                    <button name="action_generate_report" type="object" string="Generate Report"
-                            class="oe_highlight"/>
-                    <field name="assessment_status" widget="statusbar" statusbar_visible="draft,calculated,verified"/>
+                    <button name="action_calculate_assessment" type="object" string="Calculate Assessment" class="oe_highlight" />
+                    <button name="action_verify_assessment" type="object" string="Verify Assessment" class="oe_highlight" />
+                    <button name="action_generate_report" type="object" string="Generate Report" class="oe_highlight" />
+                    <field name="assessment_status" widget="statusbar" statusbar_visible="draft,calculated,verified" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" name="action_generate_report" type="object"
-                                icon="fa-file-text">
+                        <button class="oe_stat_button" name="action_generate_report" type="object" icon="fa-file-text">
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Report</span>
                             </div>
@@ -43,16 +40,16 @@
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="assessment_date"/>
-                            <field name="location_id"/>
-                            <field name="intervention_id"/>
+                            <field name="name" />
+                            <field name="assessment_date" />
+                            <field name="location_id" />
+                            <field name="intervention_id" />
                         </group>
                         <group>
-                            <field name="operation_type"/>
-                            <field name="assessment_status"/>
-                            <field name="environmental_risk_level"/>
-                            <field name="meets_environmental_standards"/>
+                            <field name="operation_type" />
+                            <field name="assessment_status" />
+                            <field name="environmental_risk_level" />
+                            <field name="meets_environmental_standards" />
                         </group>
                     </group>
 
@@ -60,17 +57,17 @@
                         <page string="Material Comparison">
                             <group>
                                 <group string="Traditional Method">
-                                    <field name="traditional_material_qty"/>
-                                    <field name="traditional_carbon_emission"/>
+                                    <field name="traditional_material_qty" />
+                                    <field name="traditional_carbon_emission" />
                                 </group>
                                 <group string="VRA Method">
-                                    <field name="vra_material_qty"/>
-                                    <field name="vra_carbon_emission"/>
+                                    <field name="vra_material_qty" />
+                                    <field name="vra_carbon_emission" />
                                 </group>
                                 <group string="Savings">
-                                    <field name="material_savings"/>
-                                    <field name="carbon_emission_reduction"/>
-                                    <field name="carbon_reduction_percentage"/>
+                                    <field name="material_savings" />
+                                    <field name="carbon_emission_reduction" />
+                                    <field name="carbon_reduction_percentage" />
                                 </group>
                             </group>
                         </page>
@@ -78,20 +75,20 @@
                         <page string="Environmental Impact">
                             <group>
                                 <group string="Fuel Optimization">
-                                    <field name="fuel_savings_liter"/>
-                                    <field name="fuel_carbon_savings"/>
+                                    <field name="fuel_savings_liter" />
+                                    <field name="fuel_carbon_savings" />
                                 </group>
                                 <group string="Soil Benefits">
-                                    <field name="soil_carbon_sequestration"/>
+                                    <field name="soil_carbon_sequestration" />
                                 </group>
                                 <group string="Overall Impact">
-                                    <field name="net_environmental_impact"/>
+                                    <field name="net_environmental_impact" />
                                 </group>
                             </group>
                         </page>
 
                         <page string="Detailed Report">
-                            <field name="comparison_report" nolabel="1"/>
+                            <field name="comparison_report" nolabel="1" />
                         </page>
 
                         <page string="ESG Compliance">
@@ -101,9 +98,9 @@
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -115,20 +112,20 @@
         <field name="model">agri.vra.carbon.footprint</field>
         <field name="arch" type="xml">
             <search string="VRA Carbon Footprint">
-                <field name="name"/>
-                <field name="location_id"/>
-                <field name="operation_type"/>
-                <field name="assessment_status"/>
-                <field name="assessment_date"/>
-                <field name="environmental_risk_level"/>
-                <filter name="filter_draft" string="Draft" domain="[('assessment_status', '=', 'draft')]"/>
-                <filter name="filter_calculated" string="Calculated" domain="[('assessment_status', '=', 'calculated')]"/>
-                <filter name="filter_compliant" string="Meets Standards" domain="[('meets_environmental_standards', '=', True)]"/>
-                <filter name="filter_high_reduction" string="High Reduction" domain="[('carbon_reduction_percentage', '>', 20)]"/>
+                <field name="name" />
+                <field name="location_id" />
+                <field name="operation_type" />
+                <field name="assessment_status" />
+                <field name="assessment_date" />
+                <field name="environmental_risk_level" />
+                <filter name="filter_draft" string="Draft" domain="[('assessment_status', '=', 'draft')]" />
+                <filter name="filter_calculated" string="Calculated" domain="[('assessment_status', '=', 'calculated')]" />
+                <filter name="filter_compliant" string="Meets Standards" domain="[('meets_environmental_standards', '=', True)]" />
+                <filter name="filter_high_reduction" string="High Reduction" domain="[('carbon_reduction_percentage', '&gt;', 20)]" />
                 <group>
-                    <filter name="group_location" string="Location" domain="[]" context="{'group_by':'location_id'}"/>
-                    <filter name="group_operation" string="Operation Type" domain="[]" context="{'group_by':'operation_type'}"/>
-                    <filter name="group_status" string="Assessment Status" domain="[]" context="{'group_by':'assessment_status'}"/>
+                    <filter name="group_location" string="Location" domain="[]" context="{'group_by':'location_id'}" />
+                    <filter name="group_operation" string="Operation Type" domain="[]" context="{'group_by':'operation_type'}" />
+                    <filter name="group_status" string="Assessment Status" domain="[]" context="{'group_by':'assessment_status'}" />
                 </group>
             </search>
         </field>
@@ -148,4 +145,5 @@
             </p>
         </field>
     </record>
+</data>
 </odoo>

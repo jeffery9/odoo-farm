@@ -1,93 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Seasonal Recipe Tree View -->
-    <record id="view_agri_seasonal_recipe_tree" model="ir.ui.view">
+<data>
+<record id="view_agri_seasonal_recipe_tree" model="ir.ui.view">
         <field name="name">agri.seasonal.recipe.tree</field>
         <field name="model">agri.seasonal.recipe</field>
         <field name="arch" type="xml">
             <list string="Seasonal Recipe Management">
-                <field name="name"/>
-                <field name="product_tmpl_id"/>
-                <field name="season_name"/>
-                <field name="season_start_date"/>
-                <field name="season_end_date"/>
-                <field name="version_number"/>
-                <field name="state"/>
-                <field name="is_seasonal_adjustment"/>
+                <field name="name" />
+                <field name="product_tmpl_id" />
+                <field name="season_name" />
+                <field name="season_start_date" />
+                <field name="season_end_date" />
+                <field name="version_number" />
+                <field name="state" />
+                <field name="is_seasonal_adjustment" />
             </list>
         </field>
     </record>
 
-    <!-- Seasonal Recipe Form View -->
+    
     <record id="view_agri_seasonal_recipe_form" model="ir.ui.view">
         <field name="name">agri.seasonal.recipe.form</field>
         <field name="model">agri.seasonal.recipe</field>
         <field name="arch" type="xml">
             <form string="Seasonal Recipe">
                 <header>
-                    <button name="action_activate" type="object" string="Activate" class="oe_highlight"/>
-                    <button name="action_deactivate" type="object" string="Deactivate"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,active,inactive"/>
+                    <button name="action_activate" type="object" string="Activate" class="oe_highlight" />
+                    <button name="action_deactivate" type="object" string="Deactivate" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,inactive" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_view_seasonal_inputs" type="object"
-                                class="oe_stat_button" icon="fa-list">
-                            <field name="seasonal_input_ids" string="Seasonal Inputs"
-                                   widget="statinfo"/>
+                        <button name="action_view_seasonal_inputs" type="object" class="oe_stat_button" icon="fa-list">
+                            <field name="seasonal_input_ids" string="Seasonal Inputs" widget="statinfo" />
                         </button>
-                        <button name="action_view_seasonal_parameters" type="object"
-                                class="oe_stat_button" icon="fa-sliders">
-                            <field name="seasonal_parameter_ids" string="Seasonal Parameters"
-                                   widget="statinfo"/>
+                        <button name="action_view_seasonal_parameters" type="object" class="oe_stat_button" icon="fa-sliders">
+                            <field name="seasonal_parameter_ids" string="Seasonal Parameters" widget="statinfo" />
                         </button>
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="product_tmpl_id"/>
-                            <field name="bom_id"/>
+                            <field name="name" />
+                            <field name="product_tmpl_id" />
+                            <field name="bom_id" />
                         </group>
                         <group>
-                            <field name="version_number"/>
-                            <field name="version_name"/>
+                            <field name="version_number" />
+                            <field name="version_name" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Season Information" name="season_info">
                             <group>
                                 <group>
-                                    <field name="season_name"/>
-                                    <field name="season_start_date"/>
-                                    <field name="season_end_date"/>
+                                    <field name="season_name" />
+                                    <field name="season_start_date" />
+                                    <field name="season_end_date" />
                                 </group>
                                 <group>
-                                    <field name="base_yield_factor"/>
-                                    <field name="seasonal_yield_factor"/>
+                                    <field name="base_yield_factor" />
+                                    <field name="seasonal_yield_factor" />
                                 </group>
                             </group>
-                            <field name="season_description"/>
+                            <field name="season_description" />
                         </page>
                         <page string="Seasonal Input Adjustments" name="input_adjustments">
                             <field name="seasonal_input_ids" nolabel="1">
                                 <list editable="bottom">
-                                    <field name="product_id"/>
-                                    <field name="base_qty"/>
-                                    <field name="seasonal_qty"/>
-                                    <field name="qty_difference" readonly="1"/>
-                                    <field name="adjustment_reason"/>
+                                    <field name="product_id" />
+                                    <field name="base_qty" />
+                                    <field name="seasonal_qty" />
+                                    <field name="qty_difference" readonly="1" />
+                                    <field name="adjustment_reason" />
                                 </list>
                             </field>
                         </page>
                         <page string="Seasonal Parameter Adjustments" name="parameter_adjustments">
                             <field name="seasonal_parameter_ids" nolabel="1">
                                 <list editable="bottom">
-                                    <field name="parameter_name"/>
-                                    <field name="base_value"/>
-                                    <field name="seasonal_value"/>
-                                    <field name="value_difference" readonly="1"/>
-                                    <field name="unit_of_measure"/>
-                                    <field name="adjustment_reason"/>
+                                    <field name="parameter_name" />
+                                    <field name="base_value" />
+                                    <field name="seasonal_value" />
+                                    <field name="value_difference" readonly="1" />
+                                    <field name="unit_of_measure" />
+                                    <field name="adjustment_reason" />
                                 </list>
                             </field>
                         </page>
@@ -97,40 +93,40 @@
         </field>
     </record>
 
-    <!-- Seasonal Recipe Input Tree View -->
+    
     <record id="view_agri_seasonal_recipe_input_tree" model="ir.ui.view">
         <field name="name">agri.seasonal.recipe.input.tree</field>
         <field name="model">agri.seasonal.recipe.input</field>
         <field name="arch" type="xml">
             <list string="Seasonal Input Adjustments">
-                <field name="seasonal_recipe_id"/>
-                <field name="product_id"/>
-                <field name="base_qty"/>
-                <field name="seasonal_qty"/>
-                <field name="qty_difference"/>
-                <field name="adjustment_reason"/>
+                <field name="seasonal_recipe_id" />
+                <field name="product_id" />
+                <field name="base_qty" />
+                <field name="seasonal_qty" />
+                <field name="qty_difference" />
+                <field name="adjustment_reason" />
             </list>
         </field>
     </record>
 
-    <!-- Seasonal Recipe Parameter Tree View -->
+    
     <record id="view_agri_seasonal_recipe_parameter_tree" model="ir.ui.view">
         <field name="name">agri.seasonal.recipe.parameter.tree</field>
         <field name="model">agri.seasonal.recipe.parameter</field>
         <field name="arch" type="xml">
             <list string="Seasonal Parameter Adjustments">
-                <field name="seasonal_recipe_id"/>
-                <field name="parameter_name"/>
-                <field name="base_value"/>
-                <field name="seasonal_value"/>
-                <field name="value_difference"/>
-                <field name="unit_of_measure"/>
-                <field name="adjustment_reason"/>
+                <field name="seasonal_recipe_id" />
+                <field name="parameter_name" />
+                <field name="base_value" />
+                <field name="seasonal_value" />
+                <field name="value_difference" />
+                <field name="unit_of_measure" />
+                <field name="adjustment_reason" />
             </list>
         </field>
     </record>
 
-    <!-- Actions -->
+    
     <record id="action_agri_seasonal_recipe_list" model="ir.actions.act_window">
         <field name="name">Seasonal Recipes</field>
         <field name="res_model">agri.seasonal.recipe</field>
@@ -158,19 +154,9 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_seasonal_recipe_root" name="Seasonal Recipes"
-              parent="farm_agricultural_processing.menu_agricultural_processing_root"
-              sequence="10"/>
-    <menuitem id="menu_seasonal_recipe" name="Recipe Management"
-              parent="menu_seasonal_recipe_root"
-              action="action_agri_seasonal_recipe_list"
-              sequence="10"/>
-    <menuitem id="menu_seasonal_recipe_inputs" name="Input Adjustments"
-              parent="menu_seasonal_recipe_root"
-              action="action_agri_seasonal_recipe_input_list"
-              sequence="20"/>
-    <menuitem id="menu_seasonal_recipe_parameters" name="Parameter Adjustments"
-              parent="menu_seasonal_recipe_root"
-              action="action_agri_seasonal_recipe_parameter_list"
-              sequence="30"/>
+    <menuitem id="menu_seasonal_recipe_root" name="Seasonal Recipes" parent="farm_agricultural_processing.menu_agricultural_processing_root" sequence="10" />
+    <menuitem id="menu_seasonal_recipe" name="Recipe Management" parent="menu_seasonal_recipe_root" action="action_agri_seasonal_recipe_list" sequence="10" />
+    <menuitem id="menu_seasonal_recipe_inputs" name="Input Adjustments" parent="menu_seasonal_recipe_root" action="action_agri_seasonal_recipe_input_list" sequence="20" />
+    <menuitem id="menu_seasonal_recipe_parameters" name="Parameter Adjustments" parent="menu_seasonal_recipe_root" action="action_agri_seasonal_recipe_parameter_list" sequence="30" />
+</data>
 </odoo>

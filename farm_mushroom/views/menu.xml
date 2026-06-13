@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="farm_mushroom_menu_root"
-              name="Mushroom Cultivation"
-              sequence="25"
-              groups="base.group_user"/>
+<data>
+<menuitem id="farm_mushroom_menu_root" name="Mushroom Cultivation" sequence="25" groups="base.group_user" />
+</data>
 </odoo>

@@ -10,6 +10,29 @@ class TestDynamicBiologicalValuation(TransactionCase):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         
+        # Setup dummy accounts for valuation
+        cls.company = cls.env.company
+        cls.account_obj = cls.env['account.account']
+        cls.asset_account = cls.account_obj.create({
+            'name': 'Test Biological Assets',
+            'code': '160001',
+            'account_type': 'asset_fixed',
+            'company_ids': [(6, 0, cls.company.ids)],
+        })
+        cls.reval_account = cls.account_obj.create({
+            'name': 'Test Revaluation Reserve',
+            'code': '480001',
+            'account_type': 'equity',
+            'company_ids': [(6, 0, cls.company.ids)],
+        })
+        
+        cls.journal = cls.env['account.journal'].create({
+            'name': 'Test General Journal',
+            'type': 'general',
+            'code': 'TGEN',
+            'company_id': cls.company.id,
+        })
+        
         # 1. Create a biological asset (e.g., a herd of Pigs)
         cls.biological_asset = cls.env['agri.biological.asset'].create({
             'name': 'Herd of Yorkshire Pigs - Batch 01',
@@ -48,11 +71,11 @@ class TestDynamicBiologicalValuation(TransactionCase):
             'product_id': self.env['product.product'].create({'name': 'Feeding Service', 'type': 'service'}).id,
             'product_qty': 1.0,
             'intervention_type': 'feeding',
-            'asset_id': self.biological_asset.id,
+            'biological_asset_id': self.biological_asset.id,
         })
         
         self.env['stock.move'].create({
-            'name': 'Consume Feed',
+            'description_picking': 'Consume Feed',
             'product_id': self.feed_product.id,
             'product_uom_qty': 500.0,
             'product_uom': self.feed_product.uom_id.id,
@@ -63,7 +86,7 @@ class TestDynamicBiologicalValuation(TransactionCase):
         
         # Mark intervention as done to trigger the weight gain & valuation pipeline
         intervention.action_confirm()
-        # simplified mock:
+        # Trigger the post-intervention growth hook
         intervention._trigger_post_intervention_growth()
         
         # Step 2: Assert biological growth
@@ -80,7 +103,7 @@ class TestDynamicBiologicalValuation(TransactionCase):
         
         # Step 4: Verify accounting journal entry
         # The new valuation should have triggered action_create_accounting_entries
-        self.assertTrue(new_valuation.message_ids, "Valuation message should be posted containing journal entry info.")
+        self.assertTrue(new_valuation.asset_id.message_ids, "Valuation message should be posted to the asset chatter.")
         has_journal_entry = any("Journal entry" in msg.body for msg in new_valuation.asset_id.message_ids)
         self.assertTrue(has_journal_entry, "An accounting journal entry must be created for the unrealized gain.")
 

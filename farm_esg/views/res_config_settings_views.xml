@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="res_config_settings_view_form_esg" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.inherit.farm.esg</field>
         <field name="model">res.config.settings</field>
-        <field name="priority" eval="90"/>
-        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="priority" eval="90" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
                 <app data-string="Farm ESG" string="Farm ESG" name="farm_esg">
                     <block title="ESG Sustainability DNA" name="esg_dna_block">
                         <setting id="esg_dna_toggle" string="Sustainability Integration" help="Enable ESG and Sustainability metrics across all business domains.">
-                            <field name="is_esg_sustainability_active"/>
+                            <field name="is_esg_sustainability_active" />
                         </setting>
                     </block>
                 </app>
@@ -27,10 +28,6 @@
         <field name="context">{'module': 'farm_esg'}</field>
     </record>
 
-    <menuitem id="menu_farm_esg_config" 
-              name="Settings" 
-              parent="farm_esg.menu_esg_root" 
-              sequence="100" 
-              action="action_farm_esg_config" 
-              groups="base.group_system"/>
+    <menuitem id="menu_farm_esg_config" name="Settings" parent="farm_esg.menu_esg_root" sequence="100" action="action_farm_esg_config" groups="base.group_system" />
+</data>
 </odoo>

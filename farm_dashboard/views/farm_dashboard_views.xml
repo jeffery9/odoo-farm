@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="action_farm_cockpit" model="ir.actions.act_window">
         <field name="name">Farm Cockpit</field>
         <field name="res_model">project.task</field>
@@ -14,8 +15,8 @@
     </record>
 
     
-    <menuitem id="menu_farm_dashboard_root" name="Dashboards" web_icon="farm_dashboard,static/description/icon.png" sequence="5"/>
-    <menuitem id="menu_farm_cockpit" name="Operational Cockpit" parent="menu_farm_dashboard_root" action="action_farm_cockpit" sequence="10"/>
+    <menuitem id="menu_farm_dashboard_root" name="Dashboards" web_icon="farm_dashboard,static/description/icon.png" sequence="5" />
+    <menuitem id="menu_farm_cockpit" name="Operational Cockpit" parent="menu_farm_dashboard_root" action="action_farm_cockpit" sequence="10" />
 
     
     <record id="action_winemaking_dashboard" model="ir.actions.act_window">
@@ -25,5 +26,6 @@
         <field name="domain">[('process_mode', '=', 'fermentation')]</field>
     </record>
 
-    <menuitem id="menu_wine_dashboard" name="Winemaking Analysis" parent="menu_farm_dashboard_root" action="action_winemaking_dashboard" sequence="20"/>
+    <menuitem id="menu_wine_dashboard" name="Winemaking Analysis" parent="menu_farm_dashboard_root" action="action_winemaking_dashboard" sequence="20" />
+</data>
 </odoo>

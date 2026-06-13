@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="seq_fair_trade_premium_allocation" model="ir.sequence">
             <field name="name">Fair Trade Premium Allocation</field>
             <field name="code">fair.trade.premium.allocation</field>
             <field name="prefix">FTPA/%(year)s/</field>
             <field name="padding">5</field>
-            <field name="company_id" eval="False"/>
+            <field name="company_id" eval="False" />
         </record>
+</data>
 </odoo>

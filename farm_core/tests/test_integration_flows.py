@@ -9,9 +9,16 @@ class TestIntegrationFarmCore(TransactionCase):
         cls.Asset = cls.env['agri.biological.asset']
         cls.Stage = cls.env['agri.industry.physio.stage']
         
+        # Create a dummy package for stages
+        cls.package = cls.env['agri.industry.data.package'].create({
+            'name': 'Test Package',
+            'code': 'TEST-PKG'
+        })
+        
         cls.stage_early = cls.Stage.create({
-            'name': 'Seedling',
-            'code': 'S1'
+            'package_id': cls.package.id,
+            'stage_name': 'Seedling',
+            'age_days': 1
         })
         
     def test_01_biological_asset_lifecycle(self):

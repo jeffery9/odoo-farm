@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_stock_lot_form_inherit_holographic" model="ir.ui.view">
+<data>
+<record id="view_stock_lot_form_inherit_holographic" model="ir.ui.view">
         <field name="name">stock.lot.form.inherit.holographic</field>
         <field name="model">stock.lot</field>
-        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="inherit_id" ref="stock.view_production_lot_form" />
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Holographic DNA Map" name="holographic_map">
-                    <field name="holographic_map_trigger" widget="agri_traceability_map" nolabel="1"/>
+                    <field name="holographic_map_trigger" widget="agri_traceability_map" nolabel="1" />
                 </page>
             </xpath>
         </field>
     </record>
+</data>
 </odoo>

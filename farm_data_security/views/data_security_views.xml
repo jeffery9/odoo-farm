@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_farm_data_classification_tree" model="ir.ui.view">
         <field name="name">farm.data.classification.tree</field>
         <field name="model">farm.data.classification</field>
         <field name="arch" type="xml">
             <list string="Data Classification" editable="bottom">
-                <field name="name"/>
-                <field name="level" widget="badge" decoration-danger="level == 'critical'" decoration-warning="level == 'sensitive'"/>
-                <field name="encryption_required"/>
-                <field name="retention_period_years"/>
+                <field name="name" />
+                <field name="level" widget="badge" decoration-danger="level == 'critical'" decoration-warning="level == 'sensitive'" />
+                <field name="encryption_required" />
+                <field name="retention_period_years" />
             </list>
         </field>
     </record>
@@ -25,13 +26,13 @@
         <field name="model">farm.iot.device.registry</field>
         <field name="arch" type="xml">
             <list string="IoT Device Registry">
-                <field name="name"/>
-                <field name="device_uid"/>
-                <field name="device_type"/>
-                <field name="auth_status" widget="badge" decoration-success="auth_status == 'authorized'" decoration-danger="auth_status == 'revoked'"/>
-                <field name="firmware_version"/>
-                <field name="is_encrypted_comm" string="TLS"/>
-                <field name="last_security_audit"/>
+                <field name="name" />
+                <field name="device_uid" />
+                <field name="device_type" />
+                <field name="auth_status" widget="badge" decoration-success="auth_status == 'authorized'" decoration-danger="auth_status == 'revoked'" />
+                <field name="firmware_version" />
+                <field name="is_encrypted_comm" string="TLS" />
+                <field name="last_security_audit" />
             </list>
         </field>
     </record>
@@ -42,20 +43,20 @@
         <field name="arch" type="xml">
             <form string="IoT Device Security">
                 <header>
-                    <button name="action_authorize" type="object" string="Authorize Device" class="btn-primary" invisible="auth_status == 'authorized'"/>
-                    <field name="auth_status" widget="statusbar"/>
+                    <button name="action_authorize" type="object" string="Authorize Device" class="btn-primary" invisible="auth_status == 'authorized'" />
+                    <field name="auth_status" widget="statusbar" />
                 </header>
                 <sheet>
                     <group>
                         <group string="Identity">
-                            <field name="name"/>
-                            <field name="device_uid"/>
-                            <field name="device_type"/>
+                            <field name="name" />
+                            <field name="device_uid" />
+                            <field name="device_type" />
                         </group>
                         <group string="Security Params">
-                            <field name="firmware_version"/>
-                            <field name="is_encrypted_comm"/>
-                            <field name="last_security_audit"/>
+                            <field name="firmware_version" />
+                            <field name="is_encrypted_comm" />
+                            <field name="last_security_audit" />
                         </group>
                     </group>
                 </sheet>
@@ -70,7 +71,8 @@
     </record>
 
     
-    <menuitem id="menu_farm_security_root" name="Data Security" web_icon="farm_data_security,static/description/icon.png" sequence="90" groups="base.group_system"/>
-    <menuitem id="menu_farm_data_classification" name="Classification Policies" parent="menu_farm_security_root" action="action_farm_data_classification" sequence="10"/>
-    <menuitem id="menu_farm_iot_device_registry" name="IoT Device Registry" parent="menu_farm_security_root" action="action_farm_iot_device_registry" sequence="20"/>
+    <menuitem id="menu_farm_security_root" name="Data Security" web_icon="farm_data_security,static/description/icon.png" sequence="90" groups="base.group_system" />
+    <menuitem id="menu_farm_data_classification" name="Classification Policies" parent="menu_farm_security_root" action="action_farm_data_classification" sequence="10" />
+    <menuitem id="menu_farm_iot_device_registry" name="IoT Device Registry" parent="menu_farm_security_root" action="action_farm_iot_device_registry" sequence="20" />
+</data>
 </odoo>

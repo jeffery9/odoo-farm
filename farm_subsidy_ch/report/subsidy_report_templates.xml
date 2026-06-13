@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <template id="report_moara_subsidy_form_document">
         <t t-call="web.external_layout">
-            <t t-set="doc" t-value="doc.with_context(lang=doc.lang)"/>
+            <t t-set="doc" t-value="doc.with_context(lang=doc.lang)" />
             <div class="page">
                 <div class="text-center">
                     <h2>Arable Land Protection Subsidy Application</h2>
@@ -12,21 +13,21 @@
                 <table class="table table-sm table-bordered mt32">
                     <tr>
                         <td><strong>Application No.:</strong></td>
-                        <td><span t-field="doc.name"/></td>
+                        <td><span t-field="doc.name" /></td>
                         <td><strong>Fiscal Year:</strong></td>
-                        <td><span t-field="doc.fiscal_year"/></td>
+                        <td><span t-field="doc.fiscal_year" /></td>
                     </tr>
                     <tr>
                         <td><strong>Subsidy Program:</strong></td>
-                        <td><span t-field="doc.program_id.name"/></td>
+                        <td><span t-field="doc.program_id.name" /></td>
                         <td><strong>Crop Type:</strong></td>
-                        <td><span t-field="doc.crop_type_china"/></td>
+                        <td><span t-field="doc.crop_type_china" /></td>
                     </tr>
                     <tr>
                         <td><strong>Declared Area (mu):</strong></td>
-                        <td><span t-field="doc.declared_area_mu" t-options='{"widget": "float", "precision": 2}'/></td>
+                        <td><span t-field="doc.declared_area_mu" t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 2}" /></td>
                         <td><strong>Estimated Subsidy:</strong></td>
-                        <td><span t-field="doc.estimated_amount" t-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/></td>
+                        <td><span t-field="doc.estimated_amount" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.currency_id&quot;}" /></td>
                     </tr>
                 </table>
 
@@ -43,10 +44,10 @@
                     <tbody>
                         <t t-foreach="doc.land_parcel_ids" t-as="parcel">
                             <tr>
-                                <td><span t-field="parcel.name"/></td>
-                                <td><span t-field="parcel.land_area"/></td>
-                                <td><span t-field="parcel.land_nature"/></td>
-                                <td><span t-field="parcel.land_contract_no"/></td>
+                                <td><span t-field="parcel.name" /></td>
+                                <td><span t-field="parcel.land_area" /></td>
+                                <td><span t-field="parcel.land_nature" /></td>
+                                <td><span t-field="parcel.land_contract_no" /></td>
                             </tr>
                         </t>
                     </tbody>
@@ -55,9 +56,10 @@
                 <div class="mt-5 text-right">
                     <p><strong>Applicant (Stamp):</strong></p>
                     <p>____________________</p>
-                    <p>（日期：<span t-esc="datetime.now().strftime('%Y年%m月%d日')"/>）</p>
+                    <p>（日期：<span t-esc="datetime.now().strftime('%Y年%m月%d日')" />）</p>
                 </div>
             </div>
         </t>
     </template>
+</data>
 </odoo>

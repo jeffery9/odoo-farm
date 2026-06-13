@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_ecommerce_platform_tree" model="ir.ui.view">
         <field name="name">farm.ecommerce.platform.tree</field>
         <field name="model">farm.ecommerce.platform</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="code"/>
-                <field name="platform_type"/>
-                <field name="active"/>
-                <field name="last_sync"/>
-                <field name="next_sync"/>
+                <field name="name" />
+                <field name="code" />
+                <field name="platform_type" />
+                <field name="active" />
+                <field name="last_sync" />
+                <field name="next_sync" />
             </list>
         </field>
     </record>
@@ -21,43 +22,43 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_test_connection" type="object" string="Test Connection" class="oe_highlight"/>
+                    <button name="action_test_connection" type="object" string="Test Connection" class="oe_highlight" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="code"/>
-                            <field name="platform_type"/>
-                            <field name="active"/>
+                            <field name="name" />
+                            <field name="code" />
+                            <field name="platform_type" />
+                            <field name="active" />
                         </group>
                         <group>
-                            <field name="sync_inventory"/>
-                            <field name="sync_orders"/>
-                            <field name="sync_customers"/>
+                            <field name="sync_inventory" />
+                            <field name="sync_orders" />
+                            <field name="sync_customers" />
                         </group>
                     </group>
                     <notebook>
                         <page string="API Configuration">
                             <group>
-                                <field name="api_endpoint"/>
-                                <field name="client_id"/>
-                                <field name="client_secret"/>
-                                <field name="access_token"/>
-                                <field name="refresh_token"/>
-                                <field name="token_expiry"/>
+                                <field name="api_endpoint" />
+                                <field name="client_id" />
+                                <field name="client_secret" />
+                                <field name="access_token" />
+                                <field name="refresh_token" />
+                                <field name="token_expiry" />
                             </group>
                         </page>
                         <page string="Sync Schedule">
                             <group>
-                                <field name="last_sync"/>
-                                <field name="next_sync"/>
+                                <field name="last_sync" />
+                                <field name="next_sync" />
                             </group>
                         </page>
                         <page string="Details">
-                            <field name="description"/>
+                            <field name="description" />
                         </page>
                     </notebook>
                 </sheet>
@@ -70,17 +71,15 @@
         <field name="name">farm.ecommerce.sync.log.tree</field>
         <field name="model">farm.ecommerce.sync.log</field>
         <field name="arch" type="xml">
-            <list decoration-danger="status=='failed'"
-                  decoration-info="status=='in_progress'"
-                  decoration-success="status=='completed'">
-                <field name="platform_id"/>
-                <field name="sync_type"/>
-                <field name="status"/>
-                <field name="records_processed"/>
-                <field name="records_success"/>
-                <field name="records_failed"/>
-                <field name="start_time"/>
-                <field name="duration"/>
+            <list decoration-danger="status=='failed'" decoration-info="status=='in_progress'" decoration-success="status=='completed'">
+                <field name="platform_id" />
+                <field name="sync_type" />
+                <field name="status" />
+                <field name="records_processed" />
+                <field name="records_success" />
+                <field name="records_failed" />
+                <field name="start_time" />
+                <field name="duration" />
             </list>
         </field>
     </record>
@@ -91,36 +90,35 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <field name="status" widget="statusbar"/>
+                    <field name="status" widget="statusbar" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                     </div>
                     <group>
                         <group>
-                            <field name="platform_id"/>
-                            <field name="sync_type"/>
+                            <field name="platform_id" />
+                            <field name="sync_type" />
                         </group>
                         <group>
-                            <field name="start_time"/>
-                            <field name="end_time"/>
-                            <field name="duration"/>
+                            <field name="start_time" />
+                            <field name="end_time" />
+                            <field name="duration" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Statistics">
                             <group>
-                                <field name="records_processed"/>
-                                <field name="records_success"/>
-                                <field name="records_failed"/>
+                                <field name="records_processed" />
+                                <field name="records_success" />
+                                <field name="records_failed" />
                             </group>
                         </page>
                         <page string="Details">
-                            <field name="details" widget="ace" options="{'mode': 'json'}"/>
+                            <field name="details" widget="ace" options="{'mode': 'json'}" />
                         </page>
                         <page string="Errors">
-                            <field name="error_message"
-                                   class="text-danger"/>
+                            <field name="error_message" class="text-danger" />
                         </page>
                     </notebook>
                 </sheet>
@@ -136,23 +134,23 @@
             <form>
                 <group>
                     <group>
-                        <field name="greenhouse_id"/>
-                        <field name="name"/>
-                        <field name="price"/>
+                        <field name="greenhouse_id" />
+                        <field name="name" />
+                        <field name="price" />
                     </group>
                     <group>
-                        <field name="inventory_quantity"/>
+                        <field name="inventory_quantity" />
                     </group>
                 </group>
                 <group string="Description">
-                    <field name="description"/>
+                    <field name="description" />
                 </group>
                 <group string="Platforms">
-                    <field name="active_platforms" widget="many2many_tags"/>
+                    <field name="active_platforms" widget="many2many_tags" />
                 </group>
                 <footer>
-                    <button name="action_create_listings" string="Create Listings" type="object" class="oe_highlight"/>
-                    <button string="Cancel" class="oe_link" special="cancel"/>
+                    <button name="action_create_listings" string="Create Listings" type="object" class="oe_highlight" />
+                    <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
             </form>
         </field>
@@ -172,14 +170,10 @@
     </record>
 
     
-    <menuitem id="menu_ecommerce_integration" name="E-commerce Integration"
-              parent="menu_government_reporting" sequence="30"/>
+    <menuitem id="menu_ecommerce_integration" name="E-commerce Integration" parent="menu_government_reporting" sequence="30" />
 
-    <menuitem id="menu_ecommerce_platform" name="E-commerce Platforms"
-              action="action_ecommerce_platform"
-              parent="menu_ecommerce_integration" sequence="10"/>
+    <menuitem id="menu_ecommerce_platform" name="E-commerce Platforms" action="action_ecommerce_platform" parent="menu_ecommerce_integration" sequence="10" />
 
-    <menuitem id="menu_ecommerce_sync_log" name="Sync Logs"
-              action="action_ecommerce_sync_log"
-              parent="menu_ecommerce_integration" sequence="20"/>
+    <menuitem id="menu_ecommerce_sync_log" name="Sync Logs" action="action_ecommerce_sync_log" parent="menu_ecommerce_integration" sequence="20" />
+</data>
 </odoo>

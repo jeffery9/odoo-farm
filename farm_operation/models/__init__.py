@@ -13,8 +13,8 @@ from . import farm_agricultural_campaign_base
 # 3. Core Extensions & Application Models
 from . import agricultural_campaign
 from . import agri_bom
-from . import project_task
 from . import agri_intervention
+from . import project_task
 from . import stock_move
 from . import farm_agricultural_campaign
 from . import farm_agricultural_intervention

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, exceptions
 from odoo.tools.safe_eval import safe_eval
+from datetime import timedelta
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -108,6 +109,22 @@ class MrpWorkorder(models.Model):
     # EPIC-136
     wip_exposure_hours = fields.Float("WIP Exposure Duration (h)")
     avg_env_temperature = fields.Float("Avg Workcenter Temperature (°C)")
+    wip_exposure_status = fields.Selection([
+        ('normal', 'Normal'),
+        ('orange', 'Threshold Alert (80%)'),
+        ('red', 'Meltdown Warning (100%)')
+    ], string="Exposure Status", compute='_compute_wip_exposure_status', store=True)
+
+    @api.depends('wip_exposure_hours')
+    def _compute_wip_exposure_status(self):
+        for wo in self:
+            threshold = 10.0 # Mock threshold for demo
+            if wo.wip_exposure_hours >= threshold:
+                wo.wip_exposure_status = 'red'
+            elif wo.wip_exposure_hours >= threshold * 0.8:
+                wo.wip_exposure_status = 'orange'
+            else:
+                wo.wip_exposure_status = 'normal'
 
     # EPIC-137
     power_consumption_kwh = fields.Float("Energy Consumption (kWh)")
@@ -121,6 +138,13 @@ class MrpWorkorder(models.Model):
             # US-136-02: Dynamic Expiration Penalty
             if wo.wip_exposure_hours > 1.0 and wo.avg_env_temperature > 20.0:
                 penalty_hours = (wo.wip_exposure_hours - 1.0) * 12 # Mock degradation formula
+                
+                # Apply actual penalty to the produced lot if available
+                if wo.production_id.lot_producing_id:
+                    lot = wo.production_id.lot_producing_id
+                    if lot.expiration_date:
+                        lot.expiration_date -= timedelta(hours=penalty_hours)
+                
                 wo.production_id.message_post(
                     body=f"⚠️ <b>WIP Shelf-Life Penalty Applied</b><br/>"
                          f"WIP exposed for {wo.wip_exposure_hours}h at {wo.avg_env_temperature}°C.<br/>"
@@ -131,8 +155,23 @@ class MrpWorkorder(models.Model):
             if wo.power_consumption_kwh > 0:
                 grid_emission_factor = 0.5  # kg CO2e / kWh
                 carbon_kg = wo.power_consumption_kwh * grid_emission_factor
-                financial_cost = wo.power_consumption_kwh * 0.15 # $0.15 / kWh
+                electricity_rate = 0.15 # $0.15 / kWh
+                financial_cost = wo.power_consumption_kwh * electricity_rate
                 
+                # Create Stock Valuation Layer for the cost (US-137-02)
+                if wo.production_id.move_finished_ids:
+                    move = wo.production_id.move_finished_ids[0]
+                    self.env['stock.valuation.layer'].create({
+                        'value': financial_cost,
+                        'unit_cost': 0,
+                        'quantity': 0,
+                        'remaining_qty': 0,
+                        'stock_move_id': move.id,
+                        'description': f"Energy Cost Allocation: {wo.power_consumption_kwh} kWh for {wo.name}",
+                        'product_id': move.product_id.id,
+                        'company_id': wo.company_id.id,
+                    })
+
                 wo.production_id.message_post(
                     body=f"🌱 <b>ESG & Cost Allocation (Scope 2)</b><br/>"
                          f"Metered Energy: {wo.power_consumption_kwh} kWh<br/>"
@@ -142,9 +181,19 @@ class MrpWorkorder(models.Model):
                 
                 # Interface with Agri Carbon Ledger if available
                 if 'agri.carbon.ledger' in self.env:
+                    factor = self.env['agri.carbon.factor'].search([('name', 'ilike', 'Electricity')], limit=1)
+                    if not factor:
+                        factor = self.env['agri.carbon.factor'].create({
+                            'name': 'Electricity (Grid)',
+                            'category': 'energy',
+                            'emission_factor': grid_emission_factor,
+                            'uom_id': self.env.ref('uom.product_uom_unit').id # Mock UoM
+                        })
+                    
                     self.env['agri.carbon.ledger'].create({
                         'name': f'Scope 2 Emissions from {wo.name}',
-                        'emission_type': 'scope_2',
-                        'amount_kg': carbon_kg,
+                        'factor_id': factor.id,
+                        'quantity': wo.power_consumption_kwh,
+                        'lot_id': wo.production_id.lot_producing_id.id if wo.production_id.lot_producing_id else False
                     })
         return res

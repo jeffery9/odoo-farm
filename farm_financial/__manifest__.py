@@ -9,10 +9,13 @@
         "base",
         "mail",
         "account",
+        "stock",
+        "mrp",
         "farm_core",
     ],
     "data": [
         "security/ir.model.access.csv",
+        "views/menu.xml",
     ],
     "demo": [
     ],

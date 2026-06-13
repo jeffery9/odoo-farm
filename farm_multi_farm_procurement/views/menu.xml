@@ -1,36 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<menuitem id="multi_farm_procurement_menu"
-              name="Procurement Management"
-              parent="farm_multi_farm.menu_multi_farm_root"
-              sequence="50"/>
+<data>
+<menuitem id="multi_farm_procurement_menu" name="Procurement Management" parent="farm_multi_farm.menu_multi_farm_root" sequence="50" />
 
     
-    <menuitem id="joint_procurement_menu"
-              name="Joint Procurement"
-              parent="multi_farm_procurement_menu"
-              sequence="10"/>
+    <menuitem id="joint_procurement_menu" name="Joint Procurement" parent="multi_farm_procurement_menu" sequence="10" />
 
-    <menuitem id="joint_procurement_main_menu"
-              name="Procurement Orders"
-              parent="joint_procurement_menu"
-              sequence="10"/>
+    <menuitem id="joint_procurement_main_menu" name="Procurement Orders" parent="joint_procurement_menu" sequence="10" />
 
     
-    <menuitem id="procurement_planning_menu"
-              name="Planning &amp; Allocation"
-              parent="multi_farm_procurement_menu"
-              sequence="20"/>
+    <menuitem id="procurement_planning_menu" name="Planning &amp; Allocation" parent="multi_farm_procurement_menu" sequence="20" />
 
     
-    <menuitem id="contract_farming_main_menu"
-              name="Contract Farming"
-              parent="multi_farm_procurement_menu"
-              sequence="30"/>
+    <menuitem id="contract_farming_main_menu" name="Contract Farming" parent="multi_farm_procurement_menu" sequence="30" />
 
     
-    <menuitem id="internal_marketplace_menu"
-              name="Internal Marketplace"
-              parent="multi_farm_procurement_menu"
-              sequence="40"/>
+    <menuitem id="internal_marketplace_menu" name="Internal Marketplace" parent="multi_farm_procurement_menu" sequence="40" />
+</data>
 </odoo>

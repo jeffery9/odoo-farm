@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_government_platform_config_tree" model="ir.ui.view">
         <field name="name">farm.government.platform.config.tree</field>
         <field name="model">farm.government.platform.config</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="code"/>
-                <field name="api_endpoint"/>
-                <field name="submission_frequency"/>
-                <field name="active"/>
-                <field name="last_submission"/>
-                <field name="next_scheduled_submission"/>
+                <field name="name" />
+                <field name="code" />
+                <field name="api_endpoint" />
+                <field name="submission_frequency" />
+                <field name="active" />
+                <field name="last_submission" />
+                <field name="next_scheduled_submission" />
             </list>
         </field>
     </record>
@@ -22,39 +23,39 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_test_connection" type="object" string="Test Connection" class="oe_highlight"/>
+                    <button name="action_test_connection" type="object" string="Test Connection" class="oe_highlight" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="code"/>
-                            <field name="active"/>
+                            <field name="name" />
+                            <field name="code" />
+                            <field name="active" />
                         </group>
                         <group>
-                            <field name="data_format"/>
-                            <field name="submission_frequency"/>
+                            <field name="data_format" />
+                            <field name="submission_frequency" />
                         </group>
                     </group>
                     <notebook>
                         <page string="API Configuration">
                             <group>
-                                <field name="api_endpoint"/>
-                                <field name="api_username"/>
-                                <field name="api_password"/>
-                                <field name="api_key"/>
+                                <field name="api_endpoint" />
+                                <field name="api_username" />
+                                <field name="api_password" />
+                                <field name="api_key" />
                             </group>
                         </page>
                         <page string="Scheduling">
                             <group>
-                                <field name="last_submission"/>
-                                <field name="next_scheduled_submission"/>
+                                <field name="last_submission" />
+                                <field name="next_scheduled_submission" />
                             </group>
                         </page>
                         <page string="Details">
-                            <field name="description"/>
+                            <field name="description" />
                         </page>
                     </notebook>
                 </sheet>
@@ -67,16 +68,14 @@
         <field name="name">farm.government.data.report.tree</field>
         <field name="model">farm.government.data.report</field>
         <field name="arch" type="xml">
-            <list decoration-danger="submission_status=='failed'"
-                  decoration-warning="submission_status in ['pending', 'submitted']"
-                  decoration-success="submission_status in ['approved']">
-                <field name="name"/>
-                <field name="report_type"/>
-                <field name="platform_config_id"/>
-                <field name="submission_date"/>
-                <field name="submission_status"/>
-                <field name="submission_attempts"/>
-                <field name="last_attempt_date"/>
+            <list decoration-danger="submission_status=='failed'" decoration-warning="submission_status in ['pending', 'submitted']" decoration-success="submission_status in ['approved']">
+                <field name="name" />
+                <field name="report_type" />
+                <field name="platform_config_id" />
+                <field name="submission_date" />
+                <field name="submission_status" />
+                <field name="submission_attempts" />
+                <field name="last_attempt_date" />
             </list>
         </field>
     </record>
@@ -87,63 +86,57 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_prepare_data" type="object" string="Prepare Data"
-                            class="oe_highlight"/>
-                    <button name="action_submit_to_government" type="object" string="Submit to Government"
-                            class="oe_highlight"/>
-                    <button name="action_resubmit_failed" type="object" string="Resubmit Failed"
-                            class="oe_highlight"/>
-                    <field name="submission_status" widget="statusbar" statusbar_visible="draft,pending,submitted,approved"/>
+                    <button name="action_prepare_data" type="object" string="Prepare Data" class="oe_highlight" />
+                    <button name="action_submit_to_government" type="object" string="Submit to Government" class="oe_highlight" />
+                    <button name="action_resubmit_failed" type="object" string="Resubmit Failed" class="oe_highlight" />
+                    <field name="submission_status" widget="statusbar" statusbar_visible="draft,pending,submitted,approved" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="report_type"/>
-                            <field name="platform_config_id"/>
+                            <field name="name" />
+                            <field name="report_type" />
+                            <field name="platform_config_id" />
                         </group>
                         <group>
-                            <field name="submission_date"/>
-                            <field name="submission_status"/>
-                            <field name="submission_attempts"/>
+                            <field name="submission_date" />
+                            <field name="submission_status" />
+                            <field name="submission_attempts" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Data Selection">
                             <group>
-                                <field name="greenhouse_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                                <field name="start_date"/>
-                                <field name="end_date"/>
+                                <field name="greenhouse_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
+                                <field name="start_date" />
+                                <field name="end_date" />
                             </group>
                         </page>
                         <page string="Data Summary">
-                            <field name="data_summary"/>
+                            <field name="data_summary" />
                         </page>
                         <page string="Payload">
-                            <field name="data_payload"
-                                   widget="ace" options="{'mode': 'json'}"/>
+                            <field name="data_payload" widget="ace" options="{'mode': 'json'}" />
                         </page>
                         <page string="Response">
                             <group>
-                                <field name="response_data"
-                                       widget="ace" options="{'mode': 'json'}"/>
-                                <field name="error_message"
-                                       class="text-danger"/>
+                                <field name="response_data" widget="ace" options="{'mode': 'json'}" />
+                                <field name="error_message" class="text-danger" />
                             </group>
                         </page>
                         <page string="Technical">
                             <group>
-                                <field name="last_attempt_date"/>
+                                <field name="last_attempt_date" />
                             </group>
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -163,14 +156,10 @@
     </record>
 
     
-    <menuitem id="menu_government_reporting" name="Government Reporting"
-              parent="menu_farm_greenhouse_root" sequence="30"/>
+    <menuitem id="menu_government_reporting" name="Government Reporting" parent="menu_farm_greenhouse_root" sequence="30" />
 
-    <menuitem id="menu_government_platform_config" name="Platform Configurations"
-              action="action_government_platform_config"
-              parent="menu_government_reporting" sequence="10"/>
+    <menuitem id="menu_government_platform_config" name="Platform Configurations" action="action_government_platform_config" parent="menu_government_reporting" sequence="10" />
 
-    <menuitem id="menu_government_data_report" name="Data Reports"
-              action="action_government_data_report"
-              parent="menu_government_reporting" sequence="20"/>
+    <menuitem id="menu_government_data_report" name="Data Reports" action="action_government_data_report" parent="menu_government_reporting" sequence="20" />
+</data>
 </odoo>

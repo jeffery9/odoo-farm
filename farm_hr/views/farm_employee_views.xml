@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_employee_form_inherit_farm" model="ir.ui.view">
         <field name="name">hr.employee.form.inherit.farm</field>
         <field name="model">hr.employee</field>
-        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="inherit_id" ref="hr.view_employee_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='category_ids']" position="inside">
-                <field name="is_seasonal"/>
-                <field name="agri_skill_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="is_seasonal" />
+                <field name="agri_skill_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Farm Performance" name="farm_performance" groups="farm_core.group_farm_manager">
                     <group>
-                        <field name="piece_rate_total" readonly="1"/>
+                        <field name="piece_rate_total" readonly="1" />
                     </group>
                 </page>
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Farm Skills &amp; Certs" name="farm_skills">
                     <group>
-                        <field name="is_seasonal"/>
-                        <field name="hourly_cost"/>
-                        <field name="agri_skill_ids" widget="many2many_tags"/>
+                        <field name="is_seasonal" />
+                        <field name="hourly_cost" />
+                        <field name="agri_skill_ids" widget="many2many_tags" />
                     </group>
                     <field name="certificate_ids">
                         <list editable="bottom">
-                            <field name="skill_id"/>
-                            <field name="certificate_number"/>
-                            <field name="date_expiry"/>
-                            <field name="state" widget="badge" decoration-danger="state=='expired'" decoration-success="state=='valid'"/>
+                            <field name="skill_id" />
+                            <field name="certificate_number" />
+                            <field name="date_expiry" />
+                            <field name="state" widget="badge" decoration-danger="state=='expired'" decoration-success="state=='valid'" />
                         </list>
                     </field>
                 </page>
             </xpath>
         </field>
     </record>
+</data>
 </odoo>

@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_production_lot_form_inherit_orchard" model="ir.ui.view">
         <field name="name">stock.lot.form.inherit.orchard</field>
         <field name="model">stock.lot</field>
-        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="inherit_id" ref="stock.view_production_lot_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='ref']" position="after">
-                <field name="is_fruit_tree" invisible="1"/>
-                <!-- field productive_state removed -->
-                <!-- field total_cumulative_yield removed -->
+                <field name="is_fruit_tree" invisible="1" />
+                
+                
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Orchard Lifecycle" name="orchard_lifecycle" invisible="not is_fruit_tree">
                     <group>
                         <group string="Planting Info">
-                            <field name="planting_date"/>
-                            <!-- field tree_age removed -->
-                            <!-- field rootstock_variety removed -->
+                            <field name="planting_date" />
+                            
+                            
                         </group>
                         <group string="Physical Specs">
-                            <!-- field trunk_diameter removed -->
-                            <!-- field canopy_height removed -->
-                            <!-- field canopy_spread removed -->
+                            
+                            
+                            
                         </group>
                     </group>
-                    <separator string="Yield History (历年产量趋势)"/>
-                    <!-- field yield_record_ids removed -->
+                    <separator string="Yield History (历年产量趋势)" />
+                    
                 </page>
             </xpath>
         </field>
@@ -43,9 +44,6 @@
         </field>
     </record>
 
-    <menuitem id="menu_orchard_yield_analysis"
-              name="Yield Analysis"
-              parent="menu_farm_orchard_root"
-              action="action_orchard_yield_analysis"
-              sequence="30"/>
+    <menuitem id="menu_orchard_yield_analysis" name="Yield Analysis" parent="menu_farm_orchard_root" action="action_orchard_yield_analysis" sequence="30" />
+</data>
 </odoo>

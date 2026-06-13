@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_carbon_neutral_goal_list" model="ir.ui.view">
         <field name="name">agri.carbon.neutral.goal.list</field>
         <field name="model">agri.carbon.neutral.goal</field>
         <field name="arch" type="xml">
             <list string="Carbon Neutral Goals">
-                <field name="name"/>
-                <field name="goal_code"/>
-                <field name="goal_scope"/>
-                <field name="baseline_emissions"/>
-                <field name="target_emissions"/>
-                <field name="progress_percentage"/>
-                <field name="status"/>
-                <field name="target_completion_date"/>
+                <field name="name" />
+                <field name="goal_code" />
+                <field name="goal_scope" />
+                <field name="baseline_emissions" />
+                <field name="target_emissions" />
+                <field name="progress_percentage" />
+                <field name="status" />
+                <field name="target_completion_date" />
             </list>
         </field>
     </record>
@@ -24,18 +25,14 @@
         <field name="arch" type="xml">
             <form string="Carbon Neutral Goal">
                 <header>
-                    <button name="action_update_current_emissions" type="object" string="Update Current Emissions"
-                            class="oe_highlight"/>
-                    <button name="action_generate_progress_report" type="object" string="Generate Progress Report"
-                            class="oe_highlight"/>
-                    <button name="action_mark_completed" type="object" string="Mark as Completed"
-                            class="oe_highlight"/>
-                    <field name="status" widget="statusbar" statusbar_visible="planned,in_progress,on_track,completed"/>
+                    <button name="action_update_current_emissions" type="object" string="Update Current Emissions" class="oe_highlight" />
+                    <button name="action_generate_progress_report" type="object" string="Generate Progress Report" class="oe_highlight" />
+                    <button name="action_mark_completed" type="object" string="Mark as Completed" class="oe_highlight" />
+                    <field name="status" widget="statusbar" statusbar_visible="planned,in_progress,on_track,completed" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" name="action_generate_progress_report" type="object"
-                                icon="fa-bar-chart">
+                        <button class="oe_stat_button" name="action_generate_progress_report" type="object" icon="fa-bar-chart">
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Progress Report</span>
                             </div>
@@ -43,19 +40,19 @@
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="goal_code"/>
-                            <field name="goal_scope"/>
-                            <field name="start_date"/>
-                            <field name="target_completion_date"/>
-                            <field name="actual_completion_date"/>
+                            <field name="name" />
+                            <field name="goal_code" />
+                            <field name="goal_scope" />
+                            <field name="start_date" />
+                            <field name="target_completion_date" />
+                            <field name="actual_completion_date" />
                         </group>
                         <group>
-                            <field name="location_id" invisible="goal_scope != 'location'" required="goal_scope == 'location'"/>
-                            <field name="product_category_id" invisible="goal_scope != 'product'" required="goal_scope == 'product'"/>
-                            <field name="process_type" invisible="goal_scope != 'process'" required="goal_scope == 'process'"/>
-                            <field name="status"/>
-                            <field name="progress_percentage"/>
+                            <field name="location_id" invisible="goal_scope != 'location'" required="goal_scope == 'location'" />
+                            <field name="product_category_id" invisible="goal_scope != 'product'" required="goal_scope == 'product'" />
+                            <field name="process_type" invisible="goal_scope != 'process'" required="goal_scope == 'process'" />
+                            <field name="status" />
+                            <field name="progress_percentage" />
                         </group>
                     </group>
 
@@ -63,62 +60,62 @@
                         <page string="Carbon Metrics">
                             <group>
                                 <group>
-                                    <field name="baseline_emissions"/>
-                                    <field name="target_emissions"/>
+                                    <field name="baseline_emissions" />
+                                    <field name="target_emissions" />
                                 </group>
                                 <group>
-                                    <field name="current_emissions"/>
-                                    <field name="emissions_reduction_target"/>
+                                    <field name="current_emissions" />
+                                    <field name="emissions_reduction_target" />
                                 </group>
                             </group>
                         </page>
 
                         <page string="Offset Strategy">
                             <group>
-                                <field name="offset_strategy"/>
-                                <field name="offset_projects_description"/>
+                                <field name="offset_strategy" />
+                                <field name="offset_projects_description" />
                             </group>
                         </page>
 
                         <page string="Financial Aspects">
                             <group>
                                 <group>
-                                    <field name="budget_allocated"/>
-                                    <field name="budget_spent"/>
+                                    <field name="budget_allocated" />
+                                    <field name="budget_spent" />
                                 </group>
                                 <group>
-                                    <field name="cost_per_ton_co2"/>
+                                    <field name="cost_per_ton_co2" />
                                 </group>
                             </group>
                         </page>
 
                         <page string="Implementation">
                             <group>
-                                <field name="implementation_activities" nolabel="1"/>
-                                <field name="monitoring_plan" nolabel="1"/>
-                                <field name="verification_method"/>
+                                <field name="implementation_activities" nolabel="1" />
+                                <field name="monitoring_plan" nolabel="1" />
+                                <field name="verification_method" />
                             </group>
                         </page>
 
                         <page string="Stakeholders">
                             <group>
-                                <field name="responsible_user_id"/>
-                                <field name="stakeholders" widget="many2many_tags"/>
+                                <field name="responsible_user_id" />
+                                <field name="stakeholders" widget="many2many_tags" />
                             </group>
                         </page>
 
                         <page string="Documentation">
                             <group>
-                                <field name="supporting_documents" filename="document_name"/>
-                                <field name="document_name" invisible="1"/>
+                                <field name="supporting_documents" filename="document_name" />
+                                <field name="document_name" invisible="1" />
                             </group>
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -130,21 +127,21 @@
         <field name="model">agri.carbon.neutral.goal</field>
         <field name="arch" type="xml">
             <search string="Carbon Neutral Goals">
-                <field name="name"/>
-                <field name="goal_code"/>
-                <field name="goal_scope"/>
-                <field name="status"/>
-                <field name="start_date"/>
-                <field name="target_completion_date"/>
-                <filter name="filter_planned" string="Planned" domain="[('status', '=', 'planned')]"/>
-                <filter name="filter_in_progress" string="In Progress" domain="[('status', '=', 'in_progress')]"/>
-                <filter name="filter_on_track" string="On Track" domain="[('status', '=', 'on_track')]"/>
-                <filter name="filter_completed" string="Completed" domain="[('status', '=', 'completed')]"/>
-                <filter name="filter_high_priority" string="High Priority" domain="[('progress_percentage', '&lt;', 50)]"/>
+                <field name="name" />
+                <field name="goal_code" />
+                <field name="goal_scope" />
+                <field name="status" />
+                <field name="start_date" />
+                <field name="target_completion_date" />
+                <filter name="filter_planned" string="Planned" domain="[('status', '=', 'planned')]" />
+                <filter name="filter_in_progress" string="In Progress" domain="[('status', '=', 'in_progress')]" />
+                <filter name="filter_on_track" string="On Track" domain="[('status', '=', 'on_track')]" />
+                <filter name="filter_completed" string="Completed" domain="[('status', '=', 'completed')]" />
+                <filter name="filter_high_priority" string="High Priority" domain="[('progress_percentage', '&lt;', 50)]" />
                 <group>
-                    <filter name="group_scope" string="Goal Scope" domain="[]" context="{'group_by':'goal_scope'}"/>
-                    <filter name="group_status" string="Status" domain="[]" context="{'group_by':'status'}"/>
-                    <filter name="group_responsible" string="Responsible Person" domain="[]" context="{'group_by':'responsible_user_id'}"/>
+                    <filter name="group_scope" string="Goal Scope" domain="[]" context="{'group_by':'goal_scope'}" />
+                    <filter name="group_status" string="Status" domain="[]" context="{'group_by':'status'}" />
+                    <filter name="group_responsible" string="Responsible Person" domain="[]" context="{'group_by':'responsible_user_id'}" />
                 </group>
             </search>
         </field>
@@ -171,15 +168,15 @@
         <field name="model">agri.carbon.credit</field>
         <field name="arch" type="xml">
             <list string="Carbon Credits">
-                <field name="name"/>
-                <field name="credit_code"/>
-                <field name="credit_quantity"/>
-                <field name="unit_price"/>
-                <field name="total_value"/>
-                <field name="vintage_year"/>
-                <field name="status"/>
-                <field name="verification_standard"/>
-                <field name="owner_partner_id"/>
+                <field name="name" />
+                <field name="credit_code" />
+                <field name="credit_quantity" />
+                <field name="unit_price" />
+                <field name="total_value" />
+                <field name="vintage_year" />
+                <field name="status" />
+                <field name="verification_standard" />
+                <field name="owner_partner_id" />
             </list>
         </field>
     </record>
@@ -191,17 +188,13 @@
         <field name="arch" type="xml">
             <form string="Carbon Credit">
                 <header>
-                    <button name="action_transfer_credits" type="object" string="Transfer Credits"
-                            class="oe_highlight"/>
-                    <button name="action_retire_credits" type="object" string="Retire Credits"
-                            class="oe_highlight"/>
-                    <button name="action_verify_credits" type="object" string="Verify Credits"
-                            class="oe_highlight"/>
+                    <button name="action_transfer_credits" type="object" string="Transfer Credits" class="oe_highlight" />
+                    <button name="action_retire_credits" type="object" string="Retire Credits" class="oe_highlight" />
+                    <button name="action_verify_credits" type="object" string="Verify Credits" class="oe_highlight" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" name="action_retire_credits" type="object"
-                                icon="fa-check-circle">
+                        <button class="oe_stat_button" name="action_retire_credits" type="object" icon="fa-check-circle">
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Retire</span>
                             </div>
@@ -209,16 +202,16 @@
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="credit_code"/>
-                            <field name="description"/>
+                            <field name="name" />
+                            <field name="credit_code" />
+                            <field name="description" />
                         </group>
                         <group>
-                            <field name="owner_partner_id"/>
-                            <field name="credit_quantity"/>
-                            <field name="unit_price"/>
-                            <field name="total_value"/>
-                            <field name="vintage_year"/>
+                            <field name="owner_partner_id" />
+                            <field name="credit_quantity" />
+                            <field name="unit_price" />
+                            <field name="total_value" />
+                            <field name="vintage_year" />
                         </group>
                     </group>
 
@@ -226,35 +219,35 @@
                         <page string="Verification Details">
                             <group>
                                 <group>
-                                    <field name="verification_standard"/>
-                                    <field name="verification_body"/>
-                                    <field name="verification_date"/>
-                                    <field name="certification_number"/>
+                                    <field name="verification_standard" />
+                                    <field name="verification_body" />
+                                    <field name="verification_date" />
+                                    <field name="certification_number" />
                                 </group>
                                 <group>
-                                    <field name="status"/>
-                                    <field name="compliance_scope"/>
-                                    <field name="eligible_for_compliance"/>
+                                    <field name="status" />
+                                    <field name="compliance_scope" />
+                                    <field name="eligible_for_compliance" />
                                 </group>
                             </group>
                         </page>
 
                         <page string="Project Information">
                             <group>
-                                <field name="project_location_id"/>
-                                <field name="project_description"/>
+                                <field name="project_location_id" />
+                                <field name="project_description" />
                             </group>
                         </page>
 
                         <page string="Trading Information">
                             <group>
                                 <group>
-                                    <field name="purchase_date"/>
-                                    <field name="purchase_price"/>
-                                    <field name="seller_partner_id"/>
+                                    <field name="purchase_date" />
+                                    <field name="purchase_price" />
+                                    <field name="seller_partner_id" />
                                 </group>
                                 <group>
-                                    <field name="contract_reference"/>
+                                    <field name="contract_reference" />
                                 </group>
                             </group>
                         </page>
@@ -262,18 +255,18 @@
                         <page string="Retirement Information">
                             <group>
                                 <group>
-                                    <field name="retirement_date"/>
-                                    <field name="retirement_reason"/>
-                                    <field name="retiree_partner_id"/>
+                                    <field name="retirement_date" />
+                                    <field name="retirement_reason" />
+                                    <field name="retiree_partner_id" />
                                 </group>
                             </group>
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -285,21 +278,21 @@
         <field name="model">agri.carbon.credit</field>
         <field name="arch" type="xml">
             <search string="Carbon Credits">
-                <field name="name"/>
-                <field name="credit_code"/>
-                <field name="owner_partner_id"/>
-                <field name="verification_standard"/>
-                <field name="status"/>
-                <field name="vintage_year"/>
-                <filter name="filter_available" string="Available" domain="[('status', '=', 'available')]"/>
-                <filter name="filter_retired" string="Retired" domain="[('status', '=', 'retired')]"/>
-                <filter name="filter_certified" string="VCS Certified" domain="[('verification_standard', '=', 'vcs')]"/>
-                <filter name="filter_gold_standard" string="Gold Standard" domain="[('verification_standard', '=', 'gold')]"/>
+                <field name="name" />
+                <field name="credit_code" />
+                <field name="owner_partner_id" />
+                <field name="verification_standard" />
+                <field name="status" />
+                <field name="vintage_year" />
+                <filter name="filter_available" string="Available" domain="[('status', '=', 'available')]" />
+                <filter name="filter_retired" string="Retired" domain="[('status', '=', 'retired')]" />
+                <filter name="filter_certified" string="VCS Certified" domain="[('verification_standard', '=', 'vcs')]" />
+                <filter name="filter_gold_standard" string="Gold Standard" domain="[('verification_standard', '=', 'gold')]" />
                 <group>
-                    <filter name="group_owner" string="Owner" domain="[]" context="{'group_by':'owner_partner_id'}"/>
-                    <filter name="group_standard" string="Verification Standard" domain="[]" context="{'group_by':'verification_standard'}"/>
-                    <filter name="group_status" string="Status" domain="[]" context="{'group_by':'status'}"/>
-                    <filter name="group_year" string="Vintage Year" domain="[]" context="{'group_by':'vintage_year'}"/>
+                    <filter name="group_owner" string="Owner" domain="[]" context="{'group_by':'owner_partner_id'}" />
+                    <filter name="group_standard" string="Verification Standard" domain="[]" context="{'group_by':'verification_standard'}" />
+                    <filter name="group_status" string="Status" domain="[]" context="{'group_by':'status'}" />
+                    <filter name="group_year" string="Vintage Year" domain="[]" context="{'group_by':'vintage_year'}" />
                 </group>
             </search>
         </field>
@@ -326,14 +319,14 @@
         <field name="model">agri.bio.energy.product</field>
         <field name="arch" type="xml">
             <list string="Bio-energy Products">
-                <field name="name"/>
-                <field name="product_code"/>
-                <field name="product_type"/>
-                <field name="raw_material_source"/>
-                <field name="co2_reduction_percentage"/>
-                <field name="sustainability_score"/>
-                <field name="available_quantity"/>
-                <field name="marketplace_price"/>
+                <field name="name" />
+                <field name="product_code" />
+                <field name="product_type" />
+                <field name="raw_material_source" />
+                <field name="co2_reduction_percentage" />
+                <field name="sustainability_score" />
+                <field name="available_quantity" />
+                <field name="marketplace_price" />
             </list>
         </field>
     </record>
@@ -345,23 +338,18 @@
         <field name="arch" type="xml">
             <form string="Bio-energy Product">
                 <header>
-                    <button name="action_list_in_marketplace" type="object" string="List in Marketplace"
-                            class="oe_highlight"/>
-                    <button name="action_delist_from_marketplace" type="object" string="Remove from Marketplace"
-                            class="oe_highlight"/>
-                    <button name="action_generate_sustainability_report" type="object" string="Generate Report"
-                            class="oe_highlight"/>
+                    <button name="action_list_in_marketplace" type="object" string="List in Marketplace" class="oe_highlight" />
+                    <button name="action_delist_from_marketplace" type="object" string="Remove from Marketplace" class="oe_highlight" />
+                    <button name="action_generate_sustainability_report" type="object" string="Generate Report" class="oe_highlight" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" name="action_list_in_marketplace" type="object"
-                                icon="fa-shopping-cart" invisible="is_listed_in_marketplace == True">
+                        <button class="oe_stat_button" name="action_list_in_marketplace" type="object" icon="fa-shopping-cart" invisible="is_listed_in_marketplace == True">
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">List</span>
                             </div>
                         </button>
-                        <button class="oe_stat_button" name="action_delist_from_marketplace" type="object"
-                                icon="fa-trash" invisible="is_listed_in_marketplace == False">
+                        <button class="oe_stat_button" name="action_delist_from_marketplace" type="object" icon="fa-trash" invisible="is_listed_in_marketplace == False">
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Delist</span>
                             </div>
@@ -369,16 +357,16 @@
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="product_code"/>
-                            <field name="product_type"/>
-                            <field name="raw_material_source"/>
+                            <field name="name" />
+                            <field name="product_code" />
+                            <field name="product_type" />
+                            <field name="raw_material_source" />
                         </group>
                         <group>
-                            <field name="production_location_id"/>
-                            <field name="is_listed_in_marketplace"/>
-                            <field name="marketplace_listing_date"/>
-                            <field name="marketplace_category"/>
+                            <field name="production_location_id" />
+                            <field name="is_listed_in_marketplace" />
+                            <field name="marketplace_listing_date" />
+                            <field name="marketplace_category" />
                         </group>
                     </group>
 
@@ -386,12 +374,12 @@
                         <page string="Technical Specifications">
                             <group>
                                 <group>
-                                    <field name="energy_content"/>
-                                    <field name="co2_reduction_percentage"/>
+                                    <field name="energy_content" />
+                                    <field name="co2_reduction_percentage" />
                                 </group>
                                 <group>
-                                    <field name="production_capacity"/>
-                                    <field name="production_unit"/>
+                                    <field name="production_capacity" />
+                                    <field name="production_unit" />
                                 </group>
                             </group>
                         </page>
@@ -399,11 +387,11 @@
                         <page string="Sustainability Metrics">
                             <group>
                                 <group>
-                                    <field name="sustainability_score"/>
-                                    <field name="quality_grade"/>
+                                    <field name="sustainability_score" />
+                                    <field name="quality_grade" />
                                 </group>
                                 <group>
-                                    <field name="lifecycle_assessment"/>
+                                    <field name="lifecycle_assessment" />
                                 </group>
                             </group>
                         </page>
@@ -411,35 +399,35 @@
                         <page string="Marketplace Information">
                             <group>
                                 <group>
-                                    <field name="marketplace_price"/>
-                                    <field name="available_quantity"/>
-                                    <field name="min_order_quantity"/>
+                                    <field name="marketplace_price" />
+                                    <field name="available_quantity" />
+                                    <field name="min_order_quantity" />
                                 </group>
                             </group>
                         </page>
 
                         <page string="Quality &amp; Certifications">
                             <group>
-                                <field name="esg_certifications" widget="many2many_tags"/>
-                                <field name="quality_certifications" widget="many2many_tags"/>
-                                <field name="sustainability_standards"/>
+                                <field name="esg_certifications" widget="many2many_tags" />
+                                <field name="quality_certifications" widget="many2many_tags" />
+                                <field name="sustainability_standards" />
                             </group>
                         </page>
 
                         <page string="Documentation">
                             <group>
-                                <field name="technical_specifications" filename="spec_name"/>
-                                <field name="spec_name" invisible="1"/>
-                                <field name="sustainability_report" filename="report_name"/>
-                                <field name="report_name" invisible="1"/>
+                                <field name="technical_specifications" filename="spec_name" />
+                                <field name="spec_name" invisible="1" />
+                                <field name="sustainability_report" filename="report_name" />
+                                <field name="report_name" invisible="1" />
                             </group>
                         </page>
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -451,19 +439,19 @@
         <field name="model">agri.bio.energy.product</field>
         <field name="arch" type="xml">
             <search string="Bio-energy Products">
-                <field name="name"/>
-                <field name="product_code"/>
-                <field name="product_type"/>
-                <field name="is_listed_in_marketplace"/>
-                <field name="marketplace_category"/>
-                <filter name="filter_listed" string="Listed in Marketplace" domain="[('is_listed_in_marketplace', '=', True)]"/>
-                <filter name="filter_biofuel" string="Biofuels" domain="[('product_type', 'in', ['biofuel', 'biodiesel', 'bioethanol', 'biogasoline'])]"/>
-                <filter name="filter_biogas" string="Biogas" domain="[('product_type', '=', 'biogas')]"/>
-                <filter name="filter_high_reduction" string="High CO2 Reduction" domain="[('co2_reduction_percentage', '&gt;', 70)]"/>
+                <field name="name" />
+                <field name="product_code" />
+                <field name="product_type" />
+                <field name="is_listed_in_marketplace" />
+                <field name="marketplace_category" />
+                <filter name="filter_listed" string="Listed in Marketplace" domain="[('is_listed_in_marketplace', '=', True)]" />
+                <filter name="filter_biofuel" string="Biofuels" domain="[('product_type', 'in', ['biofuel', 'biodiesel', 'bioethanol', 'biogasoline'])]" />
+                <filter name="filter_biogas" string="Biogas" domain="[('product_type', '=', 'biogas')]" />
+                <filter name="filter_high_reduction" string="High CO2 Reduction" domain="[('co2_reduction_percentage', '&gt;', 70)]" />
                 <group>
-                    <filter name="group_type" string="Product Type" domain="[]" context="{'group_by':'product_type'}"/>
-                    <filter name="group_source" string="Raw Material Source" domain="[]" context="{'group_by':'raw_material_source'}"/>
-                    <filter name="group_location" string="Production Location" domain="[]" context="{'group_by':'production_location_id'}"/>
+                    <filter name="group_type" string="Product Type" domain="[]" context="{'group_by':'product_type'}" />
+                    <filter name="group_source" string="Raw Material Source" domain="[]" context="{'group_by':'raw_material_source'}" />
+                    <filter name="group_location" string="Production Location" domain="[]" context="{'group_by':'production_location_id'}" />
                 </group>
             </search>
         </field>
@@ -483,4 +471,5 @@
             </p>
         </field>
     </record>
+</data>
 </odoo>

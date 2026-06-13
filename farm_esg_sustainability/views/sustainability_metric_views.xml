@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<data>
 <record id="view_sustainability_metric_tree" model="ir.ui.view">
         <field name="name">farm.sustainability.metric.tree</field>
         <field name="model">agri.sustainability.metric</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="code"/>
-                <field name="category"/>
-                <field name="current_value"/>
-                <field name="target_value"/>
-                <field name="progress_rate"/>
-                <field name="is_active"/>
+                <field name="name" />
+                <field name="code" />
+                <field name="category" />
+                <field name="current_value" />
+                <field name="target_value" />
+                <field name="progress_rate" />
+                <field name="is_active" />
             </list>
         </field>
     </record>
@@ -23,54 +24,54 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_update_value" type="object" string="更新指标值" class="btn-primary"/>
+                    <button name="action_update_value" type="object" string="更新指标值" class="btn-primary" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_update_value" type="object" string="更新指标值" class="oe_stat_button" icon="fa-pencil"/>
+                        <button name="action_update_value" type="object" string="更新指标值" class="oe_stat_button" icon="fa-pencil" />
                     </div>
                     <group>
                         <group>
-                            <field name="name"/>
-                            <field name="code"/>
-                            <field name="category"/>
-                            <field name="unit"/>
+                            <field name="name" />
+                            <field name="code" />
+                            <field name="category" />
+                            <field name="unit" />
                         </group>
                         <group>
-                            <field name="sequence"/>
-                            <field name="is_active"/>
-                            <field name="calculation_method"/>
+                            <field name="sequence" />
+                            <field name="is_active" />
+                            <field name="calculation_method" />
                         </group>
                     </group>
                     <group>
-                        <field name="description"/>
+                        <field name="description" />
                     </group>
                     <group string="目标与当前值">
                         <group>
-                            <field name="target_value"/>
-                            <field name="current_value"/>
-                            <field name="progress_rate"/>
-                            <field name="last_updated"/>
+                            <field name="target_value" />
+                            <field name="current_value" />
+                            <field name="progress_rate" />
+                            <field name="last_updated" />
                         </group>
                     </group>
                     <group string="计算公式" invisible="calculation_method != 'formula'">
-                        <field name="formula" nolabel="1"/>
+                        <field name="formula" nolabel="1" />
                     </group>
                     <notebook>
                         <page string="指标值历史">
                             <field name="value_history_ids">
                                 <list>
-                                    <field name="date"/>
-                                    <field name="value"/>
-                                    <field name="note"/>
-                                    <field name="recorded_by"/>
+                                    <field name="date" />
+                                    <field name="value" />
+                                    <field name="note" />
+                                    <field name="recorded_by" />
                                 </list>
                                 <form>
                                     <group>
-                                        <field name="date"/>
-                                        <field name="value"/>
-                                        <field name="note"/>
-                                        <field name="recorded_by"/>
+                                        <field name="date" />
+                                        <field name="value" />
+                                        <field name="note" />
+                                        <field name="recorded_by" />
                                     </group>
                                 </form>
                             </field>
@@ -78,9 +79,9 @@
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
                 </div>
             </form>
         </field>
@@ -92,4 +93,5 @@
         <field name="res_model">agri.sustainability.metric</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>

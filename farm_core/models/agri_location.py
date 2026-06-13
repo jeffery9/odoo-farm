@@ -14,11 +14,12 @@ class AgriLocation(models.Model):
     _inherit = [
         'agri.geospatial.mixin',     # Level 1: Spatial Grid & GIS
         'agri.sustainability.mixin', # Level 0: Environmental Context
+        'agri.certification.status.mixin', # [NEW] L0: Certification Tracking
         'agri.embedding.mixin',      # Level 2: Knowledge Grounding
         'mail.thread'
     ]
 
-    name = fields.Char("Location ID/Name", required=True, index=True)
+    name = fields.Char("Location ID/Name", index=True, default=lambda self: _('New Location'))
     location_type = fields.Selection([
         ('field', 'Open Field / Plot'),
         ('greenhouse', 'Greenhouse / CEA'),
@@ -30,6 +31,9 @@ class AgriLocation(models.Model):
 
     parent_id = fields.Many2one('agri.location', string="Parent Location")
     child_ids = fields.One2many('agri.location', 'parent_id', string="Sub-locations")
+
+    original_owner_id = fields.Many2one('res.partner', string="Original Land Rights Owner", 
+                                       help="The smallholder who originally owns this micro-plot.")
 
     active = fields.Boolean(default=True)
 

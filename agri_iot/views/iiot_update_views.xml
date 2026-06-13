@@ -1,56 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Update Tree View -->
-    <record id="view_iiot_update_tree" model="ir.ui.view">
+<data>
+<record id="view_iiot_update_tree" model="ir.ui.view">
         <field name="name">iiot.update.tree</field>
         <field name="model">iiot.update</field>
         <field name="arch" type="xml">
             <list string="OTA更新记录">
-                <field name="name"/>
-                <field name="device_id"/>
-                <field name="firmware_id"/>
-                <field name="status"/>
-                <field name="progress"/>
-                <field name="create_date"/>
+                <field name="name" />
+                <field name="device_id" />
+                <field name="firmware_id" />
+                <field name="status" />
+                <field name="progress" />
+                <field name="create_date" />
             </list>
         </field>
     </record>
 
-    <!-- Update Form View -->
+    
     <record id="view_iiot_update_form" model="ir.ui.view">
         <field name="name">iiot.update.form</field>
         <field name="model">iiot.update</field>
         <field name="arch" type="xml">
             <form string="OTA更新记录">
                 <header>
-                    <field name="status" widget="statusbar" statusbar_visible="draft,pending,in_progress,success,failed"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,pending,in_progress,success,failed" />
                 </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="device_id"/>
-                            <field name="firmware_id"/>
+                            <field name="device_id" />
+                            <field name="firmware_id" />
                         </group>
                         <group>
-                            <field name="status"/>
-                            <field name="progress"/>
+                            <field name="status" />
+                            <field name="progress" />
                         </group>
                     </group>
                     <group string="时间信息">
-                        <field name="create_date"/>
+                        <field name="create_date" />
                     </group>
                     <group string="错误信息" invisible="status != 'failed'">
-                        <field name="error_message"/>
+                        <field name="error_message" />
                     </group>
                 </sheet>
             </form>
         </field>
     </record>
 
-    <!-- Update Action -->
+    
     <record id="action_iiot_update" model="ir.actions.act_window">
         <field name="name">OTA更新记录</field>
         <field name="res_model">iiot.update</field>
         <field name="view_mode">list,form</field>
     </record>
+</data>
 </odoo>
