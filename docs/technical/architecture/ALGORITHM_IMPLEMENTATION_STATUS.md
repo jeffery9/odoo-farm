@@ -16,7 +16,7 @@
 |---------|--------|----------|----------|------|
 | 产量预测与生产偏差分析算法 | YIELD_PREDICTION_ALGORITHM.md | ✅ 已实现 | farm_ai_decision/models/ai_crop_growth_prediction.py, docs/algorithms/YIELD_PREDICTION_ALGORITHM.md | 基础算法已实现，AI模型集成中 |
 | 定价与收益优化算法 | PRICING_REVENUE_OPTIMIZATION_ALGORITHM.md | ✅ 已实现 | docs/algorithms/PRICING_REVENUE_OPTIMIZATION_ALGORITHM.md, farm_ai_decision/models/ai_market_prediction.py | 已集成到市场预测模型中 |
-| 积温计算算法 | GDD_CALCULATION_ALGORITHM.md | 🔄 开发中 | farm_core/models/gis_utils.py | 计算功能已实现，集成到作物模型中 |
+| 积温计算算法 | GDD_CALCULATION_ALGORITHM.md | ✅ 已实现 | farm_agri_science/models/agri_science_mixin.py | 已集成在积温计算与生理阶段自动迁移中 |
 | 计算机视觉算法 | COMPUTER_VISION_ALGORITHM.md | 🔄 开发中 | farm_ai_vision/models/ai_pest_disease_detection.py | 病虫害识别部分已实现 |
 | 物联网数据处理算法 | IOT_DATA_PROCESSING_ALGORITHM.md | ✅ 已实现 | farm_iot/models/* | 已集成在IoT模块中 |
 | 基因组选择算法 | GENOMIC_SELECTION_ALGORITHM.md | ❌ 未实现 | - | 未计划实现 |
@@ -24,12 +24,12 @@
 | 杂种优势预测算法 | HETEROSIS_PREDICTION_ALGORITHM.md | ❌ 未实现 | - | 未计划实现 |
 | 近交系数计算算法 | INBREEDING_COEFFICIENT_ALGORITHM.md | ❌ 未实现 | - | 未计划实现 |
 | 背景值插值算法 | KRIGING_INTERPOLATION_ALGORITHM.md | 📋 已规划 | - | 计划在GIS模块中实现 |
-| Logistic生长模型 | LOGISTIC_GROWTH_ALGORITHM.md | 🔄 开发中 | farm_ai_decision/models/ai_crop_growth_prediction.py | 作物生长预测模型中使用 |
+| Logistic生长模型 | LOGISTIC_GROWTH_ALGORITHM.md | ✅ 已实现 | farm_agri_science/models/agri_science_mixin.py | 已集成在作物生长预测与模拟中 |
 | 分子标记辅助选择 | MARKER_ASSISTED_SELECTION_ALGORITHM.md | ❌ 未实现 | - | 未计划实现 |
 | 系谱分析算法 | PEDIGREE_ANALYSIS_ALGORITHM.md | ❌ 未实现 | - | 未计划实现 |
 | 农田转换算法 | NURSERY_TRANSITION_ALGORITHM.md | 📋 已规划 | - | 计划在育苗模块中实现 |
-| 营养平衡算法 | NUTRIENT_BALANCE_ALGORITHM.md | 🔄 开发中 | farm_operation/models/* | 部分集成在施肥决策中 |
-| 有机合规算法 | ORGANIC_COMPLIANCE_ALGORITHM.md | ✅ 已实现 | farm_certification/models/* | 已在认证模块中实现 |
+| 营养平衡算法 | NUTRIENT_BALANCE_ALGORITHM.md | ✅ 已实现 | agri_intervention/models/intervention_plugins.py | 已集成在施肥作业插件与UI仪表盘中 |
+| 有机合规算法 | ORGANIC_COMPLIANCE_ALGORITHM.md | ✅ 已实现 | agri_intervention/models/intervention_plugins.py | 已在干预插件中实现实时合规门控 |
 | 病虫害诊断算法 | PEST_DISEASE_DIAGNOSIS_ALGORITHM.md | ✅ 已实现 | farm_ai_vision/models/ai_pest_disease_detection.py | 已集成在AI视觉模块中 |
 | 预测性维护算法 | PREDICTIVE_MAINTENANCE_ALGORITHM.md | 📋 已规划 | - | 计划在设备管理模块中实现 |
 | 处方图算法 | PRESCRIPTION_MAPPING_ALGORITHM.md | 🔄 开发中 | farm_agri_science/models/vra_prescription.py | 变量施肥处方已部分实现 |
@@ -43,12 +43,12 @@
 | 保质期预测算法 | SHELF_LIFE_PREDICTION_ALGORITHM.md | ✅ 已实现 | farm_supply_logistics/models/temperature_management.py | 已集成在冷链物流模块中 |
 | VRA处方算法 | VRA_PRESCRIPTION_ALGORITHM.md | 🔄 开发中 | farm_agri_science/models/vra_prescription.py | 变量施肥/施药处方已部分实现 |
 | 等待期计算算法 | WAITING_PERIOD_CALCULATION.md | 📋 已规划 | - | 计划在安全间隔期管理中实现 |
-| 天气影响算法 | WEATHER_IMPACT_ALGORITHM.md | 🔄 开发中 | farm_weather/models/* | 已在天气模块中基础实现 |
+| 天气影响算法 | WEATHER_IMPACT_ALGORITHM.md | ✅ 已实现 | agri_intervention/models/intervention_plugins.py | 已在气象门控插件中实现实时拦截 |
 | 碳足迹算法 | CARBON_FOOTPRINT_ALGORITHM.md | 🔄 开发中 | farm_sustainability/models/carbon_footprint_calculation.py | 碳足迹计算已部分实现 |
-| 成本计算算法 | COST_CALCULATION_ALGORITHM.md | 🔄 开发中 | farm_financial/* | 财务模块中已部分实现 |
+| 成本计算算法 | COST_CALCULATION_ALGORITHM.md | ✅ 已实现 | farm_financial_valuation/models/financial_valuation_models.py | 已集成在公允价值与成本模型估值引擎中 |
 | AI协调算法 | AI_COORDINATION_ALGORITHM.md | ✅ 已实现 | farm_ai_agent/models/ai_coordination_layer.py | 已在AI代理协调层实现 |
 | AI决策算法 | AI_DECISION_ALGORITHM.md | ✅ 已实现 | farm_ai/models/ai_services/ai_decision_engine.py | 已在AI决策引擎中实现 |
-| 农户结算轧差算法 | FARMER_SETTLEMENT_NETTING_ALGORITHM.md | 📋 已规划 | - | 计划在多农场结算中实现 |
+| 农户结算轧差算法 | FARMER_SETTLEMENT_NETTING_ALGORITHM.md | ✅ 已实现 | farm_core/models/agri_clearing_engine.py | 已在社区结算与分红引擎中实现 |
 | 饲料估计算法 | FEED_ESTIMATION_ALGORITHM.md | ❌ 未实现 | - | 未计划实现 |
 | 生长预测模型 | GROWTH_PREDICTION_MODEL.md | 🔄 开发中 | farm_ai_decision/models/ai_crop_growth_prediction.py | 作物生长预测部分已实现 |
 | 指数保险算法 | INDEX_INSURANCE_ALGORITHM.md | 📋 已规划 | - | 计划在保险模块中实现 |

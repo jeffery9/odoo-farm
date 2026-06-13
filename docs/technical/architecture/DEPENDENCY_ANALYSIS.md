@@ -7,10 +7,11 @@
 本项目包含 110+ 个物理微服务模块，为解决 Odoo 颗粒度过细导致的“深层依赖链污染”问题，系统架构已正式重构为 **4 个核心业务宏层 (4-Layer Macro Architecture)**。
 
 - **依赖环路状态**: ✅ **Green (无环)**。全局严格禁止反向循环依赖。
-- **核心依赖枢纽 (Top 3 Hubs)**:
+- **核心依赖枢纽 (Top 4 Hubs)**:
     1.  `farm_core`: 全局基座（地块、品种、GIS）。
-    2.  `farm_operation`: 生产执行引擎。
-    3.  `farm_agri_science`: 生物学智能计算底座。
+    2.  `agri_intervention`: **[NEW]** 干预调度内核（Hooks）。
+    3.  `farm_operation`: 生产执行引擎。
+    4.  `farm_agri_science`: 生物学智能计算底座。
 
 ## 2. 四层扁平化架构设计 (4-Layer Flat Architecture)
 
@@ -18,7 +19,7 @@
 
 ### Layer 0: 基础设施底座层 (Foundation)
 - **定位**: 系统的物理根基，提供纯粹的客观实例和协议。
-- **代表模块**: `farm_core` (核心), `agri_iot` (物联协议), `farm_ux` (前端交互)。
+- **代表模块**: `farm_core` (核心), `agri_iot` (物联协议), `farm_ux` (前端交互), `agri_intervention` (调度引擎)。
 
 ### Layer 1: 算法与核心引擎层 (Core Engines)
 - **定位**: 将农业科学和制造标准抽象为计算引擎，不涉足具体页面。

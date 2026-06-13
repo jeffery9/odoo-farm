@@ -16,6 +16,10 @@ Before modifying or creating any files in this directory, you **MUST**:
 - **Lossless Update**: Do not delete or simplify existing architectural anchors, requirement tags (`[US-XXX]`), or tracking IDs.
 
 ## 3. Product Governance & Traceability
-- **Total Epic Audit**: The backlog has evolved to a strict 001-129 sequential structure. Always refer to `Epic_Number_Mapping.md` and `EPICS_AND_USER_STORIES.md` before generating new requirements.
-- **Acceptance Criteria (AC)**: ALL User Stories must have a strict BDD-style Acceptance Criteria block. Code tests MUST implement Assertions mapped back to these ACs using `test_ac_xx_name` conventions.
-- **US Tagging**: In the codebase (XML, Python, Models, Tests), refer to stories using the new `[US-XXX-YY]` standard where XXX is the 3-digit Epic number. Do NOT use legacy 1-or-2 digit variants.
+- **Backlog Structure**: The backlog follows a strict sequential structure (001-137). 
+- **Requirement Artifacts**:
+    - **Epics (`epics/`目录)**: Markdown documents defining business goals, user stories, and high-level logic.
+    - **Features (`features/`目录)**: Gherkin `.feature` files providing the executable BDD specification for each Epic.
+- **Traceability Link**: Each Epic has a 1:1 relationship with its Feature file, linked by the 3-digit ID (e.g., `EPIC_001_...md` ↔ `epic_001_...feature`).
+- **Acceptance Criteria (AC)**: ALL User Stories must have a strict BDD-style Acceptance Criteria block. Code tests in the `tests/` directory MUST implement Assertions mapped back to these Features.
+- **US Tagging**: In the codebase (XML, Python, Models, Tests), refer to stories using the `[US-XXX-YY]` standard. Do NOT use legacy 1-or-2 digit variants.

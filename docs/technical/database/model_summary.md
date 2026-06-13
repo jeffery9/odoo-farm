@@ -384,8 +384,12 @@
 
 ### `stock.lot` (Defined in `farm_core`)
   - **Class**: `StockLot`
-  - **描述**: 
+  - **描述**: Agricultural Lot: The carrier of the Quality Fingerprint.
   - _inherit_: `stock.lot, agri.view.mixin, agri.sustainability.mixin, agri.traceability.mixin, agri.geospatial.mixin, agri.nutrient.mixin, agri.certification.status.mixin, agri.evidence.mixin, agri.clearing.mixin`
+  - **核心字段**:
+    - `entity_audit_status` (Selection): Entity Audit Status (compliant, warning, non_compliant)
+    - `dna_integrity_score` (Float): DNA Integrity Score (0-100)
+    - `quality_grade` (Selection): Quality Grading (grade_a, grade_b, grade_c)
 
 
 ### `stock.move.line` (Defined in `farm_core`)
@@ -559,6 +563,14 @@
   - **描述**: Agricultural Intervention (De-industrialized View)
   - _inherit_: `mrp.production, agri.intervention.mixin, agri.sustainability.mixin, agri.geospatial.mixin, farm.agri.science.mixin, agri.nutrient.mixin, agri.actuator.mixin, agri.evidence.mixin, agri.clearing.mixin`
   - **核心字段**:
+    - `intervention_type` (Selection): tillage, sowing, fertilizing, irrigation, protection, harvest, etc.
+    - `biological_asset_id` (Many2one): agri.biological.asset
+    - `weather_gating_status` (Selection): safe, warning, blocked
+    - `compliance_gating_status` (Selection): compliant, warning, blocked
+    - `iot_status` (Selection): connected, offline, critical
+    - `pure_n_qty` (Float): Pure Nitrogen (kg)
+    - `pure_p_qty` (Float): Pure Phosphorus (kg)
+    - `pure_k_qty` (Float): Pure Potassium (kg)
     - `daily_temp_max` (Float): Daily Max Temperature
     - `daily_temp_min` (Float): Daily Min Temperature
 

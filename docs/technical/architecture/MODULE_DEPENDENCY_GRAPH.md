@@ -11,6 +11,11 @@ graph TD
     agri_iot["agri_iot"]:::highlight
     farm_core["farm_core"]:::highlight
     farm_ux["farm_ux"]:::highlight
+    agri_intervention["agri_intervention"]:::highlight
+
+    agri_iot --> farm_core
+    farm_ux --> farm_core
+    agri_intervention --> farm_core
 ```
 
 ## Core Frameworks (业务核心层)
@@ -50,9 +55,9 @@ graph TD
     farm_supply_quality["farm_supply_quality"]:::highlight
     farm_valuation["farm_valuation"]:::highlight
     farm_weather["farm_weather"]:::highlight
-    farm_operation["farm_operation"]:::highlight
+
     farm_agri_science --> farm_core
-    farm_agri_science --> farm_iot
+    farm_agri_science --> agri_iot
     farm_agritourism --> farm_core
     farm_ai --> farm_core
     farm_ai_llm_integration --> farm_ai
@@ -65,6 +70,8 @@ graph TD
     farm_entity_reg --> farm_core
     farm_esg --> farm_core
     farm_financial --> farm_core
+    farm_financial --> mrp
+    farm_financial --> stock
     farm_financial_credit --> farm_core
     farm_financial_credit --> farm_financial
     farm_financial_insurance --> farm_core
@@ -72,6 +79,8 @@ graph TD
     farm_financial_valuation --> farm_biological_valuation
     farm_financial_valuation --> farm_core
     farm_financial_valuation --> farm_financial
+    farm_financial_valuation --> farm_operation
+    farm_financial_valuation --> farm_ecology
     farm_greenhouse --> farm_agri_science
     farm_greenhouse --> farm_core
     farm_greenhouse --> farm_iot
@@ -83,9 +92,10 @@ graph TD
     farm_multi_farm_equipment --> farm_multi_farm
     farm_multi_farm_financial --> farm_multi_farm
     farm_multi_farm_procurement --> farm_multi_farm
+    farm_operation --> farm_core
+    farm_operation --> agri_intervention
     farm_operation --> farm_agri_science
     farm_operation --> farm_ai
-    farm_operation --> farm_core
     farm_pos --> farm_core
     farm_robotics --> farm_core
     farm_robotics --> farm_iot
@@ -104,7 +114,6 @@ graph TD
     farm_valuation --> farm_financial_valuation
     farm_weather --> farm_core
     farm_weather --> farm_iot
-    farm_operation --> farm_agri_science
 ```
 
 ## Industry Apps (垂直应用层)

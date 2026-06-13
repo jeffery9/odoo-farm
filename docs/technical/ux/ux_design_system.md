@@ -117,6 +117,13 @@ The Agricultural ERP UX Design System provides a comprehensive framework for cre
 - **Danger**: Red background, white text (delete, stop)
 - **Success**: Green border, green text (complete, done)
 
+### 5. Precision OWL Widgets [NEW]
+To support the "Physical Asset as Truth" philosophy, the system uses specialized widgets to surface real-time data:
+- **`AgriGatingAudit`**: A triple-status dashboard (Weather, Compliance, IoT) placed at the top of forms to indicate "Go/No-Go" readiness.
+- **`AgriNutrientGauge`**: Circular SVG gauges visualizing pure NPK mass balance for soil health.
+- **`AgriSpatialGauge`**: A geofence compliance indicator showing the percentage of telemetry points within assigned GIS boundaries.
+- **`AgriDnaIntegrity`**: A high-impact gauge for Stock Lots, summarizing ancestry purity and regulatory trust scores (0-100).
+
 ## Workflow Patterns
 
 ### 1. Simplified Approval System

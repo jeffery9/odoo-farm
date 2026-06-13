@@ -8,10 +8,16 @@
 
 ## 1. 逻辑层级架构 (Layered Architecture)
 
-系统将“农事干预”解构为三个物理隔离但逻辑嵌套的层级，以实现从“记账”到“变频执行”的完整链路。
+系统将“农事干预”解构为四个物理隔离但逻辑嵌套的层级，通过 **桥接钩子模式 (Bridge-based Hook Pattern)** 实现去中心化协作。
 
 ```mermaid
 flowchart TD
+    subgraph L0["Level 0: 核心引擎层 (agri_intervention)"]
+        direction TB
+        Engine["Intervention Engine (Hook Orchestrator)"]
+        PluginRegistry["Plugin Registry"]
+    end
+
     subgraph L1["Level 1: 业务执行层 (farm_operation)"]
         direction TB
         MO["mrp.production (Intervention)"]
@@ -22,51 +28,57 @@ flowchart TD
     subgraph L2["Level 2: 科学决策层 (farm_agri_science)"]
         direction TB
         VRA["agri.intervention.vra.prescription"]
-        Growth["GDD 生理阶段模型 [US-78-05]"]
-        Deficit["生物量亏缺模型 [US-78-06]"]
-        Response["品种响应曲线 [US-78-13]"]
+        Growth["GDD 生理阶段模型 [US-045]"]
+        Deficit["生物量亏缺模型"]
     end
 
-    subgraph L3["Level 3: 精密物理层 (farm_operation)"]
+    subgraph L3["Level 3: 精密物理层 (farm_iot)"]
         direction TB
-        PO["farm.operation.order"]
-        Phase["ISA-88 执行相位 (Phase)"]
-        IoT["farm_iot (MQTT)"]
+        IoT["Telemetry (MQTT)"]
+        Geofence["空间合规门控 (Geofencing)"]
     end
 
-    MO -- "1:1 关联" --> VRA
-    VRA -- "参数注入 (Setpoint)" --> PO
-    PO -- "物理反馈 (Actuals)" --> MO
+    MO -- "继承" --> Engine
+    Engine -- "触发钩子" --> PluginRegistry
+    PluginRegistry -- "分发" --> L1
+    PluginRegistry -- "分发" --> L2
+    PluginRegistry -- "分发" --> L3
 ```
 
 ---
 
-## 2. 核心模型定义与交互
+## 2. 桥接钩子模式 (Bridge-based Hook Pattern)
 
-### 2.1 业务层 (Level 1)
+为了遵循“工具而非树”的去工业化哲学，系统严禁各业务模块直接 import。所有的跨模块联动必须通过 `agri_intervention` 定义的钩子实现：
+
+### 2.1 预定义钩子点 (Standard Hooks)
+*   **`_hook_pre_confirm`**: 用于确认前的硬拦截（如气象窗口、有机禁禁令）。
+*   **`_hook_post_start`**: 用于开始后的物理激活（如 IoT 高频采集启动）。
+*   **`_hook_pre_done`**: 用于完成前的质量审计（如空间合规率、养分平衡校验）。
+*   **`_hook_post_done`**: 用于完成后的后置处理（如生理时钟同步、DNA 指纹生成）。
+
+### 2.2 信任 DNA 系统 (Trust DNA Scoring)
+每次干预完成后，系统会自动更新产出批次 (Lot) 的 **DNA 诚信分 (DNA Integrity Score)**：
+$$Score_{DNA} = 100 - Penalty_{Certification} - Penalty_{Audit} - Penalty_{Heritage}$$
+*   **认证罚分**: 非有机投入品扣除 20 分。
+*   **审计罚分**: 空间违规或 AI 存证异常扣除 50 分。
+*   **继承罚分**: 若种源/父本诚信分过低，按比例传递惩罚。
+
+---
+
+## 3. 核心模型定义与交互
+
+### 3.1 业务层 (Level 1)
 *   **模型**: `mrp.production` (通过 `farm_ux` 映射为 **Intervention**)。
 *   **职责**:
-    *   生命周期管理 (Confirm -> Start -> Done)。
-    *   继承 `farm.agri.science.mixin` 以感知生理数据。
-    *   作为 L2/L3 的上下文容器。
+    *   作为 L0 引擎的宿主，管理生命周期。
+    *   通过 `biological_asset_id` 关联活体资产，驱动价值增长。
 
-### 2.2 科学层 (Level 2)
-*   **模型**: `agri.intervention.vra.prescription` (变量处方)。
-*   **核心逻辑 [US-78]**:
-    *   **生理权重 (Stage Multiplier)**: 基于累计积温 (GDD) 动态调整养分系数。
-    *   **亏缺补偿 (Biomass Deficit)**: $\Delta W = W_{theoretical} - W_{actual}$。
-    *   **动力学修正 (Kinetics)**: 基于土壤 pH 和温湿度的转化效率修正 $f(T, M, pH)$。
-    *   **品种指纹 (Cultivar Response)**: 利用 Mitscherlich 方程计算边际收益拐点。
-
-### 2.3 精密层 (Level 3)
-*   **模型**: `farm.operation.order` / `agri.bom.phase`。
-*   **核心逻辑 [US-81]**:
-    *   **动态设定点 (Dynamic Setpoint)**: `recipe.parameter` 标记为 `is_vra_dynamic`。
-    *   **空间反馈环 (Spatial Loop)**: 
-        1. 接收 GPS Telemetry。
-        2. 匹配 `agri.geospatial.grid.cell`。
-        3. 检索 VRA `target_rate`。
-        4. 执行 `send_control_point` MQTT 指令。
+### 3.2 科学层 (Level 2)
+*   **模型**: `agri.physiology.profile` (品种指纹)。
+*   **核心逻辑**:
+    *   **生理时钟**: 捕获每日温差，驱动 GDD 累加，自动推断生长阶段。
+    *   **自动估值**: 生理阶段迁移自动触发财务重估。
 
 ---
 

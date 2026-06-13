@@ -10,6 +10,7 @@
 | Mixin 名称 | 所在模块 | 模块依赖 | 核心职责 |
 | :--- | :--- | :--- | :--- |
 | **`AgriViewMixin`** | `farm_ux` | `farm_core`, `base` | 核心“去工业化”引擎，动态拦截 UI 视图，将工业术语（MO/BOM）实时翻译为农业语义。 |
+| **`AgriInterventionBase`** | `agri_intervention` | `farm_core` | **[NEW]** 干预调度内核，定义桥接钩子（Hooks）标准，协调多领域插件执行。 |
 | **`ISLModelRedirector`** | `farm_isl` | `farm_core`, `base` | 实现基础模型到 ISL 行业模型的透明重定向与代理。 |
 | **`AgriSustainabilityMixin`** | `farm_esg_compliance` | `farm_esg`, `farm_esg_environmental`, `farm_esg_circular` | **[插件化]** 提供 ESG DNA，支持 TBL（三重底线）评估与插件级开关控制。 |
 
@@ -60,9 +61,11 @@
 ```mermaid
 graph TD
     farm_core[farm_core] --> base
+    agri_intervention[agri_intervention] --> farm_core
     farm_ux[farm_ux] --> farm_core
     farm_isl[farm_isl] --> farm_core
-    farm_operation[farm_operation] --> farm_core
+    farm_operation[farm_operation] --> agri_intervention
+    farm_operation --> farm_core
     farm_operation --> farm_ux
     farm_ai[farm_ai] --> farm_core
     farm_ai_agent[farm_ai_agent] --> farm_ai
