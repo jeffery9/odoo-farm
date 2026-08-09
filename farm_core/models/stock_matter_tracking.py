@@ -34,6 +34,21 @@ class StockMatterTracking(models.Model):
         ('cleaning', 'Cleaning / 清洗中')
     ], string='Vessel/Individual Phase / 阶段状态', default='idle', required=True, index=True, tracking=True, help="GxP container or agricultural individual physical phase.")
 
+    carrier_state = fields.Selection([
+        ('idle', 'Idle / 空闲'),
+        ('loading', 'Loading / 装载中'),
+        ('processing', 'Processing / 在加工中'),
+        ('qc', 'Quality Control / 待检'),
+        ('done', 'Done / 合格'),
+        ('consumed', 'Consumed / 已消耗')
+    ], string='Carrier State / 载体流转状态', default='idle', required=True, index=True, tracking=True)
+
+    treatment_batch_id = fields.Many2one(
+        'agri.treatment.batch',
+        string='Treatment Batch / 农耕生产批次',
+        tracking=True
+    )
+
     gxp_open_time = fields.Datetime(
         string='GxP Opened Time',
         tracking=True,
@@ -251,12 +266,13 @@ class StockMatterTracking(models.Model):
             })
             
             # Inherit genetic attributes and quality markings
-            child_tracking = self.create({
+            child_tracking = self.with_context(bypass_carrier_transition_rules=True).create({
                 'package_id': child_package.id,
                 'parent_tracking_id': self.id,
                 'fission_type': 'slaughter' if self.vessel_phase == 'dirty' else 'split',
                 'dna_integrity_score': self.dna_integrity_score * 0.95, # 5% entropy decay during split
-                'vessel_phase': 'idle'
+                'vessel_phase': 'idle',
+                'carrier_state': 'idle'
             })
             child_records |= child_tracking
             
@@ -267,6 +283,14 @@ class StockMatterTracking(models.Model):
                 'location_id': self.location_id.id,
                 'package_id': child_package.id
             })
+
+            # Create graph edge/link representing DAG Split transition
+            self.env['stock.matter.tracking.link'].create({
+                'parent_id': self.id,
+                'child_id': child_tracking.id,
+                'transition_type': 'split',
+                'quantity_transferred': data['quantity']
+            })
             
         # 3. Mark parent vessel as dirty and deplete biological assets
         self.write({
@@ -275,6 +299,102 @@ class StockMatterTracking(models.Model):
         })
         
         return child_records
+
+    def action_execute_merge(self, source_trackings):
+        """
+        Consolidates/merges multiple source carriers into this target carrier.
+        source_trackings: stock.matter.tracking recordset
+        """
+        self.ensure_one()
+        if not source_trackings:
+            raise UserError(_("Please specify source carriers to merge."))
+            
+        # 1. Capture snapshots of all source containers and the target
+        self.action_capture_snapshot()
+        for src in source_trackings:
+            src.action_capture_snapshot()
+        
+        # 2. Transfer stock quants from source packages to target package
+        for src in source_trackings:
+            src_quants = src.quant_ids
+            for q in src_quants:
+                if q.quantity <= 0:
+                    continue
+                q.write({'package_id': self.package_id.id})
+                
+            # Create graph edge/link representing DAG Merge transition
+            self.env['stock.matter.tracking.link'].create({
+                'parent_id': src.id,
+                'child_id': self.id,
+                'transition_type': 'merge',
+                'quantity_transferred': src.current_weight
+            })
+            
+            # Transition source carriers to consumed
+            src.with_context(bypass_carrier_transition_rules=True).write({
+                'carrier_state': 'consumed',
+                'vessel_phase': 'idle'
+            })
+            
+        # 3. Recalculate properties for this unified carrier
+        self._recalculate_consolidation_properties()
+        
+        # 4. Set state of this target container to loading
+        self.with_context(bypass_carrier_transition_rules=True).write({
+            'carrier_state': 'loading',
+            'vessel_phase': 'ready'
+        })
+        return True
+
+    def action_trace_upstream(self):
+        """
+        Recursive traceability query retrieving all ancestral carriers of this record using recursive CTE.
+        Returns a recordset of stock.matter.tracking.
+        """
+        self.ensure_one()
+        query = """
+            WITH RECURSIVE upstream_trace AS (
+                SELECT parent_id, child_id, transition_type, 1 AS depth
+                FROM stock_matter_tracking_link
+                WHERE child_id = %s
+                
+                UNION ALL
+                
+                SELECT l.parent_id, l.child_id, l.transition_type, ut.depth + 1
+                FROM stock_matter_tracking_link l
+                INNER JOIN upstream_trace ut ON l.child_id = ut.parent_id
+            )
+            SELECT DISTINCT parent_id FROM upstream_trace;
+        """
+        self.env.cr.execute(query, (self.id,))
+        res = self.env.cr.fetchall()
+        parent_ids = [r[0] for r in res]
+        return self.browse(parent_ids)
+
+    def action_trace_downstream(self):
+        """
+        Recursive traceability query retrieving all descendant carriers of this record using recursive CTE.
+        Returns a recordset of stock.matter.tracking.
+        """
+        self.ensure_one()
+        query = """
+            WITH RECURSIVE downstream_trace AS (
+                SELECT parent_id, child_id, transition_type, 1 AS depth
+                FROM stock_matter_tracking_link
+                WHERE parent_id = %s
+                
+                UNION ALL
+                
+                SELECT l.parent_id, l.child_id, l.transition_type, dt.depth + 1
+                FROM stock_matter_tracking_link l
+                INNER JOIN downstream_trace dt ON l.parent_id = dt.child_id
+            )
+            SELECT DISTINCT child_id FROM downstream_trace;
+        """
+        self.env.cr.execute(query, (self.id,))
+        res = self.env.cr.fetchall()
+        child_ids = [r[0] for r in res]
+        return self.browse(child_ids)
 
     def action_capture_snapshot(self):
         self.ensure_one()
@@ -301,8 +421,28 @@ class StockMatterTracking(models.Model):
         return snapshot_model.create(snapshot_vals)
 
     def write(self, vals):
+        # Enforce Carrier Transition Allowed Matrix (状态流转规则)
+        if 'carrier_state' in vals and not self.env.context.get('bypass_carrier_transition_rules'):
+            ALLOWED_TRANSITIONS = {
+                'idle': ['loading'],
+                'loading': ['processing'],
+                'processing': ['qc'],
+                'qc': ['done'],
+                'done': ['consumed'],
+                'consumed': []
+            }
+            new_state = vals['carrier_state']
+            for rec in self:
+                if rec.carrier_state != new_state:
+                    allowed = ALLOWED_TRANSITIONS.get(rec.carrier_state, [])
+                    if new_state not in allowed:
+                        raise UserError(_(
+                            "Carrier State Transition Violation: Carrier %s cannot transition "
+                            "from [%s] to [%s]. Illegal jump or tampering blocked."
+                        ) % (rec.name, rec.carrier_state, new_state))
+
         # Before-State Snapshot Capture: Catch process transitions
-        state_changing_fields = ['current_phase_id', 'vessel_phase', 'location_id', 'biological_asset_id']
+        state_changing_fields = ['current_phase_id', 'vessel_phase', 'location_id', 'biological_asset_id', 'carrier_state']
         if any(f in vals for f in state_changing_fields):
             for rec in self:
                 rec.action_capture_snapshot()
