@@ -13,16 +13,15 @@ class TestEpic136(TransactionCase):
         
         self.product = self.env['product.product'].create({
             'name': 'Temp Sensitive Juice',
-            'type': 'product',
+            'type': 'consu',
+            'is_storable': True,
             'uom_id': self.uom_unit.id,
-            'uom_po_id': self.uom_unit.id,
             'tracking': 'lot',
             'use_expiration_date': True,
             'expiration_time': 7,
         })
         self.workcenter = self.env['mrp.workcenter'].create({
             'name': 'Cold Press Room',
-            'capacity': 1,
             'time_start': 0,
             'time_stop': 0,
         })

@@ -61,8 +61,8 @@ class TestEpic094(TransactionCase):
             'product_id': self.product.id,
             'product_uom_id': self.product.uom_id.id,
             'product_qty': 1.0,
-            'lot_producing_id': self.lot.id
         })
+        production.lot_producing_id = self.lot.id
         
         task = self.Task.create({
             'intervention_id': production.id,

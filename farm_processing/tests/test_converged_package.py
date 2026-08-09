@@ -138,6 +138,10 @@ class TestConvergedPackage(TransactionCase):
                 'lot_id': self.lot.id
             })
 
+        # Release the lot if farm_quality is present and has qc_release_state
+        if hasattr(self.lot, 'qc_release_state'):
+            self.lot.write({'qc_release_state': 'released'})
+
         # Validate the picking
         picking.button_validate()
 

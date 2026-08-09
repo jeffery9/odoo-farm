@@ -147,14 +147,15 @@ class MrpProduction(models.Model):
         """ Processing-specific pre-done checks. [Level 2: HACCP Gate] """
         for order in self:
             # US-114-02: Check if all related HACCP/CCP points are passed
-            haccp_violations = self.env['farm.haccp.check'].search([
-                ('quality_check_id.production_id', '=', order.id),
-                ('is_violated', '=', True)
-            ])
-            if haccp_violations:
-                raise UserError(_("HACCP BLOCK: Production cannot be completed. "
-                                "Critical Limit violations detected in CCP checks: %s") % 
-                                ", ".join(haccp_violations.mapped('point_id.name')))
+            if 'farm.haccp.check' in self.env:
+                haccp_violations = self.env['farm.haccp.check'].search([
+                    ('quality_check_id.production_id', '=', order.id),
+                    ('is_violated', '=', True)
+                ])
+                if haccp_violations:
+                    raise UserError(_("HACCP BLOCK: Production cannot be completed. "
+                                    "Critical Limit violations detected in CCP checks: %s") % 
+                                    ", ".join(haccp_violations.mapped('point_id.name')))
             
             if getattr(order, 'industry_type', getattr(order.bom_id, 'industry_type', '')) == 'food_processing':
                 # Energy checks etc.

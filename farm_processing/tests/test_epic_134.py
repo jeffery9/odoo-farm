@@ -12,9 +12,9 @@ class TestEpic134(TransactionCase):
         self.Bom = self.env['mrp.bom']
         
         # Setup Products
-        self.concentrate = self.Product.create({'name': 'Fruit Concentrate', 'type': 'product'})
-        self.sugar_syrup = self.Product.create({'name': 'Sugar Syrup', 'type': 'product'})
-        self.final_juice = self.Product.create({'name': 'Adjusted Fruit Juice', 'type': 'product'})
+        self.concentrate = self.Product.create({'name': 'Fruit Concentrate', 'type': 'consu', 'is_storable': True})
+        self.sugar_syrup = self.Product.create({'name': 'Sugar Syrup', 'type': 'consu', 'is_storable': True})
+        self.final_juice = self.Product.create({'name': 'Adjusted Fruit Juice', 'type': 'consu', 'is_storable': True})
 
     def test_01_recipe_ast_define_formulation_formula_with_property_based_compensation(self):
         """
@@ -43,7 +43,7 @@ class TestEpic134(TransactionCase):
         
         # Test Invalid Formula (Syntax Error)
         with self.assertRaises(ValidationError):
-            bom.bom_line_ids.write({'dynamic_formula': 'base_qty +++ brix'})
+            bom.bom_line_ids.write({'dynamic_formula': 'base_qty + * brix'})
             bom.bom_line_ids._check_dynamic_formula_bounds()
             
         # Test Invalid Bounds (Min >= Max)
