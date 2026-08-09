@@ -63,9 +63,11 @@ class TestUAVMReflection(TransactionCase):
                 mock_vals_2[name] = val
             
             try:
-                # Odoo 19 multi-create validation
-                records = model.create([mock_vals_1, mock_vals_2])
-                self.assertEqual(len(records), 2)
+                # Wrap trial instantiation in a savepoint to prevent PostgreSQL transaction abortion on database errors
+                with self.env.cr.savepoint():
+                    # Odoo 19 multi-create validation
+                    records = model.create([mock_vals_1, mock_vals_2])
+                    self.assertEqual(len(records), 2)
             except Exception as e:
                 _logger.info("Skipped model %s due to setup complexity: %s", model_name, str(e))
 
