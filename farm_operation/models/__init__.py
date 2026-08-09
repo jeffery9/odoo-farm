@@ -2,6 +2,7 @@
 # 1. Base Mixins & Domain Mixins
 from . import agri_agricultural_campaign_mixin
 from . import agri_bom_mixin
+from . import agri_operation_mixin
 from . import agri_intervention_mixin
 from . import farm_agricultural_campaign_mixin
 from . import farm_agricultural_intervention_mixin
