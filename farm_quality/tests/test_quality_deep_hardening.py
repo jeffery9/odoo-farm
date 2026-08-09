@@ -99,3 +99,40 @@ class TestQualityDeepHardening(TransactionCase):
             self.fail("Expected ValidationError on failed lot sales allocation")
         except ValidationError:
             pass
+
+    def test_lossless_audit_trail(self):
+        """ Ensure savepoint rollbacks protect baseline quality check states """
+        point = self.env['agri.quality.point'].create({
+            'name': 'Pasteurization Temperature Check',
+            'test_type': 'measure',
+            'norm': 72.0,
+            'tolerance_min': 71.0,
+            'tolerance_max': 75.0,
+        })
+        
+        lot = self.env['stock.lot'].create({
+            'name': 'LOT-AUDIT-001',
+            'product_id': self.env['product.product'].create({'name': 'Milk', 'type': 'consu'}).id,
+            'company_id': self.env.company.id,
+        })
+        
+        check = self.env['agri.quality.check'].create({
+            'name': 'Batch Pasteurization Q1',
+            'point_id': point.id,
+            'lot_id': lot.id,
+            'quality_state': 'none',
+        })
+        
+        self.assertEqual(check.quality_state, 'none')
+        
+        # Simulating entering a savepoint sandbox
+        try:
+            with self.cr.savepoint():
+                check.write({'quality_state': 'fail'})
+                self.assertEqual(check.quality_state, 'fail')
+                raise ValidationError("Simulated Rollback")
+        except ValidationError:
+            pass
+            
+        # Verify check reverted back to its original state (lossless rollback protection)
+        self.assertEqual(check.quality_state, 'none', "Savepoint rollback must successfully revert pending changes.")

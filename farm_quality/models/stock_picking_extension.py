@@ -20,6 +20,8 @@ class StockPicking(models.Model):
         and scans all consumed materials for forbidden chemicals.
         """
         # Find interventions that produced this lot
+        if 'mrp.production' not in self.env or 'lot_producing_id' not in self.env['mrp.production']._fields:
+            return
         interventions = self.env['mrp.production'].search([('lot_producing_id', '=', lot.id)])
         for intervention in interventions:
             for move in intervention.move_raw_ids:
