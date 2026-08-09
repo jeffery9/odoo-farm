@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -19,6 +19,13 @@ class FarmLivestockRecipe(models.Model):
     # Livestock Specifics
     growth_days_expected = fields.Integer("Expected Growth Days")
     daily_feed_intake = fields.Float("Avg Daily Feed (kg)")
+
+    @api.constrains('daily_feed_intake')
+    def _check_daily_feed_intake(self):
+        """[US-094-03] Ensure daily feed intake does not exceed maximum safe limit (10.0 kg)"""
+        for rec in self:
+            if rec.daily_feed_intake > 10.0:
+                raise ValidationError(_("Feeding Error: Daily feed intake (%s kg) exceeds maximum safe threshold (10.0 kg).") % rec.daily_feed_intake)
 
 class FarmLotLivestock(models.Model):
     """
@@ -83,6 +90,15 @@ class FarmLotLivestock(models.Model):
             else:
                 rec.fcr_actual = 0.0
                 rec.avg_daily_gain = 0.0
+
+    @api.constrains('breeding_status', 'birth_date')
+    def _check_breeding_maturity(self):
+        """[US-094-04] Ensure animal has reached mature breeding age before transitioning from immature"""
+        for rec in self:
+            if rec.breeding_status != 'immature' and rec.birth_date:
+                age_days = (fields.Date.today() - rec.birth_date).days
+                if age_days < 365:
+                    raise ValidationError(_("Breeding Blocked: Animal %s (Age: %d days) has not reached mature breeding age (365 days).") % (rec.name, age_days))
 
     @api.model_create_multi
     def create(self, vals_list):
