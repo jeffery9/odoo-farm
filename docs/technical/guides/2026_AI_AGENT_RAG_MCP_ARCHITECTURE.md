@@ -29,6 +29,16 @@
 2. **知识碎片化**：将长文档切分为符合 LLM Context Window 的 Chunk。
 3. **语义检索**：Agent 在决策前，通过 `llm_service` 发起语义搜索，系统返回最相关的 Top-N 历史片段。
 
+### 2.3 ORM 级原生向量记忆 (pgvector RAG)
+大模型与 Agent 的 RAG（检索增强生成）记忆不可脱离 ERP 本地存储。系统在 Odoo ORM 级引入原生向量记忆：
+*   **物理落地**：在 `stock.lot` 与 `mrp.production` 的代理继承层（ISL）上，直接定义 `vector_embedding` 字段并对应 PostgreSQL 中的 `pgvector` 存储类型。
+*   **语义指纹**：将理化成分分析、农事活动 Chatter 沟通、GxP 质检异动履历实时向量化并直接写入 Odoo 物理行，赋予 Active Record 原生、高性能的向量检索（RAG）能力，无需外部 RAG 数据库中转。
+
+### 2.4 智能体 A2A 资源竞价仲裁机制 (A2A Arbitration & Bidding)
+在全自动无界面 L5 级农场中，当多个独立 Agent（例如负责灌溉的 Water Agent 与负责飞防的 Drone Agent）争夺有限的硬件设备或水流配额时：
+*   **信用竞价**：引入“虚拟碳币/水信用配额（Virtual Carbon/Water Credits）”。Agent 在 A2A 协议中发起配额出价（Bidding），通过 Odoo 内置的 A2A 仲裁层（`a2a_arbitration.py`）进行账本级清算与最优资源调度。
+*   **去中心化自治**：彻底消除人工派单瓶颈，实现设备设施占用和物理资源分发的智能体去中心化闭环自愈调度。
+
 ## 3. "Your Machine, Your Rules" 安全机制
 在 MCP 与 RAG 层强制执行以下红线：
 - **数据脱敏**：所有通过 MCP 流出的数据必须剥离工业化原生字段（如 `efficiency_factor`），仅保留农业语义字段。
