@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 class TestMrpBackpressure(TransactionCase):
     def setUp(self):
         super(TestMrpBackpressure, self).setUp()
-        self.Location = self.env['farm.location']
+        self.Location = self.env['stock.location']
         self.Product = self.env['product.product']
         self.Bom = self.env['mrp.bom']
         self.Production = self.env['mrp.production']
@@ -14,6 +14,7 @@ class TestMrpBackpressure(TransactionCase):
         self.p_cow = self.Product.create({'name': 'Dairy Cow', 'is_storable': True})
         self.dest_location = self.Location.create({
             'name': 'Holding Pen C',
+            'is_land_parcel': True,
             'gps_lat': 12.0,
             'gps_lng': 34.0,
             'land_area': 100.0,
@@ -34,7 +35,7 @@ class TestMrpBackpressure(TransactionCase):
             'product_id': self.p_cow.id,
             'bom_id': self.bom.id,
             'product_qty': 15.0,
-            'location_dest_id': self.dest_location.agri_location_id.id
+            'location_dest_id': self.dest_location.id
         })
         
         with self.assertRaises(ValidationError):

@@ -319,7 +319,7 @@ class StockMatterTracking(models.Model):
                             'lot_id': lots[0].id,
                             'event_type': 'weight' if 'current_weight' in vals else 'movement',
                             'event_date': fields.Datetime.now(),
-                            'notes': f"Auto-sync from Matter Carrier: {rec.package_id.name}. Weight: {rec.current_weight} kg." if 'current_weight' in vals else f"Growth transition to {rec.life_stage}."
+                            'notes': f"Auto-sync from Matter Carrier: {rec.package_id.name}. Weight: {vals.get('current_weight', rec.current_weight)} kg." if 'current_weight' in vals else f"Growth transition to {vals.get('life_stage', rec.life_stage)}."
                         })
 
         return res
