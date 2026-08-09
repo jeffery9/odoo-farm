@@ -107,6 +107,12 @@ Mass Balance Constraint:
   [ Parent Weight ] = SUM( [ offspring_i Weight ] )
 ```
 
+### 2.3 SFC-Core Genealogy Transition Logic
+Following the Gherkin & SFC design specifications, the physical genealogy is tracked via three native transactional transitions:
+*   **Sequential (顺序流转):** The carrier retains its primary identifier and package name (e.g., `MAT-00001` remains `MAT-00001` as it moves from one physical node/stage to the next), seamlessly propagating its ancestral DNA metadata.
+*   **Split (裂变/分流):** Spawns new, uniquely named offspring containers (e.g., splitting `MAT-00001` into children `MAT-00001-1` and `MAT-00001-2`), dividing physical mass proportionally and applying the 5% fission decay penalty.
+*   **Merge (并合/混合):** Consolidates multiple source carriers into a unified target container. The unified carrier inherits the primary container's name (or adopts the target vessel LPN code) and calculates combined DNA purity according to Section 2.1.
+
 ---
 
 ## 3. Dynamic Terrain & Spatial Routing Algorithms
@@ -177,6 +183,13 @@ Capacity Evaluation Formulas:
   [ Future Density ] <= [ Max Stocking Density ]
 ```
 
+### 3.3 M1-to-M2 Multi-Tier Workflow Routing
+The routing process transitions continuously from static system definition to physical runtime execution:
+*   **M1 Static Processes (`workflow.template`):** Employs static nodes (step definitions) and directed edges (allowable routing paths) to configure agricultural campaign constraints.
+*   **M2 Runtime Execution (`execution.sfc` / `workflow` instance):** Tracks active carriers dynamically as they move through runtime node instances (`workflow.node`), auditing transit duration and updating current phase parameters.
+*   **Missions (`mission`):** Mapped directly to HMI/POP execution cards (modeled as de-industrialized `agri.intervention` records). Confirming a mission triggers the state transit and moves the carrier to the next node.
+*   **Process Parameter Snapshot (JSON):** At each step transition, the system captures a comprehensive state snapshot. Alongside lots and quantities, it records custom sensor readings or operator logs in a structured JSON schema (`process_parameters`).
+
 ---
 
 ## 4. Zero-Latency Forensic Snapshot Ledger
@@ -196,6 +209,7 @@ The Snapshot Ledger serves as the immutable evidentiary audit trail, recording c
                                    - ID / Timestamp / GPS Lat & Lng
                                    - Quant Lot Composition (IDs, DNA)
                                    - Active GxP Enforcement Levels
+                                   - Process Parameters (JSON)
 ```
 
 ### Snapshot Database Schema Table
@@ -206,6 +220,7 @@ The Snapshot Ledger serves as the immutable evidentiary audit trail, recording c
 *   `lot_ids`: Associated genetic ancestry lot records.
 *   `gxp_open_time` & `gxp_expiry_time`: GxP temporal validation stamps.
 *   `gps_lat` & `gps_lng`: Spatial geo-stamps.
+*   `process_parameters`: Text field containing step JSON parameters.
 
 ---
 **Document Status: Approved | Architecture Converged | Core Algorithms Enforced**
