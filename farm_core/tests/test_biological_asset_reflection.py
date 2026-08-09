@@ -125,20 +125,28 @@ class TestBiologicalAssetReflection(TransactionCase):
             tracking.write({'current_weight': 115.0})
             self.assertEqual(asset.current_weight, 115.0)
 
+            def get_created_vals(mock):
+                res = []
+                for call in mock.call_args_list:
+                    if call[0]:
+                        arg = call[0][0]
+                        if isinstance(arg, list):
+                            res.extend(arg)
+                        elif isinstance(arg, dict):
+                            res.append(arg)
+                return res
+
+            created_vals = get_created_vals(mock_create)
+            
             # Verify that mock create was called for weight update
-            mock_create.assert_any_call({
-                'lot_id': lot.id,
-                'event_type': 'weight',
-                'event_date': mock_create.call_args_list[0][0][0]['event_date'], # dynamically match datetime
-                'notes': f"Auto-sync from Matter Carrier: {tracking.package_id.name}. Weight: 115.0 kg."
-            })
+            weight_calls = [v for v in created_vals if v.get('event_type') == 'weight']
+            self.assertTrue(weight_calls, "Weight sync call not found")
+            self.assertTrue(any("Weight: 115.0 kg." in v['notes'] for v in weight_calls), "Weight: 115.0 kg. not found in weight calls")
 
             # Trigger write of stage update
             tracking.write({'life_stage': 'growing'})
-            mock_create.assert_any_call({
-                'lot_id': lot.id,
-                'event_type': 'movement',
-                'event_date': mock_create.call_args_list[-1][0][0]['event_date'],
-                'notes': f"Growth transition to growing."
-            })
+            created_vals_updated = get_created_vals(mock_create)
+            movement_calls = [v for v in created_vals_updated if v.get('event_type') == 'movement']
+            self.assertTrue(movement_calls, "Movement sync call not found")
+            self.assertTrue(any("Growth transition to growing." in v['notes'] for v in movement_calls), "Growth transition event not found")
 

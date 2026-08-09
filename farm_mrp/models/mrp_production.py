@@ -73,12 +73,9 @@ class MrpProduction(models.Model):
         for order in self:
             if order.location_dest_id:
                 # Resolve destination capacity constraints
-                farm_loc = self.env['farm.location'].search([
-                    '|', ('id', '=', order.location_dest_id.id),
-                    ('agri_location_id', '=', order.location_dest_id.id)
-                ], limit=1)
+                farm_loc = order.location_dest_id
 
-                if farm_loc and farm_loc.max_stocking_density > 0.0:
+                if getattr(farm_loc, 'max_stocking_density', 0.0) > 0.0:
                     # Calculate future density including pending production qty
                     existing_quants = self.env['stock.quant'].search([
                         ('location_id', '=', order.location_dest_id.id)
@@ -86,7 +83,7 @@ class MrpProduction(models.Model):
                     current_qty = sum(existing_quants.mapped('quantity'))
                     future_qty = current_qty + order.product_qty
                     
-                    if farm_loc.land_area > 0.0:
+                    if getattr(farm_loc, 'land_area', 0.0) > 0.0:
                         future_density = future_qty / farm_loc.land_area
                         if future_density > farm_loc.max_stocking_density:
                             raise ValidationError(_(
