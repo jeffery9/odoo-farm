@@ -47,3 +47,45 @@ class TestAgriTreatmentBatchMrp(TransactionCase):
         batch.action_complete()
         self.assertEqual(batch.state, 'done')
         self.assertEqual(self.carrier1.carrier_state, 'qc')
+
+    def test_agri_operation_mixin_inheritance(self):
+        """ Verify that mrp.routing.workcenter correctly inherits from agri.operation.mixin """
+        RoutingWorkcenter = self.env['mrp.routing.workcenter']
+        
+        # Check that mixin fields exist on the model
+        self.assertIn('agri_activity_type', RoutingWorkcenter._fields)
+        self.assertIn('technical_manual', RoutingWorkcenter._fields)
+        self.assertIn('param_monitoring_required', RoutingWorkcenter._fields)
+        self.assertIn('target_value', RoutingWorkcenter._fields)
+        self.assertIn('tolerance_range', RoutingWorkcenter._fields)
+        self.assertIn('gxp_phase_type', RoutingWorkcenter._fields)
+
+        # Create dummy product template and BOM to satisfy not-null constraints on bom_id
+        product_tmpl = self.env['product.template'].create({
+            'name': 'Test Operation Product Template',
+            'type': 'consu'
+        })
+        bom = self.env['mrp.bom'].create({
+            'product_tmpl_id': product_tmpl.id,
+            'product_qty': 1.0,
+            'type': 'normal'
+        })
+
+        # Create an operational step with mixin values and linked bom_id
+        operation = RoutingWorkcenter.create({
+            'name': 'Sterilization Phase 1',
+            'workcenter_id': self.test_workcenter.id,
+            'bom_id': bom.id,
+            'agri_activity_type': 'processing',
+            'gxp_phase_type': 'sterilization',
+            'param_monitoring_required': True,
+            'target_value': 121.5,
+            'tolerance_range': 1.5,
+            'technical_manual': '<p>Heat the sterilization vessel to 121.5C for 20 minutes.</p>'
+        })
+
+        self.assertEqual(operation.agri_activity_type, 'processing')
+        self.assertEqual(operation.gxp_phase_type, 'sterilization')
+        self.assertTrue(operation.param_monitoring_required)
+        self.assertAlmostEqual(operation.target_value, 121.5)
+        self.assertAlmostEqual(operation.tolerance_range, 1.5)

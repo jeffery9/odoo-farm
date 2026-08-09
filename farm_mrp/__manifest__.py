@@ -14,7 +14,7 @@
     """,
     "author": "genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>",
     "website": "http://www.geninit.cn",
-    'depends': ['mrp', 'stock', 'farm_core', 'farm_isl'],
+    'depends': ['mrp', 'stock', 'farm_core', 'farm_isl', 'farm_operation'],
     'data': [
         'security/ir.model.access.csv',
         'views/mrp_isl_navigation_views.xml',
