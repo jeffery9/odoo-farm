@@ -9,3 +9,4 @@ from . import test_deep_coverage
 from . import test_epic_012
 from . import test_epic_088
 from . import test_epic_046
+from . import test_uavm_fault_injection
