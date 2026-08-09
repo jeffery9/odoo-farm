@@ -23,3 +23,34 @@ Feature: Epic 082 Advanced Traceability System
     When the system records the blending operation
     Then it must automatically calculate the weight percentage of each source batch
     And the final batch must inherit "Terroir" attributes based on the weighted proportions
+
+  @US-082-04 @Traceability @DualDimension
+  Scenario: Dual-Dimensional binding between static Lot and dynamic LPN pointer
+    Given a storable agricultural product "Pinot Noir Grapes"
+    And a physical stock lot "LOT-PINOT-2026" carrying "Organic" certification and 100% DNA score
+    And a dynamic vessel tracking record "MAT-VESSEL-01" currently in "idle" state
+    When the operator binds "LOT-PINOT-2026" to the package of "MAT-VESSEL-01"
+    Then the system must separate physical container status from static genetic attributes
+    And "MAT-VESSEL-01" must preserve its dynamic physical properties independent of "LOT-PINOT-2026"
+
+  @US-082-05 @Graph @Routing @Snapshot
+  Scenario: Graph-Based State Transition and automatic Before-State Snapshotting
+    Given an active Matter Tracking record "MAT-VESSEL-01" in "idle" state
+    And a manufacturing workcenter "Fermentation Tank 1"
+    And a routing process step "Primary Fermentation" linked to the workcenter
+    When the operator transitions "MAT-VESSEL-01" to "ready" phase and assigns the process step
+    Then the system must execute the state graph routing validation
+    And automatically capture and record a Before-State Snapshot containing "idle" state and empty phase information
+    When the operator further transitions "MAT-VESSEL-01" to "dirty" phase
+    Then the system must automatically capture a second snapshot containing "ready" state and "Primary Fermentation" phase information
+
+  @US-082-06 @Fission @Lineage @DNA
+  Scenario: Material Fission execution with pedigree inheritance and DNA decay
+    Given a parent Matter Tracking record "MAT-PARENT-01" holding 100.0 kg of material
+    And "MAT-PARENT-01" has a DNA integrity score of 100%
+    When the operator executes a material fission of 40.0 kg into child record "MAT-CHILD-01"
+    Then the system must maintain the parent-child relationship in the lineage tree
+    And the parent record's quantity must automatically adjust to 60.0 kg to conserve mass
+    And "MAT-CHILD-01" must inherit "MAT-PARENT-01"'s pedigree lineage
+    And "MAT-CHILD-01" must have a DNA integrity score of 95% due to 5% entropy decay
+
