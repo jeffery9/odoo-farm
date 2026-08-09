@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 class TestBackpressureConstraints(TransactionCase):
     def setUp(self):
         super(TestBackpressureConstraints, self).setUp()
-        self.Location = self.env['farm.location']
+        self.Location = self.env['stock.location']
         self.Tracking = self.env['stock.matter.tracking']
         self.Package = self.env['stock.package']
         self.Product = self.env['product.product']
@@ -21,6 +21,7 @@ class TestBackpressureConstraints(TransactionCase):
         # Create a holding location
         self.holding_location = self.Location.create({
             'name': 'Backpressure holding plot',
+            'is_land_parcel': True,
             'gps_lat': 12.0,
             'gps_lng': 34.0,
             'land_area': 100.0,  # 100 sqm
@@ -55,7 +56,7 @@ class TestBackpressureConstraints(TransactionCase):
         with self.assertRaises(ValidationError):
             self.Quant.create({
                 'product_id': self.product_pig.id,
-                'location_id': self.holding_location.agri_location_id.id,
+                'location_id': self.holding_location.id,
                 'lot_id': lot.id,
                 'quantity': 160.0
             })

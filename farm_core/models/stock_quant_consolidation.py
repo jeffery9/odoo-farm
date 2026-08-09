@@ -56,18 +56,15 @@ class StockQuant(models.Model):
 
             # Stocking Density Interlock Validation
             if quant.location_id:
-                farm_loc = self.env['farm.location'].search([
-                    '|', ('id', '=', quant.location_id.id),
-                    ('agri_location_id', '=', quant.location_id.id)
-                ], limit=1)
+                farm_loc = quant.location_id
 
-                if farm_loc and farm_loc.max_stocking_density > 0.0:
+                if getattr(farm_loc, 'max_stocking_density', 0.0) > 0.0:
                     existing_quants = self.env['stock.quant'].search([
                         ('location_id', '=', quant.location_id.id)
                     ])
                     total_count = sum(existing_quants.mapped('quantity'))
                     
-                    if farm_loc.land_area > 0.0:
+                    if getattr(farm_loc, 'land_area', 0.0) > 0.0:
                         density = total_count / farm_loc.land_area
                         if density > farm_loc.max_stocking_density:
                             raise ValidationError(_(
