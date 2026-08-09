@@ -14,7 +14,7 @@ class StockLot(models.Model):
         based on the product's industry_type.
         """
         self.ensure_one()
-        industry_type = self.product_id.industry_type
+        industry_type = getattr(self.product_id, 'industry_type', False)
         
         mapping = {
             'livestock': 'farm.lot.livestock',
