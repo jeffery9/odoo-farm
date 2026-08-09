@@ -19,14 +19,76 @@ class StockLot(models.Model):
 
     # --- Biological Asset Details (US-003-01) ---
     birth_date = fields.Date("Birth/Hatch Date")
+    
+    current_weight = fields.Float(
+        string="Current Weight (kg)",
+        compute='_compute_matter_physical_properties',
+        inverse='_inverse_current_weight',
+        store=False,
+        help="Compatibility Bridge: Resolves dynamic weight from active tracking containers."
+    )
+    last_gps_lat = fields.Float(
+        string="Last Latitude",
+        compute='_compute_matter_physical_properties',
+        inverse='_inverse_spatial_properties',
+        store=False
+    )
+    last_gps_lng = fields.Float(
+        string="Last Longitude",
+        compute='_compute_matter_physical_properties',
+        inverse='_inverse_spatial_properties',
+        store=False
+    )
     life_stage = fields.Selection([
         ('juvenile', 'Juvenile / Seedling'),
         ('growing', 'Growing / Fattening'),
         ('mature', 'Mature / Breeding'),
         ('harvested', 'Harvested / Culled')
-    ], string="Life Stage", default='juvenile')
-    current_weight = fields.Float("Current Weight (kg)", digits='Stock Weight')
+    ], string="Life Stage", compute='_compute_matter_physical_properties', inverse='_inverse_matter_life_stage', store=False)
+    
     gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('neutral', 'Neutral/Mixed')], string="Gender")
+
+    @api.depends('quant_ids.package_id')
+    def _compute_matter_physical_properties(self):
+        for lot in self:
+            # Locate an active packaging quant with matter tracking enabled
+            quants = lot.quant_ids.filtered(lambda q: q.package_id and getattr(q.package_id, 'is_matter_tracking', False))
+            if not quants:
+                # Fallback to standard package if is_matter_tracking is false, checking by model type
+                quants = lot.quant_ids.filtered(lambda q: q.package_id and q.package_id._name == 'stock.matter.tracking')
+                
+            if quants:
+                package = quants[0].package_id
+                lot.current_weight = getattr(package, 'current_weight', 0.0)
+                lot.last_gps_lat = getattr(package, 'last_gps_lat', 0.0)
+                lot.last_gps_lng = getattr(package, 'last_gps_lng', 0.0)
+                lot.life_stage = getattr(package, 'life_stage', 'juvenile')
+            else:
+                lot.current_weight = 0.0
+                lot.last_gps_lat = 0.0
+                lot.last_gps_lng = 0.0
+                lot.life_stage = 'juvenile'
+
+    def _inverse_current_weight(self):
+        from odoo.exceptions import UserError
+        raise UserError(_(
+            "Legacy Write Block: Weight is now managed dynamically by Matter Tracking (LPN/Vessel). "
+            "Please update the weight on the active Matter Tracking container directly."
+        ))
+
+    def _inverse_spatial_properties(self):
+        from odoo.exceptions import UserError
+        raise UserError(_(
+            "Legacy Write Block: GPS positioning is now managed dynamically by Matter Tracking (LPN/Vessel). "
+            "Please sync coordinates via the active Matter Tracking container."
+        ))
+
+    def _inverse_matter_life_stage(self):
+        from odoo.exceptions import UserError
+        raise UserError(_(
+            "Legacy Write Block: Lifecycle stages are now managed dynamically by Matter Tracking (LPN/Vessel). "
+            "Please update status on the active Matter Tracking container."
+        ))
 
     # --- Polymorphic Data Reflection (US-TECH-06-20) ---
     def _get_isl_summary_parts(self):
@@ -39,33 +101,14 @@ class StockLot(models.Model):
         return res
 
     # --- Spatial Positioning (US-TECH-04-02) ---
-    last_gps_lat = fields.Float("Last Latitude", digits=(10, 7))
-    last_gps_lng = fields.Float("Last Longitude", digits=(10, 7))
     last_location_update = fields.Datetime("Last Location Sync")
 
     def action_update_location_by_gps(self, lat=None, lng=None):
-        """ US-TECH-04-02: Spatial algorithm to find and set plot based on GPS. """
-        self.ensure_one()
-        target_lat = lat or self.last_gps_lat
-        target_lng = lng or self.last_gps_lng
-        
-        if not target_lat or not target_lng:
-            return False
-
-        # Find all land parcels with defined boundaries
-        plots = self.env['farm.location'].search([
-            ('is_land_parcel', '=', True),
-            ('boundary_geojson', '!=', False)
-        ])
-
-        for plot in plots:
-            if self._is_point_in_plot(target_lat, target_lng, plot):
-                self.write({
-                    'location_id': plot.id,
-                    'last_location_update': fields.Datetime.now()
-                })
-                return plot
-        return False
+        from odoo.exceptions import UserError
+        raise UserError(_(
+            "Legacy Write Block: GPS positioning is now managed dynamically by Matter Tracking (LPN/Vessel). "
+            "Please sync coordinates via the active Matter Tracking container."
+        ))
 
     def _is_point_in_plot(self, lat, lng, plot):
         """ Ray-casting algorithm for GeoJSON Polygon containment. """

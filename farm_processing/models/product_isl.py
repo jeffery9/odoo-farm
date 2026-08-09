@@ -32,28 +32,6 @@ class FarmAgriProduct(models.Model):
     is_potency_standardized = fields.Boolean("Standardize by Potency")
     target_purity = fields.Float("Target Purity %", default=100.0)
 
-    def write(self, vals):
-        # Ensure industry type is set appropriately when not specified
-        if 'industry_type' not in vals and not self.industry_type:
-            # Set based on industry_tag if available
-            if 'industry_tag' in vals:
-                if vals['industry_tag'] in ['food']:
-                    vals['industry_type'] = 'food_processing'
-                elif vals['industry_tag'] in ['material', 'raw_grain']:
-                    vals['industry_type'] = 'general'
-        return super().write(vals)
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        # Ensure industry type is set appropriately
-        for vals in vals_list:
-            if 'industry_type' not in vals or not vals.get('industry_type'):
-                # Set based on industry_tag if available
-                if vals.get('industry_tag') in ['food']:
-                    vals['industry_type'] = 'food_processing'
-                elif vals.get('industry_tag') in ['material', 'raw_grain']:
-                    vals['industry_type'] = 'general'
-        return super().create(vals_list)
 class FarmScCategory(models.Model):
     _name = 'farm.sc.category'
     _description = 'Food Production Category'

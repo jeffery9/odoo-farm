@@ -31,6 +31,7 @@
         'views/performance_monitor_views.xml',
         'views/agri_lot_kinship_views.xml',
         'views/menu.xml',
+        'views/stock_matter_tracking_views.xml',
     ],
     'demo': [
         'data/farm_demo_data.xml',

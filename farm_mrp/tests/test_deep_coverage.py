@@ -19,13 +19,14 @@ class TestDeepCoverageFarmMrp(TransactionCase):
             Model.default_get(all_fields)
             
             # 2. Search, read, and display_name
-            records = Model.search([], limit=5)
-            if records:
-                records.read()
-                try:
-                    records.mapped('display_name')
-                except Exception:
-                    pass
+            if Model._auto and not Model._abstract:
+                records = Model.search([], limit=5)
+                if records:
+                    records.read()
+                    try:
+                        records.mapped('display_name')
+                    except Exception:
+                        pass
             
             # 3. Intentional constraint triggering
             try:

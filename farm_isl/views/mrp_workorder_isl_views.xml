@@ -2,8 +2,8 @@
 <odoo>
 <data>
 <record id="view_isl_mrp_workorder_form" model="ir.ui.view">
-        <field name="name">farm.mrp.workorder.form</field>
-        <field name="model">farm.mrp.workorder</field>
+        <field name="name">agri.isl.mrp.workorder.form</field>
+        <field name="model">agri.isl.mrp.workorder</field>
         <field name="arch" type="xml">
             <form string="ISL MRP Work Order">
                 <header>
@@ -60,8 +60,8 @@
     </record>
 
     <record id="view_isl_mrp_workorder_tree" model="ir.ui.view">
-        <field name="name">farm.mrp.workorder.tree</field>
-        <field name="model">farm.mrp.workorder</field>
+        <field name="name">agri.isl.mrp.workorder.tree</field>
+        <field name="model">agri.isl.mrp.workorder</field>
         <field name="arch" type="xml">
             <list string="ISL MRP Work Orders">
                 <field name="name" />
@@ -76,7 +76,7 @@
 
     <record id="action_isl_mrp_workorder" model="ir.actions.act_window">
         <field name="name">ISL MRP Work Orders</field>
-        <field name="res_model">farm.mrp.workorder</field>
+        <field name="res_model">agri.isl.mrp.workorder</field>
         <field name="view_mode">list,form</field>
     </record>
 </data>
