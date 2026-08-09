@@ -5,3 +5,4 @@ from . import test_deep_coverage
 
 from . import test_epic_092
 from . import test_a2a_react_loop
+from . import test_uavm_reflection
