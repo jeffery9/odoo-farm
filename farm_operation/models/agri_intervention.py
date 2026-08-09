@@ -114,7 +114,21 @@ class AgriInterventionMrp(models.Model):
                 if bom_line.dilution_ratio > 0:
                     move.product_uom_qty = mo.product_qty / bom_line.dilution_ratio
                 elif bom_line.feeding_ratio > 0 and lot:
-                    total_biomass = (getattr(lot, 'animal_count', 0) * getattr(lot, 'average_weight', 0.0))
+                    tracking = self.env['stock.matter.tracking']
+                    quants = lot.quant_ids.filtered(lambda q: q.package_id and getattr(q.package_id, 'is_matter_tracking', False))
+                    if not quants:
+                        quants = lot.quant_ids.filtered(lambda q: q.package_id and q.package_id._name == 'stock.matter.tracking')
+                    if quants:
+                        tracking = quants[0].package_id
+
+                    if tracking:
+                        animal_count = getattr(tracking, 'animal_count', 1) or 1
+                        weight = getattr(tracking, 'current_weight', 0.0) or 0.0
+                    else:
+                        animal_count = getattr(lot, 'animal_count', 0) or 0
+                        weight = getattr(lot, 'average_weight', 0.0) or getattr(lot, 'current_weight', 0.0) or 0.0
+
+                    total_biomass = animal_count * weight
                     move.product_uom_qty = total_biomass * (bom_line.feeding_ratio / 100.0)
         return res
 
