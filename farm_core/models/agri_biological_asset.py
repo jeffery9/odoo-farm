@@ -90,7 +90,7 @@ class AgriBiologicalAsset(models.Model):
     last_gps_lat = fields.Float('Last Latitude', compute='_compute_carrier_physical_properties', store=False)
     last_gps_lng = fields.Float('Last Longitude', compute='_compute_carrier_physical_properties', store=False)
 
-    @api.depends('tracking_carrier_ids', 'tracking_carrier_ids.current_weight', 'tracking_carrier_ids.life_stage', 'tracking_carrier_ids.last_gps_lat', 'tracking_carrier_ids.last_gps_lng')
+    @api.depends('tracking_carrier_ids', 'tracking_carrier_ids.current_weight', 'tracking_carrier_ids.life_stage', 'tracking_carrier_ids.last_gps_lat', 'tracking_carrier_ids.last_gps_lng', 'tracking_carrier_ids.vessel_phase')
     def _compute_carrier_physical_properties(self):
         for asset in self:
             carriers = asset.tracking_carrier_ids.filtered(lambda c: c.vessel_phase != 'dirty')
