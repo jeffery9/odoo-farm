@@ -79,6 +79,11 @@ class StockMatterTracking(models.Model):
 
     animal_count = fields.Integer("Physical Item Count", default=1, tracking=True)
     water_volume_m3 = fields.Float("Contained Water Volume (m3)", tracking=True)
+    max_capacity_volume_m3 = fields.Float(
+        string='Max Capacity Volume (m³)',
+        default=0.0,
+        help="Maximum capacity constraint for physical volumetric safety checks."
+    )
 
     is_consolidated = fields.Boolean("Has Consolidated Batches", default=False)
     consolidation_history = fields.Text("Consolidation Audit Log")
@@ -312,9 +317,9 @@ class StockMatterTracking(models.Model):
                     if lots:
                         self.env['farm.livestock.event'].create({
                             'lot_id': lots[0].id,
-                            'event_type': 'weight' if 'current_weight' in vals else 'stage',
+                            'event_type': 'weight' if 'current_weight' in vals else 'movement',
                             'event_date': fields.Datetime.now(),
-                            'notes': f"Auto-sync from Matter Carrier: {rec.package_id.name}. Weight: {rec.current_weight} kg."
+                            'notes': f"Auto-sync from Matter Carrier: {rec.package_id.name}. Weight: {rec.current_weight} kg." if 'current_weight' in vals else f"Growth transition to {rec.life_stage}."
                         })
 
         return res
