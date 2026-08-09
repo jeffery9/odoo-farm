@@ -59,6 +59,7 @@ class StockMatterTracking(models.Model):
         tracking=True,
         help="Dynamic weight of the material inside this vessel or package container."
     )
+    farm_location_id = fields.Many2one('farm.location', string="Agricultural Plot / 农事地块", tracking=True)
     last_gps_lat = fields.Float("Last Latitude", digits=(10, 7), tracking=True)
     last_gps_lng = fields.Float("Last Longitude", digits=(10, 7), tracking=True)
     last_location_update = fields.Datetime("Last Location Sync")
@@ -68,6 +69,19 @@ class StockMatterTracking(models.Model):
         ('mature', 'Mature / Breeding'),
         ('harvested', 'Harvested / Culled')
     ], string="Dynamic Life Stage", default='juvenile', tracking=True)
+
+    biological_stage = fields.Selection([
+        ('born', 'Born / Started'),
+        ('growing', 'Growing / Fattening'),
+        ('mature', 'Mature / Breeding'),
+        ('harvested', 'Harvested / Culled')
+    ], string="Biological Stage", default='born', tracking=True)
+
+    animal_count = fields.Integer("Physical Item Count", default=1, tracking=True)
+    water_volume_m3 = fields.Float("Contained Water Volume (m3)", tracking=True)
+
+    is_consolidated = fields.Boolean("Has Consolidated Batches", default=False)
+    consolidation_history = fields.Text("Consolidation Audit Log")
 
     active_enforcement_level = fields.Selection([
         ('guidance', 'Guidance'),
@@ -124,10 +138,13 @@ class StockMatterTracking(models.Model):
                 asset_cat = rec.biological_asset_id.growth_stage_id.category_id if rec.biological_asset_id.growth_stage_id else False
                 if asset_cat and getattr(asset_cat, 'matter_enforcement_level', False) == 'strict':
                     level = 'strict'
-            elif rec.quant_ids:
-                categories = rec.quant_ids.mapped('product_id.categ_id')
-                if any(cat.matter_enforcement_level == 'strict' for cat in categories):
-                    level = 'strict'
+            else:
+                # Direct search as fallback to bypass delegation cache delays in transaction tests
+                quants = rec.quant_ids or self.env['stock.quant'].search([('package_id', '=', rec.package_id.id)])
+                if quants:
+                    categories = quants.mapped('product_id.categ_id')
+                    if any(cat.matter_enforcement_level == 'strict' for cat in categories):
+                        level = 'strict'
             rec.active_enforcement_level = level
 
     def action_seal_vessel(self):
@@ -173,7 +190,7 @@ class StockMatterTracking(models.Model):
         for plot in plots:
             if self._is_point_in_plot(target_lat, target_lng, plot):
                 self.write({
-                    'location_id': plot.id,
+                    'farm_location_id': plot.id,
                     'last_location_update': fields.Datetime.now(),
                     'last_gps_lat': target_lat,
                     'last_gps_lng': target_lng,
@@ -286,6 +303,44 @@ class StockMatterTracking(models.Model):
                 rec.action_capture_snapshot()
 
         return super(StockMatterTracking, self).write(vals)
+
+    def _recalculate_consolidation_properties(self):
+        """ Recalculates total container weights and handles DNA decay calculations """
+        import json
+        for tracking in self:
+            quants = self.env['stock.quant'].search([('package_id', '=', tracking.package_id.id)])
+            if quants:
+                total_weight = sum(quants.mapped('quantity'))
+                tracking.current_weight = total_weight
+
+                # Multi-lot checks
+                unique_lots = quants.mapped('lot_id')
+                if len(unique_lots) > 1:
+                    tracking.is_consolidated = True
+                    
+                    # Compute DNA Decay if category allows mixing
+                    category = unique_lots[0].product_id.categ_id
+                    if category and category.consolidation_strategy == 'weighted_average':
+                        weighted_sum = sum(q.quantity * (q.lot_id.dna_integrity_score or 100.0) for q in quants)
+                        weighted_avg = weighted_sum / total_weight if total_weight else 0.0
+                        # Apply 10% mixing entropy penalty
+                        tracking.dna_integrity_score = weighted_avg * 0.90
+                        
+                        # Write JSON audit trail log
+                        history = []
+                        for q in quants:
+                            history.append({
+                                'lot': q.lot_id.name,
+                                'qty': q.quantity,
+                                'dna': q.lot_id.dna_integrity_score or 100.0
+                            })
+                        tracking.consolidation_history = json.dumps(history)
+            else:
+                tracking.write({
+                    'current_weight': 0.0,
+                    'is_consolidated': False,
+                    'consolidation_history': False
+                })
 
     @api.model_create_multi
     def create(self, vals_list):

@@ -2,8 +2,8 @@
 <odoo>
 <data>
 <record id="view_farm_processing_bom_form" model="ir.ui.view">
-        <field name="name">farm.processing.bom.form</field>
-        <field name="model">farm.processing.bom</field>
+    <field name="name">farm.processing.bom.form</field>
+    <field name="model">agri.isl.processing.bom</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>

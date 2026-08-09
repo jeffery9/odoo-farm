@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit list view to inject MRP process phase and locking status -->
+        <record id="view_stock_matter_tracking_list_inherit_mrp" model="ir.ui.view">
+            <field name="name">stock.matter.tracking.list.inherit.mrp</field>
+            <field name="model">stock.matter.tracking</field>
+            <field name="inherit_id" ref="farm_core.view_stock_matter_tracking_list"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vessel_phase']" position="after">
+                    <field name="current_phase_id"/>
+                    <field name="is_vessel_locked" widget="boolean_toggle"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit form view to inject MRP buttons and fields -->
+        <record id="view_stock_matter_tracking_form_inherit_mrp" model="ir.ui.view">
+            <field name="name">stock.matter.tracking.form.inherit.mrp</field>
+            <field name="model">stock.matter.tracking</field>
+            <field name="inherit_id" ref="farm_core.view_stock_matter_tracking_form"/>
+            <field name="arch" type="xml">
+                <!-- Add lock/unlock buttons to the header -->
+                <xpath expr="//header[@id='header_stock_matter_tracking']" position="inside">
+                    <button name="action_lock_vessel" string="Lock Vessel" type="object" invisible="is_vessel_locked or vessel_phase != 'ready'"/>
+                    <button name="action_unlock_vessel" string="Unlock Vessel" type="object" invisible="not is_vessel_locked"/>
+                </xpath>
+                
+                <!-- Add current_phase_id and is_vessel_locked to Physical Identification -->
+                <xpath expr="//group[@id='group_physical_identification']" position="inside">
+                    <field name="current_phase_id"/>
+                    <field name="is_vessel_locked" readonly="1"/>
+                </xpath>
+
+                <!-- Add current_phase_id to the quants page list -->
+                <xpath expr="//page[@name='contained_quants']//field[@name='quant_ids']/list/field[@name='location_id']" position="after">
+                    <field name="current_phase_id"/>
+                </xpath>
+
+                <!-- Add phase_id to snapshots list -->
+                <xpath expr="//page[@name='gxp_snapshots']//field[@name='snapshot_ids']/list/field[@name='biological_asset_id']" position="after">
+                    <field name="phase_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Menu Item parenting under Manufacturing/Operations -->
+        <menuitem id="menu_mrp_stock_matter_tracking"
+                  name="Matter Tracking (LPN)"
+                  action="farm_core.action_stock_matter_tracking"
+                  parent="mrp.menu_mrp_manufacturing"
+                  sequence="25"/>
+    </data>
+</odoo>

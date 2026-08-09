@@ -29,7 +29,7 @@ class MrpBomLine(models.Model):
         lines = super(MrpBomLine, self).create(vals_list)
         for line in lines:
             # Use farm_isl's redirection mechanism
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
             # For BOM lines, we need to think differently - they are linked to BOMs
             # The ISL record will be automatically created by the ISL redirection utility for the parent BOM
             # If needed, BOM line ISL records can be created separately when needed
@@ -39,7 +39,7 @@ class MrpBomLine(models.Model):
         """ Transparently redirect to ISL view if available for BOM line. """
         # Use the centralized ISL redirection mechanism from farm_isl
         # Note: BOM line ISL redirection might be more complex as it depends on parent context
-        redirector = self.env['isl.model.redirector']
+        redirector = self.env['agri.isl.model.redirector']
         isl_record = redirector.get_isl_record('mrp.bom.line', self.id)
 
         if isl_record:
@@ -57,7 +57,7 @@ class MrpBomLine(models.Model):
         # Check if any records have ISL counterparts and if any protected fields are being modified
         if not self.env.context.get('bypass_isl_restrictions'):
             # Use centralized ISL infrastructure to get corresponding ISL record
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
 
             for record in self:
                 isl_record = redirector.get_isl_record('mrp.bom.line', record.id)
@@ -87,7 +87,7 @@ class MrpBomLine(models.Model):
     def unlink(self):
         # Check if any records have ISL counterparts - prevent direct deletion
         if not self.env.context.get('bypass_isl_restrictions'):
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
             for record in self:
                 isl_record = redirector.get_isl_record('mrp.bom.line', record.id)
                 if isl_record:
@@ -103,7 +103,7 @@ class MrpBomLine(models.Model):
         """ Compute the ISL record type if one exists for BOM line """
         for record in self:
             # Use the centralized ISL redirection mechanism from farm_isl
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
             isl_record = redirector.get_isl_record('mrp.bom.line', record.id)
             if isl_record:
                 # Extract human-readable name from model name
@@ -127,7 +127,7 @@ class MrpBomLine(models.Model):
         """ Action to redirect to the specialized ISL view if one exists for BOM line """
         self.ensure_one()
         # Use the centralized ISL redirection mechanism
-        redirector = self.env['isl.model.redirector']
+        redirector = self.env['agri.isl.model.redirector']
         isl_record = redirector.get_isl_record('mrp.bom.line', self.id)
 
         if isl_record:

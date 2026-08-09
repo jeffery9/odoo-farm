@@ -1,1 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_matter_tracking_user,stock_matter_tracking,model_stock_matter_tracking,,1,1,1,1
+access_stock_matter_tracking_snapshot_user,stock_matter_tracking_snapshot,model_stock_matter_tracking_snapshot,,1,1,1,1
