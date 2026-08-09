@@ -155,11 +155,12 @@ class StockLot(models.Model):
         ('grade_a', 'Grade A'),
         ('grade_b', 'Grade B'),
         ('grade_c', 'Grade C'),
+        ('ungraded', 'Not Graded'),
         ('a', 'Grade A / Premium'),
         ('b', 'Grade B / Standard'),
         ('c', 'Grade C / Processing'),
         ('loss', 'Loss/Waste')
-    ])
+    ], default='ungraded')
     
     harvest_date = fields.Date('Harvest Date')
     plot_id = fields.Many2one('farm.location', string='Origin Plot')
