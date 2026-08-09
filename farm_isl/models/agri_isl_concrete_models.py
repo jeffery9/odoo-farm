@@ -45,6 +45,21 @@ class AgriMRPProduction(models.Model):
                 raise UserError(_("Chemical production requires safety procedures"))
         return super()._validate_industry_requirements()
 
+    def unlink(self):
+        # Multi-level Cascade Safeguard (多级级联物理删除防护)
+        for rec in self:
+            if 'farm.haccp.check' in self.env:
+                unfinished_haccp = self.env['farm.haccp.check'].search([
+                    ('quality_check_id.production_id', '=', rec.mrp_production_id.id),
+                    ('is_violated', '=', True)
+                ], limit=1)
+                if unfinished_haccp:
+                    raise UserError(_(
+                        "Multi-level Cascade Safeguard: Cannot delete ISL Intervention '%s' "
+                        "due to unresolved critical GxP/HACCP violations."
+                    ) % rec.mrp_production_id.name)
+        return super(AgriMRPProduction, self).unlink()
+
 
 class AgriMRPBom(models.Model):
     """
@@ -153,6 +168,20 @@ class AgriStockLot(models.Model):
             if not self.kill_date:
                 raise UserError(_("Food processing lots require kill date"))
         return True
+
+    def unlink(self):
+        # Multi-level Cascade Safeguard (多级级联物理删除防护)
+        for rec in self:
+            if 'stock.matter.tracking' in self.env:
+                active_carrier = self.env['stock.matter.tracking'].search([
+                    ('lot_id', '=', rec.stock_lot_id.id)
+                ], limit=1)
+                if active_carrier:
+                    raise UserError(_(
+                        "Multi-level Cascade Safeguard: Cannot delete ISL Lot '%s' because "
+                        "it is linked to an active dynamic Matter Tracking carrier."
+                    ) % rec.name)
+        return super(AgriStockLot, self).unlink()
 
 
 class AgriSaleOrder(models.Model):
