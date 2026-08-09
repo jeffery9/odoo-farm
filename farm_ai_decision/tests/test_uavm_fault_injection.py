@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, tagged
 from odoo.exceptions import UserError, ValidationError
 import logging
 
 _logger = logging.getLogger(__name__)
 
+@tagged('uavm', 'post_install', '-at_install')
 class TestUAVMFaultInjection(TransactionCase):
 
     def test_uavm_full_chain_fault_injection(self):
@@ -31,9 +32,12 @@ class TestUAVMFaultInjection(TransactionCase):
         # Simulate bidding with overdraft, confirm Validation exception
         agent_budget = 100.0
         excess_bid = 500.0
-        with self.assertRaises((UserError, ValidationError)):
+        try:
             if excess_bid > agent_budget:
                 raise ValidationError("Overdraft: Virtual agent bid exceeds total credit budget.")
+            self.fail("Expected ValidationError for overdraft bid")
+        except (UserError, ValidationError):
+            pass
                 
         # Step 4: GxP Process validation block
         # Incompatible allergen validation block
@@ -44,6 +48,10 @@ class TestUAVMFaultInjection(TransactionCase):
             
         self.assertTrue(is_vessel_locked)
         # Block transaction on locked vessel
-        with self.assertRaises((UserError, ValidationError)):
+        try:
             if is_vessel_locked:
                 raise UserError("Production block: vessel is locked under GxP allergen cleanup protocol.")
+            self.fail("Expected UserError on locked vessel")
+        except (UserError, ValidationError):
+            pass
+

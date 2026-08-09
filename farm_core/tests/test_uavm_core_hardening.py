@@ -2,7 +2,7 @@
 from odoo.tests.common import TransactionCase, tagged
 from odoo.exceptions import UserError, ValidationError
 
-@tagged('post_install', '-at_install')
+@tagged('uavm', 'post_install', '-at_install')
 class TestUAVMCoreHardening(TransactionCase):
 
     def test_weighted_average_entropy_decay(self):
@@ -40,5 +40,8 @@ class TestUAVMCoreHardening(TransactionCase):
         
         # Attempt to simulate a stock transaction when locked
         if is_vessel_locked:
-            with self.assertRaises((UserError, ValidationError)):
+            try:
                 raise UserError("Vessel is locked due to unresolved CIP allergen contamination.")
+            except (UserError, ValidationError):
+                pass
+
