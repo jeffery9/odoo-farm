@@ -11,3 +11,4 @@ from . import test_backpressure_constraints
 from . import test_deep_coverage
 from . import test_converged_location
 from . import test_sfc_mapping
+from . import test_uavm_core_hardening
