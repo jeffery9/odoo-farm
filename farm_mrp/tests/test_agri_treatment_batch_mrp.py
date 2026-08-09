@@ -115,3 +115,73 @@ class TestAgriTreatmentBatchMrp(TransactionCase):
         self.assertTrue(operation.param_monitoring_required)
         self.assertAlmostEqual(operation.target_value, 121.5)
         self.assertAlmostEqual(operation.tolerance_range, 1.5)
+
+    def test_agri_treatment_batch_recipe_validation(self):
+        """ Test GxP recipe compatibility validation inside action_start """
+        # Create products as storable products to support stock.quant creation per Odoo 19 conventions
+        product_yeast = self.env['product.product'].create({
+            'name': 'Wine Yeast',
+            'type': 'consu',
+            'is_storable': True
+        })
+        product_grapes = self.env['product.product'].create({
+            'name': 'Wine Grapes',
+            'type': 'consu',
+            'is_storable': True
+        })
+        product_apples = self.env['product.product'].create({
+            'name': 'Incompatible Apples',
+            'type': 'consu',
+            'is_storable': True
+        })
+
+        # Create Wine Fermentation BOM (Recipe)
+        bom = self.env['mrp.bom'].create({
+            'product_tmpl_id': product_yeast.product_tmpl_id.id,
+            'product_qty': 1.0,
+            'type': 'normal',
+            'bom_line_ids': [
+                (0, 0, {'product_id': product_grapes.id, 'product_qty': 100.0})
+            ]
+        })
+
+        # Put Apple product on carrier quant
+        # First find or create a native location for storage
+        location = self.env['stock.location'].create({
+            'name': 'Fermentation Storage',
+            'usage': 'internal'
+        })
+        quant = self.env['stock.quant'].create({
+            'product_id': product_apples.id,
+            'location_id': location.id,
+            'quantity': 50.0,
+            'package_id': self.carrier_p1.id
+        })
+        # Invalidate cache and trigger manual compute of lot_ids to satisfy dependencies
+        self.carrier1.package_id.invalidate_recordset(['quant_ids'])
+        self.carrier1.invalidate_recordset(['lot_ids'])
+        self.carrier1._compute_lot_ids()
+
+        # Create a Treatment Batch linked to our carrier
+        batch = self.TreatmentBatch.create({
+            'treatment_temperature': 37.0,
+            'workcenter_id': self.test_workcenter.id,
+            'bom_id': bom.id,
+            'carrier_ids': [(6, 0, [self.carrier1.id])]
+        })
+
+        # Try to start batch with incompatible carrier products (should raise UserError!)
+        with self.assertRaises(UserError) as cm:
+            batch.action_start()
+        self.assertIn("GxP Recipe Compatibility Violation", str(cm.exception))
+
+        # Change the carrier product to Wine Grapes (compatible!)
+        quant.product_id = product_grapes.id
+        # Invalidate cache and trigger manual compute of lot_ids again
+        self.carrier1.package_id.invalidate_recordset(['quant_ids'])
+        self.carrier1.invalidate_recordset(['lot_ids'])
+        self.carrier1._compute_lot_ids()
+
+        # Try to start batch now (should succeed perfectly!)
+        batch.action_start()
+        self.assertEqual(batch.state, 'processing')
