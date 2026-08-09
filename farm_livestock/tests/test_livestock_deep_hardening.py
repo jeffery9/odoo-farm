@@ -22,41 +22,30 @@ class TestLivestockDeepHardening(TransactionCase):
 
     def test_livestock_breeding_age_limits(self):
         """ Verify livestock age limit validation triggers exception on immature breeding """
-        animal_age_days = 90  # 3 months
-        min_breeding_age_days = 365 # 12 months
+        # Create an immature animal (90 days old)
+        isl_lot = self.env['agri.isl.lot.livestock'].create({
+            'name': 'TEST-ANIMAL-UNDERAGE',
+            'product_id': self.product.id,
+            'company_id': self.env.company.id,
+            'birth_date': date.today() - timedelta(days=90),
+            'breeding_status': 'immature',
+        })
         
-        # Test validation on instantiated animal lot
-        self.assertTrue(self.animal_lot.exists())
-        
-        try:
-            if animal_age_days < min_breeding_age_days:
-                raise ValidationError("Breeding Blocked: Animal %s has not reached mature breeding age." % self.animal_lot.name)
-            self.fail("Expected ValidationError on immature animal breeding")
-        except ValidationError as ve:
-            self.assertIn("TEST-ANIMAL-LOT-999", str(ve))
+        # Changing breeding status should trigger a real ValidationError
+        with self.assertRaisesRegex(ValidationError, "Breeding Blocked"):
+            isl_lot.write({'breeding_status': 'pregnant'})
 
     def test_livestock_feeding_limit_checks(self):
         """ Ensure animal feed logs and event tracking enforce daily feed intake limits """
-        # Create a weight / measurement event linked to our animal lot
-        event = self.env['farm.livestock.event'].create({
-            'lot_id': self.animal_lot.id,
-            'event_type': 'weight',
-            'measured_weight': 45.5,
-            'notes': 'Recorded weight measurement for surgical hardening'
-        })
-        
-        self.assertEqual(event.lot_id.id, self.animal_lot.id)
-        self.assertEqual(event.measured_weight, 45.5)
-        
-        allocated_feed_kg = 12.0
-        max_feed_limit_kg = 5.0
-        
-        try:
-            if allocated_feed_kg > max_feed_limit_kg:
-                raise ValidationError("Feeding Error: Feed intake exceeds maximum threshold for lot %s" % self.animal_lot.name)
-            self.fail("Expected ValidationError on excessive feed allocation")
-        except ValidationError as ve:
-            self.assertIn("exceeds maximum threshold", str(ve))
+        # Creating a recipe with excessive daily feed intake should raise a real ValidationError
+        with self.assertRaisesRegex(ValidationError, "exceeds maximum safe threshold"):
+            self.env['agri.isl.livestock.recipe'].create({
+                'product_id': self.product.id,
+                'product_tmpl_id': self.product.product_tmpl_id.id,
+                'product_qty': 1.0,
+                'type': 'normal',
+                'daily_feed_intake': 12.0, # Limit is 10.0
+            })
 
     def test_livestock_quarantine_block(self):
         """ Ensure health block prevents starting manufacturing interventions on quarantined livestock """
