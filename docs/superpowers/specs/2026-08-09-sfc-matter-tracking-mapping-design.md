@@ -305,4 +305,72 @@ Gates physical entry into any operational workcenter or geographic plot location
 *   **Property Validation:** Verifies factors such as temperature, composition, density, and previous GxP status. Any failed parameter throws a `ValidationError` block, physically halting material routing.
 
 ---
+
+## 7. SFC Graph: Directed Acyclic Graph (DAG) Traceability Engine
+
+To handle complex Many-to-Many processes (such as dynamic batch mergers and proportional splitting), the system implements a strict DAG-based genealogy engine, storing physical lineage connections as edges in a dedicated model.
+
+```
+                       SFC GENEALOGY GRAPH (DAG EDGES)
+                       
+     Source Carrier A (SFC_01) ───────┐
+                                      ├─► [ Link Edge: Merge ] ──► Target Carrier (SFC_Tank)
+     Source Carrier B (SFC_02) ───────┘                                │
+                                                                       ├─► [ Link Edge: Split ] ──► offspring C (SFC_03)
+                                                                       └─► [ Link Edge: Split ] ──► offspring D (SFC_04)
+```
+
+### 7.1 Lineage Edge Model Schema (`stock.matter.tracking.link`)
+Each record in the `stock.matter.tracking.link` model represents a directed edge flowing from an ancestral parent carrier to a descendant child carrier:
+*   `parent_id`: Many2one reference pointing to the source `stock.matter.tracking` (Ancestor/原料容器).
+*   `child_id`: Many2one reference pointing to the target `stock.matter.tracking` (Descendant/产出容器).
+*   `transition_type`: Selection field (`merge` / `split` / `sequential`).
+*   `quantity_transferred`: Float field logging the physical mass transferred across the edge.
+*   `timestamp`: Datetime field recording the precise execution point.
+
+### 7.2 Bidirectional Tracing Recursive CTE Algorithms
+
+#### A. Upstream Ancestry Search (逆向/追溯原料)
+Given a specific descendant carrier ID `X`, this algorithm recursively walks the DAG edges backward to resolve all source parent carriers and ancestral material lots.
+
+```sql
+WITH RECURSIVE upstream_trace AS (
+    -- Anchor Member: Start with the target carrier
+    SELECT parent_id, child_id, transition_type, quantity_transferred, 1 AS depth
+    FROM stock_matter_tracking_link
+    WHERE child_id = X
+    
+    UNION ALL
+    
+    -- Recursive Member: Join backward on parent
+    SELECT l.parent_id, l.child_id, l.transition_type, l.quantity_transferred, ut.depth + 1
+    FROM stock_matter_tracking_link l
+    INNER JOIN upstream_trace ut ON l.child_id = ut.parent_id
+)
+SELECT parent_id, transition_type, quantity_transferred, depth 
+FROM upstream_trace;
+```
+
+#### B. Downstream Shipment Search (正向/跟踪流向)
+Given an ancestral carrier ID `Y` (e.g., initial raw ingredient), this algorithm recursively walks the DAG edges forward to find all downstream intermediate vessels, finished packaging units, and customer shipping packages.
+
+```sql
+WITH RECURSIVE downstream_trace AS (
+    -- Anchor Member: Start with the initial source carrier
+    SELECT parent_id, child_id, transition_type, quantity_transferred, 1 AS depth
+    FROM stock_matter_tracking_link
+    WHERE parent_id = Y
+    
+    UNION ALL
+    
+    -- Recursive Member: Join forward on child
+    SELECT l.parent_id, l.child_id, l.transition_type, l.quantity_transferred, dt.depth + 1
+    FROM stock_matter_tracking_link l
+    INNER JOIN downstream_trace dt ON l.parent_id = dt.child_id
+)
+SELECT child_id, transition_type, quantity_transferred, depth 
+FROM downstream_trace;
+```
+
+---
 **Document Status: Approved | Architecture Converged | Core Algorithms Enforced**
