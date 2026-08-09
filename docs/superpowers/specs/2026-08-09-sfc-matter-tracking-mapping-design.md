@@ -1,6 +1,6 @@
 # Design Specification: SFC to Matter-Tracking Architectural Mapping & Traceability Algorithms
 
-This document defines the semantic conversion of the SFC (Shop Floor Container) model into the `farm` Matter-Tracking system. It describes the runtime tracking pipeline, DNA pedigree decay propagation, spatial ray-casting routing, and zero-latency snapshot ledgers.
+This document defines the semantic conversion of the SFC (Shop Floor Container) model into the `farm` Matter-Tracking system. It describes the runtime tracking pipeline, DNA pedigree decay propagation, spatial ray-casting routing, zero-latency snapshot ledgers, and decoupled process control patterns.
 
 ---
 
@@ -38,7 +38,7 @@ The agricultural ERP transitions from rigid industrial work-order flows to a mat
 
 ### Mapping Matrix
 *   **Shop Floor Container (SFC)** -> `stock.matter.tracking`
-    *   *Specification:* Inherits standard Odoo `stock.package` via delegation. Represents the physical container/carrier and coordinates logistics and material mutations.
+    *   *Specification:* Inherits standard Odoo `stock.package` via delegation (`_inherits`). Represents the physical container/carrier and coordinates logistics and material mutations.
 *   **M1 Templates (Workflow / Node / Edge)** -> `agri.bom.mixin` & `agri.intervention.mixin`
     *   *Specification:* Custom abstract templates defining static campaign routes, processing recipes, and step connections.
 *   **M2 Execution (Workflow Node Runtime)** -> `agri.intervention`
@@ -221,6 +221,88 @@ The Snapshot Ledger serves as the immutable evidentiary audit trail, recording c
 *   `gxp_open_time` & `gxp_expiry_time`: GxP temporal validation stamps.
 *   `gps_lat` & `gps_lng`: Spatial geo-stamps.
 *   `process_parameters`: Text field containing step JSON parameters.
+
+---
+
+## 5. Device and Container Decoupling & Batch Processing Patterns
+
+To model complex chemical/biological processes, the system strictly enforces the principle: **"Equipment is Equipment, Material is Material."** Equipment/Workstations (`mrp.workcenter`) manage process execution capacity, whereas SFC Carriers (`stock.matter.tracking`) track material states.
+
+```
+  PATTERN 1: HEAT TREATMENT FURNACE               PATTERN 2: REACTION TANK
+  (Physical coexistence, Individual identity)     (Material fusion, Morphic change)
+  
+   +------------------------------------+         +------------------------------------+
+   |     sfc.process.batch (炉次)       |         |       Raw Carrier A (100 kg)       |
+   |     - Equipment: Heat Furnace       |         |       Raw Carrier B (200 kg)       |
+   +──────────────────┬─────────────────+         +──────────────────┬─────────────────+
+                      │                                              │
+         ┌────────────┴────────────┐                                 ▼ (Merge)
+         ▼                         ▼                       +───────────────────+
+  Carrier A (Weight)        Carrier B (Weight)             | Bulk Carrier Tank |
+  - Enter: State "In Charge"                               | - Volume: 300 kg  |
+  - Exit: Preserve original individual identity            | - State: Reacting |
+                                                           +───────────────────+
+                                                                     │
+                                                                     ▼ (Split/Fission)
+                                                           +─────────┴─────────+
+                                                           ▼                   ▼
+                                                   Product C (150kg)   Product D (150kg)
+```
+
+### 5.1 Heat Treatment Furnace (物理共存，个体独立)
+*   **Core Architecture:** Models physical coexistence without physical fusion. Multiple SFC carriers are loaded into a single equipment workstation sharing process recipes (e.g., temperature curves).
+*   **Data Aggregation:** Handled via `sfc.process.batch` (Process Batch/炉次). The batch contains `workcenter_id` and a `sfc_ids` One2many relation pointing to active carriers.
+*   **State Machine:**
+    *   **On Entry:** Carriers transition to the `in_charge` state and are bound to the current batch.
+    *   **On Exit:** Carriers unbind from the batch and transition to `pending` or `qc` status, preserving their individual quantities and genetic names.
+
+### 5.2 Reaction Tank (物质融合，形态转化)
+*   **Core Architecture:** Models chemical/biological fusion where multiple raw materials fully integrate into a new compound substance.
+*   **Data Flow:**
+    *   **Merge Hook:** Multiple input carriers (SFC_A, SFC_B) are validated and emptied. Their underlying `stock.quant` records are transferred to a new, temporary **Bulk SFC Carrier** (e.g., SFC_Tank) representative of the vessel itself. Parent carriers are marked as `consumed`.
+    *   **Reaction Node:** SFC_Tank represents the active physical reaction, recording real-time process indicators (pH, temperature, pressure, stirrer speed) in its JSON snapshot.
+    *   **Split Hook:** Upon reaction completion, the bulk material is dispensed into multiple finished/offspring packaging containers (SFC_C, SFC_D), calling `action_execute_fission` to distribute the output quants, apply decay penalties, and mark the SFC_Tank as `scrapped/empty`.
+
+---
+
+## 6. Safety & Rule Engines: Admission & Transition Whitelists
+
+To secure the material execution path from operator errors or unauthorized steps, the system establishes a strict, dual-layer validation checkpoint pipeline.
+
+### 6.1 SFC Transition Rule Engine (状态流转规则)
+Prevents process-skipping and enforces strict state machine evolution. The system overrides database write operations to assert validation against a state-transition whitelist matrix.
+
+```
+                      SFC TRANSITION ALLOWED MATRIX
+                      
+  FROM STATE \ TO STATE │ IDLE │ LOADING │ PROCESSING │ QC │ DONE │ CONSUMED │
+  ──────────────────────┼──────┼─────────┼────────────┼────┼──────┼──────────┼
+  IDLE                  │  --  │   Yes   │     No     │ No │  No  │    No    │
+  LOADING               │  No  │   --    │    Yes     │ No │  No  │    No    │
+  PROCESSING            │  No  │   No    │     --     │Yes │  No  │    No    │
+  QC                    │  No  │   No    │     No     │ -- │ Yes  │    No    │
+  DONE                  │  No  │   No    │     No     │ No │  --  │   Yes    │
+  CONSUMED              │  --  │   --    │     --     │ -- │  --  │    --    │
+```
+
+*   **Implementation Guardrail:** If an update attempt bypasses the allowed transition path (e.g., writing `idle` $\rightarrow$ `qc`), the Odoo layer blocks execution and throws a `UserError("SFC State Transition Violation")`.
+
+### 6.2 SFC Admission Rule Engine (工序准入校验)
+Gates physical entry into any operational workcenter or geographic plot location. Before a scanned carrier is assigned to a process batch or location move line, the system verifies its physical properties.
+
+```
+  Carrier scan at Workcenter input ──► [ RUN ADMISSION CHECKS ]
+                                              │
+                                              ├─► Check: Temp >= Target Temp? (Yes/No)
+                                              ├─► Check: Purity >= Target? (Yes/No)
+                                              └─► Check: Pre-state == "done"? (Yes/No)
+                                              │
+                                              ▼ (All Pass)
+                                      [ Assign to Batch & Process ]
+```
+
+*   **Property Validation:** Verifies factors such as temperature, composition, density, and previous GxP status. Any failed parameter throws a `ValidationError` block, physically halting material routing.
 
 ---
 **Document Status: Approved | Architecture Converged | Core Algorithms Enforced**
