@@ -7,14 +7,6 @@ class FarmIndustryOperation(models.Model):
     _inherits = {'mrp.routing.workcenter': 'operation_id'}
 
     operation_id = fields.Many2one('mrp.routing.workcenter', string='Base Operation', required=True, ondelete='cascade')
-    
-    # --- Specialized Instructions ---
-    technical_manual = fields.Html("Technical SOP", help="Detailed industry standard operating procedure.")
-    
-    # Critical Control Parameters (US-037-09 sync)
-    param_monitoring_required = fields.Boolean("Monitor Critical Parameters")
-    target_value = fields.Float("Target Value")
-    tolerance_range = fields.Float("Tolerance (+/-)")
 
 class MrpRoutingWorkcenter(models.Model):
     _name = 'mrp.routing.workcenter'

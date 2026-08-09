@@ -15,7 +15,8 @@ class TestEpic003(TransactionCase):
         # Product for Livestock
         self.pig_product = self.env['product.product'].create({
             'name': 'Pig',
-            'type': 'product',
+            'type': 'consu',
+            'is_storable': True,
             'weight': 20.0,
             'uom_id': self.uom_unit.id,
         })
@@ -23,16 +24,16 @@ class TestEpic003(TransactionCase):
         # Feed Product
         self.feed_product = self.env['product.product'].create({
             'name': 'Pig Feed',
-            'type': 'product',
+            'type': 'consu',
+            'is_storable': True,
             'uom_id': self.uom_kg.id,
         })
         
         # Livestock Recipe
         self.pig_recipe = self.env['agri.isl.livestock.recipe'].create({
-            'name': 'Pig Feeding Plan',
-            'product_id': self.pig_product.id,
+            'code': 'Pig Feeding Plan',
+            'product_tmpl_id': self.pig_product.product_tmpl_id.id,
             'product_qty': 1,
-            'type': 'normal',
             'daily_feed_intake': 2.5,
             'growth_days_expected': 120,
             'bom_line_ids': [(0, 0, {
@@ -63,6 +64,7 @@ class TestEpic003(TransactionCase):
         # Simulate weighing (Final weight after 10 days)
         task.final_total_weight = 30.0
         task.intervention_id.lot_producing_id = lot_livestock.lot_id
+        task.intervention_id.state = 'done'
         
         # Mark task as done, which should trigger ADG computation in ISL
         task.isl_post_done()

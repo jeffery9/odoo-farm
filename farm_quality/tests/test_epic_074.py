@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo.tests.common import TransactionCase
 from odoo.exceptions import UserError
+from odoo import fields
 
 class TestEpic074(TransactionCase):
     """ BDD Test for Epic 074 Post Harvest Quality Management """
@@ -9,7 +10,8 @@ class TestEpic074(TransactionCase):
         super(TestEpic074, self).setUp()
         self.product = self.env['product.product'].create({
             'name': 'Organic Tomato',
-            'type': 'product'
+            'type': 'consu',
+            'is_storable': True
         })
         self.lot = self.env['stock.lot'].create({
             'name': 'LOT2026-001',

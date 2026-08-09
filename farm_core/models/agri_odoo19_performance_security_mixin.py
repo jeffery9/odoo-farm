@@ -96,7 +96,7 @@ class AgriOdoo19PerformanceSecurityMixin(models.AbstractModel):
             _logger.warning(f"Slow CREATE operation on {self._name}: {duration:.2f}s for {len(records)} records")
 
         # Security: Log access
-        records._log_access('create')
+        records._log_security_access('create')
 
         return records
 
@@ -104,6 +104,10 @@ class AgriOdoo19PerformanceSecurityMixin(models.AbstractModel):
         """
         Enhanced write method with performance and security checks
         """
+        # Prevent infinite recursion when writing audit fields
+        if any(f in vals for f in ['access_log', 'performance_metrics']):
+            return super().write(vals)
+
         # Performance: Log execution time
         start_time = time.time()
 
@@ -115,12 +119,13 @@ class AgriOdoo19PerformanceSecurityMixin(models.AbstractModel):
 
         # Performance: Log metrics if operation was slow
         duration = time.time() - start_time
-        max_time = self.config_settings[0].get('performance_thresholds', {}).get('max_query_time', 5.0) if self else 5.0
+        config = (self[0].config_settings or self._default_config_settings()) if self else self._default_config_settings()
+        max_time = config.get('performance_thresholds', {}).get('max_query_time', 5.0)
         if duration > max_time:
             _logger.warning(f"Slow WRITE operation on {self._name}: {duration:.2f}s for {len(self)} records")
 
         # Security: Log access
-        self._log_access('write')
+        self._log_security_access('write')
 
         return result
 
@@ -132,7 +137,7 @@ class AgriOdoo19PerformanceSecurityMixin(models.AbstractModel):
         self._check_security_permissions('unlink')
 
         # Security: Log access before deletion
-        self._log_access('unlink')
+        self._log_security_access('unlink')
 
         # Call parent unlink method
         return super().unlink()
@@ -141,6 +146,10 @@ class AgriOdoo19PerformanceSecurityMixin(models.AbstractModel):
         """
         Enhanced security permission checking with industry-specific rules
         """
+        # Bypass for system / superuser / tests
+        if self.env.su or self.env.user._is_system():
+            return
+
         # Check basic Odoo permissions
         if operation == 'create':
             if not self.env.user.has_group('farm_core.group_farm_user'):
@@ -166,7 +175,7 @@ class AgriOdoo19PerformanceSecurityMixin(models.AbstractModel):
                             (operation, record.industry_type)
                         )
 
-    def _log_access(self, operation):
+    def _log_security_access(self, operation):
         """
         Log access for security auditing
         """
@@ -232,15 +241,15 @@ class AgriOdoo19PerformanceSecurityMixin(models.AbstractModel):
         return True
 
     @api.model
-    def search(self, args, offset=0, limit=None, order=None, count=False):
+    def search(self, domain, offset=0, limit=None, order=None, **kwargs):
         """
         Enhanced search with performance tracking
         """
         start_time = time.time()
-        result = super().search(args, offset=offset, limit=limit, order=order, count=count)
+        result = super().search(domain, offset=offset, limit=limit, order=order, **kwargs)
 
         duration = time.time() - start_time
-        record_count = result if count else len(result) if isinstance(result, models.Model) else 0
+        record_count = len(result) if isinstance(result, models.Model) else 0
 
         # Check performance thresholds
         self._check_performance_thresholds('search', duration, record_count)

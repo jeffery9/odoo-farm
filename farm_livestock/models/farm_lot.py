@@ -36,14 +36,16 @@ class FarmLot(models.Model):
     @api.depends('quant_ids.package_id')
     def _compute_livestock_matter_properties(self):
         for lot in self:
-            quants = lot.quant_ids.filtered(lambda q: q.package_id and getattr(q.package_id, 'is_matter_tracking', False))
-            if not quants:
-                quants = lot.quant_ids.filtered(lambda q: q.package_id and q.package_id._name == 'stock.matter.tracking')
-            if quants:
-                package = quants[0].package_id
-                lot.animal_count = getattr(package, 'animal_count', 1) or 1
-                lot.average_weight = getattr(package, 'current_weight', 0.0) or 0.0
-                lot.biological_stage = getattr(package, 'biological_stage', 'born') or 'born'
+            quants = lot.quant_ids.filtered(lambda q: q.package_id)
+            tracking_record = False
+            for q in quants:
+                tracking_record = self.env['stock.matter.tracking'].search([('package_id', '=', q.package_id.id)], limit=1)
+                if tracking_record:
+                    break
+            if tracking_record:
+                lot.animal_count = tracking_record.animal_count or 1
+                lot.average_weight = tracking_record.current_weight or 0.0
+                lot.biological_stage = tracking_record.biological_stage or 'born'
             else:
                 lot.animal_count = 1
                 lot.average_weight = 0.0

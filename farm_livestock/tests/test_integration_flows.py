@@ -5,7 +5,7 @@ class TestIntegrationFarmLivestock(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_check = ['mrp.production', 'agri.isl.livestock.production', 'agri.isl.lot.livestock', 'agri.isl.livestock.bom.line', 'farm.livestock.event', 'farm.breeding.record', 'farm.animal.health.wizard', 'stock.lot', 'agri.isl.livestock.bom', 'farm.livestock.house.env', 'mrp.bom', 'stock.picking']
+        cls.models_to_check = ['mrp.production', 'agri.isl.livestock.task', 'agri.isl.lot.livestock', 'agri.isl.livestock.bom.line', 'farm.livestock.event', 'farm.breeding.record', 'farm.animal.health.wizard', 'stock.lot', 'agri.isl.livestock.recipe', 'farm.livestock.house.env', 'mrp.bom', 'stock.picking']
 
     def test_01_cross_model_dependencies(self):
         """ Verify that dependencies and XML IDs required by farm_livestock are available """

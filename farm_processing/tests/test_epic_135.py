@@ -12,8 +12,8 @@ class TestEpic135(TransactionCase):
         self.Bom = self.env['mrp.bom']
         
         # Setup Products
-        self.raw_bulk = self.Product.create({'name': 'Bulk Grains', 'type': 'product'})
-        self.finished_packaged = self.Product.create({'name': 'Retail Pack Grains', 'type': 'product'})
+        self.raw_bulk = self.Product.create({'name': 'Bulk Grains', 'type': 'consu', 'is_storable': True})
+        self.finished_packaged = self.Product.create({'name': 'Retail Pack Grains', 'type': 'consu', 'is_storable': True})
         
         # Setup Subcontracting BOM
         self.bom = self.Bom.create({
@@ -35,7 +35,6 @@ class TestEpic135(TransactionCase):
             'location_id': self.env.ref('stock.stock_location_suppliers').id,
             'location_dest_id': self.env.ref('stock.stock_location_stock').id,
             'move_ids': [(0, 0, {
-                'name': 'Subcontracting Receipt',
                 'product_id': self.finished_packaged.id,
                 'product_uom_qty': 900.0, # 90% yield (below 95% threshold)
                 'quantity': 900.0,
@@ -89,11 +88,11 @@ class TestEpic135(TransactionCase):
         if test_result == 'failed':
             if hasattr(lot, 'action_freeze_passport'):
                 lot.action_freeze_passport(reason="Lab Test Failure (Pesticides)")
-                self.assertEqual(lot.isl_state, 'frozen')
+                self.assertEqual(lot.qc_release_state, 'locked')
             else:
                 # Mock assertion
-                lot.write({'isl_state': 'frozen'})
-                self.assertEqual(lot.isl_state, 'frozen')
+                lot.write({'qc_release_state': 'locked'})
+                self.assertEqual(lot.qc_release_state, 'locked')
                 
         # Verify that a frozen lot cannot be shipped (Mock check)
         if hasattr(lot, 'check_shipment_allowed'):

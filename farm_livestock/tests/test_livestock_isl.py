@@ -8,7 +8,7 @@ class TestLivestockISL(TransactionCase):
         super().setUpClass()
         cls.Product = cls.env['product.product']
         cls.AnimalLot = cls.env['agri.isl.lot.livestock']
-        cls.HusbandryBom = cls.env['agri.isl.livestock.bom']
+        cls.HusbandryBom = cls.env['agri.isl.livestock.recipe']
         
         cls.cow_product = cls.Product.create({
             'name': 'Angus Cow',
@@ -49,5 +49,5 @@ class TestLivestockISL(TransactionCase):
         self.assertEqual(bom.growth_days_expected, 730)
         self.assertEqual(bom.daily_feed_intake, 12.5)
         # Check standard BOM linkage
-        self.assertTrue(bom.bom_id.exists())
-        self.assertEqual(bom.bom_id.product_tmpl_id.id, self.cow_product.product_tmpl_id.id)
+        self.assertTrue(bom.recipe_id.exists())
+        self.assertEqual(bom.recipe_id.product_tmpl_id.id, self.cow_product.product_tmpl_id.id)
