@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, tagged
 from odoo.exceptions import ValidationError
 
+@tagged('post_install', '-at_install')
 class TestConsolidationConstraints(TransactionCase):
     @classmethod
     def setUpClass(cls):
