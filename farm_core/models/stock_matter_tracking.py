@@ -302,7 +302,22 @@ class StockMatterTracking(models.Model):
             for rec in self:
                 rec.action_capture_snapshot()
 
-        return super(StockMatterTracking, self).write(vals)
+        res = super(StockMatterTracking, self).write(vals)
+
+        # Capture physical metrics changes to Event Logger if model exists
+        if any(f in vals for f in ['current_weight', 'life_stage']):
+            for rec in self:
+                if rec.biological_asset_id and 'farm.livestock.event' in self.env:
+                    lots = rec.quant_ids.mapped('lot_id') or rec.lot_ids
+                    if lots:
+                        self.env['farm.livestock.event'].create({
+                            'lot_id': lots[0].id,
+                            'event_type': 'weight' if 'current_weight' in vals else 'stage',
+                            'event_date': fields.Datetime.now(),
+                            'notes': f"Auto-sync from Matter Carrier: {rec.package_id.name}. Weight: {rec.current_weight} kg."
+                        })
+
+        return res
 
     def _recalculate_consolidation_properties(self):
         """ Recalculates total container weights and handles DNA decay calculations """

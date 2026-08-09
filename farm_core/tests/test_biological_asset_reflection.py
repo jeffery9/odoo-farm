@@ -59,3 +59,18 @@ class TestBiologicalAssetReflection(TransactionCase):
         # Without vessel_phase in api.depends, asset.current_weight will remain 250.0 (failing state)
         self.assertAlmostEqual(asset.current_weight, 0.0)
 
+    def test_event_driven_write_hook_sync(self):
+        # Mock the presence of livestock event model inside registry if needed, or check write side-effects
+        asset = self.Asset.create({'name': 'PIG-HERD-B', 'agricultural_type': 'animal'})
+        tracking = self.Tracking.create({
+            'package_id': self.package.id,
+            'biological_asset_id': asset.id,
+            'current_weight': 100.0,
+            'life_stage': 'juvenile'
+        })
+
+        # Trigger write of physical state
+        tracking.write({'current_weight': 115.0})
+        # Assert that the system did not crash and computed values updated
+        self.assertEqual(asset.current_weight, 115.0)
+
