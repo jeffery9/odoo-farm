@@ -40,7 +40,7 @@ class AiDecisionEngine(models.Model):
             
             vals = {
                 'product_id': self.intervention_id.product_id.id,
-                'product_qty': 0.0,
+                'product_qty': 1.0,
                 'intervention_type': intervention_type,
                 'location_id': self.intervention_id.location_id.id,
                 'origin': f"AI Recovery: {self.name}",

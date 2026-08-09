@@ -68,7 +68,7 @@ class AgriAiIrrigationDecision(models.Model):
         # Use ISA-88/MRP implementation of the engine
         vals = {
             'product_id': self.product_id.product_variant_id.id if self.product_id.product_variant_id else self.product_id.id,
-            'product_qty': 0.0, # Service/Intervention has no product output usually
+            'product_qty': 1.0, # Service/Intervention has no product output usually
             'intervention_type': 'irrigation',
             'location_id': self.land_location_id.id,
             'origin': f"AI Decision: {self.name}",

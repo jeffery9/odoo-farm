@@ -195,7 +195,7 @@ class AgriAiBaseMixin(models.AbstractModel):
         return decision_engine.get_ai_system_health()
 
 
-class AgriAiConfiguration(models.AbstractModel):
+class AgriAiConfiguration(models.Model):
 
     def action_test_connection(self):
         for record in self:

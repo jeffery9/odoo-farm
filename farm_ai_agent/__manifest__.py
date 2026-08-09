@@ -18,10 +18,12 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "views/a2a_react_loop_views.xml",
+        "views/ai_skill_views.xml",
+        "views/menu.xml",
         "views/ai_agent_views.xml",
         "views/ai_decision_engine_views.xml",
         "views/mission_orchestrator_views.xml",
-        "views/menu.xml",
     ],
     "demo": [
     ],

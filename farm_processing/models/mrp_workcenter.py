@@ -12,7 +12,7 @@ class MrpWorkcenter(models.Model):
         ('food_line', 'Food Processing Line'),
         ('livestock_pen', 'Livestock Pen / Facility'),
         ('lab', 'Laboratory / Testing')
-    ], string='Industry Capability', default='standard', required=True)
+    ], string='Industry Capability', default='standard')
 
     energy_type = fields.Selection([
         ('electricity', 'Electricity'),

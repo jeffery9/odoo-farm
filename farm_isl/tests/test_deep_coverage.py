@@ -13,6 +13,8 @@ class TestDeepCoverageFarmIsl(TransactionCase):
         for model_name in self.models_to_test:
             if model_name not in self.env: continue
             Model = self.env[model_name]
+            if Model._abstract:
+                continue
             
             # 1. Field and default coverage
             all_fields = list(Model.fields_get().keys())
@@ -39,6 +41,9 @@ class TestDeepCoverageFarmIsl(TransactionCase):
         """ Loads views to trigger fields_view_get and related computations """
         for model_name in self.models_to_test:
             if model_name not in self.env: continue
+            Model = self.env[model_name]
+            if Model._abstract:
+                continue
             
             try:
                 with mute_logger('odoo.sql_db', 'odoo.models'):

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- AI Agent Skill Views -->
+        <record id="view_agri_ai_agent_skill_form" model="ir.ui.view">
+            <field name="name">agri.ai.agent.skill.form</field>
+            <field name="model">agri.ai.agent.skill</field>
+            <field name="arch" type="xml">
+                <form string="AI Agent Skill">
+                    <header>
+                        <button name="action_export_agent_skill" type="object" string="Export SKILL.md" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Skill Name e.g. Precision Temperature Correction"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Skill Blueprint">
+                                <field name="description" placeholder="Explain semantically when and how this skill is applied..."/>
+                                <field name="is_active"/>
+                            </group>
+                            <group string="Upload Skill Files">
+                                <field name="attachment_ids" widget="many2many_binary" string="Upload multiple files (including SKILL.md) at once"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Markdown Specification">
+                                <field name="skill_markdown" placeholder="# AI Agent Skill\n\n## Description\nExplain what this skill does.\n\n## Executable Blueprint\n```json\n{\n    'model': 'mrp.workcenter',\n    'method': 'write',\n    'args': {}\n}\n```" nolabel="1"/>
+                            </page>
+                            <page string="Executable Blueprint (JSON)">
+                                <field name="skill_payload" readonly="1" nolabel="1"/>
+                            </page>
+                            <page string="Auxiliary Attachments List">
+                                <field name="attachment_ids" readonly="1">
+                                    <list string="Companion Attachments">
+                                        <field name="name"/>
+                                        <field name="create_date"/>
+                                        <field name="file_size"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_agri_ai_agent_skill_tree" model="ir.ui.view">
+            <field name="name">agri.ai.agent.skill.tree</field>
+            <field name="model">agri.ai.agent.skill</field>
+            <field name="arch" type="xml">
+                <list string="AI Agent Skills">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="is_active"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- AI Agent Skill Action -->
+        <record id="action_agri_ai_agent_skill" model="ir.actions.act_window">
+            <field name="name">AI Agent Skills</field>
+            <field name="res_model">agri.ai.agent.skill</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Author or Upload your first AI Agent Skill!
+                </p>
+                <p>
+                    Skills define declarative directives and guidelines that dynamic AI Agents use to orchestrate autonomous task correction.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -66,9 +66,10 @@ class A2ANegotiation(models.Model):
 
         # 2. Delegate to specialized agents (e.g. Robots)
         if self.receiver_agent_id.startswith('robot:'):
-            robot = self.env['farm.robot'].search([('agent_id', '=', self.receiver_agent_id)], limit=1)
-            if robot:
-                return robot.evaluate_a2a_proposal(incoming_payload)
+            if 'farm.robot' in self.env:
+                robot = self.env['farm.robot'].search([('agent_id', '=', self.receiver_agent_id)], limit=1)
+                if robot:
+                    return robot.evaluate_a2a_proposal(incoming_payload)
 
         # 3. Standard Bargaining Heuristics
         offered = incoming_payload.get('proposed_credits', 0.0)
