@@ -21,6 +21,9 @@ class FarmPackage(models.Model):
     product_id = fields.Many2one('product.product', string='Contained Product', required=True)
     lot_id = fields.Many2one('stock.lot', string='Contained Lot/Serial', domain="[('product_id', '=', product_id)]")
     quantity = fields.Float(string='Quantity', required=True)
+    
+    capacity = fields.Float(string='Capacity', default=0.0)
+    reusable = fields.Boolean(string='Reusable', default=False)
 
     parent_package_id = fields.Many2one('farm.package', string='Contained In Package', help="The package this package is contained within")
     child_package_ids = fields.One2many('farm.package', 'parent_package_id', string='Contains Packages')

@@ -14,11 +14,18 @@ class TestStockMatterTrackingBase(TransactionCase):
         cls.Quant = cls.env['stock.quant']
         cls.BiologicalAsset = cls.env['agri.biological.asset']
         
+        # Create test category
+        cls.category_apple = cls.env['product.category'].create({
+            'name': 'Apples',
+            'matter_enforcement_level': 'guidance'
+        })
+        
         # Create test products
         cls.product_apple = cls.Product.create({
             'name': 'Organic Red Apple',
             'type': 'consu',
-            'is_storable': True
+            'is_storable': True,
+            'categ_id': cls.category_apple.id
         })
         
         # Create test lots
@@ -127,7 +134,7 @@ class TestStockMatterTrackingBase(TransactionCase):
         self.assertEqual(tracking.active_enforcement_level, 'guidance')
         
         # Update product category to strict
-        self.product_apple.categ_id.matter_enforcement_level = 'strict'
+        self.category_apple.matter_enforcement_level = 'strict'
         
         # Link product quant to tracking vessel
         self.Quant.create({
@@ -137,7 +144,10 @@ class TestStockMatterTrackingBase(TransactionCase):
             'package_id': tracking.package_id.id
         })
         
-        # Trigger dependency compute
+        # Trigger dependency compute with cleared cache
+        self.env.flush_all()
+        tracking.invalidate_recordset()
+        
         tracking._compute_active_enforcement()
         self.assertEqual(tracking.active_enforcement_level, 'strict', "Active level must resolve to strict if any contained product is high-risk.")
 
@@ -175,6 +185,14 @@ class TestStockMatterTrackingBase(TransactionCase):
         self.assertEqual(tracking.current_weight, 450.5)
         self.assertEqual(tracking.life_stage, 'growing')
 
+        # Put a quant inside the package to satisfy Odoo 19's non-empty package constraint for location updates
+        self.Quant.create({
+            'product_id': self.product_apple.id,
+            'quantity': 10.0,
+            'location_id': self.location_vessel.id,
+            'package_id': tracking.package_id.id
+        })
+
         # Create land parcel with geojson polygon
         import json
         boundary = {
@@ -200,7 +218,7 @@ class TestStockMatterTrackingBase(TransactionCase):
         # Test GPS inside boundary
         matched_plot = tracking.action_update_location_by_gps(lat=30.5, lng=120.5)
         self.assertEqual(matched_plot, plot)
-        self.assertEqual(tracking.location_id, plot)
+        self.assertEqual(tracking.farm_location_id, plot)
         self.assertEqual(tracking.last_gps_lat, 30.5)
 
 
