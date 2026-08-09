@@ -60,17 +60,85 @@ class TestBiologicalAssetReflection(TransactionCase):
         self.assertAlmostEqual(asset.current_weight, 0.0)
 
     def test_event_driven_write_hook_sync(self):
-        # Mock the presence of livestock event model inside registry if needed, or check write side-effects
-        asset = self.Asset.create({'name': 'PIG-HERD-B', 'agricultural_type': 'animal'})
-        tracking = self.Tracking.create({
-            'package_id': self.package.id,
-            'biological_asset_id': asset.id,
-            'current_weight': 100.0,
-            'life_stage': 'juvenile'
+        from unittest.mock import patch, MagicMock
+
+        # Create a dummy lot
+        lot = self.env['stock.lot'].create({
+            'name': 'LOT-PIG-TEST',
+            'product_id': self.product_pig.id,
+            'company_id': self.env.company.id,
         })
 
-        # Trigger write of physical state
-        tracking.write({'current_weight': 115.0})
-        # Assert that the system did not crash and computed values updated
-        self.assertEqual(asset.current_weight, 115.0)
+        # Create Biological Asset
+        asset = self.Asset.create({'name': 'PIG-HERD-B', 'agricultural_type': 'animal'})
+
+        # Setup mock for farm.livestock.event
+        mock_create = MagicMock()
+        mock_event_model = MagicMock()
+        mock_event_model.create = mock_create
+        mock_recordset = MagicMock()
+        mock_recordset.create = mock_create
+        mock_event_model._browse.return_value = mock_recordset
+
+        # Mock the __contains__ and __getitem__ of self.env to simulate model registry presence safely
+        orig_getitem = type(self.env).__getitem__
+        
+        def my_contains(*args, **kwargs):
+            item = args[1] if len(args) == 2 else args[0]
+            if item == 'farm.livestock.event':
+                return True
+            return item in self.env.registry
+
+        def my_getitem(*args, **kwargs):
+            key = args[1] if len(args) == 2 else args[0]
+            if key == 'farm.livestock.event':
+                return mock_event_model
+            return orig_getitem(self.env, key)
+
+        with patch.object(type(self.env), '__contains__', side_effect=my_contains), \
+             patch.object(type(self.env), '__getitem__', side_effect=my_getitem):
+
+            # 1. Create tracking first
+            tracking = self.Tracking.create({
+                'package_id': self.package.id,
+                'biological_asset_id': asset.id,
+                'current_weight': 100.0,
+                'life_stage': 'juvenile'
+            })
+
+            # 2. Create quant linked directly to the resolved tracking package_id
+            self.env['stock.quant'].create({
+                'product_id': self.product_pig.id,
+                'location_id': self.env.ref('stock.stock_location_stock').id,
+                'package_id': tracking.package_id.id,
+                'lot_id': lot.id,
+                'quantity': 1.0,
+            })
+
+            # Flush and invalidate to ensure One2many computes can resolve newly created quants
+            self.env.flush_all()
+            tracking.package_id.invalidate_recordset(['quant_ids'])
+            tracking.invalidate_recordset()
+            tracking._compute_lot_ids()
+
+            # Trigger write of physical state
+            tracking.write({'current_weight': 115.0})
+            self.assertEqual(asset.current_weight, 115.0)
+
+            # Verify that mock create was called for weight update
+            mock_create.assert_any_call({
+                'lot_id': lot.id,
+                'event_type': 'weight',
+                'event_date': mock_create.call_args_list[0][0][0]['event_date'], # dynamically match datetime
+                'notes': f"Auto-sync from Matter Carrier: {tracking.package_id.name}. Weight: 115.0 kg."
+            })
+
+            # Trigger write of stage update
+            tracking.write({'life_stage': 'growing'})
+            mock_create.assert_any_call({
+                'lot_id': lot.id,
+                'event_type': 'movement',
+                'event_date': mock_create.call_args_list[-1][0][0]['event_date'],
+                'notes': f"Growth transition to growing."
+            })
 
