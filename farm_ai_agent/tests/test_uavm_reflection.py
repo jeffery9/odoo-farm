@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, tagged
 from odoo.exceptions import UserError, ValidationError
 import logging
 import datetime
 
 _logger = logging.getLogger(__name__)
 
+@tagged('uavm', 'post_install', '-at_install')
 class TestUAVMReflection(TransactionCase):
 
     def setUp(self):
@@ -22,6 +23,8 @@ class TestUAVMReflection(TransactionCase):
             
         for model_name in self.target_models:
             model = self.env[model_name]
+            if model._abstract:
+                continue
             _logger.info("Verifying multi-create for model: %s", model_name)
             # Find required fields to construct valid dicts
             required_fields = []
@@ -73,5 +76,9 @@ class TestUAVMReflection(TransactionCase):
         if matter_tracking_model in self.env:
             active_carrier = self.env[matter_tracking_model].search([('vessel_phase', '!=', 'cleaning')], limit=1)
             if active_carrier:
-                with self.assertRaises((UserError, ValidationError)):
+                try:
                     active_carrier.unlink()
+                    self.fail("Expected UserError or ValidationError on active carrier unlink")
+                except (UserError, ValidationError):
+                    pass
+
