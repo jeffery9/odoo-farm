@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 from .gis_utils import GISCoordinateUtils
 from .common_fields import CommonAgriculturalFields
@@ -7,38 +8,42 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class FarmLocation(models.Model):
+class StockLocation(models.Model):
     """
-    Core Land & Location Management - fundamental agricultural location properties.
-    Level 4: Agri-Farm Semantic Refactoring [US-014-2026]
-    Architecture: Mixin + ISL Implementation.
-    
-    US-001-03: Land Parcel Management
-    US-TECH-04-01: GIS Core Fields
-    US-062-01: Terroir Profiling
-    US-063-01: Vertical Farming / High-density Storage
+    Direct Agricultural, GIS, Terroir, and Volumetric safety extensions of standard Odoo stock.location records.
+    Enforces 'Location Scheme A' Convergence.
     """
-    _name = 'farm.location'
-    _description = 'Farm Location & Land Parcel'
-    
-    # [Semantic Refactoring] Inherit domain standards from agri.location
-    _inherits = {'agri.location': 'agri_location_id'}
-    
     _inherit = [
+        'stock.location',
         'mail.thread', 
         'mail.activity.mixin', 
-        'stock.location', 
         'farm.core.gis.utils',
-        'agri.industry.planting.mixin', # [Mixin Injection] Sector Specific Capability
-        'agri.certification.status.mixin' # [NEW] Level 2: Compliance DNA
+        'agri.industry.planting.mixin',
+        'agri.certification.status.mixin',
+        'agri.geospatial.mixin',
+        'agri.sustainability.mixin',
+        'agri.embedding.mixin'
     ]
 
-    # Link to the Domain Model
-    agri_location_id = fields.Many2one('agri.location', required=True, ondelete="cascade", 
+    # Link to the Domain Model (Optional for backward compatibility)
+    agri_location_id = fields.Many2one('agri.location', required=False, ondelete="cascade", 
                                       string="Agri Domain Entity", help="The underlying physical entity in the Agri domain.")
 
-    # Extend stock.location with essential agricultural properties only
-    is_land_parcel = fields.Boolean("Is Land Parcel", default=False)
+    # --- Inherited from agri.location for Convergence ---
+    location_type = fields.Selection([
+        ('field', 'Open Field / Plot'),
+        ('greenhouse', 'Greenhouse / CEA'),
+        ('barn', 'Barn / Stable'),
+        ('pond', 'Pond / Tank'),
+        ('processing', 'Processing Facility'),
+        ('other', 'Other Container')
+    ], string="Physical Type", required=True, default='field')
+
+    original_owner_id = fields.Many2one('res.partner', string="Original Land Rights Owner", 
+                                       help="The smallholder who originally owns this micro-plot.")
+
+    # --- Agricultural Identification ---
+    is_land_parcel = fields.Boolean("Is Land Parcel", default=False, tracking=True)
 
     # Basic land nature classification
     land_nature = fields.Selection([
@@ -54,8 +59,8 @@ class FarmLocation(models.Model):
     land_area_uom_id = fields.Many2one('uom.uom', string="Area Unit")
 
     # Core GIS Fields [US-001-03, US-TECH-04-01]
-    gps_lat = fields.Float("Latitude", digits=(10, 7))
-    gps_lng = fields.Float("Longitude", digits=(10, 7))
+    gps_lat = fields.Float("Latitude", digits=(10, 7), tracking=True)
+    gps_lng = fields.Float("Longitude", digits=(10, 7), tracking=True)
     boundary_geojson = fields.Text("Boundary Coordinates (GeoJSON)", help="GeoJSON Polygon for the land parcel boundary.")
     calculated_area_ha = fields.Float("Calculated Area (Ha)", digits=(16, 4), readonly=True, help="Area calculated from GeoJSON coordinates.")
 
@@ -153,3 +158,10 @@ class FarmLocation(models.Model):
     location_properties = fields.Json(
         'Properties'
     )
+
+
+class FarmLocation(models.Model):
+    """ Lightweight backward compatibility wrapper model for farm.location """
+    _name = 'farm.location'
+    _description = 'Farm Location Compatibility Wrapper'
+    _inherit = 'stock.location'

@@ -9,3 +9,4 @@ from . import test_biological_asset_reflection
 from . import test_backpressure_constraints
 
 from . import test_deep_coverage
+from . import test_converged_location
