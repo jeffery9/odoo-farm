@@ -5,5 +5,6 @@ from . import stock_lot
 from . import mrp_bom_line_isl
 from . import mrp_bom_line_isl_models
 from . import stock_matter_tracking
+from . import agri_treatment_batch_mrp
 
 
