@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 class MrpProduction(models.Model):
     _name = 'mrp.production'
@@ -70,6 +70,30 @@ class MrpProduction(models.Model):
         return super(MrpProduction, self).get_formview_action(access_uid=access_uid)
 
     def action_confirm(self):
+        for order in self:
+            if order.location_dest_id:
+                # Resolve destination capacity constraints
+                farm_loc = self.env['farm.location'].search([
+                    '|', ('id', '=', order.location_dest_id.id),
+                    ('agri_location_id', '=', order.location_dest_id.id)
+                ], limit=1)
+
+                if farm_loc and farm_loc.max_stocking_density > 0.0:
+                    # Calculate future density including pending production qty
+                    existing_quants = self.env['stock.quant'].search([
+                        ('location_id', '=', order.location_dest_id.id)
+                    ])
+                    current_qty = sum(existing_quants.mapped('quantity'))
+                    future_qty = current_qty + order.product_qty
+                    
+                    if farm_loc.land_area > 0.0:
+                        future_density = future_qty / farm_loc.land_area
+                        if future_density > farm_loc.max_stocking_density:
+                            raise ValidationError(_(
+                                "Backpressure Limit Reached: Confirming production of %.2f units would exceed "
+                                "maximum stocking density (%.2f units/m²) of destination %s."
+                            ) % (order.product_qty, farm_loc.max_stocking_density, farm_loc.name))
+
         res = super(MrpProduction, self).action_confirm()
         for order in self:
             self._trigger_isl_hook('isl_post_confirm', order.id)
