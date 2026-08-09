@@ -65,3 +65,8 @@ All ISL models support the following vertical agricultural industries:
 The ISL architecture is a hybrid approach combining centralized infrastructure with distributed specialization:
 - **Core Infrastructure** (`farm_isl`): Provides the abstract mixins, standard concrete proxies, and the Redirector logic.
 - **Industry Apps** (`farm_livestock`, `farm_aquaculture`, `farm_crop`): Inject their unique models by inheriting from the central `agri.isl.*` proxies, allowing each vertical to maintain specialized UI and behaviors securely.
+
+## Advanced Architectural Guidelines
+
+1. **Granular Trait Composition (按需特质混入原则)**: When composing behavior traits (such as `agri.isl.trait.food_safety` or `agri.isl.trait.livestock`) into concrete ISL models, vertical developers MUST adhere to strict granular composition. Avoid blank-check multiple inheritance. Exclude unused traits to maintain physical table narrowness.
+2. **Multi-level Cascade Safeguard (多级级联物理删除防护)**: When deleting ISL records via cascading foreign keys (`ondelete='cascade'`), developers MUST override the `unlink()` method in the proxy model to guard against forensic traceability shattering. If the record is linked to active dynamic Matter carriers or holds unresolved GxP inspections, delete propagation must be locked with a `UserError`.
