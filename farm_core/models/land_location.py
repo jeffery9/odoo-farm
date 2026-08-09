@@ -126,6 +126,19 @@ class FarmLocation(models.Model):
     # Multi-farm collaboration [US-040-09] - Using Odoo's native Company mechanism
     farm_id = fields.Many2one('res.company', string="Belonging Farm", default=lambda self: self.env.company)
 
+    # Physical Capacity and Stocking Density Limits
+    max_capacity_volume_m3 = fields.Float(
+        string='Max Capacity Volume (m³)',
+        default=0.0,
+        help="Maximum capacity constraint for physical volumetric safety checks."
+    )
+
+    max_stocking_density = fields.Float(
+        string='Max Stocking Density (units/m²)',
+        default=0.0,
+        help="Maximum stocking density constraint (e.g. animals/sqm or plants/sqm)."
+    )
+
     @api.depends('water_depth')
     def _compute_water_depth_dm(self):
         for loc in self:
