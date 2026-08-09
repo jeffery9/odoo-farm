@@ -39,6 +39,8 @@ ISL 放弃了传统的 `_inherit` (经典扩展)，转而使用 `_inherits` (代
 2.  **建立专属 ISL 模型**: 必须新建 `farm.viticulture.production`，使用 `_inherits = {'mrp.production': 'mrp_production_id'}`。
 3.  **注册重定向路由**: 在 `agri.isl.model.redirector` 的 `special_mappings` 字典中注册您的模型路由。
 4.  **设计专属 UI**: 为您的 ISL 模型编写无干扰的纯净视图（Form/Tree），并挂载到您专属的顶级 App 菜单下（参考 *UX_MENU_ARCHITECTURE_PRINCIPLES.md*）。
+5.  **按需特质混入原则 (Granular Trait Composition)**: 垂直领域特化模型在装配 behavior traits 时，必须严格执行“极简按需装配”。绝对禁止无脑装配所有 traits。未被使用的 traits 必须剔除，保持表物理宽度的精简性。
+6.  **多级级联物理删除防护 (Multi-level Cascade Safeguard)**: 在对 ISL 代理记录执行级联删除时，为防范核心物性溯源链路碎裂，必须在代理层重写 `unlink()` 方法。如果该记录已绑定活动的动态 Matter 容器或存在未闭环的 GxP 质检异动，应拦截并抛出 UserError，锁闭物理删除通路。
 
 ---
 **附注**: 目前，系统已经在底层准备好了分布分发的重定向沙盒 (`get_formview_action`)，随着各子行业 UI 视图的物理落地，该网关将全面接管系统的全局导航。
