@@ -9,6 +9,29 @@ class MrpProduction(models.Model):
     industry_type = fields.Selection(related="bom_id.industry_type", string="Industry Standard", store=True, readonly=True)
     isl_record_type = fields.Char(string="ISL Record Type", compute='_compute_isl_record_type', store=False)
 
+    lot_producing_id = fields.Many2one(
+        'stock.lot',
+        string='Producing Lot (Compatibility)',
+        compute='_compute_lot_producing_id',
+        inverse='_inverse_lot_producing_id',
+        search='_search_lot_producing_id'
+    )
+
+    @api.depends('lot_producing_ids')
+    def _compute_lot_producing_id(self):
+        for rec in self:
+            rec.lot_producing_id = rec.lot_producing_ids[0] if rec.lot_producing_ids else False
+
+    def _inverse_lot_producing_id(self):
+        for rec in self:
+            if rec.lot_producing_id:
+                rec.lot_producing_ids = [rec.lot_producing_id.id]
+            else:
+                rec.lot_producing_ids = [(5, 0, 0)]
+
+    def _search_lot_producing_id(self, operator, value):
+        return [('lot_producing_ids', operator, value)]
+
     def _compute_isl_record_type(self):
         """ Compute the ISL record type if one exists """
         for record in self:

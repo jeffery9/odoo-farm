@@ -18,7 +18,7 @@ class MrpProduction(models.Model):
     def _get_isl_model(self):
         res = super(MrpProduction, self)._get_isl_model()
         if self.industry_type == 'livestock':
-            return 'agri.isl.livestock.production'
+            return 'agri.isl.livestock.task'
         return res
 
 class MrpBom(models.Model):
@@ -32,5 +32,5 @@ class MrpBom(models.Model):
     def _get_isl_model(self):
         res = super(MrpBom, self)._get_isl_model()
         if self.industry_type == 'livestock':
-            return 'agri.isl.livestock.bom'
+            return 'agri.isl.livestock.recipe'
         return res

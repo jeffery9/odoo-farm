@@ -20,9 +20,9 @@ class TestAdvancedProcessingEpics(TransactionCase):
         cls.Workorder = cls.env['mrp.workorder']
 
         # Setup basic mock products
-        cls.strawberry = cls.Product.create({'name': 'Raw Strawberry', 'type': 'product'})
-        cls.sugar = cls.Product.create({'name': 'White Sugar', 'type': 'product'})
-        cls.jam = cls.Product.create({'name': 'Strawberry Jam', 'type': 'product'})
+        cls.strawberry = cls.Product.create({'name': 'Raw Strawberry', 'type': 'consu', 'is_storable': True})
+        cls.sugar = cls.Product.create({'name': 'White Sugar', 'type': 'consu', 'is_storable': True})
+        cls.jam = cls.Product.create({'name': 'Strawberry Jam', 'type': 'consu', 'is_storable': True})
 
     def test_01_dynamic_recipe_formulation_epic_134(self):
         """

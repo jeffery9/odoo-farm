@@ -53,14 +53,14 @@ class MrpWorkorder(models.Model):
         return True
 
     def button_finish(self):
-        self.ensure_one()
-        self._check_workorder_balance()
-        
-        # [US-044-02] Atomic Inventory Transaction at Phase Stop
-        if self.production_id:
-            # Simulate immediate deduction of raw materials for this phase
-            # In a real scenario, this would create stock.move for consumed components
-            self.message_post(body=_("Atomic Inventory Deduction: Phase %s components recorded.") % self.name)
-            self.production_id.scrap_qty += self.qty_scrapped_workorder
+        for workorder in self:
+            workorder._check_workorder_balance()
+
+            # [US-044-02] Atomic Inventory Transaction at Phase Stop
+            if workorder.production_id:
+                # Simulate immediate deduction of raw materials for this phase
+                # In a real scenario, this would create stock.move for consumed components
+                workorder.production_id.message_post(body=_("Atomic Inventory Deduction: Phase %s components recorded.") % workorder.name)
+                workorder.production_id.scrap_qty += workorder.qty_scrapped_workorder
 
         return super(MrpWorkorder, self).button_finish()

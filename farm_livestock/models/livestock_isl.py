@@ -36,6 +36,17 @@ class FarmLotLivestock(models.Model):
 
     lot_id = fields.Many2one('stock.lot', string='Base Lot', required=True, ondelete='cascade')
 
+    withdrawal_end_date = fields.Date("Withdrawal Period End (Date)", compute='_compute_withdrawal_end_date', inverse='_inverse_withdrawal_end_date', store=False)
+
+    @api.depends('withdrawal_end_datetime')
+    def _compute_withdrawal_end_date(self):
+        for rec in self:
+            rec.withdrawal_end_date = fields.Date.to_date(rec.withdrawal_end_datetime) if rec.withdrawal_end_datetime else False
+
+    def _inverse_withdrawal_end_date(self):
+        for rec in self:
+            rec.withdrawal_end_datetime = fields.Datetime.to_datetime(rec.withdrawal_end_date) if rec.withdrawal_end_date else False
+
     # [US-094-01] 个体动物档案管理
     birth_date = fields.Date("Birth Date")
     gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string="Gender")
@@ -105,6 +116,19 @@ class FarmLivestockTask(models.Model):
     ]
 
     intervention_id = fields.Many2one('mrp.production', string='Base Intervention', required=True, ondelete='cascade')
+
+    intervention_type = fields.Selection(selection=[
+        ('tillage', 'Soil Preparation'),
+        ('sowing', 'Sowing/Planting'),
+        ('fertilizing', 'Fertilizing'),
+        ('irrigation', 'Irrigation'),
+        ('protection', 'Crop Protection'),
+        ('aerial_spraying', 'Aerial Spraying'),
+        ('harvesting', 'Harvesting'),
+        ('feeding', 'Feeding'),
+        ('medical', 'Medical/Prevention'),
+        ('process', 'General Process'),
+    ], string="Intervention Type", default='feeding')
 
     # Weight Gain & Efficiency
     initial_total_weight = fields.Float("Initial Total Weight (kg)")

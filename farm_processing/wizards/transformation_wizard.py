@@ -35,7 +35,6 @@ class FarmWasteTransformationWizard(models.TransientModel):
 
         # 2. Consume the Waste
         move_consume = self.env['stock.move'].create({
-            'name': _('Consume Waste'),
             'product_id': self.source_product_id.id,
             'product_uom_qty': self.transformation_qty,
             'product_uom': self.source_product_id.uom_id.id,
@@ -46,7 +45,6 @@ class FarmWasteTransformationWizard(models.TransientModel):
 
         # 3. Create the New Asset (Fertilizer)
         move_produce = self.env['stock.move'].create({
-            'name': _('Produce Organic Fertilizer'),
             'product_id': self.target_product_id.id,
             'product_uom_qty': self.output_qty,
             'product_uom': self.target_product_id.uom_id.id,

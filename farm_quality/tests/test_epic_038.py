@@ -13,7 +13,7 @@ class TestEpic038(TransactionCase):
         self.QCPoint = self.env['agri.quality.point']
         self.QCCheck = self.env['agri.quality.check']
         
-        self.apple = self.Product.create({'name': 'Organic Apple', 'type': 'product'})
+        self.apple = self.Product.create({'name': 'Organic Apple', 'type': 'consu', 'is_storable': True})
         self.lot_01 = self.Lot.create({'name': 'LOT-APP-001', 'product_id': self.apple.id, 'company_id': self.env.company.id})
 
     def test_01_define_quality_inspection_points_and_tolerance_ranges(self):
@@ -73,7 +73,6 @@ class TestEpic038(TransactionCase):
             'location_dest_id': self.env.ref('stock.stock_location_customers').id,
         })
         move = self.env['stock.move'].create({
-            'name': 'Test Move',
             'product_id': self.apple.id,
             'product_uom_qty': 1,
             'product_uom': self.apple.uom_id.id,

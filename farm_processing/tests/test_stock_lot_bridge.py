@@ -47,9 +47,11 @@ class TestStockLotBridge(TransactionCase):
             'product_id': self.product_apple.id,
             'location_id': self.location_vessel.id,
             'lot_id': self.lot_a.id,
-            'quantity': 1.0,
+            'quantity': 120.5,
             'package_id': tracking.package_id.id
         })
+        self.env.flush_all()
+        self.lot_a.invalidate_recordset()
 
         # Test read bridge
         self.assertEqual(self.lot_a.current_weight, 120.5)

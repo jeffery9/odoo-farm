@@ -6,9 +6,11 @@
         <field name="model">stock.lot</field>
         <field name="inherit_id" ref="stock.view_production_lot_form" />
         <field name="arch" type="xml">
-            <header>
-                <button name="action_check_health_anomalies" string="Scan for Anomalies" type="object" class="btn-info" invisible="biological_stage == 'harvested'" />
-            </header>
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="action_check_health_anomalies" string="Scan for Anomalies" type="object" class="btn-info" invisible="biological_stage == 'harvested'" />
+                </header>
+            </xpath>
             <xpath expr="//field[@name='ref']" position="after">
                 <field name="is_health_anomaly" invisible="not is_health_anomaly" widget="boolean_favorite" decoration-danger="is_health_anomaly" />
                 <field name="health_index" widget="gauge" options="{'max_value': 100}" />

@@ -8,19 +8,20 @@ class TestCIPAllergenRouting(TransactionCase):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         
-        cls.allergen_peanut = cls.env['agri.allergen'].create({'name': 'Peanuts'})
-        cls.allergen_dairy = cls.env['agri.allergen'].create({'name': 'Dairy'})
+        cls.allergen_peanut = cls.env['farm.allergen'].create({'name': 'Peanuts'})
+        cls.allergen_dairy = cls.env['farm.allergen'].create({'name': 'Dairy'})
         
         cls.product_peanut_butter = cls.env['product.product'].create({
             'name': 'Organic Peanut Butter',
-            'type': 'product',
+            'type': 'consu',
+            'is_storable': True,
+            'allergen_ids': [(6, 0, [cls.allergen_peanut.id])] if hasattr(cls.env['product.product'], 'allergen_ids') else []
         })
-        if hasattr(cls.product_peanut_butter, 'allergen_ids'):
-            cls.product_peanut_butter.allergen_ids = [(4, cls.allergen_peanut.id)]
             
         cls.product_almond_butter = cls.env['product.product'].create({
             'name': 'Organic Almond Butter',
-            'type': 'product'
+            'type': 'consu',
+            'is_storable': True,
         })
         
         cls.workcenter = cls.env['mrp.workcenter'].create({

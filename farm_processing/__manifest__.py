@@ -18,6 +18,8 @@
     'author': 'Jeffery',
     'depends': [
         'mrp',
+        'mrp_subcontracting',
+        'product_expiry',
         'stock',
         'farm_core',
         'farm_mrp',
