@@ -25,8 +25,8 @@ class IiotDevice(models.Model):
             if device.location_id:
                 # Climb up the hierarchy to find the 'site' level
                 parent = device.location_id
-                while parent and parent.isa95_level != 'site' and parent.parent_id:
-                    parent = parent.parent_id
+                while parent and parent.isa95_level != 'site' and parent.location_id:
+                    parent = parent.location_id
                 device.site_id = parent if parent and parent.isa95_level == 'site' else False
             else:
                 device.site_id = False

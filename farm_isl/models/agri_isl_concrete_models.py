@@ -31,6 +31,30 @@ class AgriMRPProduction(models.Model):
         ondelete='cascade'
     )
 
+    vector_embedding = fields.Text('Vector Embedding (JSON Array)', help="ORM-level Vector Embedding representing AI Native RAG memory")
+
+    def calculate_cosine_similarity(self, target_vector):
+        """
+        Natively calculates cosine similarity between the record's vector and target_vector.
+        Enables Odoo-native vector-search/RAG memory without external databases.
+        """
+        self.ensure_one()
+        if not self.vector_embedding or not target_vector:
+            return 0.0
+        try:
+            import json
+            rec_vec = json.loads(self.vector_embedding)
+            if len(rec_vec) != len(target_vector):
+                return 0.0
+            dot_product = sum(a * b for a, b in zip(rec_vec, target_vector))
+            norm_a = sum(a * a for a in rec_vec) ** 0.5
+            norm_b = sum(b * b for b in target_vector) ** 0.5
+            if norm_a == 0 or norm_b == 0:
+                return 0.0
+            return dot_product / (norm_a * norm_b)
+        except Exception:
+            return 0.0
+
     # Industry-specific methods
     def _check_industry_compliance(self):
         """Check industry-specific compliance before production"""
@@ -152,6 +176,30 @@ class AgriStockLot(models.Model):
         required=True,
         ondelete='cascade'
     )
+
+    vector_embedding = fields.Text('Vector Embedding (JSON Array)', help="ORM-level Vector Embedding representing AI Native RAG memory")
+
+    def calculate_cosine_similarity(self, target_vector):
+        """
+        Natively calculates cosine similarity between the record's vector and target_vector.
+        Enables Odoo-native vector-search/RAG memory without external databases.
+        """
+        self.ensure_one()
+        if not self.vector_embedding or not target_vector:
+            return 0.0
+        try:
+            import json
+            rec_vec = json.loads(self.vector_embedding)
+            if len(rec_vec) != len(target_vector):
+                return 0.0
+            dot_product = sum(a * b for a, b in zip(rec_vec, target_vector))
+            norm_a = sum(a * a for a in rec_vec) ** 0.5
+            norm_b = sum(b * b for b in target_vector) ** 0.5
+            if norm_a == 0 or norm_b == 0:
+                return 0.0
+            return dot_product / (norm_a * norm_b)
+        except Exception:
+            return 0.0
 
     harvest_date = fields.Date('Harvest Date')  # Agriculture
     certificate_of_analysis = fields.Binary('Certificate of Analysis')

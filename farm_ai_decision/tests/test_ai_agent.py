@@ -12,7 +12,7 @@ class TestAiDecision(TransactionCase):
             'usage': 'internal',
         })
         cls.Product = cls.env['product.template'].create({
-            'name': 'Test Corn',
+            'name': 'Test Crop',
             'type': 'consu',
         })
         
