@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sequence for Stock Matter Tracking -->
+        <record id="seq_stock_matter_tracking" model="ir.sequence">
+            <field name="name">Stock Matter Tracking Sequence</field>
+            <field name="code">stock.matter.tracking</field>
+            <field name="prefix">MAT-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+
+    <data>
+        <!-- List View (Odoo 19 compliant <list> tag) -->
+        <record id="view_stock_matter_tracking_list" model="ir.ui.view">
+            <field name="name">stock.matter.tracking.list</field>
+            <field name="model">stock.matter.tracking</field>
+            <field name="arch" type="xml">
+                <list string="Matter Tracking Vessels" decoration-info="vessel_phase == 'ready'" decoration-success="vessel_phase == 'idle'" decoration-warning="vessel_phase == 'dirty'" decoration-danger="vessel_phase == 'cleaning'">
+                    <field name="name" string="Matter ID"/>
+                    <field name="package_id"/>
+                    <field name="vessel_phase" widget="badge" decoration-info="vessel_phase == 'ready'" decoration-success="vessel_phase == 'idle'" decoration-warning="vessel_phase == 'dirty'" decoration-danger="vessel_phase == 'cleaning'"/>
+                    <field name="biological_asset_id" string="Biological Asset (Individual)"/>
+                    <field name="location_id"/>
+                    <field name="dna_integrity_score" avg="Average Integrity"/>
+                    <field name="gxp_expiry_time" widget="remaining_days"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View (Odoo 19 compliant) -->
+        <record id="view_stock_matter_tracking_form" model="ir.ui.view">
+            <field name="name">stock.matter.tracking.form</field>
+            <field name="model">stock.matter.tracking</field>
+            <field name="arch" type="xml">
+                <form string="Matter Tracking Vessel">
+                    <header id="header_stock_matter_tracking">
+                        <button name="action_seal_vessel" string="Seal Vessel (GxP Start)" type="object" class="btn-primary" invisible="vessel_phase != 'idle'"/>
+                        <button name="action_clean_vessel" string="Clean Vessel" type="object" invisible="vessel_phase not in ('ready', 'dirty')"/>
+                        <button name="action_complete_cleaning" string="Complete Cleaning" type="object" class="btn-success" invisible="vessel_phase != 'cleaning'"/>
+                        <field name="vessel_phase" widget="statusbar" statusbar_visible="idle,ready,dirty,cleaning"/>
+                    </header>
+                    <div class="alert alert-warning text-center" role="alert" invisible="active_enforcement_level != 'strict'" style="margin-bottom:0px; border-radius:0px;">
+                        <strong>STRICT GXP COMPLIANCE ENFORCED / 强合规控制模式已启动</strong>: Batch verification, strict weights, and safety scanning are active for this matter category.
+                    </div>
+                    <sheet>
+                        <field name="active_enforcement_level" invisible="1"/>
+                        <div class="oe_title">
+                            <label for="name" string="Matter / LPN Reference"/>
+                            <h1>
+                                <field name="name" placeholder="MAT-XXXXX"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Physical Identification" id="group_physical_identification">
+                                <field name="package_id" string="Underlying Package"/>
+                                <field name="location_id" string="Current Spatial Location"/>
+                                <field name="biological_asset_id" string="Linked Biological Asset"/>
+                                <field name="parent_tracking_id" readonly="1" string="Parent Source / 来源物质"/>
+                                <field name="fission_type" readonly="1" string="Lineage Fission Type / 拆分类别"/>
+                                <field name="active_enforcement_level" widget="badge" decoration-warning="active_enforcement_level == 'strict'" decoration-info="active_enforcement_level == 'guidance'" string="Enforcement Mode / 卡控模式"/>
+                            </group>
+                            <group string="GxP &amp; Quality Metrics" id="group_gxp_metrics">
+                                <field name="gxp_open_time" readonly="1"/>
+                                <field name="gxp_expiry_time" readonly="1"/>
+                                <field name="dna_integrity_score" string="DNA Integrity Score (%)"/>
+                            </group>
+                            <group string="Physical Profile">
+                                <field name="current_weight"/>
+                                <field name="life_stage"/>
+                            </group>
+                            <group string="Spatial Profile">
+                                <field name="last_gps_lat" readonly="1"/>
+                                <field name="last_gps_lng" readonly="1"/>
+                                <field name="last_location_update" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook id="notebook_stock_matter_tracking">
+                            <page string="Contained Matter (Quants)" name="contained_quants">
+                                <field name="quant_ids" readonly="1">
+                                    <list string="Contained Materials">
+                                        <field name="product_id"/>
+                                        <field name="lot_id"/>
+                                        <field name="quantity" sum="Total Quantity"/>
+                                        <field name="location_id"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Genealogical Lots (DNA)" name="genealogical_lots">
+                                <field name="lot_ids" readonly="1">
+                                    <list string="Lots Inside">
+                                        <field name="name"/>
+                                        <field name="product_id"/>
+                                        <field name="dna_integrity_score"/>
+                                        <field name="create_date"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="GxP Stage Snapshots (History)" name="gxp_snapshots">
+                                <field name="snapshot_ids" readonly="1">
+                                    <list string="GxP Audit Snapshots" create="0" delete="0" edit="0">
+                                        <field name="timestamp"/>
+                                        <field name="vessel_phase" widget="badge"/>
+                                        <field name="biological_asset_id"/>
+                                        <field name="quantity"/>
+                                        <field name="location_id"/>
+                                        <field name="gxp_expiry_time"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Lineage Offspring (Split)" name="child_lineage">
+                                <field name="child_tracking_ids" readonly="1">
+                                    <list string="Split Offspring">
+                                        <field name="name" string="Matter ID"/>
+                                        <field name="fission_type" widget="badge"/>
+                                        <field name="dna_integrity_score"/>
+                                        <field name="location_id"/>
+                                        <field name="create_date"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_stock_matter_tracking_search" model="ir.ui.view">
+            <field name="name">stock.matter.tracking.search</field>
+            <field name="model">stock.matter.tracking</field>
+            <field name="arch" type="xml">
+                <search string="Search Matter Tracking">
+                    <field name="name" string="Matter/LPN ID"/>
+                    <field name="lot_ids" string="Lot / DNA"/>
+                    <field name="biological_asset_id"/>
+                    <filter string="Idle" name="idle" domain="[('vessel_phase', '=', 'idle')]"/>
+                    <filter string="Ready" name="ready" domain="[('vessel_phase', '=', 'ready')]"/>
+                    <group>
+                        <filter string="Vessel Phase" name="groupby_vessel_phase" context="{'group_by': 'vessel_phase'}"/>
+                        <filter string="Location" name="groupby_location" context="{'group_by': 'location_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Window Action -->
+        <record id="action_stock_matter_tracking" model="ir.actions.act_window">
+            <field name="name">Matter Tracking</field>
+            <field name="res_model">stock.matter.tracking</field>
+            <field name="view_mode">list,form</field>
+            <field name="search_view_id" ref="view_stock_matter_tracking_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Track Agricultural Matter flow using stateful LPN / biological asset pointers.
+                </p>
+                <p>
+                   Integrates stock.package with GxP vessel stages, individual tracking, and lot genealogy.
+                </p>
+            </field>
+        </record>
+
+        <!-- Base Menu Item under farm_core Settings (Administration) -->
+        <menuitem id="menu_stock_matter_tracking"
+                  name="Matter Tracking (LPN)"
+                  action="action_stock_matter_tracking"
+                  parent="farm_core.menu_farm_core_hidden_settings"
+                  sequence="100"/>
+    </data>
+</odoo>
