@@ -289,8 +289,8 @@ class AgriAiCoordinationLayer(models.Model):
                     _logger.error(f"Error executing financial service {financial_service.id}: {str(e)}")
 
         # Use LLM to synthesize results if available
-        llm_service = self.env['llm.service'].search([('config_id.is_active', '=', True),
-                                                      ('config_id.is_default', '=', True)], limit=1)
+        llm_service = self.env['agri.ai.llm.service'].search([('config_id.is_active', '=', True),
+                                                              ('config_id.is_default', '=', True)], limit=1)
 
         if llm_service:
             synthesis_prompt = self._create_synthesis_prompt(all_results, context_data)

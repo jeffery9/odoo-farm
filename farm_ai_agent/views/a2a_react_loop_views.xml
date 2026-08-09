@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Re-Act Loop Views -->
+        <record id="view_a2a_react_loop_form" model="ir.ui.view">
+            <field name="name">agri.a2a.react.loop.form</field>
+            <field name="model">agri.a2a.react.loop</field>
+            <field name="arch" type="xml">
+                <form string="AI Re-Act Loop">
+                    <header>
+                        <button name="action_execute_iteration" type="object" string="Step Loop" class="oe_highlight" invisible="state not in ['draft', 'running', 'paused']"/>
+                        <button name="action_execute_active_skill" type="object" string="Run Active Skill" class="btn-primary" invisible="state not in ['draft', 'running', 'paused']"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,running,paused,completed,failed"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="goal"/>
+                                <field name="max_iterations"/>
+                            </group>
+                            <group>
+                                <field name="current_iteration" readonly="1"/>
+                                <field name="context_data"/>
+                                <field name="active_skill_json"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Execution Steps (Thought -> Action -> Observation)">
+                                <field name="line_ids" readonly="1">
+                                    <list string="Steps">
+                                        <field name="iteration"/>
+                                        <field name="thought"/>
+                                        <field name="action_type"/>
+                                        <field name="tool_id"/>
+                                        <field name="observation"/>
+                                        <field name="state" widget="badge"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_a2a_react_loop_tree" model="ir.ui.view">
+            <field name="name">agri.a2a.react.loop.tree</field>
+            <field name="model">agri.a2a.react.loop</field>
+            <field name="arch" type="xml">
+                <list string="AI Re-Act Loops">
+                    <field name="name"/>
+                    <field name="goal"/>
+                    <field name="current_iteration"/>
+                    <field name="max_iterations"/>
+                    <field name="state" widget="badge"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Re-Act Loop Action -->
+        <record id="action_a2a_react_loop" model="ir.actions.act_window">
+            <field name="name">AI Agent Re-Act Loops</field>
+            <field name="res_model">agri.a2a.react.loop</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first AI Agent Re-Act Loop!
+                </p>
+                <p>
+                    Observe, reason, act, and audit dynamic agricultural adjustments in a secure savepoint sandbox.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -47,6 +47,8 @@ class MCPServer(models.AbstractModel):
         
         if tool_name == 'get_spatial_context':
             record = self.env[res_model or 'mrp.production'].browse(res_id)
+            if not record.exists():
+                return {}
             return record.get_spatial_context() if hasattr(record, 'get_spatial_context') else {}
             
         elif tool_name == 'finalize_value_clearing':

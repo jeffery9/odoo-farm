@@ -10,5 +10,7 @@
     <menuitem id="farm_ai_agent_rules_menu" name="Decision Rules" parent="farm_ai_agent_menu_root" sequence="30" />
 
     <menuitem id="farm_ai_agent_workflows_menu" name="Workflows" parent="farm_ai_agent_menu_root" sequence="40" />
+    <menuitem id="menu_a2a_react_loop" name="Agent Re-Act Loops" parent="farm_ai_agent_workflows_menu" action="action_a2a_react_loop" sequence="30" />
+    <menuitem id="menu_agri_ai_agent_skill" name="Agent Skills" parent="farm_ai_agent_workflows_menu" action="action_agri_ai_agent_skill" sequence="40" />
 </data>
 </odoo>

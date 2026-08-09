@@ -18,7 +18,8 @@ class TestISLDynamicRedirection(TransactionCase):
         # 1. Setup a basic intervention (mrp.production) for testing
         cls.product = cls.env['product.product'].create({
             'name': 'Organic Corn',
-            'type': 'product',
+            'type': 'consu',
+            'is_storable': True,
         })
         
         cls.production = cls.env['mrp.production'].create({
@@ -96,6 +97,7 @@ class TestISLDynamicRedirection(TransactionCase):
         
         # Fix and retry
         isl_mo.haccp_plan = "<p>Safe</p>"
+        isl_mo.quality_control_points = "<p>Points</p>"
         res = isl_mo._check_industry_compliance()
         self.assertTrue(res)
 

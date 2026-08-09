@@ -10,6 +10,8 @@
         "base",
         "mail",
         "farm_core",
+        "farm_operation",
+        "farm_iot",
         "farm_ai_vision",
         "farm_ai",
         "farm_agri_science",
