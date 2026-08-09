@@ -65,3 +65,43 @@ class AgriBiologicalAsset(models.Model):
 
     parent_asset_id = fields.Many2one('agri.biological.asset', string="Domain Parent")
     sub_asset_ids = fields.One2many('agri.biological.asset', 'parent_asset_id', string="Biological Offspring")
+
+    tracking_carrier_ids = fields.One2many(
+        'stock.matter.tracking',
+        'biological_asset_id',
+        string='Active Carrier Containers',
+        help="The physical tracking carriers carrying this biological asset."
+    )
+
+    current_weight = fields.Float(
+        string='Current Weight (kg)',
+        compute='_compute_carrier_physical_properties',
+        store=False,
+        help="Dynamic weight resolved from active tracking carriers."
+    )
+
+    life_stage = fields.Selection([
+        ('juvenile', 'Juvenile / Seedling'),
+        ('growing', 'Growing / Fattening'),
+        ('mature', 'Mature / Breeding'),
+        ('harvested', 'Harvested / Culled')
+    ], string='Life Stage', compute='_compute_carrier_physical_properties', store=False)
+
+    last_gps_lat = fields.Float('Last Latitude', compute='_compute_carrier_physical_properties', store=False)
+    last_gps_lng = fields.Float('Last Longitude', compute='_compute_carrier_physical_properties', store=False)
+
+    @api.depends('tracking_carrier_ids', 'tracking_carrier_ids.current_weight', 'tracking_carrier_ids.life_stage', 'tracking_carrier_ids.last_gps_lat', 'tracking_carrier_ids.last_gps_lng')
+    def _compute_carrier_physical_properties(self):
+        for asset in self:
+            carriers = asset.tracking_carrier_ids.filtered(lambda c: c.vessel_phase != 'dirty')
+            if carriers:
+                primary = carriers[0]
+                asset.current_weight = primary.current_weight
+                asset.life_stage = primary.life_stage
+                asset.last_gps_lat = primary.last_gps_lat
+                asset.last_gps_lng = primary.last_gps_lng
+            else:
+                asset.current_weight = 0.0
+                asset.life_stage = 'juvenile'
+                asset.last_gps_lat = 0.0
+                asset.last_gps_lng = 0.0
