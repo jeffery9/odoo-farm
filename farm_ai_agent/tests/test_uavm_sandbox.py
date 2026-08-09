@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, tagged
 from odoo.exceptions import UserError, ValidationError
 import json
 
+@tagged('uavm', 'post_install', '-at_install')
 class TestUAVMSandbox(TransactionCase):
 
     def test_uavm_sandbox_atomic_rollback_integrity(self):
