@@ -26,7 +26,7 @@ class MrpBom(models.Model):
         """ Compute the ISL record type if one exists """
         for record in self:
             # Use the centralized ISL redirection mechanism from farm_isl
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
             isl_record = redirector.get_isl_record('mrp.bom', record.id)
             if isl_record:
                 # Extract human-readable name from model name
@@ -55,7 +55,7 @@ class MrpBom(models.Model):
         boms = super(MrpBom, self).create(vals_list)
         for bom in boms:
             # Use farm_isl's redirection mechanism
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
             # The ISL record will be automatically created by the ISL redirection utility
             # if the industry_type is specified
             if bom.industry_type and bom.industry_type != 'standard':
@@ -66,7 +66,7 @@ class MrpBom(models.Model):
         # Check if any records have ISL counterparts and if any protected fields are being modified
         if not self.env.context.get('bypass_isl_restrictions'):
             # Use centralized ISL infrastructure to get corresponding ISL record
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
 
             for record in self:
                 isl_record = redirector.get_isl_record('mrp.bom', record.id)
@@ -96,7 +96,7 @@ class MrpBom(models.Model):
     def unlink(self):
         # Check if any records have ISL counterparts - prevent direct deletion
         if not self.env.context.get('bypass_isl_restrictions'):
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
             for record in self:
                 isl_record = redirector.get_isl_record('mrp.bom', record.id)
                 if isl_record:
@@ -108,7 +108,7 @@ class MrpBom(models.Model):
     def get_formview_action(self, access_uid=None):
         """ US-TECH-06-19: Redirect to ISL-specialized view if available. """
         # Use the centralized ISL redirection mechanism from farm_isl
-        redirector = self.env['isl.model.redirector']
+        redirector = self.env['agri.isl.model.redirector']
         isl_record = redirector.get_isl_record('mrp.bom', self.id)
 
         if isl_record:
@@ -126,7 +126,7 @@ class MrpBom(models.Model):
         """ Action to redirect to the specialized ISL view if one exists """
         self.ensure_one()
         # Use the centralized ISL redirection mechanism
-        redirector = self.env['isl.model.redirector']
+        redirector = self.env['agri.isl.model.redirector']
         isl_record = redirector.get_isl_record('mrp.bom', self.id)
 
         if isl_record:

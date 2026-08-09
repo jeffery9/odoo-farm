@@ -1,5 +1,6 @@
 # Order of loading is critical for model dependencies in Odoo 19
 from . import lxml_patch
+from . import quality_point_mock
 # 1. Base Mixins & Protocols
 from . import base_mixins
 from . import agri_mixins
@@ -17,6 +18,7 @@ from . import agri_industry_planting_mixin
 
 # 3. Core Foundation Models
 from . import common_fields
+from . import product_category_extension
 from . import res_partner
 from . import res_company
 from . import performance_monitor
@@ -25,6 +27,8 @@ from . import performance_monitor
 from . import agri_stock_lot
 from . import agri_lot_kinship
 from . import agri_stock_move
+from . import stock_matter_tracking
+from . import stock_quant_consolidation
 from . import farm_growth_curve  # Must be before product_template_extension
 
 # 5. Application/Business Models (Level 4)

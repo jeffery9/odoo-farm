@@ -16,8 +16,9 @@
     "website": "http://www.geninit.cn",
     'depends': ['mrp', 'stock', 'farm_core', 'farm_isl'],
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/mrp_isl_navigation_views.xml',
+        'views/stock_matter_tracking_mrp_views.xml',
     ],
     'images': ['static/description/main_screenshot.png'],
     'installable': True,

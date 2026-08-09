@@ -13,7 +13,7 @@ class StockLot(models.Model):
         """ Compute the ISL record type if one exists """
         for record in self:
             # Use the centralized ISL redirection mechanism from farm_isl
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
             isl_record = redirector.get_isl_record('stock.lot', record.id)
             if isl_record:
                 # Extract human-readable name from model name
@@ -43,7 +43,7 @@ class StockLot(models.Model):
         # Check if any records have ISL counterparts and if any protected fields are being modified
         if not self.env.context.get('bypass_isl_restrictions'):
             # Use centralized ISL infrastructure to get corresponding ISL record
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
 
             for record in self:
                 isl_record = redirector.get_isl_record('stock.lot', record.id)
@@ -73,7 +73,7 @@ class StockLot(models.Model):
     def unlink(self):
         # Check if any records have ISL counterparts - prevent direct deletion
         if not self.env.context.get('bypass_isl_restrictions'):
-            redirector = self.env['isl.model.redirector']
+            redirector = self.env['agri.isl.model.redirector']
             for record in self:
                 isl_record = redirector.get_isl_record('stock.lot', record.id)
                 if isl_record:
@@ -86,7 +86,7 @@ class StockLot(models.Model):
         """ Action to redirect to the specialized ISL view if one exists """
         self.ensure_one()
         # Use the centralized ISL redirection mechanism
-        redirector = self.env['isl.model.redirector']
+        redirector = self.env['agri.isl.model.redirector']
         isl_record = redirector.get_isl_record('stock.lot', self.id)
 
         if isl_record:

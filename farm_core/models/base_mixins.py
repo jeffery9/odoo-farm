@@ -18,6 +18,10 @@ class SustainabilityMixin(models.AbstractModel):
         digits=(12, 4),
         help="Estimated carbon footprint per unit of output."
     )
+    carbon_footprint = fields.Float(
+        string="Total Carbon Footprint (kg CO2e)",
+        help="Total accumulated carbon footprint."
+    )
     esg_score = fields.Integer(
         string="ESG Impact Score",
         default=100,

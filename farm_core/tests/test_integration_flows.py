@@ -12,7 +12,8 @@ class TestIntegrationFarmCore(TransactionCase):
         # Create a dummy package for stages
         cls.package = cls.env['agri.industry.data.package'].create({
             'name': 'Test Package',
-            'code': 'TEST-PKG'
+            'code': 'TEST-PKG',
+            'industry_type': 'citrus'
         })
         
         cls.stage_early = cls.Stage.create({
@@ -54,8 +55,8 @@ class TestIntegrationFarmCore(TransactionCase):
             'name': 'North Field A',
             'usage': 'internal',
             'land_area': 5000.0,
-            'gps_latitude': 34.0522,
-            'gps_longitude': -118.2437
+            'gps_lat': 34.0522,
+            'gps_lng': -118.2437
         })
         self.assertTrue(location.exists())
         self.assertEqual(location.land_area, 5000.0)
