@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-<record id="demo_live_session_1" model="live.streaming.session">
+    <record id="demo_douyin_account_1" model="douyin.account">
+        <field name="name">亘盈农业示范抖音号</field>
+        <field name="client_key">dy_key_123456</field>
+        <field name="client_secret">dy_secret_abcdef</field>
+    </record>
+
+    <record id="demo_live_session_1" model="live.streaming.session">
         <field name="name">春季新鲜果蔬直播</field>
+        <field name="account_id" ref="demo_douyin_account_1" />
         <field name="start_time" eval="DateTime.now() - timedelta(days=1)" />
         <field name="end_time" eval="DateTime.now() - timedelta(days=1, hours=2)" />
-        <field name="status">ended</field>
-        <field name="description">展示我们农场最新鲜的春季果蔬，包括溯源信息</field>
+        <field name="state">ended</field>
     </record>
 
     <record id="demo_live_session_2" model="live.streaming.session">
         <field name="name">有机蔬菜种植过程直播</field>
+        <field name="account_id" ref="demo_douyin_account_1" />
         <field name="start_time" eval="DateTime.now() + timedelta(days=3)" />
-        <field name="status">planned</field>
-        <field name="description">直播有机蔬菜的种植过程，展示我们的有机认证</field>
+        <field name="state">planned</field>
     </record>
 </data>
 </odoo>
