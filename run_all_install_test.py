@@ -12,7 +12,7 @@ print(f"Installing and testing {len(modules)} modules...")
 # Construct the docker compose command
 cmd = [
     "docker", "compose", "run", "--rm", "web", "odoo", 
-    "-d", "test_stdd_db_final_v56", 
+    "-d", "test_stdd_db_final_v57", 
     "-i", modules_str, 
     "--test-enable", 
     "--stop-after-init", 

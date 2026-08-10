@@ -17,6 +17,15 @@ class ProtectedCultivationOperation(models.Model):
         string='Operation Task'
     )
 
+    operation_type = fields.Selection([
+        ('seeding', 'Seeding (育苗)'),
+        ('transplanting', 'Transplanting (移栽/定植)'),
+        ('climate_control', 'Climate Control (环控管理)'),
+        ('irrigation_fertigation', 'Irrigation & Fertigation (水肥浇灌)'),
+        ('harvesting', 'Harvesting (作物采收)'),
+        ('pruning', 'Pruning/Trimming (修剪整枝)'),
+    ], string='Operation Type (作业类型)', default='climate_control')
+
     # Protected cultivation specific fields
     temperature_target_min = fields.Float(
         string='Min Target Temperature (°C)',
