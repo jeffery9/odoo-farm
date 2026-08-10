@@ -1,8 +1,6 @@
 from odoo import models, fields, api, _
 
-class FarmEquipment(models.Model):
-    _name = 'maintenance.equipment'
-    _inherit = 'maintenance.equipment'
+class FarmEquipment(models.Model):    _inherit = 'maintenance.equipment'
 
     # 农机购置补贴信息 [US-041-07]
     is_subsidized_machinery = fields.Boolean("Eligible for Subsidy", default=False)

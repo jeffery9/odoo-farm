@@ -11,9 +11,7 @@ class FarmComplianceAuditStandard(models.Model):
     code = fields.Char("Standard Code")
     active = fields.Boolean(default=True)
 
-class FarmExportCompliance(models.Model):
-    _name = 'farm.export.compliance'
-    _inherit = 'farm.export.compliance'
+class FarmExportCompliance(models.Model):    _inherit = 'farm.export.compliance'
 
     standard_id = fields.Many2one('farm.compliance.audit.standard', string="Compliance Standard")
     last_audit_run = fields.Datetime("Last Audit Run")

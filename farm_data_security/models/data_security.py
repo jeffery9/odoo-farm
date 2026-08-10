@@ -80,9 +80,7 @@ class FarmIotDeviceRegistry(models.Model):
             'last_security_audit': fields.Datetime.now()
         })
 
-class FarmLocation(models.Model):
-    _name = 'stock.location'
-    _inherit = 'stock.location'
+class FarmLocation(models.Model):    _inherit = 'stock.location'
 
     def unlink(self):
         """ 敏感操作审计：删除地块 [US-041-10] """
@@ -91,9 +89,7 @@ class FarmLocation(models.Model):
                          self.env.user.name, rec.name, rec.id)
         return super().unlink()
 
-class ResPartner(models.Model):
-    _name = 'res.partner'
-    _inherit = 'res.partner'
+class ResPartner(models.Model):    _inherit = 'res.partner'
 
     def write(self, vals):
         """ 敏感操作审计：修改农户信息 [US-041-10] """

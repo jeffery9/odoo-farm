@@ -34,9 +34,7 @@ class FarmConsumerFeedback(models.Model):
                 pass
         return super().create(vals_list)
 
-class StockLot(models.Model):
-    _name = 'stock.lot'
-    _inherit = 'stock.lot'
+class StockLot(models.Model):    _inherit = 'stock.lot'
 
     feedback_ids = fields.One2many('farm.consumer.feedback', 'lot_id', string="Consumer Feedbacks")
     avg_consumer_rating = fields.Float("Avg Consumer Rating", compute='_compute_feedback_stats', store=True, precompute=True)

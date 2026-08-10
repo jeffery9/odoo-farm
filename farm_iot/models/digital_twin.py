@@ -4,9 +4,7 @@ import json
 
 _logger = logging.getLogger(__name__)
 
-class FarmLocation(models.Model):
-    _name = 'farm.location'
-    _inherit = 'farm.location'
+class FarmLocation(models.Model):    _inherit = 'farm.location'
 
     isa95_level = fields.Selection([
         ('enterprise', 'Enterprise (Company)'),
@@ -59,9 +57,7 @@ class FarmDigitalTwinMarker(models.Model):
         return super()._register_hook()
 
 # Note: FarmLocation and IiotDevice remain as is since they're only inheritance extensions
-class IiotDevice(models.Model):
-    _name = 'iiot.device'
-    _inherit = 'iiot.device'
+class IiotDevice(models.Model):    _inherit = 'iiot.device'
 
     digital_twin_model_url = fields.Char("3D Model URL", help="Specific 3D model for this device")
     last_telemetry_json = fields.Text("Last Telemetry JSON", compute='_compute_last_telemetry_json')

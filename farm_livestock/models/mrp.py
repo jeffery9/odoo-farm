@@ -2,9 +2,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
-class MrpProduction(models.Model):
-    _name = 'mrp.production'
-    _inherit = 'mrp.production'
+class MrpProduction(models.Model):    _inherit = 'mrp.production'
 
     def _hook_pre_start(self):
         """[US-003-02] Livestock Health Gating before starting"""
@@ -22,9 +20,7 @@ class MrpProduction(models.Model):
             return 'agri.isl.livestock.task'
         return res
 
-class MrpBom(models.Model):
-    _name = 'mrp.bom'
-    _inherit = 'mrp.bom'
+class MrpBom(models.Model):    _inherit = 'mrp.bom'
 
     industry_type = fields.Selection(selection_add=[
         ('livestock', 'Livestock'),

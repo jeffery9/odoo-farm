@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 
-class MrpWorkcenter(models.Model):
-    _name = 'mrp.workcenter'
-    _inherit = 'mrp.workcenter'
+class MrpWorkcenter(models.Model):    _inherit = 'mrp.workcenter'
 
     # US-TECH-05-08: Industry Capability
     industry_capability = fields.Selection([
@@ -22,9 +20,7 @@ class MrpWorkcenter(models.Model):
     ], string='Energy Type')
     energy_cost_per_hour = fields.Float("Energy Cost per Hour")
 
-class MrpRoutingWorkcenter(models.Model):
-    _name = 'mrp.routing.workcenter'
-    _inherit = 'mrp.routing.workcenter'
+class MrpRoutingWorkcenter(models.Model):    _inherit = 'mrp.routing.workcenter'
 
     # Filter logic will be handled at the XML view level via domain
     pass
