@@ -139,6 +139,14 @@ class FarmCoopSettlement(models.Model):
     _description = 'Cooperative Member Settlement'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
+    name = fields.Char("Reference", required=True, copy=False, readonly=True, default='/')
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('confirmed', 'Confirmed'),
+        ('settled', 'Settled'),
+        ('posted', 'Posted'),
+    ], string="Status", default="draft")
+
     partner_id = fields.Many2one('res.partner', string="Member", required=True)
     date = fields.Date("Date", default=fields.Date.today)
 
