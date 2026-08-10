@@ -13,7 +13,7 @@ class AgriEvidence(models.Model):
 
     name = fields.Char("Evidence Label", required=True, default=lambda self: _('Field Photo'))
     res_model = fields.Char("Related Model")
-    res_id = fields.Many2one_reference("Related ID", model_field='res_model')
+    res_id = fields.Many2oneReference("Related ID", model_field='res_model')
 
     photo = fields.Binary("Evidence Photo", attachment=True, required=True)
 
