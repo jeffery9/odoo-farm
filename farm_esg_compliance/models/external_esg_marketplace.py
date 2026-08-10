@@ -45,7 +45,7 @@ class AgriESGMarketplace(models.Model):
     ], string='Integration Type', default='direct_api')
 
     # Compliance and standards
-    #compliance_standards removed
+    compliance_standards = fields.Many2many('farm.compliance.audit.standard', 'esg_market_std_rel', 'market_id', 'std_id', string='Compliance Standards')
     certification_requirement = fields.Text('Certification Requirement')
     audit_frequency = fields.Selection([
         ('monthly', 'Monthly'),
