@@ -24,5 +24,18 @@
 
     <menuitem id="menu_farm_hr_root" name="Labor &amp; HR" sequence="70" />
     <menuitem id="menu_farm_worklog" name="Field Worklogs" parent="menu_farm_hr_root" action="action_farm_worklog" sequence="10" />
+
+    <!-- Late-binding View Inheritance to inject skills into core task view -->
+    <record id="view_task_form2_inherit_farm_hr" model="ir.ui.view">
+        <field name="name">project.task.form.inherit.farm.hr</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="farm_operation.view_task_form2_inherit_farm_op" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='campaign_id']" position="after">
+                <field name="required_skill_id" options="{'no_create': True}"/>
+                <field name="eligible_worker_ids" widget="many2many_tags" readonly="1" />
+            </xpath>
+        </field>
+    </record>
 </data>
 </odoo>
