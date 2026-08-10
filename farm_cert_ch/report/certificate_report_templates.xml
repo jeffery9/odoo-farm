@@ -43,7 +43,7 @@
                             <t t-if="doc.quality_check_ids">
                                 <t t-foreach="doc.quality_check_ids" t-as="qc">
                                     <p><span t-field="qc.point_id.name"/>: <span t-field="qc.quality_state"/></p>
-                                </t-foreach>
+                                </t>
                             </t>
                             <t t-else="">
                                 <p>未进行第三方检测，仅为生产者承诺 / No third-party testing, producer's commitment only.</p>
