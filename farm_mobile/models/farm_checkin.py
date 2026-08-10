@@ -55,13 +55,14 @@ class AgriIntervention(models.Model):
     _inherit = 'mrp.production'
 
     check_in_ids = fields.One2many('farm.checkin', 'intervention_id', string="Check-in History")
+    evidence_ids = fields.One2many('agri.evidence', 'res_id', string="Site Evidence", domain=[('res_model', '=', 'mrp.production')])
     
     current_check_in_id = fields.Many2one('farm.checkin', string="Active Check-in", compute='_compute_active_checkin')
 
     def action_mobile_capture_evidence(self, lat, lng, photo_base64, note=""):
         """ 移动端专用：现场取证 [US-007-05] """
         self.ensure_one()
-        return self.env['agri.evidence.mixin'].create({
+        return self.env['agri.evidence'].create({
             'name': _('Evidence: %s') % self.name,
             'res_model': 'mrp.production',
             'res_id': self.id,
