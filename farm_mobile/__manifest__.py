@@ -15,11 +15,11 @@
     'data': [
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
+        'views/farm_mobile_menus.xml',
         'views/farm_checkin_views.xml',
         'views/farm_evidence_views.xml',
         'views/expert_call_views.xml',
         'views/farm_mobile_dashboard_views.xml',
-        'views/farm_mobile_menus.xml',
     ],
     'assets': {
         'web.assets_backend': [
