@@ -30,7 +30,7 @@ class AgriSustainableSupplyChain(models.Model):
     # Supply chain assessment
     sustainability_assessment_date = fields.Date('Last Assessment Date')
     sustainability_assessment_result = fields.Text('Assessment Result')
-    #certification_ids removed
+    certification_ids = fields.Many2many('farm.certification.process', string='Certifications')
 
     # Monitoring
     monitoring_frequency = fields.Selection([
