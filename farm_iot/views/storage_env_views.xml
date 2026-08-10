@@ -33,7 +33,7 @@
                             <field name="co2_level" />
                         </group>
                     </group>
-                    <group string="Alert Status" t-if="is_alert">
+                    <group string="Alert Status" invisible="not is_alert">
                         <field name="is_alert" />
                         <field name="alert_message" />
                     </group>
