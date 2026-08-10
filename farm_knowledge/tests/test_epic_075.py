@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
-from odoo.tests.common import TransactionCase
+from odoo.addons.farm_core.tests.bdd_base import BddTransactionCase
 from odoo.exceptions import UserError, ValidationError
 
-class TestEpic075(TransactionCase):
+class TestEpic075(BddTransactionCase):
     """ BDD Test Suite for Epic 075: Epic 075 Agricultural Knowledge Management (农艺知识管理) """
 
     def setUp(self):
         super(TestEpic075, self).setUp()
-        # Initialize basic test environments
-        self.partner = self.env['res.partner'].create({'name': 'BDD Test Partner'})
 
     def test_01_agronomic_diagnostic_symptom_match_validation(self):
         """
@@ -18,8 +16,13 @@ class TestEpic075(TransactionCase):
         Then the agronomy knowledge engine must evaluate disease rules and identify "Powdery Mildew" (白粉病) with a confidence level of "95.0%"
         And set the diagnostic log status on "agri.agronomy.kb" (农艺知识库模型) to "diagnosed" (已诊断)
         """
-        # Checkpoint: BDD Scenario Validation
-        self.assertTrue(True, 'Scenario checkpoint verified.')
+        # Execute BDD Gherkin steps dynamically at runtime on database
+        self.execute_gherkin_steps([
+            'Given an active disease diagnostic log under "agri.agronomy.kb" (农艺知识库模型) in state "draft" (草稿)',
+            'When the field scout logs symptoms: "Yellowing leaves" (叶片发黄), "Powdery white spots" (粉白色斑点), and "Leaf curling" (叶片卷曲)',
+            'Then the agronomy knowledge engine must evaluate disease rules and identify "Powdery Mildew" (白粉病) with a confidence level of "95.0%"',
+            'And set the diagnostic log status on "agri.agronomy.kb" (农艺知识库模型) to "diagnosed" (已诊断)'
+        ])
 
     def test_02_automated_disease_chemical_treatment_suggestion(self):
         """
@@ -29,8 +32,13 @@ class TestEpic075(TransactionCase):
         Then the system must retrieve matched agronomic treatment guidelines and propose a standard chemical spraying recipe under "mrp.bom" (物料清单/配方)
         And attach the recommended recipe to the crop protection workorder log
         """
-        # Checkpoint: BDD Scenario Validation
-        self.assertTrue(True, 'Scenario checkpoint verified.')
+        # Execute BDD Gherkin steps dynamically at runtime on database
+        self.execute_gherkin_steps([
+            'Given a diagnosed crop infection logged under "agri.agronomy.kb" (农艺知识库模型) in state "diagnosed" (已诊断) for "Powdery Mildew"',
+            'When the agronomist confirms the disease outbreak (当农艺师确认病害爆发时)',
+            'Then the system must retrieve matched agronomic treatment guidelines and propose a standard chemical spraying recipe under "mrp.bom" (物料清单/配方)',
+            'And attach the recommended recipe to the crop protection workorder log'
+        ])
 
     def test_03_organic_parcel_incompatible_pesticide_warning(self):
         """
@@ -40,8 +48,13 @@ class TestEpic075(TransactionCase):
         Then the system must raise a ValidationError (验证错误) message "Incompatible Treatment: Prohibited synthetic chemical on organic certified parcel" (不兼容治理：有机认证土地禁用合成化学药剂)
         And block the state transition of the workorder to "ready" (准备就绪)
         """
-        # Checkpoint: BDD Scenario Validation
-        self.assertTrue(True, 'Scenario checkpoint verified.')
+        # Execute BDD Gherkin steps dynamically at runtime on database
+        self.execute_gherkin_steps([
+            'Given a planned crop spraying workorder under "mrp.workorder" (制造工单) scheduled for an organic certified parcel "stock.location" (库存库位)',
+            'When the technician attempts to schedule a chemical recipe containing synthetic copper sulfate fungicides (当技术员试图排产包含人工合成硫酸铜杀菌剂的化学配方时)',
+            'Then the system must raise a ValidationError (验证错误) message "Incompatible Treatment: Prohibited synthetic chemical on organic certified parcel" (不兼容治理：有机认证土地禁用合成化学药剂)',
+            'And block the state transition of the workorder to "ready" (准备就绪)'
+        ])
 
     def test_04_soil_nutrient_defect_fertilizer_recommendations(self):
         """
@@ -51,8 +64,13 @@ class TestEpic075(TransactionCase):
         Then the agronomic engine must automatically generate a dynamic fertilizer prescription proposal and trigger a variable rate potassium sulfate workorder under "mrp.workorder" (制造工单)
         And set the new workorder status on the agronomist's queue to "draft" (草稿)
         """
-        # Checkpoint: BDD Scenario Validation
-        self.assertTrue(True, 'Scenario checkpoint verified.')
+        # Execute BDD Gherkin steps dynamically at runtime on database
+        self.execute_gherkin_steps([
+            'Given a registered soil laboratory test report on "stock.location" (库存库位)',
+            'When soil test analysis registers a potassium level below "80.0 PPM" (当土壤测试分析记录钾元素水平低于80.0 PPM，判定为缺钾状态)',
+            'Then the agronomic engine must automatically generate a dynamic fertilizer prescription proposal and trigger a variable rate potassium sulfate workorder under "mrp.workorder" (制造工单)',
+            'And set the new workorder status on the agronomist's queue to "draft" (草稿)'
+        ])
 
     def test_05_knowledge_base_diagnostic_offline_caching_sync(self):
         """
@@ -62,8 +80,13 @@ class TestEpic075(TransactionCase):
         Then the central system must validate the offline cryptographic hashes and write the diagnostic records to "agri.agronomy.kb" (农艺知识库模型)
         And set the synced record status to "synced" (已同步)
         """
-        # Checkpoint: BDD Scenario Validation
-        self.assertTrue(True, 'Scenario checkpoint verified.')
+        # Execute BDD Gherkin steps dynamically at runtime on database
+        self.execute_gherkin_steps([
+            'Given a field scout logging diagnostic symptoms offline on the mobile PWA app with high-resolution photo attachments',
+            'When the mobile device detects network restoration and triggers synchronization (当移动设备检测到网络恢复并触发同步时)',
+            'Then the central system must validate the offline cryptographic hashes and write the diagnostic records to "agri.agronomy.kb" (农艺知识库模型)',
+            'And set the synced record status to "synced" (已同步)'
+        ])
 
     def test_06_agronomic_diagnosis_treatment_audit_trail_logging(self):
         """
@@ -73,5 +96,10 @@ class TestEpic075(TransactionCase):
         Then the system must compile a digital audit trail containing the diagnostic history, variety classification from "product.template" (产品模板), and recommended chemical dose
         And sign the audit record with a secure cryptographic validation hash "crypto_hash" (加密散列值) to prevent manual alteration of treatment history
         """
-        # Checkpoint: BDD Scenario Validation
-        self.assertTrue(True, 'Scenario checkpoint verified.')
+        # Execute BDD Gherkin steps dynamically at runtime on database
+        self.execute_gherkin_steps([
+            'Given a diagnosed disease infection under "agri.agronomy.kb" (农艺知识库模型) in state "diagnosed" (已诊断)',
+            'When the agronomist schedules a chemical recipe on a crop protection mission "mrp.workorder" (作业任务)',
+            'Then the system must compile a digital audit trail containing the diagnostic history, variety classification from "product.template" (产品模板), and recommended chemical dose',
+            'And sign the audit record with a secure cryptographic validation hash "crypto_hash" (加密散列值) to prevent manual alteration of treatment history'
+        ])
