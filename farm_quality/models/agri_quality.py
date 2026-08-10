@@ -163,7 +163,8 @@ class AgriQualityAlert(models.Model):
         self.message_post(body=_("Alert closed: Asset marked for scrapping."))
         self.write({'state': 'closed'})
 
-class StockPicking(models.Model):    _inherit = 'stock.picking'
+class StockPicking(models.Model):
+    _inherit = 'stock.picking'
 
     def button_validate(self):
         for picking in self:
@@ -176,7 +177,8 @@ class StockPicking(models.Model):    _inherit = 'stock.picking'
                             raise UserError(_("QC LOCKED: Lot %s is pending release and cannot be moved.") % lot.name)
         return super().button_validate()
 
-class AgriLotQuality(models.Model):    _inherit = 'stock.lot'
+class AgriLotQuality(models.Model):
+    _inherit = 'stock.lot'
 
     quality_status = fields.Selection([
         ('none', 'Not Tested'),

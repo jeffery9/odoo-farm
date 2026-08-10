@@ -26,6 +26,7 @@ class FarmEquipmentChecklistLine(models.Model):
     is_mandatory = fields.Boolean("Mandatory", default=True)
     requires_photo = fields.Boolean("Require Photo Evidence", default=False)
 
-class FarmEquipment(models.Model):    _inherit = 'maintenance.equipment'
+class FarmEquipment(models.Model):
+    _inherit = 'maintenance.equipment'
 
     checklist_id = fields.Many2one('farm.equipment.checklist', string="Pre-op Checklist")

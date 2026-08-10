@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 
-class ProductTemplate(models.Model):    _inherit = 'product.template'
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
 
     input_type = fields.Selection([
         ('seed', 'Seed/Variety'),
@@ -25,7 +26,8 @@ class ProductTemplate(models.Model):    _inherit = 'product.template'
     # 生长周期 [US-003-01]
     growth_cycle_days = fields.Integer("Growth Cycle (Days)", default=0, help="Typical duration from start to harvest.")
 
-class SaleOrder(models.Model):    _inherit = 'sale.order'
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
 
     def action_confirm(self):
         """ 检查生长周期提前期 [US-003-01] """
@@ -45,7 +47,8 @@ class SaleOrder(models.Model):    _inherit = 'sale.order'
                             ))
         return super(SaleOrder, self).action_confirm()
 
-class PurchaseOrder(models.Model):    _inherit = 'purchase.order'
+class PurchaseOrder(models.Model):
+    _inherit = 'purchase.order'
 
     # Link to joint procurement for cooperative purchases
     joint_procurement_order_id = fields.Many2one(
@@ -69,7 +72,8 @@ class PurchaseOrder(models.Model):    _inherit = 'purchase.order'
                     vals['agri_task_id'] = group.agri_task_id.id
         return super().create(vals_list)
 
-class PurchaseOrderLine(models.Model):    _inherit = 'purchase.order.line'
+class PurchaseOrderLine(models.Model):
+    _inherit = 'purchase.order.line'
 
     is_compliance_warning = fields.Boolean("Compliance Warning", compute='_compute_compliance_warning', store=True, precompute=True)
 

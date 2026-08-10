@@ -4,7 +4,8 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-class StockLot(models.Model):    _inherit = 'stock.lot'
+class StockLot(models.Model):
+    _inherit = 'stock.lot'
 
     # --- Industry Context ---
     lot_purpose = fields.Selection([
@@ -301,7 +302,8 @@ class StockLot(models.Model):    _inherit = 'stock.lot'
         return True
 
 
-class StockMove(models.Model):    _inherit = 'stock.move'
+class StockMove(models.Model):
+    _inherit = 'stock.move'
 
     is_subcontract = fields.Boolean("Is Subcontract Move", default=False)
     bom_id = fields.Many2one('mrp.bom', string="BOM")

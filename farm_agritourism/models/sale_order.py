@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 
-class SaleOrder(models.Model):    _inherit = 'sale.order'
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
 
     agri_task_ids = fields.One2many('project.task', 'sale_order_id', string="Farm Tasks")
     booking_ids = fields.One2many('farm.booking', 'sale_order_id', string="Farm Bookings")
@@ -59,11 +60,13 @@ class SaleOrder(models.Model):    _inherit = 'sale.order'
         action['context'] = {'default_sale_order_id': self.id, 'default_partner_id': self.partner_id.id}
         return action
 
-class ProductTemplate(models.Model):    _inherit = 'product.template'
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
 
     is_experience_package = fields.Boolean("Is Experience Package", default=False, help="Products like 'Family Day Package' which include bookings.")
 
-class SaleOrderLine(models.Model):    _inherit = 'sale.order.line'
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
 
     lot_id = fields.Many2one(
         'stock.lot', 

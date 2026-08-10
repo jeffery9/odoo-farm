@@ -39,7 +39,8 @@ class FarmProductCertificate(models.Model):
                 vals['certificate_no'] = self.env['ir.sequence'].next_by_code('farm.product.certificate') or _('PPC')
         return super().create(vals_list)
 
-class StockPicking(models.Model):    _inherit = 'stock.picking'
+class StockPicking(models.Model):
+    _inherit = 'stock.picking'
 
     requires_cert_ch = fields.Boolean("Requires Cert. (China)", compute='_compute_requires_cert_ch', store=True, precompute=True)
     certificate_ch_ids = fields.One2many('farm.product.certificate', 'picking_id', string="Certificates (China)")

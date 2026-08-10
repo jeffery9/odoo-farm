@@ -43,7 +43,8 @@ class FarmWorklog(models.Model):
                 })
         return True
 
-class ProjectTask(models.Model):    _inherit = 'project.task'
+class ProjectTask(models.Model):
+    _inherit = 'project.task'
 
     worklog_ids = fields.One2many('farm.worklog', 'task_id', string="Labor Worklogs")
     total_harvested_qty = fields.Float("Total Harvested (kg)", compute='_compute_total_worklog_qty', store=True, precompute=True)
@@ -101,7 +102,8 @@ class FarmEmployeeCertificate(models.Model):
             else:
                 cert.state = 'valid'
 
-class HrEmployee(models.Model):    _inherit = 'hr.employee'
+class HrEmployee(models.Model):
+    _inherit = 'hr.employee'
 
     is_seasonal = fields.Boolean("Seasonal Laborer", default=False, help="Identify external or seasonal workers.")
     hourly_cost = fields.Float("Hourly Cost", default=0.0)

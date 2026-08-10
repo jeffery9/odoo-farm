@@ -26,7 +26,8 @@ class FarmIndustryWorkcenter(models.Model):
     # IoT Integration (Sync with EPIC-TECH-03)
     main_sensor_topic = fields.Char("Primary Telemetry Topic", help="Main sensor topic associated with this facility (e.g. pond temperature).")
 
-class MrpWorkcenter(models.Model):    _inherit = 'mrp.workcenter'
+class MrpWorkcenter(models.Model):
+    _inherit = 'mrp.workcenter'
 
     def get_formview_action(self, access_uid=None):
         """ US-TECH-06-23: Transparent redirection to Industry Specialized Workcenter View. """

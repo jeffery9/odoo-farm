@@ -130,7 +130,8 @@ class LiveOrder(models.Model):
             return True
         return False
 
-class StockPicking(models.Model):    _inherit = 'stock.picking'
+class StockPicking(models.Model):
+    _inherit = 'stock.picking'
 
     def button_validate(self):
         res = super(StockPicking, self).button_validate()

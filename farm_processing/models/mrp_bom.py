@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 
-class MrpBom(models.Model):    _inherit = 'mrp.bom'
+class MrpBom(models.Model):
+    _inherit = 'mrp.bom'
 
     # Extend selection for Food Processing
     industry_type = fields.Selection(selection_add=[

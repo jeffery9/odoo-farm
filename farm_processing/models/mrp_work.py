@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 
-class MrpWorkcenter(models.Model):    _inherit = 'mrp.workcenter'
+class MrpWorkcenter(models.Model):
+    _inherit = 'mrp.workcenter'
 
     # 能耗核算基础 [US-037-04]
     energy_type = fields.Selection([
@@ -10,7 +11,8 @@ class MrpWorkcenter(models.Model):    _inherit = 'mrp.workcenter'
     ], string="Primary Energy Type")
     energy_cost_per_hour = fields.Float("Energy Cost per Hour")
 
-class MrpWorkorder(models.Model):    _inherit = 'mrp.workorder'
+class MrpWorkorder(models.Model):
+    _inherit = 'mrp.workorder'
 
     # 实际工序能耗记录 [US-037-04]
     actual_energy_consumption = fields.Float("Actual Energy Consumption")

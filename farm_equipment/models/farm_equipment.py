@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 
-class FarmEquipment(models.Model):    _inherit = 'maintenance.equipment'
+class FarmEquipment(models.Model):
+    _inherit = 'maintenance.equipment'
 
     is_agri_machinery = fields.Boolean("Is Agricultural Machinery", default=False)
     is_drone = fields.Boolean("Is Drone", default=False)

@@ -51,7 +51,8 @@ class FarmCheckIn(models.Model):
             })
             rec.is_on_site = temp_fence.is_point_inside(rec.gps_lng, rec.gps_lat)
 
-class AgriIntervention(models.Model):    _inherit = 'mrp.production'
+class AgriIntervention(models.Model):
+    _inherit = 'mrp.production'
 
     check_in_ids = fields.One2many('farm.checkin', 'intervention_id', string="Check-in History")
     

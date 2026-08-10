@@ -87,7 +87,8 @@ class FarmTrainingSession(models.Model):
         ])
         return [('id', 'in', valid_certs.mapped('employee_id').ids)]
 
-class HrEmployee(models.Model):    _inherit = 'hr.employee'
+class HrEmployee(models.Model):
+    _inherit = 'hr.employee'
 
     certificate_ids = fields.One2many('farm.certificate', 'employee_id', string="Certificates")
     training_session_ids = fields.Many2many('farm.training.session', string="Training History")
@@ -97,7 +98,8 @@ class HrEmployee(models.Model):    _inherit = 'hr.employee'
         for emp in self:
             emp.total_training_hours = sum(emp.training_session_ids.filtered(lambda s: s.state == 'done').mapped('hours'))
 
-class AgriIntervention(models.Model):    _inherit = 'mrp.production'
+class AgriIntervention(models.Model):
+    _inherit = 'mrp.production'
 
     @api.onchange('intervention_type')
     def _onchange_intervention_type_filter_workers(self):

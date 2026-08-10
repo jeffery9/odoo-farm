@@ -39,7 +39,8 @@ class FarmProcessingArtisanLog(models.Model):
             else:
                 rec.quality_grade = 'subpar'
 
-class MrpProduction(models.Model):    _inherit = 'mrp.production'
+class MrpProduction(models.Model):
+    _inherit = 'mrp.production'
 
     artisan_log_ids = fields.One2many('farm.processing.artisan.log', 'production_id', string="Artisan Precision Logs")
     is_artisan_batch = fields.Boolean("Artisan/Premium Batch", default=False)
