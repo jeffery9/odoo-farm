@@ -72,6 +72,11 @@ class FarmCreditScore(models.Model):
 
     partner_id = fields.Many2one('res.partner', string="Farmer/Entity", required=True)
     evaluation_date = fields.Date("Evaluation Date", default=fields.Date.today)
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('valid', 'Valid'),
+        ('invalid', 'Invalid'),
+    ], string="Status", default="draft")
 
     total_score = fields.Float("Total Credit Score", compute='_compute_credit_score', store=True, precompute=True)
 
@@ -108,6 +113,7 @@ class FarmCreditScore(models.Model):
         self.yield_consistency_rate = random.uniform(60, 90)
         self.input_reduction_rate = random.uniform(50, 85)
         self._compute_credit_score()
+        self.state = 'valid'
 
 
 class ResPartner(models.Model):
