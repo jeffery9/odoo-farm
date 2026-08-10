@@ -157,9 +157,10 @@
     <record id="mrp_production_form_view_inherit_input_reg" model="ir.ui.view">
         <field name="name">mrp.production.form.inherit.input.reg</field>
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="farm_operation.mrp_production_form_view_inherit_farm_op" />
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='intervention_type']" position="after">
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="intervention_type" />
                 <field name="operator_id_card" invisible="intervention_type not in ['protection', 'medical']" />
                 <button name="action_sync_to_provincial_platform" string="Sync to Regulator" type="object" class="oe_highlight" invisible="intervention_type not in ['protection', 'medical']" />
             </xpath>
