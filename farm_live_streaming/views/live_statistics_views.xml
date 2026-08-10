@@ -56,13 +56,12 @@
     </record>
 
     
-    <menuitem id="menu_live_statistics" name="Live Statistics" parent="menu_live_streaming_root" action="action_live_statistics" />
-
-    
     <record id="action_live_statistics" model="ir.actions.act_window">
         <field name="name">Live Streaming Statistics</field>
         <field name="res_model">live.statistics</field>
         <field name="view_mode">list,form,pivot,graph</field>
     </record>
+
+    <menuitem id="menu_live_statistics" name="Live Statistics" parent="menu_douyin_config" action="action_live_statistics" sequence="50" />
 </data>
 </odoo>
