@@ -38,6 +38,7 @@ from . import product_template_extension
 from . import land_location
 from . import biological_asset
 from . import activity_operation
+from . import water_valve
 
 # 6. Industry Specialized Data (Level 1/2)
 from . import industry_data_package
