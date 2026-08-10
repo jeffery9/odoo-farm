@@ -3,22 +3,9 @@ from .common_fields import CommonAgriculturalFields
 from .base_mixins import CreationMethodMixin
 
 
-class FarmActivity(models.Model):
-    """
-    Agricultural Activity Management.
-    Domain Role: Physical manifestation of an Agri Domain activity within a specific Farm.
-    Architecture: Delegate Inheritance (_inherits) to project.project to avoid SQL conflicts in Odoo 19.
-    """
-    _name = 'farm.activity'
-    _description = 'Agricultural Activity'
-    
-    # Use delegate inheritance to isolate physical tables and avoid M2M conflicts
-    _inherits = {'project.project': 'project_id'}
-    _inherit = ['farm.core.creation.method.mixin']
+class ProjectProject(models.Model):
+    _inherit = 'project.project'
 
-    project_id = fields.Many2one('project.project', required=True, ondelete='cascade', string="Project Reference")
-
-    # Extend project.project with agricultural properties
     is_agri_activity = fields.Boolean(
         string="Is Agricultural Activity",
         default=False,
@@ -33,7 +20,26 @@ class FarmActivity(models.Model):
         ('baking', 'Baking'),
         ('winemaking', 'Winemaking'),
         ('food_processing', 'Food Processing'),
+        ('apiculture', 'Apiculture'),
+        ('mushroom', 'Mushroom'),
+        ('other', 'Other')
     ], string="Activity Family", help="Specify the agricultural sector.")
+
+
+class FarmActivity(models.Model):
+    """
+    Agricultural Activity Management.
+    Domain Role: Physical manifestation of an Agri Domain activity within a specific Farm.
+    Architecture: Delegate Inheritance (_inherits) to project.project to avoid SQL conflicts in Odoo 19.
+    """
+    _name = 'farm.activity'
+    _description = 'Agricultural Activity'
+    
+    # Use delegate inheritance to isolate physical tables and avoid M2M conflicts
+    _inherits = {'project.project': 'project_id'}
+    _inherit = ['farm.core.creation.method.mixin']
+
+    project_id = fields.Many2one('project.project', required=True, ondelete='cascade', string="Project Reference")
 
     production_cycle = fields.Selection([
         ('annual', 'Annual'),
