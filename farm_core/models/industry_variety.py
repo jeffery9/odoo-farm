@@ -57,6 +57,7 @@ class AgriIndustryVariety(models.Model):
     k_content = fields.Float("Potassium (K) %")
     growth_duration = fields.Integer("Growth Duration (Days)")
     maturity_age_days = fields.Integer("Maturity Age (Days)")
+    cycle_days = fields.Integer("Agri-Domain Cycle (Days)", help="Standard cycle days for agricultural planning")
     is_biological_asset = fields.Boolean("Is Biological Asset")
     # --- End of Original Logic ---
 
