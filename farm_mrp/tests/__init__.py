@@ -9,3 +9,7 @@ from . import test_mrp_backpressure
 from . import test_agri_treatment_batch_mrp
 
 from . import test_deep_coverage
+from . import test_epic_044
+from . import test_epic_004
+from . import test_epic_135
+from . import test_epic_134

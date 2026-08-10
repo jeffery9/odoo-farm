@@ -7,4 +7,4 @@ from . import test_iiot_refactoring
 
 from . import test_epic_087
 from . import test_epic_047
-from . import test_epic_050
+from . import test_epic_050from . import test_epic_006
