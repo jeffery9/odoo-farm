@@ -44,7 +44,6 @@
 
     <record id="action_farm_prevention_template" model="ir.actions.act_window">
         <field name="name">Prevention Plans</field>
-        <field name="res_model tension.template" /> 
         <field name="res_model">farm.prevention.template</field>
         <field name="view_mode">list,form</field>
     </record>
