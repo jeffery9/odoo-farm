@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-<record id="view_gov_audit_snapshot_tree" model="ir.ui.view">
+    <record id="action_gov_audit_snapshot" model="ir.actions.act_window">
+        <field name="name">Government Audit Snapshots</field>
+        <field name="res_model">gov.audit.snapshot</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_gov_audit_snapshot_tree" model="ir.ui.view">
         <field name="name">gov.audit.snapshot.list</field>
         <field name="model">gov.audit.snapshot</field>
         <field name="arch" type="xml">
@@ -70,12 +76,6 @@
                 </sheet>
             </form>
         </field>
-    </record>
-
-    <record id="action_gov_audit_snapshot" model="ir.actions.act_window">
-        <field name="name">Government Audit Snapshots</field>
-        <field name="res_model">gov.audit.snapshot</field>
-        <field name="view_mode">list,form</field>
     </record>
 </data>
 </odoo>
