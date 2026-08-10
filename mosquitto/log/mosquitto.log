@@ -210,3 +210,13 @@
 1779022499: Saving in-memory database to /mosquitto/data//mosquitto.db.
 1779024300: Saving in-memory database to /mosquitto/data//mosquitto.db.
 1779026101: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1786361110: mosquitto version 2.1.2 starting
+1786361110: Config loaded from /mosquitto/config/mosquitto.conf.
+1786361110: Bridge support available.
+1786361110: Persistence support available.
+1786361110: TLS support available.
+1786361110: TLS-PSK support available.
+1786361110: Websockets support available.
+1786361110: Opening ipv4 listen socket on port 1883.
+1786361110: Opening ipv6 listen socket on port 1883.
+1786361110: mosquitto version 2.1.2 running
