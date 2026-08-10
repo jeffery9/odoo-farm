@@ -136,7 +136,7 @@
     
     <record id="action_farm_apiculture_operations" model="ir.actions.act_window">
         <field name="name">Apiculture Operations</field>
-        <field name="res_model">farm.apiculture.order</field>
+        <field name="res_model">farm.honey.task</field>
         <field name="view_mode">list,form</field>
     </record>
 
