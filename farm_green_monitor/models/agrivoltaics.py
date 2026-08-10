@@ -1,7 +1,11 @@
 from odoo import models, fields, api, _
 
 class FarmGreenMonitor(models.Model):
-    _inherit = 'farm.green.monitor'
+    _name = 'farm.green.monitor'
+    _description = 'Green Monitoring Station'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
+    name = fields.Char("Station Name", required=True)
     
     # [US-SCENARIO-36] Agrivoltaics / Solar Sharing
     crop_id = fields.Many2one('product.product', string="Under-Panel Crop")
