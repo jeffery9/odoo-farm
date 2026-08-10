@@ -67,7 +67,7 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_farm_safety_crisis" name="Crisis Management" parent="farm_safety.menu_farm_safety_root" sequence="50" />
+    <menuitem id="menu_farm_safety_crisis" name="Crisis Management" parent="farm_safety.menu_safety_root" sequence="50" />
     <menuitem id="menu_farm_crisis_incident" name="Incidents" parent="menu_farm_safety_crisis" action="action_farm_crisis" sequence="10" />
     <menuitem id="menu_farm_crisis_protocol" name="Protocols (SOP)" parent="menu_farm_safety_crisis" action="action_farm_emergency_protocol" sequence="20" />
 </data>
