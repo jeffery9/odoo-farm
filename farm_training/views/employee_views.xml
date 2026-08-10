@@ -14,7 +14,7 @@
                         </group>
                     </group>
                     <group string="Active Certificates">
-                        <field name="certificate_ids" nolabel="1">
+                        <field name="training_certificate_ids" nolabel="1">
                             <list>
                                 <field name="certificate_type_id" />
                                 <field name="name" />
