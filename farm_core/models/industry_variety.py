@@ -38,6 +38,7 @@ class AgriIndustryVariety(models.Model):
 
     product_name = fields.Char("Product Name", required=True)
     variety_name = fields.Char("Variety Name", required=True)
+    code = fields.Char("Code", help="Universal standard code for this variety")
     
     agricultural_type = fields.Selection([
         ('land_parcel', 'Land Parcel'),
