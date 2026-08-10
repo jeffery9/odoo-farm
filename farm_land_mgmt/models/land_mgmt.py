@@ -388,6 +388,20 @@ class FarmActivity(models.Model):
         domain=[('is_land_parcel', '=', True)]
     )
 
+    has_permanent_farmland = fields.Boolean(
+        string="Has Permanent Basic Farmland",
+        compute="_compute_has_permanent_farmland"
+    )
+
+    @api.depends('land_parcel_ids', 'land_parcel_ids.land_nature')
+    def _compute_has_permanent_farmland(self):
+        for record in self:
+            record.has_permanent_farmland = any(
+                p.land_nature == 'permanent_basic_farmland'
+                for p in record.land_parcel_ids
+                if hasattr(p, 'land_nature')
+            )
+
     @api.constrains('activity_family', 'land_parcel_ids')
     def _check_activity_land_use_compliance(self):
         for record in self:
