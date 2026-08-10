@@ -51,7 +51,7 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_view_treatment" string="View Treatment Plan" type="object" class="oe_highlight" t-if="recommended_intervention_id" />
+                    <button name="action_view_treatment" string="View Treatment Plan" type="object" class="oe_highlight" invisible="not recommended_intervention_id" />
                     <button name="action_recommend_treatments" string="Get Integrated Recommendations" type="object" class="btn-primary" />
                     <button name="action_recommend_treatments" string="Get Conventional Recommendations" type="object" context="{'treatment_type': 'conventional'}" class="btn-secondary" />
                     <button name="action_recommend_treatments" string="Get Organic Recommendations" type="object" context="{'treatment_type': 'organic'}" class="btn-success" />
