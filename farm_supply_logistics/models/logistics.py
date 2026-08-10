@@ -1,18 +1,14 @@
 from odoo import models, fields, api
 
 
-class ProductTemplate(models.Model):
-    _name = 'product.template'
-    _inherit = 'product.template'
+class ProductTemplate(models.Model):    _inherit = 'product.template'
 
     requires_cold_chain = fields.Boolean("Cold Chain Required", default=False)
     target_temperature_min = fields.Float("Min Temp (℃)")
     target_temperature_max = fields.Float("Max Temp (℃)")
 
 
-class StockPicking(models.Model):
-    _name = 'stock.picking'
-    _inherit = 'stock.picking'
+class StockPicking(models.Model):    _inherit = 'stock.picking'
 
     is_cold_chain = fields.Boolean("Is Cold Chain Transport", compute='_compute_is_cold_chain', store=True, precompute=True)
     actual_transport_temp = fields.Float("Actual Transport Temp (℃)")

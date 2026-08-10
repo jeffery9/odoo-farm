@@ -1,8 +1,6 @@
 from odoo import models, fields, api, _
 
-class AccountMove(models.Model):
-    _name = 'account.move'
-    _inherit = 'account.move'
+class AccountMove(models.Model):    _inherit = 'account.move'
 
     agri_task_id = fields.Many2one(
         'project.task', 
@@ -27,9 +25,7 @@ class AccountMove(models.Model):
                             vals['agri_task_id'] = so.agri_task_id.id
         return super().create(vals_list)
 
-class AccountMoveLine(models.Model):
-    _name = 'account.move.line'
-    _inherit = 'account.move.line'
+class AccountMoveLine(models.Model):    _inherit = 'account.move.line'
 
     @api.onchange('product_id')
     def _onchange_agri_analytic(self):

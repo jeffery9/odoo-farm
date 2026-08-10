@@ -3,9 +3,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-class FarmLocation(models.Model):
-    _name = 'stock.location'
-    _inherit = 'stock.location'
+class FarmLocation(models.Model):    _inherit = 'stock.location'
 
     camera_device_id = fields.Many2one(
         'iiot.device',

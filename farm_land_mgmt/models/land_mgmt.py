@@ -376,9 +376,7 @@ class ProductTemplate(models.Model):
                                                    help="Recommended time interval before replanting same crop",
                                                    default=3)
 
-class FarmActivity(models.Model):
-    _name = 'project.project'
-    _inherit = 'project.project'
+class FarmActivity(models.Model):    _inherit = 'project.project'
 
     @api.constrains('activity_family', 'land_parcel_ids')
     def _check_activity_land_use_compliance(self):
@@ -389,9 +387,7 @@ class FarmActivity(models.Model):
                     if hasattr(parcel, 'land_nature') and parcel.land_nature == 'permanent_basic_farmland':
                         raise ValidationError(_("Activity Type '%s' is not allowed on 'Permanent Basic Farmland' for parcel '%s'.") % (record.activity_family, parcel.name))
 
-class ProjectTask(models.Model):
-    _name = 'project.task'
-    _inherit = 'project.task'
+class ProjectTask(models.Model):    _inherit = 'project.task'
 
     @api.constrains('land_parcel_id', 'project_id')
     def _check_task_land_use_compliance(self):

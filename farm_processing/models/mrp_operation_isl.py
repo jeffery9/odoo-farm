@@ -8,9 +8,7 @@ class FarmIndustryOperation(models.Model):
 
     operation_id = fields.Many2one('mrp.routing.workcenter', string='Base Operation', required=True, ondelete='cascade')
 
-class MrpRoutingWorkcenter(models.Model):
-    _name = 'mrp.routing.workcenter'
-    _inherit = 'mrp.routing.workcenter'
+class MrpRoutingWorkcenter(models.Model):    _inherit = 'mrp.routing.workcenter'
 
     def get_formview_action(self, access_uid=None):
         """ US-TECH-06-23: Transparent redirection to Industry Specialized Operation View. """

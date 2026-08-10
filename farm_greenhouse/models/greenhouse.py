@@ -1,8 +1,6 @@
 from odoo import models, fields, api, _
 
-class FarmLocation(models.Model):
-    _name = 'farm.location'
-    _inherit = 'farm.location'
+class FarmLocation(models.Model):    _inherit = 'farm.location'
 
     is_greenhouse = fields.Boolean("Is Greenhouse", default=False)
     greenhouse_type = fields.Selection([

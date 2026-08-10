@@ -1,8 +1,6 @@
 from odoo import models, fields
 
-class StockLotExtensionBreeding(models.Model):
-    _name = 'stock.lot'
-    _inherit = 'stock.lot'
+class StockLotExtensionBreeding(models.Model):    _inherit = 'stock.lot'
     
     father_id = fields.Many2one('stock.lot', string="Father")
     mother_id = fields.Many2one('stock.lot', string="Mother")
