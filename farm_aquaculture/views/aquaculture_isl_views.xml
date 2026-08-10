@@ -2,8 +2,8 @@
 <odoo>
 <data>
 <record id="view_farm_aquaculture_bom_form" model="ir.ui.view">
-        <field name="name">farm.aquaculture.bom.form</field>
-        <field name="model">farm.aquaculture.bom</field>
+    <field name="name">farm.aquaculture.bom.form</field>
+    <field name="model">agri.isl.aquaculture.recipe</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -36,7 +36,7 @@
     
     <record id="view_farm_aquaculture_production_form" model="ir.ui.view">
         <field name="name">farm.aquaculture.production.form</field>
-        <field name="model">farm.aquaculture.production</field>
+        <field name="model">agri.isl.aquaculture.task</field>
         <field name="arch" type="xml">
             <form>
                 <header>
@@ -74,13 +74,13 @@
 
     <record id="action_farm_aquaculture_mo_isl" model="ir.actions.act_window">
         <field name="name">Aquaculture Tasks</field>
-        <field name="res_model">farm.aquaculture.production</field>
+        <field name="res_model">agri.isl.aquaculture.task</field>
         <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_farm_aquaculture_bom_isl" model="ir.actions.act_window">
         <field name="name">Aquaculture Recipes</field>
-        <field name="res_model">farm.aquaculture.bom</field>
+        <field name="res_model">agri.isl.aquaculture.recipe</field>
         <field name="view_mode">list,form</field>
     </record>
 </data>
