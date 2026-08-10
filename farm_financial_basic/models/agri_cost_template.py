@@ -174,6 +174,18 @@ class AgriCostCalculation(models.TransientModel):
             calculation.total_cost = seedling_cost + fertilizer_cost + pesticide_cost + \
                                    labor_cost + machinery_cost + irrigation_cost + other_cost
 
+    def calculate(self):
+        """Perform the cost calculation and reload the wizard"""
+        self.ensure_one()
+        self._compute_total_costs()
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'agri.cost.calculation',
+            'view_mode': 'form',
+            'res_id': self.id,
+            'target': 'new',
+        }
+
 
 class AgriCostCalculationLine(models.TransientModel):
     """
