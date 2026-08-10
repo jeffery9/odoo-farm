@@ -43,6 +43,21 @@ class FarmProcessingProduction(models.Model):
     
     processing_bom_id = fields.Many2one('agri.isl.processing.bom', string='Processing Recipe', compute='_compute_processing_bom', store=True, precompute=True)
 
+    # Net Vegetable Processing [US-113-01 / Epic 14]
+    raw_material_lot_id = fields.Many2one('stock.lot', string='Raw Material Lot')
+    raw_material_qty = fields.Float("Raw Material Qty")
+    quality_grade = fields.Selection([
+        ('a', 'Grade A'),
+        ('b', 'Grade B'),
+        ('c', 'Grade C')
+    ], string="Quality Grade", default='a')
+    final_output_qty = fields.Float("Final Output Qty")
+    net_vegetable_batch_no = fields.Char("Net Vegetable Batch No")
+    total_loss_qty = fields.Float("Total Loss Qty")
+    moisture_content = fields.Float("Moisture Content (%)")
+    is_haccp_compliant = fields.Boolean("Is HACCP Compliant", default=True)
+    processing_steps = fields.One2many('farm.processing.step', 'production_id', string='Processing Steps')
+
     @api.depends('bom_id')
     def _compute_processing_bom(self):
         for rec in self:

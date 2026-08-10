@@ -107,8 +107,28 @@ class AgriAiParameter(models.Model):
 class FarmProcessingStep(models.Model):
     _name = 'farm.processing.step'
     _description = 'Processing Step'
+    _order = 'sequence, id'
+    
     name = fields.Char("Step Name")
     production_id = fields.Many2one('mrp.production', string='Production Order')
+    
+    sequence = fields.Integer("Sequence", default=10)
+    step_name = fields.Char("Step Name")
+    step_type = fields.Selection([
+        ('washing', 'Washing'),
+        ('cutting', 'Cutting'),
+        ('packing', 'Packaging'),
+        ('cooling', 'Cooling'),
+        ('sorting', 'Sorting')
+    ], string='Step Type')
+    
+    input_qty = fields.Float("Input Qty")
+    output_qty = fields.Float("Output Qty")
+    loss_qty = fields.Float("Loss Qty")
+    temperature = fields.Float("Temperature")
+    humidity = fields.Float("Humidity")
+    ph_level = fields.Float("pH Level")
+    
     state = fields.Selection([('draft', 'Draft')], string='State', default='draft')
 
 class AgriProcessingFormulaAutoCorrection(models.Model):
