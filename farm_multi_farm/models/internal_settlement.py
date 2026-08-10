@@ -28,7 +28,7 @@ class InternalSettlement(models.Model):
     
     currency_id = fields.Many2one("res.currency", string="Currency", default=lambda self: self.env.company.currency_id)
     # Removing hard dependency on resource.sharing for abstract settlement flexibility
-    # resource_sharing_id = fields.Many2one("resource.sharing", string="Resource Sharing")
+    resource_sharing_id = fields.Many2one("resource.sharing", string="Resource Sharing")
     settlement_date = fields.Date("Settlement Date", default=fields.Date.context_today)
     description = fields.Text('Description')
     
