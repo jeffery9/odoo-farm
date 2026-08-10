@@ -17,6 +17,7 @@
         'views/farm_lot_views.xml',
         'views/partner_views.xml',
         'views/sale_order_views.xml',
+        'views/traceability_templates.xml',
     ],
     'images': ['static/description/main_screenshot.png'],
     'installable': True,
