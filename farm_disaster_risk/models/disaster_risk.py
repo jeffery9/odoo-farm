@@ -31,7 +31,7 @@ class FarmDisasterIncident(models.Model):
     description = fields.Text("Description of Damage")
     
     # 与危机管理模块联动
-    #crisis_incident_id = fields.Many2one('farm.crisis.incident', string="Linked Crisis Incident")
+    crisis_incident_id = fields.Many2one('farm.crisis.incident', string="Linked Crisis Incident")
     
     # 损失评估关联
     loss_assessment_ids = fields.One2many('farm.loss.assessment', 'disaster_incident_id', string="Loss Assessments")
