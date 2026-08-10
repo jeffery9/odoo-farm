@@ -350,3 +350,9 @@ class FarmSubsidyApplication(models.Model):
                     'type': 'success',
                 }
             }
+
+
+class AgriEvidence(models.Model):
+    _inherit = 'agri.evidence'
+
+    subsidy_application_id = fields.Many2one('farm.subsidy.application', string="Subsidy Application")
