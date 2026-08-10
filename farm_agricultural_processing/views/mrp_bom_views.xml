@@ -2,8 +2,8 @@
 <odoo>
 <data>
 <record id="view_farm_processing_bom_form_inherit_agri_v2" model="ir.ui.view">
-        <field name="name">farm.processing.bom.form.inherit.agri.v2</field>
-        <field name="model">farm.processing.bom</field>
+    <field name="name">farm.processing.bom.form.inherit.agri.v2</field>
+    <field name="model">agri.isl.processing.bom</field>
         <field name="inherit_id" ref="farm_processing.view_farm_processing_bom_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='processing_type']" position="after">
