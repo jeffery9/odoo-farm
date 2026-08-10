@@ -44,6 +44,15 @@ class AgriProcessingPackaging(models.Model):
     name = fields.Char('Package ID', required=True, default=lambda self: self._default_package_id())
     parent_package_id = fields.Many2one('agri.processing.packaging', string='Parent Package')
     child_package_ids = fields.One2many('agri.processing.packaging', 'parent_package_id', string='Child Packages')
+    child_packages = fields.One2many('agri.processing.packaging', 'parent_package_id', string='Child Packages (View Compatibility)')
+
+    # Missing fields from views [US-037-10]
+    production_id = fields.Many2one('mrp.production', string='Production Order')
+    box_barcode = fields.Char('Box Barcode')
+    pallet_barcode = fields.Char('Pallet Barcode')
+    total_items = fields.Integer('Total Items', default=0)
+    individual_barcodes = fields.Text('Individual Barcodes')
+    contained_lot_ids = fields.Many2many('stock.lot', 'agri_processing_packaging_lot_rel', 'packaging_id', 'lot_id', string='Contained Lots')
 
     # Package type and level
     package_type = fields.Selection([
