@@ -5,7 +5,7 @@ class TestIntegrationFarmApiculture(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_check = ['farm.lot.hive', 'farm.hive.inspection', 'farm.apiculture.order']
+        cls.models_to_check = ['farm.lot.hive', 'farm.hive.inspection', 'farm.honey.task']
 
     def test_01_cross_model_dependencies(self):
         """ Verify that dependencies and XML IDs required by farm_apiculture are available """
