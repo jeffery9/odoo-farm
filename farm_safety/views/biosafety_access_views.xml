@@ -58,6 +58,6 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_farm_biosafety_access" name="Access Control" parent="farm_safety.menu_farm_safety_root" action="action_farm_biosafety_access_log" sequence="30" />
+    <menuitem id="menu_farm_biosafety_access" name="Access Control" parent="farm_safety.menu_safety_root" action="action_farm_biosafety_access_log" sequence="30" />
 </data>
 </odoo>
