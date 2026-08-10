@@ -26,6 +26,7 @@ ESG Compliance module for Odoo 19 Farm Management System - Epic 101 Implementati
         'farm_financial',  # For financial metrics
         'farm_esg_risk',  # For risk assessment
         'farm_subsidy',  # For subsidies tracking
+        'mail',  # For mail.thread and activity mixins
     ],
     'data': [
         'security/ir.model.access.csv',
