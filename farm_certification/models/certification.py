@@ -39,7 +39,6 @@ class FarmLocationCert(models.Model):
                 loc.conversion_progress = 0.0
 
 class FarmLotCert(models.Model):
-    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     certification_level = fields.Selection([
