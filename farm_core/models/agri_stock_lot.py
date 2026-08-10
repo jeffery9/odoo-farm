@@ -25,6 +25,9 @@ class StockLot(models.Model):
     parent_kinship_ids = fields.One2many('agri.lot.kinship', 'child_lot_id', string='Ancestry (Parents)', help='The lots that this lot was derived from.')
     child_kinship_ids = fields.One2many('agri.lot.kinship', 'parent_lot_id', string='Lineage (Descendants)', help='The lots that were derived from this lot.')
 
+    # 生物资产属性 [US-001-04]
+    is_animal = fields.Boolean("Is Animal Asset", default=False)
+
     # Trust DNA [US-TECH-DNA-07]
     entity_audit_status = fields.Selection([
         ('compliant', 'Compliant'),
