@@ -44,7 +44,7 @@ class LandHealthRecord(models.Model):
 
 
 class FarmLocation(models.Model):
-    _inherit = 'farm.location'  # Inherit from the core farm.location model
+    _inherit = 'stock.location'  # Inherit directly from standard stock.location model
 
     # 土地承包权信息 [US-041-01]
     land_contract_no = fields.Char("Land Contract No.")
