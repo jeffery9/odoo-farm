@@ -357,7 +357,7 @@ class AgriBioEnergyProduct(models.Model):
     production_unit = fields.Many2one('uom.uom', string='Production Unit')
 
     # ESG compliance
-    #esg_certifications removed
+    esg_certifications = fields.Many2many('farm.certification.process', 'bep_esg_cert_rel', 'bep_id', 'cert_id', string='ESG Certifications')
     sustainability_standards = fields.Char('Sustainability Standards', help='Standards the product meets (e.g., RSB, ISCC)')
 
     # Marketplace information
@@ -382,7 +382,7 @@ class AgriBioEnergyProduct(models.Model):
         ('basic', 'Basic'),
     ], string='Quality Grade', default='standard')
 
-    #quality_certifications removed
+    quality_certifications = fields.Many2many('farm.certification.process', 'bep_quality_cert_rel', 'bep_id', 'cert_id', string='Quality Certifications')
 
     # Documentation
     technical_specifications = fields.Binary('Technical Specifications', attachment=True)
