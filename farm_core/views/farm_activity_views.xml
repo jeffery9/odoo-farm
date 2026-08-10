@@ -6,7 +6,7 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.view_project_kanban" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='name']" position="after">
+            <xpath expr="//field[@name='display_name']" position="after">
                 <div class="mt-2" invisible="not is_agri_activity">
                     <span class="badge rounded-pill text-bg-success">
                         <field name="activity_family" />
