@@ -8,4 +8,4 @@ from . import test_deep_coverage
 from . import test_genomic_breeding
 
 from . import test_epic_126
-from . import test_epic_020
+from . import test_epic_020from . import test_epic_077

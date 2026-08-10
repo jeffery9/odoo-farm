@@ -10,4 +10,4 @@ from . import test_epic_076
 from . import test_epic_043
 from . import test_epic_108
 from . import test_epic_044
-from . import test_epic_067
+from . import test_epic_067from . import test_epic_056

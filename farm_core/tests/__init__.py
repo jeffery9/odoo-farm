@@ -13,3 +13,11 @@ from . import test_converged_location
 from . import test_sfc_mapping
 from . import test_uavm_core_hardening
 from . import test_core_deep_hardening
+from . import test_epic_001
+from . import test_epic_083
+from . import test_epic_013
+from . import test_epic_011
+from . import test_epic_040
+from . import test_epic_117
+from . import test_epic_055
+from . import test_epic_095

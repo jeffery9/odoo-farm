@@ -7,4 +7,4 @@ from . import test_deep_coverage
 
 from . import test_epic_038
 from . import test_epic_074
-from . import test_quality_deep_hardening
+from . import test_quality_deep_hardeningfrom . import test_epic_082
