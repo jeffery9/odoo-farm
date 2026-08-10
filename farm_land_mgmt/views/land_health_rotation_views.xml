@@ -257,7 +257,10 @@
     </record>
 
     
-    <menuitem id="land_health_rotation_menu" name="Land Health &amp; Rotation" parent="farm_land_mgmt.land_management_menu" sequence="20" />
+    <!-- Root Menu Item for Land Management -->
+    <menuitem id="land_management_menu" name="Land Management (土地管理)" web_icon="farm_land_mgmt,static/description/icon.png" sequence="15" />
+
+    <menuitem id="land_health_rotation_menu" name="Land Health &amp; Rotation (土地健康与轮作)" parent="land_management_menu" sequence="20" />
 
     <menuitem id="land_health_record_menu" name="Health Records" parent="land_health_rotation_menu" sequence="10" action="action_land_health_record" />
 
