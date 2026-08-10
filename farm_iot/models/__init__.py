@@ -10,3 +10,4 @@ from . import digital_twin
 from . import iiot_device_inherit
 from . import mrp
 from . import farm_event_correlation
+from . import storage_env
