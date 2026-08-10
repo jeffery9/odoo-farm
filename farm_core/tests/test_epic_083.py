@@ -21,7 +21,7 @@ class TestEpic083(BddTransactionCase):
             'Given a digital twin simulation record under "agri.digital.twin" (农业数字孪生) with status "idle" (空闲)',
             'When environmental sensor telemetry and crop ages are processed',
             'Then the virtual model calculates and projects the active crop biomass',
-            'And updates the physical parcel's dashboard view field "biomass_index" (生物量指数) to 84.5% and changes status to "simulated" (已模拟)'
+            'And updates the physical parcel\'s dashboard view field "biomass_index" (生物量指数) to 84.5% and changes status to "simulated" (已模拟)'
         ])
 
     def test_02_automated_smart_spraying_prescription_mapping(self):

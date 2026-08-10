@@ -87,7 +87,7 @@ class TestEpic006(BddTransactionCase):
             'And a dissolved oxygen sensor is active on "iot.device"',
             'And the target aerator is connected to IoT actuator relay "actuator_01"',
             'When the sensor reports a value of 3.5 mg/L in "agri.iot.sensor.log"',
-            'Then the system must issue an MQTT write command to "company_1/actuator_01/control" with payload '{"state": "ON"}'',
+            'Then the system must issue an MQTT write command to "company_1/actuator_01/control" with payload \'{"state": "ON"}\'',
             'And if the sensor value in "agri.iot.sensor.log" does not improve above 4.0 mg/L within 5 minutes of activation',
             'And the system must generate an "Escalation" Activity on "iot.device" assigned to "Senior Engineer"'
         ])
@@ -126,7 +126,7 @@ class TestEpic006(BddTransactionCase):
             'And the device safe-state mode is configured with 15-second heartbeat telemetry timeout (15秒心跳遥测超时阈值)',
             'When the MQTT broker detects a telemetry silence exceeding 15 seconds from the device (当MQTT代理检测到设备遥测沉默超过15秒时)',
             'Then the status of the device on "iiot.device" (IIoT设备模型) must automatically transition to "fail_safe" (故障安全状态)',
-            'And the system must issue a shut-down MQTT command to "company_1/actuator_01/emergency" with payload '{"emergency_stop": true}' (向紧急停机MQTT主题发送指令)',
+            'And the system must issue a shut-down MQTT command to "company_1/actuator_01/emergency" with payload \'{"emergency_stop": true}\' (向紧急停机MQTT主题发送指令)',
             'And a high-priority "Heartbeat Loss Alert" Activity must be created on "iiot.device" (IIoT设备模型) assigned to the on-duty engineer (创建高优先级心跳丢失待办任务)'
         ])
 

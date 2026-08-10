@@ -65,7 +65,7 @@ class TestEpic021(BddTransactionCase):
             'When the C3/C4 sugar isotope ratio lab analysis registers greater than 7%',
             'Then the system must raise a "ValidationError" for honey adulteration',
             'And the system must lock the corresponding honey lot from any sales or shipping moves',
-            'And the system must automatically decrease the supplier's reliability reputation rating'
+            "And the system must automatically decrease the supplier's reliability reputation rating"
         ])
 
     def test_04_hive_telemetry_sensor_offline_fallback(self):
@@ -102,7 +102,7 @@ class TestEpic021(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a transport plan recorded in "stock.picking" to move hives from Site A to Site B',
             'And the destination site "Site B" is registered in "farm.location"',
-            'When the destination site's biosecurity quarantine zone flag is "active"',
+            'When the destination site\'s biosecurity quarantine zone flag is "active"',
             'And the operator attempts to validate the "stock.picking" order',
             'Then the system must block the picking confirmation action',
             'And the system must raise a "UserError" stating "MIGRATION_BLOCKED" due to active quarantine rules'

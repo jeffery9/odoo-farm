@@ -109,7 +109,7 @@ class TestEpic104(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a weekly CSA sales order under sale.order (销售订单) tracked in agri.demand.forecast (需求预测)',
-            'And the total estimated distribution carbon footprint exceeds the customer's maximum "carbon_allowance" (碳排放限额)',
+            'And the total estimated distribution carbon footprint exceeds the customer\'s maximum "carbon_allowance" (碳排放限额)',
             'When the fulfillment system attempts to execute order confirmation via action "action_validate_csa_delivery" (验证CSA发货动作)',
             'Then the system automatically rolls back the booking reservation',
             'And resets the order status (状态) to "draft" (草稿)',

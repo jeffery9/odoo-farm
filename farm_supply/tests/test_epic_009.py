@@ -61,7 +61,7 @@ class TestEpic009(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a purchase order is created for a supplier',
-            'When the system checks the supplier's certificate validity',
+            "When the system checks the supplier's certificate validity",
             'Then if the certificate is expired, the "Confirm" button must be hard-locked',
             'And an Activity must be created for the "Compliance Officer" to update the credentials'
         ])

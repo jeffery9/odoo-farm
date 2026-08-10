@@ -21,9 +21,9 @@ class TestEpic054(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a field worker scheduled to perform operations on a designated agricultural parcel',
             'When the worker logs a check-in transaction on their mobile PDA device under "agri.pda.attendance" (移动端考勤记录)',
-            'And the logged GPS coordinates are more than 50.0 meters away from the scheduled parcel's boundary polygon',
+            "And the logged GPS coordinates are more than 50.0 meters away from the scheduled parcel's boundary polygon",
             'Then the system blocks the check-in transaction, logged in the database as "unverified" (未核实)',
-            'And requires a manager's override PIN or note to complete the labor attendance record'
+            "And requires a manager's override PIN or note to complete the labor attendance record"
         ])
 
     def test_02_hr_mobile_checkin_labor_activity_mapping(self):
@@ -55,7 +55,7 @@ class TestEpic054(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given an advanced GxP chemical sterilization or harvesting workorder',
             'When an operator attempts to check in and register labor hours for this specific workorder on their mobile PWA',
-            'And the operator's Odoo employee profile does not possess an active, valid "GxP Sterilization Certificate" (GxP 灭菌操作证书认证)',
+            'And the operator\'s Odoo employee profile does not possess an active, valid "GxP Sterilization Certificate" (GxP 灭菌操作证书认证)',
             'Then the system blocks the PWA task-start check-in with a strict security validation warning (强力拦截签到并进行安全校验提示)',
             'And prevents any labor hours from being credited or tasks started under their name'
         ])
@@ -72,7 +72,7 @@ class TestEpic054(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a mobile field worker operating in a deep mountain parcel with no cellular network signal',
             'When the worker records a task check-in on the mobile app',
-            'Then the app caches the check-in payload containing exact GPS, timestamp, and photo locally inside the PWA's IndexedDB queue',
+            "Then the app caches the check-in payload containing exact GPS, timestamp, and photo locally inside the PWA's IndexedDB queue",
             'And upon detecting restored network connectivity, the app synchronizes all queued offline records with the main Odoo server in strict FIFO order'
         ])
 
@@ -88,7 +88,7 @@ class TestEpic054(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a heavy machinery operator actively logging tasks on their mobile PDA',
-            'And the operator's cumulative work hours for the current 24-hour cycle exceed 12.0 hours',
+            "And the operator's cumulative work hours for the current 24-hour cycle exceed 12.0 hours",
             'When the operator attempts to perform a new check-in or start a new high-risk machinery workorder',
             'Then the mobile system hard-blocks the start transaction, raising a safety warning (强制拦截启动事务并触发安全警报)',
             'And enforces a mandatory 8-hour rest block period before the operator can re-authorize any active machine intervention'
@@ -107,7 +107,7 @@ class TestEpic054(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a field worker logging a check-in transaction on their mobile PDA device under "agri.pda.attendance" (移动端考勤记录)',
             'When the server receives the check-in API request from the client',
-            'Then the system must acquire a database row-level lock FOR UPDATE on the worker's active attendance log for today',
+            "Then the system must acquire a database row-level lock FOR UPDATE on the worker's active attendance log for today",
             'And verify that no other active check-in or timesheet record under model "account.analytic.line" (分析账户明细) has been created within the last 5 minutes',
             'And raise a ValidationError with code "DUPLICATE_CHECKIN_ATTEMPT" (签到请求并发冲突，请勿重复提交) if a lock collision is detected, discarding the duplicate request'
         ])

@@ -60,7 +60,7 @@ class TestEpic060(BddTransactionCase):
             'And the test registers a soil organic matter (SOM) increase of 0.5% over the past campaign',
             'When the compliance officer validates the laboratory findings',
             'Then the system calculates the organic carbon sequestration capacity',
-            'And allocates a carbon offset credit of 2.5 Tons CO2e to the parcel's ledger card under "agri.esg.ledger" (ESG台账)',
+            'And allocates a carbon offset credit of 2.5 Tons CO2e to the parcel\'s ledger card under "agri.esg.ledger" (ESG台账)',
             'And flags the credits as "active" (激活) with verified lab document reference'
         ])
 
@@ -77,7 +77,7 @@ class TestEpic060(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a finished product lot of organic milling flour is created under "stock.lot" (库存批次)',
             'And the lot inherits combined emissions from its parent crop and processing batches',
-            'When the consumer scans the tracking QR-code on the product's trace portal',
+            "When the consumer scans the tracking QR-code on the product's trace portal",
             'Then the system aggregates the total cumulative carbon footprint (Scope 1 + Scope 2) as 0.18 kg CO2e per kg product',
             'And dynamically displays the verified green carbon-neutral rating badge (绿色碳中和评级标章) on the portal page'
         ])
@@ -113,7 +113,7 @@ class TestEpic060(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a cooperative company registered as model "res.company" (公司)',
             'When the compliance auditor runs the annual sustainability audit tool to compile the Carbon Neutrality Index under model "agri.carbon.ledger" (碳排放账本)',
-            'Then the system must apply a database-level write-lock FOR UPDATE (行级锁) on all the company's carbon ledger and ESG offset lines for the current fiscal year',
+            "Then the system must apply a database-level write-lock FOR UPDATE (行级锁) on all the company's carbon ledger and ESG offset lines for the current fiscal year",
             'And prevent other concurrent emissions logging or credit liquidations under "agri.esg.ledger" (ESG台账) from modifying values until the audit is completed',
             'And raise a ValidationError with code "CARBON_LEDGER_LOCKED_FOR_AUDIT" (年度碳账本正处于审计锁定期，禁止更新数据) if any write operation is attempted during the locked audit session'
         ])

@@ -21,7 +21,7 @@ class TestEpic030(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a commercial seed lot of organic certified soybean seeds registered under "agri.isl.lot.seed"',
             'When the PCR laboratory tests detect a GMO genetic contamination marker (genetic purity drop below "99.9" %)',
-            'Then the system must strip the lot's organic certification status in Odoo',
+            "Then the system must strip the lot's organic certification status in Odoo",
             'And block the lot from seed distribution campaigns using organic labeling',
             'And log a warning flag "GMO_DETECTION_STRIP" in Odoo Chatter'
         ])

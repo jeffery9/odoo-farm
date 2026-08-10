@@ -125,8 +125,8 @@ class TestEpic129(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a smart supply chain transaction under "sale.order" (销售订单模型) linked to a cooperative run under "agri.sc.collab" (智能供应链协同模型)',
-            'And the cooperative's required joint clearing margin limit "clearing_margin_limit" is 10000.0 USD (且该合作社要求的最低联合清算保证金限额字段值为10000.0美元)',
-            'And the farmer's active clearing margin deposit balance "margin_balance" is 8500.0 USD (且该农户实际已存入的联合清算保证金余额字段值为8500.0美元)',
+            'And the cooperative\'s required joint clearing margin limit "clearing_margin_limit" is 10000.0 USD (且该合作社要求的最低联合清算保证金限额字段值为10000.0美元)',
+            'And the farmer\'s active clearing margin deposit balance "margin_balance" is 8500.0 USD (且该农户实际已存入的联合清算保证金余额字段值为8500.0美元)',
             'When the financial settlement manager attempts to confirm the trade settlement (当财务结算管理员尝试确认该笔交易结算时)',
             'Then the validation system must block the settlement process and raise a ValidationError (系统验证引擎必须拦截结算程序并抛出验证错误) with message "Farmer clearing margin is below the required cooperative safety limit" (包含"农户清算保证金低于要求的合作社安全最低限额"提示信息)',
             'And prevent any journal post under "account.move" (并阻止在会计凭证模型下进行任何日记账分录过账)'

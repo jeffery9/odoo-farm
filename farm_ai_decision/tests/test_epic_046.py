@@ -41,7 +41,7 @@ class TestEpic046(BddTransactionCase):
             'When the logged pest infection rate on the parcel exceeds the critical threshold of 15.0% (病虫害侵染率 15.0%)',
             'Then the AI decision support engine must generate an automated high-priority alert in "agri.ai.decision.log"',
             'And recommend a targeted organic biopesticide spraying remedial task with specific application parameters (e.g. adjust dosage)',
-            'And log the escalation recommendation with status "pending_review" on the parcel's dashboard'
+            'And log the escalation recommendation with status "pending_review" on the parcel\'s dashboard'
         ])
 
     def test_03_crop_rotation_nitrogen_depletion_recommendation(self):

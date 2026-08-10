@@ -22,7 +22,7 @@ class TestEpic007(BddTransactionCase):
             'Given I am a worker logged into the mobile PWA',
             'When I scan a QR code of a biological asset or equipment',
             'Then the response must resolve in less than 2.0 seconds',
-            'And the screen must display the asset's active health metrics, variety, and location',
+            "And the screen must display the asset's active health metrics, variety, and location",
             'And all pending "mrp.workorder" tasks for this asset must be pre-cached to the local device storage'
         ])
 
@@ -42,8 +42,8 @@ class TestEpic007(BddTransactionCase):
             'And the local PWA client has initialized the offline database using IndexedDB',
             'When the worker completes a field intervention with the following payload:',
             'Then the action must be saved to the offline "agri.mobile.sync.queue" with sync status "pending"',
-            'And when the network connection is restored, the local client must sync the queue in FIFO (First-In, First-Out) order to Odoo's backend',
-            'And upon successful sync, the status in Odoo's "agri.mobile.sync.queue" must be updated to "synced" and the local storage record cleared'
+            "And when the network connection is restored, the local client must sync the queue in FIFO (First-In, First-Out) order to Odoo's backend",
+            'And upon successful sync, the status in Odoo\'s "agri.mobile.sync.queue" must be updated to "synced" and the local storage record cleared'
         ])
 
     def test_03_simplified_field_operation_interface(self):

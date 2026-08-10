@@ -20,7 +20,7 @@ class TestEpic093(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a virtual digital twin parcel linked to daily temperature sensors under "agri.twin.simulation" (数字孪生模拟) "TWIN-PARCEL-01" with status "draft" (草稿)',
             'When daily Growing Degree Days (积温) GDD are aggregated with a value of 15.2°C-days on "stock.location" (库存位置) "PARCEL-C-03"',
-            'Then the simulation model projects the crop's Leaf Area Index (叶面积指数) and canopy coverage to predict harvest maturity',
+            "Then the simulation model projects the crop's Leaf Area Index (叶面积指数) and canopy coverage to predict harvest maturity",
             'And updates the virtual maturity projection field "predicted_maturity_index" (预测成熟度指数) to 85.0% and changes status to "simulated" (已模拟)'
         ])
 

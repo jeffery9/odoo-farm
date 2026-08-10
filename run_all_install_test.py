@@ -16,7 +16,7 @@ cmd = [
     "-i", modules_str, 
     "--test-enable", 
     "--stop-after-init", 
-    "--log-level=warn"
+    "--log-level=info"
 ]
 
 # Run the command with an extended timeout mechanism
@@ -24,11 +24,11 @@ cmd = [
 try:
     process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     
-    # We will just print the last 50 lines if it takes too long to avoid flooding
+    # We will print the last 1000 lines if it fails to ensure we capture the complete Odoo trace
     log_lines = []
     for line in iter(process.stdout.readline, ''):
         log_lines.append(line.strip())
-        if len(log_lines) > 50:
+        if len(log_lines) > 1000:
             log_lines.pop(0)
             
     process.stdout.close()
@@ -38,7 +38,7 @@ try:
         print("\n\nSUCCESS! All modules installed and tested without errors.")
     else:
         print(f"\n\nFAILED with exit code {return_code}.")
-        print("Last 50 lines of log:")
+        print("Last 1000 lines of log:")
         for line in log_lines:
             print(line)
             

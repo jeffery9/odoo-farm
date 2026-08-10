@@ -115,7 +115,7 @@ class TestEpic127(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given an ESG carbon credit trade under "sale.order" (销售订单模型) linked to a marketplace record under "agri.bioenergy.esg" (生物质能ESG模型)',
             'And the marketplace required joint clearing margin "clearing_margin_limit" is 15000.0 USD (且交易平台要求的最低联合清算保证金限额字段值为15000.0美元)',
-            'And the active transaction's deposited margin balance "margin_balance" is 12500.0 USD (且当前交易已存入的实际保证金余额字段值为12500.0美元)',
+            'And the active transaction\'s deposited margin balance "margin_balance" is 12500.0 USD (且当前交易已存入的实际保证金余额字段值为12500.0美元)',
             'When the financial controller attempts to validate the trade confirmation (当财务控制官尝试验证该交易确认时)',
             'Then the compliance engine must block the clearing transaction under "account.move" (系统合规引擎必须拦截会计分录模型下的交易清算)',
             'And raise a ValidationError (系统必须抛出验证错误) with message "Insufficient ESG trade clearing margin balance" (包含"ESG交易清算保证金余额不足"提示信息)',

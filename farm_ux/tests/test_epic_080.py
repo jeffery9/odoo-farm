@@ -83,7 +83,7 @@ class TestEpic080(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a complex agricultural group storage location setup under "stock.location" (库存位置)',
-            'When querying a specific seed bin's hierarchy tree using the parent container field "parent_id" (父容器级ID)',
+            'When querying a specific seed bin\'s hierarchy tree using the parent container field "parent_id" (父容器级ID)',
             'Then the system displays a nested multi-level tree mapping Warehouse (仓库) -> Aisle (货架区) -> Shelf (货架) -> Bin (储藏箱) -> LPN Carrier (托盘载具)',
             'And validates the down-flowing acyclic nature of the parent-child associations'
         ])
@@ -99,7 +99,7 @@ class TestEpic080(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a storage bin container under "agri.hierarchy.container" (层级视图容器) equipped with relative humidity sensors "iiot.device" (智能物联网设备)',
-            'When comparing the container's relative humidity readings with adjacent storage units and detecting a sensor drift exceeding "10.0% RH" (检测到湿度传感器温漂偏差超过10.0% RH)',
+            'When comparing the container\'s relative humidity readings with adjacent storage units and detecting a sensor drift exceeding "10.0% RH" (检测到湿度传感器温漂偏差超过10.0% RH)',
             'Then the system must automatically apply an offset calibration factor "calibration_offset" (校准偏移系数) to the live sensor feed',
             'And log a warning message "Sensor Drift Detected: Automatic offset calibration applied" (检测到传感器漂移：已自动应用偏置校准) into the container audit history'
         ])

@@ -25,7 +25,7 @@ class TestEpic065(BddTransactionCase):
             'When the Breeding Specialist (育种专家) logs a positive ultrasound pregnancy result (超声孕检阳性结果)',
             'Then the system must automatically transition the sow state in agri.livestock.breed (畜牧育种记录) to "pregnant (妊娠中)"',
             'And automatically calculate and schedule farrowing prep alerts (分娩准备警报) for Day 110 of the gestation cycle (Day 110/妊娠第110天)',
-            'And write these tasks to the sow lot's activity calendar'
+            "And write these tasks to the sow lot's activity calendar"
         ])
 
     def test_02_piglet_farrowing_litter_survival_metrics(self):
@@ -115,7 +115,7 @@ class TestEpic065(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given an automated breeding swine feed dosing robot (自动饲喂机器人) registered under model iiot.device (物联设备)',
             'And an active gestation feeding mission (活跃的妊娠饲喂任务) "mrp.workorder" (作业任务) inside barn stock.location (库存位置) "BARN-GEST-C"',
-            'When the robot's onboard dosing sensor registers a calibration drift exceeding 5.0% during operation (称重给料传感器漂移大于5.0%)',
+            "When the robot's onboard dosing sensor registers a calibration drift exceeding 5.0% during operation (称重给料传感器漂移大于5.0%)",
             'Then the system must automatically flag a dosing anomaly alarm (饲喂计量异常警报)',
             'And raise a ValidationError (验证错误): "Feed dosing calibration drift exceeded (给料传感器温漂超限)" and pause the mission "mrp.workorder" (作业任务) to prevent sow dietary health stress'
         ])

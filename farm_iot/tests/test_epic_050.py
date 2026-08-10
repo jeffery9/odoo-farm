@@ -23,7 +23,7 @@ class TestEpic050(BddTransactionCase):
             'Given an intelligent irrigation zone "ZONE-ORCHARD-03" under model "stock.location"',
             'And a physical solenoid valve configured in "agri.irrigation.valve" with code "VALVE-SOLENOID-03"',
             'And soil moisture sensors register water potential dropping below -80.0 kPa (土壤张力低于 -80 kPa 缺水严重)',
-            'When the system's smart irrigation engine executes the water-demand evaluation',
+            "When the system's smart irrigation engine executes the water-demand evaluation",
             'Then the system must send an active PLC command to set the state of "VALVE-SOLENOID-03" to "open"',
             'And log an automatic irrigation execution log with starting parameters in Odoo'
         ])
@@ -99,7 +99,7 @@ class TestEpic050(BddTransactionCase):
             'Given a commercial farm with multiple irrigation zones and a limited main water pump capacity',
             'And the main water pump can support a maximum concurrent flow of 2 active zones',
             'When a supervisor schedules irrigation across 5 distinct zones under model "agri.irrigation.valve"',
-            'Then the system's scheduling algorithm must calculate non-overlapping run-time blocks (多分区非重叠轮灌调度)',
+            "Then the system's scheduling algorithm must calculate non-overlapping run-time blocks (多分区非重叠轮灌调度)",
             'And restrict active solenoid valve operations to a maximum concurrency of 2 at any single timestamp',
             'And automatically log the multi-zone execution schedule in Odoo to maintain optimal operating water pressure'
         ])

@@ -56,7 +56,7 @@ class TestEpic015(BddTransactionCase):
             'And the lot has an initial "predicted_vase_life" of "10" days',
             'When IoT temperature sensors record ambient temperatures exceeding the redline for over "12" hours, causing thermal exposure degradation',
             'Then the calculated "predicted_vase_life" on "agri.isl.lot.floriculture" must automatically drop below the critical threshold of "5" days',
-            'And the system must trigger "action_lock_lot" to mark the lot's "sale_lock" as true',
+            'And the system must trigger "action_lock_lot" to mark the lot\'s "sale_lock" as true',
             'And any attempt to confirm a sales order of model "sale.order" selecting this lot must be blocked with a ValidationError'
         ])
 
@@ -72,7 +72,7 @@ class TestEpic015(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a flower lot at harvest on model "stock.lot"',
             'When the system calculates the "predicted_vase_life" based on bloom stage and initial cold-core temperature',
-            'Then the result must be embedded in the lot's digital fingerprint inside "agri.isl.lot.floriculture"',
+            'Then the result must be embedded in the lot\'s digital fingerprint inside "agri.isl.lot.floriculture"',
             'And if the predicted life is below 3 days, the "AgriQualityGateMixin" must block the lot from entering inventory with a UserError'
         ])
 
@@ -110,7 +110,7 @@ class TestEpic015(BddTransactionCase):
         """
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
-            'Given a crop parcel's soil stock lot in "stock.lot" (库存批次模型) with crop variety "Rose" (且作物物种已设置为玫瑰)',
+            'Given a crop parcel\'s soil stock lot in "stock.lot" (库存批次模型) with crop variety "Rose" (且作物物种已设置为玫瑰)',
             'And a smart evapotranspiration sensor registered in "iiot.device" (并且智能蒸腾量传感器已注册在工业物联网设备模型中)',
             'When the soil sensor logs an NPK reading drift of 25.0% (当土壤传感器记录到氮磷钾读数偏离比比例达到25.0%时)',
             'Then the system must trigger safe mode self-correction (系统必须自动执行安全模式自校准动作)',

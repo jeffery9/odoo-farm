@@ -44,7 +44,7 @@ class TestEpic024(BddTransactionCase):
             'And the laboratory performing microbiological testing on the lot',
             'When the laboratory records the Salmonella test result as "Positive"',
             'Then the system must hard-lock the net vegetable lot from all picking delivery orders',
-            'And the lot's global quality state must immediately transition to "Contaminated"',
+            'And the lot\'s global quality state must immediately transition to "Contaminated"',
             'And the system must display a high-visibility red warning banner in the Odoo lot view'
         ])
 

@@ -21,7 +21,7 @@ class TestEpic066(BddTransactionCase):
             'Given an active CSA subscription (活跃的社区支持农业订阅) record under "agri.csa.subscription" (农业社区支持农业订阅模型) with state set to "active" (活跃)',
             'When the weekly harvest allocation run (每周收获分配运行) is executed by the operator',
             'Then the system must automatically generate a stock picking "stock.picking" (库存拣货单) in state "assigned" (已指派)',
-            'And the picking must contain the standard package of fresh vegetables "fresh_vegetables_pack_id" (标准鲜菜包) assigned to the subscriber's partner ID "res.partner" (业务伙伴)'
+            'And the picking must contain the standard package of fresh vegetables "fresh_vegetables_pack_id" (标准鲜菜包) assigned to the subscriber\'s partner ID "res.partner" (业务伙伴)'
         ])
 
     def test_02_subscriber_custom_allocation_exclusions(self):
@@ -51,7 +51,7 @@ class TestEpic066(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a prepared CSA vegetable box delivery picking "stock.picking" (库存拣货单) in state "assigned" (已指派)',
-            'When the delivery personnel scan the customer's portal QR-code "portal_delivery_qr" (客户门户配送二维码) at drop-off',
+            'When the delivery personnel scan the customer\'s portal QR-code "portal_delivery_qr" (客户门户配送二维码) at drop-off',
             'Then the system must validate the QR token, confirm the stock picking "stock.picking" (库存拣货单), and transition its state to "done" (完成)',
             'And automatically update the last delivery timestamp "last_delivery_date" (上次配送日期) on the "agri.csa.subscription" (农业社区支持农业订阅模型) record'
         ])
@@ -105,7 +105,7 @@ class TestEpic066(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given an active autonomous drone swarm (自主无人机播种蜂群) registered under model iiot.device (物联设备)',
             'And an active seed sowing mission (活跃的种子播种任务) "mrp.workorder" (作业任务) scheduled on a community parcel stock.location (库存库位) with a premium organic seed crop product.template (产品模板)',
-            'When any drone's telemetry registers battery level dropping below "15.0%" (电量低于15.0%) or a localized GPS coordinate drift (卫星定位发生漂移)',
+            'When any drone\'s telemetry registers battery level dropping below "15.0%" (电量低于15.0%) or a localized GPS coordinate drift (卫星定位发生漂移)',
             'Then the system must automatically command the drone swarm to perform safe Return-To-Home (触发安全返航) and park',
             'And lock the sowing mission "mrp.workorder" (作业任务) state to "paused (暂停)" to prevent double-sowing or soil waste'
         ])

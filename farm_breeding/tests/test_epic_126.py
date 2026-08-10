@@ -60,7 +60,7 @@ class TestEpic126(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given genetic analysis workstations under "agri.germplasm.bank" (种质库记录模型)',
             'And a lab technician with GxP qualifications managed under "agri.gxp.certification" (GxP资质认证模型)',
-            'And the technician's certification verification state "state" is "expired" (且该技术员资质认证状态字段值为已失效状态)',
+            'And the technician\'s certification verification state "state" is "expired" (且该技术员资质认证状态字段值为已失效状态)',
             'When the operator attempts to register lab genetic records in "agri.germplasm.bank" (当操作员尝试在种质库记录模型中登记实验室基因数据时)',
             'Then the validation engine must block the registration request (系统验证引擎必须拦截该登记请求)',
             'And raise a ValidationError (系统必须抛出验证错误) with message "Lab operator GxP certification expired" (包含"实验操作员GxP认证已过期"提示信息)'
@@ -140,7 +140,7 @@ class TestEpic126(BddTransactionCase):
         """
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
-            'Given a crop parcel's soil stock lot in "stock.lot" (库存批次模型) with crop variety "Rose" (且作物物种已设置为玫瑰)',
+            'Given a crop parcel\'s soil stock lot in "stock.lot" (库存批次模型) with crop variety "Rose" (且作物物种已设置为玫瑰)',
             'And a smart evapotranspiration sensor registered in "iiot.device" (并且智能蒸腾量传感器已注册在工业物联网设备模型中)',
             'When the soil sensor logs an NPK reading drift of 25.0% (当土壤传感器记录到氮磷钾读数偏离比比例达到25.0%时)',
             'Then the system must trigger safe mode self-correction (系统必须自动执行安全模式自校准动作)',

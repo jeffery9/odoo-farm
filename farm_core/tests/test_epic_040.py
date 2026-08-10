@@ -23,7 +23,7 @@ class TestEpic040(BddTransactionCase):
             'Given a sales order "SO-2026-EXP-01" with destination country "Japan" (JP)',
             'And the order is linked to fresh apple lot "APP-LOT-Picual-09"',
             'When the Japan compliance audit engine is executed for pesticide residue maximum limits',
-            'And the lot's lab results show Acetamiprid concentration of 0.25 mg/kg (exceeding Japan's limit of 0.1 mg/kg, though below local limit of 0.5 mg/kg)',
+            "And the lot's lab results show Acetamiprid concentration of 0.25 mg/kg (exceeding Japan's limit of 0.1 mg/kg, though below local limit of 0.5 mg/kg)",
             'Then the system must block the sales order confirmation',
             'And raise a compliance validation warning "EXPORT_MRL_LIMIT_EXCEEDED" (检测到日本农残最大限量超标，严禁出口该批次)'
         ])
@@ -61,11 +61,11 @@ class TestEpic040(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a farm processing workstation "Milling Station Alpha" under active regulation audit',
-            'And the company's baseline ESG sustainability risk index is recorded as "95.0"',
+            'And the company\'s baseline ESG sustainability risk index is recorded as "95.0"',
             'When a supervisor logs a critical non-compliance violation (e.g., unauthorized chemical input dumping)',
             'Then the system must generate a continuous compliance audit log in "agri.compliance.engine"',
-            'And automatically decrease the company's global ESG sustainability risk index to "82.5"',
-            'And dispatch a high-priority remediation task to the compliance supervisor's Odoo dashboard'
+            'And automatically decrease the company\'s global ESG sustainability risk index to "82.5"',
+            "And dispatch a high-priority remediation task to the compliance supervisor's Odoo dashboard"
         ])
 
     def test_04_water_reservoir_security_unauthorized_tampering_and_automated_inlet_valve_shutdown(self):
@@ -101,8 +101,8 @@ class TestEpic040(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a premium ham lot "HAM-GI-2026-05" which is marketed under the Geographical Indication "Parma Ham" (帕尔玛火腿 / Parma Ham)',
-            'And the legal GI boundary is defined as a coordinate polygon in Odoo's GIS mapping system',
-            'When the lot's raw agricultural material harvesting location coordinates "31.2304, 121.4737" are checked against the GI boundary coordinates',
+            "And the legal GI boundary is defined as a coordinate polygon in Odoo's GIS mapping system",
+            'When the lot\'s raw agricultural material harvesting location coordinates "31.2304, 121.4737" are checked against the GI boundary coordinates',
             'And the coordinates are found to reside outside the legally designated GI boundary coordinates polygon',
             'Then the system must lock all Geographical Indication label and barcode printing for this lot',
             'And raise a ValidationError with message "GEOGRAPHICAL_INDICATION_BOUNDARY_VIOLATION" (原材料非地理标志保护产区，严禁打印地理标志专用标签)'
@@ -121,7 +121,7 @@ class TestEpic040(BddTransactionCase):
         """
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
-            'Given a bulk water reservoir location under surveillance by Odoo's food defense engine "agri.compliance.engine" (合规审计引擎)',
+            'Given a bulk water reservoir location under surveillance by Odoo\'s food defense engine "agri.compliance.engine" (合规审计引擎)',
             'And the security gate lock status is "Locked" (锁定)',
             'When the infrared boundary sensor gateway crashes and loses power during a high-alert security period',
             'Then the system must atomically trigger a physical fail-safe mechanical bolt actuator to lock the water outflow valves to "Closed" (关闭)',

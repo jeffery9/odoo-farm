@@ -35,7 +35,7 @@ class TestEpic053(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a drone flight executing an active spatial spraying mission',
-            'When the drone's telemetry coordinates deviate outside the assigned parcel geofence boundaries by more than 5.0 meters',
+            "When the drone's telemetry coordinates deviate outside the assigned parcel geofence boundaries by more than 5.0 meters",
             'Then the system triggers an emergency automatic hold (触发紧急自动挂起) on the drone flight computer',
             'And immediately cuts off chemical spraying pumps to prevent accidental off-target chemical drift'
         ])
@@ -83,7 +83,7 @@ class TestEpic053(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a field technician assigned to complete workorders on specific remote parcels',
-            'When the technician attempts to log a task check-in on the mobile PDA app outside the parcel's boundary coordinates by more than 50.0 meters',
+            "When the technician attempts to log a task check-in on the mobile PDA app outside the parcel's boundary coordinates by more than 50.0 meters",
             'Then the check-in transaction is blocked with a ValidationError with message "GPS_GEOFENCE_ATTENDANCE_BREACH" (考勤地理越界)',
             'And the app displays a warning requiring the technician to enter the correct physical boundary of the parcel'
         ])

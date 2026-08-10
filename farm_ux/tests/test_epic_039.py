@@ -105,7 +105,7 @@ class TestEpic039(BddTransactionCase):
             'And the local touchscreen interface controller status is "Active" (启用)',
             'When a power surge causes the physical display interface to report a "hardware_failure" code',
             'Then the system must automatically switch the alert delivery system to the text-to-speech audio engine',
-            'And broadcast all critical CCP warnings audibly through the workstation's physical speaker system',
+            "And broadcast all critical CCP warnings audibly through the workstation's physical speaker system",
             'And atomically transition the active packaging mission "mrp.workorder" [mrp.workorder] (作业任务) to "Paused" (已暂停)',
             'And raise a "ValidationError" (验证错误) requiring an emergency repair order for the display hardware'
         ])

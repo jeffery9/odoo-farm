@@ -35,7 +35,7 @@ class TestEpic070(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given an active tractor sprayer with real-time GPS telemetry connected under "mrp.workorder" (制造工单)',
-            'When the tractor's spatial coordinates transition from High-Nitrogen Zone A to Low-Nitrogen Zone B on the prescription map',
+            "When the tractor's spatial coordinates transition from High-Nitrogen Zone A to Low-Nitrogen Zone B on the prescription map",
             'Then the system must trigger an active PLC relay command "set_nozzle_flow" (设置喷嘴流量) to reduce chemical spray nozzle flow rates by "30.0%" (下调30.0%流量)',
             'And log the flow change on the telemetry feed on "agri.vra.fertilizer" (农业可变速率施肥模型)'
         ])
@@ -52,7 +52,7 @@ class TestEpic070(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a tractor-mounted precision sprayer actively executing a fertilization workorder "mrp.workorder" (制造工单)',
             'When the real-time VRA telemetry connection with Odoo is lost (实时可变速率施肥遥测连接丢失) during active operations',
-            'Then the sprayer's PLC must trigger an automatic safe-state, defaulting spray valves to a fixed nominal rate of "150.0 Liters/hectare" (150升/公顷的固定标称速率)',
+            'Then the sprayer\'s PLC must trigger an automatic safe-state, defaulting spray valves to a fixed nominal rate of "150.0 Liters/hectare" (150升/公顷的固定标称速率)',
             'And log a telemetry warning "Telemetry Lost: Defaulting to Nominal Flow" (遥测丢失：默认标称流量) on "agri.vra.fertilizer" (农业可变速率施肥模型)'
         ])
 

@@ -21,9 +21,9 @@ class TestEpic043(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a physical cargo carrier license plate number (LPN) registered under model "stock.matter.tracking"',
             'And the carrier is mapped to the active proxy stock lot "LOT-TOM-2026-A1" of model "stock.lot"',
-            'When the carrier's IoT telematics unit updates its GPS coordinates to "39.9042° N, 116.4074° E"',
+            'When the carrier\'s IoT telematics unit updates its GPS coordinates to "39.9042° N, 116.4074° E"',
             'Then the system must automatically synchronize these coordinates to the proxy "stock.lot" tracking record',
-            'And log the geofenced coordinate update in the lot's activity chatter'
+            "And log the geofenced coordinate update in the lot's activity chatter"
         ])
 
     def test_02_material_splitting_sequential_lineage_generation(self):
@@ -108,6 +108,6 @@ class TestEpic043(BddTransactionCase):
             'Given a bulk organic crop lot "LOT-RAW-SOY-90" of model "stock.lot" (库存批次)',
             'When a processing operator initiates a cascading material splitting mission under model "mrp.production" (生产订单)',
             'Then the system must dynamically lock the parent lot record in the database using FOR UPDATE (行级排他锁锁定)',
-            'And block other concurrent warehouse stock picking moves under model "stock.picking" (库存调拨) from modifying the lot's mass or status',
+            'And block other concurrent warehouse stock picking moves under model "stock.picking" (库存调拨) from modifying the lot\'s mass or status',
             'And release the database lock only upon successful generation of child lots and post-commit verification'
         ])

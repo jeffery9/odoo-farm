@@ -36,8 +36,8 @@ class TestEpic055(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a crop quality inspection order with an uploaded field photo attachment',
-            'When the system parses the photo's embedded EXIF metadata coordinates',
-            'And the parsed EXIF GPS coordinates deviate from the target parcel's legal boundaries by more than 10.0 meters',
+            "When the system parses the photo's embedded EXIF metadata coordinates",
+            "And the parsed EXIF GPS coordinates deviate from the target parcel's legal boundaries by more than 10.0 meters",
             'Then the system automatically fails the photo attachment validation (照片附件校验失败)',
             'And flags the evidence record as "Untrusted" (不可信) in the security log, preventing quality approval'
         ])
@@ -55,7 +55,7 @@ class TestEpic055(BddTransactionCase):
             'Given a harvested seed or food product lot undergoing standard laboratory evaluation',
             'When the QA manager confirms the final quality release in Odoo',
             'Then the system checks the "agri.field.evidence" (田间证据记录) model to verify that all raw laboratory certificate PDF attachments are registered',
-            'And blocks quality release approval if any required certificate PDF files are missing from the lot's evidence chain'
+            "And blocks quality release approval if any required certificate PDF files are missing from the lot's evidence chain"
         ])
 
     def test_04_photo_metadata_date_match_gating(self):
@@ -71,7 +71,7 @@ class TestEpic055(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given an active harvesting workorder under "mrp.workorder" (生产工单)',
             'When the operator uploads a field photo as operational evidence',
-            'And the system's EXIF analyzer parses that the photo's timestamp is older than 24 hours',
+            "And the system's EXIF analyzer parses that the photo's timestamp is older than 24 hours",
             'Then the system blocks the validation process (阻断校验流程), rejecting the photo as stale',
             'And requiring a new, real-time photograph to be captured and submitted'
         ])

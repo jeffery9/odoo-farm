@@ -93,7 +93,7 @@ class TestEpic048(BddTransactionCase):
             'When the operator attempts to bypass the lock and resume production',
             'Then the system must block the override action with an authentication popup',
             'And require a Quality Supervisor to enter a valid secure override PIN (输入主管授权 PIN 码)',
-            'And only release the active interlock once the supervisor's PIN is verified, writing the override event to the audit trail'
+            "And only release the active interlock once the supervisor's PIN is verified, writing the override event to the audit trail"
         ])
 
     def test_06_supervisor_override_concurrency_lock_on_workstation_releases(self):

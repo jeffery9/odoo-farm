@@ -101,7 +101,7 @@ class TestEpic037(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a raw honey lot "RAW-HONEY-001" and a raw lavender lot "RAW-LAV-002"',
             'When the manufacturing order consumes these lots via "stock.move" to produce essential herbal blend lot "BLEND-2026-X9"',
-            'Then the system must create explicit lot ancestry records in Odoo's traceability bridge "agri.lot.ancestry"',
+            'Then the system must create explicit lot ancestry records in Odoo\'s traceability bridge "agri.lot.ancestry"',
             'And the generated batch passport "BLEND-2026-X9" must show exactly "RAW-HONEY-001" (65.0%) and "RAW-LAV-002" (35.0%)',
             'And allow a backward traceability traceback search to identify the original harvested farm parcels in under 5 seconds'
         ])

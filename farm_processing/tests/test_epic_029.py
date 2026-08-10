@@ -39,7 +39,7 @@ class TestEpic029(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a processed aquatic product lot "stock.lot" undergoing quality inspection',
             'When the laboratory analysis records histamine concentration as "55.0" PPM (exceeding the safety limit of 50.0 PPM)',
-            'Then the system must immediately hard-lock the lot's inventory record in Odoo',
+            "Then the system must immediately hard-lock the lot's inventory record in Odoo",
             'And block all associated sales or delivery pickings',
             'And trigger an automated biosecurity recall protocol with notifications to the compliance officer'
         ])

@@ -100,7 +100,7 @@ class TestEpic085(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a partner "res.partner" (业务伙伴) representing a third-party IoT vendor with status "active" (激活) under "agri.security.log" (农业安全日志)',
             'When the vendor attempts unauthorized modification of the actuator solenoid firmware telemetry',
-            'Then the system executes a cybersecurity encryption lock (网络安全加密锁定) to disable the vendor's API credentials',
+            "Then the system executes a cybersecurity encryption lock (网络安全加密锁定) to disable the vendor's API credentials",
             'And raises a validation error (验证错误: "Firmware tampering detected, cybersecurity lock active")'
         ])
 

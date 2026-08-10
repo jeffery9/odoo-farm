@@ -75,7 +75,7 @@ class TestEpic136(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given compiled finished product lots under "stock.lot" (生产批次模型) linked to "agri.wip.degradation" (WIP降解追踪模型)',
             'And the phytosanitary certification state "is_certified" is true (且植物检疫认证状态字段值为真)',
-            'When checking phytosanitary chains and find any supplier's GxP audit log has expired, updating "gxp_compliant" to false (当检查植物检疫认证链时发现任何供应商的GxP审计日志已过期，更新GxP合规状态字段值为否时)',
+            'When checking phytosanitary chains and find any supplier\'s GxP audit log has expired, updating "gxp_compliant" to false (当检查植物检疫认证链时发现任何供应商的GxP审计日志已过期，更新GxP合规状态字段值为否时)',
             'Then the system must block the premium brand labeling by updating "seal_approved" to false (系统必须通过更新品牌印章批准字段值为否来拦截高级品牌标志应用)',
             'And raise a ValidationError (抛出验证错误) with message "Source lot GxP audit log has expired, premium seal blocked" (包含"源批次GxP审计日志已过期，高级印章已被拦截"提示信息)'
         ])

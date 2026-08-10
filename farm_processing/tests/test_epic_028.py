@@ -74,7 +74,7 @@ class TestEpic028(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a curing lot of ham undergoing microscopic surface checks',
             'When the mold flora inspection registers Penicillium coverage at "72.0" % (below the 80.0% protective threshold)',
-            'Then the system must raise a warning flag on the lot's digital record',
+            "Then the system must raise a warning flag on the lot's digital record",
             'And automatically schedule a microbiological re-inoculation workorder to protect the hams from pathogenic wild mold contamination'
         ])
 

@@ -23,7 +23,7 @@ class TestEpic042(BddTransactionCase):
             'And the cooperative share profile is configured as Partner A with 50%, Partner B with 30%, and Partner C with 20%',
             'When a campaign cost of 12000.0 USD is logged in the cooperative ledger "agri.coop.share"',
             'Then the system must automatically create cost split journal lines for Partner A of 6000.0 USD, Partner B of 3600.0 USD, and Partner C of 2400.0 USD',
-            'And post these allocated clearing lines to each partner's respective general ledger account'
+            "And post these allocated clearing lines to each partner's respective general ledger account"
         ])
 
     def test_02_shared_agricultural_workstation_allocation(self):
@@ -55,11 +55,11 @@ class TestEpic042(BddTransactionCase):
         """
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
-            'Given a stock picking transfer order of model "stock.picking" to move 5000.0 kg of raw organic seeds from Partner A's warehouse location to Partner B's warehouse location',
+            'Given a stock picking transfer order of model "stock.picking" to move 5000.0 kg of raw organic seeds from Partner A\'s warehouse location to Partner B\'s warehouse location',
             'And the seed material standard valuation is set to 1.50 USD per kg',
             'When the warehouse manager validates the stock transfer picking',
             'Then the system must automatically create a cross-company clearing journal entry netting a total value of 7500.0 USD (双边对账清算金额 7500.0)',
-            'And post inter-company due-to/due-from transactions to keep both partners' ledgers in balance'
+            "And post inter-company due-to/due-from transactions to keep both partners' ledgers in balance"
         ])
 
     def test_04_multientity_revenue_profit_sharing(self):
@@ -93,7 +93,7 @@ class TestEpic042(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a shared autonomous crop spraying drone "DRONE-SPRAY-01" undergoing scheduled maintenance',
-            'And the drone's historical flight hour usages are logged as Partner A with 60 hours and Partner B with 40 hours',
+            "And the drone's historical flight hour usages are logged as Partner A with 60 hours and Partner B with 40 hours",
             'When Partner A registers the total repair invoice of 2000.0 USD under model "maintenance.equipment"',
             'Then the system must automatically split the maintenance cost across partners based on their recorded flight hour usages',
             'And allocate a maintenance expense of 1200.0 USD to Partner A and 800.0 USD to Partner B',
