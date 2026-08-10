@@ -11,7 +11,7 @@
         - Automated Timesheet Sync [US-054-03]
     """,
     'author': 'Jeffery',
-    'depends': ['farm_core', 'farm_operation', 'hr_timesheet'],
+    'depends': ['farm_core', 'farm_operation', 'hr_timesheet', 'farm_quality', 'farm_iot'],
     'data': [
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
