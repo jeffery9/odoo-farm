@@ -12,7 +12,7 @@ print(f"Installing and testing {len(modules)} modules...")
 # Construct the docker compose command
 cmd = [
     "docker", "compose", "run", "--rm", "web", "odoo", 
-    "-d", "test_stdd_db_final_v66", 
+    "-d", "test_stdd_db_final_v68", 
     "-i", modules_str, 
     "--test-enable", 
     "--stop-after-init", 
@@ -24,10 +24,12 @@ cmd = [
 try:
     process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     
-    # We will print the last 1000 lines if it fails to ensure we capture the complete Odoo trace
+    # We will print live output and keep the last 1000 lines
     log_lines = []
     for line in iter(process.stdout.readline, ''):
-        log_lines.append(line.strip())
+        stripped = line.strip()
+        print(stripped, flush=True)
+        log_lines.append(stripped)
         if len(log_lines) > 1000:
             log_lines.pop(0)
             
