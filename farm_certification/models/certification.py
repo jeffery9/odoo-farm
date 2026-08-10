@@ -12,6 +12,9 @@ class FarmLocationCert(models.Model):
         ('gi', 'Geographical Indication')
     ], string="Certification Level", default='conventional', tracking=True)
     
+    certificate_number = fields.Char("Certificate Number")
+    certificate_expiry = fields.Date("Certificate Expiry")
+    
     conversion_start_date = fields.Date("Conversion Start Date")
     last_prohibited_substance_date = fields.Date("Last Prohibited Substance Date", 
                                                help="Automatically updated when a non-organic input is used.")
