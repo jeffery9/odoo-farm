@@ -2,8 +2,8 @@
 <odoo>
 <data>
 <record id="view_farm_agricultural_processing_waste_tree" model="ir.ui.view">
-        <field name="name">farm.agricultural.processing.waste.tree</field>
-        <field name="model">farm.agricultural.processing.waste</field>
+        <field name="name">farm.processing.waste.tree</field>
+        <field name="model">farm.processing.waste</field>
         <field name="arch" type="xml">
             <list>
                 <field name="name" />
@@ -18,7 +18,7 @@
 
     <record id="action_farm_agricultural_processing_waste" model="ir.actions.act_window">
         <field name="name">Waste Management</field>
-        <field name="res_model">farm.agricultural.processing.waste</field>
+        <field name="res_model">farm.processing.waste</field>
         <field name="view_mode">list,form</field>
     </record>
 </data>
