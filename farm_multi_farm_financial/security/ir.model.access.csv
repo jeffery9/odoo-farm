@@ -12,3 +12,4 @@ access_cooperative_decision_user,cooperative.decision.user,model_cooperative_dec
 access_multi_sign_process_user,multi.sign.process.user,model_multi_sign_process,base.group_user,1,1,1,0
 access_multi_sign_line_user,multi.sign.line.user,model_multi_sign_line,base.group_user,1,1,1,0
 access_decision_audit_user,decision.audit.user,model_decision_audit,base.group_user,1,1,1,0
+access_internal_marketplace_transaction_user,internal.marketplace.transaction.user,model_internal_marketplace_transaction,base.group_user,1,1,1,0
