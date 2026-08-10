@@ -379,6 +379,15 @@ class ProductTemplate(models.Model):
 class FarmActivity(models.Model):
     _inherit = 'project.project'
 
+    land_parcel_ids = fields.Many2many(
+        'stock.location',
+        'project_land_parcel_rel',
+        'project_id',
+        'location_id',
+        string="Agricultural Land Parcels",
+        domain=[('is_land_parcel', '=', True)]
+    )
+
     @api.constrains('activity_family', 'land_parcel_ids')
     def _check_activity_land_use_compliance(self):
         for record in self:
