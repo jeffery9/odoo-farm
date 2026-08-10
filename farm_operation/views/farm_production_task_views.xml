@@ -44,7 +44,7 @@
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Agri Interventions" name="agri_interventions">
-                    <field name="intervention_ids" context="{'default_agri_task_id': active_id}">
+                    <field name="intervention_ids" context="{'default_agri_task_id': id}">
                         <list editable="bottom">
                             <field name="name"/>
                             <field name="intervention_type"/>
