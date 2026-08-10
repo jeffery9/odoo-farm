@@ -29,6 +29,14 @@ class AccountMove(models.Model):
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
 
+    agri_task_id = fields.Many2one(
+        'project.task',
+        related='move_id.agri_task_id',
+        string="Farm Task",
+        store=True,
+        help="Link this invoice/bill line to a specific agricultural task."
+    )
+
     @api.onchange('product_id')
     def _onchange_agri_analytic(self):
         """ Automatically fetch Farm Task analytic account """
