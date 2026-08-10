@@ -5,6 +5,7 @@ class AgriInterventionMrp(models.Model):
     Agricultural Intervention: The 2026 De-industrialized core model.
     Injects Level 0-3 Mixins to transform standard MRP into a community agricultural entity.
     """
+    _name = 'mrp.production'
     _inherit = [
         'mrp.production',
         'agri.intervention.mixin',
