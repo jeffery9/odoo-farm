@@ -23,6 +23,9 @@
             <xpath expr="//field[@name='bom_id']" position="attributes">
                 <attribute name="string">Recipe/Formula</attribute>
             </xpath>
+            <xpath expr="//field[@name='bom_id']" position="after">
+                <field name="intervention_type" />
+            </xpath>
             <xpath expr="//sheet" position="before">
                 <widget name="agri_gating_audit"/>
             </xpath>
