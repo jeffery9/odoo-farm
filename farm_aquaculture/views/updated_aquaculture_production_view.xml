@@ -2,8 +2,8 @@
 <odoo>
 <data>
 <record id="view_farm_aquaculture_production_form_updated" model="ir.ui.view">
-        <field name="name">farm.aquaculture.production.form.updated</field>
-        <field name="model">farm.aquaculture.production</field>
+    <field name="name">farm.aquaculture.production.form.updated</field>
+    <field name="model">agri.isl.aquaculture.task</field>
         <field name="priority" eval="100" />
         <field name="arch" type="xml">
             <form string="Aquaculture Growth Order">
