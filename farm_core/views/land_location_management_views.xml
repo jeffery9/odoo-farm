@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
+    <record id="view_location_form_inherit_farm_gis" model="ir.ui.view">
+        <field name="name">stock.location.form.inherit.farm.gis</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <group string="Agricultural GIS &amp; Land Information">
+                    <group>
+                        <field name="is_land_parcel" />
+                        <field name="land_nature" />
+                        <field name="land_area" />
+                        <field name="land_area_uom_id" />
+                    </group>
+                    <group>
+                        <field name="gps_lat" />
+                        <field name="gps_lng" />
+                        <field name="gps_coordinates" />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
 <record id="view_farm_location_tree" model="ir.ui.view">
         <field name="name">farm.location.list</field>
         <field name="model">farm.location</field>

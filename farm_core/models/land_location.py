@@ -61,6 +61,7 @@ class StockLocation(models.Model):
     # Core GIS Fields [US-001-03, US-TECH-04-01]
     gps_lat = fields.Float("Latitude", digits=(10, 7), tracking=True)
     gps_lng = fields.Float("Longitude", digits=(10, 7), tracking=True)
+    gps_coordinates = fields.Char("GPS Coordinates", help="GeoJSON or coordinates of the parcel.")
     boundary_geojson = fields.Text("Boundary Coordinates (GeoJSON)", help="GeoJSON Polygon for the land parcel boundary.")
     calculated_area_ha = fields.Float("Calculated Area (Ha)", digits=(16, 4), readonly=True, help="Area calculated from GeoJSON coordinates.")
 
