@@ -7,12 +7,13 @@
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="inside">
-<div name="button_box" class="oe_button_box">
-                <button name="action_view_telemetry" type="object" class="oe_stat_button" icon="fa-line-chart" invisible="not land_parcel_id">
-                    <div class="o_stat_info">
-                        <span class="o_stat_text">Environment</span>
-                    </div>
-                </button>
+                <div name="button_box" class="oe_button_box">
+                    <button name="action_view_telemetry" type="object" class="oe_stat_button" icon="fa-line-chart" invisible="not land_parcel_id">
+                        <div class="o_stat_info">
+                            <span class="o_stat_text">Environment</span>
+                        </div>
+                    </button>
+                </div>
             </xpath>
             <xpath expr="//field[@name='user_ids']" position="after">
                 <field name="campaign_id" options="{'no_create': True}"/>
