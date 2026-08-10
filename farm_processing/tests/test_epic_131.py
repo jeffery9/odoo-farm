@@ -61,7 +61,7 @@ class TestEpic131(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a biomanufacturing fermentation workstation under "mrp.workcenter" (工作中心模型) linked to "agri.protein.bioman" (替代蛋白生物制造记录模型)',
             'And an operator attempting to check in at this workstation (且一名操作员尝试登入此工作站)',
-            'When the system validates the operator's training record "gxp_training_expiry" (当系统验证该操作员的GxP培训过期日期字段值时)',
+            'When the system validates the operator\'s training record "gxp_training_expiry" (当系统验证该操作员的GxP培训过期日期字段值时)',
             'Then the system must detect that the GxP certification has expired (系统必须检测到该GxP认证已过期)',
             'And block workstation check-in, raising an AccessError (并且阻止工作站登入，抛出访问错误) with message "Expired GxP training certificate" (包含"GxP培训证书已过期"提示信息)'
         ])

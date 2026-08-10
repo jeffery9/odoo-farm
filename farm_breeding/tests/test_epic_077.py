@@ -36,7 +36,7 @@ class TestEpic077(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given daily temperature telemetry logs linked to "agri.growth.model" (作物生长模型) in status "active" (激活)',
             'When cumulative Growing Degree Days (累计积温) "cumulative_gdd" value reaches 950.0 GDD',
-            'Then the growth model automatically runs predictive calculations to calibrate the crop's optimal harvest date (预测最佳收获日期)',
+            "Then the growth model automatically runs predictive calculations to calibrate the crop's optimal harvest date (预测最佳收获日期)",
             'And schedules harvest prep alerts on the dashboard to notify the harvest team'
         ])
 

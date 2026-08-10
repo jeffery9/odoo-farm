@@ -69,7 +69,7 @@ class TestEpic075(BddTransactionCase):
             'Given a registered soil laboratory test report on "stock.location" (库存库位)',
             'When soil test analysis registers a potassium level below "80.0 PPM" (当土壤测试分析记录钾元素水平低于80.0 PPM，判定为缺钾状态)',
             'Then the agronomic engine must automatically generate a dynamic fertilizer prescription proposal and trigger a variable rate potassium sulfate workorder under "mrp.workorder" (制造工单)',
-            'And set the new workorder status on the agronomist's queue to "draft" (草稿)'
+            'And set the new workorder status on the agronomist\'s queue to "draft" (草稿)'
         ])
 
     def test_05_knowledge_base_diagnostic_offline_caching_sync(self):

@@ -61,7 +61,7 @@ class TestEpic103(BddTransactionCase):
             'And weekly crop yields are registered in agri.brand.synergy (品牌协同)',
             'When the automated scheduler triggers the allotment action "action_generate_box_allotments" (生成配箱分配动作)',
             'Then the system generates outbound stock.picking (库存拣货/调拨) records',
-            'And sets "csa_weekly_box_allotment" (CSA周箱分配) quantities proportional to each cooperative farm's active yield'
+            'And sets "csa_weekly_box_allotment" (CSA周箱分配) quantities proportional to each cooperative farm\'s active yield'
         ])
 
     def test_04_joint_credit_biological_collateral_valuation_ledger(self):

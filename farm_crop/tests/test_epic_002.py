@@ -41,7 +41,7 @@ class TestEpic002(BddTransactionCase):
             'Given a PWA client offline queue inside model "agri.mobile.sync.queue"',
             'And a target parcel location "parcel_id" configured with GeoJSON polygon boundaries',
             'When the network is restored and the sync process triggers online',
-            'And a logged intervention's GPS coordinates "gps_lat" and "gps_lng" are > 50 meters away from the target parcel boundary',
+            'And a logged intervention\'s GPS coordinates "gps_lat" and "gps_lng" are > 50 meters away from the target parcel boundary',
             'Then the sync must flag the record as "Off-Site Deviation" but preserve the raw audit trail',
             'And create an alert record for supervisor verification'
         ])
@@ -95,7 +95,7 @@ class TestEpic002(BddTransactionCase):
         """
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
-            'Given a crop parcel's soil stock lot in "stock.lot" (库存批次模型) is monitored by "soil.sensor" (土壤传感器模型)',
+            'Given a crop parcel\'s soil stock lot in "stock.lot" (库存批次模型) is monitored by "soil.sensor" (土壤传感器模型)',
             'And the sensor registers status "drift_detected" (且传感器监控状态字段值为检测到漂移状态) with NPK readings drifting by 15.0% (且读数漂移偏离比比例为15.0%)',
             'When the system executes calibration "calibrate" on the "soil.sensor" (当系统执行传感器校准系统动作时)',
             'Then the sensor must perform self-adjust automatically since the drift is below 20.0% (由于漂移比例低于20.0%传感器必须自动执行自校准动作)',
@@ -116,7 +116,7 @@ class TestEpic002(BddTransactionCase):
         """
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
-            'Given a crop parcel's soil stock lot in "stock.lot" (库存批次模型) with crop variety "Rose" (且作物物种已设置为玫瑰)',
+            'Given a crop parcel\'s soil stock lot in "stock.lot" (库存批次模型) with crop variety "Rose" (且作物物种已设置为玫瑰)',
             'And a smart evapotranspiration sensor registered in "iiot.device" (并且智能蒸腾量传感器已注册在工业物联网设备模型中)',
             'When the soil sensor logs an NPK reading drift of 25.0% (当土壤传感器记录到氮磷钾读数偏离比比例达到25.0%时)',
             'Then the system must trigger safe mode self-correction (系统必须自动执行安全模式自校准动作)',

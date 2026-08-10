@@ -41,7 +41,7 @@ class TestEpic041(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given an agricultural tractor machinery record "JD-TRACTOR-2026" registered under "maintenance.equipment"',
             'And the machinery type is designated as "Large Harvester/Tractor" (大型农机)',
-            'When the maintenance specialist registers the machinery's national agricultural engine ID as "CN-ENG-998877-A"',
+            'When the maintenance specialist registers the machinery\'s national agricultural engine ID as "CN-ENG-998877-A"',
             'Then the system must automatically populate its government machinery subsidy eligibility rate as 30.0% (补贴比率 30.0%)',
             'And record the calculated national subsidy credit amount in the equipment ledger'
         ])
@@ -58,7 +58,7 @@ class TestEpic041(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a raw harvest lot "LOT-WHEAT-CN-02" awaiting legal agronomic export and customs filing',
-            'And the lot's registered soil pH is "6.8" and chlorpyrifos pesticide residue is "0.01" mg/kg',
+            'And the lot\'s registered soil pH is "6.8" and chlorpyrifos pesticide residue is "0.01" mg/kg',
             'When the quality specialist generates the official agronomic filing report using model "agri.field.evidence"',
             'Then the system must render all soil metrics, pesticide residual values, and harvest dates in the official Chinese agricultural department format (中国农业农村部规范格式)',
             'And append the localized compliance stamp to the PDF attachment'
@@ -76,7 +76,7 @@ class TestEpic041(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given an active chemical fertilizer spraying workorder under model "mrp.workorder"',
-            'And the target field parcel's maximum allowable nitrogen application limit is 250.0 kg/hectare',
+            "And the target field parcel's maximum allowable nitrogen application limit is 250.0 kg/hectare",
             'When the field operator logs a fertilizer application quantity of 265.0 kg/hectare in the system',
             'Then the system must raise a ValidationError with the warning code "ENVIRONMENTAL_DUTY_LIMIT_EXCEEDED" (超出国家化肥减量限值 250.0 kg/公顷，严禁保存并阻断作业记录)',
             'And block the workorder from being marked as completed'

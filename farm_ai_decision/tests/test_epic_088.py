@@ -56,7 +56,7 @@ class TestEpic088(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given on-site Leaf Area Index LAI drone canopy scans under "agri.decision.engine" (AI决策引擎) in state "draft" (草稿)',
             'When the growth model evaluates crop maturity via "action_calibrate_yield" (校准产量预测)',
-            'Then the AI engine calibrates predicted harvest yields and updates the lot's estimated weight',
+            "Then the AI engine calibrates predicted harvest yields and updates the lot's estimated weight",
             'And automatically pre-allocates downstream processing workcenter capacity in "mrp.workcenter" (工作中心)'
         ])
 

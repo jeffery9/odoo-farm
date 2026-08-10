@@ -42,7 +42,7 @@ class TestEpic059(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given an organic farming crop insurance policy under "agri.insurance.policy" (农业保险单)',
             'And the drought index trigger is set to 15 consecutive drought days (温度大于35°C且降雨量小于1.0mm)',
-            'When the system's weather database audit registers the 16th consecutive drought day for Corn Parcel B',
+            "When the system's weather database audit registers the 16th consecutive drought day for Corn Parcel B",
             'Then the system automatically schedules an on-site crop health damage audit task under "agri.field.service" (田间服务记录)',
             'And flags the insurance policy record with a high-risk priority alert (标记高风险警报)',
             'And writes the drought telemetry logs to the insurance policy record chatter'

@@ -23,7 +23,7 @@ class TestEpic033(BddTransactionCase):
             'When dissolved oxygen sensors log a reading below "4.0" mg/L',
             'Then the system must trigger an automatic actuator command to shut down the electronic fish feeder "mrp.workorder"',
             'And trigger the recirculating aeration pump actuator to turn on',
-            'And log an emergency oxygen depletion alert in the pool's telemetry log'
+            "And log an emergency oxygen depletion alert in the pool's telemetry log"
         ])
 
     def test_02_noncompatible_pesticide_spraying_block_on_symbiotic_paddy_plots(self):

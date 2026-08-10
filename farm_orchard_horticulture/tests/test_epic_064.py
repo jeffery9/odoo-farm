@@ -85,7 +85,7 @@ class TestEpic064(BddTransactionCase):
             'When the worker records an annual winter pruning task under agri.orchard.pruning.log (果园修剪日志) with quality code "Spur Thinning (短枝疏剪)" and cut count (修剪数) 15',
             'Then the system must write the history pruning log with state "completed (已完成)"',
             'And update the cumulative tree stress rating index (累积果树胁迫评分指数) on the tree record',
-            'And log this transaction in the orchard tree's chatter (沟通记录) for multi-year crop load auditing'
+            "And log this transaction in the orchard tree's chatter (沟通记录) for multi-year crop load auditing"
         ])
 
     def test_05_tree_mortality_replacement_registry(self):
@@ -136,7 +136,7 @@ class TestEpic064(BddTransactionCase):
         """
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
-            'Given a crop parcel's soil stock lot in "stock.lot" (库存批次模型) with crop variety "Rose" (且作物物种已设置为玫瑰)',
+            'Given a crop parcel\'s soil stock lot in "stock.lot" (库存批次模型) with crop variety "Rose" (且作物物种已设置为玫瑰)',
             'And a smart evapotranspiration sensor registered in "iiot.device" (并且智能蒸腾量传感器已注册在工业物联网设备模型中)',
             'When the soil sensor logs an NPK reading drift of 25.0% (当土壤传感器记录到氮磷钾读数偏离比比例达到25.0%时)',
             'Then the system must trigger safe mode self-correction (系统必须自动执行安全模式自校准动作)',

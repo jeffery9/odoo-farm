@@ -54,7 +54,7 @@ class TestEpic005(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a sales order line representing a farm experiential activity booking',
             'And a configured workstation daily capacity in model "mrp.workcenter"',
-            'When the total registered visitor count exceeds the workstation's daily capacity',
+            "When the total registered visitor count exceeds the workstation's daily capacity",
             'Then confirming the sales order must raise a ValidationError for over-capacity'
         ])
 

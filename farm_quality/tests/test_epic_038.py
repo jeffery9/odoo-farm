@@ -24,7 +24,7 @@ class TestEpic038(BddTransactionCase):
             'And the quality inspection rules require passing tests at "Intake", "In-Process", and "Finished" stages',
             'When I submit passing chemical reports for "Intake" and "In-Process" stages in "agri.qc.sample"',
             'But the "Finished" stage microbiological assay is still pending',
-            'Then the system must hold the lot's overall release status in "Awaiting Quality Release" (待检中 / Awaiting Quality Release)',
+            'Then the system must hold the lot\'s overall release status in "Awaiting Quality Release" (待检中 / Awaiting Quality Release)',
             'And raise a validation lock preventing inventory delivery orders or stock transfers from confirming'
         ])
 
@@ -100,7 +100,7 @@ class TestEpic038(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a laboratory Gas Chromatograph (GC-MS) equipment "LAB-GC-01" registered under "maintenance.equipment"',
-            'And the equipment's scheduled calibration expiration date was "2026-08-01" which is in the past',
+            'And the equipment\'s scheduled calibration expiration date was "2026-08-01" which is in the past',
             'When a laboratory technician attempts to log the linalool purity ratio using equipment "LAB-GC-01"',
             'Then the system must raise a ValidationError with message "EQUIPMENT_CALIBRATION_EXPIRED" (分析仪器校准超期，测试失效，严禁录入结果)',
             'And prevent the quality check record from being marked as "Passed"'
@@ -143,5 +143,5 @@ class TestEpic038(BddTransactionCase):
             'Then the system must immediately switch the backup mechanical pressure safety valve to "Active" (启用)',
             'And raise a "ValidationError" (验证错误) blocking the laboratory technician from saving any sample test records for this sterilization batch',
             'And transition the sterilization mission "mrp.workorder" [mrp.workorder] (作业任务) status to "SENSORY_FAILED" (传感器异常)',
-            'And log a critical autoclave safety breach in the equipment's chatter'
+            "And log a critical autoclave safety breach in the equipment's chatter"
         ])

@@ -19,7 +19,7 @@ class TestEpic076(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a precision manufacturing order "mrp.production" (生产单) with an active prescription "agri.vra.prescription" (精准处方单) in status "draft" (草稿)',
-            'When the target parcel's soil organic matter (土壤有机质) "soil_som" is logged as 1.5% (低碳指标)',
+            'When the target parcel\'s soil organic matter (土壤有机质) "soil_som" is logged as 1.5% (低碳指标)',
             'Then the precision engine automatically calculates the target dosage as 5.0 tons/hectare',
             'And scales up the target compost recipe component inputs on "stock.move" (库存移动) by 20.0% upon executing "action_confirm" (确认)'
         ])
@@ -99,7 +99,7 @@ class TestEpic076(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given an active variable rate fertilization run on the mission "mrp.workorder" (作业任务)',
-            'When the tractor's ultrasonic altitude sensor "iiot.device" (智能物联网设备) registers a continuous sensor drift deviation exceeding "15.0%" (高度传感器温漂偏差超过15.0%)',
+            'When the tractor\'s ultrasonic altitude sensor "iiot.device" (智能物联网设备) registers a continuous sensor drift deviation exceeding "15.0%" (高度传感器温漂偏差超过15.0%)',
             'Then the system must trigger a safety warning flag on the prescription "agri.vra.prescription" (精准处方单)',
             'And automatically compensate the VRA spray valve output calculations based on backup GPS altitude data to prevent uneven nitrogen distribution'
         ])

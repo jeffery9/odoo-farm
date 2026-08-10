@@ -44,7 +44,7 @@ class TestEpic008(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a finalized stock lot of premium organic vegetables "LOT-2026-CH-001" is registered in "stock.lot"',
             'And the lot has a direct marketing profile "agri.direct.marketing.profile" configured',
-            'And the lot's agricultural lineage trace contains:',
+            "And the lot's agricultural lineage trace contains:",
             'When a customer scans the digital packaging QR-code',
             'Then the system must resolve the QR-code URL to retrieve the target "stock.lot" records',
             'And display a dynamic, interactive traceability interface',
@@ -67,7 +67,7 @@ class TestEpic008(BddTransactionCase):
             'And the customer subscribes to a weekly organic vegetable box via "sale.subscription"',
             'When the subscription state transitions to "in_progress"',
             'Then the system must automatically generate weekly "stock.picking" orders scheduled for delivery every Friday',
-            'And it must update and aggregate the total demand forecast inside Odoo's harvest planning module based on active subscription volume'
+            "And it must update and aggregate the total demand forecast inside Odoo's harvest planning module based on active subscription volume"
         ])
 
     def test_04_international_organic_certification_verification(self):
@@ -103,7 +103,7 @@ class TestEpic008(BddTransactionCase):
             'When the marketing manager attempts to publish an active campaign run on "agri.marketing.run" (营销活动运行模型) for this product',
             'Then the system must block the campaign run, transitioning its state to "blocked" (锁定阻断状态)',
             'And raise a "ValidationError" (验证错误) with message "PROHIBITED_SYNTHETIC_DETECTED" (包含"检测到禁用化学合成物"提示信息)',
-            'And the system must automatically strip the organic certification seal from the product's public traceability portal profile (并自动在产品公开可追溯门户页面撤销有机认证印章)'
+            "And the system must automatically strip the organic certification seal from the product's public traceability portal profile (并自动在产品公开可追溯门户页面撤销有机认证印章)"
         ])
 
     def test_06_compliance_traceability_synthetics_prohibited_gating(self):

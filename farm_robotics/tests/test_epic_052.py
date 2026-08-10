@@ -20,7 +20,7 @@ class TestEpic052(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a drone flight campaign registered under "agri.drone.flight" (无人机飞行航次)',
             'When the mission planner generates the spatial spray path for a target parcel',
-            'Then the system extracts the parcel's polygonal boundary coordinates from Odoo's GIS model',
+            "Then the system extracts the parcel's polygonal boundary coordinates from Odoo's GIS model",
             'And compiles them into a standardized DJI/Pixhawk flight coordinate file containing no-fly zone bounds'
         ])
 
@@ -37,7 +37,7 @@ class TestEpic052(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a planned drone spraying workorder in state "draft" (草稿)',
             'And a local weather station is registered in Odoo',
-            'When the local weather station's IoT sensors log wind speeds greater than 4.0 m/s',
+            "When the local weather station's IoT sensors log wind speeds greater than 4.0 m/s",
             'Then attempting to confirm or launch (确认并启动) the drone spraying mission raises a UserError (用户错误提示) blocking operation',
             'And the mission status remains locked in "cancelled" (已取消) or "draft" (草稿) with a wind safety warning logged in the chatter'
         ])
@@ -53,7 +53,7 @@ class TestEpic052(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a drone flight executing an active crop protection mission',
-            'When the drone's spatial radar and altitude sensors detect an obstacle distance less than 3.0 meters',
+            "When the drone's spatial radar and altitude sensors detect an obstacle distance less than 3.0 meters",
             'Then the drone flight controller triggers an automated collision avoidance sequence (自动触发避障序列)',
             'And automatically ascends by 5.0 meters, halts spraying pumps, and logs a critical telemetry warning to Odoo'
         ])
@@ -71,7 +71,7 @@ class TestEpic052(BddTransactionCase):
             'Given a drone spraying workorder with a target chemical dilution recipe under "mrp.workorder" (生产工单)',
             'When the operator registers the target parcel area in hectares',
             'Then the system automatically calculates the required active chemical mass and water volumes based on agronomic standards',
-            'And adjusts the drone pump flow rate parameters to match the drone's target flight speed'
+            "And adjusts the drone pump flow rate parameters to match the drone's target flight speed"
         ])
 
     def test_05_drone_flight_battery_low_returntohome(self):
@@ -84,7 +84,7 @@ class TestEpic052(BddTransactionCase):
         """
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
-            'Given a drone flight actively logging telemetry to Odoo's flight registry',
+            "Given a drone flight actively logging telemetry to Odoo's flight registry",
             'When the drone battery level drops below 20.0%',
             'Then the system triggers an automatic Return-To-Home (RTH) safety alarm (自动返航安全警报)',
             'And pauses the active crop spraying log, records the return coordinate, and dispatches an urgent drone service task (派发紧急维护任务)'

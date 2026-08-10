@@ -113,7 +113,7 @@ class TestEpic058(BddTransactionCase):
             'Given a recirculating aquaculture system tank registered as "stock.location" (库存位置)',
             'And multiple concurrent stocking movements of model "stock.move" (库存移动) ready for validation (确认入库)',
             'When the warehouse operator attempts to validate an inbound stocking move',
-            'Then the system must acquire a database-level lock using SELECT FOR UPDATE on the target tank's stocking records',
+            "Then the system must acquire a database-level lock using SELECT FOR UPDATE on the target tank's stocking records",
             'And query the AI vision optical biomass density log under model "agri.ai.vision.sample" (智能视觉样本) to recalculate current stocking density',
             'And raise a ValidationError with code "RAS_TANK_DENSITY_CONCURRENCY_BLOCKED" (目标鱼池并发负荷超限，库存写入锁定失败) if the total projected density exceeds the safe limit of 50.0 kg/m³'
         ])

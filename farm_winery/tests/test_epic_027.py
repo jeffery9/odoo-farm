@@ -41,7 +41,7 @@ class TestEpic027(BddTransactionCase):
             'When the lab analyst records a free SO2 level exceeding "50.0" PPM',
             'And a residual sugar level of "4.5" g/L (exceeding the dry standard threshold)',
             'Then the "AgriQualityGateMixin" must block the bottling manufacturing packaging order',
-            'And flag the wine lot's state as "Locked for Bottling" until chemical remediation is confirmed'
+            'And flag the wine lot\'s state as "Locked for Bottling" until chemical remediation is confirmed'
         ])
 
     def test_03_fermentation_temperature_sensor_failure_safe_mode_trickle_cooling(self):
@@ -76,7 +76,7 @@ class TestEpic027(BddTransactionCase):
             'Given an oak barrel asset defined in "farm.winery.vessel" proxying "mrp.workcenter"',
             'And the barrel is configured with French Oak wood type, medium-plus toast level, and 2-years age',
             'When a wine lot is moved into this barrel lot via a registered "stock.move" for cellar aging',
-            'Then the system must link the barrel's wood type, toast level, and aging history to the wine lot's digital terroir card',
+            "Then the system must link the barrel's wood type, toast level, and aging history to the wine lot's digital terroir card",
             'And record this barrel contribution in the "AgriTraceabilityMixin" line history'
         ])
 
@@ -92,7 +92,7 @@ class TestEpic027(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a red wine batch in post-primary fermentation undergoing malolactic fermentation',
             'When the laboratory analysis records malic acid concentration below "0.1" g/L',
-            'Then the system must flag Malolactic Fermentation as "Complete" in the batch's enology logs',
+            'Then the system must flag Malolactic Fermentation as "Complete" in the batch\'s enology logs',
             'And transition the wine production batch state to "Cold Stabilization"'
         ])
 

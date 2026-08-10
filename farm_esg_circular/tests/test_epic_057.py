@@ -60,7 +60,7 @@ class TestEpic057(BddTransactionCase):
             'Given a fermentation campaign finishes and produces 5000.0 kg of spent digestate under "stock.lot" (库存批次)',
             'When a tractor loads and recycles the digestate back to Orchard Parcel 4 as organic fertilizer',
             'Then the system validates the bio-compost NPK nutrient mass profile',
-            'And registers a nutrient return record in the parcel's ESG ledger "agri.esg.ledger" (ESG台账)',
+            'And registers a nutrient return record in the parcel\'s ESG ledger "agri.esg.ledger" (ESG台账)',
             'And updates the soil health dashboard card with the returned organic matter mass'
         ])
 

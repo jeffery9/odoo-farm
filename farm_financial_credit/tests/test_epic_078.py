@@ -35,7 +35,7 @@ class TestEpic078(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a cooperative agricultural credit loan application under "agri.credit.rating" (信用评级单) in status "draft" (草稿)',
-            'When the credit evaluation engine evaluates the partner's credit score (信用评分) "credit_score" as 550 points (低于安全信用阈值)',
+            'When the credit evaluation engine evaluates the partner\'s credit score (信用评分) "credit_score" as 550 points (低于安全信用阈值)',
             'Then the system raises a ValidationError (验证错误) "Credit score 550 is below safety threshold" (信用评分550低于安全准入阈值)',
             'And blocks the loan application approval'
         ])

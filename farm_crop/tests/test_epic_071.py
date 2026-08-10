@@ -72,8 +72,8 @@ class TestEpic071(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given an active drone survey campaign "agri.drone.survey" (无人机测绘模型) in state "in_progress" (进行中)',
-            'When the drone's IoT real-time telemetry registers battery level dropping below "15.0%" (物联网实时遥测显示电池电量跌破15.0%)',
-            'Then the system must trigger an automatic safe Return-To-Home event and command the drone's PLC controller to return (触发自动安全返航事件并向无人机PLC控制器发出返航指令)',
+            'When the drone\'s IoT real-time telemetry registers battery level dropping below "15.0%" (物联网实时遥测显示电池电量跌破15.0%)',
+            "Then the system must trigger an automatic safe Return-To-Home event and command the drone's PLC controller to return (触发自动安全返航事件并向无人机PLC控制器发出返航指令)",
             'And write a telemetry warning "Emergency Alert: Low battery detected, initiating RTH hold" (紧急警报：检测到低电量，启动应急返航挂起)',
             'And transition the survey campaign status to "paused" (已暂停)'
         ])
@@ -105,7 +105,7 @@ class TestEpic071(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given an active drone survey campaign "agri.drone.survey" (无人机测绘模型) in state "in_progress" (进行中)',
-            'When the UAV's real-time IoT gateway "iiot.device" (智能物联网设备) registers a connectivity signal loss lasting over "45 seconds" (遥测连接丢失超过45秒)',
+            'When the UAV\'s real-time IoT gateway "iiot.device" (智能物联网设备) registers a connectivity signal loss lasting over "45 seconds" (遥测连接丢失超过45秒)',
             'Then the system must automatically flag the flight status as "signal_lost" (信号丢失)',
             'And trigger an emergency automated PLC waypoint landing procedure to command the drone to land safely at the nearest predefined coordinates (触发紧急自动安全降落程序并向无人机PLC发出就近安全降落指令)'
         ])

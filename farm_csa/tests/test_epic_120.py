@@ -113,7 +113,7 @@ class TestEpic120(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a set of CSA subscription sales orders under "sale.order" (销售订单模型) with status "sale" (已确认状态) linked to "agri.csa.subscription" (CSA订阅模型)',
-            'And the supplying cooperative farm's ESG scoring "esg_score_points" drops below safety limit',
+            'And the supplying cooperative farm\'s ESG scoring "esg_score_points" drops below safety limit',
             'When the subscription manager attempts to validate the weekly order fulfillment via action "action_verify_esg_subscription" (验证订阅ESG评分动作)',
             'Then the system blocks the weekly shipment validation',
             'And rolls back the weekly sales order status to "draft" (草稿状态) under "sale.order" (销售订单模型)',

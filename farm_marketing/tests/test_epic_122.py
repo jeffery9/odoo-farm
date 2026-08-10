@@ -22,7 +22,7 @@ class TestEpic122(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a direct merchant sales order under "sale.order" (销售订单模型) linked to a merchant contract run under "agri.merchant.run" (商户经营活动记录模型)',
             'And the merchant sales order state "state" is "draft" (且销售订单状态字段值为草稿状态)',
-            'And the suppliers' dynamic split ratio list "split_ratio_ids" is set to 40.0% and 60.0% (且供应商的动态分账比例明细列表字段值设置为40.0%和60.0%)',
+            'And the suppliers\' dynamic split ratio list "split_ratio_ids" is set to 40.0% and 60.0% (且供应商的动态分账比例明细列表字段值设置为40.0%和60.0%)',
             'When the billing officer confirms the sales order payment (当计费专员确认销售订单付款时)',
             'Then the system must split the sales revenue proportionally across suppliers under "account.move" (系统必须在会计分录模型下自动按比例对供应商进行分账)',
             'And update the settlement ledger state "state" to "posted" (并在结算账簿模型上更新结算状态字段值为已过账状态)'
@@ -117,8 +117,8 @@ class TestEpic122(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given an active merchant contract under "agri.merchant.contract" (商户代理合同模型) linked to a merchant settlement run under "agri.merchant.run" (商户经营活动记录模型)',
-            'And the contract's required safety deposit "safety_deposit_limit" is 5000.0 USD (且该合同要求的最低保证金限额字段值为5000.0美元)',
-            'And the current merchant's ledger margin balance "margin_balance" is 4200.0 USD (且当前商户账簿实际保证金余额字段值为4200.0美元)',
+            'And the contract\'s required safety deposit "safety_deposit_limit" is 5000.0 USD (且该合同要求的最低保证金限额字段值为5000.0美元)',
+            'And the current merchant\'s ledger margin balance "margin_balance" is 4200.0 USD (且当前商户账簿实际保证金余额字段值为4200.0美元)',
             'When the billing officer attempts to process a joint operation revenue split under "account.move" (当计费专员尝试处理会计分录模型下的联营收益分成时)',
             'Then the compliance engine must block the clearing process and raise a ValidationError (系统合规引擎必须拦截清算程序并抛出验证错误) with message "Merchant margin balance below required clearing limit" (包含"商户保证金余额低于要求的清算限额"提示信息)',
             'And maintain the settlement ledger state "state" as "draft" (并保持商户结算状态字段值为草稿状态)'

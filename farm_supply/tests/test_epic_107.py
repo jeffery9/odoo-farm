@@ -75,7 +75,7 @@ class TestEpic107(BddTransactionCase):
         """
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
-            'Given an export sale order (一个出口销售订单) under "sale.order" (销售订单模型) with "hs_code" of '0702.00.00' (其商品编码字段值为'0702.00.00')',
+            'Given an export sale order (一个出口销售订单) under "sale.order" (销售订单模型) with "hs_code" of \'0702.00.00\' (其商品编码字段值为\'0702.00.00\')',
             'And the destination country has quarantine restrictions on tomato imports (并且目的地国家对番茄进口有检疫限制)',
             'When the sales manager attempts to validate the sale order (当销售经理尝试验证该销售订单时)',
             'Then the compliance engine under "agri.export.governance" must execute block order validation when customs quarantine flags exist (在全球供应链治理模型下的合规引擎必须执行当目的地海关存在检疫标记时拦截订单验证系统操作)',
@@ -112,7 +112,7 @@ class TestEpic107(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given an export picking under "stock.picking" (库存拣货单模型) with state "draft" (草稿状态) linked to "agri.export.governance" (在全球供应链治理模型下)',
-            'And the transport's calculated carbon footprint exceeds the destination country threshold "destination_carbon_cap"',
+            'And the transport\'s calculated carbon footprint exceeds the destination country threshold "destination_carbon_cap"',
             'When the export compliance clerk executes the transaction check via action "action_calculate_carbon_tax" (计算碳税动作)',
             'Then the system generates a carbon tax penalty under "account.move" (日记账分录模型)',
             'And automatically splits the penalty amount across responsible partner accounts (在责任伙伴账户之间分摊罚款金额)'

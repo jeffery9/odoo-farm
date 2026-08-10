@@ -69,7 +69,7 @@ class TestEpic094(BddTransactionCase):
             'Given pasture pens monitored by RFID gateway receivers under "agri.livestock.smart" (智能畜牧管理)',
             'When gateway connection fails to report for 6 hours (null ear-tag updates)',
             'Then the system triggers telemetry fallback action "trigger_gateway_fallback" (触发网关容灾)',
-            'And transitions tracking status field "state" (状态) to "sensory_failed" (传感器异常) and adds manual heat-check checklists to the herdsman's mobile dashboard'
+            'And transitions tracking status field "state" (状态) to "sensory_failed" (传感器异常) and adds manual heat-check checklists to the herdsman\'s mobile dashboard'
         ])
 
     def test_05_veterinary_vaccine_phi_verification_lock(self):
@@ -84,7 +84,7 @@ class TestEpic094(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a processed meat animal lot "stock.lot" (库存批次) "SWI-LOT-03" scheduled for delivery under picking "stock.picking" (库存拣货) "OUT-SWI-101"',
             'When validating the stock picking and checking active vaccine withdrawal periods (疫苗停药期/休药期)',
-            'Then the system blocks stock move validation "action_assign" (保留库存) if the animal's withdrawal period is active',
+            'Then the system blocks stock move validation "action_assign" (保留库存) if the animal\'s withdrawal period is active',
             'And raises validation error message "Active Vaccine PHI Withdrawal Lockout" (活性疫苗休药期未届满锁定)'
         ])
 

@@ -41,7 +41,7 @@ class TestEpic102(BddTransactionCase):
             'Given a certified product lot under stock.lot (库存批次) with compiled harvest GPS and lab results',
             'When the quality officer executes system action "action_compile_blockchain_proof" (编译区块链存证动作)',
             'Then the system encrypts the audit logs and writes the SHA-256 hash to "blockchain_hash" (区块链哈希)',
-            'And the lot's "blockchain_state" (区块链状态) changes to "anchored" (已锚定)'
+            'And the lot\'s "blockchain_state" (区块链状态) changes to "anchored" (已锚定)'
         ])
 
     def test_03_premium_brand_seal_signature_validation_failure(self):
