@@ -8,8 +8,8 @@ _logger = logging.getLogger(__name__)
 class StockLot(models.Model):
     _inherit = 'stock.lot'
 
-    # [Refactored] Migrated to agri.lot.kinship for performance and consistency
-    # Redundant parent_lot_id removed.
+    # Centralized backward-compatible reference
+    parent_lot_id = fields.Many2one('stock.lot', string='Parent Lot')
     
     def get_full_traceability_chain(self):
         """
