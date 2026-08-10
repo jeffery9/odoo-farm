@@ -189,6 +189,7 @@ class AgriProcessingAllergenControl(models.Model):
     allergen_details = fields.Text("Allergen Details")
     all_allergens = fields.Boolean("All Allergens")
     previous_allergens = fields.Text("Previous Allergens")
+    cleaning_procedure = fields.Text("Cleaning Procedure")
     previous_production_id = fields.Many2one('mrp.production', string='Previous Production')
     allergen_risk_score = fields.Float("Risk Score")
     cleaning_verification_result = fields.Selection([('pass', 'Pass'), ('fail', 'Fail')], string='Cleaning Result')
