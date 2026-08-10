@@ -1,1 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_shared_machinery_pool_user,shared.machinery.pool.user,model_shared_machinery_pool,farm_multi_farm.group_user,1,1,1,0
+access_machinery_rental_user,machinery.rental.user,model_machinery_rental,farm_multi_farm.group_user,1,1,1,0
