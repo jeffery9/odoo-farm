@@ -183,7 +183,7 @@
                                 <field name="crop_rotation_history" readonly="1">
                                     <list>
                                         <field name="rotation_date" />
-                                        <field name="crop_type" />
+                                        <field name="product_id" />
                                         <field name="planting_date" />
                                         <field name="harvest_date" />
                                         <field name="rotation_sequence" />
@@ -228,14 +228,14 @@
             <search>
                 <field name="name" />
                 <field name="land_parcel_id" />
-                <field name="crop_type" />
+                <field name="product_id" />
                 <field name="planting_date" />
                 <field name="harvest_date" />
                 <separator />
                 <filter name="filter_current_year" string="Current Year" domain="[('planting_date', '&gt;=', (context_today() - relativedelta(years=1)).strftime('%Y-01-01')), ('planting_date', '&lt;', context_today().strftime('%Y-01-01'))]" />
                 <group>
                     <filter name="group_by_land_parcel" string="Land Parcel" context="{'group_by': 'land_parcel_id'}" />
-                    <filter name="group_by_crop_type" string="Crop Type" context="{'group_by': 'crop_type'}" />
+                    <filter name="group_by_product_id" string="Crop Planted" context="{'group_by': 'product_id'}" />
                 </group>
             </search>
         </field>
