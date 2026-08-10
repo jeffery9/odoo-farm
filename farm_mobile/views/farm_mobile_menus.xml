@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-<menuitem id="menu_farm_mobile_root" name="Mobile Workbench" action="action_farm_mobile_workbench" web_icon="farm_mobile,static/description/icon.png" sequence="1" />
+    <menuitem id="menu_farm_mobile_root" name="Mobile Workbench" action="action_farm_mobile_workbench" web_icon="farm_mobile,static/description/icon.png" sequence="1" />
+    
+    <!-- Sub-menu for Mobile Field Operations -->
+    <menuitem id="menu_mobile_field_ops" name="Field Operations (现场移动作业)" parent="menu_farm_mobile_root" sequence="10" />
 </data>
 </odoo>
