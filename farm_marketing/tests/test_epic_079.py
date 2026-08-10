@@ -18,7 +18,7 @@ class TestEpic079(BddTransactionCase):
         """
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
-            'Given a consumer scanning a premium crop product's QR tracing code linked to "agri.brand.marketing" (品牌营销单)',
+            'Given a consumer scanning a premium crop product\'s QR tracing code linked to "agri.brand.marketing" (品牌营销单)',
             'When the QR redirect URL (二维码跳转链接) "qr_code_url" is resolved in the consumer browser',
             'Then the portal displays a complete, interactive blockchain-verified timeline mapping seed lot origin, physical test certificates, and processing dates',
             'And provides bilingual explanations for agronomic indicators like NPK and Growing Degree Days (GDD)'
@@ -69,7 +69,7 @@ class TestEpic079(BddTransactionCase):
             'Given a unique premium product QR code actively sold to a consumer',
             'When the tracing portal registers two distinct scans from locations separated by more than 100.0 km within 1 hour (异常扫码地理跨度)',
             'Then the system flags a counterfeit alert (假冒伪劣风险警报) in the central database',
-            'And automatically pauses the tracing code's public resolution while notifying the brand manager with GPS coordinates of the scans'
+            "And automatically pauses the tracing code's public resolution while notifying the brand manager with GPS coordinates of the scans"
         ])
 
     def test_05_esg_sustainability_brand_score_compilation(self):

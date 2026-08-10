@@ -83,7 +83,7 @@ class TestEpic100(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a cooperative packing run sourcing raw crop lots "stock.lot" (库存批次) "stock.lot" from multiple member farms',
-            'When validating the finished lot's premium brand seal using "action_verify_coop_lot" (校验合作社批次)',
+            'When validating the finished lot\'s premium brand seal using "action_verify_coop_lot" (校验合作社批次)',
             'Then the system audits the phytosanitary and organic GxP certificates of each farm partner',
             'And raises a validation error message "Partner GxP Audit Expired" (合作伙伴GxP认证已过期) if any supplier farm has an expired certificate'
         ])
@@ -99,7 +99,7 @@ class TestEpic100(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given multiple member farm partners "res.partner" (业务伙伴) in "agri.coop.clearing" (合作社结算) with active joint credit balances',
-            'When validating a joint procurement shipment of biological crop lot "stock.lot" (库存批次) "COOP-LOT-100" but a partner's GxP certification is discovered to be expired',
+            'When validating a joint procurement shipment of biological crop lot "stock.lot" (库存批次) "COOP-LOT-100" but a partner\'s GxP certification is discovered to be expired',
             'Then the system triggers a multi-agent credit transaction rollback (多智能体额度交易回滚) to revert the joint budgets to "draft" (草稿)',
             'And raises a validation error (验证错误: "Partner GxP compliance expired, joint clearing transaction rolled back")'
         ])

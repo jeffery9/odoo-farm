@@ -79,7 +79,7 @@ class TestEpic062(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a certified organic crop parcel (已认证的有机作物地块) "PARCEL-ORG-A" under stock.location (库存位置)',
             'When an annual soil audit record under agri.organic.audit (农业有机审计) registers a soil synthetic nitrogen level (合成氮含量) of 0.08%, exceeding the threshold of 0.05%',
-            'Then the system must transition the parcel's certification state to "suspended (已吊销)"',
+            'Then the system must transition the parcel\'s certification state to "suspended (已吊销)"',
             'And strip its organic badge for a mandatory 36-month recovery period (36个月强制恢复期)',
             'And raise a ValidationError (验证错误): "Parcel is suspended from organic operations (该地块已被暂停有机作业资质)" if a crop planting workorder of model mrp.workorder (工序工单) is scheduled as organic on this parcel'
         ])
@@ -114,7 +114,7 @@ class TestEpic062(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a robotic sprayer device (智能喷洒机器人设备) of model iiot.device (物联设备) executing a chemical spraying mission (化学品喷洒任务) "mrp.workorder" (作业任务)',
-            'When the system's geofencing detection (地理围栏检测) registers the device entering an organic certified parcel buffer zone of model stock.location (库存位置)',
+            "When the system's geofencing detection (地理围栏检测) registers the device entering an organic certified parcel buffer zone of model stock.location (库存位置)",
             'Then the system must automatically flag a chemical drift warning (化学品漂移警告)',
             'And command the robotic device (机器人设备) to instantly shut off spraying nozzles to protect organic certification',
             'And block the mission "mrp.workorder" (作业任务) state from transitioning to "done (完成)" under a ValidationError (验证错误): "Chemical spraying aborted due to organic boundary violation (因侵入有机边界，化学喷洒已中止)"'

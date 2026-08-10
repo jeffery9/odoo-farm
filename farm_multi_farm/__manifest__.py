@@ -25,10 +25,6 @@
         'project',
         'account',
         'farm_agri_science',
-        'farm_multi_farm_equipment',
-        'farm_multi_farm_financial',
-        'farm_multi_farm_procurement',
-        'farm_multi_farm_quality',
     ],
     'data': [
         'security/ir.model.access.csv',

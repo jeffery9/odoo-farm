@@ -23,7 +23,7 @@ class TestEpic056(BddTransactionCase):
             'And the contract specifies a total harvesting service fee of 15000.0 USD',
             'When the contractor completes the harvesting work recorded under "agri.field.service" (田间服务记录) across 3 distinct cooperative farms:',
             'Then the system must automatically split and allocate the contract settlement cost lines in the draft invoice "account.move" (应付账单):',
-            'And the cost distribution is posted to each farm's corresponding analytical account "account.analytic.account" (分析账户)'
+            'And the cost distribution is posted to each farm\'s corresponding analytical account "account.analytic.account" (分析账户)'
         ])
 
     def test_02_contractor_quality_score_price_adjustments_and_penalties(self):
@@ -62,7 +62,7 @@ class TestEpic056(BddTransactionCase):
             'And Farm A and Farm B attempt to schedule overlapping service reservations under "agri.field.service" (田间服务记录) for the same date',
             'When the scheduling engine runs the booking prioritization algorithm',
             'Then the system automatically allocates the booking priority to the farm with higher crop maturity index',
-            'And schedules non-overlapping service missions, moving the secondary farm's request to "scheduled" (已排程) status',
+            'And schedules non-overlapping service missions, moving the secondary farm\'s request to "scheduled" (已排程) status',
             'And sends automated push notifications to both farm operators'
         ])
 
@@ -80,7 +80,7 @@ class TestEpic056(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a service contractor submits a billing invoice for crop pesticide spraying under "purchase.order" (采购订单)',
             'And the contractor claims spraying coverage of 10.0 hectares in their invoice lines',
-            'When the system retrieves the contractor's drone spatial flight logs from "agri.drone.flight" (无人机飞行记录)',
+            'When the system retrieves the contractor\'s drone spatial flight logs from "agri.drone.flight" (无人机飞行记录)',
             'And the flight log analysis computes the actual sprayed coordinate polygon area as 8.5 hectares',
             'Then the system flags the invoice verification as "Discrepancy" (数据异常)',
             'And raises a ValidationError "Billed area exceeds actual flight log area by more than 2.0% tolerance" (计费面积超出实际飞行日志面积，且超过2%容差) to block payment approval'
@@ -100,7 +100,7 @@ class TestEpic056(BddTransactionCase):
             'Given a high-security chemical spraying service is requested under "agri.field.service" (田间服务记录)',
             'When a purchase manager attempts to confirm a related purchase order under "purchase.order" (采购订单)',
             'Then the system checks the contractor partner profile under "res.partner" (业务伙伴) for active GxP chemical certificates',
-            'And if the contractor's GxP certification is expired or missing, the system blocks the confirmation (阻断确认)',
+            "And if the contractor's GxP certification is expired or missing, the system blocks the confirmation (阻断确认)",
             'And raises a UserError "Contractor lacks an active GxP certification" (供应商缺少有效的GxP资质证书) to restrict operation'
         ])
 

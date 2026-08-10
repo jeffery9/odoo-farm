@@ -21,7 +21,7 @@ class TestEpic018(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given I am a livestock technician',
             'And the system uses "agri.isl.lot.livestock" proxying "stock.lot"',
-            'When I register a livestock's reproductive status (e.g., Pregnant, Lactating) on "agri.isl.lot.livestock"',
+            'When I register a livestock\'s reproductive status (e.g., Pregnant, Lactating) on "agri.isl.lot.livestock"',
             'Then the system must track the reproductive state transition automatically',
             'And manage the biological quantity via "AgriBiologicalInventoryMixin"'
         ])
@@ -39,7 +39,7 @@ class TestEpic018(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given consecutive animal weighing events are logged in "farm.livestock.event" for a specific RFID tag "rfid_tag"',
             'When the system calculates the Average Daily Gain (ADG) of the livestock lot and it drops below 0.3 kg/day',
-            'Then the system must compare the calculated ADG against the variety's standard growth curve',
+            "Then the system must compare the calculated ADG against the variety's standard growth curve",
             'And trigger an "AgriIncidentAlertMixin" warning if the ADG is 15% lower than standard',
             'And automatically schedule a veterinary inspection task on "mail.activity"'
         ])

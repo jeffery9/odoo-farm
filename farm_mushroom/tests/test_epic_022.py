@@ -42,7 +42,7 @@ class TestEpic022(BddTransactionCase):
             'And a laboratory technician performing heavy metal analysis on the lot',
             'When the heavy metal laboratory analysis registers a cadmium concentration greater than 0.1 mg/kg',
             'Then the system must automatically quarantine the corresponding mushroom lot',
-            'And the lot's quality state must transition to "Unfit for Consumption"',
+            'And the lot\'s quality state must transition to "Unfit for Consumption"',
             'And the system must block the lot from any packaging or inventory delivery moves'
         ])
 

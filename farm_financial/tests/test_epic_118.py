@@ -110,7 +110,7 @@ class TestEpic118(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a farming settlement invoice under "account.move" (日记账分录模型) linked to "agri.contract.settlement" (合同结算模型) with status (状态) "draft" (草稿)',
-            'And the harvesting contractor's tractor fleet exceeds its carbon quota',
+            "And the harvesting contractor's tractor fleet exceeds its carbon quota",
             'When the settlement clerk attempts to validate the contract payment via action "action_calculate_contract_tax" (计算合同碳税动作)',
             'Then the system automatically posts a carbon tax penalty split invoice under "account.move" (日记账分录模型)',
             'And distributes the carbon penalty amount across responsible contractor partner accounts (在责任承包商伙伴账户之间分摊罚款金额)'

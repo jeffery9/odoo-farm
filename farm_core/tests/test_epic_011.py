@@ -43,7 +43,7 @@ class TestEpic011(BddTransactionCase):
             'When a user registers fuel consumption of "150" liters on the "agri.esg.ledger" line associated with this transaction',
             'Then the system must calculate the Scope 1 emissions as "0.402" CO2 metric tons',
             'And automatically add this value to the global carbon balance of "agri.esg.ledger"',
-            'And write "co2_metric_tons = 0.402" and "emission_scope = 'scope_1'" to the ledger'
+            'And write "co2_metric_tons = 0.402" and "emission_scope = \'scope_1\'" to the ledger'
         ])
 
     def test_03_scope_2_electricity_indirect_emission_computation(self):
@@ -61,7 +61,7 @@ class TestEpic011(BddTransactionCase):
             'And the regional electricity grid emission factor is set to "0.00038" CO2 metric tons per kWh',
             'When the system records electricity usage of "5000" kWh for the production cycle on "agri.esg.ledger"',
             'Then the ESG ledger must calculate Scope 2 emissions as "1.9" CO2 metric tons',
-            'And update the active company's cumulative indirect carbon footprint balance'
+            "And update the active company's cumulative indirect carbon footprint balance"
         ])
 
     def test_04_sustainable_supply_chain_verification_via_agenttoagent_a2a_kyc(self):
@@ -76,8 +76,8 @@ class TestEpic011(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a new supplier profile being registered on model "res.partner"',
             'When the system performs an autonomous Agent-to-Agent (A2A) KYC check using "agri.esg.ledger"',
-            'Then it must verify the supplier agent's reputation score on the distributed registry',
-            'And restrict procurement confirmation if the supplier's reputation score is below the "Sustainability Threshold" of "70"'
+            "Then it must verify the supplier agent's reputation score on the distributed registry",
+            'And restrict procurement confirmation if the supplier\'s reputation score is below the "Sustainability Threshold" of "70"'
         ])
 
     def test_05_carbon_tax_penalty_journal_voucher_allocation_esg(self):

@@ -85,7 +85,7 @@ class TestEpic114(BddTransactionCase):
             'And the delivered harvest lot value "delivered_harvest_value" is 15000.0 USD (且已交付的收获批次价值字段值为15000.0美元)',
             'When the contract settlement accountant runs debt netting (当合同结算会计运行债务轧差结算时)',
             'Then the system must automatically net the settlement writing "netted_payment_amount" is 3000.0 USD (系统必须自动对冲结算并写入实付结算金额字段值为3000.0美元)',
-            'And reduce the partner's outstanding loan balance in "agri.risk.insurance" to 0.0 USD (并在农业风险管理与保险模型中将该客户的未结贷款余额字段值降低至0.0美元)'
+            'And reduce the partner\'s outstanding loan balance in "agri.risk.insurance" to 0.0 USD (并在农业风险管理与保险模型中将该客户的未结贷款余额字段值降低至0.0美元)'
         ])
 
     def test_05_multifarm_worked_hectare_cost_split_settlements(self):

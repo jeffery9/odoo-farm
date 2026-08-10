@@ -61,7 +61,7 @@ class TestEpic035(BddTransactionCase):
             'When any non-organic ingredient lot "stock.lot" is selected or consumed in the active production order',
             'Then the system must automatically strip the "organic_certified" boolean flag from the output product lot',
             'And block the printing of any organic-certified labels on outgoing package pickings "stock.picking"',
-            'And transition the finished lot's organic status to "conventional"'
+            'And transition the finished lot\'s organic status to "conventional"'
         ])
 
     def test_04_organic_yearly_soil_nitrogen_application_rate_limit_and_blocker(self):

@@ -22,7 +22,7 @@ class TestEpic105(BddTransactionCase):
             'Given a refrigerated transport stock.picking (库存拣货/调拨) record tracked by agri.sc.risk (供应链风险)',
             'When the temperature sensor "transit_temp_sensor" (运输温度传感器) fails to report telemetry for over 4.0 hours',
             'And sets "telemetry_failed" (遥测故障) to True (真)',
-            'Then the system automatically transitions the picking's risk "safety_status" (安全状态) to "failed" (故障)',
+            'Then the system automatically transitions the picking\'s risk "safety_status" (安全状态) to "failed" (故障)',
             'And issues a critical dispatch alert to alternative cold-chain carriers'
         ])
 

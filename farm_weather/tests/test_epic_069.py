@@ -100,7 +100,7 @@ class TestEpic069(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given an active weather integration under "agri.weather.sensor" (农业天气传感器模型)',
             'When comparing daily weather station accumulated rainfall with adjacent grid radar data and identifying a sensor drift deviation exceeding "25.0%" (传感器温漂偏差超过25.0%)',
-            'Then the system must automatically flag the weather station's status on the dashboard as "drift_alert" (漂移预警)',
+            'Then the system must automatically flag the weather station\'s status on the dashboard as "drift_alert" (漂移预警)',
             'And trigger an automated manual validation activity "project.task" (项目任务) to calibrate the weather station rainfall sensor'
         ])
 

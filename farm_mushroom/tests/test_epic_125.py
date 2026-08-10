@@ -63,7 +63,7 @@ class TestEpic125(BddTransactionCase):
             'And the land location under "stock.location" (位置模型) has an active soil quality ledger in "agri.regenerative.soil" (再生土壤记录模型)',
             'When the worker completes the soil enhancement mission (当工人完成此土地改良作业任务时)',
             'Then the system must allocate soil organic matter SOM carbon offsets "som_carbon_offset" of 12.5 kg CO2e per kg compost (系统必须根据菌渣施用量按每千克12.5千克二氧化碳当量的比例分配土壤有机质SOM碳抵消信用额度)',
-            'And update the land's cumulative carbon offset ledger "total_carbon_offset" in "agri.regenerative.soil" (并在再生土壤记录模型中更新该土地的累计碳抵消信用额度字段值)'
+            'And update the land\'s cumulative carbon offset ledger "total_carbon_offset" in "agri.regenerative.soil" (并在再生土壤记录模型中更新该土地的累计碳抵消信用额度字段值)'
         ])
 
     def test_04_jidoka_vessel_lock_on_substrate_quants(self):

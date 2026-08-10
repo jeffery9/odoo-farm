@@ -37,7 +37,7 @@ class TestEpic068(BddTransactionCase):
             'Given a quarantined piglet record in "agri.livestock.health" (畜牧健康监测模型) with an active fever alert state',
             'When the system registers the fever alert event',
             'Then the system must automatically create a high-priority veterinary task "project.task" (项目任务)',
-            'And pre-populate the task description with the animal's RFID "rfid_tag_code" (无线射频识别耳标码) and assign it to the livestock technician for physical isolation in a dedicated pen'
+            'And pre-populate the task description with the animal\'s RFID "rfid_tag_code" (无线射频识别耳标码) and assign it to the livestock technician for physical isolation in a dedicated pen'
         ])
 
     def test_03_veterinary_medical_treatment_gxp_withdrawal_log_gxp(self):
@@ -53,7 +53,7 @@ class TestEpic068(BddTransactionCase):
             'Given a sick animal lot under treatment in "agri.livestock.health" (畜牧健康监测模型)',
             'When the veterinarian logs the administration of drug "Penicillin" (青霉素) with an active chemical ingredient',
             'Then the system must calculate the mandatory GxP chemical withdrawal duration of "14 days" (14天强制休药期)',
-            'And write the exact withdrawal end date "withdrawal_end_date" (休药截止日期) to the underlying animal's stock lot "stock.lot" (库存批次) record'
+            'And write the exact withdrawal end date "withdrawal_end_date" (休药截止日期) to the underlying animal\'s stock lot "stock.lot" (库存批次) record'
         ])
 
     def test_04_eartag_rf_telemetry_gateway_offline_fallback(self):

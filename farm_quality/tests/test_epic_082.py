@@ -98,7 +98,7 @@ class TestEpic082(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a partner "res.partner" (业务伙伴) "COOP-PARTNER-01" with active credit balance in state "active" (激活) under "agri.blockchain.ledger" (农业区块链账本)',
             'When validating a traceability shipment linked to lot "stock.lot" (库存批次) "PROD-LOT-06" where the block hash validation fails',
-            'Then the system executes a multi-agent credit transaction rollback (多智能体额度交易回滚) to revert the partner's pending credits to "draft" (草稿)',
+            'Then the system executes a multi-agent credit transaction rollback (多智能体额度交易回滚) to revert the partner\'s pending credits to "draft" (草稿)',
             'And raises a validation error (验证错误: "Traceability block signature invalid, credit transaction rolled back")'
         ])
 

@@ -21,10 +21,10 @@ class TestEpic023(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a steam-extracted essential oil lot registered in "agri.isl.essential.oil"',
-            'And the lot's initial target grade is set to "Premium"',
+            'And the lot\'s initial target grade is set to "Premium"',
             'When the Gas Chromatography (GC-MS) laboratory analysis registers a Linalool content below 35.0%',
-            'Then the system must automatically downgrade the lot's quality grade classification to "Standard"',
-            'And the system must decrease the lot's default selling unit price by 20% in the price list',
+            'Then the system must automatically downgrade the lot\'s quality grade classification to "Standard"',
+            "And the system must decrease the lot's default selling unit price by 20% in the price list",
             'And the system must log the grade correction in the lot chatter'
         ])
 
@@ -84,7 +84,7 @@ class TestEpic023(BddTransactionCase):
             'And the target mixed oil batch registered as a new lot in "stock.lot"',
             'When the blending operation is finalized and confirmed via the inventory interface',
             'Then the system must construct a precise lot lineage tree mapping each percentage input of raw harvest lots',
-            'And the system must embed this lineage tree directly into the final product lot's digital passport',
+            "And the system must embed this lineage tree directly into the final product lot's digital passport",
             'And the system must allow inspectors to trace any final bottle back to all original fields'
         ])
 

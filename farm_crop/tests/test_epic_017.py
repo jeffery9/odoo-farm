@@ -20,7 +20,7 @@ class TestEpic017(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a tea harvest event with "stock.lot" linked to parcel data',
             'When the system records the flush type (e.g. Pre-Qingming, Pre-Rain)',
-            'Then the harvest lot must automatically inherit the parcel's altitude and slope fingerprints',
+            "Then the harvest lot must automatically inherit the parcel's altitude and slope fingerprints",
             'And the "tea_season" and "elevation_m" must be recorded as core quality dimensions on "stock.lot"'
         ])
 
@@ -108,7 +108,7 @@ class TestEpic017(BddTransactionCase):
         """
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
-            'Given a crop parcel's soil stock lot in "stock.lot" (库存批次模型) with crop variety "Rose" (且作物物种已设置为玫瑰)',
+            'Given a crop parcel\'s soil stock lot in "stock.lot" (库存批次模型) with crop variety "Rose" (且作物物种已设置为玫瑰)',
             'And a smart evapotranspiration sensor registered in "iiot.device" (并且智能蒸腾量传感器已注册在工业物联网设备模型中)',
             'When the soil sensor logs an NPK reading drift of 25.0% (当土壤传感器记录到氮磷钾读数偏离比比例达到25.0%时)',
             'Then the system must trigger safe mode self-correction (系统必须自动执行安全模式自校准动作)',

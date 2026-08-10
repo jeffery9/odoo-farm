@@ -21,7 +21,7 @@ class TestEpic051(BddTransactionCase):
             'Given a marketing livestream session is created under "agri.douyin.stream.log" (抖音直播日志)',
             'When the streaming operator opens the session with status "active" (直播中)',
             'Then the system retrieves the active agricultural product inventory lots',
-            'And generates custom, unique QR tracing codes mapping each lot's complete profile for live on-stream display'
+            "And generates custom, unique QR tracing codes mapping each lot's complete profile for live on-stream display"
         ])
 
     def test_02_livestream_flashsale_rapid_inventory_reservation(self):
@@ -70,7 +70,7 @@ class TestEpic051(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a consumer scans the unique tracing QR-code displayed on the Douyin livestream',
             'When the system resolves the QR-code redirect URL on the consumer portal',
-            'Then the portal displays a complete, interactive, bilingual timeline mapping the specific lot's lifecycle',
+            "Then the portal displays a complete, interactive, bilingual timeline mapping the specific lot's lifecycle",
             'And the timeline shows the certified harvesting dates, laboratory residual test results, and packaging logs'
         ])
 

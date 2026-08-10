@@ -27,9 +27,9 @@ class TestEpic010(BddTransactionCase):
             'And the recycling system "agri.biomass.recycling" is active',
             'When the stalks are transferred via stock move to the on-site "Biogas Reactor"',
             'Then the system must trigger an organic valuation calculation',
-            'And write a credit ledger offset in the parcel's ESG balance sheet model "agri.esg.ledger"',
+            'And write a credit ledger offset in the parcel\'s ESG balance sheet model "agri.esg.ledger"',
             'And the ledger credit must calculate the equivalent nitrogen/phosphorus/potassium (NPK) offset value (e.g. 1200.0 kg stalks * 0.012 = 14.4 kg NPK credit)',
-            'And allocate a cost offset of $150.00 to "Field Parcel 12" operating accounts to reduce next campaign's fertilizer budget allocation'
+            'And allocate a cost offset of $150.00 to "Field Parcel 12" operating accounts to reduce next campaign\'s fertilizer budget allocation'
         ])
 
     def test_02_graded_sales_and_multichannel_distribution(self):
@@ -77,7 +77,7 @@ class TestEpic010(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a consumer has adopted a specific tree or animal',
-            'When the consumer's AI Agent queries the farm's Digital Twin (Epic 093)',
+            "When the consumer's AI Agent queries the farm's Digital Twin (Epic 093)",
             'Then the Farm Agent must push a growth snapshot and environmental report',
             'And the consumer must be able to trigger a "Special Feeding" or "Photo" task via their agent'
         ])
@@ -94,7 +94,7 @@ class TestEpic010(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given an organic crop batch is registered with a defined shelf-life in "product.template" (产品模板模型)',
-            'And the organic crop's remaining shelf-life drops to 0% with status "expired" (已过期状态)',
+            'And the organic crop\'s remaining shelf-life drops to 0% with status "expired" (已过期状态)',
             'When the processing manager attempts to confirm a processing stock move in "stock.move" (库存移动模型) using this expired organic crop',
             'Then the ORM must raise a "ValidationError" (验证错误) with message "EXPIRED_CROP_PROCESSING_BLOCKED" (包含"已过期作物禁止加工"提示信息)',
             'And the transaction must execute rollback (并且系统必须执行事务回滚) to prevent food safety violations (以防止违反食品安全规范)'

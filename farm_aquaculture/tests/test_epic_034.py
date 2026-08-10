@@ -59,7 +59,7 @@ class TestEpic034(BddTransactionCase):
             'When the pump pressure sensor logs a drop below "0.5" Bar (indicating pump failure or mechanical clogging)',
             'Then the system must atomically switch off the primary pump and trigger the backup recirculating pump actuator to "on"',
             'And generate an urgent maintenance ticket "mrp.workorder" with priority "high"',
-            'And log a warning entry in the workcenter's telemetry chatter'
+            "And log a warning entry in the workcenter's telemetry chatter"
         ])
 
     def test_04_intensive_ras_fish_stocking_density_validation_limit(self):

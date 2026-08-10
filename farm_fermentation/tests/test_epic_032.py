@@ -57,7 +57,7 @@ class TestEpic032(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a series of traditional fermentation jars monitored by IoT solar tracking temperature sensors',
             'When the jar telemetry sensors fail and report null readings to the gateway for over "4" hours',
-            'Then the system must flag the jar group's monitoring status as "SENSORY_FAILED"',
+            'Then the system must flag the jar group\'s monitoring status as "SENSORY_FAILED"',
             'And automatically generate and assign a daily manual thermal inspection task "mrp.workorder" for the respective jar row',
             'And log a telemetry loss ticket in the system'
         ])
@@ -77,7 +77,7 @@ class TestEpic032(BddTransactionCase):
             'When the ambient meteorological sensor logs a temperature reading greater than "42.0" °C during summer sun exposure',
             'Then the system must trigger the actuator command to deploy the physical sun-shade sails',
             'And log the temperature breach event and sails deployment in Odoo Chatter',
-            'And transition the field's climate state to "SHADED_PROTECTIVE"'
+            'And transition the field\'s climate state to "SHADED_PROTECTIVE"'
         ])
 
     def test_05_vinegar_aging_acidity_level_check_and_bottling_lock(self):

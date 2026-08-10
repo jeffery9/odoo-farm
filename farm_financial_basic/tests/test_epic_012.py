@@ -45,7 +45,7 @@ class TestEpic012(BddTransactionCase):
             'Then the system must execute the auction closure action "action_close_auction"',
             'And allocate the reservation for the resource to the highest bidder lot of "stock.lot"',
             'And generate virtual credit journal entries of model "account.move" with state set to "posted"',
-            'And debit the highest bidder's virtual cooperative account "virtual_coop_debtor" and credit the resource owner "virtual_coop_creditor"'
+            'And debit the highest bidder\'s virtual cooperative account "virtual_coop_debtor" and credit the resource owner "virtual_coop_creditor"'
         ])
 
     def test_03_riskadjusted_dynamic_pricing_based_on_environmental_factors(self):
@@ -60,7 +60,7 @@ class TestEpic012(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a sales agent managing product pricing for organic crop batches on "sale.order"',
-            'When environmental pest or weather risk logs are registered on model "agri.iot.sensor.log" with "alert_status = 'critical'"',
+            'When environmental pest or weather risk logs are registered on model "agri.iot.sensor.log" with "alert_status = \'critical\'"',
             'Then the agent must dynamically adjust the "Price_Value" using a "BasePPOCritic" evaluation function',
             'And the hourly price volatility must be restricted to a maximum of 20%',
             'And a detailed "Reasoning Path" justification text must be saved into the "reasoning_path" field of the sale order'
@@ -80,8 +80,8 @@ class TestEpic012(BddTransactionCase):
             'Given a network of autonomous trading agents registered as "res.partner"',
             'When the system identifies "Collusive Pricing" patterns via "content_solver" market analysis',
             'Then it must execute the "Apply_Slashing" protocol action "action_apply_slashing"',
-            'And deduct the offending agent's "Credit_Score" field in the reputation ledger',
-            'And apply the "DISHONEST_TRADER" status flag to the partner's global reputation record'
+            'And deduct the offending agent\'s "Credit_Score" field in the reputation ledger',
+            'And apply the "DISHONEST_TRADER" status flag to the partner\'s global reputation record'
         ])
 
     def test_05_bid_doublespend_overdraft_transaction_rollback(self):

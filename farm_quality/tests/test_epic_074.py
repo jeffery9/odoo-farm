@@ -20,7 +20,7 @@ class TestEpic074(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a quality inspection session under "agri.postharvest.qc" (收获后质检模型) in state "draft" (草稿)',
             'When the lab technician records average apple penetrometer firmness as "4.5 kg/cm²" (当实验员记录苹果平均硬度计硬度为4.5 kg/cm²，低于特级标准6.0 kg/cm²)',
-            'Then the system must automatically downgrade the lot's quality grade from "Extra Fancy" (特一级) to "Grade B" (标准二级)',
+            'Then the system must automatically downgrade the lot\'s quality grade from "Extra Fancy" (特一级) to "Grade B" (标准二级)',
             'And raise a ValidationError (验证错误) message "Labeling Blocked: Firmness below premium brand limits" (贴标被阻止：硬度低于特级品牌限制) if a user attempts to print premium barcode labels'
         ])
 
@@ -36,7 +36,7 @@ class TestEpic074(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given a refrigerated transport shipment tracked under "stock.picking" (库存调拨)',
             'When container temperature sensors fail to report telemetry updates for over "4 hours" (当冷藏集装箱温度传感器超过4小时未上报遥测更新)',
-            'Then the system must flag the container's quality status on "agri.postharvest.qc" (收获后质检模型) as "Sensory Failed" (传感器故障)',
+            'Then the system must flag the container\'s quality status on "agri.postharvest.qc" (收获后质检模型) as "Sensory Failed" (传感器故障)',
             'And dispatch an urgent alert "Telemetry Offline: Check refrigerated container power source" (遥测离线：检查冷藏箱电源) to the logistics coordinator dashboard'
         ])
 
@@ -101,5 +101,5 @@ class TestEpic074(BddTransactionCase):
             'Given cold-storage rooms tracked under "stock.location" (库存库位)',
             'When the smart power grid monitor "iiot.device" (智能物联网设备) registers a main power grid failure (主电网失电断电) lasting over "30 seconds"',
             'Then the system must trigger an active PLC relay command to automatically boot the emergency diesel backup cooling generator',
-            'And update the location's status on "agri.postharvest.qc" (收获后质检模型) to "backup_power" (备用电运行) and dispatch a priority warning to the facility manager'
+            'And update the location\'s status on "agri.postharvest.qc" (收获后质检模型) to "backup_power" (备用电运行) and dispatch a priority warning to the facility manager'
         ])

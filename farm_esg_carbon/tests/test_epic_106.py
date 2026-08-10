@@ -45,7 +45,7 @@ class TestEpic106(BddTransactionCase):
             'When the quality manager requests to dynamically aggregate Scope 1/2/3 carbon footprint data (当质量经理请求执行动态汇总范围1/2/3碳足迹数据系统操作)',
             'Then the system must evaluate the combined direct and indirect emissions (系统必须评估汇总的直接与间接排放量)',
             'And transition the lot tracking record state to "confirmed" (并将批次追踪记录的状态过渡到已确认状态)',
-            'And update the emissions class to "emissions_class" of 'A' (并更新排放等级字段为A级)'
+            'And update the emissions class to "emissions_class" of \'A\' (并更新排放等级字段为A级)'
         ])
 
     def test_03_prohibited_nonorganic_fertilizer_esg_penalty_block_esg(self):

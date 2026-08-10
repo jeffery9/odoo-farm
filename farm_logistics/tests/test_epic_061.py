@@ -83,7 +83,7 @@ class TestEpic061(BddTransactionCase):
             'When the Quality Director (质量总监) changes the campaign state to "active (活动中)"',
             'Then the system must compile a list of unique customer contacts of model res.partner (业务伙伴) from the affected stock.picking (库存拣货)',
             'And automatically dispatch GxP-compliant bilingual email notifications (符合GxP规范的双语邮件通知) using the mail.template (邮件模板) "recall_notification_template (召回通知模板)"',
-            'And log the email delivery status as "sent (已发送)" on the recall campaign's chatter (沟通记录)'
+            'And log the email delivery status as "sent (已发送)" on the recall campaign\'s chatter (沟通记录)'
         ])
 
     def test_05_complete_recall_reconciliation_ledger(self):

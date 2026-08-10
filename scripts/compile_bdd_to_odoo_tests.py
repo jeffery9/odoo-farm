@@ -130,8 +130,8 @@ class TestEpic{epic_num:03d}(BddTransactionCase):
                     meth_name = clean_method_name(sc["title"])
                     docstring_steps = "\n        ".join(sc["steps"])
                     
-                    # Convert Gherkin list to executable steps list
-                    steps_list_str = ",\n            ".join([f"'{s}'" for s in sc["steps"]])
+                    # Convert Gherkin list to executable steps list using built-in repr() for absolute quote safety
+                    steps_list_str = ",\n            ".join([repr(s) for s in sc["steps"]])
                     
                     test_file_content += f"""
     def test_{i:02d}_{meth_name}(self):
@@ -156,19 +156,15 @@ class TestEpic{epic_num:03d}(BddTransactionCase):
                 with open(target_test_file, "w", encoding="utf-8") as tf:
                     tf.write(test_file_content)
 
-                # Ensure __init__.py inside tests exists and imports our file
+                # Cleanly regenerate __init__.py dynamically to avoid concatenated import syntax errors
                 init_file = os.path.join(addon_test_dir, "__init__.py")
-                import_line = f"from . import test_epic_{epic_num:03d}\n"
-                
-                if os.path.exists(init_file):
-                    with open(init_file, "r", encoding="utf-8") as inf:
-                        init_content = inf.read()
-                    if f"test_epic_{epic_num:03d}" not in init_content:
-                        with open(init_file, "a", encoding="utf-8") as inf:
-                            inf.write(import_line)
-                else:
-                    with open(init_file, "w", encoding="utf-8") as tf_init:
-                        tf_init.write("# -*- coding: utf-8 -*-\n" + import_line)
+                test_modules = sorted([
+                    tf[:-3] for tf in os.listdir(addon_test_dir) 
+                    if tf.startswith("test_") and tf.endswith(".py")
+                ])
+                init_content = "# -*- coding: utf-8 -*-\n" + "\n".join([f"from . import {m}" for m in test_modules]) + "\n"
+                with open(init_file, "w", encoding="utf-8") as tf_init:
+                    tf_init.write(init_content)
 
                 print(f"Generated compiled BDD test: {addon_name}/tests/test_epic_{epic_num:03d}.py")
                 count += 1

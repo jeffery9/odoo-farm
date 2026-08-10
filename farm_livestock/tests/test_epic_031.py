@@ -23,7 +23,7 @@ class TestEpic031(BddTransactionCase):
             'When an operator attempts to confirm a stock picking "stock.picking" to route materials into or out of this quarantined location',
             'Then the system must block the picking confirmation command',
             'And raise a strict "UserError" containing "QUARANTINE_LOCKED"',
-            'And log a warning entry in the location's chatter'
+            "And log a warning entry in the location's chatter"
         ])
 
     def test_02_spray_drift_wind_speed_gating_for_chemical_treatments(self):

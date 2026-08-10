@@ -103,7 +103,7 @@ class TestEpic133(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a robotic sprayer swarm mission under "mrp.workorder" (作业任务模型) in state "ready" (且作业任务状态字段值为准备就绪状态)',
-            'And the swarm's wind safety limit "wind_limit" is set to 4.0 m/s on "agri.swarm.coord" (且群控机器人协同记录模型上的风速安全限制字段值为4.0米每秒)',
+            'And the swarm\'s wind safety limit "wind_limit" is set to 4.0 m/s on "agri.swarm.coord" (且群控机器人协同记录模型上的风速安全限制字段值为4.0米每秒)',
             'When weather telemetry logs a local wind speed "wind_speed" of 5.2 m/s (当天气遥测记录的本地风速字段值为5.2米每秒时)',
             'Then the coordination system must block the launcher and raise a ValidationError (协同系统必须拦截启动器并抛出验证错误) with message "Wind speed exceeds safety limits for swarm spray mission" (包含"风速超过群控喷洒任务安全限制"提示信息)',
             'And update the mission state "state" to "cancel" (并在作业任务模型上更新作业任务状态字段值为已取消状态)',

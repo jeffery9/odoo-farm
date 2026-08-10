@@ -94,7 +94,7 @@ class TestEpic045(BddTransactionCase):
             'And the campaign logs a total count of 1000 manually pollinated ear targets',
             'When the breeding specialist logs that 820 ears have successfully produced viable hybrid seed sets',
             'Then the system must calculate the hybrid seed set percentage as 82.0% (杂交结实率 82.0%)',
-            'And automatically update the parent variety's hybridization success rate index in the germplasm database',
+            "And automatically update the parent variety's hybridization success rate index in the germplasm database",
             'And log the campaign success stats in the agricultural science registry'
         ])
 

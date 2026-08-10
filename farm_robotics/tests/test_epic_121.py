@@ -22,7 +22,7 @@ class TestEpic121(BddTransactionCase):
         self.execute_gherkin_steps([
             'Given an autonomous weed-picking robot mission under "mrp.workorder" (作业任务模型) linked to a robotics run under "agri.robotics.run" (机器人运行记录模型)',
             'And the mission state "state" is "ready" (且作业任务状态字段值为准备就绪状态)',
-            'And the robot's battery level "battery_level" is 15.0% (且机器人的电池电量百分比字段值为15.0%)',
+            'And the robot\'s battery level "battery_level" is 15.0% (且机器人的电池电量百分比字段值为15.0%)',
             'When the system attempts to trigger the robot mission start (当系统尝试触发机器人作业任务启动时)',
             'Then the system must raise a ValidationError (系统必须抛出验证错误) with message "Battery level too low for mission launch" (包含"任务启动电池电量过低"提示信息)',
             'And block the state transition, keeping the mission state "state" as "ready" (并且阻止状态转变，保持作业任务状态字段值为准备就绪状态)'
@@ -62,7 +62,7 @@ class TestEpic121(BddTransactionCase):
         # Execute BDD Gherkin steps dynamically at runtime on database
         self.execute_gherkin_steps([
             'Given a running weed-picking robot mission under "mrp.workorder" (作业任务模型)',
-            'And the robot's battery level "battery_level" is 25.0% (且机器人的电池电量百分比字段值为25.0%)',
+            'And the robot\'s battery level "battery_level" is 25.0% (且机器人的电池电量百分比字段值为25.0%)',
             'And the local solar sensor logs a solar irradiance "solar_irradiance" of 850.0 W/m² (且本地光照传感器记录的太阳辐射强度字段值为850.0瓦特每平方米)',
             'When the weekly scheduler runs the active duty cycle (当每周调度程序运行当前工作周期时)',
             'Then the robot must bypass the normal weeding schedule and transition to dynamic charging status (机器人必须绕行常规除草计划并过渡到动态充电状态)',
