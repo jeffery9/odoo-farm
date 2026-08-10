@@ -29,7 +29,8 @@ class FarmMarketConnector(models.Model):
         self.last_sync_date = fields.Datetime.now()
         return True
 
-class FarmMarketDemand(models.Model):    _inherit = 'farm.market.demand'
+class FarmMarketDemand(models.Model):
+    _inherit = 'farm.market.demand'
 
     connector_id = fields.Many2one('farm.market.connector', string="Source Connector")
     external_id = fields.Char("External Reference ID")

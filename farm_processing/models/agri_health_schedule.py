@@ -20,7 +20,8 @@ class AgriHealthSchedule(models.Model):
     activity_note = fields.Text(string='Note')
     days_offset = fields.Integer(string='Days after Stage reached', default=0)
 
-class AgriStockLotHealth(models.Model):    _inherit = 'stock.lot'
+class AgriStockLotHealth(models.Model):
+    _inherit = 'stock.lot'
 
     # Track health activities specifically
     health_activity_ids = fields.One2many('mail.activity', 'res_id',

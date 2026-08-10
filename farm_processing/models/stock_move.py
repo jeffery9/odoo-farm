@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 
-class StockMove(models.Model):    _inherit = 'stock.move'
+class StockMove(models.Model):
+    _inherit = 'stock.move'
 
     # US-TECH-05-07: Industry Context Tag
     industry_context = fields.Selection([

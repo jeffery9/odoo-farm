@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 
-class AgriculturalCampaign(models.Model):    _inherit = 'farm.agricultural.campaign'
+class AgriculturalCampaign(models.Model):
+    _inherit = 'farm.agricultural.campaign'
 
     # 汇总该生产季下所有任务的养分投入
     task_ids = fields.One2many("project.task", "campaign_id", string="Tasks")

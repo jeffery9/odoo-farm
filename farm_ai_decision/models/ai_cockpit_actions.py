@@ -2,7 +2,8 @@
 # [US-048-02] AI Decision Cockpit Actions (Bridge between AI and Operation)
 from odoo import models, fields, api, _
 
-class AgriIntervention(models.Model):    _inherit = 'mrp.production'
+class AgriIntervention(models.Model):
+    _inherit = 'mrp.production'
 
     # AI 预警与建议计数
     ai_recommendation_count = fields.Integer("AI Recommendations", compute='_compute_ai_alerts')

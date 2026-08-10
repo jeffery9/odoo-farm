@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 
-class FarmBiologicalTwin(models.Model):    _inherit = 'agri.biological.twin'
+class FarmBiologicalTwin(models.Model):
+    _inherit = 'agri.biological.twin'
 
     def action_optimize_environment(self):
         """

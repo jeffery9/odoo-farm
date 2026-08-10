@@ -61,7 +61,8 @@ class FarmCrisisIncident(models.Model):
     def action_resolve(self):
         self.write({'state': 'resolved', 'date_end': fields.Datetime.now()})
 
-class StockLot(models.Model):    _inherit = 'stock.lot'
+class StockLot(models.Model):
+    _inherit = 'stock.lot'
 
     is_crisis_locked = fields.Boolean("Locked by Crisis", compute='_compute_crisis_lock', search='_search_crisis_locked')
 
@@ -87,7 +88,8 @@ class StockLot(models.Model):    _inherit = 'stock.lot'
         
         return ['|', ('id', 'in', lot_ids), ('location_id', 'in', all_affected_locations.ids)]
 
-class SaleOrder(models.Model):    _inherit = 'sale.order'
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
 
     def action_confirm(self):
         """ 确认销售订单前，强行校验是否包含锁定批次 """

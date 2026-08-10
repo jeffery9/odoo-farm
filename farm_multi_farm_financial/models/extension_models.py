@@ -37,7 +37,8 @@ class InternalSettlement(models.Model):
         return super(InternalSettlement, self)._check_multi_sign_status()
 
 
-class CooperativeMemberExtensionFinancial(models.Model):    _inherit = 'cooperative.member'
+class CooperativeMemberExtensionFinancial(models.Model):
+    _inherit = 'cooperative.member'
 
     share_transaction_ids = fields.One2many('share.transaction', 'member_id', string='Share Transactions')
     dividend_line_ids = fields.One2many('dividend.line', 'member_id', string='Dividend Lines')
@@ -49,7 +50,8 @@ class CooperativeMemberExtensionFinancial(models.Model):    _inherit = 'cooperat
     subsidy_line_ids = fields.One2many('subsidy.disbursement.line', 'member_id', string='Subsidy Lines')
     sign_process_ids = fields.One2many('multi.sign.line', 'signer_member_id', string='Sign Processes')
 
-class CooperativeEntityExtensionFinancial(models.Model):    _inherit = 'cooperative.entity'
+class CooperativeEntityExtensionFinancial(models.Model):
+    _inherit = 'cooperative.entity'
 
     dividend_distribution_ids = fields.One2many('dividend.distribution', 'cooperative_id', string='Dividend Distributions')
     internal_credit_ids = fields.One2many('internal.credit', 'cooperative_id', string='Internal Credits')

@@ -22,7 +22,8 @@ class FarmPreventionLine(models.Model):
     product_id = fields.Many2one('product.product', string="Vaccine/Medicine", help="Predefined input for this operation.")
     qty = fields.Float("Quantity", default=1.0)
 
-class FarmLotQuarantine(models.Model):    _inherit = 'stock.lot'
+class FarmLotQuarantine(models.Model):
+    _inherit = 'stock.lot'
 
     is_quarantined = fields.Boolean("In Quarantine", default=False, tracking=True)
     quarantine_reason = fields.Text("Quarantine Reason")
@@ -86,7 +87,8 @@ class FarmLotQuarantine(models.Model):    _inherit = 'stock.lot'
         if fence:
             fence.write({'active': False})
 
-class StockPickingQuarantine(models.Model):    _inherit = 'stock.picking'
+class StockPickingQuarantine(models.Model):
+    _inherit = 'stock.picking'
 
     def button_validate(self):
         """ 隔离拦截与休药期强制拦截逻辑 [US-031-02, US-031-03] """

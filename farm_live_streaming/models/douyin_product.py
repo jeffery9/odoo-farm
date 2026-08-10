@@ -72,7 +72,8 @@ class DouyinProduct(models.Model):
             rec.account_id._do_douyin_request("/item/update_stock/", params=payload)
             rec.last_sync_time = fields.Datetime.now()
 
-class StockQuant(models.Model):    _inherit = 'stock.quant'
+class StockQuant(models.Model):
+    _inherit = 'stock.quant'
 
     @api.model_create_multi
     def create(self, vals_list):

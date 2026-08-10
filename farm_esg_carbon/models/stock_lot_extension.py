@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 
-class StockLot(models.Model):    _inherit = 'stock.lot'
+class StockLot(models.Model):
+    _inherit = 'stock.lot'
 
     # US-060-01: Accumulated Carbon Footprint for this batch
     carbon_footprint = fields.Float("Carbon Footprint (kg CO2e)", compute='_compute_carbon_footprint', store=True, precompute=True)

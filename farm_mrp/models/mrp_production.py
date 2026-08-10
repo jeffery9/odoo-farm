@@ -2,7 +2,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 
-class MrpProduction(models.Model):    _inherit = 'mrp.production'
+class MrpProduction(models.Model):
+    _inherit = 'mrp.production'
 
     industry_type = fields.Selection(related="bom_id.industry_type", string="Industry Standard", store=True, readonly=True)
     isl_record_type = fields.Char(string="ISL Record Type", compute='_compute_isl_record_type', store=False)

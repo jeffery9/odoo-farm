@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 
-class FarmWorkcenterExtension(models.Model):    _inherit = 'farm.industry.workcenter'
+class FarmWorkcenterExtension(models.Model):
+    _inherit = 'farm.industry.workcenter'
 
     # 能耗核算基础 [US-037-04]
     energy_type = fields.Selection([
