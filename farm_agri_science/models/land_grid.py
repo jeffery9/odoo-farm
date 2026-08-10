@@ -43,9 +43,7 @@ class AgriGeospatialGridCell(models.Model):
         for rec in self:
             rec.name = f"{rec.location_id.name}-R{rec.row}C{rec.col}"
 
-class FarmLocation(models.Model):
-    _name = 'farm.location'
-    _inherit = 'farm.location'
+class FarmLocation(models.Model):    _inherit = 'farm.location'
 
     grid_resolution = fields.Selection([
         ('1', '1x1m (Ultra High)'),

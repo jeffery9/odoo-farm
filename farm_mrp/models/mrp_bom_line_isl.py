@@ -2,9 +2,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
-class MrpBomLine(models.Model):
-    _name = 'mrp.bom.line'
-    _inherit = 'mrp.bom.line'
+class MrpBomLine(models.Model):    _inherit = 'mrp.bom.line'
 
     def _get_isl_model(self):
         """

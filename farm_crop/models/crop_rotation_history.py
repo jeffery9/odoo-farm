@@ -222,9 +222,7 @@ class AgriCampaignExtension(models.Model):
                     campaign.message_post(body=message, subtype_xmlid='mail.mt_note')
 
         return result
-class FarmLocationExtension(models.Model):
-    _name = 'farm.location'
-    _inherit = 'farm.location'
+class FarmLocationExtension(models.Model):    _inherit = 'farm.location'
     
     def action_view_soil_analyses_history(self):
         return True

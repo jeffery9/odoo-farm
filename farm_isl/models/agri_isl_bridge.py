@@ -4,9 +4,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-class StockLot(models.Model):
-    _name = 'stock.lot'
-    _inherit = 'stock.lot'
+class StockLot(models.Model):    _inherit = 'stock.lot'
 
     def action_upcast_to_industry(self):
         """ 
@@ -36,9 +34,7 @@ class StockLot(models.Model):
                 return self.env[proxy_model].create({'lot_id': self.id})
         return False
 
-class StockMove(models.Model):
-    _name = 'stock.move'
-    _inherit = 'stock.move'
+class StockMove(models.Model):    _inherit = 'stock.move'
 
     def _action_done(self, cancel_backorder=False):
         """ 

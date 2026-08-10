@@ -1,8 +1,6 @@
 from odoo import models, fields, api, _
 
-class ProductTemplate(models.Model):
-    _name = 'product.template'
-    _inherit = 'product.template'
+class ProductTemplate(models.Model):    _inherit = 'product.template'
 
     is_agri_material = fields.Boolean("Is Agri Material")
     is_processed_food = fields.Boolean("Is Processed Food")

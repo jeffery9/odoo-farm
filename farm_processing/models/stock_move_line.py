@@ -2,9 +2,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
 
-class StockMoveLine(models.Model):
-    _name = 'stock.move.line'
-    _inherit = 'stock.move.line'
+class StockMoveLine(models.Model):    _inherit = 'stock.move.line'
 
     def write(self, vals):
         """

@@ -170,7 +170,5 @@ class AIAutonomousMissionLog(models.Model):
 # --- End of Original Level 5 Logic ---
 
 # Add many2one backlink to Negotiation
-class A2ANegotiationInherit(models.Model):
-    _name = 'agri.a2a.negotiation'
-    _inherit = 'agri.a2a.negotiation'
+class A2ANegotiationInherit(models.Model):    _inherit = 'agri.a2a.negotiation'
     orchestrator_id = fields.Many2one('agri.mission.orchestrator', string="Mission Orchestrator")

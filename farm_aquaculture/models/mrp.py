@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
 
-class MrpProduction(models.Model):
-    _name = 'mrp.production'
-    _inherit = 'mrp.production'
+class MrpProduction(models.Model):    _inherit = 'mrp.production'
 
     def _get_isl_model(self):
         res = super(MrpProduction, self)._get_isl_model()
@@ -11,9 +9,7 @@ class MrpProduction(models.Model):
             return 'agri.isl.aquaculture.production'
         return res
 
-class MrpBom(models.Model):
-    _name = 'mrp.bom'
-    _inherit = 'mrp.bom'
+class MrpBom(models.Model):    _inherit = 'mrp.bom'
 
     industry_type = fields.Selection(selection_add=[
         ('aquaculture', 'Aquaculture'),

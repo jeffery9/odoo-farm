@@ -2,9 +2,7 @@
 # [US-039-26] [LOSSLESS] Agricultural Menu & Action Interceptor
 from odoo import models, fields, api, _
 
-class IrUiMenu(models.Model):
-    _name = 'ir.ui.menu'
-    _inherit = 'ir.ui.menu'
+class IrUiMenu(models.Model):    _inherit = 'ir.ui.menu'
 
     def read(self, fields=None, load='_classic_read'):
         """ 拦截菜单读取，实时替换名称 """
@@ -17,9 +15,7 @@ class IrUiMenu(models.Model):
                     menu['name'] = TermMapping.apply_term_mapping_to_text(menu['name'], industry_context=industry)
         return res
 
-class IrActionsActWindow(models.Model):
-    _name = 'ir.actions.act_window'
-    _inherit = 'ir.actions.act_window'
+class IrActionsActWindow(models.Model):    _inherit = 'ir.actions.act_window'
 
     def read(self, fields=None, load='_classic_read'):
         """ 拦截动作读取，实时替换标题 """
