@@ -49,7 +49,7 @@ ADDON_MAPPING = {
     125: "farm_mushroom", 126: "farm_breeding", 127: "farm_esg", 128: "farm_processing",
     129: "farm_supply_chain_smart", 130: "farm_ecology", 131: "farm_processing", 132: "farm_robotics",
     133: "farm_robotics", 134: "farm_mrp", 135: "farm_mrp", 136: "farm_processing",
-    137: "farm_esg_carbon"
+    137: "farm_esg_carbon", 138: "farm_core"
 }
 
 def clean_method_name(title):
@@ -113,18 +113,16 @@ def compile_tests():
                 # Parse the file
                 epic_title, scenarios = parse_feature_file(fpath)
 
-                # Prepare Odoo test file content
+                # Generate clean imports and inherit from BddTransactionCase
                 test_file_content = f"""# -*- coding: utf-8 -*-
-from odoo.tests.common import TransactionCase
+from odoo.addons.farm_core.tests.bdd_base import BddTransactionCase
 from odoo.exceptions import UserError, ValidationError
 
-class TestEpic{epic_num:03d}(TransactionCase):
+class TestEpic{epic_num:03d}(BddTransactionCase):
     \"\"\" BDD Test Suite for Epic {epic_num:03d}: {epic_title} \"\"\"
 
     def setUp(self):
         super(TestEpic{epic_num:03d}, self).setUp()
-        # Initialize basic test environments
-        self.partner = self.env['res.partner'].create({{'name': 'BDD Test Partner'}})
 """
 
                 # Write Scenarios to test methods
@@ -132,14 +130,19 @@ class TestEpic{epic_num:03d}(TransactionCase):
                     meth_name = clean_method_name(sc["title"])
                     docstring_steps = "\n        ".join(sc["steps"])
                     
+                    # Convert Gherkin list to executable steps list
+                    steps_list_str = ",\n            ".join([f"'{s}'" for s in sc["steps"]])
+                    
                     test_file_content += f"""
     def test_{i:02d}_{meth_name}(self):
         \"\"\"
         Scenario: {sc["title"]}
         {docstring_steps}
         \"\"\"
-        # Checkpoint: BDD Scenario Validation
-        self.assertTrue(True, 'Scenario checkpoint verified.')
+        # Execute BDD Gherkin steps dynamically at runtime on database
+        self.execute_gherkin_steps([
+            {steps_list_str}
+        ])
 """
 
                 # Create the target test directory if it doesn't exist
