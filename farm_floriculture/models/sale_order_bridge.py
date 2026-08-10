@@ -5,7 +5,8 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-class SaleOrderLine(models.Model):    _inherit = 'sale.order.line'
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
 
     def action_verify_flower_quality(self):
         """ [ISL Bridge] Check Vase-life before confirming sale. """
@@ -19,7 +20,8 @@ class SaleOrderLine(models.Model):    _inherit = 'sale.order.line'
                                        (lot.name, flower_lot.predicted_vase_life))
         return True
 
-class SaleOrder(models.Model):    _inherit = 'sale.order'
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
 
     def action_confirm(self):
         """ Enforce quality check on confirmation. """

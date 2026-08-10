@@ -2,7 +2,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
-class MrpBom(models.Model):    _inherit = 'mrp.bom'
+class MrpBom(models.Model):
+    _inherit = 'mrp.bom'
 
     industry_type = fields.Selection(selection=[
         ('food_processing', 'Food Processing'),

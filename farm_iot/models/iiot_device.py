@@ -1,7 +1,8 @@
 from odoo import models, fields, api
 import json
 
-class IiotDevice(models.Model):    _inherit = 'iiot.device'
+class IiotDevice(models.Model):
+    _inherit = 'iiot.device'
 
     # 地理围栏安全 [US-053-01] - 在业务集成层实现
     geofence_id = fields.Many2one(

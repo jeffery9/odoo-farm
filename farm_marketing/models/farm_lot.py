@@ -1,10 +1,12 @@
 from odoo import models, fields, api, _
 
-class FarmPartner(models.Model):    _inherit = 'res.partner'
+class FarmPartner(models.Model):
+    _inherit = 'res.partner'
 
     loyalty_points = fields.Float("Farm Loyalty Points", default=0.0)
 
-class FarmSaleOrder(models.Model):    _inherit = 'sale.order'
+class FarmSaleOrder(models.Model):
+    _inherit = 'sale.order'
 
     # 预订模式 [Order Enhancement]
     is_preorder = fields.Boolean("Pre-order Reservation", help="Check to lock lots before confirmation.")
@@ -51,7 +53,8 @@ class FarmSaleOrder(models.Model):    _inherit = 'sale.order'
             order.message_post(body=_("LOYALTY: %s points added to customer.") % points)
         return res
 
-class FarmSaleOrderLine(models.Model):    _inherit = 'sale.order.line'
+class FarmSaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
 
     lot_id = fields.Many2one('stock.lot', string="Reserved Lot") 
     required_integrity_score = fields.Float("Required Integrity", default=0.0)
@@ -84,7 +87,8 @@ class FarmSaleOrderLine(models.Model):    _inherit = 'sale.order.line'
             }
         }
 
-class FarmLotMarketing(models.Model):    _inherit = 'stock.lot'
+class FarmLotMarketing(models.Model):
+    _inherit = 'stock.lot'
 
     traceability_url = fields.Char("Traceability URL", compute='_compute_traceability_url')
     

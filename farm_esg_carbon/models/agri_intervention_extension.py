@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 
-class AgriIntervention(models.Model):    _inherit = 'mrp.production'
+class AgriIntervention(models.Model):
+    _inherit = 'mrp.production'
 
     # US-060-01: Auto-calculated Carbon Emission for this intervention
     calculated_carbon_emission = fields.Float("Calculated Carbon Emission (kg CO2e)", compute='_compute_carbon_emission', store=True, precompute=True)

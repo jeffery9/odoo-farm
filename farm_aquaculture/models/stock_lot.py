@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 
-class StockLot(models.Model):    _inherit = 'stock.lot'
+class StockLot(models.Model):
+    _inherit = 'stock.lot'
 
     def _get_isl_summary_parts(self):
         res = super(StockLot, self)._get_isl_summary_parts()

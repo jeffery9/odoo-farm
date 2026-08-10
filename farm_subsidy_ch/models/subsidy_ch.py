@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 
-class FarmSubsidyApplication(models.Model):    _inherit = 'farm.subsidy.application'
+class FarmSubsidyApplication(models.Model):
+    _inherit = 'farm.subsidy.application'
 
     # 中国耕地地力保护与种粮补贴 [US-005-04]
     crop_type_china = fields.Selection([

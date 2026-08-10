@@ -3,11 +3,13 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-class AIAutonomousMissionLogExtension(models.Model):    _inherit = 'ai.autonomous.mission.log'
+class AIAutonomousMissionLogExtension(models.Model):
+    _inherit = 'ai.autonomous.mission.log'
     
     mission_id = fields.Many2one('farm.robot.mission', string="Dispatched Mission")
 
-class AIAutonomousOrchestratorExtension(models.Model):    _inherit = 'ai.autonomous.orchestrator'
+class AIAutonomousOrchestratorExtension(models.Model):
+    _inherit = 'ai.autonomous.orchestrator'
 
     def _dispatch_remediation_mission(self, twin):
         # The base implementation does nothing if robotics isn't installed.
@@ -51,7 +53,8 @@ class AIAutonomousOrchestratorExtension(models.Model):    _inherit = 'ai.autonom
         self.message_post(body=_("L5 AUTO-DISPATCH: Mission %s assigned to Robot %s for Location %s.") % 
                          (mission.name, robot.name, twin.location_id.name))
 
-class A2ANegotiationMessageExtension(models.Model):    _inherit = 'agri.a2a.negotiation'
+class A2ANegotiationMessageExtension(models.Model):
+    _inherit = 'agri.a2a.negotiation'
 
     def _evaluate_proposal_logic(self, incoming_payload):
         if self.receiver_agent_id and self.receiver_agent_id.startswith('robot:'):

@@ -3,7 +3,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
-class HrEmployee(models.Model):    _inherit = 'hr.employee'
+class HrEmployee(models.Model):
+    _inherit = 'hr.employee'
 
     skill_ids = fields.Many2many(
         'farm.training.skill',

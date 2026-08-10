@@ -5,7 +5,8 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class ProjectTask(models.Model):    _inherit = 'project.task'
+class ProjectTask(models.Model):
+    _inherit = 'project.task'
 
     trust_score = fields.Float("Trust Score", digits=(10, 2), default=0.0,
                                help="Evidence-based trust score (0-100) [US-078-01]")
@@ -114,7 +115,8 @@ class FarmCreditScore(models.Model):
         self.state = 'valid'
 
 
-class ResPartner(models.Model):    _inherit = 'res.partner'
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
 
     latest_credit_score = fields.Float("Latest Credit Score", compute='_compute_latest_credit_score')
     is_high_risk_borrower = fields.Boolean("High Risk Borrower", compute='_compute_latest_credit_score')

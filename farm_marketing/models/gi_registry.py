@@ -18,7 +18,8 @@ class AgriGIRegistry(models.Model):
     is_active = fields.Boolean("Active", default=True)
     description = fields.Text("GI Description", translate=True)
 
-class StockLot(models.Model):    _inherit = 'stock.lot'
+class StockLot(models.Model):
+    _inherit = 'stock.lot'
 
     gi_registry_id = fields.Many2one('agri.gi.registry', string="GI Registry")
     gi_security_code = fields.Char("GI Anti-counterfeit Code", readonly=True, copy=False)

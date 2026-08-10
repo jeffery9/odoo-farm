@@ -1,6 +1,7 @@
 from odoo import models, fields, api
 
-class PosOrder(models.Model):    _inherit = 'pos.order'
+class PosOrder(models.Model):
+    _inherit = 'pos.order'
 
     # 关联采摘地块 [US-002-02]
     picking_location_id = fields.Many2one(
@@ -15,7 +16,8 @@ class PosOrder(models.Model):    _inherit = 'pos.order'
         # 传递地块信息到发票
         return vals
 
-class PosOrderLine(models.Model):    _inherit = 'pos.order.line'
+class PosOrderLine(models.Model):
+    _inherit = 'pos.order.line'
 
     # 支持行级别的批次指定
     lot_id = fields.Many2one('stock.lot', string="Production Lot")

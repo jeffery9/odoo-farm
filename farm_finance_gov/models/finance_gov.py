@@ -31,7 +31,8 @@ class FarmRuralRevitalizationProject(models.Model):
         for project in self:
             project.total_expenditure = sum(project.account_move_ids.filtered(lambda m: m.move_type in ['in_invoice', 'out_refund', 'in_receipt', 'out_receipt'] and m.state == 'posted').mapped('amount_total_in_currency_dlc'))
 
-class AccountMove(models.Model):    _inherit = 'account.move'
+class AccountMove(models.Model):
+    _inherit = 'account.move'
 
     # 关联乡村振兴项目 [US-041-09]
     rural_project_id = fields.Many2one('farm.rural.revitalization.project', string="Rural Revitalization Project")

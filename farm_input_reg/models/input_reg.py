@@ -4,7 +4,8 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-class ProductTemplate(models.Model):    _inherit = 'product.template'
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
 
     # 兽药实名制与监管 [US-041-02]
     reg_cert_no = fields.Char("Registration/Approval No.")
@@ -276,7 +277,8 @@ class InputRegistrationWizard(models.TransientModel):
             'target': 'current',
         }
 
-class MrpProduction(models.Model):    _inherit = 'mrp.production'
+class MrpProduction(models.Model):
+    _inherit = 'mrp.production'
 
     # 农事操作人信息 [US-041-02]
     operator_id_card = fields.Char("Operator ID Card No.", copy=False)
