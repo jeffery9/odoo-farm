@@ -41,6 +41,8 @@
                     <notebook>
                         <page string="Agri Processing" name="agri_processing">
                             <group name="industry_params" string="Industry Parameters">
+                                <field name="harvest_lot_ids" widget="many2many_tags" />
+                                <field name="additive_lot_ids" widget="many2many_tags" />
                             </group>
                             <group name="mass_energy" string="Mass Balance &amp; Energy">
                             </group>
