@@ -4,7 +4,7 @@ This document defines the operational rules for AI agents and developers working
 
 
 ## 0. Quick Navigation
-*   **[LLM START HERE](/Users/jeffery/odoo-farm-workspace/docs/LLM_START_HERE.md)**: The Master Entry Point (Option A). Contains core Doc-Driven development paradigms, absolute mandates, and bilingual policy. You MUST align with this document before any logic implementation.
+*   **[LLM START HERE](../docs/LLM_START_HERE.md)**: The Master Entry Point (Option A). Contains core Doc-Driven development paradigms, absolute mandates, and bilingual policy. You MUST align with this document before any logic implementation.
 
 ## 1. Agent Role & Responsibilities
 
@@ -100,7 +100,7 @@ The workspace is organized around a "Main Base" and a "Task Hub":
 
 ## 8. STRICT SECURITY & PUBLICATION PROTOCOL (Option A - Decentralized Docs)
 
-**ABSOLUTE MANDATE: All technical documentation, business epics, designs, and specifications have been physically decoupled and migrated to `/Users/jeffery/odoo-farm-workspace/docs/` (the standalone private documentation repository).**
+**ABSOLUTE MANDATE: All technical documentation, business epics, designs, and specifications have been physically decoupled and migrated to `../docs/` (the standalone private documentation repository).**
 
 * **No Docs in Code Repos**: Documentation files (including Markdown, image assets) are strictly forbidden from being committed or tracked inside the `odoo-farm-dev` and `odoo-farm` code repositories.
 * **Confidentiality by Default**: The standalone docs repository is highly classified. It contains confidential C2M Ecosystem strategies, multi-billion dollar business blueprints, unreleased 52-scenario architectures, internal Epic specifications, and LLM prompt engineering guidelines.
