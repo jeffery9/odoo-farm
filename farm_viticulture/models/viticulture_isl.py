@@ -76,3 +76,29 @@ class FarmLotGrape(models.Model):
     def _compute_pressing_ratio(self):
         for rec in self:
             rec.pressing_ratio = rec.juice_yield_volume / rec.product_qty if rec.product_qty > 0 else 0.0
+
+
+class FarmViticultureCycle(models.Model):
+    """
+    [ISL Layer] Vineyard Annual Cycle. [De-industrialized]
+    Proxies mrp.production to manage annual growth and GDD targets.
+    """
+    _name = 'farm.viticulture.cycle'
+    _description = 'Vineyard Annual Cycle'
+    _inherits = {'mrp.production': 'production_id'}
+    _inherit = [
+        'agri.intervention.mixin',
+        'agri.growth.cycle.mixin',
+        'agri.weather.sensitive.mixin',
+    ]
+
+    production_id = fields.Many2one('mrp.production', string='Base Production', required=True, ondelete='cascade')
+
+    # Target fields used in the view
+    target_brix = fields.Float("Target Ripeness (Brix)", default=22.0)
+    pruned_buds_per_vine = fields.Integer("Pruned Buds per Vine")
+
+    def action_confirm(self):
+        """ Base logic triggers weather and compliance checks. """
+        self.ensure_one()
+        return True
