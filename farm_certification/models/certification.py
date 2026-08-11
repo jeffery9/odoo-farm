@@ -2,7 +2,6 @@ from odoo import models, fields, api, _
 from datetime import date
 
 class FarmLocationCert(models.Model):
-    _name = 'stock.location'
     _inherit = 'stock.location'
 
     certification_level = fields.Selection([
@@ -12,6 +11,9 @@ class FarmLocationCert(models.Model):
         ('green', 'Green Food'),
         ('gi', 'Geographical Indication')
     ], string="Certification Level", default='conventional', tracking=True)
+    
+    certificate_number = fields.Char("Certificate Number")
+    certificate_expiry = fields.Date("Certificate Expiry")
     
     conversion_start_date = fields.Date("Conversion Start Date")
     last_prohibited_substance_date = fields.Date("Last Prohibited Substance Date", 
@@ -40,7 +42,6 @@ class FarmLocationCert(models.Model):
                 loc.conversion_progress = 0.0
 
 class FarmLotCert(models.Model):
-    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     certification_level = fields.Selection([

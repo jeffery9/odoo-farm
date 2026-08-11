@@ -164,7 +164,6 @@ class AgriQualityAlert(models.Model):
         self.write({'state': 'closed'})
 
 class StockPicking(models.Model):
-    _name = 'stock.picking'
     _inherit = 'stock.picking'
 
     def button_validate(self):
@@ -179,7 +178,6 @@ class StockPicking(models.Model):
         return super().button_validate()
 
 class AgriLotQuality(models.Model):
-    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     quality_status = fields.Selection([

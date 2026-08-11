@@ -9,7 +9,7 @@
             <xpath expr="//sheet" position="before">
 <header>
 
-                <button name="action_assign_cooperative" string="Assign to Cooperative" type="action" context="{'default_lot_id': active_id}" invisible="assigned_cooperative_id" />
+                <button name="action_assign_cooperative" string="Assign to Cooperative" type="object" invisible="assigned_cooperative_id" />
             
 </header>
 </xpath>

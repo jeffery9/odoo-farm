@@ -1,7 +1,6 @@
 from odoo import models, fields
 
 class ResCompany(models.Model):
-    _name = 'res.company'
     _inherit = 'res.company'
 
     label_background_image = fields.Binary("Label Background Image", help="Background image for all agricultural labels.")

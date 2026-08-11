@@ -2,7 +2,6 @@ from odoo import fields, models, api, _
 from odoo.exceptions import UserError
 
 class FarmRecallWizard(models.TransientModel):
-    _name = 'farm.recall.wizard'
     _inherit = 'farm.recall.wizard'
     _description = 'Recall Simulation Wizard'
 

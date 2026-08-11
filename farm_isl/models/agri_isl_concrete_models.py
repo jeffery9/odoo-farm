@@ -31,6 +31,30 @@ class AgriMRPProduction(models.Model):
         ondelete='cascade'
     )
 
+    vector_embedding = fields.Text('Vector Embedding (JSON Array)', help="ORM-level Vector Embedding representing AI Native RAG memory")
+
+    def calculate_cosine_similarity(self, target_vector):
+        """
+        Natively calculates cosine similarity between the record's vector and target_vector.
+        Enables Odoo-native vector-search/RAG memory without external databases.
+        """
+        self.ensure_one()
+        if not self.vector_embedding or not target_vector:
+            return 0.0
+        try:
+            import json
+            rec_vec = json.loads(self.vector_embedding)
+            if len(rec_vec) != len(target_vector):
+                return 0.0
+            dot_product = sum(a * b for a, b in zip(rec_vec, target_vector))
+            norm_a = sum(a * a for a in rec_vec) ** 0.5
+            norm_b = sum(b * b for b in target_vector) ** 0.5
+            if norm_a == 0 or norm_b == 0:
+                return 0.0
+            return dot_product / (norm_a * norm_b)
+        except Exception:
+            return 0.0
+
     # Industry-specific methods
     def _check_industry_compliance(self):
         """Check industry-specific compliance before production"""
@@ -44,6 +68,21 @@ class AgriMRPProduction(models.Model):
             if not self.safety_procedures:
                 raise UserError(_("Chemical production requires safety procedures"))
         return super()._validate_industry_requirements()
+
+    def unlink(self):
+        # Multi-level Cascade Safeguard (多级级联物理删除防护)
+        for rec in self:
+            if 'farm.haccp.check' in self.env:
+                unfinished_haccp = self.env['farm.haccp.check'].search([
+                    ('quality_check_id.production_id', '=', rec.mrp_production_id.id),
+                    ('is_violated', '=', True)
+                ], limit=1)
+                if unfinished_haccp:
+                    raise UserError(_(
+                        "Multi-level Cascade Safeguard: Cannot delete ISL Intervention '%s' "
+                        "due to unresolved critical GxP/HACCP violations."
+                    ) % rec.mrp_production_id.name)
+        return super(AgriMRPProduction, self).unlink()
 
 
 class AgriMRPBom(models.Model):
@@ -138,6 +177,30 @@ class AgriStockLot(models.Model):
         ondelete='cascade'
     )
 
+    vector_embedding = fields.Text('Vector Embedding (JSON Array)', help="ORM-level Vector Embedding representing AI Native RAG memory")
+
+    def calculate_cosine_similarity(self, target_vector):
+        """
+        Natively calculates cosine similarity between the record's vector and target_vector.
+        Enables Odoo-native vector-search/RAG memory without external databases.
+        """
+        self.ensure_one()
+        if not self.vector_embedding or not target_vector:
+            return 0.0
+        try:
+            import json
+            rec_vec = json.loads(self.vector_embedding)
+            if len(rec_vec) != len(target_vector):
+                return 0.0
+            dot_product = sum(a * b for a, b in zip(rec_vec, target_vector))
+            norm_a = sum(a * a for a in rec_vec) ** 0.5
+            norm_b = sum(b * b for b in target_vector) ** 0.5
+            if norm_a == 0 or norm_b == 0:
+                return 0.0
+            return dot_product / (norm_a * norm_b)
+        except Exception:
+            return 0.0
+
     harvest_date = fields.Date('Harvest Date')  # Agriculture
     certificate_of_analysis = fields.Binary('Certificate of Analysis')
     certificate_of_analysis_name = fields.Char('COA Name')
@@ -153,6 +216,20 @@ class AgriStockLot(models.Model):
             if not self.kill_date:
                 raise UserError(_("Food processing lots require kill date"))
         return True
+
+    def unlink(self):
+        # Multi-level Cascade Safeguard (多级级联物理删除防护)
+        for rec in self:
+            if 'stock.matter.tracking' in self.env:
+                active_carrier = self.env['stock.matter.tracking'].search([
+                    ('lot_id', '=', rec.stock_lot_id.id)
+                ], limit=1)
+                if active_carrier:
+                    raise UserError(_(
+                        "Multi-level Cascade Safeguard: Cannot delete ISL Lot '%s' because "
+                        "it is linked to an active dynamic Matter Tracking carrier."
+                    ) % rec.name)
+        return super(AgriStockLot, self).unlink()
 
 
 class AgriSaleOrder(models.Model):

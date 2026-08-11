@@ -39,6 +39,10 @@ class FarmRobot(models.Model):
         ('error', 'Fault/Offline')
     ], default='idle', compute='_compute_iot_status')
 
+    # Override inherited Many2many fields to avoid table collision with maintenance.equipment in prototype inheritance
+    invoice_attachment_ids = fields.Many2many('ir.attachment', 'robot_invoice_rel', 'robot_id', 'attachment_id', string="Invoice Attachments")
+    photo_attachment_ids = fields.Many2many('ir.attachment', 'robot_photo_rel', 'robot_id', 'attachment_id', string="Robot Photos")
+
     @api.depends('name', 'robot_type')
     def _compute_agent_id(self):
         """

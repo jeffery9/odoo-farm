@@ -6,7 +6,7 @@
         <field name="model">project.project</field>
         <field name="inherit_id" ref="project.view_project_kanban" />
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('o_kanban_record_headings')]" position="after">
+            <xpath expr="//field[@name='display_name']" position="after">
                 <div class="mt-2" invisible="not is_agri_activity">
                     <span class="badge rounded-pill text-bg-success">
                         <field name="activity_family" />
@@ -29,7 +29,7 @@
                 </div>
             </xpath>
             <xpath expr="//page[@name='settings']" position="after">
-                <page string="Agricultural Info" invisible="not is_agri_activity">
+                <page name="agricultural_info" string="Agricultural Info" invisible="not is_agri_activity">
                     <group>
                         <group>
                             <field name="activity_family" widget="radio" options="{'horizontal': true}" />

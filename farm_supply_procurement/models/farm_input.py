@@ -1,7 +1,6 @@
 from odoo import models, fields, api, _
 
 class ProductTemplate(models.Model):
-    _name = 'product.template'
     _inherit = 'product.template'
 
     input_type = fields.Selection([
@@ -28,7 +27,6 @@ class ProductTemplate(models.Model):
     growth_cycle_days = fields.Integer("Growth Cycle (Days)", default=0, help="Typical duration from start to harvest.")
 
 class SaleOrder(models.Model):
-    _name = 'sale.order'
     _inherit = 'sale.order'
 
     def action_confirm(self):
@@ -50,7 +48,6 @@ class SaleOrder(models.Model):
         return super(SaleOrder, self).action_confirm()
 
 class PurchaseOrder(models.Model):
-    _name = 'purchase.order'
     _inherit = 'purchase.order'
 
     # Link to joint procurement for cooperative purchases
@@ -76,7 +73,6 @@ class PurchaseOrder(models.Model):
         return super().create(vals_list)
 
 class PurchaseOrderLine(models.Model):
-    _name = 'purchase.order.line'
     _inherit = 'purchase.order.line'
 
     is_compliance_warning = fields.Boolean("Compliance Warning", compute='_compute_compliance_warning', store=True, precompute=True)

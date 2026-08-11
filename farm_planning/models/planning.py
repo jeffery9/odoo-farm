@@ -54,7 +54,6 @@ class AgriTechnicalRouteLine(models.Model):
     delay_days = fields.Integer("Delay from Start (Days)", default=0)
 
 class AgriTechnicalRoute(models.Model):
-    _name = 'agri.technical.route'
     _inherit = 'agri.technical.route'
 
     def action_apply_to_project(self, project_id, start_date, land_parcel_id=False):

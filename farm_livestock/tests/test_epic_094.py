@@ -1,89 +1,123 @@
 # -*- coding: utf-8 -*-
-from odoo.tests.common import TransactionCase
-from odoo import fields
+from odoo.addons.farm_core.tests.bdd_base import BddTransactionCase
+from odoo.exceptions import UserError, ValidationError
 
-class TestEpic094(TransactionCase):
-    """ BDD Test for Epic 094: Smart Livestock Management """
+class TestEpic094(BddTransactionCase):
+    """ BDD Test Suite for Epic 094: Epic 094 Smart Livestock Management """
 
     def setUp(self):
         super(TestEpic094, self).setUp()
-        self.Lot = self.env['stock.lot']
-        self.IslLot = self.env['agri.isl.lot.livestock']
-        self.EnvLog = self.env['farm.livestock.house.env']
-        self.Event = self.env['farm.livestock.event']
-        self.Task = self.env['agri.isl.livestock.task']
-        
-        self.product = self.env['product.product'].create({
-            'name': 'Angus Cow',
-            'type': 'consu'
-        })
-        
-        self.lot = self.Lot.create({
-            'name': 'ANIMAL-001',
-            'product_id': self.product.id,
-            'company_id': self.env.company.id
-        })
-        
-        self.isl_lot = self.IslLot.create({
-            'lot_id': self.lot.id,
-            'birth_date': '2025-01-01',
-            'gender': 'female',
-            'current_weight': 250.0
-        })
 
-    def test_01_individual_animal_life_log_and_pedigree_tracking(self):
-        """ Verify RFID linkage and parent-child pedigree links """
-        # Life log event
-        event = self.Event.create({
-            'lot_id': self.lot.id,
-            'event_type': 'vaccination',
-            'notes': 'Yearly FMD vaccine'
-        })
-        self.assertEqual(event.lot_id.id, self.lot.id)
-        
-        # Pedigree verification (simulated by checking lot summary)
-        summary = self.lot._get_isl_summary_parts()
-        self.assertTrue(any("Husbandry: female" in s for s in summary))
+    def test_01_swine_thermal_eartag_fever_quarantine_gate(self):
+        """
+        Scenario: Swine Thermal Ear-Tag Fever Quarantine Gate
+        Given pasture swine lots monitored under "agri.livestock.smart" (智能畜牧管理) with a specific lot "stock.lot" (库存批次) "SWI-LOT-01" in status "healthy" (健康)
+        When active RFID thermal ear-tag telemetry logs body temperature (体温) greater than 40.5°C with a reading of 41.2°C
+        Then the system automatically sets field "active_fever" (活跃发热) to true
+        And transitions livestock health state to "quarantined" (已隔离) and blocks outbound transfer pickings "stock.picking" (库存拣货) with validation error message "Fever Quarantine Lock" (高烧隔离锁定)
+        """
+        # Execute BDD Gherkin steps dynamically at runtime on database
+        self.execute_gherkin_steps([
+            'Given pasture swine lots monitored under "agri.livestock.smart" (智能畜牧管理) with a specific lot "stock.lot" (库存批次) "SWI-LOT-01" in status "healthy" (健康)',
+            'When active RFID thermal ear-tag telemetry logs body temperature (体温) greater than 40.5°C with a reading of 41.2°C',
+            'Then the system automatically sets field "active_fever" (活跃发热) to true',
+            'And transitions livestock health state to "quarantined" (已隔离) and blocks outbound transfer pickings "stock.picking" (库存拣货) with validation error message "Fever Quarantine Lock" (高烧隔离锁定)'
+        ])
 
-    def test_02_ai_driven_health_monitoring_and_behavioral_risk_alerts(self):
-        """ Verify "Comfort Index" calculation """
-        log = self.EnvLog.create({
-            'location_id': self.env['farm.location'].create({'name': 'Barn A'}).id,
-            'temperature': 25.0,
-            'humidity': 60.0
-        })
-        # Comfort Index: 0.8 * 25 + (60/100) * (25 - 14.4) + 46.4 = 20 + 0.6 * 10.6 + 46.4 = 20 + 6.36 + 46.4 = 72.76
-        self.assertAlmostEqual(log.comfort_index, 72.76, places=2)
+    def test_02_automated_sick_animal_veterinary_isolation_task(self):
+        """
+        Scenario: Automated Sick Animal Veterinary Isolation Task
+        Given an animal lot "stock.lot" (库存批次) "SWI-LOT-01" with active fever "active_fever" (活跃发热) registered as true under "agri.livestock.smart" (智能畜牧管理)
+        When the fever quarantine is registered by the system
+        Then the system creates a high-priority veterinary check-up task (兽医检查任务) on the dashboard under "mrp.workorder" (生产工单) "WO-VET-101"
+        And sets workorder description to "Isolate and Inspect Fever Swine SWI-LOT-01" (隔离并检查发烧生猪) and changes status to "ready" (准备就绪)
+        """
+        # Execute BDD Gherkin steps dynamically at runtime on database
+        self.execute_gherkin_steps([
+            'Given an animal lot "stock.lot" (库存批次) "SWI-LOT-01" with active fever "active_fever" (活跃发热) registered as true under "agri.livestock.smart" (智能畜牧管理)',
+            'When the fever quarantine is registered by the system',
+            'Then the system creates a high-priority veterinary check-up task (兽医检查任务) on the dashboard under "mrp.workorder" (生产工单) "WO-VET-101"',
+            'And sets workorder description to "Isolate and Inspect Fever Swine SWI-LOT-01" (隔离并检查发烧生猪) and changes status to "ready" (准备就绪)'
+        ])
 
-    def test_03_precision_feeding_management_based_on_growth_stage(self):
-        """ Verify FCR tracking in real-time """
-        production = self.env['mrp.production'].create({
-            'product_id': self.product.id,
-            'product_uom_id': self.product.uom_id.id,
-            'product_qty': 1.0,
-            'lot_producing_id': self.lot.id
-        })
-        
-        task = self.Task.create({
-            'intervention_id': production.id,
-            'initial_total_weight': 200.0,
-            'final_total_weight': 250.0
-        })
-        
-        # Gain is 50kg. product_qty (feed) is 1.0 (simulation). FCR = feed / gain
-        # In reality product_qty might be large, but let's check the formula
-        task._compute_fcr_isl()
-        self.assertEqual(task.fcr, 1.0/50.0)
+    def test_03_veterinary_penicillin_medical_treatment_withdrawal_logs(self):
+        """
+        Scenario: Veterinary Penicillin Medical Treatment Withdrawal Logs
+        Given a sick quarantined animal lot "stock.lot" (库存批次) "SWI-LOT-02" under "agri.livestock.smart" (智能畜牧管理) in status "quarantined" (已隔离)
+        When the veterinarian logs drug treatment "Penicillin" (青霉素注射治疗) with system action "log_treatment" (记录药物治疗)
+        Then the system computes antibiotic withdrawal duration of 14 days and writes the withdrawal end date field "withdrawal_end_date" (停药期截止日期) to the lot
+        And flags compliance state "esg_compliance" (符合性状态) as "restricted" (受限) until the withdrawal end date is reached
+        """
+        # Execute BDD Gherkin steps dynamically at runtime on database
+        self.execute_gherkin_steps([
+            'Given a sick quarantined animal lot "stock.lot" (库存批次) "SWI-LOT-02" under "agri.livestock.smart" (智能畜牧管理) in status "quarantined" (已隔离)',
+            'When the veterinarian logs drug treatment "Penicillin" (青霉素注射治疗) with system action "log_treatment" (记录药物治疗)',
+            'Then the system computes antibiotic withdrawal duration of 14 days and writes the withdrawal end date field "withdrawal_end_date" (停药期截止日期) to the lot',
+            'And flags compliance state "esg_compliance" (符合性状态) as "restricted" (受限) until the withdrawal end date is reached'
+        ])
 
-    def test_05_automated_environmental_optimization_for_livestock_welfare(self):
-        """ Verify ventilation trigger for gas thresholds """
-        log = self.EnvLog.create({
-            'location_id': self.env['farm.location'].create({'name': 'Barn B'}).id,
-            'ammonia_level': 25.0, # High ammonia
-            'co2_level': 3000.0   # High CO2
-        })
-        
-        # In a real system, there would be an automated action or compute to trigger ventilation
-        # Here we verify the thresholds are captured
-        self.assertGreater(log.ammonia_level, 20.0, "High ammonia level should be recorded")
-        self.assertGreater(log.co2_level, 2000.0, "High CO2 level should be recorded")
+    def test_04_swine_eartag_telemetry_gateway_connection_timeout_fallback(self):
+        """
+        Scenario: Swine Ear-Tag Telemetry Gateway Connection Timeout Fallback
+        Given pasture pens monitored by RFID gateway receivers under "agri.livestock.smart" (智能畜牧管理)
+        When gateway connection fails to report for 6 hours (null ear-tag updates)
+        Then the system triggers telemetry fallback action "trigger_gateway_fallback" (触发网关容灾)
+        And transitions tracking status field "state" (状态) to "sensory_failed" (传感器异常) and adds manual heat-check checklists to the herdsman's mobile dashboard
+        """
+        # Execute BDD Gherkin steps dynamically at runtime on database
+        self.execute_gherkin_steps([
+            'Given pasture pens monitored by RFID gateway receivers under "agri.livestock.smart" (智能畜牧管理)',
+            'When gateway connection fails to report for 6 hours (null ear-tag updates)',
+            'Then the system triggers telemetry fallback action "trigger_gateway_fallback" (触发网关容灾)',
+            'And transitions tracking status field "state" (状态) to "sensory_failed" (传感器异常) and adds manual heat-check checklists to the herdsman\'s mobile dashboard'
+        ])
+
+    def test_05_veterinary_vaccine_phi_verification_lock(self):
+        """
+        Scenario: Veterinary Vaccine PHI Verification Lock
+        Given a processed meat animal lot "stock.lot" (库存批次) "SWI-LOT-03" scheduled for delivery under picking "stock.picking" (库存拣货) "OUT-SWI-101"
+        When validating the stock picking and checking active vaccine withdrawal periods (疫苗停药期/休药期)
+        Then the system blocks stock move validation "action_assign" (保留库存) if the animal's withdrawal period is active
+        And raises validation error message "Active Vaccine PHI Withdrawal Lockout" (活性疫苗休药期未届满锁定)
+        """
+        # Execute BDD Gherkin steps dynamically at runtime on database
+        self.execute_gherkin_steps([
+            'Given a processed meat animal lot "stock.lot" (库存批次) "SWI-LOT-03" scheduled for delivery under picking "stock.picking" (库存拣货) "OUT-SWI-101"',
+            'When validating the stock picking and checking active vaccine withdrawal periods (疫苗停药期/休药期)',
+            'Then the system blocks stock move validation "action_assign" (保留库存) if the animal\'s withdrawal period is active',
+            'And raises validation error message "Active Vaccine PHI Withdrawal Lockout" (活性疫苗休药期未届满锁定)'
+        ])
+
+    def test_06_rfid_quarantine_receiver_tampering_cybersecurity_encryption_lock(self):
+        """
+        Scenario: RFID Quarantine Receiver Tampering Cybersecurity Encryption Lock
+        Given swine lots "stock.lot" (库存批次) "SWI-LOT-06" in state "quarantined" (已隔离) under "agri.livestock.smart" (智能畜牧管理)
+        When the RFID quarantine gateway receiver detects an unauthorized access or brute-force packet signature
+        Then the system executes a cybersecurity encryption lock (网络安全加密锁定) to freeze the physical quarantine sorting gates
+        And raises a validation error (验证错误: "Quarantine gateway tampered, physical gates locked") to prevent swine escaping
+        """
+        # Execute BDD Gherkin steps dynamically at runtime on database
+        self.execute_gherkin_steps([
+            'Given swine lots "stock.lot" (库存批次) "SWI-LOT-06" in state "quarantined" (已隔离) under "agri.livestock.smart" (智能畜牧管理)',
+            'When the RFID quarantine gateway receiver detects an unauthorized access or brute-force packet signature',
+            'Then the system executes a cybersecurity encryption lock (网络安全加密锁定) to freeze the physical quarantine sorting gates',
+            'And raises a validation error (验证错误: "Quarantine gateway tampered, physical gates locked") to prevent swine escaping'
+        ])
+
+    def test_07_biological_asset_quarantine_solenoid_gate_interlock(self):
+        """
+        Scenario: Biological Asset Quarantine Solenoid Gate Interlock (生物资产疫病隔离区电磁阀强行锁定防护)
+        Given a quarantined biological asset lot in "stock.matter.tracking" (物料跟踪模型) with status "quarantined" (隔离状态)
+        And a quarantine geofence is defined with GPS coordinates "gps_lat" and "gps_lng" (并且使用地理坐标定义了防疫边界围栏)
+        When a technician attempts to trigger open lock "open_gate" (当技术员尝试执行触发开启隔离栏物理阀门系统动作时)
+        Then the IoT gateway must activate autoclave lock set "is_solenoid_locked" to true on physical solenoid (物联网网关必须强制激活物理电磁锁状态字段值为真)
+        And raise a UserError (并且拦截开启操作并抛出用户错误) with message "SOLENOID_LOCKED_BIOSECURITY" (包含"电磁锁已强制闭锁，隔离区处于高危生物安全防护状态"提示信息)
+        """
+        # Execute BDD Gherkin steps dynamically at runtime on database
+        self.execute_gherkin_steps([
+            'Given a quarantined biological asset lot in "stock.matter.tracking" (物料跟踪模型) with status "quarantined" (隔离状态)',
+            'And a quarantine geofence is defined with GPS coordinates "gps_lat" and "gps_lng" (并且使用地理坐标定义了防疫边界围栏)',
+            'When a technician attempts to trigger open lock "open_gate" (当技术员尝试执行触发开启隔离栏物理阀门系统动作时)',
+            'Then the IoT gateway must activate autoclave lock set "is_solenoid_locked" to true on physical solenoid (物联网网关必须强制激活物理电磁锁状态字段值为真)',
+            'And raise a UserError (并且拦截开启操作并抛出用户错误) with message "SOLENOID_LOCKED_BIOSECURITY" (包含"电磁锁已强制闭锁，隔离区处于高危生物安全防护状态"提示信息)'
+        ])

@@ -2,7 +2,6 @@ from odoo import models, fields, api, _
 from datetime import timedelta
 
 class ProjectTask(models.Model):
-    _name = 'project.task'
     _inherit = 'project.task'
 
     prevention_template_id = fields.Many2one(

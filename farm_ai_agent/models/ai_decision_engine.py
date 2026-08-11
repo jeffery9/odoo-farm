@@ -685,6 +685,7 @@ class AgriAIDecisionRule(models.Model):
     # Priority and execution order
     priority = fields.Integer('Priority', default=10)
     sequence = fields.Integer('Sequence', default=10)
+    confidence_threshold = fields.Float('Confidence Threshold', default=0.7)
 
     # ISL fields
     industry_type = fields.Selection([

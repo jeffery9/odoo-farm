@@ -44,7 +44,6 @@ class TestProcessingISL(TransactionCase):
         
         # 1. Simulate Consumption (100kg)
         self.env['stock.move'].create({
-            'name': 'Apple Consumption',
             'product_id': self.apple.id,
             'product_uom_qty': 100.0,
             'quantity_done': 100.0,

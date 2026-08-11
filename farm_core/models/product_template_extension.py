@@ -16,6 +16,16 @@ class ProductTemplate(models.Model):
         ('output', 'Output'),
     ], string="Agricultural Type")
 
+    is_variety = fields.Boolean("Is Biological Variety", default=False)
+    variety_type = fields.Selection([
+        ('crop', 'Crop'),
+        ('livestock', 'Livestock'),
+        ('fish', 'Fish/Aquaculture'),
+        ('apiculture', 'Apiculture'),
+        ('mushroom', 'Mushroom'),
+        ('other', 'Other'),
+    ], string="Variety Type")
+
     # Agricultural-specific fields
     agri_variety = fields.Char("Variety/Species", tracking=True)
     breed_certificate_no = fields.Char("Breed Registration/Certificate No.")

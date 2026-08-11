@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-<record id="view_live_order_tree" model="ir.ui.view">
+    <record id="action_live_orders" model="ir.actions.act_window">
+        <field name="name">Orders from Live Streaming</field>
+        <field name="res_model">live.order</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_live_order_tree" model="ir.ui.view">
         <field name="name">live.order.tree</field>
         <field name="model">live.order</field>
         <field name="arch" type="xml">
-            <list string="Live Orders">
+            <list string="Live Orders" decoration-danger="state == 'failed'" decoration-success="state == 'imported'">
                 <field name="name" />
-                <field name="douyin_order_id" />
-                <field name="douyin_account_id" />
-                <field name="product_id" />
-                <field name="total_amount" />
-                <field name="status" />
-                <field name="create_time" />
+                <field name="dy_order_id" />
+                <field name="account_id" />
+                <field name="buyer_nick" />
+                <field name="amount_total" />
+                <field name="state" widget="badge" />
+                <field name="create_date" string="Sync Date" />
             </list>
         </field>
     </record>
@@ -23,51 +29,37 @@
         <field name="arch" type="xml">
             <form string="Live Order">
                 <header>
-                    <button name="create_sale_order" type="object" string="Create Sale Order" class="oe_highlight" />
-                    <field name="status" widget="statusbar" />
+                    <button name="action_import_to_odoo" type="object" string="Create Sale Order" class="oe_highlight" invisible="state != 'draft'" />
+                    <button name="action_view_odoo_so" type="object" string="View Sales Order" class="oe_highlight" invisible="not odoo_so_id" />
+                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1><field name="name" readonly="1" /></h1>
+                    </div>
                     <group>
-                        <group>
-                            <field name="name" />
-                            <field name="douyin_order_id" />
-                            <field name="douyin_account_id" />
-                            <field name="live_session_id" />
+                        <group string="Douyin Order Details">
+                            <field name="dy_order_id" readonly="1" />
+                            <field name="account_id" readonly="1" />
+                            <field name="session_id" readonly="1" />
                         </group>
-                        <group>
-                            <field name="product_id" />
-                            <field name="quantity" />
-                            <field name="unit_price" />
-                            <field name="total_amount" />
+                        <group string="Financials &amp; Integration">
+                            <field name="buyer_nick" readonly="1" />
+                            <field name="amount_total" readonly="1" />
+                            <field name="odoo_so_id" readonly="1" />
                         </group>
                     </group>
-                    <group string="Customer Information">
-                        <field name="customer_name" />
-                        <field name="customer_phone" />
-                        <field name="customer_address" />
-                    </group>
-                    <group string="Timeline">
-                        <field name="create_time" />
-                        <field name="pay_time" />
-                        <field name="ship_time" />
-                        <field name="receive_time" />
-                    </group>
-                    <group string="Internal Order">
-                        <field name="origin_order_id" />
-                    </group>
+                    <notebook>
+                        <page string="Raw JSON Payload" name="raw_json">
+                            <field name="raw_data" widget="ace" options="{'mode': 'json'}" readonly="1" />
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
     </record>
 
-    
-    <menuitem id="menu_live_orders" name="Live Orders" parent="menu_live_streaming_root" action="action_live_orders" />
-
-    
-    <record id="action_live_orders" model="ir.actions.act_window">
-        <field name="name">Orders from Live Streaming</field>
-        <field name="res_model">live.order</field>
-        <field name="view_mode">list,form</field>
-    </record>
+    <menuitem id="menu_live_orders" name="Live Orders" parent="menu_douyin_config" action="action_live_orders" sequence="40" />
 </data>
 </odoo>

@@ -17,6 +17,11 @@ class AgriScienceMixin(models.AbstractModel):
     wue_actual = fields.Float("Water Use Efficiency (WUE)", compute='_compute_efficiencies')
     biological_stress_index = fields.Float("Stress Index (0-100)", default=0.0)
 
+    def _compute_efficiencies(self):
+        for rec in self:
+            rec.rue_actual = 0.0
+            rec.wue_actual = 0.0
+
     @api.depends('cumulative_gdd', 'physiology_profile_id')
     def _compute_biological_clock(self):
         """ 根据累积 GDD 自动判定生理发育阶段 """

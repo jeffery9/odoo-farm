@@ -66,6 +66,11 @@ class AgriISLModelRedirector(models.AbstractModel):
         [SOLID Refactored] Create an ISL record for a base record if it doesn't exist.
         Uses metadata discovery and Naming Conventions instead of hardcoded mappings.
         """
+        # Sanitize and validate industry_type
+        valid_industries = ['field_crop', 'livestock', 'aquaculture', 'general']
+        if industry_type not in valid_industries:
+            industry_type = 'general'
+
         if not base_model_name or not base_record_id:
             return None
 
@@ -84,11 +89,17 @@ class AgriISLModelRedirector(models.AbstractModel):
         
         # 2. Strategy: Generic Discovery (Convention: agri.isl.{suffix_without_dots})
         if not target_model:
-            suffix = base_model_name.replace('.', '_')
-            potential_generic = f"agri.isl.{suffix}"
+            potential_generic = f"agri.isl.{base_model_name}"
             if potential_generic in self.env:
                 target_model = potential_generic
                 link_field = self.env[target_model]._inherits[base_model_name]
+            else:
+                # Fallback to underscores if dots not found
+                suffix = base_model_name.replace('.', '_')
+                potential_generic_us = f"agri.isl.{suffix}"
+                if potential_generic_us in self.env:
+                    target_model = potential_generic_us
+                    link_field = self.env[target_model]._inherits[base_model_name]
 
         if not target_model:
             return None

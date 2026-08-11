@@ -6,7 +6,7 @@ class TestDeepCoverageFarmApiculture(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.models_to_test = ['farm.lot.hive', 'farm.apiculture.order', 'farm.hive.inspection']
+        cls.models_to_test = ['farm.lot.hive', 'farm.honey.task', 'farm.hive.inspection']
 
     def test_01_orm_deep_fuzzing(self):
         """ Massively tests defaults, fields, and constraints to maximize line coverage """

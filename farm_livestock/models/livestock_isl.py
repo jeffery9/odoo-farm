@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -20,6 +20,13 @@ class FarmLivestockRecipe(models.Model):
     growth_days_expected = fields.Integer("Expected Growth Days")
     daily_feed_intake = fields.Float("Avg Daily Feed (kg)")
 
+    @api.constrains('daily_feed_intake')
+    def _check_daily_feed_intake(self):
+        """[US-094-03] Ensure daily feed intake does not exceed maximum safe limit (10.0 kg)"""
+        for rec in self:
+            if rec.daily_feed_intake > 10.0:
+                raise ValidationError(_("Feeding Error: Daily feed intake (%s kg) exceeds maximum safe threshold (10.0 kg).") % rec.daily_feed_intake)
+
 class FarmLotLivestock(models.Model):
     """
     Livestock Asset Lot (ISL Layer) [De-industrialized]
@@ -35,6 +42,17 @@ class FarmLotLivestock(models.Model):
     ]
 
     lot_id = fields.Many2one('stock.lot', string='Base Lot', required=True, ondelete='cascade')
+
+    withdrawal_end_date = fields.Date("Withdrawal Period End (Date)", compute='_compute_withdrawal_end_date', inverse='_inverse_withdrawal_end_date', store=False)
+
+    @api.depends('withdrawal_end_datetime')
+    def _compute_withdrawal_end_date(self):
+        for rec in self:
+            rec.withdrawal_end_date = fields.Date.to_date(rec.withdrawal_end_datetime) if rec.withdrawal_end_datetime else False
+
+    def _inverse_withdrawal_end_date(self):
+        for rec in self:
+            rec.withdrawal_end_datetime = fields.Datetime.to_datetime(rec.withdrawal_end_date) if rec.withdrawal_end_date else False
 
     # [US-094-01] 个体动物档案管理
     birth_date = fields.Date("Birth Date")
@@ -73,6 +91,15 @@ class FarmLotLivestock(models.Model):
                 rec.fcr_actual = 0.0
                 rec.avg_daily_gain = 0.0
 
+    @api.constrains('breeding_status', 'birth_date')
+    def _check_breeding_maturity(self):
+        """[US-094-04] Ensure animal has reached mature breeding age before transitioning from immature"""
+        for rec in self:
+            if rec.breeding_status != 'immature' and rec.birth_date:
+                age_days = (fields.Date.today() - rec.birth_date).days
+                if age_days < 365:
+                    raise ValidationError(_("Breeding Blocked: Animal %s (Age: %d days) has not reached mature breeding age (365 days).") % (rec.name, age_days))
+
     @api.model_create_multi
     def create(self, vals_list):
         """ [Bridge] Initialize DNA when purchased or received. """
@@ -105,6 +132,19 @@ class FarmLivestockTask(models.Model):
     ]
 
     intervention_id = fields.Many2one('mrp.production', string='Base Intervention', required=True, ondelete='cascade')
+
+    intervention_type = fields.Selection(selection=[
+        ('tillage', 'Soil Preparation'),
+        ('sowing', 'Sowing/Planting'),
+        ('fertilizing', 'Fertilizing'),
+        ('irrigation', 'Irrigation'),
+        ('protection', 'Crop Protection'),
+        ('aerial_spraying', 'Aerial Spraying'),
+        ('harvesting', 'Harvesting'),
+        ('feeding', 'Feeding'),
+        ('medical', 'Medical/Prevention'),
+        ('process', 'General Process'),
+    ], string="Intervention Type", default='feeding')
 
     # Weight Gain & Efficiency
     initial_total_weight = fields.Float("Initial Total Weight (kg)")

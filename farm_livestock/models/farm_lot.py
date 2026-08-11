@@ -5,14 +5,24 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class FarmLot(models.Model):
-    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
-    # Livestock specific fields extending the base functionality
-    animal_count = fields.Integer("Animal Count", default=1)
-    average_weight = fields.Float("Average Weight (kg)", help="Current average weight of individuals in this lot.")
+    # Livestock specific fields extending the base functionality - Converted to dynamic computed bridge properties
+    animal_count = fields.Integer(
+        string="Animal Count",
+        compute='_compute_livestock_matter_properties',
+        inverse='_inverse_animal_count',
+        store=False
+    )
+    average_weight = fields.Float(
+        string="Average Weight (kg)",
+        compute='_compute_livestock_matter_properties',
+        inverse='_inverse_average_weight',
+        store=False,
+        help="Compatibility Bridge: Computes weight from active matter tracking containers."
+    )
 
-    # 生物阶段 [US-005-04]
+    # 生物阶段 [US-005-04] - Converted to computed bridge
     biological_stage = fields.Selection([
         ('born', 'Born/Started'),
         ('growing', 'Growing'),
@@ -20,7 +30,43 @@ class FarmLot(models.Model):
         ('lactating', 'Lactating'),
         ('finished', 'Finished'),
         ('harvested', 'Harvested')
-    ], string="Biological Stage", default='born')
+    ], string="Biological Stage", compute='_compute_livestock_matter_properties', inverse='_inverse_biological_stage', store=False)
+
+    @api.depends('quant_ids.package_id')
+    def _compute_livestock_matter_properties(self):
+        for lot in self:
+            quants = lot.quant_ids.filtered(lambda q: q.package_id)
+            tracking_record = False
+            for q in quants:
+                tracking_record = self.env['stock.matter.tracking'].search([('package_id', '=', q.package_id.id)], limit=1)
+                if tracking_record:
+                    break
+            if tracking_record:
+                lot.animal_count = tracking_record.animal_count or 1
+                lot.average_weight = tracking_record.current_weight or 0.0
+                lot.biological_stage = tracking_record.biological_stage or 'born'
+            else:
+                lot.animal_count = 1
+                lot.average_weight = 0.0
+                lot.biological_stage = 'born'
+
+    def _inverse_animal_count(self):
+        raise UserError(_(
+            "Legacy Write Block: Animal Count is now managed dynamically by Matter Tracking (LPN/Vessel). "
+            "Please update count on the active Matter Tracking container directly."
+        ))
+
+    def _inverse_average_weight(self):
+        raise UserError(_(
+            "Legacy Write Block: Weight is now managed dynamically by Matter Tracking (LPN/Vessel). "
+            "Please update the weight on the active Matter Tracking container directly."
+        ))
+
+    def _inverse_biological_stage(self):
+        raise UserError(_(
+            "Legacy Write Block: Biological Stage is now managed dynamically by Matter Tracking (LPN/Vessel). "
+            "Please update the stage on the active Matter Tracking container directly."
+        ))
 
     # US-003-01: 生长预测与饲喂核销
     start_weight = fields.Float("Initial Weight (kg)")

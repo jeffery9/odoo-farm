@@ -27,7 +27,9 @@ from . import performance_monitor
 from . import agri_stock_lot
 from . import agri_lot_kinship
 from . import agri_stock_move
+from . import agri_treatment_batch
 from . import stock_matter_tracking
+from . import stock_matter_tracking_link
 from . import stock_quant_consolidation
 from . import farm_growth_curve  # Must be before product_template_extension
 
@@ -36,6 +38,7 @@ from . import product_template_extension
 from . import land_location
 from . import biological_asset
 from . import activity_operation
+from . import water_valve
 
 # 6. Industry Specialized Data (Level 1/2)
 from . import industry_data_package

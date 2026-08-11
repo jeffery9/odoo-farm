@@ -53,7 +53,7 @@ class AgriAiPestDiseaseDecision(models.Model):
 
         vals = {
             'product_id': self.product_id.product_variant_id.id if self.product_id.product_variant_id else self.product_id.id,
-            'product_qty': 0.0,
+            'product_qty': 1.0,
             'intervention_type': 'protection',
             'location_id': self.land_location_id.id,
             'origin': f"AI Pest Decision: {self.name} ({self.pest_disease_name})",

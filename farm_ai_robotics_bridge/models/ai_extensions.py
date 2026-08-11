@@ -4,13 +4,11 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class AIAutonomousMissionLogExtension(models.Model):
-    _name = 'ai.autonomous.mission.log'
     _inherit = 'ai.autonomous.mission.log'
     
     mission_id = fields.Many2one('farm.robot.mission', string="Dispatched Mission")
 
 class AIAutonomousOrchestratorExtension(models.Model):
-    _name = 'ai.autonomous.orchestrator'
     _inherit = 'ai.autonomous.orchestrator'
 
     def _dispatch_remediation_mission(self, twin):
@@ -56,7 +54,6 @@ class AIAutonomousOrchestratorExtension(models.Model):
                          (mission.name, robot.name, twin.location_id.name))
 
 class A2ANegotiationMessageExtension(models.Model):
-    _name = 'agri.a2a.negotiation'
     _inherit = 'agri.a2a.negotiation'
 
     def _evaluate_proposal_logic(self, incoming_payload):

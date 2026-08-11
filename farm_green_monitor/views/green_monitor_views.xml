@@ -43,8 +43,10 @@
         <field name="model">farm.agricultural.campaign</field>
         <field name="inherit_id" ref="farm_operation.agricultural_campaign_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//button[@name='action_create_tasks_from_route']" position="after">
-                <button name="%(action_report_reduction_trend)d" type="action" string="Print Reduction Report" class="oe_highlight" />
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="%(action_report_reduction_trend)d" type="action" string="Print Reduction Report" class="oe_highlight" />
+                </header>
             </xpath>
         </field>
     </record>

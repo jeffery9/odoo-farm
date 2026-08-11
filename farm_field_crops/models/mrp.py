@@ -2,7 +2,6 @@
 from odoo import models, fields, api
 
 class MrpProduction(models.Model):
-    _name = 'mrp.production'
     _inherit = 'mrp.production'
 
     def _get_isl_model(self):
@@ -12,7 +11,6 @@ class MrpProduction(models.Model):
         return res
 
 class MrpBom(models.Model):
-    _name = 'mrp.bom'
     _inherit = 'mrp.bom'
 
     industry_type = fields.Selection(selection_add=[

@@ -1,8 +1,7 @@
-from . import test_tour_ui
-from . import test_integration_flows
-
+# -*- coding: utf-8 -*-
 from . import test_deep_coverage
-
 from . import test_epic_053
 from . import test_epic_085
 from . import test_epic_116
+from . import test_integration_flows
+from . import test_tour_ui

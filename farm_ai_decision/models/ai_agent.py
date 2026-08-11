@@ -121,8 +121,8 @@ class AgriAiAgent(models.Model):
     def _execute_model(self, agent, input_data):
         """Execute the specific AI model based on agent type"""
         # Check if LLM integration is available
-        llm_service = self.env['llm.service'].search([('config_id.is_active', '=', True),
-                                                      ('config_id.is_default', '=', True)], limit=1)
+        llm_service = self.env['agri.ai.llm.service'].search([('config_id.is_active', '=', True),
+                                                              ('config_id.is_default', '=', True)], limit=1)
 
         if llm_service:
             # Use LLM to generate more sophisticated responses
@@ -504,6 +504,13 @@ class AgriAiAgent(models.Model):
             reasoning_steps.append("7. Predictions made using time series analysis and trend modeling")
 
         return "<br/>".join(reasoning_steps)
+
+    def action_apply_recommendation(self):
+        """Delegate recommendation application to the base record"""
+        for agent in self:
+            if agent.base_id:
+                agent.base_id.action_apply_recommendation()
+        return True
 
     def action_train_model(self):
         """Train the AI model with new data"""

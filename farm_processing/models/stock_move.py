@@ -2,7 +2,6 @@
 from odoo import models, fields, api, _
 
 class StockMove(models.Model):
-    _name = 'stock.move'
     _inherit = 'stock.move'
 
     # US-TECH-05-07: Industry Context Tag

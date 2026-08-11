@@ -18,10 +18,17 @@ class TestAiOperationalLoop(TransactionCase):
             'isa95_level': 'area',
         })
         
+        cls.profile = cls.env['iiot.device.profile'].create({
+            'name': 'Soil Sensor Profile',
+            'code': 'soil_sensor_profile',
+        })
+        
         # 2. Setup Device with Shadow State
         cls.moisture_sensor = cls.env['iiot.device'].create({
             'name': 'Soil Sensor 01',
             'serial_number': 'SN-SOIL-001',
+            'device_id': 'soil_sensor_01_id',
+            'profile_id': cls.profile.id,
             'location_id': cls.parcel.id,
             'connection_status': 'online',
             'shadow_state': json.dumps({'moisture': 25.0, 'temp': 22.0})
@@ -30,7 +37,8 @@ class TestAiOperationalLoop(TransactionCase):
         # 3. Setup Crop
         cls.crop = cls.env['product.product'].create({
             'name': 'AI Test Corn',
-            'type': 'product',
+            'type': 'consu',
+            'is_storable': True,
         })
 
     def test_01_irrigation_loop(self):
@@ -123,7 +131,7 @@ class TestAiOperationalLoop(TransactionCase):
             'land_location_id': self.parcel.id,
             'product_id': self.crop.product_tmpl_id.id,
             'pest_disease_name': 'Aphids',
-            'affected_area_percentage': 35.0, # High severity (> 25%)
+            'affected_area_percentage': 55.0, # High severity (>= 50%)
         })
 
         # 1. DECIDE: Analyze

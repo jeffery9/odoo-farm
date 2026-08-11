@@ -1,7 +1,6 @@
 from odoo import fields, models, api, _
 
 class MrpBom(models.Model):
-    _name = 'mrp.bom'
     _inherit = 'mrp.bom'
 
     # US-037-10: 成品包装结构定义
@@ -28,7 +27,6 @@ class FarmBomPackageLine(models.Model):
 
 # US-037-03: 副产品成本分摊
 class MrpBomByproduct(models.Model):
-    _name = 'mrp.bom.byproduct'
     _inherit = 'mrp.bom.byproduct'
 
     cost_share = fields.Float("Cost Share (%)", help="Percentage of the total BOM cost allocated to this byproduct. [US-037-03]")

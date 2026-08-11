@@ -4,7 +4,7 @@ from odoo.exceptions import UserError
 class MrpWorkcenter(models.Model):
     _inherit = 'mrp.workcenter'
 
-    last_allergen_id = fields.Many2one('agri.allergen', string="Last Processed Allergen", readonly=True)
+    last_allergen_id = fields.Many2one('farm.allergen', string="Last Processed Allergen", readonly=True)
     requires_cip = fields.Boolean("Requires CIP", default=False, readonly=True, help="Clean-In-Place required to clear allergen contamination.")
     last_cip_date = fields.Datetime("Last CIP Certified", readonly=True)
 

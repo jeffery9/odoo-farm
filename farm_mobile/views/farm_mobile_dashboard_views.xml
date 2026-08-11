@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-<record id="action_mobile_my_tasks" model="ir.actions.act_window">
+    <record id="action_mobile_my_tasks" model="ir.actions.act_window">
         <field name="name">My Tasks Today</field>
         <field name="res_model">project.task</field>
         <field name="view_mode">kanban,form</field>
@@ -9,7 +9,6 @@
         <field name="context">{'search_default_my_tasks': 1}</field>
     </record>
 
-    
     <record id="action_mobile_scan_feeding" model="ir.actions.act_window">
         <field name="name">Quick Feeding</field>
         <field name="res_model">mrp.production</field>
@@ -18,7 +17,13 @@
         <field name="context">{'default_intervention_type': 'feeding'}</field>
     </record>
 
-    
+    <record id="action_farm_sync_queue" model="ir.actions.act_window">
+        <field name="name">Offline Sync Queue</field>
+        <field name="res_model">farm.sync.queue</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_pending': 1}</field>
+    </record>
+
     <record id="view_farm_mobile_workbench_form" model="ir.ui.view">
         <field name="name">farm.mobile.workbench.form</field>
         <field name="model">res.users</field> 
@@ -54,13 +59,6 @@
                 </sheet>
             </form>
         </field>
-    </record>
-
-    <record id="action_farm_sync_queue" model="ir.actions.act_window">
-        <field name="name">Offline Sync Queue</field>
-        <field name="res_model">farm.sync.queue</field>
-        <field name="view_mode">list,form</field>
-        <field name="context">{'search_default_pending': 1}</field>
     </record>
 
     <record id="action_farm_mobile_workbench" model="ir.actions.act_window">

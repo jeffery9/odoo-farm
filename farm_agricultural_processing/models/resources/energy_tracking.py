@@ -2,7 +2,6 @@
 from odoo import models, fields, api, _
 
 class FarmWorkcenterExtension(models.Model):
-    _name = 'farm.industry.workcenter'
     _inherit = 'farm.industry.workcenter'
 
     # 能耗核算基础 [US-037-04]

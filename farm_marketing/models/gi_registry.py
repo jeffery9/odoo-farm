@@ -19,7 +19,6 @@ class AgriGIRegistry(models.Model):
     description = fields.Text("GI Description", translate=True)
 
 class StockLot(models.Model):
-    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     gi_registry_id = fields.Many2one('agri.gi.registry', string="GI Registry")

@@ -3,7 +3,6 @@
 from odoo import models, fields, api, _
 
 class IrUiMenu(models.Model):
-    _name = 'ir.ui.menu'
     _inherit = 'ir.ui.menu'
 
     def read(self, fields=None, load='_classic_read'):
@@ -18,7 +17,6 @@ class IrUiMenu(models.Model):
         return res
 
 class IrActionsActWindow(models.Model):
-    _name = 'ir.actions.act_window'
     _inherit = 'ir.actions.act_window'
 
     def read(self, fields=None, load='_classic_read'):

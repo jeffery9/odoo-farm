@@ -107,8 +107,28 @@ class AgriAiParameter(models.Model):
 class FarmProcessingStep(models.Model):
     _name = 'farm.processing.step'
     _description = 'Processing Step'
+    _order = 'sequence, id'
+    
     name = fields.Char("Step Name")
     production_id = fields.Many2one('mrp.production', string='Production Order')
+    
+    sequence = fields.Integer("Sequence", default=10)
+    step_name = fields.Char("Step Name")
+    step_type = fields.Selection([
+        ('washing', 'Washing'),
+        ('cutting', 'Cutting'),
+        ('packing', 'Packaging'),
+        ('cooling', 'Cooling'),
+        ('sorting', 'Sorting')
+    ], string='Step Type')
+    
+    input_qty = fields.Float("Input Qty")
+    output_qty = fields.Float("Output Qty")
+    loss_qty = fields.Float("Loss Qty")
+    temperature = fields.Float("Temperature")
+    humidity = fields.Float("Humidity")
+    ph_level = fields.Float("pH Level")
+    
     state = fields.Selection([('draft', 'Draft')], string='State', default='draft')
 
 class AgriProcessingFormulaAutoCorrection(models.Model):
@@ -189,6 +209,7 @@ class AgriProcessingAllergenControl(models.Model):
     allergen_details = fields.Text("Allergen Details")
     all_allergens = fields.Boolean("All Allergens")
     previous_allergens = fields.Text("Previous Allergens")
+    cleaning_procedure = fields.Text("Cleaning Procedure")
     previous_production_id = fields.Many2one('mrp.production', string='Previous Production')
     allergen_risk_score = fields.Float("Risk Score")
     cleaning_verification_result = fields.Selection([('pass', 'Pass'), ('fail', 'Fail')], string='Cleaning Result')
@@ -211,8 +232,31 @@ class AgriProcessingAllergenControl(models.Model):
 class AgriProcessingGmpMonitoring(models.Model):
     _name = 'agri.processing.gmp.monitoring'
     _description = 'GMP Monitoring'
-    name = fields.Char("Monitoring ID")
-    state = fields.Selection([('draft', 'Draft')], string='State', default='draft')
+    
+    name = fields.Char("Monitoring ID", required=True)
+    production_id = fields.Many2one('mrp.production', string='Production Order')
+    monitoring_date = fields.Date("Monitoring Date")
+    recorded_by = fields.Many2one('res.users', string='Recorded By')
+    is_environment_compliant = fields.Boolean("Is Environment Compliant")
+    
+    temperature_min = fields.Float("Temperature Min")
+    temperature_max = fields.Float("Temperature Max")
+    temperature_avg = fields.Float("Temperature Avg")
+    
+    humidity_min = fields.Float("Humidity Min")
+    humidity_max = fields.Float("Humidity Max")
+    humidity_avg = fields.Float("Humidity Avg")
+    
+    air_pressure_diff = fields.Float("Air Pressure Difference")
+    particle_count_05um = fields.Float("Particle Count 0.5um")
+    particle_count_5um = fields.Float("Particle Count 5um")
+    environmental_alerts = fields.Text("Environmental Alerts")
+    bmr_content = fields.Text("BMR Content")
+    notes = fields.Text("Notes")
+    
+    validated_by = fields.Many2one('res.users', string='Validated By')
+    validation_date = fields.Date("Validation Date")
+    state = fields.Selection([('draft', 'Draft'), ('done', 'Done')], string='State', default='draft')
 
 class AgriProcessingBatchIntegrity(models.Model):
     _name = 'agri.processing.batch.integrity'
@@ -235,8 +279,29 @@ class AgriProcessingEnergyEfficiency(models.Model):
 class AgriProcessingLabelCompliance(models.Model):
     _name = 'agri.processing.label.compliance'
     _description = 'Label Compliance'
-    name = fields.Char("Compliance ID")
-    state = fields.Selection([('draft', 'Draft')], string='State', default='draft')
+    
+    name = fields.Char("Compliance ID", required=True)
+    product_id = fields.Many2one('product.product', string='Product')
+    production_batch_id = fields.Many2one('stock.lot', string='Production Batch')
+    is_approved = fields.Boolean("Is Approved")
+    reviewed_by = fields.Many2one('res.users', string='Reviewed By')
+    reviewed_date = fields.Date("Reviewed Date")
+    export_compliant = fields.Boolean("Export Compliant")
+    
+    sc_license_required = fields.Boolean("SC License Required")
+    sc_license_number = fields.Char("SC License Number")
+    is_license_compliant = fields.Boolean("Is License Compliant")
+    
+    allergen_warning_required = fields.Boolean("Allergen Warning Required")
+    health_claim_approved = fields.Boolean("Health Claim Approved")
+    
+    generated_label_content = fields.Text("Generated Label Content")
+    label_template_id = fields.Many2one('ir.ui.view', string='Label Template')
+    nutrition_composition = fields.Text("Nutrition Composition")
+    allergen_warnings = fields.Text("Allergen Warnings")
+    health_claims_text = fields.Text("Health Claims Text")
+    
+    state = fields.Selection([('draft', 'Draft'), ('done', 'Done')], string='State', default='draft')
 
 class AgriProcessingColdChainLog(models.Model):
     _name = 'agri.processing.cold.chain.log'

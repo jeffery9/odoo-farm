@@ -7,3 +7,5 @@ access_farm_location,farm.location,model_farm_location,base.group_user,1,1,1,1
 access_agri_clearing_ledger,agri.clearing.ledger,model_agri_clearing_ledger,base.group_user,1,1,1,1
 access_stock_matter_tracking,stock.matter.tracking,model_stock_matter_tracking,base.group_user,1,1,1,1
 access_stock_matter_tracking_snapshot,stock.matter.tracking.snapshot,model_stock_matter_tracking_snapshot,base.group_user,1,1,1,1
+access_agri_treatment_batch,agri.treatment.batch,model_agri_treatment_batch,base.group_user,1,1,1,1
+access_stock_matter_tracking_link,stock.matter.tracking.link,model_stock_matter_tracking_link,base.group_user,1,1,1,1

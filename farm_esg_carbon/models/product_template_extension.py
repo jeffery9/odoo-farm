@@ -1,7 +1,6 @@
 from odoo import models, fields, api
 
 class ProductTemplate(models.Model):
-    _name = 'product.template'
     _inherit = 'product.template'
 
     # US-060-01: Carbon Emission Factor (kg CO2e / unit)

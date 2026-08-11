@@ -5,7 +5,6 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class StockLot(models.Model):
-    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     # --- Industry Context ---
@@ -51,18 +50,21 @@ class StockLot(models.Model):
     @api.depends('quant_ids.package_id')
     def _compute_matter_physical_properties(self):
         for lot in self:
-            # Locate an active packaging quant with matter tracking enabled
-            quants = lot.quant_ids.filtered(lambda q: q.package_id and getattr(q.package_id, 'is_matter_tracking', False))
-            if not quants:
-                # Fallback to standard package if is_matter_tracking is false, checking by model type
-                quants = lot.quant_ids.filtered(lambda q: q.package_id and q.package_id._name == 'stock.matter.tracking')
+            # Locate an active packaging quant and retrieve its associated matter tracking record
+            quants = lot.quant_ids.filtered(lambda q: q.package_id)
+            _logger.info("COMPUTE LOT BRIDGES: lot=%s, quants=%s, quant_packages=%s", lot.name, lot.quant_ids, lot.quant_ids.mapped('package_id'))
+            tracking_record = False
+            for q in quants:
+                tracking_record = self.env['stock.matter.tracking'].search([('package_id', '=', q.package_id.id)], limit=1)
+                if tracking_record:
+                    break
                 
-            if quants:
-                package = quants[0].package_id
-                lot.current_weight = getattr(package, 'current_weight', 0.0)
-                lot.last_gps_lat = getattr(package, 'last_gps_lat', 0.0)
-                lot.last_gps_lng = getattr(package, 'last_gps_lng', 0.0)
-                lot.life_stage = getattr(package, 'life_stage', 'juvenile')
+            if tracking_record:
+                _logger.info("COMPUTE LOT BRIDGES: Found tracking_record=%s, weight=%s", tracking_record.name, tracking_record.current_weight)
+                lot.current_weight = tracking_record.current_weight or 0.0
+                lot.last_gps_lat = tracking_record.last_gps_lat or 0.0
+                lot.last_gps_lng = tracking_record.last_gps_lng or 0.0
+                lot.life_stage = tracking_record.life_stage or 'juvenile'
             else:
                 lot.current_weight = 0.0
                 lot.last_gps_lat = 0.0
@@ -155,11 +157,12 @@ class StockLot(models.Model):
         ('grade_a', 'Grade A'),
         ('grade_b', 'Grade B'),
         ('grade_c', 'Grade C'),
+        ('ungraded', 'Not Graded'),
         ('a', 'Grade A / Premium'),
         ('b', 'Grade B / Standard'),
         ('c', 'Grade C / Processing'),
         ('loss', 'Loss/Waste')
-    ])
+    ], default='ungraded')
     
     harvest_date = fields.Date('Harvest Date')
     plot_id = fields.Many2one('farm.location', string='Origin Plot')
@@ -297,4 +300,11 @@ class StockLot(models.Model):
             from odoo.exceptions import UserError
             raise UserError(_("The lot '%s' is expired (expired on %s). It cannot be used in operations.") % (self.name, self.expiration_date))
         return True
+
+
+class StockMove(models.Model):
+    _inherit = 'stock.move'
+
+    is_subcontract = fields.Boolean("Is Subcontract Move", default=False)
+    bom_id = fields.Many2one('mrp.bom', string="BOM")
 

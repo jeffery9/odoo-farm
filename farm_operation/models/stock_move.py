@@ -1,7 +1,6 @@
 from odoo import models, fields
 
 class StockMove(models.Model):
-    _name = 'stock.move'
     _inherit = 'stock.move'
 
     # 收获分级字段 [US-002-04]

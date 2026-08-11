@@ -16,6 +16,8 @@
     'author': 'Jeffery',
     'depends': [
         'farm_processing',
+        'farm_iot',
+        'farm_waste_mgmt',
     ],
     'data': [
         # 'security/ir.model.access.csv',

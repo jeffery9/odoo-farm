@@ -4,7 +4,6 @@ from odoo.exceptions import ValidationError
 
 
 class FarmProcessingBomExtension(models.Model):
-    _name = 'agri.isl.processing.bom'
     _inherit = 'agri.isl.processing.bom'
 
     processing_type = fields.Selection([
@@ -60,7 +59,6 @@ class FarmProcessingBomExtension(models.Model):
 
 # Add the compute and constraint methods to agri.isl.processing.production as well to match test expectations
 class FarmProcessingProductionExtension(models.Model):
-    _name = 'agri.isl.processing.production'
     _inherit = 'agri.isl.processing.production'
 
     byproduct_cost_share_total = fields.Float("Byproduct Cost Share Total (%)", compute='_compute_byproduct_cost_share_total_mo', store=True, precompute=True)

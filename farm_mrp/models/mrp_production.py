@@ -1,13 +1,35 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 class MrpProduction(models.Model):
-    _name = 'mrp.production'
     _inherit = 'mrp.production'
 
     industry_type = fields.Selection(related="bom_id.industry_type", string="Industry Standard", store=True, readonly=True)
     isl_record_type = fields.Char(string="ISL Record Type", compute='_compute_isl_record_type', store=False)
+
+    lot_producing_id = fields.Many2one(
+        'stock.lot',
+        string='Producing Lot (Compatibility)',
+        compute='_compute_lot_producing_id',
+        inverse='_inverse_lot_producing_id',
+        search='_search_lot_producing_id'
+    )
+
+    @api.depends('lot_producing_ids')
+    def _compute_lot_producing_id(self):
+        for rec in self:
+            rec.lot_producing_id = rec.lot_producing_ids[0] if rec.lot_producing_ids else False
+
+    def _inverse_lot_producing_id(self):
+        for rec in self:
+            if rec.lot_producing_id:
+                rec.lot_producing_ids = [rec.lot_producing_id.id]
+            else:
+                rec.lot_producing_ids = [(5, 0, 0)]
+
+    def _search_lot_producing_id(self, operator, value):
+        return [('lot_producing_ids', operator, value)]
 
     def _compute_isl_record_type(self):
         """ Compute the ISL record type if one exists """
@@ -70,6 +92,27 @@ class MrpProduction(models.Model):
         return super(MrpProduction, self).get_formview_action(access_uid=access_uid)
 
     def action_confirm(self):
+        for order in self:
+            if order.location_dest_id:
+                # Resolve destination capacity constraints
+                farm_loc = order.location_dest_id
+
+                if getattr(farm_loc, 'max_stocking_density', 0.0) > 0.0:
+                    # Calculate future density including pending production qty
+                    existing_quants = self.env['stock.quant'].search([
+                        ('location_id', '=', order.location_dest_id.id)
+                    ])
+                    current_qty = sum(existing_quants.mapped('quantity'))
+                    future_qty = current_qty + order.product_qty
+                    
+                    if getattr(farm_loc, 'land_area', 0.0) > 0.0:
+                        future_density = future_qty / farm_loc.land_area
+                        if future_density > farm_loc.max_stocking_density:
+                            raise ValidationError(_(
+                                "Backpressure Limit Reached: Confirming production of %.2f units would exceed "
+                                "maximum stocking density (%.2f units/m²) of destination %s."
+                            ) % (order.product_qty, farm_loc.max_stocking_density, farm_loc.name))
+
         res = super(MrpProduction, self).action_confirm()
         for order in self:
             self._trigger_isl_hook('isl_post_confirm', order.id)

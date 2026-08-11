@@ -27,7 +27,6 @@ class FarmIndustryWorkcenter(models.Model):
     main_sensor_topic = fields.Char("Primary Telemetry Topic", help="Main sensor topic associated with this facility (e.g. pond temperature).")
 
 class MrpWorkcenter(models.Model):
-    _name = 'mrp.workcenter'
     _inherit = 'mrp.workcenter'
 
     def get_formview_action(self, access_uid=None):

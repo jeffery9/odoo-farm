@@ -24,10 +24,11 @@
         <field name="arch" type="xml">
             <xpath expr="//page[@name='agricultural_info']" position="inside">
                 <group string="Land Use Compliance (China)" invisible="not is_agri_activity">
+                    <field name="has_permanent_farmland" invisible="1" />
                     <field name="land_parcel_ids" widget="many2many_tags" />
-                    <label for="land_nature_display" />
+                    <span class="o_form_label">土地合规校验 (Land Compliance)</span>
                     <div name="land_nature_display">
-                        <span class="oe_read_only" t-if="land_parcel_ids.filtered(lambda p: p.land_nature == 'permanent_basic_farmland')">
+                        <span class="oe_read_only text-danger" invisible="not has_permanent_farmland">
                             <strong>部分关联地块为永久基本农田。</strong>
                         </span>
                     </div>

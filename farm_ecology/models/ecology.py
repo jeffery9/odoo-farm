@@ -67,7 +67,6 @@ class FarmLocation(models.Model):
     [Anji Model Integration] Ecological Value Extension.
     Calculates Gross Ecosystem Product (GEP) for land parcels.
     """
-    _name = 'farm.location'
     _inherit = 'farm.location'
 
     gep_score = fields.Float("Ecological GEP Score", compute='_compute_gep_score', store=True, group_operator="avg")

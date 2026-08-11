@@ -12,7 +12,6 @@ class FarmComplianceAuditStandard(models.Model):
     active = fields.Boolean(default=True)
 
 class FarmExportCompliance(models.Model):
-    _name = 'farm.export.compliance'
     _inherit = 'farm.export.compliance'
 
     standard_id = fields.Many2one('farm.compliance.audit.standard', string="Compliance Standard")
@@ -29,6 +28,23 @@ class FarmExportCompliance(models.Model):
             # In a real scenario, this would query farm.operation and harvest records
             rec.missing_records = False
             rec.withdrawal_violation = False
+
+    def action_run_compliance_audit(self):
+        """
+        Runs the ESG compliance audit, calculating gaps and setting status.
+        """
+        self.ensure_one()
+        self._compute_compliance_gaps()
+        self.last_audit_run = fields.Datetime.now()
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _('Audit Completed'),
+                'message': _('Compliance audit has been executed successfully.'),
+                'type': 'success',
+            }
+        }
 
     def action_generate_technical_dossier(self):
         """

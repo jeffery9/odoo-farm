@@ -6,7 +6,7 @@
         <record id="rule_stock_lot_worker" model="ir.rule">
             <field name="name">Worker: See Own Lots Only</field>
             <field name="model_id" ref="stock.model_stock_lot" />
-            <field name="domain_force">['|', ('partner_id', '=', user.partner_id.id), ('partner_id', '=', False)]</field>
+            <field name="domain_force">['|', ('company_id', '=', user.company_id.id), ('company_id', '=', False)]</field>
             <field name="groups" eval="[(4, ref('farm_core.group_farm_worker'))]" />
             <field name="perm_read" eval="1" />
             <field name="perm_write" eval="0" />
@@ -17,7 +17,7 @@
         <record id="rule_stock_lot_owner_hierarchy" model="ir.rule">
             <field name="name">Farm Owner: See Own and Subordinate Lots</field>
             <field name="model_id" ref="stock.model_stock_lot" />
-            <field name="domain_force">['|', '|', ('partner_id', '=', user.partner_id.id), ('partner_id.parent_id', '=', user.partner_id.id), ('partner_id', '=', False)]</field>
+            <field name="domain_force">['|', ('company_id', '=', user.company_id.id), ('company_id', '=', False)]</field>
             <field name="groups" eval="[(4, ref('farm_core.group_farm_specialist'))]" />
             <field name="perm_read" eval="1" />
             <field name="perm_write" eval="0" />

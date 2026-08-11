@@ -66,7 +66,7 @@ class AgriAiFertilizationDecision(models.Model):
 
         vals = {
             'product_id': self.product_id.product_variant_id.id if self.product_id.product_variant_id else self.product_id.id,
-            'product_qty': 0.0,
+            'product_qty': 1.0,
             'intervention_type': 'fertilizing',
             'location_id': self.land_location_id.id,
             'origin': f"AI Decision: {self.name}",
@@ -93,6 +93,11 @@ class AgriAiFertilizationDecision(models.Model):
                     p_deficit *= 1.3  # Fruit crops need more phosphorus
                     k_deficit *= 1.4  # And more potassium
 
+            # Base recommendations
+            record.recommended_n = n_deficit
+            record.recommended_p = p_deficit
+            record.recommended_k = k_deficit
+
             # Adjust based on growth stage
             if record.crop_growth_stage:
                 if 'flowering' in record.crop_growth_stage.lower():
@@ -103,10 +108,6 @@ class AgriAiFertilizationDecision(models.Model):
                     record.recommended_n = n_deficit * 1.3
                     record.recommended_k = k_deficit * 1.1
                     record.recommended_p = p_deficit * 0.9
-                else:
-                    record.recommended_n = n_deficit
-                    record.recommended_p = p_deficit
-                    record.recommended_k = k_deficit
 
             # Generate fertilizer recommendations
             deficiency_analysis = []
@@ -144,10 +145,11 @@ class AgriAiFertilizationDecision(models.Model):
             # Level 4+: Automatic Mission Trigger [US-088-06]
             if record.recommended_n > 20.0 and record.land_location_id:
                 _logger.info("Nutrient gap > 20kg detected. Triggering Autonomous Mission Orchestrator.")
-                self.env['agri.mission.orchestrator'].action_trigger_inflow_mission(
-                    record.land_location_id, 
-                    _("%f kg N") % record.recommended_n
-                )
+                if 'agri.mission.orchestrator' in self.env:
+                    self.env['agri.mission.orchestrator'].action_trigger_inflow_mission(
+                        record.land_location_id, 
+                        _("%f kg N") % record.recommended_n
+                    )
 
     def generate_actuator_correction(self, intervention_id):
         """

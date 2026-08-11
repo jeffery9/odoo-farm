@@ -212,7 +212,7 @@
 
     <record id="action_farm_processing_blind_material_list" model="ir.actions.act_window">
         <field name="name">Blind Mixing Materials</field>
-        <field name="res_model">farm.processing.blind.material</field>
+        <field name="res_model">agri.processing.blind.input</field>
         <field name="view_mode">list,form</field>
     </record>
 

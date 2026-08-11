@@ -223,7 +223,6 @@ class AgriCampaignExtension(models.Model):
 
         return result
 class FarmLocationExtension(models.Model):
-    _name = 'farm.location'
     _inherit = 'farm.location'
     
     def action_view_soil_analyses_history(self):

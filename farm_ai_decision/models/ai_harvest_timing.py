@@ -108,10 +108,11 @@ class AgriAiHarvestTiming(models.Model):
                 # Level 4+: Automatic Harvest Mission Trigger
                 if record.quality_score > 85.0 and record.land_location_id:
                     _logger.info("High quality score detected. Triggering Harvest & Clearing Mission.")
-                    self.env['agri.mission.orchestrator'].action_trigger_harvest_mission(
-                        record.land_location_id,
-                        _("Predicted Quality Score: %f") % record.quality_score
-                    )
+                    if 'agri.mission.orchestrator' in self.env:
+                        self.env['agri.mission.orchestrator'].action_trigger_harvest_mission(
+                            record.land_location_id,
+                            _("Predicted Quality Score: %f") % record.quality_score
+                        )
 
     def predict_harvest_fingerprint(self):
         """

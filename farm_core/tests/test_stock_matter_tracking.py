@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, tagged
 from odoo.exceptions import UserError
 from datetime import datetime, timedelta
 
+@tagged('post_install', '-at_install')
 class TestStockMatterTrackingBase(TransactionCase):
     @classmethod
     def setUpClass(cls):

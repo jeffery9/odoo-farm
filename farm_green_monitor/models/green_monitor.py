@@ -1,7 +1,6 @@
 from odoo import models, fields, api, _
 
 class StockLocation(models.Model):
-    _name = 'stock.location'
     _inherit = 'stock.location'
 
     # 减量目标 [US-041-06]
@@ -9,7 +8,6 @@ class StockLocation(models.Model):
     pesticide_reduction_target = fields.Float("Pesticide Reduction Target (%)", default=0.0)
 
 class ProjectTask(models.Model):
-    _name = 'project.task'
     _inherit = 'project.task'
 
     # 化肥农药使用量汇总 (kg) [US-041-06]

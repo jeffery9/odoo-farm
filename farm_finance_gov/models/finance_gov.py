@@ -32,11 +32,22 @@ class FarmRuralRevitalizationProject(models.Model):
             project.total_expenditure = sum(project.account_move_ids.filtered(lambda m: m.move_type in ['in_invoice', 'out_refund', 'in_receipt', 'out_receipt'] and m.state == 'posted').mapped('amount_total_in_currency_dlc'))
 
 class AccountMove(models.Model):
-    _name = 'account.move'
     _inherit = 'account.move'
 
     # 关联乡村振兴项目 [US-041-09]
     rural_project_id = fields.Many2one('farm.rural.revitalization.project', string="Rural Revitalization Project")
+    
+    # 兼容政府补助双重控制币种总额 [US-041-09]
+    amount_total_in_currency_dlc = fields.Monetary(
+        string="Total Amount in Govt Currency (DLC)",
+        compute="_compute_amount_total_in_currency_dlc",
+        store=True
+    )
+
+    @api.depends('amount_total')
+    def _compute_amount_total_in_currency_dlc(self):
+        for move in self:
+            move.amount_total_in_currency_dlc = move.amount_total
     
     @api.constrains('rural_project_id', 'state')
     def _check_rural_project_funds(self):

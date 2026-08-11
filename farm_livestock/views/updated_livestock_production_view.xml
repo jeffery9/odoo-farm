@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-<record id="view_farm_livestock_production_form_updated" model="ir.ui.view">
-        <field name="name">agri.isl.livestock.production.form.updated</field>
-        <field name="model">agri.isl.livestock.production</field>
+    <record id="view_farm_livestock_production_form_updated" model="ir.ui.view">
+        <field name="name">agri.isl.livestock.task.form.updated</field>
+        <field name="model">agri.isl.livestock.task</field>
         <field name="inherit_id" ref="farm_livestock.view_farm_livestock_production_form" />
         <field name="arch" type="xml">
             <notebook position="inside">
@@ -22,26 +22,6 @@
                         <field name="livestock_config" widget="ace" options="{'mode': 'json'}" />
                     </group>
                 </page>
-                
-            </notebook>
-        </field>
-    </record>
-
-    
-    <record id="view_farm_livestock_bom_form_updated" model="ir.ui.view">
-        <field name="name">farm.livestock.bom.form.updated</field>
-        <field name="model">farm.livestock.bom</field>
-        <field name="inherit_id" ref="farm_livestock.view_farm_livestock_bom_form" />
-        <field name="arch" type="xml">
-            <notebook position="inside">
-                <page string="Performance &amp; Security" name="perf_security">
-                    <group string="Nutrient Content">
-                        <field name="nitrogen_qty" />
-                        <field name="phosphorus_qty" />
-                        <field name="potassium_qty" />
-                    </group>
-                    
-                </page> --&gt;
             </notebook>
         </field>
     </record>

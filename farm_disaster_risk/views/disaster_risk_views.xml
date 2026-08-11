@@ -62,7 +62,7 @@
                             <field name="crisis_incident_id"/>
                         </page>
                     
-                        <page string="AI Strategy & Interventions">
+                        <page string="AI Strategy &amp; Interventions">
                             <group>
                                 <field name="ai_strategy_log" widget="code"/>
                             </group>

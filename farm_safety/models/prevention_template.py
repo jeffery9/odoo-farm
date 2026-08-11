@@ -23,7 +23,6 @@ class FarmPreventionLine(models.Model):
     qty = fields.Float("Quantity", default=1.0)
 
 class FarmLotQuarantine(models.Model):
-    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     is_quarantined = fields.Boolean("In Quarantine", default=False, tracking=True)
@@ -38,6 +37,37 @@ class FarmLotQuarantine(models.Model):
     ], string="Safety Status", compute='_compute_withdrawal_status', store=True, precompute=True)
     
     withdrawal_remaining_days = fields.Integer("Safe Harvest Countdown", compute='_compute_withdrawal_remaining')
+    withdrawal_days_left = fields.Integer("Days Left (休药期剩余天数)", compute='_compute_withdrawal_days_left')
+    is_safe_to_harvest = fields.Boolean("Safe to Harvest (安全可收获)", compute='_compute_is_safe_to_harvest')
+    state = fields.Selection([
+        ('healthy', 'Healthy (健康)'),
+        ('quarantine', 'Quarantine (隔离)'),
+        ('disposed', 'Disposed (处置)')
+    ], string="Health State (健康状态)", compute='_compute_lot_state', store=True)
+
+    @api.depends('withdrawal_end_datetime')
+    def _compute_withdrawal_days_left(self):
+        now = fields.Datetime.now()
+        for lot in self:
+            if lot.withdrawal_end_datetime and lot.withdrawal_end_datetime > now:
+                delta = lot.withdrawal_end_datetime - now
+                lot.withdrawal_days_left = delta.days + 1
+            else:
+                lot.withdrawal_days_left = 0
+
+    @api.depends('withdrawal_end_datetime')
+    def _compute_is_safe_to_harvest(self):
+        now = fields.Datetime.now()
+        for lot in self:
+            lot.is_safe_to_harvest = not lot.withdrawal_end_datetime or lot.withdrawal_end_datetime <= now
+
+    @api.depends('is_quarantined')
+    def _compute_lot_state(self):
+        for lot in self:
+            if lot.is_quarantined:
+                lot.state = 'quarantine'
+            else:
+                lot.state = 'healthy'
 
     @api.depends('withdrawal_end_datetime')
     def _compute_withdrawal_status(self):
@@ -89,7 +119,6 @@ class FarmLotQuarantine(models.Model):
             fence.write({'active': False})
 
 class StockPickingQuarantine(models.Model):
-    _name = 'stock.picking'
     _inherit = 'stock.picking'
 
     def button_validate(self):

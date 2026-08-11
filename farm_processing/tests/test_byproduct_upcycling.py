@@ -6,8 +6,8 @@ class TestByproductUpcycling(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.juice = cls.env['product.product'].create({'name': 'Orange Juice', 'type': 'product'})
-        cls.pectin = cls.env['product.product'].create({'name': 'Pectin Extract', 'type': 'product'})
+        cls.juice = cls.env['product.product'].create({'name': 'Orange Juice', 'type': 'consu', 'is_storable': True})
+        cls.pectin = cls.env['product.product'].create({'name': 'Pectin Extract', 'type': 'consu', 'is_storable': True})
 
     def test_01_trigger_secondary_mo(self):
         """ Scenario 37: By-Product Upcycling """

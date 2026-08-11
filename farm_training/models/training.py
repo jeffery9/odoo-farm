@@ -88,10 +88,9 @@ class FarmTrainingSession(models.Model):
         return [('id', 'in', valid_certs.mapped('employee_id').ids)]
 
 class HrEmployee(models.Model):
-    _name = 'hr.employee'
     _inherit = 'hr.employee'
 
-    certificate_ids = fields.One2many('farm.certificate', 'employee_id', string="Certificates")
+    training_certificate_ids = fields.One2many('farm.certificate', 'employee_id', string="Certificates")
     training_session_ids = fields.Many2many('farm.training.session', string="Training History")
     total_training_hours = fields.Float("Total Training Hours", compute='_compute_training_hours')
 
@@ -100,7 +99,6 @@ class HrEmployee(models.Model):
             emp.total_training_hours = sum(emp.training_session_ids.filtered(lambda s: s.state == 'done').mapped('hours'))
 
 class AgriIntervention(models.Model):
-    _name = 'mrp.production'
     _inherit = 'mrp.production'
 
     @api.onchange('intervention_type')
@@ -127,7 +125,7 @@ class AgriIntervention(models.Model):
                     raise UserError(_("This task (%s) requires certified personnel, but no workers are assigned.") % mo.intervention_type)
                 
                 for employee in mo.doer_ids:
-                    valid_cert = employee.certificate_ids.filtered(
+                    valid_cert = employee.training_certificate_ids.filtered(
                         lambda c: c.certificate_type_id == required_cert_type and c.is_valid
                     )
                     if not valid_cert:

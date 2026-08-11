@@ -19,7 +19,8 @@ class TestTraceabilityQualityBlock(TransactionCase):
         # 2. Create the crop product
         cls.crop_product = cls.env['product.product'].create({
             'name': 'Organic Apples',
-            'type': 'product',
+            'type': 'consu',
+            'is_storable': True,
             'tracking': 'lot',
         })
 
@@ -60,7 +61,6 @@ class TestTraceabilityQualityBlock(TransactionCase):
         
         # Inject the forbidden chemical into the intervention's consumed materials
         self.env['stock.move'].create({
-            'name': 'Use Banned Pesticide',
             'product_id': self.chemical_product.id,
             'product_uom_qty': 1.0,
             'product_uom': self.chemical_product.uom_id.id,
@@ -83,7 +83,6 @@ class TestTraceabilityQualityBlock(TransactionCase):
         })
         
         move = self.env['stock.move'].create({
-            'name': 'Ship Apples',
             'product_id': self.crop_product.id,
             'product_uom_qty': 10.0,
             'product_uom': self.crop_product.uom_id.id,

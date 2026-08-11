@@ -8,7 +8,7 @@ class TestEpic012(TransactionCase):
 
     def setUp(self):
         super(TestEpic012, self).setUp()
-        self.Agent = self.env['farm.ai.agent'].create({'name': 'Price Negotiator'})
+        self.Agent = self.env['agri.ai.agent'].create({'name': 'Price Negotiator'})
 
     def test_01_autonomous_agent_to_agent__a2a__price_negotiation(self):
         """ Scenario: Autonomous Agent-to-Agent (A2A) price negotiation """

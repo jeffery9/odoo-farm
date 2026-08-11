@@ -40,7 +40,6 @@ class FarmProductCertificate(models.Model):
         return super().create(vals_list)
 
 class StockPicking(models.Model):
-    _name = 'stock.picking'
     _inherit = 'stock.picking'
 
     requires_cert_ch = fields.Boolean("Requires Cert. (China)", compute='_compute_requires_cert_ch', store=True, precompute=True)

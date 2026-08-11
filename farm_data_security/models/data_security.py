@@ -81,7 +81,6 @@ class FarmIotDeviceRegistry(models.Model):
         })
 
 class FarmLocation(models.Model):
-    _name = 'stock.location'
     _inherit = 'stock.location'
 
     def unlink(self):
@@ -92,7 +91,6 @@ class FarmLocation(models.Model):
         return super().unlink()
 
 class ResPartner(models.Model):
-    _name = 'res.partner'
     _inherit = 'res.partner'
 
     def write(self, vals):

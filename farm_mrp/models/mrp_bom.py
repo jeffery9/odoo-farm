@@ -3,7 +3,6 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
 class MrpBom(models.Model):
-    _name = 'mrp.bom'
     _inherit = 'mrp.bom'
 
     industry_type = fields.Selection(selection=[

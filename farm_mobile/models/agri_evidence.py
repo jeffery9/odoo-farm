@@ -13,7 +13,7 @@ class AgriEvidence(models.Model):
 
     name = fields.Char("Evidence Label", required=True, default=lambda self: _('Field Photo'))
     res_model = fields.Char("Related Model")
-    res_id = fields.Many2one_reference("Related ID", model_field='res_model')
+    res_id = fields.Many2oneReference("Related ID", model_field='res_model')
 
     photo = fields.Binary("Evidence Photo", attachment=True, required=True)
 
@@ -33,7 +33,7 @@ class AgriEvidence(models.Model):
     is_hash_verified = fields.Boolean("Hash Verified", default=True, help="Indicates if evidence data has been tampered with")
 
     # US-095-04: Subsidy Evidence Automation - Link to subsidy applications
-    subsidy_application_id = fields.Many2one('farm.subsidy.application', string="Subsidy Application")
+    # subsidy_application_id = fields.Many2one('farm.subsidy.application', string="Subsidy Application")
 
     @api.depends('photo', 'gps_lat', 'gps_lng', 'taken_at', 'worker_id', 'note')
     def _compute_evidence_hash(self):

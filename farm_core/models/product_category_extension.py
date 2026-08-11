@@ -5,9 +5,9 @@ class ProductCategory(models.Model):
     _inherit = 'product.category'
 
     matter_enforcement_level = fields.Selection([
-        ('guidance', 'Guidance'),
-        ('strict', 'Strict')
-    ], string="Matter Enforcement Level", default='guidance')
+        ('guidance', 'Lightweight Guidance / 轻量级指引'),
+        ('strict', 'Strict GxP Enforcement / 强合规卡控')
+    ], string="Matter Enforcement Level", default="guidance", required=True, help="Risk level for physical matter tracking in this category.")
 
     consolidation_strategy = fields.Selection([
         ('strict_isolation', 'Strict Isolation (Single-Lot Only)'),

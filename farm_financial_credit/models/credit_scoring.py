@@ -6,7 +6,6 @@ _logger = logging.getLogger(__name__)
 
 
 class ProjectTask(models.Model):
-    _name = 'project.task'
     _inherit = 'project.task'
 
     trust_score = fields.Float("Trust Score", digits=(10, 2), default=0.0,
@@ -72,6 +71,11 @@ class FarmCreditScore(models.Model):
 
     partner_id = fields.Many2one('res.partner', string="Farmer/Entity", required=True)
     evaluation_date = fields.Date("Evaluation Date", default=fields.Date.today)
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('valid', 'Valid'),
+        ('invalid', 'Invalid'),
+    ], string="Status", default="draft")
 
     total_score = fields.Float("Total Credit Score", compute='_compute_credit_score', store=True, precompute=True)
 
@@ -108,10 +112,10 @@ class FarmCreditScore(models.Model):
         self.yield_consistency_rate = random.uniform(60, 90)
         self.input_reduction_rate = random.uniform(50, 85)
         self._compute_credit_score()
+        self.state = 'valid'
 
 
 class ResPartner(models.Model):
-    _name = 'res.partner'
     _inherit = 'res.partner'
 
     latest_credit_score = fields.Float("Latest Credit Score", compute='_compute_latest_credit_score')
@@ -132,6 +136,14 @@ class FarmCoopSettlement(models.Model):
     _name = 'farm.coop.settlement'
     _description = 'Cooperative Member Settlement'
     _inherit = ['mail.thread', 'mail.activity.mixin']
+
+    name = fields.Char("Reference", required=True, copy=False, readonly=True, default='/')
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('confirmed', 'Confirmed'),
+        ('settled', 'Settled'),
+        ('posted', 'Posted'),
+    ], string="Status", default="draft")
 
     partner_id = fields.Many2one('res.partner', string="Member", required=True)
     date = fields.Date("Date", default=fields.Date.today)

@@ -5,7 +5,6 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class StockLot(models.Model):
-    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     def action_upcast_to_industry(self):
@@ -14,7 +13,7 @@ class StockLot(models.Model):
         based on the product's industry_type.
         """
         self.ensure_one()
-        industry_type = self.product_id.industry_type
+        industry_type = getattr(self.product_id, 'industry_type', False)
         
         mapping = {
             'livestock': 'farm.lot.livestock',
@@ -37,7 +36,6 @@ class StockLot(models.Model):
         return False
 
 class StockMove(models.Model):
-    _name = 'stock.move'
     _inherit = 'stock.move'
 
     def _action_done(self, cancel_backorder=False):

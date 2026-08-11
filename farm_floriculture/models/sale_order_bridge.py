@@ -6,7 +6,6 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class SaleOrderLine(models.Model):
-    _name = 'sale.order.line'
     _inherit = 'sale.order.line'
 
     def action_verify_flower_quality(self):
@@ -22,7 +21,6 @@ class SaleOrderLine(models.Model):
         return True
 
 class SaleOrder(models.Model):
-    _name = 'sale.order'
     _inherit = 'sale.order'
 
     def action_confirm(self):

@@ -12,7 +12,6 @@ class FarmTraitValue(models.Model):
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)
 
 class FarmLotBreeding(models.Model):
-    _name = 'stock.lot'
     _inherit = 'stock.lot'
 
     trait_value_ids = fields.One2many('farm.trait.value', 'lot_id', string="Traits")

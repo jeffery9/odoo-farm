@@ -1,1 +1,15 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_joint_procurement_user,joint.procurement.user,model_joint_procurement,base.group_user,1,1,1,0
+access_joint_procurement_line_user,joint.procurement.line.user,model_joint_procurement_line,base.group_user,1,1,1,0
+access_internal_marketplace_user,internal.marketplace.user,model_internal_marketplace,base.group_user,1,1,1,0
+access_marketplace_demand_match_user,marketplace.demand.match.user,model_marketplace_demand_match,base.group_user,1,1,1,0
+access_procurement_planning_user,procurement.planning.user,model_procurement_planning,base.group_user,1,1,1,0
+access_procurement_planning_line_user,procurement.planning.line.user,model_procurement_planning_line,base.group_user,1,1,1,0
+access_procurement_allocation_line_user,procurement.allocation.line.user,model_procurement_allocation_line,base.group_user,1,1,1,0
+access_joint_procurement_po_user,joint.procurement.po.user,model_joint_procurement_po,base.group_user,1,1,1,0
+access_joint_procurement_po_member_user,joint.procurement.po.member.user,model_joint_procurement_po_member,base.group_user,1,1,1,0
+access_hub_spoke_distribution_user,hub.spoke.distribution.user,model_hub_spoke_distribution,base.group_user,1,1,1,0
+access_hub_spoke_distribution_line_user,hub.spoke.distribution.line.user,model_hub_spoke_distribution_line,base.group_user,1,1,1,0
+access_netting_settlement_user,netting.settlement.user,model_netting_settlement,base.group_user,1,1,1,0
+access_netting_receivable_line_user,netting.receivable.line.user,model_netting_receivable_line,base.group_user,1,1,1,0
+access_netting_payable_line_user,netting.payable.line.user,model_netting_payable_line,base.group_user,1,1,1,0

@@ -10,7 +10,7 @@
                 <field name="crop_type_china" />
                 <field name="declared_area_mu" invisible="not declared_area_mu" />
             </xpath>
-            <xpath expr="//button[@name='action_generate_moara_report']" position="replace">
+            <xpath expr="//header" position="inside">
                 <button name="action_generate_moara_report" string="Generate MOARA Report" type="object" class="oe_highlight" />
             </xpath>
         </field>

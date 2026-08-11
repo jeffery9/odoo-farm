@@ -44,7 +44,7 @@ class LandHealthRecord(models.Model):
 
 
 class FarmLocation(models.Model):
-    _inherit = 'farm.location'  # Inherit from the core farm.location model
+    _inherit = 'stock.location'  # Inherit directly from standard stock.location model
 
     # 土地承包权信息 [US-041-01]
     land_contract_no = fields.Char("Land Contract No.")
@@ -377,8 +377,30 @@ class ProductTemplate(models.Model):
                                                    default=3)
 
 class FarmActivity(models.Model):
-    _name = 'project.project'
     _inherit = 'project.project'
+
+    land_parcel_ids = fields.Many2many(
+        'stock.location',
+        'project_land_parcel_rel',
+        'project_id',
+        'location_id',
+        string="Agricultural Land Parcels",
+        domain=[('is_land_parcel', '=', True)]
+    )
+
+    has_permanent_farmland = fields.Boolean(
+        string="Has Permanent Basic Farmland",
+        compute="_compute_has_permanent_farmland"
+    )
+
+    @api.depends('land_parcel_ids', 'land_parcel_ids.land_nature')
+    def _compute_has_permanent_farmland(self):
+        for record in self:
+            record.has_permanent_farmland = any(
+                p.land_nature == 'permanent_basic_farmland'
+                for p in record.land_parcel_ids
+                if hasattr(p, 'land_nature')
+            )
 
     @api.constrains('activity_family', 'land_parcel_ids')
     def _check_activity_land_use_compliance(self):
@@ -390,7 +412,6 @@ class FarmActivity(models.Model):
                         raise ValidationError(_("Activity Type '%s' is not allowed on 'Permanent Basic Farmland' for parcel '%s'.") % (record.activity_family, parcel.name))
 
 class ProjectTask(models.Model):
-    _name = 'project.task'
     _inherit = 'project.task'
 
     @api.constrains('land_parcel_id', 'project_id')

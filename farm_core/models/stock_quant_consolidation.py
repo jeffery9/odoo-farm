@@ -42,6 +42,36 @@ class StockQuant(models.Model):
                     if 'is_vessel_locked' in tracking._fields and tracking.is_vessel_locked:
                         raise ValidationError(_("Jidoka Interlock Blocked: Vessel Lock is active on container %s. All movements and operations locked.") % tracking.name)
 
+                    # Check matter tracking carrier volume capacity
+                    if tracking.max_capacity_volume_m3 > 0.0:
+                        existing_quants = self.env['stock.quant'].search([
+                            ('package_id', '=', quant.package_id.id)
+                        ])
+                        total_volume = sum(existing_quants.mapped('quantity'))
+                        if total_volume > tracking.max_capacity_volume_m3:
+                            raise ValidationError(_(
+                                "Backpressure Limit Reached: Active vessel tracking carrier %s exceeds "
+                                "maximum physical capacity limit (%.2f m³)."
+                            ) % (tracking.package_id.name, tracking.max_capacity_volume_m3))
+
+            # Stocking Density Interlock Validation
+            if quant.location_id:
+                farm_loc = quant.location_id
+
+                if getattr(farm_loc, 'max_stocking_density', 0.0) > 0.0:
+                    existing_quants = self.env['stock.quant'].search([
+                        ('location_id', '=', quant.location_id.id)
+                    ])
+                    total_count = sum(existing_quants.mapped('quantity'))
+                    
+                    if getattr(farm_loc, 'land_area', 0.0) > 0.0:
+                        density = total_count / farm_loc.land_area
+                        if density > farm_loc.max_stocking_density:
+                            raise ValidationError(_(
+                                "Backpressure Limit Reached: Relocation of quantity %.2f would exceed "
+                                "maximum stocking density (%.2f units/m²) of target destination %s."
+                            ) % (quant.quantity, farm_loc.max_stocking_density, farm_loc.name))
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:

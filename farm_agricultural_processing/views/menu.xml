@@ -7,9 +7,9 @@
 
     <menuitem id="menu_processing_boms" name="Agri-Recipes" parent="menu_farm_agricultural_processing_root" action="mrp.mrp_bom_form_action" sequence="20" />
 
-    <menuitem id="menu_storage_monitoring" name="Storage Monitoring" parent="menu_farm_agricultural_processing_root" action="action_farm_storage_env" sequence="30" />
+    <menuitem id="menu_storage_monitoring" name="Storage Monitoring" parent="menu_farm_agricultural_processing_root" action="farm_iot.action_farm_storage_env" sequence="30" />
 
-    <menuitem id="menu_processing_waste" name="Waste Registry" parent="menu_farm_agricultural_processing_root" action="action_farm_agricultural_processing_waste" sequence="40" />
+    <menuitem id="menu_processing_waste" name="Waste Registry" parent="menu_farm_agricultural_processing_root" action="farm_waste_mgmt.action_farm_agricultural_processing_waste" sequence="40" />
     <menuitem id="menu_agri_processing_orders" name="Processing Orders" parent="farm_processing.menu_farm_processing_root" sequence="10" />
 
     <menuitem id="menu_farm_ham_production" name="Ham Curing" parent="menu_agri_processing_orders" action="action_farm_ham_production" sequence="10" />
