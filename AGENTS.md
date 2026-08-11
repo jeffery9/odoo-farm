@@ -4,7 +4,7 @@ This document defines the operational rules for AI agents and developers working
 
 
 ## 0. Quick Navigation
-*   **[LLM START HERE](docs/LLM_START_HERE.md)**: The Master Entry Point. Contains core Doc-Driven development paradigms, absolute mandates, and bilingual policy. You MUST align with this document before any logic implementation.
+*   **[LLM START HERE](/Users/jeffery/odoo-farm-workspace/docs/LLM_START_HERE.md)**: The Master Entry Point (Option A). Contains core Doc-Driven development paradigms, absolute mandates, and bilingual policy. You MUST align with this document before any logic implementation.
 
 ## 1. Agent Role & Responsibilities
 
@@ -98,12 +98,10 @@ The workspace is organized around a "Main Base" and a "Task Hub":
 
 
 
-## 8. STRICT SECURITY & PUBLICATION PROTOCOL (docs/)
+## 8. STRICT SECURITY & PUBLICATION PROTOCOL (Option A - Decentralized Docs)
 
-**ABSOLUTE MANDATE: You MUST explicitly ask the user for permission before publishing, copying, or pushing ANY file from the `docs/` directory of the `dev` branch to the public `19.0` release branch.**
+**ABSOLUTE MANDATE: All technical documentation, business epics, designs, and specifications have been physically decoupled and migrated to `/Users/jeffery/odoo-farm-workspace/docs/` (the standalone private documentation repository).**
 
-* **The `docs/` directory in `dev` is highly classified.** It contains confidential C2M Ecosystem strategies, multi-billion dollar business blueprints, unreleased 52-scenario architectures, internal Epic specifications, and LLM prompt engineering guidelines.
-* **The `docs/` directory in `19.0` is strictly curated.** It must only ever contain public-facing marketing pitches (e.g., the Top 8 Showcase) and technical specifications (e.g., Data Isolation Design) explicitly approved for external stakeholders.
-* **Never assume a document is safe to publish.** Even if you update a document in `dev`, do NOT automatically cherry-pick or merge that commit into `19.0`. Always halt execution and request user authorization: *"I have updated the document in `dev`. Shall I sanitize and publish this to the `19.0` release branch?"*
-
-* **PROMPT ENGINEERING PROTECTION:** Instruction files including `AGENTS.md`, `docs/LLM_START_HERE.md`, and any other files containing AI prompts or operational protocols are the intellectual property of the organization. They are strictly INTERNAL. **Under NO circumstances are you allowed to publish `AGENTS.md` or `LLM_START_HERE.md` to the `19.0` release branch.**
+* **No Docs in Code Repos**: Documentation files (including Markdown, image assets) are strictly forbidden from being committed or tracked inside the `odoo-farm-dev` and `odoo-farm` code repositories.
+* **Confidentiality by Default**: The standalone docs repository is highly classified. It contains confidential C2M Ecosystem strategies, multi-billion dollar business blueprints, unreleased 52-scenario architectures, internal Epic specifications, and LLM prompt engineering guidelines.
+* **PROMPT ENGINEERING PROTECTION:** Instruction files including `/docs/AGENTS.md` and `/docs/LLM_START_HERE.md` are strictly INTERNAL to the docs repository. Under NO circumstances are you allowed to copy, merge, or publish them inside `odoo-farm` code repository.
