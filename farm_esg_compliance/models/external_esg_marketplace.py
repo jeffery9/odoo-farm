@@ -352,13 +352,13 @@ class AgriWasteResourceTrade(models.Model):
     actual_collection_date = fields.Date('Actual Collection Date')
     payment_terms = fields.Char('Payment Terms')
 
-    # Compliance and documentation
+    # Compliance
     compliance_status = fields.Selection([
-        ('pending', 'Pending'),
+        ('pending', 'Pending Review'),
         ('verified', 'Verified'),
         ('non_compliant', 'Non-Compliant'),
     ], string='Compliance Status', default='pending')
-    #required_certifications removed
+    required_certifications = fields.Many2many('farm.certification.process', 'waste_trade_req_cert_rel', 'trade_id', 'cert_id', string='Required Certifications')
 
     # Documentation
     trade_agreement = fields.Binary('Trade Agreement', attachment=True)
