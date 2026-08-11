@@ -326,7 +326,7 @@ class AgriWasteResourceTrade(models.Model):
         ('low_grade', 'Low Grade'),
     ], string='Quality Grade', default='standard')
 
-    #quality_certifications removed
+    quality_certifications = fields.Many2many('farm.certification.process', 'waste_trade_qual_cert_rel', 'trade_id', 'cert_id', string='Quality Certifications')
     contamination_level = fields.Float('Contamination Level (%)', help='Level of contamination in the waste')
 
     # Trading information
