@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from . import test_backpressure_constraints
 from . import test_biological_asset_reflection
+from . import test_colocation_chatter
 from . import test_consolidation_constraints
 from . import test_consolidation_fields
 from . import test_converged_location
