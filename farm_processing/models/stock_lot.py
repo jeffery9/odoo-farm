@@ -45,7 +45,7 @@ class StockLot(models.Model):
         ('harvested', 'Harvested / Culled')
     ], string="Life Stage", compute='_compute_matter_physical_properties', inverse='_inverse_matter_life_stage', store=False)
     
-    gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('neutral', 'Neutral/Mixed')], string="Gender")
+    gender = fields.Selection([('male', 'Male'), ('female', 'Female'), ('neutral', 'Neutral/Mixed'), ('other', 'Mixed/Unknown')], string="Gender")
 
     @api.depends('quant_ids.package_id')
     def _compute_matter_physical_properties(self):
