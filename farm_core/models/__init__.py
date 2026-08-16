@@ -37,6 +37,7 @@ from . import farm_growth_curve  # Must be before product_template_extension
 # 5. Application/Business Models (Level 4)
 from . import product_template_extension
 from . import land_location
+from . import farm_location_3d
 from . import biological_asset
 from . import activity_operation
 from . import water_valve
