@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from odoo.tests.common import TransactionCase, tagged
-from odoo.exceptions import ValidationError
 
 @tagged('post_install', '-at_install')
 class TestPostGIS3DUAV(TransactionCase):
