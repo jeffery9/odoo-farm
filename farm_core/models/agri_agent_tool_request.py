@@ -10,21 +10,21 @@ class AgriAgentToolRequest(models.Model):
     _inherit = ['mail.thread']
 
     name = fields.Char(string='Request Reference', required=True, copy=False, readonly=True, default=lambda self: _('New'))
-    agent_identifier = fields.Char(string='Agent Identifier', required=True, readonly=True)
+    agent_identifier = fields.Char(string='Agent Identifier', required=True, readonly=True, index=True)
     target_action = fields.Char(string='Target Action', required=True, readonly=True)
     payload = fields.Text(string='Execution Payload', required=True, readonly=True)
     risk_tier = fields.Selection([
         ('green', 'Green (Read/Retrieve)'),
         ('yellow', 'Yellow (Low-Risk Config)'),
         ('red', 'Red (Physical/Critical Control)')
-    ], string='Risk Tier', required=True, default='green', readonly=True)
+    ], string='Risk Tier', required=True, default='green', readonly=True, index=True)
     
     state = fields.Selection([
         ('pending', 'Pending / 待审批'),
         ('approved', 'Approved / 已批准'),
         ('rejected', 'Rejected / 已拒绝'),
         ('executed', 'Executed / 已执行')
-    ], string='Status', default='pending', tracking=True)
+    ], string='Status', default='pending', tracking=True, index=True)
 
     approver_id = fields.Many2one('res.users', string='Approver', readonly=True)
     digital_signature = fields.Char(string='Digital Signature (SHA-256)', readonly=True)
@@ -39,13 +39,11 @@ class AgriAgentToolRequest(models.Model):
 
     def action_approve(self):
         """ GxP Human-in-the-loop approval generating an immutable SHA-256 signature """
+        if any(req.state != 'pending' for req in self):
+            raise ValidationError(_('Only pending requests can be approved. (仅能批准待处理请求。)'))
+            
+        timestamp = fields.Datetime.now()
         for req in self:
-            if req.state != 'pending':
-                raise ValidationError(_('Only pending requests can be approved. (仅能批准待处理请求。)'))
-            if self.env.user.id == 1: # Strict safety against raw SUPERUSER bypass
-                pass 
-                
-            timestamp = fields.Datetime.now()
             signature_base = f"{req.id}-{self.env.user.id}-{timestamp}-{req.payload}"
             signature = hashlib.sha256(signature_base.encode('utf-8')).hexdigest()
             
@@ -55,11 +53,11 @@ class AgriAgentToolRequest(models.Model):
                 'approval_timestamp': timestamp,
                 'digital_signature': signature
             })
-            req.message_post(body=f"GxP Request Approved. Signature: {signature}")
+            req.message_post(body=_("GxP Request Approved. Signature: %s (GxP 请求已批准。数字签名：%s)") % (signature, signature))
 
     def action_reject(self):
+        if any(req.state != 'pending' for req in self):
+            raise ValidationError(_('Only pending requests can be rejected. (仅能拒绝待处理请求。)'))
+        self.write({'state': 'rejected'})
         for req in self:
-            if req.state != 'pending':
-                raise ValidationError(_('Only pending requests can be rejected. (仅能拒绝待处理请求。)'))
-            req.write({'state': 'rejected'})
-            req.message_post(body="GxP Request Rejected by operator.")
+            req.message_post(body=_("GxP Request Rejected by operator. (GxP 请求已被操作员拒绝。)"))
