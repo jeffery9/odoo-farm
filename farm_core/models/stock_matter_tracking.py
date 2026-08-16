@@ -19,6 +19,13 @@ class StockMatterTracking(models.Model):
         help="The physical stock package delegated by this Individual Agricultural Tracking record."
     )
 
+    merkle_state_hash = fields.Char(
+        string='Merkle State Hash (级联状态哈希)',
+        size=64,
+        index=True,
+        default=''
+    )
+
     company_id = fields.Many2one(
         'res.company',
         string='Company',
