@@ -51,18 +51,24 @@ class FarmLot(models.Model):
                 lot.biological_stage = 'born'
 
     def _inverse_animal_count(self):
+        if self.env.context.get('bypass_legacy_write_block'):
+            return
         raise UserError(_(
             "Legacy Write Block: Animal Count is now managed dynamically by Matter Tracking (LPN/Vessel). "
             "Please update count on the active Matter Tracking container directly."
         ))
 
     def _inverse_average_weight(self):
+        if self.env.context.get('bypass_legacy_write_block'):
+            return
         raise UserError(_(
             "Legacy Write Block: Weight is now managed dynamically by Matter Tracking (LPN/Vessel). "
             "Please update the weight on the active Matter Tracking container directly."
         ))
 
     def _inverse_biological_stage(self):
+        if self.env.context.get('bypass_legacy_write_block'):
+            return
         raise UserError(_(
             "Legacy Write Block: Biological Stage is now managed dynamically by Matter Tracking (LPN/Vessel). "
             "Please update the stage on the active Matter Tracking container directly."
