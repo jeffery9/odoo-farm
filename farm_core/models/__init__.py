@@ -30,6 +30,7 @@ from . import agri_stock_move
 from . import agri_treatment_batch
 from . import stock_matter_tracking
 from . import stock_matter_tracking_link
+from . import stock_matter_link
 from . import stock_quant_consolidation
 from . import farm_growth_curve  # Must be before product_template_extension
 

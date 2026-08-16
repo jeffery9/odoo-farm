@@ -26,3 +26,4 @@ from . import test_tour_ui
 from . import test_uavm_core_hardening
 from . import test_weighted_average_decay
 from . import test_continuous_pipeline
+from . import test_genealogy_dag
