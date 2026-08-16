@@ -10,7 +10,10 @@ class TestDigitalTwin(TransactionCase):
         cls.Location = cls.env['farm.location'].create({'name': 'Greenhouse 1'})
         cls.Device = cls.env['iiot.device'].create({
             'serial_number': 'TWIN-DEV-001',
-            'profile_id': cls.env['iiot.device.profile'].create({'name': 'Twin Profile'}).id
+            'profile_id': cls.env['iiot.device.profile'].create({
+                'name': 'Twin Profile',
+                'code': 'twin_profile'
+            }).id
         })
 
     def test_01_scene_and_marker_setup(self):
