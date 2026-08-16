@@ -358,6 +358,11 @@ class StockMatterTracking(models.Model):
         })
         return True
 
+    def action_get_all_ancestors(self):
+        """ Get all recursive upstream ancestors using high-performance set-based BFS traversal """
+        self.ensure_one()
+        return self.action_trace_upstream()
+
     def action_trace_upstream(self):
         """
         High-Performance, Set-Based BFS Ancestry Traversal enforcing native Odoo Security rules (ir.rule).

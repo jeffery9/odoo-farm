@@ -482,6 +482,7 @@ class ContinuousPipelineMixin(models.AbstractModel):
     dna_integrity_score = fields.Float(
         string='DNA Integrity Score',
         default=100.0,
+        index=True,
         help="Maintained DNA integrity during continuous flows."
     )
     is_pipeline_active = fields.Boolean(

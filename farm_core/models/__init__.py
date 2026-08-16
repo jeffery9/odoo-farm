@@ -7,6 +7,7 @@ from . import agri_mixins
 from . import agri_evidence_mixin
 from . import agri_view_mixin
 from . import agri_odoo19_performance_security_mixin
+from . import agri_agent_tool_request
 
 # 2. Domain Entities (Level 2/3)
 from . import agri_location
@@ -30,12 +31,14 @@ from . import agri_stock_move
 from . import agri_treatment_batch
 from . import stock_matter_tracking
 from . import stock_matter_tracking_link
+from . import stock_matter_link
 from . import stock_quant_consolidation
 from . import farm_growth_curve  # Must be before product_template_extension
 
 # 5. Application/Business Models (Level 4)
 from . import product_template_extension
 from . import land_location
+from . import farm_location_3d
 from . import biological_asset
 from . import activity_operation
 from . import water_valve

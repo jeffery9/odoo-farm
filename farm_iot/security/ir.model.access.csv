@@ -17,3 +17,4 @@ access_agri_digital_twin_marker_user,agri.digital.twin.marker.user,model_agri_di
 access_agri_digital_twin_marker_manager,agri.digital.twin.marker.manager,model_agri_digital_twin_marker,base.group_system,1,1,1,1
 access_farm_storage_env_user,farm.storage.env.user,model_farm_storage_env,base.group_user,1,1,1,1
 access_farm_storage_env_manager,farm.storage.env.manager,model_farm_storage_env,base.group_system,1,1,1,1
+access_agri_iot_wal_log,agri.iot.wal.log,model_agri_iot_wal_log,base.group_user,1,1,1,1
