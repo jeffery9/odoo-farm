@@ -19,3 +19,4 @@ access_farm_storage_env_user,farm.storage.env.user,model_farm_storage_env,base.g
 access_farm_storage_env_manager,farm.storage.env.manager,model_farm_storage_env,base.group_system,1,1,1,1
 access_agri_iot_wal_log,agri.iot.wal.log,model_agri_iot_wal_log,base.group_user,1,1,1,1
 access_agri_telemetry_series,agri.telemetry.series,model_agri_telemetry_series,base.group_user,1,1,1,1
+access_farm_water_valve,farm.water.valve,model_farm_water_valve,base.group_user,1,1,1,1

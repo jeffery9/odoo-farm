@@ -7,3 +7,4 @@ from . import test_integration_flows
 from . import test_tour_ui
 from . import test_uavm_reflection
 from . import test_uavm_sandbox
+from . import test_gxp_security_gateway

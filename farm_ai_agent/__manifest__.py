@@ -18,6 +18,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "data/ir_sequence_data.xml",
         "views/a2a_react_loop_views.xml",
         "views/ai_skill_views.xml",
         "views/menu.xml",
