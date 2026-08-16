@@ -1,1 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_crop_rotation_history,farm.crop.rotation.history,model_farm_crop_rotation_history,base.group_user,1,1,1,1
+access_farm_crop_cycle,farm.crop.cycle,model_farm_crop_cycle,base.group_user,1,1,1,1
