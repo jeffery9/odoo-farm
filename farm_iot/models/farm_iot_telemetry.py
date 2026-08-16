@@ -76,3 +76,38 @@ class FarmIotTelemetry(models.Model):
             'note': msg_body,
             'user_id': telemetry.device_id.create_uid.id or self.env.user.id,
         })
+
+    @api.model
+    def action_bulk_insert_telemetry(self, vals_list):
+        """ Perform rapid raw SQL bulk insertion bypassing Odoo ORM overhead """
+        if not vals_list:
+            return True
+
+        # Clean list and construct tuples
+        insert_tuples = []
+        now = fields.Datetime.now()
+        for v in vals_list:
+            insert_tuples.append((
+                v.get('name', 'Bulk Sensor'),
+                v.get('sensor_type', 'temperature'),
+                float(v.get('value', 0.0)),
+                v.get('timestamp') or now,
+                v.get('device_id'),
+                float(v.get('gps_lat', 0.0)),
+                float(v.get('gps_lng', 0.0)),
+                self.env.uid or 1,
+                now,
+                self.env.uid or 1,
+                now
+            ))
+
+        # Execute execute_values for high speed streaming
+        from psycopg2.extras import execute_values
+        query = """
+            INSERT INTO iiot_telemetry (name, sensor_type, value, timestamp, device_id, gps_lat, gps_lng, create_uid, create_date, write_uid, write_date)
+            VALUES %s
+        """
+        self.env.cr.flush() # Ensure registry cache flushes
+        execute_values(self.env.cr._obj, query, insert_tuples)
+        self.invalidate_model() # Flush memory cache to keep ORM in sync
+        return True
