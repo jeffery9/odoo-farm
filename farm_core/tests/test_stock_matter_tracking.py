@@ -291,5 +291,44 @@ class TestStockMatterTrackingBase(TransactionCase):
         self.assertTrue(any('Confidence:' in m.body and '95' in m.body for m in ai_messages))
         self.assertTrue(any('Optimal maturity index reached.' in m.body for m in ai_messages))
 
+    def test_11_nowait_concurrency_lock(self):
+        """ Verify action_lock_for_write aborts immediately with a ValidationError when blocked """
+        # Open parallel database cursor to handle creation, commit, and lock
+        new_cr = self.registry.cursor()
+        
+        # 1. Insert packages and matter tracking via parallel cursor and commit so others can see it
+        new_cr.execute("INSERT INTO stock_package (name) VALUES ('MAT-LOCK-999') RETURNING id")
+        pkg_id = new_cr.fetchone()[0]
+        new_cr.execute(
+            "INSERT INTO stock_matter_tracking (id, package_id, vessel_phase, carrier_state) VALUES (%s, %s, 'idle', 'idle')",
+            (pkg_id, pkg_id)
+        )
+        new_cr.commit()
+
+        # 2. Re-acquire lock on the created row in the parallel cursor
+        new_cr.execute("SELECT id FROM stock_matter_tracking WHERE id = %s FOR UPDATE", (pkg_id,))
+        
+        # 3. Open another parallel cursor representing our active session
+        active_cr = self.registry.cursor()
+        
+        try:
+            # Bind the Environment to active_cr so it can see the committed record and test the model method
+            active_env = self.env(cr=active_cr)
+            tracking = active_env['stock.matter.tracking'].browse(pkg_id)
+            
+            from odoo.exceptions import ValidationError
+            with self.assertRaises(ValidationError) as context:
+                # This must fail instantly because new_cr holds the row lock!
+                tracking.action_lock_for_write()
+            self.assertIn("CARRIER_ROW_LOCKED_TRY_AGAIN", str(context.exception))
+        finally:
+            active_cr.close()
+            # 4. Rollback the lock, delete the row, and commit via the parallel cursor
+            new_cr.rollback()
+            new_cr.execute("DELETE FROM stock_matter_tracking WHERE id = %s", (pkg_id,))
+            new_cr.execute("DELETE FROM stock_package WHERE id = %s", (pkg_id,))
+            new_cr.commit()
+            new_cr.close()
+
 
 
