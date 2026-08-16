@@ -10,6 +10,9 @@ class ResPartner(models.Model):
     
     # GS1 Global Identifiers [EPCIS Alignment]
     gs1_gln = fields.Char('GS1 GLN', help='Global Location Number (13 digits)', size=13)
+
+    # Monetized Sustainability Credit Balance
+    impact_credits = fields.Float('Sustainability Credits (可持续发展信用额度)', default=0.0)
     
     # We use credit_score defined in SustainabilityMixin
     

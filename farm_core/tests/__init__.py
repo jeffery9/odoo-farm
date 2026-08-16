@@ -29,3 +29,4 @@ from . import test_continuous_pipeline
 from . import test_genealogy_dag
 from . import test_postgis_3d_uav
 from . import test_gxp_security_gateway
+from . import test_campaign_2_trust_and_robotics

@@ -50,10 +50,7 @@ class AgriClearingLedger(models.Model):
         Manually approves a transaction. This will trigger compute field updates.
         """
         for record in self:
-            record.state = 'confirmed'
-            # Force recompute of linked records
-            if record.partner_id:
-                record.partner_id._compute_reputation_credit_score()
+            record.write({'state': 'confirmed'})
         return True
 
     @api.model_create_multi
@@ -61,4 +58,19 @@ class AgriClearingLedger(models.Model):
         for vals in vals_list:
             if vals.get('name', _('New')) == _('New'):
                 vals['name'] = self.env['ir.sequence'].next_by_code('agri.clearing.ledger') or '/'
-        return super(AgriClearingLedger, self).create(vals_list)
+        records = super(AgriClearingLedger, self).create(vals_list)
+        for record in records:
+            if record.state == 'confirmed' and record.partner_id and record.credit_change:
+                record.partner_id.impact_credits += record.credit_change
+                record.partner_id._compute_reputation_credit_score()
+        return records
+
+    def write(self, vals):
+        states_before = {r.id: r.state for r in self}
+        res = super(AgriClearingLedger, self).write(vals)
+        if vals.get('state') == 'confirmed':
+            for r in self:
+                if states_before.get(r.id) != 'confirmed' and r.partner_id and r.credit_change:
+                    r.partner_id.impact_credits += r.credit_change
+                    r.partner_id._compute_reputation_credit_score()
+        return res
