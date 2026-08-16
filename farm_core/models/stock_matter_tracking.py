@@ -564,6 +564,23 @@ class StockMatterTracking(models.Model):
                 vals['name'] = self.env['ir.sequence'].next_by_code('stock.matter.tracking') or '/'
         return super(StockMatterTracking, self).create(vals_list)
 
+    def action_lock_for_write(self):
+        """ Acquire non-blocking row locks on matter tracking records """
+        self.ensure_one()
+        try:
+            # Enforce lock on active row using NOWAIT
+            self.env.cr.execute(
+                'SELECT id FROM stock_matter_tracking WHERE id = %s FOR UPDATE NOWAIT',
+                (self.id,)
+            )
+        except Exception as e:
+            # Translate psycopg2 lock exceptions gracefully
+            from odoo.exceptions import ValidationError
+            raise ValidationError(
+                "CARRIER_ROW_LOCKED_TRY_AGAIN: The matter carrier record is currently being updated by another process. Please try again! (载体记录正在被另一个进程更新，请稍后重试！)"
+            )
+        return True
+
 
 class StockMatterTrackingSnapshot(models.Model):
     _name = 'stock.matter.tracking.snapshot'
