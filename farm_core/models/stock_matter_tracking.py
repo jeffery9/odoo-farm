@@ -367,53 +367,53 @@ class StockMatterTracking(models.Model):
 
     def action_trace_upstream(self):
         """
-        Recursive traceability query retrieving all ancestral carriers of this record using recursive CTE.
-        Returns a recordset of stock.matter.tracking.
+        High-Performance, Set-Based BFS Ancestry Traversal enforcing native Odoo Security rules (ir.rule).
+        Returns a recordset of all ancestor stock.matter.tracking records.
         """
         self.ensure_one()
-        query = """
-            WITH RECURSIVE upstream_trace AS (
-                SELECT parent_id, child_id, transition_type, 1 AS depth
-                FROM stock_matter_tracking_link
-                WHERE child_id = %s
-                
-                UNION ALL
-                
-                SELECT l.parent_id, l.child_id, l.transition_type, ut.depth + 1
-                FROM stock_matter_tracking_link l
-                INNER JOIN upstream_trace ut ON l.child_id = ut.parent_id
-            )
-            SELECT DISTINCT parent_id FROM upstream_trace;
-        """
-        self.env.cr.execute(query, (self.id,))
-        res = self.env.cr.fetchall()
-        parent_ids = [r[0] for r in res]
-        return self.browse(parent_ids)
+        ancestors = self.env['stock.matter.tracking']
+        queue = {self.id}
+        visited = set()
+        
+        while queue:
+            current_ids = list(queue - visited)
+            if not current_ids:
+                break
+            visited.update(current_ids)
+            
+            # Bulk query parent links in one step (respects ir.rule)
+            links = self.env['stock.matter.tracking.link'].search([('child_id', 'in', current_ids)])
+            parent_ids = links.mapped('parent_id.id')
+            
+            ancestors |= links.mapped('parent_id')
+            queue = set(parent_ids)
+            
+        return ancestors
 
     def action_trace_downstream(self):
         """
-        Recursive traceability query retrieving all descendant carriers of this record using recursive CTE.
-        Returns a recordset of stock.matter.tracking.
+        High-Performance, Set-Based BFS Descendant Traversal enforcing native Odoo Security rules (ir.rule).
+        Returns a recordset of all descendant stock.matter.tracking records.
         """
         self.ensure_one()
-        query = """
-            WITH RECURSIVE downstream_trace AS (
-                SELECT parent_id, child_id, transition_type, 1 AS depth
-                FROM stock_matter_tracking_link
-                WHERE parent_id = %s
-                
-                UNION ALL
-                
-                SELECT l.parent_id, l.child_id, l.transition_type, dt.depth + 1
-                FROM stock_matter_tracking_link l
-                INNER JOIN downstream_trace dt ON l.parent_id = dt.child_id
-            )
-            SELECT DISTINCT child_id FROM downstream_trace;
-        """
-        self.env.cr.execute(query, (self.id,))
-        res = self.env.cr.fetchall()
-        child_ids = [r[0] for r in res]
-        return self.browse(child_ids)
+        descendants = self.env['stock.matter.tracking']
+        queue = {self.id}
+        visited = set()
+        
+        while queue:
+            current_ids = list(queue - visited)
+            if not current_ids:
+                break
+            visited.update(current_ids)
+            
+            # Bulk query child links in one step (respects ir.rule)
+            links = self.env['stock.matter.tracking.link'].search([('parent_id', 'in', current_ids)])
+            child_ids = links.mapped('child_id.id')
+            
+            descendants |= links.mapped('child_id')
+            queue = set(child_ids)
+            
+        return descendants
 
     def action_capture_snapshot(self):
         self.ensure_one()
