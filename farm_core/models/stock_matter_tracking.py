@@ -521,6 +521,43 @@ class StockMatterTracking(models.Model):
                     'consolidation_history': False
                 })
 
+    def log_iot_event(self, device_name, payload, level='info'):
+        """Logs structured IoT telemetry to the chatter."""
+        subtype_id = self.env.ref('farm_core.mt_subtype_iot_telemetry').id
+        color = 'gray'
+        if level == 'warning': color = 'orange'
+        elif level == 'critical': color = 'red'
+        
+        body = f"""
+        <div>
+            <strong>IoT Telemetry: {device_name}</strong>
+            <div style="padding: 5px; border-left: 3px solid {color}; background-color: #f8f9fa;">
+                <code>{payload}</code>
+            </div>
+        </div>
+        """
+        for record in self:
+            record.message_post(body=body, subtype_id=subtype_id)
+        return True
+
+    def log_ai_decision(self, agent_name, action, confidence, rationale):
+        """Logs structured AI Agent decisions to the chatter."""
+        subtype_id = self.env.ref('farm_core.mt_subtype_ai_decision').id
+        
+        body = f"""
+        <div>
+            <strong>🤖 AI Decision: {agent_name}</strong><br/>
+            <ul>
+                <li><strong>Action:</strong> {action}</li>
+                <li><strong>Confidence:</strong> {confidence}%</li>
+            </ul>
+            <blockquote>{rationale}</blockquote>
+        </div>
+        """
+        for record in self:
+            record.message_post(body=body, subtype_id=subtype_id)
+        return True
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
