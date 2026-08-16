@@ -13,3 +13,5 @@ from . import test_tour_ui
 from . import test_iot_wal_buffering
 from . import test_iot_sync_pipeline
 from . import test_high_throughput_concurrency
+from . import test_water_valve_backpressure
+from . import test_epic_138

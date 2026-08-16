@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_agri_agent_tool_request" model="ir.sequence">
+            <field name="name">GxP Agent Request Sequence</field>
+            <field name="code">agri.agent.tool.request</field>
+            <field name="prefix">GXP-REQ-</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False" />
+        </record>
+    </data>
+</odoo>

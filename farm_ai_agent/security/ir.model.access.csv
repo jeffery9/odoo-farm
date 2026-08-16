@@ -20,3 +20,4 @@ access_agri_a2a_react_tool,access_agri_a2a_react_tool,model_agri_a2a_react_tool,
 access_agri_a2a_react_loop,access_agri_a2a_react_loop,model_agri_a2a_react_loop,base.group_user,1,1,1,1
 access_agri_a2a_react_loop_line,access_agri_a2a_react_loop_line,model_agri_a2a_react_loop_line,base.group_user,1,1,1,1
 access_agri_ai_agent_skill,access_agri_ai_agent_skill,model_agri_ai_agent_skill,base.group_user,1,1,1,1
+access_agri_agent_tool_request,agri.agent.tool.request,model_agri_agent_tool_request,base.group_user,1,1,1,1

@@ -8,7 +8,7 @@ class FarmWaterValve(models.Model):
     """
     _name = 'farm.water.valve'
     _description = 'Farm Water Valve'
-    _inherit = ['mail.thread', 'agri.agent.sandbox.mixin']
+    _inherit = ['mail.thread']
 
     name = fields.Char("Valve Name (水阀名称)", required=True)
     status = fields.Selection([
