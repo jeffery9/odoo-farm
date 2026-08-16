@@ -6,7 +6,7 @@ class StockMatterTracking(models.Model):
 
     livestock_asset_id = fields.Many2one(
         comodel_name='farm.livestock.asset',
-        string="Livestock Biological Asset (畜牧生物资产)",
+        string="Livestock Biological Asset (畜牧活体生物资产)",
         ondelete='set null',
         index=True
     )

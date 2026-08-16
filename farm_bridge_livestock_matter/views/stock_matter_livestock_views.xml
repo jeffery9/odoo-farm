@@ -5,7 +5,7 @@
         <field name="model">stock.matter.tracking</field>
         <field name="inherit_id" ref="farm_core.view_stock_matter_tracking_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='last_location_update']" position="after">
+            <xpath expr="//field[@name='biological_asset_id']" position="after">
                 <field name="livestock_asset_id" invisible="not livestock_asset_id"/>
             </xpath>
         </field>
