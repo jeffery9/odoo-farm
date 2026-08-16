@@ -18,33 +18,62 @@ class BddTransactionCase(TransactionCase):
 
     def execute_gherkin_steps(self, steps):
         """
-        Executes a list of Gherkin steps sequentially.
+        Executes a list of Gherkin steps sequentially with smart lookahead exception capturing.
         """
         self._active_record = None
         self._expect_exception = None
         self._captured_exception = None
 
-        for step in steps:
-            step_clean = step.strip()
-            if not step_clean:
+        steps_clean = [s.strip() for s in steps if s.strip()]
+        skip_next = False
+
+        for idx, step in enumerate(steps_clean):
+            if skip_next:
+                skip_next = False
                 continue
-            
-            # 1. Capture exceptions if expected
-            if self._expect_exception:
+
+            # Lookahead: if the next step expects an exception, wrap current step in try-except
+            expecting_error = None
+            if idx + 1 < len(steps_clean):
+                next_step = steps_clean[idx + 1]
+                m_raise = re.search(r'Then the system must raise a (?P<exc>ValidationError|UserError)', next_step)
+                if m_raise:
+                    expecting_error = m_raise.group('exc')
+
+            if expecting_error:
                 try:
-                    self._run_step(step_clean)
+                    self._run_step(step)
                 except (ValidationError, UserError) as e:
                     self._captured_exception = e
-                    # Verify the exception type matches
-                    expected_class = ValidationError if self._expect_exception == "ValidationError" else UserError
+                    expected_class = ValidationError if expecting_error == "ValidationError" else UserError
                     if not isinstance(e, expected_class):
-                        raise AssertionError(f"Expected exception {self._expect_exception}, but got {type(e).__name__}: {str(e)}")
-                    # Reset expected exception
-                    self._expect_exception = None
-            else:
-                self._run_step(step_clean)
+                        raise AssertionError(f"Expected exception {expecting_error}, but got {type(e).__name__}: {str(e)}")
+                    # Process the next 'Then... raise' step immediately as part of exception handling
+                    m_status = re.search(r'transition status to "(?P<status>[^"]+)"', next_step)
+                    if m_status and self._active_record:
+                        expected_status = m_status.group('status')
+                        actual_status = self._active_record.status if 'status' in self._active_record._fields else self._active_record.state
+                        self.assertEqual(actual_status, expected_status)
+                    skip_next = True
+                    continue
+                raise AssertionError(f"Expected exception {expecting_error} to be raised, but transaction passed successfully.")
 
-        # If we reached the end of steps but expected an exception that was never raised
+            # Standard Then the system must raise step if hit directly
+            m_raise = re.search(r'Then the system must raise a (?P<exc>ValidationError|UserError)', step)
+            if m_raise:
+                if self._captured_exception:
+                    m_status = re.search(r'transition status to "(?P<status>[^"]+)"', step)
+                    if m_status and self._active_record:
+                        expected_status = m_status.group('status')
+                        actual_status = self._active_record.status if 'status' in self._active_record._fields else self._active_record.state
+                        self.assertEqual(actual_status, expected_status)
+                    continue
+                else:
+                    self._expect_exception = m_raise.group('exc')
+                    continue
+
+            self._run_step(step)
+
         if self._expect_exception:
             raise AssertionError(f"Expected exception {self._expect_exception} to be raised, but transaction passed successfully.")
 
@@ -105,10 +134,14 @@ class BddTransactionCase(TransactionCase):
             return
 
         # 3. When the telemetric sensor reports pressure exceeding 150.0 PSI with a reading of 165.0 PSI
-        m_telemetry = re.search(r'reports (?P<field>[a-z0-9_]+) exceeding (?P<limit>[0-9\.]+) with a reading of (?P<value>[0-9\.]+)', step)
+        m_telemetry = re.search(r'reports (?P<field>[a-z0-9_]+) exceeding (?P<limit>[0-9\.]+).*with a reading of (?P<value>[0-9\.]+)', step)
         if m_telemetry and self._active_record:
             field = m_telemetry.group('field')
             value = float(m_telemetry.group('value'))
+            
+            # Map field names if they mismatch model fields
+            if field == 'pressure' and 'pressure_psi' in self._active_record._fields:
+                field = 'pressure_psi'
             
             if field in self._active_record._fields:
                 self._active_record.write({field: value})

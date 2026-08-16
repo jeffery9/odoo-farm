@@ -19,6 +19,16 @@ class StockMatterTracking(models.Model):
         help="The physical stock package delegated by this Individual Agricultural Tracking record."
     )
 
+    company_id = fields.Many2one(
+        'res.company',
+        string='Company',
+        related='package_id.company_id',
+        store=True,
+        index=True,
+        readonly=True,
+        help="Multi-company data isolation partition key."
+    )
+
     biological_asset_id = fields.Many2one(
         'agri.biological.asset',
         string='Tracked Biological Asset / 个体资产',
@@ -230,6 +240,15 @@ class StockMatterTracking(models.Model):
             if not coords:
                 return False
 
+            # Stage 1: Fast Bounding Box Envelope Filter
+            lats = [c[1] for c in coords]
+            lngs = [c[0] for c in coords]
+            min_lat, max_lat = min(lats), max(lats)
+            min_lng, max_lng = min(lngs), max(lngs)
+            if not (min_lat <= lat <= max_lat and min_lng <= lng <= max_lng):
+                return False
+
+            # Stage 2: Ray-Casting Containment Algorithm
             inside = False
             n = len(coords)
             p1x, p1y = coords[0][0], coords[0][1]  # lng, lat
@@ -348,53 +367,53 @@ class StockMatterTracking(models.Model):
 
     def action_trace_upstream(self):
         """
-        Recursive traceability query retrieving all ancestral carriers of this record using recursive CTE.
-        Returns a recordset of stock.matter.tracking.
+        High-Performance, Set-Based BFS Ancestry Traversal enforcing native Odoo Security rules (ir.rule).
+        Returns a recordset of all ancestor stock.matter.tracking records.
         """
         self.ensure_one()
-        query = """
-            WITH RECURSIVE upstream_trace AS (
-                SELECT parent_id, child_id, transition_type, 1 AS depth
-                FROM stock_matter_tracking_link
-                WHERE child_id = %s
-                
-                UNION ALL
-                
-                SELECT l.parent_id, l.child_id, l.transition_type, ut.depth + 1
-                FROM stock_matter_tracking_link l
-                INNER JOIN upstream_trace ut ON l.child_id = ut.parent_id
-            )
-            SELECT DISTINCT parent_id FROM upstream_trace;
-        """
-        self.env.cr.execute(query, (self.id,))
-        res = self.env.cr.fetchall()
-        parent_ids = [r[0] for r in res]
-        return self.browse(parent_ids)
+        ancestors = self.env['stock.matter.tracking']
+        queue = {self.id}
+        visited = set()
+        
+        while queue:
+            current_ids = list(queue - visited)
+            if not current_ids:
+                break
+            visited.update(current_ids)
+            
+            # Bulk query parent links in one step (respects ir.rule)
+            links = self.env['stock.matter.tracking.link'].search([('child_id', 'in', current_ids)])
+            parent_ids = links.mapped('parent_id.id')
+            
+            ancestors |= links.mapped('parent_id')
+            queue = set(parent_ids)
+            
+        return ancestors
 
     def action_trace_downstream(self):
         """
-        Recursive traceability query retrieving all descendant carriers of this record using recursive CTE.
-        Returns a recordset of stock.matter.tracking.
+        High-Performance, Set-Based BFS Descendant Traversal enforcing native Odoo Security rules (ir.rule).
+        Returns a recordset of all descendant stock.matter.tracking records.
         """
         self.ensure_one()
-        query = """
-            WITH RECURSIVE downstream_trace AS (
-                SELECT parent_id, child_id, transition_type, 1 AS depth
-                FROM stock_matter_tracking_link
-                WHERE parent_id = %s
-                
-                UNION ALL
-                
-                SELECT l.parent_id, l.child_id, l.transition_type, dt.depth + 1
-                FROM stock_matter_tracking_link l
-                INNER JOIN downstream_trace dt ON l.parent_id = dt.child_id
-            )
-            SELECT DISTINCT child_id FROM downstream_trace;
-        """
-        self.env.cr.execute(query, (self.id,))
-        res = self.env.cr.fetchall()
-        child_ids = [r[0] for r in res]
-        return self.browse(child_ids)
+        descendants = self.env['stock.matter.tracking']
+        queue = {self.id}
+        visited = set()
+        
+        while queue:
+            current_ids = list(queue - visited)
+            if not current_ids:
+                break
+            visited.update(current_ids)
+            
+            # Bulk query child links in one step (respects ir.rule)
+            links = self.env['stock.matter.tracking.link'].search([('parent_id', 'in', current_ids)])
+            child_ids = links.mapped('child_id.id')
+            
+            descendants |= links.mapped('child_id')
+            queue = set(child_ids)
+            
+        return descendants
 
     def action_capture_snapshot(self):
         self.ensure_one()
@@ -502,6 +521,43 @@ class StockMatterTracking(models.Model):
                     'consolidation_history': False
                 })
 
+    def log_iot_event(self, device_name, payload, level='info'):
+        """Logs structured IoT telemetry to the chatter."""
+        subtype_id = self.env.ref('farm_core.mt_subtype_iot_telemetry').id
+        color = 'gray'
+        if level == 'warning': color = 'orange'
+        elif level == 'critical': color = 'red'
+        
+        body = f"""
+        <div>
+            <strong>IoT Telemetry: {device_name}</strong>
+            <div style="padding: 5px; border-left: 3px solid {color}; background-color: #f8f9fa;">
+                <code>{payload}</code>
+            </div>
+        </div>
+        """
+        for record in self:
+            record.message_post(body=body, subtype_id=subtype_id)
+        return True
+
+    def log_ai_decision(self, agent_name, action, confidence, rationale):
+        """Logs structured AI Agent decisions to the chatter."""
+        subtype_id = self.env.ref('farm_core.mt_subtype_ai_decision').id
+        
+        body = f"""
+        <div>
+            <strong>🤖 AI Decision: {agent_name}</strong><br/>
+            <ul>
+                <li><strong>Action:</strong> {action}</li>
+                <li><strong>Confidence:</strong> {confidence}%</li>
+            </ul>
+            <blockquote>{rationale}</blockquote>
+        </div>
+        """
+        for record in self:
+            record.message_post(body=body, subtype_id=subtype_id)
+        return True
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
@@ -517,6 +573,15 @@ class StockMatterTrackingSnapshot(models.Model):
     _order = 'timestamp desc'
 
     tracking_id = fields.Many2one('stock.matter.tracking', string='Matter Tracking Source', required=True, ondelete='cascade', index=True)
+    company_id = fields.Many2one(
+        'res.company',
+        string='Company',
+        related='tracking_id.company_id',
+        store=True,
+        index=True,
+        readonly=True,
+        help="Multi-company data isolation partition key for snapshots."
+    )
     vessel_phase = fields.Selection([
         ('idle', 'Idle / 空闲'),
         ('ready', 'Ready / 待命'),

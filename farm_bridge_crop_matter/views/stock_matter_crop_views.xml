@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_matter_tracking_form_inherit_crop" model="ir.ui.view">
+        <field name="name">stock.matter.tracking.form.inherit.crop</field>
+        <field name="model">stock.matter.tracking</field>
+        <field name="inherit_id" ref="farm_core.view_stock_matter_tracking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='last_location_update']" position="after">
+                <field name="crop_cycle_id" invisible="not crop_cycle_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
