@@ -8,6 +8,7 @@ from . import agri_evidence_mixin
 from . import agri_view_mixin
 from . import agri_odoo19_performance_security_mixin
 from . import agri_agent_tool_request
+from . import agri_agent_sandbox_mixin
 
 # 2. Domain Entities (Level 2/3)
 from . import agri_location

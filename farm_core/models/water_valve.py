@@ -8,6 +8,7 @@ class FarmWaterValve(models.Model):
     """
     _name = 'farm.water.valve'
     _description = 'Farm Water Valve'
+    _inherit = ['agri.agent.sandbox.mixin']
 
     name = fields.Char("Valve Name", required=True)
     status = fields.Selection([('open', 'Open'), ('cutoff', 'Cut-Off')], default='open', string="Status")

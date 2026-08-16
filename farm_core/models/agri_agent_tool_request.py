@@ -61,3 +61,41 @@ class AgriAgentToolRequest(models.Model):
         self.write({'state': 'rejected'})
         for req in self:
             req.message_post(body=_("GxP Request Rejected by operator. (GxP 请求已被操作员拒绝。)"))
+
+    def action_execute_payload(self):
+        """ Dynamically run approved red-tier tool request using digital signatures """
+        for req in self:
+            if req.state != 'approved':
+                raise ValidationError(_("Only approved requests can be executed. (仅能执行已批准的请求。)") + f" [State: {req.state}]")
+            if not req.digital_signature:
+                raise ValidationError(_("Missing signature verification. (数字签名验证缺失。)"))
+                
+            # Parse target and method from action name (e.g. "farm.water.valve,write")
+            try:
+                model_name, method_name = req.target_action.split(',')
+            except ValueError:
+                raise ValidationError(_("Invalid target action format. Expected 'model_name,method_name'. (动作格式无效。格式应为 'model_name,method_name')"))
+                
+            import json
+            payload = json.loads(req.payload)
+            record_id = payload.get('res_id')
+            args = payload.get('args', {})
+            
+            # Execute state change within an isolated savepoint
+            with self.env.cr.savepoint():
+                record = self.env[model_name].browse(record_id)
+                if not record.exists():
+                    raise ValidationError(_("Target record not found. (目标记录未找到。)") + f" [{model_name}#{record_id}]")
+                
+                # Execute action dynamically
+                if hasattr(record, method_name):
+                    method = getattr(record, method_name)
+                    if method_name == 'write':
+                        method(args)
+                    else:
+                        method(**args)
+                else:
+                    raise ValidationError(_("Method not found. (方法未找到。)") + f" [{model_name}#{method_name}]")
+                    
+                req.write({'state': 'executed'})
+                req.message_post(body=_("GxP request payload successfully executed. (GxP 请求载荷执行成功。)"))
