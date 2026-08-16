@@ -23,6 +23,7 @@
         'data/ir_sequence_data.xml',
         'data/product_category_data.xml',
         'data/ir_cron_data.xml',
+        'data/mail_message_subtype_data.xml',
         'views/land_location_management_views.xml',
         'views/activity_operation_management_views.xml',
         'views/farm_activity_views.xml',

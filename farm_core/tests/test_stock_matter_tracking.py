@@ -222,4 +222,25 @@ class TestStockMatterTrackingBase(TransactionCase):
         self.assertEqual(tracking.farm_location_id, plot)
         self.assertEqual(tracking.last_gps_lat, 30.5)
 
+    def test_09_custom_message_subtypes(self):
+        """ Test registered custom mail message subtypes for Colocation Era chatter """
+        iot_subtype = self.env.ref('farm_core.mt_subtype_iot_telemetry')
+        ai_subtype = self.env.ref('farm_core.mt_subtype_ai_decision')
+        gxp_subtype = self.env.ref('farm_core.mt_subtype_gxp_audit')
+
+        self.assertTrue(iot_subtype)
+        self.assertEqual(iot_subtype.name, 'IoT Telemetry')
+        self.assertEqual(iot_subtype.res_model, 'stock.matter.tracking')
+        self.assertEqual(iot_subtype.description, 'Hardware sensor logs and threshold alerts')
+
+        self.assertTrue(ai_subtype)
+        self.assertEqual(ai_subtype.name, 'AI Decision')
+        self.assertEqual(ai_subtype.res_model, 'stock.matter.tracking')
+        self.assertEqual(ai_subtype.description, 'AI agent ensemble voting and logic outputs')
+
+        self.assertTrue(gxp_subtype)
+        self.assertEqual(gxp_subtype.name, 'GxP Audit')
+        self.assertEqual(gxp_subtype.res_model, 'stock.matter.tracking')
+        self.assertEqual(gxp_subtype.description, 'High-security human sign-offs')
+
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="mt_subtype_iot_telemetry" model="mail.message.subtype">
+            <field name="name">IoT Telemetry</field>
+            <field name="res_model">stock.matter.tracking</field>
+            <field name="default" eval="True"/>
+            <field name="description">Hardware sensor logs and threshold alerts</field>
+        </record>
+
+        <record id="mt_subtype_ai_decision" model="mail.message.subtype">
+            <field name="name">AI Decision</field>
+            <field name="res_model">stock.matter.tracking</field>
+            <field name="default" eval="True"/>
+            <field name="description">AI agent ensemble voting and logic outputs</field>
+        </record>
+
+        <record id="mt_subtype_gxp_audit" model="mail.message.subtype">
+            <field name="name">GxP Audit</field>
+            <field name="res_model">stock.matter.tracking</field>
+            <field name="default" eval="True"/>
+            <field name="description">High-security human sign-offs</field>
+        </record>
+    </data>
+</odoo>
