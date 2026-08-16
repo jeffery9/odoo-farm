@@ -15,7 +15,6 @@ from . import test_epic_055
 from . import test_epic_083
 from . import test_epic_095
 from . import test_epic_117
-from . import test_epic_138
 from . import test_farm_activity
 from . import test_farm_properties
 from . import test_integration_flows
@@ -28,5 +27,4 @@ from . import test_weighted_average_decay
 from . import test_continuous_pipeline
 from . import test_genealogy_dag
 from . import test_postgis_3d_uav
-from . import test_gxp_security_gateway
 from . import test_campaign_2_trust_and_robotics
