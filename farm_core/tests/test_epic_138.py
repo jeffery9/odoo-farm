@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+from odoo.tests.common import tagged
 from odoo.addons.farm_core.tests.bdd_base import BddTransactionCase
 from odoo.exceptions import UserError, ValidationError
 
+@tagged('post_install', '-at_install')
 class TestEpic138(BddTransactionCase):
     """ BDD Test Suite for Epic 138: Epic 138 Autonomous Water Gating (农场智能水阀自动闭锁控制) """
 
