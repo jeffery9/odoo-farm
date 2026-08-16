@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
+import hashlib
 
 class StockMatterTrackingLink(models.Model):
     _inherit = 'stock.matter.tracking.link'
@@ -22,6 +23,7 @@ class StockMatterTrackingLink(models.Model):
         for record in records:
             record._check_cyclic_loop()
             record._propagate_dna_and_entropy()
+            record._calculate_and_propagate_merkle_hash()
         return records
 
     def _check_cyclic_loop(self):
@@ -57,3 +59,31 @@ class StockMatterTrackingLink(models.Model):
             decayed_dna = avg_score * 0.95
             
         child.write({'dna_integrity_score': max(0.0, min(100.0, decayed_dna))})
+
+    def _calculate_and_propagate_merkle_hash(self):
+        """ Dynamic Merkle SHA-256 state cascade hash computation & automated ledger log """
+        child = self.child_id
+        incoming_links = self.search([('child_id', '=', child.id)])
+        parents = incoming_links.mapped('parent_id').sorted(key=lambda r: r.id)
+        
+        # Assemble parent hash blocks
+        parent_hashes = [p.merkle_state_hash or p.name for p in parents]
+        parent_block = ",".join(parent_hashes)
+        
+        # Child metadata block
+        child_block = f"{child.name}:{child.dna_integrity_score}"
+        
+        # Combined SHA-256 cascade
+        combined_payload = f"[{parent_block}]->[{child_block}]"
+        merkle_hash = hashlib.sha256(combined_payload.encode('utf-8')).hexdigest()
+        
+        child.write({'merkle_state_hash': merkle_hash})
+        
+        # Automated certified ledger audit log
+        self.env['agri.clearing.ledger'].create({
+            'partner_id': self.env.user.partner_id.id,
+            'credit_change': 0.0,
+            'score_change': 1,
+            'description': f"SFC Merkle Traceability State Certified: Hash={merkle_hash[:16]} (SFC 级联 Merkle 密码学状态验证成功)",
+            'state': 'confirmed'
+        })

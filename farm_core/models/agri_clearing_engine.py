@@ -39,6 +39,40 @@ class AgriNettingEngine(models.Model):
         self.state = 'cleared'
         return True
 
+    def action_execute_a2a_auction_clearing(self, buyer_id, seller_id, transaction_credits, detail_desc):
+        """
+        Execute atomic A2A resource clearance.
+        Increments credits for seller, decrements for buyer inside an atomic transaction block.
+        """
+        buyer = self.env['res.partner'].browse(buyer_id)
+        seller = self.env['res.partner'].browse(seller_id)
+        if not buyer.exists() or not seller.exists():
+            raise ValidationError(_("Buyer or Seller partner records not found. (交易主体未找到。)"))
+            
+        if buyer.impact_credits < transaction_credits:
+            raise ValidationError(_("Insufficient credits! (信用额度/余额不足！)") + f" [{buyer.name}]")
+
+        # Atomic debit & credit ledger postings
+        self.env['agri.clearing.ledger'].create([
+            {
+                'partner_id': buyer.id,
+                'credit_change': -transaction_credits,
+                'description': f"A2A Debit: {detail_desc} (多智能体自动扣款结算)",
+                'state': 'confirmed'
+            },
+            {
+                'partner_id': seller.id,
+                'credit_change': transaction_credits,
+                'description': f"A2A Credit: {detail_desc} (多智能体自动收款结算)",
+                'state': 'confirmed'
+            }
+        ])
+        
+        # Trigger actual partner score recomputation
+        buyer._compute_reputation_credit_score()
+        seller._compute_reputation_credit_score()
+        return True
+
 class AgriDividendPool(models.Model):
     """
     [US-014-05] Community Impact Dividend Pool.
