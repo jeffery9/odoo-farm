@@ -101,6 +101,8 @@ class AgriAgentTaskDelegation(models.Model):
 
             # Permanently confirm the delegator's deduction ledger entry
             if contract.ledger_id:
+                # Add back the credits temporarily to prevent ledger confirmation from double-deducting
+                contract.delegator_id.impact_credits += contract.escrow_credits
                 contract.ledger_id.action_confirm()
 
             # Create the matching credit ledger entry for the delegatee (Double-Entry completed)
