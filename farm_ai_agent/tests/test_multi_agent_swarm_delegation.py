@@ -41,23 +41,27 @@ class TestMultiAgentSwarmDelegation(TransactionCase):
         self.parent_task_internal = self.env['farm.task'].create({
             'name': 'Harvesting Mission #1',
             'project_id': project_a.id,
-            'activity_family': 'harvesting'
+            'activity_family': 'harvesting',
+            'company_id': self.company_a.id
         })
         self.sub_task_internal = self.env['farm.task'].create({
             'name': 'UAV Spraying #1-1',
             'project_id': project_a.id,
-            'activity_family': 'planting'
+            'activity_family': 'planting',
+            'company_id': self.company_a.id
         })
 
         self.parent_task_b2b = self.env['farm.task'].create({
             'name': 'Regional Patrol',
             'project_id': project_b.id,
-            'activity_family': 'processing'
+            'activity_family': 'processing',
+            'company_id': self.company_b.id
         })
         self.sub_task_b2b = self.env['farm.task'].create({
             'name': 'Recharge Mission',
             'project_id': project_c.id,
-            'activity_family': 'processing'
+            'activity_family': 'processing',
+            'company_id': self.company_c.id
         })
 
     def test_01_company_internal_task_delegation(self):
