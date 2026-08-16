@@ -19,6 +19,16 @@ class StockMatterTracking(models.Model):
         help="The physical stock package delegated by this Individual Agricultural Tracking record."
     )
 
+    company_id = fields.Many2one(
+        'res.company',
+        string='Company',
+        related='package_id.company_id',
+        store=True,
+        index=True,
+        readonly=True,
+        help="Multi-company data isolation partition key."
+    )
+
     biological_asset_id = fields.Many2one(
         'agri.biological.asset',
         string='Tracked Biological Asset / 个体资产',
@@ -230,6 +240,15 @@ class StockMatterTracking(models.Model):
             if not coords:
                 return False
 
+            # Stage 1: Fast Bounding Box Envelope Filter
+            lats = [c[1] for c in coords]
+            lngs = [c[0] for c in coords]
+            min_lat, max_lat = min(lats), max(lats)
+            min_lng, max_lng = min(lngs), max(lngs)
+            if not (min_lat <= lat <= max_lat and min_lng <= lng <= max_lng):
+                return False
+
+            # Stage 2: Ray-Casting Containment Algorithm
             inside = False
             n = len(coords)
             p1x, p1y = coords[0][0], coords[0][1]  # lng, lat
@@ -517,6 +536,15 @@ class StockMatterTrackingSnapshot(models.Model):
     _order = 'timestamp desc'
 
     tracking_id = fields.Many2one('stock.matter.tracking', string='Matter Tracking Source', required=True, ondelete='cascade', index=True)
+    company_id = fields.Many2one(
+        'res.company',
+        string='Company',
+        related='tracking_id.company_id',
+        store=True,
+        index=True,
+        readonly=True,
+        help="Multi-company data isolation partition key for snapshots."
+    )
     vessel_phase = fields.Selection([
         ('idle', 'Idle / 空闲'),
         ('ready', 'Ready / 待命'),
