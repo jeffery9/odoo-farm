@@ -7,7 +7,7 @@ class StockMatterTracking(models.Model):
     _name = 'stock.matter.tracking'
     _description = 'Stock Matter Tracking (Individual Agricultural Tracking / LPN / SFC)'
     _inherits = {'stock.package': 'package_id'}
-    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'agri.continuous.pipeline.mixin']
     _order = 'id desc'
 
     package_id = fields.Many2one(
@@ -69,13 +69,6 @@ class StockMatterTracking(models.Model):
         string='GxP Expiry Time',
         tracking=True,
         help="Timestamp when the current clean-hold validation expires."
-    )
-
-    dna_integrity_score = fields.Float(
-        string='DNA Integrity Score',
-        default=100.0,
-        tracking=True,
-        help="The genealogical purity and integrity score propagated from ancestral material lots."
     )
 
     current_weight = fields.Float(

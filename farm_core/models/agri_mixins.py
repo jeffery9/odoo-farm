@@ -470,3 +470,63 @@ class ClearingEngineMixin(models.AbstractModel):
         esg_score = getattr(self, 'esg_score', 100)
         multiplier = (esg_score / 100.0)
         return physical_value * multiplier
+
+class ContinuousPipelineMixin(models.AbstractModel):
+    """
+    Mixin for Continuous Pipeline-Based Processing (e.g., PBRs, Fermentation Tanks).
+    Enables dynamic mixing, DNA propagation, and advanced genealogy tracing.
+    """
+    _name = 'agri.continuous.pipeline.mixin'
+    _description = 'Continuous Pipeline Genealogy Mixin'
+
+    dna_integrity_score = fields.Float(
+        string='DNA Integrity Score',
+        default=100.0,
+        help="Maintained DNA integrity during continuous flows."
+    )
+    is_pipeline_active = fields.Boolean(
+        string='Pipeline Active',
+        default=True
+    )
+    upstream_pipeline_log = fields.Text(
+        string='Upstream Genealogy Log',
+        help="JSON log of upstream DNA propagation and dynamic mixing sources."
+    )
+    
+    def propagate_continuous_genealogy(self, input_nodes, weights=None):
+        """
+        Calculates dynamic mixing entropy over continuous flows.
+        Applies a decay based on multi-source blending.
+        :param input_nodes: list of dictionaries or objects with 'dna_integrity_score' and 'name'
+        :param weights: list of floats representing mass/volume proportions
+        """
+        for record in self:
+            if not input_nodes:
+                continue
+            
+            if not weights or len(weights) != len(input_nodes):
+                weights = [1.0] * len(input_nodes)
+                
+            total_weight = sum(weights)
+            weighted_dna = 0.0
+            log_entries = []
+            
+            for node, w in zip(input_nodes, weights):
+                # Handle dictionary or object
+                dna = node.get('dna_integrity_score', 100.0) if isinstance(node, dict) else getattr(node, 'dna_integrity_score', 100.0)
+                name = node.get('name', 'Unknown') if isinstance(node, dict) else getattr(node, 'name', 'Unknown')
+                
+                weighted_dna += dna * w
+                log_entries.append({'source': name, 'weight': w, 'dna': dna})
+                
+            avg_dna = weighted_dna / total_weight if total_weight else 0.0
+            
+            # Continuous mixing introduces an entropy loss
+            entropy_penalty = 0.95 if len(input_nodes) > 1 else 0.99
+            
+            record.dna_integrity_score = avg_dna * entropy_penalty
+            record.upstream_pipeline_log = json.dumps({
+                'timestamp': fields.Datetime.now().isoformat(),
+                'blended_dna': record.dna_integrity_score,
+                'sources': log_entries
+            })
