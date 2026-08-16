@@ -358,6 +358,21 @@ class StockMatterTracking(models.Model):
         })
         return True
 
+    def action_get_all_ancestors(self):
+        """ Get all recursive upstream ancestors using set-based ORM loop to respect ir.rule multi-company """
+        self.ensure_one()
+        ancestor_ids = set()
+        queue = [self.id]
+        while queue:
+            current_id = queue.pop(0)
+            links = self.env['stock.matter.tracking.link'].search([('child_id', '=', current_id)])
+            parents = links.mapped('parent_id')
+            for parent in parents:
+                if parent.id not in ancestor_ids:
+                    ancestor_ids.add(parent.id)
+                    queue.append(parent.id)
+        return self.browse(list(ancestor_ids))
+
     def action_trace_upstream(self):
         """
         High-Performance, Set-Based BFS Ancestry Traversal enforcing native Odoo Security rules (ir.rule).
