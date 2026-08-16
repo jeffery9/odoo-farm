@@ -8,5 +8,13 @@
             <field name="padding">6</field>
             <field name="company_id" eval="False" />
         </record>
+
+        <record id="seq_agri_agent_task_delegation" model="ir.sequence">
+            <field name="name">Agent Task Delegation Sequence</field>
+            <field name="code">agri.agent.task.delegation</field>
+            <field name="prefix">GXP-DLG-</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False" />
+        </record>
     </data>
 </odoo>
