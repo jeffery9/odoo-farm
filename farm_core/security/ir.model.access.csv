@@ -10,3 +10,4 @@ access_stock_matter_tracking_snapshot,stock.matter.tracking.snapshot,model_stock
 access_agri_treatment_batch,agri.treatment.batch,model_agri_treatment_batch,base.group_user,1,1,1,1
 access_stock_matter_tracking_link,stock.matter.tracking.link,model_stock_matter_tracking_link,base.group_user,1,1,1,1
 access_farm_water_valve,farm.water.valve,model_farm_water_valve,base.group_user,1,1,1,1
+access_agri_agent_tool_request,agri.agent.tool.request,model_agri_agent_tool_request,base.group_user,1,1,1,1
