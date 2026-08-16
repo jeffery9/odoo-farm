@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
-
-        <record id="ir_cron_iot_buffer_processor" model="ir.cron">
-            <field name="name">IoT: Async Telemetry Buffer Processor</field>
-            <field name="model_id" ref="model_iot_telemetry_buffer" />
+    <data noupdate="1">
+        <record id="ir_cron_iot_wal_sync_pipeline" model="ir.cron">
+            <field name="name">Agri-IoT Asynchronous Telemetry WAL Sync Pipeline (异步对齐管道)</field>
+            <field name="model_id" ref="model_agri_iot_wal_log"/>
             <field name="state">code</field>
-            <field name="code">model.cron_process_buffer()</field>
-            <field name="user_id" ref="base.user_root" />
-            <field name="interval_number">1</field>
+            <field name="code">model.action_process_pending_wal()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">5</field>
             <field name="interval_type">minutes</field>
-            <field name="active" eval="True" />
+            <field name="active" eval="True"/>
         </record>
-</data>
+    </data>
 </odoo>
