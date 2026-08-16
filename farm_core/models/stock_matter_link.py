@@ -48,8 +48,9 @@ class StockMatterTrackingLink(models.Model):
         parents = incoming_links.mapped('parent_id')
         
         if len(parents) == 1:
-            # Single-source: 1% entropy penalty
-            decayed_dna = parents[0].dna_integrity_score * 0.99
+            # Single-source: 1% entropy penalty, unless it is a split transition (5% penalty)
+            decay_rate = 0.95 if self.transition_type == 'split' else 0.99
+            decayed_dna = parents[0].dna_integrity_score * decay_rate
         else:
             # Blending multi-source: average parent score minus 5% entropy penalty
             avg_score = sum(parents.mapped('dna_integrity_score')) / len(parents)
