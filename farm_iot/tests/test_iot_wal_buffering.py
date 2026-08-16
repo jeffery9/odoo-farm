@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from odoo.tests.common import TransactionCase, tagged
-import psycopg2
 
 @tagged('post_install', '-at_install')
 class TestIoTWALBuffering(TransactionCase):
