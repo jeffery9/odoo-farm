@@ -243,4 +243,53 @@ class TestStockMatterTrackingBase(TransactionCase):
         self.assertEqual(gxp_subtype.res_model, 'stock.matter.tracking')
         self.assertEqual(gxp_subtype.description, 'High-security human sign-offs')
 
+    def test_10_api_posting_logic(self):
+        """ Test the posting API logic for IoT and AI decisions on matter tracking """
+        tracking = self.Tracking.create({
+            'vessel_phase': 'idle'
+        })
+        
+        # Test log_iot_event (level='info')
+        res_iot_info = tracking.log_iot_event(device_name='TempSensor-1', payload='{"temp": 22.5}', level='info')
+        self.assertTrue(res_iot_info)
+        
+        # Test log_iot_event (level='warning')
+        res_iot_warning = tracking.log_iot_event(device_name='TempSensor-1', payload='{"temp": 35.0}', level='warning')
+        self.assertTrue(res_iot_warning)
+
+        # Test log_iot_event (level='critical')
+        res_iot_critical = tracking.log_iot_event(device_name='TempSensor-1', payload='{"temp": 50.0}', level='critical')
+        self.assertTrue(res_iot_critical)
+        
+        # Test log_ai_decision
+        res_ai = tracking.log_ai_decision(agent_name='OptimalHarvestAgent', action='harvest', confidence=95.0, rationale='Optimal maturity index reached.')
+        self.assertTrue(res_ai)
+        
+        # Verify messages are posted on the chatter
+        messages = self.env['mail.message'].search([('model', '=', 'stock.matter.tracking'), ('res_id', '=', tracking.id)])
+
+        # Verify subtypes and contents
+        iot_subtype = self.env.ref('farm_core.mt_subtype_iot_telemetry')
+        ai_subtype = self.env.ref('farm_core.mt_subtype_ai_decision')
+        
+        iot_messages = messages.filtered(lambda m: m.subtype_id == iot_subtype)
+        ai_messages = messages.filtered(lambda m: m.subtype_id == ai_subtype)
+        
+        self.assertEqual(len(iot_messages), 3)
+        self.assertEqual(len(ai_messages), 1)
+        
+        # Check specific details in content
+        # Check warnings/colors
+        # We can inspect message bodies
+        self.assertTrue(any('IoT Telemetry: TempSensor-1' in m.body for m in iot_messages))
+        self.assertTrue(any('border-left: 3px solid gray' in m.body for m in iot_messages))
+        self.assertTrue(any('border-left: 3px solid orange' in m.body for m in iot_messages))
+        self.assertTrue(any('border-left: 3px solid red' in m.body for m in iot_messages))
+        
+        self.assertTrue(any('AI Decision: OptimalHarvestAgent' in m.body for m in ai_messages))
+        self.assertTrue(any('Action:' in m.body and 'harvest' in m.body for m in ai_messages))
+        self.assertTrue(any('Confidence:' in m.body and '95' in m.body for m in ai_messages))
+        self.assertTrue(any('Optimal maturity index reached.' in m.body for m in ai_messages))
+
+
 
