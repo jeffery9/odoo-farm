@@ -9,9 +9,17 @@ class TestVectorMemoryRetrieval(TransactionCase):
         super(TestVectorMemoryRetrieval, self).setUp()
         
         # Scaffolding company context (self-healing for database-level pg_trgm loading anomalies)
-        # We reuse the active company, and inject a second company via SQL to bypass analytic ORM triggers
+        # We reuse the active company, and clone a second company via dynamic SQL to satisfy all local Not-Null columns & bypass ORM triggers
         self.company_a = self.env.company
-        self.env.cr.execute("INSERT INTO res_company (name, currency_id, active, partner_id) VALUES ('Agri-East', 1, true, 1) RETURNING id;")
+        self.env.cr.execute("SELECT * FROM res_company WHERE id = %s;", (self.company_a.id,))
+        company_vals = self.env.cr.dictfetchone()
+        company_vals.pop('id', None)
+        company_vals['name'] = 'Agri-East'
+        
+        columns = list(company_vals.keys())
+        placeholders = ["%s"] * len(columns)
+        query = f"INSERT INTO res_company ({', '.join(columns)}) VALUES ({', '.join(placeholders)}) RETURNING id;"
+        self.env.cr.execute(query, list(company_vals.values()))
         company_b_id = self.env.cr.fetchone()[0]
         self.company_b = self.env['res.company'].browse(company_b_id)
 
