@@ -9,3 +9,4 @@ from . import test_uavm_reflection
 from . import test_uavm_sandbox
 from . import test_gxp_security_gateway
 from . import test_multi_agent_swarm_delegation
+from . import test_vector_memory_retrieval
