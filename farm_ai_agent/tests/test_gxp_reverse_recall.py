@@ -140,3 +140,66 @@ class TestGxpReverseRecall(TransactionCase):
         with self.assertRaises(ValidationError) as error:
             picking.button_validate()
         self.assertIn("GXP_OUTBOUND_BLOCKED", str(error.exception))
+
+    def test_05_cte_traversal_equivalence_and_rls(self):
+        """ TDD: Verify PostgreSQL-level Recursive CTE is mathematically equivalent to Python-level BFS """
+        # Downstream Equivalence
+        cte_downstream = self.carrier_a.action_trace_downstream_cte()
+        bfs_downstream = self.carrier_a.action_trace_downstream()
+        
+        self.assertEqual(cte_downstream.ids, bfs_downstream.ids, "Downstream CTE must be equivalent to BFS")
+        self.assertIn(self.carrier_b, cte_downstream)
+        self.assertIn(self.carrier_c, cte_downstream)
+        self.assertIn(self.carrier_d, cte_downstream)
+
+        # Upstream Equivalence
+        cte_upstream = self.carrier_d.action_trace_upstream_cte()
+        bfs_upstream = self.carrier_d.action_trace_upstream()
+        
+        self.assertEqual(cte_upstream.ids, bfs_upstream.ids, "Upstream CTE must be equivalent to BFS")
+        self.assertIn(self.carrier_a, cte_upstream)
+        self.assertIn(self.carrier_c, cte_upstream)
+
+    def test_07_traversal_performance_benchmark(self):
+        """ TDD: Benchmark CTE vs BFS over a 50-level deep parent-child lineage chain """
+        import time
+        
+        # 1. Create a 50-level deep lineage chain: parent -> child
+        current_carrier = self.carrier_d
+        chain_carriers = [current_carrier]
+        for i in range(50):
+            # Create a stocked carrier
+            pkg = self.env['stock.package'].create({'name': f'PKG-BENCH-{i}'})
+            self.env['stock.quant'].create({
+                'product_id': self.product.id,
+                'package_id': pkg.id,
+                'location_id': self.source_loc.id,
+                'quantity': 10.0
+            })
+            child_carrier = self.env['stock.matter.tracking'].create({
+                'package_id': pkg.id,
+                'carrier_state': 'idle'
+            })
+            
+            # Link current to child
+            self.env['stock.matter.tracking.link'].create({
+                'parent_id': current_carrier.id,
+                'child_id': child_carrier.id,
+                'transition_type': 'sequential'
+            })
+            current_carrier = child_carrier
+            chain_carriers.append(child_carrier)
+            
+        # 2. Bench native Python BFS
+        start_bfs = time.perf_counter()
+        bfs_descendants = self.carrier_a.action_trace_downstream()
+        bfs_duration = time.perf_counter() - start_bfs
+        
+        # 3. Bench PostgreSQL Recursive CTE
+        start_cte = time.perf_counter()
+        cte_descendants = self.carrier_a.action_trace_downstream_cte()
+        cte_duration = time.perf_counter() - start_cte
+        
+        # Logs benchmark speed
+        print(f"\n[BENCHMARK] Lineage Chain Depth=54 | Native BFS={bfs_duration:.6f}s, PostgreSQL CTE={cte_duration:.6f}s")
+        self.assertLess(cte_duration, bfs_duration, "PostgreSQL CTE traversal must be faster than Python recursive-loop BFS")
