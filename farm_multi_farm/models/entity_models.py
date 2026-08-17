@@ -41,11 +41,12 @@ class CooperativeEntity(models.Model):
     compliance_audit_authority = fields.Boolean("Has Audit Authority", default=False,
                                                help="Check if this cooperative has the power to perform regulatory audits on members.")
 
-    @api.model
-    def create(self, vals):
-        if 'code' not in vals or not vals['code']:
-            vals['code'] = self.env['ir.sequence'].next_by_code('cooperative.entity') or '/'
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if 'code' not in vals or not vals['code']:
+                vals['code'] = self.env['ir.sequence'].next_by_code('cooperative.entity') or '/'
+        return super().create(vals_list)
 
     def name_get(self):
         result = []
