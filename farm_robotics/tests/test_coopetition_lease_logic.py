@@ -74,3 +74,25 @@ class TestCoopetitionLeaseLogic(TransactionCase):
         lease_a.action_release()
         self.assertEqual(lease_a.state, 'released', "Lease A must be released")
         self.assertEqual(lease_b.state, 'active', "Lease B must be automatically advanced to 'active'")
+
+    def test_03_mission_auto_release_linkage(self):
+        """ Mission completed/failed status must trigger automatic lease release """
+        now = fields.Datetime.now()
+        mission = self.env['farm.robot.mission'].create({
+            'name': 'Test Drone Mission',
+            'robot_id': self.robot_a.id,
+            'state': 'in_progress'
+        })
+        
+        lease = self.env['agri.robotics.lease'].create({
+            'res_model': 'farm.location',
+            'res_id': self.location.id,
+            'robot_id': self.robot_a.id,
+            'mission_id': mission.id,
+            'expiration_date': now + timedelta(hours=2),
+            'state': 'active'
+        })
+
+        # Complete mission
+        mission.write({'state': 'completed'})
+        self.assertEqual(lease.state, 'released', "Completed mission must automatically release active lease")
