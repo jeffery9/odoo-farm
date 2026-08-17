@@ -9,9 +9,11 @@ class TestVectorMemoryRetrieval(TransactionCase):
         super(TestVectorMemoryRetrieval, self).setUp()
         
         # Scaffolding company context (self-healing for database-level pg_trgm loading anomalies)
-        # We reuse existing company IDs or use mocked IDs to 100% bypass res.company creation
+        # We reuse the active company, and inject a second company via SQL to bypass analytic ORM triggers
         self.company_a = self.env.company
-        self.company_b = self.env['res.company'].browse(self.company_a.id + 999)
+        self.env.cr.execute("INSERT INTO res_company (name, currency_id, active) VALUES ('Agri-East', 1, true) RETURNING id;")
+        company_b_id = self.env.cr.fetchone()[0]
+        self.company_b = self.env['res.company'].browse(company_b_id)
 
     def test_01_verify_pgvector_ddl_and_hnsw_indexes(self):
         """ Scenario 1: Confirm pgvector columns and HNSW cosine indexes physically exist """
@@ -80,10 +82,6 @@ class TestVectorMemoryRetrieval(TransactionCase):
 
     def test_03_multi_company_query_row_isolation(self):
         """ Scenario 3: Verify strict multi-company row visibility shielding """
-        if self.company_a == self.company_b:
-            # Skip if database cannot support separate companies due to system library issues
-            return
-            
         memory_model = self.env['agri.agent.vector.memory']
         
         # Create memories belonging to separate companies
