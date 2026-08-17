@@ -14,6 +14,7 @@
     'website': 'http://www.geninit.cn',
     'depends': ['farm_core', 'farm_iot', 'maintenance'],
     'data': [
+        'data/ir_sequence_data.xml',
         'security/ir.model.access.csv',
         'views/farm_robotics_views.xml',
     ],
