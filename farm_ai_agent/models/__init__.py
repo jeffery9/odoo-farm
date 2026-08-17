@@ -11,3 +11,5 @@ from . import ai_skill
 from . import agri_agent_sandbox_mixin
 from . import agri_agent_tool_request
 from . import water_valve_agent
+from . import agri_agent_task_delegation
+
