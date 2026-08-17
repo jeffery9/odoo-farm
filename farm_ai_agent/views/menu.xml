@@ -4,6 +4,7 @@
 <menuitem id="farm_ai_agent_menu_root" name="AI Decision System" sequence="10" parent="farm_ai.menu_ai_root" />
 
     <menuitem id="farm_ai_agent_coordination_menu" name="Coordination Layer" parent="farm_ai_agent_menu_root" sequence="10" />
+    <menuitem id="menu_farm_digital_twin_3d" name="3D Digital Twin Cockpit" parent="farm_ai_agent_coordination_menu" action="action_farm_digital_twin_3d" sequence="50" />
 
     <menuitem id="farm_ai_agent_decision_menu" name="Decision Engine" parent="farm_ai_agent_menu_root" sequence="20" />
 

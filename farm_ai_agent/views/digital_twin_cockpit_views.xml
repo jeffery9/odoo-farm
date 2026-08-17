@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Client Action for WebGL 3D Digital Twin Cockpit -->
+        <record id="action_farm_digital_twin_3d" model="ir.actions.client">
+            <field name="name">3D Digital Twin Cockpit (三维数字孪生驾驶舱)</field>
+            <field name="tag">action_farm_digital_twin_3d</field>
+            <field name="target">current</field>
+        </record>
+    </data>
+</odoo>

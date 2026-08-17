@@ -1,0 +1,398 @@
+/* 3D WebGL Digital Twin Cockpit - Dark Cyber-OS Stylesheet */
+.o_digital_twin_cockpit {
+    background-color: #0b0f19;
+    color: #e2e8f0;
+    font-family: 'Consolas', 'Courier New', monospace;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.o_digital_twin_header {
+    background: linear-gradient(135deg, #111827 0%, #0b0f19 100%);
+    border-bottom: 2px solid #00f2fe;
+    padding: 15px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 242, 254, 0.15);
+}
+
+.o_digital_twin_title h1 {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #00f2fe;
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
+    margin: 0;
+}
+
+.o_digital_twin_title span {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+.o_digital_twin_grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 7fr 3deg; /* Wait, use ratio or percentage */
+    grid-template-columns: 7fr 3fr;
+    gap: 20px;
+    padding: 20px;
+    background-color: #030712;
+    overflow: hidden;
+}
+
+.o_cockpit_viewport_panel {
+    background: rgba(17, 24, 39, 0.7);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.o_cockpit_viewport_header {
+    background: rgba(15, 23, 42, 0.9);
+    border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.o_viewport_badge {
+    background: rgba(0, 242, 254, 0.1);
+    color: #00f2fe;
+    border: 1px solid #00f2fe;
+    border-radius: 4px;
+    font-size: 10px;
+    padding: 2px 8px;
+    letter-spacing: 1px;
+}
+
+.o_viewport_canvas_container {
+    flex: 1;
+    position: relative;
+    background: #05070f;
+}
+
+.o_viewport_canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.o_canvas_overlay_controls {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    border-radius: 8px;
+    padding: 12px 18px;
+    backdrop-filter: blur(8px);
+}
+
+.o_viewport_control_group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.o_viewport_control_group label {
+    font-size: 11px;
+    color: #94a3b8;
+    margin: 0;
+}
+
+.o_viewport_slider {
+    -webkit-appearance: none;
+    width: 100px;
+    height: 4px;
+    background: #1e293b;
+    border-radius: 2px;
+    outline: none;
+}
+
+.o_viewport_slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #00f2fe;
+    cursor: pointer;
+    box-shadow: 0 0 8px #00f2fe;
+}
+
+.o_viewport_btn {
+    background: #00f2fe;
+    color: #020617;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.o_viewport_btn:hover {
+    background: #4facfe;
+    box-shadow: 0 0 12px #00f2fe;
+}
+
+.o_cockpit_control_hub {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.o_hub_card {
+    background: rgba(17, 24, 39, 0.75);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    backdrop-filter: blur(10px);
+}
+
+.o_hub_card.o_card_alert {
+    border-color: rgba(239, 68, 68, 0.4);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.o_hub_card_title {
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #38bdf8;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.o_metadata_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    font-size: 12px;
+}
+
+.o_metadata_item {
+    display: flex;
+    flex-direction: column;
+}
+
+.o_metadata_label {
+    color: #64748b;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.o_metadata_val {
+    color: #f8fafc;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+.o_metadata_val.o_val_success {
+    color: #4ade80;
+}
+
+.o_metadata_val.o_val_warning {
+    color: #fbbf24;
+}
+
+.o_metadata_val.o_val_danger {
+    color: #f87171;
+    text-shadow: 0 0 8px rgba(248, 113, 113, 0.5);
+}
+
+.o_cockpit_select {
+    width: 100%;
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    color: #e2e8f0;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    outline: none;
+    margin-bottom: 12px;
+}
+
+.o_cockpit_input_text {
+    width: 100%;
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    color: #e2e8f0;
+    padding: 8px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 12px;
+    outline: none;
+}
+
+.o_cockpit_btn {
+    width: 100%;
+    background: linear-gradient(90deg, #38bdf8 0%, #0369a1 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.o_cockpit_btn:hover {
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    filter: brightness(1.1);
+}
+
+.o_cockpit_btn.o_btn_danger {
+    background: linear-gradient(90deg, #f87171 0%, #b91c1c 100%);
+}
+
+.o_cockpit_btn.o_btn_danger:hover {
+    box-shadow: 0 0 15px rgba(248, 113, 113, 0.4);
+}
+
+.o_uav_flash_card {
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 12px;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: pulse_border 1.5s infinite alternate;
+}
+
+.o_uav_flash_card.o_flash_safe {
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid #4ade80;
+    color: #4ade80;
+}
+
+.o_uav_flash_card.o_flash_alert {
+    background: rgba(248, 113, 113, 0.15);
+    border: 1px solid #f87171;
+    color: #f87171;
+}
+
+.o_gxp_audit_list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.o_gxp_audit_item {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.o_gxp_meta_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.o_gxp_ref {
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+.o_gxp_badge {
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 9px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.o_gxp_badge.o_badge_pending {
+    background: rgba(251, 191, 36, 0.1);
+    color: #fbbf24;
+    border: 1px solid #fbbf24;
+}
+
+.o_gxp_badge.o_badge_approved {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    border: 1px solid #38bdf8;
+}
+
+.o_gxp_badge.o_badge_executed {
+    background: rgba(74, 222, 128, 0.1);
+    color: #4ade80;
+    border: 1px solid #4ade80;
+}
+
+.o_gxp_badge.o_badge_rejected {
+    background: rgba(248, 113, 113, 0.1);
+    color: #f87171;
+    border: 1px solid #f87171;
+}
+
+.o_gxp_payload {
+    color: #94a3b8;
+    font-family: inherit;
+    font-size: 10px;
+    word-break: break-all;
+    background: #020617;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.o_gxp_approve_btn {
+    align-self: flex-end;
+    background: #38bdf8;
+    color: #020617;
+    border: none;
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 4px;
+}
+
+.o_gxp_approve_btn:hover {
+    background: #0284c7;
+    color: #ffffff;
+    box-shadow: 0 0 8px #38bdf8;
+}
+
+@keyframes pulse_border {
+    from {
+        box-shadow: 0 0 5px rgba(248, 113, 113, 0.2);
+    }
+    to {
+        box-shadow: 0 0 15px rgba(248, 113, 113, 0.6);
+    }
+}
