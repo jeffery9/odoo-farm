@@ -179,3 +179,14 @@ class FarmRobotMission(models.Model):
             
         self.message_post(body=_("Robotic Mission Completed. Physical trajectory data packaged as audit evidence."))
         return True
+
+
+class MaintenanceEquipment(models.Model):
+    _inherit = 'maintenance.equipment'
+
+    is_swarm_leader = fields.Boolean("Is Swarm Leader", default=False)
+    navigation_state = fields.Selection([
+        ('navigating', 'Navigating'),
+        ('evading', 'Evading Obstacle'),
+        ('charging', 'Charging'),
+    ], string="Navigation State", default='navigating')
