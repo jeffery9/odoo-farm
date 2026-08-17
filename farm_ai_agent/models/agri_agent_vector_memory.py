@@ -71,7 +71,10 @@ class AgriAgentVectorMemory(models.Model):
         Pulls latest mail.messages (Chatter cards) and extreme telemetry.series warnings.
         """
         # 1. Retrieve the timestamp threshold of last run
-        last_sync_param = self.env['ir.config_parameter'].sudo().get_param('agri_agent.memory_last_sync_time', '1970-01-01 00:00:00')
+        try:
+            last_sync_param = self.env['ir.config_parameter'].sudo().get_param('agri_agent.memory_last_sync_time', '1970-01-01 00:00:00')
+        except Exception:
+            last_sync_param = '1970-01-01 00:00:00'
         
         # 2. Extract Chatter cards
         messages = self.env['mail.message'].search([
@@ -128,5 +131,8 @@ class AgriAgentVectorMemory(models.Model):
             })
 
         # 4. Save latest runtime timestamp
-        self.env['ir.config_parameter'].sudo().set_param('agri_agent.memory_last_sync_time', fields.Datetime.now())
+        try:
+            self.env['ir.config_parameter'].sudo().set_param('agri_agent.memory_last_sync_time', fields.Datetime.now())
+        except Exception:
+            pass
         return True

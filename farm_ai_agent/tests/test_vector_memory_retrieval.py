@@ -19,9 +19,6 @@ class TestVectorMemoryRetrieval(TransactionCase):
             except Exception:
                 self.company_b = self.company_a
 
-        # Establish deterministic sandbox embedding parameter
-        self.env['ir.config_parameter'].sudo().set_param('agri_iot.embedding_mode', 'sandbox')
-
     def test_01_verify_pgvector_ddl_and_hnsw_indexes(self):
         """ Scenario 1: Confirm pgvector columns and HNSW cosine indexes physically exist """
         self.env.cr.execute("""
@@ -117,9 +114,6 @@ class TestVectorMemoryRetrieval(TransactionCase):
 
     def test_04_incremental_cron_harvester_compilation(self):
         """ Scenario 4: Verify cron pipeline successfully processes both Chatter messages and pressure telemetry """
-        # Reset synchronization parameter to force complete scanning of new entries
-        self.env['ir.config_parameter'].sudo().set_param('agri_agent.memory_last_sync_time', '2026-08-16 00:00:00')
-
         # 1. Create Odoo Chatter Message in farm.water.valve (using mock model mapping)
         chatter_msg = self.env['mail.message'].create({
             'model': 'farm.water.valve',
