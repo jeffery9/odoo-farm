@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="farm_ai_agent.DigitalTwinCockpit">
+        <div class="o_digital_twin_cockpit">
+            <!-- Header section -->
+            <div class="o_digital_twin_header">
+                <div class="o_digital_twin_title">
+                    <h1>SFC-AGRI 3D DIGITAL TWIN COCKPIT</h1>
+                    <span>WebGL Real-Time Space-Time Control Deck (三维时空数字孪生控制台)</span>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <span class="badge text-bg-info">ISA-88 COMPLIANT</span>
+                    <button class="btn btn-sm btn-outline-light" t-on-click="refreshData">
+                        <i class="fa fa-refresh mr-1"/> Force Sync
+                    </button>
+                </div>
+            </div>
+
+            <!-- Two-column spatial operations deck -->
+            <div class="o_digital_twin_grid">
+                
+                <!-- Left: Interactive WebGL / 3D Canvas Viewport -->
+                <div class="o_cockpit_viewport_panel">
+                    <div class="o_cockpit_viewport_header">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="o_viewport_badge">ACTIVE TELEMETRY PIPELINE</span>
+                            <small class="text-muted" t-out="state.canvasMessage"></small>
+                        </div>
+                        <div class="text-info font-monospace text-xs" t-out="state.mouseCoords"></div>
+                    </div>
+                    
+                    <div class="o_viewport_canvas_container" t-ref="canvasContainer">
+                        <canvas class="o_viewport_canvas" t-ref="cockpitCanvas" t-on-mousemove="onCanvasMouseMove"></canvas>
+                    </div>
+                    
+                    <!-- Overlay Control Panel -->
+                    <div class="o_canvas_overlay_controls">
+                        <div class="o_viewport_control_group">
+                            <label>Camera Yaw (相机水平角):</label>
+                            <input type="range" class="o_viewport_slider" min="0" max="360" t-model="state.cameraYaw" t-on-input="renderCanvas"/>
+                            <span class="text-xs font-monospace text-info" t-out="state.cameraYaw + '°'"></span>
+                        </div>
+                        <div class="o_viewport_control_group">
+                            <label>Camera Pitch (垂直视角):</label>
+                            <input type="range" class="o_viewport_slider" min="10" max="85" t-model="state.cameraPitch" t-on-input="renderCanvas"/>
+                            <span class="text-xs font-monospace text-info" t-out="state.cameraPitch + '°'"></span>
+                        </div>
+                        <div class="o_viewport_control_group">
+                            <button class="o_viewport_btn" t-on-click="toggleSimulation">
+                                <t t-if="state.simulating">Pause Animation</t>
+                                <t t-else="">Start Flight Sim</t>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Operations and safety command desk -->
+                <div class="o_cockpit_control_hub">
+                    
+                    <!-- 1. Real-Time Physical Twin Readings -->
+                    <div class="o_hub_card">
+                        <div class="o_hub_card_title">
+                            <span>Physical Twin Index</span>
+                            <span class="badge text-bg-success text-xxs">ONLINE</span>
+                        </div>
+                        <div class="o_metadata_grid">
+                            <div class="o_metadata_item">
+                                <span class="o_metadata_label">Active Airspaces</span>
+                                <span class="o_metadata_val" t-out="state.airspaceCount">0</span>
+                            </div>
+                            <div class="o_metadata_item">
+                                <span class="o_metadata_label">Water Valves</span>
+                                <span class="o_metadata_val o_val_success" t-out="state.valveCount">0</span>
+                            </div>
+                            <div class="o_metadata_item">
+                                <span class="o_metadata_label">Selected Node</span>
+                                <span class="o_metadata_val text-truncate" t-out="state.selectedNode || 'None (Click Grid)'"></span>
+                            </div>
+                            <div class="o_metadata_item">
+                                <span class="o_metadata_label">Current System PSI</span>
+                                <span class="o_metadata_val" t-att-class="state.systemPSI > 110.0 ? 'o_val_danger' : 'o_val_success'" t-out="state.systemPSI + ' PSI'"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. PostGIS UAV Trajectory Gating -->
+                    <div class="o_hub_card">
+                        <div class="o_hub_card_title">
+                            <span>PostGIS UAV Flight Gating</span>
+                        </div>
+                        <p class="text-muted text-xxs mb-3">
+                            Test 3D trajectory LineStrings Z against spatial corridors using PostGIS ST_3DIntersects.
+                        </p>
+                        
+                        <label class="text-xs text-muted mb-1 d-block">UAV Flight LineString Z:</label>
+                        <select class="o_cockpit_select" t-model="state.selectedTrajectory" t-on-change="onTrajectoryChange">
+                            <option value="safe">Safe Corridor: LINESTRING Z (5 5 2, 5 5 8)</option>
+                            <option value="intrusion">Intrusion Breach: LINESTRING Z (5 5 5, 5 5 15)</option>
+                            <option value="custom">Custom Trajectory WKT...</option>
+                        </select>
+                        
+                        <t t-if="state.selectedTrajectory === 'custom'">
+                            <input type="text" class="o_cockpit_input_text mb-3" t-model="state.customTrajectoryWKT" placeholder="e.g. LINESTRING Z (0 0 5, 10 10 25)"/>
+                        </t>
+                        
+                        <button class="o_cockpit_btn mb-2" t-on-click="testUAVTrajectory">
+                            Run PostGIS Spatial Audit
+                        </button>
+
+                        <!-- Dynamic Alert Gating Card -->
+                        <t t-if="state.gatingTested">
+                            <div class="o_uav_flash_card o_flash_alert" t-if="state.gatingAlert">
+                                <i class="fa fa-exclamation-triangle fa-lg"/>
+                                <div>
+                                    <strong>AIRSPACE BREACH DETECTED!</strong>
+                                    <p class="m-0 text-xxs">UAV path intersects restricted airspace (三维施肥空域红线侵入！)</p>
+                                </div>
+                            </div>
+                            <div class="o_uav_flash_card o_flash_safe" t-else="">
+                                <i class="fa fa-check-circle fa-lg"/>
+                                <div>
+                                    <strong>FLIGHT AUDIT PASSED</strong>
+                                    <p class="m-0 text-xxs">Trajectory is fully clear (三维安全合规空域，准予起飞)</p>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+
+                    <!-- 3. Red-Tier physical actuation desk -->
+                    <div class="o_hub_card o_card_alert">
+                        <div class="o_hub_card_title text-danger">
+                            <span>GxP Red-Tier Physical Cutoff</span>
+                        </div>
+                        <p class="text-muted text-xxs mb-3">
+                            Trigger critical physical shutoffs on water valves. Forces GxP Human-in-the-loop approval.
+                        </p>
+                        <button class="o_cockpit_btn o_btn_danger" t-on-click="triggerPhysicalCutoff">
+                            <i class="fa fa-power-off mr-1"/> Trigger Emergency Shutoff (120 PSI)
+                        </button>
+                    </div>
+
+                    <!-- 4. Real-time GxP Safety Gate Ledger -->
+                    <div class="o_hub_card">
+                        <div class="o_hub_card_title">
+                            <span>GxP Gate Action Ledger</span>
+                        </div>
+                        <div class="o_gxp_audit_list">
+                            <t t-foreach="state.gxpRequests" t-as="req" t-key="req.id">
+                                <div class="o_gxp_audit_item">
+                                    <div class="o_gxp_meta_row">
+                                        <span class="o_gxp_ref" t-out="req.name"></span>
+                                        <span class="o_gxp_badge" t-att-class="'o_badge_' + req.state" t-out="req.state"></span>
+                                    </div>
+                                    <div class="text-xxs text-muted" t-out="'Target: ' + req.target_action"></div>
+                                    <pre class="o_gxp_payload" t-out="req.payload"></pre>
+                                    <t t-if="req.state === 'pending'">
+                                        <button class="o_gxp_approve_btn" t-on-click="() => this.approveRequest(req.id)">
+                                            Approve &amp; Execute GxP Action
+                                        </button>
+                                    </t>
+                                </div>
+                            </t>
+                            <t t-if="state.gxpRequests.length === 0">
+                                <div class="text-center text-muted text-xs py-3">No recent GxP requests found.</div>
+                            </t>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

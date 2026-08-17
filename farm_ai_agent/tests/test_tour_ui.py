@@ -20,3 +20,10 @@ class TestTourFarmAiAgent(HttpCase):
         self.authenticate("admin", "admin")
         response = self.url_open("/web")
         self.assertEqual(response.status_code, 200)
+
+    def test_03_cockpit_client_action_registration(self):
+        """ Assert that the WebGL 3D cockpit client action is registered and configured properly """
+        action = self.env.ref("farm_ai_agent.action_farm_digital_twin_3d", raise_if_not_found=False)
+        self.assertIsNotNone(action, "WebGL 3D Cockpit client action must be registered in database!")
+        self.assertEqual(action.tag, "action_farm_digital_twin_3d", "Client action tag must match action_farm_digital_twin_3d")
+        self.assertEqual(action.target, "current", "Target option should load in the current main window workspace")
