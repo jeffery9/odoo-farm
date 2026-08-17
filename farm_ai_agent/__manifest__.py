@@ -23,11 +23,11 @@
         "data/ir_cron_data.xml",
         "views/a2a_react_loop_views.xml",
         "views/ai_skill_views.xml",
+        "views/digital_twin_cockpit_views.xml",
         "views/menu.xml",
         "views/ai_agent_views.xml",
         "views/ai_decision_engine_views.xml",
         "views/mission_orchestrator_views.xml",
-        "views/digital_twin_cockpit_views.xml",
     ],
     "assets": {
         "web.assets_backend": [
