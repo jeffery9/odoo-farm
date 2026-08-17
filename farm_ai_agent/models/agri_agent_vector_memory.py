@@ -102,7 +102,7 @@ class AgriAgentVectorMemory(models.Model):
                 'timestamp': msg.create_date,
                 'source_model': 'mail.message',
                 'source_id': msg.id,
-                'company_id': msg.company_id.id or self.env.company.id,
+                'company_id': self.env.company.id,
             })
             self.env.cr.execute("UPDATE agri_agent_vector_memory SET embedding = %s::vector WHERE id = %s;", (vector, record.id))
 
