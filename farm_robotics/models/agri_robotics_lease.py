@@ -28,3 +28,34 @@ class AgriRoboticsLease(models.Model):
             if vals.get('name', _('New')) == _('New'):
                 vals['name'] = self.env['ir.sequence'].next_by_code('agri.robotics.lease') or _('LEA')
         return super().create(vals_list)
+
+    def action_request_lease(self):
+        """ Check if any other lease is currently active on the resource, otherwise queue it """
+        self.ensure_one()
+        active_lease = self.search([
+            ('res_model', '=', self.res_model),
+            ('res_id', '=', self.res_id),
+            ('state', '=', 'active')
+        ], limit=1)
+        
+        if active_lease:
+            self.write({'state': 'queued'})
+        else:
+            self.write({'state': 'active'})
+
+    def action_release(self):
+        """ Release lease and wake up next queued lease in order of creation """
+        for lease in self:
+            if lease.state not in ['active', 'queued']:
+                continue
+            lease.write({'state': 'released'})
+            
+            # Atomic Wakeup Chain
+            next_lease = self.search([
+                ('res_model', '=', lease.res_model),
+                ('res_id', '=', lease.res_id),
+                ('state', '=', 'queued')
+            ], order='create_date asc', limit=1)
+            
+            if next_lease:
+                next_lease.write({'state': 'active'})
