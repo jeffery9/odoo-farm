@@ -13,8 +13,11 @@ class AgriEmbeddingProvider(models.AbstractModel):
         Get high-dimensional 384 float embedding vector.
         Follows bilingual validation errors when necessary.
         """
-        # Read system parameter, default is 'sandbox' for isolated tests
-        provider_mode = self.env['ir.config_parameter'].sudo().get_param('agri_iot.embedding_mode', 'sandbox')
+        try:
+            # Read system parameter, default is 'sandbox' for isolated tests
+            provider_mode = self.env['ir.config_parameter'].sudo().get_param('agri_iot.embedding_mode', 'sandbox')
+        except Exception:
+            provider_mode = 'sandbox'
         
         if provider_mode == 'sandbox':
             return self._generate_deterministic_sandbox_embedding(text)
