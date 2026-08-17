@@ -140,24 +140,26 @@ class TestISLDynamicRedirection(TransactionCase):
         if hasattr(self.env.registry, '_isl_inherits_cache'):
             delattr(self.env.registry, '_isl_inherits_cache')
 
-        # 1. Trigger redirection to build cache
-        found_isl = self.Redirector.get_isl_record('mrp.production', self.production.id)
-        
-        # 2. Verify that registry-bound cache exists on the registry instance
-        self.assertTrue(hasattr(self.env.registry, '_isl_inherits_cache'), "Cache must be created on self.env.registry")
-        cache = self.env.registry._isl_inherits_cache
-        self.assertIn('mrp.production', cache)
-        
-        # 3. Cache-hijack assertion: Modify cache entry and verify it is respected (proving O(1) bypass)
-        # We replace candidates with a fake non-existent model
-        cache['mrp.production'] = [('fake.nonexistent.model', 'mrp_production_id')]
-        
-        # Try to redirect again - it must return None because it bypasses scanning and reads fake cache
-        hijacked_isl = self.Redirector.get_isl_record('mrp.production', self.production.id)
-        self.assertIsNone(hijacked_isl, "Redirector must read from cache instead of re-scanning registry")
-        
-        # Clean up cache
-        delattr(self.env.registry, '_isl_inherits_cache')
+        try:
+            # 1. Trigger redirection to build cache
+            found_isl = self.Redirector.get_isl_record('mrp.production', self.production.id)
+            
+            # 2. Verify that registry-bound cache exists on the registry instance
+            self.assertTrue(hasattr(self.env.registry, '_isl_inherits_cache'), "Cache must be created on self.env.registry")
+            cache = self.env.registry._isl_inherits_cache
+            self.assertIn('mrp.production', cache)
+            
+            # 3. Cache-hijack assertion: Modify cache entry and verify it is respected (proving O(1) bypass)
+            # We replace candidates with a fake non-existent model
+            cache['mrp.production'] = [('fake.nonexistent.model', 'mrp_production_id')]
+            
+            # Try to redirect again - it must return None because it bypasses scanning and reads fake cache
+            hijacked_isl = self.Redirector.get_isl_record('mrp.production', self.production.id)
+            self.assertIsNone(hijacked_isl, "Redirector must read from cache instead of re-scanning registry")
+        finally:
+            # Clean up cache robustly
+            if hasattr(self.env.registry, '_isl_inherits_cache'):
+                delattr(self.env.registry, '_isl_inherits_cache')
 
     def test_09_redirector_performance_benchmark(self):
         """ TDD: Benchmark performance to verify cache provides speedup """
