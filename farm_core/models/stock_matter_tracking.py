@@ -420,6 +420,60 @@ class StockMatterTracking(models.Model):
             
         return descendants
 
+    def action_trace_downstream_cte(self):
+        """
+        [SOLID Hybrid CTE Optimization] High-Performance Hybrid Traversal Engine.
+        Executes raw Recursive CTE in PostgreSQL and returns an ir.rule-secure Odoo recordset.
+        """
+        self.ensure_one()
+        query = """
+            WITH RECURSIVE downstream_trace AS (
+                -- Anchor Member (Initial children)
+                SELECT child_id, parent_id, 1 AS depth
+                FROM stock_matter_tracking_link
+                WHERE parent_id = %s
+              UNION ALL
+                -- Recursive Member
+                SELECT l.child_id, l.parent_id, t.depth + 1
+                FROM stock_matter_tracking_link l
+                JOIN downstream_trace t ON l.parent_id = t.child_id
+            )
+            SELECT DISTINCT child_id FROM downstream_trace;
+        """
+        self.env.cr.execute(query, (self.id,))
+        result = self.env.cr.fetchall()
+        child_ids = [row[0] for row in result]
+        
+        # browse().exists() automatically applies standard Odoo ir.rules and active ACL/Multi-company isolation filters
+        return self.env['stock.matter.tracking'].browse(child_ids).exists()
+
+    def action_trace_upstream_cte(self):
+        """
+        [SOLID Hybrid CTE Optimization] High-Performance Hybrid Traversal Engine for Upstream Ancestors.
+        Executes raw Recursive CTE in PostgreSQL and returns an ir.rule-secure Odoo recordset.
+        """
+        self.ensure_one()
+        query = """
+            WITH RECURSIVE upstream_trace AS (
+                -- Anchor Member (Initial parents)
+                SELECT parent_id, child_id, 1 AS depth
+                FROM stock_matter_tracking_link
+                WHERE child_id = %s
+              UNION ALL
+                -- Recursive Member
+                SELECT l.parent_id, l.child_id, t.depth + 1
+                FROM stock_matter_tracking_link l
+                JOIN upstream_trace t ON l.child_id = t.parent_id
+            )
+            SELECT DISTINCT parent_id FROM upstream_trace;
+        """
+        self.env.cr.execute(query, (self.id,))
+        result = self.env.cr.fetchall()
+        parent_ids = [row[0] for row in result]
+        
+        # browse().exists() automatically applies standard Odoo ir.rules and active ACL/Multi-company isolation filters
+        return self.env['stock.matter.tracking'].browse(parent_ids).exists()
+
     def action_capture_snapshot(self):
         self.ensure_one()
         snapshot_model = self.env['stock.matter.tracking.snapshot']
