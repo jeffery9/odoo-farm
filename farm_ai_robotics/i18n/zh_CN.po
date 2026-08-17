@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* farm_ai_robotics_bridge
+# 	* farm_ai_robotics
 #
 msgid ""
 msgstr ""
@@ -16,27 +16,27 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: farm_ai_robotics_bridge
+#. module: farm_ai_robotics
 #. odoo-python
-#: code:addons/farm_ai_robotics_bridge/models/ai_extensions.py:0
+#: code:addons/farm_ai_robotics/models/ai_extensions.py:0
 msgid ""
 "Automatically dispatched by AI Orchestrator due to low health score (%s)"
 msgstr ""
 
-#. module: farm_ai_robotics_bridge
+#. module: farm_ai_robotics
 #. odoo-python
-#: code:addons/farm_ai_robotics_bridge/models/ai_extensions.py:0
+#: code:addons/farm_ai_robotics/models/ai_extensions.py:0
 msgid "Autonomous Scouting: %s"
 msgstr "自主侦察：%s"
 
-#. module: farm_ai_robotics_bridge
+#. module: farm_ai_robotics
 #. odoo-python
-#: code:addons/farm_ai_robotics_bridge/models/ai_extensions.py:0
+#: code:addons/farm_ai_robotics/models/ai_extensions.py:0
 msgid "Dispatched %s robot to address health score of %s"
 msgstr "已派遣 %s 机器人来解决 %s 的健康评分问题"
 
-#. module: farm_ai_robotics_bridge
+#. module: farm_ai_robotics
 #. odoo-python
-#: code:addons/farm_ai_robotics_bridge/models/ai_extensions.py:0
+#: code:addons/farm_ai_robotics/models/ai_extensions.py:0
 msgid "L5 AUTO-DISPATCH: Mission %s assigned to Robot %s for Location %s."
 msgstr "L5 自动调度：任务 %s 分配给位置 %s 的机器人 %s。"

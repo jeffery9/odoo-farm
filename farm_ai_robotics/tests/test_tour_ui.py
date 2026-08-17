@@ -2,9 +2,9 @@
 from odoo.tests.common import HttpCase, tagged
 
 @tagged('post_install', '-at_install')
-class TestTourFarmAiRoboticsBridge(HttpCase):
+class TestTourFarmAiRobotics(HttpCase):
     def test_01_ui_action_availability(self):
-        """ Verify that the primary action for farm_ai_robotics_bridge is defined and retrievable """
+        """ Verify that the primary action for farm_ai_robotics is defined and retrievable """
         # Search for any action defined in this module
         action = self.env['ir.actions.act_window'].search([('binding_model_id', '!=', False)], limit=1)
         # Or check specific XML ID if found

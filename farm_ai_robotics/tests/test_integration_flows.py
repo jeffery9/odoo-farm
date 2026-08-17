@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from odoo.tests.common import TransactionCase
 
-class TestIntegrationFarmAiRoboticsBridge(TransactionCase):
+class TestIntegrationFarmAiRobotics(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.models_to_check = ['agri.a2a.negotiation', 'ai.autonomous.orchestrator', 'ai.autonomous.mission.log']
 
     def test_01_cross_model_dependencies(self):
-        """ Verify that dependencies and XML IDs required by farm_ai_robotics_bridge are available """
+        """ Verify that dependencies and XML IDs required by farm_ai_robotics are available """
         menus = self.env['ir.ui.menu'].search([], limit=1)
         self.assertTrue(menus, "Menu registry is accessible")
 
