@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from odoo import fields
 from odoo.tests.common import TransactionCase
 from datetime import timedelta
 
@@ -8,7 +9,7 @@ class TestJITHarvestFlow(TransactionCase):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         
-        cls.carrot = cls.env['product.product'].create({'name': 'Organic Carrot Box', 'type': 'product'})
+        cls.carrot = cls.env['product.product'].create({'name': 'Organic Carrot Box', 'type': 'consu'})
         cls.plan = cls.env['farm.csa.plan'].create({
             'name': 'Weekend Carrot Box',
             'product_id': cls.carrot.id,

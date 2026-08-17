@@ -16,5 +16,13 @@
             <field name="padding">6</field>
             <field name="company_id" eval="False" />
         </record>
+
+        <record id="seq_agri_gxp_contamination_incident" model="ir.sequence">
+            <field name="name">GxP Contamination Incident Sequence</field>
+            <field name="code">agri.gxp.contamination.incident</field>
+            <field name="prefix">INC-</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False" />
+        </record>
     </data>
 </odoo>
