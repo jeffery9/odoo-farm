@@ -9,3 +9,5 @@ from . import test_epic_132
 from . import test_epic_133
 from . import test_integration_flows
 from . import test_tour_ui
+from . import test_coopetition_lease_scaffold
+from . import test_coopetition_lease_logic

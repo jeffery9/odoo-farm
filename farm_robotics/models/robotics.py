@@ -141,6 +141,18 @@ class FarmRobotMission(models.Model):
                 vals['name'] = self.env['ir.sequence'].next_by_code('farm.robot.mission') or _('MIS')
         return super().create(vals_list)
 
+    def write(self, vals):
+        res = super(FarmRobotMission, self).write(vals)
+        if 'state' in vals and vals['state'] in ['completed', 'failed', 'aborted']:
+            for mission in self:
+                leases = self.env['agri.robotics.lease'].search([
+                    ('mission_id', '=', mission.id),
+                    ('state', 'in', ['active', 'queued'])
+                ])
+                if leases:
+                    leases.action_release()
+        return res
+
     def action_start_mission(self):
         self.write({'state': 'in_progress'})
         # In real system, send MQTT command to robot
