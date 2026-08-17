@@ -154,7 +154,7 @@ class AIAutonomousOrchestrator(models.Model):
                 self._dispatch_remediation_mission(twin)
 
     def _dispatch_remediation_mission(self, twin):
-        # Implementation delegated to farm_ai_robotics_bridge
+        # Implementation delegated to farm_ai_robotics
         pass
 
 class AIAutonomousMissionLog(models.Model):
