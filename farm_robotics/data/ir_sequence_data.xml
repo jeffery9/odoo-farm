@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_agri_robotics_lease" model="ir.sequence">
+            <field name="name">Robotics Generic Resource Lease Lock Sequence</field>
+            <field name="code">agri.robotics.lease</field>
+            <field name="prefix">LEASE-%(year)s%(month)s%(day)s-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>
