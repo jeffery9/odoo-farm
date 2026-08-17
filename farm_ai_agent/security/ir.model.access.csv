@@ -22,4 +22,5 @@ access_agri_a2a_react_loop_line,access_agri_a2a_react_loop_line,model_agri_a2a_r
 access_agri_ai_agent_skill,access_agri_ai_agent_skill,model_agri_ai_agent_skill,base.group_user,1,1,1,1
 access_agri_agent_tool_request,agri.agent.tool.request,model_agri_agent_tool_request,base.group_user,1,1,1,1
 access_agri_agent_task_delegation,agri.agent.task.delegation,model_agri_agent_task_delegation,base.group_user,1,1,1,1
+access_agri_agent_vector_memory,access.agri.agent.vector.memory,model_agri_agent_vector_memory,base.group_user,1,1,1,1
 
