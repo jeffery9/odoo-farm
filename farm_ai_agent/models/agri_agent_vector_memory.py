@@ -94,16 +94,16 @@ class AgriAgentVectorMemory(models.Model):
                 
             vector = self.env['agri.embedding.provider'].get_embedding(plain_text)
             
-            # Write structured vector memory
-            self.create({
+            # Write structured vector memory (bypass ORM field registry restrictions)
+            record = self.create({
                 'name': f"Chatter: {plain_text[:40]}...",
                 'content': plain_text,
                 'timestamp': msg.create_date,
                 'source_model': 'mail.message',
                 'source_id': msg.id,
                 'company_id': msg.company_id.id or self.env.company.id,
-                'embedding': vector
             })
+            self.env.cr.execute("UPDATE agri_agent_vector_memory SET embedding = %s::vector WHERE id = %s;", (vector, record.id))
 
         # 3. Extract extreme pressure WAL telemetries (Pressure exceeded 110 PSI threshold)
         telemetries = self.env['agri.telemetry.series'].search([
@@ -120,15 +120,16 @@ class AgriAgentVectorMemory(models.Model):
             alert_text = f"IIoT PRESSURE WARNING: valve pressure reached {telemetry.value} PSI (超压报警时空记录)"
             vector = self.env['agri.embedding.provider'].get_embedding(alert_text)
             
-            self.create({
+            # Write structured vector memory (bypass ORM field registry restrictions)
+            record = self.create({
                 'name': "Telemetry Pressure Warning (高频压强越限异常)",
                 'content': alert_text,
                 'timestamp': telemetry.timestamp,
                 'source_model': 'agri.telemetry.series',
                 'source_id': telemetry.id,
                 'company_id': self.env.company.id,
-                'embedding': vector
             })
+            self.env.cr.execute("UPDATE agri_agent_vector_memory SET embedding = %s::vector WHERE id = %s;", (vector, record.id))
 
         # 4. Save latest runtime timestamp
         try:
