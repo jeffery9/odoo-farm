@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
+from odoo.tools import html2plaintext
 
 class AgriAgentVectorMemory(models.Model):
     _name = 'agri.agent.vector.memory'
@@ -84,7 +85,7 @@ class AgriAgentVectorMemory(models.Model):
         ])
         
         for msg in messages:
-            plain_text = self.env['mail.thread']._html_to_plain_text(msg.body).strip()
+            plain_text = html2plaintext(msg.body).strip()
             if not plain_text:
                 continue
                 
