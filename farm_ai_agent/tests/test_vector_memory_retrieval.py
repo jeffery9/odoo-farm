@@ -59,24 +59,26 @@ class TestVectorMemoryRetrieval(TransactionCase):
         # Cosine distance test on simulated embeddings:
         # Since text_a and text_b contain similar keywords, seed pseudo-randomness should have a closer distance
         # than text_a and text_c.
-        self.env['agri.agent.vector.memory'].create({
+        rec_a = self.env['agri.agent.vector.memory'].create({
             'name': 'Memory A',
             'content': text_a,
-            'embedding': embedding_a,
             'company_id': self.env.company.id
         })
-        self.env['agri.agent.vector.memory'].create({
+        self.env.cr.execute("UPDATE agri_agent_vector_memory SET embedding = %s::vector WHERE id = %s;", (embedding_a, rec_a.id))
+
+        rec_b = self.env['agri.agent.vector.memory'].create({
             'name': 'Memory B',
             'content': text_b,
-            'embedding': embedding_b,
             'company_id': self.env.company.id
         })
-        self.env['agri.agent.vector.memory'].create({
+        self.env.cr.execute("UPDATE agri_agent_vector_memory SET embedding = %s::vector WHERE id = %s;", (embedding_b, rec_b.id))
+
+        rec_c = self.env['agri.agent.vector.memory'].create({
             'name': 'Memory C',
             'content': text_c,
-            'embedding': embedding_c,
             'company_id': self.env.company.id
         })
+        self.env.cr.execute("UPDATE agri_agent_vector_memory SET embedding = %s::vector WHERE id = %s;", (embedding_c, rec_c.id))
 
         results = self.env['agri.agent.vector.memory'].search_semantic_memory(text_a, limit=3)
         self.assertTrue(len(results) >= 1)
@@ -91,18 +93,21 @@ class TestVectorMemoryRetrieval(TransactionCase):
         memory_model = self.env['agri.agent.vector.memory']
         
         # Create memories belonging to separate companies
-        memory_model.create({
+        v_a = self.env['agri.embedding.provider'].get_embedding("Water valve psi high warning")
+        rec_a = memory_model.create({
             'name': 'Memory A',
             'content': "Water valve psi high warning",
             'company_id': self.company_a.id,
-            'embedding': self.env['agri.embedding.provider'].get_embedding("Water valve psi high warning")
         })
-        memory_model.create({
+        self.env.cr.execute("UPDATE agri_agent_vector_memory SET embedding = %s::vector WHERE id = %s;", (v_a, rec_a.id))
+
+        v_b = self.env['agri.embedding.provider'].get_embedding("Drone battery critical alarm")
+        rec_b = memory_model.create({
             'name': 'Memory B',
             'content': "Drone battery critical alarm",
             'company_id': self.company_b.id,
-            'embedding': self.env['agri.embedding.provider'].get_embedding("Drone battery critical alarm")
         })
+        self.env.cr.execute("UPDATE agri_agent_vector_memory SET embedding = %s::vector WHERE id = %s;", (v_b, rec_b.id))
 
         # Search as company_a context
         context_a = self.env['agri.agent.vector.memory'].with_company(self.company_a)
