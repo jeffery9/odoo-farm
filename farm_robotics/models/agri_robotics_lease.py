@@ -59,3 +59,23 @@ class AgriRoboticsLease(models.Model):
             
             if next_lease:
                 next_lease.write({'state': 'active'})
+
+    @api.model
+    def _cron_check_expired_leases(self):
+        """ Find active leases that are expired, force set to 'expired' and wake up queue """
+        expired_leases = self.search([
+            ('state', '=', 'active'),
+            ('expiration_date', '<', fields.Datetime.now())
+        ])
+        for lease in expired_leases:
+            lease.write({'state': 'expired'})
+            
+            # Atomic Wakeup Chain
+            next_lease = self.search([
+                ('res_model', '=', lease.res_model),
+                ('res_id', '=', lease.res_id),
+                ('state', '=', 'queued')
+            ], order='create_date asc', limit=1)
+            
+            if next_lease:
+                next_lease.write({'state': 'active'})

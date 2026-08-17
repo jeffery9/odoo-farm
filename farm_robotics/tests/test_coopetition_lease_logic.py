@@ -96,3 +96,26 @@ class TestCoopetitionLeaseLogic(TransactionCase):
         # Complete mission
         mission.write({'state': 'completed'})
         self.assertEqual(lease.state, 'released', "Completed mission must automatically release active lease")
+
+    def test_04_hard_expiry_scheduler_cron(self):
+        """ Scheduler cron must mark old leases expired and wake up queue """
+        now = fields.Datetime.now()
+        lease_a = self.env['agri.robotics.lease'].create({
+            'res_model': 'farm.location',
+            'res_id': self.location.id,
+            'robot_id': self.robot_a.id,
+            'expiration_date': now - timedelta(minutes=5), # expired
+            'state': 'active'
+        })
+        lease_b = self.env['agri.robotics.lease'].create({
+            'res_model': 'farm.location',
+            'res_id': self.location.id,
+            'robot_id': self.robot_b.id,
+            'expiration_date': now + timedelta(hours=1),
+            'state': 'queued'
+        })
+
+        # Run scheduler
+        self.env['agri.robotics.lease']._cron_check_expired_leases()
+        self.assertEqual(lease_a.state, 'expired', "Lease A must be marked as expired")
+        self.assertEqual(lease_b.state, 'active', "Lease B must be advanced to active status")
