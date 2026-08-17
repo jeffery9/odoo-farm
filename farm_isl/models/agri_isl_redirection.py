@@ -22,8 +22,8 @@ class AgriISLModelRedirector(models.AbstractModel):
     @api.model
     def get_isl_record(self, base_model_name, base_record_id):
         """
-        [SOLID Refactored] Get the corresponding ISL record for a base record.
-        Uses Odoo delegation inheritance metadata (_inherits) for dynamic discovery.
+        [SOLID Refactored & Cached] Get the corresponding ISL record for a base record.
+        Uses Odoo delegation inheritance metadata (_inherits) with registry lookup cache mapping.
         """
         if not base_record_id:
             return None
@@ -34,28 +34,34 @@ class AgriISLModelRedirector(models.AbstractModel):
 
         industry = getattr(base_record, 'industry_type', False)
         
-        # Scan registry for models that delegate-inherit from base_model_name
-        for model_name, model_obj in self.env.registry.items():
-            inherits = getattr(model_obj, '_inherits', {})
-            if base_model_name in inherits:
-                # This is a candidate ISL model
-                link_field = inherits[base_model_name]
-                
-                # Performance optimization: search with industry filter if possible
-                domain = [(link_field, '=', base_record_id)]
-                
-                # Check if this ISL model matches the record's industry
-                # Most ISL models have industry_type field via AgriManufacturingMixin
-                isl_record = self.env[model_name].search(domain, limit=1)
-                
-                if isl_record:
-                    # If industry is specified, verify match (LSP/OCP check)
-                    if industry and hasattr(isl_record, 'industry_type'):
-                        if isl_record.industry_type == industry:
-                            return isl_record
-                    else:
-                        # Fallback for generic/non-industry ISL models
+        # 1. Access Registry-Bound Lookup Cache to replace O(N) scanning
+        registry = self.env.registry
+        if not hasattr(registry, '_isl_inherits_cache'):
+            registry._isl_inherits_cache = {}
+            
+        cache = registry._isl_inherits_cache
+        if base_model_name not in cache:
+            # Recompile/populate candidate list once for base_model_name
+            candidates = []
+            for model_name, model_obj in registry.items():
+                inherits = getattr(model_obj, '_inherits', {})
+                if base_model_name in inherits:
+                    candidates.append((model_name, inherits[base_model_name]))
+            cache[base_model_name] = candidates
+
+        # 2. Iterate only over cached candidates of base_model_name
+        for model_name, link_field in cache[base_model_name]:
+            if model_name not in self.env:
+                continue
+            domain = [(link_field, '=', base_record_id)]
+            isl_record = self.env[model_name].search(domain, limit=1)
+            
+            if isl_record:
+                if industry and hasattr(isl_record, 'industry_type'):
+                    if isl_record.industry_type == industry:
                         return isl_record
+                else:
+                    return isl_record
 
         return None
 
