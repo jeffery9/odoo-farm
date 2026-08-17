@@ -14,4 +14,5 @@ from . import water_valve_agent
 from . import agri_agent_task_delegation
 from . import agri_embedding_provider
 from . import agri_agent_vector_memory
+from . import gxp_contamination
 

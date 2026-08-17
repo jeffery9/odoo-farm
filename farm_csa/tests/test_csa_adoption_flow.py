@@ -13,7 +13,7 @@ class TestCSAAdoptionFlow(TransactionCase):
         # 2. Create Asset (Pig)
         cls.pig_product = cls.env['product.product'].create({
             'name': 'Organic Pig',
-            'type': 'product',
+            'type': 'consu',
             'tracking': 'lot'
         })
         cls.pig_lot = cls.env['stock.lot'].create({
@@ -48,10 +48,12 @@ class TestCSAAdoptionFlow(TransactionCase):
         self.assertEqual(sub.state, 'active')
         
         # Verify Feeding task created
-        interventions = self.env['mrp.production'].search([
-            ('lot_producing_id', '=', self.pig_lot.id),
-            ('intervention_type', '=', 'feeding')
-        ])
+        domain = [('intervention_type', '=', 'feeding')]
+        if 'lot_producing_id' in self.env['mrp.production']._fields:
+            domain.append(('lot_producing_id', '=', self.pig_lot.id))
+        else:
+            domain.append(('lot_producing_ids', 'in', [self.pig_lot.id]))
+        interventions = self.env['mrp.production'].search(domain)
         self.assertTrue(interventions, "Activating adoption should trigger an initial feeding/care intervention.")
         
         # Verify Stream URL created

@@ -42,6 +42,13 @@ class FarmCSASubscription(models.Model):
     adopted_lot_id = fields.Many2one('stock.lot', string="Adopted Asset", 
                                     help="The specific animal or tree adopted by the customer.")
 
+    # US-042: CSA Cooperative Credit Linkage
+    coop_member_id = fields.Many2one('cooperative.member', string="Cooperative Member", help="The cooperative member backing this subscription's credit.")
+    use_coop_credit = fields.Boolean("Use Cooperative Credit", default=False)
+    credit_held_amount = fields.Float("Credit Held Amount", default=0.0)
+    yield_token_balance = fields.Float("Yield Token Balance", default=0.0)
+    credit_ledger_line_id = fields.Many2one('agri.clearing.ledger', string="Escrow Ledger Line", readonly=True)
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
@@ -50,6 +57,34 @@ class FarmCSASubscription(models.Model):
         return super().create(vals_list)
 
     def action_activate(self):
+        from odoo.exceptions import ValidationError
+        
+        for sub in self:
+            if sub.use_coop_credit:
+                if not sub.coop_member_id:
+                    raise ValidationError(_(
+                        "COOP_MEMBER_REQUIRED: Cooperative member is required when coop credit is enabled. "
+                        "(合作社授权必填：当启用合作社额度担保支付时，合作社成员字段必填。)"
+                    ))
+                
+                # Check credit limit
+                available_credit = sub.coop_member_id.credit_limit - sub.coop_member_id.credit_used
+                if available_credit < sub.credit_held_amount:
+                    raise ValidationError(_(
+                        "COOP_CREDIT_INSUFFICIENT: Cooperative member credit is insufficient to back this subscription. "
+                        "(合作社授信额度不足，无法激活此订阅担保。)"
+                    ))
+                
+                # Create draft clearing ledger record
+                ledger = self.env['agri.clearing.ledger'].create({
+                    'partner_id': sub.partner_id.id,
+                    'credit_change': -sub.credit_held_amount,
+                    'description': f"CSA Pre-sale Credit Lock: {sub.name}",
+                    'state': 'draft',
+                    'source_ref': f"farm.csa.subscription,{sub.id}"
+                })
+                sub.credit_ledger_line_id = ledger.id
+
         self.write({'state': 'active'})
         for sub in self:
             if sub.sub_type == 'adoption' and sub.adopted_lot_id:
@@ -68,14 +103,66 @@ class FarmCSASubscription(models.Model):
                 if not feed_product:
                     feed_product = self.env['product.product'].create({'name': 'Standard Feed', 'type': 'consu'})
                     
-                intervention = self.env['mrp.production'].create({
+                vals = {
                     'product_id': sub.adopted_lot_id.product_id.id,
                     'product_qty': 1.0,
                     'intervention_type': 'feeding',
-                    'lot_producing_id': sub.adopted_lot_id.id,
                     'origin': f"CSA Adoption: {sub.name}",
-                })
+                }
+                if 'lot_producing_id' in self.env['mrp.production']._fields:
+                    vals['lot_producing_id'] = sub.adopted_lot_id.id
+                else:
+                    vals['lot_producing_ids'] = [(4, sub.adopted_lot_id.id)]
+                intervention = self.env['mrp.production'].create(vals)
                 sub.message_post(body=_("Provisioned Video Stream: %s and scheduled initial Care Intervention: %s") % (stream_url, intervention.name))
+
+    def _generate_delivery_tasks(self):
+        """ 定时任务调用：为当天到期的订阅生成配送单 """
+        today = fields.Date.today()
+        active_subs = self.search([
+            ('state', '=', 'active'),
+            ('next_delivery_date', '<=', today)
+        ])
+        
+        for sub in active_subs:
+            # Token depletion check
+            if sub.yield_token_balance <= 0.0:
+                sub.message_post(body=_(
+                    "CSA_TOKEN_EXHAUSTED: Pre-sale yield token balance is exhausted. Delivery suspended. "
+                    "(提货代币已耗尽，本期自动发货暂停，请及时充值。)"
+                ))
+                # Skip creation of picking but postpone next delivery date to prevent spinning/looping
+                days = 7
+                if sub.plan_id.frequency == 'biweekly': days = 14
+                if sub.plan_id.frequency == 'monthly': days = 30
+                sub.next_delivery_date = sub.next_delivery_date + timedelta(days=days)
+                continue
+
+            # 创建库存移动 (Picking)
+            picking_type = self.env['stock.picking.type'].search([('code', '=', 'outgoing')], limit=1)
+            picking = self.env['stock.picking'].create({
+                'partner_id': sub.partner_id.id,
+                'picking_type_id': picking_type.id,
+                'origin': sub.name,
+                'location_id': picking_type.default_location_src_id.id,
+                'location_dest_id': sub.partner_id.property_stock_customer.id,
+                'move_ids': [(0, 0, {
+                    'description_picking': sub.plan_id.product_id.name,
+                    'product_id': sub.plan_id.product_id.id,
+                    'product_uom_qty': 1.0,
+                    'product_uom': sub.plan_id.product_id.uom_id.id,
+                    'location_id': picking_type.default_location_src_id.id,
+                    'location_dest_id': sub.partner_id.property_stock_customer.id,
+                })]
+            })
+            
+            # 计算下一次日期
+            days = 7
+            if sub.plan_id.frequency == 'biweekly': days = 14
+            if sub.plan_id.frequency == 'monthly': days = 30
+            
+            sub.next_delivery_date = sub.next_delivery_date + timedelta(days=days)
+            sub.message_post(body=_("Delivery task %s generated.") % picking.name)
 
 class FarmSharedTool(models.Model):
     """ US-066-02: Shared Tool Management for Urban/Community Farming """
@@ -114,38 +201,3 @@ class FarmSharedTool(models.Model):
             'current_user_id': False
         })
         self.message_post(body=_("Tool returned and available for next user."))
-
-    def _generate_delivery_tasks(self):
-        """ 定时任务调用：为当天到期的订阅生成配送单 """
-        today = fields.Date.today()
-        active_subs = self.search([
-            ('state', '=', 'active'),
-            ('next_delivery_date', '<=', today)
-        ])
-        
-        for sub in active_subs:
-            # 创建库存移动 (Picking)
-            picking_type = self.env['stock.picking.type'].search([('code', '=', 'outgoing')], limit=1)
-            picking = self.env['stock.picking'].create({
-                'partner_id': sub.partner_id.id,
-                'picking_type_id': picking_type.id,
-                'origin': sub.name,
-                'location_id': picking_type.default_location_src_id.id,
-                'location_dest_id': sub.partner_id.property_stock_customer.id,
-                'move_ids': [(0, 0, {
-                    'name': sub.plan_id.product_id.name,
-                    'product_id': sub.plan_id.product_id.id,
-                    'product_uom_qty': 1.0,
-                    'product_uom': sub.plan_id.product_id.uom_id.id,
-                    'location_id': picking_type.default_location_src_id.id,
-                    'location_dest_id': sub.partner_id.property_stock_customer.id,
-                })]
-            })
-            
-            # 计算下一次日期
-            days = 7
-            if sub.plan_id.frequency == 'biweekly': days = 14
-            if sub.plan_id.frequency == 'monthly': days = 30
-            
-            sub.next_delivery_date = sub.next_delivery_date + timedelta(days=days)
-            sub.message_post(body=_("Delivery task %s generated.") % picking.name)

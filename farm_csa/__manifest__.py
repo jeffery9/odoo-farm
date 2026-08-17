@@ -11,7 +11,7 @@
     """,
     'author': 'Jeffery',
     'depends': ['farm_core',
-        'mrp', 'stock', 'sale'],
+        'mrp', 'stock', 'sale', 'farm_multi_farm', 'farm_operation'],
     'data': [
         # # 'security/ir.model.access.csv',
         'data/ir_cron_data.xml',

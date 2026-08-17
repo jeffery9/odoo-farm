@@ -39,11 +39,12 @@ class CooperativeMember(models.Model):
     # Fields for US-042-15 (Loans)
     loan_balance = fields.Float('Loan Balance', compute='_compute_loan_balance', store=True, precompute=True)
 
-    @api.model
-    def create(self, vals):
-        if 'code' not in vals or not vals['code']:
-            vals['code'] = self.env['ir.sequence'].next_by_code('cooperative.member') or '/'
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if 'code' not in vals or not vals['code']:
+                vals['code'] = self.env['ir.sequence'].next_by_code('cooperative.member') or '/'
+        return super().create(vals_list)
 
     @api.depends('shares_held')
     def _compute_share_value(self):

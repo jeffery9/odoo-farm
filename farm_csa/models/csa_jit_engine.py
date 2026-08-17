@@ -33,7 +33,7 @@ class FarmCSAPlan(models.Model):
             'origin': f"JIT CSA Aggregation: {self.name} ({len(subs)} orders)",
         })
         
-        self.message_post(body=_("JIT Harvest Dispatched: %s units of %s needed for %s upcoming deliveries. Intervention: %s") % (
+        intervention.message_post(body=_("JIT Harvest Dispatched: %s units of %s needed for %s upcoming deliveries. Intervention: %s") % (
             total_qty, self.product_id.name, len(subs), intervention.name
         ))
         
