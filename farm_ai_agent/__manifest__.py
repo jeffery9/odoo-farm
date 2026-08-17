@@ -20,6 +20,7 @@
         "security/ir.model.access.csv",
         "security/security_rules.xml",
         "data/ir_sequence_data.xml",
+        "data/ir_cron_data.xml",
         "views/a2a_react_loop_views.xml",
         "views/ai_skill_views.xml",
         "views/menu.xml",
