@@ -28,6 +28,7 @@
                     <button name="action_activate" string="Activate Book" type="object" class="btn-primary" invisible="state != 'draft'" />
                     <button name="action_generate_from_template" string="Generate Checks from Template" type="object" class="btn-info" invisible="state != 'draft'" />
                     <button name="action_lock" string="Seal &amp; Sign (GxP)" type="object" class="btn-danger" invisible="state != 'active'" confirm="Are you sure you want to lock and cryptographically sign this record book? Once sealed, all linked quality checks will become immutable." />
+                    <button name="action_export_spreadsheet" string="Export Spreadsheet" type="object" class="btn-secondary" icon="fa-file-excel-o" />
                     <field name="state" widget="statusbar" statusbar_visible="draft,active,locked" />
                 </header>
                 <sheet>
