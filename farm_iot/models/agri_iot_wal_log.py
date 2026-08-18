@@ -17,9 +17,10 @@ class AgriIoTWalLog(models.Model):
         ('failed', 'Failed')
     ], string='Processing Status', default='pending', index=True)
 
-    _sql_constraints = [
-        ('message_guid_uniq', 'unique(message_guid)', 'Telemetry message GUID must be absolutely unique to guarantee idempotency! (遥测消息GUID必须唯一以保证幂等性！)')
-    ]
+    _message_guid_uniq = models.Constraint(
+        'unique(message_guid)',
+        'Telemetry message GUID must be absolutely unique to guarantee idempotency! (遥测消息GUID必须唯一以保证幂等性！)'
+    )
 
     @api.model
     def ingest_telemetry(self, guid, device_id, payload, target_id=None):
