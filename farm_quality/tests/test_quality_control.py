@@ -159,3 +159,98 @@ class TestFarmQuality(TransactionCase):
         self.assertEqual(book.state, 'active')
         with self.assertRaises(UserError):
             book.action_generate_from_template()
+
+    def test_05_quality_spc_analysis(self):
+        """ Test Statistical Process Control (SPC) calculation formulas and ASCII run charts """
+        # 1. Create a measurement-based Quality Point with explicit tolerance limits
+        measure_point = self.Point.create({
+            'name': 'Milk Acidity Level (pH)',
+            'test_type': 'measure',
+            'norm': 50.0,
+            'tolerance_min': 45.0,
+            'tolerance_max': 55.0,
+        })
+
+        # 2. Create a Quality Record Book Template
+        template = self.env['agri.quality.record.book.template'].create({
+            'name': 'HACCP Dairy Laboratory Template',
+            'book_type': 'haccp',
+        })
+
+        # 3. Add template instruction line linked to the point
+        line = self.env['agri.quality.record.book.template.line'].create({
+            'template_id': template.id,
+            'sequence': 10,
+            'name': 'Measure Acidity of Milk Lot',
+            'point_id': measure_point.id,
+            'instruction': 'Insert pH sensor and wait for stable reading (Target: 50.0 pH).',
+        })
+
+        # 4. Simulate historical inspection batches (5 books / checks)
+        historical_measures = [48.5, 51.2, 49.8, 52.0, 47.9]
+        lot = self.env['stock.lot'].create({
+            'name': 'LOT-MILK-01',
+            'product_id': self.Product.create({'name': 'Raw Milk', 'type': 'consu'}).id,
+        })
+
+        for i, val in enumerate(historical_measures):
+            book = self.env['agri.quality.record.book'].create({
+                'name': f'Daily Dairy Log Batch {i+1}',
+                'book_type': 'haccp',
+                'template_id': template.id,
+            })
+            book.action_generate_from_template()
+            self.assertEqual(len(book.check_ids), 1)
+            
+            # Record the measurement value
+            check = book.check_ids[0]
+            check.write({
+                'measure': val,
+                'quality_state': 'pass' if (45.0 <= val <= 55.0) else 'fail',
+            })
+
+        # 5. Open and trigger SPC Analysis Wizard
+        wizard = self.env['agri.quality.spc.wizard'].create({
+            'template_line_id': line.id,
+        })
+        wizard.action_calculate()
+
+        # 6. Assert statistical calculations
+        self.assertEqual(wizard.sample_count, 5)
+        
+        # Mean = (48.5 + 51.2 + 49.8 + 52.0 + 47.9) / 5 = 49.88
+        self.assertAlmostEqual(wizard.mean_val, 49.88, places=4)
+        self.assertEqual(wizard.max_val, 52.0)
+        self.assertEqual(wizard.min_val, 47.9)
+        
+        # Standard Deviation calculation (Sample)
+        # diffs: [-1.38, 1.32, -0.08, 2.12, -1.98]
+        # squared diffs: [1.9044, 1.7424, 0.0064, 4.4944, 3.9204]
+        # sum of squared diffs: 12.068
+        # variance: 12.068 / (5 - 1) = 3.017
+        # sigma: sqrt(3.017) = 1.73696
+        self.assertAlmostEqual(wizard.std_dev, 1.73695, places=4)
+        
+        # UCL = Mean + 3*sigma = 49.88 + 3*1.73695 = 55.0908
+        self.assertAlmostEqual(wizard.ucl, 55.0908, places=3)
+        # LCL = Mean - 3*sigma = 49.88 - 3*1.73695 = 44.6691
+        self.assertAlmostEqual(wizard.lcl, 44.6691, places=3)
+
+        # Cp = (55 - 45) / (6 * 1.73695) = 10 / 10.4217 = 0.9595
+        self.assertAlmostEqual(wizard.cp, 0.9595, places=3)
+        
+        # Cpk = min((55 - 49.88) / (3*1.73695), (49.88 - 45) / (3*1.73695))
+        #     = min(5.12 / 5.21085, 4.88 / 5.21085)
+        #     = min(0.9825, 0.9365) = 0.9365
+        self.assertAlmostEqual(wizard.cpk, 0.9365, places=3)
+        self.assertIn("Marginal", wizard.cpk_status)
+
+        # 7. Check if ASCII chart was successfully generated and contains essential keys
+        self.assertTrue(wizard.spc_chart_ascii)
+        self.assertIn("UCL", wizard.spc_chart_ascii)
+        self.assertIn("Mean", wizard.spc_chart_ascii)
+        self.assertIn("LCL", wizard.spc_chart_ascii)
+        self.assertIn("*", wizard.spc_chart_ascii)  # Contains plotted data points
+        print("\n=== GENERATED SPC RUN CONTROL CHART ===\n")
+        print(wizard.spc_chart_ascii)
+        print("\n=======================================\n")
