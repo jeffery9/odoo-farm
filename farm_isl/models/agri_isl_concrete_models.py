@@ -416,7 +416,7 @@ class AgriQualityControl(models.Model):
     """
     _name = 'agri.isl.quality.control'
     _description = 'Agri ISL Quality Control'
-    _inherits = {'quality.point': 'quality_point_id'}
+    _inherits = {'agri.quality.point': 'quality_point_id'}
     _inherit = [
         'agri.isl.quality.mixin',
         'agri.isl.trait.food_safety',
@@ -424,7 +424,7 @@ class AgriQualityControl(models.Model):
     ]
 
     quality_point_id = fields.Many2one(
-        'quality.point',
+        'agri.quality.point',
         string='Base Quality Point',
         required=True,
         ondelete='cascade'
