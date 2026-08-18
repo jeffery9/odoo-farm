@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from odoo import models, fields, api
 
 class FarmEquipmentLog(models.Model):
@@ -32,8 +33,6 @@ class FarmEquipmentLog(models.Model):
         self.ensure_one()
         # Find the carbon factor for this fuel type.
         # Assuming product name maps to fuel type or we find by category 'energy'
-        # For a robust system, the equipment's fuel type should map to a product.template or factor directly.
-        # Let's search for a factor that mentions 'diesel' if fuel type is diesel.
         
         fuel_keyword = self.equipment_id.fuel_type.capitalize() if self.equipment_id.fuel_type else 'Diesel'
         
@@ -46,23 +45,18 @@ class FarmEquipmentLog(models.Model):
             # Silent fail for the demo if no factor is configured
             return
 
-        co2e = self.fuel_consumed * factor.emission_factor
-
         ledger = self.env['agri.carbon.ledger'].create({
             'name': f"Fuel Emission: {self.equipment_id.name}",
             'date': self.date,
-            'scope': 'scope1', # Direct emission from owned asset
             'impact_type': 'emission',
-            'co2e_amount': co2e,
-            'source_factor_id': factor.id,
-            'origin': f'Equipment Log: {self.id}',
+            'quantity': self.fuel_consumed,
+            'factor_id': factor.id,
+            'uom_id': factor.uom_id.id,
         })
         
         self.carbon_ledger_id = ledger.id
 
     def _update_carbon_ledger_entry(self):
         self.ensure_one()
-        if self.carbon_ledger_id and self.carbon_ledger_id.source_factor_id:
-            new_co2e = self.fuel_consumed * self.carbon_ledger_id.source_factor_id.emission_factor
-            self.carbon_ledger_id.write({'co2e_amount': new_co2e})
-
+        if self.carbon_ledger_id:
+            self.carbon_ledger_id.write({'quantity': self.fuel_consumed})

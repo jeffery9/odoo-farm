@@ -133,3 +133,58 @@ class TestISLDynamicRedirection(TransactionCase):
         self.assertTrue(new_isl)
         self.assertEqual(new_isl._name, 'agri.isl.stock.picking')
         self.assertEqual(new_isl.picking_id.id, picking.id)
+
+    def test_08_redirector_cache_hit_and_validation(self):
+        """ TDD: Verify that Registry-Bound Cache is populated and actually used by redirector """
+        # Clear cache to guarantee compile execution
+        if hasattr(self.env.registry, '_isl_inherits_cache'):
+            delattr(self.env.registry, '_isl_inherits_cache')
+
+        try:
+            # 1. Trigger redirection to build cache
+            found_isl = self.Redirector.get_isl_record('mrp.production', self.production.id)
+            
+            # 2. Verify that registry-bound cache exists on the registry instance
+            self.assertTrue(hasattr(self.env.registry, '_isl_inherits_cache'), "Cache must be created on self.env.registry")
+            cache = self.env.registry._isl_inherits_cache
+            self.assertIn('mrp.production', cache)
+            
+            # 3. Cache-hijack assertion: Modify cache entry and verify it is respected (proving O(1) bypass)
+            # We replace candidates with a fake non-existent model
+            cache['mrp.production'] = [('fake.nonexistent.model', 'mrp_production_id')]
+            
+            # Try to redirect again - it must return None because it bypasses scanning and reads fake cache
+            hijacked_isl = self.Redirector.get_isl_record('mrp.production', self.production.id)
+            self.assertIsNone(hijacked_isl, "Redirector must read from cache instead of re-scanning registry")
+        finally:
+            # Clean up cache robustly
+            if hasattr(self.env.registry, '_isl_inherits_cache'):
+                delattr(self.env.registry, '_isl_inherits_cache')
+
+    def test_09_redirector_performance_benchmark(self):
+        """ TDD: Benchmark performance to verify cache provides speedup """
+        import time
+        
+        # Make a mock record to redirect
+        lot = self.env['stock.lot'].create({
+            'name': 'BENCH-LOT-01',
+            'product_id': self.product.id,
+            'company_id': self.env.company.id,
+        })
+        
+        # First execution (compiles cache)
+        start_uncached = time.perf_counter()
+        self.Redirector.get_isl_record('stock.lot', lot.id)
+        uncached_duration = time.perf_counter() - start_uncached
+        
+        # Second execution (reads cache)
+        start_cached = time.perf_counter()
+        for _ in range(500):
+            self.Redirector.get_isl_record('stock.lot', lot.id)
+        cached_duration_x500 = time.perf_counter() - start_cached
+        
+        # Individual cached lookups should be orders of magnitude faster
+        average_cached_duration = cached_duration_x500 / 500.0
+        _logger.info("Redirector performance benchmark: Uncached=%.6fs, Average Cached=%.6fs", uncached_duration, average_cached_duration)
+        self.assertLess(average_cached_duration, uncached_duration, "Cached lookup must be faster than registry-scanning uncached lookup")
+

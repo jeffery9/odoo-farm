@@ -23,6 +23,12 @@ class AgriAiCoordinationLayer(models.Model):
     name = fields.Char('Coordination Name', required=True)
     description = fields.Text('Description')
     active = fields.Boolean('Active', default=True)
+    status = fields.Selection([
+        ('draft', 'Draft'),
+        ('approved', 'Approved'),
+        ('completed', 'Completed'),
+        ('failed', 'Failed'),
+    ], string='Status', default='draft', tracking=True)
 
     # Coordination type
     coordination_type = fields.Selection([

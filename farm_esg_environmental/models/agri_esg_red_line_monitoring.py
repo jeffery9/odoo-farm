@@ -124,18 +124,20 @@ class AgriESGRedLineMonitoring(models.Model):
     remediation_date = fields.Datetime('Remediation Date')
     resolution_notes = fields.Text('Resolution Notes')
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         """Override create to set default name and trigger compliance check"""
-        if 'name' not in vals or not vals['name']:
-            vals['name'] = self.env['ir.sequence'].next_by_code('agri.esg.red.line.monitoring') or '/'
+        for vals in vals_list:
+            if 'name' not in vals or not vals['name']:
+                vals['name'] = self.env['ir.sequence'].next_by_code('agri.esg.red.line.monitoring') or '/'
 
-        record = super().create(vals)
+        records = super().create(vals_list)
 
         # Trigger compliance check after creation
-        record._check_compliance_status()
+        for record in records:
+            record._check_compliance_status()
 
-        return record
+        return records
 
     def write(self, vals):
         """Override write to trigger compliance check if relevant fields change"""

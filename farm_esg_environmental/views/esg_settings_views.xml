@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_esg_environmental" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.esg.environmental</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="95"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Farm ESG Environmental" string="Farm ESG Environmental" name="farm_esg_environmental">
+                    <block title="Environmental Sustainability Gates" name="esg_environmental_block">
+                        <setting id="carbon_tracking_toggle" string="Soil Carbon Footprint Tracking" help="Enable tracking of soil carbon footprint and reduction metrics.">
+                            <field name="group_enable_carbon_tracking"/>
+                        </setting>
+                        <setting id="circular_tracking_toggle" string="Organic Circular Waste Management" help="Enable organic circular waste tracking and management.">
+                            <field name="group_enable_circular_tracking"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

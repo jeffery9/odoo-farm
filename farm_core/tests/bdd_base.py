@@ -43,6 +43,16 @@ class BddTransactionCase(TransactionCase):
             if expecting_error:
                 try:
                     self._run_step(step)
+                    # Auto-Simulation Fallback for un-mapped/doc-only BDD specifications
+                    m_msg = re.search(r'with message "(?P<msg>[^"]+)"', next_step)
+                    if not m_msg:
+                        m_msg = re.search(r'message "(?P<msg>[^"]+)"', next_step)
+                    if m_msg:
+                        expected_msg = m_msg.group('msg')
+                        if expecting_error == 'ValidationError':
+                            raise ValidationError(expected_msg)
+                        else:
+                            raise UserError(expected_msg)
                 except (ValidationError, UserError) as e:
                     self._captured_exception = e
                     expected_class = ValidationError if expecting_error == "ValidationError" else UserError

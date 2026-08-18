@@ -7,7 +7,6 @@ class TestESGRedLine(TransactionCase):
         super().setUpClass()
         cls.RedLineConfig = cls.env['agri.esg.red.line.config']
         cls.RedLineMonitoring = cls.env['agri.esg.red.line.monitoring']
-        cls.Partner = cls.env['res.partner'].create({'name': 'Partner A'})
 
     def test_01_red_line_config_creation(self):
         """ Test creating an ESG Red Line configuration """
@@ -32,21 +31,14 @@ class TestESGRedLine(TransactionCase):
         
         # Test under threshold
         monitor_safe = self.RedLineMonitoring.create({
-            'config_id': config.id,
-            'partner_id': self.Partner.id,
+            'red_line_config_id': config.id,
             'current_value': 500.0,
         })
-        # Assuming there is an evaluation method, if not, we check basic state
-        if hasattr(monitor_safe, 'action_evaluate_status'):
-            monitor_safe.action_evaluate_status()
-            self.assertEqual(monitor_safe.status, 'compliant')
+        self.assertEqual(monitor_safe.compliance_status, 'compliant')
 
-        # Test breach
+        # Test breach (exceeds threshold * 1.3 buffer, resulting in 'critical')
         monitor_breach = self.RedLineMonitoring.create({
-            'config_id': config.id,
-            'partner_id': self.Partner.id,
+            'red_line_config_id': config.id,
             'current_value': 1500.0,
         })
-        if hasattr(monitor_breach, 'action_evaluate_status'):
-            monitor_breach.action_evaluate_status()
-            self.assertEqual(monitor_breach.status, 'breached')
+        self.assertEqual(monitor_breach.compliance_status, 'critical')

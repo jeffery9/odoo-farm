@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-<record id="ir_cron_check_biological_asset_maturity" model="ir.cron">
+    <record id="ir_cron_check_biological_asset_maturity" model="ir.cron">
         <field name="name">Check Biological Asset Maturity</field>
         <field name="model_id" ref="model_stock_lot" />
         <field name="state">code</field>
@@ -9,6 +9,17 @@
         <field name="user_id" ref="base.user_root" />
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
+        <field name="active" eval="True" />
+    </record>
+
+    <record id="ir_cron_recalculate_pending_merkle_hashes" model="ir.cron">
+        <field name="name">Recalculate Pending Merkle Hashes</field>
+        <field name="model_id" ref="model_stock_matter_tracking" />
+        <field name="state">code</field>
+        <field name="code">model._cron_recalculate_merkle_hashes()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">hours</field>
         <field name="active" eval="True" />
     </record>
 </data>

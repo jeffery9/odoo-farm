@@ -15,6 +15,12 @@ class TestDroneDispatchFlow(TransactionCase):
             'name': 'Test Grid A1'
         })
 
+        # Create a dummy product
+        cls.product = cls.env['product.template'].create({
+            'name': 'Wheat Seed Product',
+            'type': 'consu'
+        })
+
         # Create a dummy profile
         cls.profile = cls.env['iiot.device.profile'].create({
             'name': 'Drone Profile',
@@ -29,6 +35,15 @@ class TestDroneDispatchFlow(TransactionCase):
             'profile_id': cls.profile.id,
             'physical_level': 'controller'
         })
+
+        # Create a dummy gateway to avoid UserError during command dispatch
+        cls.gateway = cls.env['iiot.gateway'].create({
+            'name': 'Test Gateway',
+            'gateway_id': 'GW-TEST-01',
+            'url': 'http://dummy-gateway.local',
+            'state': 'online',
+            'device_ids': [(4, cls.drone_device.id)]
+        })
         
         cls.drone = cls.env['farm.robot'].create({
             'name': 'AgriScout 5000',
@@ -40,7 +55,8 @@ class TestDroneDispatchFlow(TransactionCase):
         cls.twin = cls.env['agri.biological.twin'].create({
             'name': 'Wheat Crop A1 Twin',
             'location_id': cls.location.id,
-            'health_score': 100.0
+            'health_score': 100.0,
+            'product_id': cls.product.id
         })
 
         # 4. Create an AI Autonomous Orchestrator
@@ -62,6 +78,20 @@ class TestDroneDispatchFlow(TransactionCase):
                 'model': 'project.project',
                 'res_id': cls.project.id
             })
+
+    def setUp(self):
+        super().setUp()
+        from unittest.mock import patch, MagicMock
+        self.patcher = patch('requests.post')
+        self.mock_post = self.patcher.start()
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {'status': 'success'}
+        self.mock_post.return_value = mock_response
+
+    def tearDown(self):
+        self.patcher.stop()
+        super().tearDown()
 
     def test_01_end_to_end_drone_dispatch(self):
         """

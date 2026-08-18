@@ -90,7 +90,7 @@ class TestEpic071(TransactionCase):
         # Assuming a production task is linked
         task = self.env['project.task'].create({
             'name': 'Precision Spraying Task',
-            'location_id': self.location.id
+            'land_parcel_id': self.location.id
         })
         mission.task_id = task.id
         

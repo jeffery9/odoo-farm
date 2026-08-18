@@ -16,10 +16,10 @@ class AIAutonomousOrchestratorExtension(models.Model):
         # This extension injects the robotics dispatch logic.
         mission_type = 'scout'
         
-        robot = self.env['farm.robot'].search([
-            ('robot_type', '=', mission_type),
-            ('robot_status', '=', 'idle')
-        ], limit=1)
+        robots = self.env['farm.robot'].search([
+            ('robot_type', '=', mission_type)
+        ])
+        robot = robots.filtered(lambda r: r.robot_status == 'idle')[:1]
         
         if not robot:
             _logger.warning("No idle %s robot available for twin %s", mission_type, twin.name)

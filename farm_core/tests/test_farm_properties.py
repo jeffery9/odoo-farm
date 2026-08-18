@@ -4,7 +4,7 @@ class TestFarmProperties(TransactionCase):
 
     def setUp(self):
         super(TestFarmProperties, self).setUp()
-        self.Location = self.env['agri.location']
+        self.Location = self.env['farm.location']
         self.Lot = self.env['stock.lot']
         self.Product = self.env['product.product']
 
