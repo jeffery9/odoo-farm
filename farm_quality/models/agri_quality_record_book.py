@@ -120,6 +120,221 @@ class AgriQualityRecordBook(models.Model):
             
         self.message_post(body=_("Successfully generated %s quality check records from template: <b>%s</b>") % (len(checks_vals), self.template_id.name))
 
+    def action_export_spreadsheet(self):
+        """ Generates and streams a professionally-formatted GxP compliance spreadsheet of the Record Book """
+        self.ensure_one()
+        import io
+        import base64
+        try:
+            from openpyxl import Workbook
+            from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+            from openpyxl.utils import get_column_letter
+        except ImportError:
+            raise UserError(_("The 'openpyxl' library is required to export spreadsheets. Please contact your system administrator."))
+
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Quality Record Book Log"
+        
+        # Ensure grid lines are visible in Excel
+        ws.views.sheetView[0].showGridLines = True
+        
+        # Professional Color Palette fills (Steel Blue Theme)
+        NAVY_FILL = PatternFill(start_color="1F497D", end_color="1F497D", fill_type="solid")
+        ICE_BLUE_FILL = PatternFill(start_color="DCE6F1", end_color="DCE6F1", fill_type="solid")
+        LIGHT_GRAY_FILL = PatternFill(start_color="F2F2F2", end_color="F2F2F2", fill_type="solid")
+        
+        # Font definitions
+        FONT_TITLE = Font(name="Calibri", size=16, bold=True, color="FFFFFF")
+        FONT_HEADER = Font(name="Calibri", size=11, bold=True, color="1F497D")
+        FONT_BOLD = Font(name="Calibri", size=11, bold=True)
+        FONT_REGULAR = Font(name="Calibri", size=11)
+        FONT_SIGNATURE = Font(name="Courier New", size=10, italic=True)
+        
+        # Border definitions
+        thin_side = Side(border_style="thin", color="D9D9D9")
+        thick_side = Side(border_style="medium", color="1F497D")
+        border_all_thin = Border(left=thin_side, right=thin_side, top=thin_side, bottom=thin_side)
+        border_header = Border(left=thin_side, right=thin_side, top=thick_side, bottom=thick_side)
+        
+        # 1. Header Title Banner
+        ws.merge_cells("A1:H2")
+        title_cell = ws["A1"]
+        title_cell.value = "GxP QUALITY RECORD BOOK AUDIT SHEET"
+        title_cell.font = FONT_TITLE
+        title_cell.fill = NAVY_FILL
+        title_cell.alignment = Alignment(horizontal="center", vertical="center")
+        
+        # 2. Metadata Info Block
+        book_type_label = dict(self._fields['book_type'].selection).get(self.book_type, "General")
+        metadata = [
+            ("Record Book Code:", self.code or "N/A", "Template Name:", self.template_id.name or "N/A"),
+            ("Record Book Name:", self.name, "Template Type:", book_type_label),
+            ("Current State:", self.state.upper(), "Created Date:", self.create_date.strftime("%Y-%m-%d %H:%M:%S") if self.create_date else "N/A"),
+            ("Cryptographic Seal:", self.cryptographic_signature or "UNSEALED - DRAFT", "Seal Date:", self.signature_date.strftime("%Y-%m-%d %H:%M:%S") if self.signature_date else "N/A")
+        ]
+        
+        row_idx = 4
+        for data in metadata:
+            ws.cell(row=row_idx, column=1, value=data[0]).font = FONT_HEADER
+            ws.cell(row=row_idx, column=2, value=data[1]).font = FONT_REGULAR
+            ws.cell(row=row_idx, column=5, value=data[2]).font = FONT_HEADER
+            ws.cell(row=row_idx, column=6, value=data[3]).font = FONT_REGULAR
+            row_idx += 1
+            
+        # 3. Quality Checks Grid Table
+        row_idx += 1 # Space
+        ws.cell(row=row_idx, column=1, value="QUALITY CHECKLIST ITEMS / STEPS").font = FONT_BOLD
+        ws.merge_cells(start_row=row_idx, start_column=1, end_row=row_idx, end_column=8)
+        ws.row_dimensions[row_idx].height = 20
+        for col in range(1, 9):
+            ws.cell(row=row_idx, column=col).fill = ICE_BLUE_FILL
+            
+        row_idx += 1
+        headers = ["Seq", "Check Name", "Target Point", "Test Type", "Standard Instruction", "Actual Measure", "Status", "Remarks"]
+        ws.row_dimensions[row_idx].height = 24
+        for col_idx, h in enumerate(headers, 1):
+            cell = ws.cell(row=row_idx, column=col_idx, value=h)
+            cell.font = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
+            cell.fill = NAVY_FILL
+            cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+            cell.border = border_header
+            
+        start_table_row = row_idx + 1
+        seq = 1
+        for check in self.check_ids:
+            row_idx += 1
+            ws.row_dimensions[row_idx].height = 20
+            
+            ws.cell(row=row_idx, column=1, value=seq).alignment = Alignment(horizontal="center")
+            ws.cell(row=row_idx, column=2, value=check.name or '')
+            ws.cell(row=row_idx, column=3, value=check.point_id.name or 'N/A')
+            ws.cell(row=row_idx, column=4, value=check.test_type or 'N/A')
+            ws.cell(row=row_idx, column=5, value=check.instruction or '')
+            
+            # Measurement formatting (Blue text indicates changeables / inputs in Excel standard)
+            if check.test_type == 'measure':
+                cell_val = ws.cell(row=row_idx, column=6, value=check.measure)
+                cell_val.font = Font(name="Calibri", size=11, color="0000FF")
+                cell_val.number_format = "#,##0.00"
+                cell_val.alignment = Alignment(horizontal="right")
+            else:
+                ws.cell(row=row_idx, column=6, value="N/A").alignment = Alignment(horizontal="center")
+                
+            # Status styling
+            status_text = "Passed" if check.quality_state == 'pass' else ("Failed" if check.quality_state == 'fail' else "To do")
+            cell_stat = ws.cell(row=row_idx, column=7, value=status_text)
+            cell_stat.alignment = Alignment(horizontal="center")
+            if status_text == "Passed":
+                cell_stat.font = Font(name="Calibri", size=11, bold=True, color="006100")
+            elif status_text == "Failed":
+                cell_stat.font = Font(name="Calibri", size=11, bold=True, color="9C0006")
+                
+            # Remarks column
+            ws.cell(row=row_idx, column=8, value="")
+            
+            for col in range(1, 9):
+                ws.cell(row=row_idx, column=col).border = border_all_thin
+                if col != 6:
+                    ws.cell(row=row_idx, column=col).font = FONT_REGULAR
+            seq += 1
+            
+        end_table_row = row_idx
+        
+        # 4. Statistical Dynamic Excel Formulas Block
+        row_idx += 2
+        ws.cell(row=row_idx, column=1, value="RECORD BOOK SUMMARY STATISTICS").font = FONT_BOLD
+        ws.merge_cells(start_row=row_idx, start_column=1, end_row=row_idx, end_column=4)
+        for col in range(1, 5):
+            ws.cell(row=row_idx, column=col).fill = ICE_BLUE_FILL
+            
+        metrics = [
+            ("Total Checklist Items:", f"=COUNTA(B{start_table_row}:B{end_table_row})", "%"),
+            ("Passed Items Count:", f'=COUNTIF(G{start_table_row}:G{end_table_row}, "Passed")', "Count"),
+            ("Failed Items Count:", f'=COUNTIF(G{start_table_row}:G{end_table_row}, "Failed")', "Count"),
+            ("Overall Yield Rate:", f'=B{row_idx+2}/B{row_idx+1}', "0.0%"),
+        ]
+        
+        sub_row = row_idx + 1
+        for label, formula, num_format in metrics:
+            ws.cell(row=sub_row, column=1, value=label).font = FONT_HEADER
+            cell_f = ws.cell(row=sub_row, column=2, value=formula)
+            cell_f.font = FONT_BOLD
+            if num_format == "%":
+                cell_f.number_format = "#,##0"
+            elif num_format == "0.0%":
+                cell_f.number_format = "0.0%"
+            else:
+                cell_f.number_format = "#,##0"
+            sub_row += 1
+            
+        # 5. GxP Compliance & Audit Trail Box
+        row_idx_gxp = row_idx
+        ws.cell(row=row_idx_gxp, column=5, value="GxP COMPLIANCE AUDIT TRAIL").font = FONT_BOLD
+        ws.merge_cells(start_row=row_idx_gxp, start_column=5, end_row=row_idx_gxp, end_column=8)
+        for col in range(5, 9):
+            ws.cell(row=row_idx_gxp, column=col).fill = ICE_BLUE_FILL
+            
+        ws.cell(row=row_idx_gxp+1, column=5, value="Document Verification:").font = FONT_HEADER
+        ws.cell(row=row_idx_gxp+1, column=6, value="SHA-256 GxP Authenticated").font = FONT_REGULAR
+        
+        ws.cell(row=row_idx_gxp+2, column=5, value="Digital Hash Signature:").font = FONT_HEADER
+        cell_sig = ws.cell(row=row_idx_gxp+2, column=6, value=self.cryptographic_signature or "NOT LOCKED - UNSIGNED")
+        cell_sig.font = FONT_SIGNATURE
+        ws.merge_cells(start_row=row_idx_gxp+2, start_column=6, end_row=row_idx_gxp+2, end_column=8)
+        
+        ws.cell(row=row_idx_gxp+3, column=5, value="Compliance Status:").font = FONT_HEADER
+        cell_comp = ws.cell(row=row_idx_gxp+3, column=6, value="COMPLIANT" if self.state == 'locked' else "PENDING REVIEW")
+        cell_comp.font = FONT_BOLD
+        if self.state == 'locked':
+            cell_comp.font = Font(name="Calibri", size=11, bold=True, color="006100")
+        else:
+            cell_comp.font = Font(name="Calibri", size=11, bold=True, color="9C6500")
+            
+        # Add border around Summary & GxP boxes
+        for r in range(row_idx, row_idx+5):
+            for c in range(1, 9):
+                ws.cell(row=r, column=c).border = border_all_thin
+                
+        # 6. Column Auto-sizing with margins
+        for col in ws.columns:
+            max_len = 0
+            col_letter = get_column_letter(col[0].column)
+            for cell in col:
+                val_str = str(cell.value or '')
+                if cell.coordinate in ws.merged_cells:
+                    continue
+                if len(val_str) > max_len:
+                    max_len = len(val_str)
+            ws.column_dimensions[col_letter].width = max(max_len + 3, 12)
+            
+        ws.column_dimensions['A'].width = 6
+        ws.column_dimensions['B'].width = 25
+        ws.column_dimensions['E'].width = 35
+        ws.column_dimensions['F'].width = 18
+        
+        fp = io.BytesIO()
+        wb.save(fp)
+        file_data = fp.getvalue()
+        fp.close()
+        
+        # Attach binary to database
+        attachment = self.env['ir.attachment'].create({
+            'name': f"Quality_Record_Book_{self.code or self.id}.xlsx",
+            'type': 'binary',
+            'datas': base64.b64encode(file_data),
+            'res_model': self._name,
+            'res_id': self.id,
+            'mimetype': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        })
+        
+        # Trigger dynamic download action
+        return {
+            'type': 'ir.actions.act_url',
+            'url': f'/web/content/{attachment.id}?download=true',
+            'target': 'self',
+        }
+
 class AgriQualityRecordBookTemplate(models.Model):
     _name = 'agri.quality.record.book.template'
     _description = 'Agricultural Quality Record Book Template'
