@@ -13,8 +13,7 @@ class ExportCountryStandard(models.Model):
     
     name = fields.Char('Country Name', required=True)
     code = fields.Char('Country Code', required=True, help='ISO国家代码')
-    prohibited_products = fields.Many2many(
-        'product.template', 
+    prohibited_products = fields.Many2many('product.template', 'export_country_standard_product_template_rel', 'standard_id', 'template_id', 
         string='Prohibited Products/Pesticides',
         help='该国家禁止使用的农药或其他产品清单'
     )
@@ -29,8 +28,7 @@ class StockLot(models.Model):
     _inherit = 'stock.lot'
 
     # 与批次相关的投入品历史
-    input_history_ids = fields.Many2many(
-        'product.template',
+    input_history_ids = fields.Many2many('product.template', 'stock_lot_product_template_rel', 'lot_id', 'template_id',
         string='Input History',
         compute='_compute_input_history',
         help='该批次产品生产过程中使用的所有投入品'

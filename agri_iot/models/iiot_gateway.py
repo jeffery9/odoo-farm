@@ -23,7 +23,7 @@ class IiotGateway(models.Model):
     mqtt_password = fields.Char('MQTT Password')
     mqtt_use_tls = fields.Boolean('Use TLS', default=True)
 
-    device_ids = fields.Many2many('iiot.device', string='Managed Devices')
+    device_ids = fields.Many2many('iiot.device', 'iiot_gateway_iiot_device_rel', 'gateway_id', 'device_id', string='Managed Devices')
     
     _gateway_id_uniq = models.Constraint(
         'unique(gateway_id)',

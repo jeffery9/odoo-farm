@@ -31,8 +31,8 @@ class AgriESGMarketplace(models.Model):
     is_active = fields.Boolean('Is Active', default=True)
     operator_partner_id = fields.Many2one('res.partner', string='Market Operator', required=True)
     launch_date = fields.Date('Launch Date')
-    supported_regions = fields.Many2many('res.country', string='Supported Regions')
-    supported_languages = fields.Many2many('res.lang', string='Supported Languages')
+    supported_regions = fields.Many2many('res.country', 'agri_esg_marketplace_res_country_rel', 'marketplace_id', 'country_id', string='Supported Regions')
+    supported_languages = fields.Many2many('res.lang', 'agri_esg_marketplace_res_lang_rel', 'marketplace_id', 'lang_id', string='Supported Languages')
 
     # Technical specifications
     platform_url = fields.Char('Platform URL')

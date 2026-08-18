@@ -18,8 +18,7 @@ class AgriTrainingCertification(models.Model):
     name = fields.Char(string='Certification Name', required=True)
     description = fields.Text(string='Description')
     validity_period = fields.Integer(string='Validity Period (Years)', help='Number of years the certification is valid.')
-    required_skills_ids = fields.Many2many(
-        'agri.training.skill',
+    required_skills_ids = fields.Many2many('agri.training.skill', 'agri_training_certification_agri_training_skill_rel', 'certification_id', 'skill_id',
         string='Required Skills',
         help='Skills that are typically associated with this certification.'
     )

@@ -33,7 +33,7 @@ class AgriVRAWaterProtectionZone(models.Model):
                                          help='Minimum distance from water body edge')
 
     # VRA application restrictions
-    prohibited_materials = fields.Many2many('product.product', string='Prohibited Materials',
+    prohibited_materials = fields.Many2many('product.product', 'agri_vra_water_protection_zone_product_product_rel', 'zone_id', 'product_id', string='Prohibited Materials',
                                            help='Materials that cannot be applied in this zone')
     restricted_operations = fields.Selection([
         ('none', 'No Restrictions'),

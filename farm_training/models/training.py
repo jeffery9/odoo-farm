@@ -25,7 +25,7 @@ class FarmCertificate(models.Model):
     issue_date = fields.Date("Issue Date")
     expiry_date = fields.Date("Expiry Date")
     is_valid = fields.Boolean("Is Valid", compute='_compute_is_valid', store=True, precompute=True)
-    attachment_ids = fields.Many2many('ir.attachment', string="Certificate Photos")
+    attachment_ids = fields.Many2many('ir.attachment', 'farm_certificate_ir_attachment_rel', 'certificate_id', 'attachment_id', string="Certificate Photos")
 
     @api.depends('expiry_date')
     def _compute_is_valid(self):
@@ -42,7 +42,7 @@ class FarmTrainingSession(models.Model):
     date = fields.Date("Date", default=fields.Date.today)
     hours = fields.Float("Duration (Hours)")
     trainer_id = fields.Many2one('res.partner', string="Trainer/Expert")
-    trainee_ids = fields.Many2many('hr.employee', string="Trainees")
+    trainee_ids = fields.Many2many('hr.employee', 'farm_training_session_hr_employee_rel', 'session_id', 'employee_id', string="Trainees")
     content = fields.Html("Training Content")
     state = fields.Selection([('draft', 'Draft'), ('done', 'Completed')], default='draft')
 
@@ -91,7 +91,7 @@ class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
     training_certificate_ids = fields.One2many('farm.certificate', 'employee_id', string="Certificates")
-    training_session_ids = fields.Many2many('farm.training.session', string="Training History")
+    training_session_ids = fields.Many2many('farm.training.session', 'hr_employee_farm_training_session_rel', 'employee_id', 'session_id', string="Training History")
     total_training_hours = fields.Float("Total Training Hours", compute='_compute_training_hours')
 
     def _compute_training_hours(self):

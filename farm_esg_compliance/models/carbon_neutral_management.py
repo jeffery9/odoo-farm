@@ -90,7 +90,7 @@ class AgriCarbonNeutralGoal(models.Model):
 
     # Stakeholder involvement
     responsible_user_id = fields.Many2one('res.users', string='Responsible Person')
-    stakeholders = fields.Many2many('res.partner', string='Stakeholders')
+    stakeholders = fields.Many2many('res.partner', 'agri_carbon_neutral_goal_res_partner_rel', 'goal_id', 'partner_id', string='Stakeholders')
 
     # Documentation
     supporting_documents = fields.Binary('Supporting Documents', attachment=True)

@@ -37,7 +37,7 @@ class FarmSubsidyApplication(models.Model):
     fiscal_year = fields.Integer("Fiscal Year", default=lambda self: fields.Date.today().year)
 
     # 申报对象
-    land_parcel_ids = fields.Many2many('farm.location', string="Declared Parcels", domain=[('is_land_parcel', '=', True)])
+    land_parcel_ids = fields.Many2many('farm.location', 'farm_subsidy_application_farm_location_rel', 'application_id', 'location_id', string="Declared Parcels", domain=[('is_land_parcel', '=', True)])
 
     declared_quantity = fields.Float("Declared Qty (Area/Head)")
     estimated_amount = fields.Monetary("Estimated Amount", compute='_compute_estimated_amount')

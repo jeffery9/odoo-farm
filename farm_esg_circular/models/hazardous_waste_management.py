@@ -131,7 +131,7 @@ class AgriHazardousWasteComplianceReport(models.TransientModel):
 
     date_from = fields.Date('Date From', required=True, default=lambda self: fields.Date.context_today(self))
     date_to = fields.Date('Date To', required=True, default=lambda self: fields.Date.context_today(self))
-    location_ids = fields.Many2many('farm.location', string='Locations')
+    location_ids = fields.Many2many('farm.location', 'agri_hazardous_waste_compliance_report_farm_location_rel', 'report_id', 'location_id', string='Locations')
     waste_type = fields.Selection([
         ('pesticide_container', 'Pesticide Container'),
         ('fertilizer_bag', 'Fertilizer Bag'),

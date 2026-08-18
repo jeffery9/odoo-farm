@@ -17,7 +17,7 @@ class FarmRecallWizard(models.TransientModel):
     ], string='Recall Reason', required=True, default='simulation')
     
     action_plan = fields.Text('Action Plan')
-    affected_picking_ids = fields.Many2many('stock.picking', string='Affected Deliveries', compute='_compute_affected_pickings')
+    affected_picking_ids = fields.Many2many('stock.picking', 'farm_recall_wizard_stock_picking_rel', 'wizard_id', 'picking_id', string='Affected Deliveries', compute='_compute_affected_pickings')
 
     @api.depends('lot_id')
     def _compute_affected_pickings(self):

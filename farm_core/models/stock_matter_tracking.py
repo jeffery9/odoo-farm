@@ -136,8 +136,7 @@ class StockMatterTracking(models.Model):
         ('slaughter', 'Slaughter (屠宰)')
     ], string='Lineage Fission Type', default='none', help="Lineage division operation classification.")
 
-    lot_ids = fields.Many2many(
-        'stock.lot',
+    lot_ids = fields.Many2many('stock.lot', 'stock_matter_tracking_stock_lot_rel', 'tracking_id', 'lot_id',
         string='Genealogical Lots',
         compute='_compute_lot_ids',
         store=True,
@@ -668,7 +667,7 @@ class StockMatterTrackingSnapshot(models.Model):
     biological_asset_id = fields.Many2one('agri.biological.asset', string='Biological Asset / 个体资产')
     quantity = fields.Float(string='Contained Quantity', digits='Product Unit of Measure')
     location_id = fields.Many2one('stock.location', string='Physical Location')
-    lot_ids = fields.Many2many('stock.lot', string='Lots Inside')
+    lot_ids = fields.Many2many('stock.lot', 'stock_matter_tracking_snapshot_stock_lot_rel', 'snapshot_id', 'lot_id', string='Lots Inside')
     timestamp = fields.Datetime(string='Snapshot Timestamp', default=fields.Datetime.now, required=True)
     
     gxp_open_time = fields.Datetime(string='GxP Opened Time')

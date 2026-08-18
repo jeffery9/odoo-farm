@@ -13,8 +13,7 @@ class EvidenceAnalyzerMixin(models.AbstractModel):
     _name = 'agri.evidence.mixin'
     _description = 'Agricultural Evidence Analyzer Mixin'
 
-    evidence_ids = fields.Many2many(
-        'ir.attachment', string="Physical Evidence",
+    evidence_ids = fields.Many2many('ir.attachment', 'agri_evidence_mixin_ir_attachment_rel', 'mixin_id', 'attachment_id', string="Physical Evidence",
         help="Attached GPS logs, IoT sensor data, or site photos."
     )
     audit_confidence = fields.Float("Audit Confidence", compute="_compute_confidence", store=True, precompute=True)

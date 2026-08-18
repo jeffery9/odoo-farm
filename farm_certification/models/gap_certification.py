@@ -19,8 +19,8 @@ class FarmGAPCertification(models.Model):
     ], string="GAP Standard Type", required=True, default='china_gap')
 
     partner_id = fields.Many2one('res.partner', string="Certified Entity", required=True)
-    farm_location_ids = fields.Many2many('farm.location', string="Certified Locations")
-    product_ids = fields.Many2many('product.product', string="Certified Products")
+    farm_location_ids = fields.Many2many('farm.location', 'farm_gap_certification_farm_location_rel', 'certification_id', 'location_id', string="Certified Locations")
+    product_ids = fields.Many2many('product.product', 'farm_gap_certification_product_product_rel', 'certification_id', 'product_id', string="Certified Products")
 
     issue_date = fields.Date("Issue Date", default=fields.Date.context_today, required=True)
     expiry_date = fields.Date("Expiry Date", required=True)

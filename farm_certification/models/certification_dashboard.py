@@ -19,7 +19,7 @@ class FarmCertificationDashboard(models.TransientModel):
 
     # Expiring certifications
     expiring_cert_count = fields.Integer(string="Expiring Soon", compute='_compute_expiring_certs')
-    expiring_certs = fields.Many2many('farm.gap.certification', string="Expiring Certifications",
+    expiring_certs = fields.Many2many('farm.gap.certification', 'farm_certification_dashboard_farm_gap_certification_rel', 'dashboard_id', 'certification_id', string="Expiring Certifications",
                                      compute='_compute_expiring_certs')
 
     @api.model

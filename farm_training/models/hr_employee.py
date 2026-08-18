@@ -6,13 +6,11 @@ from odoo.exceptions import ValidationError
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
-    skill_ids = fields.Many2many(
-        'farm.training.skill',
+    skill_ids = fields.Many2many('farm.training.skill', 'hr_employee_farm_training_skill_rel', 'employee_id', 'skill_id',
         string='Acquired Skills',
         help='Skills acquired by the employee.'
     )
-    certification_ids = fields.Many2many(
-        'farm.training.certification',
+    certification_ids = fields.Many2many('farm.training.certification', 'hr_employee_farm_training_certification_rel', 'employee_id', 'certification_id',
         string='Certifications Held',
         help='Certifications held by the employee.',
         compute='_compute_certification_ids',

@@ -43,7 +43,7 @@ class ESGTarget(models.Model):
 
     # Related framework and indicators
     framework_id = fields.Many2one('esg.framework', 'ESG Framework')
-    related_indicator_ids = fields.Many2many('esg.indicator', string='Related Indicators')
+    related_indicator_ids = fields.Many2many('esg.indicator', 'esg_target_esg_indicator_rel', 'target_id', 'indicator_id', string='Related Indicators')
 
     # Management
     responsible_user_id = fields.Many2one('res.users', 'Responsible Person')
@@ -63,7 +63,7 @@ class ESGTarget(models.Model):
     ], string='Status', default='planned', required=True)
 
     # Stakeholder engagement
-    stakeholder_ids = fields.Many2many('res.partner', string='Stakeholders')
+    stakeholder_ids = fields.Many2many('res.partner', 'esg_target_res_partner_rel', 'target_id', 'partner_id', string='Stakeholders')
     last_update = fields.Text('Last Update')
 
     @api.depends('current_value', 'baseline_value', 'target_value')
@@ -197,8 +197,8 @@ class ESGPerformanceReport(models.Model):
     improvement_plan = fields.Html('Improvement Plan')
 
     # Related records
-    assessment_ids = fields.Many2many('esg.assessment', string='Related Assessments')
-    target_ids = fields.Many2many('esg.target', string='Related Targets')
+    assessment_ids = fields.Many2many('esg.assessment', 'esg_performance_report_esg_assessment_rel', 'report_id', 'assessment_id', string='Related Assessments')
+    target_ids = fields.Many2many('esg.target', 'esg_performance_report_esg_target_rel', 'report_id', 'target_id', string='Related Targets')
 
     @api.depends('environmental_score', 'social_score', 'governance_score')
     def _compute_overall_score(self):

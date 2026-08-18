@@ -30,7 +30,7 @@ class AgriSustainableSupplyChain(models.Model):
     # Supply chain assessment
     sustainability_assessment_date = fields.Date('Last Assessment Date')
     sustainability_assessment_result = fields.Text('Assessment Result')
-    certification_ids = fields.Many2many('farm.certification.process', string='Certifications')
+    certification_ids = fields.Many2many('farm.certification.process', 'agri_sustainable_supply_chain_farm_certification_process_rel', 'chain_id', 'process_id', string='Certifications')
 
     # Monitoring
     monitoring_frequency = fields.Selection([
@@ -62,7 +62,7 @@ class AgriSustainableSupplyChain(models.Model):
 
     # Integration with other models
     farm_id = fields.Many2one('farm.location', string='Farm Location')
-    related_product_ids = fields.Many2many('product.template', string='Related Products')
+    related_product_ids = fields.Many2many('product.template', 'agri_sustainable_supply_chain_product_template_rel', 'chain_id', 'template_id', string='Related Products')
 
     @api.depends('economic_score', 'environmental_score', 'social_score')
     def _compute_overall_score(self):

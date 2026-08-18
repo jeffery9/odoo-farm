@@ -34,7 +34,7 @@ class MrpBom(models.Model):
     # --- Processing Specific Fields ---
     grade_distribution_ids = fields.One2many('farm.bom.grade.distribution', 'bom_id', string="Expected Grade Distribution")
     mass_balance_tolerance = fields.Float("Mass Balance Tolerance (%)", default=0.1)
-    allergen_ids = fields.Many2many('farm.allergen', string="Allergens Involved")
+    allergen_ids = fields.Many2many('farm.allergen', 'mrp_bom_farm_allergen_rel', 'bom_id', 'allergen_id', string="Allergens Involved")
 
 class FarmMrpBomExtension(models.Model):
     _inherit = 'mrp.bom'

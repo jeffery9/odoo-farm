@@ -30,8 +30,8 @@ class FarmSupplyRiskMonitor(models.Model):
     impact_score = fields.Float("Impact Score", help="Quantitative impact score (1-10 scale)")
     risk_score = fields.Float("Risk Score", compute='_compute_risk_score', store=True, precompute=True)
 
-    affected_node_ids = fields.Many2many('farm.supply.chain.node', string="Affected Nodes")
-    affected_products = fields.Many2many('product.product', string="Affected Products")
+    affected_node_ids = fields.Many2many('farm.supply.chain.node', 'farm_supply_risk_monitor_farm_supply_chain_node_rel', 'monitor_id', 'node_id', string="Affected Nodes")
+    affected_products = fields.Many2many('product.product', 'farm_supply_risk_monitor_product_product_rel', 'monitor_id', 'product_id', string="Affected Products")
 
     detection_date = fields.Datetime("Detection Date", default=fields.Datetime.now)
     mitigation_plan = fields.Text("Emergency Response Plan")

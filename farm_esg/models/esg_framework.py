@@ -104,7 +104,7 @@ class ESGAssessment(models.Model):
     certification_body = fields.Char('Certification Body')
 
     # Related ESG targets
-    target_ids = fields.Many2many('esg.target', string='Related Targets')
+    target_ids = fields.Many2many('esg.target', 'esg_assessment_esg_target_rel', 'assessment_id', 'target_id', string='Related Targets')
     assessment_line_ids = fields.One2many("esg.assessment.line", "assessment_id", string="Assessment Lines")
 
     @api.depends('environmental_score', 'social_score', 'governance_score')

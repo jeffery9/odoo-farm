@@ -21,7 +21,7 @@ class LiveStreamingSession(models.Model):
         ('archived', 'Archived')
     ], default='planned', tracking=True)
 
-    product_ids = fields.Many2many('product.product', string="Featured Products")
+    product_ids = fields.Many2many('product.product', 'live_streaming_session_product_product_rel', 'session_id', 'product_id', string="Featured Products")
     
     # 统计数据 [US-051-05]
     view_count = fields.Integer("View Count", readonly=True)

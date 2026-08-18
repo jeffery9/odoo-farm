@@ -21,7 +21,7 @@ class FarmDisasterIncident(models.Model):
     date_start = fields.Date("Start Date", default=fields.Date.today)
     date_end = fields.Date("End Date")
     
-    affected_location_ids = fields.Many2many('farm.location', string="Affected Land Parcels", domain=[('is_land_parcel', '=', True)])
+    affected_location_ids = fields.Many2many('farm.location', 'farm_disaster_incident_farm_location_rel', 'incident_id', 'location_id', string="Affected Land Parcels", domain=[('is_land_parcel', '=', True)])
     intensity = fields.Selection([
         ('minor', 'Minor'),
         ('moderate', 'Moderate'),
@@ -41,7 +41,7 @@ class FarmDisasterIncident(models.Model):
 
     # AI Integration
     ai_strategy_log = fields.Text("AI Remediation Strategy", tracking=True)
-    intervention_ids = fields.Many2many('mrp.production', string="AI Generated Interventions")
+    intervention_ids = fields.Many2many('mrp.production', 'farm_disaster_incident_mrp_production_rel', 'incident_id', 'production_id', string="AI Generated Interventions")
 
     def action_request_ai_strategy(self):
         self.ensure_one()

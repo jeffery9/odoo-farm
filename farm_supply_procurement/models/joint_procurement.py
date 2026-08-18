@@ -14,7 +14,7 @@ class JointProcurementConfiguration(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char('Cooperative Name', required=True, default=lambda self: _('New'))
-    member_ids = fields.Many2many('res.partner', string='Cooperative Members',
+    member_ids = fields.Many2many('res.partner', 'joint_procurement_configuration_res_partner_rel', 'configuration_id', 'partner_id', string='Cooperative Members',
                                   domain=[('is_company', '=', True), ('supplier_rank', '=', 0)])
     procurement_product_category = fields.Many2one('product.category', string='Procurement Product Category')
     agreement_start_date = fields.Date('Agreement Start Date', required=True)

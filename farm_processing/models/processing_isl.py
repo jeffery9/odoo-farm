@@ -10,7 +10,7 @@ class FarmProcessingBom(models.Model):
     bom_id = fields.Many2one('mrp.bom', required=True, ondelete='cascade')
     target_moisture_content = fields.Float("Target Moisture (%)")
     target_temperature = fields.Float("Storage Temp (℃)")
-    allergen_ids = fields.Many2many('farm.allergen', string="Allergens")
+    allergen_ids = fields.Many2many('farm.allergen', 'agri_isl_processing_bom_farm_allergen_rel', 'bom_id', 'allergen_id', string="Allergens")
     expected_yield_rate = fields.Float("Expected Yield Rate", default=100.0)
     industry_type = fields.Selection([
         ('standard', 'Standard'),
