@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <!-- Record Book Tree View -->
+    <record id="view_agri_quality_record_book_tree" model="ir.ui.view">
+        <field name="name">agri.quality.record.book.list</field>
+        <field name="model">agri.quality.record.book</field>
+        <field name="arch" type="xml">
+            <list string="Quality Record Books" decoration-info="state == 'draft'" decoration-success="state == 'active'" decoration-danger="state == 'locked'">
+                <field name="code" />
+                <field name="name" />
+                <field name="book_type" />
+                <field name="date_start" />
+                <field name="date_end" />
+                <field name="user_id" />
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'active'" decoration-danger="state == 'locked'" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Record Book Form View -->
+    <record id="view_agri_quality_record_book_form" model="ir.ui.view">
+        <field name="name">agri.quality.record.book.form</field>
+        <field name="model">agri.quality.record.book</field>
+        <field name="arch" type="xml">
+            <form string="Quality Record Book">
+                <header>
+                    <button name="action_activate" string="Activate Book" type="object" class="btn-primary" invisible="state != 'draft'" />
+                    <button name="action_lock" string="Seal &amp; Sign (GxP)" type="object" class="btn-danger" invisible="state != 'active'" confirm="Are you sure you want to lock and cryptographically sign this record book? Once sealed, all linked quality checks will become immutable." />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,locked" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="code" class="oe_inline" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" readonly="state == 'locked'" />
+                            <field name="book_type" readonly="state == 'locked'" />
+                            <field name="user_id" readonly="state == 'locked'" />
+                        </group>
+                        <group>
+                            <field name="date_start" readonly="state == 'locked'" />
+                            <field name="date_end" readonly="state == 'locked'" />
+                            <field name="company_id" groups="base.group_multi_company" readonly="state == 'locked'" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Quality Checks" name="quality_checks">
+                            <field name="check_ids" readonly="state == 'locked'">
+                                <list editable="bottom">
+                                    <field name="name" readonly="1" />
+                                    <field name="lot_id" />
+                                    <field name="point_id" />
+                                    <field name="quality_state" widget="badge" decoration-success="quality_state == 'pass'" decoration-danger="quality_state == 'fail'" />
+                                    <field name="measure" />
+                                    <field name="blockchain_hash" readonly="1" />
+                                </list>
+                            </field>
+                        </page>
+                        <page string="GxP Cryptographic Signature" name="cryptographic_signature" invisible="state != 'locked'">
+                            <group string="Auditing &amp; Integrity">
+                                <field name="cryptographic_signature" />
+                                <field name="signature_date" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Record Books -->
+    <record id="action_agri_quality_record_book" model="ir.actions.act_window">
+        <field name="name">Quality Record Books</field>
+        <field name="res_model">agri.quality.record.book</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Quality Record Book
+            </p>
+            <p>
+                Record Books group quality checks together and seal them cryptographically for regulatory GxP audits.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Entry under Quality Control Parent -->
+    <menuitem id="menu_agri_quality_record_book" name="Quality Record Books" parent="farm_quality.menu_quality_root" action="action_agri_quality_record_book" sequence="5" />
+</data>
+</odoo>
