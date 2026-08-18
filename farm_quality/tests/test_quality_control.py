@@ -254,3 +254,108 @@ class TestFarmQuality(TransactionCase):
         print("\n=== GENERATED SPC RUN CONTROL CHART ===\n")
         print(wizard.spc_chart_ascii)
         print("\n=======================================\n")
+
+    def test_06_quality_record_book_xlsx_export(self):
+        """ Test professional GxP Excel Spreadsheet generation, dynamic formulas, formatting and downloads """
+        import base64
+        import io
+        try:
+            from openpyxl import load_workbook
+        except ImportError:
+            self.skipTest("openpyxl library not installed")
+
+        # 1. Create standard points, templates and lines
+        point = self.Point.create({
+            'name': 'Pesticide Concentration Check',
+            'test_type': 'measure',
+            'norm': 12.0,
+            'tolerance_min': 10.0,
+            'tolerance_max': 14.0,
+        })
+        template = self.env['agri.quality.record.book.template'].create({
+            'name': 'Standard Chemical Wash Template',
+            'book_type': 'pesticide',
+        })
+        line = self.env['agri.quality.record.book.template.line'].create({
+            'template_id': template.id,
+            'sequence': 10,
+            'name': 'Inspect Chemical Spray Wash',
+            'point_id': point.id,
+            'instruction': 'Run sprayer wash and verify pesticide concentration reads exactly 12.0 %.',
+        })
+
+        # 2. Create a Record Book
+        book = self.env['agri.quality.record.book'].create({
+            'name': 'Weekly Wash Log - Block C',
+            'book_type': 'pesticide',
+            'template_id': template.id,
+        })
+        book.action_generate_from_template()
+        self.assertEqual(len(book.check_ids), 1)
+
+        # 3. Enter values and complete check
+        check = book.check_ids[0]
+        check.write({
+            'measure': 12.35,
+            'quality_state': 'pass',
+        })
+
+        # 4. Seal & Sign the Record Book to generate SHA-256 seal (GxP Audit)
+        book.action_activate()
+        book.action_lock()
+        self.assertEqual(book.state, 'locked')
+        self.assertTrue(book.cryptographic_signature)
+
+        # 5. Export Spreadsheet
+        action = book.action_export_spreadsheet()
+        self.assertEqual(action['type'], 'ir.actions.act_url')
+        self.assertIn('/web/content/', action['url'])
+        self.assertIn('download=true', action['url'])
+
+        # 6. Verify ir.attachment was successfully saved
+        attachment = self.env['ir.attachment'].search([
+            ('res_model', '=', 'agri.quality.record.book'),
+            ('res_id', '=', book.id)
+        ])
+        self.assertTrue(attachment)
+        self.assertEqual(attachment.mimetype, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+
+        # 7. Decode binary data and parse Excel using openpyxl
+        file_bytes = base64.b64decode(attachment.datas)
+        file_stream = io.BytesIO(file_bytes)
+        
+        # Load workbook in formulas-preserving mode
+        wb = load_workbook(file_stream)
+        ws = wb["Quality Record Book Log"]
+        self.assertEqual(ws.title, "Quality Record Book Log")
+
+        # 8. Assert Grid layout content and dynamic Excel formulas
+        # Title Banner
+        self.assertEqual(ws["A1"].value, "GxP QUALITY RECORD BOOK AUDIT SHEET")
+        
+        # Metadata values
+        self.assertEqual(ws["B4"].value, book.code)
+        self.assertEqual(ws["B5"].value, book.name)
+        self.assertEqual(ws["B6"].value, "LOCKED")
+        self.assertEqual(ws["B7"].value, book.cryptographic_signature)
+
+        # Grid Data item (Row 11 is title row, Row 12 is first data row)
+        self.assertEqual(ws["A12"].value, 1)  # Sequence
+        self.assertEqual(ws["B12"].value, "Inspect Chemical Spray Wash")  # Step Name
+        self.assertEqual(ws["C12"].value, "Pesticide Concentration Check")  # Target Point
+        self.assertEqual(ws["F12"].value, 12.35)  # Actual numeric measure
+        self.assertEqual(ws["G12"].value, "Passed")  # Evaluated Pass state
+
+        # Statistical calculations (Dynamic Excel formulas)
+        # Total checklist items (Row 14 is label, Cell B14 holds dynamic COUNTA formula)
+        self.assertEqual(ws["B14"].value, "=COUNTA(B12:B12)")
+        # Passed Items count (Cell B15 holds dynamic COUNTIF formula)
+        self.assertEqual(ws["B15"].value, '=COUNTIF(G12:G12, "Passed")')
+        # Overall Yield Rate (Cell B17 holds dynamic division formula)
+        self.assertEqual(ws["B17"].value, '=B16/B15')
+
+        # GxP Authenticated box (Cells F15/F16 holds seal hash)
+        self.assertEqual(ws["F16"].value, book.cryptographic_signature)
+        self.assertEqual(ws["F17"].value, "COMPLIANT")
+
+        print("\n=== SUCCESS: EXCEL SPREADSHEET FORMULAS AND GXP ALIGNMENT VERIFIED ===\n")
