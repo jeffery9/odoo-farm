@@ -38,3 +38,58 @@ class TestFarmQuality(TransactionCase):
         })
         check.action_pass()
         self.assertEqual(check.quality_state, 'pass')
+
+    def test_03_quality_record_book_lifecycle(self):
+        """ Test the entire GxP lifecycle of AgriQualityRecordBook and its anti-tampering enforcement """
+        from odoo.exceptions import UserError
+        
+        # 1. Create a quality record book
+        book = self.env['agri.quality.record.book'].create({
+            'name': 'Pesticide Application Record Book 2026',
+            'book_type': 'pesticide',
+        })
+        self.assertEqual(book.state, 'draft')
+        self.assertTrue(book.code.startswith('RB'))
+
+        # 2. Create a check and associate it
+        point = self.Point.create({
+            'name': 'Pesticide Level',
+            'test_type': 'pass_fail'
+        })
+        lot = self.env['stock.lot'].create({
+            'name': 'LOT-TEST-P',
+            'product_id': self.Product.create({'name': 'Test Apple', 'type': 'consu'}).id,
+        })
+        check = self.Check.create({
+            'point_id': point.id,
+            'lot_id': lot.id,
+            'record_book_id': book.id,
+            'quality_state': 'none'
+        })
+        self.assertEqual(check.record_book_id.id, book.id)
+
+        # 3. Activate the book
+        book.action_activate()
+        self.assertEqual(book.state, 'active')
+
+        # 4. Seal & sign the book (GxP)
+        book.action_lock()
+        self.assertEqual(book.state, 'locked')
+        self.assertTrue(book.cryptographic_signature)
+        self.assertTrue(book.signature_date)
+
+        # 5. GxP Anti-Tampering: attempt to modify locked book should raise UserError
+        with self.assertRaises(UserError):
+            book.name = "Tampered Name"
+
+        # 6. GxP Anti-Tampering: attempt to modify checks of locked book should raise UserError
+        with self.assertRaises(UserError):
+            check.measure = 12.5
+
+        # 7. GxP Anti-Tampering: attempt to delete checks of locked book should raise UserError
+        with self.assertRaises(UserError):
+            check.unlink()
+
+        # 8. GxP Anti-Tampering: attempt to delete locked book should raise UserError
+        with self.assertRaises(UserError):
+            book.unlink()

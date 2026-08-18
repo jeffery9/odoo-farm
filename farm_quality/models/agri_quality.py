@@ -36,6 +36,7 @@ class AgriQualityCheck(models.Model):
     task_id = fields.Many2one('project.task', string="Production Task")
     purchase_order_line_id = fields.Many2one('purchase.order.line', string="Purchase Order Line",
                                             help="Link to purchase order line for acquisition quality checks (US-009-19)")
+    record_book_id = fields.Many2one('agri.quality.record.book', string="Quality Record Book", tracking=True)
 
     test_type = fields.Selection(related='point_id.test_type', store=True)
     measure = fields.Float("Actual Measure")
@@ -131,6 +132,29 @@ class AgriQualityCheck(models.Model):
                 self.action_fail()
                 return False
         return True
+
+    def write(self, vals):
+        for rec in self:
+            if rec.record_book_id and rec.record_book_id.state == 'locked' and any(f not in ['message_follower_ids', 'activity_ids'] for f in vals):
+                raise UserError(_("GxP ANTI-TAMPERING: This quality check belongs to a locked Record Book and cannot be modified."))
+        return super().write(vals)
+
+    def unlink(self):
+        for rec in self:
+            if rec.record_book_id and rec.record_book_id.state == 'locked':
+                raise UserError(_("GxP ANTI-TAMPERING: This quality check belongs to a locked Record Book and cannot be deleted."))
+        return super().unlink()
+
+    def action_open_quality_alert(self):
+        """ Create a quality alert from this check """
+        self.ensure_one()
+        alert = self.env['agri.quality.alert'].create({
+            'name': _('Quality Alert for %s') % self.name,
+            'check_id': self.id,
+            'lot_id': self.lot_id.id,
+            'product_id': self.lot_id.product_id.id,
+        })
+        return alert
 
 class AgriQualityAlert(models.Model):
     _name = 'agri.quality.alert'
