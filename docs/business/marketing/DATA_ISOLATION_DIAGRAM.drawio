@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="26.0.0">
+  <diagram name="Data Isolation Architecture">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Background Containers -->
+        <!-- Odoo Instance -->
+        <mxCell id="instance_bg" value="Odoo Farm 19.0 Database Instance" style="swimlane;startSize=40;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="860" height="520" as="geometry"/>
+        </mxCell>
+
+        <!-- Company 1: Cooperative -->
+        <mxCell id="coop_bg" value="Tier 1: Village Cooperative (Odoo Multi-Company Isolation)" style="swimlane;startSize=30;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="instance_bg">
+          <mxGeometry x="20" y="60" width="820" height="440" as="geometry"/>
+        </mxCell>
+        
+        <!-- Farm Owner A -->
+        <mxCell id="farm_a_bg" value="Tier 2: Farm Owner A (Team A)" style="swimlane;startSize=30;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="coop_bg">
+          <mxGeometry x="20" y="60" width="360" height="360" as="geometry"/>
+        </mxCell>
+
+        <!-- Farm Owner B -->
+        <mxCell id="farm_b_bg" value="Tier 2: Farm Owner B (Team B)" style="swimlane;startSize=30;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;" vertex="1" parent="coop_bg">
+          <mxGeometry x="440" y="60" width="360" height="360" as="geometry"/>
+        </mxCell>
+
+        <!-- Nodes for Farm A -->
+        <mxCell id="manager_a" value="Farm Owner A\n(Domain: parent_id = self)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="farm_a_bg">
+          <mxGeometry x="100" y="50" width="160" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="worker_a1" value="Tier 3: Worker A1\n(Sees Task 1, Asset 1)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="farm_a_bg">
+          <mxGeometry x="20" y="170" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="worker_a2" value="Tier 3: Worker A2\n(Sees Task 2, Loan 1)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="farm_a_bg">
+          <mxGeometry x="200" y="170" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Database Records for Farm A -->
+        <mxCell id="db_a" value="Agri Location (A)\nMicro-Loans (A)\nInventory Lots (A)" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;" vertex="1" parent="farm_a_bg">
+          <mxGeometry x="120" y="270" width="120" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- Nodes for Farm B -->
+        <mxCell id="manager_b" value="Farm Owner B\n(Domain: parent_id = self)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontStyle=1;" vertex="1" parent="farm_b_bg">
+          <mxGeometry x="100" y="50" width="160" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="worker_b1" value="Tier 3: Worker B1\n(Sees Task 3)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;" vertex="1" parent="farm_b_bg">
+          <mxGeometry x="110" y="170" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="db_b" value="Agri Location (B)\nMicro-Loans (B)\nInventory Lots (B)" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;" vertex="1" parent="farm_b_bg">
+          <mxGeometry x="120" y="270" width="120" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges within Farm A (Downward Visibility) -->
+        <mxCell id="edge_a1" value="Full Penetration\n(parent_id)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;entryX=0.5;entryY=0;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="farm_a_bg" source="manager_a" target="worker_a1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_a2" value="Full Penetration" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;entryX=0.5;entryY=0;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="farm_a_bg" source="manager_a" target="worker_a2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge_db_a" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#82b366;strokeWidth=2;dashed=1;" edge="1" parent="farm_a_bg" source="worker_a1" target="db_a">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_db_a2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#82b366;strokeWidth=2;dashed=1;" edge="1" parent="farm_a_bg" source="worker_a2" target="db_a">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges within Farm B -->
+        <mxCell id="edge_b1" value="Full Penetration\n(parent_id)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#d6b656;strokeWidth=2;" edge="1" parent="farm_b_bg" source="manager_b" target="worker_b1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_db_b" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeColor=#d6b656;strokeWidth=2;dashed=1;" edge="1" parent="farm_b_bg" source="worker_b1" target="db_b">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- The Firewall (Parallel Isolation) -->
+        <mxCell id="firewall" value="Odoo ir.rule Parallel Firewall\n(STRICTLY BLOCKED)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;strokeColor=#ff0000;strokeWidth=3;endArrow=block;" edge="1" parent="coop_bg" source="manager_a" target="manager_b">
+          <mxGeometry relative="1" as="geometry">
+              
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Coop Manager -->
+        <mxCell id="coop_manager" value="Cooperative Manager\n(Domain: 1=1 within Company)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="instance_bg">
+          <mxGeometry x="340" y="-30" width="160" height="80" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

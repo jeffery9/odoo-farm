@@ -14,6 +14,7 @@
         "purchase",
         "product",
         "farm_core",
+        "farm_quality",
     ],
     "data": [
         #"security/ir.model.access.csv",
