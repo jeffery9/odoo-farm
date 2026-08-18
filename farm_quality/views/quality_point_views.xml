@@ -2,16 +2,47 @@
 <odoo>
 <data>
 <record id="farm_quality_point_view_tree" model="ir.ui.view">
-        <field name="name">agri.quality.point.list</field>
-        <field name="model">agri.quality.point</field>
-        <field name="arch" type="xml">
-            <list string="Quality Control Points">
-                <field name="name" />
-                <field name="product_id" />
-                <field name="test_type" />
-            </list>
-        </field>
-    </record>
+    <field name="name">agri.quality.point.list</field>
+    <field name="model">agri.quality.point</field>
+    <field name="arch" type="xml">
+        <list string="Quality Control Points">
+            <field name="name" />
+            <field name="product_id" />
+            <field name="test_type" />
+            <field name="replicate_count" optional="show" />
+        </list>
+    </field>
+</record>
+
+<record id="farm_quality_point_view_form" model="ir.ui.view">
+    <field name="name">agri.quality.point.form</field>
+    <field name="model">agri.quality.point</field>
+    <field name="arch" type="xml">
+        <form string="Quality Control Point">
+            <sheet>
+                <div class="oe_title">
+                    <label for="name" class="oe_edit_only" />
+                    <h1>
+                        <field name="name" placeholder="e.g. Pasteurizer Outlet Temperature" />
+                    </h1>
+                </div>
+                <group>
+                    <group string="Basic Configuration">
+                        <field name="product_id" options="{'no_create': True}" />
+                        <field name="test_type" />
+                        <field name="active" widget="boolean_toggle" />
+                    </group>
+                    <group string="Measurement Limits" invisible="test_type != 'measure'">
+                        <field name="norm" />
+                        <field name="tolerance_min" />
+                        <field name="tolerance_max" />
+                        <field name="replicate_count" />
+                    </group>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
 
     <record id="action_farm_quality_point" model="ir.actions.act_window">
         <field name="name">Quality Points</field>

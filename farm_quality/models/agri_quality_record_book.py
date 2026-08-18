@@ -106,14 +106,26 @@ class AgriQualityRecordBook(models.Model):
             
         checks_vals = []
         for line in self.template_id.line_ids:
-            checks_vals.append({
+            check_vals = {
                 'name': line.name,
                 'point_id': line.point_id.id if line.point_id else False,
                 'record_book_id': self.id,
                 'template_line_id': line.id,
                 'instruction': line.instruction or '',
                 'quality_state': 'none',
-            })
+            }
+            # Auto-populate replicate measure lines if required (US-LIMS Replicates)
+            replicate_count = line.point_id.replicate_count if line.point_id else 1
+            if replicate_count > 1:
+                measure_lines = []
+                for seq in range(1, replicate_count + 1):
+                    measure_lines.append((0, 0, {
+                        'sequence': seq * 10,
+                        'value': 0.0,
+                    }))
+                check_vals['measure_line_ids'] = measure_lines
+                
+            checks_vals.append(check_vals)
             
         if checks_vals:
             self.env['agri.quality.check'].create(checks_vals)
