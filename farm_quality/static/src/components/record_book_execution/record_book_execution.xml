@@ -1,0 +1,247 @@
+<templates xml:space="preserve">
+    <t t-name="farm_quality.RecordBookExecution" owl="1">
+        <div class="o_record_book_execution h-100 d-flex flex-column bg-100">
+            <!-- Header Bar -->
+            <div class="navbar navbar-expand-lg navbar-dark bg-dark px-3 py-2 text-white shadow-sm flex-shrink-0 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-outline-light rounded-circle" t-on-click="goBack" title="Back to ERP">
+                        <i class="fa fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <h4 class="mb-0 text-truncate" t-out="state.recordBook.name"/>
+                        <small class="text-muted text-uppercase" t-out="state.recordBook.code"/>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher Tabs -->
+                <div class="btn-group btn-group-toggle" role="group">
+                    <button class="btn" t-att-class="state.activeTab === 'grid' ? 'btn-light active' : 'btn-outline-light'" t-on-click="() => this.switchTab('grid')">
+                        <i class="fa fa-table mr-1"></i> Spreadsheet Grid
+                    </button>
+                    <button class="btn" t-att-class="state.activeTab === 'wizard' ? 'btn-light active' : 'btn-outline-light'" t-on-click="() => this.switchTab('wizard')">
+                        <i class="fa fa-magic mr-1"></i> Step Wizard
+                    </button>
+                </div>
+
+                <!-- Actions -->
+                <div class="d-flex align-items-center gap-2">
+                    <t t-if="state.recordBook.state !== 'locked'">
+                        <button class="btn btn-primary" t-on-click="saveChanges" title="Save All Local Changes">
+                            <i class="fa fa-save mr-1"></i> Save Changes
+                        </button>
+                        <button class="btn btn-danger" t-on-click="sealRecordBook" title="Seal and Sign Cryptographically (GxP)">
+                            <i class="fa fa-lock mr-1"></i> Seal &amp; Lock
+                        </button>
+                    </t>
+                    <t t-else="">
+                        <span class="badge bg-success px-3 py-2 text-white border border-light">
+                            <i class="fa fa-shield mr-1"></i> Cryptographically Sealed
+                        </span>
+                    </t>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div t-if="state.loading" class="flex-grow-1 d-flex justify-content-center align-items-center bg-white">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status"></div>
+                    <p class="mt-2 text-muted">Initializing GxP Digital Board...</p>
+                </div>
+            </div>
+
+            <!-- Main Work Area -->
+            <div t-else="" class="flex-grow-1 d-flex overflow-hidden">
+                <!-- A. Spreadsheet Grid Tab -->
+                <div t-if="state.activeTab === 'grid'" class="flex-grow-1 p-3 overflow-auto bg-white">
+                    <div class="table-responsive h-100">
+                        <table class="table table-bordered table-hover align-middle o_quality_grid_table">
+                            <thead class="table-dark sticky-top text-center">
+                                <tr>
+                                    <th style="width: 50px;">Seq</th>
+                                    <th style="width: 200px;">Check Name</th>
+                                    <th>Standard Operating Instructions (SOP)</th>
+                                    <th style="width: 120px;">Target Norm</th>
+                                    <th style="width: 100px;">Min</th>
+                                    <th style="width: 100px;">Max</th>
+                                    <th style="width: 150px;">Actual Measure</th>
+                                    <th style="width: 150px;">Status Toggle</th>
+                                    <th style="width: 120px;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="state.checks" t-as="check" t-key="check.id" t-att-class="check._dirty ? 'table-warning' : ''">
+                                    <td class="text-center fw-bold" t-out="check_index + 1"/>
+                                    <td class="fw-bold text-primary" t-out="check.name"/>
+                                    <td class="text-muted text-wrap text-start" t-out="check.instruction || 'Follow general washing and safety procedure.'"/>
+                                    <td class="text-center bg-light" t-out="check.norm"/>
+                                    <td class="text-center bg-light text-danger" t-out="check.tolerance_min"/>
+                                    <td class="text-center bg-light text-danger" t-out="check.tolerance_max"/>
+                                    
+                                    <!-- Measure Input -->
+                                    <td class="p-1">
+                                        <t t-if="check.test_type === 'measure'">
+                                            <input type="number" step="0.01" class="form-control text-end border-0 font-monospace text-primary fw-bold" 
+                                                   t-att-value="check.measure" 
+                                                   t-att-disabled="state.recordBook.state === 'locked'"
+                                                   t-on-input="(ev) => this.onMeasureChange(check, ev.target.value)"/>
+                                        </t>
+                                        <t t-else="">
+                                            <span class="text-muted">N/A</span>
+                                        </t>
+                                    </td>
+
+                                    <!-- Quick State Toggle Buttons -->
+                                    <td class="text-center">
+                                        <div class="btn-group btn-group-sm">
+                                            <button class="btn btn-outline-success" t-att-disabled="state.recordBook.state === 'locked'" t-on-click="() => this.setQuickState(check, 'pass')">
+                                                <i class="fa fa-check"></i>
+                                            </button>
+                                            <button class="btn btn-outline-danger" t-att-disabled="state.recordBook.state === 'locked'" t-on-click="() => this.setQuickState(check, 'fail')">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+
+                                    <!-- Status Badge -->
+                                    <td class="text-center">
+                                        <span t-if="check.quality_state === 'pass'" class="badge bg-success px-3 py-1">
+                                            Passed
+                                        </span>
+                                        <span t-elif="check.quality_state === 'fail'" class="badge bg-danger px-3 py-1">
+                                            Failed
+                                        </span>
+                                        <span t-else="" class="badge bg-warning px-3 py-1 text-dark">
+                                            To Do
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. Wizard Step Tab -->
+                <div t-if="state.activeTab === 'wizard'" class="flex-grow-1 d-flex overflow-hidden bg-white">
+                    <!-- Left steps sidebar -->
+                    <div class="w-25 border-right h-100 overflow-auto bg-light flex-shrink-0">
+                        <div class="list-group list-group-flush">
+                            <button t-foreach="state.checks" t-as="check" t-key="check.id" 
+                                    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3"
+                                    t-att-class="state.currentIndex === check_index ? 'active bg-primary border-primary text-white' : ''"
+                                    t-on-click="() => this.selectStep(check_index)">
+                                <div>
+                                    <div class="fw-bold" t-out="check.name"/>
+                                    <small t-att-class="state.currentIndex === check_index ? 'text-white-50' : 'text-muted'" t-out="check.point_id[1]"/>
+                                </div>
+                                <span t-if="check.quality_state === 'pass'" class="badge bg-success rounded-circle p-1">
+                                    <i class="fa fa-check text-white"></i>
+                                </span>
+                                <span t-elif="check.quality_state === 'fail'" class="badge bg-danger rounded-circle p-1">
+                                    <i class="fa fa-times text-white"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right big inspection pad -->
+                    <t t-if="state.checks.length > 0">
+                        <t t-set="activeCheck" t-value="state.checks[state.currentIndex]"/>
+                        <div class="flex-grow-1 p-5 d-flex flex-column justify-content-between overflow-auto">
+                            <!-- Progress Bar -->
+                            <div class="w-100 mb-4 flex-shrink-0">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span class="text-muted font-monospace">SOP Inspection Progress</span>
+                                    <span class="fw-bold" t-out="(state.currentIndex + 1) + ' / ' + state.checks.length"/>
+                                </div>
+                                <div class="progress" style="height: 8px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" 
+                                         t-att-style="'width: ' + ((state.currentIndex + 1) * 100 / state.checks.length) + '%'"/>
+                                </div>
+                            </div>
+
+                            <!-- Big Instruction Card -->
+                            <div class="card shadow-sm border-0 bg-light p-4 flex-grow-1 d-flex flex-column justify-content-center align-items-center mb-5">
+                                <div class="text-center max-w-lg">
+                                    <span class="badge bg-info text-uppercase px-3 py-1 mb-3">SOP Step Instruction</span>
+                                    <h3 class="mb-4 text-primary" t-out="activeCheck.name"/>
+                                    <p class="lead text-dark font-monospace text-wrap border border-info-subtle bg-white p-3 rounded" 
+                                       t-out="activeCheck.instruction || 'Run general visual standard check and confirm execution is within bounds.'"/>
+                                </div>
+                            </div>
+
+                            <!-- Parameters and Inputs -->
+                            <div class="row align-items-center justify-content-center mb-5 flex-shrink-0">
+                                <div class="col-md-5">
+                                    <!-- Targets Block -->
+                                    <div class="border rounded p-3 bg-light d-flex justify-content-around text-center">
+                                        <div>
+                                            <div class="small text-muted">LSL Min</div>
+                                            <div class="h4 text-danger fw-bold mb-0" t-out="activeCheck.tolerance_min"/>
+                                        </div>
+                                        <div class="border-left px-3">
+                                            <div class="small text-muted">Target Norm</div>
+                                            <div class="h4 text-info fw-bold mb-0" t-out="activeCheck.norm"/>
+                                        </div>
+                                        <div class="border-left">
+                                            <div class="small text-muted">USL Max</div>
+                                            <div class="h4 text-danger fw-bold mb-0" t-out="activeCheck.tolerance_max"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5" t-if="activeCheck.test_type === 'measure'">
+                                    <!-- Measure input area -->
+                                    <div class="input-group input-group-lg border rounded shadow-sm overflow-hidden">
+                                        <span class="input-group-text bg-white border-0 text-muted font-monospace">ACTUAL:</span>
+                                        <input type="number" step="0.01" class="form-control border-0 font-monospace text-primary fw-bold text-center h2 mb-0" style="font-size: 1.8rem;"
+                                               t-att-value="activeCheck.measure"
+                                               t-att-disabled="state.recordBook.state === 'locked'"
+                                               t-on-input="(ev) => this.onMeasureChange(activeCheck, ev.target.value)"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Big Touch Buttons for State -->
+                            <div class="d-flex justify-content-center gap-4 mb-4 flex-shrink-0">
+                                <button class="btn btn-lg btn-success d-flex align-items-center gap-2 px-5 py-3 shadow"
+                                        t-att-disabled="state.recordBook.state === 'locked'"
+                                        t-att-class="activeCheck.quality_state === 'pass' ? 'border-light ring-4' : 'opacity-75'"
+                                        t-on-click="() => this.setQuickState(activeCheck, 'pass')">
+                                    <i class="fa fa-check-circle fa-2x"></i>
+                                    <div class="text-start">
+                                        <div class="fw-bold">PASS</div>
+                                        <small class="text-white-50">Meets Quality standard</small>
+                                    </div>
+                                </button>
+
+                                <button class="btn btn-lg btn-danger d-flex align-items-center gap-2 px-5 py-3 shadow"
+                                        t-att-disabled="state.recordBook.state === 'locked'"
+                                        t-att-class="activeCheck.quality_state === 'fail' ? 'border-light ring-4' : 'opacity-75'"
+                                        t-on-click="() => this.setQuickState(activeCheck, 'fail')">
+                                    <i class="fa fa-times-circle fa-2x"></i>
+                                    <div class="text-start">
+                                        <div class="fw-bold">FAIL</div>
+                                        <small class="text-white-50">OutOfTolerance / Defect</small>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <!-- Footer Navigation -->
+                            <div class="d-flex justify-content-between align-items-center flex-shrink-0 pt-4 border-top">
+                                <button class="btn btn-outline-secondary d-flex align-items-center gap-2" t-on-click="prevStep" t-att-disabled="state.currentIndex === 0">
+                                    <i class="fa fa-chevron-left"></i> Previous Step
+                                </button>
+                                <button class="btn btn-outline-secondary d-flex align-items-center gap-2" t-on-click="nextStep" t-att-disabled="state.currentIndex === state.checks.length - 1">
+                                    Next Step <i class="fa fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </t>
+                    <div t-else="" class="flex-grow-1 d-flex justify-content-center align-items-center">
+                        <p class="text-muted">No quality checks found for this Record Book.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

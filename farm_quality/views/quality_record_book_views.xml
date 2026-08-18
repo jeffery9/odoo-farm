@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
+    <!-- Client Action for Digital Quality Board -->
+    <record id="action_record_book_execution" model="ir.actions.client">
+        <field name="name">Digital Quality Execution Board</field>
+        <field name="tag">record_book_execution_client_action</field>
+        <field name="target">current</field>
+    </record>
+
     <!-- Record Book Tree View -->
     <record id="view_agri_quality_record_book_tree" model="ir.ui.view">
         <field name="name">agri.quality.record.book.list</field>
@@ -27,6 +34,7 @@
                 <header>
                     <button name="action_activate" string="Activate Book" type="object" class="btn-primary" invisible="state != 'draft'" />
                     <button name="action_generate_from_template" string="Generate Checks from Template" type="object" class="btn-info" invisible="state != 'draft'" />
+                    <button name="%(farm_quality.action_record_book_execution)d" string="Start Digital Inspection" type="action" class="btn-success" invisible="state != 'active'" context="{'active_id': id}" icon="fa-desktop" />
                     <button name="action_lock" string="Seal &amp; Sign (GxP)" type="object" class="btn-danger" invisible="state != 'active'" confirm="Are you sure you want to lock and cryptographically sign this record book? Once sealed, all linked quality checks will become immutable." />
                     <button name="action_export_spreadsheet" string="Export Spreadsheet" type="object" class="btn-secondary" icon="fa-file-excel-o" />
                     <field name="state" widget="statusbar" statusbar_visible="draft,active,locked" />
