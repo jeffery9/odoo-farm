@@ -137,6 +137,7 @@
                                     <field name="name" placeholder="e.g., Check pasteurizer safety valve" />
                                     <field name="point_id" options="{'no_create': True}" />
                                     <field name="instruction" placeholder="e.g., Verify that pressure is &lt;= 150 PSI..." />
+                                    <button name="action_open_spc_wizard" string="Run SPC" type="object" icon="fa-bar-chart" invisible="not point_id" help="Perform Statistical Process Control (SPC) analysis for this measurement step." />
                                 </list>
                             </field>
                         </page>
@@ -164,5 +165,62 @@
 
     <!-- Menu Entries -->
     <menuitem id="menu_agri_quality_record_book_template" name="Record Book Templates" parent="farm_quality.menu_quality_root" action="action_agri_quality_record_book_template" sequence="10" />
+
+    <!-- SPC Wizard Form View -->
+    <record id="view_agri_quality_spc_wizard_form" model="ir.ui.view">
+        <field name="name">agri.quality.spc.wizard.form</field>
+        <field name="model">agri.quality.spc.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Statistical Process Control (SPC) Analysis">
+                <group string="Analysis Filter">
+                    <group>
+                        <field name="template_line_id" readonly="1" />
+                        <field name="date_from" />
+                    </group>
+                    <group>
+                        <field name="date_to" />
+                        <button name="action_calculate" string="Recalculate Metrics" type="object" class="btn-primary" />
+                    </group>
+                </group>
+                <notebook invisible="sample_count &lt; 2">
+                    <page string="Run &amp; Control Chart" name="chart">
+                        <div style="font-family: 'Courier New', Courier, monospace; background-color: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 4px; overflow-x: auto; white-space: pre; line-height: 1.2;">
+                            <field name="spc_chart_ascii" readonly="1" nolabel="1" />
+                        </div>
+                    </page>
+                    <page string="Process Capability &amp; Metrics" name="metrics">
+                        <group string="Process Capability Indicators (SPC)">
+                            <group>
+                                <field name="cp" />
+                                <field name="cpk" />
+                            </group>
+                            <group>
+                                <field name="cpk_status" class="oe_inline" style="font-weight: bold; color: #28a745;" />
+                            </group>
+                        </group>
+                        <group string="Statistical Calculations">
+                            <group>
+                                <field name="sample_count" />
+                                <field name="mean_val" />
+                                <field name="std_dev" />
+                            </group>
+                            <group>
+                                <field name="max_val" />
+                                <field name="min_val" />
+                                <field name="ucl" />
+                                <field name="lcl" />
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+                <div class="alert alert-warning" role="alert" invisible="sample_count &gt;= 2">
+                    At least 2 historical measurement records are required to perform Statistical Process Control (SPC) analysis.
+                </div>
+                <footer>
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
 </data>
 </odoo>
