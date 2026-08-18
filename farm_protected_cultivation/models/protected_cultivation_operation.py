@@ -120,7 +120,13 @@ class ProtectedCultivationOperation(models.Model):
         ('error', 'Sync Error')
     ], string="Automation Status", default='idle')
     
-    automation_rule_ids = fields.Many2many('farm.automation.rule', string="Linked Automation Rules")
+    automation_rule_ids = fields.Many2many(
+        'farm.automation.rule',
+        'farm_protected_cultivation_rule_rel',
+        'operation_id',
+        'rule_id',
+        string="Linked Automation Rules"
+    )
 
     def action_start_automation(self):
         """ Start the automated environmental control systems """
@@ -143,21 +149,22 @@ class ProtectedCultivationOperation(models.Model):
             })
             rec.message_post(body=_("SYSTEM: Environmental automation stopped."))
 
-    @api.model
-    def create(self, vals):
-        # Set default values based on crop type if available
-        if vals.get('crop_type_id'):
-            crop = self.env['product.template'].browse(vals['crop_type_id'])
-            if crop.default_temperature_min:
-                vals.setdefault('temperature_target_min', crop.default_temperature_min)
-            if crop.default_temperature_max:
-                vals.setdefault('temperature_target_max', crop.default_temperature_max)
-            if crop.default_humidity_min:
-                vals.setdefault('humidity_target_min', crop.default_humidity_min)
-            if crop.default_humidity_max:
-                vals.setdefault('humidity_target_max', crop.default_humidity_max)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            # Set default values based on crop type if available
+            if vals.get('crop_type_id'):
+                crop = self.env['product.template'].browse(vals['crop_type_id'])
+                if crop.default_temperature_min:
+                    vals.setdefault('temperature_target_min', crop.default_temperature_min)
+                if crop.default_temperature_max:
+                    vals.setdefault('temperature_target_max', crop.default_temperature_max)
+                if crop.default_humidity_min:
+                    vals.setdefault('humidity_target_min', crop.default_humidity_min)
+                if crop.default_humidity_max:
+                    vals.setdefault('humidity_target_max', crop.default_humidity_max)
 
-        return super().create(vals)
+        return super().create(vals_list)
 
     def action_view_environmental_logs(self):
         """Action to view environmental monitoring logs"""
