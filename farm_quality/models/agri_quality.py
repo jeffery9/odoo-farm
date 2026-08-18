@@ -37,6 +37,7 @@ class AgriQualityCheck(models.Model):
     purchase_order_line_id = fields.Many2one('purchase.order.line', string="Purchase Order Line",
                                             help="Link to purchase order line for acquisition quality checks (US-009-19)")
     record_book_id = fields.Many2one('agri.quality.record.book', string="Quality Record Book", tracking=True)
+    instruction = fields.Text("Inspection Instructions", help="Detailed GxP instructions for the inspector during this check.")
 
     test_type = fields.Selection(related='point_id.test_type', store=True)
     measure = fields.Float("Actual Measure")

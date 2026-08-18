@@ -26,6 +26,7 @@
             <form string="Quality Record Book">
                 <header>
                     <button name="action_activate" string="Activate Book" type="object" class="btn-primary" invisible="state != 'draft'" />
+                    <button name="action_generate_from_template" string="Generate Checks from Template" type="object" class="btn-info" invisible="state != 'draft'" />
                     <button name="action_lock" string="Seal &amp; Sign (GxP)" type="object" class="btn-danger" invisible="state != 'active'" confirm="Are you sure you want to lock and cryptographically sign this record book? Once sealed, all linked quality checks will become immutable." />
                     <field name="state" widget="statusbar" statusbar_visible="draft,active,locked" />
                 </header>
@@ -38,6 +39,7 @@
                     <group>
                         <group>
                             <field name="name" readonly="state == 'locked'" />
+                            <field name="template_id" readonly="state == 'locked'" domain="[('book_type', '=', book_type)]" options="{'no_create': True}" />
                             <field name="book_type" readonly="state == 'locked'" />
                             <field name="user_id" readonly="state == 'locked'" />
                         </group>
@@ -90,5 +92,77 @@
 
     <!-- Menu Entry under Quality Control Parent -->
     <menuitem id="menu_agri_quality_record_book" name="Quality Record Books" parent="farm_quality.menu_quality_root" action="action_agri_quality_record_book" sequence="5" />
+
+    <!-- Record Book Template List View -->
+    <record id="view_agri_quality_record_book_template_tree" model="ir.ui.view">
+        <field name="name">agri.quality.record.book.template.list</field>
+        <field name="model">agri.quality.record.book.template</field>
+        <field name="arch" type="xml">
+            <list string="Quality Record Book Templates">
+                <field name="name" />
+                <field name="book_type" />
+                <field name="description" />
+                <field name="active" widget="boolean_toggle" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Record Book Template Form View -->
+    <record id="view_agri_quality_record_book_template_form" model="ir.ui.view">
+        <field name="name">agri.quality.record.book.template.form</field>
+        <field name="model">agri.quality.record.book.template</field>
+        <field name="arch" type="xml">
+            <form string="Quality Record Book Template">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" placeholder="e.g. Daily Pesticide Inspection Template" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="book_type" />
+                            <field name="active" />
+                        </group>
+                        <group>
+                            <field name="description" placeholder="Template objectives, regulatory references..." />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Instruction Steps" name="lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle" />
+                                    <field name="name" placeholder="e.g., Check pasteurizer safety valve" />
+                                    <field name="point_id" options="{'no_create': True}" />
+                                    <field name="instruction" placeholder="e.g., Verify that pressure is &lt;= 150 PSI..." />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Record Book Templates -->
+    <record id="action_agri_quality_record_book_template" model="ir.actions.act_window">
+        <field name="name">Record Book Templates</field>
+        <field name="res_model">agri.quality.record.book.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Define a new Quality Record Book Template
+            </p>
+            <p>
+                Templates let you pre-define standard quality inspection procedures and steps, making GxP checks repeatable and compliant.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Entries -->
+    <menuitem id="menu_agri_quality_record_book_template" name="Record Book Templates" parent="farm_quality.menu_quality_root" action="action_agri_quality_record_book_template" sequence="10" />
 </data>
 </odoo>

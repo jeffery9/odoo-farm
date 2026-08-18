@@ -36,6 +36,7 @@ class AgriQualityRecordBook(models.Model):
     ], string="State", default='draft', required=True, tracking=True)
     
     check_ids = fields.One2many('agri.quality.check', 'record_book_id', string="Quality Records")
+    template_id = fields.Many2one('agri.quality.record.book.template', string="Record Book Template", tracking=True)
     
     # GxP Cryptographic Anti-Tampering [US-GxP-01]
     cryptographic_signature = fields.Char("Merkle Root / Book Signature", readonly=True, copy=False)
@@ -94,3 +95,54 @@ class AgriQualityRecordBook(models.Model):
             if rec.state == 'locked':
                 raise UserError(_("GxP ANTI-TAMPERING: Locked record books cannot be deleted."))
         return super().unlink()
+
+    def action_generate_from_template(self):
+        """ Generate quality check records from the linked template """
+        self.ensure_one()
+        if self.state != 'draft':
+            raise UserError(_("You can only generate records from a template in Draft state."))
+        if not self.template_id:
+            raise UserError(_("Please select a template first."))
+            
+        checks_vals = []
+        for line in self.template_id.line_ids:
+            checks_vals.append({
+                'name': line.name,
+                'point_id': line.point_id.id if line.point_id else False,
+                'record_book_id': self.id,
+                'instruction': line.instruction or '',
+                'quality_state': 'none',
+            })
+            
+        if checks_vals:
+            self.env['agri.quality.check'].create(checks_vals)
+            
+        self.message_post(body=_("Successfully generated %s quality check records from template: <b>%s</b>") % (len(checks_vals), self.template_id.name))
+
+class AgriQualityRecordBookTemplate(models.Model):
+    _name = 'agri.quality.record.book.template'
+    _description = 'Agricultural Quality Record Book Template'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
+    name = fields.Char("Template Name", required=True, tracking=True)
+    book_type = fields.Selection([
+        ('general', 'General Quality Log'),
+        ('pesticide', 'Pesticide Application Log'),
+        ('fertilizer', 'Fertilization Log'),
+        ('haccp', 'HACCP Monitoring Log'),
+        ('lims', 'LIMS Laboratory Log')
+    ], string="Type", default='general', required=True, tracking=True)
+    description = fields.Text("Description/Objective")
+    active = fields.Boolean("Active", default=True)
+    line_ids = fields.One2many('agri.quality.record.book.template.line', 'template_id', string="Instruction Lines", copy=True)
+
+class AgriQualityRecordBookTemplateLine(models.Model):
+    _name = 'agri.quality.record.book.template.line'
+    _description = 'Quality Record Book Template Line'
+    _order = 'sequence, id'
+
+    template_id = fields.Many2one('agri.quality.record.book.template', string="Template", required=True, ondelete='cascade')
+    sequence = fields.Integer("Sequence", default=10)
+    name = fields.Char("Instruction Step/Name", required=True)
+    point_id = fields.Many2one('agri.quality.point', string="Target Quality Point")
+    instruction = fields.Text("Inspection/Filling Instructions")
