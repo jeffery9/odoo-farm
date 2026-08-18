@@ -295,6 +295,22 @@ class TestFarmQuality(TransactionCase):
 
         # 3. Enter values and complete check
         check = book.check_ids[0]
+        
+        # Verify related fields are properly exposed for the spreadsheet UX
+        self.assertEqual(check.norm, 12.0)
+        self.assertEqual(check.tolerance_min, 10.0)
+        self.assertEqual(check.tolerance_max, 14.0)
+
+        # Test spreadsheet-style dynamic onchange auto-evaluation
+        check.measure = 12.35
+        check._onchange_measure()
+        self.assertEqual(check.quality_state, 'pass')
+
+        check.measure = 15.6
+        check._onchange_measure()
+        self.assertEqual(check.quality_state, 'fail')
+
+        # Write final passing values to commit the GxP record
         check.write({
             'measure': 12.35,
             'quality_state': 'pass',
