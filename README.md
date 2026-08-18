@@ -99,8 +99,8 @@ graph LR
 *   🌾 **[浙江“统分结合”双层经营数字化范式 (The Zhejiang Model Playbook)](docs/business/marketing/THE_ZHEJIANG_MODEL_PLAYBOOK.md)**：剖析村集体经济、承包大户与农户的高效统筹协同，落地中国特色乡村振兴底层架构。
 *   🔒 **[金融级底层数据隐私与行级隔离设计 (3-Tier RLS Design)](docs/business/analysis/DATA_ISOLATION_RLS_DESIGN.md)**：针对“村集体 -> 大户 -> 散户”结构设计的 row-level security，农户间数据平行绝密隔离。
 
-### 📚 2. Agri-OS 二十大垂直行业计算智能学术白皮书 (The 20 Computable Agri-OS Whitepapers Catalog)
-   提供 20 篇聚焦现代农业垂直领域的行业白皮书，涵盖计算模型与解决方案架构：
+### 📚 2. Agri-OS 二十三大垂直行业计算智能学术白皮书 (The 23 Computable Agri-OS Whitepapers Catalog)
+   提供 23 篇聚焦现代农业垂直领域的行业白皮书，涵盖计算模型与解决方案架构：
    *   🌿 **种植与大田植物科学 (Planting & Science)**
        - [精准大田作物端到端解决方案白皮书 (Precision Field Crops)](docs/whitepapers/agri_os_whitepaper_field_crops.md)
        - [果园林木周期与产量预测白皮书 (Orchard & Horticulture)](docs/whitepapers/agri_os_whitepaper_orchard_horticulture.md)
@@ -108,6 +108,7 @@ graph LR
        - [智能食用菌环境控制白皮书 (Mushroom Cultivation)](docs/whitepapers/agri_os_whitepaper_mushroom_cultivation.md)
        - [珍稀中药材与药用植物白皮书 (Medicinal Plants)](docs/whitepapers/agri_os_whitepaper_medicinal_plants.md)
        - [种子繁育与系谱杂交繁育白皮书 (Advanced Seed & Breeding)](docs/whitepapers/agri_os_whitepaper_seed_breeding.md)
+       - [农科实验、生物数字孪生与变量精准施药技术解决方案白皮书 (Agri-Science & Variable Rate Technology)](docs/whitepapers/agri_os_whitepaper_agri_science.md)
    *   🐄 **动物驯养与高密度水产 (Livestock & Aquaculture)**
        - [智慧奶牛与乳业管理解决方案白皮书 (Cattle & Dairy)](docs/whitepapers/agri_os_whitepaper_cattle_dairy.md)
        - [智慧家禽与蛋鸡精准养殖白皮书 (Poultry Farming)](docs/whitepapers/agri_os_whitepaper_poultry_farming.md)
@@ -119,11 +120,13 @@ graph LR
        - [好氧堆肥与有机废弃物循环白皮书 (Aerobic Composting)](docs/whitepapers/agri_os_whitepaper_aerobic_composting.md)
        - [食品加工质量守恒与过敏原控制白皮书 (Precision Food Processing)](docs/whitepapers/agri_os_whitepaper_agricultural_processing.md)
        - [绿色 ESG 治理、碳足迹测算与循环农业解决方案白皮书 (Green ESG & Carbon Sequestration)](docs/whitepapers/agri_os_whitepaper_esg_carbon.md)
+       - [IAS 41 生物资产公允价值评估与重估折现解决方案白皮书 (Biological Valuation & Fair Value Accounting)](docs/whitepapers/agri_os_whitepaper_biological_valuation.md)
    *   🏪 **Web3 社区零售、协同农机与田园农旅 (Commerce, Cooperative & Agritourism)**
        - [CSA 地块代币化与智能托管释放白皮书 (Tokenized CSA)](docs/whitepapers/agri_os_whitepaper_csa_tokenization.md)
        - [合作社共享农机与多地块计费白皮书 (Shared Machinery)](docs/whitepapers/agri_os_whitepaper_cooperative_machinery.md)
        - [智慧农旅研学与生态工坊解决方案白皮书 (Educational Agritourism)](docs/whitepapers/agri_os_whitepaper_agritourism.md)
        - [防灾减灾、气象指数保险与危机应急管理解决方案白皮书 (Disaster Risk & Parametric Insurance)](docs/whitepapers/agri_os_whitepaper_disaster_insurance.md)
+       - [土地银行、确权流转租赁与地力轮作管理解决方案白皮书 (Land Banking, Leaseback & Rotation)](docs/whitepapers/agri_os_whitepaper_land_mgmt_bank.md)
    *   🤖 **AI 核心决策与智能边缘感知 (AI Decision, Vision & Robotics)**
        - [AI 智能体、计算机视觉与大田农业机器人解决方案白皮书 (AI Agents & Precision Robotics)](docs/whitepapers/agri_os_whitepaper_ai_robotics.md)
 
@@ -159,12 +162,12 @@ We provide a comprehensive collection of business roadmaps, financial blueprints
 *   🌾 **[The Zhejiang Rural Cooperative Playbook (THE_ZHEJIANG_MODEL_PLAYBOOK.md)](docs/business/marketing/THE_ZHEJIANG_MODEL_PLAYBOOK.md)**: Comprehensive blueprint for collective economic bodies, dual-tier operations, and local rural revitalization models.
 *   🔒 **[Enterprise 3-Tier RLS Data Privacy (DATA_ISOLATION_RLS_DESIGN.md)](docs/business/analysis/DATA_ISOLATION_RLS_DESIGN.md)**: Deep engineering design on tenant-level and farm-level strict data isolation for high-security commercial consortiums.
 
-### 📚 2. The 20 Computable Agri-OS Whitepapers Catalog
-We provide 20 strategic and academic whitepapers focusing on industry pain points, biological models, and computational mathematics:
-*   🌿 **Planting & Science**: [Field Crops](docs/whitepapers/agri_os_whitepaper_field_crops.md) | [Orchard & Horticulture](docs/whitepapers/agri_os_whitepaper_orchard_horticulture.md) | [Greenhouse Floriculture](docs/whitepapers/agri_os_whitepaper_floriculture.md) | [Mushroom Cultivation](docs/whitepapers/agri_os_whitepaper_mushroom_cultivation.md) | [Medicinal Plants](docs/whitepapers/agri_os_whitepaper_medicinal_plants.md) | [Advanced Breeding](docs/whitepapers/agri_os_whitepaper_seed_breeding.md)
+### 📚 2. The 23 Computable Agri-OS Whitepapers Catalog
+We provide 23 strategic and academic whitepapers focusing on industry pain points, biological models, and computational mathematics:
+*   🌿 **Planting & Science**: [Field Crops](docs/whitepapers/agri_os_whitepaper_field_crops.md) | [Orchard & Horticulture](docs/whitepapers/agri_os_whitepaper_orchard_horticulture.md) | [Greenhouse Floriculture](docs/whitepapers/agri_os_whitepaper_floriculture.md) | [Mushroom Cultivation](docs/whitepapers/agri_os_whitepaper_mushroom_cultivation.md) | [Medicinal Plants](docs/whitepapers/agri_os_whitepaper_medicinal_plants.md) | [Advanced Breeding](docs/whitepapers/agri_os_whitepaper_seed_breeding.md) | [Agri-Science & Variable Rate Technology](docs/whitepapers/agri_os_whitepaper_agri_science.md)
 *   🐄 **Livestock & Aquaculture**: [Cattle & Dairy](docs/whitepapers/agri_os_whitepaper_cattle_dairy.md) | [Poultry Farming](docs/whitepapers/agri_os_whitepaper_poultry_farming.md) | [Precision Apiculture](docs/whitepapers/agri_os_whitepaper_apiculture.md) | [RAS Aquaculture](docs/whitepapers/agri_os_whitepaper_ras_aquaculture.md) | [Specialty Aquaculture](docs/whitepapers/agri_os_whitepaper_specialty_aquaculture.md)
-*   🏭 **Processing & Composting**: [Winery & Fermentation](docs/whitepapers/agri_os_whitepaper_fermentation_winery.md) | [Aerobic Composting](docs/whitepapers/agri_os_whitepaper_aerobic_composting.md) | [Precision Food Processing](docs/whitepapers/agri_os_whitepaper_agricultural_processing.md) | [Green ESG & Carbon Sequestration](docs/whitepapers/agri_os_whitepaper_esg_carbon.md)
-*   🏪 **Commerce, Cooperative & Agritourism**: [Tokenized CSA](docs/whitepapers/agri_os_whitepaper_csa_tokenization.md) | [Shared Machinery](docs/whitepapers/agri_os_whitepaper_cooperative_machinery.md) | [Educational Agritourism](docs/whitepapers/agri_os_whitepaper_agritourism.md) | [Disaster Risk & Parametric Insurance](docs/whitepapers/agri_os_whitepaper_disaster_insurance.md)
+*   🏭 **Processing & Composting**: [Winery & Fermentation](docs/whitepapers/agri_os_whitepaper_fermentation_winery.md) | [Aerobic Composting](docs/whitepapers/agri_os_whitepaper_aerobic_composting.md) | [Precision Food Processing](docs/whitepapers/agri_os_whitepaper_agricultural_processing.md) | [Green ESG & Carbon Sequestration](docs/whitepapers/agri_os_whitepaper_esg_carbon.md) | [Biological Asset Valuation & Fair Value Accounting](docs/whitepapers/agri_os_whitepaper_biological_valuation.md)
+*   🏪 **Commerce, Cooperative & Agritourism**: [Tokenized CSA](docs/whitepapers/agri_os_whitepaper_csa_tokenization.md) | [Shared Machinery](docs/whitepapers/agri_os_whitepaper_cooperative_machinery.md) | [Educational Agritourism](docs/whitepapers/agri_os_whitepaper_agritourism.md) | [Disaster Risk & Parametric Insurance](docs/whitepapers/agri_os_whitepaper_disaster_insurance.md) | [Land Banking, Leaseback & Rotation](docs/whitepapers/agri_os_whitepaper_land_mgmt_bank.md)
 *   🤖 **AI Decision, Vision & Robotics**: [AI Agents & Precision Robotics](docs/whitepapers/agri_os_whitepaper_ai_robotics.md)
 
 ---
