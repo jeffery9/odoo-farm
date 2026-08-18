@@ -375,3 +375,62 @@ class TestFarmQuality(TransactionCase):
         self.assertEqual(ws["F17"].value, "COMPLIANT")
 
         print("\n=== SUCCESS: EXCEL SPREADSHEET FORMULAS AND GXP ALIGNMENT VERIFIED ===\n")
+
+    def test_07_quality_check_replicates(self):
+        """ Verify US-LIMS Replicate Measurements, auto-expansion, average computation, and auto-evaluation """
+        # 1. Create a quality point with 3 replicates required
+        point_replicates = self.Point.create({
+            'name': 'Pasteurizer Temperature Replicates',
+            'test_type': 'measure',
+            'norm': 72.0,
+            'tolerance_min': 71.5,
+            'tolerance_max': 73.0,
+            'replicate_count': 3,
+        })
+        self.assertEqual(point_replicates.replicate_count, 3)
+
+        # 2. Create a template pointing to this point
+        template = self.env['agri.quality.record.book.template'].create({
+            'name': 'Pasteurization GxP Template',
+            'book_type': 'pesticide',
+        })
+        self.env['agri.quality.record.book.template.line'].create({
+            'name': 'Check Pasteurization Outlet Temp',
+            'template_id': template.id,
+            'point_id': point_replicates.id,
+            'instruction': 'Record 3 outlet temperature replicates after stabilizing flows.',
+        })
+
+        # 3. Create a record book and instantiate from template
+        book = self.env['agri.quality.record.book'].create({
+            'name': 'Pasteurizer Run #1042',
+            'book_type': 'pesticide',
+            'template_id': template.id,
+        })
+        book.action_generate_from_template()
+
+        # 4. Verify that exactly 1 check is created and it automatically generated 3 blank measurement lines
+        self.assertEqual(len(book.check_ids), 1)
+        check = book.check_ids[0]
+        self.assertEqual(check.replicate_count, 3)
+        self.assertEqual(len(check.measure_line_ids), 3)
+
+        # 5. Populate replicate values and verify real-time mathematical average computation
+        check.measure_line_ids[0].value = 71.6
+        check.measure_line_ids[1].value = 72.0
+        check.measure_line_ids[2].value = 72.4
+
+        # Trigger recompute or onchange simulation
+        check._compute_measure()
+        self.assertAlmostEqual(check.measure, 72.0)
+        check._onchange_measure()
+        self.assertEqual(check.quality_state, 'pass')
+
+        # 6. Change one replicate to fail tolerance limit
+        check.measure_line_ids[0].value = 75.2
+        check._compute_measure()
+        self.assertAlmostEqual(check.measure, 73.2)
+        check._onchange_measure()
+        self.assertEqual(check.quality_state, 'fail')
+
+        print("\n=== SUCCESS: GXP REPLICATES MEASUREMENT AND AUTO-COMPUTATION VERIFIED ===\n")

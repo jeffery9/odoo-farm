@@ -58,14 +58,14 @@
                             <thead class="table-dark sticky-top text-center">
                                 <tr>
                                     <th style="width: 50px;">Seq</th>
-                                    <th style="width: 200px;">Check Name</th>
+                                    <th style="width: 180px;">Check Name</th>
                                     <th>Standard Operating Instructions (SOP)</th>
-                                    <th style="width: 120px;">Target Norm</th>
-                                    <th style="width: 100px;">Min</th>
-                                    <th style="width: 100px;">Max</th>
-                                    <th style="width: 150px;">Actual Measure</th>
-                                    <th style="width: 150px;">Status Toggle</th>
-                                    <th style="width: 120px;">Status</th>
+                                    <th style="width: 100px;">Target Norm</th>
+                                    <th style="width: 80px;">Min</th>
+                                    <th style="width: 80px;">Max</th>
+                                    <th style="width: 380px;">Actual Measure / Replicate Values</th>
+                                    <th style="width: 120px;">Status Toggle</th>
+                                    <th style="width: 100px;">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,13 +77,29 @@
                                     <td class="text-center bg-light text-danger" t-out="check.tolerance_min"/>
                                     <td class="text-center bg-light text-danger" t-out="check.tolerance_max"/>
                                     
-                                    <!-- Measure Input -->
-                                    <td class="p-1">
+                                    <!-- Measure Input / Multi-Replicates -->
+                                    <td class="p-2">
                                         <t t-if="check.test_type === 'measure'">
-                                            <input type="number" step="0.01" class="form-control text-end border-0 font-monospace text-primary fw-bold" 
-                                                   t-att-value="check.measure" 
-                                                   t-att-disabled="state.recordBook.state === 'locked'"
-                                                   t-on-input="(ev) => this.onMeasureChange(check, ev.target.value)"/>
+                                            <div class="d-flex flex-wrap gap-1 align-items-center justify-content-end">
+                                                <t t-if="check.sub_measures &amp;&amp; check.sub_measures.length > 0">
+                                                    <div t-foreach="check.sub_measures" t-as="sm" t-key="sm.id" class="input-group input-group-sm" style="width: 75px;">
+                                                        <span class="input-group-text px-1 bg-200 border-0" style="font-size: 0.7rem;"><t t-out="sm_index + 1"/>#</span>
+                                                        <input type="number" step="0.01" class="form-control text-end p-1 border font-monospace text-primary fw-bold" 
+                                                               t-att-value="sm.value" 
+                                                               t-att-disabled="state.recordBook.state === 'locked'"
+                                                               t-on-input="(ev) => this.onSubMeasureChange(check, sm, ev.target.value)"/>
+                                                    </div>
+                                                    <div class="small text-muted font-monospace border-start ps-2 ms-2">
+                                                        Avg: <span class="fw-bold text-dark" t-out="check.measure.toFixed(2)"/>
+                                                    </div>
+                                                </t>
+                                                <t t-else="">
+                                                    <input type="number" step="0.01" class="form-control text-end border-0 font-monospace text-primary fw-bold" 
+                                                           t-att-value="check.measure" 
+                                                           t-att-disabled="state.recordBook.state === 'locked'"
+                                                           t-on-input="(ev) => this.onMeasureChange(check, ev.target.value)"/>
+                                                </t>
+                                            </div>
                                         </t>
                                         <t t-else="">
                                             <span class="text-muted">N/A</span>
@@ -171,9 +187,9 @@
 
                             <!-- Parameters and Inputs -->
                             <div class="row align-items-center justify-content-center mb-5 flex-shrink-0">
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <!-- Targets Block -->
-                                    <div class="border rounded p-3 bg-light d-flex justify-content-around text-center">
+                                    <div class="border rounded p-3 bg-light d-flex justify-content-around text-center h-100">
                                         <div>
                                             <div class="small text-muted">LSL Min</div>
                                             <div class="h4 text-danger fw-bold mb-0" t-out="activeCheck.tolerance_min"/>
@@ -189,15 +205,33 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-5" t-if="activeCheck.test_type === 'measure'">
-                                    <!-- Measure input area -->
-                                    <div class="input-group input-group-lg border rounded shadow-sm overflow-hidden">
-                                        <span class="input-group-text bg-white border-0 text-muted font-monospace">ACTUAL:</span>
-                                        <input type="number" step="0.01" class="form-control border-0 font-monospace text-primary fw-bold text-center h2 mb-0" style="font-size: 1.8rem;"
-                                               t-att-value="activeCheck.measure"
-                                               t-att-disabled="state.recordBook.state === 'locked'"
-                                               t-on-input="(ev) => this.onMeasureChange(activeCheck, ev.target.value)"/>
-                                    </div>
+                                <div class="col-md-8" t-if="activeCheck.test_type === 'measure'">
+                                    <!-- Measure Input (Check replicates or show single) -->
+                                    <t t-if="activeCheck.sub_measures &amp;&amp; activeCheck.sub_measures.length > 0">
+                                        <div class="card border rounded p-3 bg-light shadow-sm w-100">
+                                            <div class="d-flex flex-wrap gap-3 justify-content-center">
+                                                <div t-foreach="activeCheck.sub_measures" t-as="sm" t-key="sm.id" class="card border shadow-sm p-2 text-center bg-white" style="width: 100px;">
+                                                    <span class="small text-muted font-monospace mb-1">SAMPLE #<t t-out="sm_index + 1"/></span>
+                                                    <input type="number" step="0.01" class="form-control text-center font-monospace text-primary fw-bold h4 mb-0 border-0 bg-transparent p-1"
+                                                           t-att-value="sm.value"
+                                                           t-att-disabled="state.recordBook.state === 'locked'"
+                                                           t-on-input="(ev) => this.onSubMeasureChange(activeCheck, sm, ev.target.value)"/>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3 text-center h5 text-muted font-monospace mb-0">
+                                                Computed Average: <span class="fw-bold text-primary" t-out="activeCheck.measure.toFixed(2)"/>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="input-group input-group-lg border rounded shadow-sm overflow-hidden" style="max-width: 300px; margin: 0 auto;">
+                                            <span class="input-group-text bg-white border-0 text-muted font-monospace">ACTUAL:</span>
+                                            <input type="number" step="0.01" class="form-control border-0 font-monospace text-primary fw-bold text-center h2 mb-0" style="font-size: 1.8rem;"
+                                                   t-att-value="activeCheck.measure"
+                                                   t-att-disabled="state.recordBook.state === 'locked'"
+                                                   t-on-input="(ev) => this.onMeasureChange(activeCheck, ev.target.value)"/>
+                                        </div>
+                                    </t>
                                 </div>
                             </div>
 
