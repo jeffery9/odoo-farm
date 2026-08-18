@@ -51,15 +51,19 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Quality Checks" name="quality_checks">
+                        <page string="Quality Checks (Spreadsheet View)" name="quality_checks">
                             <field name="check_ids" readonly="state == 'locked'">
-                                <list editable="bottom">
-                                    <field name="name" readonly="1" />
-                                    <field name="lot_id" />
-                                    <field name="point_id" />
-                                    <field name="quality_state" widget="badge" decoration-success="quality_state == 'pass'" decoration-danger="quality_state == 'fail'" />
-                                    <field name="measure" />
-                                    <field name="blockchain_hash" readonly="1" />
+                                <list editable="bottom" create="0" delete="0" class="o_quality_check_spreadsheet_grid">
+                                    <field name="name" readonly="1" string="Check Ref" decoration-bf="1" />
+                                    <field name="point_id" readonly="1" string="Inspection Target" />
+                                    <field name="instruction" readonly="1" string="GxP Standard Operating Procedure" optional="show" />
+                                    <field name="norm" readonly="1" string="Target Norm" decoration-info="1" />
+                                    <field name="tolerance_min" readonly="1" string="[LSL] Min Tolerance" />
+                                    <field name="tolerance_max" readonly="1" string="[USL] Max Tolerance" />
+                                    <field name="measure" string="Actual Measure" decoration-bf="1" />
+                                    <field name="quality_state" widget="badge" decoration-success="quality_state == 'pass'" decoration-danger="quality_state == 'fail'" decoration-warning="quality_state == 'none'" string="Status" />
+                                    <field name="lot_id" optional="show" />
+                                    <field name="blockchain_hash" readonly="1" optional="hide" />
                                 </list>
                             </field>
                         </page>

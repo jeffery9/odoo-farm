@@ -42,6 +42,9 @@ class AgriQualityCheck(models.Model):
 
     test_type = fields.Selection(related='point_id.test_type', store=True)
     measure = fields.Float("Actual Measure")
+    norm = fields.Float(related='point_id.norm', readonly=True, string="Target Norm")
+    tolerance_min = fields.Float(related='point_id.tolerance_min', readonly=True, string="Min Limit")
+    tolerance_max = fields.Float(related='point_id.tolerance_max', readonly=True, string="Max Limit")
 
     quality_state = fields.Selection([
         ('none', 'To do'),
@@ -108,6 +111,16 @@ class AgriQualityCheck(models.Model):
                 self.action_fail()
         else:
             self.action_pass()
+
+    @api.onchange('measure')
+    def _onchange_measure(self):
+        """ Dynamically auto-evaluate quality_state based on point limits during spreadsheet-like inline editing """
+        for rec in self:
+            if rec.test_type == 'measure' and rec.point_id:
+                if rec.point_id.tolerance_min <= rec.measure <= rec.point_id.tolerance_max:
+                    rec.quality_state = 'pass'
+                else:
+                    rec.quality_state = 'fail'
 
     def _generate_blockchain_hash(self):
         """ US-038-09: Generate an immutable hash of the test result """
