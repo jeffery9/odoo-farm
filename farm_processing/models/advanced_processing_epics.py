@@ -158,19 +158,11 @@ class MrpWorkorder(models.Model):
                 electricity_rate = 0.15 # $0.15 / kWh
                 financial_cost = wo.power_consumption_kwh * electricity_rate
                 
-                # Create Stock Valuation Layer for the cost (US-137-02)
+                # Directly allocate cost to stock.move in Odoo 19 (replacing deprecated stock.valuation.layer)
                 if wo.production_id.move_finished_ids:
                     move = wo.production_id.move_finished_ids[0]
-                    self.env['stock.valuation.layer'].create({
-                        'value': financial_cost,
-                        'unit_cost': 0,
-                        'quantity': 0,
-                        'remaining_qty': 0,
-                        'stock_move_id': move.id,
-                        'description': f"Energy Cost Allocation: {wo.power_consumption_kwh} kWh for {wo.name}",
-                        'product_id': move.product_id.id,
-                        'company_id': wo.company_id.id,
-                    })
+                    if move.product_qty > 0:
+                        move.price_unit += financial_cost / move.product_qty
 
                 wo.production_id.message_post(
                     body=f"🌱 <b>ESG & Cost Allocation (Scope 2)</b><br/>"
