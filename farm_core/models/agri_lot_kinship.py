@@ -37,9 +37,10 @@ class AgriLotKinship(models.Model):
     
     notes = fields.Text('Lineage Notes')
 
-    _sql_constraints = [
-        ('kinship_uniq', 'unique(parent_lot_id, child_lot_id, intervention_id)', 'This kinship link already exists!'),
-    ]
+    _kinship_uniq = models.Constraint(
+        'unique(parent_lot_id, child_lot_id, intervention_id)',
+        'This kinship link already exists!'
+    )
 
     @api.model
     def create_kinship(self, parent_lot, child_lot, intervention=False, derivation_type='process'):
