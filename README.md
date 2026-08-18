@@ -87,13 +87,19 @@ graph LR
 
 ## 🌟 核心亮点：降维打击的商业能力 (The 3-Tier Edge)
 
-1. **[精选 49 大农业商业闭环场景 (Showcases)](docs/business/marketing/SCENARIOS_SHOWCASE.md)**
-   从制药级物理防线、多叉树基因溯源，到无抵押数据微贷与按交易量返还分红，为您精选 49 个极具震撼力的真实业务场景。
-2. **[坚如磐石的数据隐私 (3-Tier RLS)](docs/business/analysis/DATA_ISOLATION_RLS_DESIGN.md)**
-   针对“村集体 -> 承包大户 -> 散户”结构设计的金融级 row-level security。农户间数据平行绝密隔离。
-3. **[日本农协 (JA) 模式数字化落地](docs/business/marketing/THE_JA_MODEL_PLAYBOOK.md)**
-   复刻全球最成功的农民组织模式，集金融、保险、统购统销于一体。
-4. **[Agri-OS 十六大垂直行业计算智能学术白皮书 (The 16 Computable Agri-OS Whitepapers Catalog)](docs/whitepapers/)**
+### 📈 1. 智慧农业商业与市场推广白皮书 (Business & Marketing Suite)
+我们为您准备了全套的商业化变现与市场推广白皮书，助力开源项目向产业界与资本市场的高效路演：
+*   📢 **[Odoo Farm 商业路演核心简报 (Odoo Farm Pitch Deck)](Odoo_Farm_Pitch.md)**：项目核心定位、商业痛点及投资价值路演 PPT 叙事。
+*   ⚖️ **[传统工业 ERP 判定 vs Odoo Farm 农业 OS 对比 (Traditional ERP vs Agri-OS)](docs/business/marketing/TRADITIONAL_ERP_VS_ODOO_FARM.md)**：深度剖析为什么用管工业零件的 ERP 无法管理会呼吸的生物资产。
+*   🚀 **[精选 49 大农业商业闭环场景 (Scenarios Showcase)](docs/business/marketing/SCENARIOS_SHOWCASE.md)**：从制药级物理防线、多叉树基因到无抵押微贷等 49 个震撼真实业务场景。
+*   ⭐ **[金牌销售核心：八大降维打击业务路演 (Top 8 Showcase Pitch)](docs/business/marketing/TOP_8_SHOWCASE_PITCH.md)**：精准提炼最打动农场主与地方合作社的 8 大王牌业务场景路演。
+*   💴 **[八大商业盈利模式与合作分配机制 (Commercial Revenue Models)](docs/business/marketing/COMMERCIAL_REVENUE_MODELS.md)**：合作社与平台运营商如何通过 SaaS 统购统销、碳汇交易、金融分成等多道合规渠道盈利。
+*   🍒 **[C2M 消费者直连基地代币化认养愿景 (C2M Ecosystem Vision)](docs/business/marketing/C2M_ECOSYSTEM_VISION.md)**：打通一二三产业，实现地块认养、作物期权、视频直连与 Web3 消费生态。
+*   ⛩️ **[日本农协 (JA) 数字化运营白皮书 (The JA Model Playbook)](docs/business/marketing/THE_JA_MODEL_PLAYBOOK.md)**：复刻全球最成熟的日本农业合作社模式，集统购统销、金融、保险于一体。
+*   🌾 **[浙江“统分结合”双层经营数字化范式 (The Zhejiang Model Playbook)](docs/business/marketing/THE_ZHEJIANG_MODEL_PLAYBOOK.md)**：剖析村集体经济、承包大户与农户的高效统筹协同，落地中国特色乡村振兴底层架构。
+*   🔒 **[金融级底层数据隐私与行级隔离设计 (3-Tier RLS Design)](docs/business/analysis/DATA_ISOLATION_RLS_DESIGN.md)**：针对“村集体 -> 大户 -> 散户”结构设计的 row-level security，农户间数据平行绝密隔离。
+
+### 📚 2. Agri-OS 十六大垂直行业计算智能学术白皮书 (The 16 Computable Agri-OS Whitepapers Catalog)
    提供 16 篇聚焦现代农业垂直领域的行业白皮书，涵盖计算模型与解决方案架构：
    *   🌿 **种植与大田植物科学 (Planting & Science)**
        - [精准大田作物端到端解决方案白皮书 (Precision Field Crops)](docs/whitepapers/agri_os_whitepaper_field_crops.md)
@@ -134,7 +140,21 @@ Traditional agriculture suffers from "black box" production and mismatched indus
 *   🛒 **For Retail & Consumers**: **Unshakable Trust & Brand Premium.** A simple QR scan reveals the soil temperature, intervention logs, and DNA integrity score of the exact batch.
 *   💻 **For Developers**: **Rapid Scaling & Plug-and-Play.** Embracing the "Tools, not Trees" philosophy with a flat 4-layer topology.
 
-### 🗺️ The 16 Computable Agri-OS Whitepapers Catalog
+## 🌟 3-Tier Edge: Business & Market Opportunities
+
+### 📈 1. Business & Marketing Suite
+We provide a comprehensive collection of business roadmaps, financial blueprints, and market-entry whitepapers for commercial pitches and roadshows:
+*   📢 **[Odoo Farm Core Pitch Deck (Odoo_Farm_Pitch.md)](Odoo_Farm_Pitch.md)**: Main pitch narrative covering pain points, solutions, market opportunities, and core financials.
+*   ⚖️ **[Traditional Industrial ERP vs Agri-OS (TRADITIONAL_ERP_VS_ODOO_FARM.md)](docs/business/marketing/TRADITIONAL_ERP_VS_ODOO_FARM.md)**: Detailed analysis explaining why industrial-focused ERPs fail to manage biological living assets.
+*   🚀 **[Precision Agriculture Scenarios Showcase (SCENARIOS_SHOWCASE.md)](docs/business/marketing/SCENARIOS_SHOWCASE.md)**: Curated list of 49 high-impact business scenarios spanning genetic pedigree, GxP trace, and credit micro-finance.
+*   ⭐ **[Top 8 Business Roadshows (TOP_8_SHOWCASE_PITCH.md)](docs/business/marketing/TOP_8_SHOWCASE_PITCH.md)**: Highly focused pitch material highlighting the 8 most requested and bankable scenarios for farming co-ops.
+*   💴 **[Commercial Revenue & Distribution Models (COMMERCIAL_REVENUE_MODELS.md)](docs/business/marketing/COMMERCIAL_REVENUE_MODELS.md)**: Breakdown of 8 core monetizable channels, cooperative rebates, SaaS subscriptions, and ESG carbon credit mechanisms.
+*   🍒 **[C2M Tokenized Subscription Vision (C2M_ECOSYSTEM_VISION.md)](docs/business/marketing/C2M_ECOSYSTEM_VISION.md)**: Visionary framework connecting urban subscribers directly to designated land plots using Web3 crop options and live streaming.
+*   ⛩️ **[Digital Japan Agricultural Cooperative (THE_JA_MODEL_PLAYBOOK.md)](docs/business/marketing/THE_JA_MODEL_PLAYBOOK.md)**: Digitized playbook of the world-class JA co-op model, integrating bulk purchasing, crop trading, banking, and mutual insurance.
+*   🌾 **[The Zhejiang Rural Cooperative Playbook (THE_ZHEJIANG_MODEL_PLAYBOOK.md)](docs/business/marketing/THE_ZHEJIANG_MODEL_PLAYBOOK.md)**: Comprehensive blueprint for collective economic bodies, dual-tier operations, and local rural revitalization models.
+*   🔒 **[Enterprise 3-Tier RLS Data Privacy (DATA_ISOLATION_RLS_DESIGN.md)](docs/business/analysis/DATA_ISOLATION_RLS_DESIGN.md)**: Deep engineering design on tenant-level and farm-level strict data isolation for high-security commercial consortiums.
+
+### 📚 2. The 16 Computable Agri-OS Whitepapers Catalog
 We provide 16 strategic and academic whitepapers focusing on industry pain points, biological models, and computational mathematics:
 *   🌿 **Planting & Science**: [Field Crops](docs/whitepapers/agri_os_whitepaper_field_crops.md) | [Orchard & Horticulture](docs/whitepapers/agri_os_whitepaper_orchard_horticulture.md) | [Greenhouse Floriculture](docs/whitepapers/agri_os_whitepaper_floriculture.md) | [Mushroom Cultivation](docs/whitepapers/agri_os_whitepaper_mushroom_cultivation.md) | [Medicinal Plants](docs/whitepapers/agri_os_whitepaper_medicinal_plants.md) | [Advanced Breeding](docs/whitepapers/agri_os_whitepaper_seed_breeding.md)
 *   🐄 **Livestock & Aquaculture**: [Cattle & Dairy](docs/whitepapers/agri_os_whitepaper_cattle_dairy.md) | [Poultry Farming](docs/whitepapers/agri_os_whitepaper_poultry_farming.md) | [Precision Apiculture](docs/whitepapers/agri_os_whitepaper_apiculture.md) | [RAS Aquaculture](docs/whitepapers/agri_os_whitepaper_ras_aquaculture.md) | [Specialty Aquaculture](docs/whitepapers/agri_os_whitepaper_specialty_aquaculture.md)
