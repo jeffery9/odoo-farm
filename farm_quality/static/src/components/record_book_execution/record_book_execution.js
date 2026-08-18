@@ -34,12 +34,36 @@ export class RecordBookExecution extends Component {
                 const checks = await this.orm.searchRead(
                     "agri.quality.check",
                     [["record_book_id", "=", recordBookId]],
-                    ["name", "point_id", "instruction", "norm", "tolerance_min", "tolerance_max", "measure", "quality_state", "test_type", "lot_id"]
+                    ["name", "point_id", "replicate_count", "instruction", "norm", "tolerance_min", "tolerance_max", "measure", "quality_state", "test_type", "lot_id", "measure_line_ids"]
                 );
-                this.state.checks = checks.map(c => ({
-                    ...c,
-                    _dirty: false, // track local edits for saving
-                }));
+                
+                // Batch-query all sub-measurement replicate lines in a single query
+                const checkIds = checks.map(c => c.id);
+                const subLines = await this.orm.searchRead(
+                    "agri.quality.check.measure.line",
+                    [["check_id", "in", checkIds]],
+                    ["check_id", "sequence", "value"]
+                );
+
+                // Group sub-measurements by check_id
+                const subMeasuresByCheck = {};
+                for (const line of subLines) {
+                    const checkId = line.check_id[0];
+                    if (!subMeasuresByCheck[checkId]) {
+                        subMeasuresByCheck[checkId] = [];
+                    }
+                    subMeasuresByCheck[checkId].push(line);
+                }
+
+                this.state.checks = checks.map(c => {
+                    const checkLines = subMeasuresByCheck[c.id] || [];
+                    checkLines.sort((a, b) => a.sequence - b.sequence);
+                    return {
+                        ...c,
+                        _dirty: false,
+                        sub_measures: checkLines.map(l => ({ ...l, _dirty: false })),
+                    };
+                });
             }
         } catch (error) {
             this.notification.add("Error loading Record Book data", { type: "danger" });
@@ -54,9 +78,30 @@ export class RecordBookExecution extends Component {
         check.measure = numVal;
         check._dirty = true;
         
-        // Auto-evaluation of pass/fail like a real spreadsheet
+        // Auto-evaluation of pass/fail
         if (check.test_type === "measure") {
             if (numVal >= check.tolerance_min && numVal <= check.tolerance_max) {
+                check.quality_state = "pass";
+            } else {
+                check.quality_state = "fail";
+            }
+        }
+    }
+
+    onSubMeasureChange(check, subMeasure, val) {
+        if (this.state.recordBook.state === "locked") return;
+        const numVal = parseFloat(val) || 0.0;
+        subMeasure.value = numVal;
+        subMeasure._dirty = true;
+        check._dirty = true;
+
+        // Dynamic recalculation of overall average
+        const vals = check.sub_measures.map(m => m.value);
+        check.measure = vals.reduce((sum, v) => sum + v, 0.0) / vals.length;
+
+        // Auto-evaluation based on new average
+        if (check.test_type === "measure") {
+            if (check.measure >= check.tolerance_min && check.measure <= check.tolerance_max) {
                 check.quality_state = "pass";
             } else {
                 check.quality_state = "fail";
@@ -79,13 +124,25 @@ export class RecordBookExecution extends Component {
         }
         try {
             for (const check of dirtyChecks) {
+                // Save dirty sub-measurements first
+                if (check.sub_measures && check.sub_measures.length > 0) {
+                    const dirtySubs = check.sub_measures.filter(sm => sm._dirty);
+                    for (const sm of dirtySubs) {
+                        await this.orm.write("agri.quality.check.measure.line", [sm.id], {
+                            value: sm.value,
+                        });
+                        sm._dirty = false;
+                    }
+                }
+
+                // Save main quality check status
                 await this.orm.write("agri.quality.check", [check.id], {
                     measure: check.measure,
                     quality_state: check.quality_state,
                 });
                 check._dirty = false;
             }
-            this.notification.add("All quality checks saved successfully!", { type: "success" });
+            this.notification.add("All quality checks and replicates saved successfully!", { type: "success" });
         } catch (error) {
             this.notification.add("Failed to save changes.", { type: "danger" });
         }

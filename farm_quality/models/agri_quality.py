@@ -20,6 +20,7 @@ class AgriQualityPoint(models.Model):
     norm = fields.Float("Norm")
     tolerance_min = fields.Float("Min Tolerance")
     tolerance_max = fields.Float("Max Tolerance")
+    replicate_count = fields.Integer("Replicate Count", default=1, help="Number of measurement replicates required for this check step.")
 
     active = fields.Boolean(default=True)
 
@@ -41,7 +42,19 @@ class AgriQualityCheck(models.Model):
     instruction = fields.Text("Inspection Instructions", help="Detailed GxP instructions for the inspector during this check.")
 
     test_type = fields.Selection(related='point_id.test_type', store=True)
-    measure = fields.Float("Actual Measure")
+    replicate_count = fields.Integer(related='point_id.replicate_count', readonly=True, string="Required Replicates")
+    measure = fields.Float(
+        string="Actual Measure",
+        compute="_compute_measure",
+        store=True,
+        readonly=False,
+        tracking=True
+    )
+    measure_line_ids = fields.One2many(
+        'agri.quality.check.measure.line',
+        'check_id',
+        string="Replicate Measurements"
+    )
     norm = fields.Float(related='point_id.norm', readonly=True, string="Target Norm")
     tolerance_min = fields.Float(related='point_id.tolerance_min', readonly=True, string="Min Limit")
     tolerance_max = fields.Float(related='point_id.tolerance_max', readonly=True, string="Max Limit")
@@ -111,6 +124,29 @@ class AgriQualityCheck(models.Model):
                 self.action_fail()
         else:
             self.action_pass()
+
+    @api.depends('measure_line_ids.value')
+    def _compute_measure(self):
+        for rec in self:
+            if rec.measure_line_ids:
+                vals = rec.measure_line_ids.mapped('value')
+                rec.measure = sum(vals) / len(vals) if vals else 0.0
+            else:
+                if not rec.measure:
+                    rec.measure = 0.0
+
+    @api.onchange('measure_line_ids')
+    def _onchange_measure_lines(self):
+        """ Recalculate average and re-evaluate pass/fail on the fly when editing replicates inside the spreadsheet grid """
+        for rec in self:
+            if rec.measure_line_ids:
+                vals = rec.measure_line_ids.mapped('value')
+                rec.measure = sum(vals) / len(vals) if vals else 0.0
+                if rec.test_type == 'measure' and rec.point_id:
+                    if rec.point_id.tolerance_min <= rec.measure <= rec.point_id.tolerance_max:
+                        rec.quality_state = 'pass'
+                    else:
+                        rec.quality_state = 'fail'
 
     @api.onchange('measure')
     def _onchange_measure(self):
@@ -239,3 +275,12 @@ class AgriLotQuality(models.Model):
     def action_lock(self):
         self.ensure_one()
         self.write({'qc_release_state': 'locked'})
+
+class AgriQualityCheckMeasureLine(models.Model):
+    _name = 'agri.quality.check.measure.line'
+    _description = 'Quality Check Measurement Line'
+    _order = 'sequence, id'
+
+    check_id = fields.Many2one('agri.quality.check', string="Quality Check", ondelete='cascade', required=True)
+    sequence = fields.Integer("Sequence", default=10)
+    value = fields.Float("Measured Value", default=0.0)

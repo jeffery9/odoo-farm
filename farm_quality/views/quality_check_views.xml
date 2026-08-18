@@ -49,6 +49,17 @@
                         </group>
                     </group>
                     <notebook>
+                        <page string="Sub-Measurements (Replicates)" name="measure_lines" invisible="test_type != 'measure'">
+                            <p class="text-muted mt-2">
+                                For GxP compliance and laboratory standards, enter multiple replicate measurements. The 'Actual Measure' field above is computed automatically as the mathematical average (Mean) of these values.
+                            </p>
+                            <field name="measure_line_ids" readonly="quality_state != 'none'">
+                                <list editable="bottom">
+                                    <field name="sequence" />
+                                    <field name="value" string="Measured Value" />
+                                </list>
+                            </field>
+                        </page>
                         <page string="Field Quick Test" name="quick_test">
                             <group>
                                 <field name="is_quick_test" />
