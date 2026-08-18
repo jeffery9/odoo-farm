@@ -25,9 +25,10 @@ class IiotGateway(models.Model):
 
     device_ids = fields.Many2many('iiot.device', string='Managed Devices')
     
-    _sql_constraints = [
-        ('gateway_id_uniq', 'unique(gateway_id)', 'Gateway ID must be unique!'),
-    ]
+    _gateway_id_uniq = models.Constraint(
+        'unique(gateway_id)',
+        'Gateway ID must be unique!'
+    )
 
     def action_ping(self):
         """Manually check gateway status using webhook ping"""

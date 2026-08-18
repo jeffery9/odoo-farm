@@ -13,9 +13,10 @@ class StockMatterTrackingLink(models.Model):
         ('blending', 'Blending (混合流转)'),
     ], string='Link Type (链接类型)', required=True, default='sequential')
 
-    _sql_constraints = [
-        ('parent_child_unique_inherit', 'unique(parent_id, child_id)', 'Link between parent and child must be unique! (父子载体链接必须唯一！)')
-    ]
+    _parent_child_unique_inherit = models.Constraint(
+        'unique(parent_id, child_id)',
+        'Link between parent and child must be unique! (父子载体链接必须唯一！)'
+    )
 
     @api.model_create_multi
     def create(self, vals_list):
