@@ -25,8 +25,8 @@ class FarmAgriProduct(models.Model):
     k_content = fields.Float("Potassium (K) %")
 
     # Food Compliance
-    sc_category_ids = fields.Many2many('farm.sc.category', string="SC License Categories")
-    allergen_ids = fields.Many2many('farm.allergen', string="Allergens")
+    sc_category_ids = fields.Many2many('farm.sc.category', 'product_template_farm_sc_category_rel', 'template_id', 'category_id', string="SC License Categories")
+    allergen_ids = fields.Many2many('farm.allergen', 'product_template_farm_allergen_rel', 'template_id', 'allergen_id', string="Allergens")
     nutrition_table = fields.Text("Nutrition Data (JSON/Text)")
 
     is_potency_standardized = fields.Boolean("Standardize by Potency")

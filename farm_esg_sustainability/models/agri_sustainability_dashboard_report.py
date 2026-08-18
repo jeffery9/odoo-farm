@@ -279,7 +279,7 @@ class AgriSustainabilityReport(models.Model):
     approval_date = fields.Datetime('批准日期')
 
     # 附录和附件
-    report_attachment_ids = fields.Many2many('ir.attachment', string='相关附件')
+    report_attachment_ids = fields.Many2many('ir.attachment', 'agri_sustainability_report_ir_attachment_rel', 'report_id', 'attachment_id', string='相关附件')
 
     @api.model
     def create_report(self, period_start, period_end):

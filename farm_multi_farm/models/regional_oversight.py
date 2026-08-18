@@ -13,7 +13,7 @@ class FarmRegionalOversight(models.Model):
     agency_id = fields.Many2one('res.partner', string="Regulatory Body", required=True)
     
     # Aggregation
-    cooperative_ids = fields.Many2many('cooperative.entity', string="Monitored Cooperatives")
+    cooperative_ids = fields.Many2many('cooperative.entity', 'farm_regional_oversight_cooperative_entity_rel', 'oversight_id', 'entity_id', string="Monitored Cooperatives")
     total_land_area = fields.Float("Total Monitored Area (Ha)", compute='_compute_totals')
     
     # Prediction Aggregation (L3 -> L4)

@@ -29,7 +29,7 @@ class ContextualHelp(models.Model):
     image_name = fields.Char('Image Name')
     is_active = fields.Boolean('Is Active', default=True)
     priority = fields.Integer('Priority', default=10, help='Display priority (lower numbers displayed first)')
-    target_roles = fields.Many2many('res.groups', string='Target Roles', help='Roles this help is intended for')
+    target_roles = fields.Many2many('res.groups', 'contextual_help_res_groups_rel', 'help_id', 'groups_id', string='Target Roles', help='Roles this help is intended for')
     industry_context = fields.Selection([
         ('general', 'General Agriculture'),
         ('planting', 'Planting'),

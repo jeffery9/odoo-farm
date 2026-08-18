@@ -77,7 +77,7 @@ class FarmCropYieldInsurance(models.Model):
     adjuster_id = fields.Many2one('res.partner', string='Claims Adjuster')
 
     # Index based configuration [US-059-04]
-    weather_index_ids = fields.Many2many('farm.insurance.index', string="Weather Trigger Indices")
+    weather_index_ids = fields.Many2many('farm.insurance.index', 'farm_crop_yield_insurance_farm_insurance_index_rel', 'insurance_id', 'index_id', string="Weather Trigger Indices")
 
     @api.depends('application_date', 'duration_months')
     def _compute_maturity_date(self):

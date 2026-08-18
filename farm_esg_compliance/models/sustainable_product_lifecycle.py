@@ -77,7 +77,7 @@ class AgriSustainableProductLifecycle(models.Model):
 
     # Related entities
     farm_id = fields.Many2one('farm.location', string='Farm Location')
-    supplier_ids = fields.Many2many('res.partner', string='Input Suppliers')
+    supplier_ids = fields.Many2many('res.partner', 'agri_sustainable_product_lifecycle_res_partner_rel', 'lifecycle_id', 'partner_id', string='Input Suppliers')
 
     @api.depends('economic_impact', 'environmental_impact', 'social_impact')
     def _compute_lifecycle_score(self):

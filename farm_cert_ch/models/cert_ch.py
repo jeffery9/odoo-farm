@@ -22,7 +22,7 @@ class FarmProductCertificate(models.Model):
     """)
     
     # 检测结果
-    quality_check_ids = fields.Many2many('agri.quality.check', string="Related Quality Checks")
+    quality_check_ids = fields.Many2many('agri.quality.check', 'farm_product_certificate_agri_quality_check_rel', 'certificate_id', 'check_id', string="Related Quality Checks")
     
     certificate_qr_code = fields.Char("Certificate QR Code", compute='_compute_qr_code', store=True, precompute=True)
 

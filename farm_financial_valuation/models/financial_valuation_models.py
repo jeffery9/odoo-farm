@@ -346,7 +346,7 @@ class FinancialValuationTemplate(models.Model):
     ], string="Default Valuation Method", required=True)
 
     # Asset type for which this template applies
-    applicable_asset_types = fields.Many2many('farm.financial.asset.valuation',
+    applicable_asset_types = fields.Many2many('farm.financial.asset.valuation', 'farm_financial_valua_farm_financial_asset_6af42eab_rel', 'template_id', 'valuation_id',
                                              compute='_compute_applicable_asset_types',
                                              string="Applicable Asset Types")
 

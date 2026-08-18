@@ -2,9 +2,6 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 from datetime import datetime, timedelta
-import logging
-
-_logger = logging.getLogger(__name__)
 
 class StockMatterTracking(models.Model):
     _name = 'stock.matter.tracking'
@@ -27,13 +24,6 @@ class StockMatterTracking(models.Model):
         size=64,
         index=True,
         default=''
-    )
-
-    pending_merkle_recalc = fields.Boolean(
-        string="Pending Merkle Recalculation",
-        default=False,
-        index=True,
-        help="Decoupled queue flag to defer heavy SHA-256 Merkle cascade computation to background Cron worker."
     )
 
     company_id = fields.Many2one(
@@ -146,8 +136,7 @@ class StockMatterTracking(models.Model):
         ('slaughter', 'Slaughter (屠宰)')
     ], string='Lineage Fission Type', default='none', help="Lineage division operation classification.")
 
-    lot_ids = fields.Many2many(
-        'stock.lot',
+    lot_ids = fields.Many2many('stock.lot', 'stock_matter_tracking_stock_lot_rel', 'tracking_id', 'lot_id',
         string='Genealogical Lots',
         compute='_compute_lot_ids',
         store=True,
@@ -652,44 +641,6 @@ class StockMatterTracking(models.Model):
             )
         return True
 
-    @api.model
-    def _cron_recalculate_merkle_hashes(self):
-        """ Background Cron worker to process decoupled Merkle hash recalculation queue """
-        # Search for all matter tracking records that are marked as pending
-        pending_records = self.search([('pending_merkle_recalc', '=', True)])
-        _logger.info("Cron Merkle Recalculation: processing %d pending records.", len(pending_records))
-        for record in pending_records:
-            # Recalculate its hash by tracing incoming links
-            incoming_links = self.env['stock.matter.tracking.link'].search([('child_id', '=', record.id)])
-            parents = incoming_links.mapped('parent_id').sorted(key=lambda r: r.id)
-
-            # Assemble parent hash blocks
-            parent_hashes = [p.merkle_state_hash or p.name for p in parents]
-            parent_block = ",".join(parent_hashes)
-
-            # Child metadata block
-            child_block = f"{record.name}:{record.dna_integrity_score}"
-
-            # Combined SHA-256 cascade
-            combined_payload = f"[{parent_block}]->[{child_block}]"
-            import hashlib
-            merkle_hash = hashlib.sha256(combined_payload.encode('utf-8')).hexdigest()
-
-            # Write calculated hash and reset pending flag atomically
-            record.write({
-                'merkle_state_hash': merkle_hash,
-                'pending_merkle_recalc': False
-            })
-
-            # Automated certified ledger audit log
-            self.env['agri.clearing.ledger'].create({
-                'partner_id': self.env.user.partner_id.id or self.env.ref('base.partner_admin').id,
-                'credit_change': 0.0,
-                'score_change': 1,
-                'description': f"SFC Merkle Traceability State Certified: Hash={merkle_hash[:16]} (SFC 级联 Merkle 密码学状态验证成功)",
-                'state': 'confirmed'
-            })
-
 
 class StockMatterTrackingSnapshot(models.Model):
     _name = 'stock.matter.tracking.snapshot'
@@ -716,7 +667,7 @@ class StockMatterTrackingSnapshot(models.Model):
     biological_asset_id = fields.Many2one('agri.biological.asset', string='Biological Asset / 个体资产')
     quantity = fields.Float(string='Contained Quantity', digits='Product Unit of Measure')
     location_id = fields.Many2one('stock.location', string='Physical Location')
-    lot_ids = fields.Many2many('stock.lot', string='Lots Inside')
+    lot_ids = fields.Many2many('stock.lot', 'stock_matter_tracking_snapshot_stock_lot_rel', 'snapshot_id', 'lot_id', string='Lots Inside')
     timestamp = fields.Datetime(string='Snapshot Timestamp', default=fields.Datetime.now, required=True)
     
     gxp_open_time = fields.Datetime(string='GxP Opened Time')

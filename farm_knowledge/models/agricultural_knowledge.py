@@ -60,7 +60,7 @@ class AgriculturalKnowledge(models.Model):
     ], string='Seasonality', default='year_round')
     
     video_url = fields.Char(string='Video URL')
-    attachment_ids = fields.Many2many('ir.attachment', string='Attachments')
+    attachment_ids = fields.Many2many('ir.attachment', 'agricultural_knowledge_ir_attachment_rel', 'knowledge_id', 'attachment_id', string='Attachments')
     
     view_count = fields.Integer(string='View Count', default=0, readonly=True)
     helpful_count = fields.Integer(string='Helpful Count', default=0, readonly=True)

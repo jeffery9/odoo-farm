@@ -27,8 +27,8 @@ class FarmCrisisIncident(models.Model):
     date_start = fields.Datetime("Detected At", default=fields.Datetime.now)
     date_end = fields.Datetime("Resolved At")
     
-    affected_location_ids = fields.Many2many('farm.location', string="Affected Zones", domain=[('is_land_parcel', '=', True)])
-    affected_lot_ids = fields.Many2many('stock.lot', string="Affected Assets/Batches")
+    affected_location_ids = fields.Many2many('farm.location', 'farm_crisis_incident_farm_location_rel', 'incident_id', 'location_id', string="Affected Zones", domain=[('is_land_parcel', '=', True)])
+    affected_lot_ids = fields.Many2many('stock.lot', 'farm_crisis_incident_stock_lot_rel', 'incident_id', 'lot_id', string="Affected Assets/Batches")
     
     state = fields.Selection([
         ('draft', 'Reported'),

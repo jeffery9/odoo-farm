@@ -10,8 +10,8 @@ class SupplyChainRecall(models.Model):
     product_id = fields.Many2one('product.product', related='triggering_qc_id.lot_id.product_id', string="Product")
     
     # Traceability
-    affected_lot_ids = fields.Many2many('stock.lot', string="Affected Quarantined Lots")
-    affected_location_ids = fields.Many2many('farm.location', string="Source Parcels Identified")
+    affected_lot_ids = fields.Many2many('stock.lot', 'farm_supply_recall_stock_lot_rel', 'recall_id', 'lot_id', string="Affected Quarantined Lots")
+    affected_location_ids = fields.Many2many('farm.location', 'farm_supply_recall_farm_location_rel', 'recall_id', 'location_id', string="Source Parcels Identified")
     
     # PR/Crisis Action
     ai_pr_draft = fields.Text("AI Generated Recall Notice")

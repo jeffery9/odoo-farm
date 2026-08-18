@@ -125,7 +125,7 @@ class FarmLocation(models.Model):
     # Add fields for e-commerce integration
     ecommerce_sync_enabled = fields.Boolean('E-commerce Sync Enabled',
                                            help='Enable this greenhouse for e-commerce inventory sync')
-    ecommerce_platform_ids = fields.Many2many('farm.ecommerce.platform',
+    ecommerce_platform_ids = fields.Many2many('farm.ecommerce.platform', 'farm_location_farm_ecommerce_platform_rel', 'location_id', 'platform_id',
                                              string='E-commerce Platforms',
                                              help='Platforms to sync this greenhouse data with')
     ecommerce_inventory_status = fields.Selection([
@@ -235,7 +235,7 @@ class FarmEcommerceListingWizard(models.TransientModel):
     description = fields.Text('Description')
     price = fields.Float('Price', required=True)
     inventory_quantity = fields.Float('Inventory Quantity', default=0)
-    active_platforms = fields.Many2many('farm.ecommerce.platform',
+    active_platforms = fields.Many2many('farm.ecommerce.platform', 'farm_ecommerce_listing_wizard_farm_ecommerce_platform_rel', 'wizard_id', 'platform_id',
                                        string='Active Platforms')
 
     def action_create_listings(self):

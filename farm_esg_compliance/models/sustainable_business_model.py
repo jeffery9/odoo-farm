@@ -73,7 +73,7 @@ class AgriSustainableBusinessModel(models.Model):
     end_date = fields.Date('End Date')
 
     # Related entities
-    related_farm_ids = fields.Many2many('farm.location', string='Related Farms')
+    related_farm_ids = fields.Many2many('farm.location', 'agri_sustainable_business_model_farm_location_rel', 'model_id', 'location_id', string='Related Farms')
     related_cooperative_id = fields.Many2one('res.partner', string='Related Cooperative')
     related_region_id = fields.Many2one('res.country.state', string='Related Region')
 

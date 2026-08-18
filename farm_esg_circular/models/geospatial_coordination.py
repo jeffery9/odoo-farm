@@ -242,7 +242,7 @@ class AgriNutrientHeatmapLayer(models.Model):
 
     # Related analysis
     geospatial_network_id = fields.Many2one('agri.geospatial.circular.network', string='Related Network')
-    locations_covered = fields.Many2many('farm.location', string='Covered Locations')
+    locations_covered = fields.Many2many('farm.location', 'agri_nutrient_heatmap_layer_farm_location_rel', 'layer_id', 'location_id', string='Covered Locations')
 
     def _compute_predicted_area(self):
         """Compute predicted nutrient surplus/deficit areas"""

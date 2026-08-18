@@ -94,7 +94,7 @@ class FarmLotMarketing(models.Model):
     
     # US-062-03: Channel Protection
     is_premium_brand = fields.Boolean("Premium Brand Lot", default=False)
-    allowed_partner_ids = fields.Many2many('res.partner', string="Allowed Premium Channels")
+    allowed_partner_ids = fields.Many2many('res.partner', 'stock_lot_res_partner_rel', 'lot_id', 'partner_id', string="Allowed Premium Channels")
 
     # Formula: Integrity = (Base Score from QC) * Entity Multiplier
     integrity_score = fields.Float("Organic Integrity Score", compute='_compute_integrity_score', store=True, precompute=True)

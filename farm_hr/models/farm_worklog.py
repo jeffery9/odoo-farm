@@ -51,7 +51,7 @@ class ProjectTask(models.Model):
     
     # 技能要求 [US-004-02]
     required_skill_id = fields.Many2one('farm.agri.skill', string="Required Skill")
-    eligible_worker_ids = fields.Many2many('hr.employee', compute='_compute_eligible_workers', string="Eligible Workers")
+    eligible_worker_ids = fields.Many2many('hr.employee', 'project_task_hr_employee_rel', 'task_id', 'employee_id', compute='_compute_eligible_workers', string="Eligible Workers")
 
     @api.depends('required_skill_id')
     def _compute_eligible_workers(self):
@@ -107,7 +107,7 @@ class HrEmployee(models.Model):
 
     is_seasonal = fields.Boolean("Seasonal Laborer", default=False, help="Identify external or seasonal workers.")
     hourly_cost = fields.Float("Hourly Cost", default=0.0)
-    agri_skill_ids = fields.Many2many('farm.agri.skill', string="Agricultural Skills")
+    agri_skill_ids = fields.Many2many('farm.agri.skill', 'hr_employee_farm_agri_skill_rel', 'employee_id', 'skill_id', string="Agricultural Skills")
     piece_rate_total = fields.Float("Total Piece-rate Performance", compute='_compute_piece_rate')
     
     certificate_ids = fields.One2many('farm.employee.certificate', 'employee_id', string="Certificates")

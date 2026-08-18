@@ -13,7 +13,7 @@ class VmiAgreement(models.Model):
     name = fields.Char('Agreement Number', required=True, default=lambda self: _('New'))
     supplier_id = fields.Many2one('res.partner', string='Supplier', required=True)
     customer_id = fields.Many2one('res.partner', string='Customer', required=True)
-    product_ids = fields.Many2many('product.product', string='VMI Products')
+    product_ids = fields.Many2many('product.product', 'vmi_agreement_product_product_rel', 'agreement_id', 'product_id', string='VMI Products')
     agreement_start_date = fields.Date('Agreement Start Date', required=True)
     agreement_end_date = fields.Date('Agreement End Date')
     min_stock_level = fields.Float('Minimum Stock Level', help='Minimum stock level to maintain')

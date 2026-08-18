@@ -71,7 +71,7 @@ class ColdStorageZone(models.Model):
     current_weight = fields.Float('Current Weight (kg)')
 
     # Product type restrictions
-    allowed_product_categories = fields.Many2many('product.category', string='Allowed Product Categories')
+    allowed_product_categories = fields.Many2many('product.category', 'cold_storage_zone_product_category_rel', 'zone_id', 'category_id', string='Allowed Product Categories')
 
     # Status
     status = fields.Selection([

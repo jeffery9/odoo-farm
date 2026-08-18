@@ -20,8 +20,8 @@ class FarmSocialNetwork(models.Model):
         ('knowledge_sharing', 'Knowledge Sharing'),
         ('resource_sharing', 'Resource Sharing'),
     ], string='Network Type', required=True)
-    member_ids = fields.Many2many('res.partner', string='Members')
-    admin_ids = fields.Many2many('res.users', string='Administrators')
+    member_ids = fields.Many2many('res.partner', 'farm_social_network_res_partner_rel', 'network_id', 'partner_id', string='Members')
+    admin_ids = fields.Many2many('res.users', 'farm_social_network_res_users_rel', 'network_id', 'users_id', string='Administrators')
     description = fields.Text('Description', translate=True)
     is_active = fields.Boolean('Is Active', default=True)
     created_by = fields.Many2one('res.users', string='Created By', default=lambda self: self.env.user)

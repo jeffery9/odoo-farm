@@ -112,9 +112,9 @@ class ESGScenariosAnalysis(models.Model):
     next_review_date = fields.Date('Next Review Date')
 
     # Integration with other ESG modules
-    linked_kpi_ids = fields.Many2many('farm.esg.kpi', string='Linked KPIs')
-    linked_compliance_ids = fields.Many2many('farm.esg.compliance.monitoring', string='Linked Compliance Items')
-    linked_assessment_ids = fields.Many2many('farm.esg.risk.assessment', string='Linked Assessments')
+    linked_kpi_ids = fields.Many2many('farm.esg.kpi', 'farm_esg_scenarios_analysis_farm_esg_kpi_rel', 'analysis_id', 'kpi_id', string='Linked KPIs')
+    linked_compliance_ids = fields.Many2many('farm.esg.compliance.monitoring', 'farm_esg_scenarios_analysis_farm_esg_compliance_monitoring_rel', 'analysis_id', 'monitoring_id', string='Linked Compliance Items')
+    linked_assessment_ids = fields.Many2many('farm.esg.risk.assessment', 'farm_esg_scenarios_analysis_farm_esg_risk_assessment_rel', 'analysis_id', 'assessment_id', string='Linked Assessments')
 
     def action_run_analysis(self):
         """Run the scenario analysis and generate predictions"""

@@ -40,8 +40,7 @@ class AgriAiSkill(models.Model):
     upload_file = fields.Binary('Upload Skill / Attachment', help="Upload a .md file to overwrite the specification, or any other file format to save as a companion attachment.")
     upload_filename = fields.Char('File Name')
     
-    attachment_ids = fields.Many2many(
-        'ir.attachment', 
+    attachment_ids = fields.Many2many('ir.attachment', 'agri_ai_agent_skill_ir_attachment_rel', 'skill_id', 'attachment_id', 
         string='Skill Attachments',
         help="Companion configuration files, auxiliary scripts, or schemas associated with this skill."
     )
