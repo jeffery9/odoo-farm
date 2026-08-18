@@ -8,6 +8,13 @@ class TestTraceabilityQualityBlock(TransactionCase):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
+        # Check if mrp.production exists and contains the necessary fields
+        if 'mrp.production' not in cls.env or 'lot_producing_id' not in cls.env['mrp.production']._fields:
+            cls.skip_mrp_tests = True
+            return
+
+        cls.skip_mrp_tests = False
+
         # 1. Create a forbidden chemical
         cls.chemical_product = cls.env['product.product'].create({
             'name': 'Banned Pesticide X',
@@ -41,6 +48,9 @@ class TestTraceabilityQualityBlock(TransactionCase):
         3. The system links the Harvested Lot to the field's history (or direct BOM).
         4. When attempting to ship this Lot, a Quality Alert is raised and shipment is blocked.
         """
+        if getattr(self, 'skip_mrp_tests', False):
+            self.skipTest("mrp.production or lot_producing_id field not available")
+
         # We'll use a direct approach: The Harvest Intervention consumes the chemical directly for simplicity,
         # or we create a stock.lot and manually link its origin.
         

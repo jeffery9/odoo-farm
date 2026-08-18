@@ -13,10 +13,12 @@
     'depends': ['farm_operation', 'farm_core'],
     'data': [
         'security/ir.model.access.csv',
+        'data/ir_sequence_data.xml',
         # 'data/quality_data.xml',
         'views/quality_point_views.xml',
         'views/quality_check_views.xml',
         'views/quality_alert_views.xml',
+        'views/quality_record_book_views.xml',
         'views/stock_lot_views.xml',
     ],
     'images': ['static/description/main_screenshot.png'],

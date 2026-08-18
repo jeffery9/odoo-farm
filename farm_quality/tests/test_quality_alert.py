@@ -4,14 +4,14 @@ class TestQualityAlert(TransactionCase):
 
     def setUp(self):
         super(TestQualityAlert, self).setUp()
-        self.Check = self.env['farm.quality.check']
-        self.Alert = self.env['farm.quality.alert']
+        self.Check = self.env['agri.quality.check']
+        self.Alert = self.env['agri.quality.alert']
         self.Lot = self.env['stock.lot']
         self.Product = self.env['product.product']
         
         self.product = self.Product.create({'name': 'Test Crop', 'type': 'consu'})
         self.lot = self.Lot.create({'name': 'LOT-QC-001', 'product_id': self.product.id})
-        self.point = self.env['farm.quality.point'].create({'name': 'Standard Test'})
+        self.point = self.env['agri.quality.point'].create({'name': 'Standard Test'})
 
     def test_01_create_alert_from_failed_check(self):
         """ 测试从失败的检查中触发质量告警 [US-002-01] """
