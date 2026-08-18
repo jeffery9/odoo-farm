@@ -22,6 +22,13 @@
         'views/stock_lot_views.xml',
     ],
     'images': ['static/description/main_screenshot.png'],
+    'assets': {
+        'web.assets_backend': [
+            'farm_quality/static/src/components/**/*.js',
+            'farm_quality/static/src/components/**/*.xml',
+            'farm_quality/static/src/components/**/*.scss',
+        ],
+    },
     'installable': True,
     'application': False,
     'license': 'AGPL-3',
