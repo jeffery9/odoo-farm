@@ -94,7 +94,13 @@ class FarmAgritourismOperation(models.Model):
     ], string='Agritourism Stage', default='planning')
 
     # Experience Sales Integration
-    related_sale_orders = fields.Many2many('sale.order', string='Related Sale Orders')
+    related_sale_orders = fields.Many2many(
+        'sale.order',
+        'farm_agritourism_operation_sale_order_rel',
+        'operation_id',
+        'order_id',
+        string='Related Sale Orders'
+    )
     merchandise_sales = fields.Float('Merchandise Sales (¥)', compute='_compute_revenue', store=True, precompute=True)
     food_beverage_sales = fields.Float('Food & Beverage Sales (¥)', compute='_compute_revenue', store=True, precompute=True)
     total_revenue = fields.Float('Total Revenue (¥)', compute='_compute_revenue', store=True, precompute=True)
