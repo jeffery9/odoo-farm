@@ -25,7 +25,7 @@ class FarmCertificate(models.Model):
     issue_date = fields.Date("Issue Date")
     expiry_date = fields.Date("Expiry Date")
     is_valid = fields.Boolean("Is Valid", compute='_compute_is_valid', store=True, precompute=True)
-    attachment_ids = fields.Many2many('ir.attachment', 'farm_certificate_ir_attachment_rel', 'certificate_id', 'attachment_id', string="Certificate Photos")
+    attachment_ids = fields.Many2many('ir.attachment', 'farm_certificate_attachment_rel', 'certificate_id', 'attachment_id', string="Certificate Photos")
 
     @api.depends('expiry_date')
     def _compute_is_valid(self):
@@ -42,7 +42,7 @@ class FarmTrainingSession(models.Model):
     date = fields.Date("Date", default=fields.Date.today)
     hours = fields.Float("Duration (Hours)")
     trainer_id = fields.Many2one('res.partner', string="Trainer/Expert")
-    trainee_ids = fields.Many2many('hr.employee', 'farm_training_session_hr_employee_rel', 'session_id', 'employee_id', string="Trainees")
+    trainee_ids = fields.Many2many('hr.employee', 'farm_training_session_employee_rel', 'session_id', 'employee_id', string="Trainees")
     content = fields.Html("Training Content")
     state = fields.Selection([('draft', 'Draft'), ('done', 'Completed')], default='draft')
 

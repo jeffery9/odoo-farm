@@ -8,7 +8,7 @@ class AgriEvidenceMixin(models.AbstractModel):
     _name = 'agri.evidence.mixin'
     _description = 'Agri Evidence & Audit Mixin'
 
-    evidence_ids = fields.Many2many('ir.attachment', 'agri_evidence_mixin_ir_attachment_rel', 'mixin_id', 'attachment_id', string="Physical Evidence", help="Photos, IoT sensor logs, or PDF certificates.")
+    evidence_ids = fields.Many2many('ir.attachment', string="Physical Evidence", help="Photos, IoT sensor logs, or PDF certificates.")
     evidence_hash = fields.Char("Evidence Hash", readonly=True, help="Cryptographic hash of the evidence for tamper-proof auditing.")
     evidence_source = fields.Selection([
         ('manual', 'Manual Entry'),

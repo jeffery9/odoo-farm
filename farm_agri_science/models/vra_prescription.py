@@ -229,26 +229,16 @@ class AgriInterventionVraPrescription(models.Model):
                     if rec.target_type == 'pesticide' and rec.wind_speed > 5.0:
                         rate *= 0.7
 
-            lines.append((0, 0, {
-                'grid_cell_id': cell.id,
-                'target_rate': rate,
+                lines.append((0, 0, {
+                    'grid_cell_id': cell.id,
+                    'target_rate': rate,
                     'uom_id': rec.product_id.uom_id.id
-            }))
+                }))
             
             rec.line_ids = lines
             rec.state = 'generated'
             rec.message_post(body=_("VRA Map generated. Stage Multiplier: %s, Deficit: %s, Cultivar: %s, Stress: %s") % 
                              (stage_multiplier, deficit_multiplier, cultivar_multiplier, stress_index))
-
-            lines.append((0, 0, {
-                'grid_cell_id': cell.id,
-                'target_rate': rate,
-                    'uom_id': rec.product_id.uom_id.id
-            }))
-            
-            rec.line_ids = lines
-            rec.state = 'generated'
-            rec.message_post(body=_("VRA Map generated. Stage Multiplier: %s, Deficit Multiplier: %s, Stress Index: %s") % (stage_multiplier, deficit_multiplier, stress_index))
 
     def action_export_to_machinery(self):
         self.ensure_one()

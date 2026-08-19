@@ -14,7 +14,7 @@ class TestEpic045(BddTransactionCase):
         Given a biological asset profile record "ANIMAL-LOT-2026-X1" of model "stock.lot" representing a premium breeding sire
         And a child asset "ANIMAL-LOT-2026-Y2" has its parent defined as "ANIMAL-LOT-2026-X1"
         When the geneticist attempts to set the father_id of "ANIMAL-LOT-2026-X1" to "ANIMAL-LOT-2026-X1" (itself) or "ANIMAL-LOT-2026-Y2" (its child)
-        Then the system must raise a ValidationError with code "CIRCULAR_PEDIGREE_DETECTED" (检测到循环谱系关系，父本/母本不能指向自身或后代)
+        Then the system must raise a ValidationError with message "CIRCULAR_PEDIGREE_DETECTED" (检测到循环谱系关系，父本/母本不能指向自身或后代)
         And refuse to save the pedigree configuration
         """
         # Execute BDD Gherkin steps dynamically at runtime on database
@@ -22,7 +22,7 @@ class TestEpic045(BddTransactionCase):
             'Given a biological asset profile record "ANIMAL-LOT-2026-X1" of model "stock.lot" representing a premium breeding sire',
             'And a child asset "ANIMAL-LOT-2026-Y2" has its parent defined as "ANIMAL-LOT-2026-X1"',
             'When the geneticist attempts to set the father_id of "ANIMAL-LOT-2026-X1" to "ANIMAL-LOT-2026-X1" (itself) or "ANIMAL-LOT-2026-Y2" (its child)',
-            'Then the system must raise a ValidationError with code "CIRCULAR_PEDIGREE_DETECTED" (检测到循环谱系关系，父本/母本不能指向自身或后代)',
+            'Then the system must raise a ValidationError with message "CIRCULAR_PEDIGREE_DETECTED" (检测到循环谱系关系，父本/母本不能指向自身或后代)',
             'And refuse to save the pedigree configuration'
         ])
 

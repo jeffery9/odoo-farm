@@ -27,7 +27,7 @@ class FarmOrchardCycle(models.Model):
         ('tree', 'Single Tree Level')
     ], string="Scope", default='block')
     
-    target_tree_ids = fields.Many2many('stock.lot', 'farm_orchard_cycle_stock_lot_rel', 'cycle_id', 'lot_id', string="Target Trees", domain=[('is_fruit_tree', '=', True)])
+    target_tree_ids = fields.Many2many('stock.lot', 'farm_orchard_cycle_stock_lot_nurture_rel', 'cycle_id', 'lot_id', string="Target Trees", domain=[('is_fruit_tree', '=', True)])
 
     def action_confirm(self):
         """ [Level 2 DNA] Prevent pruning/spraying during extreme frost. """

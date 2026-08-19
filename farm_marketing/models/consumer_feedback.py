@@ -21,7 +21,7 @@ class FarmConsumerFeedback(models.Model):
     consumer_region = fields.Char("Consumer Region (City/Country)")
     
     # Link back to Production
-    analysis_tag_ids = fields.Many2many('res.config.settings', 'farm_consumer_feedback_res_config_settings_rel', 'feedback_id', 'settings_id', string="Sentiment Tags") # Placeholder for AI sentiment
+    analysis_tag_ids = fields.Many2many('res.config.settings', 'farm_consumer_feedback_config_settings_rel', 'feedback_id', 'settings_id', string="Sentiment Tags") # Placeholder for AI sentiment
 
     @api.model_create_multi
     def create(self, vals_list):

@@ -40,11 +40,11 @@ class AgriAiCoordinationLayer(models.Model):
     ], string='Coordination Type', required=True)
 
     # Relations to coordinate between
-    ai_decision_ids = fields.Many2many('agri.ai.agent', 'agri_ai_coordination_layer_agri_ai_agent_rel', 'layer_id', 'agent_id', string='AI Decision Agents',
+    ai_decision_ids = fields.Many2many('agri.ai.agent', 'agri_ai_coord_layer_agent_rel', 'layer_id', 'agent_id', string='AI Decision Agents',
                                       help="AI agents from farm_ai_decision module to coordinate")
-    ai_vision_ids = fields.Many2many('agri.ai.pest.disease.detection', 'agri_ai_coordination_layer_agri_ai_pest_disease_detection_rel', 'layer_id', 'detection_id', string='AI Vision Services',
+    ai_vision_ids = fields.Many2many('agri.ai.pest.disease.detection', 'agri_ai_coord_layer_pest_rel', 'layer_id', 'detection_id', string='AI Vision Services',
                                     help="Vision AI services to coordinate with")
-    ai_financial_ids = fields.Many2many('farm.crop.yield.insurance', 'agri_ai_coordination_layer_farm_crop_yield_insurance_rel', 'layer_id', 'insurance_id', string='AI Financial Services',
+    ai_financial_ids = fields.Many2many('farm.crop.yield.insurance', 'agri_ai_coord_layer_insurance_rel', 'layer_id', 'insurance_id', string='AI Financial Services',
                                        help="Financial AI services to coordinate with")
 
     # Configuration

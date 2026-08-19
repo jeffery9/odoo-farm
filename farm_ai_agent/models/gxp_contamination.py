@@ -22,7 +22,7 @@ class AgriGxpContaminationIncident(models.Model):
         ('quarantined', 'Quarantined'),
         ('closed', 'Closed')
     ], string="State", default='draft', required=True, tracking=True)
-    affected_carrier_ids = fields.Many2many('stock.matter.tracking', 'agri_gxp_contamination_incident_stock_matter_tracking_rel', 'incident_id', 'tracking_id', string="Affected Downstream Carriers", readonly=True)
+    affected_carrier_ids = fields.Many2many('stock.matter.tracking', 'agri_gxp_contam_incident_tracking_rel', 'incident_id', 'tracking_id', string="Affected Downstream Carriers", readonly=True)
 
     @api.model_create_multi
     def create(self, vals_list):

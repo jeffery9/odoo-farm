@@ -197,8 +197,8 @@ class ESGPerformanceReport(models.Model):
     improvement_plan = fields.Html('Improvement Plan')
 
     # Related records
-    assessment_ids = fields.Many2many('esg.assessment', 'esg_performance_report_esg_assessment_rel', 'report_id', 'assessment_id', string='Related Assessments')
-    target_ids = fields.Many2many('esg.target', 'esg_performance_report_esg_target_rel', 'report_id', 'target_id', string='Related Targets')
+    assessment_ids = fields.Many2many('esg.assessment', string='Related Assessments')
+    target_ids = fields.Many2many('esg.target', string='Related Targets')
 
     @api.depends('environmental_score', 'social_score', 'governance_score')
     def _compute_overall_score(self):
