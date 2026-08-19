@@ -112,14 +112,14 @@
     </record>
 
     
-    <menuitem id="menu_farm_esg_compliance_root" name="Compliance &amp; Sustainability" parent="farm_esg.menu_esg_root" sequence="25" />
+    <menuitem id="menu_farm_esg_compliance_root" name="Compliance &amp; Sustainability" parent="farm_core.menu_farm_core_hidden_settings" sequence="25" />
     
-    <menuitem id="menu_farm_subsidy" name="Subsidies Tracking" parent="menu_farm_esg_compliance_root" action="action_farm_subsidy" sequence="10" />
+    <menuitem id="menu_farm_subsidy" name="Subsidies Tracking" parent="menu_esg_operations" action="action_farm_subsidy" sequence="80" />
               
-    <menuitem id="menu_farm_biodiversity" name="Biodiversity Monitoring" parent="menu_farm_esg_compliance_root" action="action_farm_biodiversity" sequence="20" />
+    <menuitem id="menu_farm_biodiversity" name="Biodiversity Monitoring" parent="menu_esg_operations" action="action_farm_biodiversity" sequence="90" />
               
-    <menuitem id="menu_farm_export_compliance" name="Export Compliance" parent="menu_farm_esg_compliance_root" action="action_farm_export_compliance" sequence="30" />
+    <menuitem id="menu_farm_export_compliance" name="Export Compliance" parent="menu_esg_operations" action="action_farm_export_compliance" sequence="100" />
               
-    <menuitem id="menu_farm_certification" name="Certifications" parent="menu_farm_esg_compliance_root" action="action_farm_certification" sequence="40" />
+    <menuitem id="menu_farm_certification" name="Certifications" parent="menu_esg_master_data" action="action_farm_certification" sequence="70" />
 </data>
 </odoo>

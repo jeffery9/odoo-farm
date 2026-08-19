@@ -45,7 +45,7 @@
     </record>
     
     
-    <menuitem id="menu_processing_safety" name="Safety &amp; Compliance" parent="menu_farm_processing_root" sequence="80" />
-    <menuitem id="menu_farm_recall_wizard" name="Initiate Recall" parent="menu_processing_safety" action="action_farm_recall_wizard" sequence="10" />
+    <menuitem id="menu_processing_safety" name="Safety &amp; Compliance" parent="farm_core.menu_farm_core_hidden_settings" sequence="80" />
+    <menuitem id="menu_farm_recall_wizard" name="Initiate Recall" parent="mrp.menu_mrp_manufacturing" action="action_farm_recall_wizard" sequence="20" />
 </data>
 </odoo>

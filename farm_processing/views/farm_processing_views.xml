@@ -45,7 +45,7 @@
         </field>
     </record>
 
-    <menuitem id="menu_farm_processing_root" name="Processing" parent="farm_operation.menu_agricultural_campaigns" sequence="40" />
-    <menuitem id="menu_farm_processing_mo" name="Processing Orders" parent="menu_farm_processing_root" action="mrp.mrp_production_action" sequence="10" />
+    <menuitem id="menu_farm_processing_root" name="Processing" parent="farm_core.menu_farm_core_hidden_settings" sequence="40" />
+    <menuitem id="menu_farm_processing_mo" name="Processing Orders" parent="mrp.menu_mrp_manufacturing" action="mrp.mrp_production_action" sequence="10" />
 </data>
 </odoo>

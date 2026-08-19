@@ -21,7 +21,12 @@
         'web',
         'mrp',
         'stock',
-        'farm_core'
+        'farm_core',
+        'sale',
+        'purchase',
+        'account',
+        'project',
+        'mail'
     ],
     'data': [
         'views/menu.xml',

@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
-<menuitem id="menu_farm_processing_settings" name="Configuration" parent="menu_farm_processing_root" sequence="100" />
-    <menuitem id="menu_processing_facility_isl" name="Facilities (ISL)" parent="menu_farm_processing_settings" action="mrp.mrp_workcenter_action" sequence="10" />
-    <menuitem id="menu_processing_product_isl" name="Products (ISL)" parent="menu_farm_processing_settings" action="mrp.mrp_workcenter_action" sequence="20" />
-</data>
+    <data>
+        <!-- B. 接管原生【制造】，升级为 🥫 加工与发酵，并强制去工业化翻译 -->
+        <record id="mrp.menu_mrp_root" model="ir.ui.menu">
+            <field name="name">Processing &amp; Fermentation</field>
+            <field name="web_icon">farm_processing,static/description/icon.png</field>
+            <field name="sequence">20</field>
+        </record>
+        <record id="mrp.menu_view_resource_search_mrp" model="ir.ui.menu">
+            <field name="name">Workshops &amp; Fields</field>
+        </record>
+        <record id="mrp.menu_mrp_workorder_todo" model="ir.ui.menu">
+            <field name="name">Execution Tasks</field>
+        </record>
+        <record id="mrp.menu_mrp_work_order_report" model="ir.ui.menu">
+            <field name="name">Task Execution Reports</field>
+        </record>
+
+        <!-- Keep existing farm_processing submenus -->
+        <menuitem id="menu_farm_processing_settings" name="Configuration" parent="farm_core.menu_farm_core_hidden_settings" sequence="100" />
+        <menuitem id="menu_processing_facility_isl" name="Facilities (ISL)" parent="mrp.menu_mrp_configuration" action="mrp.mrp_workcenter_action" sequence="10" />
+        <menuitem id="menu_processing_product_isl" name="Products (ISL)" parent="mrp.menu_mrp_bom" action="mrp.mrp_workcenter_action" sequence="20" />
+    </data>
 </odoo>

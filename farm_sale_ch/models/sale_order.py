@@ -13,7 +13,7 @@ class ExportCountryStandard(models.Model):
     
     name = fields.Char('Country Name', required=True)
     code = fields.Char('Country Code', required=True, help='ISO国家代码')
-    prohibited_products = fields.Many2many('product.template', 'export_country_standard_product_template_rel', 'standard_id', 'template_id', 
+    prohibited_products = fields.Many2many('product.template', 'export_country_standard_product_template_rel', 'standard_id', 'template_id',
         string='Prohibited Products/Pesticides',
         help='该国家禁止使用的农药或其他产品清单'
     )

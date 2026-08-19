@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
-<menuitem id="menu_farm_core_hidden_settings" name="Farm Core Admin" sequence="999" groups="base.group_system" web_icon="farm_core,static/description/icon.png" />
-</data>
+    <data>
+        <!-- 📱 自研 1级 App: 移动作业 -->
+        <menuitem id="menu_agri_runtime_mobile" 
+                  name="Mobile Tasks" 
+                  web_icon="farm_mobile,static/description/icon.png" 
+                  sequence="1" />
+
+        <!-- 🌱 自研 1级 App: 种植实操 -->
+        <menuitem id="menu_agri_runtime_crop" 
+                  name="Crop Operations" 
+                  web_icon="farm_crop,static/description/icon.png" 
+                  sequence="10" />
+
+        <!-- 🐂 自研 1级 App: 养殖实操 -->
+        <menuitem id="menu_agri_runtime_livestock" 
+                  name="Livestock &amp; Fish" 
+                  web_icon="farm_livestock,static/description/icon.png" 
+                  sequence="15" />
+
+        <!-- 📡 自研 1级 App: 物联遥测 (SKU 2 栅栏控制) -->
+        <menuitem id="menu_agri_runtime_telemetry" 
+                  name="Telemetry Center" 
+                  web_icon="agri_iot,static/description/icon.png" 
+                  sequence="25" 
+                  groups="farm_core.group_iot_operator" />
+
+        <!-- 🧮 自研 1级 App: 农科计算 -->
+        <menuitem id="menu_agri_runtime_science" 
+                  name="Sci-Lab &amp; VRA" 
+                  web_icon="farm_agri_science,static/description/icon.png" 
+                  sequence="30" />
+
+        <!-- ========================================== -->
+        <!-- Odoo CE 原生 App 菜单物理接管与融合升级 -->
+        <!-- ========================================== -->
+
+        <!-- A. 接管原生【库存】，升级为 📦 载体与库存追溯 -->
+        <record id="stock.menu_stock_root" model="ir.ui.menu">
+            <field name="name">Matter &amp; Stock</field>
+            <field name="web_icon">farm_core,static/description/icon_sfc.png</field>
+            <field name="sequence">5</field>
+        </record>
+
+        <!-- C. 接管原生【讨论】，升级为 💬 讨论与 AI 智囊 -->
+        <record id="mail.menu_root_discuss" model="ir.ui.menu">
+            <field name="name">Discuss &amp; AI Advisor</field>
+            <field name="sequence">60</field>
+        </record>
+
+        <!-- D. 接管原生【设置】，重命名为 ⚙️ 控制台 -->
+        <record id="base.menu_administration" model="ir.ui.menu">
+            <field name="name">Console &amp; Setup</field>
+            <field name="web_icon">farm_core,static/description/icon_console.png</field>
+            <field name="sequence">999</field>
+        </record>
+
+        <!-- E. 隐藏系统底座旧后台菜单 -->
+        <menuitem id="menu_farm_core_hidden_settings" name="Farm Core Admin" sequence="999" groups="base.group_system" parent="base.menu_administration" />
+    </data>
 </odoo>

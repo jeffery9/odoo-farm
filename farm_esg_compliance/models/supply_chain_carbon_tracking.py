@@ -301,7 +301,7 @@ class AgriSupplierCarbonCompliance(models.Model):
     ], string='Compliance Status', compute='_compute_compliance_status', store=True, precompute=True)
 
     # Certification and verification
-    carbon_certification_ids = fields.Many2many('farm.certification.process', 'agri_supplier_carbon_compliance_farm_certification_process_rel', 'compliance_id', 'process_id', string='Carbon Certifications')
+    carbon_certification_ids = fields.Many2many('farm.certification.process', 'agri_supp_carb_comp_farm_cert_proc_rel', 'compliance_id', 'process_id', string='Carbon Certifications')
     verification_date = fields.Date('Last Verification Date')
     next_verification_date = fields.Date('Next Verification Date')
 

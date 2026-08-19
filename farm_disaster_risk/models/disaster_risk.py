@@ -27,12 +27,12 @@ class FarmDisasterIncident(models.Model):
         ('moderate', 'Moderate'),
         ('severe', 'Severe')
     ], string="Intensity", default='minor')
-    
+
     description = fields.Text("Description of Damage")
-    
+
     # 与危机管理模块联动
     crisis_incident_id = fields.Many2one('farm.crisis.incident', string="Linked Crisis Incident")
-    
+
     # 损失评估关联
     loss_assessment_ids = fields.One2many('farm.loss.assessment', 'disaster_incident_id', string="Loss Assessments")
     total_estimated_loss = fields.Monetary("Total Estimated Loss", compute='_compute_total_estimated_loss')
