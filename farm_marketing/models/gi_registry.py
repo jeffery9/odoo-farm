@@ -13,7 +13,11 @@ class AgriGIRegistry(models.Model):
     protection_area_id = fields.Many2one('farm.location', string="Protection Area (GIS)", domain=[('is_land_parcel', '=', True)])
     
     authority_name = fields.Char("Issuing Authority")
+<<<<<<< HEAD
     certificate_attachment_ids = fields.Many2many('ir.attachment', 'agri_gi_registry_ir_attachment_rel', 'registry_id', 'attachment_id', string="GI Certificates")
+=======
+    certificate_attachment_ids = fields.Many2many('ir.attachment', 'agri_gi_registry_attachment_rel', 'registry_id', 'attachment_id', string="GI Certificates")
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
     
     is_active = fields.Boolean("Active", default=True)
     description = fields.Text("GI Description", translate=True)

@@ -28,4 +28,7 @@ from . import test_continuous_pipeline
 from . import test_genealogy_dag
 from . import test_postgis_3d_uav
 from . import test_campaign_2_trust_and_robotics
+<<<<<<< HEAD
 from . import test_registry_mro_safety
+=======
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0

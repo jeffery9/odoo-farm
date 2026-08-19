@@ -24,6 +24,7 @@ class StockMatterTrackingLink(models.Model):
         for record in records:
             record._check_cyclic_loop()
             record._propagate_dna_and_entropy()
+<<<<<<< HEAD
             
             # Decoupled Merkle recalculation queue based on config.get('test_enable')
             from odoo.tools import config
@@ -31,6 +32,9 @@ class StockMatterTrackingLink(models.Model):
                 record._calculate_and_propagate_merkle_hash()
             else:
                 record._mark_pending_merkle_recalc()
+=======
+            record._calculate_and_propagate_merkle_hash()
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
         return records
 
     def _check_cyclic_loop(self):
@@ -94,6 +98,7 @@ class StockMatterTrackingLink(models.Model):
             'description': f"SFC Merkle Traceability State Certified: Hash={merkle_hash[:16]} (SFC 级联 Merkle 密码学状态验证成功)",
             'state': 'confirmed'
         })
+<<<<<<< HEAD
 
     def _mark_pending_merkle_recalc(self):
         """ Mark child and all its downstream descendants as pending Merkle recalculation """
@@ -110,3 +115,5 @@ class StockMatterTrackingLink(models.Model):
             links = self.search([('parent_id', '=', current_id)])
             for link in links:
                 queue.append(link.child_id.id)
+=======
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0

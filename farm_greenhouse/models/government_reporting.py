@@ -116,7 +116,11 @@ class FarmGovernmentDataReport(models.Model):
     response_data = fields.Text('Response Data', help='Response received from the government platform')
     error_message = fields.Text('Error Message', help='Error details if submission failed')
 
+<<<<<<< HEAD
     greenhouse_ids = fields.Many2many('farm.location', 'farm_government_data_report_farm_location_rel', 'report_id', 'location_id',
+=======
+    greenhouse_ids = fields.Many2many('farm.location', 'farm_gov_report_location_rel', 'report_id', 'location_id',
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
                                       domain=[('is_greenhouse', '=', True)],
                                       string='Greenhouses',
                                       help='Greenhouses whose data is included in this report')

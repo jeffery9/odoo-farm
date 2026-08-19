@@ -229,17 +229,26 @@ class AgriInterventionVraPrescription(models.Model):
                     if rec.target_type == 'pesticide' and rec.wind_speed > 5.0:
                         rate *= 0.7
 
+<<<<<<< HEAD
             lines.append((0, 0, {
                 'grid_cell_id': cell.id,
                 'target_rate': rate,
                     'uom_id': rec.product_id.uom_id.id
             }))
+=======
+                lines.append((0, 0, {
+                    'grid_cell_id': cell.id,
+                    'target_rate': rate,
+                    'uom_id': rec.product_id.uom_id.id
+                }))
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
             
             rec.line_ids = lines
             rec.state = 'generated'
             rec.message_post(body=_("VRA Map generated. Stage Multiplier: %s, Deficit: %s, Cultivar: %s, Stress: %s") % 
                              (stage_multiplier, deficit_multiplier, cultivar_multiplier, stress_index))
 
+<<<<<<< HEAD
             lines.append((0, 0, {
                 'grid_cell_id': cell.id,
                 'target_rate': rate,
@@ -250,6 +259,8 @@ class AgriInterventionVraPrescription(models.Model):
             rec.state = 'generated'
             rec.message_post(body=_("VRA Map generated. Stage Multiplier: %s, Deficit Multiplier: %s, Stress Index: %s") % (stage_multiplier, deficit_multiplier, stress_index))
 
+=======
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
     def action_export_to_machinery(self):
         self.ensure_one()
         self.message_post(body=_("VRA ISO-XML Map Exported with Scientific Audit parameters."))

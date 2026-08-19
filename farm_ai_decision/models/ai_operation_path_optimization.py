@@ -26,7 +26,11 @@ class AgriAiOperationPathOptimization(models.Model):
         ('tillage', 'Tillage'),
         ('irrigation', 'Irrigation'),
     ], string='Operation Type')
+<<<<<<< HEAD
     land_location_ids = fields.Many2many('farm.location', 'agri_ai_operation_path_optimization_farm_location_rel', 'optimization_id', 'location_id', string='Locations to Cover')
+=======
+    land_location_ids = fields.Many2many('farm.location', 'agri_ai_op_path_opt_location_rel', 'optimization_id', 'location_id', string='Locations to Cover')
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
     vehicle_type = fields.Char('Vehicle Type')
     fuel_consumption_rate = fields.Float('Fuel Consumption (L/ha)')
     estimated_duration = fields.Float('Estimated Duration (hours)')

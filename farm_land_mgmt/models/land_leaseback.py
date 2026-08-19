@@ -16,7 +16,11 @@ class FarmLandLease(models.Model):
     farmer_id = fields.Many2one('res.partner', string="Lessor (Farmer)", required=True)
     operator_id = fields.Many2one('res.partner', string="Lessee (Operator)", required=True)
     
+<<<<<<< HEAD
     land_parcel_ids = fields.Many2many('farm.location', 'farm_land_lease_farm_location_rel', 'lease_id', 'location_id', string="Leased Parcels")
+=======
+    land_parcel_ids = fields.Many2many('farm.location', 'farm_land_lease_farm_loc_rel', 'lease_id', 'location_id', string="Leased Parcels")
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
     total_area = fields.Float("Total Area (mu/ha)", compute="_compute_area", store=True)
     
     start_date = fields.Date("Start Date", required=True)

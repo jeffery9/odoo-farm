@@ -14,7 +14,11 @@
     """,
     'author': 'genin IT, 亘盈信息技术, jeffery <jeffery9@gmail.com>',
     'website': 'http://www.geninit.cn',
+<<<<<<< HEAD
     'depends': ['farm_core'],
+=======
+    'depends': ['farm_core', 'mrp'],
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
     'data': [
         # 'security/ir.model.access.csv',
         # 'data/ir_sequence_data.xml',

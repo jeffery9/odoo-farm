@@ -96,7 +96,11 @@ class FarmAgritourismOperation(models.Model):
     # Experience Sales Integration
     related_sale_orders = fields.Many2many(
         'sale.order',
+<<<<<<< HEAD
         'farm_agritourism_operation_sale_order_rel',
+=======
+        'farm_agritourism_op_sale_order_rel',
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
         'operation_id',
         'order_id',
         string='Related Sale Orders'

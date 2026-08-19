@@ -58,7 +58,11 @@ class ESGReportCustomization(models.Model):
     data_filters = fields.Text('Data Filters', help='Filters to apply to the data for this report')
     report_logo = fields.Binary('Custom Logo', help='Custom logo for this stakeholder group')
     brand_colors = fields.Char('Brand Colors', help='Brand colors for this report (hex codes)')
+<<<<<<< HEAD
     report_recipients = fields.Many2many('res.partner', 'farm_esg_report_customization_res_partner_rel', 'customization_id', 'partner_id', string='Report Recipients')
+=======
+    report_recipients = fields.Many2many('res.partner', 'farm_esg_report_custom_partner_rel', 'customization_id', 'partner_id', string='Report Recipients')
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
 
     # Report scheduling and automation
     auto_generation = fields.Boolean('Auto Generation', help='Whether to auto-generate this report')
@@ -81,7 +85,11 @@ class ESGReportCustomization(models.Model):
     visualization_types = fields.Text('Visualization Types', help='Preferred chart/graph types for this stakeholder')
 
     # Access control
+<<<<<<< HEAD
     allowed_users = fields.Many2many('res.users', 'farm_esg_report_customization_res_users_rel', 'customization_id', 'users_id', string='Allowed Users',
+=======
+    allowed_users = fields.Many2many('res.users', 'farm_esg_report_custom_users_rel', 'customization_id', 'users_id', string='Allowed Users',
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
                                    help='Users who can access this report template')
     report_access_level = fields.Selection([
         ('public', 'Public'),

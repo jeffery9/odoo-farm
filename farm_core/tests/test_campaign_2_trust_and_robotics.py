@@ -47,6 +47,7 @@ class TestCampaign2TrustAndRobotics(TransactionCase):
         # Re-fetch balances
         self.assertEqual(buyer_partner.impact_credits, 120.0, "Buyer credits must decrease by auction price.")
         self.assertEqual(seller_partner.impact_credits, 80.0, "Seller credits must increase by auction price.")
+<<<<<<< HEAD
 
     def test_decoupled_merkle_recalc_queue_and_cron(self):
         """ Verify decoupled queue marks pending_merkle_recalc=True and Cron worker processes it """
@@ -68,3 +69,5 @@ class TestCampaign2TrustAndRobotics(TransactionCase):
         self.carrier_c.invalidate_recordset()
         self.assertTrue(self.carrier_c.merkle_state_hash, "Merkle State Hash must be calculated by the Cron.")
         self.assertFalse(self.carrier_c.pending_merkle_recalc, "Pending flag must be reset to False after Cron execution.")
+=======
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0

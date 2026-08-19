@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
+<<<<<<< HEAD
     <record id="ir_cron_check_biological_asset_maturity" model="ir.cron">
+=======
+<record id="ir_cron_check_biological_asset_maturity" model="ir.cron">
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
         <field name="name">Check Biological Asset Maturity</field>
         <field name="model_id" ref="model_stock_lot" />
         <field name="state">code</field>
@@ -11,6 +15,7 @@
         <field name="interval_type">days</field>
         <field name="active" eval="True" />
     </record>
+<<<<<<< HEAD
 
     <record id="ir_cron_recalculate_pending_merkle_hashes" model="ir.cron">
         <field name="name">Recalculate Pending Merkle Hashes</field>
@@ -24,3 +29,7 @@
     </record>
 </data>
 </odoo>
+=======
+</data>
+</odoo>
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0

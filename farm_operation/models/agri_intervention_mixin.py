@@ -67,7 +67,11 @@ class AgriInterventionMixin(models.AbstractModel):
     intervention_count = fields.Integer("Intervention Cycles", default=0, copy=False)
 
     # 3. IoT Integration: Environment Condition
+<<<<<<< HEAD
     iot_device_ids = fields.Many2many('iiot.device', 'agri_intervention_mixin_iiot_device_rel', 'mixin_id', 'device_id',
+=======
+    iot_device_ids = fields.Many2many('iiot.device',
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
         string='IoT Devices',
         help='IoT devices directly associated with this intervention for environmental gating.'
     )
@@ -113,7 +117,11 @@ class AgriInterventionMixin(models.AbstractModel):
 
     # Ekylibre Mapping: Intervention Parameters
     # doer_ids = fields.Many2many('hr.employee', string="Doers/Workers")
+<<<<<<< HEAD
     tool_ids = fields.Many2many('maintenance.equipment', 'agri_intervention_mixin_maintenance_equipment_rel', 'mixin_id', 'equipment_id', string="Tools/Machinery")
+=======
+    tool_ids = fields.Many2many('maintenance.equipment', string="Tools/Machinery")
+>>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
 
     procedure_name = fields.Char("Procedure/Method", help="e.g. Mechanical sowing, manual weeding")
 
