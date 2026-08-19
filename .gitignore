@@ -1,0 +1,41 @@
+# =========================================================================
+# 🌌 Agri-OS: Open-Source Repository (OSS) Official Git Ignore Shield
+# =========================================================================
+
+# 1. 🛡️ Absolute Classified R&D Intelligence Block (Supreme Shielding)
+# -------------------------------------------------------------------------
+/docs/
+/.learnings/
+/.superpowers/
+
+# 2. 🔌 Internal Developer Helper Scripts (Clean Release Guard)
+# -------------------------------------------------------------------------
+final_healing_fix.py
+heal_misalignment.py
+run_all_install_test.py
+verify_menus.py
+
+# 3. 📊 Internal Reports, Logs and Matrix Summaries
+# -------------------------------------------------------------------------
+matrix_summary.txt
+*.log
+container_info.txt
+
+# 4. ⚙️ Python Compiled Cache and Local Runtime Data
+# -------------------------------------------------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# 5. 📡 Mosquitto Runtime Storage & Databases
+# -------------------------------------------------------------------------
+/mosquitto/data/
+/mosquitto/log/
+
+# 6. 💻 OS-specific Metadata (macOS & Windows)
+# -------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
