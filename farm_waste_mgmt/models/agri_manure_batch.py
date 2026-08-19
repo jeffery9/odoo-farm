@@ -11,11 +11,7 @@ class AgriManureBatch(models.Model):
     batch_no = fields.Char("Batch No.", default=lambda self: _('New'))
     production_date = fields.Date("Production Date", default=fields.Date.today)
     quantity = fields.Float("Quantity (kg)")
-<<<<<<< HEAD
-    lot_source_ids = fields.Many2many('stock.lot', 'agri_manure_batch_stock_lot_rel', 'batch_id', 'lot_id', string="Source Animal Lots", )
-=======
     lot_source_ids = fields.Many2many('stock.lot', string="Source Animal Lots")
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
     location_source_id = fields.Many2one('farm.location', string="Source Location", domain=[('usage', '=', 'internal')]) # e.g., Barn
 
     # 处理方式
@@ -111,11 +107,7 @@ class AgriManureLedger(models.Model):
     ], string="Month", default=lambda self: fields.Date.today().strftime('%m'), required=True)
     year = fields.Integer("Year", default=lambda self: fields.Date.today().year, required=True)
 
-<<<<<<< HEAD
-    batch_ids = fields.Many2many('agri.manure.batch', 'agri_manure_ledger_agri_manure_batch_rel', 'ledger_id', 'batch_id', string="Manure Batches Included", compute='_compute_batch_ids', store=True, precompute=True)
-=======
     batch_ids = fields.Many2many('agri.manure.batch', string="Manure Batches Included", compute='_compute_batch_ids', store=True, precompute=True)
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
     total_quantity_disposed = fields.Float("Total Disposed Quantity (kg)", compute='_compute_ledger_stats', store=True, precompute=True)
 
     state = fields.Selection([

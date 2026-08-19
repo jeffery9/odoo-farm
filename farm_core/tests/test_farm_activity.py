@@ -29,11 +29,7 @@ class TestFarmLocation(TransactionCase):
 
     def setUp(self):
         super(TestFarmLocation, self).setUp()
-<<<<<<< HEAD
-        self.Location = self.env['farm.location']
-=======
         self.Location = self.env['agri.location']
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
 
     def test_03_create_land_parcel(self):
         """ 测试创建地块 [US-001-03] """

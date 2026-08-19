@@ -57,3 +57,20 @@ class ResConfigSettings(models.TransientModel):
         help='Manage resource booking, activity management, membership services, experience project tracking, etc.',
         config_parameter='farm_core.module_farm_agritourism'
     )
+
+    # New Commercial SKU Gating Options
+    group_enable_iot_telemetry = fields.Boolean(
+        "Enable Base Farm IoT & Telemetry Center",
+        implied_group='farm_core.group_iot_operator',
+        config_parameter='farm_core.group_enable_iot_telemetry'
+    )
+    group_enable_a2a_netting = fields.Boolean(
+        "Enable Cooperative-to-Farmer A2A Bilateral Netting",
+        implied_group='farm_core.group_a2a_netting_auditor',
+        config_parameter='farm_core.group_enable_a2a_netting'
+    )
+    group_enable_biological_valuation = fields.Boolean(
+        "Enable SVL/AVL Biological Asset Fair Value Ledger",
+        implied_group='farm_core.group_biological_asset_valuer',
+        config_parameter='farm_core.group_enable_biological_valuation'
+    )

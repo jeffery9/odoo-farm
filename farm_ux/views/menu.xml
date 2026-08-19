@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<data>
-<menuitem id="menu_ux_root" name="Farm UX" parent="base.menu_administration" sequence="150" groups="base.group_system" />
-</data>
+    <data>
+        <!-- ========================================== -->
+        <!-- 🌌 Agri-OS V16.0 Odoo 原生主 App 菜单接管与深度融织 -->
+        <!-- ========================================== -->
+
+        <!-- 03. 📦 载体与库存追溯 (Matter & Stock - sequence 15) -->
+        <record id="stock.menu_stock_root" model="ir.ui.menu">
+            <field name="name">Matter &amp; Stock</field>
+            <field name="sequence">15</field>
+        </record>
+
+        <!-- 06. 🥫 加工与发酵 (Processing & Fermentation - sequence 30) -->
+        <record id="mrp.menu_mrp_root" model="ir.ui.menu">
+            <field name="name">Processing &amp; Fermentation</field>
+            <field name="sequence">30</field>
+        </record>
+
+        <!-- 10. 🛒 采购与结算 (Clearing & PO - sequence 50) -->
+        <record id="purchase.menu_purchase_root" model="ir.ui.menu">
+            <field name="name">Clearing &amp; PO</field>
+            <field name="sequence">50</field>
+        </record>
+
+        <!-- 11. 👥 销售合同 (Sales Contracts - sequence 55) -->
+        <record id="sale.sale_menu_root" model="ir.ui.menu">
+            <field name="name">Sales Contracts</field>
+            <field name="sequence">55</field>
+        </record>
+
+        <!-- 12. 🏦 会计与资产 (Accounting & Val - sequence 60) -->
+        <record id="account.menu_finance" model="ir.ui.menu">
+            <field name="name">Accounting &amp; Val</field>
+            <field name="sequence">60</field>
+        </record>
+
+        <!-- 13. 💬 讨论与 AI 智囊 (Discuss & AI Advisor - sequence 65) -->
+        <record id="mail.menu_root_discuss" model="ir.ui.menu">
+            <field name="name">Discuss &amp; AI Advisor</field>
+            <field name="sequence">65</field>
+        </record>
+
+        <!-- 18. ⚙️ 控制台 (Console & Setup - sequence 900) -->
+        <record id="base.menu_administration" model="ir.ui.menu">
+            <field name="name">Console &amp; Setup</field>
+            <field name="sequence">900</field>
+        </record>
+
+        <!-- ========================================== -->
+        <!-- ♿ 老龄化友好无障碍大按钮交互菜单定义 -->
+        <!-- ========================================== -->
+        <menuitem id="menu_ux_root" 
+                  name="Farm UX" 
+                  parent="base.menu_administration" 
+                  sequence="150" 
+                  groups="base.group_system" />
+    </data>
 </odoo>

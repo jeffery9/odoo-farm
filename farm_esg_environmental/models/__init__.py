@@ -7,9 +7,5 @@ from . import vra_carbon_footprint
 from . import vra_water_protection
 from . import vra_soil_health
 from . import equipment_log_extension
-<<<<<<< HEAD
 from . import esg_settings
-from . import esg_environmental_tracker
-=======
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
 

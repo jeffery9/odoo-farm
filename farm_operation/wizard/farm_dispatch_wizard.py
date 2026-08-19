@@ -4,11 +4,7 @@ class FarmDispatchWizard(models.TransientModel):
     _name = 'farm.dispatch.wizard'
     _description = 'Agricultural Task Dispatch Wizard'
 
-<<<<<<< HEAD
-    location_ids = fields.Many2many('stock.location', 'farm_dispatch_wizard_stock_location_rel', 'wizard_id', 'location_id', string="Selected Parcels", domain=[('is_land_parcel', '=', True)])
-=======
     location_ids = fields.Many2many('stock.location', 'farm_dispatch_wiz_stock_loc_rel', 'wizard_id', 'location_id', string="Selected Parcels", domain=[('is_land_parcel', '=', True)])
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
     total_area = fields.Float("Total Area (mu)", compute='_compute_total_area')
     
     intervention_type = fields.Selection([

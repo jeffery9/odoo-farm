@@ -39,17 +39,6 @@ class AgriAIDecisionEngine(models.Model):
     ], string='Decision Type', required=True)
 
     # Associated AI models
-<<<<<<< HEAD
-    vision_service_ids = fields.Many2many('agri.ai.pest.disease.detection', 'agri_ai_decision_engine_agri_ai_pest_disease_detection_rel', 'engine_id', 'detection_id',
-        string='Vision Services',
-        help="AI Vision services to use in this decision process"
-    )
-    decision_service_ids = fields.Many2many('agri.ai.agent', 'agri_ai_decision_engine_agri_ai_agent_rel', 'engine_id', 'agent_id',  # This should eventually point to agri.ai.agent but kept for initial migration
-        string='Decision Services',
-        help="AI Decision services to use in this decision process"
-    )
-    financial_service_ids = fields.Many2many('farm.crop.yield.insurance', 'agri_ai_decision_engine_farm_crop_yield_insurance_rel', 'engine_id', 'insurance_id',  # Using models from farm_finance_advanced
-=======
     vision_service_ids = fields.Many2many('agri.ai.pest.disease.detection', 'agri_ai_dec_engine_pest_detection_rel', 'engine_id', 'detection_id',
         string='Vision Services',
         help="AI Vision services to use in this decision process"
@@ -59,7 +48,6 @@ class AgriAIDecisionEngine(models.Model):
         help="AI Decision services to use in this decision process"
     )
     financial_service_ids = fields.Many2many('farm.crop.yield.insurance', 'agri_ai_dec_engine_crop_insurance_rel', 'engine_id', 'insurance_id',  # Using models from farm_finance_advanced
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
         string='Financial Services',
         help="AI Financial services to use in this decision process"
     )

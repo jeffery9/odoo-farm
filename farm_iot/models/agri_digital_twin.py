@@ -31,11 +31,7 @@ class AgriDigitalTwinMarker(models.Model):
 
     rotation_y = fields.Float("Y Rotation")
 
-<<<<<<< HEAD
-    display_telemetry_ids = fields.Many2many('iiot.telemetry.rule', 'agri_digital_twin_marker_iiot_telemetry_rule_rel', 'marker_id', 'rule_id', string="Telemetries to Display")
-=======
     display_telemetry_ids = fields.Many2many('iiot.telemetry.rule', string="Telemetries to Display")
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
 
 class AgriLocation(models.Model):
     _inherit = 'farm.location'

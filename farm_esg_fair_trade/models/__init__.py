@@ -21,13 +21,8 @@ class FairTradeCertificate(models.Model):
     expiry_date = fields.Date('Expiry Date', required=True)
     is_active = fields.Boolean('Is Active', compute='_compute_is_active', store=True)
     fair_trade_premium = fields.Float('Fair Trade Premium (%)', help='Percentage premium paid to producers')
-<<<<<<< HEAD
-    covered_products = fields.Many2many('product.product', 'farm_esg_fair_trade_certificate_product_product_rel', 'certificate_id', 'product_id', string='Covered Products')
-    covered_farms = fields.Many2many('res.partner', 'farm_esg_fair_trade_certificate_res_partner_rel', 'certificate_id', 'partner_id', string='Covered Farms')
-=======
     covered_products = fields.Many2many('product.product', 'farm_esg_fair_trade_cert_product_rel', 'certificate_id', 'product_id', string='Covered Products')
     covered_farms = fields.Many2many('res.partner', 'farm_esg_fair_trade_cert_partner_rel', 'certificate_id', 'partner_id', string='Covered Farms')
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
     certificate_type = fields.Selection([('fair_trade_intl', 'Fairtrade International'), ('fair_trade_usa', 'Fair Trade USA'), ('fair_for_life', 'Fair for Life'), ('worldfairtrade', 'WFTO'), ('other', 'Other')], string='Certificate Type', default='fair_trade_intl')
     status = fields.Selection([('applied', 'Applied'), ('under_review', 'Under Review'), ('certified', 'Certified'), ('suspended', 'Suspended'), ('expired', 'Expired'), ('revoked', 'Revoked')], string='Status', default='applied', required=True)
     annual_audit_date = fields.Date('Annual Audit Date')

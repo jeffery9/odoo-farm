@@ -39,11 +39,7 @@ class FarmLoan(models.Model):
     date_maturity = fields.Date("Maturity Date")
 
     # Collateral from original farm_finance_loan with improvement
-<<<<<<< HEAD
-    collateral_lot_ids = fields.Many2many('stock.lot', 'farm_loan_stock_lot_rel', 'loan_id', 'lot_id', string="Collateral Assets")
-=======
     collateral_lot_ids = fields.Many2many('stock.lot', 'farm_loan_stock_lot_collateral_rel', 'loan_id', 'lot_id', string="Collateral Assets")
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
     collateral_value = fields.Monetary("Collateral Valuation", compute='_compute_collateral_value')
 
     # Financial Trust Integration [US-078-02]

@@ -4,11 +4,7 @@ class FarmTraitComparisonWizard(models.TransientModel):
     _name = 'farm.trait.comparison.wizard'
     _description = 'Lot Trait Comparison Wizard'
 
-<<<<<<< HEAD
-    lot_ids = fields.Many2many('stock.lot', 'farm_trait_comparison_wizard_stock_lot_rel', 'wizard_id', 'lot_id', string="Lots to Compare")
-=======
     lot_ids = fields.Many2many('stock.lot', 'farm_trait_comp_wiz_stock_lot_rel', 'wizard_id', 'lot_id', string="Lots to Compare")
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
     
     line_ids = fields.One2many('farm.trait.comparison.line', 'wizard_id', string="Comparison Results")
 

@@ -27,24 +27,6 @@ class StockLot(models.Model):
 
     # 生物资产属性 [US-001-04]
     is_animal = fields.Boolean("Is Animal Asset", default=False)
-<<<<<<< HEAD
-    birth_date = fields.Date("Birth Date")
-    gender = fields.Selection([('male', 'Male'), ('female', 'Female')], string="Gender")
-
-    product_tmpl_id = fields.Many2one(
-        'product.template',
-        related='product_id.product_tmpl_id',
-        string='Product Template',
-        store=True,
-        readonly=True
-    )
-
-    lot_properties = fields.Properties(
-        'Properties',
-        definition='product_tmpl_id.lot_properties_definition'
-    )
-=======
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
 
     # Trust DNA [US-TECH-DNA-07]
     entity_audit_status = fields.Selection([

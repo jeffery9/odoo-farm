@@ -47,27 +47,3 @@ class TestCampaign2TrustAndRobotics(TransactionCase):
         # Re-fetch balances
         self.assertEqual(buyer_partner.impact_credits, 120.0, "Buyer credits must decrease by auction price.")
         self.assertEqual(seller_partner.impact_credits, 80.0, "Seller credits must increase by auction price.")
-<<<<<<< HEAD
-
-    def test_decoupled_merkle_recalc_queue_and_cron(self):
-        """ Verify decoupled queue marks pending_merkle_recalc=True and Cron worker processes it """
-        # 1. Create a link with force_decoupled_merkle context
-        self.env['stock.matter.tracking.link'].with_context(force_decoupled_merkle=True).create({
-            'parent_id': self.carrier_a.id,
-            'child_id': self.carrier_c.id,
-            'link_type': 'sequential'
-        })
-
-        # Ensure no hash calculated yet and pending flag is True
-        self.assertFalse(self.carrier_c.merkle_state_hash, "Hash should NOT be synchronously calculated under decoupled queue.")
-        self.assertTrue(self.carrier_c.pending_merkle_recalc, "Child must be marked as pending recalculation.")
-
-        # 2. Trigger the Cron job manually
-        self.env['stock.matter.tracking']._cron_recalculate_merkle_hashes()
-
-        # Re-evaluate status
-        self.carrier_c.invalidate_recordset()
-        self.assertTrue(self.carrier_c.merkle_state_hash, "Merkle State Hash must be calculated by the Cron.")
-        self.assertFalse(self.carrier_c.pending_merkle_recalc, "Pending flag must be reset to False after Cron execution.")
-=======
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0

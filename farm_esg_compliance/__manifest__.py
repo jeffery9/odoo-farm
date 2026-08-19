@@ -31,6 +31,7 @@ ESG Compliance module for Odoo 19 Farm Management System - Epic 101 Implementati
     'data': [
         'security/ir.model.access.csv',
         'data/esg_compliance_sequences.xml',
+        'views/menu.xml',
         'views/esg_compliance_views.xml',
         'views/triple_bottom_line_metrics_views.xml',
         'views/sustainable_business_model_views.xml',

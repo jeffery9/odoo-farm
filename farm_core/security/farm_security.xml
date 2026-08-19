@@ -48,5 +48,21 @@
         <field name="perm_create" eval="0" />
         <field name="perm_unlink" eval="0" />
     </record>
+
+    <!-- Professional SKU Functional Groups -->
+    <record id="group_iot_operator" model="res.groups">
+        <field name="name">IoT Operator (IoT Telemetry Specialist)</field>
+        <field name="implied_ids" eval="[(4, ref('farm_core.group_farm_worker'))]" />
+    </record>
+
+    <record id="group_a2a_netting_auditor" model="res.groups">
+        <field name="name">A2A Netting Auditor (A2A Clearing Specialist)</field>
+        <field name="implied_ids" eval="[(4, ref('farm_core.group_farm_worker'))]" />
+    </record>
+
+    <record id="group_biological_asset_valuer" model="res.groups">
+        <field name="name">Biological Asset Valuer (Asset Valuation Specialist)</field>
+        <field name="implied_ids" eval="[(4, ref('farm_core.group_farm_worker'))]" />
+    </record>
 </data>
 </odoo>

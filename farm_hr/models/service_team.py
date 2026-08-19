@@ -6,13 +6,8 @@ class FarmServiceTeam(models.Model):
 
     name = fields.Char("Team Name", required=True)
     leader_id = fields.Many2one('hr.employee', string="Team Leader")
-<<<<<<< HEAD
-    member_ids = fields.Many2many('hr.employee', 'farm_service_team_hr_employee_rel', 'team_id', 'employee_id', string="Team Members")
-    equipment_ids = fields.Many2many('maintenance.equipment', 'farm_service_team_maintenance_equipment_rel', 'team_id', 'equipment_id', string="Specialized Equipment")
-=======
     member_ids = fields.Many2many('hr.employee', 'farm_service_team_employee_rel', 'team_id', 'employee_id', string="Team Members")
     equipment_ids = fields.Many2many('maintenance.equipment', 'farm_service_team_equipment_rel', 'team_id', 'equipment_id', string="Specialized Equipment")
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'

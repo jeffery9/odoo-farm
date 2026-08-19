@@ -8,10 +8,7 @@ class TestIntegrationFarmAgriScience(TransactionCase):
         cls.Profile = cls.env['agri.physiology.profile']
         cls.Stage = cls.env['agri.growth.stage']
         cls.VraStrategy = cls.env['agri.intervention.vra.strategy']
-<<<<<<< HEAD
-=======
         cls.Prescription = cls.env['agri.intervention.vra.prescription']
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
         
         cls.wheat_profile = cls.Profile.create({
             'name': 'Winter Wheat X1',
@@ -29,8 +26,6 @@ class TestIntegrationFarmAgriScience(TransactionCase):
             'gdd_threshold': 150.0
         })
 
-<<<<<<< HEAD
-=======
         # Set up geospatial location and grid cells
         cls.agri_loc = cls.env['agri.location'].create({
             'name': 'Science Field',
@@ -60,7 +55,6 @@ class TestIntegrationFarmAgriScience(TransactionCase):
             'type': 'consu'
         })
 
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
     def test_01_physiology_profile_creation(self):
         """ Test physiology profile and stages integration """
         self.assertTrue(self.wheat_profile.exists())
@@ -79,8 +73,6 @@ class TestIntegrationFarmAgriScience(TransactionCase):
         self.assertEqual(vra.type, 'inverse_ndvi')
         self.assertTrue(vra.is_stage_aware)
         self.assertEqual(vra.target_yield, 800.0)
-<<<<<<< HEAD
-=======
 
     def test_03_vra_prescription_generation(self):
         """ Test full scientific VRA prescription map generation """
@@ -120,4 +112,3 @@ class TestIntegrationFarmAgriScience(TransactionCase):
         self.assertTrue(line_2.exists())
         self.assertAlmostEqual(line_1.target_rate, 11.0, places=3)
         self.assertAlmostEqual(line_2.target_rate, 10.0, places=3)
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0

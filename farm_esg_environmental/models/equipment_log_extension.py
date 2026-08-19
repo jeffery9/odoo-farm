@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# -*- coding: utf-8 -*-
-=======
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
 from odoo import models, fields, api
 
 class FarmEquipmentLog(models.Model):
@@ -36,11 +32,8 @@ class FarmEquipmentLog(models.Model):
         self.ensure_one()
         # Find the carbon factor for this fuel type.
         # Assuming product name maps to fuel type or we find by category 'energy'
-<<<<<<< HEAD
-=======
         # For a robust system, the equipment's fuel type should map to a product.template or factor directly.
         # Let's search for a factor that mentions 'diesel' if fuel type is diesel.
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
         
         fuel_keyword = self.equipment_id.fuel_type.capitalize() if self.equipment_id.fuel_type else 'Diesel'
         
@@ -53,15 +46,6 @@ class FarmEquipmentLog(models.Model):
             # Silent fail for the demo if no factor is configured
             return
 
-<<<<<<< HEAD
-        ledger = self.env['agri.carbon.ledger'].create({
-            'name': f"Fuel Emission: {self.equipment_id.name}",
-            'date': self.date,
-            'impact_type': 'emission',
-            'quantity': self.fuel_consumed,
-            'factor_id': factor.id,
-            'uom_id': factor.uom_id.id,
-=======
         co2e = self.fuel_consumed * factor.emission_factor
 
         ledger = self.env['agri.carbon.ledger'].create({
@@ -72,19 +56,13 @@ class FarmEquipmentLog(models.Model):
             'co2e_amount': co2e,
             'source_factor_id': factor.id,
             'origin': f'Equipment Log: {self.id}',
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0
         })
         
         self.carbon_ledger_id = ledger.id
 
     def _update_carbon_ledger_entry(self):
         self.ensure_one()
-<<<<<<< HEAD
-        if self.carbon_ledger_id:
-            self.carbon_ledger_id.write({'quantity': self.fuel_consumed})
-=======
         if self.carbon_ledger_id and self.carbon_ledger_id.source_factor_id:
             new_co2e = self.fuel_consumed * self.carbon_ledger_id.source_factor_id.emission_factor
             self.carbon_ledger_id.write({'co2e_amount': new_co2e})
 
->>>>>>> 5351cad217860264bdd3ca8394fa45a799fce3d0

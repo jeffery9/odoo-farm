@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <data>
-<menuitem id="menu_farm_agricultural_processing_root" name="Agricultural Processing" web_icon="farm_agricultural_processing,static/description/icon.png" sequence="40" />
+    <!-- Top-Level L0 App -->
+    <menuitem id="menu_farm_agricultural_processing_root" name="Agricultural Processing" web_icon="farm_agricultural_processing,static/description/icon.png" sequence="40" />
 
-    <menuitem id="menu_processing_orders" name="Processing Tasks" parent="menu_farm_agricultural_processing_root" action="mrp.mrp_production_action" sequence="10" />
+    <!-- Standard L1 Categories -->
+    <menuitem id="menu_agri_proc_operations" name="Operations" parent="menu_farm_agricultural_processing_root" sequence="20" />
+    <menuitem id="menu_agri_proc_master_data" name="Master Data" parent="menu_farm_agricultural_processing_root" sequence="30" />
+    <menuitem id="menu_agri_proc_reporting" name="Reporting" parent="menu_farm_agricultural_processing_root" sequence="40" />
 
-    <menuitem id="menu_processing_boms" name="Agri-Recipes" parent="menu_farm_agricultural_processing_root" action="mrp.mrp_bom_form_action" sequence="20" />
+    <!-- L2 Functional Leaf Actions under Operations -->
+    <menuitem id="menu_processing_orders" name="Processing Tasks" parent="menu_agri_proc_operations" action="mrp.mrp_production_action" sequence="10" />
+    <menuitem id="menu_storage_monitoring" name="Storage Monitoring" parent="menu_agri_proc_operations" action="farm_iot.action_farm_storage_env" sequence="20" />
+    <menuitem id="menu_farm_ham_production" name="Ham Curing" parent="menu_agri_proc_operations" action="action_farm_ham_production" sequence="30" />
+    <menuitem id="menu_farm_aquatic_production" name="Aquatic Processing" parent="menu_agri_proc_operations" action="action_farm_aquatic_production" sequence="40" />
+    <menuitem id="menu_farm_net_vegetable_production" name="Net Veg Prep" parent="menu_agri_proc_operations" action="action_farm_net_vegetable_production" sequence="50" />
 
-    <menuitem id="menu_storage_monitoring" name="Storage Monitoring" parent="menu_farm_agricultural_processing_root" action="farm_iot.action_farm_storage_env" sequence="30" />
+    <!-- L2 Functional Leaf Actions under Master Data -->
+    <menuitem id="menu_processing_boms" name="Agri-Recipes" parent="menu_agri_proc_master_data" action="mrp.mrp_bom_form_action" sequence="10" />
 
-    <menuitem id="menu_processing_waste" name="Waste Registry" parent="menu_farm_agricultural_processing_root" action="farm_waste_mgmt.action_farm_agricultural_processing_waste" sequence="40" />
-    <menuitem id="menu_agri_processing_orders" name="Processing Orders" parent="farm_processing.menu_farm_processing_root" sequence="10" />
-
-    <menuitem id="menu_farm_ham_production" name="Ham Curing" parent="menu_agri_processing_orders" action="action_farm_ham_production" sequence="10" />
-
-    <menuitem id="menu_farm_aquatic_production" name="Aquatic Processing" parent="menu_agri_processing_orders" action="action_farm_aquatic_production" sequence="20" />
-
-    <menuitem id="menu_farm_net_vegetable_production" name="Net Veg Prep" parent="menu_agri_processing_orders" action="action_farm_net_vegetable_production" sequence="30" />
+    <!-- L2 Functional Leaf Actions under Reporting -->
+    <menuitem id="menu_processing_waste" name="Waste Registry" parent="menu_agri_proc_reporting" action="farm_waste_mgmt.action_farm_agricultural_processing_waste" sequence="10" />
 </data>
 </odoo>

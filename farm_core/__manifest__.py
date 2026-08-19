@@ -35,6 +35,7 @@
         'views/config_setup_management_views.xml',
         'views/performance_monitor_views.xml',
         'views/agri_lot_kinship_views.xml',
+        'views/res_config_settings_views.xml',
         'views/menu.xml',
         'views/stock_matter_tracking_views.xml',
     ],
